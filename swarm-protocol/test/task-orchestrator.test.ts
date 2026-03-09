@@ -1109,6 +1109,91 @@ test('outlier ejection avoids repeatedly selecting unhealthy route candidates', 
     assert.ok(metrics.retry.outlierDetection.targets['agent:bad'].ejectedUntil > clock.now());
 });
 
+test('maintenance dispatches a bounded speculative hedge for slow high-priority tasks', async () => {
+    const clock = createClock(500_000);
+    const sends = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        now: clock.now,
+        routeTask: async () => ({
+            candidateTargets: ['agent:alpha', 'agent:beta']
+        }),
+        transport: {
+            async send(target) {
+                sends.push({ target, at: clock.now() });
+            }
+        },
+        defaultTimeoutMs: 100,
+        hedgingEnabled: true,
+        hedgingDelayRatio: 0.5,
+        hedgingMinDelayMs: 20,
+        hedgingMaxDelayMs: 20,
+        hedgingMaxDispatches: 1
+    });
+
+    const task = await orchestrator.dispatchTask({
+        task: 'Tail-latency sensitive task',
+        priority: 'high'
+    });
+    assert.equal(task.status, 'dispatched');
+    assert.deepEqual(sends.map((entry) => entry.target), ['agent:alpha']);
+
+    clock.advance(19);
+    const beforeDelay = await orchestrator.runMaintenance(clock.now());
+    assert.equal(beforeDelay.hedged, 0);
+    assert.equal(sends.length, 1);
+
+    clock.advance(1);
+    const hedgedPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(hedgedPass.hedged, 1);
+    assert.deepEqual(sends.map((entry) => entry.target), ['agent:alpha', 'agent:beta']);
+
+    clock.advance(20);
+    const afterMax = await orchestrator.runMaintenance(clock.now());
+    assert.equal(afterMax.hedged, 0);
+    assert.equal(sends.length, 2);
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.routing.hedges.dispatched, 1);
+    assert.equal(current.routing.hedges.lastTarget, 'agent:beta');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.hedging.dispatched, 1);
+});
+
+test('maintenance does not hedge when task priority is not eligible', async () => {
+    const clock = createClock(510_000);
+    const sends = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        now: clock.now,
+        routeTask: async () => ({
+            candidateTargets: ['agent:alpha', 'agent:beta']
+        }),
+        transport: {
+            async send(target) {
+                sends.push({ target, at: clock.now() });
+            }
+        },
+        defaultTimeoutMs: 100,
+        hedgingEnabled: true,
+        hedgingDelayRatio: 0.5,
+        hedgingMinDelayMs: 20,
+        hedgingMaxDelayMs: 20,
+        hedgingMaxDispatches: 1
+    });
+
+    await orchestrator.dispatchTask({
+        task: 'Normal-priority task',
+        priority: 'normal'
+    });
+
+    clock.advance(40);
+    const pass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass.hedged, 0);
+    assert.equal(sends.length, 1);
+});
+
 test('failed results are captured in dead-letter metrics and listing', async () => {
     const clock = createClock(35_000);
     const orchestrator = new TaskOrchestrator({

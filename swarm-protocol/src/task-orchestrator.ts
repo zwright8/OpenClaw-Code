@@ -45,6 +45,11 @@ const DEFAULT_TARGET_SELECTION_CHOICES = 2;
 const DEFAULT_TARGET_OUTLIER_FAILURE_THRESHOLD = 3;
 const DEFAULT_TARGET_OUTLIER_BASE_EJECTION_MS = 30_000;
 const DEFAULT_TARGET_OUTLIER_MAX_EJECTION_MS = 5 * 60_000;
+const DEFAULT_HEDGE_DELAY_RATIO = 0.8;
+const DEFAULT_HEDGE_MIN_DELAY_MS = 250;
+const DEFAULT_HEDGE_MAX_DELAY_MS = 5_000;
+const DEFAULT_HEDGE_MAX_DISPATCHES = 1;
+const DEFAULT_HEDGE_ELIGIBLE_PRIORITIES = ['high', 'critical'];
 const IN_FLIGHT_STATUSES = new Set(['dispatched', 'acknowledged']);
 const HIGH_PRIORITY_TASKS = new Set(['critical', 'high']);
 const PRIORITY_RANK = {
@@ -244,6 +249,12 @@ export class TaskOrchestrator {
         retryBudgetMinPerWindow = 3,
         retryBudgetWindowMs = 10_000,
         maxRetryElapsedMs = null,
+        hedgingEnabled = false,
+        hedgingDelayRatio = DEFAULT_HEDGE_DELAY_RATIO,
+        hedgingMinDelayMs = DEFAULT_HEDGE_MIN_DELAY_MS,
+        hedgingMaxDelayMs = DEFAULT_HEDGE_MAX_DELAY_MS,
+        hedgingMaxDispatches = DEFAULT_HEDGE_MAX_DISPATCHES,
+        hedgingEligiblePriorities = DEFAULT_HEDGE_ELIGIBLE_PRIORITIES,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -395,6 +406,30 @@ export class TaskOrchestrator {
         this.maxRetryElapsedMs = maxRetryElapsedMs === null || maxRetryElapsedMs === undefined
             ? null
             : normalizeNonNegativeInt(maxRetryElapsedMs, 0);
+        this.hedgingEnabled = hedgingEnabled === true;
+        this.hedgingDelayRatio = clampRatio(hedgingDelayRatio, DEFAULT_HEDGE_DELAY_RATIO);
+        this.hedgingMinDelayMs = Math.max(
+            0,
+            Math.floor(clampNonNegativeNumber(hedgingMinDelayMs, DEFAULT_HEDGE_MIN_DELAY_MS))
+        );
+        this.hedgingMaxDelayMs = Math.max(
+            this.hedgingMinDelayMs,
+            Math.floor(clampPositiveNumber(hedgingMaxDelayMs, DEFAULT_HEDGE_MAX_DELAY_MS))
+        );
+        this.hedgingMaxDispatches = Math.max(
+            0,
+            normalizeNonNegativeInt(hedgingMaxDispatches, DEFAULT_HEDGE_MAX_DISPATCHES)
+        );
+        this.hedgingEligiblePriorities = new Set(
+            this._normalizeCandidateTargets(hedgingEligiblePriorities)
+                .map((priority) => this._classifyTaskPriority(priority))
+                .filter((priority) => PRIORITY_RANK[priority] !== undefined)
+        );
+        if (this.hedgingEligiblePriorities.size === 0) {
+            for (const priority of DEFAULT_HEDGE_ELIGIBLE_PRIORITIES) {
+                this.hedgingEligiblePriorities.add(priority);
+            }
+        }
         this.retryWindowExhaustedCount = 0;
         this.targetLatencyStats = new Map();
         this.targetOutlierStats = new Map();
@@ -614,6 +649,179 @@ export class TaskOrchestrator {
         return output;
     }
 
+    _ensureRoutingState(record) {
+        if (!record || typeof record !== 'object') {
+            return {
+                candidates: [],
+                failovers: 0,
+                hedges: {
+                    dispatched: 0,
+                    lastDispatchedAt: null,
+                    lastTarget: null,
+                    attemptedTargets: []
+                }
+            };
+        }
+
+        if (!record.routing || typeof record.routing !== 'object') {
+            record.routing = {};
+        }
+
+        record.routing.candidates = this._normalizeCandidateTargets(
+            record.routing.candidates,
+            record.target
+        );
+        record.routing.failovers = normalizeNonNegativeInt(record.routing.failovers, 0);
+        if (!record.routing.hedges || typeof record.routing.hedges !== 'object') {
+            record.routing.hedges = {};
+        }
+
+        const hedges = record.routing.hedges;
+        hedges.dispatched = normalizeNonNegativeInt(hedges.dispatched, 0);
+        hedges.lastDispatchedAt = Number.isFinite(Number(hedges.lastDispatchedAt))
+            ? Number(hedges.lastDispatchedAt)
+            : null;
+        hedges.lastTarget = normalizeNonEmptyString(hedges.lastTarget);
+        hedges.attemptedTargets = this._normalizeCandidateTargets(
+            hedges.attemptedTargets,
+            record.target
+        );
+        return record.routing;
+    }
+
+    _resolveHedgeDelayMs(record) {
+        const timeoutMs = this._resolveTimeoutMs(record?.target);
+        const rawDelay = Math.floor(timeoutMs * this.hedgingDelayRatio);
+        const bounded = Math.max(
+            this.hedgingMinDelayMs,
+            Math.min(this.hedgingMaxDelayMs, rawDelay)
+        );
+        return Math.max(1, Math.min(Math.max(1, timeoutMs - 1), bounded));
+    }
+
+    async _maybeDispatchSpeculativeHedge(record, nowMs) {
+        if (!this.hedgingEnabled || this.hedgingMaxDispatches <= 0) return false;
+        if (!record || record.status !== 'dispatched' || record.nextRetryAt !== null) return false;
+        if (!Number.isFinite(record.lastDispatchAt) || record._sending === true) return false;
+
+        const priority = this._classifyTaskPriority(record?.request?.priority);
+        if (!this.hedgingEligiblePriorities.has(priority)) return false;
+
+        const routing = this._ensureRoutingState(record);
+        const hedges = routing.hedges;
+        if (hedges.dispatched >= this.hedgingMaxDispatches) return false;
+
+        const delayMs = this._resolveHedgeDelayMs(record);
+        const elapsedMs = Math.max(0, nowMs - Number(record.lastDispatchAt));
+        if (elapsedMs < delayMs) return false;
+
+        const excludedTargets = new Set(
+            this._normalizeCandidateTargets(
+                record.target,
+                hedges.attemptedTargets
+            )
+        );
+        const nextTarget = this._selectDispatchTarget(routing.candidates, nowMs, {
+            exclude: excludedTargets
+        });
+        if (!nextTarget) return false;
+
+        const budgetDecision = this._consumeRetryBudget(nowMs);
+        if (!budgetDecision.allowed) {
+            record.history.push({
+                at: nowMs,
+                event: 'hedge_skipped_retry_budget_exhausted',
+                retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+                retryBudgetRetriesInWindow: budgetDecision.retriesInWindow,
+                retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_hedge_skipped_retry_budget_exhausted', {
+                taskId: record.taskId,
+                target: record.target,
+                priority,
+                retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+                retryBudgetRetriesInWindow: budgetDecision.retriesInWindow,
+                retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow
+            }, nowMs);
+            return false;
+        }
+
+        const tokenGranted = this._consumeRetryToken(nowMs);
+        if (!tokenGranted) {
+            const tokenRecoveryDelayMs = this._retryTokenRecoveryDelayMs(nowMs);
+            record.history.push({
+                at: nowMs,
+                event: 'hedge_skipped_retry_token_exhausted',
+                retryTokenRecoveryDelayMs: tokenRecoveryDelayMs,
+                retryTokensAvailable: Number(this.retryTokens.toFixed(3))
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_hedge_skipped_retry_token_exhausted', {
+                taskId: record.taskId,
+                target: record.target,
+                priority,
+                retryTokenRecoveryDelayMs: tokenRecoveryDelayMs,
+                retryTokensAvailable: Number(this.retryTokens.toFixed(3))
+            }, nowMs);
+            return false;
+        }
+
+        this._retargetRecord(record, nextTarget, nowMs, 'speculative_hedge');
+        const updatedRouting = this._ensureRoutingState(record);
+        updatedRouting.hedges.dispatched += 1;
+        updatedRouting.hedges.lastDispatchedAt = nowMs;
+        updatedRouting.hedges.lastTarget = nextTarget;
+        updatedRouting.hedges.attemptedTargets = this._normalizeCandidateTargets(
+            updatedRouting.hedges.attemptedTargets,
+            nextTarget
+        );
+        record.updatedAt = nowMs;
+        record.history.push({
+            at: nowMs,
+            event: 'hedge_dispatch_scheduled',
+            target: nextTarget,
+            delayMs,
+            elapsedMs,
+            retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+            retryBudgetRetriesInWindow: budgetDecision.retriesInWindow + 1,
+            retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow,
+            retryTokensAvailable: Number(this.retryTokens.toFixed(3))
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_hedge_dispatch_scheduled', {
+            taskId: record.taskId,
+            target: nextTarget,
+            delayMs,
+            elapsedMs,
+            retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+            retryBudgetRetriesInWindow: budgetDecision.retriesInWindow + 1,
+            retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow,
+            retryTokensAvailable: Number(this.retryTokens.toFixed(3))
+        }, nowMs);
+
+        try {
+            await this._sendTask(record, 'hedged_dispatch');
+            return true;
+        } catch (error) {
+            const failedAt = safeNow(this.now);
+            record.history.push({
+                at: failedAt,
+                event: 'hedge_dispatch_failed',
+                error: error?.message || null,
+                code: error?.code || null
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_hedge_dispatch_failed', {
+                taskId: record.taskId,
+                target: record.target,
+                error: error?.message || null,
+                code: error?.code || null
+            }, failedAt);
+            return false;
+        }
+    }
+
     _rankTargetsByLoadAndHealth(targets, nowMs = safeNow(this.now), {
         exclude = null
     } = {}) {
@@ -697,17 +905,13 @@ export class TaskOrchestrator {
             from: record.request.from,
             createdAt: record.request.createdAt
         });
-        if (!record.routing || typeof record.routing !== 'object') {
-            record.routing = {
-                candidates: [normalized],
-                failovers: 0
-            };
-        }
-        record.routing.candidates = this._normalizeCandidateTargets(
-            record.routing.candidates,
+        const routing = this._ensureRoutingState(record);
+        routing.candidates = this._normalizeCandidateTargets(routing.candidates, normalized);
+        routing.failovers = Number(routing.failovers || 0) + 1;
+        routing.hedges.attemptedTargets = this._normalizeCandidateTargets(
+            routing.hedges.attemptedTargets,
             normalized
         );
-        record.routing.failovers = Number(record.routing.failovers || 0) + 1;
         record.updatedAt = at;
         record.history.push({
             at,
@@ -1076,6 +1280,8 @@ export class TaskOrchestrator {
                 continue;
             }
             this.tasks.set(record.taskId, clone(record));
+            const hydratedRecord = this.tasks.get(record.taskId);
+            this._ensureRoutingState(hydratedRecord);
             const idempotencyKey = this._normalizeIdempotencyKey(record?.idempotency?.key);
             const idempotencyFingerprint = typeof record?.idempotency?.fingerprint === 'string'
                 ? record.idempotency.fingerprint
@@ -1789,7 +1995,13 @@ export class TaskOrchestrator {
             ],
             routing: {
                 candidates: candidateTargets,
-                failovers: 0
+                failovers: 0,
+                hedges: {
+                    dispatched: 0,
+                    lastDispatchedAt: null,
+                    lastTarget: null,
+                    attemptedTargets: [request.target]
+                }
             },
             deadLetter: null,
             idempotency: normalizedIdempotencyKey
@@ -1799,6 +2011,7 @@ export class TaskOrchestrator {
                 }
                 : null
         };
+        this._ensureRoutingState(record);
 
         if (policyDecision?.redactions?.length > 0) {
             record.history.push({
@@ -2347,6 +2560,7 @@ export class TaskOrchestrator {
             checked: 0,
             scheduledRetries: 0,
             retried: 0,
+            hedged: 0,
             timedOut: 0,
             transportFailures: 0,
             retryBacklog: 0
@@ -2356,6 +2570,12 @@ export class TaskOrchestrator {
         for (const record of this.tasks.values()) {
             if (!OPEN_STATUSES.has(record.status)) continue;
             summary.checked++;
+
+            const hedged = await this._maybeDispatchSpeculativeHedge(record, nowMs);
+            if (hedged) {
+                summary.hedged++;
+                continue;
+            }
 
             if (nowMs <= record.deadlineAt) continue;
 
@@ -2831,6 +3051,15 @@ export class TaskOrchestrator {
                 retryWindow: {
                     maxRetryElapsedMs: this.maxRetryElapsedMs,
                     exhaustedCount: this.retryWindowExhaustedCount
+                },
+                hedging: {
+                    enabled: this.hedgingEnabled,
+                    delayRatio: this.hedgingDelayRatio,
+                    minDelayMs: this.hedgingMinDelayMs,
+                    maxDelayMs: this.hedgingMaxDelayMs,
+                    maxDispatches: this.hedgingMaxDispatches,
+                    eligiblePriorities: [...this.hedgingEligiblePriorities],
+                    dispatched: 0
                 }
             },
             deadLetter: {
@@ -2852,6 +3081,11 @@ export class TaskOrchestrator {
                 metrics.terminal++;
             } else {
                 metrics.open++;
+            }
+
+            const dispatchedHedges = Number(record?.routing?.hedges?.dispatched || 0);
+            if (dispatchedHedges > 0) {
+                metrics.retry.hedging.dispatched += dispatchedHedges;
             }
 
             if (this._isDeadLettered(record)) {
