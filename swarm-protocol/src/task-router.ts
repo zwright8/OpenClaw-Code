@@ -26,6 +26,7 @@ const DEFAULT_HEDGE_MAX_CANDIDATE_LOAD = 0.85;
 const DEFAULT_ADMISSION_AVERAGE_LOAD_THRESHOLD = 0.8;
 const DEFAULT_ADMISSION_HEALTHY_RATIO_THRESHOLD = 0.4;
 const DEFAULT_ADMISSION_SATURATION_RATIO_THRESHOLD = 0.5;
+const DEFAULT_UCB_EXPLORATION_COEFFICIENT = 0.65;
 const LOCALITY_FALLBACK_MODES = new Set(['cluster', 'strict']);
 const VALID_TASK_PRIORITIES = new Set(['low', 'normal', 'high', 'critical']);
 
@@ -68,6 +69,12 @@ function safeProbability(value, fallback = null) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
     return Math.max(0, Math.min(1, numeric));
+}
+
+function safeNonNegativeNumber(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric) || numeric < 0) return fallback;
+    return numeric;
 }
 
 function normalizeOutlierOptions(options = {}) {
@@ -460,11 +467,73 @@ function pickWithPowerOfTwoChoices(eligible, options) {
     return safeRandom(options) < 0.5 ? first : second;
 }
 
+function normalizeUcbOptions(options = {}) {
+    const configured = Number(
+        options?.selectionExplorationCoefficient
+        ?? options?.ucb?.explorationCoefficient
+        ?? DEFAULT_UCB_EXPLORATION_COEFFICIENT
+    );
+    const explorationCoefficient = Number.isFinite(configured)
+        ? Math.max(0, configured)
+        : DEFAULT_UCB_EXPLORATION_COEFFICIENT;
+    return {
+        explorationCoefficient
+    };
+}
+
+function selectWithUcb(eligible, options = {}) {
+    if (!Array.isArray(eligible) || eligible.length === 0) return null;
+    if (eligible.length === 1) return eligible[0];
+
+    const { explorationCoefficient } = normalizeUcbOptions(options);
+    const scored = eligible.filter((item) => Number.isFinite(item.score));
+    if (scored.length === 0) return eligible[0];
+
+    let minScore = scored[0].score;
+    let maxScore = scored[0].score;
+    let totalSelections = 0;
+    for (const item of scored) {
+        minScore = Math.min(minScore, item.score);
+        maxScore = Math.max(maxScore, item.score);
+        totalSelections += safeNonNegativeNumber(item.selectionCount, 0);
+    }
+    const scoreRange = Math.max(1, maxScore - minScore);
+    const logTerm = Math.log(Math.max(2, totalSelections + scored.length + 1));
+
+    let best = scored[0];
+    let bestUcb = -Infinity;
+    for (const item of scored) {
+        const selectionCount = safeNonNegativeNumber(item.selectionCount, 0);
+        const normalizedReward = (item.score - minScore) / scoreRange;
+        const bonus = explorationCoefficient * Math.sqrt(logTerm / (selectionCount + 1));
+        const ucb = normalizedReward + bonus;
+        if (ucb > bestUcb) {
+            bestUcb = ucb;
+            best = item;
+            continue;
+        }
+
+        if (ucb === bestUcb) {
+            if (item.score > best.score) {
+                best = item;
+            } else if (item.score === best.score && safeRandom(options) < 0.5) {
+                best = item;
+            }
+        }
+    }
+
+    return best;
+}
+
 function pickBestEligible(ranked, options = {}) {
     const eligible = ranked.filter((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim());
     if (eligible.length === 0) return null;
-    if (options.selectionStrategy === 'p2c') {
+    const selectionStrategy = normalizeString(options?.selectionStrategy) || 'greedy';
+    if (selectionStrategy === 'p2c') {
         return pickWithPowerOfTwoChoices(eligible, options);
+    }
+    if (selectionStrategy === 'ucb1') {
+        return selectWithUcb(eligible, options);
     }
     return eligible[0];
 }
@@ -747,11 +816,18 @@ function rankAgents(taskRequest, agents, options = {}) {
     return agents
         .map((agent) => {
             const evaluation = scoreAgent(taskRequest, agent, options, localityOptions);
+            const selectionCount = safeInteger(
+                agent?.routing?.selectionCount
+                ?? agent?.selectionCount
+                ?? agent?.outlier?.sampleSize,
+                0
+            );
             return {
                 agentId: agent?.id || agent?.agentId || null,
                 status: agent?.status,
                 load: agent?.load,
                 capabilities: normalizeCapabilities(agent?.capabilities),
+                selectionCount,
                 ...evaluation
             };
         })

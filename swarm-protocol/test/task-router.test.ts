@@ -167,6 +167,96 @@ test('supports power-of-two-choices selection strategy to reduce router herd bia
     assert.equal(selected.selectedAgentId, 'agent:b');
 });
 
+test('supports UCB1 routing strategy to balance exploitation and exploration', () => {
+    const task = buildTaskRequest({
+        id: '45454545-4545-4545-8545-454545454545',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route adaptive exploration workload',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['indexing']
+        },
+        createdAt: 40_500
+    });
+
+    const agents = [
+        {
+            id: 'agent:hot',
+            status: 'idle',
+            load: 0.15,
+            capabilities: ['indexing'],
+            timestamp: 40_500,
+            routing: {
+                selectionCount: 1_000
+            }
+        },
+        {
+            id: 'agent:fresh',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['indexing'],
+            timestamp: 40_500,
+            routing: {
+                selectionCount: 0
+            }
+        }
+    ];
+
+    const selected = selectBestAgentForTask(task, agents, {
+        nowMs: 40_501,
+        selectionStrategy: 'ucb1',
+        selectionExplorationCoefficient: 0.8
+    });
+
+    assert.equal(selected.selectedAgentId, 'agent:fresh');
+});
+
+test('UCB1 routing with zero exploration coefficient behaves like greedy selection', () => {
+    const task = buildTaskRequest({
+        id: '46464646-4646-4646-8646-464646464646',
+        from: 'agent:main',
+        target: 'agent:placeholder',
+        task: 'Route deterministic exploit workload',
+        priority: 'normal',
+        context: {
+            requiredCapabilities: ['indexing']
+        },
+        createdAt: 40_600
+    });
+
+    const agents = [
+        {
+            id: 'agent:best',
+            status: 'idle',
+            load: 0.1,
+            capabilities: ['indexing'],
+            timestamp: 40_600,
+            routing: {
+                selectionCount: 1_000
+            }
+        },
+        {
+            id: 'agent:explore',
+            status: 'idle',
+            load: 0.3,
+            capabilities: ['indexing'],
+            timestamp: 40_600,
+            routing: {
+                selectionCount: 0
+            }
+        }
+    ];
+
+    const selected = selectBestAgentForTask(task, agents, {
+        nowMs: 40_601,
+        selectionStrategy: 'ucb1',
+        selectionExplorationCoefficient: 0
+    });
+
+    assert.equal(selected.selectedAgentId, 'agent:best');
+});
+
 test('panic mode can fail open to stale-capable agents when healthy pool collapses', () => {
     const task = buildTaskRequest({
         id: '55555555-5555-4555-8555-555555555555',

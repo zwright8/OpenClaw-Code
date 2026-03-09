@@ -342,6 +342,16 @@ orchestrator.ingestResult(resultMessage);
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
 
+Adaptive routing strategies:
+```js
+const { selectedAgentId, ranked } = routeTaskRequest(taskRequest, liveAgents, {
+  selectionStrategy: 'ucb1',
+  selectionExplorationCoefficient: 0.65
+});
+```
+Use `selectionStrategy: 'ucb1'` to reduce router lock-in and continue exploring underused agents.
+Populate `routing.selectionCount` in heartbeat metadata to improve exploration/exploitation balance.
+
 Safety policy integration:
 ```js
 import { createDispatchPolicy, TaskOrchestrator } from 'swarm-protocol';
