@@ -64,6 +64,12 @@ Primary products for this skill: human-machine authority matrix, engagement gove
 - Require positive human authorization checkpoints for autonomy mode transitions, effects release, and contingency overrides.
 - If confidence, comms integrity, or identification certainty drops below threshold, direct fallback to advisory-only posture with human-on-the-loop control.
 
+## Human Authorization Floor
+
+- For any recommendation that changes autonomy mode, engagement permissions, or mission escalation posture, require explicit fields: `authority_tier`, `approval_role`, `approval_timestamp_utc`, and `audit_record_id`.
+- If any required authorization field is missing, invalid, or stale, fail closed to `advisory_only: true` and emit only risk/mitigation reporting.
+- When sensor-ID confidence, communications assurance, or legal authority is disputed across sources, hold recommendations in `pending_human_review` and provide no execution-path language.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
