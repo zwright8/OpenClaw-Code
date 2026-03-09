@@ -111,6 +111,13 @@ function normalizePositiveIntOrInfinity(value, fallback) {
     return Math.max(1, Math.floor(numeric));
 }
 
+function normalizeNonNegativeInt(value, fallback) {
+    if (value === null || value === undefined) return fallback;
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric) || numeric < 0) return fallback;
+    return Math.floor(numeric);
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -217,6 +224,9 @@ export class TaskOrchestrator {
         adaptiveTimeoutBeta = DEFAULT_ADAPTIVE_TIMEOUT_BETA,
         maintenanceRetryBatchLimit = Number.POSITIVE_INFINITY,
         maintenanceHighPriorityShare = 2,
+        retryBudgetRatio = 0.2,
+        retryBudgetMinPerWindow = 3,
+        retryBudgetWindowMs = 10_000,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -311,6 +321,15 @@ export class TaskOrchestrator {
             1,
             Math.floor(clampPositiveNumber(maintenanceHighPriorityShare, 2))
         );
+        this.retryBudgetRatio = Math.max(0, clampNonNegativeNumber(retryBudgetRatio, 0.2));
+        this.retryBudgetMinPerWindow = normalizeNonNegativeInt(retryBudgetMinPerWindow, 3);
+        this.retryBudgetWindowMs = Math.max(
+            1,
+            normalizeNonNegativeInt(retryBudgetWindowMs, 10_000)
+        );
+        this.retryBudgetRequestEvents = [];
+        this.retryBudgetRetryEvents = [];
+        this.retryBudgetExhaustedCount = 0;
         this.targetLatencyStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
@@ -956,6 +975,76 @@ export class TaskOrchestrator {
         return Math.max(0, Math.ceil(seconds * 1_000));
     }
 
+    _pruneRetryBudgetEvents(nowMs) {
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        const cutoff = at - this.retryBudgetWindowMs;
+        while (this.retryBudgetRequestEvents.length > 0 && this.retryBudgetRequestEvents[0] <= cutoff) {
+            this.retryBudgetRequestEvents.shift();
+        }
+        while (this.retryBudgetRetryEvents.length > 0 && this.retryBudgetRetryEvents[0] <= cutoff) {
+            this.retryBudgetRetryEvents.shift();
+        }
+    }
+
+    _recordRetryBudgetRequest(nowMs) {
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        this._pruneRetryBudgetEvents(at);
+        this.retryBudgetRequestEvents.push(at);
+    }
+
+    _consumeRetryBudget(nowMs) {
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        this._pruneRetryBudgetEvents(at);
+        const requestsInWindow = this.retryBudgetRequestEvents.length;
+        const retriesInWindow = this.retryBudgetRetryEvents.length;
+        const dynamicAllowance = Math.floor(requestsInWindow * this.retryBudgetRatio);
+        const maxRetriesInWindow = this.retryBudgetMinPerWindow + dynamicAllowance;
+        const granted = retriesInWindow < maxRetriesInWindow;
+        if (granted) {
+            this.retryBudgetRetryEvents.push(at);
+        } else {
+            this.retryBudgetExhaustedCount += 1;
+        }
+        return {
+            granted,
+            requestsInWindow,
+            retriesInWindow,
+            maxRetriesInWindow
+        };
+    }
+
+    _markRetryBudgetExhausted(record, nowMs, {
+        reason = 'retry_budget_exhausted',
+        event = 'retry_budget_exhausted',
+        sourceEvent = 'retry_budget_exhausted',
+        auditEvent = 'task_retry_budget_exhausted',
+        metadata = null
+    } = {}) {
+        const exhaustedAt = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        record.status = 'transport_error';
+        record.nextRetryAt = null;
+        record.updatedAt = exhaustedAt;
+        record.closedAt = exhaustedAt;
+        record.lastError = reason;
+        record.history.push({
+            at: exhaustedAt,
+            event,
+            reason,
+            ...(metadata && typeof metadata === 'object' ? metadata : {})
+        });
+        this._persistRecord(record);
+        this._emitAudit(auditEvent, {
+            taskId: record.taskId,
+            target: record.target,
+            reason,
+            ...(metadata && typeof metadata === 'object' ? metadata : {})
+        }, exhaustedAt);
+        this._markDeadLetter(record, exhaustedAt, {
+            reason,
+            sourceEvent
+        });
+    }
+
     _scheduleRetry(record, nowMs, {
         reason = 'retry_scheduled',
         event = 'retry_scheduled',
@@ -963,6 +1052,24 @@ export class TaskOrchestrator {
         auditEvent = 'task_retry_scheduled',
         metadata = null
     } = {}) {
+        const budgetDecision = this._consumeRetryBudget(nowMs);
+        if (!budgetDecision.granted) {
+            this._markRetryBudgetExhausted(record, nowMs, {
+                reason: `retry_budget_exhausted:${reason}`,
+                event: 'retry_budget_exhausted',
+                sourceEvent: 'retry_budget_exhausted',
+                auditEvent: 'task_retry_budget_exhausted',
+                metadata: {
+                    retryReason: reason,
+                    retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+                    retryBudgetRetriesInWindow: budgetDecision.retriesInWindow,
+                    retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow,
+                    ...(metadata && typeof metadata === 'object' ? metadata : {})
+                }
+            });
+            return false;
+        }
+
         const baseRetryDelayMs = this._resolveRetryDelayMs(record, hintMs);
         const tokenGranted = this._consumeRetryToken(nowMs);
         const tokenRecoveryDelayMs = tokenGranted ? 0 : this._retryTokenRecoveryDelayMs(nowMs);
@@ -985,6 +1092,9 @@ export class TaskOrchestrator {
             retryTokenRecoveryDelayMs: tokenRecoveryDelayMs,
             retryTokensAvailable: Number(this.retryTokens.toFixed(3)),
             retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
+            retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+            retryBudgetRetriesInWindow: budgetDecision.retriesInWindow + 1,
+            retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow,
             ...(metadata && typeof metadata === 'object' ? metadata : {})
         });
         this._persistRecord(record);
@@ -999,8 +1109,12 @@ export class TaskOrchestrator {
             retryTokenRecoveryDelayMs: tokenRecoveryDelayMs,
             retryTokensAvailable: Number(this.retryTokens.toFixed(3)),
             retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
+            retryBudgetRequestsInWindow: budgetDecision.requestsInWindow,
+            retryBudgetRetriesInWindow: budgetDecision.retriesInWindow + 1,
+            retryBudgetMaxRetriesInWindow: budgetDecision.maxRetriesInWindow,
             ...(metadata && typeof metadata === 'object' ? metadata : {})
         }, nowMs);
+        return true;
     }
 
     _classifyTaskPriority(priority) {
@@ -1502,6 +1616,9 @@ export class TaskOrchestrator {
         }
 
         record.attempts += 1;
+        if (record.attempts === 1) {
+            this._recordRetryBudgetRequest(sendAt);
+        }
         record.updatedAt = sendAt;
         record.history.push({
             at: sendAt,
@@ -1723,11 +1840,15 @@ export class TaskOrchestrator {
             }
 
             if (record.nextRetryAt === null) {
-                this._scheduleRetry(record, nowMs, {
+                const scheduled = this._scheduleRetry(record, nowMs, {
                     reason: 'deadline_exceeded',
                     event: 'retry_scheduled'
                 });
-                summary.scheduledRetries++;
+                if (scheduled) {
+                    summary.scheduledRetries++;
+                } else {
+                    summary.transportFailures++;
+                }
                 continue;
             }
 
@@ -1743,7 +1864,7 @@ export class TaskOrchestrator {
                 summary.retried++;
             } catch (error) {
                 if (error instanceof TaskOrchestratorError && error.code === 'TARGET_BACKPRESSURE') {
-                    this._scheduleRetry(record, nowMs, {
+                    const scheduled = this._scheduleRetry(record, nowMs, {
                         reason: 'target_backpressure',
                         event: 'retry_deferred_target_backpressure',
                         hintMs: Number.isFinite(error?.details?.retryAfterMs)
@@ -1759,11 +1880,15 @@ export class TaskOrchestrator {
                                 : null
                         }
                     });
-                    summary.scheduledRetries++;
+                    if (scheduled) {
+                        summary.scheduledRetries++;
+                    } else {
+                        summary.transportFailures++;
+                    }
                     continue;
                 }
                 if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
-                    this._scheduleRetry(record, nowMs, {
+                    const scheduled = this._scheduleRetry(record, nowMs, {
                         reason: 'circuit_open',
                         event: 'retry_deferred_circuit_open',
                         hintMs: Number.isFinite(error?.details?.retryAfterMs)
@@ -1774,7 +1899,11 @@ export class TaskOrchestrator {
                             circuitState: error?.details?.circuitState || null
                         }
                     });
-                    summary.scheduledRetries++;
+                    if (scheduled) {
+                        summary.scheduledRetries++;
+                    } else {
+                        summary.transportFailures++;
+                    }
                     continue;
                 }
 
@@ -1803,13 +1932,18 @@ export class TaskOrchestrator {
                         sourceEvent: 'maintenance_transport_error'
                     });
                 } else {
-                    this._scheduleRetry(record, nowMs, {
+                    const scheduled = this._scheduleRetry(record, nowMs, {
                         reason: 'transport_send_failed',
                         event: 'retry_scheduled',
                         metadata: {
                             error: record.lastError
                         }
                     });
+                    if (scheduled) {
+                        summary.scheduledRetries++;
+                    } else {
+                        summary.transportFailures++;
+                    }
                 }
             }
         }
@@ -2014,6 +2148,16 @@ export class TaskOrchestrator {
                         ? this.maintenanceRetryBatchLimit
                         : null,
                     highPriorityShare: this.maintenanceHighPriorityShare
+                },
+                budget: {
+                    ratio: this.retryBudgetRatio,
+                    minPerWindow: this.retryBudgetMinPerWindow,
+                    windowMs: this.retryBudgetWindowMs,
+                    requestsInWindow: 0,
+                    retriesInWindow: 0,
+                    maxRetriesInWindow: 0,
+                    budgetRemaining: 0,
+                    exhaustedCount: this.retryBudgetExhaustedCount
                 }
             },
             deadLetter: {
@@ -2059,6 +2203,16 @@ export class TaskOrchestrator {
                 metrics.retry.circuitBreaker.halfOpenTargets++;
             }
         }
+
+        this._pruneRetryBudgetEvents(safeNow(this.now));
+        const requestsInWindow = this.retryBudgetRequestEvents.length;
+        const retriesInWindow = this.retryBudgetRetryEvents.length;
+        const maxRetriesInWindow = this.retryBudgetMinPerWindow
+            + Math.floor(requestsInWindow * this.retryBudgetRatio);
+        metrics.retry.budget.requestsInWindow = requestsInWindow;
+        metrics.retry.budget.retriesInWindow = retriesInWindow;
+        metrics.retry.budget.maxRetriesInWindow = maxRetriesInWindow;
+        metrics.retry.budget.budgetRemaining = Math.max(0, maxRetriesInWindow - retriesInWindow);
 
         for (const [target, state] of this.targetLatencyStats.entries()) {
             metrics.retry.adaptiveTimeout.targets[target] = {

@@ -488,6 +488,119 @@ test('retry token bucket delays scheduling when tokens are exhausted', async () 
     assert.equal(current.nextRetryAt, clock.now() + lastEvent.retryDelayMs);
 });
 
+test('retry budget exhaustion terminalizes retries instead of looping', async () => {
+    const clock = createClock(13_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 2,
+        retryDelayMs: 5,
+        retryBudgetRatio: 0,
+        retryBudgetMinPerWindow: 0,
+        retryBudgetWindowMs: 5_000
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-budget-zero',
+        task: 'Retry should be budget-blocked'
+    });
+
+    clock.advance(25);
+    const pass = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(pass.scheduledRetries, 0);
+    assert.equal(pass.transportFailures, 1);
+    assert.equal(current.status, 'transport_error');
+    assert.equal(current.nextRetryAt, null);
+    assert.equal(orchestrator.listDeadLetters().length, 1);
+    assert.match(current.deadLetter.reason, /^retry_budget_exhausted:/);
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.budget.exhaustedCount, 1);
+    assert.equal(metrics.retry.budget.maxRetriesInWindow, 0);
+});
+
+test('retry budget replenishes as request volume grows inside the window', async () => {
+    const clock = createClock(13_500);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        defaultTimeoutMs: 20,
+        maxRetries: 2,
+        retryDelayMs: 5,
+        retryBudgetRatio: 0.5,
+        retryBudgetMinPerWindow: 0,
+        retryBudgetWindowMs: 5_000
+    });
+
+    const [taskA, taskB] = await Promise.all([
+        orchestrator.dispatchTask({
+            target: 'agent:worker-budget-growth',
+            task: 'Seed request A'
+        }),
+        orchestrator.dispatchTask({
+            target: 'agent:worker-budget-growth',
+            task: 'Seed request B'
+        })
+    ]);
+
+    clock.advance(25);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(pass1.transportFailures, 1);
+
+    const taskARecord = orchestrator.getTask(taskA.taskId);
+    const taskBRecord = orchestrator.getTask(taskB.taskId);
+    const retryScheduled = [taskARecord, taskBRecord].filter((record) => record.status === 'retry_scheduled');
+    const budgetBlocked = [taskARecord, taskBRecord].filter((record) => record.status === 'transport_error');
+    assert.equal(retryScheduled.length, 1);
+    assert.equal(budgetBlocked.length, 1);
+    orchestrator.cancelTask(retryScheduled[0].taskId, {
+        reason: 'isolate_budget_growth_test'
+    });
+
+    const warmupA = await orchestrator.dispatchTask({
+        target: 'agent:worker-budget-growth',
+        task: 'Warmup request C'
+    });
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: warmupA.taskId,
+        from: warmupA.target,
+        status: 'success',
+        output: 'ok',
+        completedAt: clock.now()
+    }));
+    const warmupB = await orchestrator.dispatchTask({
+        target: 'agent:worker-budget-growth',
+        task: 'Warmup request D'
+    });
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: warmupB.taskId,
+        from: warmupB.target,
+        status: 'success',
+        output: 'ok',
+        completedAt: clock.now()
+    }));
+
+    const retryCandidate = await orchestrator.dispatchTask({
+        target: 'agent:worker-budget-growth',
+        task: 'Candidate after budget growth'
+    });
+
+    clock.advance(25);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const retryCandidateRecord = orchestrator.getTask(retryCandidate.taskId);
+    assert.equal(pass2.scheduledRetries, 1);
+    assert.equal(retryCandidateRecord.status, 'retry_scheduled');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.budget.maxRetriesInWindow >= 2, true);
+    assert.equal(metrics.retry.budget.retriesInWindow >= 2, true);
+});
+
 test('dispatchTask reuses active task for matching idempotency key', async () => {
     const clock = createClock(14_000);
     const sent = [];
