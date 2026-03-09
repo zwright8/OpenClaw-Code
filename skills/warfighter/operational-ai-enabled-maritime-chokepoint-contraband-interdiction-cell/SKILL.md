@@ -1,9 +1,9 @@
 ---
-name: missile-warning-and-attack-assessment-cell
-description: Support missile warning dissemination and attack assessment workflows for timely command decisions. Use when warning timelines, sheltering, and continuity actions are critical.
+name: operational-ai-enabled-maritime-chokepoint-contraband-interdiction-cell
+description: Coordinate AI-assisted interdiction against military-relevant contraband across strategic maritime chokepoints. Use when adversary resupply and sanctions evasion routes must be disrupted without collapsing lawful shipping.
 ---
 
-# Missile Warning And Attack Assessment Cell
+# Operational AI-Enabled Maritime Chokepoint Contraband Interdiction Cell
 
 ## Mission Scope
 
@@ -13,7 +13,7 @@ description: Support missile warning dissemination and attack assessment workflo
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: sensor warning feeds, defended asset list, alert routes, impact estimate updates.
+1. Frame the mission problem using these core inputs: vessel behavior anomalies, cargo risk signals, legal authorities, and chokepoint throughput constraints.
 2. Identify assumptions, decision thresholds, and what intelligence or reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
@@ -31,13 +31,13 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: warning dissemination plan, attack assessment report, continuity action checklist.
+Primary products for this skill: contraband interdiction priority board, hold-and-board sequencing matrix, legal evidence handoff packet.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in ../_shared/references/external-tools-protocols.md.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md`.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Prioritize these tools or tool families for this domain: missile warning systems, C2 alerting platforms, integrated air defense COP tools.
+- Prioritize these tools or tool families for this domain: maritime COP analytics, cargo manifest anomaly detection, evidence custody and legal workflow systems.
 - Specify outbound exchange format for recommendations and tasking (for example USMTF, VMF, Link 16 J-series, CoT, STIX/TAXII, OGC WMS/WFS/WMTS).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
@@ -62,19 +62,19 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 
 ## Tool Protocol Playbooks
 
-- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
-- Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
+- Use protocol examples in `../_shared/references/tool-protocol-playbooks.md` to produce operator-ready tool invocation packets.
+- Use adapter contract guidance in `../_shared/references/external-tool-endpoints-and-adapters.md` to define endpoint schemas, transport, and fallback behavior.
 - Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
 
 ## Domain Tool Packet Library
 
-- Use scenario packets in ../_shared/references/domain-tool-packet-library.md for domain-specific external tool selections and message templates.
+- Use scenario packets in `../_shared/references/domain-tool-packet-library.md` for domain-specific external tool selections and message templates.
 - Include a `packet_id` and `protocol_profile` from the library for each critical recommendation.
 - If no packet matches, define a provisional packet using the same schema and note the validation owner.
 
 ## Domain Data Contract
 
-- Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.
+- Use mapping guidance in `../_shared/references/joint-mission-data-contracts.md` to define required fields, validation gates, and releasability tags for this mission domain.
 - Ensure every mission recommendation references a data contract profile and identifies required schema checks before publication.
 
 ## Operational Learning Loop
@@ -145,50 +145,8 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
 
-## Domain Toolchain Override (2026-03-08, Hypersonic Cueing Expansion)
+## Domain Toolchain Override (2026-03-09, Maritime Contraband Interdiction Surge)
 
-- Prioritize `tool_suite_id=ts-hypersonic-cueing-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1` when warning timelines compress below established threshold.
-- Use packet `DPL-HYP-CUE-001` and require dual-sensor confirmation before commander-ready cue recommendations.
-- If track custody confidence is degraded, pivot to advisory-only warning posture with explicit revalidation suspense.
-
-## Domain Toolchain Override (2026-03-08, Counter-Loitering Saturation Expansion)
-
-- Prioritize `tool_suite_id=ts-counter-loitering-swarm-v1` when defended assets face mixed ballistic plus loitering saturation conditions.
-- Use packet `DPL-CLM-ATTRITION-001` to bind defensive allocation, interceptor burn-rate, and commander release checkpoints.
-- If friend-or-foe confidence cannot be sustained, downgrade to protective maneuver and sheltering advisory-only recommendations.
-
-## Domain Toolchain Override (2026-03-08, Hypersonic S2S Compression Expansion)
-
-- Prioritize `tool_suite_id=ts-hypersonic-s2s-compression-v1` with `protocol_stack_id=ps-hypersonic-s2s-stack-v1` when warning-to-engagement windows drop below baseline timelines.
-- Use packet `DPL-HYPERSONIC-S2S-001` to enforce track custody confidence, cue prioritization, and shooter assignment gating.
-- If dual-source track confirmation fails, issue warning-only recommendations and require command approval before any posture escalation.
-
-## Domain Toolchain Override (2026-03-08, Coalition IAMD Latency Recovery)
-
-- Prioritize `tool_suite_id=ts-coalition-iamd-latency-v1` with `protocol_stack_id=ps-coalition-iamd-latency-stack-v1` when coalition track handoff delays exceed warning timeline tolerance.
-- Use packet `DPL-COAL-IAMD-LATENCY-001` to bind timestamp integrity checks, handoff remediation actions, and release-authority timing records.
-- If timestamp or acknowledgment integrity fails, publish warning-only recommendations with explicit commander risk prompts.
-
-## Domain Toolchain Override (2026-03-09, Emitter Relocation and Decoy Continuity)
-
-- Prioritize `tool_suite_id=ts-air-defense-emitter-relocation-v1` with `protocol_stack_id=ps-air-defense-emitter-relocation-stack-v1` when warning fidelity is degraded by adversary anti-radiation targeting pressure.
-- Use packet `DPL-ADA-EMITTER-RELOCATION-001` to bind relocation timing, decoy activation windows, and defended-asset coverage continuity checks.
-- If relocation acknowledgment integrity or coverage confidence falls below threshold, downgrade to warning-only recommendations and require explicit commander approval.
-
-## Domain Toolchain Override (2026-03-09, Spaceport Range Safety Warning Linkage)
-
-- Prioritize `tool_suite_id=ts-homeland-spaceport-range-safety-continuity-v1` with `protocol_stack_id=ps-homeland-spaceport-range-safety-continuity-stack-v1` when missile warning timelines intersect homeland military launch windows or range-safety constraints.
-- Use packet `DPL-HOMELAND-SPACEPORT-RANGE-SAFETY-CONTINUITY-001` to couple warning dissemination timing, hold/release decision gates, and escalation prompts.
-- If range-safety chain integrity or acknowledgment completeness degrades, downgrade to advisory-only warning products and require explicit commander approval.
-
-## Domain Toolchain Override (2026-03-09, Orbital Debris Reentry Warning Coupling)
-
-- Prioritize `tool_suite_id=ts-orbital-reentry-consequence-v1` with `protocol_stack_id=ps-orbital-reentry-consequence-stack-v1` when missile warning timelines overlap hazardous orbital debris reentry uncertainty.
-- Use packet `DPL-ORBITAL-REENTRY-CONSEQUENCE-001` to bind warning dissemination, shelter/hold sequencing, and command authority checkpoints.
-- If track-custody confidence or acknowledgment integrity degrades, publish warning-only advisories and require explicit commander approval before posture changes.
-
-## Domain Toolchain Override (2026-03-09, Geomagnetic and Keyfill Coupled Warning Integrity)
-
-- Prioritize tool_suite_id=ts-geomagnetic-storm-grid-satcom-posture-v1 with protocol_stack_id=ps-geomagnetic-storm-grid-satcom-posture-stack-v1 when warning latency risk coincides with geomagnetic disturbance indicators.
-- Use packet DPL-GEOMAGNETIC-STORM-GRID-SATCOM-POSTURE-001 to couple warning dissemination timing, SATCOM fallback actions, and authority-gated posture decisions.
-- If timing integrity or acknowledgment chain confidence degrades, publish warning-only advisories and require explicit commander approval before mission posture changes.
+- Prioritize tool_suite_id=ts-maritime-chokepoint-contraband-interdiction-v1 with protocol_stack_id=ps-maritime-chokepoint-contraband-interdiction-stack-v1 when adversary-linked contraband probability spikes at mission-critical chokepoints.
+- Use packet DPL-MARITIME-CHOKEPOINT-CONTRABAND-INTERDICTION-001 to bind boarding priorities, evidence-custody controls, and coalition deconfliction gates.
+- If legal chain-of-custody integrity or partner acknowledgment cadence degrades, issue advisory-only interdiction options and require commander approval before seizure actions.
