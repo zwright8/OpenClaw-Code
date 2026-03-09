@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Denied Comms Line-of-Bearing Triangulation Cell"
+  short_description: "Support Joint Denied Comms Line-of-Bearing Triangulation Cell operations"

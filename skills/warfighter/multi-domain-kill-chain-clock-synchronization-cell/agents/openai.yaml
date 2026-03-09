@@ -1,0 +1,3 @@
+interface:
+  display_name: "Multi-Domain Kill Chain Clock Synchronization Cell"
+  short_description: "Support Multi-Domain Kill Chain Clock Synchronization Cell operations"

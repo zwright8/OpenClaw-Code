@@ -33,6 +33,12 @@ Deliver results in this order:
 
 Primary products for this skill: OCA sortie plan, threat suppression phasing, escort allocation matrix.
 
+## U.S. Warfighter Employment Notes
+
+- Prioritize USAF, USN, and USMC datalink/common operational picture interoperability assumptions in every COA.
+- Include tanker and FARP fragility branches so sortie generation risk is explicit under anti-access pressure.
+- Add minimum kill-chain timing and data-freshness thresholds before recommending any high-tempo option.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.

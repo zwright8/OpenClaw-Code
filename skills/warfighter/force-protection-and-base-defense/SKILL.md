@@ -33,6 +33,12 @@ Deliver results in this order:
 
 Primary products for this skill: base defense improvement plan, vulnerability-priority list, response drill plan.
 
+## U.S. Warfighter Employment Notes
+
+- Prioritize layered defense for U.S. installations against drone ISR/strike, insider threat, and cyber-physical disruption.
+- Include resilient base-operating posture recommendations for degraded power, timing, and network conditions.
+- Require alerting thresholds that clearly tie surveillance indicators to commander decision and response escalation gates.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -143,4 +149,3 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-

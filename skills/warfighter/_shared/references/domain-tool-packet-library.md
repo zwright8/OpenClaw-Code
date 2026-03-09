@@ -3510,3 +3510,113 @@ validation_gates:
 - output_schema: evacuation queue, lift assignment matrix, continuity risk register
 - protocol_profile: HL7/FHIR + USMTF + API/JSON
 - validation_gates: medical authority confirmation, theater deconfliction pass, patient handoff acknowledgment
+
+### packet_id: DPL-CJADC2-FABRIC-001
+- domain: CJADC2 data-fabric degradation response
+- objective: maintain decision-quality data flow under partitioned or degraded joint mission networks
+- primary_tools: JADC2 broker health board, cross-domain guard telemetry, edge cache controller
+- alternate_tools: manual replication priority board and delayed-sync COP snapshots
+- degraded_mode: minimum mission data profile with periodic reconciliation
+- input_requirements: critical mission threads, data freshness targets, network health telemetry, authority matrix
+- output_schema: failover sequence, freshness confidence map, decision-impact ledger
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: data provenance pass, cross-source freshness check, commander approval for degraded mode
+
+### packet_id: DPL-SALVO-REARM-001
+- domain: theater ballistic missile salvo reload and rearm
+- objective: prioritize reload and rearm actions to preserve defended asset coverage under sustained attack
+- primary_tools: launcher readiness board, interceptor inventory tracker, movement-control scheduler
+- alternate_tools: manual launcher card system and static defended-asset priority table
+- degraded_mode: top-tier defended assets only with fixed rearm cycles
+- input_requirements: launcher status, inventory by interceptor type, threat salvo forecast, route availability
+- output_schema: rearm queue, defended-asset coverage timeline, risk acceptance prompts
+- protocol_profile: Link 16 J-series + USMTF + VMF
+- validation_gates: inventory reconciliation pass, safety/compatibility check, command release authority
+
+### packet_id: DPL-ASW-HELO-SONO-001
+- domain: anti-submarine helo sonobuoy employment
+- objective: optimize sonobuoy placement and retask timing against evolving submarine behavior
+- primary_tools: sonobuoy pattern planner, acoustic model service, maritime patrol mission board
+- alternate_tools: manual buoy layout worksheet and contact confidence rollup board
+- degraded_mode: conservative barrier pattern with longer refresh cycles
+- input_requirements: patrol area geometry, buoy inventory, acoustic forecast, contact history
+- output_schema: pattern package, confidence-ranked prosecution options, retask timeline
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF
+- validation_gates: acoustic model confidence floor, fratricide deconfliction pass, warfare commander approval
+
+### packet_id: DPL-AIRBASE-HARDEN-001
+- domain: coalition integrated airbase missile shelter hardening
+- objective: sequence shelter and infrastructure hardening to maximize sortie survivability
+- primary_tools: engineering priority board, threat salvo model, infrastructure imagery exploitation
+- alternate_tools: manual damage survey and construction sequence tracker
+- degraded_mode: high-value aircraft sheltering only with manual updates
+- input_requirements: base layouts, aircraft exposure profile, engineering assets, threat density estimates
+- output_schema: hardening sequence matrix, survivability delta estimate, branch trigger log
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: engineering feasibility pass, logistics sufficiency check, coalition authority confirmation
+
+### packet_id: DPL-CBRN-ROBOTIC-001
+- domain: tactical CBRN hotzone robotic recon and marking
+- objective: map contamination boundaries and control entry routes without unnecessary human exposure
+- primary_tools: CBRN sensor fusion, robotic mission controller, hazard geospatial overlay tools
+- alternate_tools: manual sampling patrol plan and static contamination boundary board
+- degraded_mode: no-entry advisory posture pending sample chain validation
+- input_requirements: sensor feeds, sample collection chain, terrain map, force disposition
+- output_schema: hazard perimeter overlay, robotic task order, controlled access corridor recommendations
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: sample-chain integrity pass, contamination confidence threshold, command approval for entry
+
+### packet_id: DPL-LOB-TRIANGULATION-001
+- domain: denied comms line-of-bearing triangulation
+- objective: estimate hostile emitter locations and confidence under comms-denied conditions
+- primary_tools: direction-finding aggregator, triangulation solver, EW confidence review board
+- alternate_tools: manual bearing plot board and analyst confidence worksheet
+- degraded_mode: area-estimate geolocation with high uncertainty and advisory-only recommendations
+- input_requirements: bearing reports, sensor timestamps, terrain constraints, emitter priors
+- output_schema: emitter geolocation candidates, confidence ladder, retask recommendations
+- protocol_profile: CoT + Link 16 J-series + USMTF
+- validation_gates: timestamp alignment check, multi-sensor corroboration, human analyst confirmation
+
+### packet_id: DPL-WATER-ASSURE-001
+- domain: expeditionary water purification and distribution assurance
+- objective: sustain potable water production/distribution while managing contamination and throughput risks
+- primary_tools: purification telemetry board, water quality lab chain, logistics distribution optimizer
+- alternate_tools: manual ration board and periodic field test ledger
+- degraded_mode: life-support allocation only with strict rationing
+- input_requirements: water source profile, purification capacity, contamination indicators, demand forecast
+- output_schema: production-distribution plan, contamination branch actions, force-health risk score
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: quality threshold pass, contamination response authority, preventive medicine concurrence
+
+### packet_id: DPL-INLAND-WATERWAY-001
+- domain: theater inland waterway logistics under fire
+- objective: keep inland logistics throughput under active threat and chokepoint disruption
+- primary_tools: riverine COP, bridge integrity monitor, convoy scheduler
+- alternate_tools: manual movement board and alternate crossing route worksheet
+- degraded_mode: intermittent convoy windows only with elevated risk controls
+- input_requirements: waterway segment map, threat overlays, crossing status, cargo priorities
+- output_schema: movement schedule, chokepoint risk queue, restoration options
+- protocol_profile: AIS/NMEA + USMTF + VMF
+- validation_gates: route viability check, force-protection risk pass, movement-control release authority
+
+### packet_id: DPL-EW-REPROGRAM-001
+- domain: tactical EW mission-data rapid reprogramming
+- objective: deploy updated mission data quickly while preserving interoperability and control discipline
+- primary_tools: EW mission-data manager, emitter library diff service, signed distribution pipeline
+- alternate_tools: static mission-data profile and manual platform load checklist
+- degraded_mode: defensive baseline-only waveform set until verification completes
+- input_requirements: emitter behavior deltas, platform inventories, authority matrix, release timelines
+- output_schema: reprogram release package, compatibility matrix, operational risk assessment
+- protocol_profile: Link 16 J-series + STIX/TAXII + USMTF
+- validation_gates: signature verification pass, platform compatibility pass, command approval record
+
+### packet_id: DPL-KILLCHAIN-CLOCK-001
+- domain: multi-domain kill-chain clock synchronization
+- objective: maintain timing coherence across sensing, command, and effects under PNT disruption
+- primary_tools: timing integrity monitor, event correlation engine, latency analytics board
+- alternate_tools: manual timing reconciliation card and holdover oscillator checklist
+- degraded_mode: reduced kill-chain tempo with strict timing confidence thresholds
+- input_requirements: time-source trust status, latency measurements, mission windows, dependency graph
+- output_schema: timing confidence report, sync-recovery sequence, decision-impact timeline
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: time-source trust pass, sync drift threshold check, commander risk acceptance confirmation

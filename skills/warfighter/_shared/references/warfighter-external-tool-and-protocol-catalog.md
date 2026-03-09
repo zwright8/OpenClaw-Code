@@ -3394,3 +3394,117 @@ external_binding:
 - Messaging: HL7/FHIR + USMTF + API/JSON patient movement coordination updates.
 - Transport: medevac command exchange + theater lift planner bus + low-bandwidth contingency path.
 - Security: medical role authorization + patient data minimization + immutable transfer acknowledgment chain.
+
+## Tool Suite Catalog (2026-03-09 Domain Expansion - Combat Endurance and Denied-Mode Control)
+
+### `ts-cjadc2-fabric-resilience-v1`
+- Use for: CJADC2 data-fabric degradation triage, cross-domain routing continuity, and decision-loop stabilization.
+- Primary tools: JADC2 data broker health board, cross-domain guard telemetry, edge cache orchestration.
+- Cross-check tools: independent message-latency mirror and alternate COP replication ledger.
+- Typical products: data-path degradation map, failover sequence, decision-authority escalation matrix.
+
+### `ts-theater-rearm-salvo-v1`
+- Use for: interceptor reload/rearm prioritization during sustained missile salvo defense.
+- Primary tools: launcher status board, munitions compatibility/lot tracker, convoy movement planner.
+- Cross-check tools: independent inventory reconciliation service and alternate defended-asset risk board.
+- Typical products: reload priority matrix, defended-asset coverage forecast, rearm timeline packet.
+
+### `ts-asw-helo-sonobuoy-v1`
+- Use for: helo sonobuoy pattern planning, acoustic confidence management, and ASW prosecution retask.
+- Primary tools: sonobuoy mission planner, ocean acoustic forecast model, maritime patrol C2 board.
+- Cross-check tools: independent acoustic propagation calculator and alternate contact confidence ledger.
+- Typical products: sonobuoy layout package, prosecution window matrix, confidence-ranked retask order.
+
+### `ts-airbase-shelter-hardening-v1`
+- Use for: coalition airbase shelter hardening sequencing and missile/drone survivability upgrades.
+- Primary tools: airbase engineering planner, threat salvo model, shelter and runway imagery exploitation.
+- Cross-check tools: independent survivability estimator and alternate logistics sufficiency board.
+- Typical products: hardening priority board, sortie survivability delta, engineering branch triggers.
+
+### `ts-cbrn-robotic-hotzone-v1`
+- Use for: robotic CBRN reconnaissance, hazard boundary confirmation, and controlled entry operations.
+- Primary tools: CBRN sensor fusion service, robotic mission controller, contamination sampling ledger.
+- Cross-check tools: independent hazard model and alternate decon capacity dashboard.
+- Typical products: contamination boundary map, robotic task package, hotzone access-control matrix.
+
+### `ts-denied-lob-triangulation-v1`
+- Use for: denied-communications emitter localization from line-of-bearing reports and EW sensing.
+- Primary tools: direction-finding aggregator, triangulation solver, EW contact confidence board.
+- Cross-check tools: independent geolocation replay and alternate SIGINT corroboration board.
+- Typical products: emitter confidence map, geolocation uncertainty ladder, recommended action packet.
+
+### `ts-expeditionary-water-assurance-v1`
+- Use for: expeditionary water purification, contamination response, and distributed water logistics continuity.
+- Primary tools: water quality telemetry, purification plant controller, distribution route optimizer.
+- Cross-check tools: independent water sampling chain and alternate force-health risk monitor.
+- Typical products: production and distribution plan, contamination branch timeline, health-risk scorecard.
+
+### `ts-inland-waterway-logistics-v1`
+- Use for: inland river logistics control under kinetic threat, chokepoint disruption, and bridge attrition.
+- Primary tools: riverine traffic COP, bridge integrity monitor, convoy movement scheduler.
+- Cross-check tools: independent throughput estimator and alternate crossing feasibility board.
+- Typical products: chokepoint risk matrix, movement deconfliction package, throughput restoration timeline.
+
+### `ts-ew-reprogram-fratricide-v1`
+- Use for: rapid EW mission-data reprogramming plus electromagnetic fratricide risk control.
+- Primary tools: EW mission-data manager, emitter identity service, spectrum conflict analytics.
+- Cross-check tools: independent interoperability test harness and alternate EMCON governance board.
+- Typical products: reprogram release packet, fratricide risk ledger, emissions deconfliction order.
+
+### `ts-killchain-time-coherence-v1`
+- Use for: kill-chain clock synchronization and timing integrity under degraded or denied PNT.
+- Primary tools: timing integrity monitor, event correlation engine, data-link latency analyzer.
+- Cross-check tools: independent oscillator holdover board and alternate timing transfer verifier.
+- Typical products: timing confidence report, sync recovery sequence, latency risk decision packet.
+
+## Protocol Stack Catalog (2026-03-09 Domain Expansion - Combat Endurance and Denied-Mode Control)
+
+### `ps-cjadc2-fabric-resilience-stack-v1`
+- Messaging: USMTF + STIX/TAXII + API/JSON replication status events.
+- Transport: federated tactical cloud links + cross-domain transport gateways + degraded asynchronous relay.
+- Security: signed data-path attestations + dual-source freshness checks + immutable failover event chain.
+
+### `ps-theater-rearm-salvo-stack-v1`
+- Messaging: Link 16 J-series + USMTF + VMF launcher and inventory updates.
+- Transport: IAMD battle-network exchange + logistics route mesh + delayed-sync fallback.
+- Security: role-scoped munitions release authorization + signed inventory deltas + acknowledgment ledger.
+
+### `ps-asw-helo-sonobuoy-stack-v1`
+- Messaging: Link 16 J-series + AIS/NMEA + USMTF prosecution updates.
+- Transport: maritime patrol mission bus + acoustic forecast exchange + low-bandwidth patrol fallback.
+- Security: signed contact confidence updates + tactical authority confirmation + immutable prosecution timeline.
+
+### `ps-airbase-shelter-hardening-stack-v1`
+- Messaging: USMTF + NATO APP-11/ADatP-3 + API/JSON engineering updates.
+- Transport: coalition engineering data exchange + base defense command bus + manual readback fallback.
+- Security: coalition releasability tagging + engineering approval gates + signed survivability calculations.
+
+### `ps-cbrn-robotic-hotzone-stack-v1`
+- Messaging: USMTF + OGC geospatial overlays + API/JSON hazard telemetry.
+- Transport: CBRN sensing mesh + robotic control network + delayed-sync contamination reporting.
+- Security: signed hazard sample chain + contamination confidence threshold gating + dual-control entry authority.
+
+### `ps-denied-lob-triangulation-stack-v1`
+- Messaging: CoT + Link 16 J-series + USMTF emitter reports.
+- Transport: EW sensor mesh + edge fusion nodes + HF/manual fallback reports.
+- Security: signed geolocation confidence metadata + source reliability scoring + command approval checkpoint.
+
+### `ps-expeditionary-water-assurance-stack-v1`
+- Messaging: USMTF + HL7/FHIR force-health updates + API/JSON plant telemetry.
+- Transport: water infrastructure telemetry bus + logistics C2 exchange + low-bandwidth contingency sync.
+- Security: sample provenance chain + health authority release gate + immutable contamination incident log.
+
+### `ps-inland-waterway-logistics-stack-v1`
+- Messaging: AIS/NMEA + USMTF + VMF movement-control advisories.
+- Transport: riverine traffic exchange + movement command network + voice/readback fallback.
+- Security: signed chokepoint status updates + convoy release authority gating + acknowledgment-chain tracking.
+
+### `ps-ew-reprogram-fratricide-stack-v1`
+- Messaging: Link 16 J-series + STIX/TAXII + USMTF EW control events.
+- Transport: EW mission-data distribution bus + spectrum governance exchange + disconnected package courier fallback.
+- Security: signed mission-data loads + interoperability preflight checks + dual-approval emission release.
+
+### `ps-killchain-time-coherence-stack-v1`
+- Messaging: USMTF timing advisories + Link 16 J-series + API/JSON timing integrity events.
+- Transport: resilient timing distribution mesh + mission network replication + holdover fallback mode.
+- Security: cryptographic time-source attestations + timing anomaly audit chain + authority-tier release checks.

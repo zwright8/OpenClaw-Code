@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 921
+- Total warfighter skills in this repo: 941
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -564,3 +564,49 @@ Every skill output should include:
 - Autonomous maritime picket and search + maritime interdiction support + gray-zone militia attribution
 - Spaceport GNSS emergency response + missile warning posture + space weather mission assurance
 - Multi-theater aeromedical brokerage + casualty regulation + blood cold-chain continuity and donor matching
+
+## New Expansion Wave (2026-03-09, Integrated Combat Endurance and Denied-Mode Control)
+
+- joint-cjadc2-data-fabric-degradation-response-cell
+- theater-ballistic-missile-salvo-reload-and-rearm-cell
+- joint-anti-submarine-helo-sonobuoy-employment-cell
+- coalition-integrated-airbase-missile-shelter-hardening-cell
+- tactical-cbrn-hotzone-robotic-recon-and-marking-cell
+- joint-denied-comms-line-of-bearing-triangulation-cell
+- expeditionary-water-purification-and-distribution-assurance-cell
+- theater-inland-waterway-logistics-under-fire-cell
+- joint-precision-fires-ammo-interoperability-cell
+- tactical-ew-mission-data-rapid-reprogramming-cell
+- coalition-joint-personnel-accounting-and-repatriation-cell
+- strategic-arctic-fuel-bladder-and-pipeline-risk-cell
+- contested-electromagnetic-fratricide-prevention-cell
+- joint-counter-uas-urban-rooftop-defense-cell
+- theater-rapid-camouflage-decoy-inflatable-emplacement-cell
+- coalition-disaster-relief-dual-use-airport-control-cell
+- joint-shipyard-battle-damage-assessment-and-repair-cell
+- theater-biometrics-enabled-access-control-degraded-mode-cell
+- multi-domain-kill-chain-clock-synchronization-cell
+- joint-forward-arming-and-refueling-under-drone-threat-cell
+
+## Updated Pairings (2026-03-09, Integrated Combat Endurance and Denied-Mode Control)
+
+- CJADC2 data-fabric degradation response + theater mission network failover + disconnected mission-data replication
+- Ballistic missile salvo reload/rearm + integrated air and missile defense shot doctrine + munitions stockpile management
+- ASW helo sonobuoy employment + ocean acoustic ASW planning + undersea sensor mesh reconstitution
+- Airbase shelter hardening + rapid airbase decoy layout + runway recovery operations
+- CBRN robotic hotzone recon + WMD counterproliferation operations + field decontamination planning
+- Denied comms line-of-bearing triangulation + tactical urban hidden emitter hunt + spectrum interference resolution
+- Water purification and distribution assurance + preventive medicine and force health protection + contested medevac prioritization
+- Inland waterway logistics under fire + bridge-and-gap crossing operations + port opening and JLOTS synchronization
+- Precision-fires ammo interoperability + coalition fires digital clearance + targeting standards governance
+- EW mission-data rapid reprogramming + cognitive electronic protection + electromagnetic signature lifecycle management
+- Coalition personnel accounting/repatriation + detainee accountability + coalition legal interoperability
+- Arctic fuel bladder/pipeline risk + operational energy resilience + strategic mobility chokepoint wargaming
+- Electromagnetic fratricide prevention + joint spectrum interference resolution + battle-network key continuity
+- Urban rooftop counter-UAS defense + drone-swarm air-defense ammunition economy + force protection/base defense
+- Camouflage and inflatable decoy emplacement + tactical deception rehearsal + deception indicator warning
+- Disaster-relief dual-use airport control + humanitarian airbridge + contested austere air traffic surveillance
+- Shipyard battle-damage repair + strategic industrial mobilization readiness + maritime prepositioning ship integrity
+- Biometrics degraded-mode access control + counterintelligence insider-threat + denied watchlist synchronization
+- Kill-chain clock synchronization + denied-PNT timing assurance + GNSS outage fusion
+- FARP under drone threat + fuel convoy signature suppression + counter-targeting pattern-of-life obfuscation
