@@ -60,6 +60,12 @@ Primary products for this skill: cyber mission plan, dependency/risk register, s
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
 
+## Fail-Closed Authority Gate
+
+- Require `requires_human_approval=true` for recommendations that change cyber effects posture, access persistence, or mission-critical network state.
+- Block release if `authority_tier`, `approval_role`, `legal_basis_ref`, `audit_record_id`, or `ack_chain_status` is missing.
+- If authority, legal basis, tool trust, or attribution confidence is uncertain, downgrade to advisory-only and set `execution_not_authorized`.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
@@ -143,4 +149,3 @@ Primary products for this skill: cyber mission plan, dependency/risk register, s
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-

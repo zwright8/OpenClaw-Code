@@ -60,6 +60,12 @@ Primary products for this skill: dynamic target prosecution board, delegated aut
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
 
+## Fail-Closed Authority Gate
+
+- Set `requires_human_approval=true` for every recommendation that affects target prosecution timing, shooter assignment, or collateral risk posture.
+- Block release if any of the following fields are missing: `authority_tier`, `approval_role`, `audit_record_id`, `target_confirmation_status`, `cde_status`.
+- If acknowledgment integrity, authority lineage, or data freshness is uncertain, publish advisory-only branches and explicitly mark `execution_not_authorized`.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
@@ -143,4 +149,3 @@ Primary products for this skill: dynamic target prosecution board, delegated aut
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-

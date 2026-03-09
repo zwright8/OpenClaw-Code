@@ -43,6 +43,12 @@ Primary products: VBSS action sequence, autonomy authority matrix, evidence cust
 - Require human confirmation before evidence-sensitive actions.
 - Mark uncertain legal status recommendations as advisory-only.
 
+## Fail-Closed Authority Gate
+
+- Require `requires_human_approval=true` for recommendations that alter boarding sequence, use-of-force posture, or evidence handling actions.
+- Block publication if `authority_tier`, `approval_role`, `legal_basis_ref`, `audit_record_id`, or `custody_chain_status` is missing.
+- If legal authority, identity confidence, or evidence custody integrity is uncertain, downgrade to advisory-only and mark `execution_not_authorized`.
+
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-maritime-vbss-autonomy-v1` with `protocol_stack_id=ps-maritime-awareness-stack-v1`.
