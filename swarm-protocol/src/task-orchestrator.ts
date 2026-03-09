@@ -24,7 +24,11 @@ const DEFAULT_RETRY_THROTTLE = Object.freeze({
     maxTokens: 10,
     tokenRatio: 0.1,
     retryCost: 1,
-    threshold: 5
+    timeoutRetryCost: 1,
+    throttlingRetryCost: 1,
+    transportRetryCost: 1,
+    threshold: 5,
+    scope: 'global'
 });
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
@@ -74,18 +78,26 @@ function resolveRetryThrottling(value) {
     const maxTokens = clampPositiveNumber(value.maxTokens, DEFAULT_RETRY_THROTTLE.maxTokens);
     const tokenRatio = clampPositiveNumber(value.tokenRatio, DEFAULT_RETRY_THROTTLE.tokenRatio);
     const retryCost = clampPositiveNumber(value.retryCost, DEFAULT_RETRY_THROTTLE.retryCost);
+    const timeoutRetryCost = clampPositiveNumber(value.timeoutRetryCost, retryCost);
+    const throttlingRetryCost = clampPositiveNumber(value.throttlingRetryCost, retryCost);
+    const transportRetryCost = clampPositiveNumber(value.transportRetryCost, retryCost);
     const defaultThreshold = maxTokens / 2;
     let threshold = clampNonNegativeNumber(value.threshold, defaultThreshold);
     if (threshold >= maxTokens) {
         threshold = defaultThreshold;
     }
+    const scope = value.scope === 'target' ? 'target' : 'global';
 
     return {
         enabled: true,
         maxTokens,
         tokenRatio,
         retryCost,
-        threshold
+        timeoutRetryCost,
+        throttlingRetryCost,
+        transportRetryCost,
+        threshold,
+        scope
     };
 }
 
@@ -222,8 +234,11 @@ export class TaskOrchestrator {
             clampNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs)
         );
         this.retryThrottling = resolveRetryThrottling(retryThrottling);
-        this.retryThrottleTokens = this.retryThrottling.enabled
+        this.retryThrottleTokens = this.retryThrottling.enabled && this.retryThrottling.scope === 'global'
             ? this.retryThrottling.maxTokens
+            : null;
+        this.retryThrottleTokensByTarget = this.retryThrottling.enabled && this.retryThrottling.scope === 'target'
+            ? new Map()
             : null;
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
@@ -333,6 +348,18 @@ export class TaskOrchestrator {
             }
         }
 
+        const retryAfterHeaderMatch = reason.match(/\bretry[-_\s]?after\b\s*[:=]\s*([^\n;]+)/i);
+        if (retryAfterHeaderMatch) {
+            const rawValue = retryAfterHeaderMatch[1].trim();
+            if (/^\d{1,10}$/.test(rawValue)) {
+                return Number(rawValue) * 1_000;
+            }
+            const retryAt = Date.parse(rawValue);
+            if (Number.isFinite(retryAt)) {
+                return Math.max(0, retryAt - safeNow(this.now));
+            }
+        }
+
         const delayMatch = reason.match(
             /\b(?:retry[-_\s]?in|retry[-_\s]?delay|backoff)\b\s*[:=]?\s*(\d{1,10})\s*(ms|msec|milliseconds?|s|sec|seconds?)?\b/i
         );
@@ -383,15 +410,48 @@ export class TaskOrchestrator {
         return Math.max(0, Math.floor(delayMs));
     }
 
+    _resolveRetryThrottleTokenState(target) {
+        if (!this.retryThrottling.enabled) {
+            return null;
+        }
+
+        if (this.retryThrottling.scope === 'target' && this.retryThrottleTokensByTarget) {
+            const bucketKey = typeof target === 'string' && target.trim()
+                ? target.trim()
+                : '__unknown_target__';
+
+            if (!this.retryThrottleTokensByTarget.has(bucketKey)) {
+                this.retryThrottleTokensByTarget.set(bucketKey, this.retryThrottling.maxTokens);
+            }
+
+            return {
+                bucketKey,
+                tokenCount: Number(this.retryThrottleTokensByTarget.get(bucketKey))
+            };
+        }
+
+        return {
+            bucketKey: null,
+            tokenCount: Number(this.retryThrottleTokens)
+        };
+    }
+
     _scheduleRetry(record, nowMs, {
         reason = 'retry_scheduled',
         event = 'retry_scheduled',
         hintMs = null,
         auditEvent = 'task_retry_scheduled',
         consumeThrottleToken = false,
+        retryCost = null,
         metadata = null
     } = {}) {
-        if (consumeThrottleToken && !this._consumeRetryThrottleToken(nowMs, record.taskId, reason)) {
+        if (consumeThrottleToken && !this._consumeRetryThrottleToken(
+            nowMs,
+            record.taskId,
+            reason,
+            record.target,
+            retryCost
+        )) {
             return false;
         }
 
@@ -423,32 +483,46 @@ export class TaskOrchestrator {
         return true;
     }
 
-    _consumeRetryThrottleToken(nowMs, taskId, reason) {
+    _consumeRetryThrottleToken(nowMs, taskId, reason, target, retryCost = null) {
         if (!this.retryThrottling.enabled) return true;
-        const tokenCount = Number(this.retryThrottleTokens);
+        const tokenState = this._resolveRetryThrottleTokenState(target);
+        const tokenCount = tokenState?.tokenCount;
+        const spendCost = clampPositiveNumber(retryCost, this.retryThrottling.retryCost);
         if (!Number.isFinite(tokenCount) || tokenCount <= this.retryThrottling.threshold) {
             this._emitAudit('task_retry_throttled', {
                 taskId,
                 reason,
+                target,
                 tokenCount: Number.isFinite(tokenCount) ? tokenCount : 0,
-                threshold: this.retryThrottling.threshold
+                threshold: this.retryThrottling.threshold,
+                retryCost: spendCost,
+                scope: this.retryThrottling.scope
             }, nowMs);
             return false;
         }
 
-        this.retryThrottleTokens = Math.max(0, tokenCount - this.retryThrottling.retryCost);
+        const nextTokenCount = Math.max(0, tokenCount - spendCost);
+        if (tokenState?.bucketKey !== null && this.retryThrottleTokensByTarget) {
+            this.retryThrottleTokensByTarget.set(tokenState.bucketKey, nextTokenCount);
+        } else {
+            this.retryThrottleTokens = nextTokenCount;
+        }
         this._emitAudit('task_retry_throttle_token_spent', {
             taskId,
             reason,
-            tokenCount: this.retryThrottleTokens,
-            threshold: this.retryThrottling.threshold
+            target,
+            tokenCount: nextTokenCount,
+            threshold: this.retryThrottling.threshold,
+            retryCost: spendCost,
+            scope: this.retryThrottling.scope
         }, nowMs);
         return true;
     }
 
-    _creditRetryThrottleTokens(nowMs, taskId, source) {
+    _creditRetryThrottleTokens(nowMs, taskId, source, target) {
         if (!this.retryThrottling.enabled) return;
-        const tokenCount = Number(this.retryThrottleTokens);
+        const tokenState = this._resolveRetryThrottleTokenState(target);
+        const tokenCount = tokenState?.tokenCount;
         const current = Number.isFinite(tokenCount)
             ? tokenCount
             : this.retryThrottling.maxTokens;
@@ -457,12 +531,18 @@ export class TaskOrchestrator {
             current + this.retryThrottling.tokenRatio
         );
         if (next === current) return;
-        this.retryThrottleTokens = next;
+        if (tokenState?.bucketKey !== null && this.retryThrottleTokensByTarget) {
+            this.retryThrottleTokensByTarget.set(tokenState.bucketKey, next);
+        } else {
+            this.retryThrottleTokens = next;
+        }
         this._emitAudit('task_retry_throttle_token_credit', {
             taskId,
             source,
+            target,
             tokenCount: next,
-            maxTokens: this.retryThrottling.maxTokens
+            maxTokens: this.retryThrottling.maxTokens,
+            scope: this.retryThrottling.scope
         }, nowMs);
     }
 
@@ -720,6 +800,8 @@ export class TaskOrchestrator {
             this._scheduleRetry(record, reviewedAt, {
                 reason: 'approval_release_failed',
                 event: 'approval_release_retry_scheduled',
+                consumeThrottleToken: true,
+                retryCost: this.retryThrottling.transportRetryCost,
                 metadata: {
                     error: error.message
                 }
@@ -812,6 +894,7 @@ export class TaskOrchestrator {
                     hintMs: retryHintMs,
                     auditEvent: 'task_rejected_retry_scheduled',
                     consumeThrottleToken: true,
+                    retryCost: this.retryThrottling.throttlingRetryCost,
                     metadata: {
                         from: receipt.from,
                         rejectionReason: reason
@@ -852,7 +935,12 @@ export class TaskOrchestrator {
         if (Number.isFinite(receipt.etaMs)) {
             record.deadlineAt = receipt.timestamp + Number(receipt.etaMs);
         }
-        this._creditRetryThrottleTokens(receipt.timestamp, record.taskId, 'receipt_acknowledged');
+        this._creditRetryThrottleTokens(
+            receipt.timestamp,
+            record.taskId,
+            'receipt_acknowledged',
+            record.target
+        );
         record.history.push({
             at: receipt.timestamp,
             event: 'acknowledged',
@@ -879,10 +967,20 @@ export class TaskOrchestrator {
 
         if (result.status === 'success') {
             record.status = 'completed';
-            this._creditRetryThrottleTokens(result.completedAt, record.taskId, 'result_success');
+            this._creditRetryThrottleTokens(
+                result.completedAt,
+                record.taskId,
+                'result_success',
+                record.target
+            );
         } else if (result.status === 'partial') {
             record.status = 'partial';
-            this._creditRetryThrottleTokens(result.completedAt, record.taskId, 'result_partial');
+            this._creditRetryThrottleTokens(
+                result.completedAt,
+                record.taskId,
+                'result_partial',
+                record.target
+            );
         } else {
             record.status = 'failed';
         }
@@ -936,7 +1034,8 @@ export class TaskOrchestrator {
                 const scheduled = this._scheduleRetry(record, nowMs, {
                     reason: 'deadline_exceeded',
                     event: 'retry_scheduled',
-                    consumeThrottleToken: true
+                    consumeThrottleToken: true,
+                    retryCost: this.retryThrottling.timeoutRetryCost
                 });
                 if (scheduled) {
                     summary.scheduledRetries++;
@@ -990,6 +1089,7 @@ export class TaskOrchestrator {
                         reason: 'transport_send_failed',
                         event: 'retry_scheduled',
                         consumeThrottleToken: true,
+                        retryCost: this.retryThrottling.transportRetryCost,
                         metadata: {
                             error: record.lastError
                         }
@@ -1053,12 +1153,23 @@ export class TaskOrchestrator {
                 maxHintMs: this.maxRetryHintMs,
                 throttling: {
                     enabled: this.retryThrottling.enabled,
+                    scope: this.retryThrottling.scope,
                     maxTokens: this.retryThrottling.maxTokens,
                     tokenRatio: this.retryThrottling.tokenRatio,
                     retryCost: this.retryThrottling.retryCost,
+                    timeoutRetryCost: this.retryThrottling.timeoutRetryCost,
+                    throttlingRetryCost: this.retryThrottling.throttlingRetryCost,
+                    transportRetryCost: this.retryThrottling.transportRetryCost,
                     threshold: this.retryThrottling.threshold,
                     tokenCount: this.retryThrottling.enabled
-                        ? Number(this.retryThrottleTokens)
+                        ? (
+                            this.retryThrottling.scope === 'global'
+                                ? Number(this.retryThrottleTokens)
+                                : null
+                        )
+                        : null,
+                    activeTargetBuckets: this.retryThrottling.scope === 'target'
+                        ? this.retryThrottleTokensByTarget?.size ?? 0
                         : null
                 }
             }

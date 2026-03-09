@@ -320,9 +320,13 @@ const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
   retryThrottling: {
+    scope: 'target',
     maxTokens: 20,
     tokenRatio: 0.2,
     retryCost: 1,
+    timeoutRetryCost: 1.5,
+    throttlingRetryCost: 1,
+    transportRetryCost: 2,
     threshold: 10
   },
   routeTask: async (taskRequest) => {
@@ -348,6 +352,8 @@ orchestrator.ingestResult(resultMessage);
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
 ```
+
+Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`).
 
 Safety policy integration:
 ```js

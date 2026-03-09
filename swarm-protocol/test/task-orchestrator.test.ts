@@ -181,6 +181,37 @@ test('transient rejected receipt schedules retry and honors retry_after hint', a
     assert.equal(sent.length, 2);
 });
 
+test('transient rejection honors Retry-After HTTP-date hint', async () => {
+    const clock = createClock(10_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-after-date',
+        task: 'Respect Retry-After date'
+    });
+
+    const retryAt = new Date(clock.now() + 2_000).toUTCString();
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-retry-after-date',
+        accepted: false,
+        reason: `service_unavailable retry-after: ${retryAt}`,
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 2_000);
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;
@@ -334,6 +365,67 @@ test('maintenance marks timeout when retry throttling blocks retry schedule', as
     assert.equal(summary.timedOut, 1);
     assert.equal(current.status, 'timed_out');
     assert.equal(current.history.at(-1)?.event, 'timed_out_retry_throttled');
+});
+
+test('target-scoped retry throttling isolates budgets by target', async () => {
+    const clock = createClock(20_000);
+    const sendCountByTarget = new Map();
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target) {
+                const count = (sendCountByTarget.get(target) || 0) + 1;
+                sendCountByTarget.set(target, count);
+                if (target === 'agent:worker-target-a' && count > 1) {
+                    throw new Error('target-a retry failed');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 2,
+        retryDelayMs: 0,
+        retryThrottling: {
+            scope: 'target',
+            maxTokens: 2,
+            retryCost: 1,
+            threshold: 1,
+            tokenRatio: 0
+        }
+    });
+
+    const taskA = await orchestrator.dispatchTask({
+        target: 'agent:worker-target-a',
+        task: 'Task A'
+    });
+
+    clock.advance(40);
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-target-b',
+        task: 'Task B'
+    });
+
+    clock.set(20_060);
+    await orchestrator.runMaintenance(clock.now());
+    let currentA = orchestrator.getTask(taskA.taskId);
+    assert.equal(currentA.status, 'retry_scheduled');
+
+    clock.set(20_061);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    currentA = orchestrator.getTask(taskA.taskId);
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(currentA.status, 'transport_error');
+    assert.equal(currentA.history.at(-1)?.event, 'transport_error_retry_throttled');
+
+    clock.set(20_120);
+    await orchestrator.runMaintenance(clock.now());
+    const taskB = orchestrator.listTasks({ target: 'agent:worker-target-b' })[0];
+    assert.equal(taskB.status, 'retry_scheduled');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.throttling.scope, 'target');
+    assert.ok(metrics.retry.throttling.activeTargetBuckets >= 2);
 });
 
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
