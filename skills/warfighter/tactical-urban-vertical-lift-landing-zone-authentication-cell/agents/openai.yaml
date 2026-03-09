@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tactical Urban Vertical Lift Landing Zone Authentication Cell"
+  short_description: "Authenticate dynamic urban landing zones for vertical lift under spoofing, decoys, and civilian congestion."
