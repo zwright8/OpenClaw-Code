@@ -50,6 +50,9 @@ const DEFAULT_HEDGE_MIN_DELAY_MS = 250;
 const DEFAULT_HEDGE_MAX_DELAY_MS = 5_000;
 const DEFAULT_HEDGE_MAX_DISPATCHES = 1;
 const DEFAULT_HEDGE_ELIGIBLE_PRIORITIES = ['high', 'critical'];
+const DEFAULT_ADAPTIVE_THROTTLE_WINDOW_MS = 30_000;
+const DEFAULT_ADAPTIVE_THROTTLE_MIN_SAMPLES = 10;
+const DEFAULT_ADAPTIVE_THROTTLE_DROP_THRESHOLD = 0.5;
 const IN_FLIGHT_STATUSES = new Set(['dispatched', 'acknowledged']);
 const HIGH_PRIORITY_TASKS = new Set(['critical', 'high']);
 const PRIORITY_RANK = {
@@ -255,6 +258,11 @@ export class TaskOrchestrator {
         hedgingMaxDelayMs = DEFAULT_HEDGE_MAX_DELAY_MS,
         hedgingMaxDispatches = DEFAULT_HEDGE_MAX_DISPATCHES,
         hedgingEligiblePriorities = DEFAULT_HEDGE_ELIGIBLE_PRIORITIES,
+        adaptiveThrottleEnabled = false,
+        adaptiveThrottleWindowMs = DEFAULT_ADAPTIVE_THROTTLE_WINDOW_MS,
+        adaptiveThrottleMinSamples = DEFAULT_ADAPTIVE_THROTTLE_MIN_SAMPLES,
+        adaptiveThrottleDropThreshold = DEFAULT_ADAPTIVE_THROTTLE_DROP_THRESHOLD,
+        adaptiveThrottleBypassPriorities = ['high', 'critical'],
         random = Math.random,
         now = Date.now,
         logger = console
@@ -430,9 +438,31 @@ export class TaskOrchestrator {
                 this.hedgingEligiblePriorities.add(priority);
             }
         }
+        this.adaptiveThrottleEnabled = adaptiveThrottleEnabled === true;
+        this.adaptiveThrottleWindowMs = Math.max(
+            1,
+            normalizeNonNegativeInt(adaptiveThrottleWindowMs, DEFAULT_ADAPTIVE_THROTTLE_WINDOW_MS)
+        );
+        this.adaptiveThrottleMinSamples = Math.max(
+            1,
+            normalizeNonNegativeInt(adaptiveThrottleMinSamples, DEFAULT_ADAPTIVE_THROTTLE_MIN_SAMPLES)
+        );
+        this.adaptiveThrottleDropThreshold = Math.min(
+            0.99,
+            Math.max(0, clampNonNegativeNumber(
+                adaptiveThrottleDropThreshold,
+                DEFAULT_ADAPTIVE_THROTTLE_DROP_THRESHOLD
+            ))
+        );
+        this.adaptiveThrottleBypassPriorities = new Set(
+            this._normalizeCandidateTargets(adaptiveThrottleBypassPriorities)
+                .map((priority) => this._classifyTaskPriority(priority))
+                .filter((priority) => PRIORITY_RANK[priority] !== undefined)
+        );
         this.retryWindowExhaustedCount = 0;
         this.targetLatencyStats = new Map();
         this.targetOutlierStats = new Map();
+        this.targetAdaptiveThrottleStats = new Map();
         this.circuitBreakers = new Map();
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
@@ -626,6 +656,153 @@ export class TaskOrchestrator {
         const rawEjectionMs = this.targetOutlierBaseEjectionMs * multiplier;
         const ejectionMs = Math.min(this.targetOutlierMaxEjectionMs, rawEjectionMs);
         state.ejectedUntil = at + ejectionMs;
+    }
+
+    _getTargetAdaptiveThrottleState(target) {
+        const key = normalizeNonEmptyString(target);
+        if (!key) return null;
+        const existing = this.targetAdaptiveThrottleStats.get(key);
+        if (existing) return existing;
+        const baseline = {
+            target: key,
+            acceptedEvents: [],
+            rejectedEvents: [],
+            blockedCount: 0,
+            lastBlockedAt: null
+        };
+        this.targetAdaptiveThrottleStats.set(key, baseline);
+        return baseline;
+    }
+
+    _pruneAdaptiveThrottleState(state, nowMs = safeNow(this.now)) {
+        if (!state) return state;
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        const cutoff = at - this.adaptiveThrottleWindowMs;
+        while (state.acceptedEvents.length > 0 && state.acceptedEvents[0] <= cutoff) {
+            state.acceptedEvents.shift();
+        }
+        while (state.rejectedEvents.length > 0 && state.rejectedEvents[0] <= cutoff) {
+            state.rejectedEvents.shift();
+        }
+        return state;
+    }
+
+    _recordAdaptiveThrottleOutcome(target, accepted, nowMs = safeNow(this.now)) {
+        if (!this.adaptiveThrottleEnabled) return null;
+        const state = this._getTargetAdaptiveThrottleState(target);
+        if (!state) return null;
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        this._pruneAdaptiveThrottleState(state, at);
+        if (accepted) {
+            state.acceptedEvents.push(at);
+        } else {
+            state.rejectedEvents.push(at);
+        }
+        return state;
+    }
+
+    _evaluateAdaptiveThrottle(target, priority = 'normal', nowMs = safeNow(this.now)) {
+        if (!this.adaptiveThrottleEnabled) {
+            return {
+                allowed: true,
+                acceptedInWindow: 0,
+                rejectedInWindow: 0,
+                totalInWindow: 0,
+                rejectionRatio: 0,
+                dropProbability: 0,
+                sample: null,
+                minSamples: this.adaptiveThrottleMinSamples,
+                dropThreshold: this.adaptiveThrottleDropThreshold
+            };
+        }
+        const normalizedPriority = this._classifyTaskPriority(priority);
+        if (this.adaptiveThrottleBypassPriorities.has(normalizedPriority)) {
+            return {
+                allowed: true,
+                acceptedInWindow: 0,
+                rejectedInWindow: 0,
+                totalInWindow: 0,
+                rejectionRatio: 0,
+                dropProbability: 0,
+                sample: null,
+                bypassed: true,
+                minSamples: this.adaptiveThrottleMinSamples,
+                dropThreshold: this.adaptiveThrottleDropThreshold
+            };
+        }
+        const state = this._getTargetAdaptiveThrottleState(target);
+        if (!state) {
+            return {
+                allowed: true,
+                acceptedInWindow: 0,
+                rejectedInWindow: 0,
+                totalInWindow: 0,
+                rejectionRatio: 0,
+                dropProbability: 0,
+                sample: null,
+                minSamples: this.adaptiveThrottleMinSamples,
+                dropThreshold: this.adaptiveThrottleDropThreshold
+            };
+        }
+        const at = Number.isFinite(nowMs) ? Number(nowMs) : safeNow(this.now);
+        this._pruneAdaptiveThrottleState(state, at);
+        const acceptedInWindow = state.acceptedEvents.length;
+        const rejectedInWindow = state.rejectedEvents.length;
+        const totalInWindow = acceptedInWindow + rejectedInWindow;
+        if (totalInWindow < this.adaptiveThrottleMinSamples) {
+            return {
+                allowed: true,
+                acceptedInWindow,
+                rejectedInWindow,
+                totalInWindow,
+                rejectionRatio: totalInWindow > 0 ? rejectedInWindow / totalInWindow : 0,
+                dropProbability: 0,
+                sample: null,
+                minSamples: this.adaptiveThrottleMinSamples,
+                dropThreshold: this.adaptiveThrottleDropThreshold
+            };
+        }
+
+        const rejectionRatio = rejectedInWindow / totalInWindow;
+        if (rejectionRatio <= this.adaptiveThrottleDropThreshold) {
+            return {
+                allowed: true,
+                acceptedInWindow,
+                rejectedInWindow,
+                totalInWindow,
+                rejectionRatio,
+                dropProbability: 0,
+                sample: null,
+                minSamples: this.adaptiveThrottleMinSamples,
+                dropThreshold: this.adaptiveThrottleDropThreshold
+            };
+        }
+
+        const denominator = Math.max(0.0001, 1 - this.adaptiveThrottleDropThreshold);
+        const dropProbability = Math.min(
+            1,
+            Math.max(0, (rejectionRatio - this.adaptiveThrottleDropThreshold) / denominator)
+        );
+        const sampled = Number(this.random());
+        const sample = Number.isFinite(sampled) ? sampled : Math.random();
+        const allowed = sample >= dropProbability;
+
+        if (!allowed) {
+            state.blockedCount += 1;
+            state.lastBlockedAt = at;
+        }
+
+        return {
+            allowed,
+            acceptedInWindow,
+            rejectedInWindow,
+            totalInWindow,
+            rejectionRatio,
+            dropProbability,
+            sample,
+            minSamples: this.adaptiveThrottleMinSamples,
+            dropThreshold: this.adaptiveThrottleDropThreshold
+        };
     }
 
     _normalizeCandidateTargets(...values) {
@@ -1271,6 +1448,7 @@ export class TaskOrchestrator {
             this.idempotencyTaskIndex.clear();
             this.targetLatencyStats.clear();
             this.targetOutlierStats.clear();
+            this.targetAdaptiveThrottleStats.clear();
         }
 
         const hydratedAt = safeNow(this.now);
@@ -1314,6 +1492,16 @@ export class TaskOrchestrator {
                     Number(record.closedAt) - Number(record.lastDispatchAt),
                     Number(record.closedAt)
                 );
+            }
+
+            if (this.adaptiveThrottleEnabled && Array.isArray(record?.receipts)) {
+                for (const receipt of record.receipts) {
+                    const accepted = receipt?.accepted === true;
+                    const timestamp = Number.isFinite(Number(receipt?.timestamp))
+                        ? Number(receipt.timestamp)
+                        : hydratedAt;
+                    this._recordAdaptiveThrottleOutcome(record.target, accepted, timestamp);
+                }
             }
 
             applied++;
@@ -2073,7 +2261,7 @@ export class TaskOrchestrator {
         } catch (error) {
             if (
                 error instanceof TaskOrchestratorError
-                && ['SEND_FAILED', 'CIRCUIT_OPEN', 'TARGET_BACKPRESSURE'].includes(error.code)
+                && ['SEND_FAILED', 'CIRCUIT_OPEN', 'TARGET_BACKPRESSURE', 'ADAPTIVE_THROTTLED'].includes(error.code)
                 && this._maybeFailoverRecordTarget(record, dispatchAt, `initial_dispatch_${error.code.toLowerCase()}`)
             ) {
                 await this._sendTask(record, 'initial_dispatch_failover');
@@ -2139,6 +2327,34 @@ export class TaskOrchestrator {
                                 ? Number(error.details.reservedForHighPriority)
                                 : null,
                             saturationReason: error?.details?.saturationReason || null
+                        }
+                    });
+                    return this.getTask(record.taskId);
+                }
+            }
+            if (error instanceof TaskOrchestratorError && error.code === 'ADAPTIVE_THROTTLED') {
+                if (this._canRetry(record, dispatchAt)) {
+                    this._scheduleRetry(record, dispatchAt, {
+                        reason: 'adaptive_throttle_on_dispatch',
+                        event: 'dispatch_deferred_adaptive_throttle',
+                        hintMs: this.retryDelayMs,
+                        auditEvent: 'task_dispatch_deferred_adaptive_throttle',
+                        metadata: {
+                            acceptedInWindow: Number.isFinite(error?.details?.acceptedInWindow)
+                                ? Number(error.details.acceptedInWindow)
+                                : null,
+                            rejectedInWindow: Number.isFinite(error?.details?.rejectedInWindow)
+                                ? Number(error.details.rejectedInWindow)
+                                : null,
+                            totalInWindow: Number.isFinite(error?.details?.totalInWindow)
+                                ? Number(error.details.totalInWindow)
+                                : null,
+                            rejectionRatio: Number.isFinite(error?.details?.rejectionRatio)
+                                ? Number(error.details.rejectionRatio)
+                                : null,
+                            dropProbability: Number.isFinite(error?.details?.dropProbability)
+                                ? Number(error.details.dropProbability)
+                                : null
                         }
                     });
                     return this.getTask(record.taskId);
@@ -2212,7 +2428,7 @@ export class TaskOrchestrator {
         } catch (error) {
             if (
                 error instanceof TaskOrchestratorError
-                && ['SEND_FAILED', 'CIRCUIT_OPEN', 'TARGET_BACKPRESSURE'].includes(error.code)
+                && ['SEND_FAILED', 'CIRCUIT_OPEN', 'TARGET_BACKPRESSURE', 'ADAPTIVE_THROTTLED'].includes(error.code)
                 && this._maybeFailoverRecordTarget(record, reviewedAt, `approval_release_${error.code.toLowerCase()}`)
             ) {
                 await this._sendTask(record, 'approval_release_failover');
@@ -2365,6 +2581,57 @@ export class TaskOrchestrator {
             );
         }
 
+        const adaptiveThrottleGate = this._evaluateAdaptiveThrottle(
+            record.target,
+            record.request?.priority,
+            sendAt
+        );
+        if (!adaptiveThrottleGate.allowed) {
+            record.updatedAt = sendAt;
+            record.history.push({
+                at: sendAt,
+                event: 'send_blocked_adaptive_throttle',
+                reason,
+                acceptedInWindow: adaptiveThrottleGate.acceptedInWindow,
+                rejectedInWindow: adaptiveThrottleGate.rejectedInWindow,
+                totalInWindow: adaptiveThrottleGate.totalInWindow,
+                rejectionRatio: Number(adaptiveThrottleGate.rejectionRatio.toFixed(4)),
+                dropProbability: Number(adaptiveThrottleGate.dropProbability.toFixed(4)),
+                sample: Number.isFinite(adaptiveThrottleGate.sample)
+                    ? Number(adaptiveThrottleGate.sample.toFixed(4))
+                    : null
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_send_blocked_adaptive_throttle', {
+                taskId: record.taskId,
+                target: record.target,
+                reason,
+                priority: record.request?.priority || 'normal',
+                acceptedInWindow: adaptiveThrottleGate.acceptedInWindow,
+                rejectedInWindow: adaptiveThrottleGate.rejectedInWindow,
+                totalInWindow: adaptiveThrottleGate.totalInWindow,
+                rejectionRatio: Number(adaptiveThrottleGate.rejectionRatio.toFixed(4)),
+                dropProbability: Number(adaptiveThrottleGate.dropProbability.toFixed(4)),
+                sample: Number.isFinite(adaptiveThrottleGate.sample)
+                    ? Number(adaptiveThrottleGate.sample.toFixed(4))
+                    : null
+            }, sendAt);
+            throw new TaskOrchestratorError(
+                'ADAPTIVE_THROTTLED',
+                `Target ${record.target} send throttled by adaptive rejection control`,
+                {
+                    taskId: record.taskId,
+                    target: record.target,
+                    priority: record.request?.priority || 'normal',
+                    acceptedInWindow: adaptiveThrottleGate.acceptedInWindow,
+                    rejectedInWindow: adaptiveThrottleGate.rejectedInWindow,
+                    totalInWindow: adaptiveThrottleGate.totalInWindow,
+                    rejectionRatio: adaptiveThrottleGate.rejectionRatio,
+                    dropProbability: adaptiveThrottleGate.dropProbability
+                }
+            );
+        }
+
         record.attempts += 1;
         if (record.attempts === 1) {
             this._recordRetryBudgetRequest(sendAt);
@@ -2449,6 +2716,7 @@ export class TaskOrchestrator {
             const reasonHintMs = this._parseRetryHintMsFromReason(reason);
             const retryHintMs = receiptHintMs !== null ? receiptHintMs : reasonHintMs;
             const transient = this._isTransientRejectionReason(reason);
+            this._recordAdaptiveThrottleOutcome(record.target, false, receipt.timestamp);
 
             if (transient && this._canRetry(record, receipt.timestamp)) {
                 this._scheduleRetry(record, receipt.timestamp, {
@@ -2485,6 +2753,7 @@ export class TaskOrchestrator {
         }
 
         record.status = 'acknowledged';
+        this._recordAdaptiveThrottleOutcome(record.target, true, receipt.timestamp);
         if (Number.isFinite(receipt.etaMs)) {
             record.deadlineAt = receipt.timestamp + Number(receipt.etaMs);
         }
@@ -2692,6 +2961,48 @@ export class TaskOrchestrator {
                                 ? Number(error.details.reservedForHighPriority)
                                 : null,
                             saturationReason: error?.details?.saturationReason || null
+                        }
+                    });
+                    if (scheduled) {
+                        summary.scheduledRetries++;
+                    } else {
+                        summary.transportFailures++;
+                    }
+                    continue;
+                }
+                if (error instanceof TaskOrchestratorError && error.code === 'ADAPTIVE_THROTTLED') {
+                    const failovered = this._maybeFailoverRecordTarget(
+                        record,
+                        nowMs,
+                        'maintenance_adaptive_throttled'
+                    );
+                    if (failovered) {
+                        const sentAfterFailover = await this._attemptImmediateFailoverSend(record, nowMs, summary);
+                        if (sentAfterFailover) {
+                            continue;
+                        }
+                    }
+                    const scheduled = this._scheduleRetry(record, nowMs, {
+                        reason: 'adaptive_throttled',
+                        event: 'retry_deferred_adaptive_throttle',
+                        hintMs: this.retryDelayMs,
+                        auditEvent: 'task_retry_deferred_adaptive_throttle',
+                        metadata: {
+                            acceptedInWindow: Number.isFinite(error?.details?.acceptedInWindow)
+                                ? Number(error.details.acceptedInWindow)
+                                : null,
+                            rejectedInWindow: Number.isFinite(error?.details?.rejectedInWindow)
+                                ? Number(error.details.rejectedInWindow)
+                                : null,
+                            totalInWindow: Number.isFinite(error?.details?.totalInWindow)
+                                ? Number(error.details.totalInWindow)
+                                : null,
+                            rejectionRatio: Number.isFinite(error?.details?.rejectionRatio)
+                                ? Number(error.details.rejectionRatio)
+                                : null,
+                            dropProbability: Number.isFinite(error?.details?.dropProbability)
+                                ? Number(error.details.dropProbability)
+                                : null
                         }
                     });
                     if (scheduled) {
@@ -3025,6 +3336,16 @@ export class TaskOrchestrator {
                     choices: this.targetSelectionChoices,
                     targetStats: this.targetOutlierStats.size
                 },
+                adaptiveThrottle: {
+                    enabled: this.adaptiveThrottleEnabled,
+                    windowMs: this.adaptiveThrottleWindowMs,
+                    minSamples: this.adaptiveThrottleMinSamples,
+                    dropThreshold: this.adaptiveThrottleDropThreshold,
+                    bypassPriorities: [...this.adaptiveThrottleBypassPriorities],
+                    blockedTotal: 0,
+                    targetCount: this.targetAdaptiveThrottleStats.size,
+                    targets: {}
+                },
                 outlierDetection: {
                     failureThreshold: this.targetOutlierFailureThreshold,
                     baseEjectionMs: this.targetOutlierBaseEjectionMs,
@@ -3134,6 +3455,34 @@ export class TaskOrchestrator {
             };
         }
         const metricNowMs = safeNow(this.now);
+        for (const [target, state] of this.targetAdaptiveThrottleStats.entries()) {
+            this._pruneAdaptiveThrottleState(state, metricNowMs);
+            const acceptedInWindow = state.acceptedEvents.length;
+            const rejectedInWindow = state.rejectedEvents.length;
+            const totalInWindow = acceptedInWindow + rejectedInWindow;
+            const rejectionRatio = totalInWindow > 0
+                ? rejectedInWindow / totalInWindow
+                : 0;
+            const denominator = Math.max(0.0001, 1 - this.adaptiveThrottleDropThreshold);
+            const dropProbability = rejectionRatio > this.adaptiveThrottleDropThreshold
+                ? Math.min(
+                    1,
+                    Math.max(0, (rejectionRatio - this.adaptiveThrottleDropThreshold) / denominator)
+                )
+                : 0;
+            metrics.retry.adaptiveThrottle.blockedTotal += Number(state.blockedCount || 0);
+            metrics.retry.adaptiveThrottle.targets[target] = {
+                acceptedInWindow,
+                rejectedInWindow,
+                totalInWindow,
+                rejectionRatio: Number(rejectionRatio.toFixed(4)),
+                estimatedDropProbability: Number(dropProbability.toFixed(4)),
+                blockedCount: Number(state.blockedCount || 0),
+                lastBlockedAt: Number.isFinite(state.lastBlockedAt)
+                    ? Number(state.lastBlockedAt)
+                    : null
+            };
+        }
         for (const [target, state] of this.targetOutlierStats.entries()) {
             const ejected = this._isTargetOutlierEjected(target, metricNowMs);
             if (ejected) {

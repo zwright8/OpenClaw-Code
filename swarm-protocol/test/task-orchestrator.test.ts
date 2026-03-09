@@ -601,6 +601,108 @@ test('retry budget replenishes as request volume grows inside the window', async
     assert.equal(metrics.retry.budget.retriesInWindow >= 2, true);
 });
 
+test('adaptive throttle defers low-priority dispatches under high rejection ratios', async () => {
+    const clock = createClock(13_800);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        maxRetries: 2,
+        retryDelayMs: 30,
+        adaptiveThrottleEnabled: true,
+        adaptiveThrottleMinSamples: 1,
+        adaptiveThrottleDropThreshold: 0.3,
+        random: () => 0
+    });
+
+    const seed = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-throttle',
+        task: 'Seed rejection ratio'
+    });
+    clock.advance(1);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: seed.taskId,
+        from: 'agent:worker-adaptive-throttle',
+        accepted: false,
+        reason: 'worker_overloaded',
+        timestamp: clock.now()
+    }));
+
+    const throttled = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-throttle',
+        task: 'Low priority should be probabilistically throttled'
+    });
+
+    assert.equal(sent.length, 1);
+    assert.equal(throttled.status, 'retry_scheduled');
+    assert.equal(throttled.attempts, 0);
+    assert.equal(throttled.nextRetryAt, clock.now() + 30);
+    assert.equal(
+        throttled.history.some((entry) => entry.event === 'dispatch_deferred_adaptive_throttle'),
+        true
+    );
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.adaptiveThrottle.enabled, true);
+    assert.equal(metrics.retry.adaptiveThrottle.blockedTotal >= 1, true);
+    assert.equal(
+        metrics.retry.adaptiveThrottle.targets['agent:worker-adaptive-throttle'].rejectionRatio,
+        1
+    );
+});
+
+test('adaptive throttle bypasses configured high-priority traffic', async () => {
+    const clock = createClock(14_200);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        adaptiveThrottleEnabled: true,
+        adaptiveThrottleMinSamples: 1,
+        adaptiveThrottleDropThreshold: 0.1,
+        adaptiveThrottleBypassPriorities: ['critical'],
+        random: () => 0
+    });
+
+    const seed = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-priority',
+        task: 'Seed rejection ratio'
+    });
+    clock.advance(1);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: seed.taskId,
+        from: 'agent:worker-adaptive-priority',
+        accepted: false,
+        reason: 'worker_overloaded',
+        timestamp: clock.now()
+    }));
+
+    const critical = await orchestrator.dispatchTask({
+        target: 'agent:worker-adaptive-priority',
+        task: 'Critical task should bypass throttle',
+        priority: 'critical'
+    });
+
+    assert.equal(sent.length, 2);
+    assert.equal(critical.status, 'dispatched');
+    assert.equal(critical.attempts, 1);
+
+    const metrics = orchestrator.getMetrics();
+    assert.deepEqual(metrics.retry.adaptiveThrottle.bypassPriorities, ['critical']);
+    assert.equal(metrics.retry.adaptiveThrottle.blockedTotal, 0);
+});
+
 test('dispatchTask reuses active task for matching idempotency key', async () => {
     const clock = createClock(14_000);
     const sent = [];
