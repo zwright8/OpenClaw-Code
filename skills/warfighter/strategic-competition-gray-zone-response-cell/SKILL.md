@@ -149,3 +149,8 @@ Use these tool categories as the default stack for this skill: OSINT intelligenc
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-09, Maritime Proxy and Rare-Gas Pressure Addendum)
+
+- Add `tool_suite_id=ts-maritime-drone-mothership-attribution-v1` + `protocol_stack_id=ps-maritime-drone-mothership-attribution-stack-v1` when gray-zone pressure campaigns route through deniable maritime drone proxy networks.
+- Add `tool_suite_id=ts-strategic-rare-gas-sensor-supply-resilience-v1` + `protocol_stack_id=ps-strategic-rare-gas-sensor-supply-resilience-stack-v1` when adversary leverage over rare-gas supply chains can alter ISR and precision-guidance capacity.
+- Add `packet_id=DPL-MARITIME-DRONE-MOTHERSHIP-ATTRIBUTION-001` and `packet_id=DPL-STRATEGIC-RARE-GAS-SENSOR-SUPPLY-RESILIENCE-001` for interagency response options that depend on attribution confidence or industrial continuity posture.

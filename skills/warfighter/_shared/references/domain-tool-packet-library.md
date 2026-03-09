@@ -3288,3 +3288,115 @@ validation_gates:
 - output_schema: identity confidence matrix, custody correction actions, tribunal evidence package
 - protocol_profile: API/JSON + NATO APP-11/ADatP-3 + USMTF
 - validation_gates: biometric confidence floor, releasability validation, commander and legal approval
+
+## Domain Packet Library (2026-03-09 Domain Expansion - Solar Storm, Beacon Deception, Counterfeit Microelectronics)
+
+### packet_id: DPL-SPACE-WEATHER-SOLAR-STORM-MISSION-ASSURANCE-001
+- domain: joint space weather solar storm mission assurance
+- objective: preserve mission continuity under severe geomagnetic and radiation-driven system degradation
+- primary_tools: space weather fusion service, satcom outage predictor, mission dependency impact engine
+- alternate_tools: manual risk board and independent timing integrity monitor
+- degraded_mode: critical-mission-only comms and timing windows with conservative risk posture
+- input_requirements: storm severity forecasts, satcom link health, timing confidence, mission dependency graph
+- output_schema: posture transition matrix, failover trigger ladder, commander decision prompts
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: dual-source forecast check, timing confidence threshold, command authority release
+
+### packet_id: DPL-PERSONNEL-RECOVERY-BEACON-DECEPTION-COUNTER-001
+- domain: theater personnel recovery beacon deception counter
+- objective: distinguish authentic survivor beacons from spoofed or replayed signals before committing recovery assets
+- primary_tools: beacon authenticity analyzer, ISR corroboration board, recovery mission router
+- alternate_tools: manual PR confidence board and survival signal validation worksheet
+- degraded_mode: limited commit posture until dual-source authentication is reached
+- input_requirements: beacon signal captures, ISR corroboration cues, threat EW indicators, recovery force readiness
+- output_schema: survivor confidence ladder, recovery branch options, false-signal suppression plan
+- protocol_profile: VMF + CoT + USMTF
+- validation_gates: dual-source authenticity pass, no-strike deconfliction confirmation, rescue authority approval
+
+### packet_id: DPL-EXPEDITIONARY-BLOOD-COLD-CHAIN-DENIAL-RECOVERY-001
+- domain: coalition expeditionary blood cold chain denial recovery
+- objective: recover blood and biologics sustainment after repeated excursion and transport denial events
+- primary_tools: cold-chain telemetry fusion, med-log demand allocator, excursion remediation planner
+- alternate_tools: manual temperature excursion log and senior medical review board
+- degraded_mode: restricted use with accelerated verification and casualty-priority release
+- input_requirements: excursion events, custody records, med demand forecasts, route disruption status
+- output_schema: excursion triage board, reroute and stabilization actions, release restriction matrix
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: temperature evidence completeness, custody integrity, medical authority concurrence
+
+### packet_id: DPL-URBAN-SPECTRUM-HIDDEN-EMITTER-HUNT-001
+- domain: tactical urban spectrum hidden emitter hunt
+- objective: locate and prioritize hostile hidden emitters without increasing spectrum fratricide
+- primary_tools: RF geolocation mesh, emitter classifier, urban maneuver deconfliction board
+- alternate_tools: manual emitter hunt matrix and visual ISR corroboration checklist
+- degraded_mode: constrained maneuver with sector-based manual reporting and conservative suppression rules
+- input_requirements: RF captures, urban terrain mask, friendly emissions baseline, EW threat cues
+- output_schema: emitter confidence map, suppression/capture priority queue, maneuver safety triggers
+- protocol_profile: Link 16 J-series + CoT + API/JSON
+- validation_gates: fratricide-spectrum check, confidence floor pass, command release gate
+
+### packet_id: DPL-PORT-CRANE-RANSOMWARE-MANUAL-THROUGHPUT-001
+- domain: operational port crane ransomware manual throughput
+- objective: preserve port throughput during crane automation loss while containing cyber risk
+- primary_tools: OT incident board, manual throughput scheduler, cargo priority reconciler
+- alternate_tools: manual wharf board and safety-engineering approval worksheet
+- degraded_mode: mission-priority cargo only with staged manual operations
+- input_requirements: OT compromise status, crane availability, cargo priority list, safety interlock state
+- output_schema: manual throughput plan, containment and restart gates, cargo release matrix
+- protocol_profile: API/JSON + ICS incident records + USMTF
+- validation_gates: safety interlock verification, incident containment status, port commander approval
+
+### packet_id: DPL-STRATEGIC-RARE-GAS-SENSOR-SUPPLY-RESILIENCE-001
+- domain: strategic rare gas sensor supply resilience
+- objective: preserve ISR and guidance sensor manufacturing under xenon and krypton supply stress
+- primary_tools: rare-gas inventory board, supplier disruption model, mission allocation planner
+- alternate_tools: manual allocation worksheet and independent supplier attestation ledger
+- degraded_mode: mission-priority production only with deferred lower-priority demand
+- input_requirements: rare-gas inventory state, supplier reliability, mission demand priorities, production yields
+- output_schema: allocation ladder, production continuity forecast, mitigation branch options
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: provenance and lot integrity check, strategic authority signoff, sustainment risk threshold
+
+### packet_id: DPL-DENIED-PNT-CELESTIAL-TERCOM-REQUALIFICATION-001
+- domain: joint denied pnt celestial tercom requalification
+- objective: requalify navigation confidence using celestial, TERCOM, and inertial fallback sources
+- primary_tools: navigation confidence engine, terrain correlation validator, timing drift monitor
+- alternate_tools: manual route confidence board and inertial baseline worksheet
+- degraded_mode: reduced maneuver envelope with explicit timing constraints
+- input_requirements: navigation confidence telemetry, terrain reference quality, timing drift state, platform mission profile
+- output_schema: requalification matrix, fallback navigation branches, commander go/no-go prompt set
+- protocol_profile: API/JSON + Link 16 J-series + USMTF
+- validation_gates: dual-source confidence check, timing floor threshold, command approval
+
+### packet_id: DPL-MARITIME-DRONE-MOTHERSHIP-ATTRIBUTION-001
+- domain: coalition maritime drone mothership attribution
+- objective: attribute and prioritize interdiction of mothership networks supporting deniable maritime drone attacks
+- primary_tools: vessel anomaly scoring engine, launch-signature correlation board, interdiction planner
+- alternate_tools: manual attribution board and legal custody review log
+- degraded_mode: surveillance-focused posture with delayed interdiction release
+- input_requirements: vessel tracks, launch signatures, sanctions indicators, legal authority constraints
+- output_schema: mothership confidence index, interdiction priority board, evidence handoff package
+- protocol_profile: AIS/NMEA + API/JSON + USMTF
+- validation_gates: confidence threshold pass, legal authority validation, coalition deconfliction acknowledgment
+
+### packet_id: DPL-HOMELAND-MICROELECTRONICS-COUNTERFEIT-QUARANTINE-001
+- domain: homeland military microelectronics counterfeit quarantine
+- objective: quarantine suspect parts and prevent counterfeit ingress into mission systems
+- primary_tools: authenticity scanner, lot genealogy reconciler, depot quarantine task board
+- alternate_tools: manual lot adjudication board and independent lab chain review
+- degraded_mode: mission-critical-only release with enhanced verification criteria
+- input_requirements: authenticity anomalies, lot records, supplier provenance, mission demand profile
+- output_schema: counterfeit risk ladder, quarantine-and-release matrix, sustainment impact note
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: provenance trust pass, laboratory corroboration, depot authority approval
+
+### packet_id: DPL-EXPEDITIONARY-RUNWAY-FOD-AUTONOMY-001
+- domain: expeditionary runway foreign object debris autonomy
+- objective: clear FOD rapidly with autonomy while preserving safety and sortie generation tempo
+- primary_tools: autonomous FOD patrol planner, runway hazard confidence board, sortie scheduler
+- alternate_tools: manual runway sweep board and tower inspection checklist
+- degraded_mode: manually controlled sortie windows with conservative clearance intervals
+- input_requirements: FOD detections, runway condition state, sortie demand, weather and visibility
+- output_schema: clearance sequence timeline, sortie risk gates, autonomy-to-human handoff triggers
+- protocol_profile: AIXM/FIXM + API/JSON + USMTF
+- validation_gates: hazard confidence threshold, airfield safety concurrence, air boss release approval
