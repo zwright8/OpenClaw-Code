@@ -4016,3 +4016,113 @@ validation_gates:
 - output_schema: resupply wave plan, payload priority matrix, corridor risk timeline
 - protocol_profile: CoT + HL7/FHIR + USMTF
 - validation_gates: corridor deconfliction pass, payload custody confirmation, command approval
+
+### packet_id: DPL-PORTABLE-NUCLEAR-DETECTOR-RESILIENCE-001
+- domain: joint theater portable nuclear detector network resilience
+- objective: preserve radiological and nuclear warning quality despite detector drift, movement, and comms disruption
+- primary_tools: detector status federation, calibration drift tracker, warning dissemination board
+- alternate_tools: manual detector integrity roster and sample confirmation worksheet
+- degraded_mode: top-threat corridors only with interval-based warning updates
+- input_requirements: detector locations, calibration state, comms health, threat indicators
+- output_schema: coverage matrix, calibration mitigation ladder, warning continuity branch card
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: calibration confidence threshold, warning dissemination pass, authority release gate
+
+### packet_id: DPL-RAPID-DAM-FLOODWAVE-WARNING-001
+- domain: coalition rapid dam inspection and floodwave warning
+- objective: accelerate dam integrity triage and downstream floodwave warning under strike or sabotage conditions
+- primary_tools: dam telemetry monitor, hydrology burst model, downstream warning task board
+- alternate_tools: manual structural triage checklist and floodplain alert worksheet
+- degraded_mode: priority-population warning only with simplified evacuation routes
+- input_requirements: dam condition signals, river flow state, downstream population map, response assets
+- output_schema: integrity triage board, warning timeline, evacuation trigger matrix
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: structural confidence pass, warning acknowledgment completeness, command release approval
+
+### packet_id: DPL-SPECTRUM-FRUGAL-VIDEO-PRIORITIZATION-001
+- domain: tactical spectrum-frugal video intel prioritization
+- objective: maximize decision value from ISR video when bandwidth is constrained or denied
+- primary_tools: clip prioritization engine, bandwidth arbitration board, mission impact scorer
+- alternate_tools: analyst manual clip queue and metadata-only release card
+- degraded_mode: top-priority targets only with delayed full-motion release
+- input_requirements: clip metadata, target priorities, available bandwidth windows, analyst confidence
+- output_schema: prioritized release queue, bandwidth allocation card, confidence-tagged recommendation
+- protocol_profile: CoT + STANAG 4609 + API/JSON
+- validation_gates: provenance check, confidence floor, release authority gate
+
+### packet_id: DPL-BATTERY-THERMAL-RUNAWAY-CONTAINMENT-001
+- domain: theater battery supply chain thermal runaway containment
+- objective: contain battery hazards while preserving mission-critical power continuity
+- primary_tools: battery health telemetry fusion, depot hazard zoning board, power continuity planner
+- alternate_tools: manual hazard inventory worksheet and alternate power dispatch board
+- degraded_mode: mission-essential loads only with emergency battery quarantine posture
+- input_requirements: inventory condition telemetry, storage status, mission load priorities, transport routes
+- output_schema: hazard risk map, containment plan, alternate power continuity ladder
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: hazard threshold pass, quarantine control approval, continuity acceptance gate
+
+### packet_id: DPL-PRECISION-AGRI-DENIAL-FOOD-MONITOR-001
+- domain: joint precision agriculture denial and food security monitor
+- objective: detect and mitigate food-system disruption that can destabilize operations and civil conditions
+- primary_tools: agri-yield analytics board, supply flow monitor, civil stability signal tracker
+- alternate_tools: manual commodity trend board and humanitarian demand estimate worksheet
+- degraded_mode: high-risk region monitoring only with weekly planning cadence
+- input_requirements: crop and input availability signals, market stress indicators, logistics constraints, civil unrest indicators
+- output_schema: disruption risk ledger, recovery priority matrix, stability branch plan
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: multi-source corroboration, policy concurrence, command release gate
+
+### packet_id: DPL-FORWARD-AIRSTRIP-BIRD-STRIKE-SUPPRESSION-001
+- domain: coalition forward airstrip bird-strike risk suppression
+- objective: reduce bird-strike risk at austere airstrips while sustaining sortie generation tempo
+- primary_tools: wildlife activity sensor mesh, runway inspection scheduler, sortie risk board
+- alternate_tools: manual runway hazard log and local wildlife observation board
+- degraded_mode: daylight-sortie windows only with enhanced pre-takeoff inspection intervals
+- input_requirements: wildlife activity trends, runway status, sortie schedule, mitigation assets
+- output_schema: hazard heatmap, sortie risk card, mitigation task board
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: runway inspection pass, mitigation completion check, sortie release approval
+
+### packet_id: DPL-MILITARY-FAMILY-EVAC-SAFEHAVEN-001
+- domain: strategic military family evacuation and safehaven allocation
+- objective: synchronize dependent evacuation and safehaven allocation to protect families and preserve force readiness
+- primary_tools: dependent accountability roster, transport assignment broker, safehaven capacity board
+- alternate_tools: manual accountability ledger and shelter allocation worksheet
+- degraded_mode: priority dependent categories only with phased transport constraints
+- input_requirements: family accountability status, transport availability, safehaven capacity, security conditions
+- output_schema: evacuation phasing plan, safehaven map, reunification tracker
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: accountability completeness, capacity sufficiency, command release approval
+
+### packet_id: DPL-CONTESTED-ADDITIVE-METALLURGY-QA-001
+- domain: joint contested additive metallurgy quality assurance
+- objective: certify mission-critical additive metal parts under contested supply conditions without unsafe release
+- primary_tools: additive process telemetry monitor, nondestructive test planner, part-release governance board
+- alternate_tools: manual quality gate checklist and comparative sourcing worksheet
+- degraded_mode: non-flight-critical and non-safety-critical parts only pending full verification
+- input_requirements: build telemetry, material provenance, test results, mission demand priorities
+- output_schema: quality gate matrix, release confidence ladder, fallback sourcing plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: process conformance pass, material provenance check, release authority approval
+
+### packet_id: DPL-CELLULAR-PRIORITY-SERVICE-RESTORATION-001
+- domain: theater civilian cellular priority service restoration
+- objective: restore emergency and military-support priority cellular services after outage or attack
+- primary_tools: carrier outage COP, priority policy orchestrator, emergency routing board
+- alternate_tools: manual outage worksheet and priority access dispatch card
+- degraded_mode: emergency responder and command-essential users only with constrained service windows
+- input_requirements: outage footprint, backhaul status, priority access policies, emergency demand profile
+- output_schema: restoration sequence, outage impact board, emergency access governance checklist
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: service restoration threshold, authority concurrence, acknowledgment completeness
+
+### packet_id: DPL-DEEPFAKE-VOICE-COMMAND-DETECTION-001
+- domain: coalition deepfake voice command spoofing detection
+- objective: detect synthetic voice command spoofing and restore trusted command-channel operation quickly
+- primary_tools: voice authenticity classifier, command-channel anomaly monitor, re-authentication workflow board
+- alternate_tools: manual callback verification ledger and chain-of-command challenge-response script
+- degraded_mode: advisory-only voice workflows with secondary authentication for all critical decisions
+- input_requirements: voice command captures, channel metadata, threat intelligence context, command roster
+- output_schema: spoofing threat board, trust posture card, containment and re-authentication plan
+- protocol_profile: USMTF + API/JSON + STIX/TAXII
+- validation_gates: authenticity score threshold, callback confirmation pass, command authority release

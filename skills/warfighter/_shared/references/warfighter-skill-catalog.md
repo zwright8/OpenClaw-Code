@@ -700,3 +700,29 @@ Every skill output should include:
 - Refinery cyber-physical restart + fuel-convoy signature suppression + strategic industrial mobilization readiness
 - Electronic order-of-battle drift detection + contested electronic signature intelligence fusion + spectrum interference resolution
 - Urban mass-casualty drone resupply + joint counter-UAS urban rooftop defense + casualty evacuation and medical regulation
+
+## New Expansion Wave (2026-03-09, Infrastructure Shock, Communications Integrity, and Human Resilience)
+
+- joint-theater-portable-nuclear-detector-network-resilience-cell
+- coalition-rapid-dam-inspection-and-floodwave-warning-cell
+- tactical-spectrum-frugal-video-intel-prioritization-cell
+- theater-battery-supply-chain-thermal-runaway-containment-cell
+- joint-precision-agriculture-denial-and-food-security-monitor-cell
+- coalition-forward-airstrip-bird-strike-risk-suppression-cell
+- strategic-military-family-evacuation-and-safehaven-allocation-cell
+- joint-contested-additive-metallurgy-quality-assurance-cell
+- theater-civilian-cellular-priority-service-restoration-cell
+- coalition-deepfake-voice-command-spoofing-detection-cell
+
+## Updated Pairings (2026-03-09, Infrastructure Shock, Communications Integrity, and Human Resilience)
+
+- Portable nuclear detector resilience + CBRN consequence management + strategic warning continuity
+- Dam floodwave warning + river crossing risk + civil defense mass evacuation shelter planning
+- Spectrum-frugal ISR video triage + disconnected UAS BDA triage + tactical cloud edge compute orchestration
+- Battery thermal-runaway containment + operational energy resilience and microgrid + contested logistics sustainment
+- Precision agriculture denial monitoring + strategic supply shock forecasting + civil-affairs stability operations
+- Forward airstrip bird-strike suppression + expeditionary airfield operations + runway recovery sequencing
+- Military family evacuation safehaven allocation + personnel accountability + DSCA crisis support
+- Contested additive metallurgy QA + additive quality attestation + expeditionary fabrication and BDR
+- Civilian cellular priority restoration + mission network failover + host-nation grid/cyber restoration
+- Deepfake voice spoofing detection + information integrity attribution + coalition cyber legal attribution

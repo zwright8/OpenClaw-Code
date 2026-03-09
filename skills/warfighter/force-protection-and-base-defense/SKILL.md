@@ -158,3 +158,6 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For civil-grid instability that drives force-protection risk, include `ts-grid-loadshedding-military-support-v1` with `ps-grid-loadshedding-military-support-stack-v1`.
 - For urban mass-casualty sustainment where ground routes are denied, include `ts-urban-mascas-drone-resupply-v1` with `ps-urban-mascas-drone-resupply-stack-v1`.
 - For command network disruption from cable landing station threats, include `ts-cable-landing-hardening-v1` with `ps-cable-landing-hardening-stack-v1`.
+- For distributed radiological/nuclear warning coverage resilience, include `ts-portable-nuclear-detector-resilience-v1` with `ps-portable-nuclear-detector-resilience-stack-v1`.
+- For rapid floodwave warning after dam strike or sabotage, include `ts-rapid-dam-floodwave-warning-v1` with `ps-rapid-dam-floodwave-warning-stack-v1`.
+- For synthetic voice spoofing against guard-force command nets, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.

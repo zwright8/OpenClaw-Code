@@ -167,3 +167,6 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For joint PNT denial requiring theater-wide fallback, include `ts-astroinertial-reversion-v1` with `ps-astroinertial-reversion-stack-v1`.
 - For contested EOB freshness and emitter-ID drift that affects suppression planning, include `ts-eob-drift-detection-v1` with `ps-eob-drift-detection-stack-v1`.
 - For disconnected strike-assessment imagery prioritization, include `ts-disconnected-uas-bda-triage-v1` with `ps-disconnected-uas-bda-triage-stack-v1`.
+- For austere airfield sortie risk from wildlife surges, include `ts-forward-airstrip-bird-strike-suppression-v1` with `ps-forward-airstrip-bird-strike-suppression-stack-v1`.
+- For severe bandwidth limits impacting ISR video feeds, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.
+- For cellular priority-service restoration that affects civil-military airbase coordination, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
