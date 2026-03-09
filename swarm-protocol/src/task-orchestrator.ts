@@ -19,7 +19,7 @@ const OPEN_STATUSES = new Set([
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
 const RETRY_BACKOFF_STRATEGIES = new Set(['fixed', 'exponential']);
-const RETRY_JITTER_STRATEGIES = new Set(['none', 'full']);
+const RETRY_JITTER_STRATEGIES = new Set(['none', 'full', 'decorrelated']);
 const DEFAULT_RETRY_THROTTLE = Object.freeze({
     maxTokens: 10,
     tokenRatio: 0.1,
@@ -578,19 +578,32 @@ export class TaskOrchestrator {
     _resolveRetryDelayMs(record, hintMs = null) {
         const attemptIndex = Math.max(record.attempts, 1);
         let delayMs = this.retryDelayMs;
+        const hasHint = Number.isFinite(hintMs) && hintMs >= 0;
         if (this.retryBackoffStrategy === 'exponential') {
             const exponentialDelay = this.retryDelayMs * (2 ** (attemptIndex - 1));
             delayMs = Math.min(this.maxRetryDelayMs, exponentialDelay);
         }
 
-        if (Number.isFinite(hintMs) && hintMs >= 0) {
+        if (hasHint) {
             delayMs = Math.min(this.maxRetryHintMs, Number(hintMs));
         }
 
-        if (this.retryJitter === 'full' && delayMs > 1) {
+        if (!hasHint && this.retryJitter === 'full' && delayMs > 1) {
             const randomSample = Number(this.random());
             const randomValue = Number.isFinite(randomSample) ? randomSample : Math.random();
             delayMs = Math.floor(Math.min(Math.max(randomValue, 0), 1) * delayMs);
+        }
+        if (!hasHint && this.retryJitter === 'decorrelated' && delayMs > 1) {
+            const randomSample = Number(this.random());
+            const randomValue = Number.isFinite(randomSample) ? randomSample : Math.random();
+            const boundedRandom = Math.min(Math.max(randomValue, 0), 1);
+            const previousDelayMs = clampPositiveNumber(record.lastRetryDelayMs, this.retryDelayMs);
+            const upper = Math.max(
+                this.retryDelayMs,
+                Math.min(delayMs, previousDelayMs * 3)
+            );
+            const lower = Math.min(this.retryDelayMs, upper);
+            delayMs = Math.floor(lower + ((upper - lower) * boundedRandom));
         }
 
         return Math.max(0, Math.floor(delayMs));
@@ -645,6 +658,7 @@ export class TaskOrchestrator {
         const nextRetryAt = nowMs + retryDelayMs;
 
         record.status = 'retry_scheduled';
+        record.lastRetryDelayMs = retryDelayMs;
         record.nextRetryAt = nextRetryAt;
         record.updatedAt = nowMs;
         record.history.push({
@@ -856,6 +870,7 @@ export class TaskOrchestrator {
             maxRetries: this.maxRetries,
             createdAt: request.createdAt,
             updatedAt: request.createdAt,
+            lastRetryDelayMs: null,
             deadlineAt: request.createdAt + this.defaultTimeoutMs,
             nextRetryAt: null,
             closedAt: null,

@@ -254,6 +254,83 @@ test('maintenance retry scheduling uses exponential backoff with jitter', async 
     assert.equal(current.nextRetryAt, 9_201);
 });
 
+test('maintenance retry scheduling supports decorrelated jitter progression', async () => {
+    const clock = createClock(13_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount >= 2) {
+                    throw new Error('retry send failed');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 2,
+        retryDelayMs: 100,
+        retryBackoffStrategy: 'exponential',
+        retryJitter: 'decorrelated',
+        random: () => 0.5
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-decorrelated',
+        task: 'Exercise decorrelated jitter'
+    });
+
+    clock.set(13_051);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(current.nextRetryAt, 13_151);
+    assert.equal(current.lastRetryDelayMs, 100);
+
+    clock.set(13_151);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 13_301);
+    assert.equal(current.lastRetryDelayMs, 150);
+});
+
+test('decorrelated jitter does not randomize explicit retry-after hints', async () => {
+    const clock = createClock(14_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        retryJitter: 'decorrelated',
+        random: () => 0
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-decorrelated-hint',
+        task: 'Honor explicit retry hint'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-decorrelated-hint',
+        accepted: false,
+        reason: 'service_unavailable retry_after=2',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 16_000);
+    assert.equal(current.lastRetryDelayMs, 2_000);
+});
+
 test('maintenance schedules retry, retries, and times out when budget exhausted', async () => {
     const clock = createClock(4_000);
     const sent = [];

@@ -319,6 +319,8 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  retryBackoffStrategy: 'exponential',
+  retryJitter: 'decorrelated',
   retryThrottling: {
     scope: 'target',
     maxTokens: 20,
@@ -362,6 +364,7 @@ await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' })
 `circuitBreaker` prevents repeated dispatch attempts to an unhealthy target by opening per-target circuits after consecutive send failures and only probing again after cooldown.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`).
+When `retryJitter` is set to `decorrelated`, retries use decorrelated jitter to reduce retry synchronization across many agents; explicit `Retry-After` hints are still honored exactly.
 
 Safety policy integration:
 ```js
