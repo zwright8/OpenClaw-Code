@@ -1287,3 +1287,179 @@ validation_gates:
 - output_schema: option matrix, synchronized branch triggers, command messaging guidance
 - protocol_profile: USMTF + VMF + STIX/TAXII
 - validation_gates: source confidence floor, legal authority confirmation, policy approval record
+
+### packet_id: DPL-BLOOD-COLDCHAIN-001
+- domain: hardened theater blood chain continuity
+- objective: preserve blood availability and cold-chain integrity across contested transport conditions
+- primary_tools: blood inventory telemetry, thermal assurance probes, casualty regulation systems
+- alternate_tools: manual blood status board and courier reconciliation worksheet
+- degraded_mode: priority transfusion support only with reduced distribution cadence
+- input_requirements: blood types, inventory temperatures, casualty forecast, transport constraints
+- output_schema: redistribution plan, cold-chain breach risk score, transfusion continuity triggers
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: temperature integrity pass, medical authority confirmation, identity/reconciliation check
+
+### packet_id: DPL-RUNWAY-DECOY-001
+- domain: rapid runway camouflage and decoy emplacement
+- objective: reduce runway targetability while preserving sortie generation tempo
+- primary_tools: airfield status dashboards, decoy effect simulators, ISR signature comparison tools
+- alternate_tools: manual deception board and engineering timeline tracker
+- degraded_mode: essential runway segments only with static camouflage windows
+- input_requirements: runway damage state, decoy inventory, ISR threat profile, sortie demand
+- output_schema: decoy placement matrix, survivability estimate, reconstitution branch triggers
+- protocol_profile: USMTF + Link 16 J-series + OGC
+- validation_gates: deconfliction pass, engineering feasibility check, commander approval
+
+### packet_id: DPL-ORBIT-RESCUE-DEORBIT-001
+- domain: coalition contested orbit rescue and deorbit governance
+- objective: coordinate rescue/deorbit options with collision and reentry risk controls
+- primary_tools: SDA catalogs, conjunction analyzers, orbit maneuver planners
+- alternate_tools: manual orbital risk worksheet and coalition clearance board
+- degraded_mode: mission-critical rescue windows only with delayed coalition sync
+- input_requirements: object ephemeris, fuel status, threat indicators, coalition authorities
+- output_schema: rescue/deorbit option board, reentry risk corridor, authority gate record
+- protocol_profile: CCSDS + API/JSON + USMTF
+- validation_gates: collision-risk threshold pass, reentry safety review, coalition approval record
+
+### packet_id: DPL-BRIDGE-LOAD-AUTO-001
+- domain: autonomous bridge inspection and load rating
+- objective: establish rapid movement authorities from autonomous structural inspections
+- primary_tools: robotic inspection systems, structural digital twins, engineer mobility boards
+- alternate_tools: manual load classification worksheet and route checklists
+- degraded_mode: conservative load limits with manual confirmation at key nodes
+- input_requirements: bridge geometry, observed defects, force package weights, route priorities
+- output_schema: load classification board, movement authorization packet, repair priority list
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: inspector confidence threshold, structural engineer concurrence, command release approval
+
+### packet_id: DPL-UNDERSEA-TRAFFIC-AUTONOMY-001
+- domain: theater undersea chokepoint autonomy traffic control
+- objective: synchronize autonomous patrols and convoy transit through contested chokepoints
+- primary_tools: undersea sensor grid manager, autonomy controller, maritime traffic analytics
+- alternate_tools: patrol schedule board and manual contact correlation log
+- degraded_mode: convoy-only transit windows with reduced sensing coverage
+- input_requirements: chokepoint geometry, sensor health, convoy schedule, threat posture
+- output_schema: transit control order, patrol timing matrix, diversion and risk triggers
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF
+- validation_gates: sensor calibration pass, false-alarm threshold check, operator concurrence
+
+### packet_id: DPL-GRID-BLACKSTART-EX-001
+- domain: strategic energy grid cyber-physical blackstart exercise
+- objective: rehearse restoration decision paths and mission-energy continuity controls
+- primary_tools: SCADA/ICS telemetry, cyber incident orchestration, restoration planning systems
+- alternate_tools: emergency operations board and manual dependency graph workbook
+- degraded_mode: mission-critical circuits only with delayed restoration reporting
+- input_requirements: grid dependency map, outage scenario, cyber indicators, mission loads
+- output_schema: blackstart exercise sequence, restoration priority matrix, continuity risk notes
+- protocol_profile: NIMS/ICS + STIX/TAXII + API/JSON
+- validation_gates: cyber containment check, safety gate pass, command authority sign-off
+
+### packet_id: DPL-DENIED-METADATA-TRIAGE-001
+- domain: denied metadata and captured file triage
+- objective: rank captured files by mission value and metadata confidence in disconnected conditions
+- primary_tools: digital forensics suites, evidence ledgers, malware triage sandboxes
+- alternate_tools: manual hash ledger and analyst triage worksheet
+- degraded_mode: top-priority file triage only with delayed metadata reconstruction
+- input_requirements: file corpus, source context, chain-of-custody notes, mission PIRs
+- output_schema: triage queue, metadata confidence ledger, exploitation task recommendations
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: provenance confidence floor, malware safety gate, legal review checkpoint
+
+### packet_id: DPL-WATERBORNE-OUTBREAK-001
+- domain: expeditionary waterborne disease outbreak containment
+- objective: contain outbreak spread while preserving force-health and water supply continuity
+- primary_tools: epidemiology dashboards, water-quality telemetry, med-log coordination tools
+- alternate_tools: manual case tracker and sampling schedule board
+- degraded_mode: severe-case containment with reduced site monitoring cadence
+- input_requirements: case reports, water-point statuses, lab sample chain, population-at-risk map
+- output_schema: containment action matrix, water-point risk map, force-health advisory timeline
+- protocol_profile: HL7/FHIR + NIMS/ICS + USMTF
+- validation_gates: laboratory confirmation pass, medical authority review, life-safety priority check
+
+### packet_id: DPL-DIGITAL-TWIN-BASING-001
+- domain: joint digital twin basing dispersion and hardening
+- objective: optimize basing dispersion and hardening investments with mission continuity constraints
+- primary_tools: theater digital twins, basing telemetry systems, dependency graph analytics
+- alternate_tools: manual posture planning workbook and engineering risk board
+- degraded_mode: high-criticality node hardening only with coarse simulation outputs
+- input_requirements: force package posture, facility vulnerabilities, threat vectors, sustainment limits
+- output_schema: dispersion scorecard, hardening sequence, continuity branch recommendations
+- protocol_profile: API/JSON + OGC + USMTF
+- validation_gates: model confidence check, sustainment feasibility pass, command concurrence
+
+### packet_id: DPL-COALITION-BDA-LEGAL-001
+- domain: coalition precision-fires battle damage legal assurance
+- objective: provide coalition BDA recommendations with legally traceable evidence and ROE compliance
+- primary_tools: fires coordination systems, ISR exploitation workflows, legal advisory decision logs
+- alternate_tools: liaison adjudication matrix and manual collateral review checklist
+- degraded_mode: restrained restrike recommendations with expanded human approval gates
+- input_requirements: target packets, BDA evidence, coalition caveats, ROE profile
+- output_schema: legal assurance packet, restrike option matrix, coalition release decisions
+- protocol_profile: VMF + Link 16 J-series + NATO APP-11/ADatP-3
+- validation_gates: ROE compliance pass, legal authority verification, coalition caveat check
+
+### packet_id: DPL-ADRIFT-MINE-001
+- domain: rapid adrift mine drift forecast and warning
+- objective: forecast mine drift and issue route-risk warnings for military and protected shipping
+- primary_tools: ocean current models, mine detection feeds, maritime COP tools
+- alternate_tools: manual drift plotting board and periodic warning bulletins
+- degraded_mode: high-risk sector warnings only with conservative closure assumptions
+- input_requirements: mine sighting data, hydro forecasts, shipping routes, protected corridor definitions
+- output_schema: drift forecast overlay, warning schedule, route closure/reopen decision triggers
+- protocol_profile: AIS/NMEA + USMTF + OGC
+- validation_gates: dual-source drift corroboration, warning dissemination confirmation, command approval
+
+### packet_id: DPL-RARE-EARTH-RECOVERY-001
+- domain: strategic rare-earth refining sabotage recovery
+- objective: restore refining throughput while minimizing defense supply disruption
+- primary_tools: industrial telemetry services, supply-chain risk analytics, production planning boards
+- alternate_tools: manual refinery status ledger and substitution planning worksheet
+- degraded_mode: critical-defense allocation only with reduced commercial support
+- input_requirements: refinery status, inventory buffers, demand forecasts, sabotage impact indicators
+- output_schema: recovery sequence matrix, shortfall risk register, substitution and sourcing branches
+- protocol_profile: API/JSON + USMTF + XML
+- validation_gates: throughput feasibility check, quality assurance gate, strategic authority review
+
+### packet_id: DPL-HYPERSONIC-SURVIVABILITY-001
+- domain: hypersonic strike posture deception and survivability
+- objective: improve posture survivability through deception and passive-defense timing controls
+- primary_tools: missile warning fusion boards, posture management dashboards, decoy planning tools
+- alternate_tools: manual survivability matrix and passive defense watchbill
+- degraded_mode: critical-asset protection only with constrained deception options
+- input_requirements: threat timelines, defended assets, decoy inventory, posture states
+- output_schema: survivability posture matrix, deception branch plan, passive defense trigger ladder
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: threat-confidence floor, deconfliction check, commander release authority
+
+### packet_id: DPL-AIRBRIDGE-FEDERATION-001
+- domain: coalition disaster relief airbridge load plan federation
+- objective: synchronize coalition cargo priorities and sortie plans for relief operations
+- primary_tools: air mobility planners, humanitarian demand maps, airfield throughput dashboards
+- alternate_tools: manual cargo priority board and liaison sortie tracker
+- degraded_mode: life-saving cargo only with delayed coalition reconciliation
+- input_requirements: cargo manifests, relief priorities, sortie availability, host-nation constraints
+- output_schema: load federation matrix, sortie priority ladder, coordination and clearance tasks
+- protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: humanitarian priority check, coalition caveat pass, airfield capacity validation
+
+### packet_id: DPL-INLAND-PILOTAGE-DENIED-001
+- domain: denied navigation inland waterway pilotage
+- objective: maintain safe inland convoy movement with degraded or denied PNT references
+- primary_tools: riverine navigation planners, bathymetric services, timing-reference systems
+- alternate_tools: manual pilotage books and route risk cards
+- degraded_mode: daylight convoy windows only with stricter movement thresholds
+- input_requirements: channel geometry, convoy manifests, threat overlays, timing uncertainty bands
+- output_schema: pilotage route book, denied-PNT risk matrix, movement control order
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: channel safety check, timing confidence threshold, movement authority approval
+
+### packet_id: DPL-BATTLE-NET-TIME-SYNC-001
+- domain: theater battle network time synchronization assurance
+- objective: preserve distributed timing integrity and safe holdover during GNSS disruption
+- primary_tools: timing distribution monitors, network sync analyzers, PNT fallback orchestration tools
+- alternate_tools: manual sync procedures and periodic timing confidence checks
+- degraded_mode: mission-essential timing enclaves only with reduced synchronization scope
+- input_requirements: timing tolerances, network topology, oscillator health, GNSS degradation signals
+- output_schema: timing integrity report, holdover branch sequence, resync decision triggers
+- protocol_profile: PTP/NTP + USMTF + API/JSON
+- validation_gates: cross-source timing validation, spoof/jam check, command concurrence

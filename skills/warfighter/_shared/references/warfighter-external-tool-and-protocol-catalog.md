@@ -1478,3 +1478,163 @@ external_binding:
 - Primary tools: material fingerprinting analyzers, lot provenance tracking, fabrication quality release systems.
 - Cross-check tools: independent sample-chain audit and alternate part-failure anomaly monitor.
 - Typical products: authenticity confidence report, quarantine decision board, fabrication continuity fallback plan.
+
+### `ts-blood-chain-cold-storage-assurance-v1`
+- Use for: theater blood logistics, cold-chain survivability, and casualty transfusion continuity under attack.
+- Primary tools: blood inventory telemetry, thermal assurance monitors, patient regulation systems.
+- Cross-check tools: independent cold-chain probe ledger and med-log exception board.
+- Typical products: blood redistribution matrix, transfusion risk packet, continuity branch plan.
+
+### `ts-runway-camouflage-decoy-v1`
+- Use for: runway camouflage/deception, decoy employment timing, and sortie survivability.
+- Primary tools: airfield status dashboards, decoy effectiveness simulators, ISR signature comparison tools.
+- Cross-check tools: independent imagery-change detector and alternate engineering readiness board.
+- Typical products: deception emplacement timeline, survivability scorecard, sortie branch triggers.
+
+### `ts-orbit-rescue-deorbit-governance-v1`
+- Use for: coalition satellite rescue, collision-avoidance governance, and controlled deorbit assurance.
+- Primary tools: SDA catalog services, conjunction analyzers, orbit maneuver planning services.
+- Cross-check tools: coalition ephemeris mirror and independent reentry risk monitor.
+- Typical products: rescue option matrix, deorbit corridor packet, coalition authority log.
+
+### `ts-autonomous-bridge-load-rating-v1`
+- Use for: autonomous bridge inspection, load-classification updates, and mobility release decisions.
+- Primary tools: robotic inspection systems, structural digital twins, engineer route authorization boards.
+- Cross-check tools: independent load-test worksheet and alternate route feasibility board.
+- Typical products: bridge load status board, movement authorization order, repair priority queue.
+
+### `ts-undersea-chokepoint-autonomy-traffic-v1`
+- Use for: undersea chokepoint autonomous patrol control and traffic deconfliction.
+- Primary tools: undersea sensor grid manager, autonomy mission controller, maritime traffic analytics.
+- Cross-check tools: independent acoustic contact validator and alternate convoy timing board.
+- Typical products: chokepoint traffic order, autonomy patrol matrix, diversion risk chart.
+
+### `ts-grid-blackstart-exercise-v1`
+- Use for: cyber-physical blackstart exercises, restoration governance, and mission-energy continuity.
+- Primary tools: SCADA/ICS telemetry systems, cyber incident orchestration tools, restoration planners.
+- Cross-check tools: independent grid-state verifier and mission dependency replay board.
+- Typical products: blackstart exercise sequence, restoration priority matrix, mission continuity plan.
+
+### `ts-denied-metadata-file-triage-v1`
+- Use for: captured-file triage, denied metadata reconstruction, and exploitability ranking.
+- Primary tools: digital forensics suites, evidence custody ledgers, malware triage sandboxes.
+- Cross-check tools: independent hash/provenance verifier and alternate exploitation queue.
+- Typical products: triage priority board, metadata confidence report, exploitation task packet.
+
+### `ts-waterborne-disease-containment-v1`
+- Use for: expeditionary waterborne outbreak containment and force-health protection.
+- Primary tools: field epidemiology dashboards, water-quality telemetry systems, med-log planning tools.
+- Cross-check tools: independent sample-chain lab board and alternate outbreak tracker.
+- Typical products: containment action matrix, water-point risk map, force-health advisory.
+
+### `ts-digital-twin-basing-hardening-v1`
+- Use for: digital-twin basing dispersion and hardening investment prioritization.
+- Primary tools: theater digital twin models, basing telemetry services, mission dependency graphs.
+- Cross-check tools: independent simulation harness and alternate infrastructure readiness monitor.
+- Typical products: dispersion option scorecard, hardening sequence plan, continuity branch map.
+
+### `ts-coalition-fires-bda-legal-assurance-v1`
+- Use for: coalition precision-fires BDA with legal and ROE traceability.
+- Primary tools: fires coordination systems, ISR exploitation workflows, legal evidence decision logs.
+- Cross-check tools: coalition caveat adjudication mirror and independent collateral review board.
+- Typical products: legal assurance packet, restrike decision matrix, coalition release note.
+
+### `ts-adrift-mine-drift-warning-v1`
+- Use for: adrift-mine forecast, maritime warnings, and route protection decisions.
+- Primary tools: ocean current forecast models, mine detection reports, maritime COP tools.
+- Cross-check tools: independent drift model and alternate route risk tracker.
+- Typical products: drift forecast overlay, warning message schedule, route closure matrix.
+
+### `ts-rare-earth-refining-recovery-v1`
+- Use for: rare-earth refinery sabotage recovery and defense supply continuity.
+- Primary tools: industrial telemetry services, supply-chain risk analytics, production planning systems.
+- Cross-check tools: independent lot availability mirror and alternate strategic stock monitor.
+- Typical products: recovery sequencing board, shortfall risk register, substitution branch plan.
+
+### `ts-hypersonic-posture-deception-survivability-v1`
+- Use for: hypersonic-force passive defense, deception planning, and survivability posture management.
+- Primary tools: missile warning fusion boards, posture management systems, decoy planning tools.
+- Cross-check tools: independent threat timeline monitor and alternate asset survivability board.
+- Typical products: survivability posture matrix, deception branch plan, passive defense trigger ladder.
+
+### `ts-disaster-relief-airbridge-federation-v1`
+- Use for: coalition disaster-relief airbridge load federation and humanitarian throughput governance.
+- Primary tools: air mobility planning systems, humanitarian demand mapping, airfield throughput dashboards.
+- Cross-check tools: independent aid-delivery verification board and alternate cargo-priority monitor.
+- Typical products: airbridge load matrix, sortie priority ladder, host-nation coordination packet.
+
+### `ts-denied-nav-inland-waterway-pilotage-v1`
+- Use for: denied-PNT inland waterway pilotage and convoy movement safety.
+- Primary tools: riverine navigation planners, bathymetry services, alternate timing reference systems.
+- Cross-check tools: independent pilotage confidence board and alternate convoy risk tracker.
+- Typical products: pilotage route package, denied-PNT transit risk matrix, convoy timing order.
+
+### `ts-battle-network-time-sync-assurance-v1`
+- Use for: battle-network time synchronization integrity and holdover continuity.
+- Primary tools: precision timing monitors, network sync analyzers, GNSS/PNT fallback orchestration tools.
+- Cross-check tools: independent time-transfer validator and alternate holdover confidence board.
+- Typical products: time-sync integrity brief, holdover failover sequence, resync trigger checklist.
+
+### `ps-blood-chain-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Use for: blood chain data exchange, casualty synchronization, and medical sustainment continuity.
+
+### `ps-runway-deception-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `OGC`.
+- Use for: runway deception plans, decoy control updates, and rapid airfield survivability reporting.
+
+### `ps-orbit-rescue-deorbit-stack-v1`
+- Protocols: `CCSDS`, `API/JSON`, `USMTF`.
+- Use for: coalition orbital rescue/deorbit coordination and maneuver authority message exchange.
+
+### `ps-autonomous-bridge-load-stack-v1`
+- Protocols: `USMTF`, `OGC`, `API/JSON`.
+- Use for: engineer bridge-load decisions and mobility release packets from autonomous inspections.
+
+### `ps-undersea-chokepoint-autonomy-stack-v1`
+- Protocols: `AIS/NMEA`, `Link 16 J-series`, `USMTF`.
+- Use for: undersea chokepoint autonomy patrol coordination and traffic control dissemination.
+
+### `ps-grid-blackstart-exercise-stack-v1`
+- Protocols: `NIMS/ICS`, `STIX/TAXII`, `API/JSON`.
+- Use for: cyber-physical blackstart exercise packets and restoration control workflows.
+
+### `ps-denied-metadata-triage-stack-v1`
+- Protocols: `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Use for: captured-file triage metadata flows and exploitation queue synchronization.
+
+### `ps-waterborne-outbreak-containment-stack-v1`
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `USMTF`.
+- Use for: outbreak containment messaging, water-risk reporting, and force-health advisories.
+
+### `ps-digital-twin-basing-hardening-stack-v1`
+- Protocols: `API/JSON`, `OGC`, `USMTF`.
+- Use for: basing digital-twin scenario exchange and hardening option publication.
+
+### `ps-coalition-fires-bda-legal-stack-v1`
+- Protocols: `VMF`, `Link 16 J-series`, `NATO APP-11/ADatP-3`.
+- Use for: coalition BDA/ROE legal packets, restrike governance, and caveat-aware release messaging.
+
+### `ps-adrift-mine-warning-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `OGC`.
+- Use for: mine drift warning broadcasts, maritime route control, and closure/reopen updates.
+
+### `ps-rare-earth-recovery-stack-v1`
+- Protocols: `API/JSON`, `USMTF`, `XML`.
+- Use for: strategic industrial recovery status exchange and defense-production continuity packets.
+
+### `ps-hypersonic-survivability-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: hypersonic posture, passive-defense triggers, and deception-branch synchronization.
+
+### `ps-disaster-relief-airbridge-federation-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3`, `USMTF`, `API/JSON`.
+- Use for: coalition airbridge cargo-priority federation and humanitarian air movement control.
+
+### `ps-denied-inland-pilotage-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `API/JSON`.
+- Use for: denied-navigation inland pilotage control messages and convoy movement safety packets.
+
+### `ps-battle-network-time-sync-stack-v1`
+- Protocols: `PTP/NTP`, `USMTF`, `API/JSON`.
+- Use for: timing integrity status, holdover synchronization branches, and resync directives.

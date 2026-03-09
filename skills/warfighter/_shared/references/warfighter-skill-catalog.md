@@ -265,3 +265,41 @@ Every skill output should include:
 - Commander-priority synthesis + JOC battle rhythm management + campaign assessment and decision support
 - Disconnected time/PNT holdover + resilient navigation inertial/celestial fusion + denied space PNT alternative navigation
 - Additive feedstock counterfeit detection + contested feedstock assurance + additive munitions QA
+
+## New Expansion Wave (2026-03-09, Joint Contested Continuity and Recovery)
+
+- joint-hardened-theater-blood-chain-cold-storage-assurance-cell
+- joint-rapid-runway-camouflage-and-decoy-emplacement-cell
+- coalition-contested-orbit-rescue-and-deorbit-governance-cell
+- joint-autonomous-bridge-inspection-and-load-rating-cell
+- theater-undersea-chokepoint-autonomy-traffic-control-cell
+- strategic-energy-grid-cyber-physical-blackstart-exercise-cell
+- joint-denied-metadata-and-file-triage-cell
+- expeditionary-waterborne-disease-outbreak-containment-cell
+- joint-digital-twin-basing-dispersion-and-hardening-cell
+- coalition-precision-fires-battle-damage-legal-assurance-cell
+- joint-rapid-adrift-mines-drift-forecast-and-warning-cell
+- strategic-rare-earth-refining-sabotage-recovery-cell
+- joint-hypersonic-strike-posture-deception-and-survivability-cell
+- coalition-disaster-relief-airbridge-load-plan-federation-cell
+- joint-denied-navigation-inland-waterway-pilotage-cell
+- theater-battle-network-time-synchronization-assurance-cell
+
+## Updated Pairings (2026-03-09, Joint Contested Continuity and Recovery)
+
+- Blood chain cold storage assurance + casualty evacuation and medical regulation + medical logistics and blood supply coordination
+- Runway camouflage and decoy emplacement + airbase dispersal and rapid reconstitution + expeditionary runway repair and airfield recovery
+- Contested orbit rescue/deorbit governance + orbital spectrum priority and SATCOM continuity + contested orbital servicing assurance
+- Autonomous bridge inspection/load rating + contested bridge and gap crossing operations + movement control convoy and rail planning
+- Undersea chokepoint autonomy traffic control + undersea chokepoint sensor barrier operations + anti-submarine warfare support
+- Grid blackstart cyber-physical exercise + homeland grid blackstart military support + strategic energy grid cyber-physical deterrence
+- Denied metadata/file triage + battlefield forensics site exploitation + AI-enabled OPSEC leak detection and exposure response
+- Waterborne outbreak containment + preventive medicine and force-health protection + expeditionary bulk fuel/water contamination response
+- Digital twin basing dispersion/hardening + integrated base cluster defense + theater mission network failover
+- Coalition precision-fires BDA legal assurance + coalition fires clearance and digital ROE + joint targeting standards and CDE governance
+- Adrift mine drift forecast/warning + maritime chokepoint inspection and quarantine control + theater maritime drone mine countermeasure corridor
+- Rare-earth refining sabotage recovery + strategic industrial mobilization readiness + supply-chain risk and industrial base monitor
+- Hypersonic posture deception/survivability + joint hypersonic warning passive defense + ballistic missile defense battle management
+- Coalition disaster-relief airbridge federation + coalition humanitarian airdrop corridor governance + joint mass evacuation flow control
+- Denied inland waterway pilotage + riverine and inland waterways operations + theater contested watercraft river-crossing risk
+- Battle-network time synchronization assurance + joint denied PNT time transfer assurance + joint disconnected time synchronization and PNT holdover
