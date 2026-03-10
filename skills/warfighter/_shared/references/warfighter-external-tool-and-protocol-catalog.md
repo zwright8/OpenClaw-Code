@@ -5011,3 +5011,125 @@ external_binding:
 ### `ps-robotic-casualty-route-assurance-stack-v1`
 - Protocols: `USMTF`, `VMF`, `CoT`, `HL7/FHIR`, `API/JSON`.
 - Use for: robotic casualty collection route assurance, dispatch updates, and medical handoff continuity.
+
+## Expansion Addendum (2026-03-10, Denied Sustainment, AI Intent Assurance, and Grid-Weather Adaptation)
+
+### `ts-denied-logistics-payment-cash-continuity-v1`
+- Use for: sustaining military logistics payments, cash control, and contracted throughput when digital finance rails are disrupted.
+- Primary tools: expeditionary finance ledgers, contractor payment reconciliation engines, force-flow sustainment boards.
+- Cross-check tools: independent treasury-status verification queue and alternate contract-dispute adjudication board.
+- Typical products: payment continuity matrix, cash-distribution plan, contracted sustainment exception packet.
+
+### `ts-leo-mesh-satcom-denial-recovery-v1`
+- Use for: restoring mission-priority LEO mesh SATCOM links under jamming, outage, or selective denial.
+- Primary tools: satcom network operations dashboards, anti-jam profile orchestrators, mission-priority link allocators.
+- Cross-check tools: independent RF interference triangulation service and alternate comms-layer route validator.
+- Typical products: SATCOM recovery sequence, mission-priority bandwidth plan, degraded comms branch card.
+
+### `ts-expeditionary-radiological-smuggling-interdiction-v1`
+- Use for: expeditionary detection and interdiction of radiological smuggling flows with evidentiary-grade chain integrity.
+- Primary tools: portal monitor telemetry fusion, isotope signature analyzers, customs/intel watchlist correlation tools.
+- Cross-check tools: independent isotope adjudication queue and alternate chain-of-custody verification board.
+- Typical products: interdiction screening plan, isotope-confidence brief, containment and transfer packet.
+
+### `ts-vertical-lift-lz-obstacle-clearance-v1`
+- Use for: rapid detection, prioritization, and clearance of vertical-lift landing-zone obstacles in contested environments.
+- Primary tools: UAS LZ reconnaissance feeds, terrain obstacle extraction services, assault aviation mission boards.
+- Cross-check tools: independent obstacle confidence replay and alternate route-to-LZ viability monitor.
+- Typical products: LZ obstacle board, clearance sequence, alternate LZ branch packet.
+
+### `ts-coalition-human-machine-roe-assurance-v1`
+- Use for: coalition ROE and legal traceability governance for human-machine teamed operations.
+- Primary tools: ROE policy engines, coalition approval workflow systems, autonomy decision audit ledgers.
+- Cross-check tools: independent legal sufficiency panel queue and alternate coalition caveat harmonization board.
+- Typical products: ROE traceability matrix, approval escalation path, autonomy action audit digest.
+
+### `ts-strategic-semiconductor-packaging-defense-surge-v1`
+- Use for: defense-priority semiconductor packaging, test, and throughput surge under supply-chain shock.
+- Primary tools: industrial throughput dashboards, packaging/test capacity planners, defense-priority demand allocators.
+- Cross-check tools: independent yield-risk model and alternate strategic inventory sufficiency board.
+- Typical products: packaging surge plan, bottleneck mitigation ladder, defense-priority allocation board.
+
+### `ts-theater-additive-propellant-safety-traceability-v1`
+- Use for: energetic safety controls and lot traceability for additive propellant manufacturing in theater.
+- Primary tools: additive process telemetry, propellant QA analytics, hazardous materials compliance boards.
+- Cross-check tools: independent destructive sample audit and alternate contamination trend adjudication board.
+- Typical products: propellant lot risk ledger, release gate matrix, rollback-and-quarantine packet.
+
+### `ts-joint-drone-swarm-capture-exploitation-v1`
+- Use for: capture, exploitation, and rapid adaptation against adversary drone swarm hardware and software.
+- Primary tools: UAS forensic analysis platforms, RF capture and decoding tools, mission-data exploitation workflows.
+- Cross-check tools: independent firmware lineage verifier and alternate payload attribution review board.
+- Typical products: captured-swarm exploitation board, firmware intelligence brief, counter-tactic update packet.
+
+### `ts-homeland-water-treatment-chemical-substitution-v1`
+- Use for: continuity of military-civil water treatment during purification chemical shortages or denial.
+- Primary tools: water quality telemetry dashboards, treatment chemistry substitution models, public-health coordination boards.
+- Cross-check tools: independent contamination assay monitor and alternate health-risk adjudication queue.
+- Typical products: chemical substitution decision matrix, force health risk timeline, restoration branch card.
+
+### `ts-operational-ai-mission-order-translation-validation-v1`
+- Use for: translating commander mission intent into machine-tasked execution packets with mandatory human validation.
+- Primary tools: mission order parsers, task-graph synthesis engines, human validation workflow boards.
+- Cross-check tools: independent intent-fidelity verifier and alternate command-review adjudication panel.
+- Typical products: order translation packet, validation exception queue, intent fidelity scorecard.
+
+### `ts-joint-civil-grid-rotating-blackout-force-posture-v1`
+- Use for: force posture and mission continuity adaptation during rotating civil power blackouts.
+- Primary tools: grid outage forecast services, base load telemetry monitors, mission-priority power orchestration workflows.
+- Cross-check tools: independent utility restoration estimator and alternate backup power readiness board.
+- Typical products: blackout impact board, mission load-shed plan, backup power activation ladder.
+
+### `ts-multi-domain-degraded-weather-fires-recalibration-v1`
+- Use for: recalibrating fires and sensor-to-shooter confidence when degraded weather erodes targeting validity.
+- Primary tools: battlefield weather fusion systems, fires solution recalculation services, ISR sensor quality estimators.
+- Cross-check tools: independent meteorological risk replay and alternate battle-damage confidence board.
+- Typical products: weather-degraded confidence map, fires recalibration recommendations, branch trigger card.
+
+### `ps-denied-logistics-payment-cash-continuity-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `API/JSON`, `NIMS/ICS`.
+- Use for: denied-environment logistics payment continuity, cash-control synchronization, and sustainment exception handling.
+
+### `ps-leo-mesh-satcom-denial-recovery-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `STIX/TAXII`, `API/JSON`.
+- Use for: LEO mesh SATCOM restoration sequencing and mission-priority link fallback orchestration.
+
+### `ps-expeditionary-radiological-smuggling-interdiction-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: radiological interdiction screening, custody continuity, and containment coordination.
+
+### `ps-vertical-lift-lz-obstacle-clearance-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: landing-zone obstacle reporting, clearance sequencing, and assault aviation branch updates.
+
+### `ps-coalition-human-machine-roe-assurance-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: coalition ROE approval exchange, legal traceability, and autonomy governance acknowledgments.
+
+### `ps-strategic-semiconductor-packaging-defense-surge-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`, `OGC WMS/WFS/WMTS`.
+- Use for: defense-priority semiconductor surge planning and industrial bottleneck mitigation coordination.
+
+### `ps-theater-additive-propellant-safety-traceability-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `XML`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: propellant lot release governance, contamination containment, and safety gate synchronization.
+
+### `ps-joint-drone-swarm-capture-exploitation-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `VMF`, `API/JSON`.
+- Use for: captured swarm evidence ingestion, firmware exploitation updates, and counter-tactic dissemination.
+
+### `ps-homeland-water-treatment-chemical-substitution-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: water treatment substitution governance and military-civil force health risk communication.
+
+### `ps-operational-ai-mission-order-translation-validation-stack-v1`
+- Protocols: `USMTF`, `VMF`, `API/JSON`, signed model-manifest exchange.
+- Use for: mission order translation, validation exception handling, and intent fidelity tracking.
+
+### `ps-joint-civil-grid-rotating-blackout-force-posture-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: rotating blackout impact updates, force posture adaptation, and backup-power synchronization.
+
+### `ps-multi-domain-degraded-weather-fires-recalibration-stack-v1`
+- Protocols: `USMTF`, `OGC WMS/WFS/WMTS`, `VMF`, `API/JSON`.
+- Use for: degraded-weather targeting updates, fires recalibration, and cross-domain confidence reporting.

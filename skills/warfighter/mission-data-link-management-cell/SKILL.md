@@ -156,3 +156,8 @@ Primary products for this skill: data link execution plan, network load manageme
 - Prioritize `tool_suite_id=ts-autonomous-maritime-traffic-liability-v1` + `protocol_stack_id=ps-autonomous-maritime-traffic-liability-stack-v1` when maritime tactical links must deconflict autonomous and crewed traffic with legally defensible event logging.
 - Prioritize `tool_suite_id=ts-electro-optical-decoy-audit-v1` + `protocol_stack_id=ps-electro-optical-decoy-audit-stack-v1` when data-link distribution affects decoy posture, sensor deception timing, or emissions control in contested targeting cycles.
 - Add `packet_id=DPL-AUTONOMOUS-MARITIME-TRAFFIC-LIABILITY-001` and `packet_id=DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001` for recommendations that adjust coalition link lanes, sensor release authorities, or attribution data retention rules.
+
+## Domain Toolchain Override (2026-03-10, Swarm Exploitation and SATCOM Denial Addendum)
+
+- Add `tool_suite_id=ts-joint-drone-swarm-capture-exploitation-v1` + `protocol_stack_id=ps-joint-drone-swarm-capture-exploitation-stack-v1` when recovered swarm payloads must be converted into mission-data-link updates.
+- Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when data-link quality depends on LEO SATCOM path restoration and anti-jam fallback sequencing.

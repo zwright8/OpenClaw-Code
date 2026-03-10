@@ -936,3 +936,33 @@ Every skill output should include:
 - Homeland port/rail/fuel synchronization + strategic mobility planning + deployment and distribution optimization + civil support crisis coordination
 - Gray-zone lawfare counter + strategic competition response + disinformation counter + coalition legal interoperability
 - Robotic casualty route assurance + autonomous casualty evacuation + UAS deconfliction + medical C4I/patient movement fusion
+
+## New Expansion Wave (2026-03-10, Denied Sustainment, AI Intent Assurance, and Grid-Weather Adaptation)
+
+- joint-denied-logistics-payment-and-cash-continuity-cell
+- joint-leo-mesh-satcom-denial-recovery-cell
+- expeditionary-radiological-smuggling-interdiction-cell
+- tactical-vertical-lift-landing-zone-obstacle-clearance-cell
+- coalition-human-machine-teaming-roe-assurance-cell
+- strategic-semiconductor-packaging-defense-surge-cell
+- theater-additive-propellant-safety-and-traceability-cell
+- joint-drone-swarm-capture-and-exploitation-cell
+- homeland-water-treatment-chemical-substitution-cell
+- operational-ai-mission-order-translation-validation-cell
+- joint-civil-grid-rotating-blackout-force-posture-cell
+- multi-domain-degraded-weather-and-fires-recalibration-cell
+
+## Updated Pairings (2026-03-10, Denied Sustainment, AI Intent Assurance, and Grid-Weather Adaptation)
+
+- Denied logistics payment continuity + contested theater financial rail and payroll continuity + strategic mobility force flow synchronization
+- LEO mesh SATCOM denial recovery + denied terrain signal relay balloon network + theater mission network failover
+- Radiological smuggling interdiction + theater port radiological screening + joint battlefield forensics and evidence fusion
+- Vertical-lift LZ obstacle clearance + assault aviation route deconfliction + autonomous combat engineer route breach
+- Coalition human-machine ROE assurance + autonomous systems safety incident review + coalition legal interoperability and SOFA support
+- Strategic semiconductor packaging surge + strategic autonomous systems component security + strategic industrial mobilization readiness
+- Additive propellant safety and traceability + additive munitions quality assurance + ammunition interoperability and reallocation
+- Drone swarm capture and exploitation + counter-UAS rooftop defense + electronic order of battle management
+- Water treatment chemical substitution + austere water production/distribution assurance + preventive medicine force health protection
+- AI mission order translation validation + commander priority information synthesis + CJADC2 data fabric degradation response
+- Rotating blackout force posture + homeland grid blackstart support + critical infrastructure restoration prioritization
+- Degraded weather and fires recalibration + theater spectrum-to-targeting latency audit + dynamic targeting and time-sensitive strike

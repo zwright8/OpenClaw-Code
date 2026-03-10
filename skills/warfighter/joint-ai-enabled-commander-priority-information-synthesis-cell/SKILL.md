@@ -63,3 +63,8 @@ For each critical tool recommendation, include objective, required inputs, query
 - Separate facts, assessed judgments, and unknowns.
 - Identify legal, policy, ROE, safety, and coalition constraints early.
 - Do not provide weapon-employment procedures or bypasses to safeguards.
+
+## Domain Toolchain Override (2026-03-10, Intent Translation and Weather-Fires Confidence Addendum)
+
+- Add `tool_suite_id=ts-operational-ai-mission-order-translation-validation-v1` + `protocol_stack_id=ps-operational-ai-mission-order-translation-validation-stack-v1` when commander priorities must be translated into machine-tasked execution packets with validation gates.
+- Add `tool_suite_id=ts-multi-domain-degraded-weather-fires-recalibration-v1` + `protocol_stack_id=ps-multi-domain-degraded-weather-fires-recalibration-stack-v1` when intelligence confidence shifts because degraded weather impacts targeting and sensor quality.
