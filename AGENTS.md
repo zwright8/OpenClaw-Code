@@ -59,3 +59,4 @@
 - Verified `5e24d6ca21..dd66a388b2`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `dd66a388b2..be86b94ea4`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `be86b94ea4..be611ccb20`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `be611ccb20..b4f0bab20c`: no new README command-map additions were found (README changes only documented `retryBudget` orchestration controls); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
