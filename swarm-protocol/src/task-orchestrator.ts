@@ -71,6 +71,11 @@ const DEFAULT_QUEUE_CAPACITY = Object.freeze({
     maxOpenTasks: 2_000,
     maxOpenTasksPerTarget: 500
 });
+const DEFAULT_STALE_TASK_POLICY = Object.freeze({
+    maxAgeMs: 300_000,
+    terminalStatus: 'timed_out',
+    propagateCancel: true
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -505,6 +510,32 @@ function resolveQueueCapacity(value) {
     };
 }
 
+function resolveStaleTaskPolicy(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_STALE_TASK_POLICY,
+            maxAgeMs: null
+        };
+    }
+
+    const maxAgeMsRaw = value.maxAgeMs;
+    const maxAgeMs = maxAgeMsRaw === null || maxAgeMsRaw === undefined
+        ? null
+        : Math.max(1, Math.floor(clampPositiveNumber(maxAgeMsRaw, DEFAULT_STALE_TASK_POLICY.maxAgeMs)));
+    const terminalStatus = value.terminalStatus === 'cancelled'
+        ? 'cancelled'
+        : 'timed_out';
+    const propagateCancel = value.propagateCancel !== false;
+
+    return {
+        enabled: maxAgeMs !== null,
+        maxAgeMs,
+        terminalStatus,
+        propagateCancel
+    };
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -600,6 +631,7 @@ export class TaskOrchestrator {
         dispatchDeduplication = null,
         terminalTaskRetention = null,
         queueCapacity = null,
+        staleTaskPolicy = null,
         transportSendTimeoutMs = 10_000,
         random = Math.random,
         now = Date.now,
@@ -662,6 +694,7 @@ export class TaskOrchestrator {
         this.dispatchDeduplication = resolveDispatchDeduplication(dispatchDeduplication);
         this.terminalTaskRetention = resolveTerminalTaskRetention(terminalTaskRetention);
         this.queueCapacity = resolveQueueCapacity(queueCapacity);
+        this.staleTaskPolicy = resolveStaleTaskPolicy(staleTaskPolicy);
         this.terminalTasksPruned = 0;
         this.transportSendTimeoutMs = Number.isFinite(transportSendTimeoutMs) && Number(transportSendTimeoutMs) > 0
             ? Number(transportSendTimeoutMs)
@@ -1255,6 +1288,54 @@ export class TaskOrchestrator {
             return Number(record.createdAt);
         }
         return 0;
+    }
+
+    _isTaskPastStaleAge(record, nowMs) {
+        if (!this.staleTaskPolicy.enabled || !Number.isFinite(this.staleTaskPolicy.maxAgeMs)) {
+            return false;
+        }
+        const createdAt = Number(record?.createdAt);
+        if (!Number.isFinite(createdAt)) {
+            return false;
+        }
+        return (nowMs - createdAt) > Number(this.staleTaskPolicy.maxAgeMs);
+    }
+
+    async _expireStaleTask(record, nowMs) {
+        const ageMs = Math.max(0, nowMs - Number(record.createdAt || nowMs));
+        const reason = 'stale_task_max_age_exceeded';
+        if (this.staleTaskPolicy.terminalStatus === 'cancelled') {
+            const cancelled = await this.cancelTask(record.taskId, {
+                reason,
+                cancelledBy: 'orchestrator:stale-task-policy',
+                timestamp: nowMs,
+                propagate: this.staleTaskPolicy.propagateCancel
+            });
+            if (!cancelled) {
+                return false;
+            }
+            this._emitAudit('task_stale_expired', {
+                taskId: record.taskId,
+                target: record.target,
+                terminalStatus: 'cancelled',
+                ageMs,
+                maxAgeMs: this.staleTaskPolicy.maxAgeMs
+            }, nowMs);
+            return true;
+        }
+
+        this._markTimedOut(record, nowMs, {
+            event: 'timed_out_stale_task',
+            reason
+        });
+        this._emitAudit('task_stale_expired', {
+            taskId: record.taskId,
+            target: record.target,
+            terminalStatus: 'timed_out',
+            ageMs,
+            maxAgeMs: this.staleTaskPolicy.maxAgeMs
+        }, nowMs);
+        return true;
     }
 
     _pruneTerminalTasks(nowMs = safeNow(this.now), reason = 'maintenance') {
@@ -2392,11 +2473,23 @@ export class TaskOrchestrator {
             scheduledRetries: 0,
             retried: 0,
             timedOut: 0,
+            staleExpired: 0,
             transportFailures: 0,
             prunedTerminalTasks: 0
         };
 
         for (const record of this.tasks.values()) {
+            if (!TERMINAL_STATUSES.has(record.status) && this._isTaskPastStaleAge(record, nowMs)) {
+                const expired = await this._expireStaleTask(record, nowMs);
+                if (expired) {
+                    summary.staleExpired++;
+                    if (record.status === 'timed_out') {
+                        summary.timedOut++;
+                    }
+                    continue;
+                }
+            }
+
             if (!OPEN_STATUSES.has(record.status)) continue;
             summary.checked++;
             if (this._isOverallDeadlineExceeded(record, nowMs)) {
@@ -2681,6 +2774,12 @@ export class TaskOrchestrator {
                 maxOpenTasksPerTarget: this.queueCapacity.maxOpenTasksPerTarget,
                 openTasksTotal: 0,
                 trackedTargets: 0
+            },
+            staleTaskPolicy: {
+                enabled: this.staleTaskPolicy.enabled,
+                maxAgeMs: this.staleTaskPolicy.maxAgeMs,
+                terminalStatus: this.staleTaskPolicy.terminalStatus,
+                propagateCancel: this.staleTaskPolicy.propagateCancel
             },
             transportSendTimeoutMs: this.transportSendTimeoutMs
         };

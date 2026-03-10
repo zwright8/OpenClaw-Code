@@ -369,6 +369,11 @@ const orchestrator = new TaskOrchestrator({
     maxOpenTasks: 2_000, // optional: global fail-fast limit for non-terminal tasks
     maxOpenTasksPerTarget: 500 // optional: per-target guardrail to isolate hotspots
   },
+  staleTaskPolicy: {
+    maxAgeMs: 300_000, // optional: expire tasks older than this age
+    terminalStatus: 'timed_out', // optional: 'timed_out' (default) or 'cancelled'
+    propagateCancel: true // optional: only used when terminalStatus='cancelled'
+  },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -410,6 +415,8 @@ Cancelled tasks are intentionally excluded from terminal replay, so an operator-
 `transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
 `terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.
 `queueCapacity` adds admission control with global (`maxOpenTasks`) and per-target (`maxOpenTasksPerTarget`) limits so overload is rejected early (`CAPACITY_EXCEEDED`) instead of allowing unbounded open-task growth.
+`staleTaskPolicy` expires tasks that have aged past `maxAgeMs`, including approval-gated tasks, so stale work does not occupy queue capacity forever.
+Set `staleTaskPolicy.terminalStatus='cancelled'` to propagate cooperative `task_cancel` signals for stale dispatched tasks; use `'timed_out'` for local fail-closed expiry.
 `cancelTask(taskId, options)` provides explicit cooperative cancellation for stale/superseded work and emits a best-effort cancellation signal (`task_cancel`) to workers after a task has been dispatched.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.

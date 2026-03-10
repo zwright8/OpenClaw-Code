@@ -1701,6 +1701,82 @@ test('dispatchTask still coalesces duplicates when queue capacity is full', asyn
     assert.equal(orchestrator.getMetrics().open, 1);
 });
 
+test('runMaintenance expires stale approval-gated tasks to timed_out when staleTaskPolicy is enabled', async () => {
+    const clock = createClock(166_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        approvalPolicy: () => ({
+            required: true,
+            reason: 'manual_review'
+        }),
+        staleTaskPolicy: {
+            maxAgeMs: 100
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-stale-approval',
+        task: 'Wait for human approval'
+    });
+    assert.equal(task.status, 'awaiting_approval');
+
+    clock.advance(150);
+    const summary = await orchestrator.runMaintenance(clock.now());
+    const expired = orchestrator.getTask(task.taskId);
+    assert.equal(summary.staleExpired, 1);
+    assert.equal(summary.timedOut, 1);
+    assert.equal(expired.status, 'timed_out');
+    assert.equal(sent.length, 0);
+});
+
+test('runMaintenance expires stale dispatched tasks to cancelled and propagates cancel signal', async () => {
+    const clock = createClock(167_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        staleTaskPolicy: {
+            maxAgeMs: 50,
+            terminalStatus: 'cancelled',
+            propagateCancel: true
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-stale-cancel',
+        task: 'Long running stale work'
+    });
+    assert.equal(task.status, 'dispatched');
+    assert.equal(sent.length, 1);
+
+    clock.advance(60);
+    const summary = await orchestrator.runMaintenance(clock.now());
+    const expired = orchestrator.getTask(task.taskId);
+    assert.equal(summary.staleExpired, 1);
+    assert.equal(summary.timedOut, 0);
+    assert.equal(expired.status, 'cancelled');
+    assert.equal(expired.history.some((entry) => entry.event === 'cancel_signal_sent'), true);
+    assert.equal(sent.length, 2);
+    assert.equal(sent[1].message.kind, 'task_cancel');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.staleTaskPolicy.enabled, true);
+    assert.equal(metrics.staleTaskPolicy.maxAgeMs, 50);
+    assert.equal(metrics.staleTaskPolicy.terminalStatus, 'cancelled');
+});
+
 test('runMaintenance prunes old terminal tasks when terminalTaskRetention.maxAgeMs is configured', async () => {
     const clock = createClock(170_000);
     const orchestrator = new TaskOrchestrator({
