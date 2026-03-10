@@ -6216,3 +6216,175 @@ external_binding:
 - Primary tools: firmware SBOM analyzers, binary forensics sandboxes, fleet patch compliance dashboards.
 - Cross-check tools: independent firmware attestation verifier and alternate autonomy safety-state monitor.
 - Typical products: firmware compromise triage board, patch authority matrix, safe-state transition plan.
+
+## Tool Suite Addendum K (2026-03-10, Warfighter Domain Saturation Wave)
+
+### `ts-quantum-pnt-denial-mitigation-v1`
+- Use for: navigation/timing continuity with quantum-sensing aids during GNSS denial, spoofing, and jamming.
+- Primary tools: quantum inertial navigation fusion engine, trusted timing integrity monitor, terrain reference adjudication service.
+- Cross-check tools: independent PNT confidence board and alternate inertial drift auditor.
+- Typical products: PNT confidence ladder, denial mitigation branch plan, timing restoration trigger set.
+
+### `ts-theater-bioremediation-toxic-release-restoration-v1`
+- Use for: post-conflict toxic release containment, restoration sequencing, and civil-military bioremediation planning.
+- Primary tools: contamination plume model, bioremediation treatment planner, restoration dependency graph.
+- Cross-check tools: independent field sampling chain and alternate toxicity threshold verifier.
+- Typical products: restoration sequence matrix, contamination containment order, mission impact outlook.
+
+### `ts-homeland-wildfire-smoke-air-operations-v1`
+- Use for: wildfire smoke impact planning across force health, sortie generation, and protected flight windows.
+- Primary tools: smoke dispersion forecast service, sortie risk scheduler, force-health respiratory dashboard.
+- Cross-check tools: independent visibility trend monitor and alternate airfield minima validator.
+- Typical products: smoke-adjusted air tasking recommendations, health protection posture, sortie risk table.
+
+### `ts-coalition-cognitive-ew-psyop-deconfliction-v1`
+- Use for: coalition deconfliction of EW effects and information influence operations to prevent cognitive fratricide.
+- Primary tools: narrative effects tracker, EW mission board, coalition influence synchronization ledger.
+- Cross-check tools: independent sentiment integrity monitor and alternate ROE/caveat adjudication board.
+- Typical products: EW-IO deconfliction matrix, influence fratricide risk register, release authority prompts.
+
+### `ts-joint-additive-prosthetics-rehab-surge-v1`
+- Use for: contested prosthetics fabrication and rehabilitation surge support for combat casualty recovery.
+- Primary tools: additive prosthetics workflow manager, rehabilitation capacity planner, med-log material allocator.
+- Cross-check tools: independent fitment quality verifier and alternate therapy throughput monitor.
+- Typical products: prosthetics surge plan, rehab queue prioritization, recovery timeline confidence brief.
+
+### `ts-maritime-seabed-datacenter-continuity-v1`
+- Use for: cooling/power continuity and incident response for maritime seabed data center infrastructure.
+- Primary tools: seabed power telemetry board, cooling loop anomaly analytics, maritime tamper alert service.
+- Cross-check tools: independent geohazard state monitor and alternate power failover verifier.
+- Typical products: continuity branch map, cooling stabilization order, data-center survivability posture.
+
+### `ts-theater-autonomous-construction-route-hardening-v1`
+- Use for: autonomous route-hardening and mobility corridor fortification under contested conditions.
+- Primary tools: engineer robotics task orchestrator, terrain hardening planner, route survivability analytics.
+- Cross-check tools: independent structural adequacy board and alternate threat-aware mobility estimator.
+- Typical products: route hardening sequence, engineer robot task package, mobility confidence scorecard.
+
+### `ts-coalition-sat-ground-insider-risk-response-v1`
+- Use for: coalition satellite ground-station insider threat detection, containment, and continuity response.
+- Primary tools: insider anomaly detector, mission access control ledger, ground-station continuity planner.
+- Cross-check tools: independent privileged-access audit board and alternate mission telemetry integrity monitor.
+- Typical products: insider risk containment packet, mission continuity plan, access revocation timeline.
+
+### `ts-joint-weather-modification-attribution-v1`
+- Use for: attribution and operational adjustment when weather anomalies may be hostile, engineered, or spoofed.
+- Primary tools: anomaly attribution fusion engine, atmospheric sensor integrity board, mission weather impact model.
+- Cross-check tools: independent climate baseline comparison service and alternate adversary-indicator tracker.
+- Typical products: attribution confidence ladder, mission weather branch plan, collection retask set.
+
+### `ts-homeland-precision-ag-food-mobilization-v1`
+- Use for: homeland food-security mobilization using precision agriculture telemetry and logistics protection.
+- Primary tools: agricultural yield telemetry board, strategic food allocation planner, supply sabotage risk monitor.
+- Cross-check tools: independent commodity flow verifier and alternate demand confidence board.
+- Typical products: food mobilization matrix, protected distribution priorities, national support risk summary.
+
+### `ts-expeditionary-rare-battery-recycling-energy-recovery-v1`
+- Use for: expeditionary recovery/recycling of lithium and rare battery materials to sustain tactical energy availability.
+- Primary tools: battery diagnostics and salvage planner, recycling throughput board, energy storage reallocation service.
+- Cross-check tools: independent safety compliance verifier and alternate recovered-capacity estimator.
+- Typical products: battery recovery sequence, recycled capacity forecast, power endurance branch plan.
+
+### `ts-joint-lunar-gateway-contingency-comms-v1`
+- Use for: contingency communications when lunar gateway/cislunar relays are degraded and terrestrial mission traffic is affected.
+- Primary tools: cislunar relay status monitor, protected traffic prioritization planner, deep-space comm fallback manager.
+- Cross-check tools: independent latency integrity board and alternate SATCOM resilience monitor.
+- Typical products: contingency comm routing matrix, relay degradation response options, command decision triggers.
+
+## Protocol Stack Addendum K (2026-03-10, Warfighter Domain Saturation Wave)
+
+### `ps-quantum-pnt-denial-mitigation-stack-v1`
+- Standards and protocols: signed timing attestations + USMTF + VMF + API/JSON.
+- Transport profile: authenticated low-latency timing exchange with fallback store-and-forward acknowledgment chain.
+
+### `ps-theater-bioremediation-toxic-release-restoration-stack-v1`
+- Standards and protocols: CBRN hazard telemetry schema + OGC overlays + USMTF restoration updates.
+- Transport profile: encrypted restoration exchange with sampled-data confidence tagging and manual fallback boards.
+
+### `ps-homeland-wildfire-smoke-air-operations-stack-v1`
+- Standards and protocols: weather observation APIs + AIXM/FIXM + USMTF air operations messaging.
+- Transport profile: low-latency smoke and flight-risk updates with voice/readback contingency path.
+
+### `ps-coalition-cognitive-ew-psyop-deconfliction-stack-v1`
+- Standards and protocols: STIX/TAXII + NATO APP-11/ADatP-3 + USMTF + API/JSON.
+- Transport profile: signed coalition narrative/EW exchange with caveat-tag validation and rollback signaling.
+
+### `ps-joint-additive-prosthetics-rehab-surge-stack-v1`
+- Standards and protocols: HL7/FHIR rehabilitation exchange + additive fabrication attestations + USMTF med-log updates.
+- Transport profile: authenticated med-log routing with fitment QA acknowledgments and delayed-sync fallback.
+
+### `ps-maritime-seabed-datacenter-continuity-stack-v1`
+- Standards and protocols: AIS/NMEA + infrastructure telemetry envelopes + USMTF continuity directives.
+- Transport profile: segmented telemetry bus with signed failover manifests and emergency comm fallback.
+
+### `ps-theater-autonomous-construction-route-hardening-stack-v1`
+- Standards and protocols: USMTF engineer tasking + OGC terrain overlays + autonomous mission API manifests.
+- Transport profile: authenticated robotics command channel with mandatory safety acknowledgment checkpoints.
+
+### `ps-coalition-sat-ground-insider-risk-response-stack-v1`
+- Standards and protocols: signed access-control events + STIX/TAXII + USMTF + NATO APP-11/ADatP-3.
+- Transport profile: segmented insider-alert exchange with audited revocation queue and continuity handoff channel.
+
+### `ps-joint-weather-modification-attribution-stack-v1`
+- Standards and protocols: meteorological sensor event schema + STIX/TAXII indicator exchange + USMTF.
+- Transport profile: integrity-checked atmospheric event exchange with confidence-scored attribution updates.
+
+### `ps-homeland-precision-ag-food-mobilization-stack-v1`
+- Standards and protocols: agriculture telemetry APIs + GS1 traceability + USMTF sustainment messaging.
+- Transport profile: encrypted food allocation channel with source attestation and disconnected audit replay.
+
+### `ps-expeditionary-rare-battery-recycling-energy-recovery-stack-v1`
+- Standards and protocols: battery telemetry envelopes + hazardous-material handling schema + USMTF logistics.
+- Transport profile: authenticated salvage-to-recovery exchange with safety interlock confirmations.
+
+### `ps-joint-lunar-gateway-contingency-comms-stack-v1`
+- Standards and protocols: CCSDS relay status exchange + USMTF + protected API/JSON manifests.
+- Transport profile: signed comms-priority channel with deterministic fallback path and acknowledgment ledger.
+
+## Tool and Protocol Alias Addendum K1 (2026-03-10, Reference Completeness)
+
+### `ts-operational-energy-resilience-v1`
+- Use for: operational energy resilience planning, microgrid continuity, and tactical power endurance management.
+- Primary tools: energy demand forecaster, expeditionary microgrid controller, power reserve allocator.
+- Cross-check tools: independent fuel-to-power conversion monitor and alternate outage-risk validator.
+- Typical products: power continuity matrix, endurance branch plan, energy-risk trigger map.
+
+### `ps-cbrn-consequence-management-stack-v1`
+- Standards and protocols: CBRN hazard telemetry + OGC overlays + USMTF restoration updates.
+- Transport profile: authenticated hazard exchange with contaminated-zone escalation and manual fallback channels.
+
+### `ps-climate-digital-twin-resilience-stack-v1`
+- Standards and protocols: climate model exchange APIs + OGC + USMTF.
+- Transport profile: signed model-state exchange with confidence-banded forecast synchronization.
+
+### `ps-contested-medical-regulation-stack-v1`
+- Standards and protocols: HL7/FHIR + USMTF casualty movement updates + API/JSON.
+- Transport profile: authenticated patient movement messaging with mandatory handoff acknowledgment chain.
+
+### `ps-disinformation-response-stack-v1`
+- Standards and protocols: STIX/TAXII + USMTF + NATO APP-11/ADatP-3.
+- Transport profile: signed influence incident exchange with policy-gated release workflow.
+
+### `ps-medical-evacuation-coordination-stack-v1`
+- Standards and protocols: HL7/FHIR + USMTF + API/JSON.
+- Transport profile: low-latency medevac routing exchange with fallback voice/readback reconciliation.
+
+### `ps-operational-energy-resilience-stack-v1`
+- Standards and protocols: USMTF sustainment messaging + energy telemetry envelopes + API/JSON.
+- Transport profile: authenticated energy status exchange with outage-triggered branch signaling.
+
+### `ps-rail-bridge-recovery-stack-v1`
+- Standards and protocols: USMTF engineer directives + OGC infrastructure overlays + API/JSON.
+- Transport profile: signed repair work-order channel with throughput restoration acknowledgment queue.
+
+### `ps-space-satcom-resilience-stack-v1`
+- Standards and protocols: CCSDS + SATCOM link telemetry schema + USMTF.
+- Transport profile: protected comms resilience channel with deterministic fallback path signaling.
+
+### `ps-strategic-food-water-stability-stack-v1`
+- Standards and protocols: GS1 traceability + USMTF sustainment messaging + API/JSON.
+- Transport profile: encrypted food/water status exchange with disruption-trigger escalation path.
+
+### `ps-undersea-geohazard-response-stack-v1`
+- Standards and protocols: bathymetric/seismic event schema + AIS/NMEA + USMTF.
+- Transport profile: authenticated geohazard alert exchange with cable/route restoration acknowledgments.
