@@ -1,0 +1,213 @@
+import fs from 'fs/promises';
+import path from 'path';
+import {
+    createApprovalPolicy,
+    FileTaskStore,
+    TaskOrchestrator,
+    TaskRequest
+} from '../../swarm-protocol/runtime.js';
+
+function normalizeText(input) {
+    if (typeof input !== 'string') return '';
+    return input.trim().toLowerCase();
+}
+
+function safeNow(nowFactory = Date.now) {
+    const value = Number(nowFactory());
+    return Number.isFinite(value) ? value : Date.now();
+}
+
+function sanitizeTargetForFile(target) {
+    return target.replace(/[^a-z0-9._-]+/gi, '_');
+}
+
+function sortByCreatedAtAsc(records) {
+    return [...records].sort((a, b) => {
+        const left = Number(a?.createdAt || 0);
+        const right = Number(b?.createdAt || 0);
+        return left - right;
+    });
+}
+
+export function isCognitionPlannedRecord(record) {
+    const planner = normalizeText(record?.request?.context?.planner);
+    return planner.startsWith('cognition-core/');
+}
+
+export function buildDispatchPayload(record) {
+    if (!record || typeof record !== 'object') {
+        throw new Error('buildDispatchPayload expects a record object');
+    }
+    const request = TaskRequest.parse(record.request);
+    return {
+        id: request.id,
+        createdAt: request.createdAt,
+        target: request.target,
+        task: request.task,
+        priority: request.priority,
+        context: request.context,
+        constraints: request.constraints
+    };
+}
+
+export function selectCreatedDispatchCandidates(
+    records,
+    {
+        target = null,
+        limit = 50,
+        includeAllCreated = false
+    } = {}
+) {
+    const list = Array.isArray(records) ? records : [];
+    const selected = [];
+    const skipped = {
+        invalid: 0,
+        nonCognition: 0
+    };
+
+    for (const record of sortByCreatedAtAsc(list)) {
+        if (!record || typeof record !== 'object' || typeof record.taskId !== 'string') {
+            skipped.invalid++;
+            continue;
+        }
+        if (record.status !== 'created') {
+            continue;
+        }
+        if (target && record.target !== target) {
+            continue;
+        }
+        if (!record.request || typeof record.request !== 'object') {
+            skipped.invalid++;
+            continue;
+        }
+        if (!includeAllCreated && !isCognitionPlannedRecord(record)) {
+            skipped.nonCognition++;
+            continue;
+        }
+        selected.push(record);
+        if (selected.length >= Math.max(1, Number(limit) || 50)) {
+            break;
+        }
+    }
+
+    return {
+        selected,
+        skipped
+    };
+}
+
+export function createFileOutboxTransport({
+    outboxDir,
+    nowFactory = Date.now
+}) {
+    if (!outboxDir || typeof outboxDir !== 'string') {
+        throw new Error('outboxDir is required for file outbox transport');
+    }
+    const resolvedOutboxDir = path.resolve(outboxDir);
+
+    return {
+        async send(target, message) {
+            if (!target || typeof target !== 'string') {
+                throw new Error('transport send target must be a string');
+            }
+            const fileName = `${sanitizeTargetForFile(target)}.jsonl`;
+            const filePath = path.join(resolvedOutboxDir, fileName);
+            const envelope = {
+                kind: 'task_dispatch_envelope',
+                target,
+                sentAt: safeNow(nowFactory),
+                message
+            };
+
+            await fs.mkdir(resolvedOutboxDir, { recursive: true });
+            await fs.appendFile(filePath, `${JSON.stringify(envelope)}\n`, 'utf8');
+        }
+    };
+}
+
+export async function dispatchCreatedQueueTasks({
+    storePath,
+    outboxDir,
+    localAgentId = 'agent:main',
+    target = null,
+    limit = 50,
+    includeAllCreated = false,
+    dryRun = false,
+    nowFactory = Date.now
+}) {
+    if (!storePath || typeof storePath !== 'string') {
+        throw new Error('storePath is required');
+    }
+    if (!outboxDir || typeof outboxDir !== 'string') {
+        throw new Error('outboxDir is required');
+    }
+
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({ filePath: storePath, now });
+    const transport = createFileOutboxTransport({ outboxDir, nowFactory: now });
+    const orchestrator = new TaskOrchestrator({
+        localAgentId,
+        transport,
+        store,
+        approvalPolicy: createApprovalPolicy()
+    });
+
+    const hydration = await orchestrator.hydrate();
+    const allTasks = orchestrator.listTasks();
+    const candidates = selectCreatedDispatchCandidates(allTasks, {
+        target,
+        limit,
+        includeAllCreated
+    });
+
+    const result = {
+        stats: {
+            loaded: hydration.loaded,
+            selected: candidates.selected.length,
+            dispatched: 0,
+            awaitingApproval: 0,
+            failed: 0,
+            skippedInvalid: candidates.skipped.invalid,
+            skippedNonCognition: candidates.skipped.nonCognition,
+            dryRun
+        },
+        selectedTaskIds: candidates.selected.map((record) => record.taskId),
+        dispatchedTaskIds: [],
+        awaitingApprovalTaskIds: [],
+        failed: []
+    };
+
+    if (dryRun) {
+        return result;
+    }
+
+    for (const record of candidates.selected) {
+        try {
+            const payload = buildDispatchPayload(record);
+            // eslint-disable-next-line no-await-in-loop
+            const dispatched = await orchestrator.dispatchTask(payload);
+            if (dispatched?.status === 'awaiting_approval') {
+                result.stats.awaitingApproval++;
+                result.awaitingApprovalTaskIds.push(record.taskId);
+            } else if (dispatched?.status === 'dispatched' || dispatched?.status === 'acknowledged') {
+                result.stats.dispatched++;
+                result.dispatchedTaskIds.push(record.taskId);
+            } else {
+                result.stats.failed++;
+                result.failed.push({
+                    taskId: record.taskId,
+                    reason: `unexpected_status:${dispatched?.status || 'unknown'}`
+                });
+            }
+        } catch (error) {
+            result.stats.failed++;
+            result.failed.push({
+                taskId: record.taskId,
+                reason: error.message
+            });
+        }
+    }
+
+    await orchestrator.flush();
+    return result;
+}
