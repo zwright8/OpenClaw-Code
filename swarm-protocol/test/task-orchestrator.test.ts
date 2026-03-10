@@ -1386,6 +1386,96 @@ test('dispatchTask allows duplicate requests after dedupe window expires', async
     assert.equal(sent.length, 2);
 });
 
+test('dispatchTask suppresses duplicate completed requests inside terminal dedupe window', async () => {
+    const clock = createClock(145_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 50,
+            terminalWindowMs: 10_000
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-terminal',
+        task: 'Refresh customer health scorecard',
+        constraints: { idempotencyKey: 'health-scorecard-2026W10' }
+    });
+
+    clock.advance(5);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: first.taskId,
+        from: 'agent:worker-dedupe-terminal',
+        status: 'completed',
+        output: 'scorecard-ready',
+        completedAt: clock.now()
+    }));
+
+    clock.advance(200);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-terminal',
+        task: 'Refresh customer health scorecard',
+        constraints: { idempotencyKey: 'health-scorecard-2026W10' }
+    });
+
+    assert.equal(first.taskId, second.taskId);
+    assert.equal(second.status, 'completed');
+    assert.equal(sent.length, 1);
+});
+
+test('dispatchTask re-dispatches duplicate completed requests after terminal dedupe window expires', async () => {
+    const clock = createClock(160_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 50,
+            terminalWindowMs: 500
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-terminal-expire',
+        task: 'Build monthly close packet',
+        constraints: { idempotencyKey: 'close-packet-2026-02' }
+    });
+
+    clock.advance(10);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: first.taskId,
+        from: 'agent:worker-dedupe-terminal-expire',
+        status: 'completed',
+        output: 'packet-ready',
+        completedAt: clock.now()
+    }));
+
+    clock.advance(600);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-terminal-expire',
+        task: 'Build monthly close packet',
+        constraints: { idempotencyKey: 'close-packet-2026-02' }
+    });
+
+    assert.notEqual(first.taskId, second.taskId);
+    assert.equal(second.status, 'dispatched');
+    assert.equal(sent.length, 2);
+});
+
 test('helper builders emit schema-valid messages', () => {
     const request = buildTaskRequest({
         from: 'agent:main',

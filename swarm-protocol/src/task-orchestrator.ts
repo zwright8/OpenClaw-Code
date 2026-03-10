@@ -48,7 +48,8 @@ const DEFAULT_ADAPTIVE_CONCURRENCY = Object.freeze({
 });
 const DEFAULT_DISPATCH_DEDUPLICATION = Object.freeze({
     windowMs: 5_000,
-    openOnly: true
+    openOnly: true,
+    terminalWindowMs: 0
 });
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
@@ -400,6 +401,13 @@ function resolveDispatchDeduplication(value) {
             Math.floor(clampNonNegativeNumber(value.windowMs, DEFAULT_DISPATCH_DEDUPLICATION.windowMs))
         ),
         openOnly: value.openOnly !== false,
+        terminalWindowMs: Math.max(
+            0,
+            Math.floor(clampNonNegativeNumber(
+                value.terminalWindowMs,
+                DEFAULT_DISPATCH_DEDUPLICATION.terminalWindowMs
+            ))
+        ),
         fingerprint: typeof value.fingerprint === 'function' ? value.fingerprint : null
     };
 }
@@ -1019,15 +1027,33 @@ export class TaskOrchestrator {
         if (!this.dispatchDeduplication.enabled) return null;
 
         const windowMs = this.dispatchDeduplication.windowMs;
+        const terminalWindowMs = this.dispatchDeduplication.terminalWindowMs;
         const fingerprint = this._buildDeduplicationFingerprint(request);
 
         for (const record of this.tasks.values()) {
-            if (this.dispatchDeduplication.openOnly && TERMINAL_STATUSES.has(record.status)) {
+            const isTerminal = TERMINAL_STATUSES.has(record.status);
+            if (isTerminal) {
+                if (terminalWindowMs <= 0) {
+                    if (this.dispatchDeduplication.openOnly) {
+                        continue;
+                    }
+                    if (windowMs > 0 && nowMs - Number(record.createdAt) > windowMs) {
+                        continue;
+                    }
+                } else {
+                    const terminalAt = Number.isFinite(Number(record.closedAt))
+                        ? Number(record.closedAt)
+                        : Number.isFinite(Number(record.updatedAt))
+                            ? Number(record.updatedAt)
+                            : Number(record.createdAt);
+                    if (terminalAt > nowMs || nowMs - terminalAt > terminalWindowMs) {
+                        continue;
+                    }
+                }
+            } else if (windowMs > 0 && nowMs - Number(record.createdAt) > windowMs) {
                 continue;
             }
-            if (windowMs > 0 && nowMs - Number(record.createdAt) > windowMs) {
-                continue;
-            }
+
             if (this._buildDeduplicationFingerprint(record.request) !== fingerprint) {
                 continue;
             }
@@ -2234,7 +2260,8 @@ export class TaskOrchestrator {
             dispatchDeduplication: {
                 enabled: this.dispatchDeduplication.enabled,
                 windowMs: this.dispatchDeduplication.windowMs,
-                openOnly: this.dispatchDeduplication.openOnly
+                openOnly: this.dispatchDeduplication.openOnly,
+                terminalWindowMs: this.dispatchDeduplication.terminalWindowMs
             }
         };
 
