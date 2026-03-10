@@ -151,3 +151,39 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-PORT-REPAIR-001`, `DPL-INTERMODAL-RAIL-AIR-001`, `DPL-FUEL-LEAK-ATTRIB-001`.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Operational Execution Hardening
+
+- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
+- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Logistics Continuity Addendum (2026-03-08)
+
+- For Arctic or littoral denial scenarios, bind `tool_suite_id=ts-under-ice-resupply-v1` with `protocol_stack_id=ps-under-ice-resupply-stack-v1`.
+- For strategic sealift availability stress, add `tool_suite_id=ts-maritime-insurance-reconstitution-v1` with `protocol_stack_id=ps-maritime-insurance-reconstitution-stack-v1`.
+- For sustainment plans with life-support dependencies, include `packet_id=DPL-RARE-BLOOD-MATCH-001` as a mandatory medical-logistics cross-check.
+
+## Logistics Continuity Addendum (2026-03-08, Fuel and Critical Cargo Integrity)
+
+- Add `tool_suite_id=ts-denied-fuel-bladder-integrity-v1` + `protocol_stack_id=ps-denied-fuel-bladder-integrity-stack-v1` for forward fuel-storage reliability and sabotage detection.
+- Add `packet_id=DPL-CRITICAL-MINERAL-SHIPPING-001` when sustainment courses of action depend on strategic material flow continuity.
+- Add `packet_id=DPL-MICROREACTOR-EMPLOY-001` when expeditionary power constraints materially change sustainment branch feasibility.
+
+## Logistics Continuity Addendum (2026-03-08, Signature and Feedstock Integrity)
+
+- Add `tool_suite_id=ts-logistics-signature-masking-v1` + `protocol_stack_id=ps-logistics-signature-masking-stack-v1` when convoy detectability is a primary sustainment risk.
+- Add `packet_id=DPL-ADDITIVE-FEEDSTOCK-AUTH-001` for sustainment plans that rely on additive repair or microfactory throughput.
+- Add `packet_id=DPL-SEMICONDUCTOR-FAB-CONTINGENCY-001` when strategic electronics shortages can cascade into theater sustainment delays.
+
+## Logistics Continuity Addendum (2026-03-10, Port Recovery and Rail Priority Merge)
+
+- Add `tool_suite_id=ts-port-crane-cyber-physical-recovery-v1` + `protocol_stack_id=ps-port-crane-cyber-physical-recovery-stack-v1` when sustainment throughput depends on contested port crane restoration and OT safety controls.
+- Add `tool_suite_id=ts-civil-rail-evac-priority-merge-v1` + `protocol_stack_id=ps-civil-rail-evac-priority-merge-stack-v1` when military sustainment movement must be synchronized with life-safety rail evacuation demand.
+- Add `packet_id=DPL-PORT-CRANE-CYBER-PHYSICAL-RECOVERY-001` and `packet_id=DPL-CIVIL-RAIL-EVAC-PRIORITY-MERGE-001` for sustainment branches that alter port unloading cadence, rail throughput, or distribution sequencing.

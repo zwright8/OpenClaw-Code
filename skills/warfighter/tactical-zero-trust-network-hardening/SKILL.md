@@ -144,3 +144,8 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Zero-Trust Continuity Addendum (2026-03-10, Identity Reconstitution and Command Intent Sync)
+
+- Add `tool_suite_id=ts-identity-proof-life-reconstitution-v1` + `protocol_stack_id=ps-identity-proof-life-reconstitution-stack-v1` when disconnected identity confidence falls below mission threshold or proof-of-life status is stale.
+- Add `tool_suite_id=ts-disconnected-command-intent-reconciliation-v1` + `protocol_stack_id=ps-disconnected-command-intent-reconciliation-stack-v1` when command guidance forks create competing execution paths across tactical enclaves.
+- Add `packet_id=DPL-IDENTITY-PROOF-LIFE-RECON-001` and `packet_id=DPL-DISCONNECTED-COMMAND-INTENT-RECON-001` for branches that alter authorization boundaries, credential trust, or command release conditions.

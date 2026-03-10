@@ -144,3 +144,32 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-09, Beacon and FOD Assurance Addendum)
+
+- Prioritize `tool_suite_id=ts-personnel-recovery-beacon-deception-counter-v1` + `protocol_stack_id=ps-personnel-recovery-beacon-deception-counter-stack-v1` when CSAR tasking depends on contested survivor authentication.
+- Prioritize `tool_suite_id=ts-expeditionary-runway-fod-autonomy-v1` + `protocol_stack_id=ps-expeditionary-runway-fod-autonomy-stack-v1` when sortie generation risk is constrained by runway foreign object debris volatility.
+- Add `packet_id=DPL-PERSONNEL-RECOVERY-BEACON-DECEPTION-COUNTER-001` and `packet_id=DPL-EXPEDITIONARY-RUNWAY-FOD-AUTONOMY-001` for ATO branch decisions that alter rescue timelines or launch windows.
+
+## Domain Toolchain Override (2026-03-09, Urban Lift and Spaceport GNSS Addendum)
+
+- Prioritize `tool_suite_id=ts-urban-vtol-lz-auth-v1` + `protocol_stack_id=ps-urban-vtol-lz-auth-stack-v1` when urban vertical-lift landing zones face spoofing, decoy, or civilian congestion risk.
+- Prioritize `tool_suite_id=ts-spaceport-gnss-emergency-v1` + `protocol_stack_id=ps-spaceport-gnss-emergency-stack-v1` when ATO timing, launch windows, or range safety are sensitive to GNSS degradation.
+- Add `packet_id=DPL-VTOL-LZ-001` and `packet_id=DPL-SPACEPORT-GNSS-001` for ATO branches that re-sequence air mobility, personnel recovery, or strategic launch support.
+
+## Domain Toolchain Override (2026-03-09, GPS-Denied Refueling and EW Reprogram Addendum)
+
+- Prioritize `tool_suite_id=ts-aerial-refuel-gps-denied-v1` + `protocol_stack_id=ps-aerial-refuel-gps-denied-stack-v1` when ATO frag updates include tanker-receiver rendezvous under PNT degradation.
+- Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when sortie survivability depends on rapid EW mission-data release.
+- Add `packet_id=DPL-AERIAL-REFUEL-GPS-DENIED-001` and `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` for ATO branches that alter launch windows, escort plans, or strike timing.
+
+## Domain Toolchain Override (2026-03-09, Balloon ISR and Avalanche Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-stratospheric-balloon-isr-reconstitution-v1` + `protocol_stack_id=ps-stratospheric-balloon-isr-reconstitution-stack-v1` when ATO updates depend on restoring ISR relay persistence for strike timing, tanker routing, or personnel recovery windows.
+- Prioritize `tool_suite_id=ts-denied-terrain-avalanche-route-rescue-v1` + `protocol_stack_id=ps-denied-terrain-avalanche-route-rescue-stack-v1` when air mobility, CASEVAC, or rescue launch windows depend on mountain avalanche corridor viability.
+- Add `packet_id=DPL-STRATOSPHERIC-BALLOON-ISR-RECONSTITUTION-001` and `packet_id=DPL-DENIED-TERRAIN-AVALANCHE-ROUTE-RESCUE-001` for ATO branches that change route profiles, on-station persistence, or rescue sequencing.
+
+## Domain Toolchain Override (2026-03-10, Imagery Provenance and Launch Deconfliction Addendum)
+
+- Prioritize `tool_suite_id=ts-bda-imagery-provenance-assurance-v1` + `protocol_stack_id=ps-bda-imagery-provenance-assurance-stack-v1` when strike validation or reattack decisions depend on contested imagery authenticity.
+- Prioritize `tool_suite_id=ts-space-cyber-em-launch-deconfliction-v1` + `protocol_stack_id=ps-space-cyber-em-launch-deconfliction-stack-v1` when ATO timelines are coupled to coalition launch windows, spectrum conflicts, or cyber hold conditions.
+- Add `packet_id=DPL-BDA-IMAGERY-PROVENANCE-TAMPER-001` and `packet_id=DPL-SPACE-CYBER-EM-LAUNCH-DECONF-001` for ATO branches that alter targeting confidence, launch timing, or escalation posture.

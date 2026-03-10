@@ -1,0 +1,5 @@
+---
+interface:
+  display_name: "Joint Disconnected Mission Command Intent Reconciliation Cell"
+  short_description: "Support Joint Disconnected Mission Command Intent Reconciliation Cell mission decisions"
+---
