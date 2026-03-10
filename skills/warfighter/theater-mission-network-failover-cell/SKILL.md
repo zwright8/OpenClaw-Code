@@ -142,6 +142,6 @@ Primary products for this skill: network failover playbook, comms continuity dec
 ## Mission Tool and Protocol Catalog Binding
 
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
+- For this domain, prioritize `tool_suite_id=ts-cyber-defense-v1` and `protocol_stack_id=ps-pnt-time-transfer-assurance-stack-v1` when failover decisions depend on both network integrity and resilient timing continuity.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-

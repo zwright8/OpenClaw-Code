@@ -770,3 +770,32 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+## New Expansion Wave (2026-03-10, Intent Continuity, Data Trust, and Infrastructure Defense)
+
+- joint-expeditionary-ai-denied-comms-commander-intent-reconciliation-cell
+- strategic-rare-earth-refining-sabotage-recovery-cell
+- theater-autonomous-civilian-harm-incident-triage-and-response-cell
+- joint-undersea-cable-landing-station-island-power-defense-cell
+- tactical-denied-environment-additive-munitions-safety-cell
+- joint-military-spaceport-ground-systems-cyber-physical-recovery-cell
+- coalition-contested-polar-medical-evac-staging-cell
+- theater-mission-data-poisoning-detection-and-model-quarantine-cell
+- joint-precision-timing-terrestrial-backbone-reconstitution-cell
+- homeland-defense-critical-ports-rail-fuel-synchronization-cell
+- joint-gray-zone-lawfare-campaign-exposure-and-counter-cell
+- expeditionary-robotic-casualty-collection-route-assurance-cell
+
+## Updated Pairings (2026-03-10, Intent Continuity, Data Trust, and Infrastructure Defense)
+
+- Denied-comms intent reconciliation + mission network failover + disconnected mission-data replication + mission command decision support
+- Rare-earth sabotage recovery + strategic industrial mobilization readiness + critical mineral interdiction + supply-chain risk monitor
+- Autonomous civilian-harm triage + targeting governance + legal/ROE compliance + information integrity and attribution
+- Cable landing island power defense + undersea cable repair prioritization + microgrid resilience + NC3 path assurance
+- Denied additive munitions safety + additive quality attestation + munitions stockpile management + explosive demil safety
+- Military spaceport ground recovery + contested launch reconstitution + space-ground integration + cyber-physical infrastructure defense
+- Contested polar medevac staging + casualty regulation + austere surgical support + arctic logistics operations
+- Mission-data poisoning quarantine + edge AI model assurance + cyber defense + operational AI authority and escalation
+- Precision timing backbone reconstitution + denied PNT transition + SATCOM anti-jam reconstitution + NC3 resilience
+- Homeland port/rail/fuel synchronization + strategic mobility planning + deployment and distribution optimization + civil support crisis coordination
+- Gray-zone lawfare counter + strategic competition response + disinformation counter + coalition legal interoperability
+- Robotic casualty route assurance + autonomous casualty evacuation + UAS deconfliction + medical C4I/patient movement fusion
