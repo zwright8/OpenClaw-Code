@@ -770,3 +770,33 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+
+## New Expansion Wave (2026-03-10, Comprehensive Warfighter Joint Operations Set)
+
+- contested-joint-force-jadc2-gateway-survivability-cell
+- ai-enabled-multi-domain-fires-collateral-mitigation-cell
+- austere-arctic-ground-lines-of-communication-resilience-cell
+- expeditionary-cbrn-decon-throughput-and-force-reconstitution-cell
+- tactical-undersea-chokepoint-autonomy-defense-cell
+- coalition-sar-and-noncombatant-evacuation-airbridge-assurance-cell
+- homeland-critical-satcom-ground-station-hardening-cell
+- strategic-sealift-contested-port-repair-and-cargo-prioritization-cell
+- cyber-electromagnetic-spectrum-fratricide-prevention-cell
+- joint-special-operations-partner-force-vetting-and-sustainment-cell
+- contested-urban-megacity-civilian-life-support-stabilization-cell
+- precision-fog-of-war-sensor-confidence-adjudication-cell
+
+## Updated Pairings (2026-03-10, Comprehensive Warfighter Joint Operations Set)
+
+- JADC2 gateway survivability + theater mission network failover + battle-network key-material continuity
+- AI-enabled fires collateral mitigation + targeting standards/CDE governance + legal-ROE compliance checker
+- Arctic GLOC resilience + strategic mobility and deployment planner + operational energy resilience
+- Expeditionary CBRN decon throughput + preventive medicine and force-health protection + WMD counterproliferation operations
+- Undersea chokepoint autonomy defense + anti-submarine warfare support + undersea cable protection and restoration
+- Coalition SAR/NEO airbridge assurance + population protection/NEO operations + coalition data-fabric interoperability
+- Homeland SATCOM ground-station hardening + space domain awareness and satcom defense + NC3 continuity assurance
+- Strategic sealift contested port repair + strategic sealift and prepositioning coordinator + contested maritime logistics protection
+- Cyber-EM fratricide prevention + CEMA integration cell + joint spectrum interference resolution
+- SOF partner-force vetting and sustainment + security assistance and partner capability integration + irregular warfare support cells
+- Megacity civilian life-support stabilization + civil affairs stability operations + joint infrastructure priority-of-life restoration
+- Sensor confidence adjudication + all-source collection management + information integrity and attribution

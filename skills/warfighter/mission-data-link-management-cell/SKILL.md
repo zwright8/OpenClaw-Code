@@ -144,3 +144,9 @@ Primary products for this skill: data link execution plan, network load manageme
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Override Bindings (2026-03-10, Comprehensive Warfighter Joint Operations Set)
+
+- For this run context, explicitly bind recommendations to one new suite/stack pair from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
+- Include `tool_suite_id`, `protocol_stack_id`, `primary_exchange_path`, `latency_budget_seconds`, and `ack_timeout_seconds` for each critical dependency.
+- Require at least one cross-domain dependency check against C2, fires, logistics, and civil-support impact before publishing a final recommendation.
