@@ -187,3 +187,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-logistics-signature-masking-v1` + `protocol_stack_id=ps-logistics-signature-masking-stack-v1` when convoy detectability is a primary sustainment risk.
 - Add `packet_id=DPL-ADDITIVE-FEEDSTOCK-AUTH-001` for sustainment plans that rely on additive repair or microfactory throughput.
 - Add `packet_id=DPL-SEMICONDUCTOR-FAB-CONTINGENCY-001` when strategic electronics shortages can cascade into theater sustainment delays.
+
+## Logistics Continuity Addendum (2026-03-10, Port Recovery and Rail Priority Merge)
+
+- Add `tool_suite_id=ts-port-crane-cyber-physical-recovery-v1` + `protocol_stack_id=ps-port-crane-cyber-physical-recovery-stack-v1` when sustainment throughput depends on contested port crane restoration and OT safety controls.
+- Add `tool_suite_id=ts-civil-rail-evac-priority-merge-v1` + `protocol_stack_id=ps-civil-rail-evac-priority-merge-stack-v1` when military sustainment movement must be synchronized with life-safety rail evacuation demand.
+- Add `packet_id=DPL-PORT-CRANE-CYBER-PHYSICAL-RECOVERY-001` and `packet_id=DPL-CIVIL-RAIL-EVAC-PRIORITY-MERGE-001` for sustainment branches that alter port unloading cadence, rail throughput, or distribution sequencing.

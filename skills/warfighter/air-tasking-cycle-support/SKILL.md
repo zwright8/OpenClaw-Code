@@ -167,3 +167,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-stratospheric-balloon-isr-reconstitution-v1` + `protocol_stack_id=ps-stratospheric-balloon-isr-reconstitution-stack-v1` when ATO updates depend on restoring ISR relay persistence for strike timing, tanker routing, or personnel recovery windows.
 - Prioritize `tool_suite_id=ts-denied-terrain-avalanche-route-rescue-v1` + `protocol_stack_id=ps-denied-terrain-avalanche-route-rescue-stack-v1` when air mobility, CASEVAC, or rescue launch windows depend on mountain avalanche corridor viability.
 - Add `packet_id=DPL-STRATOSPHERIC-BALLOON-ISR-RECONSTITUTION-001` and `packet_id=DPL-DENIED-TERRAIN-AVALANCHE-ROUTE-RESCUE-001` for ATO branches that change route profiles, on-station persistence, or rescue sequencing.
+
+## Domain Toolchain Override (2026-03-10, Imagery Provenance and Launch Deconfliction Addendum)
+
+- Prioritize `tool_suite_id=ts-bda-imagery-provenance-assurance-v1` + `protocol_stack_id=ps-bda-imagery-provenance-assurance-stack-v1` when strike validation or reattack decisions depend on contested imagery authenticity.
+- Prioritize `tool_suite_id=ts-space-cyber-em-launch-deconfliction-v1` + `protocol_stack_id=ps-space-cyber-em-launch-deconfliction-stack-v1` when ATO timelines are coupled to coalition launch windows, spectrum conflicts, or cyber hold conditions.
+- Add `packet_id=DPL-BDA-IMAGERY-PROVENANCE-TAMPER-001` and `packet_id=DPL-SPACE-CYBER-EM-LAUNCH-DECONF-001` for ATO branches that alter targeting confidence, launch timing, or escalation posture.

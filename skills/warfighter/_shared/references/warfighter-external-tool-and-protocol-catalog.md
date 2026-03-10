@@ -6385,3 +6385,127 @@ external_binding:
 ### `ps-missile-transporter-route-denial-survivability-stack-v1`
 - Protocols: `USMTF`, `NATO APP-11/ADatP-3`, `Link 16 J-series`, `API/JSON`.
 - Use for: strategic transporter route updates, denial-event reporting, and survivability branch tasking.
+
+## Tool Suite Addendum J (2026-03-10, Full-Domain Warfighter Expansion)
+
+### `ts-identity-proof-life-reconstitution-v1`
+- Use for: degraded identity proof-of-life checks, personnel accountability recovery, and disconnected reconstitution of trusted rosters.
+- Primary tools: biometric identity broker, personnel accountability ledger, disconnected credential wallet verifier.
+- Cross-check tools: independent proof-of-life challenge board and alternate roster reconciliation service.
+- Typical products: proof-of-life confidence ladder, reconstitution roster delta, authority release recommendations.
+
+### `ts-underwater-power-cable-load-priority-v1`
+- Use for: denied underwater power cable restoration, power load triage, and mission-priority electrical reallocation.
+- Primary tools: subsea cable telemetry analytics, grid-load triage board, repair vessel planning service.
+- Cross-check tools: independent fault localization board and alternate mission-load prioritization mirror.
+- Typical products: cable restoration sequence, load-priority matrix, power continuity branch map.
+
+### `ts-port-crane-cyber-physical-recovery-v1`
+- Use for: contested port crane cyber-physical incident response, throughput restoration, and sabotage containment.
+- Primary tools: port OT security monitor, crane diagnostics platform, berth throughput planner.
+- Cross-check tools: independent safety interlock verifier and alternate cargo reflow timeline board.
+- Typical products: crane recovery packet, throughput reflow sequence, cyber-physical isolation order.
+
+### `ts-disconnected-command-intent-reconciliation-v1`
+- Use for: disconnected mission command synchronization, intent conflict adjudication, and branch/sequel reconciliation.
+- Primary tools: command intent ledger, mission objective dependency graph, delayed-ack synchronization queue.
+- Cross-check tools: independent commander intent mirror and alternate branch trigger validator.
+- Typical products: intent reconciliation matrix, decision conflict register, command update release packet.
+
+### `ts-critical-pharma-surge-protection-v1`
+- Use for: strategic pharmaceutical surge allocation, anti-diversion controls, and domestic critical-drug protection.
+- Primary tools: pharma production dashboard, strategic medical stock ledger, diversion anomaly detector.
+- Cross-check tools: independent lot-release auditor and alternate demand-signal confidence board.
+- Typical products: surge allocation table, anti-diversion action list, continuity risk estimate.
+
+### `ts-forward-blood-autonomy-assurance-v1`
+- Use for: autonomous forward blood routing, temperature compliance assurance, and contested casualty support continuity.
+- Primary tools: autonomous med-log dispatcher, cold-chain telemetry service, transfusion risk prioritization board.
+- Cross-check tools: independent temperature audit ledger and alternate route survivability board.
+- Typical products: blood routing plan, cold-chain exception log, casualty support continuity branch.
+
+### `ts-urban-vertiport-defense-recovery-v1`
+- Use for: urban counter-drone vertiport defense, rotary/VTOL traffic recovery, and protected mobility corridor control.
+- Primary tools: urban air mobility traffic manager, counter-UAS kill-chain board, vertiport access-control monitor.
+- Cross-check tools: independent civilian airspace conflict monitor and alternate route deconfliction board.
+- Typical products: vertiport defense posture, recovery launch matrix, civilian-risk deconfliction summary.
+
+### `ts-space-cyber-em-launch-deconfliction-v1`
+- Use for: coalition launch-window deconfliction across space, cyber, and electromagnetic constraints.
+- Primary tools: launch window scheduler, spectrum occupancy planner, cyber mission risk dashboard.
+- Cross-check tools: independent orbital conjunction checker and alternate EM interference forecast board.
+- Typical products: launch deconfliction matrix, EM/cyber conflict register, coalition release recommendation.
+
+### `ts-water-membrane-bypass-assurance-v1`
+- Use for: denied water purification membrane failure response, bypass treatment validation, and potable water continuity.
+- Primary tools: water treatment telemetry monitor, membrane health diagnostics, contamination threshold planner.
+- Cross-check tools: independent field sampling chain and alternate purification routing board.
+- Typical products: bypass activation packet, potable confidence scorecard, distribution continuity plan.
+
+### `ts-bda-imagery-provenance-assurance-v1`
+- Use for: battle-damage imagery provenance, tamper detection, and decision-grade visual evidence assurance.
+- Primary tools: imagery provenance signer, tamper-forensics engine, BDA confidence fusion board.
+- Cross-check tools: independent source chain verifier and alternate forensic confidence auditor.
+- Typical products: imagery authenticity report, tamper risk annotation, commander BDA confidence brief.
+
+### `ts-civil-rail-evac-priority-merge-v1`
+- Use for: coalition civil rail evacuation merge with military priority movement under contested throughput.
+- Primary tools: rail movement control board, civil evacuation manifest service, military priority scheduler.
+- Cross-check tools: independent crossing-conflict ledger and alternate station throughput estimator.
+- Typical products: rail priority merge matrix, evacuation continuity timeline, movement risk register.
+
+### `ts-reserve-mobilization-pay-anti-fraud-v1`
+- Use for: strategic reserve mobilization pay continuity, anti-fraud detection, and disputed entitlement adjudication.
+- Primary tools: reserve pay readiness dashboard, fraud anomaly analytics, mobilization personnel ledger.
+- Cross-check tools: independent treasury reconciliation mirror and alternate entitlement dispute tracker.
+- Typical products: mobilization pay continuity order, fraud triage board, entitlement remediation tracker.
+
+## Protocol Stack Addendum J (2026-03-10, Full-Domain Warfighter Expansion)
+
+### `ps-identity-proof-life-reconstitution-stack-v1`
+- Standards and protocols: FIDO2/WebAuthn + STANAG identity exchange profiles + signed JSON evidence manifests.
+- Transport profile: mutually authenticated API/JSON with delayed-sync queue and audited reconciliation channel.
+
+### `ps-underwater-power-cable-load-priority-stack-v1`
+- Standards and protocols: IEC 61850 telemetry mappings + OGC geospatial overlays + USMTF operational messaging.
+- Transport profile: encrypted telemetry ingest with acknowledged work-order messaging and offline restoration ledger sync.
+
+### `ps-port-crane-cyber-physical-recovery-stack-v1`
+- Standards and protocols: ICS/OT event exchange + NIMS/ICS incident coordination + USMTF logistics directives.
+- Transport profile: segmented OT gateway channel with signed safety interlock records and fallback voice reconciliation.
+
+### `ps-disconnected-command-intent-reconciliation-stack-v1`
+- Standards and protocols: USMTF command message formats + CoT event updates + signed intent delta manifests.
+- Transport profile: store-and-forward tactical link with explicit ack-chain verification and conflict-resolution replay.
+
+### `ps-critical-pharma-surge-protection-stack-v1`
+- Standards and protocols: HL7/FHIR supply metadata + GS1 lot traceability + USMTF sustainment messaging.
+- Transport profile: encrypted API exchange with lot-signature verification and disconnected batch audit synchronization.
+
+### `ps-forward-blood-autonomy-assurance-stack-v1`
+- Standards and protocols: HL7/FHIR transfusion logistics + cold-chain telemetry envelopes + USMTF medical movement updates.
+- Transport profile: authenticated autonomous route control channel with mandatory temperature exception acknowledgments.
+
+### `ps-urban-vertiport-defense-recovery-stack-v1`
+- Standards and protocols: AIXM/FIXM + Link 16 J-series + CoT urban response event feeds.
+- Transport profile: low-latency airspace coordination bus with mission-safe fallback to authenticated voice/readback.
+
+### `ps-space-cyber-em-launch-deconfliction-stack-v1`
+- Standards and protocols: CCSDS telemetry exchange + STIX/TAXII cyber threat updates + spectrum coordination manifests.
+- Transport profile: signed coalition release channel with launch-window ack chain and interference rollback signaling.
+
+### `ps-water-membrane-bypass-assurance-stack-v1`
+- Standards and protocols: EPA/field sampling data schema + OGC utilities overlays + USMTF civil-support messaging.
+- Transport profile: authenticated water telemetry exchange with contamination alarm escalation and manual fallback board sync.
+
+### `ps-bda-imagery-provenance-assurance-stack-v1`
+- Standards and protocols: C2PA provenance manifests + STIX/TAXII forensic indicators + USMTF BDA reporting.
+- Transport profile: signed imagery package delivery with hash-chain verification and tamper adjudication queue.
+
+### `ps-civil-rail-evac-priority-merge-stack-v1`
+- Standards and protocols: rail schedule API schema + NIMS/ICS evacuation coordination + USMTF movement updates.
+- Transport profile: priority message queue with route-conflict acknowledgments and delayed station-state reconciliation.
+
+### `ps-reserve-mobilization-pay-anti-fraud-stack-v1`
+- Standards and protocols: Treasury payment messaging profiles + FIDO-verified claims + signed reconciliation manifests.
+- Transport profile: encrypted entitlement exchange with fraud-alert escalation channel and audited manual override path.

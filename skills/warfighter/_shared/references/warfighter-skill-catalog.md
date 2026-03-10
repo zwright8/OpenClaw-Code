@@ -1251,3 +1251,32 @@ Every skill output should include:
 - Additive microelectronics repair attestation + expeditionary fabrication and battle damage repair + counterfeit spare-parts interdiction + software supply-chain assurance
 - AI-enabled SAR deception detection + all-source collection management + battle-damage assessment fusion + targeting-cycle manager
 - Missile transporter route denial survivability + strategic mobility port-rail chokepoint wargame + operational deception planning + strategic deterrence readiness support
+
+## New Expansion Wave (2026-03-10, Full-Domain Continuity and Assurance)
+
+- joint-degraded-identity-proof-of-life-and-personnel-reconstitution-cell
+- theater-denied-underwater-power-cable-repair-and-load-prioritization-cell
+- coalition-contested-port-crane-cyber-physical-recovery-cell
+- joint-disconnected-mission-command-intent-reconciliation-cell
+- strategic-homeland-critical-pharma-surge-allocation-and-protection-cell
+- theater-autonomous-forward-blood-routing-and-temperature-assurance-cell
+- joint-counter-drone-urban-vertiport-defense-and-traffic-recovery-cell
+- coalition-space-cyber-electromagnetic-launch-window-deconfliction-cell
+- theater-denied-water-purification-membrane-failure-and-bypass-cell
+- joint-battle-damage-imagery-provenance-and-tamper-assurance-cell
+- coalition-contested-civil-rail-evacuation-and-military-priority-merge-cell
+- strategic-reserve-mobilization-fraud-detection-and-pay-continuity-cell
+
+## Updated Pairings (2026-03-10, Full-Domain Continuity and Assurance)
+
+- Identity proof-of-life reconstitution + tactical zero-trust network hardening + mission command intent reconciliation
+- Underwater power cable load prioritization + critical infrastructure restoration + operational energy resilience and microgrid planning
+- Port crane cyber-physical recovery + contested logistics sustainment + joint deployment and distribution optimization
+- Critical pharma surge allocation + preventive medicine and force-health protection + medical logistics and blood supply coordination
+- Forward blood autonomy assurance + casualty evacuation and medical regulation + austere surgical support coordination
+- Urban vertiport defense and traffic recovery + tactical airspace control + counter-UAS kill-chain integration
+- Space-cyber-EM launch deconfliction + contested space launch and satellite reconstitution + spectrum governance operations
+- Water purification membrane bypass assurance + water production and distribution support + civil defense mass evacuation support
+- BDA imagery provenance and tamper assurance + battle-damage-assessment-fusion + information integrity and attribution
+- Civil rail evacuation/military priority merge + strategic mobility deployment planning + DSCA crisis coordination
+- Reserve mobilization pay anti-fraud + acquisition and contracting support + force generation and retention readiness
