@@ -39,6 +39,17 @@ Use these tool categories as the default stack for this skill: patient regulatio
 
 Preferred protocol families for this skill: HL7/FHIR, USMTF, API/JSON.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-cross-border-aeromedical-biosecurity-v1` with `protocol_stack_id=ps-cross-border-aeromedical-biosecurity-stack-v1`.
+- Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-medical-readiness-stack-v1`.
+- Degraded: authenticated voice/readback plus UTC acknowledgment ledger and manual casualty-sync board.
+
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-CROSS-BORDER-AEROMEDICAL-BIOSECURITY-001`, `DPL-BIOSECURE-MEDEVAC-LEGAL-HANDOFF-001`.
+- If no packet matches current conditions, create a provisional packet using the shared schema and assign a validation owner.
+
 ## External Tool and Protocol Integration
 
 - Execute the core integration workflow in ../_shared/references/external-tools-protocols.md.
@@ -57,6 +68,7 @@ Preferred protocol families for this skill: HL7/FHIR, USMTF, API/JSON.
 - Run the mission assurance checklist in ../_shared/references/mission-assurance-checklist.md.
 - Include tool health and trust fields from ../_shared/references/tool-health-and-trust-monitoring.md.
 - Use after-action and readiness artifacts from ../_shared/references/operational-learning-and-after-action-loop.md and ../_shared/references/readiness-certification-evidence-pack.md.
+- Require `casualty_record_confidence`, `handoff_legal_basis`, and `cross_border_authority_state` fields for every release recommendation.
 
 ## Guardrails
 
