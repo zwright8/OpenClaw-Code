@@ -1116,3 +1116,34 @@ Every skill output should include:
 - Dual-use port cyber-physical surge protection + strategic port cyber resilience + homeland defense support of civil authorities + strategic sealift and prepositioning coordinator
 - Strategic prepositioned stock cyber custody assurance + supply chain risk and industrial base monitor + strategic mobility deployment planner + mission data provenance and releasability auditor
 - Contested space launch fuel/oxidizer allocation + contested space launch and satellite reconstitution + strategic orbital asset maneuver fuel budgeting + space domain awareness and satcom defense
+
+## New Expansion Wave (2026-03-10, Full-Spectrum Warfighter Additions)
+
+- joint-ai-red-cell-adversary-agent-harness
+- joint-electronic-signature-camouflage-compliance-cell
+- coalition-battlefield-forensics-evidence-preservation-cell
+- tactical-5g-private-network-contested-basing-cell
+- autonomous-maritime-mine-countermeasure-swarm-control-cell
+- strategic-arctic-fuel-energy-microgrid-interlock-cell
+- theater-digital-twin-contested-wargame-branch-generator-cell
+- joint-biothreat-wastewater-sentinel-fusion-cell
+- contested-rail-sabotage-attribution-repair-security-cell
+- expeditionary-robotics-spare-parts-reverse-logistics-cell
+- joint-cognitive-ew-disinformation-convergence-cell
+- coalition-civilian-harm-mitigation-battle-damage-cell
+- tactical-edge-llm-guarded-c2-assistant-cell
+- denied-environment-navigation-landmark-relocalization-cell
+
+## Updated Pairings (2026-03-10, Full-Spectrum Warfighter Additions)
+
+- AI red-cell adversary harness + campaign red-team simulation + contested digital twin branch generation
+- Signature camouflage compliance + EMS interference resolution + tactical deception rehearsal
+- Battlefield forensics evidence preservation + civilian harm mitigation battle damage + coalition legal interoperability
+- Tactical private 5G contested basing + theater mission network failover + edge LLM guarded C2 assistant
+- Autonomous maritime MCM swarms + undersea barrier operations + maritime chokepoint control
+- Arctic fuel-energy microgrid interlock + operational energy resilience + contested logistics sustainment
+- Biothreat wastewater sentinel fusion + preventive medicine and force-health protection + med-log continuity
+- Rail sabotage attribution/repair security + strategic mobility chokepoint wargaming + deployment/distribution optimization
+- Robotics spare-parts reverse logistics + expeditionary fabrication and battle damage repair + additive quality attestation
+- Cognitive EW disinformation convergence + information integrity attribution + electromagnetic battle management
+- Denied-environment navigation relocalization + denied PNT time-transfer assurance + precision approach/landing recovery

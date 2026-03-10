@@ -5204,3 +5204,157 @@ validation_gates:
 - output_schema: cascade consequence map, evacuation sequence board, restoration branch plan
 - protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + OGC
 - validation_gates: flood-model confidence check, evacuation throughput validation, civil-authority concurrence
+
+### packet_id: DPL-AI-RED-001
+- domain: adversary AI-agent emulation and red-cell kill-chain stress testing
+- objective: expose mission vulnerabilities by simulating adaptive adversary agents and deception branches
+- primary_tools: adversary behavior simulators, campaign wargame engine, event correlation dashboard
+- alternate_tools: manual red-cell branch board with scripted threat injects
+- degraded_mode: daily high-risk branch list with confidence bands
+- input_requirements: mission objective, force posture, threat model, authority constraints
+- output_schema: adversary branch tree, vulnerability ranking, mitigation and trigger recommendations
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: red-team adjudication check, legal-policy gate, command authority confirmation
+
+### packet_id: DPL-EMSIG-CAMO-001
+- domain: electronic signature camouflage and deception discipline
+- objective: reduce detectability while preserving mission-essential communications and sensing
+- primary_tools: signature library, EW planning suite, threat sensor analytics
+- alternate_tools: static emission discipline board with scheduled decoy windows
+- degraded_mode: fixed EMCON cycle and manual compliance checks
+- input_requirements: platform set, mission phases, threat sensor map, ROE constraints
+- output_schema: signature-control timeline, decoy plan, detectability risk score
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: interoperability check, fratricide-spectrum check, commander approval
+
+### packet_id: DPL-FORENSICS-001
+- domain: coalition battlefield forensic evidence preservation
+- objective: preserve evidentiary integrity and chain of custody for battlefield incidents
+- primary_tools: digital forensics suite, evidence registry, coalition legal portal
+- alternate_tools: paper custody ledger and manual forensic triage worksheet
+- degraded_mode: minimum viable custody transfer packet with dual witness validation
+- input_requirements: incident metadata, media artifacts, custody handlers, legal authority tags
+- output_schema: custody ledger, triage priority matrix, legal routing packet
+- protocol_profile: STANAG + USMTF + API/JSON
+- validation_gates: custody integrity verification, legal admissibility check, partner releasability check
+
+### packet_id: DPL-5G-TACTICAL-001
+- domain: tactical private-5G contested basing
+- objective: maintain local high-throughput network services under jamming and infrastructure disruption
+- primary_tools: private 5G orchestrator, RF planner, edge traffic policy engine
+- alternate_tools: LTE fallback network with mission-priority queue board
+- degraded_mode: voice plus low-bandwidth data schedule by mission priority
+- input_requirements: node map, traffic classes, spectrum constraints, threat jamming profile
+- output_schema: cell deployment plan, QoS policy table, fallback sequence
+- protocol_profile: 3GPP + USMTF + CoT
+- validation_gates: RF viability check, mission-priority pass, security policy approval
+
+### packet_id: DPL-MCM-SWARM-001
+- domain: autonomous maritime mine countermeasure swarm control
+- objective: clear maritime lanes with autonomous systems while enforcing safety and authority limits
+- primary_tools: uncrewed maritime mission manager, mine-detection analytics, maritime COP
+- alternate_tools: crewed MCM schedule board with manual correlation
+- degraded_mode: confidence-limited clearance recommendation cycle
+- input_requirements: lane geometry, sensor quality, weather/sea state, autonomy authority matrix
+- output_schema: lane confidence table, swarm tasking order, branch triggers
+- protocol_profile: AIS/NMEA + Link 16 J-series + API/JSON
+- validation_gates: autonomy policy gate, lane confidence floor, human command release
+
+### packet_id: DPL-ARCTIC-ENERGY-001
+- domain: arctic fuel and expeditionary microgrid continuity
+- objective: synchronize fuel movement and electrical microgrid interlocks under contested arctic sustainment
+- primary_tools: fuel planners, microgrid dashboards, arctic route intelligence feeds
+- alternate_tools: manual fuel-power synchronization board with fixed sequencing windows
+- degraded_mode: essential-load-only microgrid profile with conservative fuel burn assumptions
+- input_requirements: fuel status, load profile, route access, threat/weather risks
+- output_schema: continuity plan, interlock timeline, outage risk triggers
+- protocol_profile: USMTF + AIS/NMEA + API/JSON
+- validation_gates: fuel sufficiency check, electrical safety gate, sustainment authority review
+
+### packet_id: DPL-DIGITAL-TWIN-001
+- domain: theater digital twin contested branch generation
+- objective: generate and rank branch/sequel options with simulation-backed confidence scores
+- primary_tools: theater digital twin, simulation orchestrator, campaign assessment dashboard
+- alternate_tools: manual branch matrix with historical analog scoring
+- degraded_mode: high-level branch recommendations with explicit uncertainty bounds
+- input_requirements: mission objectives, force layout, threat model, sustainment constraints
+- output_schema: branch tree, confidence ranking, commander decision triggers
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: model-fidelity gate, assumption traceability check, command review
+
+### packet_id: DPL-BIOTHREAT-WW-001
+- domain: biothreat wastewater sentinel fusion
+- objective: detect early force-health risk from wastewater and epidemiological signal convergence
+- primary_tools: wastewater assay pipeline, biosurveillance analytics, force-health dashboard
+- alternate_tools: manual assay spreadsheet and medical watch desk review
+- degraded_mode: daily sentinel summary with conservative alert thresholds
+- input_requirements: assay readings, population map, baseline disease profile, facility exposure data
+- output_schema: alert ladder, force-health trigger set, mitigation recommendations
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: assay quality check, epidemiology confidence floor, medical authority signoff
+
+### packet_id: DPL-RAIL-SABOTAGE-001
+- domain: contested rail sabotage attribution and repair security
+- objective: attribute rail disruptions and sequence secure repairs to restore military throughput
+- primary_tools: rail telemetry platform, infrastructure forensics system, movement-control board
+- alternate_tools: manual incident board and engineering estimate workbook
+- degraded_mode: daily route status bulletin with conservative throughput assumptions
+- input_requirements: incident logs, route criticality map, repair teams, force-protection posture
+- output_schema: attribution confidence board, repair-security queue, throughput forecast
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: attribution confidence check, engineering feasibility, command approval
+
+### packet_id: DPL-ROBOTICS-RL-001
+- domain: expeditionary robotics reverse logistics and readiness recertification
+- objective: recover, triage, and recertify robotics components to sustain autonomous mission capacity
+- primary_tools: robotics telemetry service, maintenance logistics platform, part qualification tracker
+- alternate_tools: manual cannibalization board and paper recertification checklist
+- degraded_mode: mission-critical components only with manual verification loop
+- input_requirements: system health status, spare inventories, recovery routes, mission demand profile
+- output_schema: reverse-logistics priority queue, recertification status board, readiness estimate
+- protocol_profile: USMTF + API/JSON + STANAG
+- validation_gates: component integrity verification, safety compliance check, maintainer authority gate
+
+### packet_id: DPL-COGNITIVE-EW-001
+- domain: converged cognitive EW and disinformation response
+- objective: fuse narrative and EW threat signals to prioritize synchronized counter-actions
+- primary_tools: narrative analytics suite, EW telemetry fusion board, influence attribution platform
+- alternate_tools: manual narrative watch board and EW incident rollup
+- degraded_mode: periodic high-risk convergence bulletin with confidence ladder
+- input_requirements: narrative corpus, EW events, adversary campaign indicators, mission objectives
+- output_schema: converged timeline, threat linkage graph, prioritized counter-actions
+- protocol_profile: STIX/TAXII + CoT + USMTF
+- validation_gates: attribution confidence floor, policy/legal review, commander release approval
+
+### packet_id: DPL-CHM-BDA-001
+- domain: coalition civilian harm mitigation and post-strike battle damage review
+- objective: reduce civilian harm while preserving mission effects through continuous strike validation
+- primary_tools: collateral estimation engine, ISR BDA suite, civilian incident tracking platform
+- alternate_tools: liaison-driven incident log and manual protected-site verification board
+- degraded_mode: post-strike review packet with heightened uncertainty and restricted recommendations
+- input_requirements: target package, ROE profile, protected-site data, post-strike observations
+- output_schema: harm risk overlay, mitigation branch options, post-strike verification packet
+- protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: civilian harm threshold check, legal compliance review, command approval gate
+
+### packet_id: DPL-EDGE-LLM-C2-001
+- domain: guarded edge-LLM command-and-control assistant operations
+- objective: provide bounded AI decision support with strict authority, provenance, and policy enforcement
+- primary_tools: edge inference runtime, policy guardrail engine, tactical collaboration stack
+- alternate_tools: rules-based decision support playbook and manual watchfloor synthesis
+- degraded_mode: AI summarize-only mode with mandatory human adjudication
+- input_requirements: mission context, authority matrix, policy constraints, source feed metadata
+- output_schema: decision-support brief, provenance ledger, authority compliance report
+- protocol_profile: USMTF + API/JSON + CoT
+- validation_gates: policy conformance check, provenance integrity check, human release approval
+
+### packet_id: DPL-DENIED-NAV-001
+- domain: denied-environment navigation relocalization
+- objective: restore position/time confidence under GNSS denial using terrain and landmark fusion
+- primary_tools: terrain matching engine, landmark fusion service, inertial timing monitor
+- alternate_tools: map-resection SOP and manual dead-reckoning cross-check board
+- degraded_mode: bounded maneuver envelope with conservative navigation confidence limits
+- input_requirements: route geometry, landmark set, inertial drift profile, threat spoofing indicators
+- output_schema: relocalization confidence map, fallback sequence, navigation risk report
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: integrity threshold pass, spoofing check, commander maneuver approval

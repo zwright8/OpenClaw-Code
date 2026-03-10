@@ -51,3 +51,10 @@ Primary products for this skill: ammo compatibility matrix, fires readiness delt
 - Flag legal, ROE, LOAC, policy, and coalition caveat constraints before recommending action.
 - Do not fabricate classified sources, authorities, or approvals.
 - If data trust or authority is below threshold, downgrade to advisory-only and request human command decision.
+
+## Operational Hardening Override (2026-03-10)
+
+- Default to `tool_suite_id=ts-fires-airspace-v1` plus cross-domain validation against `ts-logistics-distribution-v1` when ammo substitutions alter theater sustainment.
+- Require packet pairing: `packet_id=DPL-COAL-FIRES-001` for coalition clearance and `packet_id=DPL-MUNI-QA-001` for lot quality/release confidence.
+- Enforce dual authority checks before recommending immediate substitution: fires authority and munitions safety authority.
+- If lot traceability, coalition caveats, or blast-fragmentation metadata are incomplete, downgrade recommendation to advisory-only and present a time-bounded closure plan.

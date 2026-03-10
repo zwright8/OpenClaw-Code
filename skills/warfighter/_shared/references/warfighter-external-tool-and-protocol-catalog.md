@@ -5871,3 +5871,89 @@ external_binding:
 - Primary tools: hydrologic consequence models, emergency operations systems, critical infrastructure telemetry.
 - Cross-check tools: independent flood-wave validator and alternate evacuation throughput monitor.
 - Typical products: cascade consequence map, evacuation sequencing plan, critical-node restoration packet.
+
+## Catalog Expansion (2026-03-10, Warfighter Full-Spectrum Agentic Additions)
+
+### `ts-ai-red-team-agentics-v1`
+- Use for: adversary AI-agent emulation, kill-chain stress testing, and branch/sequel red teaming.
+- Primary tools: adversary behavior simulators, campaign wargame engines, mission-event correlation dashboards.
+- Cross-check tools: independent red-cell adjudication board and scenario replay verifier.
+- Typical products: adversary playbook deltas, vulnerability map, commander risk-injection options.
+
+### `ts-signature-camouflage-discipline-v1`
+- Use for: electronic signature camouflage compliance, decoy discipline, and detectability reduction.
+- Primary tools: EMS signature libraries, deception planning tools, threat-sensor analytics.
+- Cross-check tools: independent emission audit pipeline and decoy-effectiveness review board.
+- Typical products: signature compliance scorecard, decoy schedule, detectability risk map.
+
+### `ts-battlefield-forensics-evidence-v1`
+- Use for: battlefield forensic triage, chain-of-custody assurance, and coalition legal evidence routing.
+- Primary tools: digital forensics suites, evidence registries, legal coordination portals.
+- Cross-check tools: independent custody ledger audit service and alternate evidence integrity verifier.
+- Typical products: evidence custody log, forensic triage matrix, legal referral packet.
+
+### `ts-tactical-5g-resilience-v1`
+- Use for: tactical private-5G deployment, contested-basing network resilience, and local high-throughput C2.
+- Primary tools: private 5G orchestration controllers, RF planning tools, edge QoS dashboards.
+- Cross-check tools: independent RF quality monitor and alternate traffic-priority validation board.
+- Typical products: 5G deployment plan, mission traffic priority matrix, comms failover plan.
+
+### `ts-autonomous-mcm-swarm-v1`
+- Use for: autonomous maritime mine countermeasure swarm coordination and lane-clearance confidence control.
+- Primary tools: uncrewed maritime mission managers, mine detection analytics, maritime COP services.
+- Cross-check tools: independent lane-clearance verifier and autonomy safety status board.
+- Typical products: clearance confidence board, swarm control plan, MCM timeline packet.
+
+### `ts-arctic-energy-logistics-v1`
+- Use for: Arctic fuel/electrical continuity planning and expeditionary microgrid interlock assurance.
+- Primary tools: fuel distribution planners, microgrid control dashboards, Arctic sustainment route intelligence.
+- Cross-check tools: independent energy-state estimator and alternate fuel stock integrity ledger.
+- Typical products: fuel-energy continuity plan, interlock sequence matrix, outage risk timeline.
+
+### `ts-theater-digital-twin-wargame-v1`
+- Use for: theater digital-twin COA stress testing and contested branch/sequel generation.
+- Primary tools: digital twin simulation platforms, campaign simulation orchestrators, readiness analytics boards.
+- Cross-check tools: independent model-validation harness and alternate scenario replay board.
+- Typical products: branch decision tree, COA stress-test report, commander trigger packet.
+
+### `ts-biothreat-wastewater-sentinel-v1`
+- Use for: wastewater sentinel fusion for early biothreat warning and force-health protection.
+- Primary tools: biosurveillance analytics, wastewater assay pipelines, force-health dashboards.
+- Cross-check tools: independent epidemiology review board and alternate assay-quality validator.
+- Typical products: alert ladder, force-health trigger matrix, med-log prepositioning plan.
+
+### `ts-rail-sabotage-repair-security-v1`
+- Use for: rail sabotage attribution, repair-security sequencing, and throughput recovery under attack.
+- Primary tools: rail telemetry services, infrastructure forensics tools, movement-control boards.
+- Cross-check tools: independent sabotage evidence board and alternate throughput model.
+- Typical products: sabotage attribution board, repair sequence order, throughput recovery forecast.
+
+### `ts-robotics-reverse-logistics-v1`
+- Use for: autonomous/robotic spare-part recovery, reverse logistics, and readiness recertification.
+- Primary tools: robotics health telemetry services, maintenance logistics systems, part qualification trackers.
+- Cross-check tools: independent readiness recertification board and alternate component integrity verifier.
+- Typical products: cannibalization matrix, reverse-logistics queue, recertification packet.
+
+### `ts-cognitive-ew-disinformation-v1`
+- Use for: converged cognitive warfare, EW disruption, and disinformation campaign response.
+- Primary tools: narrative analytics platforms, EW telemetry fusion boards, influence attribution tools.
+- Cross-check tools: independent narrative credibility ledger and alternate EW-effect correlation board.
+- Typical products: converged threat timeline, narrative-EW linkage graph, counter-action release plan.
+
+### `ts-civilian-harm-mitigation-v1`
+- Use for: civilian-harm mitigation integrated with battle damage assessment in coalition operations.
+- Primary tools: collateral estimation engines, ISR BDA systems, civilian incident tracking platforms.
+- Cross-check tools: independent civilian incident validation board and alternate protected-site ledger.
+- Typical products: harm risk overlay, post-strike verification packet, mitigation branch matrix.
+
+### `ts-edge-llm-c2-guardrails-v1`
+- Use for: guarded edge-LLM assistants in disconnected C2 environments with authority boundaries.
+- Primary tools: edge inference runtimes, policy guardrail engines, tactical C2 collaboration tools.
+- Cross-check tools: independent AI output provenance verifier and alternate policy compliance monitor.
+- Typical products: authority matrix, AI trust ledger, bounded assistant SOP.
+
+### `ts-denied-nav-relocalization-v1`
+- Use for: GNSS-denied navigation relocalization using terrain, landmark, and inertial fusion.
+- Primary tools: terrain matching engines, landmark fusion processors, inertial timing monitors.
+- Cross-check tools: independent position-integrity monitor and alternate spoofing-detection board.
+- Typical products: relocalization confidence map, fallback sequence, position risk report.
