@@ -445,6 +445,71 @@ test('dispatchTask throws when target missing and no routeTask provided', async 
     );
 });
 
+test('drain mode rejects new dispatches with DRAINING error', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        }
+    });
+
+    orchestrator.setDrainMode({
+        enabled: true,
+        reason: 'rolling_restart'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-drain',
+            task: 'Should be rejected while draining'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'DRAINING');
+            return true;
+        }
+    );
+});
+
+test('drain mode still coalesces duplicate dispatches to existing open task', async () => {
+    const sent = [];
+    const clock = createClock(91_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 30_000,
+            openOnly: true
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-drain-coalesce',
+        task: 'Long in-flight task',
+        context: { run: 1 }
+    });
+
+    orchestrator.setDrainMode({
+        enabled: true,
+        reason: 'graceful_shutdown'
+    });
+
+    clock.advance(100);
+    const duplicate = await orchestrator.dispatchTask({
+        target: 'agent:worker-drain-coalesce',
+        task: 'Long in-flight task',
+        context: { run: 1 }
+    });
+
+    assert.equal(duplicate.taskId, first.taskId);
+    assert.equal(sent.length, 1);
+});
+
 test('persists task state and hydrates after restart', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

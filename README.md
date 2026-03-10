@@ -28,6 +28,7 @@ Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds dispatch idempotency controls (`dispatchDeduplication`) to suppress duplicate in-flight submissions and optionally replay recent terminal matches.
 Adds queue-capacity admission controls (`queueCapacity`) to fail fast on overload with global and per-target open-task limits.
+Adds graceful drain-mode admission control so operators can reject new dispatches while existing in-flight tasks finish.
 Retry hint parsing now supports `retry-after-ms`/`x-ms-retry-after-ms`, `ratelimit-reset`, and `x-ratelimit-reset-{requests|tokens}` (including duration literals like `17ms` / `6m0s`), while preferring conservative max-delay hints when multiple are present.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
@@ -384,6 +385,10 @@ const orchestrator = new TaskOrchestrator({
     terminalStatus: 'timed_out', // optional: 'timed_out' (default) or 'cancelled'
     propagateCancel: true // optional: only used when terminalStatus='cancelled'
   },
+  drainMode: {
+    enabled: false, // optional: start in drain mode
+    rejectNewDispatches: true // optional: reject only brand-new dispatches
+  },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -415,6 +420,13 @@ await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' })
 await orchestrator.cancelTask(taskId, {
   reason: 'superseded_by_new_plan',
   cancelledBy: 'agent:planner'
+});
+
+// For graceful shutdown/deploy drain:
+orchestrator.setDrainMode({
+  enabled: true,
+  reason: 'rolling_restart',
+  rejectNewDispatches: true
 });
 ```
 
