@@ -169,3 +169,8 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 
 - Add `tool_suite_id=ts-coalition-medevac-cross-border-clearance-routing-v1` + `protocol_stack_id=ps-coalition-medevac-cross-border-clearance-routing-stack-v1` when coalition data exchanges must synchronize legal medevac routing and transfer approvals.
 - Add `tool_suite_id=ts-coalition-disaster-relief-dual-use-port-screening-v1` + `protocol_stack_id=ps-coalition-disaster-relief-dual-use-port-screening-stack-v1` when coalition interoperability workflows must balance humanitarian throughput and force-protection screening.
+
+## Domain Toolchain Override (2026-03-10, Port Surge and Stock Custody Expansion)
+
+- Add `tool_suite_id=ts-dual-use-port-cyber-physical-surge-protection-v1` + `protocol_stack_id=ps-dual-use-port-cyber-physical-surge-protection-stack-v1` when coalition data-fabric interoperability must include dual-use port throughput and cyber-physical incident coordination.
+- Add `tool_suite_id=ts-prepositioned-stock-cyber-custody-assurance-v1` + `protocol_stack_id=ps-prepositioned-stock-cyber-custody-assurance-stack-v1` when coalition data exchanges govern trusted release and tamper verification of prepositioned stocks.

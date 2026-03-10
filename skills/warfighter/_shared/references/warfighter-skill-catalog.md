@@ -1086,3 +1086,33 @@ Every skill output should include:
 - Tactical sniper detection with civilian-shield mitigation + urban operations corridor control + civilian harm mitigation + information integrity and attribution
 - Strategic space-weather PNT compensation + denied precision timing reconstitution + SATCOM anti-jam continuity + NC3 resilience
 - Cyber-kinetic cascade containment + theater mission network failover + homeland critical infrastructure restoration + command continuity assurance
+
+## New Expansion Wave (2026-03-10, Model Trust, Port Security, and NC3-Critical Continuity)
+
+- joint-digital-engineering-kill-chain-model-integrity-cell
+- theater-contested-additive-feedstock-assurance-cell
+- expeditionary-waterway-bridge-denial-gap-crossing-cell
+- homeland-critical-mineral-smuggling-port-screening-cell
+- joint-nc3-hardened-fiber-failover-assurance-cell
+- joint-denied-environment-casualty-data-synchronization-cell
+- coalition-contested-private-5g-mission-priority-failover-cell
+- theater-expeditionary-blood-cold-chain-denial-recovery-cell
+- joint-battlefield-dialect-translation-risk-adjudication-cell
+- homeland-dual-use-port-cyber-physical-surge-protection-cell
+- strategic-prepositioned-stock-cyber-custody-assurance-cell
+- theater-contested-space-launch-fuel-oxidizer-allocation-cell
+
+## Updated Pairings (2026-03-10, Model Trust, Port Security, and NC3-Critical Continuity)
+
+- Kill-chain model integrity assurance + mission-assured software factory support + joint targeting standards and CDE governance + campaign assessment cell
+- Contested additive feedstock assurance + expeditionary fabrication and battle damage repair + additive munitions quality assurance + contested logistics sustainment
+- Waterway bridge denial and gap crossing + engineer mobility counter-mobility survivability + contested bridge and gap crossing operations + movement control convoy rail planning
+- Critical mineral smuggling interdiction + sanctions/export control operational impact assessor + strategic industrial mobilization readiness + maritime operations planner
+- NC3 hardened fiber failover assurance + theater mission network failover + joint NC3 continuity and EAM assurance + denied precision timing transition
+- Denied casualty data synchronization + medical C4I and patient movement fusion + casualty evac and medical regulation + austere surgical support coordinator
+- Coalition private-5G mission-priority failover + coalition data fabric interoperability + joint operations center battle rhythm manager + contested spectrum mission replanning
+- Theater blood cold-chain denial recovery + joint battlefield blood supply cold-chain resilience + preventive medicine force health protection + contested medevac airbridge prioritization
+- Battlefield dialect translation risk adjudication + AI-enabled language and cultural mediation + coalition interoperability coordinator + legal-ROE compliance checker
+- Dual-use port cyber-physical surge protection + strategic port cyber resilience + homeland defense support of civil authorities + strategic sealift and prepositioning coordinator
+- Strategic prepositioned stock cyber custody assurance + supply chain risk and industrial base monitor + strategic mobility deployment planner + mission data provenance and releasability auditor
+- Contested space launch fuel/oxidizer allocation + contested space launch and satellite reconstitution + strategic orbital asset maneuver fuel budgeting + space domain awareness and satcom defense

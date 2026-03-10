@@ -176,3 +176,8 @@ Primary products for this skill: data link execution plan, network load manageme
 
 - Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when mission-data-link actions must reconcile contested JTAC voice and digital fires-control state.
 - Add `tool_suite_id=ts-solar-storm-radiation-force-posture-v1` + `protocol_stack_id=ps-solar-storm-radiation-force-posture-stack-v1` when data-link timing and releasability are constrained by severe solar storm radiation posture changes.
+
+## Domain Toolchain Override (2026-03-10, Translation Risk and Model Trust Expansion)
+
+- Add `tool_suite_id=ts-battlefield-dialect-translation-risk-adjudication-v1` + `protocol_stack_id=ps-battlefield-dialect-translation-risk-adjudication-stack-v1` when data-link recommendations depend on multilingual command fidelity and translation-confidence controls.
+- Add `tool_suite_id=ts-kill-chain-model-integrity-assurance-v1` + `protocol_stack_id=ps-kill-chain-model-integrity-assurance-stack-v1` when mission data links are used to publish simulation-backed kill-chain model updates.

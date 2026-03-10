@@ -165,3 +165,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-theater-spectrum-emissions-discipline-enforcement-v1` + `protocol_stack_id=ps-theater-spectrum-emissions-discipline-enforcement-stack-v1` when failover planning depends on strict emissions-control enforcement and detectability reduction.
 - Add `tool_suite_id=ts-strategic-space-weather-pnt-time-transfer-v1` + `protocol_stack_id=ps-strategic-space-weather-pnt-time-transfer-stack-v1` when network continuity decisions require space-weather-aware timing compensation and transfer integrity.
+
+## Domain Toolchain Override (2026-03-10, NC3 Fiber and Coalition 5G Expansion)
+
+- Add `tool_suite_id=ts-nc3-hardened-fiber-failover-assurance-v1` + `protocol_stack_id=ps-nc3-hardened-fiber-failover-assurance-stack-v1` when failover recommendations include hardened terrestrial NC3 path continuity and acknowledgment integrity.
+- Add `tool_suite_id=ts-coalition-private-5g-mission-failover-v1` + `protocol_stack_id=ps-coalition-private-5g-mission-failover-stack-v1` when mission network failover must preserve coalition private-5G priority services in contested spectrum.

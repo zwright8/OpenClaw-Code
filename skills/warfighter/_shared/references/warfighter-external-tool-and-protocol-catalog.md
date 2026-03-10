@@ -5621,3 +5621,125 @@ external_binding:
 ### `ps-joint-cyber-kinetic-infrastructure-cascade-containment-stack-v1`
 - Protocols: `USMTF`, `STIX/TAXII`, `NIMS/ICS`, `API/JSON`.
 - Use for: cyber-kinetic cascade warnings, restoration order exchange, and cross-domain containment coordination.
+
+## 2026-03-10 Addendum F: Model Integrity, Contested Sustainment, and NC3-Critical Routing
+
+### `ts-kill-chain-model-integrity-assurance-v1`
+- Use for: digital engineering integrity validation of joint kill-chain mission-thread models before deployment decisions.
+- Primary tools: model provenance ledgers, mission-thread simulation validators, configuration baseline attestors.
+- Cross-check tools: independent simulation reproducibility board and alternate model-drift detector.
+- Typical products: model integrity scorecard, mission-thread drift register, release confidence packet.
+
+### `ts-contested-additive-feedstock-assurance-v1`
+- Use for: additive feedstock quality governance and contamination control in contested theater sustainment.
+- Primary tools: feedstock assay telemetry, additive process control boards, material provenance services.
+- Cross-check tools: independent contamination classifier and alternate material-lot attestation service.
+- Typical products: feedstock assurance ledger, contamination branch plan, production release matrix.
+
+### `ts-forward-waterway-gap-crossing-assurance-v1`
+- Use for: forward waterway crossing and denial sequencing under dynamic hydrology and enemy pressure.
+- Primary tools: hydrology route analyzers, bridge load-class planners, engineer mobility branch engines.
+- Cross-check tools: independent crossing survivability model and alternate denial-effect estimator.
+- Typical products: crossing decision board, denial-breach branch matrix, engineer tasking card.
+
+### `ts-critical-mineral-smuggling-port-screening-v1`
+- Use for: interdiction of critical mineral smuggling with joint customs and port-screening prioritization.
+- Primary tools: cargo anomaly detection services, sanctions-link analysis, customs workflow orchestration.
+- Cross-check tools: independent origin-confidence verifier and alternate high-risk cargo risk scorer.
+- Typical products: interdiction matrix, screening prioritization board, legal handoff evidence packet.
+
+### `ts-nc3-hardened-fiber-failover-assurance-v1`
+- Use for: NC3 continuity planning across hardened terrestrial fiber failover paths and timing dependencies.
+- Primary tools: hardened transport path maps, timing integrity services, acknowledgment-chain monitors.
+- Cross-check tools: independent message-custody validator and alternate route survivability predictor.
+- Typical products: NC3 failover matrix, acknowledgment integrity ledger, continuity trigger card.
+
+### `ts-denied-casualty-data-synchronization-v1`
+- Use for: casualty and patient-movement data reconciliation during disconnected or denied operations.
+- Primary tools: medical data merge services, patient identity reconciliation boards, delayed-report analytics.
+- Cross-check tools: independent casualty record deduplication service and alternate triage confidence monitor.
+- Typical products: casualty synchronization board, care-continuity confidence ladder, escalation packet.
+
+### `ts-coalition-private-5g-mission-failover-v1`
+- Use for: coalition private-5G mission-priority failover and QoS arbitration under contested spectrum.
+- Primary tools: private-5G policy controllers, coalition QoS governance boards, RF contention telemetry.
+- Cross-check tools: independent mission-service conflict detector and alternate failover timing monitor.
+- Typical products: mission-priority matrix, coalition failover branch plan, service-restoration tracker.
+
+### `ts-theater-blood-cold-chain-denial-recovery-v1`
+- Use for: recovery of theater blood cold-chain continuity after sustained power or transport denial.
+- Primary tools: refrigeration telemetry monitors, blood logistics schedulers, casualty-priority allocation boards.
+- Cross-check tools: independent blood viability estimator and alternate refrigeration reliability auditor.
+- Typical products: cold-chain recovery board, viability risk ladder, transfusion continuity packet.
+
+### `ts-battlefield-dialect-translation-risk-adjudication-v1`
+- Use for: adjudicating command translation risk across dialect-heavy coalition and partner-force environments.
+- Primary tools: translation confidence engines, dialect ambiguity detectors, command phrase validation boards.
+- Cross-check tools: independent linguist adjudication panel and alternate semantic drift monitor.
+- Typical products: translation risk map, command-language adjudication ledger, mitigation action card.
+
+### `ts-dual-use-port-cyber-physical-surge-protection-v1`
+- Use for: cyber-physical surge protection at dual-use ports under concurrent civilian and military throughput.
+- Primary tools: OT security telemetry, port throughput twins, berth/cargo surge orchestration services.
+- Cross-check tools: independent cyber-physical hazard monitor and alternate throughput collapse predictor.
+- Typical products: surge protection posture board, hazard escalation ladder, throughput continuity packet.
+
+### `ts-prepositioned-stock-cyber-custody-assurance-v1`
+- Use for: strategic stock cyber-custody assurance and tamper-detection governance before release authorization.
+- Primary tools: inventory custody attestation services, tamper telemetry monitors, release-governance workflows.
+- Cross-check tools: independent custody-chain verifier and alternate anomaly corroboration board.
+- Typical products: stock custody assurance ledger, tamper timeline, release decision matrix.
+
+### `ts-space-launch-fuel-oxidizer-allocation-v1`
+- Use for: contested launch fuel and oxidizer allocation across military space reconstitution priorities.
+- Primary tools: propellant inventory telemetry, launch scheduling arbitration boards, oxidizer safety monitors.
+- Cross-check tools: independent burn-rate forecast engine and alternate launch-delay risk model.
+- Typical products: fuel-oxidizer allocation board, reconstitution priority ladder, mission-delay trigger packet.
+
+### `ps-kill-chain-model-integrity-assurance-stack-v1`
+- Protocols: `USMTF`, model provenance attestations, signed simulation manifests, `API/JSON`.
+- Use for: model integrity exchanges, baseline drift notices, and release-governance acknowledgments.
+
+### `ps-contested-additive-feedstock-assurance-stack-v1`
+- Protocols: `USMTF`, industrial signed telemetry envelopes, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: feedstock quality updates, contamination alerts, and additive production release coordination.
+
+### `ps-forward-waterway-gap-crossing-assurance-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: crossing viability updates, denial/breach branch actions, and engineer support synchronization.
+
+### `ps-critical-mineral-smuggling-port-screening-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `STIX/TAXII`, `API/JSON`.
+- Use for: critical mineral interdiction alerts, screening priorities, and legal evidence handoff.
+
+### `ps-nc3-hardened-fiber-failover-assurance-stack-v1`
+- Protocols: `USMTF`, signed EAM transport manifests, timing-integrity envelopes, `API/JSON`.
+- Use for: NC3 path failover directives, acknowledgment integrity exchange, and continuity escalation.
+
+### `ps-denied-casualty-data-synchronization-stack-v1`
+- Protocols: `USMTF`, `HL7/FHIR`, delayed-sync medical envelopes, `API/JSON`.
+- Use for: casualty record reconciliation, patient movement synchronization, and confidence downgrade alerts.
+
+### `ps-coalition-private-5g-mission-failover-stack-v1`
+- Protocols: `USMTF`, `CoT`, 5G policy telemetry envelopes, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: coalition private-5G mission-priority failover, QoS arbitration, and restoration triggers.
+
+### `ps-theater-blood-cold-chain-denial-recovery-stack-v1`
+- Protocols: `USMTF`, `HL7/FHIR`, cold-chain custody manifests, `API/JSON`.
+- Use for: blood viability updates, refrigeration outage escalation, and theater transfusion continuity actions.
+
+### `ps-battlefield-dialect-translation-risk-adjudication-stack-v1`
+- Protocols: `USMTF`, signed translation confidence packets, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: dialect risk exchange, command-language adjudication, and linguist escalation triggers.
+
+### `ps-dual-use-port-cyber-physical-surge-protection-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, OT incident telemetry envelopes, `API/JSON`.
+- Use for: dual-use port cyber-physical surge posture updates, hazard alerts, and throughput branch actions.
+
+### `ps-prepositioned-stock-cyber-custody-assurance-stack-v1`
+- Protocols: `USMTF`, signed custody manifests, `STIX/TAXII`, `API/JSON`.
+- Use for: prepositioned stock custody checks, tamper alerts, and release authority acknowledgments.
+
+### `ps-space-launch-fuel-oxidizer-allocation-stack-v1`
+- Protocols: `USMTF`, launch safety telemetry envelopes, `CCSDS orbit data exchange`, `API/JSON`.
+- Use for: fuel/oxidizer allocation updates, launch reprioritization notices, and safety-governance escalation.

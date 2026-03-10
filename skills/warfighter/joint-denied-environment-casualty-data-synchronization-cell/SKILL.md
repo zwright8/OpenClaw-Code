@@ -1,9 +1,9 @@
 ---
-name: joint-operations-center-battle-rhythm-manager
-description: Synchronize JOC battle rhythm and decision support for joint operations across 24-hour cycles. Use when aligning boards, bureaus, centers, cells, and working groups to command decision windows.
+name: joint-denied-environment-casualty-data-synchronization-cell
+description: Coordinate casualty data synchronization in denied and disconnected environments for joint medical regulation. Use when patient movement decisions rely on delayed or fragmented reporting.
 ---
 
-# Joint Operations Center Battle Rhythm Manager
+# Joint Denied Environment Casualty Data Synchronization Cell
 
 ## Mission Scope
 
@@ -13,8 +13,8 @@ description: Synchronize JOC battle rhythm and decision support for joint operat
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: commander objectives, force disposition, operating constraints, and key intelligence gaps.
-2. Identify assumptions, decision thresholds, and what reporting or indicators would invalidate the current plan.
+1. Frame the mission problem using domain-specific inputs and command objectives.
+2. Identify assumptions, decision thresholds, and what reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
@@ -31,7 +31,11 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: battle rhythm synchronization matrix, command decision support board package, daily operations update.
+Primary products for this skill: casualty synchronization reconciliation board, patient movement confidence ladder, delayed-report escalation packet.
+
+## Domain Tool Stack
+
+Use these tool categories as the default stack for this skill: medical C4I replication tools, disconnected data merge services, casualty identity reconciliation boards, continuity-of-care governance systems.
 
 ## External Tools and Protocol Integration
 
@@ -144,33 +148,6 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-10, Multi-Domain Continuity Expansion)
 
-## Domain Toolchain Override (2026-03-10, Denied Sustainment and SATCOM Recovery Addendum)
-
-- Add `tool_suite_id=ts-denied-logistics-payment-cash-continuity-v1` + `protocol_stack_id=ps-denied-logistics-payment-cash-continuity-stack-v1` when battle rhythm updates require force-flow sustainment decisions under disrupted payment rails.
-- Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when command cadence is constrained by SATCOM mesh denial and dynamic comms restoration sequencing.
-
-## Domain Toolchain Override (2026-03-10, Cislunar Continuity and Trusted Command Expansion)
-
-- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when battle rhythm synchronization depends on denied-spectrum coalition command continuity.
-- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when mission-system outage conditions require cross-region failover governance.
-
-## Domain Toolchain Override (2026-03-10, Underground Denial and Strategic Continuity Expansion)
-
-- Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when battle rhythm decisions require cryptographic rollover and disconnected trust continuity.
-- Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when command cadence depends on EMP-affected grid and C2 restoration sequencing.
-
-## Domain Toolchain Override (2026-03-10, Human Terrain Assurance and Resilient C2 Expansion)
-
-- Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when battle rhythm synchronization must reconcile contested JTAC voice and digital terminal-control timelines.
-- Add `tool_suite_id=ts-nc3-courier-eam-bridge-assurance-v1` + `protocol_stack_id=ps-nc3-courier-eam-bridge-assurance-stack-v1` when command cadence must preserve emergency-action message continuity across digital and physical courier pathways.
-
-## Domain Toolchain Override (2026-03-10, Seabed Resilience and Cascade Containment Expansion)
-
-- Add `tool_suite_id=ts-maritime-seabed-infrastructure-sabotage-response-v1` + `protocol_stack_id=ps-maritime-seabed-infrastructure-sabotage-response-stack-v1` when battle rhythm priorities depend on seabed cable/pipeline disruptions and restoration sequencing.
-- Add `tool_suite_id=ts-joint-cyber-kinetic-infrastructure-cascade-containment-v1` + `protocol_stack_id=ps-joint-cyber-kinetic-infrastructure-cascade-containment-stack-v1` when command cadence requires synchronized cyber-physical cascade containment actions.
-
-## Domain Toolchain Override (2026-03-10, Model Integrity and Casualty Sync Expansion)
-
-- Add `tool_suite_id=ts-kill-chain-model-integrity-assurance-v1` + `protocol_stack_id=ps-kill-chain-model-integrity-assurance-stack-v1` when battle-rhythm decisions depend on simulation-backed model trust and mission-thread drift adjudication.
-- Add `tool_suite_id=ts-denied-casualty-data-synchronization-v1` + `protocol_stack_id=ps-denied-casualty-data-synchronization-stack-v1` when JOC synchronization cycles include disconnected casualty reporting and patient movement confidence updates.
+- Add `tool_suite_id=ts-denied-casualty-data-synchronization-v1` + `protocol_stack_id=ps-denied-casualty-data-synchronization-stack-v1` when producing critical recommendations for this mission domain.
