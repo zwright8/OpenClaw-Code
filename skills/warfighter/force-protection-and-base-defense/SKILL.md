@@ -166,3 +166,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For forward operating base water network sabotage and attribution, include `ts-forward-water-sabotage-attribution-v1` with `ps-forward-water-sabotage-attribution-stack-v1`.
 - For transformer convoy escort and emplacement during homeland defense power restoration, include `ts-grid-transformer-escort-install-v1` with `ps-grid-transformer-escort-install-stack-v1`.
 - For coalition electromagnetic incident legal framing at defended installations, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.
+
+## Domain Toolchain Override (2026-03-10, Warfighter Domain Coverage Surge)
+
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when force protection depends on trusted emergency warning traffic and rumor suppression.
+- Add `tool_suite_id=ts-satellite-ground-station-defense-v1` + `protocol_stack_id=ps-satellite-ground-station-defense-stack-v1` when base defense outcomes depend on SATCOM ground segment survivability.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-SATELLITE-GROUND-STATION-DEFENSE-001` for high-consequence posture changes.

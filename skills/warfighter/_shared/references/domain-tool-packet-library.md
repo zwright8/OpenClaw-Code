@@ -3510,3 +3510,115 @@ validation_gates:
 - output_schema: evacuation queue, lift assignment matrix, continuity risk register
 - protocol_profile: HL7/FHIR + USMTF + API/JSON
 - validation_gates: medical authority confirmation, theater deconfliction pass, patient handoff acknowledgment
+
+## Expansion Packets (2026-03-10, Warfighter Domain Coverage Surge)
+
+### packet_id: DPL-AUTONOMOUS-SWARM-CORRIDOR-PRIORITY-001
+- domain: autonomous swarm corridor management
+- objective: allocate and deconflict multi-domain swarm corridors under threat and congestion
+- primary_tools: autonomous corridor orchestrator, mission-priority scheduler, geofence validator
+- alternate_tools: manual corridor timing board and restricted route card
+- degraded_mode: mission-essential corridor updates every 30 minutes via USMTF
+- input_requirements: corridor map, swarm mission priorities, air/ground/maritime conflict overlays, authority constraints
+- output_schema: corridor priority matrix, release gates, conflict resolution sequence
+- protocol_profile: CoT + Link 16 J-series + USMTF + API/JSON
+- validation_gates: fratricide-risk pass, authority check, stale-data threshold
+
+### packet_id: DPL-THEATER-FOOD-WATER-FUEL-DENIAL-001
+- domain: contested sustainment denial resilience
+- objective: preserve food, water, and fuel continuity under interdiction and contamination
+- primary_tools: sustainment forecast engine, contamination telemetry, movement-control allocator
+- alternate_tools: manual commodity ration board and convoy reallocation worksheet
+- degraded_mode: 6-hour sustainment pulse with reduced source confidence
+- input_requirements: commodity stock levels, contamination reports, route availability, demand priority tiers
+- output_schema: denial resilience plan, node triage board, sustainment branch triggers
+- protocol_profile: USMTF + NIMS/ICS + API/JSON + HL7/FHIR
+- validation_gates: life-support priority pass, contamination evidence check, throughput viability gate
+
+### packet_id: DPL-ADDITIVE-AIRWORTHINESS-CERTIFICATION-001
+- domain: additive aviation maintenance and certification
+- objective: release additive-manufactured parts with auditable airworthiness controls
+- primary_tools: additive QA service, provenance ledger, airworthiness release workflow
+- alternate_tools: catalog-only substitution with manual quality sign-off
+- degraded_mode: approved part-family only with commander risk acceptance note
+- input_requirements: part spec, material batch evidence, fabrication records, aircraft mission profile
+- output_schema: certification packet, release/hold matrix, sortie risk estimate
+- protocol_profile: USMTF + AIXM/FIXM/IWXXM + API/JSON
+- validation_gates: material trace pass, maintenance authority sign-off, sortie risk threshold
+
+### packet_id: DPL-URBAN-SUBSURFACE-RAID-SAFETY-001
+- domain: urban subsurface raid safety and utility protection
+- objective: plan subsurface maneuver while protecting critical utilities and reducing civilian harm
+- primary_tools: subsurface map fusion, utility status overlays, raid risk simulation tools
+- alternate_tools: manual tunnel sketch board and utility liaison matrix
+- degraded_mode: restricted-maneuver advisory with no-strike defaults
+- input_requirements: tunnel geometry, utility maps, occupancy estimates, route timing window
+- output_schema: subsurface safety overlay, utility protection controls, hazard trigger list
+- protocol_profile: OGC + VMF + USMTF + API/JSON
+- validation_gates: utility conflict check, civilian harm mitigation check, legal authority gate
+
+### packet_id: DPL-SANCTIONS-EVASION-MARITIME-DISRUPTION-001
+- domain: coalition maritime sanctions disruption
+- objective: disrupt evasion networks with legal continuity and coalition interoperability
+- primary_tools: vessel network analytics, sanctions fusion service, interdiction evidence workflows
+- alternate_tools: manual vessel watchlist and liaison evidence log
+- degraded_mode: confidence-bounded disruption options only
+- input_requirements: vessel graph, sanctions entities, cargo anomalies, legal constraints
+- output_schema: disruption matrix, evidence chain summary, escalation options board
+- protocol_profile: AIS/NMEA + STIX/TAXII + NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: legal-review pass, attribution confidence floor, coalition caveat check
+
+### packet_id: DPL-SATELLITE-GROUND-STATION-DEFENSE-001
+- domain: satellite ground station defense and restoration
+- objective: maintain SATCOM ground segment continuity under cyber-physical attack
+- primary_tools: station SOC telemetry, perimeter anomaly detection, link continuity planners
+- alternate_tools: manual site status board and delayed SATCOM health reports
+- degraded_mode: critical service only with scheduled status synchronization
+- input_requirements: station topology, threat telemetry, service priorities, restoration assets
+- output_schema: defense posture plan, failover ladder, restoration priority queue
+- protocol_profile: USMTF + STIX/TAXII + OGC + API/JSON
+- validation_gates: critical-path continuity check, perimeter integrity check, authority verification
+
+### packet_id: DPL-CIVIL-ALERT-AUTHENTICITY-001
+- domain: civil warning authentication and rumor control
+- objective: verify alert legitimacy and suppress adversary narrative manipulation
+- primary_tools: warning authenticity validator, media forensics stack, civic trust telemetry
+- alternate_tools: manual source verification matrix and delayed public advisory loop
+- degraded_mode: high-confidence-source-only alert posture
+- input_requirements: incoming alerts, signature metadata, rumor indicators, affected regions
+- output_schema: authenticity verdict table, rumor disruption actions, confidence bulletin
+- protocol_profile: EDXL-DE/CAP + NIMS/ICS + USMTF + API/JSON
+- validation_gates: signature verification pass, source corroboration, public risk threshold check
+
+### packet_id: DPL-BATTLEFIELD-IDENTITY-CREDENTIAL-RECOVERY-001
+- domain: battlefield identity and credential recovery
+- objective: re-establish trusted access after credential compromise and replay attempts
+- primary_tools: credential lifecycle manager, revocation broker, access anomaly analytics
+- alternate_tools: manual revocation board with dual-control reissue workflow
+- degraded_mode: mission-essential identity allowlist only
+- input_requirements: compromised credential set, access logs, unit role mappings, mission critical systems
+- output_schema: revocation/reissue sequence, trust re-establishment matrix, access risk board
+- protocol_profile: USMTF + API/JSON + STIX/TAXII
+- validation_gates: identity proofing pass, dual-control approval, replay suppression confirmation
+
+### packet_id: DPL-THEATER-FIBER-BACKBONE-TRAFFIC-TRIAGE-001
+- domain: theater backbone outage management
+- objective: prioritize mission-critical traffic and sequence fiber restoration under attack
+- primary_tools: backbone telemetry, traffic orchestrator, restoration planning services
+- alternate_tools: manual traffic-class triage board and static reroute map
+- degraded_mode: command-and-medical traffic only with timed updates
+- input_requirements: outage topology, traffic classes, mission priorities, repair asset availability
+- output_schema: traffic triage matrix, reroute plan, restoration sequence board
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: mission-priority assignment check, reroute viability pass, repair timeline confidence
+
+### packet_id: DPL-RESERVE-MOBILIZATION-TRAINING-SURGE-001
+- domain: reserve mobilization and training surge
+- objective: synchronize reserve call-up, training throughput, and readiness confidence under compressed timelines
+- primary_tools: mobilization readiness systems, training scheduler, instructor/capacity analytics
+- alternate_tools: manual throughput board with unit readiness worksheet
+- degraded_mode: priority-unit-only surge with conservative readiness assumptions
+- input_requirements: mobilization targets, training seat capacity, instructor availability, readiness standards
+- output_schema: surge timeline, throughput allocation matrix, readiness risk ladder
+- protocol_profile: USMTF + API/JSON + NATO APP-11/ADatP-3 aligned
+- validation_gates: throughput feasibility check, instructor sufficiency gate, readiness confidence threshold

@@ -3394,3 +3394,105 @@ external_binding:
 - Messaging: HL7/FHIR + USMTF + API/JSON patient movement coordination updates.
 - Transport: medevac command exchange + theater lift planner bus + low-bandwidth contingency path.
 - Security: medical role authorization + patient data minimization + immutable transfer acknowledgment chain.
+
+## Expansion Wave (2026-03-10, Warfighter Domain Coverage Surge)
+
+### `ts-autonomous-swarm-corridor-priority-v1`
+- Use for: corridor priority governance across autonomous air, ground, and maritime swarms in contested battlespace.
+- Primary tools: autonomous traffic orchestration services, dynamic geofence managers, mission-priority schedulers.
+- Cross-check tools: independent corridor conflict detector and alternate fratricide-risk monitor.
+- Typical products: corridor priority board, conflict-resolution matrix, release authority packet.
+
+### `ts-theater-food-water-fuel-denial-v1`
+- Use for: theater sustainment continuity when food, water, and fuel lines are targeted or contaminated.
+- Primary tools: sustainment demand forecasting, contamination telemetry, movement-control allocation engines.
+- Cross-check tools: independent commodity integrity monitor and alternate distribution readiness board.
+- Typical products: denial resilience plan, node triage board, sustainment branch triggers.
+
+### `ts-additive-airworthiness-certification-v1`
+- Use for: additive-manufactured aviation part certification, release governance, and sortie-risk containment.
+- Primary tools: additive QA systems, digital part provenance ledgers, airworthiness release workflows.
+- Cross-check tools: independent material integrity verifier and alternate maintenance risk board.
+- Typical products: certification packet, release/hold matrix, sortie risk note.
+
+### `ts-urban-subsurface-raid-safety-v1`
+- Use for: urban subsurface raid safety with critical-utility protection and civilian-harm mitigation.
+- Primary tools: subsurface mapping services, utility telemetry overlays, raid-risk simulation boards.
+- Cross-check tools: independent tunnel hazard verifier and alternate utility conflict monitor.
+- Typical products: raid safety overlay, utility protection controls, no-strike hazard board.
+
+### `ts-sanctions-evasion-maritime-network-disruption-v1`
+- Use for: coalition disruption of maritime sanctions-evasion networks with legal evidence continuity.
+- Primary tools: vessel network analytics, sanctions list fusion, interdiction evidence chain systems.
+- Cross-check tools: independent legal confidence board and alternate cargo anomaly monitor.
+- Typical products: disruption options matrix, coalition evidence packet, escalation risk ladder.
+
+### `ts-satellite-ground-station-defense-v1`
+- Use for: cyber-physical defense and restoration prioritization for critical satellite ground stations.
+- Primary tools: ground-station telemetry SOC, perimeter sensor fusion, SATCOM continuity orchestrators.
+- Cross-check tools: independent site assurance monitor and alternate link-health board.
+- Typical products: defense posture plan, failover sequence, restoration priority board.
+
+### `ts-civil-alert-authenticity-v1`
+- Use for: civil warning authentication and coordinated rumor-control operations under adversary information pressure.
+- Primary tools: message authenticity validators, broadcast integrity monitors, narrative-risk analytics.
+- Cross-check tools: independent source-credibility ledger and alternate civic trust monitor.
+- Typical products: alert authenticity report, rumor disruption plan, confidence bulletin.
+
+### `ts-battlefield-identity-credential-recovery-v1`
+- Use for: battlefield identity compromise response, credential revocation, and trust reconstitution.
+- Primary tools: credential lifecycle managers, revocation services, contested ICAM policy engines.
+- Cross-check tools: independent identity audit ledger and alternate access anomaly monitor.
+- Typical products: credential recovery sequence, trust re-establishment matrix, access risk board.
+
+### `ts-fiber-backbone-traffic-triage-v1`
+- Use for: theater fiber outage triage and mission-priority traffic restoration sequencing.
+- Primary tools: backbone telemetry analyzers, traffic-class orchestrators, reroute planners.
+- Cross-check tools: independent network health mirror and alternate critical-flow validator.
+- Typical products: triage matrix, reroute packet, restoration sequence board.
+
+### `ts-reserve-mobilization-training-surge-v1`
+- Use for: reserve mobilization and compressed training throughput management during rapid force expansion.
+- Primary tools: mobilization readiness systems, training pipeline schedulers, instructor capacity planners.
+- Cross-check tools: independent readiness confidence board and alternate throughput verification service.
+- Typical products: surge timeline, training allocation matrix, readiness risk map.
+
+### `ps-autonomous-swarm-corridor-priority-stack-v1`
+- Protocols: `CoT`, `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: autonomous swarm corridor assignment, timing deconfliction, and release authority traceability.
+
+### `ps-theater-food-water-fuel-denial-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `API/JSON`, `HL7/FHIR`.
+- Use for: sustainment denial response with contamination tracking and life-support prioritization.
+
+### `ps-additive-airworthiness-certification-stack-v1`
+- Protocols: `USMTF`, `AIXM/FIXM/IWXXM`, `API/JSON`.
+- Use for: additive part airworthiness certification, release controls, and sortie risk communication.
+
+### `ps-urban-subsurface-raid-safety-stack-v1`
+- Protocols: `OGC WMS/WFS/WMTS`, `USMTF`, `VMF`, `API/JSON`.
+- Use for: subsurface raid safety and utility no-strike governance in dense urban operations.
+
+### `ps-sanctions-evasion-maritime-network-disruption-stack-v1`
+- Protocols: `AIS/NMEA`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: coalition sanctions-evasion disruption and legal evidence exchange.
+
+### `ps-satellite-ground-station-defense-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: satellite ground station defense, incident response, and restoration synchronization.
+
+### `ps-civil-alert-authenticity-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Use for: civil warning authentication, rumor-control coordination, and public trust continuity.
+
+### `ps-battlefield-identity-credential-recovery-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `STIX/TAXII`.
+- Use for: credential revocation/reissue, identity trust restoration, and access-risk escalation.
+
+### `ps-fiber-backbone-traffic-triage-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: backbone outage triage, traffic-class prioritization, and reroute command synchronization.
+
+### `ps-reserve-mobilization-training-surge-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: reserve mobilization/training surge synchronization and readiness reporting.

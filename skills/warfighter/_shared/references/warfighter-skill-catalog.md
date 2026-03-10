@@ -4,7 +4,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 ## Coverage Summary
 
-- Total warfighter skills in this repo: 921
+- Total warfighter skills in this repo: 931
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
 - Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
 
@@ -218,6 +218,32 @@ Every skill output should include:
 - EW spectrum leasing and priority + spectrum interference resolution + electromagnetic deception network coordination
 - Homeland port cyber-physical surge protection + strategic port cyber resilience + deployment and distribution optimizer
 - Drone-swarm air-defense ammunition economy + counter-swarm logistics denial protection + integrated air and missile defense
+
+## New Expansion Wave (2026-03-10, Warfighter Domain Coverage Surge)
+
+- joint-autonomous-swarm-corridor-priority-cell
+- theater-food-water-fuel-denial-resilience-cell
+- contested-additive-airworthiness-certification-cell
+- urban-subsurface-raid-safety-and-utility-protection-cell
+- coalition-sanctions-evasion-maritime-disruption-cell
+- homeland-satellite-ground-station-defense-cell
+- civil-alert-authentication-and-rumor-control-cell
+- battlefield-identity-credential-recovery-cell
+- theater-fiber-backbone-traffic-triage-cell
+- reserve-mobilization-training-surge-cell
+
+## Updated Pairings (2026-03-10, Warfighter Domain Coverage Surge)
+
+- Autonomous swarm corridor priority + tactical UAS traffic management + air tasking cycle support + force protection and base defense
+- Food/water/fuel denial resilience + contested logistics sustainment + operational energy resilience + civil support consequence management
+- Additive airworthiness certification + expeditionary airfield operations + aviation maintenance forensics + sortie generation planning
+- Urban subsurface raid safety + megacity operations sustainment + civilian harm mitigation + underground utility mapping
+- Maritime sanctions disruption + maritime interdiction governance + coalition legal interoperability + strategic competition response
+- Ground station defense + SATCOM reconstitution + space domain awareness + mission network failover
+- Civil alert authentication + information integrity and attribution + civil defense mass evacuation + DSCA crisis support
+- Battlefield credential recovery + contested ICAM + zero trust hardening + cyber mission assurance
+- Theater fiber traffic triage + mission network failover + JOC battle rhythm + command decision support
+- Reserve mobilization/training surge + strategic mobility deployment planning + force generation and reconstitution + readiness certification
 - Zero-trust key material continuity + tactical zero-trust network hardening + theater mission network failover
 - Space-weather GNSS outage fusion + denied space PNT alternative navigation + precision navigation integrity monitoring
 - Multi-theater hostage crisis decision + POW/MIA and missing persons fusion + personnel recovery integration

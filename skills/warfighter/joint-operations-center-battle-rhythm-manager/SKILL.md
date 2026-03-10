@@ -149,3 +149,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 
 - Add `tool_suite_id=ts-civilian-maritime-traffic-deconfliction-v1` + `protocol_stack_id=ps-civilian-maritime-traffic-deconfliction-stack-v1` when battle rhythm decisions depend on military-civil maritime corridor adjudication and convoy release timing.
 - Add `tool_suite_id=ts-mission-assurance-digital-twin-red-v1` + `protocol_stack_id=ps-mission-assurance-digital-twin-red-stack-v1` when commander decision support requires adversarial validation of mission-thread models before force posture changes.
+
+## Domain Toolchain Override (2026-03-10, Warfighter Domain Coverage Surge)
+
+- Add `tool_suite_id=ts-theater-food-water-fuel-denial-v1` + `protocol_stack_id=ps-theater-food-water-fuel-denial-stack-v1` when battle-rhythm decisions require sustainment-denial resilience governance.
+- Add `tool_suite_id=ts-fiber-backbone-traffic-triage-v1` + `protocol_stack_id=ps-fiber-backbone-traffic-triage-stack-v1` when command-cycle continuity is constrained by theater backbone outages.
+- Add `packet_id=DPL-THEATER-FOOD-WATER-FUEL-DENIAL-001` and `packet_id=DPL-THEATER-FIBER-BACKBONE-TRAFFIC-TRIAGE-001` for high-consequence decision support packets.

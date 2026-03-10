@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Autonomous Swarm Corridor Priority Cell"
+  short_description: "Prioritize contested autonomous swarm corridors"

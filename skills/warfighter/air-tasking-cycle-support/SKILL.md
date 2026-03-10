@@ -154,3 +154,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-urban-vtol-lz-auth-v1` + `protocol_stack_id=ps-urban-vtol-lz-auth-stack-v1` when urban vertical-lift landing zones face spoofing, decoy, or civilian congestion risk.
 - Prioritize `tool_suite_id=ts-spaceport-gnss-emergency-v1` + `protocol_stack_id=ps-spaceport-gnss-emergency-stack-v1` when ATO timing, launch windows, or range safety are sensitive to GNSS degradation.
 - Add `packet_id=DPL-VTOL-LZ-001` and `packet_id=DPL-SPACEPORT-GNSS-001` for ATO branches that re-sequence air mobility, personnel recovery, or strategic launch support.
+
+## Domain Toolchain Override (2026-03-10, Warfighter Domain Coverage Surge)
+
+- Add `tool_suite_id=ts-additive-airworthiness-certification-v1` + `protocol_stack_id=ps-additive-airworthiness-certification-stack-v1` when sortie generation depends on additive-manufactured part release decisions.
+- Add `tool_suite_id=ts-autonomous-swarm-corridor-priority-v1` + `protocol_stack_id=ps-autonomous-swarm-corridor-priority-stack-v1` when ATO sequencing requires autonomous corridor deconfliction.
+- Add `packet_id=DPL-ADDITIVE-AIRWORTHINESS-CERTIFICATION-001` and `packet_id=DPL-AUTONOMOUS-SWARM-CORRIDOR-PRIORITY-001` for branch decisions that alter launch windows or mission timing.

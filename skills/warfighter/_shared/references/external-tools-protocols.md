@@ -404,3 +404,16 @@ Include these fields in outputs when tool integration is used:
 - Commander-priority information synthesis: fused COP analytics + priority alerting + command decision boards + USMTF + CoT + API/JSON
 - Disconnected time synchronization and PNT holdover: timing distribution systems + oscillator health analytics + alternate navigation confidence fusion + API/JSON + time-transfer standards + USMTF
 - Additive feedstock counterfeit detection: material fingerprinting + provenance ledgers + quality release systems + API/JSON + signed provenance artifacts + USMTF
+
+## Domain Toolchain Profiles (2026-03-10 Expansion)
+
+- Autonomous swarm corridor priority: autonomous corridor orchestrator + mission priority scheduler + CoT/Link 16/USMTF/API
+- Theater food-water-fuel denial resilience: sustainment demand forecasting + contamination telemetry + USMTF/NIMS/API/HL7
+- Contested additive airworthiness certification: additive QA and provenance + airworthiness release workflows + USMTF/AIXM/FIXM/API
+- Urban subsurface raid safety and utility protection: subsurface map fusion + utility telemetry + OGC/VMF/USMTF/API
+- Coalition sanctions-evasion maritime disruption: vessel network analytics + evidence chain tooling + AIS/STIX/NATO/USMTF/API
+- Homeland satellite ground station defense: site SOC telemetry + perimeter fusion + STIX/USMTF/OGC/API
+- Civil alert authentication and rumor control: message authenticity validators + civic risk telemetry + EDXL/NIMS/USMTF/API
+- Battlefield identity credential recovery: credential lifecycle and revocation systems + USMTF/STIX/API
+- Theater fiber backbone traffic triage: backbone telemetry + traffic reroute orchestration + USMTF/STIX/API
+- Reserve mobilization training surge: mobilization readiness + training throughput planners + USMTF/API/NATO formats

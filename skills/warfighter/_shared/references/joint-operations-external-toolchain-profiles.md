@@ -358,3 +358,75 @@ For each critical recommendation, include:
 - Cross-check tools: independent casualty severity adjudication cell and alternate bed-status federation mirror.
 - Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
 - Degraded fallback: movement of highest-acuity categories only with explicit risk acceptance.
+
+## Profile Set (2026-03-10 Expansion - Warfighter Domain Coverage Surge)
+
+### `autonomous-swarm-corridor-priority-v1`
+- Use for autonomous swarm corridor deconfliction and release authority sequencing across multi-domain traffic.
+- Primary tools: autonomous traffic orchestration + mission priority scheduler + dynamic geofence manager.
+- Cross-check tools: independent corridor conflict monitor and fratricide-risk board.
+- Protocols: `CoT`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Degraded fallback: mission-essential corridor windows only with manual deconfliction matrix.
+
+### `theater-food-water-fuel-denial-v1`
+- Use for sustainment continuity when food, water, and fuel networks are disrupted or contaminated.
+- Primary tools: sustainment demand forecast + contamination telemetry + movement-control allocator.
+- Cross-check tools: independent commodity status ledger and alternate route viability monitor.
+- Protocols: `USMTF`, `NIMS/ICS`, `API/JSON`, `HL7/FHIR`.
+- Degraded fallback: life-support priority-only distribution with 6-hour confidence refresh.
+
+### `additive-airworthiness-certification-v1`
+- Use for additive aviation part release with traceability, certification, and sortie-risk governance.
+- Primary tools: additive QA pipeline + digital provenance ledger + airworthiness release workflow.
+- Cross-check tools: independent material integrity verifier and maintenance risk board.
+- Protocols: `USMTF`, `AIXM/FIXM/IWXXM`, `API/JSON`.
+- Degraded fallback: approved catalog substitutions only with commander risk acceptance note.
+
+### `urban-subsurface-raid-safety-v1`
+- Use for urban tunnel/subsurface raid planning with utility protection and civilian-harm mitigation.
+- Primary tools: subsurface map fusion + utility telemetry overlays + raid risk simulation board.
+- Cross-check tools: independent tunnel hazard validation and utility conflict monitor.
+- Protocols: `OGC`, `VMF`, `USMTF`, `API/JSON`.
+- Degraded fallback: restricted maneuver advice with no-strike defaults and manual utility coordination.
+
+### `sanctions-evasion-maritime-disruption-v1`
+- Use for coalition disruption of maritime sanctions-evasion networks with legal evidence continuity.
+- Primary tools: vessel network analytics + sanctions fusion + interdiction evidence workflow.
+- Cross-check tools: independent legal confidence review and cargo anomaly monitor.
+- Protocols: `AIS/NMEA`, `STIX/TAXII`, `NATO APP-11/ADatP-3`, `USMTF`, `API/JSON`.
+- Degraded fallback: confidence-bounded disruption recommendations with legal hold points.
+
+### `satellite-ground-station-defense-v1`
+- Use for cyber-physical defense and restoration sequencing of strategic satellite ground stations.
+- Primary tools: ground station SOC telemetry + perimeter anomaly detection + SATCOM continuity planners.
+- Cross-check tools: independent site assurance monitor and link-health mirror.
+- Protocols: `USMTF`, `STIX/TAXII`, `OGC`, `API/JSON`.
+- Degraded fallback: critical-service-only continuity posture with scheduled sync windows.
+
+### `civil-alert-authentication-rumor-control-v1`
+- Use for emergency alert legitimacy checks and rumor control under contested information conditions.
+- Primary tools: alert authenticity validators + media forensics + civic trust telemetry.
+- Cross-check tools: independent source credibility ledger and alternate narrative anomaly monitor.
+- Protocols: `EDXL-DE/CAP`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Degraded fallback: high-confidence-source-only alerts with explicit uncertainty annotations.
+
+### `battlefield-identity-credential-recovery-v1`
+- Use for credential compromise response, revocation, reissue, and trust restoration in combat operations.
+- Primary tools: credential lifecycle manager + revocation broker + access anomaly analytics.
+- Cross-check tools: independent identity audit ledger and replay-detection monitor.
+- Protocols: `USMTF`, `API/JSON`, `STIX/TAXII`.
+- Degraded fallback: mission-essential allowlist operations with manual dual-control identity checks.
+
+### `theater-fiber-backbone-traffic-triage-v1`
+- Use for mission-priority traffic triage and restoration sequencing during theater fiber disruption.
+- Primary tools: backbone telemetry + traffic orchestration + restoration planning board.
+- Cross-check tools: independent network health mirror and critical flow validator.
+- Protocols: `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: command/medical traffic-only routing with fixed synchronization intervals.
+
+### `reserve-mobilization-training-surge-v1`
+- Use for reserve force mobilization and training pipeline surge under compressed readiness timelines.
+- Primary tools: mobilization readiness systems + training throughput scheduler + instructor capacity planners.
+- Cross-check tools: independent readiness confidence board and alternate throughput verification tracker.
+- Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
+- Degraded fallback: priority-unit surge mode with conservative readiness assumptions.
