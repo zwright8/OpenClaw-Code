@@ -355,7 +355,8 @@ const orchestrator = new TaskOrchestrator({
   dispatchDeduplication: {
     windowMs: 5_000,
     openOnly: true,
-    terminalWindowMs: 60_000 // optional: replay recent terminal matches (idempotency guard)
+    terminalWindowMs: 60_000, // optional: replay recent terminal matches (idempotency guard)
+    inFlightWindowMs: 30_000 // optional: keep coalescing open duplicates longer than base window
   },
   terminalTaskRetention: {
     maxAgeMs: 900_000, // optional: prune terminal tasks older than 15 minutes
@@ -389,6 +390,7 @@ await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' })
 `circuitBreaker` prevents repeated dispatch attempts to an unhealthy target by opening per-target circuits after consecutive send failures and only probing again after cooldown.
 When the half-open probe budget is exhausted before recovery, the breaker now re-opens (instead of remaining stuck half-open). You can also enable progressive cooldown backoff with `cooldownBackoffMultiplier` + `maxCooldownMs` to reduce pressure on persistently unhealthy targets.
 `adaptiveConcurrency` adds per-target additive-increase/multiplicative-decrease (AIMD) flow control so dispatches are deferred before overload cascades. Healthy completions increase the limit gradually; transient overload signals/timeouts/sustained high latency decrease it.
+`dispatchDeduplication.inFlightWindowMs` (optional) extends duplicate suppression for still-open tasks beyond the base `windowMs`, which helps collapse bursts into one canonical in-flight execution.
 `dispatchDeduplication.terminalWindowMs` lets the orchestrator treat recently closed tasks as idempotent replays so duplicate submissions can reuse recent outcomes instead of re-dispatching side-effecting work.
 `transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
 `terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.

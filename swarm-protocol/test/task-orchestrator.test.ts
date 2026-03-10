@@ -1386,6 +1386,72 @@ test('dispatchTask allows duplicate requests after dedupe window expires', async
     assert.equal(sent.length, 2);
 });
 
+test('dispatchTask can coalesce in-flight duplicates beyond base dedupe window', async () => {
+    const clock = createClock(142_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 100,
+            inFlightWindowMs: 5_000
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-inflight',
+        task: 'Generate release candidate checklist'
+    });
+
+    clock.advance(500);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-inflight',
+        task: 'Generate release candidate checklist'
+    });
+
+    assert.equal(first.taskId, second.taskId);
+    assert.equal(sent.length, 1);
+});
+
+test('dispatchTask re-dispatches open duplicates after in-flight dedupe window expires', async () => {
+    const clock = createClock(143_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 100,
+            inFlightWindowMs: 300
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-inflight-expired',
+        task: 'Assemble launch risk summary'
+    });
+
+    clock.advance(450);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-inflight-expired',
+        task: 'Assemble launch risk summary'
+    });
+
+    assert.notEqual(first.taskId, second.taskId);
+    assert.equal(sent.length, 2);
+});
+
 test('dispatchTask suppresses duplicate completed requests inside terminal dedupe window', async () => {
     const clock = createClock(145_000);
     const sent = [];

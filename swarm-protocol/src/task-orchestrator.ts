@@ -49,7 +49,8 @@ const DEFAULT_ADAPTIVE_CONCURRENCY = Object.freeze({
 const DEFAULT_DISPATCH_DEDUPLICATION = Object.freeze({
     windowMs: 5_000,
     openOnly: true,
-    terminalWindowMs: 0
+    terminalWindowMs: 0,
+    inFlightWindowMs: null
 });
 const DEFAULT_TERMINAL_TASK_RETENTION = Object.freeze({
     maxAgeMs: 900_000,
@@ -413,6 +414,15 @@ function resolveDispatchDeduplication(value) {
                 DEFAULT_DISPATCH_DEDUPLICATION.terminalWindowMs
             ))
         ),
+        inFlightWindowMs: value.inFlightWindowMs === null || value.inFlightWindowMs === undefined
+            ? DEFAULT_DISPATCH_DEDUPLICATION.inFlightWindowMs
+            : Math.max(
+                0,
+                Math.floor(clampNonNegativeNumber(
+                    value.inFlightWindowMs,
+                    DEFAULT_DISPATCH_DEDUPLICATION.windowMs
+                ))
+            ),
         fingerprint: typeof value.fingerprint === 'function' ? value.fingerprint : null
     };
 }
@@ -1069,6 +1079,7 @@ export class TaskOrchestrator {
 
         const windowMs = this.dispatchDeduplication.windowMs;
         const terminalWindowMs = this.dispatchDeduplication.terminalWindowMs;
+        const inFlightWindowMs = this.dispatchDeduplication.inFlightWindowMs;
         const fingerprint = this._buildDeduplicationFingerprint(request);
 
         for (const record of this.tasks.values()) {
@@ -1091,8 +1102,13 @@ export class TaskOrchestrator {
                         continue;
                     }
                 }
-            } else if (windowMs > 0 && nowMs - Number(record.createdAt) > windowMs) {
-                continue;
+            } else {
+                const openWindowMs = Number.isFinite(inFlightWindowMs)
+                    ? Number(inFlightWindowMs)
+                    : windowMs;
+                if (openWindowMs > 0 && nowMs - Number(record.createdAt) > openWindowMs) {
+                    continue;
+                }
             }
 
             if (this._buildDeduplicationFingerprint(record.request) !== fingerprint) {
@@ -2416,7 +2432,8 @@ export class TaskOrchestrator {
                 enabled: this.dispatchDeduplication.enabled,
                 windowMs: this.dispatchDeduplication.windowMs,
                 openOnly: this.dispatchDeduplication.openOnly,
-                terminalWindowMs: this.dispatchDeduplication.terminalWindowMs
+                terminalWindowMs: this.dispatchDeduplication.terminalWindowMs,
+                inFlightWindowMs: this.dispatchDeduplication.inFlightWindowMs
             },
             terminalTaskRetention: {
                 enabled: this.terminalTaskRetention.enabled,
