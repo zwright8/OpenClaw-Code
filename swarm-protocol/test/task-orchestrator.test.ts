@@ -258,6 +258,106 @@ test('maintenance uses exponential backoff with deterministic jitter', async () 
     assert.equal(current.nextRetryAt, 7_450); // 0.5 * 200ms
 });
 
+test('maintenance policy caps retry dispatches per run', async () => {
+    const clock = createClock(100_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 5,
+        maxRetries: 2,
+        retryDelayMs: 0,
+        maintenancePolicy: {
+            maxRetryDispatchesPerRun: 2
+        }
+    });
+
+    const tasks = await Promise.all([
+        orchestrator.dispatchTask({ target: 'agent:worker-cap-1', task: 'Task 1' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-cap-2', task: 'Task 2' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-cap-3', task: 'Task 3' })
+    ]);
+    assert.equal(sent.length, 3);
+
+    clock.set(100_010);
+    const scheduled = await orchestrator.runMaintenance(clock.now());
+    assert.equal(scheduled.scheduledRetries, 3);
+
+    sent.length = 0;
+    const retryPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(retryPass.retried, 2);
+    assert.equal(retryPass.deferredRetries, 1);
+    assert.equal(sent.length, 2);
+
+    const openRetries = tasks
+        .map((task) => orchestrator.getTask(task.taskId))
+        .filter((record) => record.status === 'retry_scheduled');
+    assert.equal(openRetries.length, 1);
+});
+
+test('maintenance policy can fairly distribute retry dispatches across targets', async () => {
+    const clock = createClock(110_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message, at: clock.now() });
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 5,
+        maxRetries: 2,
+        retryDelayMs: 0,
+        maintenancePolicy: {
+            maxRetryDispatchesPerRun: 2,
+            fairRetryDispatchByTarget: true
+        }
+    });
+
+    await Promise.all([
+        orchestrator.dispatchTask({ target: 'agent:worker-fair-a', task: 'A1' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-fair-a', task: 'A2' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-fair-a', task: 'A3' }),
+        orchestrator.dispatchTask({ target: 'agent:worker-fair-b', task: 'B1' })
+    ]);
+
+    clock.set(110_010);
+    await orchestrator.runMaintenance(clock.now());
+
+    sent.length = 0;
+    const retryPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(retryPass.retried, 2);
+    assert.equal(retryPass.deferredRetries, 2);
+
+    const retriedTargets = new Set(sent.map((entry) => entry.target));
+    assert.equal(retriedTargets.has('agent:worker-fair-a'), true);
+    assert.equal(retriedTargets.has('agent:worker-fair-b'), true);
+});
+
+test('metrics expose maintenance policy configuration', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        maintenancePolicy: {
+            maxRetryDispatchesPerRun: 12,
+            fairRetryDispatchByTarget: true
+        }
+    });
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.maintenancePolicy.enabled, true);
+    assert.equal(metrics.maintenancePolicy.maxRetryDispatchesPerRun, 12);
+    assert.equal(metrics.maintenancePolicy.fairRetryDispatchByTarget, true);
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({

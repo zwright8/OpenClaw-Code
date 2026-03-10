@@ -29,6 +29,7 @@ Adds adaptive cost/latency optimization with explainable agent selection decisio
 Adds dispatch idempotency controls (`dispatchDeduplication`) to suppress duplicate in-flight submissions and optionally replay recent terminal matches.
 Adds queue-capacity admission controls (`queueCapacity`) to fail fast on overload with global and per-target open-task limits.
 Adds graceful drain-mode admission control so operators can reject new dispatches while existing in-flight tasks finish.
+Adds maintenance retry-budget controls (`maintenancePolicy`) to cap per-pass retry bursts and optionally spread retries across targets.
 Retry hint parsing now supports `retry-after-ms`/`x-ms-retry-after-ms`, `ratelimit-reset`, and `x-ratelimit-reset-{requests|tokens}` (including duration literals like `17ms` / `6m0s`), while preferring conservative max-delay hints when multiple are present.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
@@ -391,6 +392,10 @@ const orchestrator = new TaskOrchestrator({
     forceCancelAfterMs: 120_000, // optional: force-cancel lingering open tasks after drain grace window
     propagateCancel: true // optional: send task_cancel when force-cancelling
   },
+  maintenancePolicy: {
+    maxRetryDispatchesPerRun: 100, // optional: cap due retries dispatched during one maintenance pass
+    fairRetryDispatchByTarget: true // optional: spread retry slots across targets before filling extras
+  },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -438,6 +443,7 @@ Retry behavior notes:
 - Retries now use truncated exponential backoff with optional full jitter to reduce synchronized retry spikes.
 - Transient worker rejections (`overloaded`, `rate_limit`, `retry_after`, or `etaMs`) are scheduled for retry instead of being terminally rejected when retry budget remains.
 - If a worker includes `etaMs` on a rejected receipt, the orchestrator honors that as the retry delay hint.
+- Maintenance retries can now be explicitly bounded (`maintenancePolicy.maxRetryDispatchesPerRun`) to avoid retry storms after outages.
 - Drain mode can now enforce a shutdown grace period (`forceCancelAfterMs`) and auto-cancel lingering in-flight work once the deadline is exceeded.
 
 Safety policy integration:

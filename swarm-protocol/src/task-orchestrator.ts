@@ -91,6 +91,10 @@ const DEFAULT_DRAIN_MODE = Object.freeze({
     forceCancelAfterMs: null,
     propagateCancel: true
 });
+const DEFAULT_MAINTENANCE_POLICY = Object.freeze({
+    maxRetryDispatchesPerRun: null,
+    fairRetryDispatchByTarget: false
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -640,6 +644,36 @@ function resolveDrainMode(value) {
     };
 }
 
+function resolveMaintenancePolicy(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_MAINTENANCE_POLICY
+        };
+    }
+
+    const maxRetryDispatchesPerRunRaw = value.maxRetryDispatchesPerRun;
+    const maxRetryDispatchesPerRun = maxRetryDispatchesPerRunRaw === null
+        || maxRetryDispatchesPerRunRaw === undefined
+        ? null
+        : Math.max(
+            1,
+            Math.floor(
+                clampPositiveNumber(
+                    maxRetryDispatchesPerRunRaw,
+                    Number.MAX_SAFE_INTEGER
+                )
+            )
+        );
+    const fairRetryDispatchByTarget = value.fairRetryDispatchByTarget === true;
+
+    return {
+        enabled: maxRetryDispatchesPerRun !== null || fairRetryDispatchByTarget,
+        maxRetryDispatchesPerRun,
+        fairRetryDispatchByTarget
+    };
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -738,6 +772,7 @@ export class TaskOrchestrator {
         queueCapacity = null,
         staleTaskPolicy = null,
         drainMode = null,
+        maintenancePolicy = null,
         transportSendTimeoutMs = 10_000,
         random = Math.random,
         now = Date.now,
@@ -803,6 +838,7 @@ export class TaskOrchestrator {
         this.queueCapacity = resolveQueueCapacity(queueCapacity);
         this.staleTaskPolicy = resolveStaleTaskPolicy(staleTaskPolicy);
         this.drainMode = resolveDrainMode(drainMode);
+        this.maintenancePolicy = resolveMaintenancePolicy(maintenancePolicy);
         this.terminalTasksPruned = 0;
         this.transportSendTimeoutMs = Number.isFinite(transportSendTimeoutMs) && Number(transportSendTimeoutMs) > 0
             ? Number(transportSendTimeoutMs)
@@ -1593,6 +1629,92 @@ export class TaskOrchestrator {
             }
         }
         return toPrune.length;
+    }
+
+    _selectRetryDispatchTasksForMaintenance(nowMs) {
+        const dueRetryRecords = [];
+        for (const record of this.tasks.values()) {
+            if (record.status !== 'retry_scheduled') continue;
+            if (!Number.isFinite(record.nextRetryAt) || nowMs < record.nextRetryAt) continue;
+            dueRetryRecords.push(record);
+        }
+
+        if (dueRetryRecords.length === 0) {
+            return null;
+        }
+
+        const limit = Number.isFinite(this.maintenancePolicy.maxRetryDispatchesPerRun)
+            ? Math.floor(this.maintenancePolicy.maxRetryDispatchesPerRun)
+            : dueRetryRecords.length;
+        const normalizedLimit = Math.max(0, limit);
+        if (dueRetryRecords.length <= normalizedLimit) {
+            return null;
+        }
+
+        const compareRecords = (a, b) => {
+            const priorityDelta = PRIORITY_RANK[normalizeTaskPriority(b.request?.priority)]
+                - PRIORITY_RANK[normalizeTaskPriority(a.request?.priority)];
+            if (priorityDelta !== 0) return priorityDelta;
+
+            const nextRetryDelta = Number(a.nextRetryAt) - Number(b.nextRetryAt);
+            if (nextRetryDelta !== 0) return nextRetryDelta;
+
+            return Number(a.createdAt) - Number(b.createdAt);
+        };
+
+        if (!this.maintenancePolicy.fairRetryDispatchByTarget) {
+            dueRetryRecords.sort(compareRecords);
+            return new Set(
+                dueRetryRecords
+                    .slice(0, normalizedLimit)
+                    .map((record) => record.taskId)
+            );
+        }
+
+        const groups = new Map();
+        for (const record of dueRetryRecords) {
+            const targetKey = this._resolveCircuitTarget(record.target);
+            if (!groups.has(targetKey)) {
+                groups.set(targetKey, []);
+            }
+            groups.get(targetKey).push(record);
+        }
+        for (const records of groups.values()) {
+            records.sort(compareRecords);
+        }
+
+        const selectedTaskIds = new Set();
+        let targetOrder = Array.from(groups.keys());
+        while (selectedTaskIds.size < normalizedLimit && targetOrder.length > 0) {
+            targetOrder.sort((left, right) => {
+                const leftHead = groups.get(left)?.[0] || null;
+                const rightHead = groups.get(right)?.[0] || null;
+                if (!leftHead && !rightHead) return 0;
+                if (!leftHead) return 1;
+                if (!rightHead) return -1;
+                return compareRecords(leftHead, rightHead);
+            });
+
+            const nextRound = [];
+            for (const targetKey of targetOrder) {
+                if (selectedTaskIds.size >= normalizedLimit) break;
+                const bucket = groups.get(targetKey);
+                if (!bucket || bucket.length === 0) {
+                    continue;
+                }
+                const nextRecord = bucket.shift();
+                if (!nextRecord) {
+                    continue;
+                }
+                selectedTaskIds.add(nextRecord.taskId);
+                if (bucket.length > 0) {
+                    nextRound.push(targetKey);
+                }
+            }
+            targetOrder = nextRound;
+        }
+
+        return selectedTaskIds;
     }
 
     _parseRetryDirectiveFromReason(reason) {
@@ -2743,12 +2865,14 @@ export class TaskOrchestrator {
             checked: 0,
             scheduledRetries: 0,
             retried: 0,
+            deferredRetries: 0,
             timedOut: 0,
             staleExpired: 0,
             drainForceCancelled: 0,
             transportFailures: 0,
             prunedTerminalTasks: 0
         };
+        const retryDispatchSelection = this._selectRetryDispatchTasksForMaintenance(nowMs);
 
         for (const record of this.tasks.values()) {
             if (this._shouldForceCancelInDrain(record, nowMs)) {
@@ -2809,6 +2933,10 @@ export class TaskOrchestrator {
                 }
 
                 if (nowMs < record.nextRetryAt) continue;
+                if (retryDispatchSelection && !retryDispatchSelection.has(record.taskId)) {
+                    summary.deferredRetries++;
+                    continue;
+                }
 
                 try {
                     await this._sendTask(record, 'timeout_retry');
@@ -3153,6 +3281,11 @@ export class TaskOrchestrator {
                 rejectNewDispatches: this.drainMode.rejectNewDispatches,
                 forceCancelAfterMs: this.drainMode.forceCancelAfterMs,
                 propagateCancel: this.drainMode.propagateCancel
+            },
+            maintenancePolicy: {
+                enabled: this.maintenancePolicy.enabled,
+                maxRetryDispatchesPerRun: this.maintenancePolicy.maxRetryDispatchesPerRun,
+                fairRetryDispatchByTarget: this.maintenancePolicy.fairRetryDispatchByTarget
             },
             transportSendTimeoutMs: this.transportSendTimeoutMs
         };
