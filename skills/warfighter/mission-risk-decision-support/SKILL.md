@@ -157,3 +157,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-sce-mission-thread-assurance-v1` + `protocol_stack_id=ps-sce-mission-thread-assurance-stack-v1` when commander risk depends on coupled space-cyber-electromagnetic services.
 - Add `tool_suite_id=ts-civilian-harm-restoration-v1` + `protocol_stack_id=ps-civilian-harm-restoration-stack-v1` when mission recommendations affect protected populations or critical services restoration.
 - Add `packet_id=DPL-SCE-MISSION-THREAD-001` and `packet_id=DPL-CIVHARM-RESTORE-001` for risk branches that can alter force posture or escalation.
+
+## Domain Toolchain Override (2026-03-10, Quantum Navigation and Strategic Sustainment Addendum)
+
+- Add `tool_suite_id=ts-quantum-pnt-denial-mitigation-v1` + `protocol_stack_id=ps-quantum-pnt-denial-mitigation-stack-v1` when mission risk posture depends on timing integrity or denied-PNT confidence.
+- Add `tool_suite_id=ts-expeditionary-rare-battery-recycling-energy-recovery-v1` + `protocol_stack_id=ps-expeditionary-rare-battery-recycling-energy-recovery-stack-v1` when risk acceptance depends on tactical energy endurance.
+- Add `packet_id=DPL-QUANTUM-PNT-DENIAL-MITIGATION-001` and `packet_id=DPL-EXPEDITIONARY-RARE-BATTERY-RECYCLING-ENERGY-RECOVERY-001` when these dependencies materially change commander GO/NO-GO decisions.

@@ -151,3 +151,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Add `tool_suite_id=ts-sof-low-signature-identity-v1` + `protocol_stack_id=ps-sof-low-signature-identity-stack-v1` when authority decisions depend on low-signature digital identity protection.
 - Add `tool_suite_id=ts-counter-autonomy-firmware-v1` + `protocol_stack_id=ps-counter-autonomy-firmware-stack-v1` when mission autonomy trust depends on firmware provenance and rapid patch control.
 - Add `packet_id=DPL-SOF-LOWSIG-IDENTITY-001` and `packet_id=DPL-COUNTER-AUTON-FW-001` for escalation branches that require explicit human approval before operational release.
+
+## Domain Toolchain Override (2026-03-10, Cognitive Deconfliction and Insider-Risk Addendum)
+
+- Add `tool_suite_id=ts-coalition-cognitive-ew-psyop-deconfliction-v1` + `protocol_stack_id=ps-coalition-cognitive-ew-psyop-deconfliction-stack-v1` when AI recommendations can influence information/cognitive operations.
+- Add `tool_suite_id=ts-coalition-sat-ground-insider-risk-response-v1` + `protocol_stack_id=ps-coalition-sat-ground-insider-risk-response-stack-v1` when privileged-access insider activity threatens command-and-control continuity.
+- Require `authority_tier`, `approval_role`, and `ack_chain_status` fields for any recommendation that modifies coalition messaging or revokes privileged operational access.
