@@ -240,6 +240,7 @@ export class TaskOrchestrator {
         retryJitter = 'none',
         maxRetryDelayMs = 30_000,
         maxRetryHintMs = null,
+        overallTimeoutMs = null,
         retryThrottling = null,
         circuitBreaker = null,
         random = Math.random,
@@ -285,6 +286,9 @@ export class TaskOrchestrator {
             this.retryDelayMs,
             clampNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs)
         );
+        this.overallTimeoutMs = Number.isFinite(overallTimeoutMs) && Number(overallTimeoutMs) > 0
+            ? Number(overallTimeoutMs)
+            : null;
         this.retryThrottling = resolveRetryThrottling(retryThrottling);
         this.retryThrottleTokens = this.retryThrottling.enabled && this.retryThrottling.scope === 'global'
             ? this.retryThrottling.maxTokens
@@ -301,6 +305,53 @@ export class TaskOrchestrator {
         this.logger = logger;
         this.tasks = new Map();
         this._persistenceQueue = Promise.resolve();
+    }
+
+    _resolveOverallDeadlineAt(createdAt) {
+        if (!Number.isFinite(this.overallTimeoutMs) || this.overallTimeoutMs === null) {
+            return null;
+        }
+        return createdAt + this.overallTimeoutMs;
+    }
+
+    _applyOverallDeadline(record, deadlineAt) {
+        if (!Number.isFinite(record?.overallDeadlineAt)) {
+            return deadlineAt;
+        }
+        return Math.min(deadlineAt, Number(record.overallDeadlineAt));
+    }
+
+    _remainingOverallDeadlineMs(record, nowMs) {
+        if (!Number.isFinite(record?.overallDeadlineAt)) {
+            return null;
+        }
+        return Number(record.overallDeadlineAt) - nowMs;
+    }
+
+    _isOverallDeadlineExceeded(record, nowMs) {
+        const remainingMs = this._remainingOverallDeadlineMs(record, nowMs);
+        return Number.isFinite(remainingMs) && remainingMs < 0;
+    }
+
+    _markTimedOut(record, nowMs, {
+        event = 'timed_out',
+        reason = null
+    } = {}) {
+        record.status = 'timed_out';
+        record.updatedAt = nowMs;
+        record.closedAt = nowMs;
+        record.history.push({
+            at: nowMs,
+            event,
+            reason
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_timed_out', {
+            taskId: record.taskId,
+            target: record.target,
+            attempts: record.attempts,
+            reason
+        }, nowMs);
     }
 
     _resolveCircuitTarget(target) {
@@ -745,10 +796,27 @@ export class TaskOrchestrator {
             record.target,
             retryCost
         )) {
-            return false;
+            return {
+                scheduled: false,
+                blockedBy: 'throttle'
+            };
         }
 
-        const retryDelayMs = this._resolveRetryDelayMs(record, hintMs);
+        const remainingOverallDeadlineMs = this._remainingOverallDeadlineMs(record, nowMs);
+        if (Number.isFinite(remainingOverallDeadlineMs) && remainingOverallDeadlineMs < 0) {
+            return {
+                scheduled: false,
+                blockedBy: 'retry_window'
+            };
+        }
+
+        let retryDelayMs = this._resolveRetryDelayMs(record, hintMs);
+        if (Number.isFinite(remainingOverallDeadlineMs)) {
+            retryDelayMs = Math.min(
+                retryDelayMs,
+                Math.max(0, Math.floor(Number(remainingOverallDeadlineMs)))
+            );
+        }
         const nextRetryAt = nowMs + retryDelayMs;
 
         record.status = 'retry_scheduled';
@@ -774,7 +842,10 @@ export class TaskOrchestrator {
             retryHintMs: Number.isFinite(hintMs) ? Number(hintMs) : null,
             ...(metadata && typeof metadata === 'object' ? metadata : {})
         }, nowMs);
-        return true;
+        return {
+            scheduled: true,
+            blockedBy: null
+        };
     }
 
     _consumeRetryThrottleToken(nowMs, taskId, reason, target, retryCost = null) {
@@ -953,6 +1024,7 @@ export class TaskOrchestrator {
             }
         }
 
+        const overallDeadlineAt = this._resolveOverallDeadlineAt(request.createdAt);
         const record = {
             taskId: request.id,
             target: request.target,
@@ -965,7 +1037,11 @@ export class TaskOrchestrator {
             createdAt: request.createdAt,
             updatedAt: request.createdAt,
             lastRetryDelayMs: null,
-            deadlineAt: request.createdAt + this.defaultTimeoutMs,
+            overallDeadlineAt,
+            deadlineAt: this._applyOverallDeadline(
+                { overallDeadlineAt },
+                request.createdAt + this.defaultTimeoutMs
+            ),
             nextRetryAt: null,
             closedAt: null,
             lastError: null,
@@ -1030,11 +1106,17 @@ export class TaskOrchestrator {
         } catch (error) {
             if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
                 const nowMs = safeNow(this.now);
-                this._scheduleRetry(record, nowMs, {
+                const scheduled = this._scheduleRetry(record, nowMs, {
                     reason: 'initial_dispatch_circuit_open',
                     event: 'initial_dispatch_circuit_open_retry_scheduled',
                     hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
                 });
+                if (!scheduled.scheduled) {
+                    this._markTimedOut(record, nowMs, {
+                        event: 'timed_out_retry_window_exhausted',
+                        reason: 'initial_dispatch_circuit_open'
+                    });
+                }
                 return this.getTask(record.taskId);
             }
             this.tasks.delete(record.taskId);
@@ -1101,7 +1183,7 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
-            this._scheduleRetry(record, reviewedAt, {
+            const scheduled = this._scheduleRetry(record, reviewedAt, {
                 reason: 'approval_release_failed',
                 event: 'approval_release_retry_scheduled',
                 consumeThrottleToken: true,
@@ -1110,6 +1192,29 @@ export class TaskOrchestrator {
                     error: error.message
                 }
             });
+            if (!scheduled.scheduled) {
+                if (scheduled.blockedBy === 'retry_window') {
+                    this._markTimedOut(record, reviewedAt, {
+                        event: 'timed_out_retry_window_exhausted',
+                        reason: 'approval_release_failed'
+                    });
+                } else {
+                    record.status = 'transport_error';
+                    record.updatedAt = reviewedAt;
+                    record.closedAt = reviewedAt;
+                    record.history.push({
+                        at: reviewedAt,
+                        event: 'approval_release_retry_throttled',
+                        error: error.message
+                    });
+                    this._persistRecord(record);
+                    this._emitAudit('task_transport_error', {
+                        taskId: record.taskId,
+                        target: record.target,
+                        error: error.message
+                    }, reviewedAt);
+                }
+            }
         }
 
         return this.getTask(taskId);
@@ -1147,7 +1252,7 @@ export class TaskOrchestrator {
         try {
             await this.transport.send(record.target, record.request);
             record.status = 'dispatched';
-            record.deadlineAt = sendAt + this.defaultTimeoutMs;
+            record.deadlineAt = this._applyOverallDeadline(record, sendAt + this.defaultTimeoutMs);
             record.nextRetryAt = null;
             record.lastError = null;
             record.history.push({
@@ -1237,7 +1342,14 @@ export class TaskOrchestrator {
                     }
                 });
 
-                if (!scheduled) {
+                if (!scheduled.scheduled) {
+                    if (scheduled.blockedBy === 'retry_window') {
+                        this._markTimedOut(record, receipt.timestamp, {
+                            event: 'timed_out_retry_window_exhausted',
+                            reason
+                        });
+                        return true;
+                    }
                     record.status = 'rejected';
                     record.closedAt = receipt.timestamp;
                     record.history.push({
@@ -1269,7 +1381,10 @@ export class TaskOrchestrator {
 
         record.status = 'acknowledged';
         if (Number.isFinite(receipt.etaMs)) {
-            record.deadlineAt = receipt.timestamp + Number(receipt.etaMs);
+            record.deadlineAt = this._applyOverallDeadline(
+                record,
+                receipt.timestamp + Number(receipt.etaMs)
+            );
         }
         this._creditRetryThrottleTokens(
             receipt.timestamp,
@@ -1348,6 +1463,14 @@ export class TaskOrchestrator {
         for (const record of this.tasks.values()) {
             if (!OPEN_STATUSES.has(record.status)) continue;
             summary.checked++;
+            if (this._isOverallDeadlineExceeded(record, nowMs)) {
+                this._markTimedOut(record, nowMs, {
+                    event: 'timed_out_overall_deadline',
+                    reason: 'overall_timeout_exceeded'
+                });
+                summary.timedOut++;
+                continue;
+            }
 
             if (record.status === 'retry_scheduled') {
                 if (!Number.isFinite(record.nextRetryAt)) {
@@ -1355,8 +1478,14 @@ export class TaskOrchestrator {
                         reason: 'retry_schedule_recovered',
                         event: 'retry_scheduled_recovered'
                     });
-                    if (recovered) {
+                    if (recovered.scheduled) {
                         summary.scheduledRetries++;
+                    } else if (recovered.blockedBy === 'retry_window') {
+                        this._markTimedOut(record, nowMs, {
+                            event: 'timed_out_retry_window_exhausted',
+                            reason: 'retry_schedule_recovered'
+                        });
+                        summary.timedOut++;
                     }
                     continue;
                 }
@@ -1373,8 +1502,14 @@ export class TaskOrchestrator {
                             event: 'retry_scheduled_circuit_open',
                             hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
                         });
-                        if (scheduled) {
+                        if (scheduled.scheduled) {
                             summary.scheduledRetries++;
+                        } else if (scheduled.blockedBy === 'retry_window') {
+                            this._markTimedOut(record, nowMs, {
+                                event: 'timed_out_retry_window_exhausted',
+                                reason: 'target_circuit_open'
+                            });
+                            summary.timedOut++;
                         }
                         continue;
                     }
@@ -1409,7 +1544,15 @@ export class TaskOrchestrator {
                                 error: record.lastError
                             }
                         });
-                        if (!scheduled) {
+                        if (!scheduled.scheduled) {
+                            if (scheduled.blockedBy === 'retry_window') {
+                                this._markTimedOut(record, nowMs, {
+                                    event: 'timed_out_retry_window_exhausted',
+                                    reason: 'transport_send_failed'
+                                });
+                                summary.timedOut++;
+                                continue;
+                            }
                             record.status = 'transport_error';
                             record.updatedAt = nowMs;
                             record.closedAt = nowMs;
@@ -1433,16 +1576,10 @@ export class TaskOrchestrator {
             if (nowMs <= record.deadlineAt) continue;
 
             if (!this._canRetry(record)) {
-                record.status = 'timed_out';
-                record.updatedAt = nowMs;
-                record.closedAt = nowMs;
-                record.history.push({ at: nowMs, event: 'timed_out' });
-                this._persistRecord(record);
-                this._emitAudit('task_timed_out', {
-                    taskId: record.taskId,
-                    target: record.target,
-                    attempts: record.attempts
-                }, nowMs);
+                this._markTimedOut(record, nowMs, {
+                    event: 'timed_out',
+                    reason: 'retry_budget_exhausted'
+                });
                 summary.timedOut++;
                 continue;
             }
@@ -1454,22 +1591,19 @@ export class TaskOrchestrator {
                     consumeThrottleToken: true,
                     retryCost: this.retryThrottling.timeoutRetryCost
                 });
-                if (scheduled) {
+                if (scheduled.scheduled) {
                     summary.scheduledRetries++;
-                } else {
-                    record.status = 'timed_out';
-                    record.updatedAt = nowMs;
-                    record.closedAt = nowMs;
-                    record.history.push({
-                        at: nowMs,
-                        event: 'timed_out_retry_throttled'
+                } else if (scheduled.blockedBy === 'retry_window') {
+                    this._markTimedOut(record, nowMs, {
+                        event: 'timed_out_retry_window_exhausted',
+                        reason: 'deadline_exceeded'
                     });
-                    this._persistRecord(record);
-                    this._emitAudit('task_timed_out', {
-                        taskId: record.taskId,
-                        target: record.target,
-                        attempts: record.attempts
-                    }, nowMs);
+                    summary.timedOut++;
+                } else {
+                    this._markTimedOut(record, nowMs, {
+                        event: 'timed_out_retry_throttled',
+                        reason: 'deadline_exceeded'
+                    });
                     summary.timedOut++;
                 }
                 continue;
@@ -1513,6 +1647,7 @@ export class TaskOrchestrator {
                 jitter: this.retryJitter,
                 maxDelayMs: this.maxRetryDelayMs,
                 maxHintMs: this.maxRetryHintMs,
+                overallTimeoutMs: this.overallTimeoutMs,
                 throttling: {
                     enabled: this.retryThrottling.enabled,
                     scope: this.retryThrottling.scope,

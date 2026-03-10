@@ -212,6 +212,73 @@ test('transient rejection honors Retry-After HTTP-date hint', async () => {
     assert.equal(current.nextRetryAt, clock.now() + 2_000);
 });
 
+test('overallTimeoutMs caps retry hint delay and task deadlines', async () => {
+    const clock = createClock(50_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        defaultTimeoutMs: 5_000,
+        overallTimeoutMs: 1_500
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-overall-timeout-cap',
+        task: 'Cap retry delay by overall timeout'
+    });
+
+    assert.equal(task.deadlineAt, 51_500);
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-overall-timeout-cap',
+        accepted: false,
+        reason: 'service_unavailable retry_after=30',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 51_500);
+    assert.equal(current.lastRetryDelayMs, 1_500);
+});
+
+test('overallTimeoutMs blocks transient retry scheduling after deadline', async () => {
+    const clock = createClock(70_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 2,
+        retryDelayMs: 10,
+        overallTimeoutMs: 500
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-overall-timeout-block',
+        task: 'Block stale retries'
+    });
+
+    clock.advance(600);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-overall-timeout-block',
+        accepted: false,
+        reason: 'service_unavailable retry_after=1',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.history.at(-1)?.event, 'timed_out_retry_window_exhausted');
+});
+
 test('transient rejection honors X-RateLimit-Reset Unix epoch seconds hint', async () => {
     const clock = createClock(1_700_000_000_000);
     const orchestrator = new TaskOrchestrator({

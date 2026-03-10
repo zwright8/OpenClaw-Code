@@ -319,6 +319,7 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
+  overallTimeoutMs: 120_000,
   retryBackoffStrategy: 'exponential',
   retryJitter: 'decorrelated',
   retryThrottling: {
@@ -366,6 +367,7 @@ await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' })
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.
 Transient receipt reasons may also include gRPC pushback hints via `grpc-retry-pushback-ms`; non-negative values override retry delay, and negative values disable retries for that rejection.
 When `retryJitter` is set to `decorrelated`, retries use decorrelated jitter to reduce retry synchronization across many agents; explicit `Retry-After` hints are still honored exactly.
+Set `overallTimeoutMs` to enforce an end-to-end deadline across dispatch, receipt waits, and retries; retry hints are capped to the remaining budget and stale tasks fail closed once the overall deadline is exceeded.
 
 Safety policy integration:
 ```js
