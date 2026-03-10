@@ -149,3 +149,8 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 
 - Add `tool_suite_id=ts-denied-logistics-payment-cash-continuity-v1` + `protocol_stack_id=ps-denied-logistics-payment-cash-continuity-stack-v1` when battle rhythm updates require force-flow sustainment decisions under disrupted payment rails.
 - Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when command cadence is constrained by SATCOM mesh denial and dynamic comms restoration sequencing.
+
+## Domain Toolchain Override (2026-03-10, Cislunar Continuity and Trusted Command Expansion)
+
+- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when battle rhythm synchronization depends on denied-spectrum coalition command continuity.
+- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when mission-system outage conditions require cross-region failover governance.

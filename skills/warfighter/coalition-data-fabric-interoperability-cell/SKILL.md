@@ -149,3 +149,8 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 
 - Add `tool_suite_id=ts-coalition-human-machine-roe-assurance-v1` + `protocol_stack_id=ps-coalition-human-machine-roe-assurance-stack-v1` when coalition autonomy operations require auditable ROE compliance and approval traceability.
 - Add `tool_suite_id=ts-joint-civil-grid-rotating-blackout-force-posture-v1` + `protocol_stack_id=ps-joint-civil-grid-rotating-blackout-force-posture-stack-v1` when coalition data fabric priorities shift due to rotating civil-grid outages.
+
+## Domain Toolchain Override (2026-03-10, Coalition Fires Boundary and HF Mesh Expansion)
+
+- Add `tool_suite_id=ts-coalition-ai-fires-no-strike-assurance-v1` + `protocol_stack_id=ps-coalition-ai-fires-no-strike-assurance-stack-v1` when coalition data-fabric exchanges drive AI-enabled fires recommendations requiring no-strike compliance.
+- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when interoperable data dissemination must survive SATCOM and terrestrial-link denial.

@@ -966,3 +966,33 @@ Every skill output should include:
 - AI mission order translation validation + commander priority information synthesis + CJADC2 data fabric degradation response
 - Rotating blackout force posture + homeland grid blackstart support + critical infrastructure restoration prioritization
 - Degraded weather and fires recalibration + theater spectrum-to-targeting latency audit + dynamic targeting and time-sensitive strike
+
+## New Expansion Wave (2026-03-10, Cislunar Continuity, Trusted Command, and Counterfeit-Resilient Force Flow)
+
+- joint-denied-underwater-comms-relay-and-autonomy-control-cell
+- theater-portable-nuclear-detection-and-forensic-triage-cell
+- coalition-joint-fires-ai-no-strike-boundary-assurance-cell
+- strategic-military-microelectronics-counterfeit-eradication-cell
+- tactical-contested-megacity-waterborne-outbreak-mitigation-cell
+- joint-cislunar-supply-route-threat-adjudication-cell
+- homeland-defense-hyperscale-cloud-failover-for-mission-systems-cell
+- expeditionary-autonomous-bridge-inspection-and-load-classification-cell
+- theater-multi-source-deepfake-voice-command-authentication-cell
+- joint-rapid-ice-runway-construction-and-fracture-monitoring-cell
+- coalition-contested-hf-radio-mesh-synchronization-cell
+- strategic-energetics-precursor-supply-diversion-counter-cell
+
+## Updated Pairings (2026-03-10, Cislunar Continuity, Trusted Command, and Counterfeit-Resilient Force Flow)
+
+- Denied underwater comms relay + undersea chokepoint autonomy defense + mission-data-link management + coalition data fabric interoperability
+- Portable nuclear detection triage + expeditionary radiological smuggling interdiction + battlefield forensics evidence chain + CBRN consequence management
+- Coalition AI no-strike assurance + targeting standards and CDE governance + legal/ROE compliance + dynamic targeting time-sensitive strike
+- Military microelectronics counterfeit eradication + strategic trusted fab surge + strategic autonomous systems component security + industrial mobilization readiness
+- Contested megacity waterborne outbreak mitigation + preventive medicine force health + water treatment substitution + civil support mass evacuation
+- Cislunar supply route adjudication + contested space launch reconstitution + denied PNT time transfer + space-ground integration reentry risk
+- Homeland cloud mission failover + theater mission network failover + NC3 resilience + zero-trust key-material continuity
+- Autonomous bridge load classification + contested bridge and gap crossing + route clearance and counter-IED fusion + rail mobility synchronization
+- Deepfake voice command authentication + information integrity and attribution + commander priority information synthesis + human-agent command escalation
+- Ice runway fracture monitoring + arctic corridor deconfliction + expeditionary airfield recovery + weather/space-weather effects forecasting
+- Coalition HF mesh synchronization + denied comms intent reconciliation + SATCOM denial recovery + battle rhythm synchronization
+- Energetics precursor diversion counter + ammunition energetics substitution + munitions precursor diversion detection + strategic supply-chain risk monitoring

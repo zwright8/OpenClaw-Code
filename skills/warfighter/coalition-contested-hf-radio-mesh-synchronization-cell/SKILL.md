@@ -1,9 +1,9 @@
 ---
-name: theater-mission-network-failover-cell
-description: Support U.S. warfighter planning and decision support for Theater Mission Network Failover Cell. Use when missions require theater mission network failover orchestration and communications continuity in denied environments, integrated options, and protocol-aware staff outputs.
+name: coalition-contested-hf-radio-mesh-synchronization-cell
+description: Synchronize coalition HF radio mesh operations for resilient command and control in denied-spectrum environments. Use when SATCOM or terrestrial digital links are disrupted and HF becomes primary.
 ---
 
-# Theater Mission Network Failover Cell
+# Coalition Contested HF Radio Mesh Synchronization Cell
 
 ## Mission Scope
 
@@ -13,8 +13,8 @@ description: Support U.S. warfighter planning and decision support for Theater M
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: commander objectives, force disposition, operating constraints, and key intelligence gaps.
-2. Identify assumptions, decision thresholds, and what reporting or indicators would invalidate the current plan.
+1. Frame the mission problem using domain-specific inputs and command objectives.
+2. Identify assumptions, decision thresholds, and what reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
@@ -31,15 +31,14 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: network failover playbook, comms continuity decision log, degraded transport matrix.
+Primary products for this skill: HF mesh synchronization matrix, frequency deconfliction plan, coalition message continuity packet.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and select a domain toolchain profile relevant to this mission.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Prioritize these tools or protocol families for this domain: zero-trust network tooling, SATCOM planners, mission data fabric gateways.
-- State the protocol or message format for outbound coordination (for example API/JSON, CoT, USMTF).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
+- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, or `NATO APP-11/ADatP-3`).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
 ## Interoperability Validation Checklist
@@ -142,11 +141,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 ## Mission Tool and Protocol Catalog Binding
 
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
-- For this domain, prioritize `tool_suite_id=ts-cyber-defense-v1` and `protocol_stack_id=ps-pnt-time-transfer-assurance-stack-v1` when failover decisions depend on both network integrity and resilient timing continuity.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-10, Trusted Command and Cloud Continuity Expansion)
+## Domain Toolchain Override (2026-03-10, Full-Spectrum Expansion)
 
-- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when failover recommendations include hyperscale-region continuity and cloud service dependency sequencing.
-- Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when degraded networks increase risk of synthetic command injection.
+- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when producing critical recommendations for this mission domain.

@@ -161,3 +161,8 @@ Primary products for this skill: data link execution plan, network load manageme
 
 - Add `tool_suite_id=ts-joint-drone-swarm-capture-exploitation-v1` + `protocol_stack_id=ps-joint-drone-swarm-capture-exploitation-stack-v1` when recovered swarm payloads must be converted into mission-data-link updates.
 - Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when data-link quality depends on LEO SATCOM path restoration and anti-jam fallback sequencing.
+
+## Domain Toolchain Override (2026-03-10, Denied Relay and Voice Authenticity Expansion)
+
+- Add `tool_suite_id=ts-denied-underwater-comms-autonomy-control-v1` + `protocol_stack_id=ps-denied-underwater-comms-autonomy-control-stack-v1` when data-link recommendations include submerged relays or autonomous maritime control loops.
+- Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when command-link trust and voice-origin verification become mission-critical.
