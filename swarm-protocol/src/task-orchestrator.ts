@@ -215,6 +215,18 @@ function resolveCircuitBreaker(value) {
     };
 }
 
+function resolveMaxRetryHintMs(maxRetryHintMs, fallbackMs) {
+    if (maxRetryHintMs === null || maxRetryHintMs === undefined) {
+        return null;
+    }
+
+    const value = Number(maxRetryHintMs);
+    if (!Number.isFinite(value) || value < 0) {
+        return Math.max(0, Math.floor(fallbackMs));
+    }
+    return Math.max(0, Math.floor(value));
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -345,10 +357,7 @@ export class TaskOrchestrator {
             this.retryDelayMs,
             clampNonNegativeNumber(maxRetryDelayMs, 30_000)
         );
-        this.maxRetryHintMs = Math.max(
-            this.retryDelayMs,
-            clampNonNegativeNumber(maxRetryHintMs, this.maxRetryDelayMs)
-        );
+        this.maxRetryHintMs = resolveMaxRetryHintMs(maxRetryHintMs, this.maxRetryDelayMs);
         this.overallTimeoutMs = Number.isFinite(overallTimeoutMs) && Number(overallTimeoutMs) > 0
             ? Number(overallTimeoutMs)
             : null;
@@ -794,7 +803,10 @@ export class TaskOrchestrator {
         }
 
         if (hasHint) {
-            delayMs = Math.min(this.maxRetryHintMs, Number(hintMs));
+            const normalizedHintMs = Math.max(0, Number(hintMs));
+            delayMs = Number.isFinite(this.maxRetryHintMs)
+                ? Math.min(Number(this.maxRetryHintMs), normalizedHintMs)
+                : normalizedHintMs;
         }
 
         if (!hasHint && this.retryJitter === 'full' && delayMs > 1) {

@@ -302,6 +302,70 @@ test('transient rejection honors Retry-After HTTP-date hint', async () => {
     assert.equal(current.nextRetryAt, clock.now() + 2_000);
 });
 
+test('transient rejection honors long Retry-After hints by default', async () => {
+    const clock = createClock(15_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25,
+        maxRetryDelayMs: 1_000
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-after-long',
+        task: 'Respect long Retry-After values'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-retry-after-long',
+        accepted: false,
+        reason: 'service_unavailable retry-after: 120',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.lastRetryDelayMs, 120_000);
+    assert.equal(current.nextRetryAt, clock.now() + 120_000);
+});
+
+test('maxRetryHintMs caps Retry-After hints when configured', async () => {
+    const clock = createClock(16_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25,
+        maxRetryHintMs: 500
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-after-capped',
+        task: 'Cap long Retry-After values'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-retry-after-capped',
+        accepted: false,
+        reason: 'service_unavailable retry-after: 120',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.lastRetryDelayMs, 500);
+    assert.equal(current.nextRetryAt, clock.now() + 500);
+});
+
 test('overallTimeoutMs caps retry hint delay and task deadlines', async () => {
     const clock = createClock(50_000);
     const orchestrator = new TaskOrchestrator({
