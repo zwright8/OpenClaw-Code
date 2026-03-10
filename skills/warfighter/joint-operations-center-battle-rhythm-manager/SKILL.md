@@ -144,3 +144,8 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Civil-Military Throughput and Mission Assurance Expansion)
+
+- Add `tool_suite_id=ts-civilian-maritime-traffic-deconfliction-v1` + `protocol_stack_id=ps-civilian-maritime-traffic-deconfliction-stack-v1` when battle rhythm decisions depend on military-civil maritime corridor adjudication and convoy release timing.
+- Add `tool_suite_id=ts-mission-assurance-digital-twin-red-v1` + `protocol_stack_id=ps-mission-assurance-digital-twin-red-stack-v1` when commander decision support requires adversarial validation of mission-thread models before force posture changes.
