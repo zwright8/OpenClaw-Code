@@ -1,9 +1,9 @@
 ---
-name: joint-operations-center-battle-rhythm-manager
-description: Synchronize JOC battle rhythm and decision support for joint operations across 24-hour cycles. Use when aligning boards, bureaus, centers, cells, and working groups to command decision windows.
+name: coalition-humanitarian-corridor-ai-convoy-deconfliction-cell
+description: Coordinate coalition humanitarian corridor operations with AI-assisted convoy deconfliction and civilian protection controls. Use when warfighters and partners must synchronize relief movements with dynamic threat and fires constraints.
 ---
 
-# Joint Operations Center Battle Rhythm Manager
+# Coalition Humanitarian Corridor AI Convoy Deconfliction Cell
 
 ## Mission Scope
 
@@ -13,8 +13,8 @@ description: Synchronize JOC battle rhythm and decision support for joint operat
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: commander objectives, force disposition, operating constraints, and key intelligence gaps.
-2. Identify assumptions, decision thresholds, and what reporting or indicators would invalidate the current plan.
+1. Frame the mission problem using domain-specific inputs and command objectives.
+2. Identify assumptions, decision thresholds, and what reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
@@ -31,7 +31,7 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: battle rhythm synchronization matrix, command decision support board package, daily operations update.
+Primary products for this skill: humanitarian convoy deconfliction board, civilian-risk corridor map, coalition movement approval ladder.
 
 ## External Tools and Protocol Integration
 
@@ -144,18 +144,6 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-10, Maneuver Assurance and Strategic Continuity Expansion)
 
-## Domain Toolchain Override (2026-03-10, Denied Sustainment and SATCOM Recovery Addendum)
-
-- Add `tool_suite_id=ts-denied-logistics-payment-cash-continuity-v1` + `protocol_stack_id=ps-denied-logistics-payment-cash-continuity-stack-v1` when battle rhythm updates require force-flow sustainment decisions under disrupted payment rails.
-- Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when command cadence is constrained by SATCOM mesh denial and dynamic comms restoration sequencing.
-
-## Domain Toolchain Override (2026-03-10, Cislunar Continuity and Trusted Command Expansion)
-
-- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when battle rhythm synchronization depends on denied-spectrum coalition command continuity.
-- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when mission-system outage conditions require cross-region failover governance.
-
-## Domain Toolchain Override (2026-03-10, Underground Denial and Strategic Continuity Expansion)
-
-- Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when battle rhythm decisions require cryptographic rollover and disconnected trust continuity.
-- Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when command cadence depends on EMP-affected grid and C2 restoration sequencing.
+- Add `tool_suite_id=ts-humanitarian-corridor-ai-convoy-deconfliction-v1` + `protocol_stack_id=ps-humanitarian-corridor-ai-convoy-deconfliction-stack-v1` when producing critical recommendations for this mission domain.

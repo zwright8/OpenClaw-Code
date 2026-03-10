@@ -150,3 +150,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when failover recommendations include hyperscale-region continuity and cloud service dependency sequencing.
 - Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when degraded networks increase risk of synthetic command injection.
+
+## Domain Toolchain Override (2026-03-10, Crypto Survival and Infrastructure Shock Expansion)
+
+- Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when network failover plans include emergency post-quantum key rollover and disconnected trust operation.
+- Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when failover choices depend on EMP-induced infrastructure degradation and staged service restoration.

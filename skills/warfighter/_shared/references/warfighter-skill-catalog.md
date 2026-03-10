@@ -996,3 +996,33 @@ Every skill output should include:
 - Ice runway fracture monitoring + arctic corridor deconfliction + expeditionary airfield recovery + weather/space-weather effects forecasting
 - Coalition HF mesh synchronization + denied comms intent reconciliation + SATCOM denial recovery + battle rhythm synchronization
 - Energetics precursor diversion counter + ammunition energetics substitution + munitions precursor diversion detection + strategic supply-chain risk monitoring
+
+## New Expansion Wave (2026-03-10, Underground Denial, Crypto Survival, and Space-Health Continuity)
+
+- joint-autonomous-subterranean-tunnel-detection-and-denial-cell
+- theater-quantum-key-rollover-disconnected-trust-cell
+- coalition-maritime-chokepoint-commercial-traffic-shielding-cell
+- strategic-bioindustrial-defense-vaccine-and-antitoxin-surge-cell
+- expeditionary-additive-spare-parts-airworthiness-cell
+- homeland-defense-electromagnetic-pulse-grid-and-c2-recovery-cell
+- joint-precision-navigation-terrain-referenced-reversion-cell
+- theater-hostage-recovery-urban-sensor-fusion-cell
+- coalition-humanitarian-corridor-ai-convoy-deconfliction-cell
+- strategic-orbital-debris-maneuver-warning-military-cell
+- tactical-counter-uas-legal-evidence-packaging-cell
+- joint-battlefield-blood-supply-cold-chain-resilience-cell
+
+## Updated Pairings (2026-03-10, Underground Denial, Crypto Survival, and Space-Health Continuity)
+
+- Subterranean tunnel detection and denial + autonomous combat engineer route breach + battlefield forensics site exploitation + urban operations corridor control
+- Quantum-resistant key rollover + mission network failover + zero-trust key-material continuity + coalition data fabric interoperability
+- Maritime chokepoint commercial traffic shielding + maritime operations planner + autonomous maritime corridor manager + coalition legal interoperability
+- Bioindustrial vaccine and antitoxin surge + preventive medicine force health protection + strategic reserve medical readiness surge + homeland civil defense support
+- Expeditionary additive airworthiness certification + maintenance predictive failure + additive munitions safety and traceability + allied maintenance data rights
+- EMP grid and C2 recovery + homeland grid blackstart military support + cyber-physical infrastructure defense + NC3 resilience
+- Precision navigation terrain-referenced reversion + denied PNT time transfer assurance + contested spectrum mission replanning + mission data link management
+- Hostage recovery urban sensor fusion + special operations mission rehearsal + dynamic targeting time-sensitive strike + civilian harm mitigation and response
+- Humanitarian corridor convoy deconfliction + civil affairs stability ops + coalition interoperability coordinator + legal-ROE compliance checker
+- Orbital debris maneuver warning + allied space object collision avoidance + cislunar supply route threat adjudication + space-ground integration continuity
+- Counter-UAS legal evidence packaging + battlefield drone forensics and attribution + information integrity and attribution + coalition tribunal handoff workflows
+- Battlefield blood cold-chain resilience + casualty evacuation and medical regulation + austere surgical support + contested logistics sustainment

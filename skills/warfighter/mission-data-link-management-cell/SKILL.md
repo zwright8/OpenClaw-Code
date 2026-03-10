@@ -166,3 +166,8 @@ Primary products for this skill: data link execution plan, network load manageme
 
 - Add `tool_suite_id=ts-denied-underwater-comms-autonomy-control-v1` + `protocol_stack_id=ps-denied-underwater-comms-autonomy-control-stack-v1` when data-link recommendations include submerged relays or autonomous maritime control loops.
 - Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when command-link trust and voice-origin verification become mission-critical.
+
+## Domain Toolchain Override (2026-03-10, Navigation Reversion and Urban Rescue Expansion)
+
+- Add `tool_suite_id=ts-precision-navigation-terrain-referenced-reversion-v1` + `protocol_stack_id=ps-precision-navigation-terrain-referenced-reversion-stack-v1` when data-link management must support synchronized non-GNSS navigation fallback.
+- Add `tool_suite_id=ts-hostage-recovery-urban-sensor-fusion-v1` + `protocol_stack_id=ps-hostage-recovery-urban-sensor-fusion-stack-v1` when mission links carry time-critical urban sensor confidence updates for sensitive rescue operations.

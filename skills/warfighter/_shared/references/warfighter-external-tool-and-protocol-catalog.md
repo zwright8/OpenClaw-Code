@@ -5255,3 +5255,125 @@ external_binding:
 ### `ps-strategic-energetics-precursor-diversion-counter-stack-v1`
 - Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
 - Use for: energetics precursor diversion alerts, interdiction coordination, and strategic production continuity decisions.
+
+## Expansion Addendum (2026-03-10, Underground Denial, Crypto Survival, and Space-Health Continuity)
+
+### `ts-autonomous-subterranean-tunnel-detection-denial-v1`
+- Use for: autonomous subterranean detection, tunnel mapping confidence scoring, and denial sequencing under contested urban terrain.
+- Primary tools: ground-penetrating ISR fusion boards, subterranean autonomy path planners, engineer denial effects estimators.
+- Cross-check tools: independent geotechnical anomaly adjudicator and alternate tunnel route confidence ledger.
+- Typical products: subterranean localization matrix, denial branch trigger card, tunnel confidence delta brief.
+
+### `ts-quantum-resistant-key-rollover-disconnected-trust-v1`
+- Use for: post-quantum key rotation planning, disconnected trust continuity, and offline credential survivability.
+- Primary tools: cryptographic inventory graphers, PQC migration orchestration consoles, disconnected identity trust ledgers.
+- Cross-check tools: independent key custody validator and alternate revocation propagation monitor.
+- Typical products: key rollover execution ladder, disconnected trust branch plan, cryptographic risk acceptance board.
+
+### `ts-maritime-chokepoint-commercial-traffic-shielding-v1`
+- Use for: shielding commercial maritime traffic in contested chokepoints while preserving joint force maneuver freedom.
+- Primary tools: maritime AIS/MDA fusion boards, convoy lane deconfliction planners, chokepoint threat-route simulation services.
+- Cross-check tools: independent shipping continuity monitor and alternate coalition maritime legal risk board.
+- Typical products: traffic shielding matrix, convoy deconfliction sequence, civilian shipping risk brief.
+
+### `ts-bioindustrial-vaccine-antitoxin-surge-v1`
+- Use for: wartime vaccine and antitoxin manufacturing surge, distribution prioritization, and force-health continuity.
+- Primary tools: biomanufacturing capacity dashboards, cold-chain allocation planners, force-health prophylaxis prioritization services.
+- Cross-check tools: independent reagent availability tracker and alternate adverse-event adjudication panel.
+- Typical products: surge production board, antitoxin distribution ladder, force-health risk mitigation packet.
+
+### `ts-additive-spare-parts-airworthiness-certification-v1`
+- Use for: expeditionary additive spare-part qualification, airworthiness evidence production, and fleet safety continuity.
+- Primary tools: additive print telemetry certifiers, part geometry conformance analytics, airworthiness release workflow boards.
+- Cross-check tools: independent NDI verification queue and alternate flight-safety risk adjudication board.
+- Typical products: additive certification packet, airworthiness decision log, defect escalation tree.
+
+### `ts-electromagnetic-pulse-grid-c2-recovery-v1`
+- Use for: EMP-effect recovery across grid dependencies and mission command-and-control pathways.
+- Primary tools: EMP impact restoration map services, hardened node dependency graphers, C2 pathway failover orchestrators.
+- Cross-check tools: independent electronics viability probe mesh and alternate continuity confidence monitor.
+- Typical products: EMP recovery sequence, protected C2 branch matrix, restoration priority board.
+
+### `ts-precision-navigation-terrain-referenced-reversion-v1`
+- Use for: synchronized fallback navigation using terrain-referenced methods when GNSS/PNT is denied.
+- Primary tools: terrain-matching navigation engines, inertial drift correction boards, cross-domain route confidence dashboards.
+- Cross-check tools: independent celestial/landmark verification service and alternate platform navigation trust monitor.
+- Typical products: nav reversion matrix, platform fallback authority ladder, confidence variance report.
+
+### `ts-hostage-recovery-urban-sensor-fusion-v1`
+- Use for: hostage-recovery sensor fusion, dense urban uncertainty reduction, and rapid route/target confidence adjudication.
+- Primary tools: multi-INT urban fusion workboards, route obstruction prediction services, identity-confidence adjudication consoles.
+- Cross-check tools: independent false-positive suppression board and alternate mission-go/no-go risk monitor.
+- Typical products: hostage sensor fusion brief, route confidence board, escalation decision card.
+
+### `ts-humanitarian-corridor-ai-convoy-deconfliction-v1`
+- Use for: humanitarian convoy AI deconfliction, civilian corridor survivability, and coalition movement governance.
+- Primary tools: convoy conflict prediction engines, civilian presence heatmap services, coalition route approval boards.
+- Cross-check tools: independent civilian-risk corroboration panel and alternate convoy timing validator.
+- Typical products: corridor deconfliction matrix, convoy branch plan, civilian protection risk update.
+
+### `ts-orbital-debris-maneuver-warning-military-constellations-v1`
+- Use for: military constellation debris warning, maneuver sequencing, and mission-priority tradeoff governance.
+- Primary tools: conjunction warning services, constellation maneuver planners, mission criticality prioritization dashboards.
+- Cross-check tools: independent ephemeris integrity monitor and alternate maneuver conflict adjudication queue.
+- Typical products: maneuver warning board, priority maneuver queue, constellation risk ladder.
+
+### `ts-counter-uas-legal-evidence-packaging-v1`
+- Use for: counter-UAS incident evidence assembly supporting lawful response, attribution, and prosecution workflows.
+- Primary tools: drone telemetry forensic suites, chain-of-custody orchestration services, legal evidence package builders.
+- Cross-check tools: independent metadata tamper verifier and alternate attribution confidence review panel.
+- Typical products: legal evidence packet, attribution timeline, incident handoff matrix.
+
+### `ts-battlefield-blood-cold-chain-resilience-v1`
+- Use for: battlefield blood product routing, cold-chain resilience, and casualty survival optimization under logistics stress.
+- Primary tools: blood inventory and compatibility fusion boards, cold-chain telemetry monitors, medevac-linked distribution planners.
+- Cross-check tools: independent storage integrity verifier and alternate casualty-priority allocation board.
+- Typical products: blood distribution matrix, cold-chain failure branch map, resupply priority brief.
+
+### `ps-autonomous-subterranean-tunnel-detection-denial-stack-v1`
+- Protocols: `USMTF`, `CoT`, subterranean sensor telemetry envelopes, `API/JSON`.
+- Use for: tunnel-detection updates, autonomous mapping confidence exchange, and denial-tasking acknowledgments.
+
+### `ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, signed key-manifest exchange, `API/JSON`.
+- Use for: post-quantum rollover sequencing, disconnected trust updates, and cryptographic exception escalation.
+
+### `ps-maritime-chokepoint-commercial-traffic-shielding-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: maritime traffic shielding actions, convoy lane deconfliction updates, and coalition maritime coordination.
+
+### `ps-bioindustrial-vaccine-antitoxin-surge-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `HL7/FHIR`, `API/JSON`.
+- Use for: vaccine/antitoxin surge status, force-health prioritization, and distribution branch execution.
+
+### `ps-additive-spare-parts-airworthiness-certification-stack-v1`
+- Protocols: `USMTF`, signed maintenance release manifests, `NIEM`, `API/JSON`.
+- Use for: additive part certification packets, airworthiness release synchronization, and defect escalation.
+
+### `ps-electromagnetic-pulse-grid-c2-recovery-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: EMP recovery status exchange, C2 path restoration updates, and infrastructure survivability coordination.
+
+### `ps-precision-navigation-terrain-referenced-reversion-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: platform navigation reversion states, terrain-match confidence updates, and denied-PNT branch messaging.
+
+### `ps-hostage-recovery-urban-sensor-fusion-stack-v1`
+- Protocols: `USMTF`, `CoT`, `STIX/TAXII`, `API/JSON`.
+- Use for: urban sensor confidence dissemination, hostage-recovery route updates, and go/no-go escalation packets.
+
+### `ps-humanitarian-corridor-ai-convoy-deconfliction-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: humanitarian convoy deconfliction messaging, civilian corridor updates, and coalition approval acknowledgments.
+
+### `ps-orbital-debris-maneuver-warning-military-constellations-stack-v1`
+- Protocols: `USMTF`, `CCSDS orbit data exchange`, `API/JSON`, `OGC WMS/WFS/WMTS`.
+- Use for: debris warning dissemination, maneuver sequencing approvals, and constellation risk posture updates.
+
+### `ps-counter-uas-legal-evidence-packaging-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, signed custody manifests, `API/JSON`.
+- Use for: counter-UAS evidentiary package transfer, attribution alerts, and prosecution-ready handoff synchronization.
+
+### `ps-battlefield-blood-cold-chain-resilience-stack-v1`
+- Protocols: `USMTF`, `HL7/FHIR`, `NIMS/ICS`, `API/JSON`.
+- Use for: blood inventory and cold-chain telemetry updates, casualty-priority distribution messaging, and medevac coordination.

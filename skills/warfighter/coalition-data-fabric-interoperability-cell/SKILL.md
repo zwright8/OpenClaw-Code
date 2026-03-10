@@ -154,3 +154,8 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 
 - Add `tool_suite_id=ts-coalition-ai-fires-no-strike-assurance-v1` + `protocol_stack_id=ps-coalition-ai-fires-no-strike-assurance-stack-v1` when coalition data-fabric exchanges drive AI-enabled fires recommendations requiring no-strike compliance.
 - Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when interoperable data dissemination must survive SATCOM and terrestrial-link denial.
+
+## Domain Toolchain Override (2026-03-10, Coalition Corridor and Chokepoint Expansion)
+
+- Add `tool_suite_id=ts-humanitarian-corridor-ai-convoy-deconfliction-v1` + `protocol_stack_id=ps-humanitarian-corridor-ai-convoy-deconfliction-stack-v1` when coalition data fabric workflows must prioritize humanitarian convoy deconfliction.
+- Add `tool_suite_id=ts-maritime-chokepoint-commercial-traffic-shielding-v1` + `protocol_stack_id=ps-maritime-chokepoint-commercial-traffic-shielding-stack-v1` when coalition interoperability depends on contested chokepoint civilian shipping continuity.
