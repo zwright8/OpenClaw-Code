@@ -4889,3 +4889,125 @@ external_binding:
 ### `ps-autonomous-maritime-traffic-liability-stack-v1`
 - Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
 - Use for: autonomous maritime separation commands, incident attribution, and coalition liability reporting.
+
+## Expansion Addendum (2026-03-10, Intent Continuity, Data Trust, and Strategic Infrastructure Defense)
+
+### `ts-denied-comms-intent-reconciliation-v1`
+- Use for: reconciling commander intent and delegated priorities across disconnected or intermittently connected formations.
+- Primary tools: mission command COP replicas, intent delta analyzers, disconnected task-priority ledgers.
+- Cross-check tools: alternate battle-rhythm replay timeline and independent command-approval audit board.
+- Typical products: intent reconciliation matrix, branch/sequel trigger packet, delegated authority exception log.
+
+### `ts-rare-earth-refining-sabotage-recovery-v1`
+- Use for: strategic rare-earth refinery sabotage response, contamination isolation, and defense-priority restart sequencing.
+- Primary tools: refinery ICS telemetry fusion, contamination process analytics, strategic industrial risk dashboards.
+- Cross-check tools: independent sample-chain validation queue and alternate supply substitution feasibility board.
+- Typical products: refinery recovery ladder, feedstock reroute plan, strategic manufacturing risk brief.
+
+### `ts-autonomous-civilian-harm-triage-v1`
+- Use for: triaging civilian harm incidents involving autonomous or AI-enabled systems with rapid accountability support.
+- Primary tools: mission event log fusion, ISR replay timelines, civilian impact assessment workflows.
+- Cross-check tools: independent legal-policy adjudication board and alternate human-rights reporting monitor.
+- Typical products: incident triage board, mitigation-and-notification timeline, confidence-ranked accountability packet.
+
+### `ts-cable-landing-island-power-defense-v1`
+- Use for: defense and rapid recovery of cable landing stations and supporting islanded power systems.
+- Primary tools: cable telemetry anomaly monitors, microgrid control dashboards, OT/ICS cyber defense workflows.
+- Cross-check tools: independent shore-node integrity board and alternate restoration route feasibility tracker.
+- Typical products: landing-station hardening board, island-power continuity packet, tamper-response ladder.
+
+### `ts-denied-additive-munitions-safety-v1`
+- Use for: denied-environment additive munitions safety governance and lot quarantine/release controls.
+- Primary tools: additive process monitors, energetics QA validators, explosive safety modeling services.
+- Cross-check tools: independent destructive sample audit and alternate hazard compliance review board.
+- Typical products: additive safety gate matrix, lot quarantine ledger, explosive risk branch plan.
+
+### `ts-military-spaceport-ground-recovery-v1`
+- Use for: cyber-physical restoration of military spaceport ground systems and range support infrastructure.
+- Primary tools: launch ground telemetry boards, OT/IT incident command orchestration, mission readiness gate engines.
+- Cross-check tools: independent launch safety verification queue and alternate range status mirror.
+- Typical products: ground-system recovery sequence, launch-readiness gate matrix, fault isolation packet.
+
+### `ts-contested-polar-medevac-staging-v1`
+- Use for: coalition casualty staging and evacuation synchronization in contested polar environments.
+- Primary tools: polar weather-window planners, patient regulation brokers, coalition air/sea lift schedulers.
+- Cross-check tools: independent cold-weather route viability board and alternate medevac timing monitor.
+- Typical products: medevac staging matrix, weather-gated evacuation branches, coalition casualty transfer board.
+
+### `ts-mission-data-poisoning-quarantine-v1`
+- Use for: detecting mission-data poisoning and quarantining compromised AI/ML models before operational impact spreads.
+- Primary tools: feature-store integrity monitors, model drift/anomaly detectors, mission AI release governance workflows.
+- Cross-check tools: independent adversarial-data test harness and alternate model confidence adjudication board.
+- Typical products: poisoning detection brief, quarantine-and-rollback plan, trust posture scorecard.
+
+### `ts-precision-timing-backbone-reconstitution-v1`
+- Use for: restoring terrestrial precision timing backbone services during GNSS denial or timing-path disruption.
+- Primary tools: timing distribution monitors, fiber time-transfer orchestrators, holdover clock assurance dashboards.
+- Cross-check tools: independent timing drift validator and alternate synchronization integrity board.
+- Typical products: timing restoration ladder, priority node re-sync plan, holdover confidence brief.
+
+### `ts-homeland-port-rail-fuel-sync-v1`
+- Use for: synchronizing ports, rail movement, and bulk fuel flow for homeland defense surge deployment.
+- Primary tools: port throughput control systems, rail movement planners, fuel node telemetry boards.
+- Cross-check tools: independent force-flow bottleneck analyzer and alternate infrastructure status mirror.
+- Typical products: port-rail-fuel synchronization matrix, force-flow continuity timeline, disruption branch packet.
+
+### `ts-gray-zone-lawfare-counter-v1`
+- Use for: exposing and countering adversary lawfare campaigns targeting military legitimacy and coalition freedom of action.
+- Primary tools: legal-claim graph analytics, narrative attribution telemetry, coalition legal-policy coordination portals.
+- Cross-check tools: independent public-domain evidence verification cell and alternate policy-risk adjudication board.
+- Typical products: lawfare campaign exposure brief, legal-risk-to-operational-impact map, counter-campaign plan.
+
+### `ts-robotic-casualty-route-assurance-v1`
+- Use for: assuring robotic casualty collection routing and handoff continuity under contested conditions.
+- Primary tools: autonomous route planners, casualty telemetry trackers, medevac dispatch coordination boards.
+- Cross-check tools: independent route threat replay service and alternate casualty handoff verification queue.
+- Typical products: robotic casualty route board, threat-adaptive dispatch matrix, transfer continuity packet.
+
+### `ps-denied-comms-intent-reconciliation-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: denied-comms commander-intent reconciliation and delegated task synchronization.
+
+### `ps-rare-earth-refining-sabotage-recovery-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `API/JSON`, `OGC WMS/WFS/WMTS`.
+- Use for: refinery sabotage response, contamination isolation, and strategic industrial restart coordination.
+
+### `ps-autonomous-civilian-harm-triage-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: autonomous civilian-harm incident triage, accountability workflows, and mitigation coordination.
+
+### `ps-cable-landing-island-power-defense-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: cable landing station defense and island-power continuity operations.
+
+### `ps-denied-additive-munitions-safety-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, `XML`, `NATO APP-11/ADatP-3 aligned`.
+- Use for: denied additive munitions safety gating, lot quarantine, and release governance.
+
+### `ps-military-spaceport-ground-recovery-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: military spaceport OT/IT recovery, launch support reconstitution, and fault isolation handoffs.
+
+### `ps-contested-polar-medevac-staging-stack-v1`
+- Protocols: `USMTF`, `HL7/FHIR`, `VMF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: contested polar medical evacuation staging, casualty transfer, and coalition timing coordination.
+
+### `ps-mission-data-poisoning-quarantine-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `API/JSON`, signed model-manifest exchange.
+- Use for: mission-data poisoning detection, model quarantine decisions, and rollback governance.
+
+### `ps-precision-timing-backbone-reconstitution-stack-v1`
+- Protocols: `USMTF`, `PTP/NTP profiles`, `API/JSON`, `OGC WMS/WFS/WMTS`.
+- Use for: precision timing backbone restoration, node re-synchronization, and timing confidence reporting.
+
+### `ps-homeland-port-rail-fuel-sync-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `AIS/NMEA`, `API/JSON`.
+- Use for: homeland port-rail-fuel synchronization and force-flow sustainment under disruption.
+
+### `ps-gray-zone-lawfare-counter-stack-v1`
+- Protocols: `STIX/TAXII`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: lawfare campaign exposure, legal-risk coordination, and cross-government counter-response synchronization.
+
+### `ps-robotic-casualty-route-assurance-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `HL7/FHIR`, `API/JSON`.
+- Use for: robotic casualty collection route assurance, dispatch updates, and medical handoff continuity.
