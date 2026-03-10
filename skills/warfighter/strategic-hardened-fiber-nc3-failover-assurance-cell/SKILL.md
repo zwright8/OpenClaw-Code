@@ -33,8 +33,8 @@ Primary products: mission option matrix, protocol-bound tool invocation packet, 
 ## External Tools and Protocol Integration
 
 - Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Use packet template `DPL-NC3-FIBER-001` from `../_shared/references/domain-tool-packet-library.md`.
-- Bind tool and protocol choices to `ts-hardened-fiber-nc3-failover-v1` and `ps-hardened-fiber-nc3-failover-stack-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
+- Use packet templates `DPL-NC3-HARDENED-FIBER-FAILOVER-001` and `DPL-NC3-ACK-INTEGRITY-CHAIN-001` from `../_shared/references/domain-tool-packet-library.md`.
+- Bind tool and protocol choices to `ts-nc3-hardened-fiber-failover-assurance-v1` and `ps-nc3-hardened-fiber-failover-assurance-stack-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
 - Align execution profile with `nc3-continuity-resilience-v1` from `../_shared/references/joint-operations-external-toolchain-profiles.md`.
 - Include source freshness UTC, confidence, and degraded transition triggers.
 
@@ -46,11 +46,17 @@ Primary products: mission option matrix, protocol-bound tool invocation packet, 
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-hardened-fiber-nc3-failover-v1` with `protocol_stack_id=ps-hardened-fiber-nc3-failover-stack-v1`.
+- Primary: `tool_suite_id=ts-nc3-hardened-fiber-failover-assurance-v1` with `protocol_stack_id=ps-nc3-hardened-fiber-failover-assurance-stack-v1`.
 - Alternate: choose one profile-aligned suite from the shared catalog and document tradeoffs.
 - Degraded: manual reporting and acknowledgment chain with explicit timing and confidence penalties.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-NC3-FIBER-001`.
+- Default packet IDs: `DPL-NC3-HARDENED-FIBER-FAILOVER-001`, `DPL-NC3-ACK-INTEGRITY-CHAIN-001`.
 - If scope mismatch exists, define a provisional packet and assign validation owner with suspense.
+
+## Domain Assurance Overrides (2026-03-10, NC3 Failover Tightening)
+
+- Require dual independent acknowledgment paths before recommending a failover execution branch.
+- Add `ack_path_primary_status`, `ack_path_secondary_status`, and `timing_integrity_delta_ms` fields to every critical recommendation.
+- If either path is stale or uncertain, downgrade output to advisory-only and elevate to command decision gate.

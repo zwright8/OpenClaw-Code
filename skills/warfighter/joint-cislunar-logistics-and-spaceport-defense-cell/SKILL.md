@@ -46,6 +46,12 @@ description: Support warfighter planning for cislunar logistics continuity and s
 - Default packet IDs: DPL-CISLUNAR-SPACEPORT-001, DPL-SPACE-LAUNCH-RESILIENCE-001.
 - If no packet fully matches, define a provisional packet using the shared schema and assign a validation owner.
 
+## Domain Continuity Overrides (2026-03-10, Cislunar Logistics Hardening)
+
+- Add cross-check packet references `DPL-CISLUNAR-LOGISTICS-DEFENSE-001` and `DPL-ORBITAL-REFUEL-RENDEZVOUS-PROTECTION-001` for high-impact cislunar recommendations.
+- Require explicit `launch_window_conflict_state`, `orbital_refuel_dependency`, and `spaceport_force_protection_tier` fields for each critical COA.
+- If orbital conflict confidence or launch-window stability is below threshold, recommend only advisory branches with command decision gates.
+
 ## Tool Invocation Contract
 
 - For each critical dependency include: objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.

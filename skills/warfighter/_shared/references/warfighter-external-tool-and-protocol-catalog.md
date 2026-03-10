@@ -6201,3 +6201,85 @@ external_binding:
 - Primary tools: collateral estimation engines, cyber effects simulators, coalition legal review workbenches.
 - Cross-check tools: independent consequence model verifier and alternate no-strike impact checker.
 - Typical products: collateral estimate matrix, legal decision packet, deconfliction branch set.
+
+## 2026-03-10 Addendum H: Biocustody, Sovereign Cloud Continuity, and Industrial Allocation
+
+### `ts-joint-biocustody-pathogen-integrity-v1`
+- Use for: joint pathogen sample biocustody, evidence integrity, and attribution-ready handoff assurance.
+- Primary tools: biosurveillance custody ledgers, chain-of-custody orchestration services, forensic genomics correlation boards.
+- Cross-check tools: independent sample integrity verifier and alternate legal-evidence traceability monitor.
+- Typical products: biocustody chain log, attribution confidence packet, evidentiary handoff matrix.
+
+### `ts-theater-em-cyber-deception-attribution-v1`
+- Use for: theater electromagnetic-cyber deception breach attribution and mission-trust restoration planning.
+- Primary tools: EW anomaly fusion engines, cyber telemetry correlation services, adversary deception behavior trackers.
+- Cross-check tools: independent emitter-behavior baseline monitor and alternate intrusion-chain validator.
+- Typical products: breach-attribution graph, deception confidence ladder, response trigger matrix.
+
+### `ts-coalition-sovereign-cloud-continuity-v1`
+- Use for: coalition sovereign cloud segmentation, cross-domain continuity, and data reconstitution under legal constraints.
+- Primary tools: sovereign enclave policy controllers, cross-domain sync orchestrators, mission data continuity dashboards.
+- Cross-check tools: independent data lineage verifier and alternate enclave trust monitor.
+- Typical products: continuity branch plan, sovereign data-routing matrix, reconstitution timeline.
+
+### `ts-homeland-model-weight-provenance-response-v1`
+- Use for: model-weight provenance validation and poisoning response for homeland military AI-enabled mission systems.
+- Primary tools: signed model registry services, inference drift monitors, model rollback governance workflows.
+- Cross-check tools: independent artifact attestation validator and alternate poisoning anomaly detector.
+- Typical products: provenance assurance report, poisoning containment branch map, rollback decision packet.
+
+### `ts-joint-spaceport-propellant-toxic-response-v1`
+- Use for: spaceport propellant sabotage and toxic release response with launch continuity and force-protection prioritization.
+- Primary tools: propellant telemetry monitors, toxic plume modeling services, launch safety governance boards.
+- Cross-check tools: independent contamination-source tracer and alternate launch hazard confidence monitor.
+- Typical products: sabotage response matrix, toxic plume action plan, launch-risk continuity branch.
+
+### `ts-operational-undersea-charging-node-defense-v1`
+- Use for: tamper detection and endurance recovery at operational undersea drone charging nodes.
+- Primary tools: subsea node telemetry fusion, autonomous undersea route managers, node security attestation services.
+- Cross-check tools: independent acoustic anomaly board and alternate power-node integrity monitor.
+- Typical products: tamper response packet, endurance recovery timeline, maritime retask matrix.
+
+### `ts-coalition-hospital-microgrid-blackstart-v1`
+- Use for: coalition civil hospital microgrid blackstart triage with casualty-care power prioritization.
+- Primary tools: microgrid restoration orchestrators, hospital critical-load telemetry, casualty surge triage dashboards.
+- Cross-check tools: independent utility restoration verifier and alternate hospital capacity confidence board.
+- Typical products: blackstart triage matrix, hospital load-priority sequence, continuity risk brief.
+
+### `ts-strategic-rare-earth-magnet-allocation-v1`
+- Use for: strategic rare-earth magnet recovery, recycling, and missile production allocation under constrained supply.
+- Primary tools: strategic materials flow analytics, magnet recycling throughput monitors, missile production priority boards.
+- Cross-check tools: independent industrial capacity verifier and alternate allocation conflict adjudication board.
+- Typical products: magnet recovery ledger, allocation decision matrix, production risk posture.
+
+### `ps-joint-biocustody-pathogen-integrity-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, signed biocustody manifests, `API/JSON`.
+- Use for: sample custody transitions, pathogen evidence integrity exchange, and legal handoff traceability.
+
+### `ps-theater-em-cyber-deception-attribution-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: EW-cyber deception incident exchange, attribution confidence updates, and response escalation handoffs.
+
+### `ps-coalition-sovereign-cloud-continuity-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `USMTF`, signed data-lineage envelopes, `API/JSON`.
+- Use for: coalition sovereign-cloud continuity updates, enclave segmentation governance, and data reconstitution actions.
+
+### `ps-homeland-model-weight-provenance-response-stack-v1`
+- Protocols: signed model artifact attestations, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: model-weight provenance exchange, poisoning alerts, and rollback authority coordination.
+
+### `ps-joint-spaceport-propellant-toxic-response-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `USMTF`, launch safety telemetry envelopes, `API/JSON`.
+- Use for: toxic-release warning, sabotage response synchronization, and launch continuity gating.
+
+### `ps-operational-undersea-charging-node-defense-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, subsea node telemetry envelopes, `API/JSON`.
+- Use for: undersea node tamper alerts, endurance recovery tasking, and maritime response coordination.
+
+### `ps-coalition-hospital-microgrid-blackstart-stack-v1`
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Use for: hospital blackstart triage updates, critical-load prioritization, and coalition casualty-care continuity actions.
+
+### `ps-strategic-rare-earth-magnet-allocation-stack-v1`
+- Protocols: `USMTF`, industrial signed telemetry envelopes, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: magnet recovery status exchange, missile-allocation synchronization, and strategic industrial escalation decisions.

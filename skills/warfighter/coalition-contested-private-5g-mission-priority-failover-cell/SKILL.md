@@ -157,3 +157,9 @@ Use these tool categories as the default stack for this skill: private-5G policy
 - Default packet IDs for critical recommendations: `DPL-COALITION-PRIVATE5G-MISSION-FAILOVER-001`, `DPL-COALITION-PRIVATE5G-QOS-PREEMPTION-001`.
 - Require explicit host-nation and coalition releasability validation for any preemption recommendation.
 - If translation fidelity, authority basis, or packet provenance is uncertain, downgrade to advisory-only with escalation triggers.
+
+## Domain Governance Overrides (2026-03-10, Coalition 5G Priority Arbitration)
+
+- Enforce explicit `service_preemption_order`, `coalition_caveat_code`, and `host_nation_approval_state` fields for every QoS preemption recommendation.
+- Require at least one independent cross-check of mission-service criticality before recommending preemption across coalition enclaves.
+- If partner caveats conflict or approval state is incomplete, issue advisory-only routing options and escalate for commander adjudication.

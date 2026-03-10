@@ -1203,3 +1203,25 @@ Every skill output should include:
 - Denied space-weather PNT recovery + quantum timing crosswalk resilience + precision navigation terrain-referenced reversion
 - Supply-chain DNA-tag authenticity/diversion hunt + sanctions disruption + critical mineral anti-smuggling operations
 - Coalition cyber-fires collateral estimation + targeting governance and CDE + coalition legal interoperability and no-strike assurance
+
+## New Expansion Wave (2026-03-10, Biocustody Integrity, Sovereign Data Continuity, and Industrial Allocation)
+
+- joint-biocustody-chain-and-pathogen-evidence-integrity-cell
+- theater-electromagnetic-cyber-deception-breach-attribution-cell
+- coalition-sovereign-cloud-mission-data-continuity-cell
+- homeland-military-ai-model-weight-provenance-and-poisoning-response-cell
+- joint-spaceport-propellant-sabotage-and-toxic-release-response-cell
+- operational-undersea-drone-charging-node-tamper-response-cell
+- coalition-civil-hospital-microgrid-blackstart-triage-cell
+- strategic-rare-earth-magnet-recycling-and-missile-allocation-cell
+
+## Updated Pairings (2026-03-10, Biocustody Integrity, Sovereign Data Continuity, and Industrial Allocation)
+
+- Biocustody and pathogen evidence integrity + bio-threat attribution + coalition legal interoperability + battlefield forensics evidence preservation
+- EM-cyber deception breach attribution + cognitive EW-PSYOPS synchronization + mission data poisoning detection + command authentication assurance
+- Coalition sovereign cloud continuity + coalition data fabric interoperability + cross-domain data diode operations + mission-data releasability governance
+- Model-weight provenance and poisoning response + operational AI authority and escalation + tactical edge LLM guarded C2 assistant + software supply-chain assurance
+- Spaceport propellant sabotage and toxic release response + military spaceport range-safety continuity + contested launch fuel/oxidizer allocation + homeland spaceport GNSS emergency
+- Undersea charging-node tamper response + autonomous undersea MCM swarm control + undersea data-mule exfiltration denial + maritime chokepoint sensor barrier operations
+- Hospital microgrid blackstart triage + coalition hospital cyber-evacuation network + host-nation grid protection and blackstart + force-health casualty regulation
+- Rare-earth magnet recycling and missile allocation + strategic rare-earth refinery sabotage recovery + strategic industrial mobilization readiness + long-range fires reconstitution
