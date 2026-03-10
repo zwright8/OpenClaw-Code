@@ -387,7 +387,9 @@ const orchestrator = new TaskOrchestrator({
   },
   drainMode: {
     enabled: false, // optional: start in drain mode
-    rejectNewDispatches: true // optional: reject only brand-new dispatches
+    rejectNewDispatches: true, // optional: reject only brand-new dispatches
+    forceCancelAfterMs: 120_000, // optional: force-cancel lingering open tasks after drain grace window
+    propagateCancel: true // optional: send task_cancel when force-cancelling
   },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
@@ -426,7 +428,9 @@ await orchestrator.cancelTask(taskId, {
 orchestrator.setDrainMode({
   enabled: true,
   reason: 'rolling_restart',
-  rejectNewDispatches: true
+  rejectNewDispatches: true,
+  forceCancelAfterMs: 120_000, // optional: avoid indefinite shutdown hangs
+  propagateCancel: true
 });
 ```
 
@@ -434,6 +438,7 @@ Retry behavior notes:
 - Retries now use truncated exponential backoff with optional full jitter to reduce synchronized retry spikes.
 - Transient worker rejections (`overloaded`, `rate_limit`, `retry_after`, or `etaMs`) are scheduled for retry instead of being terminally rejected when retry budget remains.
 - If a worker includes `etaMs` on a rejected receipt, the orchestrator honors that as the retry delay hint.
+- Drain mode can now enforce a shutdown grace period (`forceCancelAfterMs`) and auto-cancel lingering in-flight work once the deadline is exceeded.
 
 Safety policy integration:
 ```js

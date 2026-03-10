@@ -510,6 +510,50 @@ test('drain mode still coalesces duplicate dispatches to existing open task', as
     assert.equal(sent.length, 1);
 });
 
+test('drain mode force-cancels lingering open tasks after grace timeout', async () => {
+    const sent = [];
+    const clock = createClock(92_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-drain-force',
+        task: 'Task that should be cancelled after drain grace'
+    });
+
+    orchestrator.setDrainMode({
+        enabled: true,
+        reason: 'deploy_shutdown',
+        rejectNewDispatches: true,
+        forceCancelAfterMs: 1_000
+    });
+
+    clock.advance(900);
+    const beforeGrace = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(beforeGrace.drainForceCancelled, 0);
+    assert.equal(current.status, 'dispatched');
+
+    clock.advance(200);
+    const afterGrace = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(afterGrace.drainForceCancelled, 1);
+    assert.equal(current.status, 'cancelled');
+    assert.equal(current.history.some((entry) => entry.event === 'cancel_signal_sent'), true);
+
+    assert.equal(sent.length, 2);
+    assert.equal(sent[1].target, 'agent:worker-drain-force');
+    assert.equal(sent[1].message.kind, 'task_cancel');
+    assert.equal(sent[1].message.taskId, task.taskId);
+});
+
 test('persists task state and hydrates after restart', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

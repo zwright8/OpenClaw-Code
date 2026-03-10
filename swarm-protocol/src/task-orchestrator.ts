@@ -87,7 +87,9 @@ const DEFAULT_STALE_TASK_POLICY = Object.freeze({
     propagateCancel: true
 });
 const DEFAULT_DRAIN_MODE = Object.freeze({
-    rejectNewDispatches: true
+    rejectNewDispatches: true,
+    forceCancelAfterMs: null,
+    propagateCancel: true
 });
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
@@ -619,6 +621,11 @@ function resolveDrainMode(value) {
         };
     }
 
+    const forceCancelAfterMs = Number.isFinite(Number(value.forceCancelAfterMs))
+        && Number(value.forceCancelAfterMs) > 0
+        ? Number(value.forceCancelAfterMs)
+        : null;
+
     return {
         enabled: value.enabled === true,
         initiatedAt: Number.isFinite(Number(value.initiatedAt))
@@ -627,7 +634,9 @@ function resolveDrainMode(value) {
         reason: typeof value.reason === 'string' && value.reason.trim()
             ? value.reason.trim()
             : null,
-        rejectNewDispatches: value.rejectNewDispatches !== false
+        rejectNewDispatches: value.rejectNewDispatches !== false,
+        forceCancelAfterMs,
+        propagateCancel: value.propagateCancel !== false
     };
 }
 
@@ -1448,6 +1457,39 @@ export class TaskOrchestrator {
             return false;
         }
         return (nowMs - createdAt) > Number(this.staleTaskPolicy.maxAgeMs);
+    }
+
+    _shouldForceCancelInDrain(record, nowMs) {
+        if (TERMINAL_STATUSES.has(record?.status)) {
+            return false;
+        }
+        if (!this.drainMode.enabled || !Number.isFinite(this.drainMode.forceCancelAfterMs)) {
+            return false;
+        }
+        const initiatedAt = Number(this.drainMode.initiatedAt);
+        if (!Number.isFinite(initiatedAt)) {
+            return false;
+        }
+        return nowMs >= (initiatedAt + Number(this.drainMode.forceCancelAfterMs));
+    }
+
+    async _forceCancelForDrain(record, nowMs) {
+        const cancelled = await this.cancelTask(record.taskId, {
+            reason: 'drain_grace_timeout_exceeded',
+            cancelledBy: 'orchestrator:drain-mode',
+            timestamp: nowMs,
+            propagate: this.drainMode.propagateCancel
+        });
+        if (!cancelled) {
+            return false;
+        }
+        this._emitAudit('task_drain_force_cancelled', {
+            taskId: record.taskId,
+            target: record.target,
+            initiatedAt: this.drainMode.initiatedAt,
+            forceCancelAfterMs: this.drainMode.forceCancelAfterMs
+        }, nowMs);
+        return true;
     }
 
     async _expireStaleTask(record, nowMs) {
@@ -2703,11 +2745,20 @@ export class TaskOrchestrator {
             retried: 0,
             timedOut: 0,
             staleExpired: 0,
+            drainForceCancelled: 0,
             transportFailures: 0,
             prunedTerminalTasks: 0
         };
 
         for (const record of this.tasks.values()) {
+            if (this._shouldForceCancelInDrain(record, nowMs)) {
+                const cancelled = await this._forceCancelForDrain(record, nowMs);
+                if (cancelled) {
+                    summary.drainForceCancelled++;
+                    continue;
+                }
+            }
+
             if (!TERMINAL_STATUSES.has(record.status) && this._isTaskPastStaleAge(record, nowMs)) {
                 const expired = await this._expireStaleTask(record, nowMs);
                 if (expired) {
@@ -2941,9 +2992,15 @@ export class TaskOrchestrator {
         enabled = true,
         reason = null,
         initiatedAt = safeNow(this.now),
-        rejectNewDispatches = true
+        rejectNewDispatches = true,
+        forceCancelAfterMs = null,
+        propagateCancel = true
     } = {}) {
         const nowMs = safeNow(this.now);
+        const normalizedForceCancelAfterMs = Number.isFinite(Number(forceCancelAfterMs))
+            && Number(forceCancelAfterMs) > 0
+            ? Number(forceCancelAfterMs)
+            : null;
         const nextMode = {
             enabled: enabled === true,
             initiatedAt: Number.isFinite(Number(initiatedAt))
@@ -2952,7 +3009,9 @@ export class TaskOrchestrator {
             reason: typeof reason === 'string' && reason.trim()
                 ? reason.trim()
                 : null,
-            rejectNewDispatches: rejectNewDispatches !== false
+            rejectNewDispatches: rejectNewDispatches !== false,
+            forceCancelAfterMs: normalizedForceCancelAfterMs,
+            propagateCancel: propagateCancel !== false
         };
         this.drainMode = nextMode;
         this._emitAudit(
@@ -2960,7 +3019,9 @@ export class TaskOrchestrator {
             {
                 reason: nextMode.reason,
                 initiatedAt: nextMode.initiatedAt,
-                rejectNewDispatches: nextMode.rejectNewDispatches
+                rejectNewDispatches: nextMode.rejectNewDispatches,
+                forceCancelAfterMs: nextMode.forceCancelAfterMs,
+                propagateCancel: nextMode.propagateCancel
             },
             nowMs
         );
@@ -3089,7 +3150,9 @@ export class TaskOrchestrator {
                 enabled: this.drainMode.enabled,
                 initiatedAt: this.drainMode.initiatedAt,
                 reason: this.drainMode.reason,
-                rejectNewDispatches: this.drainMode.rejectNewDispatches
+                rejectNewDispatches: this.drainMode.rejectNewDispatches,
+                forceCancelAfterMs: this.drainMode.forceCancelAfterMs,
+                propagateCancel: this.drainMode.propagateCancel
             },
             transportSendTimeoutMs: this.transportSendTimeoutMs
         };
