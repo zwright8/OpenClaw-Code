@@ -171,3 +171,8 @@ Primary products for this skill: data link execution plan, network load manageme
 
 - Add `tool_suite_id=ts-precision-navigation-terrain-referenced-reversion-v1` + `protocol_stack_id=ps-precision-navigation-terrain-referenced-reversion-stack-v1` when data-link management must support synchronized non-GNSS navigation fallback.
 - Add `tool_suite_id=ts-hostage-recovery-urban-sensor-fusion-v1` + `protocol_stack_id=ps-hostage-recovery-urban-sensor-fusion-stack-v1` when mission links carry time-critical urban sensor confidence updates for sensitive rescue operations.
+
+## Domain Toolchain Override (2026-03-10, JTAC Deconfliction and Solar Storm Resilience Expansion)
+
+- Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when mission-data-link actions must reconcile contested JTAC voice and digital fires-control state.
+- Add `tool_suite_id=ts-solar-storm-radiation-force-posture-v1` + `protocol_stack_id=ps-solar-storm-radiation-force-posture-stack-v1` when data-link timing and releasability are constrained by severe solar storm radiation posture changes.

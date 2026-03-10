@@ -1,9 +1,9 @@
 ---
-name: theater-mission-network-failover-cell
-description: Support U.S. warfighter planning and decision support for Theater Mission Network Failover Cell. Use when missions require theater mission network failover orchestration and communications continuity in denied environments, integrated options, and protocol-aware staff outputs.
+name: expeditionary-portable-desalination-biofouling-cell
+description: Plan portable desalination biofouling prevention, chemical dosing substitution, and output assurance for expeditionary water security.
 ---
 
-# Theater Mission Network Failover Cell
+# Expeditionary Portable Desalination Biofouling Countermeasure Cell
 
 ## Mission Scope
 
@@ -13,8 +13,8 @@ description: Support U.S. warfighter planning and decision support for Theater M
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: commander objectives, force disposition, operating constraints, and key intelligence gaps.
-2. Identify assumptions, decision thresholds, and what reporting or indicators would invalidate the current plan.
+1. Frame the mission problem using domain-specific inputs and command objectives.
+2. Identify assumptions, decision thresholds, and what reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
@@ -31,15 +31,14 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: network failover playbook, comms continuity decision log, degraded transport matrix.
+Primary products for this skill: desalination biofouling risk board, dosing substitution branch plan, potable-output assurance ledger.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and select a domain toolchain profile relevant to this mission.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Prioritize these tools or protocol families for this domain: zero-trust network tooling, SATCOM planners, mission data fabric gateways.
-- State the protocol or message format for outbound coordination (for example API/JSON, CoT, USMTF).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
+- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, or `NATO APP-11/ADatP-3`).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
 ## Interoperability Validation Checklist
@@ -142,21 +141,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 ## Mission Tool and Protocol Catalog Binding
 
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
-- For this domain, prioritize `tool_suite_id=ts-cyber-defense-v1` and `protocol_stack_id=ps-pnt-time-transfer-assurance-stack-v1` when failover decisions depend on both network integrity and resilient timing continuity.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-10, Trusted Command and Cloud Continuity Expansion)
+## Domain Toolchain Override (2026-03-10, Maneuver Assurance and Strategic Continuity Expansion)
 
-- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when failover recommendations include hyperscale-region continuity and cloud service dependency sequencing.
-- Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when degraded networks increase risk of synthetic command injection.
-
-## Domain Toolchain Override (2026-03-10, Crypto Survival and Infrastructure Shock Expansion)
-
-- Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when network failover plans include emergency post-quantum key rollover and disconnected trust operation.
-- Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when failover choices depend on EMP-induced infrastructure degradation and staged service restoration.
-
-## Domain Toolchain Override (2026-03-10, Private-5G Degradation and Custody Assurance Expansion)
-
-- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when failover planning must preserve coalition private-5G command services under contested spectrum.
-- Add `tool_suite_id=ts-prepositioned-stock-cyber-custody-tamper-assurance-v1` + `protocol_stack_id=ps-prepositioned-stock-cyber-custody-tamper-assurance-stack-v1` when mission network continuity depends on trusted custody and tamper-free release of strategic stock systems.
+- Add `tool_suite_id=ts-portable-desalination-biofouling-countermeasure-v1` + `protocol_stack_id=ps-portable-desalination-biofouling-countermeasure-stack-v1` when producing critical recommendations for this mission domain.

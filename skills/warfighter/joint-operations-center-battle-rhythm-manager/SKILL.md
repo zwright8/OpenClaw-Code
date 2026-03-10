@@ -159,3 +159,8 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 
 - Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when battle rhythm decisions require cryptographic rollover and disconnected trust continuity.
 - Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when command cadence depends on EMP-affected grid and C2 restoration sequencing.
+
+## Domain Toolchain Override (2026-03-10, Human Terrain Assurance and Resilient C2 Expansion)
+
+- Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when battle rhythm synchronization must reconcile contested JTAC voice and digital terminal-control timelines.
+- Add `tool_suite_id=ts-nc3-courier-eam-bridge-assurance-v1` + `protocol_stack_id=ps-nc3-courier-eam-bridge-assurance-stack-v1` when command cadence must preserve emergency-action message continuity across digital and physical courier pathways.

@@ -159,3 +159,8 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 
 - Add `tool_suite_id=ts-humanitarian-corridor-ai-convoy-deconfliction-v1` + `protocol_stack_id=ps-humanitarian-corridor-ai-convoy-deconfliction-stack-v1` when coalition data fabric workflows must prioritize humanitarian convoy deconfliction.
 - Add `tool_suite_id=ts-maritime-chokepoint-commercial-traffic-shielding-v1` + `protocol_stack_id=ps-maritime-chokepoint-commercial-traffic-shielding-stack-v1` when coalition interoperability depends on contested chokepoint civilian shipping continuity.
+
+## Domain Toolchain Override (2026-03-10, Evacuation Twin and Private-5G Expansion)
+
+- Add `tool_suite_id=ts-civilian-evacuation-digital-twin-traffic-assurance-v1` + `protocol_stack_id=ps-civilian-evacuation-digital-twin-traffic-assurance-stack-v1` when coalition data exchange must synchronize high-volume civilian evacuation throughput and route release controls.
+- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when coalition data-fabric recommendations depend on contested private-5G service-priority orchestration.
