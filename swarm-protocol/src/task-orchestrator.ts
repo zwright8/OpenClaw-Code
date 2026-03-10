@@ -39,6 +39,12 @@ const DEFAULT_RETRY_THROTTLE = Object.freeze({
     threshold: 5,
     scope: 'global'
 });
+const DEFAULT_RETRY_BUDGET = Object.freeze({
+    ratio: 0.2,
+    minRetries: 1,
+    maxRetries: null,
+    scope: 'target'
+});
 const DEFAULT_CIRCUIT_BREAKER = Object.freeze({
     failureThreshold: 3,
     cooldownMs: 30_000,
@@ -305,6 +311,37 @@ function resolveRetryThrottling(value) {
         throttlingRetryCost,
         transportRetryCost,
         threshold,
+        scope
+    };
+}
+
+function resolveRetryBudget(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_RETRY_BUDGET
+        };
+    }
+
+    const ratio = Math.min(
+        1,
+        Math.max(0, clampNonNegativeNumber(value.ratio, DEFAULT_RETRY_BUDGET.ratio))
+    );
+    const minRetries = Math.max(
+        0,
+        Math.floor(clampNonNegativeNumber(value.minRetries, DEFAULT_RETRY_BUDGET.minRetries))
+    );
+    const maxRetriesRaw = value.maxRetries;
+    const maxRetries = maxRetriesRaw === null || maxRetriesRaw === undefined
+        ? null
+        : Math.max(0, Math.floor(clampNonNegativeNumber(maxRetriesRaw, minRetries)));
+    const scope = value.scope === 'global' ? 'global' : 'target';
+
+    return {
+        enabled: true,
+        ratio,
+        minRetries,
+        maxRetries,
         scope
     };
 }
@@ -626,6 +663,7 @@ export class TaskOrchestrator {
         maxRetryHintMs = null,
         overallTimeoutMs = null,
         retryThrottling = null,
+        retryBudget = null,
         circuitBreaker = null,
         adaptiveConcurrency = null,
         dispatchDeduplication = null,
@@ -677,6 +715,7 @@ export class TaskOrchestrator {
             ? Number(overallTimeoutMs)
             : null;
         this.retryThrottling = resolveRetryThrottling(retryThrottling);
+        this.retryBudget = resolveRetryBudget(retryBudget);
         this.retryThrottleTokens = this.retryThrottling.enabled && this.retryThrottling.scope === 'global'
             ? this.retryThrottling.maxTokens
             : null;
@@ -1576,6 +1615,46 @@ export class TaskOrchestrator {
         };
     }
 
+    _resolveRetryBudgetBucketKey(target) {
+        if (this.retryBudget.scope !== 'target') {
+            return null;
+        }
+        return this._resolveCircuitTarget(target);
+    }
+
+    _computeRetryBudgetState(target, { excludeTaskId = null } = {}) {
+        const bucketKey = this._resolveRetryBudgetBucketKey(target);
+        let primaryOpen = 0;
+        let retryScheduled = 0;
+
+        for (const record of this.tasks.values()) {
+            if (record.taskId === excludeTaskId) continue;
+            if (TERMINAL_STATUSES.has(record.status)) continue;
+            if (bucketKey !== null && this._resolveCircuitTarget(record.target) !== bucketKey) continue;
+
+            if (record.status === 'retry_scheduled') {
+                retryScheduled += 1;
+            } else if (OPEN_STATUSES.has(record.status)) {
+                primaryOpen += 1;
+            }
+        }
+
+        const ratioAllowance = Math.ceil(primaryOpen * this.retryBudget.ratio);
+        let allowance = Math.max(this.retryBudget.minRetries, ratioAllowance);
+        if (Number.isFinite(this.retryBudget.maxRetries)) {
+            allowance = Math.min(allowance, Number(this.retryBudget.maxRetries));
+        }
+        allowance = Math.max(0, Math.floor(allowance));
+
+        return {
+            bucketKey,
+            primaryOpen,
+            retryScheduled,
+            allowance,
+            canSchedule: retryScheduled < allowance
+        };
+    }
+
     _scheduleRetry(record, nowMs, {
         reason = 'retry_scheduled',
         event = 'retry_scheduled',
@@ -1596,6 +1675,29 @@ export class TaskOrchestrator {
                 scheduled: false,
                 blockedBy: 'throttle'
             };
+        }
+
+        if (this.retryBudget.enabled) {
+            const budgetState = this._computeRetryBudgetState(
+                record.target,
+                { excludeTaskId: record.taskId }
+            );
+            if (!budgetState.canSchedule) {
+                this._emitAudit('task_retry_budget_blocked', {
+                    taskId: record.taskId,
+                    target: record.target,
+                    reason,
+                    scope: this.retryBudget.scope,
+                    bucketKey: budgetState.bucketKey,
+                    primaryOpen: budgetState.primaryOpen,
+                    retryScheduled: budgetState.retryScheduled,
+                    allowance: budgetState.allowance
+                }, nowMs);
+                return {
+                    scheduled: false,
+                    blockedBy: 'retry_budget'
+                };
+            }
         }
 
         const remainingOverallDeadlineMs = this._remainingOverallDeadlineMs(record, nowMs);
@@ -1930,7 +2032,9 @@ export class TaskOrchestrator {
                 });
                 if (!scheduled.scheduled) {
                     this._markTimedOut(record, nowMs, {
-                        event: 'timed_out_retry_window_exhausted',
+                        event: scheduled.blockedBy === 'retry_budget'
+                            ? 'timed_out_retry_budget_exhausted'
+                            : 'timed_out_retry_window_exhausted',
                         reason: 'initial_dispatch_circuit_open'
                     });
                 }
@@ -1945,7 +2049,9 @@ export class TaskOrchestrator {
                 });
                 if (!scheduled.scheduled) {
                     this._markTimedOut(record, nowMs, {
-                        event: 'timed_out_retry_window_exhausted',
+                        event: scheduled.blockedBy === 'retry_budget'
+                            ? 'timed_out_retry_budget_exhausted'
+                            : 'timed_out_retry_window_exhausted',
                         reason: 'initial_dispatch_adaptive_concurrency_limited'
                     });
                 }
@@ -2021,11 +2127,15 @@ export class TaskOrchestrator {
                     event: 'approval_release_circuit_open_retry_scheduled',
                     hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
                 });
-                if (!scheduled.scheduled && scheduled.blockedBy === 'retry_window') {
-                    this._markTimedOut(record, reviewedAt, {
-                        event: 'timed_out_retry_window_exhausted',
-                        reason: 'approval_release_circuit_open'
-                    });
+                if (!scheduled.scheduled) {
+                    if (scheduled.blockedBy === 'retry_window' || scheduled.blockedBy === 'retry_budget') {
+                        this._markTimedOut(record, reviewedAt, {
+                            event: scheduled.blockedBy === 'retry_budget'
+                                ? 'timed_out_retry_budget_exhausted'
+                                : 'timed_out_retry_window_exhausted',
+                            reason: 'approval_release_circuit_open'
+                        });
+                    }
                 }
                 return this.getTask(taskId);
             }
@@ -2035,11 +2145,15 @@ export class TaskOrchestrator {
                     event: 'approval_release_concurrency_limited_retry_scheduled',
                     hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
                 });
-                if (!scheduled.scheduled && scheduled.blockedBy === 'retry_window') {
-                    this._markTimedOut(record, reviewedAt, {
-                        event: 'timed_out_retry_window_exhausted',
-                        reason: 'approval_release_adaptive_concurrency_limited'
-                    });
+                if (!scheduled.scheduled) {
+                    if (scheduled.blockedBy === 'retry_window' || scheduled.blockedBy === 'retry_budget') {
+                        this._markTimedOut(record, reviewedAt, {
+                            event: scheduled.blockedBy === 'retry_budget'
+                                ? 'timed_out_retry_budget_exhausted'
+                                : 'timed_out_retry_window_exhausted',
+                            reason: 'approval_release_adaptive_concurrency_limited'
+                        });
+                    }
                 }
                 return this.getTask(taskId);
             }
@@ -2064,7 +2178,9 @@ export class TaskOrchestrator {
                     record.closedAt = reviewedAt;
                     record.history.push({
                         at: reviewedAt,
-                        event: 'approval_release_retry_throttled',
+                        event: scheduled.blockedBy === 'retry_budget'
+                            ? 'approval_release_retry_budget_exhausted'
+                            : 'approval_release_retry_throttled',
                         error: error.message
                     });
                     this._persistRecord(record);
@@ -2365,7 +2481,9 @@ export class TaskOrchestrator {
                     record.closedAt = receipt.timestamp;
                     record.history.push({
                         at: receipt.timestamp,
-                        event: 'retry_throttled',
+                        event: scheduled.blockedBy === 'retry_budget'
+                            ? 'retry_budget_exhausted'
+                            : 'retry_throttled',
                         reason
                     });
                     this._persistRecord(record);
@@ -2518,6 +2636,12 @@ export class TaskOrchestrator {
                             reason: 'retry_schedule_recovered'
                         });
                         summary.timedOut++;
+                    } else if (recovered.blockedBy === 'retry_budget') {
+                        this._markTimedOut(record, nowMs, {
+                            event: 'timed_out_retry_budget_exhausted',
+                            reason: 'retry_schedule_recovered'
+                        });
+                        summary.timedOut++;
                     }
                     continue;
                 }
@@ -2542,6 +2666,12 @@ export class TaskOrchestrator {
                                 reason: 'target_circuit_open'
                             });
                             summary.timedOut++;
+                        } else if (scheduled.blockedBy === 'retry_budget') {
+                            this._markTimedOut(record, nowMs, {
+                                event: 'timed_out_retry_budget_exhausted',
+                                reason: 'target_circuit_open'
+                            });
+                            summary.timedOut++;
                         }
                         continue;
                     }
@@ -2556,6 +2686,12 @@ export class TaskOrchestrator {
                         } else if (scheduled.blockedBy === 'retry_window') {
                             this._markTimedOut(record, nowMs, {
                                 event: 'timed_out_retry_window_exhausted',
+                                reason: 'adaptive_concurrency_limited'
+                            });
+                            summary.timedOut++;
+                        } else if (scheduled.blockedBy === 'retry_budget') {
+                            this._markTimedOut(record, nowMs, {
+                                event: 'timed_out_retry_budget_exhausted',
                                 reason: 'adaptive_concurrency_limited'
                             });
                             summary.timedOut++;
@@ -2607,7 +2743,9 @@ export class TaskOrchestrator {
                             record.closedAt = nowMs;
                             record.history.push({
                                 at: nowMs,
-                                event: 'transport_error_retry_throttled',
+                                event: scheduled.blockedBy === 'retry_budget'
+                                    ? 'transport_error_retry_budget_exhausted'
+                                    : 'transport_error_retry_throttled',
                                 error: record.lastError
                             });
                             this._persistRecord(record);
@@ -2651,7 +2789,9 @@ export class TaskOrchestrator {
                     summary.timedOut++;
                 } else {
                     this._markTimedOut(record, nowMs, {
-                        event: 'timed_out_retry_throttled',
+                        event: scheduled.blockedBy === 'retry_budget'
+                            ? 'timed_out_retry_budget_exhausted'
+                            : 'timed_out_retry_throttled',
                         reason: 'deadline_exceeded'
                     });
                     summary.timedOut++;
@@ -2700,6 +2840,18 @@ export class TaskOrchestrator {
                 maxDelayMs: this.maxRetryDelayMs,
                 maxHintMs: this.maxRetryHintMs,
                 overallTimeoutMs: this.overallTimeoutMs,
+                budget: {
+                    enabled: this.retryBudget.enabled,
+                    scope: this.retryBudget.scope,
+                    ratio: this.retryBudget.ratio,
+                    minRetries: this.retryBudget.minRetries,
+                    maxRetries: this.retryBudget.maxRetries,
+                    activeRetryScheduled: 0,
+                    activePrimaryOpen: 0,
+                    activeAllowance: null,
+                    trackedTargetBuckets: null,
+                    saturatedTargetBuckets: null
+                },
                 throttling: {
                     enabled: this.retryThrottling.enabled,
                     scope: this.retryThrottling.scope,
@@ -2801,6 +2953,39 @@ export class TaskOrchestrator {
             }
         }
         metrics.queueCapacity.trackedTargets = openTargets.size;
+
+        if (this.retryBudget.enabled) {
+            if (this.retryBudget.scope === 'global') {
+                const budgetState = this._computeRetryBudgetState('__global__');
+                metrics.retry.budget.activeRetryScheduled = budgetState.retryScheduled;
+                metrics.retry.budget.activePrimaryOpen = budgetState.primaryOpen;
+                metrics.retry.budget.activeAllowance = budgetState.allowance;
+                metrics.retry.budget.trackedTargetBuckets = 1;
+                metrics.retry.budget.saturatedTargetBuckets = budgetState.retryScheduled >= budgetState.allowance
+                    ? 1
+                    : 0;
+            } else {
+                const buckets = new Set();
+                for (const record of this.tasks.values()) {
+                    if (TERMINAL_STATUSES.has(record.status)) continue;
+                    buckets.add(this._resolveCircuitTarget(record.target));
+                }
+                let allowanceTotal = 0;
+                let saturated = 0;
+                for (const bucketKey of buckets) {
+                    const budgetState = this._computeRetryBudgetState(bucketKey);
+                    metrics.retry.budget.activeRetryScheduled += budgetState.retryScheduled;
+                    metrics.retry.budget.activePrimaryOpen += budgetState.primaryOpen;
+                    allowanceTotal += budgetState.allowance;
+                    if (budgetState.retryScheduled >= budgetState.allowance) {
+                        saturated += 1;
+                    }
+                }
+                metrics.retry.budget.activeAllowance = allowanceTotal;
+                metrics.retry.budget.trackedTargetBuckets = buckets.size;
+                metrics.retry.budget.saturatedTargetBuckets = saturated;
+            }
+        }
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))

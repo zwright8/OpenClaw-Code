@@ -874,6 +874,43 @@ test('transient rejection is terminal when retry throttle budget is exhausted', 
     assert.equal(current.history.at(-1)?.event, 'retry_throttled');
 });
 
+test('transient rejection is terminal when retry budget has no available slots', async () => {
+    const clock = createClock(8_500);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 3,
+        retryDelayMs: 25,
+        retryBudget: {
+            scope: 'global',
+            ratio: 0,
+            minRetries: 0,
+            maxRetries: 0
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-budget-blocked',
+        task: 'Retry should be blocked by retry budget'
+    });
+
+    clock.advance(10);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-budget-blocked',
+        accepted: false,
+        reason: 'worker_overloaded retry_after=1',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'rejected');
+    assert.equal(current.history.at(-1)?.event, 'retry_budget_exhausted');
+});
+
 test('maintenance marks timeout when retry throttling blocks retry schedule', async () => {
     const clock = createClock(12_000);
     const orchestrator = new TaskOrchestrator({
@@ -905,6 +942,39 @@ test('maintenance marks timeout when retry throttling blocks retry schedule', as
     assert.equal(summary.timedOut, 1);
     assert.equal(current.status, 'timed_out');
     assert.equal(current.history.at(-1)?.event, 'timed_out_retry_throttled');
+});
+
+test('maintenance marks timeout when retry budget blocks retry schedule', async () => {
+    const clock = createClock(12_500);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        retryBudget: {
+            scope: 'global',
+            ratio: 0,
+            minRetries: 0,
+            maxRetries: 0
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-timeout-budget',
+        task: 'Timeout should not retry when retry budget is exhausted'
+    });
+
+    clock.set(12_551);
+    const summary = await orchestrator.runMaintenance(clock.now());
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(summary.scheduledRetries, 0);
+    assert.equal(summary.timedOut, 1);
+    assert.equal(current.status, 'timed_out');
+    assert.equal(current.history.at(-1)?.event, 'timed_out_retry_budget_exhausted');
 });
 
 test('target-scoped retry throttling isolates budgets by target', async () => {
@@ -966,6 +1036,42 @@ test('target-scoped retry throttling isolates budgets by target', async () => {
     const metrics = orchestrator.getMetrics();
     assert.equal(metrics.retry.throttling.scope, 'target');
     assert.ok(metrics.retry.throttling.activeTargetBuckets >= 2);
+});
+
+test('retry budget metrics expose active allowance and saturation', async () => {
+    const clock = createClock(21_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        retryBudget: {
+            scope: 'global',
+            ratio: 0,
+            minRetries: 1,
+            maxRetries: 1
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-budget-metrics',
+        task: 'Collect metrics'
+    });
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-retry-budget-metrics',
+        accepted: false,
+        reason: 'service_unavailable retry_after=1',
+        timestamp: clock.now()
+    }));
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.retry.budget.enabled, true);
+    assert.equal(metrics.retry.budget.scope, 'global');
+    assert.equal(metrics.retry.budget.activeRetryScheduled, 1);
+    assert.equal(metrics.retry.budget.activePrimaryOpen, 0);
+    assert.equal(metrics.retry.budget.activeAllowance, 1);
+    assert.equal(metrics.retry.budget.saturatedTargetBuckets, 1);
 });
 
 test('dispatchTask schedules retry when target circuit is open', async () => {

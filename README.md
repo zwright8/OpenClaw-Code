@@ -337,6 +337,12 @@ const orchestrator = new TaskOrchestrator({
     transportRetryCost: 2,
     threshold: 10
   },
+  retryBudget: {
+    scope: 'target', // optional: 'target' (default) or 'global'
+    ratio: 0.2, // optional: retry slots = ceil(primaryOpen * ratio)
+    minRetries: 1, // optional floor so low-volume targets can still retry
+    maxRetries: 10 // optional cap for retry slots (set null to disable cap)
+  },
   circuitBreaker: {
     failureThreshold: 3,
     cooldownMs: 30_000,
@@ -413,6 +419,7 @@ When combined with `dispatchDeduplication.inFlightWindowMs`, that value acts as 
 `dispatchDeduplication.terminalWindowMs` lets the orchestrator treat recently closed tasks as idempotent replays so duplicate submissions can reuse recent outcomes instead of re-dispatching side-effecting work.
 Cancelled tasks are intentionally excluded from terminal replay, so an operator-aborted task never suppresses a fresh follow-up dispatch.
 `transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
+`retryBudget` adds Envoy-style retry concurrency budgeting so retries remain bounded relative to live primary workload (`ratio`) with optional floor/ceiling controls (`minRetries`/`maxRetries`).
 `terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.
 `queueCapacity` adds admission control with global (`maxOpenTasks`) and per-target (`maxOpenTasksPerTarget`) limits so overload is rejected early (`CAPACITY_EXCEEDED`) instead of allowing unbounded open-task growth.
 `staleTaskPolicy` expires tasks that have aged past `maxAgeMs`, including approval-gated tasks, so stale work does not occupy queue capacity forever.
