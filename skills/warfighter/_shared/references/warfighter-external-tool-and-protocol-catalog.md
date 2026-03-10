@@ -6509,3 +6509,127 @@ external_binding:
 ### `ps-reserve-mobilization-pay-anti-fraud-stack-v1`
 - Standards and protocols: Treasury payment messaging profiles + FIDO-verified claims + signed reconciliation manifests.
 - Transport profile: encrypted entitlement exchange with fraud-alert escalation channel and audited manual override path.
+
+## Tool Suite Addendum K (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+### `ts-nc3-resilience-and-order-integrity-v1`
+- Use for: NC3 continuity validation, authenticated order-chain integrity, and denial-condition execution assurance.
+- Primary tools: NC3 path integrity monitor, command authority validation ledger, EMP/cyber disruption simulation board.
+- Cross-check tools: independent order provenance verifier and alternate execution-latency monitor.
+- Typical products: order-chain assurance packet, continuity branch matrix, latency-risk decision brief.
+
+### `ts-strategic-deterrence-signaling-fusion-v1`
+- Use for: cross-domain deterrence signaling design, escalation calibration, and coalition release synchronization.
+- Primary tools: deterrence analytics board, escalation ladder simulator, coalition release workflow manager.
+- Cross-check tools: independent adversary-threshold model and alternate strategic messaging risk ledger.
+- Typical products: signaling options matrix, escalation trigger ladder, synchronized release plan.
+
+### `ts-undersea-battle-network-self-healing-v1`
+- Use for: undersea battle-network rerouting, autonomous relay orchestration, and mission-priority communications continuity.
+- Primary tools: seabed cable telemetry fusion, autonomous relay controller, route resiliency planner.
+- Cross-check tools: independent cable fault verifier and alternate network survivability model.
+- Typical products: self-healing reroute plan, restoration sequence, communications confidence estimate.
+
+### `ts-coalition-cognitive-ew-disinfo-countertargeting-v1`
+- Use for: coalition countertargeting against synchronized influence and EW deception campaigns.
+- Primary tools: narrative spread analytics, EW anomaly fusion engine, media authenticity forensics.
+- Cross-check tools: independent credibility ledger and alternate RF deception baseline validator.
+- Typical products: countertargeting plan, deception exposure matrix, coalition synchronization brief.
+
+### `ts-denied-pnt-timing-holdover-v1`
+- Use for: denied-PNT timing holdover orchestration, distributed synchronization recovery, and anti-spoof timing assurance.
+- Primary tools: timing drift analyzer, holdover state controller, timing source trust verifier.
+- Cross-check tools: independent epoch-recovery monitor and alternate synchronization confidence board.
+- Typical products: timing holdover posture, drift watchlist, resynchronization branch plan.
+
+### `ts-rapid-materiel-authentication-counterfeit-shield-v1`
+- Use for: tactical spare-part authenticity screening, counterfeit quarantine, and mission-safe substitution recommendations.
+- Primary tools: part provenance attestation board, lot anomaly detector, field inspection workflow engine.
+- Cross-check tools: independent vendor pedigree verifier and alternate failure-signal triage board.
+- Typical products: counterfeit risk triage, release/quarantine decision log, substitution routing matrix.
+
+### `ts-multi-domain-battle-rhythm-fragment-recovery-v1`
+- Use for: fragmented battle-rhythm reconstitution after delayed ack-chains and disconnected command synchronization.
+- Primary tools: rhythm fragment merger, decision dependency graph, delayed-ack reconciliation queue.
+- Cross-check tools: independent command intent mirror and alternate decision-cycle integrity monitor.
+- Typical products: battle-rhythm restoration sequence, dependency repair map, command update schedule.
+
+### `ts-autonomous-decoy-campaign-effectiveness-v1`
+- Use for: autonomous decoy campaign planning, adversary misallocation measurement, and replenishment optimization.
+- Primary tools: decoy orchestration manager, signature emulation analytics, adversary response modeler.
+- Cross-check tools: independent blue-force fratricide risk board and alternate effect confidence monitor.
+- Typical products: decoy effectiveness scorecard, adversary misallocation estimate, retask timeline.
+
+### `ts-precision-effects-weaponeering-ai-assurance-v1`
+- Use for: AI-assisted weaponeering quality assurance, collateral gate validation, and authority-safe release decisions.
+- Primary tools: effect optimization engine, collateral estimation verifier, model assurance dashboard.
+- Cross-check tools: independent human-validation board and alternate confidence drift monitor.
+- Typical products: weaponeering assurance packet, model confidence register, release recommendation brief.
+
+### `ts-gray-zone-influence-countercampaign-v1`
+- Use for: persistent gray-zone influence countercampaign planning tied to alliance and access preservation.
+- Primary tools: influence network graph analytics, partner-risk synchronization board, campaign attribution tracker.
+- Cross-check tools: independent sanctions and illicit-finance monitor and alternate narrative vulnerability model.
+- Typical products: gray-zone counterplan, partner synchronization matrix, campaign risk trend.
+
+### `ts-expeditionary-data-fabric-zero-touch-hardening-v1`
+- Use for: zero-touch expeditionary data-fabric deployment, schema integrity enforcement, and resilient trust posture.
+- Primary tools: data-fabric orchestrator, schema translation validator, zero-trust policy enforcement board.
+- Cross-check tools: independent identity and credential trust monitor and alternate data quality auditor.
+- Typical products: deployment blueprint, trust scorecard, rollback and continuity plan.
+
+### `ts-hyperscale-cloud-failover-command-continuity-v1`
+- Use for: strategic command application failover across cloud providers and regions under outage or attack.
+- Primary tools: cross-cloud failover orchestrator, mission dependency mapper, credential continuity monitor.
+- Cross-check tools: independent region-health mirror and alternate application survivability model.
+- Typical products: failover continuity order, degraded operations matrix, reconstitution timeline.
+
+## Protocol Stack Addendum K (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+### `ps-nc3-resilience-and-order-integrity-stack-v1`
+- Standards and protocols: USMTF command message formats + signed order provenance manifests + hardened voice/readback procedures.
+- Transport profile: multi-path authenticated command transport with explicit ack-chain and fallback delay-tolerant replication.
+
+### `ps-strategic-deterrence-signaling-fusion-stack-v1`
+- Standards and protocols: USMTF + NATO APP-11/ADatP-3 aligned coordination + signed strategic release manifests.
+- Transport profile: coalition release channel with authority-gated acknowledgments and escalation rollback signaling.
+
+### `ps-undersea-battle-network-self-healing-stack-v1`
+- Standards and protocols: OGC geospatial overlays + maritime telemetry exchange + USMTF continuity messaging.
+- Transport profile: encrypted undersea telemetry bus with acknowledged reroute events and delayed repair sync.
+
+### `ps-coalition-cognitive-ew-disinfo-countertargeting-stack-v1`
+- Standards and protocols: STIX/TAXII + CoT eventing + signed coalition influence evidence manifests.
+- Transport profile: authenticated coalition evidence exchange with synchronization checkpoints and confidence downgrades on staleness.
+
+### `ps-denied-pnt-timing-holdover-stack-v1`
+- Standards and protocols: signed timing-state manifests + USMTF timing advisories + anti-spoof validation records.
+- Transport profile: low-latency timing-state exchange with deterministic fallback to holdover-safe timing windows.
+
+### `ps-rapid-materiel-authentication-counterfeit-shield-stack-v1`
+- Standards and protocols: signed supply manifests + API/JSON provenance attestations + USMTF sustainment updates.
+- Transport profile: authenticated lot-verification channel with quarantine event acknowledgments and manual override audit logs.
+
+### `ps-multi-domain-battle-rhythm-fragment-recovery-stack-v1`
+- Standards and protocols: USMTF + CoT + signed command delta manifests.
+- Transport profile: store-and-forward synchronization queue with conflict-resolution replay and authority witness logging.
+
+### `ps-autonomous-decoy-campaign-effectiveness-stack-v1`
+- Standards and protocols: CoT + USMTF deception tasking + signed campaign effect manifests.
+- Transport profile: bounded-latency decoy telemetry channel with fratricide check gates and controlled retask acknowledgments.
+
+### `ps-precision-effects-weaponeering-ai-assurance-stack-v1`
+- Standards and protocols: VMF + USMTF + signed model assurance and collateral manifests.
+- Transport profile: authority-gated recommendation exchange requiring human validation acknowledgment before release.
+
+### `ps-gray-zone-influence-countercampaign-stack-v1`
+- Standards and protocols: STIX/TAXII + NATO APP-11/ADatP-3 aligned partner exchange + signed influence event manifests.
+- Transport profile: coalition intelligence-sharing channel with releasability tags and downgrade-safe fallback messaging.
+
+### `ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1`
+- Standards and protocols: API/JSON + STIX/TAXII + signed schema and trust-policy manifests.
+- Transport profile: zero-touch policy propagation with endpoint attestation checks and deterministic rollback channel.
+
+### `ps-hyperscale-cloud-failover-command-continuity-stack-v1`
+- Standards and protocols: signed continuity manifests + USMTF command continuity directives + API/JSON failover status events.
+- Transport profile: cross-cloud encrypted replication bus with failover acknowledgments and authority-preserving credential handoff.

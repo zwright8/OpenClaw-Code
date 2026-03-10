@@ -177,3 +177,11 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For forward operating base water network sabotage and attribution, include `ts-forward-water-sabotage-attribution-v1` with `ps-forward-water-sabotage-attribution-stack-v1`.
 - For transformer convoy escort and emplacement during homeland defense power restoration, include `ts-grid-transformer-escort-install-v1` with `ps-grid-transformer-escort-install-stack-v1`.
 - For coalition electromagnetic incident legal framing at defended installations, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.
+
+## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+- Add `tool_suite_id=ts-autonomous-decoy-campaign-effectiveness-v1` + `protocol_stack_id=ps-autonomous-decoy-campaign-effectiveness-stack-v1` when force protection depends on adversary misallocation and deception survivability.
+- Add `tool_suite_id=ts-rapid-materiel-authentication-counterfeit-shield-v1` + `protocol_stack_id=ps-rapid-materiel-authentication-counterfeit-shield-stack-v1` when base survivability depends on trusted spares and component authenticity.
+- Add `tool_suite_id=ts-undersea-battle-network-self-healing-v1` + `protocol_stack_id=ps-undersea-battle-network-self-healing-stack-v1` when defended installations depend on undersea-linked communications continuity.
+- Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when base defense response requires resilient cross-domain data sharing.
+- Add `packet_id=DPL-AUTONOMOUS-DECOY-CAMPAIGN-EFFECTIVENESS-001`, `packet_id=DPL-RAPID-MATERIEL-AUTH-COUNTERFEIT-SHIELD-001`, and `packet_id=DPL-UNDERSEA-BATTLE-NETWORK-SELF-HEALING-001` for high-consequence force protection branches.

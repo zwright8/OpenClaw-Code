@@ -144,3 +144,11 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+- Add `tool_suite_id=ts-strategic-deterrence-signaling-fusion-v1` + `protocol_stack_id=ps-strategic-deterrence-signaling-fusion-stack-v1` when coalition interoperability risk is shaped by deterrence signaling and escalation synchronization.
+- Add `tool_suite_id=ts-coalition-cognitive-ew-disinfo-countertargeting-v1` + `protocol_stack_id=ps-coalition-cognitive-ew-disinfo-countertargeting-stack-v1` when cross-alliance decision quality is degraded by coordinated influence and EW deception.
+- Add `tool_suite_id=ts-gray-zone-influence-countercampaign-v1` + `protocol_stack_id=ps-gray-zone-influence-countercampaign-stack-v1` for persistent below-threshold competition that affects alliance cohesion and access.
+- Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when coalition interoperability depends on trusted cross-domain data exchange in denied environments.
+- Add `packet_id=DPL-STRATEGIC-DETERRENCE-SIGNALING-001`, `packet_id=DPL-COALITION-COGNITIVE-EW-DISINFO-COUNTERTARGETING-001`, and `packet_id=DPL-GRAY-ZONE-INFLUENCE-COUNTERCAMPAIGN-001` for branches that can alter coalition force posture.

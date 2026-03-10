@@ -193,3 +193,11 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-space-weather-solar-storm-mission-assurance-v1` + `protocol_stack_id=ps-space-weather-solar-storm-mission-assurance-stack-v1` when mission risk depends on timing, SATCOM, or grid fragility during geomagnetic disturbance.
 - Add `tool_suite_id=ts-homeland-microelectronics-counterfeit-quarantine-v1` + `protocol_stack_id=ps-homeland-microelectronics-counterfeit-quarantine-stack-v1` when recommendation confidence depends on trusted military microelectronics pedigree.
 - Add `packet_id=DPL-SPACE-WEATHER-SOLAR-STORM-MISSION-ASSURANCE-001` and `packet_id=DPL-HOMELAND-MICROELECTRONICS-COUNTERFEIT-QUARANTINE-001` for risk branches that change commander acceptance thresholds.
+
+## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+- Add `tool_suite_id=ts-nc3-resilience-and-order-integrity-v1` + `protocol_stack_id=ps-nc3-resilience-and-order-integrity-stack-v1` when mission risk depends on authenticated strategic command continuity.
+- Add `tool_suite_id=ts-denied-pnt-timing-holdover-v1` + `protocol_stack_id=ps-denied-pnt-timing-holdover-stack-v1` when risk posture depends on synchronized timing under GNSS denial.
+- Add `tool_suite_id=ts-precision-effects-weaponeering-ai-assurance-v1` + `protocol_stack_id=ps-precision-effects-weaponeering-ai-assurance-stack-v1` when risk recommendations rely on AI-assisted targeting effects.
+- Add `tool_suite_id=ts-hyperscale-cloud-failover-command-continuity-v1` + `protocol_stack_id=ps-hyperscale-cloud-failover-command-continuity-stack-v1` when command continuity relies on contested cloud infrastructure.
+- Add `packet_id=DPL-NC3-RESILIENCE-ORDER-INTEGRITY-001`, `packet_id=DPL-DENIED-PNT-TIMING-HOLDOVER-001`, and `packet_id=DPL-PRECISION-EFFECTS-WEAPONEERING-AI-ASSURANCE-001` for branches that can alter commander risk acceptance.

@@ -589,3 +589,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent inundation verifier and alternate downstream impact board.
 - Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `OGC`.
 - Degraded fallback: life-safety-first evacuation triggers with hourly manual revalidation.
+
+## Profile Addendum K (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+### `nc3-resilience-order-integrity-v1`
+- Use for strategic command continuity under cyber, kinetic, and electromagnetic disruption.
+- Primary tools: `ts-nc3-resilience-and-order-integrity-v1`.
+- Cross-check tools: `ts-denied-pnt-timing-holdover-v1`.
+- Protocols: `USMTF`, signed order manifests, hardened voice/readback.
+- Degraded fallback: constrained decision windows with mandatory two-person authority confirmation.
+
+### `strategic-deterrence-signaling-fusion-v1`
+- Use for synchronized deterrence signaling with escalation controls across domains.
+- Primary tools: `ts-strategic-deterrence-signaling-fusion-v1`.
+- Cross-check tools: `ts-gray-zone-influence-countercampaign-v1`.
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3`, signed coalition release manifests.
+- Degraded fallback: limited, preapproved signaling patterns with coalition confirmation gates.
+
+### `undersea-battle-network-self-healing-v1`
+- Use for theater undersea communications continuity via autonomous reroute and repair sequencing.
+- Primary tools: `ts-undersea-battle-network-self-healing-v1`.
+- Cross-check tools: `ts-undersea-critical-node-defense-and-repair-v1`.
+- Protocols: `OGC`, maritime telemetry exchange, `USMTF`.
+- Degraded fallback: mission-essential communications routes only with fixed timing windows.
+
+### `coalition-cognitive-ew-disinfo-countertargeting-v1`
+- Use for coalition countertargeting against synchronized cognitive and EW deception campaigns.
+- Primary tools: `ts-coalition-cognitive-ew-disinfo-countertargeting-v1`.
+- Cross-check tools: `ts-cognitive-ew-deception-detection-v1`.
+- Protocols: `STIX/TAXII`, `CoT`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: high-confidence-source-only operations with manual coalition synchronization.
+
+### `denied-pnt-timing-holdover-v1`
+- Use for distributed timing holdover and synchronization during GNSS denial/spoofing.
+- Primary tools: `ts-denied-pnt-timing-holdover-v1`.
+- Cross-check tools: `ts-anti-jam-gps-epoch-recovery-v1`.
+- Protocols: signed timing manifests, `USMTF`, `API/JSON`.
+- Degraded fallback: critical kill-chain timing windows only with conservative drift thresholds.
+
+### `rapid-materiel-authentication-counterfeit-shield-v1`
+- Use for tactical counterfeit detection and mission-safe parts release decisions.
+- Primary tools: `ts-rapid-materiel-authentication-counterfeit-shield-v1`.
+- Cross-check tools: `ts-homeland-microelectronics-counterfeit-quarantine-v1`.
+- Protocols: signed supply manifests, `API/JSON`, `USMTF` sustainment messaging.
+- Degraded fallback: approved-vendor-only intake with mandatory manual release review.
+
+### `multi-domain-battle-rhythm-fragment-recovery-v1`
+- Use for restoring synchronized battle rhythm and dependency coherence after comms fragmentation.
+- Primary tools: `ts-multi-domain-battle-rhythm-fragment-recovery-v1`.
+- Cross-check tools: `ts-disconnected-command-intent-reconciliation-v1`.
+- Protocols: `USMTF`, `CoT`, signed command delta manifests.
+- Degraded fallback: fixed-cycle battle rhythm with predelegated branch decisions only.
+
+### `autonomous-decoy-campaign-effectiveness-v1`
+- Use for planning and measuring autonomous decoy campaigns while enforcing fratricide safeguards.
+- Primary tools: `ts-autonomous-decoy-campaign-effectiveness-v1`.
+- Cross-check tools: `ts-multi-domain-decoy-orchestration-v1`.
+- Protocols: `CoT`, `USMTF`, `Link 16 J-series`.
+- Degraded fallback: restricted decoy windows with command confirmation before retask.
+
+### `precision-effects-weaponeering-ai-assurance-v1`
+- Use for assurance of AI-assisted precision effects recommendations before execution.
+- Primary tools: `ts-precision-effects-weaponeering-ai-assurance-v1`.
+- Cross-check tools: `ts-human-machine-target-validation-v1`.
+- Protocols: `VMF`, `USMTF`, `Link 16 J-series`, signed assurance manifests.
+- Degraded fallback: advisory-only AI output and mandatory human release decisions.
+
+### `gray-zone-influence-countercampaign-v1`
+- Use for countering persistent gray-zone influence campaigns impacting operational access.
+- Primary tools: `ts-gray-zone-influence-countercampaign-v1`.
+- Cross-check tools: `ts-strategic-competition-gray-zone-response-v1`.
+- Protocols: `STIX/TAXII`, `NATO APP-11/ADatP-3`, `USMTF`.
+- Degraded fallback: essential audience protection tasks with daily coalition synchronization.
+
+### `expeditionary-data-fabric-zero-touch-hardening-v1`
+- Use for resilient zero-touch data-fabric deployment with policy and trust controls.
+- Primary tools: `ts-expeditionary-data-fabric-zero-touch-hardening-v1`.
+- Cross-check tools: `ts-coalition-data-fabric-interoperability-v1`.
+- Protocols: `API/JSON`, `STIX/TAXII`, `CoT`, signed policy manifests.
+- Degraded fallback: mission-essential data lanes only with manual schema and trust review.
+
+### `hyperscale-cloud-failover-command-continuity-v1`
+- Use for strategic command continuity during hyperscale cloud outages or contested degradations.
+- Primary tools: `ts-hyperscale-cloud-failover-command-continuity-v1`.
+- Cross-check tools: `ts-multi-cloud-mission-data-integrity-v1`.
+- Protocols: signed continuity manifests, `USMTF`, `API/JSON`.
+- Degraded fallback: critical command applications only with strict authority gates and staged recovery.
