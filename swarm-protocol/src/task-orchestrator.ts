@@ -46,6 +46,10 @@ const DEFAULT_ADAPTIVE_CONCURRENCY = Object.freeze({
     decreaseMultiplier: 0.7,
     latencyHighWatermarkMs: null
 });
+const DEFAULT_DISPATCH_DEDUPLICATION = Object.freeze({
+    windowMs: 5_000,
+    openOnly: true
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -104,6 +108,20 @@ function parseRateLimitResetDelayMs(rawValue, nowMs) {
         return Math.max(0, Math.floor((numeric * 1_000) - nowMs));
     }
     return Math.floor(numeric * 1_000);
+}
+
+function stableSerialize(value) {
+    if (value === null) return 'null';
+    if (Array.isArray(value)) {
+        return `[${value.map((item) => stableSerialize(item)).join(',')}]`;
+    }
+    if (typeof value === 'object') {
+        const entries = Object.entries(value)
+            .filter(([, item]) => item !== undefined)
+            .sort(([a], [b]) => a.localeCompare(b));
+        return `{${entries.map(([key, item]) => `${JSON.stringify(key)}:${stableSerialize(item)}`).join(',')}}`;
+    }
+    return JSON.stringify(value);
 }
 
 function parseRetryableStatusFromReason(reason) {
@@ -297,6 +315,26 @@ function resolveAdaptiveConcurrency(value) {
     };
 }
 
+function resolveDispatchDeduplication(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_DISPATCH_DEDUPLICATION,
+            fingerprint: null
+        };
+    }
+
+    return {
+        enabled: true,
+        windowMs: Math.max(
+            0,
+            Math.floor(clampNonNegativeNumber(value.windowMs, DEFAULT_DISPATCH_DEDUPLICATION.windowMs))
+        ),
+        openOnly: value.openOnly !== false,
+        fingerprint: typeof value.fingerprint === 'function' ? value.fingerprint : null
+    };
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -389,6 +427,7 @@ export class TaskOrchestrator {
         retryThrottling = null,
         circuitBreaker = null,
         adaptiveConcurrency = null,
+        dispatchDeduplication = null,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -447,6 +486,7 @@ export class TaskOrchestrator {
         this.adaptiveConcurrencyByTarget = this.adaptiveConcurrency.enabled
             ? new Map()
             : null;
+        this.dispatchDeduplication = resolveDispatchDeduplication(dispatchDeduplication);
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
@@ -883,6 +923,50 @@ export class TaskOrchestrator {
         return record.attempts <= record.maxRetries;
     }
 
+    _buildDeduplicationFingerprint(request) {
+        if (this.dispatchDeduplication.fingerprint) {
+            try {
+                const customFingerprint = this.dispatchDeduplication.fingerprint(clone(request));
+                if (typeof customFingerprint === 'string' && customFingerprint.trim()) {
+                    return customFingerprint.trim();
+                }
+            } catch (error) {
+                this.logger.warn?.(
+                    `[Swarm] dispatchDeduplication fingerprint() failed: ${error.message}`
+                );
+            }
+        }
+
+        return [
+            request.target,
+            request.task,
+            request.priority,
+            stableSerialize(request.context ?? null),
+            stableSerialize(request.constraints ?? null)
+        ].join('|');
+    }
+
+    _findDuplicateRecord(request, nowMs) {
+        if (!this.dispatchDeduplication.enabled) return null;
+
+        const windowMs = this.dispatchDeduplication.windowMs;
+        const fingerprint = this._buildDeduplicationFingerprint(request);
+
+        for (const record of this.tasks.values()) {
+            if (this.dispatchDeduplication.openOnly && TERMINAL_STATUSES.has(record.status)) {
+                continue;
+            }
+            if (windowMs > 0 && nowMs - Number(record.createdAt) > windowMs) {
+                continue;
+            }
+            if (this._buildDeduplicationFingerprint(record.request) !== fingerprint) {
+                continue;
+            }
+            return record;
+        }
+        return null;
+    }
+
     _parseRetryDirectiveFromReason(reason) {
         const output = {
             hintMs: null,
@@ -912,16 +996,26 @@ export class TaskOrchestrator {
             }
         }
 
+        const nowMs = safeNow(this.now);
+        const retryHints = [];
+
+        const retryAfterMsMatch = reason.match(
+            /\b(?:retry[-_\s]?after[-_\s]?ms|x[-_\s]?ms[-_\s]?retry[-_\s]?after[-_\s]?ms)\b\s*[:=]?\s*(\d{1,16})\b/i
+        );
+        if (retryAfterMsMatch) {
+            const retryAfterMs = Number(retryAfterMsMatch[1]);
+            if (Number.isFinite(retryAfterMs) && retryAfterMs >= 0) {
+                retryHints.push(retryAfterMs);
+            }
+        }
+
         const retryAfterMatch = reason.match(
             /\bretry[-_\s]?after\b\s*[:=]?\s*(\d{1,10})\b/i
         );
         if (retryAfterMatch) {
             const seconds = Number(retryAfterMatch[1]);
             if (Number.isFinite(seconds) && seconds >= 0) {
-                return {
-                    hintMs: seconds * 1_000,
-                    noRetryPushback: false
-                };
+                retryHints.push(seconds * 1_000);
             }
         }
 
@@ -931,13 +1025,10 @@ export class TaskOrchestrator {
         if (rateLimitResetNumericMatch) {
             const parsed = parseRateLimitResetDelayMs(
                 Number(rateLimitResetNumericMatch[1]),
-                safeNow(this.now)
+                nowMs
             );
             if (parsed !== null) {
-                return {
-                    hintMs: parsed,
-                    noRetryPushback: false
-                };
+                retryHints.push(parsed);
             }
         }
 
@@ -945,17 +1036,12 @@ export class TaskOrchestrator {
         if (retryAfterHeaderMatch) {
             const rawValue = retryAfterHeaderMatch[1].trim();
             if (/^\d{1,10}$/.test(rawValue)) {
-                return {
-                    hintMs: Number(rawValue) * 1_000,
-                    noRetryPushback: false
-                };
-            }
-            const retryAt = Date.parse(rawValue);
-            if (Number.isFinite(retryAt)) {
-                return {
-                    hintMs: Math.max(0, retryAt - safeNow(this.now)),
-                    noRetryPushback: false
-                };
+                retryHints.push(Number(rawValue) * 1_000);
+            } else {
+                const retryAt = Date.parse(rawValue);
+                if (Number.isFinite(retryAt)) {
+                    retryHints.push(Math.max(0, retryAt - nowMs));
+                }
             }
         }
 
@@ -965,43 +1051,36 @@ export class TaskOrchestrator {
         if (rateLimitResetHeaderMatch) {
             const rawValue = rateLimitResetHeaderMatch[1].trim();
             if (/^\d{1,16}$/.test(rawValue)) {
-                const parsed = parseRateLimitResetDelayMs(Number(rawValue), safeNow(this.now));
+                const parsed = parseRateLimitResetDelayMs(Number(rawValue), nowMs);
                 if (parsed !== null) {
-                    return {
-                        hintMs: parsed,
-                        noRetryPushback: false
-                    };
+                    retryHints.push(parsed);
                 }
-            }
-            const resetAt = Date.parse(rawValue);
-            if (Number.isFinite(resetAt)) {
-                return {
-                    hintMs: Math.max(0, resetAt - safeNow(this.now)),
-                    noRetryPushback: false
-                };
+            } else {
+                const resetAt = Date.parse(rawValue);
+                if (Number.isFinite(resetAt)) {
+                    retryHints.push(Math.max(0, resetAt - nowMs));
+                }
             }
         }
 
         const delayMatch = reason.match(
             /\b(?:retry[-_\s]?in|retry[-_\s]?delay|backoff)\b\s*[:=]?\s*(\d{1,10})\s*(ms|msec|milliseconds?|s|sec|seconds?)?\b/i
         );
-        if (!delayMatch) {
+        if (delayMatch) {
+            const amount = Number(delayMatch[1]);
+            if (Number.isFinite(amount) && amount >= 0) {
+                const unit = (delayMatch[2] || '').toLowerCase();
+                retryHints.push(unit.startsWith('s') ? amount * 1_000 : amount);
+            }
+        }
+
+        if (retryHints.length === 0) {
             return output;
         }
 
-        const amount = Number(delayMatch[1]);
-        if (!Number.isFinite(amount) || amount < 0) {
-            return output;
-        }
-        const unit = (delayMatch[2] || '').toLowerCase();
-        if (unit.startsWith('s')) {
-            return {
-                hintMs: amount * 1_000,
-                noRetryPushback: false
-            };
-        }
+        // Prefer the most conservative delay when multiple backoff hints are present.
         return {
-            hintMs: amount,
+            hintMs: Math.max(...retryHints),
             noRetryPushback: false
         };
     }
@@ -1323,6 +1402,24 @@ export class TaskOrchestrator {
                     );
                 }
             }
+        }
+
+        const duplicateRecord = this._findDuplicateRecord(request, createdAt);
+        if (duplicateRecord) {
+            duplicateRecord.updatedAt = createdAt;
+            duplicateRecord.history.push({
+                at: createdAt,
+                event: 'duplicate_dispatch_suppressed',
+                duplicateTaskId: request.id
+            });
+            this._persistRecord(duplicateRecord);
+            this._emitAudit('task_duplicate_dispatch_suppressed', {
+                taskId: duplicateRecord.taskId,
+                duplicateTaskId: request.id,
+                target: duplicateRecord.target,
+                status: duplicateRecord.status
+            }, createdAt);
+            return this.getTask(duplicateRecord.taskId);
         }
 
         const overallDeadlineAt = this._resolveOverallDeadlineAt(request.createdAt);
@@ -2085,6 +2182,11 @@ export class TaskOrchestrator {
                     limitIncreaseCount: 0,
                     limitDecreaseCount: 0
                 }
+            },
+            dispatchDeduplication: {
+                enabled: this.dispatchDeduplication.enabled,
+                windowMs: this.dispatchDeduplication.windowMs,
+                openOnly: this.dispatchDeduplication.openOnly
             }
         };
 

@@ -555,6 +555,66 @@ test('negative grpc-retry-pushback-ms disables retry for transient rejection', a
     assert.equal(current.history.at(-1)?.event, 'rejected_no_retry_pushback');
 });
 
+test('transient rejection honors retry-after-ms millisecond hints', async () => {
+    const clock = createClock(26_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-retry-after-ms',
+        task: 'Respect millisecond retry-after hints'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-retry-after-ms',
+        accepted: false,
+        reason: 'service_unavailable retry-after-ms=1750',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 1_750);
+});
+
+test('transient rejection prefers largest retry hint when multiple headers are present', async () => {
+    const clock = createClock(27_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-multi-hints',
+        task: 'Prefer conservative retry hints'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-multi-hints',
+        accepted: false,
+        reason: 'service_unavailable retry-after=1 retry-after-ms=1750',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.lastRetryDelayMs, 1_750);
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;
@@ -1199,6 +1259,71 @@ test('dispatchTask fails fast and does not keep orphaned record when send fails'
 
     const metrics = orchestrator.getMetrics();
     assert.equal(metrics.total, 0);
+});
+
+test('dispatchTask suppresses duplicate open requests within dedupe window', async () => {
+    const clock = createClock(130_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 10_000
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe',
+        task: 'Build sprint summary',
+        context: { sprint: '2026-W10' }
+    });
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe',
+        task: 'Build sprint summary',
+        context: { sprint: '2026-W10' }
+    });
+
+    assert.equal(first.taskId, second.taskId);
+    assert.equal(sent.length, 1);
+    assert.equal(second.history.at(-1)?.event, 'duplicate_dispatch_suppressed');
+});
+
+test('dispatchTask allows duplicate requests after dedupe window expires', async () => {
+    const clock = createClock(140_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 100
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-expired',
+        task: 'Generate changelog'
+    });
+
+    clock.advance(150);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-expired',
+        task: 'Generate changelog'
+    });
+
+    assert.notEqual(first.taskId, second.taskId);
+    assert.equal(sent.length, 2);
 });
 
 test('helper builders emit schema-valid messages', () => {
