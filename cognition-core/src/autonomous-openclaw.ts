@@ -23,6 +23,10 @@ const SUCCESS_STATUSES = new Set([
     'partial'
 ]);
 
+const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
+const MAX_FAILURE_COOLDOWN_WAVES = 20;
+const FAILURE_COOLDOWN_MIN_STREAK = 2;
+
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
     return Number.isFinite(value) ? value : Date.now();
@@ -102,6 +106,63 @@ function pseudoInRange(seed, offset, min, max) {
     return Math.round(min + ratio * (max - min));
 }
 
+function normalizeFailureCooldownWaves(raw, fallback = DEFAULT_FAILURE_COOLDOWN_WAVES) {
+    return clamp(parseNonNegativeInt(raw, fallback), 0, MAX_FAILURE_COOLDOWN_WAVES);
+}
+
+function normalizeExecutionStat(rawStat = {}) {
+    const stat = rawStat && typeof rawStat === 'object' ? rawStat : {};
+    const attempts = parseNonNegativeInt(stat.attempts, 0);
+    const successes = clamp(parseNonNegativeInt(stat.successes, 0), 0, attempts);
+    const failures = clamp(parseNonNegativeInt(stat.failures, 0), 0, attempts);
+    const consecutiveFailures = clamp(parseNonNegativeInt(stat.consecutiveFailures, 0), 0, attempts);
+    const lastStatus = typeof stat.lastStatus === 'string' && stat.lastStatus.trim()
+        ? normalizeStatus(stat.lastStatus)
+        : null;
+    const lastAttemptAt = Number.isFinite(Number(stat.lastAttemptAt))
+        ? Number(stat.lastAttemptAt)
+        : null;
+    const lastWave = Number.isFinite(Number(stat.lastWave))
+        ? parseNonNegativeInt(stat.lastWave, 0)
+        : null;
+
+    return {
+        attempts,
+        successes,
+        failures,
+        consecutiveFailures,
+        lastStatus,
+        lastAttemptAt,
+        lastWave
+    };
+}
+
+function normalizeSkillExecutionStats(rawStats = {}) {
+    const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+    const normalized = {};
+
+    for (const [key, value] of Object.entries(stats)) {
+        const skillId = toSkillId(key);
+        if (skillId === null) continue;
+        normalized[String(skillId)] = normalizeExecutionStat(value);
+    }
+
+    return normalized;
+}
+
+function normalizeCapabilityExecutionStats(rawStats = {}) {
+    const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+    const normalized = {};
+
+    for (const [key, value] of Object.entries(stats)) {
+        const capabilityId = normalizeCapabilityId(key);
+        if (!capabilityId) continue;
+        normalized[capabilityId] = normalizeExecutionStat(value);
+    }
+
+    return normalized;
+}
+
 function normalizeState(rawState = {}) {
     const state = rawState && typeof rawState === 'object' ? rawState : {};
 
@@ -122,6 +183,8 @@ function normalizeState(rawState = {}) {
         failedCapabilityIds: Array.isArray(state.failedCapabilityIds)
             ? [...new Set(state.failedCapabilityIds.map((value) => normalizeCapabilityId(value)).filter(Boolean))].sort()
             : [],
+        skillExecutionStats: normalizeSkillExecutionStats(state.skillExecutionStats),
+        capabilityExecutionStats: normalizeCapabilityExecutionStats(state.capabilityExecutionStats),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
 }
@@ -347,7 +410,44 @@ function buildCapabilityInput(capabilityId, waveIndex, nowMs) {
     };
 }
 
-function selectCatalogSlice({ catalog, cursor, limit, successfulSet }) {
+function isInFailureCooldown(stat, currentWave, cooldownWaves) {
+    if (!stat || typeof stat !== 'object') return false;
+    if (cooldownWaves <= 0) return false;
+    if (parseNonNegativeInt(stat.consecutiveFailures, 0) < FAILURE_COOLDOWN_MIN_STREAK) return false;
+    const lastWave = parseNonNegativeInt(stat.lastWave, 0);
+    if (lastWave <= 0) return false;
+    return (currentWave - lastWave) < cooldownWaves;
+}
+
+function computeUcbScore(stat, totalAttempts) {
+    const normalized = normalizeExecutionStat(stat);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const smoothedMean = (normalized.successes + 1) / (normalized.attempts + 2);
+    const exploration = Math.sqrt((2 * Math.log(Math.max(1, totalAttempts))) / normalized.attempts);
+    const failurePenalty = normalized.consecutiveFailures >= FAILURE_COOLDOWN_MIN_STREAK
+        ? Math.min(0.45, normalized.consecutiveFailures * 0.08)
+        : 0;
+
+    return smoothedMean + exploration - failurePenalty;
+}
+
+function cursorDistance(index, pointer, total) {
+    if (total <= 0) return 0;
+    return (index - pointer + total) % total;
+}
+
+function selectCatalogSlice({
+    catalog,
+    cursor,
+    limit,
+    successfulSet,
+    executionStats = {},
+    currentWave = 0,
+    failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES
+}) {
     const list = Array.isArray(catalog) ? catalog : [];
     if (list.length === 0 || limit <= 0) {
         return {
@@ -365,7 +465,9 @@ function selectCatalogSlice({ catalog, cursor, limit, successfulSet }) {
     while (selected.length < limit && scanned < total) {
         const candidate = list[pointer];
         const key = String(candidate?.id ?? candidate);
-        if (!selectedKeySet.has(key) && !successfulSet.has(key)) {
+        const stat = normalizeExecutionStat(executionStats[key]);
+        // Prioritize unseen items first for broad coverage.
+        if (!selectedKeySet.has(key) && !successfulSet.has(key) && stat.attempts === 0) {
             selected.push(candidate);
             selectedKeySet.add(key);
         }
@@ -373,16 +475,37 @@ function selectCatalogSlice({ catalog, cursor, limit, successfulSet }) {
         scanned++;
     }
 
-    scanned = 0;
-    while (selected.length < limit && scanned < total) {
-        const candidate = list[pointer];
+    const totalAttempts = Math.max(1, Object.values(executionStats)
+        .reduce((sum, stat) => sum + normalizeExecutionStat(stat).attempts, 0));
+
+    const ranked = [];
+    const cooled = [];
+    for (let index = 0; index < total; index++) {
+        const candidate = list[index];
         const key = String(candidate?.id ?? candidate);
-        if (!selectedKeySet.has(key)) {
-            selected.push(candidate);
-            selectedKeySet.add(key);
-        }
-        pointer = (pointer + 1) % total;
-        scanned++;
+        if (selectedKeySet.has(key)) continue;
+        const stat = normalizeExecutionStat(executionStats[key]);
+        const item = {
+            candidate,
+            key,
+            score: computeUcbScore(stat, totalAttempts),
+            distance: cursorDistance(index, pointer, total),
+            cooled: isInFailureCooldown(stat, currentWave, failureCooldownWaves)
+        };
+        if (item.cooled) cooled.push(item);
+        else ranked.push(item);
+    }
+
+    ranked.sort((left, right) => {
+        if (right.score !== left.score) return right.score - left.score;
+        return left.distance - right.distance;
+    });
+    cooled.sort((left, right) => left.distance - right.distance);
+
+    for (const item of [...ranked, ...cooled]) {
+        if (selected.length >= limit) break;
+        selected.push(item.candidate);
+        selectedKeySet.add(item.key);
     }
 
     return {
@@ -397,6 +520,7 @@ export function buildAutonomousBatchPlan({
     state,
     skillsPerWave = 20,
     capabilitiesPerWave = 10,
+    failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     skillCatalogSource = 'manifest',
     waveIndex = 0,
     nowFactory = Date.now
@@ -411,14 +535,20 @@ export function buildAutonomousBatchPlan({
         catalog: skillCatalog,
         cursor: normalizedState.skillCursor,
         limit: parseNonNegativeInt(skillsPerWave, 0),
-        successfulSet: skillSuccessfulSet
+        successfulSet: skillSuccessfulSet,
+        executionStats: normalizedState.skillExecutionStats,
+        currentWave: parseNonNegativeInt(waveIndex, normalizedState.runCount + 1),
+        failureCooldownWaves: normalizeFailureCooldownWaves(failureCooldownWaves)
     });
 
     const capabilitySelection = selectCatalogSlice({
         catalog: capabilityCatalog,
         cursor: normalizedState.capabilityCursor,
         limit: parseNonNegativeInt(capabilitiesPerWave, 0),
-        successfulSet: capabilitySuccessfulSet
+        successfulSet: capabilitySuccessfulSet,
+        executionStats: normalizedState.capabilityExecutionStats,
+        currentWave: parseNonNegativeInt(waveIndex, normalizedState.runCount + 1),
+        failureCooldownWaves: normalizeFailureCooldownWaves(failureCooldownWaves)
     });
 
     const tasks = [];
@@ -502,6 +632,8 @@ export async function collectAutonomousCoverage({
     const failedSkillIds = new Set();
     const successfulCapabilityIds = new Set();
     const failedCapabilityIds = new Set();
+    const skillExecutionStats = {};
+    const capabilityExecutionStats = {};
 
     for (const record of records) {
         const status = normalizeStatus(record?.status);
@@ -513,21 +645,52 @@ export async function collectAutonomousCoverage({
 
         const skillId = toSkillId(context.skillId);
         const capabilityId = normalizeCapabilityId(context.capabilityId);
+        const attemptAt = Number.isFinite(Number(record?.updatedAt))
+            ? Number(record.updatedAt)
+            : (Number.isFinite(Number(record?.request?.createdAt))
+                ? Number(record.request.createdAt)
+                : safeNow(nowFactory));
+        const attemptWave = parseNonNegativeInt(
+            record?.request?.context?.autonomy?.wave ?? context.autonomy?.wave,
+            0
+        );
+        const didSucceed = SUCCESS_STATUSES.has(status);
 
         if (skillId !== null) {
-            if (SUCCESS_STATUSES.has(status)) {
+            const key = String(skillId);
+            const current = normalizeExecutionStat(skillExecutionStats[key]);
+            current.attempts += 1;
+            if (didSucceed) {
+                current.successes += 1;
+                current.consecutiveFailures = 0;
                 successfulSkillIds.add(skillId);
             } else {
+                current.failures += 1;
+                current.consecutiveFailures += 1;
                 failedSkillIds.add(skillId);
             }
+            current.lastStatus = status;
+            current.lastAttemptAt = attemptAt;
+            current.lastWave = attemptWave > 0 ? attemptWave : current.lastWave;
+            skillExecutionStats[key] = current;
         }
 
         if (capabilityId) {
-            if (SUCCESS_STATUSES.has(status)) {
+            const current = normalizeExecutionStat(capabilityExecutionStats[capabilityId]);
+            current.attempts += 1;
+            if (didSucceed) {
+                current.successes += 1;
+                current.consecutiveFailures = 0;
                 successfulCapabilityIds.add(capabilityId);
             } else {
+                current.failures += 1;
+                current.consecutiveFailures += 1;
                 failedCapabilityIds.add(capabilityId);
             }
+            current.lastStatus = status;
+            current.lastAttemptAt = attemptAt;
+            current.lastWave = attemptWave > 0 ? attemptWave : current.lastWave;
+            capabilityExecutionStats[capabilityId] = current;
         }
     }
 
@@ -535,7 +698,9 @@ export async function collectAutonomousCoverage({
         successfulSkillIds: [...successfulSkillIds].sort((a, b) => a - b),
         failedSkillIds: [...failedSkillIds].sort((a, b) => a - b),
         successfulCapabilityIds: [...successfulCapabilityIds].sort(),
-        failedCapabilityIds: [...failedCapabilityIds].sort()
+        failedCapabilityIds: [...failedCapabilityIds].sort(),
+        skillExecutionStats: normalizeSkillExecutionStats(skillExecutionStats),
+        capabilityExecutionStats: normalizeCapabilityExecutionStats(capabilityExecutionStats)
     };
 }
 
@@ -545,6 +710,21 @@ function mergeUniqueNumeric(left = [], right = []) {
 
 function mergeUniqueString(left = [], right = []) {
     return [...new Set([...left, ...right].map((value) => normalizeCapabilityId(value)).filter(Boolean))].sort();
+}
+
+function mergeExecutionStats(existingStats = {}, incomingStats = {}) {
+    const merged = {};
+    const existing = existingStats && typeof existingStats === 'object' ? existingStats : {};
+    const incoming = incomingStats && typeof incomingStats === 'object' ? incomingStats : {};
+    const keys = new Set([...Object.keys(existing), ...Object.keys(incoming)]);
+
+    for (const key of keys) {
+        const previous = normalizeExecutionStat(existing[key]);
+        const next = normalizeExecutionStat(incoming[key]);
+        merged[key] = next.attempts >= previous.attempts ? next : previous;
+    }
+
+    return merged;
 }
 
 function createCoverageReport({
@@ -655,6 +835,7 @@ export async function runAutonomousOpenClaw({
     skillDeployabilityIndexPath = null,
     skillHardeningProfilePath = null,
     enqueueFollowupTasks = true,
+    failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     nowFactory = Date.now
 } = {}) {
     const resolvedRepoRoot = path.resolve(repoRoot);
@@ -677,6 +858,7 @@ export async function runAutonomousOpenClaw({
     const normalizedWaves = parsePositiveInt(waves, 1);
     const normalizedSkillsPerWave = parseNonNegativeInt(skillsPerWave, 0);
     const normalizedCapabilitiesPerWave = parseNonNegativeInt(capabilitiesPerWave, 0);
+    const normalizedFailureCooldownWaves = normalizeFailureCooldownWaves(failureCooldownWaves);
 
     const skillCatalogSource = loadSkillCatalogSource({
         repoRoot: resolvedRepoRoot,
@@ -711,6 +893,7 @@ export async function runAutonomousOpenClaw({
             state,
             skillsPerWave: normalizedSkillsPerWave,
             capabilitiesPerWave: normalizedCapabilitiesPerWave,
+            failureCooldownWaves: normalizedFailureCooldownWaves,
             skillCatalogSource: skillCatalogSource.source,
             waveIndex: state.runCount + 1,
             nowFactory
@@ -770,6 +953,8 @@ export async function runAutonomousOpenClaw({
             failedSkillIds: mergeUniqueNumeric(state.failedSkillIds, coverage.failedSkillIds),
             successfulCapabilityIds: mergeUniqueString(state.successfulCapabilityIds, coverage.successfulCapabilityIds),
             failedCapabilityIds: mergeUniqueString(state.failedCapabilityIds, coverage.failedCapabilityIds),
+            skillExecutionStats: mergeExecutionStats(state.skillExecutionStats, coverage.skillExecutionStats),
+            capabilityExecutionStats: mergeExecutionStats(state.capabilityExecutionStats, coverage.capabilityExecutionStats),
             updatedAt: safeNow(nowFactory)
         });
 
@@ -855,6 +1040,7 @@ export async function runAutonomousOpenClaw({
             stopOnFullCoverage,
             failureRate: normalizeFailureRate(failureRate),
             botRuntime,
+            failureCooldownWaves: normalizedFailureCooldownWaves,
             skillHardeningPolicy,
             skillHardeningMinScore,
             skillDeployabilityIndexPath: effectiveDeployabilityIndexPath,

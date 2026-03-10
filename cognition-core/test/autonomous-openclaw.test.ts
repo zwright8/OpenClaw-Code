@@ -65,6 +65,70 @@ test('buildAutonomousBatchPlan selects skills and capabilities with cursor progr
     assert.equal(firstTask.context?.planner, 'cognition-core/autonomous-openclaw');
 });
 
+test('buildAutonomousBatchPlan uses adaptive ranking after initial coverage', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 1, code: 'SK-00001', title: 'Skill 1' },
+            { id: 2, code: 'SK-00002', title: 'Skill 2' },
+            { id: 3, code: 'SK-00003', title: 'Skill 3' },
+            { id: 4, code: 'SK-00004', title: 'Skill 4' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 10,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '1': { attempts: 12, successes: 2, failures: 10, consecutiveFailures: 3, lastWave: 9 },
+                '2': { attempts: 8, successes: 7, failures: 1, consecutiveFailures: 0, lastWave: 9 },
+                '3': { attempts: 4, successes: 2, failures: 2, consecutiveFailures: 0, lastWave: 9 },
+                '4': { attempts: 1, successes: 1, failures: 0, consecutiveFailures: 0, lastWave: 9 }
+            }
+        },
+        skillsPerWave: 2,
+        capabilitiesPerWave: 0,
+        waveIndex: 10,
+        failureCooldownWaves: 2,
+        nowFactory: () => 100_000
+    });
+
+    assert.equal(plan.selection.skillIds.length, 2);
+    assert.deepEqual(plan.selection.skillIds, [4, 2]);
+});
+
+test('buildAutonomousBatchPlan temporarily cools repeated failures', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 11, code: 'SK-00011', title: 'Skill 11' },
+            { id: 12, code: 'SK-00012', title: 'Skill 12' },
+            { id: 13, code: 'SK-00013', title: 'Skill 13' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 7,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '11': { attempts: 6, successes: 1, failures: 5, consecutiveFailures: 4, lastWave: 7 },
+                '12': { attempts: 6, successes: 5, failures: 1, consecutiveFailures: 0, lastWave: 7 },
+                '13': { attempts: 3, successes: 2, failures: 1, consecutiveFailures: 0, lastWave: 7 }
+            }
+        },
+        skillsPerWave: 2,
+        capabilitiesPerWave: 0,
+        waveIndex: 8,
+        failureCooldownWaves: 3,
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [12, 13]);
+    assert.ok(!plan.selection.skillIds.includes(11));
+});
+
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -124,6 +188,8 @@ test('runAutonomousOpenClaw executes a wave and persists advancing autonomy stat
 
     const stateAfterSecond = loadAutonomousState(statePath);
     assert.equal(stateAfterSecond.runCount, 2);
+    assert.ok(Object.keys(stateAfterSecond.skillExecutionStats).length > 0);
+    assert.ok(Object.keys(stateAfterSecond.capabilityExecutionStats).length > 0);
 
     const firstSkill = first.waves[0].selection.skillIds[0];
     const secondSkill = second.waves[0].selection.skillIds[0];
