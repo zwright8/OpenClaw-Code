@@ -2057,6 +2057,105 @@ test('dispatch policy can sanitize request before dispatch', async () => {
     assert.equal(task.policy.redactions.length, 1);
 });
 
+test('cancelTask marks open task as cancelled and propagates cancel signal', async () => {
+    const sent = [];
+    const clock = createClock(88_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-cancel',
+        task: 'Long running analysis'
+    });
+
+    clock.advance(250);
+    const cancelled = await orchestrator.cancelTask(task.taskId, {
+        reason: 'superseded_by_new_plan',
+        cancelledBy: 'agent:planner',
+        timestamp: clock.now()
+    });
+
+    assert.equal(cancelled.status, 'cancelled');
+    assert.equal(cancelled.closedAt, clock.now());
+    assert.equal(cancelled.history.some((entry) => entry.event === 'cancelled'), true);
+    assert.equal(cancelled.history.some((entry) => entry.event === 'cancel_signal_sent'), true);
+
+    assert.equal(sent.length, 2);
+    assert.equal(sent[1].target, 'agent:worker-cancel');
+    assert.equal(sent[1].message.kind, 'task_cancel');
+    assert.equal(sent[1].message.taskId, task.taskId);
+});
+
+test('cancelTask blocks later terminal replay dedupe and allows fresh dispatch', async () => {
+    const clock = createClock(89_000);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 1_000,
+            terminalWindowMs: 30_000,
+            openOnly: false
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-cancel-replay',
+        task: 'Generate roadmap draft'
+    });
+    await orchestrator.cancelTask(first.taskId, {
+        reason: 'operator_abort',
+        timestamp: clock.now()
+    });
+
+    clock.advance(10);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-cancel-replay',
+        task: 'Generate roadmap draft'
+    });
+
+    assert.notEqual(second.taskId, first.taskId);
+    assert.equal(sent.length, 3);
+    assert.equal(sent[1].message.kind, 'task_cancel');
+    assert.equal(sent[2].message.kind, 'task_request');
+});
+
+test('cancelTask without prior dispatch does not attempt propagation', async () => {
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        approvalPolicy: () => ({ required: true, reason: 'manual_review' })
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-cancel-awaiting',
+        task: 'Needs approval before send'
+    });
+
+    const cancelled = await orchestrator.cancelTask(task.taskId, {
+        reason: 'approval_withdrawn'
+    });
+    assert.equal(cancelled.status, 'cancelled');
+    assert.equal(sent.length, 0);
+});
+
 test('audit log records signed lifecycle entries', async () => {
     const auditLog = new SignedAuditLog({
         secret: 'audit-secret',

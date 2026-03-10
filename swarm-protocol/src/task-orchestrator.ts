@@ -7,7 +7,8 @@ const TERMINAL_STATUSES = new Set([
     'failed',
     'rejected',
     'timed_out',
-    'transport_error'
+    'transport_error',
+    'cancelled'
 ]);
 
 const OPEN_STATUSES = new Set([
@@ -15,6 +16,14 @@ const OPEN_STATUSES = new Set([
     'dispatched',
     'acknowledged',
     'retry_scheduled'
+]);
+const TERMINAL_REPLAY_STATUSES = new Set([
+    'completed',
+    'partial',
+    'failed',
+    'rejected',
+    'timed_out',
+    'transport_error'
 ]);
 
 const APPROVAL_PENDING_STATUS = 'awaiting_approval';
@@ -1088,6 +1097,9 @@ export class TaskOrchestrator {
         for (const record of this.tasks.values()) {
             const isTerminal = TERMINAL_STATUSES.has(record.status);
             if (isTerminal) {
+                if (!TERMINAL_REPLAY_STATUSES.has(record.status)) {
+                    continue;
+                }
                 if (terminalWindowMs <= 0) {
                     if (this.dispatchDeduplication.openOnly) {
                         continue;
@@ -1880,6 +1892,111 @@ export class TaskOrchestrator {
                     }, reviewedAt);
                 }
             }
+        }
+
+        return this.getTask(taskId);
+    }
+
+    async cancelTask(taskId, {
+        reason = 'cancelled_by_operator',
+        cancelledBy = this.localAgentId,
+        timestamp = safeNow(this.now),
+        propagate = true
+    } = {}) {
+        const record = this.tasks.get(taskId);
+        if (!record) return null;
+        if (TERMINAL_STATUSES.has(record.status)) {
+            return this.getTask(taskId);
+        }
+
+        const cancelledAt = Number.isFinite(Number(timestamp)) ? Number(timestamp) : safeNow(this.now);
+        const previousStatus = record.status;
+        const reasonText = typeof reason === 'string' && reason.trim()
+            ? reason.trim()
+            : 'cancelled_by_operator';
+        const actor = typeof cancelledBy === 'string' && cancelledBy.trim()
+            ? cancelledBy.trim()
+            : this.localAgentId;
+
+        this._releaseAdaptiveConcurrencySlot(record, cancelledAt, 'neutral');
+        record.status = 'cancelled';
+        record.updatedAt = cancelledAt;
+        record.closedAt = cancelledAt;
+        record.nextRetryAt = null;
+        record.history.push({
+            at: cancelledAt,
+            event: 'cancelled',
+            reason: reasonText,
+            cancelledBy: actor
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_cancelled', {
+            taskId: record.taskId,
+            target: record.target,
+            reason: reasonText,
+            cancelledBy: actor,
+            previousStatus
+        }, cancelledAt);
+
+        const shouldPropagate = propagate
+            && previousStatus !== APPROVAL_PENDING_STATUS
+            && record.attempts > 0;
+        if (!shouldPropagate) {
+            return this.getTask(taskId);
+        }
+
+        const cancelEnvelope = {
+            kind: 'task_cancel',
+            taskId: record.taskId,
+            from: this.localAgentId,
+            target: record.target,
+            reason: reasonText,
+            timestamp: cancelledAt
+        };
+
+        try {
+            let via = null;
+            if (typeof this.transport.cancel === 'function') {
+                await this.transport.cancel(record.target, cancelEnvelope);
+                via = 'cancel';
+            } else if (typeof this.transport.send === 'function') {
+                await this.transport.send(record.target, cancelEnvelope);
+                via = 'send';
+            }
+
+            if (via) {
+                const signalAt = safeNow(this.now);
+                record.updatedAt = signalAt;
+                record.history.push({
+                    at: signalAt,
+                    event: 'cancel_signal_sent',
+                    via
+                });
+                this._persistRecord(record);
+                this._emitAudit('task_cancel_signal_sent', {
+                    taskId: record.taskId,
+                    target: record.target,
+                    via
+                }, signalAt);
+            }
+        } catch (error) {
+            const failedAt = safeNow(this.now);
+            const message = error?.message || 'Failed to propagate cancellation';
+            record.updatedAt = failedAt;
+            record.history.push({
+                at: failedAt,
+                event: 'cancel_signal_failed',
+                error: message
+            });
+            this._persistRecord(record);
+            this._emitAudit('task_cancel_signal_failed', {
+                taskId: record.taskId,
+                target: record.target,
+                error: message
+            }, failedAt);
+            this.logger.warn?.(
+                `[Swarm] Cancellation propagation failed for task ${record.taskId}: ${message}`
+            );
         }
 
         return this.getTask(taskId);

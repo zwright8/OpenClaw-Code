@@ -386,6 +386,12 @@ orchestrator.ingestResult(resultMessage);
 
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
+
+// If work is stale/superseded:
+await orchestrator.cancelTask(taskId, {
+  reason: 'superseded_by_new_plan',
+  cancelledBy: 'agent:planner'
+});
 ```
 
 `circuitBreaker` prevents repeated dispatch attempts to an unhealthy target by opening per-target circuits after consecutive send failures and only probing again after cooldown.
@@ -395,8 +401,10 @@ When the half-open probe budget is exhausted before recovery, the breaker now re
 `dispatchDeduplication.coalesceOpenUntilTerminal` enables true singleflight behavior for open tasks, so duplicate submissions are coalesced until the original task reaches a terminal state.
 When combined with `dispatchDeduplication.inFlightWindowMs`, that value acts as a lock-age escape hatch for long-running or potentially stuck work before allowing a fresh dispatch.
 `dispatchDeduplication.terminalWindowMs` lets the orchestrator treat recently closed tasks as idempotent replays so duplicate submissions can reuse recent outcomes instead of re-dispatching side-effecting work.
+Cancelled tasks are intentionally excluded from terminal replay, so an operator-aborted task never suppresses a fresh follow-up dispatch.
 `transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
 `terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.
+`cancelTask(taskId, options)` provides explicit cooperative cancellation for stale/superseded work and emits a best-effort cancellation signal (`task_cancel`) to workers after a task has been dispatched.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.
 By default, these explicit server hints are honored as-is; set `maxRetryHintMs` if you want to impose an upper bound.
