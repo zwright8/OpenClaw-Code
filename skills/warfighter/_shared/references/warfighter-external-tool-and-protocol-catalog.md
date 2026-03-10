@@ -5743,3 +5743,51 @@ external_binding:
 ### `ps-space-launch-fuel-oxidizer-allocation-stack-v1`
 - Protocols: `USMTF`, launch safety telemetry envelopes, `CCSDS orbit data exchange`, `API/JSON`.
 - Use for: fuel/oxidizer allocation updates, launch reprioritization notices, and safety-governance escalation.
+
+### `ts-cislunar-logistics-denial-v1`
+- Use for: cislunar traffic awareness, orbital logistics interdiction analysis, and resilient route governance.
+- Primary tools: cislunar SDA catalogs, orbital route-risk analytics, logistics trajectory planners.
+- Cross-check tools: independent ephemeris mirror and alternate orbital conflict timeline board.
+- Typical products: cislunar lane risk brief, logistics denial options matrix, mission-route protection branch plan.
+
+### `ts-cognitive-ew-deception-detection-v1`
+- Use for: integrated cognitive and electromagnetic deception detection in theater campaigns.
+- Primary tools: narrative telemetry analytics, EW anomaly fusion services, media authenticity forensics.
+- Cross-check tools: independent source-credibility ledger and alternate RF behavior baseline monitor.
+- Typical products: deception confidence ladder, narrative-spectrum anomaly brief, mitigation and retask matrix.
+
+### `ts-hypersonic-bda-restrike-v1`
+- Use for: hypersonic strike battle damage verification and rapid restrike optioning.
+- Primary tools: multi-INT BDA fusion systems, dynamic targeting assessment tools, timeline compression analytics.
+- Cross-check tools: independent ISR confidence review board and alternate damage-estimation model service.
+- Typical products: hypersonic BDA confidence board, restrike decision packet, uncertainty-branch matrix.
+
+### `ts-autonomous-maritime-salvage-legal-v1`
+- Use for: autonomous maritime salvage sequencing with evidence custody and legal-rights adjudication.
+- Primary tools: maritime COP and salvage planners, autonomous vessel mission controllers, evidence chain managers.
+- Cross-check tools: independent salvage-rights registry and alternate custody integrity ledger.
+- Typical products: salvage sequence board, legal-rights matrix, tribunal-ready evidence handoff packet.
+
+### `ts-bioprinted-trauma-stabilization-v1`
+- Use for: austere bioprinted hemorrhage-control support and forward surgical stabilization governance.
+- Primary tools: additive and bioprint process controls, med-log orchestration systems, force-health dashboards.
+- Cross-check tools: independent sterility and QA release monitor, alternate casualty triage validation board.
+- Typical products: bioprint intervention readiness brief, stabilization priority queue, fabrication risk and release matrix.
+
+### `ts-underground-gas-grid-protection-v1`
+- Use for: denied urban underground gas-grid explosion prevention and civil-military restoration sequencing.
+- Primary tools: SCADA anomaly analytics, underground utility mapping systems, urban emergency operations dashboards.
+- Cross-check tools: independent sampling chain and alternate utility-pressure status mirror.
+- Typical products: explosion-prevention action board, utility isolation and restoration branch plan, civilian risk packet.
+
+### `ts-cloud-model-supply-chain-sabotage-v1`
+- Use for: strategic cloud model/data supply-chain sabotage detection and mission continuity planning.
+- Primary tools: SBOM and attestation services, cloud security telemetry platforms, model registry governance systems.
+- Cross-check tools: independent provenance validation harness and alternate dependency risk monitor.
+- Typical products: cloud-model risk heatmap, sabotage containment branches, strategic reconstitution packet.
+
+### `ts-grid-blackstart-fuel-security-fusion-v1`
+- Use for: homeland grid blackstart synchronization with protected fuel convoy operations.
+- Primary tools: grid restoration orchestration systems, convoy tracking tools, infrastructure incident command boards.
+- Cross-check tools: independent utility restoration mirror and alternate convoy-threat verification service.
+- Typical products: blackstart-convoy synchronization matrix, fuel security route branches, critical-load restoration packet.

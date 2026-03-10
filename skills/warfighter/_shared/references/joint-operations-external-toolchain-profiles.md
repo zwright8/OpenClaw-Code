@@ -477,3 +477,59 @@ For each critical recommendation, include:
 - Cross-check tools: independent AIS anomaly adjudication and coalition legal review board.
 - Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `API/JSON`, `NATO APP-11/ADatP-3`.
 - Degraded fallback: mission-priority lanes only with restricted autonomous behavior profiles.
+
+### `cislunar-sda-logistics-denial-v1`
+- Use for cislunar traffic awareness, logistics-route denial analysis, and resilient orbital mission routing.
+- Primary tools: cislunar SSA catalogs, orbital trajectory planners, route-risk analytics.
+- Cross-check tools: independent ephemeris mirror and alternate conflict timeline review.
+- Protocols: `API/JSON`, `USMTF`, `CCSDS OMM/OEM`.
+- Degraded fallback: static lane-priority board with conservative route conflict assumptions.
+
+### `cognitive-ew-deception-detection-v1`
+- Use for integrated deception detection across narrative and electromagnetic domains.
+- Primary tools: influence telemetry analytics, EW anomaly fusion services, media authenticity forensics.
+- Cross-check tools: independent credibility ledger and alternate RF baseline validator.
+- Protocols: `STIX/TAXII`, `CoT`, `USMTF`.
+- Degraded fallback: high-confidence-source-only posture with manual anomaly triage.
+
+### `hypersonic-bda-restrike-v1`
+- Use for rapid post-strike battle damage verification and restrike governance.
+- Primary tools: multi-INT BDA fusion stacks, target-damage models, dynamic targeting decision boards.
+- Cross-check tools: independent ISR confidence monitor and alternate damage-estimate service.
+- Protocols: `VMF`, `Link 16 J-series`, `USMTF`.
+- Degraded fallback: restrike recommendation delay with conservative confidence thresholds.
+
+### `autonomous-maritime-salvage-legal-v1`
+- Use for autonomous maritime salvage planning with legal-rights and custody assurance.
+- Primary tools: salvage planning systems, autonomous vessel control services, evidence chain managers.
+- Cross-check tools: independent legal-rights adjudication board and alternate custody ledger.
+- Protocols: `AIS/NMEA`, `OGC`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: manual salvage queue with legal hold points.
+
+### `bioprinted-trauma-stabilization-v1`
+- Use for austere bioprinted trauma support and forward surgical stabilization coordination.
+- Primary tools: bioprint process control systems, med-log orchestration, casualty regulation dashboards.
+- Cross-check tools: independent sterility QA verifier and alternate clinical risk board.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Degraded fallback: approved-catalog interventions only with manual quality gates.
+
+### `underground-gas-grid-explosion-prevention-v1`
+- Use for denied urban underground gas-grid explosion prevention and service restoration.
+- Primary tools: SCADA monitoring, underground utility maps, emergency operations platforms.
+- Cross-check tools: independent pressure/contamination sampling and alternate utility status monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OGC`.
+- Degraded fallback: manual isolation planning with frequent life-safety updates.
+
+### `cloud-model-supply-chain-sabotage-v1`
+- Use for strategic cloud model/data supply-chain sabotage detection and mitigation.
+- Primary tools: SBOM/attestation systems, cloud telemetry, model governance controls.
+- Cross-check tools: independent provenance validator and alternate dependency anomaly board.
+- Protocols: `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Degraded fallback: approved-baseline-only model operations with manual release review.
+
+### `grid-blackstart-fuel-convoy-fusion-v1`
+- Use for homeland grid blackstart sequencing tied to secure fuel convoy operations.
+- Primary tools: restoration orchestration boards, convoy tracking services, infrastructure incident systems.
+- Cross-check tools: independent utility restoration mirror and alternate convoy-threat monitor.
+- Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Degraded fallback: manual blackstart priority board with convoy waypoint callouts.
