@@ -144,3 +144,8 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Coalition ROE and Grid Stress Addendum)
+
+- Add `tool_suite_id=ts-coalition-human-machine-roe-assurance-v1` + `protocol_stack_id=ps-coalition-human-machine-roe-assurance-stack-v1` when coalition autonomy operations require auditable ROE compliance and approval traceability.
+- Add `tool_suite_id=ts-joint-civil-grid-rotating-blackout-force-posture-v1` + `protocol_stack_id=ps-joint-civil-grid-rotating-blackout-force-posture-stack-v1` when coalition data fabric priorities shift due to rotating civil-grid outages.

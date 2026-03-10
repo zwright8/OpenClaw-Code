@@ -144,3 +144,20 @@ Primary products for this skill: data link execution plan, network load manageme
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-09, Coalition EW and Seabed Continuity Addendum)
+
+- Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when coalition data-link behavior depends on urgent emitter-library or waveform profile updates.
+- Prioritize `tool_suite_id=ts-seabed-node-tamper-repair-v1` + `protocol_stack_id=ps-seabed-node-tamper-repair-stack-v1` when undersea node disruptions degrade long-haul data-link continuity.
+- Add `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` and `packet_id=DPL-SEABED-NODE-TAMPER-REPAIR-001` for recommendations that modify coalition link plans or SATCOM/terrestrial failover posture.
+
+## Domain Toolchain Override (2026-03-09, Maritime Autonomy Liability and Decoy Telemetry Addendum)
+
+- Prioritize `tool_suite_id=ts-autonomous-maritime-traffic-liability-v1` + `protocol_stack_id=ps-autonomous-maritime-traffic-liability-stack-v1` when maritime tactical links must deconflict autonomous and crewed traffic with legally defensible event logging.
+- Prioritize `tool_suite_id=ts-electro-optical-decoy-audit-v1` + `protocol_stack_id=ps-electro-optical-decoy-audit-stack-v1` when data-link distribution affects decoy posture, sensor deception timing, or emissions control in contested targeting cycles.
+- Add `packet_id=DPL-AUTONOMOUS-MARITIME-TRAFFIC-LIABILITY-001` and `packet_id=DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001` for recommendations that adjust coalition link lanes, sensor release authorities, or attribution data retention rules.
+
+## Domain Toolchain Override (2026-03-10, Swarm Exploitation and SATCOM Denial Addendum)
+
+- Add `tool_suite_id=ts-joint-drone-swarm-capture-exploitation-v1` + `protocol_stack_id=ps-joint-drone-swarm-capture-exploitation-stack-v1` when recovered swarm payloads must be converted into mission-data-link updates.
+- Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when data-link quality depends on LEO SATCOM path restoration and anti-jam fallback sequencing.
