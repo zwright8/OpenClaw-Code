@@ -1,9 +1,9 @@
 ---
-name: coalition-data-fabric-interoperability-cell
-description: Design coalition data-sharing workflows that balance mission speed, releasability, and partner interoperability constraints. Use when multinational operations require trusted data exchange.
+name: coalition-contested-private-5g-mission-priority-cell
+description: Manage coalition private-5G mission traffic prioritization and failover when contested spectrum and infrastructure outages degrade command services.
 ---
 
-# Coalition Data Fabric Interoperability Cell
+# Coalition Contested Private 5G Mission Priority Cell
 
 ## Mission Scope
 
@@ -31,19 +31,19 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: coalition data-sharing architecture brief, releasability decision matrix, cross-domain synchronization plan.
+Primary products for this skill: private-5G mission-priority matrix, coalition QoS failover plan, contested-spectrum service restoration ladder.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in ../_shared/references/external-tools-protocols.md and name the exact tools selected for this mission set.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and select a domain toolchain profile relevant to this mission.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
-- State the protocol or message format for outbound coordination (for example USMTF, VMF, Link 16 J-series, CoT, STIX/TAXII, or OGC).
+- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, or `NATO APP-11/ADatP-3`).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
 ## Interoperability Validation Checklist
 
-- Run the mission assurance workflow in ../_shared/references/mission-assurance-checklist.md before final release.
+- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
 - Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
 - If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
 
@@ -144,8 +144,6 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-10, Maneuver Assurance and Strategic Continuity Expansion)
 
-## Domain Toolchain Override (2026-03-10, Evacuation Twin and Private-5G Expansion)
-
-- Add `tool_suite_id=ts-civilian-evacuation-digital-twin-traffic-assurance-v1` + `protocol_stack_id=ps-civilian-evacuation-digital-twin-traffic-assurance-stack-v1` when coalition data exchange must synchronize high-volume civilian evacuation throughput and route release controls.
-- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when coalition data-fabric recommendations depend on contested private-5G service-priority orchestration.
+- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when producing critical recommendations for this mission domain.

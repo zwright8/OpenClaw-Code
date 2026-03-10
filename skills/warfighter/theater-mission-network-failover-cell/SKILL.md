@@ -145,3 +145,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Private-5G Degradation and Custody Assurance Expansion)
+
+- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when failover planning must preserve coalition private-5G command services under contested spectrum.
+- Add `tool_suite_id=ts-prepositioned-stock-cyber-custody-tamper-assurance-v1` + `protocol_stack_id=ps-prepositioned-stock-cyber-custody-tamper-assurance-stack-v1` when mission network continuity depends on trusted custody and tamper-free release of strategic stock systems.

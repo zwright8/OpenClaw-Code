@@ -144,3 +144,8 @@ Primary products for this skill: data link execution plan, network load manageme
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, JTAC Deconfliction and Solar Storm Resilience Expansion)
+
+- Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when mission-data-link actions must reconcile contested JTAC voice and digital fires-control state.
+- Add `tool_suite_id=ts-solar-storm-radiation-force-posture-v1` + `protocol_stack_id=ps-solar-storm-radiation-force-posture-stack-v1` when data-link timing and releasability are constrained by severe solar storm radiation posture changes.

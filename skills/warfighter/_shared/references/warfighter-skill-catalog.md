@@ -770,3 +770,33 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+
+## New Expansion Wave (2026-03-10, Contested Integration, Infrastructure Endurance, and Human Terrain Assurance)
+
+- joint-directed-energy-air-defense-power-queue-cell
+- theater-contested-jtac-voice-data-deconfliction-cell
+- coalition-civilian-evacuation-digital-twin-traffic-cell
+- strategic-prepositioned-stock-cyber-custody-tamper-cell
+- tactical-biometrics-spoof-detection-checkpoint-assurance-cell
+- homeland-wildfire-smoke-military-flight-continuity-cell
+- joint-riverine-drone-smuggling-interdiction-cell
+- theater-ai-enabled-miso-effects-calibration-cell
+- coalition-contested-private-5g-mission-priority-cell
+- expeditionary-portable-desalination-biofouling-cell
+- strategic-nc3-courier-eam-bridge-assurance-cell
+- joint-solar-storm-radiation-force-posture-cell
+
+## Updated Pairings (2026-03-10, Contested Integration, Infrastructure Endurance, and Human Terrain Assurance)
+
+- Directed-energy power queue management + integrated air and missile defense + operational energy resilience and microgrid + force protection base defense
+- JTAC voice-data deconfliction + close-air-support digital integration + tactical airspace control and deconfliction + fires and effects synchronizer
+- Civilian evacuation digital twin assurance + population protection and NEO + civil defense mass evacuation shelter + DSCA crisis coordination
+- Prepositioned stock cyber custody assurance + strategic mobility deployment planner + supply-chain risk and industrial base monitor + mission-assured software factory support
+- Tactical biometric spoof checkpoint assurance + biometrics watchlist exploitation + legal/ROE compliance + counterintelligence and insider-threat operations
+- Wildfire smoke flight continuity + weather-space-weather effects forecasting + expeditionary airfield operations + homeland civil support command
+- Riverine drone smuggling interdiction + riverine inland waterways operations + autonomous maritime visit board search and seizure + battlefield forensics and attribution
+- AI-enabled MISO effects calibration + tactical psychological operations and MISO + information integrity and attribution + strategic competition gray-zone response
+- Contested private-5G mission priority + theater mission network failover + coalition data fabric interoperability + contested spectrum mission replanning
+- Portable desalination biofouling countermeasure + austere water production and distribution support + preventive medicine force health protection + contested logistics sustainment
+- NC3 courier EAM bridge assurance + joint NC3 continuity and EAM assurance + physical message assurance + denied comms commander-intent reconciliation
+- Solar storm radiation force posture + contested space-weather GNSS outage fusion + missile warning and attack assessment + space-domain awareness and SATCOM defense
