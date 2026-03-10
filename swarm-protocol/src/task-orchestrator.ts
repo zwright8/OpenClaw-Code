@@ -75,7 +75,11 @@ const DEFAULT_TERMINAL_TASK_RETENTION = Object.freeze({
 });
 const DEFAULT_QUEUE_CAPACITY = Object.freeze({
     maxOpenTasks: 2_000,
-    maxOpenTasksPerTarget: 500
+    maxOpenTasksPerTarget: 500,
+    reservedOpenSlotsByPriority: Object.freeze({
+        critical: 0,
+        high: 0
+    })
 });
 const DEFAULT_STALE_TASK_POLICY = Object.freeze({
     maxAgeMs: 300_000,
@@ -109,6 +113,13 @@ const RATE_LIMIT_RESET_KEY_VALUE_REGEX = new RegExp(
     `\\b${RATE_LIMIT_RESET_KEY_PATTERN}\\b\\s*[:=]?\\s*([^\\s;,]+)`,
     'gi'
 );
+const PRIORITY_LEVELS = Object.freeze(['low', 'normal', 'high', 'critical']);
+const PRIORITY_RANK = Object.freeze(
+    PRIORITY_LEVELS.reduce((acc, priority, index) => {
+        acc[priority] = index;
+        return acc;
+    }, {})
+);
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -129,6 +140,15 @@ function clampPositiveNumber(value, fallback) {
     return Number.isFinite(value) && value > 0
         ? Number(value)
         : fallback;
+}
+
+function normalizeTaskPriority(value) {
+    const normalized = typeof value === 'string'
+        ? value.trim().toLowerCase()
+        : '';
+    return Object.prototype.hasOwnProperty.call(PRIORITY_RANK, normalized)
+        ? normalized
+        : 'normal';
 }
 
 function parseRateLimitResetDelayMs(rawValue, nowMs) {
@@ -519,7 +539,8 @@ function resolveQueueCapacity(value) {
             enabled: false,
             ...DEFAULT_QUEUE_CAPACITY,
             maxOpenTasks: null,
-            maxOpenTasksPerTarget: null
+            maxOpenTasksPerTarget: null,
+            reservedOpenSlotsByPriority: clone(DEFAULT_QUEUE_CAPACITY.reservedOpenSlotsByPriority)
         };
     }
 
@@ -539,11 +560,23 @@ function resolveQueueCapacity(value) {
                 )
             )
         );
+    const reservedOpenSlotsByPriority = clone(DEFAULT_QUEUE_CAPACITY.reservedOpenSlotsByPriority);
+    if (value.reservedOpenSlotsByPriority && typeof value.reservedOpenSlotsByPriority === 'object') {
+        for (const [priority, rawSlots] of Object.entries(value.reservedOpenSlotsByPriority)) {
+            const normalized = normalizeTaskPriority(priority);
+            if (!['high', 'critical'].includes(normalized)) continue;
+            const slots = Math.max(0, Math.floor(clampNonNegativeNumber(rawSlots, 0)));
+            reservedOpenSlotsByPriority[normalized] = slots;
+        }
+    }
+    const hasPriorityReservation = Object.values(reservedOpenSlotsByPriority)
+        .some((slots) => Number(slots) > 0);
 
     return {
-        enabled: maxOpenTasks !== null || maxOpenTasksPerTarget !== null,
+        enabled: maxOpenTasks !== null || maxOpenTasksPerTarget !== null || hasPriorityReservation,
         maxOpenTasks,
-        maxOpenTasksPerTarget
+        maxOpenTasksPerTarget,
+        reservedOpenSlotsByPriority
     };
 }
 
@@ -1266,27 +1299,55 @@ export class TaskOrchestrator {
         return count;
     }
 
-    _assertQueueCapacity(target, nowMs) {
+    _reservedHigherPrioritySlots(requestPriority) {
+        const normalizedPriority = normalizeTaskPriority(requestPriority);
+        const requestRank = PRIORITY_RANK[normalizedPriority];
+        let reserved = 0;
+        for (const [priority, slots] of Object.entries(this.queueCapacity.reservedOpenSlotsByPriority || {})) {
+            const priorityRank = PRIORITY_RANK[normalizeTaskPriority(priority)];
+            if (priorityRank <= requestRank) continue;
+            const numericSlots = Number(slots);
+            if (!Number.isFinite(numericSlots) || numericSlots <= 0) continue;
+            reserved += Math.floor(numericSlots);
+        }
+        return Math.max(0, reserved);
+    }
+
+    _assertQueueCapacity(target, nowMs, priority = 'normal') {
         if (!this.queueCapacity.enabled) return;
 
         const maxOpenTasks = this.queueCapacity.maxOpenTasks;
         if (Number.isFinite(maxOpenTasks)) {
             const openTotal = this._countOpenTasks();
-            if (openTotal >= Number(maxOpenTasks)) {
+            const reservedForHigherPriority = this._reservedHigherPrioritySlots(priority);
+            const effectiveCapacity = Math.max(
+                0,
+                Number(maxOpenTasks) - reservedForHigherPriority
+            );
+            if (openTotal >= effectiveCapacity) {
+                const rejectionScope = reservedForHigherPriority > 0
+                    ? 'global_priority_reservation'
+                    : 'global';
                 this._emitAudit('task_capacity_rejected', {
                     target,
-                    scope: 'global',
+                    priority: normalizeTaskPriority(priority),
+                    scope: rejectionScope,
                     openTasks: openTotal,
-                    maxOpenTasks: Number(maxOpenTasks)
+                    maxOpenTasks: Number(maxOpenTasks),
+                    effectiveMaxOpenTasks: effectiveCapacity,
+                    reservedForHigherPriority
                 }, nowMs);
                 throw new TaskOrchestratorError(
                     'CAPACITY_EXCEEDED',
-                    `Open task capacity exceeded (${openTotal}/${Number(maxOpenTasks)})`,
+                    `Open task capacity exceeded (${openTotal}/${effectiveCapacity})`,
                     {
                         target,
-                        scope: 'global',
+                        priority: normalizeTaskPriority(priority),
+                        scope: rejectionScope,
                         openTasks: openTotal,
-                        maxOpenTasks: Number(maxOpenTasks)
+                        maxOpenTasks: Number(maxOpenTasks),
+                        effectiveMaxOpenTasks: effectiveCapacity,
+                        reservedForHigherPriority
                     }
                 );
             }
@@ -1940,7 +2001,7 @@ export class TaskOrchestrator {
             return this.getTask(duplicateRecord.taskId);
         }
 
-        this._assertQueueCapacity(request.target, createdAt);
+        this._assertQueueCapacity(request.target, createdAt, request.priority);
 
         const overallDeadlineAt = this._resolveOverallDeadlineAt(request.createdAt);
         const record = {
@@ -2924,8 +2985,15 @@ export class TaskOrchestrator {
                 enabled: this.queueCapacity.enabled,
                 maxOpenTasks: this.queueCapacity.maxOpenTasks,
                 maxOpenTasksPerTarget: this.queueCapacity.maxOpenTasksPerTarget,
+                reservedOpenSlotsByPriority: clone(this.queueCapacity.reservedOpenSlotsByPriority),
                 openTasksTotal: 0,
-                trackedTargets: 0
+                trackedTargets: 0,
+                openByPriority: {
+                    low: 0,
+                    normal: 0,
+                    high: 0,
+                    critical: 0
+                }
             },
             staleTaskPolicy: {
                 enabled: this.staleTaskPolicy.enabled,
@@ -2947,6 +3015,8 @@ export class TaskOrchestrator {
             } else {
                 metrics.open++;
                 metrics.queueCapacity.openTasksTotal += 1;
+                const priorityBucket = normalizeTaskPriority(record.request?.priority);
+                metrics.queueCapacity.openByPriority[priorityBucket] += 1;
                 if (typeof record.target === 'string' && record.target) {
                     openTargets.add(record.target);
                 }

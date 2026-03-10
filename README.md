@@ -373,7 +373,11 @@ const orchestrator = new TaskOrchestrator({
   },
   queueCapacity: {
     maxOpenTasks: 2_000, // optional: global fail-fast limit for non-terminal tasks
-    maxOpenTasksPerTarget: 500 // optional: per-target guardrail to isolate hotspots
+    maxOpenTasksPerTarget: 500, // optional: per-target guardrail to isolate hotspots
+    reservedOpenSlotsByPriority: { // optional: keep headroom for high-priority work
+      high: 50,
+      critical: 100
+    }
   },
   staleTaskPolicy: {
     maxAgeMs: 300_000, // optional: expire tasks older than this age
@@ -422,6 +426,7 @@ Cancelled tasks are intentionally excluded from terminal replay, so an operator-
 `retryBudget` adds Envoy-style retry concurrency budgeting so retries remain bounded relative to live primary workload (`ratio`) with optional floor/ceiling controls (`minRetries`/`maxRetries`).
 `terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.
 `queueCapacity` adds admission control with global (`maxOpenTasks`) and per-target (`maxOpenTasksPerTarget`) limits so overload is rejected early (`CAPACITY_EXCEEDED`) instead of allowing unbounded open-task growth.
+`queueCapacity.reservedOpenSlotsByPriority` reserves part of global open-task capacity for higher priorities (`high`/`critical`) so low-priority floods cannot consume all open slots.
 `staleTaskPolicy` expires tasks that have aged past `maxAgeMs`, including approval-gated tasks, so stale work does not occupy queue capacity forever.
 Set `staleTaskPolicy.terminalStatus='cancelled'` to propagate cooperative `task_cancel` signals for stale dispatched tasks; use `'timed_out'` for local fail-closed expiry.
 `cancelTask(taskId, options)` provides explicit cooperative cancellation for stale/superseded work and emits a best-effort cancellation signal (`task_cancel`) to workers after a task has been dispatched.

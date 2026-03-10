@@ -1807,6 +1807,58 @@ test('dispatchTask still coalesces duplicates when queue capacity is full', asyn
     assert.equal(orchestrator.getMetrics().open, 1);
 });
 
+test('dispatchTask reserves global queue slots for higher-priority tasks', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        queueCapacity: {
+            maxOpenTasks: 3,
+            reservedOpenSlotsByPriority: {
+                critical: 1
+            }
+        }
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-priority-a',
+        task: 'Normal workload A',
+        priority: 'normal'
+    });
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-priority-b',
+        task: 'Normal workload B',
+        priority: 'normal'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-capacity-priority-c',
+            task: 'Normal workload C',
+            priority: 'normal'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'CAPACITY_EXCEEDED');
+            assert.equal(error.details.scope, 'global_priority_reservation');
+            assert.equal(error.details.priority, 'normal');
+            assert.equal(error.details.reservedForHigherPriority, 1);
+            return true;
+        }
+    );
+
+    const critical = await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-priority-critical',
+        task: 'Critical workload',
+        priority: 'critical'
+    });
+    assert.equal(critical.status, 'dispatched');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.queueCapacity.reservedOpenSlotsByPriority.critical, 1);
+    assert.equal(metrics.queueCapacity.openByPriority.normal, 2);
+    assert.equal(metrics.queueCapacity.openByPriority.critical, 1);
+});
+
 test('runMaintenance expires stale approval-gated tasks to timed_out when staleTaskPolicy is enabled', async () => {
     const clock = createClock(166_000);
     const sent = [];
