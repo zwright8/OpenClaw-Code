@@ -1280,3 +1280,29 @@ Every skill output should include:
 - BDA imagery provenance and tamper assurance + battle-damage-assessment-fusion + information integrity and attribution
 - Civil rail evacuation/military priority merge + strategic mobility deployment planning + DSCA crisis coordination
 - Reserve mobilization pay anti-fraud + acquisition and contracting support + force generation and retention readiness
+
+## New Expansion Wave (2026-03-10, RF Trust, PNT Integrity, and Coalition Degraded-Comms Continuity)
+
+- joint-autonomous-rf-geolocation-fratricide-safeguard-cell
+- theater-contested-undersea-fiber-repeater-reconstitution-cell
+- coalition-hf-radio-digital-bridge-and-language-interop-cell
+- strategic-quantum-resistant-key-rollover-fielding-cell
+- expeditionary-small-modular-reactor-siting-and-force-protection-cell
+- joint-denied-weather-sensor-gap-fusion-cell
+- homeland-port-drone-swarm-hazmat-interdiction-cell
+- theater-jadc2-data-contract-drift-auditor-cell
+- coalition-contested-medical-oxygen-generation-and-distribution-cell
+- joint-space-cyber-civil-aviation-gps-anomaly-cell
+
+## Updated Pairings (2026-03-10, RF Trust, PNT Integrity, and Coalition Degraded-Comms Continuity)
+
+- RF geolocation fratricide safeguards + electronic order of battle management + targeting governance and CDE gates
+- Undersea repeater reconstitution + undersea cable protection and restoration + theater mission network failover
+- Coalition HF digital bridge and language interop + coalition interoperability coordinator + denied-environment command synchronization
+- Quantum-resistant key rollover fielding + mission-assured software factory support + zero-trust network hardening
+- Expeditionary SMR siting and force protection + operational energy resilience + CBRN consequence management
+- Denied weather sensor gap fusion + weather-space-weather effects forecasting + air/maritime route deconfliction
+- Homeland port drone swarm HAZMAT interdiction + maritime chokepoint quarantine control + DSCA crisis coordination
+- JADC2 data contract drift auditing + mission-data provenance and releasability assurance + coalition data-diode operations
+- Coalition contested medical oxygen distribution + med-log continuity + casualty evacuation and regulation
+- Space-cyber-civil aviation GPS anomaly adjudication + denied PNT transition + SATCOM continuity and flight safety governance

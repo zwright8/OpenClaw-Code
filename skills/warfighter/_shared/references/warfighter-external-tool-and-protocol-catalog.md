@@ -6633,3 +6633,107 @@ external_binding:
 ### `ps-hyperscale-cloud-failover-command-continuity-stack-v1`
 - Standards and protocols: signed continuity manifests + USMTF command continuity directives + API/JSON failover status events.
 - Transport profile: cross-cloud encrypted replication bus with failover acknowledgments and authority-preserving credential handoff.
+
+## Tool Suite Addendum L (2026-03-10, RF Trust, PNT Integrity, and Coalition Degraded-Comms Continuity)
+
+### `ts-rf-fratricide-safeguard-v1`
+- Use for: autonomous RF geolocation confidence adjudication and fratricide-prevention gating.
+- Primary tools: RF geolocation fusion board, emitter-identity confidence service, kill-chain authorization interlock monitor.
+- Cross-check tools: independent blue-force emitter ledger and alternate fratricide-risk estimator.
+- Typical products: emitter confidence ledger, fratricide safeguard matrix, authorization exception packet.
+
+### `ts-undersea-fiber-repeater-reconstitution-v1`
+- Use for: contested undersea fiber repeater restoration and route continuity recovery.
+- Primary tools: subsea repeater telemetry monitor, landing-station continuity orchestrator, maritime repair mission board.
+- Cross-check tools: independent fiber fault localizer and alternate traffic-reroute confidence board.
+- Typical products: repeater restoration sequence, traffic continuity plan, repair-risk timeline.
+
+### `ts-coalition-hf-digital-language-bridge-v1`
+- Use for: coalition HF voice/data bridging with translation assurance under degraded communications.
+- Primary tools: HF gateway bridge controller, digital relay normalization service, language-risk adjudication board.
+- Cross-check tools: independent translation confidence auditor and alternate comms relay integrity monitor.
+- Typical products: HF bridge architecture, translation risk report, degraded comms relay SOP.
+
+### `ts-quantum-resistant-key-rollover-v1`
+- Use for: mission-network quantum-resistant key and certificate rollover with continuity controls.
+- Primary tools: enterprise PKI migration planner, key-custody ledger, certificate compatibility telemetry service.
+- Cross-check tools: independent cryptographic policy validator and alternate rollback readiness monitor.
+- Typical products: phased rollover plan, interoperability exception board, revocation timeline.
+
+### `ts-expeditionary-smr-force-protection-v1`
+- Use for: expeditionary SMR siting, layered force protection, and radiological consequence readiness.
+- Primary tools: microreactor siting modeler, force-protection perimeter planner, radiological impact forecast board.
+- Cross-check tools: independent emergency shutdown validation board and alternate sustainment-risk tracker.
+- Typical products: SMR siting risk matrix, protection posture plan, emergency consequence branch map.
+
+### `ts-denied-weather-sensor-gap-fusion-v1`
+- Use for: contested weather sensor gap fusion and deception-aware mission-weather confidence estimation.
+- Primary tools: multi-source weather fusion service, sensor-denial anomaly detector, mission weather dissemination board.
+- Cross-check tools: independent environmental model confidence monitor and alternate sensor integrity auditor.
+- Typical products: weather confidence overlay, branch trigger chart, sensor integrity exception list.
+
+### `ts-port-drone-swarm-hazmat-interdiction-v1`
+- Use for: homeland port defense against drone-swarm-enabled HAZMAT interdiction threats.
+- Primary tools: port counter-UAS command board, HAZMAT plume estimator, maritime security operations dashboard.
+- Cross-check tools: independent civilian-risk status mirror and alternate interdiction confidence monitor.
+- Typical products: interdiction matrix, HAZMAT isolation sequence, port continuity order.
+
+### `ts-jadc2-data-contract-drift-auditor-v1`
+- Use for: JADC2 data contract drift detection, schema remediation, and releasability control.
+- Primary tools: mission schema registry, cross-domain translation validator, contract-drift anomaly scorer.
+- Cross-check tools: independent contract conformance harness and alternate releasability compliance board.
+- Typical products: schema drift scorecard, remediation task bundle, translation exception packet.
+
+### `ts-coalition-medical-oxygen-continuity-v1`
+- Use for: coalition oxygen generation and distribution continuity under contested logistics or infrastructure loss.
+- Primary tools: oxygen plant telemetry board, med-log distribution prioritizer, casualty-load oxygen demand forecaster.
+- Cross-check tools: independent purity audit service and alternate oxygen-route survivability monitor.
+- Typical products: oxygen continuity plan, distribution priority matrix, purity compliance log.
+
+### `ts-space-cyber-civil-aviation-gps-anomaly-v1`
+- Use for: cross-domain GPS/PNT anomaly attribution impacting military and civil aviation.
+- Primary tools: GNSS integrity fusion board, space weather impact monitor, aviation route safety coordination system.
+- Cross-check tools: independent spoofing/jamming classifier and alternate flight continuity risk board.
+- Typical products: GPS anomaly attribution packet, aviation continuity branch matrix, PNT mitigation order.
+
+## Protocol Stack Addendum L (2026-03-10, RF Trust, PNT Integrity, and Coalition Degraded-Comms Continuity)
+
+### `ps-rf-fratricide-safeguard-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + signed emitter-identity confidence manifests.
+- Transport profile: authority-gated RF recommendation exchange with mandatory blue-force conflict acknowledgments.
+
+### `ps-undersea-fiber-repeater-reconstitution-stack-v1`
+- Standards and protocols: DISN routing policy exchange + OGC infrastructure overlays + signed restoration work-order manifests.
+- Transport profile: encrypted subsea telemetry and repair coordination channel with delayed-sync fallback and ack-chain logging.
+
+### `ps-coalition-hf-digital-language-bridge-stack-v1`
+- Standards and protocols: MIL-STD-188-141 + ACP 125/131 + USMTF relay manifests with translation confidence tags.
+- Transport profile: store-and-forward relay bus with authenticated language-risk annotations and fallback voice/readback procedures.
+
+### `ps-quantum-resistant-key-rollover-stack-v1`
+- Standards and protocols: X.509 PKI + CNSA 2.0 migration profiles + signed crypto-policy manifests.
+- Transport profile: staged certificate rollout channel with compatibility acknowledgments and auditable rollback path.
+
+### `ps-expeditionary-smr-force-protection-stack-v1`
+- Standards and protocols: CBRN warning message profiles + ICS/NIMS incident packets + signed force-protection directives.
+- Transport profile: segmented command channel with radiological alert escalation and offline continuity ledger sync.
+
+### `ps-denied-weather-sensor-gap-fusion-stack-v1`
+- Standards and protocols: WMO BUFR/TAC + OGC SensorThings + USMTF weather advisory manifests.
+- Transport profile: authenticated sensor-fusion pipeline with confidence downgrades on staleness and fallback manual weather board.
+
+### `ps-port-drone-swarm-hazmat-interdiction-stack-v1`
+- Standards and protocols: NIMS/ICS incident exchange + AIS + CBRN hazard reporting profiles.
+- Transport profile: prioritized maritime incident message queue with counter-UAS event acknowledgments and degraded-mode voice fallback.
+
+### `ps-jadc2-data-contract-drift-auditor-stack-v1`
+- Standards and protocols: JC3IEDM + API/JSON schema manifests + signed releasability and translation metadata.
+- Transport profile: deterministic contract-validation pipeline with schema drift alarms and reconciliation replay channel.
+
+### `ps-coalition-medical-oxygen-continuity-stack-v1`
+- Standards and protocols: HL7/FHIR med-log payloads + USMTF medical movement updates + oxygen purity audit manifests.
+- Transport profile: encrypted medical logistics exchange with purity-threshold alerting and disconnected batch-reconciliation fallback.
+
+### `ps-space-cyber-civil-aviation-gps-anomaly-stack-v1`
+- Standards and protocols: NOTAM/ICAO exchange + ADS-B feeds + signed GNSS anomaly evidence manifests.
+- Transport profile: cross-domain aviation safety channel with cause-attribution acknowledgment chain and route-risk rollback signaling.

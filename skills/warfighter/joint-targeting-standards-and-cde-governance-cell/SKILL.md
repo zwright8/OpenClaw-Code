@@ -72,6 +72,12 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Require no-strike/restricted target reconciliation evidence before releasing any recommendation with projected effects.
 - If CDE inputs are stale, incomplete, or disputed, mark recommendations as `provisional`, downgrade to advisory-only, and require command/legal review.
 
+## RF/PNT Adversarial Integrity Checks
+
+- Require explicit RF emitter-identity confidence and blue-force conflict checks before validating target data pipelines.
+- Require a cross-domain GPS/PNT anomaly check when timing, track quality, or geolocation trust is degraded.
+- If RF identity confidence or PNT trust is below mission threshold, output only a blocked or advisory status with remediation owners and suspense.
+
 ## Targeting Governance Authority Gate
 
 - Require command/legal verification tokens for all high-consequence recommendations: `authority_tier`, `legal_review_id`, `no_strike_sync_utc`, `cde_method_version`, and `approval_role`.
