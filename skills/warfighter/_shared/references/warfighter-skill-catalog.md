@@ -1336,3 +1336,33 @@ Every skill output should include:
 - Coalition autonomous ambulance drone corridor + casualty evacuation and medical regulation + coalition cross-border medical credentialing + med-log continuity
 - Adversarial AI model poisoning detection + contested AI model governance + mission risk decision support + targeting governance/CDE assurance
 - Quantum navigation PNT cross-check + denied-PNT timing holdover + timing over fiber continuity + precision navigation integrity management
+
+## New Expansion Wave (2026-03-10, Reentry Resilience, Contested Evacuation, and Mobility Continuity)
+
+- joint-orbital-debris-reentry-base-hardening-cell
+- coalition-contested-spectrum-evacuation-corridor-control-cell
+- theater-autonomous-farp-fuel-bladder-leak-hunt-cell
+- expeditionary-portable-desal-brine-signature-masking-cell
+- homeland-defense-satellite-ground-cloud-cutover-cell
+- tactical-disconnected-jtac-mesh-voice-authentication-cell
+- strategic-solid-rocket-motor-propellant-allocation-integrity-cell
+- joint-shipyard-battle-damage-digital-twin-repair-cell
+- coalition-border-biometrics-watchlist-latency-governance-cell
+- theater-electromagnetic-decoy-fratricide-audit-cell
+- joint-contested-rail-energy-mobility-prioritization-cell
+- operational-hospital-overflow-aeromedical-routing-cell
+
+## Updated Pairings (2026-03-10, Reentry Resilience, Contested Evacuation, and Mobility Continuity)
+
+- Orbital debris base hardening + force protection and base defense + mission network failover + DSCA crisis support
+- Contested spectrum evacuation corridor control + humanitarian corridor assurance + coalition interoperability coordinator + spectrum governance
+- Autonomous FARP fuel leak hunt + forward arming/refueling under drone threat + contested logistics sustainment + CBRN/hazmat response
+- Portable desal brine signature masking + water production and distribution support + signature management and decoy employment + preventive medicine
+- Satellite-ground cloud cutover defense + strategic communications denial/restoration + theater mission network failover + command continuity governance
+- Disconnected JTAC voice authentication + coalition joint fires no-strike assurance + tactical airspace control and deconfliction + legal/ROE compliance
+- Solid rocket motor propellant allocation integrity + strategic industrial mobilization readiness + long-range fires reconstitution + supply-chain risk monitoring
+- Shipyard battle-damage digital twin repair + coalition shipyard repair surge + maritime prepositioning integrity and diversion + sealift continuity
+- Border biometrics watchlist latency governance + coalition refugee screening and biometrics deconfliction + detainee operations compliance + identity federation bridging
+- Electromagnetic decoy fratricide audit + electronic warfare fratricide mitigation + signature survivability scorecards + mission data reprogramming
+- Rail-energy mobility prioritization + strategic mobility port-rail chokepoint wargaming + tactical power-grid islanding/blackstart + deployment/distribution optimization
+- Hospital overflow aeromedical routing + coalition burn-care bed matching and evac priority + casualty evacuation C2 fallback + medical logistics continuity

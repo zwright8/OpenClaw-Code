@@ -185,3 +185,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-undersea-battle-network-self-healing-v1` + `protocol_stack_id=ps-undersea-battle-network-self-healing-stack-v1` when defended installations depend on undersea-linked communications continuity.
 - Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when base defense response requires resilient cross-domain data sharing.
 - Add `packet_id=DPL-AUTONOMOUS-DECOY-CAMPAIGN-EFFECTIVENESS-001`, `packet_id=DPL-RAPID-MATERIEL-AUTH-COUNTERFEIT-SHIELD-001`, and `packet_id=DPL-UNDERSEA-BATTLE-NETWORK-SELF-HEALING-001` for high-consequence force protection branches.
+
+## Domain Toolchain Override (2026-03-10, Reentry and Decoy Fratricide Assurance Addendum)
+
+- Add `tool_suite_id=ts-orbital-debris-reentry-base-hardening-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-hardening-stack-v1` when base defense posture must account for orbital reentry hazard windows.
+- Add `tool_suite_id=ts-electromagnetic-decoy-fratricide-audit-v1` + `protocol_stack_id=ps-electromagnetic-decoy-fratricide-audit-stack-v1` when base protection depends on decoy/emission plans without blue-force misclassification risk.
+- Add `packet_id=DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001` and `packet_id=DPL-ELECTROMAGNETIC-DECOY-FRATRICIDE-AUDIT-001` for force-protection branches that alter sheltering, EMCON, or response posture.

@@ -6861,3 +6861,127 @@ external_binding:
 ### `ps-quantum-navigation-pnt-cross-check-stack-v1`
 - Standards and protocols: NMEA + IEEE 1588 timing profiles + signed cross-check confidence manifests.
 - Transport profile: deterministic PNT confidence exchange with anti-spoof alerting and holdover-safe fallback timing lane.
+
+## Tool Suite Addendum N (2026-03-10, Reentry Resilience, Contested Evacuation, and Mobility Continuity)
+
+### `ts-orbital-debris-reentry-base-hardening-v1`
+- Use for: force-protection hardening against orbital-debris reentry threats to bases and forward nodes.
+- Primary tools: reentry risk forecast board, base critical-asset vulnerability mapper, shelter hardening prioritizer.
+- Cross-check tools: independent orbital track risk monitor and alternate civil warning confirmation feed.
+- Typical products: reentry hazard timeline, base hardening priority matrix, continuity branch package.
+
+### `ts-spectrum-evacuation-corridor-control-v1`
+- Use for: coalition evacuation corridor control under active spectrum contestation and jamming.
+- Primary tools: corridor traffic manager, EW congestion analyzer, coalition comms interoperability board.
+- Cross-check tools: independent RF health monitor and alternate route-capacity adjudication board.
+- Typical products: corridor control order, degraded-comms reroute matrix, coalition synchronization ledger.
+
+### `ts-autonomous-farp-fuel-leak-hunt-v1`
+- Use for: autonomous detection and containment of FARP fuel bladder leaks under contested sustainment timelines.
+- Primary tools: fuel telemetry anomaly detector, leak localization planner, FARP sustainment risk board.
+- Cross-check tools: independent hazmat sampling chain and alternate sortie fuel sufficiency monitor.
+- Typical products: leak containment sequence, fuel assurance confidence chart, sortie impact forecast.
+
+### `ts-desal-brine-signature-masking-v1`
+- Use for: expeditionary desalination operations that minimize adversary detection and environmental risk signatures.
+- Primary tools: desal process telemetry service, brine discharge signature modeler, shoreline impact planner.
+- Cross-check tools: independent plume simulation validator and alternate environmental compliance ledger.
+- Typical products: signature-masked discharge plan, contamination risk register, production continuity branch map.
+
+### `ts-sat-ground-cloud-cutover-defense-v1`
+- Use for: coordinated satellite-ground cloud cutover and command continuity during infrastructure attack or outage.
+- Primary tools: SATCOM ground-segment monitor, cloud failover orchestrator, command-service dependency mapper.
+- Cross-check tools: independent mission-service availability verifier and alternate credential continuity board.
+- Typical products: cutover execution packet, mission-service degradation matrix, reconstitution timeline.
+
+### `ts-disconnected-jtac-voice-auth-v1`
+- Use for: JTAC voice-command authentication and deconfliction in disconnected or spoofed communications environments.
+- Primary tools: secure voice-auth confidence scorer, terminal-control timeline reconciler, fires deconfliction monitor.
+- Cross-check tools: independent talker-identity board and alternate fires-clearance witness ledger.
+- Typical products: authenticated voice-control log, deconfliction exception packet, release-authority decision board.
+
+### `ts-solid-rocket-motor-propellant-allocation-integrity-v1`
+- Use for: strategic propellant allocation governance, anti-diversion assurance, and production bottleneck mitigation.
+- Primary tools: propellant lot integrity ledger, industrial throughput risk model, missile readiness allocation board.
+- Cross-check tools: independent supply provenance verifier and alternate lot-yield confidence monitor.
+- Typical products: allocation integrity matrix, bottleneck mitigation plan, strategic readiness impact estimate.
+
+### `ts-shipyard-digital-twin-repair-orchestration-v1`
+- Use for: digital-twin-assisted shipyard battle-damage repair sequencing and throughput restoration.
+- Primary tools: shipyard digital twin, repair dependency scheduler, dock availability optimizer.
+- Cross-check tools: independent structural integrity adjudicator and alternate sealift readiness board.
+- Typical products: repair orchestration timeline, drydock priority sequence, mission-availability forecast.
+
+### `ts-border-biometrics-watchlist-latency-governance-v1`
+- Use for: coalition border biometrics and watchlist synchronization with latency governance under denied links.
+- Primary tools: biometric sync broker, watchlist latency telemetry board, identity risk adjudication service.
+- Cross-check tools: independent false-match adjudication board and alternate custody roster verifier.
+- Typical products: sync latency scorecard, identity confidence matrix, degraded-sync recovery plan.
+
+### `ts-electromagnetic-decoy-fratricide-audit-v1`
+- Use for: audit of decoy/electromagnetic deception plans to prevent blue-force fratricide and signal collision.
+- Primary tools: decoy campaign manager, blue-force emitter identity board, fratricide risk simulator.
+- Cross-check tools: independent spectrum conflict monitor and alternate emission safety compliance checker.
+- Typical products: decoy-fratricide audit brief, emission conflict matrix, release gate recommendations.
+
+### `ts-rail-energy-mobility-priority-fusion-v1`
+- Use for: fusion of rail throughput and energy restoration priorities to sustain strategic mobility under attack.
+- Primary tools: rail movement optimizer, grid load-priority planner, strategic deployment timeline board.
+- Cross-check tools: independent dispatch continuity monitor and alternate energy feasibility assessor.
+- Typical products: rail-energy priority matrix, mobility restoration sequence, theater sustainment risk profile.
+
+### `ts-hospital-overflow-aeromedical-routing-v1`
+- Use for: operational routing of casualties across overflowing hospitals and aeromedical evacuation corridors.
+- Primary tools: hospital capacity stress dashboard, aeromedical route optimizer, casualty-priority regulator.
+- Cross-check tools: independent patient-tracking reconciler and alternate care-network availability board.
+- Typical products: overflow routing order, casualty movement priority plan, care-gap mitigation timeline.
+
+## Protocol Stack Addendum N (2026-03-10, Reentry Resilience, Contested Evacuation, and Mobility Continuity)
+
+### `ps-orbital-debris-reentry-base-hardening-stack-v1`
+- Standards and protocols: CCSDS/TLE exchange + USMTF warning summaries + signed shelter-priority manifests.
+- Transport profile: prioritized hazard-notification channel with deterministic base hardening acknowledgment chain.
+
+### `ps-spectrum-evacuation-corridor-control-stack-v1`
+- Standards and protocols: CoT + NATO APP-11/ADatP-3 + signed corridor control manifests.
+- Transport profile: coalition traffic-control message queue with jamming-confidence tags and degraded voice fallback.
+
+### `ps-autonomous-farp-fuel-leak-hunt-stack-v1`
+- Standards and protocols: OGC SensorThings + NIMS/ICS hazmat packets + USMTF sustainment deltas.
+- Transport profile: authenticated FARP telemetry channel with leak-event acknowledgments and manual containment fallback.
+
+### `ps-desal-brine-signature-masking-stack-v1`
+- Standards and protocols: EPA discharge telemetry profiles + OGC overlays + signed production integrity manifests.
+- Transport profile: encrypted desal telemetry pipeline with confidence-graded plume alerts and disconnected sampling fallback.
+
+### `ps-sat-ground-cloud-cutover-defense-stack-v1`
+- Standards and protocols: USMTF continuity directives + API/JSON failover events + signed credential custody manifests.
+- Transport profile: cross-domain failover control bus with command-authority acknowledgment and rollback-safe signaling.
+
+### `ps-disconnected-jtac-voice-auth-stack-v1`
+- Standards and protocols: VMF + ACP 127 + signed voice-identity confidence manifests.
+- Transport profile: authenticated terminal-control exchange with talker-verification gating and readback witness logging.
+
+### `ps-solid-rocket-motor-propellant-allocation-integrity-stack-v1`
+- Standards and protocols: GS1 lot traceability + NIEM logistics exchange + signed allocation authority manifests.
+- Transport profile: segmented industrial-allocation channel with anti-diversion alerts and manual release override audit.
+
+### `ps-shipyard-digital-twin-repair-orchestration-stack-v1`
+- Standards and protocols: OGC digital twin overlays + USMTF maintenance updates + signed repair state manifests.
+- Transport profile: deterministic shipyard orchestration queue with milestone acknowledgment and drydock conflict replay.
+
+### `ps-border-biometrics-watchlist-latency-governance-stack-v1`
+- Standards and protocols: EBTS + NIEM watchlist exchange + signed synchronization latency manifests.
+- Transport profile: encrypted identity-sync bus with latency SLA alarms and delayed-handoff reconciliation mode.
+
+### `ps-electromagnetic-decoy-fratricide-audit-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + signed decoy control and blue-emitter safety manifests.
+- Transport profile: authority-gated deception control channel with fratricide conflict acknowledgments.
+
+### `ps-rail-energy-mobility-priority-fusion-stack-v1`
+- Standards and protocols: rail API/JSON + IEC 61850 grid telemetry + USMTF mobility priority updates.
+- Transport profile: synchronized rail-energy prioritization channel with contingency branch replay and command witness logging.
+
+### `ps-hospital-overflow-aeromedical-routing-stack-v1`
+- Standards and protocols: HL7/FHIR + STANAG 3204 medevac movement updates + signed patient-priority manifests.
+- Transport profile: prioritized care-routing bus with transfer acknowledgments and disconnected patient-reconciliation fallback.

@@ -174,3 +174,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 
 - Add `tool_suite_id=ts-kill-chain-model-integrity-assurance-v1` + `protocol_stack_id=ps-kill-chain-model-integrity-assurance-stack-v1` when battle-rhythm decisions depend on simulation-backed model trust and mission-thread drift adjudication.
 - Add `tool_suite_id=ts-denied-casualty-data-synchronization-v1` + `protocol_stack_id=ps-denied-casualty-data-synchronization-stack-v1` when JOC synchronization cycles include disconnected casualty reporting and patient movement confidence updates.
+
+## Domain Toolchain Override (2026-03-10, Mobility-Energy Synchronization and Cloud Cutover Addendum)
+
+- Add `tool_suite_id=ts-rail-energy-mobility-priority-fusion-v1` + `protocol_stack_id=ps-rail-energy-mobility-priority-fusion-stack-v1` when battle rhythm synchronization depends on contested deployment rail flow and grid load restoration priorities.
+- Add `tool_suite_id=ts-sat-ground-cloud-cutover-defense-v1` + `protocol_stack_id=ps-sat-ground-cloud-cutover-defense-stack-v1` when command cadence must survive satellite-ground-cloud service cutovers.
+- Add `packet_id=DPL-RAIL-ENERGY-MOBILITY-PRIORITY-FUSION-001` and `packet_id=DPL-SAT-GROUND-CLOUD-CUTOVER-DEFENSE-001` for JOC decision branches that reprioritize force flow, service availability, or command timing.

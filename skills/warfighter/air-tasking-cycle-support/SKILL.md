@@ -173,3 +173,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-bda-imagery-provenance-assurance-v1` + `protocol_stack_id=ps-bda-imagery-provenance-assurance-stack-v1` when strike validation or reattack decisions depend on contested imagery authenticity.
 - Prioritize `tool_suite_id=ts-space-cyber-em-launch-deconfliction-v1` + `protocol_stack_id=ps-space-cyber-em-launch-deconfliction-stack-v1` when ATO timelines are coupled to coalition launch windows, spectrum conflicts, or cyber hold conditions.
 - Add `packet_id=DPL-BDA-IMAGERY-PROVENANCE-TAMPER-001` and `packet_id=DPL-SPACE-CYBER-EM-LAUNCH-DECONF-001` for ATO branches that alter targeting confidence, launch timing, or escalation posture.
+
+## Domain Toolchain Override (2026-03-10, Disconnected JTAC Voice Trust and Evacuation Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-disconnected-jtac-voice-auth-v1` + `protocol_stack_id=ps-disconnected-jtac-voice-auth-stack-v1` when ATO execution depends on authenticated terminal-control voice traffic in degraded communications.
+- Prioritize `tool_suite_id=ts-spectrum-evacuation-corridor-control-v1` + `protocol_stack_id=ps-spectrum-evacuation-corridor-control-stack-v1` when air tasking includes NEO/MEDEVAC corridors under coalition spectrum contestation.
+- Add `packet_id=DPL-DISCONNECTED-JTAC-VOICE-AUTH-001` and `packet_id=DPL-SPECTRUM-EVACUATION-CORRIDOR-CONTROL-001` for branches that alter release authority, corridor timing, or deconfliction windows.

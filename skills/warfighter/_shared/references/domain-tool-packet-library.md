@@ -6587,3 +6587,137 @@ validation_gates:
 - output_schema: failover continuity order, degraded service matrix, reconstitution timeline
 - protocol_profile: signed continuity manifests + USMTF + API/JSON failover events
 - validation_gates: failover readiness check, credential integrity pass, command authority confirmation
+
+## Packet Addendum N (2026-03-10, Reentry Resilience, Contested Evacuation, and Mobility Continuity)
+
+### packet_id: DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001
+- domain: orbital debris reentry base hardening
+- objective: protect mission-critical base nodes against short-notice reentry hazard windows
+- primary_tools: reentry hazard fusion board, base critical-node hardening planner, shelter readiness tracker
+- alternate_tools: manual hazard board and fixed shelter priority matrix
+- degraded_mode: advisory-only hazard posture with conservative sheltering windows
+- input_requirements: reentry track set, base asset criticality, shelter status, mission timeline
+- output_schema: hardening priorities, risk windows, continuity branch triggers
+- protocol_profile: CCSDS/TLE + USMTF + signed manifests
+- validation_gates: track confidence threshold, base authority confirmation, shelter readiness verification
+
+### packet_id: DPL-SPECTRUM-EVACUATION-CORRIDOR-CONTROL-001
+- domain: contested spectrum evacuation corridor control
+- objective: preserve evacuation corridor control under jamming and intermittent coalition interoperability
+- primary_tools: corridor control board, EW congestion analyzer, coalition comms interoperability monitor
+- alternate_tools: manual route release board and liaison voice-confirmation log
+- degraded_mode: phased evacuation windows with strict readback confirmation
+- input_requirements: corridor map, RF health telemetry, evac demand, coalition comms status
+- output_schema: corridor schedule, congestion risk matrix, branch timeline
+- protocol_profile: CoT + NATO APP-11/ADatP-3 + signed manifests
+- validation_gates: deconfliction pass, coalition acknowledgment integrity, authority release check
+
+### packet_id: DPL-AUTONOMOUS-FARP-FUEL-LEAK-HUNT-001
+- domain: autonomous FARP fuel leak detection and containment
+- objective: detect and isolate fuel leaks while preserving sortie fuel continuity
+- primary_tools: fuel telemetry anomaly detector, leak localization planner, FARP risk board
+- alternate_tools: manual leak check roster and hazmat containment worksheet
+- degraded_mode: sortie-essential fuel points only with manual sampling cadence
+- input_requirements: bladder telemetry, FARP layout, sortie plan, hazmat assets
+- output_schema: containment sequence, fuel confidence score, sortie impact estimate
+- protocol_profile: OGC SensorThings + NIMS/ICS + USMTF
+- validation_gates: leak confirmation threshold, hazard safety gate, commander sustainment approval
+
+### packet_id: DPL-DESAL-BRINE-SIGNATURE-MASKING-001
+- domain: expeditionary desal brine signature masking
+- objective: maintain potable water output while reducing detectable discharge signatures and compliance risk
+- primary_tools: desal telemetry service, discharge signature model, environmental risk ledger
+- alternate_tools: manual sampling chain and conservative discharge schedule
+- degraded_mode: reduced production with elevated sampling and delayed discharge windows
+- input_requirements: output demand, salinity and chemical metrics, shoreline risk zones, threat posture
+- output_schema: discharge control plan, signature risk score, water continuity timeline
+- protocol_profile: EPA schema + OGC + signed manifests
+- validation_gates: contamination threshold pass, signature-risk review, public-health authority confirmation
+
+### packet_id: DPL-SAT-GROUND-CLOUD-CUTOVER-DEFENSE-001
+- domain: satellite-ground cloud cutover defense and continuity
+- objective: preserve mission command services during ground/cloud outages or attack-driven cutovers
+- primary_tools: SATCOM ground-segment monitor, cloud failover orchestrator, service dependency map
+- alternate_tools: manual failover runbook board and priority service ledger
+- degraded_mode: mission-critical services only with strict command approval gates
+- input_requirements: service dependencies, region/system health, credential posture, authority constraints
+- output_schema: cutover order, degraded-service matrix, reconstitution schedule
+- protocol_profile: USMTF + API/JSON + signed continuity manifests
+- validation_gates: failover readiness pass, credential integrity check, command witness confirmation
+
+### packet_id: DPL-DISCONNECTED-JTAC-VOICE-AUTH-001
+- domain: disconnected JTAC voice authentication and deconfliction
+- objective: authenticate terminal-control voice traffic and prevent spoof-driven fires fratricide
+- primary_tools: secure voice-auth scorer, fires timeline reconciler, talker identity board
+- alternate_tools: manual readback witness ledger and clearance hold worksheet
+- degraded_mode: no-fire unless dual-witness confirmation is achieved
+- input_requirements: voice clips, call-sign baseline, fires timeline, clearance posture
+- output_schema: voice authenticity confidence, deconfliction exceptions, release recommendation
+- protocol_profile: VMF + ACP 127 + signed voice confidence manifests
+- validation_gates: identity confidence floor, readback integrity, fire-support authority confirmation
+
+### packet_id: DPL-SOLID-ROCKET-MOTOR-PROPELLANT-ALLOCATION-INTEGRITY-001
+- domain: solid rocket motor propellant allocation integrity
+- objective: allocate propellant lots to strategic requirements while suppressing diversion and quality risk
+- primary_tools: lot integrity ledger, industrial throughput board, readiness allocation planner
+- alternate_tools: manual lot priority board and anti-diversion inspection log
+- degraded_mode: strategic-essential allocations only with manual release controls
+- input_requirements: lot status, production throughput, readiness priorities, diversion indicators
+- output_schema: allocation matrix, quality/diversion risk summary, mitigation branches
+- protocol_profile: GS1 + NIEM + signed manifests
+- validation_gates: lot quality pass, diversion threshold review, strategic authority approval
+
+### packet_id: DPL-SHIPYARD-DIGITAL-TWIN-REPAIR-ORCHESTRATION-001
+- domain: shipyard digital twin repair orchestration
+- objective: sequence battle-damage repair for maximal mission-availability recovery
+- primary_tools: shipyard digital twin, dependency scheduler, drydock optimizer
+- alternate_tools: manual repair gantt board and port readiness worksheet
+- degraded_mode: critical hull/system repairs only with fixed dock windows
+- input_requirements: damage assessment, dock availability, parts status, mission priorities
+- output_schema: repair sequence, dock allocation timeline, readiness confidence score
+- protocol_profile: OGC + USMTF + signed repair manifests
+- validation_gates: structural feasibility pass, dock conflict check, release authority confirmation
+
+### packet_id: DPL-BORDER-BIOMETRICS-WATCHLIST-LATENCY-GOVERNANCE-001
+- domain: coalition border biometrics watchlist latency governance
+- objective: maintain identity assurance under delayed watchlist synchronization and denied links
+- primary_tools: biometric sync broker, latency telemetry board, identity confidence adjudicator
+- alternate_tools: manual roster reconciliation sheet and delayed-sync custody ledger
+- degraded_mode: high-risk identities only with elevated manual review threshold
+- input_requirements: watchlist deltas, border crossing queue, sync latency metrics, custody events
+- output_schema: latency status, identity confidence queue, sync recovery sequence
+- protocol_profile: EBTS + NIEM + signed latency manifests
+- validation_gates: false-match threshold pass, custody chain integrity, coalition authority check
+
+### packet_id: DPL-ELECTROMAGNETIC-DECOY-FRATRICIDE-AUDIT-001
+- domain: electromagnetic decoy fratricide audit
+- objective: validate decoy and emission plans to prevent blue-force misclassification and signal collision
+- primary_tools: decoy planner, blue emitter ledger, fratricide risk simulator
+- alternate_tools: manual emission matrix and safety witness board
+- degraded_mode: preapproved decoy windows only with fixed EMCON constraints
+- input_requirements: decoy schedule, emitter profiles, threat sensors, mission timeline
+- output_schema: audit findings, fratricide risk matrix, command release gates
+- protocol_profile: Link 16 + VMF + signed safety manifests
+- validation_gates: blue-force conflict pass, EMCON compliance review, authority acknowledgment
+
+### packet_id: DPL-RAIL-ENERGY-MOBILITY-PRIORITY-FUSION-001
+- domain: rail-energy mobility priority fusion
+- objective: align rail throughput and energy restoration priorities for strategic force flow continuity
+- primary_tools: rail movement optimizer, load-priority planner, deployment timeline board
+- alternate_tools: manual dispatch matrix and energy restoration worksheet
+- degraded_mode: mission-essential route and load set only with periodic reassessment
+- input_requirements: rail topology, grid status, deployment priorities, threat disruptions
+- output_schema: fused priority matrix, restoration sequence, mobility risk estimate
+- protocol_profile: rail API + IEC 61850 + USMTF
+- validation_gates: route viability pass, load-priority authority check, synchronization acknowledgment
+
+### packet_id: DPL-HOSPITAL-OVERFLOW-AEROMEDICAL-ROUTING-001
+- domain: hospital overflow aeromedical routing
+- objective: route casualties across overloaded care networks while preserving survival-critical timelines
+- primary_tools: hospital stress dashboard, aeromedical route optimizer, casualty regulator
+- alternate_tools: manual transfer board and route risk worksheet
+- degraded_mode: priority-1/2 patients only with constrained transfer windows
+- input_requirements: bed availability, patient acuity, air corridor status, transport assets
+- output_schema: routing order, transfer timeline, care-gap risk summary
+- protocol_profile: HL7/FHIR + STANAG 3204 + signed manifests
+- validation_gates: medical authority confirmation, airspace deconfliction pass, patient-custody integrity
