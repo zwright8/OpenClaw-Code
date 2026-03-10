@@ -72,6 +72,11 @@ const RETRYABLE_GRPC_STATUS_NAMES = new Set([
     'resource_exhausted',
     'unavailable'
 ]);
+const RATE_LIMIT_RESET_KEY_PATTERN = String.raw`(?:x[-_\s]?ratelimit[-_\s]?reset(?:[-_\s]?(?:requests|tokens))?|ratelimit[-_\s]?reset(?:[-_\s]?(?:requests|tokens))?)`;
+const RATE_LIMIT_RESET_KEY_VALUE_REGEX = new RegExp(
+    `\\b${RATE_LIMIT_RESET_KEY_PATTERN}\\b\\s*[:=]?\\s*([^\\s;,]+)`,
+    'gi'
+);
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -108,6 +113,70 @@ function parseRateLimitResetDelayMs(rawValue, nowMs) {
         return Math.max(0, Math.floor((numeric * 1_000) - nowMs));
     }
     return Math.floor(numeric * 1_000);
+}
+
+function parseDurationLiteralMs(rawValue) {
+    if (typeof rawValue !== 'string' || !rawValue.trim()) {
+        return null;
+    }
+
+    const value = rawValue.trim().toLowerCase();
+    let totalMs = 0;
+    let matchCount = 0;
+    let consumedLength = 0;
+    const tokenRegex = /(\d+(?:\.\d+)?)(ms|s|m|h|d)/gi;
+    let match = tokenRegex.exec(value);
+    while (match) {
+        const amount = Number(match[1]);
+        const unit = match[2].toLowerCase();
+        if (!Number.isFinite(amount) || amount < 0) {
+            return null;
+        }
+
+        if (unit === 'ms') totalMs += amount;
+        else if (unit === 's') totalMs += amount * 1_000;
+        else if (unit === 'm') totalMs += amount * 60_000;
+        else if (unit === 'h') totalMs += amount * 3_600_000;
+        else if (unit === 'd') totalMs += amount * 86_400_000;
+
+        matchCount += 1;
+        consumedLength += match[0].length;
+        match = tokenRegex.exec(value);
+    }
+
+    if (matchCount === 0) {
+        return null;
+    }
+
+    const compactLength = value.replace(/\s+/g, '').length;
+    if (consumedLength !== compactLength) {
+        return null;
+    }
+
+    return Math.max(0, Math.floor(totalMs));
+}
+
+function parseRateLimitResetHintMs(rawValue, nowMs) {
+    if (typeof rawValue !== 'string' || !rawValue.trim()) {
+        return null;
+    }
+
+    const value = rawValue.trim();
+    if (/^\d+(?:\.\d+)?$/.test(value)) {
+        return parseRateLimitResetDelayMs(Number(value), nowMs);
+    }
+
+    const durationMs = parseDurationLiteralMs(value);
+    if (durationMs !== null) {
+        return durationMs;
+    }
+
+    const absolute = Date.parse(value);
+    if (Number.isFinite(absolute)) {
+        return Math.max(0, absolute - nowMs);
+    }
+
+    return null;
 }
 
 function stableSerialize(value) {
@@ -1019,19 +1088,6 @@ export class TaskOrchestrator {
             }
         }
 
-        const rateLimitResetNumericMatch = reason.match(
-            /\b(?:x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]?\s*(\d{1,16})\b/i
-        );
-        if (rateLimitResetNumericMatch) {
-            const parsed = parseRateLimitResetDelayMs(
-                Number(rateLimitResetNumericMatch[1]),
-                nowMs
-            );
-            if (parsed !== null) {
-                retryHints.push(parsed);
-            }
-        }
-
         const retryAfterHeaderMatch = reason.match(/\bretry[-_\s]?after\b\s*[:=]\s*([^\n;]+)/i);
         if (retryAfterHeaderMatch) {
             const rawValue = retryAfterHeaderMatch[1].trim();
@@ -1045,22 +1101,14 @@ export class TaskOrchestrator {
             }
         }
 
-        const rateLimitResetHeaderMatch = reason.match(
-            /\b(?:x[-_\s]?ratelimit[-_\s]?reset|ratelimit[-_\s]?reset)\b\s*[:=]\s*([^\n;]+)/i
-        );
-        if (rateLimitResetHeaderMatch) {
-            const rawValue = rateLimitResetHeaderMatch[1].trim();
-            if (/^\d{1,16}$/.test(rawValue)) {
-                const parsed = parseRateLimitResetDelayMs(Number(rawValue), nowMs);
-                if (parsed !== null) {
-                    retryHints.push(parsed);
-                }
-            } else {
-                const resetAt = Date.parse(rawValue);
-                if (Number.isFinite(resetAt)) {
-                    retryHints.push(Math.max(0, resetAt - nowMs));
-                }
+        RATE_LIMIT_RESET_KEY_VALUE_REGEX.lastIndex = 0;
+        let rateLimitMatch = RATE_LIMIT_RESET_KEY_VALUE_REGEX.exec(reason);
+        while (rateLimitMatch) {
+            const parsed = parseRateLimitResetHintMs(rateLimitMatch[1], nowMs);
+            if (parsed !== null) {
+                retryHints.push(parsed);
             }
+            rateLimitMatch = RATE_LIMIT_RESET_KEY_VALUE_REGEX.exec(reason);
         }
 
         const delayMatch = reason.match(

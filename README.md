@@ -27,7 +27,7 @@ Adds pre-dispatch safety policies with explicit deny decisions and sensitive pay
 Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds dispatch idempotency controls (`dispatchDeduplication`) to suppress duplicate in-flight task submissions.
-Retry hint parsing now supports `retry-after-ms`/`x-ms-retry-after-ms` and prefers conservative max-delay hints when multiple are present.
+Retry hint parsing now supports `retry-after-ms`/`x-ms-retry-after-ms`, `ratelimit-reset`, and `x-ratelimit-reset-{requests|tokens}` (including duration literals like `17ms` / `6m0s`), while preferring conservative max-delay hints when multiple are present.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.

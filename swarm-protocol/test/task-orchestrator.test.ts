@@ -495,6 +495,66 @@ test('transient rejection honors X-RateLimit-Reset Unix epoch milliseconds hint'
     assert.equal(current.nextRetryAt, retryAtEpochMs);
 });
 
+test('transient rejection honors X-RateLimit-Reset requests/tokens duration hints', async () => {
+    const clock = createClock(28_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-duration',
+        task: 'Respect duration-based rate-limit resets'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-duration',
+        accepted: false,
+        reason: 'service_unavailable x-ratelimit-reset-requests: 17ms x-ratelimit-reset-tokens: 6m0s',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 360_000);
+});
+
+test('transient rejection honors IETF RateLimit-Reset decimal delta-second hints', async () => {
+    const clock = createClock(29_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-ratelimit-standard',
+        task: 'Respect standards-based ratelimit reset hints'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-ratelimit-standard',
+        accepted: false,
+        reason: 'service_unavailable ratelimit-reset=1.5',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 1_500);
+});
+
 test('transient rejection honors grpc-retry-pushback-ms hint', async () => {
     const clock = createClock(22_000);
     const orchestrator = new TaskOrchestrator({
