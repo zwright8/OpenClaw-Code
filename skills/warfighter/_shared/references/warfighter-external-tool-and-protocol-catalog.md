@@ -6144,3 +6144,75 @@ external_binding:
 ### `ps-reserve-mobilization-pay-anti-fraud-stack-v1`
 - Standards and protocols: Treasury payment messaging profiles + FIDO-verified claims + signed reconciliation manifests.
 - Transport profile: encrypted entitlement exchange with fraud-alert escalation channel and audited manual override path.
+
+### `ts-cislunar-logistics-control-v1`
+- Use for: cislunar sustainment routing, transfer-window risk balancing, and space-control-aware logistics continuity.
+- Primary tools: SDA catalogs, cislunar ephemeris planners, transfer window analyzers.
+- Cross-check tools: independent orbital mechanics solver and alternate mission timing ledger.
+- Typical products: cislunar sustainment matrix, mission timing risk board, continuity branch plan.
+
+### `ts-autonomous-sensor-groundtruth-v1`
+- Use for: adversary deception detection and verified ground-truth adjudication for autonomous sensing.
+- Primary tools: sensor confidence analytics, multi-INT fusion boards, calibration drift detectors.
+- Cross-check tools: independent truth-source adjudicator and manual analyst challenge board.
+- Typical products: deception confidence ladder, ground-truth packet, retask trigger matrix.
+
+### `ts-undersea-cable-rights-security-v1`
+- Use for: undersea cable repair-rights governance, protection planning, and coalition restoration sequencing.
+- Primary tools: cable fault telemetry services, maritime security COP, legal-rights workflow boards.
+- Cross-check tools: independent seabed infrastructure monitor and coalition legal review mirror.
+- Typical products: cable restoration rights matrix, escort/security plan, legal exception log.
+
+### `ts-expeditionary-energy-recovery-v1`
+- Use for: expeditionary battery lifecycle recovery, microgrid endurance planning, and hazardous energy logistics.
+- Primary tools: battery health telemetry, expeditionary microgrid controller dashboards, hazardous material trackers.
+- Cross-check tools: independent battery assay workflow and alternate microgrid load forecast board.
+- Typical products: energy resilience branch plan, battery recovery queue, hazardous handling matrix.
+
+### `ts-civilian-harm-restoration-v1`
+- Use for: civilian harm mitigation, protected-site assurance, and post-strike restoration prioritization.
+- Primary tools: collateral estimation tools, protected-site overlays, restoration sequencing dashboards.
+- Cross-check tools: humanitarian impact mirror and independent damage/protection adjudication board.
+- Typical products: mitigation option matrix, protected-site confidence ledger, restoration timeline packet.
+
+### `ts-sof-low-signature-identity-v1`
+- Use for: denied-environment digital identity protection and low-signature special operations mission support.
+- Primary tools: credential assurance systems, metadata leakage monitors, identity risk analytics.
+- Cross-check tools: independent digital trace audit and alternate mission OPSEC review board.
+- Typical products: digital trace suppression plan, identity exposure register, low-signature contingency matrix.
+
+### `ts-port-drone-shutdown-prevention-v1`
+- Use for: maritime drone swarm disruption prevention and strategic port throughput continuity.
+- Primary tools: harbor security COP, counter-UxS C2 systems, berth throughput planners.
+- Cross-check tools: independent vessel traffic anomaly monitor and alternate port risk cell.
+- Typical products: anti-swarm defense matrix, port continuity branch plan, rapid response trigger board.
+
+### `ts-small-unit-power-spectrum-v1`
+- Use for: small-unit battery/spectrum discipline and emissions-aware survivability planning.
+- Primary tools: squad energy telemetry, tactical waveform planners, electromagnetic signature monitors.
+- Cross-check tools: independent battery endurance model and alternate EMCON challenge board.
+- Typical products: power-emissions synchronization card, comms window matrix, signature risk heatmap.
+
+### `ts-industrial-sabotage-fusion-v1`
+- Use for: defense-industrial sabotage detection by fusing cyber, physical, and insider-risk indicators.
+- Primary tools: industrial SIEM/SOC, access-control anomaly analytics, supply chain integrity registries.
+- Cross-check tools: independent insider-risk adjudication board and alternate production continuity monitor.
+- Typical products: sabotage threat confidence board, kill-chain interruption plan, continuity risk packet.
+
+### `ts-sce-mission-thread-assurance-v1`
+- Use for: assurance of mission threads dependent on coupled space, cyber, and electromagnetic services.
+- Primary tools: mission dependency graph engines, SATCOM health monitors, cyber mission assurance dashboards.
+- Cross-check tools: independent mission-thread validator and alternate continuity posture monitor.
+- Typical products: mission-thread dependency ledger, cross-domain fault isolation map, assurance branch packet.
+
+### `ts-humanitarian-access-deconfliction-v1`
+- Use for: coalition humanitarian access negotiation, convoy deconfliction, and protected-site assurance.
+- Primary tools: humanitarian coordination portals, convoy tracking systems, geospatial protected-site overlays.
+- Cross-check tools: independent aid-flow verification board and alternate deconfliction timeline tracker.
+- Typical products: humanitarian access matrix, convoy synchronization board, protection compliance log.
+
+### `ts-counter-autonomy-firmware-v1`
+- Use for: counter-autonomy firmware forensics, patch governance, and autonomous fleet trust restoration.
+- Primary tools: firmware SBOM analyzers, binary forensics sandboxes, fleet patch compliance dashboards.
+- Cross-check tools: independent firmware attestation verifier and alternate autonomy safety-state monitor.
+- Typical products: firmware compromise triage board, patch authority matrix, safe-state transition plan.

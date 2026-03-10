@@ -145,3 +145,9 @@ Primary products for this skill: disconnected data fusion packet plan, stale-dat
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Ground Truth and Industrial Integrity Addendum)
+
+- Add `tool_suite_id=ts-autonomous-sensor-groundtruth-v1` + `protocol_stack_id=ps-autonomous-sensor-groundtruth-stack-v1` when cloud-denied fusion confidence depends on deception-resistant sensor adjudication.
+- Add `tool_suite_id=ts-industrial-sabotage-fusion-v1` + `protocol_stack_id=ps-industrial-sabotage-fusion-stack-v1` when data dependencies rely on contested or degraded defense-industrial production telemetry.
+- Add `packet_id=DPL-SENSOR-GROUNDTRUTH-001` and `packet_id=DPL-INDUSTRIAL-SABOTAGE-001` for branch recommendations that change sustainment or targeting assumptions.

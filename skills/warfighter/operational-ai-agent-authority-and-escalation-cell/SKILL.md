@@ -145,3 +145,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, SOF Identity and Firmware Integrity Addendum)
+
+- Add `tool_suite_id=ts-sof-low-signature-identity-v1` + `protocol_stack_id=ps-sof-low-signature-identity-stack-v1` when authority decisions depend on low-signature digital identity protection.
+- Add `tool_suite_id=ts-counter-autonomy-firmware-v1` + `protocol_stack_id=ps-counter-autonomy-firmware-stack-v1` when mission autonomy trust depends on firmware provenance and rapid patch control.
+- Add `packet_id=DPL-SOF-LOWSIG-IDENTITY-001` and `packet_id=DPL-COUNTER-AUTON-FW-001` for escalation branches that require explicit human approval before operational release.

@@ -151,3 +151,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-10, Mission Thread and Civilian Harm Crosswalk Addendum)
+
+- Add `tool_suite_id=ts-sce-mission-thread-assurance-v1` + `protocol_stack_id=ps-sce-mission-thread-assurance-stack-v1` when commander risk depends on coupled space-cyber-electromagnetic services.
+- Add `tool_suite_id=ts-civilian-harm-restoration-v1` + `protocol_stack_id=ps-civilian-harm-restoration-stack-v1` when mission recommendations affect protected populations or critical services restoration.
+- Add `packet_id=DPL-SCE-MISSION-THREAD-001` and `packet_id=DPL-CIVHARM-RESTORE-001` for risk branches that can alter force posture or escalation.
