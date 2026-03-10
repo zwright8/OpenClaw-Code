@@ -6099,3 +6099,223 @@ validation_gates:
 - output_schema: allocation matrix, readiness impact forecast, decision trigger ladder
 - protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
 - validation_gates: strategic priority validation, stock integrity confirmation, authority approval gate
+
+### packet_id: DPL-LITTORAL-AUTONOMOUS-FERRY-RESUPPLY-001
+- domain: littoral autonomous ferry resupply under fire
+- objective: preserve contested littoral sustainment via autonomous ferry routes with defensive deconfliction
+- primary_tools: littoral route-risk planner, autonomous vessel tasking manager, sustainment demand board
+- alternate_tools: manual ferry convoy board and threat update hotline
+- degraded_mode: mission-essential resupply windows only with fixed security escorts
+- input_requirements: route overlays, threat zones, ferry availability, demand priorities
+- output_schema: ferry corridor plan, risk bands, branch triggers
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: threat corroboration, route survivability threshold, commander approval
+
+### packet_id: DPL-LITTORAL-RESUPPLY-FIRE-DECONFLICTION-001
+- domain: littoral resupply fires deconfliction
+- objective: prevent fires-fratricide while sustaining autonomous ferry throughput
+- primary_tools: fires deconfliction services, maritime movement board, geofence conflict monitor
+- alternate_tools: manual no-fire window matrix with UTC readback
+- degraded_mode: conservative no-fire corridors and reduced sortie tempo
+- input_requirements: fires windows, ferry tracks, no-strike zones, C2 latency
+- output_schema: deconfliction timeline, no-fire corridors, exception list
+- protocol_profile: VMF + Link 16 J-series + USMTF
+- validation_gates: no-strike pass, conflict-free timing check, authority gate
+
+### packet_id: DPL-DENIED-PNT-ARTILLERY-SURVEY-001
+- domain: denied-PNT artillery survey and alignment
+- objective: recover artillery survey confidence under GNSS denial or spoofing
+- primary_tools: inertial survey solvers, azimuth calibration workflows, ballistic alignment engines
+- alternate_tools: manual survey board with reference-point triangulation
+- degraded_mode: reduced-range fires with strict confidence limits
+- input_requirements: survey control points, drift rates, platform orientation, threat emitters
+- output_schema: survey confidence table, alignment corrections, fires safety notes
+- protocol_profile: USMTF + VMF + API/JSON
+- validation_gates: survey confidence floor, geometry pass, firing authority release
+
+### packet_id: DPL-FIRES-GEOMETRY-CONFIDENCE-DENIED-PNT-001
+- domain: denied-PNT fires geometry confidence
+- objective: verify fire-mission geometry is safe and mission-valid despite degraded PNT
+- primary_tools: geometry safety checker, ballistic confidence engine, counterfire-risk analyzer
+- alternate_tools: manual firing data cross-check worksheet
+- degraded_mode: hold high-risk fire missions pending human confirmation
+- input_requirements: target coordinates, gun line state, timing profile, confidence bounds
+- output_schema: geometry confidence score, fire-mission release recommendation, hold triggers
+- protocol_profile: VMF + USMTF + signed timing attestations
+- validation_gates: geometry safety pass, collateral risk check, command concurrence
+
+### packet_id: DPL-CROSS-BORDER-AEROMEDICAL-BIOSECURITY-001
+- domain: coalition cross-border aeromedical biosecurity
+- objective: coordinate infectious-risk aeromedical transfers across borders with mission continuity
+- primary_tools: aeromedical routing planner, isolation transfer controller, clearance tracking board
+- alternate_tools: liaison routing ledger and paper isolation checklists
+- degraded_mode: urgent-only transfers with expanded isolation constraints
+- input_requirements: patient categories, infection profile, border permissions, aircraft availability
+- output_schema: transfer sequence, isolation controls, legal routing status
+- protocol_profile: HL7/FHIR + USMTF + NATO APP-11/ADatP-3
+- validation_gates: medical authority check, isolation compliance pass, diplomatic clearance confirmation
+
+### packet_id: DPL-BIOSECURE-MEDEVAC-LEGAL-HANDOFF-001
+- domain: biosecure medevac legal handoff
+- objective: preserve legal and medical continuity during cross-border biosecure patient handoffs
+- primary_tools: legal-routing adjudicator, med-log continuity services, custody transfer ledger
+- alternate_tools: manual legal checklist and dual-signature handoff sheet
+- degraded_mode: advisory-only handoff recommendations until legal route is cleared
+- input_requirements: legal authority tags, patient custody chain, receiving-facility readiness, coalition caveats
+- output_schema: legal handoff checklist, custody continuity report, route decision log
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: legal basis verification, custody chain integrity, coalition approval gate
+
+### packet_id: DPL-GRID-TRANSFORMER-SABOTAGE-RESTORATION-001
+- domain: homeland grid transformer sabotage restoration
+- objective: triage transformer sabotage impacts and restore military-priority power dependencies
+- primary_tools: transformer telemetry analyzers, restoration orchestration boards, priority-load planners
+- alternate_tools: manual substation status board and blackstart call tree
+- degraded_mode: mission-critical feeders only with rolling reassessment
+- input_requirements: substation damage status, load priorities, repair assets, blackout scope
+- output_schema: restoration priority matrix, repair sequence, defense continuity timeline
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF
+- validation_gates: life-safety priority check, repair feasibility pass, command approval
+
+### packet_id: DPL-MILITARY-PRIORITY-GRID-BLACKSTART-001
+- domain: military-priority grid blackstart
+- objective: sequence blackstart actions to recover military mission dependencies after sabotage
+- primary_tools: blackstart planners, mission dependency graph engines, utility coordination workflows
+- alternate_tools: manual blackstart checklist with fixed load restoration tiers
+- degraded_mode: command-and-control and casualty-care nodes only
+- input_requirements: generation status, feeder dependencies, mission priority tiers, restoration crews
+- output_schema: blackstart sequence, dependency gates, escalation triggers
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: dependency validation, safety gate pass, authority confirmation
+
+### packet_id: DPL-COUNTER-HYPERSONIC-DECOY-DISCRIMINATION-001
+- domain: hypersonic decoy discrimination
+- objective: classify probable decoys versus credible hypersonic threats for decision support
+- primary_tools: multi-sensor fusion engine, signature discrimination models, warning confidence board
+- alternate_tools: manual trajectory adjudication worksheet
+- degraded_mode: conservative threat posture with mandatory command review
+- input_requirements: track telemetry, sensor confidence, decoy baselines, timeline urgency
+- output_schema: discrimination confidence ladder, warning options, posture triggers
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: cross-sensor corroboration, confidence threshold, authority gate
+
+### packet_id: DPL-HYPERSONIC-WARNING-POSTURE-TRIGGER-001
+- domain: hypersonic warning posture trigger governance
+- objective: translate discrimination confidence into bounded defensive posture decisions
+- primary_tools: warning trigger manager, defensive posture board, escalation risk model
+- alternate_tools: manual trigger matrix and readback confirmation cycle
+- degraded_mode: default high-readiness posture pending confidence recovery
+- input_requirements: confidence scores, defensive asset availability, ROE constraints, latency budget
+- output_schema: posture recommendation set, trigger conditions, rollback cues
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: policy/ROE check, collateral risk review, command concurrence
+
+### packet_id: DPL-UNDERSEA-CABLE-LANDING-BLACKSTART-001
+- domain: undersea cable landing station blackstart defense
+- objective: defend and restore cable landing station operations after disruption
+- primary_tools: landing station telemetry monitor, cable fault locator, restoration scheduler
+- alternate_tools: manual continuity board with periodic status polling
+- degraded_mode: essential comms-only routing with strict bandwidth control
+- input_requirements: station power status, cable fault map, threat indicators, route priorities
+- output_schema: restoration sequence, security actions, continuity branch map
+- protocol_profile: USMTF + AIS/NMEA + API/JSON
+- validation_gates: station integrity threshold, route viability pass, authority check
+
+### packet_id: DPL-CABLE-LANDING-COMMS-CONTINUITY-001
+- domain: cable landing comms continuity
+- objective: maintain mission communications during phased landing-station restoration
+- primary_tools: comm-path orchestrator, bandwidth prioritization board, failover path validators
+- alternate_tools: manual traffic priority table and readback log
+- degraded_mode: command-critical traffic only with delayed non-critical exchange
+- input_requirements: traffic classes, path availability, latency constraints, mission priorities
+- output_schema: continuity routing plan, preemption schedule, degradation notices
+- protocol_profile: API/JSON + USMTF + signed restoration manifests
+- validation_gates: priority validation, latency threshold check, commander acceptance
+
+### packet_id: DPL-DISINFORMATION-BANK-RUN-STABILITY-001
+- domain: disinformation-enabled bank-run stability support
+- objective: detect and contain disinformation campaigns driving liquidity shock and operational instability
+- primary_tools: narrative anomaly tracker, liquidity stress monitor, crisis coordination board
+- alternate_tools: manual rumor timeline and financial incident workbook
+- degraded_mode: conservative cash-priority support with frequent command review
+- input_requirements: rumor vectors, transaction anomalies, branch availability, mission payment dependencies
+- output_schema: incident confidence map, containment options, stability risk brief
+- protocol_profile: STIX/TAXII + USMTF + API/JSON
+- validation_gates: source provenance floor, financial impact check, policy/legal review
+
+### packet_id: DPL-COALITION-LIQUIDITY-CONTINUITY-001
+- domain: coalition liquidity continuity under information attack
+- objective: preserve coalition mission-critical payment and procurement continuity during bank-run pressure
+- primary_tools: continuity disbursement planners, coalition finance coordination ledger, fraud anomaly services
+- alternate_tools: manual priority-pay board and contingency disbursement controls
+- degraded_mode: mission-essential disbursements only with manual reconciliation
+- input_requirements: payment priorities, institution status, anti-fraud controls, coalition caveats
+- output_schema: liquidity continuity plan, disbursement risk map, reconciliation queue
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: anti-fraud verification, coalition authority check, treasury/legal clearance
+
+### packet_id: DPL-EXPEDITIONARY-ADDITIVE-MICROELECTRONICS-REPAIR-001
+- domain: expeditionary additive microelectronics repair
+- objective: restore mission electronics via additive repair workflows under austere conditions
+- primary_tools: additive micro-fabrication controllers, diagnostics benches, repair workflow manager
+- alternate_tools: manual repair board and conservative cannibalization workflow
+- degraded_mode: repair only mission-essential components with fixed acceptance thresholds
+- input_requirements: failed component profile, repair materials, test limits, mission criticality
+- output_schema: repair queue, expected recovery windows, acceptance test results
+- protocol_profile: API/JSON + USMTF + signed hardware attestations
+- validation_gates: repair feasibility check, test coverage threshold, release authority approval
+
+### packet_id: DPL-MICROELECTRONICS-ATTESTATION-MISSION-RELEASE-001
+- domain: microelectronics attestation and mission release
+- objective: attest repaired components and govern mission release decisions
+- primary_tools: attestation signer, electrical conformance validator, mission release board
+- alternate_tools: dual-signature manual attestation log
+- degraded_mode: provisional release with elevated monitoring only
+- input_requirements: conformance metrics, signature chain, installation target, mission risk tolerance
+- output_schema: attestation record, trust score, release/hold recommendation
+- protocol_profile: signed hardware attestations + USMTF + API/JSON
+- validation_gates: signature validity, conformance pass, command approval
+
+### packet_id: DPL-AI-SAR-IMAGERY-DECEPTION-DETECTION-001
+- domain: AI-enabled SAR imagery deception detection
+- objective: identify manipulated or deceptive SAR imagery products before operational use
+- primary_tools: SAR anomaly detectors, scene coherence analyzers, target-confidence arbitration services
+- alternate_tools: manual imagery adjudication board with multi-analyst review
+- degraded_mode: high-confidence-only targeting recommendations
+- input_requirements: SAR scene set, metadata provenance, target hypotheses, sensor context
+- output_schema: deception confidence report, trusted scene subset, retask recommendations
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: provenance validation, multi-source corroboration, confidence threshold
+
+### packet_id: DPL-SAR-TARGET-TRUST-RETASK-001
+- domain: SAR target trust and retask governance
+- objective: route collection retasks and targeting holds based on deception confidence
+- primary_tools: ISR tasking broker, target trust dashboard, cross-sensor cueing planner
+- alternate_tools: manual retask request queue and hold matrix
+- degraded_mode: pause non-time-critical targets pending verification
+- input_requirements: trust scores, mission urgency, sensor availability, legal constraints
+- output_schema: retask queue, targeting hold/release table, confidence refresh schedule
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: targeting legal check, trust-floor enforcement, authority release
+
+### packet_id: DPL-MISSILE-TRANSPORTER-ROUTE-SURVIVABILITY-001
+- domain: strategic missile transporter route survivability
+- objective: plan survivable transporter movement under denial and interdiction risk
+- primary_tools: route survivability planner, transporter telemetry monitor, denial-event intelligence feeds
+- alternate_tools: manual movement board with conservative route spacing
+- degraded_mode: reduced movement tempo with hardened concealment windows
+- input_requirements: route network, threat overlays, transporter readiness, movement deadlines
+- output_schema: survivability-ranked routes, timing windows, branch triggers
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: survivability threshold check, chokepoint risk pass, command approval
+
+### packet_id: DPL-STRATEGIC-MOBILITY-DENIAL-BRANCH-001
+- domain: strategic mobility denial branch planning
+- objective: define branch options when primary transporter routes are denied or compromised
+- primary_tools: branch planner, strategic movement ledger, alternate route feasibility analyzer
+- alternate_tools: manual branch-and-sequel matrix with readback confirmation
+- degraded_mode: hold posture and decoy movement package only
+- input_requirements: denied segments, alternate route capacity, deception assets, readiness priorities
+- output_schema: branch option set, readiness impacts, decision points
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: branch feasibility, mission impact review, authority gate

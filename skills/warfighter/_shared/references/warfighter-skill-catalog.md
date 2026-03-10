@@ -1225,3 +1225,29 @@ Every skill output should include:
 - Undersea charging-node tamper response + autonomous undersea MCM swarm control + undersea data-mule exfiltration denial + maritime chokepoint sensor barrier operations
 - Hospital microgrid blackstart triage + coalition hospital cyber-evacuation network + host-nation grid protection and blackstart + force-health casualty regulation
 - Rare-earth magnet recycling and missile allocation + strategic rare-earth refinery sabotage recovery + strategic industrial mobilization readiness + long-range fires reconstitution
+
+## New Expansion Wave (2026-03-10, Fires Integrity, Infrastructure Restoration, and Strategic Mobility Survivability)
+
+- joint-littoral-autonomous-ferry-resupply-under-fire-cell
+- theater-denied-pnt-artillery-survey-and-fires-alignment-cell
+- coalition-cross-border-aeromedical-isolation-and-biosecurity-cell
+- homeland-grid-transformer-sabotage-military-support-restoration-cell
+- joint-counter-hypersonic-decoy-discrimination-cell
+- theater-undersea-cable-landing-station-blackstart-defense-cell
+- coalition-disinformation-enabled-bank-run-stability-support-cell
+- expeditionary-additive-microelectronics-repair-attestation-cell
+- joint-ai-enabled-sar-satellite-imagery-deception-detection-cell
+- strategic-missile-transporter-route-denial-and-survivability-cell
+
+## Updated Pairings (2026-03-10, Fires Integrity, Infrastructure Restoration, and Strategic Mobility Survivability)
+
+- Littoral autonomous ferry resupply under fire + contested maritime logistics protection + autonomous maritime corridor management + force-protection base defense
+- Denied-PNT artillery survey and fires alignment + fires-and-effects synchronizer + electronic-order-of-battle management + fratricide-prevention governance
+- Cross-border aeromedical isolation and biosecurity + casualty evacuation and medical regulation + coalition medical credentialing + preventive medicine force-health protection
+- Homeland transformer sabotage restoration + homeland critical infrastructure surge protection + operational energy resilience and microgrid + DSCA crisis support
+- Counter-hypersonic decoy discrimination + missile warning and attack assessment + ballistic missile defense battle management + strategic deterrence escalation control
+- Undersea cable landing station blackstart defense + undersea cable protection and restoration + theater mission network failover + coalition data-fabric continuity
+- Disinformation-enabled bank-run stability support + strategic competition gray-zone response + finance/pay continuity + information integrity and attribution
+- Additive microelectronics repair attestation + expeditionary fabrication and battle damage repair + counterfeit spare-parts interdiction + software supply-chain assurance
+- AI-enabled SAR deception detection + all-source collection management + battle-damage assessment fusion + targeting-cycle manager
+- Missile transporter route denial survivability + strategic mobility port-rail chokepoint wargame + operational deception planning + strategic deterrence readiness support
