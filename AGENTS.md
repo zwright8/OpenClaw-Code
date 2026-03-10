@@ -47,3 +47,4 @@
 - Verified `2b0c58c136..8fa958cd51`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent.
 - Verified `8fa958cd51..fe989d6dac`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent.
 - Verified `fe989d6dac..405354a5e0`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent.
+- Verified `405354a5e0..9d028c8fa0`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent.
