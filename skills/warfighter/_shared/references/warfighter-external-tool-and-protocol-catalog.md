@@ -5957,3 +5957,145 @@ external_binding:
 - Primary tools: terrain matching engines, landmark fusion processors, inertial timing monitors.
 - Cross-check tools: independent position-integrity monitor and alternate spoofing-detection board.
 - Typical products: relocalization confidence map, fallback sequence, position risk report.
+
+## Catalog Expansion (2026-03-10, Warfighter Infrastructure Trust and Sensor Integrity Wave)
+
+### `ps-ai-sensor-spoofing-forensics-stack-v1`
+- Protocols: `STIX/TAXII`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: multi-sensor spoofing alerts, forensic confidence exchange, and adjudication tasking.
+
+### `ps-lock-dam-cyber-physical-defense-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `OGC`, `API/JSON`.
+- Use for: lock/dam anomaly reporting, mobility impact alerts, and restoration synchronization.
+
+### `ps-coalition-fire-data-translation-stack-v1`
+- Protocols: `USMTF`, `VMF`, NATO `APP-11/ADatP-3`, `Link 16 J-series`, `API/JSON`.
+- Use for: coalition fire mission translation, no-strike boundary integrity, and timing deconfliction.
+
+### `ps-civil-microreactor-security-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, radiological safety custody envelopes, `API/JSON`.
+- Use for: microreactor threat warnings, safety posture exchange, and consequence branch coordination.
+
+### `ps-quantum-timing-pnt-crosswalk-stack-v1`
+- Protocols: `USMTF`, signed timing attestations, `Link 16 J-series`, `API/JSON`.
+- Use for: denied-PNT timing crosswalk updates, time-transfer integrity checks, and fallback transitions.
+
+### `ps-expeditionary-droneport-assurance-stack-v1`
+- Protocols: `AIXM/FIXM`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: droneport status, autonomous traffic sequencing, and airworthiness-release decisions.
+
+### `ps-directed-energy-optics-recovery-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `Link 16 J-series`, `API/JSON`.
+- Use for: directed-energy exposure reporting, sensor degradation recovery plans, and threat cueing.
+
+### `ps-rare-earth-refinery-recovery-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, industrial telemetry schemas, `API/JSON`.
+- Use for: refinery sabotage attribution, production recovery status, and force-priority allocation updates.
+
+### `ps-maritime-decoy-deception-integration-stack-v1`
+- Protocols: `AIS/NMEA`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Use for: maritime decoy tasking, emission posture updates, and fleet deception synchronization.
+
+### `ps-arctic-under-ice-logistics-corridor-stack-v1`
+- Protocols: `USMTF`, `CoT`, `AIS/NMEA`, `API/JSON`.
+- Use for: under-ice corridor routing, casualty movement handoffs, and coalition deconfliction.
+
+### `ps-sensor-ghost-track-adjudication-stack-v1`
+- Protocols: `Link 16 J-series`, `CoT`, `USMTF`, `API/JSON`.
+- Use for: ghost-track arbitration, fratricide-risk warnings, and sensor-quality confidence updates.
+
+### `ps-ground-station-security-restoration-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, SATCOM service telemetry schemas, `API/JSON`.
+- Use for: ground-station incident exchange, restoration sequence updates, and mission-priority service recovery.
+
+### `ts-ai-sensor-spoofing-forensics-v1`
+- Use for: adversarial AI-enabled sensor spoofing detection and forensic adjudication.
+- Primary tools: multi-INT sensor fusion boards, model-forensics analyzers, track-consistency validators.
+- Cross-check tools: independent truth-track mirror and alternate confidence adjudication board.
+- Typical products: spoofing confidence ladder, ghost-track suppression plan, sensor retask matrix.
+
+### `ts-lock-dam-cyber-physical-defense-v1`
+- Use for: inland lock/dam cyber-physical defense and military mobility continuity.
+- Primary tools: ICS/SCADA anomaly analytics, hydrologic flow control monitors, inland mobility dashboards.
+- Cross-check tools: independent control-state ledger and alternate downstream impact board.
+- Typical products: control-system defense matrix, mobility impact branch map, restoration sequence packet.
+
+### `ts-coalition-fire-data-translation-v1`
+- Use for: coalition fire mission data translation and no-strike boundary harmonization.
+- Primary tools: fire mission translators, coalition data-link validators, CDE/no-strike verification services.
+- Cross-check tools: independent message integrity validator and alternate fires deconfliction board.
+- Typical products: translation confidence report, timing deconfliction matrix, no-strike assurance ledger.
+
+### `ts-civil-microreactor-security-v1`
+- Use for: civil microreactor security incident planning and consequence management.
+- Primary tools: reactor telemetry and anomaly monitors, consequence modeling systems, emergency operations boards.
+- Cross-check tools: independent radiological confidence board and alternate civil continuity tracker.
+- Typical products: microreactor risk brief, security hardening branches, consequence containment plan.
+
+### `ts-quantum-timing-pnt-crosswalk-v1`
+- Use for: resilient timing crosswalk between quantum, inertial, and terrestrial references in denied PNT.
+- Primary tools: precision timing monitors, quantum reference nodes, inertial drift analyzers.
+- Cross-check tools: independent time integrity ledger and alternate timing-confidence estimator.
+- Typical products: timing crosswalk matrix, fallback transfer sequence, PNT resilience report.
+
+### `ts-expeditionary-droneport-assurance-v1`
+- Use for: expeditionary droneport airworthiness and autonomous traffic assurance.
+- Primary tools: UAS traffic orchestrators, droneport condition telemetry services, mission-airworthiness check systems.
+- Cross-check tools: independent conflict-detection monitor and alternate runway/pad viability board.
+- Typical products: airworthiness release packet, traffic sequencing board, deconfliction triggers.
+
+### `ts-directed-energy-optics-recovery-v1`
+- Use for: tactical recovery from directed-energy optics/sensor degradation.
+- Primary tools: sensor health telemetry analyzers, directed-energy event trackers, mission-capability assessors.
+- Cross-check tools: independent optics calibration verifier and alternate mission-readiness board.
+- Typical products: degradation impact scorecard, recovery timeline, mission capability branch map.
+
+### `ts-rare-earth-refinery-recovery-v1`
+- Use for: rare-earth refinery sabotage response and production recovery for force-priority demand.
+- Primary tools: industrial process telemetry systems, sabotage forensics workflows, strategic allocation dashboards.
+- Cross-check tools: independent production integrity monitor and alternate supply-shock assessor.
+- Typical products: sabotage attribution packet, phased recovery plan, force-priority allocation matrix.
+
+### `ts-maritime-decoy-deception-integration-v1`
+- Use for: autonomous maritime decoy/chaff employment integrated with fleet maneuver.
+- Primary tools: maritime COP deception planners, autonomous decoy mission managers, emission posture controls.
+- Cross-check tools: independent decoy effectiveness evaluator and alternate fratricide-spectrum board.
+- Typical products: deception employment matrix, fleet timing window plan, detectability risk report.
+
+### `ts-arctic-under-ice-logistics-corridor-v1`
+- Use for: coalition under-ice logistics and casualty corridor planning.
+- Primary tools: Arctic route intelligence feeds, under-ice movement planners, casualty movement coordinators.
+- Cross-check tools: independent ice-route viability board and alternate casualty transfer confidence tracker.
+- Typical products: under-ice corridor plan, casualty handoff sequence, coalition risk timeline.
+
+### `ts-sensor-ghost-track-adjudication-v1`
+- Use for: AI-amplified ghost-track adjudication across theater sensor networks.
+- Primary tools: track-fusion adjudicators, false-target detection models, theater COP arbitration services.
+- Cross-check tools: independent sensor truthing board and alternate fratricide risk validator.
+- Typical products: ghost-track confidence table, track suppression decisions, fires-hold trigger map.
+
+### `ts-ground-station-security-restoration-v1`
+- Use for: homeland satellite ground-station security hardening and restoration.
+- Primary tools: SATCOM ground-site telemetry monitors, incident-response orchestration systems, mission-priority service allocators.
+- Cross-check tools: independent uplink health verifier and alternate restoration status board.
+- Typical products: security hardening actions, restoration sequencing matrix, mission service continuity plan.
+
+### `ps-water-treatment-cyber-physical-protection-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: water treatment attack detection, continuity operations signaling, and restoration governance.
+
+### `ps-counter-uas-urban-rooftop-defense-stack-v1`
+- Protocols: `CoT`, `Link 16 J-series`, `USMTF`, `OGC`, `API/JSON`.
+- Use for: rooftop sensor cueing, engagement authority exchange, and fratricide interlock signaling.
+
+### `ts-water-treatment-cyber-physical-protection-v1`
+- Use for: cyber-physical defense of treatment systems supporting force sustainment and civil stability.
+- Primary tools: ICS telemetry monitors, water quality analytics, utility continuity orchestration boards.
+- Cross-check tools: independent sampling chain and alternate process-state verifier.
+- Typical products: treatment defense matrix, contamination response branches, continuity tasking board.
+
+### `ts-counter-uas-urban-rooftop-defense-v1`
+- Use for: urban rooftop counter-UAS defense with civilian-risk-aware engagement governance.
+- Primary tools: counter-UAS C2 systems, RF/sensor meshes, urban 3D line-of-sight planners.
+- Cross-check tools: independent false-track verifier and alternate no-strike geofence validator.
+- Typical products: rooftop defense layout, engagement authority matrix, civilian-risk mitigation plan.

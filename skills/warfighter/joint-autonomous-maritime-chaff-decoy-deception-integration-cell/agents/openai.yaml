@@ -1,0 +1,5 @@
+---
+interface:
+  display_name: "Joint Autonomous Maritime Chaff Decoy Deception Integration Cell"
+  short_description: "Support Joint Autonomous Maritime Chaff Decoy Deception Integration Cell mission decisions"
+---

@@ -34,10 +34,11 @@ Primary products for this skill: rooftop defense layout, engagement authority ma
 
 ## Domain Tooling and Protocol Baseline
 
-- Preferred external toolsets for this domain: counter-UAS C2 systems, RF detection meshes, urban 3D mapping services, force protection COP.
+- Primary: `tool_suite_id=ts-counter-uas-urban-rooftop-defense-v1` with `protocol_stack_id=ps-counter-uas-urban-rooftop-defense-stack-v1`.
+- Alternate: select adjacent counter-UAS and urban force-protection entries from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
 - Preferred protocol profiles for coordination and machine exchange: CoT, Link 16 J-series, USMTF, OGC.
-- Use ../_shared/references/warfighter-external-tool-and-protocol-catalog.md to select tool_suite_id and protocol_stack_id.
-- Use ../_shared/references/domain-tool-packet-library.md to select packet_id and protocol_profile.
+- Domain packet defaults: `DPL-COUNTER-UAS-URBAN-ROOFTOP-001`, `DPL-URBAN-ROOFTOP-FRATRICIDE-INTERLOCK-001`.
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and `../_shared/references/domain-tool-packet-library.md` for concrete bindings.
 
 ## Interoperability and Trust Validation
 

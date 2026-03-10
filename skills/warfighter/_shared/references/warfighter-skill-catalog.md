@@ -1147,3 +1147,33 @@ Every skill output should include:
 - Robotics spare-parts reverse logistics + expeditionary fabrication and battle damage repair + additive quality attestation
 - Cognitive EW disinformation convergence + information integrity attribution + electromagnetic battle management
 - Denied-environment navigation relocalization + denied PNT time-transfer assurance + precision approach/landing recovery
+
+## New Expansion Wave (2026-03-10, Infrastructure Trust, Translation Assurance, and Sensor Integrity)
+
+- joint-adversarial-ai-sensor-spoofing-forensics-cell
+- homeland-waterway-lock-dam-cyber-physical-defense-cell
+- coalition-joint-fire-mission-data-translation-cell
+- theater-civil-microreactor-security-consequence-cell
+- joint-quantum-timing-resilience-and-pnt-crosswalk-cell
+- expeditionary-droneport-airworthiness-traffic-assurance-cell
+- tactical-directed-energy-optics-degradation-recovery-cell
+- strategic-rare-earth-refinery-sabotage-recovery-cell
+- joint-autonomous-maritime-chaff-decoy-deception-integration-cell
+- coalition-arctic-under-ice-logistics-casualty-corridor-cell
+- theater-ai-enabled-sensor-ghost-track-adjudication-cell
+- homeland-satellite-ground-station-security-restoration-cell
+
+## Updated Pairings (2026-03-10, Infrastructure Trust, Translation Assurance, and Sensor Integrity)
+
+- AI sensor spoofing forensics + ghost-track adjudication + fratricide interlock + targeting governance
+- Lock/dam cyber-physical defense + inland waterway mobility continuity + contested logistics sustainment
+- Coalition fire data translation + no-strike assurance + legal/ROE compliance + fires and effects synchronization
+- Civil microreactor security consequence management + homeland critical infrastructure restoration + DSCA crisis coordination
+- Quantum timing crosswalk resilience + denied PNT transition + NC3 hardened failover assurance
+- Expeditionary droneport airworthiness assurance + UAS traffic deconfliction + tactical airspace control
+- Directed-energy optics degradation recovery + integrated air and missile defense + force protection base defense
+- Rare-earth refinery sabotage recovery + strategic industrial mobilization readiness + critical mineral allocation governance
+- Autonomous maritime decoy integration + fleet emission deception + maritime chokepoint control
+- Coalition Arctic under-ice logistics corridor + casualty movement regulation + Arctic sustainment planning
+- Sensor ghost-track adjudication + cognitive EW disinformation convergence + mission risk decision support
+- Homeland ground-station restoration + commercial SATCOM priority restoration + theater mission network failover

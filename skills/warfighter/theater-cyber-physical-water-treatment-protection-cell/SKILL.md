@@ -33,6 +33,17 @@ Deliver in this order:
 
 Primary products for this skill: water-system threat posture brief, prioritized hardening plan, continuity operations matrix.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-water-treatment-cyber-physical-protection-v1` with `protocol_stack_id=ps-water-treatment-cyber-physical-protection-stack-v1`.
+- Alternate: select adjacent infrastructure-defense entries from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
+- Degraded: authenticated voice/readback + UTC acknowledgment ledger + manual continuity board.
+
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-WATER-TREATMENT-PROTECTION-001`, `DPL-WATER-TREATMENT-CONTINUITY-001`.
+- If no packet fully matches, define a provisional packet with validation owner and approval role.
+
 ## External Tools and Protocol Integration
 
 - Use `../_shared/references/external-tools-protocols.md` and select a mission-fit profile from `../_shared/references/joint-operations-external-toolchain-profiles.md`.

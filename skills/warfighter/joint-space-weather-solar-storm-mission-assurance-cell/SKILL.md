@@ -26,6 +26,11 @@ description: Support warfighter planning for contested space-weather disruption 
 3. Alternative options.
 4. Decision points now/next/pre-delegated.
 5. Staff tasking by owner and suspense.
+6. Tool invocation packets and protocol bindings.
+
+## Domain Products
+
+Primary products for this skill: solar-storm mission assurance brief, timing/SATCOM dependency map, and phased continuity branch plan.
 
 ## Domain Toolchain Defaults
 
@@ -57,3 +62,9 @@ description: Support warfighter planning for contested space-weather disruption 
 - Apply approval and escalation requirements from `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Run protocol conformance checks from `../_shared/references/us-joint-protocol-assurance-drill.md` before high-impact recommendations.
 - If authority, legal basis, or acknowledgment integrity is uncertain, downgrade to advisory-only with explicit commander prompts.
+
+## Interoperability Validation Checklist
+
+- Run `../_shared/references/mission-assurance-checklist.md` before final release.
+- Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
+- If checks fail, provide a degraded-mode branch with explicit risk effects.
