@@ -1622,6 +1622,74 @@ test('failed initial send deletes persisted record after flush', async (t) => {
     assert.equal(records.length, 0);
 });
 
+test('dispatchTask fails with SEND_TIMEOUT when transport send hangs', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                return new Promise(() => {});
+            }
+        },
+        transportSendTimeoutMs: 25
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-timeout-send',
+            task: 'Timeout hung send'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'SEND_TIMEOUT');
+            assert.match(error.message, /timed out/i);
+            return true;
+        }
+    );
+});
+
+test('maintenance converts hung retry sends into bounded transport failures', async () => {
+    const clock = createClock(80_000);
+    let sendCount = 0;
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount >= 2) {
+                    return new Promise(() => {});
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 40,
+        maxRetries: 2,
+        retryDelayMs: 15,
+        transportSendTimeoutMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-timeout-retry',
+        task: 'Bound hung retry sends'
+    });
+
+    clock.set(80_050);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(current.status, 'retry_scheduled');
+
+    clock.set(current.nextRetryAt);
+    const startedAt = Date.now();
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    const elapsedMs = Date.now() - startedAt;
+    current = orchestrator.getTask(task.taskId);
+
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.ok(current.lastError.includes('timed out'));
+    assert.ok(elapsedMs < 500);
+});
+
 test('approval policy can gate dispatch until review is approved', async () => {
     const sent = [];
     const clock = createClock(60_000);

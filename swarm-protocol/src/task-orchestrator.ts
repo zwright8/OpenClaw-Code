@@ -505,6 +505,7 @@ export class TaskOrchestrator {
         circuitBreaker = null,
         adaptiveConcurrency = null,
         dispatchDeduplication = null,
+        transportSendTimeoutMs = 10_000,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -564,6 +565,9 @@ export class TaskOrchestrator {
             ? new Map()
             : null;
         this.dispatchDeduplication = resolveDispatchDeduplication(dispatchDeduplication);
+        this.transportSendTimeoutMs = Number.isFinite(transportSendTimeoutMs) && Number(transportSendTimeoutMs) > 0
+            ? Number(transportSendTimeoutMs)
+            : null;
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
@@ -1777,7 +1781,34 @@ export class TaskOrchestrator {
         }, sendAt);
 
         try {
-            await this.transport.send(record.target, record.request);
+            if (Number.isFinite(this.transportSendTimeoutMs) && this.transportSendTimeoutMs > 0) {
+                let timeoutHandle = null;
+                try {
+                    await Promise.race([
+                        Promise.resolve(this.transport.send(record.target, record.request)),
+                        new Promise((_, reject) => {
+                            timeoutHandle = setTimeout(() => {
+                                reject(new TaskOrchestratorError(
+                                    'SEND_TIMEOUT',
+                                    `Transport send timed out after ${this.transportSendTimeoutMs}ms`,
+                                    {
+                                        taskId: record.taskId,
+                                        target: record.target,
+                                        attempt: record.attempts,
+                                        timeoutMs: this.transportSendTimeoutMs
+                                    }
+                                ));
+                            }, this.transportSendTimeoutMs);
+                        })
+                    ]);
+                } finally {
+                    if (timeoutHandle !== null) {
+                        clearTimeout(timeoutHandle);
+                    }
+                }
+            } else {
+                await this.transport.send(record.target, record.request);
+            }
             record.status = 'dispatched';
             record.deadlineAt = this._applyOverallDeadline(record, sendAt + this.defaultTimeoutMs);
             record.nextRetryAt = null;
@@ -1796,23 +1827,28 @@ export class TaskOrchestrator {
             this._onCircuitSendSuccess(record.target, record.updatedAt, 'send_success');
         } catch (error) {
             const message = error?.message || 'Failed to dispatch task';
+            const isSendTimeout = error instanceof TaskOrchestratorError
+                && error.code === 'SEND_TIMEOUT';
             record.lastError = message;
             record.updatedAt = safeNow(this.now);
             record.history.push({
                 at: record.updatedAt,
-                event: 'send_failed',
+                event: isSendTimeout ? 'send_timed_out' : 'send_failed',
                 attempt: record.attempts,
                 error: message
             });
             this._persistRecord(record);
-            this._emitAudit('task_send_failed', {
+            this._emitAudit(isSendTimeout ? 'task_send_timed_out' : 'task_send_failed', {
                 taskId: record.taskId,
                 target: record.target,
                 attempt: record.attempts,
                 error: message
             }, record.updatedAt);
             this._releaseAdaptiveConcurrencySlot(record, record.updatedAt, 'overload');
-            this._onCircuitSendFailure(record.target, record.updatedAt, 'send_failed');
+            this._onCircuitSendFailure(record.target, record.updatedAt, isSendTimeout ? 'send_timeout' : 'send_failed');
+            if (isSendTimeout) {
+                throw error;
+            }
             throw new TaskOrchestratorError('SEND_FAILED', message, {
                 taskId: record.taskId,
                 target: record.target,
@@ -2262,7 +2298,8 @@ export class TaskOrchestrator {
                 windowMs: this.dispatchDeduplication.windowMs,
                 openOnly: this.dispatchDeduplication.openOnly,
                 terminalWindowMs: this.dispatchDeduplication.terminalWindowMs
-            }
+            },
+            transportSendTimeoutMs: this.transportSendTimeoutMs
         };
 
         let attemptsTotal = 0;

@@ -325,6 +325,7 @@ const orchestrator = new TaskOrchestrator({
   retryBackoffStrategy: 'exponential',
   retryJitter: 'decorrelated',
   maxRetryHintMs: 60_000, // optional cap for Retry-After / pushback hints
+  transportSendTimeoutMs: 10_000, // fail fast if transport send hangs
   retryThrottling: {
     scope: 'target',
     maxTokens: 20,
@@ -384,6 +385,7 @@ await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' })
 When the half-open probe budget is exhausted before recovery, the breaker now re-opens (instead of remaining stuck half-open). You can also enable progressive cooldown backoff with `cooldownBackoffMultiplier` + `maxCooldownMs` to reduce pressure on persistently unhealthy targets.
 `adaptiveConcurrency` adds per-target additive-increase/multiplicative-decrease (AIMD) flow control so dispatches are deferred before overload cascades. Healthy completions increase the limit gradually; transient overload signals/timeouts/sustained high latency decrease it.
 `dispatchDeduplication.terminalWindowMs` lets the orchestrator treat recently closed tasks as idempotent replays so duplicate submissions can reuse recent outcomes instead of re-dispatching side-effecting work.
+`transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.
 By default, these explicit server hints are honored as-is; set `maxRetryHintMs` if you want to impose an upper bound.
