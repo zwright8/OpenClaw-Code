@@ -51,6 +51,13 @@ const TRANSIENT_REJECTION_MARKERS = [
     'retry_later',
     'capacity'
 ];
+const RETRYABLE_HTTP_STATUS_CODES = new Set([408, 425, 429, 500, 502, 503, 504]);
+const RETRYABLE_GRPC_STATUS_CODES = new Set([4, 8, 14]);
+const RETRYABLE_GRPC_STATUS_NAMES = new Set([
+    'deadline_exceeded',
+    'resource_exhausted',
+    'unavailable'
+]);
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -87,6 +94,62 @@ function parseRateLimitResetDelayMs(rawValue, nowMs) {
         return Math.max(0, Math.floor((numeric * 1_000) - nowMs));
     }
     return Math.floor(numeric * 1_000);
+}
+
+function parseRetryableStatusFromReason(reason) {
+    if (typeof reason !== 'string' || !reason.trim()) {
+        return {
+            http: null,
+            grpc: null
+        };
+    }
+
+    const normalized = reason.toLowerCase();
+    const statusCodeMatch = normalized.match(
+        /\b(?:http(?:\/\d(?:\.\d)?)?(?:\s+status)?|http_status|status(?:_code)?)\b\s*[:=]?\s*(\d{3})\b/
+    );
+    const standaloneHttpCodeMatch = normalized.match(
+        /\b(408|425|429|500|502|503|504)\b(?!\s*(?:ms|msec|milliseconds?|s|sec|seconds?)\b)/
+    );
+    const rawHttpCode = statusCodeMatch
+        ? Number(statusCodeMatch[1])
+        : standaloneHttpCodeMatch
+            ? Number(standaloneHttpCodeMatch[1])
+            : null;
+    const httpCode = Number.isFinite(rawHttpCode) && RETRYABLE_HTTP_STATUS_CODES.has(rawHttpCode)
+        ? rawHttpCode
+        : null;
+
+    const grpcNumericMatch = normalized.match(
+        /\b(?:grpc[-_\s]?(?:status|code)|grpc_status|grpc_code)\b\s*[:=]?\s*(-?\d{1,2})\b/
+    );
+    if (grpcNumericMatch) {
+        const grpcCode = Number(grpcNumericMatch[1]);
+        return {
+            http: httpCode,
+            grpc: Number.isInteger(grpcCode) && RETRYABLE_GRPC_STATUS_CODES.has(grpcCode)
+                ? grpcCode
+                : null
+        };
+    }
+
+    const grpcNameMatch = normalized.match(
+        /\b(?:grpc[-_\s]?(?:status|code)|grpc_status|grpc_code)\b\s*[:=]?\s*([a-z_]+)\b/
+    );
+    if (!grpcNameMatch) {
+        return {
+            http: httpCode,
+            grpc: null
+        };
+    }
+
+    const grpcName = grpcNameMatch[1];
+    return {
+        http: httpCode,
+        grpc: RETRYABLE_GRPC_STATUS_NAMES.has(grpcName)
+            ? grpcName
+            : null
+    };
 }
 
 function resolveRetryThrottling(value) {
@@ -713,10 +776,11 @@ export class TaskOrchestrator {
         if (typeof reason !== 'string' || !reason.trim()) {
             return false;
         }
-        const normalized = reason.toLowerCase();
-        if (/\b(?:429|503)\b/.test(normalized)) {
+        const statusSignals = parseRetryableStatusFromReason(reason);
+        if (statusSignals.http !== null || statusSignals.grpc !== null) {
             return true;
         }
+        const normalized = reason.toLowerCase();
         return TRANSIENT_REJECTION_MARKERS.some((marker) => normalized.includes(marker));
     }
 

@@ -181,6 +181,96 @@ test('transient rejected receipt schedules retry and honors retry_after hint', a
     assert.equal(sent.length, 2);
 });
 
+test('transient rejection honors grpc-status retryable code', async () => {
+    const clock = createClock(4_250);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-grpc-status',
+        task: 'Retry on grpc unavailable'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-grpc-status',
+        accepted: false,
+        reason: 'grpc-status=14',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 25);
+});
+
+test('non-retryable grpc-status remains terminal rejection', async () => {
+    const clock = createClock(4_500);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 25
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-grpc-invalid',
+        task: 'Do not retry invalid argument'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-grpc-invalid',
+        accepted: false,
+        reason: 'grpc_status=3',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'rejected');
+    assert.equal(current.history.at(-1)?.event, 'rejected');
+});
+
+test('transient rejection retries on HTTP 504 status code', async () => {
+    const clock = createClock(4_750);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 30
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-http-504',
+        task: 'Retry on upstream gateway timeout'
+    });
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-http-504',
+        accepted: false,
+        reason: 'HTTP status: 504',
+        timestamp: clock.now()
+    }));
+
+    const current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 30);
+});
+
 test('transient rejection honors Retry-After HTTP-date hint', async () => {
     const clock = createClock(10_000);
     const orchestrator = new TaskOrchestrator({
