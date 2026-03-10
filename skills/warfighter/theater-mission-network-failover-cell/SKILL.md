@@ -145,3 +145,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Mobilization Recovery and Critical Fuel Expansion)
+
+- Add `tool_suite_id=ts-strategic-rail-port-mobilization-recovery-v1` + `protocol_stack_id=ps-strategic-rail-port-mobilization-recovery-stack-v1` when theater network failover must align to rail-port throughput restoration and strategic deployment timing.
+- Add `tool_suite_id=ts-civil-infrastructure-priority-fuel-allocation-v1` + `protocol_stack_id=ps-civil-infrastructure-priority-fuel-allocation-stack-v1` when failover priorities require dynamic fuel adjudication across military and civil critical infrastructure nodes.

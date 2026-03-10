@@ -770,3 +770,29 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+
+## New Expansion Wave (2026-03-10, Civil-Military Deconfliction and Mission Assurance Surge)
+
+- joint-civilian-maritime-traffic-military-deconfliction-cell
+- theater-autonomous-casevac-corridor-assurance-cell
+- joint-expeditionary-spectrum-cyber-weather-fusion-cell
+- strategic-homeland-rail-port-mobilization-recovery-cell
+- joint-uncrewed-ground-sensor-border-denial-cell
+- coalition-disconnected-fires-clearance-ledger-cell
+- theater-additive-battle-damage-microgrid-restoration-cell
+- joint-civil-infrastructure-priority-fuel-allocation-cell
+- arctic-multi-domain-sustainment-weather-routing-cell
+- joint-mission-assurance-digital-twin-red-cell
+
+## Updated Pairings (2026-03-10, Civil-Military Deconfliction and Mission Assurance Surge)
+
+- Civilian maritime deconfliction + contested maritime logistics protection + strategic port security and harbor defense
+- Autonomous CASEVAC corridor assurance + casualty evacuation and medical regulation + medical C4I and patient movement fusion
+- Spectrum-cyber-weather fusion + electromagnetic battle management + weather-space-weather effects forecast cell
+- Strategic rail-port mobilization recovery + joint deployment and distribution ops center optimizer + strategic mobility deployment planner
+- Uncrewed ground sensor border denial + border security and counter transnational threat + biometrics and watchlist exploitation
+- Coalition disconnected fires clearance ledger + joint targeting standards and CDE governance + legal ROE compliance checker
+- Additive battle-damage microgrid restoration + expeditionary fabrication and battle damage repair + operational energy resilience and microgrid cell
+- Civil infrastructure priority fuel allocation + defense support of civil authorities crisis cell + cyber-physical infrastructure defense
+- Arctic sustainment weather routing + arctic maritime-air corridor deconfliction + arctic denied comms polar-orbit handover cell
+- Mission assurance digital twin red cell + digital engineering mission thread analyst + AI red-team operational model threat cell
