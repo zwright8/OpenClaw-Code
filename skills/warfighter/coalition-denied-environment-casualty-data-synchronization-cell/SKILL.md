@@ -41,14 +41,14 @@ Preferred protocol families for this skill: HL7/FHIR, USMTF, API/JSON.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-cross-border-aeromedical-biosecurity-v1` with `protocol_stack_id=ps-cross-border-aeromedical-biosecurity-stack-v1`.
-- Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-medical-readiness-stack-v1`.
-- Degraded: authenticated voice/readback plus UTC acknowledgment ledger and manual casualty-sync board.
+- Primary: `tool_suite_id=ts-denied-casualty-data-sync-v1` with `protocol_stack_id=ps-denied-casualty-data-sync-stack-v1`.
+- Alternate: use one mission-adjacent medical/coalition synchronization suite from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` with documented tradeoffs.
+- Degraded: delayed synchronization windows with UTC acknowledgment ledger and manual coalition liaison reconciliation.
 
 ## Domain Packet Defaults
 
-- Default packet IDs: `DPL-CROSS-BORDER-AEROMEDICAL-BIOSECURITY-001`, `DPL-BIOSECURE-MEDEVAC-LEGAL-HANDOFF-001`.
-- If no packet matches current conditions, create a provisional packet using the shared schema and assign a validation owner.
+- Default packet IDs: `DPL-CASUALTY-SYNC-DENIED-001`, `DPL-DENIED-CASEVAC-DATA-001`.
+- If no packet fully matches, create a provisional packet using the shared schema and assign a validation owner.
 
 ## External Tool and Protocol Integration
 
@@ -69,6 +69,11 @@ Preferred protocol families for this skill: HL7/FHIR, USMTF, API/JSON.
 - Include tool health and trust fields from ../_shared/references/tool-health-and-trust-monitoring.md.
 - Use after-action and readiness artifacts from ../_shared/references/operational-learning-and-after-action-loop.md and ../_shared/references/readiness-certification-evidence-pack.md.
 - Require `casualty_record_confidence`, `handoff_legal_basis`, and `cross_border_authority_state` fields for every release recommendation.
+
+## Domain Governance Overrides (2026-03-10, Casualty Data Trust Hardening)
+
+- Require explicit `identity_confidence`, `record_staleness_minutes`, and `coalition_releasability_state` fields in every critical recommendation.
+- If casualty identity confidence drops below threshold or releasability state is uncertain, downgrade to advisory-only and require human command adjudication.
 
 ## Guardrails
 

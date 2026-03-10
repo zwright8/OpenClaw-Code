@@ -42,11 +42,11 @@ Primary products for this skill: voice spoofing threat board, command-channel tr
 - Include one `packet_id` from `../_shared/references/domain-tool-packet-library.md` for each critical recommendation.
 - For this domain, prioritize `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1` and `DPL-DEEPFAKE-VOICE-COMMAND-DETECTION-001`.
 
-## Deepfake Command-Trust Hardening Overrides (2026-03-10)
+## Domain Governance Overrides (2026-03-10, Voice Command Trust Hardening)
 
-- Add cross-check packet references `DPL-DISINFORMATION-BANK-RUN-STABILITY-001` and `DPL-COALITION-LIQUIDITY-CONTINUITY-001` when synthetic-voice attacks coincide with financial panic or coercive messaging campaigns.
-- Require explicit `voice_chain_integrity_state`, `authentication_fallback_method`, and `commander_reauth_decision_point` fields for each high-impact recommendation.
-- If identity trust confidence is below threshold, publish advisory-only recommendations and route to immediate human command re-authentication.
+- Require explicit `voice_auth_confidence`, `spoofing_likelihood`, and `command_reissue_path` fields for every command-channel recommendation.
+- For high-impact command actions, require dual-channel verification before recommending execution.
+- If provenance confidence drops below threshold, downgrade to advisory-only and escalate to command decision authority.
 
 ## Guardrails
 

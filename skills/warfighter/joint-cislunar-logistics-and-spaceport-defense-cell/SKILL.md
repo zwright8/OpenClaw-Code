@@ -49,7 +49,6 @@ description: Support warfighter planning for cislunar logistics continuity and s
 ## Domain Continuity Overrides (2026-03-10, Cislunar Logistics Hardening)
 
 - Add cross-check packet references `DPL-CISLUNAR-LOGISTICS-DEFENSE-001` and `DPL-ORBITAL-REFUEL-RENDEZVOUS-PROTECTION-001` for high-impact cislunar recommendations.
-- For orbital refuel defense scenarios, prioritize `tool_suite_id=ts-cislunar-logistics-orbital-refuel-defense-v1` with `protocol_stack_id=ps-cislunar-logistics-orbital-refuel-defense-stack-v1`.
 - Require explicit `launch_window_conflict_state`, `orbital_refuel_dependency`, and `spaceport_force_protection_tier` fields for each critical COA.
 - If orbital conflict confidence or launch-window stability is below threshold, recommend only advisory branches with command decision gates.
 
