@@ -144,3 +144,9 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Adaptive Continuity and Cross-Domain Assurance Addendum)
+
+- Add `tool_suite_id=ts-maritime-port-cyber-evacuation-bridge-v1` + `protocol_stack_id=ps-maritime-port-cyber-evacuation-bridge-stack-v1` when coalition data fabric workflows must preserve civilian evacuation throughput through cyber-disrupted ports.
+- Add `tool_suite_id=ts-forward-surgical-oxygen-power-coupling-v1` + `protocol_stack_id=ps-forward-surgical-oxygen-power-coupling-stack-v1` when interoperability gaps impact forward surgical utility resilience.
+- Add `tool_suite_id=ts-bulk-fuel-contamination-recertification-v1` + `protocol_stack_id=ps-bulk-fuel-contamination-recertification-stack-v1` when coalition fuel-quality data must be reconciled before joint sortie and maneuver release.

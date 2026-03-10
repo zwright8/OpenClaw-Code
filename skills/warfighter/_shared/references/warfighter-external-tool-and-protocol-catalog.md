@@ -4247,3 +4247,139 @@ external_binding:
 - Messaging: NIMS/ICS + USMTF + API/JSON convoy and install-state events.
 - Transport: homeland defense restoration network + civil utility coordination bus + voice/readback fallback.
 - Security: signed escort and install directives + dual-operator safety confirmations + immutable restoration audit chain.
+
+## Tool Suite Catalog (2026-03-10 Domain Expansion - Adaptive Continuity and Cross-Domain Assurance)
+
+### `ts-contested-drone-humanitarian-corridor-v1`
+- Use for: contested drone corridor management while preserving humanitarian access under dynamic threat and weather pressure.
+- Primary tools: air corridor scheduler, drone route conflict analyzer, humanitarian access mission board.
+- Cross-check tools: independent airspace conflict validator and alternate civilian aviation notice channel.
+- Typical products: deconfliction matrix, relief flight protected windows, emergency reroute trigger map.
+
+### `ts-fuel-microgrid-islanded-ops-v1`
+- Use for: synchronizing fuel and islanded microgrid operations when grid segments fail under attack.
+- Primary tools: microgrid islanding orchestrator, tactical fuel inventory planner, critical-load prioritization board.
+- Cross-check tools: independent generator health monitor and alternate infrastructure status mirror.
+- Typical products: islanding sequence order, critical-load continuity board, restoration branch ladder.
+
+### `ts-expeditionary-datacenter-signature-control-v1`
+- Use for: expeditionary datacenter thermal/electromagnetic signature control with coalition compute continuity.
+- Primary tools: datacenter emissions monitor, workload relocation orchestrator, compute survivability planner.
+- Cross-check tools: independent RF signature scan and alternate thermal anomaly tracker.
+- Typical products: signature discipline posture brief, compute failover sequence, emissions exception log.
+
+### `ts-maritime-autonomous-decoy-screen-v1`
+- Use for: maritime autonomous decoy screen coordination to absorb targeting pressure on high-value units.
+- Primary tools: decoy disposition planner, maritime threat timeline engine, convoy protection board.
+- Cross-check tools: independent decoy effectiveness analyzer and alternate vessel tracking feed.
+- Typical products: decoy employment matrix, threat-adaptive maneuver branch plan, convoy survivability trigger board.
+
+### `ts-runway-crater-autonomy-verification-v1`
+- Use for: autonomy-assisted runway crater repair verification before sortie regeneration decisions.
+- Primary tools: runway damage classifier, repair sequence optimizer, sortie generation risk board.
+- Cross-check tools: independent pavement integrity survey and alternate engineering adjudication queue.
+- Typical products: crater repair verification packet, safety gate timeline, sortie reactivation confidence ladder.
+
+### `ts-ai-model-weight-supply-chain-assurance-v1`
+- Use for: battlefield AI model-weight provenance assurance and tamper detection across distributed fielding channels.
+- Primary tools: model artifact provenance ledger, cryptographic integrity attestor, deployment release board.
+- Cross-check tools: independent behavior drift evaluator and alternate signed artifact mirror.
+- Typical products: model trust release packet, tamper-risk matrix, fielding go/no-go gate log.
+
+### `ts-denied-sensor-shooter-translation-confidence-v1`
+- Use for: denied-mode sensor-to-shooter translation confidence management across mixed standards.
+- Primary tools: translation confidence engine, latency adjudication board, kill-chain timing monitor.
+- Cross-check tools: independent schema validation harness and alternate coordinate integrity checker.
+- Typical products: translation confidence board, latency-fidelity tradeoff map, branch trigger ledger.
+
+### `ts-maritime-port-cyber-evacuation-bridge-v1`
+- Use for: sustaining civilian maritime evacuation throughput during port cyber disruption.
+- Primary tools: embarkation throughput planner, port cyber incident board, coalition manifest synchronizer.
+- Cross-check tools: independent berth assignment monitor and alternate manual embarkation ledger.
+- Typical products: evacuation bridge sequence, throughput continuity status board, risk-bounded passenger routing plan.
+
+### `ts-forward-surgical-oxygen-power-coupling-v1`
+- Use for: forward surgical oxygen and power coupling under contested sustainment conditions.
+- Primary tools: oxygen production status service, surgical power resilience monitor, casualty throughput planner.
+- Cross-check tools: independent med utility reconciliation queue and alternate manual triage-capacity board.
+- Typical products: utility coupling resilience matrix, surgical throughput branch triggers, contingency load order.
+
+### `ts-orbital-ground-jam-geometry-reconstruction-v1`
+- Use for: reconstructing interference geometry across orbital and terrestrial links for comms restoration.
+- Primary tools: jammer triangulation engine, orbital-ground link analyzer, comm path recovery planner.
+- Cross-check tools: independent RF geolocation board and alternate space weather interference model.
+- Typical products: jam geometry overlay, comm-path reconstitution ladder, attribution confidence packet.
+
+### `ts-bulk-fuel-contamination-recertification-v1`
+- Use for: contaminated bulk-fuel countermeasures, segregation, and recertification under high operational tempo.
+- Primary tools: fuel contamination classifier, recertification workflow board, sortie fuel allocation planner.
+- Cross-check tools: independent sample-chain audit queue and alternate fuel point validation service.
+- Typical products: contamination response matrix, recertification release ladder, mission fuel-risk timeline.
+
+### `ts-rail-fuel-water-cascading-failure-v1`
+- Use for: cascading-failure detection and stabilization across rail, fuel, and water mobilization nodes.
+- Primary tools: infrastructure dependency graph, cascading outage predictor, restoration synchronization board.
+- Cross-check tools: independent utility telemetry monitor and alternate rail throughput validator.
+- Typical products: dependency risk map, critical-node stabilization sequence, mobilization continuity branch plan.
+
+## Protocol Stack Catalog (2026-03-10 Domain Expansion - Adaptive Continuity and Cross-Domain Assurance)
+
+### `ps-contested-drone-humanitarian-corridor-stack-v1`
+- Messaging: USMTF + API/JSON corridor conflict events + OGC route overlays.
+- Transport: joint airspace coordination bus + humanitarian movement exchange + secure voice fallback.
+- Security: signed corridor updates + dual-confirm no-fly override gates + immutable deconfliction audit chain.
+
+### `ps-fuel-microgrid-islanded-ops-stack-v1`
+- Messaging: USMTF + NIMS/ICS + API/JSON islanding status events.
+- Transport: installation utility operations network + tactical sustainment exchange + voice/readback fallback.
+- Security: signed load-shedding directives + dual-approval restoration transitions + immutable continuity ledger.
+
+### `ps-expeditionary-datacenter-signature-control-stack-v1`
+- Messaging: USMTF + API/JSON emissions telemetry + XML workload migration records.
+- Transport: mission compute assurance bus + coalition interoperability gateway + delayed-sync fallback.
+- Security: signed emissions exceptions + role-scoped workload controls + immutable signature-governance audit.
+
+### `ps-maritime-autonomous-decoy-screen-stack-v1`
+- Messaging: USMTF + AIS/NMEA + API/JSON decoy posture events.
+- Transport: maritime operations exchange + fleet deception control link + disconnected fallback sync.
+- Security: signed decoy tasking packets + authority-gated deception transitions + immutable maritime decision chronology.
+
+### `ps-runway-crater-autonomy-verification-stack-v1`
+- Messaging: USMTF + API/JSON runway assessment events + OGC airfield repair overlays.
+- Transport: engineering mission network + airfield operations bus + delayed-report fallback.
+- Security: signed repair verification checkpoints + dual-approval sortie release gate + immutable safety evidence ledger.
+
+### `ps-ai-model-weight-supply-chain-assurance-stack-v1`
+- Messaging: USMTF + API/JSON model integrity events + signed artifact manifests.
+- Transport: mission software assurance exchange + deployment control network + out-of-band validation fallback.
+- Security: signed artifact attestations + dual-approval release controls + immutable model provenance chain.
+
+### `ps-denied-sensor-shooter-translation-confidence-stack-v1`
+- Messaging: USMTF + Link 16 J-series + API/JSON translation confidence updates.
+- Transport: kill-chain coordination bus + tactical data-link exchange + degraded message relay fallback.
+- Security: signed translation confidence assertions + cross-source threshold gates + immutable translation audit log.
+
+### `ps-maritime-port-cyber-evacuation-bridge-stack-v1`
+- Messaging: NIMS/ICS + USMTF + API/JSON embarkation and berth-state events.
+- Transport: port operations coordination exchange + coalition evacuation portal + manual manifest fallback.
+- Security: signed embarkation state updates + dual-confirm berth reassignment gates + immutable passenger accountability ledger.
+
+### `ps-forward-surgical-oxygen-power-coupling-stack-v1`
+- Messaging: USMTF + HL7/FHIR + API/JSON utility and patient-capacity events.
+- Transport: tactical med-reg exchange + expeditionary utility operations bus + disconnected med-log fallback.
+- Security: signed surgical utility status updates + role-scoped medical data controls + immutable treatment continuity record.
+
+### `ps-orbital-ground-jam-geometry-reconstruction-stack-v1`
+- Messaging: USMTF + API/JSON RF geolocation events + CCSDS link-status telemetry.
+- Transport: space-ground integration exchange + joint spectrum operations bus + delayed-sync fallback.
+- Security: signed interference attribution packets + dual-approval comm-path reroute gates + immutable restoration chronology.
+
+### `ps-bulk-fuel-contamination-recertification-stack-v1`
+- Messaging: USMTF + API/JSON fuel integrity events + XML recertification records.
+- Transport: theater sustainment exchange + aviation fuel assurance portal + manual sample-report fallback.
+- Security: signed contamination alerts + dual-approval recertification release gates + immutable sample chain-of-custody log.
+
+### `ps-rail-fuel-water-cascading-failure-stack-v1`
+- Messaging: NIMS/ICS + USMTF + API/JSON infrastructure dependency alerts.
+- Transport: homeland defense restoration network + transportation utility coordination bus + voice/readback fallback.
+- Security: signed stabilization directives + dual-approval node recovery transitions + immutable cascading-event audit chain.

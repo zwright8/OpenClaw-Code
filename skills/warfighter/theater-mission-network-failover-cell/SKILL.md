@@ -145,3 +145,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Adaptive Continuity and Cross-Domain Assurance Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-datacenter-signature-control-v1` + `protocol_stack_id=ps-expeditionary-datacenter-signature-control-stack-v1` when mission network failover must preserve low-signature compute operations.
+- Add `tool_suite_id=ts-orbital-ground-jam-geometry-reconstruction-v1` + `protocol_stack_id=ps-orbital-ground-jam-geometry-reconstruction-stack-v1` when degraded links require orbital-ground jamming geometry reconstruction.
+- Add `tool_suite_id=ts-denied-sensor-shooter-translation-confidence-v1` + `protocol_stack_id=ps-denied-sensor-shooter-translation-confidence-stack-v1` when cross-domain failover impacts kill-chain translation integrity.

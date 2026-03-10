@@ -770,3 +770,33 @@ Every skill output should include:
 - Railway air-defense crossing prioritization + strategic military rail network sabotage recovery + integrated air and missile defense cell
 - Coalition battlefield spectrum legal attribution + spectrum interference resolution + coalition electronic order of battle and emitter identity
 - Homeland transformer escort/install + civil power grid loadshedding military support + infrastructure resilience priority-of-life restoration
+
+## New Expansion Wave (2026-03-10, Adaptive Continuity and Cross-Domain Assurance)
+
+- joint-contested-drone-corridor-humanitarian-confliction-cell
+- theater-hardened-fuel-microgrid-islanded-operations-cell
+- coalition-expeditionary-data-center-emissions-and-signature-control-cell
+- joint-maritime-autonomous-decoy-screen-coordination-cell
+- theater-rapid-runway-crater-autonomy-verification-cell
+- strategic-battlefield-ai-model-weight-supply-chain-assurance-cell
+- joint-denied-sensor-to-shooter-translation-confidence-cell
+- coalition-civilian-maritime-port-cyber-evacuation-bridge-cell
+- tactical-forward-surgical-oxygen-and-power-coupling-cell
+- joint-orbital-ground-link-jam-geometry-reconstruction-cell
+- theater-bulk-fuel-contamination-countermeasure-and-recertification-cell
+- homeland-defense-rail-fuel-water-node-cascading-failure-cell
+
+## Updated Pairings (2026-03-10, Adaptive Continuity and Cross-Domain Assurance)
+
+- Contested drone corridor humanitarian confliction + tactical UAS traffic management + population protection/NEO deconfliction
+- Hardened fuel microgrid islanding + operational energy resilience + strategic fuel refinery restart
+- Expeditionary datacenter signature control + mission network failover + coalition data-fabric interoperability
+- Maritime autonomous decoy screen coordination + anti-ship missile defense + maritime chokepoint convoy protection
+- Rapid runway crater autonomy verification + expeditionary runway repair + coalition austere runway FOD/debris clearance
+- AI model weight supply-chain assurance + mission-assured software factory support + AI model governance and mission assurance
+- Denied sensor-to-shooter translation confidence + joint targeting standards governance + kill-chain clock synchronization
+- Port cyber evacuation bridge + coalition disaster-relief dual-use airport control + humanitarian sea bridge assurance
+- Forward surgical oxygen/power coupling + coalition forward medical oxygen assurance + contested medevac airbridge prioritization
+- Orbital-ground jam geometry reconstruction + space domain awareness and SATCOM defense + spectrum interference resolution
+- Bulk fuel contamination recertification + aviation fuel integrity restoration + joint FARP under drone threat
+- Rail/fuel/water cascading failure management + strategic military rail sabotage recovery + infrastructure priority-of-life restoration
