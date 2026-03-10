@@ -67,6 +67,10 @@ const DEFAULT_TERMINAL_TASK_RETENTION = Object.freeze({
     maxTasks: 2_000,
     sweepLimit: 200
 });
+const DEFAULT_QUEUE_CAPACITY = Object.freeze({
+    maxOpenTasks: 2_000,
+    maxOpenTasksPerTarget: 500
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -467,6 +471,40 @@ function resolveTerminalTaskRetention(value) {
     };
 }
 
+function resolveQueueCapacity(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_QUEUE_CAPACITY,
+            maxOpenTasks: null,
+            maxOpenTasksPerTarget: null
+        };
+    }
+
+    const maxOpenTasksRaw = value.maxOpenTasks;
+    const maxOpenTasksPerTargetRaw = value.maxOpenTasksPerTarget;
+    const maxOpenTasks = maxOpenTasksRaw === null || maxOpenTasksRaw === undefined
+        ? null
+        : Math.max(1, Math.floor(clampPositiveNumber(maxOpenTasksRaw, DEFAULT_QUEUE_CAPACITY.maxOpenTasks)));
+    const maxOpenTasksPerTarget = maxOpenTasksPerTargetRaw === null || maxOpenTasksPerTargetRaw === undefined
+        ? null
+        : Math.max(
+            1,
+            Math.floor(
+                clampPositiveNumber(
+                    maxOpenTasksPerTargetRaw,
+                    DEFAULT_QUEUE_CAPACITY.maxOpenTasksPerTarget
+                )
+            )
+        );
+
+    return {
+        enabled: maxOpenTasks !== null || maxOpenTasksPerTarget !== null,
+        maxOpenTasks,
+        maxOpenTasksPerTarget
+    };
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -561,6 +599,7 @@ export class TaskOrchestrator {
         adaptiveConcurrency = null,
         dispatchDeduplication = null,
         terminalTaskRetention = null,
+        queueCapacity = null,
         transportSendTimeoutMs = 10_000,
         random = Math.random,
         now = Date.now,
@@ -622,6 +661,7 @@ export class TaskOrchestrator {
             : null;
         this.dispatchDeduplication = resolveDispatchDeduplication(dispatchDeduplication);
         this.terminalTaskRetention = resolveTerminalTaskRetention(terminalTaskRetention);
+        this.queueCapacity = resolveQueueCapacity(queueCapacity);
         this.terminalTasksPruned = 0;
         this.transportSendTimeoutMs = Number.isFinite(transportSendTimeoutMs) && Number(transportSendTimeoutMs) > 0
             ? Number(transportSendTimeoutMs)
@@ -1144,6 +1184,66 @@ export class TaskOrchestrator {
         return null;
     }
 
+    _countOpenTasks(target = null) {
+        let count = 0;
+        for (const record of this.tasks.values()) {
+            if (TERMINAL_STATUSES.has(record.status)) continue;
+            if (target && record.target !== target) continue;
+            count += 1;
+        }
+        return count;
+    }
+
+    _assertQueueCapacity(target, nowMs) {
+        if (!this.queueCapacity.enabled) return;
+
+        const maxOpenTasks = this.queueCapacity.maxOpenTasks;
+        if (Number.isFinite(maxOpenTasks)) {
+            const openTotal = this._countOpenTasks();
+            if (openTotal >= Number(maxOpenTasks)) {
+                this._emitAudit('task_capacity_rejected', {
+                    target,
+                    scope: 'global',
+                    openTasks: openTotal,
+                    maxOpenTasks: Number(maxOpenTasks)
+                }, nowMs);
+                throw new TaskOrchestratorError(
+                    'CAPACITY_EXCEEDED',
+                    `Open task capacity exceeded (${openTotal}/${Number(maxOpenTasks)})`,
+                    {
+                        target,
+                        scope: 'global',
+                        openTasks: openTotal,
+                        maxOpenTasks: Number(maxOpenTasks)
+                    }
+                );
+            }
+        }
+
+        const maxOpenTasksPerTarget = this.queueCapacity.maxOpenTasksPerTarget;
+        if (Number.isFinite(maxOpenTasksPerTarget)) {
+            const openForTarget = this._countOpenTasks(target);
+            if (openForTarget >= Number(maxOpenTasksPerTarget)) {
+                this._emitAudit('task_capacity_rejected', {
+                    target,
+                    scope: 'target',
+                    openTasks: openForTarget,
+                    maxOpenTasksPerTarget: Number(maxOpenTasksPerTarget)
+                }, nowMs);
+                throw new TaskOrchestratorError(
+                    'CAPACITY_EXCEEDED',
+                    `Open task capacity exceeded for target ${target} (${openForTarget}/${Number(maxOpenTasksPerTarget)})`,
+                    {
+                        target,
+                        scope: 'target',
+                        openTasks: openForTarget,
+                        maxOpenTasksPerTarget: Number(maxOpenTasksPerTarget)
+                    }
+                );
+            }
+        }
+    }
+
     _resolveTerminalTimestamp(record) {
         if (Number.isFinite(Number(record?.closedAt))) {
             return Number(record.closedAt);
@@ -1656,6 +1756,8 @@ export class TaskOrchestrator {
             }, createdAt);
             return this.getTask(duplicateRecord.taskId);
         }
+
+        this._assertQueueCapacity(request.target, createdAt);
 
         const overallDeadlineAt = this._resolveOverallDeadlineAt(request.createdAt);
         const record = {
@@ -2573,10 +2675,18 @@ export class TaskOrchestrator {
                 sweepLimit: this.terminalTaskRetention.sweepLimit,
                 prunedTotal: this.terminalTasksPruned
             },
+            queueCapacity: {
+                enabled: this.queueCapacity.enabled,
+                maxOpenTasks: this.queueCapacity.maxOpenTasks,
+                maxOpenTasksPerTarget: this.queueCapacity.maxOpenTasksPerTarget,
+                openTasksTotal: 0,
+                trackedTargets: 0
+            },
             transportSendTimeoutMs: this.transportSendTimeoutMs
         };
 
         let attemptsTotal = 0;
+        const openTargets = new Set();
         for (const record of this.tasks.values()) {
             attemptsTotal += record.attempts;
             metrics.byStatus[record.status] = (metrics.byStatus[record.status] || 0) + 1;
@@ -2585,8 +2695,13 @@ export class TaskOrchestrator {
                 metrics.terminal++;
             } else {
                 metrics.open++;
+                metrics.queueCapacity.openTasksTotal += 1;
+                if (typeof record.target === 'string' && record.target) {
+                    openTargets.add(record.target);
+                }
             }
         }
+        metrics.queueCapacity.trackedTargets = openTargets.size;
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))

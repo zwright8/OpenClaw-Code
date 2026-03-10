@@ -1609,6 +1609,98 @@ test('dispatchTask re-dispatches duplicate completed requests after terminal ded
     assert.equal(sent.length, 2);
 });
 
+test('dispatchTask rejects new tasks when global queue capacity is exceeded', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        queueCapacity: {
+            maxOpenTasks: 1
+        }
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-global',
+        task: 'Build daily ops digest'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-capacity-global-2',
+            task: 'Build second digest'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'CAPACITY_EXCEEDED');
+            assert.equal(error.details.scope, 'global');
+            return true;
+        }
+    );
+});
+
+test('dispatchTask enforces per-target queue capacity while allowing other targets', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        queueCapacity: {
+            maxOpenTasksPerTarget: 1
+        }
+    });
+
+    await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-target-a',
+        task: 'Target A task 1'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:worker-capacity-target-a',
+            task: 'Target A task 2'
+        }),
+        (error) => {
+            assert.equal(error instanceof TaskOrchestratorError, true);
+            assert.equal(error.code, 'CAPACITY_EXCEEDED');
+            assert.equal(error.details.scope, 'target');
+            return true;
+        }
+    );
+
+    const otherTarget = await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-target-b',
+        task: 'Target B task 1'
+    });
+
+    assert.equal(otherTarget.status, 'dispatched');
+});
+
+test('dispatchTask still coalesces duplicates when queue capacity is full', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        dispatchDeduplication: {
+            windowMs: 60_000,
+            coalesceOpenUntilTerminal: true
+        },
+        queueCapacity: {
+            maxOpenTasks: 1
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-dedupe',
+        task: 'Generate board update',
+        context: { week: '2026-W11' }
+    });
+
+    const duplicate = await orchestrator.dispatchTask({
+        target: 'agent:worker-capacity-dedupe',
+        task: 'Generate board update',
+        context: { week: '2026-W11' }
+    });
+
+    assert.equal(duplicate.taskId, first.taskId);
+    assert.equal(orchestrator.getMetrics().open, 1);
+});
+
 test('runMaintenance prunes old terminal tasks when terminalTaskRetention.maxAgeMs is configured', async () => {
     const clock = createClock(170_000);
     const orchestrator = new TaskOrchestrator({

@@ -27,6 +27,7 @@ Adds pre-dispatch safety policies with explicit deny decisions and sensitive pay
 Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
 Adds dispatch idempotency controls (`dispatchDeduplication`) to suppress duplicate in-flight submissions and optionally replay recent terminal matches.
+Adds queue-capacity admission controls (`queueCapacity`) to fail fast on overload with global and per-target open-task limits.
 Retry hint parsing now supports `retry-after-ms`/`x-ms-retry-after-ms`, `ratelimit-reset`, and `x-ratelimit-reset-{requests|tokens}` (including duration literals like `17ms` / `6m0s`), while preferring conservative max-delay hints when multiple are present.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
@@ -364,6 +365,10 @@ const orchestrator = new TaskOrchestrator({
     maxTasks: 2_000, // optional: cap retained terminal tasks in memory
     sweepLimit: 200 // optional: max terminal tasks pruned per maintenance pass
   },
+  queueCapacity: {
+    maxOpenTasks: 2_000, // optional: global fail-fast limit for non-terminal tasks
+    maxOpenTasksPerTarget: 500 // optional: per-target guardrail to isolate hotspots
+  },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -404,6 +409,7 @@ When combined with `dispatchDeduplication.inFlightWindowMs`, that value acts as 
 Cancelled tasks are intentionally excluded from terminal replay, so an operator-aborted task never suppresses a fresh follow-up dispatch.
 `transportSendTimeoutMs` bounds each `transport.send()` attempt so hung downstream transports fail fast and re-enter existing retry/circuit-breaker handling instead of stalling orchestration loops.
 `terminalTaskRetention` keeps long-running bot processes from accumulating unbounded terminal task history by pruning old/excess completed, failed, rejected, and timed-out records during maintenance.
+`queueCapacity` adds admission control with global (`maxOpenTasks`) and per-target (`maxOpenTasksPerTarget`) limits so overload is rejected early (`CAPACITY_EXCEEDED`) instead of allowing unbounded open-task growth.
 `cancelTask(taskId, options)` provides explicit cooperative cancellation for stale/superseded work and emits a best-effort cancellation signal (`task_cancel`) to workers after a task has been dispatched.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.
