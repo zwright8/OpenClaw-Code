@@ -1177,3 +1177,29 @@ Every skill output should include:
 - Coalition Arctic under-ice logistics corridor + casualty movement regulation + Arctic sustainment planning
 - Sensor ghost-track adjudication + cognitive EW disinformation convergence + mission risk decision support
 - Homeland ground-station restoration + commercial SATCOM priority restoration + theater mission network failover
+
+## New Expansion Wave (2026-03-10, Cislunar Contention, Grid Shock Recovery, and Coalition Cyber-Fires Governance)
+
+- joint-cislunar-logistics-and-orbital-refueling-defense-cell
+- theater-cognitive-ew-psyops-synchronization-cell
+- homeland-electromagnetic-grid-geomagnetic-disturbance-recovery-cell
+- coalition-contested-orbital-servicing-and-rendezvous-safety-cell
+- strategic-defense-semiconductor-fab-sabotage-recovery-cell
+- joint-autonomous-undersea-data-mule-and-exfiltration-denial-cell
+- tactical-forward-arctic-fiber-microwave-hybrid-backhaul-cell
+- theater-denied-space-weather-pnt-recovery-cell
+- joint-supply-chain-dna-tag-authenticity-and-diversion-hunt-cell
+- coalition-joint-cyber-fires-collateral-estimation-cell
+
+## Updated Pairings (2026-03-10, Cislunar Contention, Grid Shock Recovery, and Coalition Cyber-Fires Governance)
+
+- Cislunar logistics and orbital refueling defense + contested space launch reconstitution + orbital spectrum conflict resolution
+- Cognitive-EW-PSYOPS synchronization + cognitive warfare red/blue assessment + information integrity and attribution
+- Homeland geomagnetic grid recovery + NC3 hardened fiber failover assurance + strategic cyber reserve mobilization
+- Coalition orbital servicing rendezvous safety + allied space object collision avoidance + coalition interoperability coordination
+- Defense semiconductor fab sabotage recovery + strategic industrial mobilization readiness + supply-chain risk monitoring
+- Autonomous undersea data-mule exfiltration denial + undersea chokepoint sensor barrier operations + maritime attribution cells
+- Arctic fiber-microwave hybrid backhaul + denied comms relay balloon network + theater mission network failover
+- Denied space-weather PNT recovery + quantum timing crosswalk resilience + precision navigation terrain-referenced reversion
+- Supply-chain DNA-tag authenticity/diversion hunt + sanctions disruption + critical mineral anti-smuggling operations
+- Coalition cyber-fires collateral estimation + targeting governance and CDE + coalition legal interoperability and no-strike assurance

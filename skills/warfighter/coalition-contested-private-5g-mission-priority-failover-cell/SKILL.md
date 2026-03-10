@@ -151,3 +151,9 @@ Use these tool categories as the default stack for this skill: private-5G policy
 ## Domain Toolchain Override (2026-03-10, Multi-Domain Continuity Expansion)
 
 - Add `tool_suite_id=ts-coalition-private-5g-mission-failover-v1` + `protocol_stack_id=ps-coalition-private-5g-mission-failover-stack-v1` when producing critical recommendations for this mission domain.
+
+## Domain Packet Override (2026-03-10, Coalition Mission-Priority Failover Tightening)
+
+- Default packet IDs for critical recommendations: `DPL-COALITION-PRIVATE5G-MISSION-FAILOVER-001`, `DPL-COALITION-PRIVATE5G-QOS-PREEMPTION-001`.
+- Require explicit host-nation and coalition releasability validation for any preemption recommendation.
+- If translation fidelity, authority basis, or packet provenance is uncertain, downgrade to advisory-only with escalation triggers.

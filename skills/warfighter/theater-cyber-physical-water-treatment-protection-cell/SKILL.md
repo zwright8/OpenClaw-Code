@@ -74,3 +74,9 @@ For each critical tool recommendation, include objective, required inputs, query
 - Separate facts, assessed judgments, and unknowns.
 - Identify legal, policy, ROE, safety, and coalition constraints early.
 - Do not provide weapon-employment procedures or bypasses to safeguards.
+
+## Domain Validation Override (2026-03-10, Potable Safety Enforcement)
+
+- Add mandatory potable-safety gate checks to each recommendation using packet IDs `DPL-WATER-TREATMENT-PROTECTION-001` and `DPL-WATER-TREATMENT-CONTINUITY-001`.
+- Require civil-military concurrence evidence before recommending distribution-profile changes that affect civilian access.
+- If water-quality confidence or chain-of-custody evidence falls below threshold, issue life-safety-only degraded branch.

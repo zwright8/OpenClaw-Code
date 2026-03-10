@@ -151,3 +151,9 @@ Use these tool categories as the default stack for this skill: hardened transpor
 ## Domain Toolchain Override (2026-03-10, Multi-Domain Continuity Expansion)
 
 - Add `tool_suite_id=ts-nc3-hardened-fiber-failover-assurance-v1` + `protocol_stack_id=ps-nc3-hardened-fiber-failover-assurance-stack-v1` when producing critical recommendations for this mission domain.
+
+## Domain Packet Override (2026-03-10, NC3 Acknowledgment Integrity Tightening)
+
+- Default packet IDs for critical recommendations: `DPL-NC3-HARDENED-FIBER-FAILOVER-001`, `DPL-NC3-ACK-INTEGRITY-CHAIN-001`.
+- Require a dual-confirm acknowledgment chain before any recommendation that changes NC3 routing posture.
+- If packet freshness is stale or acknowledgment evidence is incomplete, downgrade to advisory-only and request commander decision.

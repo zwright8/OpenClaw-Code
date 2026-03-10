@@ -6099,3 +6099,105 @@ external_binding:
 - Primary tools: counter-UAS C2 systems, RF/sensor meshes, urban 3D line-of-sight planners.
 - Cross-check tools: independent false-track verifier and alternate no-strike geofence validator.
 - Typical products: rooftop defense layout, engagement authority matrix, civilian-risk mitigation plan.
+
+## Catalog Expansion (2026-03-10, Cislunar Defense, Cognitive-EW Fusion, and Strategic Supply Assurance)
+
+### `ps-cislunar-logistics-orbital-refuel-defense-stack-v1`
+- Protocols: `USMTF`, `CCSDS`, `Link 16 J-series`, `API/JSON`.
+- Use for: cislunar logistics warning exchange, orbital refuel rendezvous protection, and coalition space support coordination.
+
+### `ps-cognitive-ew-psyops-sync-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `CoT`, `API/JSON`.
+- Use for: cognitive effects timing, EW disruption synchronization, and PSYOPS release deconfliction.
+
+### `ps-homeland-grid-geomagnetic-recovery-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: geomagnetic disturbance alerts, blackstart prioritization, and critical defense service restoration.
+
+### `ps-coalition-orbital-servicing-rendezvous-safety-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NATO APP-11/ADatP-3`, `API/JSON`.
+- Use for: coalition orbital servicing coordination, rendezvous safety assurance, and proximity-operation deconfliction.
+
+### `ps-defense-semiconductor-fab-sabotage-recovery-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, industrial telemetry schemas, `API/JSON`.
+- Use for: defense fab sabotage response, trusted-chip production recovery, and force-priority allocation signaling.
+
+### `ps-autonomous-undersea-data-mule-denial-stack-v1`
+- Protocols: `AIS/NMEA`, `CoT`, `USMTF`, `API/JSON`.
+- Use for: undersea exfiltration route detection, autonomous data-mule interdiction cueing, and subsea area protection.
+
+### `ps-arctic-fiber-microwave-hybrid-backhaul-stack-v1`
+- Protocols: `USMTF`, `CoT`, `STANAG` messaging profiles, `API/JSON`.
+- Use for: Arctic hybrid backhaul status exchange, contested-weather failover signaling, and forward C2 continuity.
+
+### `ps-denied-space-weather-pnt-recovery-stack-v1`
+- Protocols: `USMTF`, signed timing attestations, `Link 16 J-series`, `API/JSON`.
+- Use for: space-weather denial updates, theater PNT confidence reconstitution, and timing fallback coordination.
+
+### `ps-supply-chain-dna-tag-diversion-hunt-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, chain-of-custody envelopes, `API/JSON`.
+- Use for: DNA-tag authenticity checks, diversion-node detection, and military supply integrity adjudication.
+
+### `ps-coalition-cyber-fires-collateral-estimation-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3`, `STIX/TAXII`, `API/JSON`.
+- Use for: coalition cyber-fires collateral estimation, legal review exchange, and cross-domain deconfliction.
+
+### `ts-cislunar-logistics-orbital-refuel-defense-v1`
+- Use for: joint cislunar logistics protection and orbital refueling defense planning.
+- Primary tools: cislunar traffic monitors, orbital rendezvous safety analyzers, mission-priority logistics boards.
+- Cross-check tools: independent conjunction risk verifier and alternate fuel-transfer assurance ledger.
+- Typical products: cislunar threat timeline, rendezvous protection matrix, logistics continuity branches.
+
+### `ts-cognitive-ew-psyops-sync-v1`
+- Use for: synchronized cognitive warfare, EW actions, and PSYOPS release governance.
+- Primary tools: narrative analytics platforms, EW telemetry fusion services, influence release schedulers.
+- Cross-check tools: independent message-effects assessor and alternate EW-correlation board.
+- Typical products: synchronized effects calendar, escalation risk map, deconfliction packet.
+
+### `ts-homeland-grid-geomagnetic-recovery-v1`
+- Use for: homeland geomagnetic disturbance response and military-priority grid restoration.
+- Primary tools: grid-state estimators, geomagnetic impact forecasters, emergency restoration orchestrators.
+- Cross-check tools: independent load-balancing verifier and alternate blackstart status board.
+- Typical products: disturbance consequence matrix, restoration priority plan, defense continuity timeline.
+
+### `ts-coalition-orbital-servicing-rendezvous-safety-v1`
+- Use for: coalition orbital servicing safety and contested rendezvous deconfliction.
+- Primary tools: orbital ephemeris services, rendezvous risk analyzers, coalition mission coordination boards.
+- Cross-check tools: independent conjunction screening service and alternate coalition compliance ledger.
+- Typical products: servicing safety matrix, proximity-operation windows, coalition decision log.
+
+### `ts-defense-semiconductor-fab-sabotage-recovery-v1`
+- Use for: defense semiconductor fab sabotage containment and trusted production recovery.
+- Primary tools: fab telemetry anomaly detectors, industrial forensics platforms, trusted-chip allocation boards.
+- Cross-check tools: independent process-integrity verifier and alternate supply risk adjudication board.
+- Typical products: fab recovery phases, trusted output confidence report, mission-priority chip allocation plan.
+
+### `ts-autonomous-undersea-data-mule-denial-v1`
+- Use for: autonomous undersea data-mule detection and exfiltration denial.
+- Primary tools: subsea track-fusion services, anomaly route detectors, undersea patrol tasking boards.
+- Cross-check tools: independent acoustic signature verifier and alternate exfiltration risk tracker.
+- Typical products: detection confidence ladder, interdiction sequence, subsea denial branch map.
+
+### `ts-arctic-fiber-microwave-hybrid-backhaul-v1`
+- Use for: Arctic forward hybrid backhaul resilience across fiber and microwave paths.
+- Primary tools: transport path telemetry monitors, microwave alignment planners, failover orchestrators.
+- Cross-check tools: independent latency integrity board and alternate weather-risk route assessor.
+- Typical products: hybrid backhaul plan, failover trigger set, C2 continuity risk report.
+
+### `ts-denied-space-weather-pnt-recovery-v1`
+- Use for: theater PNT recovery during denied conditions amplified by severe space weather.
+- Primary tools: PNT confidence engines, timing transfer monitors, multi-source navigation adjudicators.
+- Cross-check tools: independent drift-confidence verifier and alternate maneuver risk board.
+- Typical products: PNT recovery sequence, confidence-restoration chart, maneuver constraint matrix.
+
+### `ts-supply-chain-dna-tag-diversion-hunt-v1`
+- Use for: DNA-tag authenticity verification and military supply diversion hunting.
+- Primary tools: DNA tag verification pipelines, chain-of-custody analytics, diversion-network mappers.
+- Cross-check tools: independent laboratory validation board and alternate transport anomaly detector.
+- Typical products: authenticity confidence report, diversion-node map, interdiction priorities.
+
+### `ts-coalition-cyber-fires-collateral-estimation-v1`
+- Use for: coalition cyber-fires collateral estimation and legal-risk-bounded effects planning.
+- Primary tools: collateral estimation engines, cyber effects simulators, coalition legal review workbenches.
+- Cross-check tools: independent consequence model verifier and alternate no-strike impact checker.
+- Typical products: collateral estimate matrix, legal decision packet, deconfliction branch set.

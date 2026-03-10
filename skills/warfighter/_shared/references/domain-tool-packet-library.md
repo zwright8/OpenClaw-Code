@@ -5657,3 +5657,269 @@ validation_gates:
 - output_schema: interlock pass/fail table, hold/release actions, residual risk notes
 - protocol_profile: Link 16 J-series + USMTF + OGC
 - validation_gates: confidence floor check, legal/ROE pass, authority signoff
+
+## Packet Expansion (2026-03-10, Cislunar Defense, Cognitive-EW Fusion, and Strategic Supply Assurance)
+
+### packet_id: DPL-CISLUNAR-LOGISTICS-DEFENSE-001
+- domain: joint cislunar logistics defense
+- objective: protect cislunar logistics nodes and transfers under adversary threat and coalition constraints
+- primary_tools: cislunar traffic monitor, orbital threat fusion board, logistics continuity planner
+- alternate_tools: manual cislunar transfer board and mission-priority route matrix
+- degraded_mode: mission-essential transfer windows only with expanded safety buffers
+- input_requirements: ephemeris state, threat indicators, transfer demand, coalition caveats
+- output_schema: protection timeline, prioritized transfer list, branch trigger matrix
+- protocol_profile: USMTF + CCSDS + API/JSON
+- validation_gates: conjunction risk pass, command release gate, coalition concurrence
+
+### packet_id: DPL-ORBITAL-REFUEL-RENDEZVOUS-PROTECTION-001
+- domain: orbital refuel rendezvous protection
+- objective: safeguard refueling rendezvous windows and sequence defensive posture changes
+- primary_tools: rendezvous safety analyzer, fuel-transfer status monitor, mission command board
+- alternate_tools: manual rendezvous checklist with UTC dual-confirm readbacks
+- degraded_mode: serialized refuel operations with strict no-go triggers
+- input_requirements: relative state vectors, fuel status, threat tracks, comms confidence
+- output_schema: rendezvous protection plan, hold/release conditions, assurance log
+- protocol_profile: CCSDS + Link 16 J-series + USMTF + API/JSON
+- validation_gates: geometry safety check, acknowledgment chain pass, authority signoff
+
+### packet_id: DPL-COGNITIVE-EW-PSYOPS-SYNC-001
+- domain: cognitive-ew-psyops synchronization
+- objective: align cognitive messaging, EW actions, and PSYOPS effects in a coherent schedule
+- primary_tools: narrative analytics suite, EW telemetry fusion board, release scheduler
+- alternate_tools: manual effects calendar and cross-functional approval board
+- degraded_mode: limited messaging cadence with conservative EW coupling
+- input_requirements: adversary narrative shifts, EW status, target audiences, policy constraints
+- output_schema: synchronized effects schedule, risk map, branch criteria
+- protocol_profile: USMTF + STIX/TAXII + CoT + API/JSON
+- validation_gates: policy/ROE review, fratricide messaging check, command approval
+
+### packet_id: DPL-INFLUENCE-EFFECT-DECONFLICTION-001
+- domain: influence effect deconfliction
+- objective: prevent adverse interactions between influence activities and kinetic/cyber actions
+- primary_tools: campaign deconfliction engine, event-timeline board, legal review queue
+- alternate_tools: manual deconfliction matrix and decision conference checklist
+- degraded_mode: hold-by-default on conflicting effects
+- input_requirements: planned effects, timing windows, legal caveats, audience assessments
+- output_schema: deconfliction adjudication table, release conditions, residual risk note
+- protocol_profile: USMTF + API/JSON
+- validation_gates: legal concurrence, timing conflict check, commander authorization
+
+### packet_id: DPL-GEOMAGNETIC-GRID-DISTURBANCE-001
+- domain: homeland geomagnetic disturbance response
+- objective: assess geomagnetic grid impacts and protect defense-critical power dependencies
+- primary_tools: geomagnetic forecast service, grid-state estimator, defense-priority load board
+- alternate_tools: manual critical-load worksheet and emergency restoration board
+- degraded_mode: life-safety and mission-essential power only
+- input_requirements: disturbance forecast, transformer status, critical facility load, backup availability
+- output_schema: impact assessment, prioritized mitigation actions, outage branch map
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: safety threshold check, civil-military concurrence, command approval
+
+### packet_id: DPL-GRID-EMERGENCY-BLACKSTART-PRIORITY-001
+- domain: emergency grid blackstart prioritization
+- objective: sequence blackstart actions to restore defense-critical nodes with minimal cascading risk
+- primary_tools: blackstart optimizer, restoration status board, contingency dispatch planner
+- alternate_tools: manual blackstart sequence card and dual-confirm status board
+- degraded_mode: staged restoration for command-and-safety circuits first
+- input_requirements: generation availability, transmission constraints, priority facility list, hazard map
+- output_schema: blackstart sequence, priority restoration matrix, confidence update
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: restoration safety check, integrity verification, release authority gate
+
+### packet_id: DPL-ORBITAL-SERVICING-SAFETY-001
+- domain: coalition orbital servicing safety
+- objective: enforce safe servicing plans under contested conditions and coalition legal constraints
+- primary_tools: ephemeris conflict checker, servicing mission planner, coalition ops board
+- alternate_tools: manual servicing safety board and time-window ledger
+- degraded_mode: restricted servicing windows with larger proximity margins
+- input_requirements: servicing geometry, threat posture, coalition permissions, payload state
+- output_schema: servicing safety plan, no-go criteria, coalition coordination tasks
+- protocol_profile: CCSDS + NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: conjunction pass, coalition releasability check, authority signoff
+
+### packet_id: DPL-COALITION-RPO-DECONFLICTION-001
+- domain: coalition rendezvous and proximity operations deconfliction
+- objective: prevent coalition RPO conflicts while preserving mission effectiveness
+- primary_tools: RPO deconfliction engine, alliance coordination board, telemetry integrity service
+- alternate_tools: manual RPO window matrix and coalition hotline readback process
+- degraded_mode: no-close-approach posture except mission-critical exceptions
+- input_requirements: coalition mission windows, asset tracks, confidence bounds, legal caveats
+- output_schema: deconfliction timeline, conflict resolutions, escalation triggers
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: RPO safety threshold, legal review, coalition command concurrence
+
+### packet_id: DPL-DEFENSE-SEMICONDUCTOR-FAB-RECOVERY-001
+- domain: defense semiconductor fab sabotage recovery
+- objective: restore trusted semiconductor output after sabotage with contamination controls
+- primary_tools: fab telemetry monitor, process forensics pipeline, recovery scheduler
+- alternate_tools: manual process-state board and phased recovery worksheet
+- degraded_mode: essential lines only with heightened verification steps
+- input_requirements: damage assessment, process integrity state, tooling availability, demand priorities
+- output_schema: recovery phase plan, trusted output estimate, residual risk log
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: contamination check, process control gate, strategic approval
+
+### packet_id: DPL-TRUSTED-CHIP-SUPPLY-ALLOCATION-001
+- domain: trusted chip military allocation
+- objective: allocate constrained trusted chip output to highest priority defense mission chains
+- primary_tools: demand prioritization board, supply visibility dashboard, allocation adjudicator
+- alternate_tools: manual commander-priority allocation ledger
+- degraded_mode: top-tier mission allocation only with deferred noncritical programs
+- input_requirements: inventory status, mission demand, transport constraints, risk posture
+- output_schema: allocation matrix, deferred demand queue, impact assessment
+- protocol_profile: USMTF + API/JSON
+- validation_gates: mission-priority verification, legal/policy review, strategic signoff
+
+### packet_id: DPL-UNDERSEA-DATA-MULE-DETECTION-001
+- domain: autonomous undersea data-mule detection
+- objective: detect suspicious undersea autonomous data transfer routes and platforms
+- primary_tools: acoustic anomaly detector, subsea route analytics, patrol cueing board
+- alternate_tools: manual acoustic contact ledger and fixed patrol assignment board
+- degraded_mode: high-risk zone monitoring only
+- input_requirements: acoustic traces, route history, known platform signatures, area priorities
+- output_schema: detection confidence table, suspect route map, cueing tasks
+- protocol_profile: AIS/NMEA + CoT + USMTF + API/JSON
+- validation_gates: confidence threshold pass, false-positive check, command approval
+
+### packet_id: DPL-UNDERSEA-EXFILTRATION-DENIAL-001
+- domain: undersea exfiltration denial
+- objective: deny adversary exfiltration paths while preserving friendly undersea operations
+- primary_tools: route denial planner, autonomous intercept controller, subsea COP board
+- alternate_tools: manual denial sector board and timed patrol windows
+- degraded_mode: deny-only in pre-approved high-threat sectors
+- input_requirements: suspected exfiltration routes, own-force routes, denial assets, ROE constraints
+- output_schema: denial plan, deconfliction matrix, escalation triggers
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: fratricide deconfliction check, ROE review, release authority
+
+### packet_id: DPL-ARCTIC-HYBRID-BACKHAUL-RESILIENCE-001
+- domain: Arctic hybrid backhaul resilience
+- objective: preserve forward C2 via fiber-microwave path orchestration in Arctic conditions
+- primary_tools: path health monitor, microwave link planner, failover orchestrator
+- alternate_tools: manual comms status board and route switch checklist
+- degraded_mode: mission-priority traffic only over the most reliable path
+- input_requirements: link health, weather forecast, mission traffic classes, power state
+- output_schema: resilient backhaul plan, failover triggers, service-priority matrix
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: latency threshold pass, availability gate, command concurrence
+
+### packet_id: DPL-FORWARD-BACKHAUL-FAILOVER-001
+- domain: forward backhaul failover
+- objective: execute predictable failover without command-and-control collapse
+- primary_tools: failover policy engine, network telemetry board, dependency mapper
+- alternate_tools: manual failover sequence with checkpoint callouts
+- degraded_mode: serialized failover by mission criticality
+- input_requirements: dependency graph, link status, mission priorities, site constraints
+- output_schema: failover timeline, dependency impact list, recovery verification report
+- protocol_profile: USMTF + API/JSON
+- validation_gates: dependency integrity check, acknowledgment chain, approval gate
+
+### packet_id: DPL-DENIED-SPACE-WEATHER-PNT-RECOVERY-001
+- domain: denied space-weather PNT recovery
+- objective: restore navigation/timing confidence under compounded space-weather and denial effects
+- primary_tools: PNT confidence estimator, timing crosswalk monitor, navigation fusion board
+- alternate_tools: manual nav confidence worksheet and bounded maneuver plan
+- degraded_mode: constrained maneuver envelope until confidence stabilizes
+- input_requirements: space-weather indicators, spoof/jam alerts, timing drift, mission constraints
+- output_schema: recovery sequence, confidence ladder, operational constraints
+- protocol_profile: USMTF + signed timing attestations + Link 16 J-series + API/JSON
+- validation_gates: confidence floor check, timing drift pass, command authorization
+
+### packet_id: DPL-PNT-CONFIDENCE-RECONSTITUTION-001
+- domain: PNT confidence reconstitution
+- objective: re-establish mission-usable PNT confidence through multi-source adjudication
+- primary_tools: source integrity monitor, inertial drift analyzer, fusion adjudicator
+- alternate_tools: manual source ranking board with periodic dual-control checks
+- degraded_mode: timing-critical missions only with expanded safety margins
+- input_requirements: source status, integrity scores, drift rates, mission tolerances
+- output_schema: reconstitution matrix, source trust list, branch triggers
+- protocol_profile: USMTF + API/JSON
+- validation_gates: integrity threshold, safety check, authority signoff
+
+### packet_id: DPL-DNA-TAG-AUTHENTICITY-VERIFY-001
+- domain: DNA-tag authenticity verification
+- objective: verify authenticity of DNA-tagged military supply items before release
+- primary_tools: DNA tag assay pipeline, custody ledger verifier, release decision board
+- alternate_tools: manual sample reconciliation and quarantine worksheet
+- degraded_mode: essential-use releases only with enhanced sample checks
+- input_requirements: sample IDs, custody records, baseline signatures, lot metadata
+- output_schema: authenticity verdict table, quarantine list, release decisions
+- protocol_profile: STIX/TAXII + chain-of-custody envelope + API/JSON
+- validation_gates: assay confidence pass, custody integrity check, approval role signoff
+
+### packet_id: DPL-MILITARY-SUPPLY-DIVERSION-HUNT-001
+- domain: military supply diversion hunting
+- objective: identify and prioritize diversion nodes affecting military logistics chains
+- primary_tools: diversion graph analytics, transport anomaly detector, interdiction planner
+- alternate_tools: manual node-risk matrix and route audit board
+- degraded_mode: top-risk node hunting only
+- input_requirements: shipment telemetry, custody anomalies, financial indicators, route metadata
+- output_schema: diversion-node map, interdiction priorities, confidence notes
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: confidence threshold, legal review, command release gate
+
+### packet_id: DPL-CYBER-FIRES-COLLATERAL-ESTIMATION-001
+- domain: coalition cyber-fires collateral estimation
+- objective: estimate cross-domain collateral effects from cyber-enabled fires options
+- primary_tools: collateral estimation engine, cyber effects simulator, legal review dashboard
+- alternate_tools: manual consequence worksheet and coalition legal review board
+- degraded_mode: only low-collateral options considered pending higher-fidelity analysis
+- input_requirements: target effects plan, network dependencies, protected sites, policy constraints
+- output_schema: collateral estimate table, legal caveat list, option ranking
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + STIX/TAXII + API/JSON
+- validation_gates: no-strike check, legal concurrence, commander approval
+
+### packet_id: DPL-COALITION-CYBER-EFFECT-DECONFLICTION-001
+- domain: coalition cyber effect deconfliction
+- objective: prevent unintended coalition interference across cyber and kinetic effects
+- primary_tools: deconfliction planner, coalition timing board, dependency conflict analyzer
+- alternate_tools: manual deconfliction conference matrix and readback ledger
+- degraded_mode: hold-by-default on conflicting effects windows
+- input_requirements: planned effects windows, mission dependencies, coalition caveats, authorities
+- output_schema: deconfliction decisions, hold/release triggers, residual risk ledger
+- protocol_profile: USMTF + API/JSON
+- validation_gates: dependency conflict check, authority verification, coalition concurrence
+
+### packet_id: DPL-NC3-HARDENED-FIBER-FAILOVER-001
+- domain: joint NC3 hardened fiber failover
+- objective: execute NC3 transport failover while preserving continuity and message integrity
+- primary_tools: path assurance monitor, failover governance board, acknowledgment integrity tracker
+- alternate_tools: manual failover checklist and command readback board
+- degraded_mode: mission-essential NC3 channels only during restoration
+- input_requirements: path status, timing drift, message queue health, command priorities
+- output_schema: failover sequence, continuity risk notes, recovery checkpoints
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: ack-chain check, continuity threshold pass, command authority release
+
+### packet_id: DPL-NC3-ACK-INTEGRITY-CHAIN-001
+- domain: NC3 acknowledgment integrity
+- objective: verify dual-confirm acknowledgment chain for critical NC3 posture changes
+- primary_tools: ack-chain monitor, cryptographic integrity verifier, command audit ledger
+- alternate_tools: manual dual-confirm readback with UTC logging
+- degraded_mode: advisory-only recommendations until chain is restored
+- input_requirements: message IDs, ack timestamps, signer identities, integrity status
+- output_schema: ack integrity report, missing-ack exceptions, escalation cues
+- protocol_profile: USMTF + signed timing attestations + API/JSON
+- validation_gates: dual-confirm pass, cryptographic validation, duty-officer concurrence
+
+### packet_id: DPL-COALITION-PRIVATE5G-MISSION-FAILOVER-001
+- domain: coalition private-5G mission failover
+- objective: shift mission-priority services across coalition enclaves during contested degradation
+- primary_tools: private-5G orchestration controller, coalition QoS board, service dependency map
+- alternate_tools: manual mission-priority table and failover hotline readbacks
+- degraded_mode: critical C2 and life-safety services only
+- input_requirements: service priorities, enclave status, spectrum contention, coalition permissions
+- output_schema: failover plan, preemption schedule, restoration branches
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: releasability check, mission-priority validation, authority gate
+
+### packet_id: DPL-COALITION-PRIVATE5G-QOS-PREEMPTION-001
+- domain: coalition private-5G QoS preemption
+- objective: enforce QoS preemption without violating coalition authority and legal constraints
+- primary_tools: QoS policy engine, traffic monitor, coalition legal/authority checker
+- alternate_tools: manual preemption approval matrix with dual-control release
+- degraded_mode: preemption paused except commander-approved emergency exceptions
+- input_requirements: traffic classes, mission impacts, authority basis, host-nation caveats
+- output_schema: preemption decision log, allowed exceptions list, rollback triggers
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: authority verification, legal review, rollback readiness check
