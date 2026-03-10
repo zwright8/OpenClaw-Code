@@ -39,6 +39,17 @@ Use these tool categories as the default stack for this skill: patient regulatio
 
 Preferred protocol families for this skill: HL7/FHIR, USMTF, API/JSON.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-denied-casualty-data-sync-v1` with `protocol_stack_id=ps-denied-casualty-data-sync-stack-v1`.
+- Alternate: use one mission-adjacent medical/coalition synchronization suite from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` with documented tradeoffs.
+- Degraded: delayed synchronization windows with UTC acknowledgment ledger and manual coalition liaison reconciliation.
+
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-CASUALTY-SYNC-DENIED-001`, `DPL-DENIED-CASEVAC-DATA-001`.
+- If no packet fully matches, create a provisional packet using the shared schema and assign a validation owner.
+
 ## External Tool and Protocol Integration
 
 - Execute the core integration workflow in ../_shared/references/external-tools-protocols.md.
@@ -57,6 +68,11 @@ Preferred protocol families for this skill: HL7/FHIR, USMTF, API/JSON.
 - Run the mission assurance checklist in ../_shared/references/mission-assurance-checklist.md.
 - Include tool health and trust fields from ../_shared/references/tool-health-and-trust-monitoring.md.
 - Use after-action and readiness artifacts from ../_shared/references/operational-learning-and-after-action-loop.md and ../_shared/references/readiness-certification-evidence-pack.md.
+
+## Domain Governance Overrides (2026-03-10, Casualty Data Trust Hardening)
+
+- Require explicit `identity_confidence`, `record_staleness_minutes`, and `coalition_releasability_state` fields in every critical recommendation.
+- If casualty identity confidence drops below threshold or releasability state is uncertain, downgrade to advisory-only and require human command adjudication.
 
 ## Guardrails
 
