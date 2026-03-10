@@ -50,7 +50,8 @@ const DEFAULT_DISPATCH_DEDUPLICATION = Object.freeze({
     windowMs: 5_000,
     openOnly: true,
     terminalWindowMs: 0,
-    inFlightWindowMs: null
+    inFlightWindowMs: null,
+    coalesceOpenUntilTerminal: false
 });
 const DEFAULT_TERMINAL_TASK_RETENTION = Object.freeze({
     maxAgeMs: 900_000,
@@ -423,6 +424,7 @@ function resolveDispatchDeduplication(value) {
                     DEFAULT_DISPATCH_DEDUPLICATION.windowMs
                 ))
             ),
+        coalesceOpenUntilTerminal: value.coalesceOpenUntilTerminal === true,
         fingerprint: typeof value.fingerprint === 'function' ? value.fingerprint : null
     };
 }
@@ -1080,6 +1082,7 @@ export class TaskOrchestrator {
         const windowMs = this.dispatchDeduplication.windowMs;
         const terminalWindowMs = this.dispatchDeduplication.terminalWindowMs;
         const inFlightWindowMs = this.dispatchDeduplication.inFlightWindowMs;
+        const coalesceOpenUntilTerminal = this.dispatchDeduplication.coalesceOpenUntilTerminal;
         const fingerprint = this._buildDeduplicationFingerprint(request);
 
         for (const record of this.tasks.values()) {
@@ -1103,11 +1106,21 @@ export class TaskOrchestrator {
                     }
                 }
             } else {
-                const openWindowMs = Number.isFinite(inFlightWindowMs)
-                    ? Number(inFlightWindowMs)
-                    : windowMs;
-                if (openWindowMs > 0 && nowMs - Number(record.createdAt) > openWindowMs) {
-                    continue;
+                // Optional "singleflight" mode: coalesce duplicates for open tasks until terminal.
+                // inFlightWindowMs then acts as a lock-age escape hatch for very long/stuck runs.
+                if (coalesceOpenUntilTerminal) {
+                    if (Number.isFinite(inFlightWindowMs) && inFlightWindowMs > 0) {
+                        if (nowMs - Number(record.createdAt) > Number(inFlightWindowMs)) {
+                            continue;
+                        }
+                    }
+                } else {
+                    const openWindowMs = Number.isFinite(inFlightWindowMs)
+                        ? Number(inFlightWindowMs)
+                        : windowMs;
+                    if (openWindowMs > 0 && nowMs - Number(record.createdAt) > openWindowMs) {
+                        continue;
+                    }
                 }
             }
 
@@ -2433,7 +2446,8 @@ export class TaskOrchestrator {
                 windowMs: this.dispatchDeduplication.windowMs,
                 openOnly: this.dispatchDeduplication.openOnly,
                 terminalWindowMs: this.dispatchDeduplication.terminalWindowMs,
-                inFlightWindowMs: this.dispatchDeduplication.inFlightWindowMs
+                inFlightWindowMs: this.dispatchDeduplication.inFlightWindowMs,
+                coalesceOpenUntilTerminal: this.dispatchDeduplication.coalesceOpenUntilTerminal
             },
             terminalTaskRetention: {
                 enabled: this.terminalTaskRetention.enabled,

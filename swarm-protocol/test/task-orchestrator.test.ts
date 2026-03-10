@@ -1452,6 +1452,73 @@ test('dispatchTask re-dispatches open duplicates after in-flight dedupe window e
     assert.equal(sent.length, 2);
 });
 
+test('dispatchTask can singleflight open duplicates until terminal when configured', async () => {
+    const clock = createClock(144_000);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 100,
+            coalesceOpenUntilTerminal: true
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-singleflight',
+        task: 'Generate annual operating plan'
+    });
+
+    clock.advance(15_000);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-singleflight',
+        task: 'Generate annual operating plan'
+    });
+
+    assert.equal(first.taskId, second.taskId);
+    assert.equal(sent.length, 1);
+});
+
+test('dispatchTask can release singleflight lock after inFlightWindowMs lock age', async () => {
+    const clock = createClock(144_500);
+    const sent = [];
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        dispatchDeduplication: {
+            windowMs: 100,
+            inFlightWindowMs: 500,
+            coalesceOpenUntilTerminal: true
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-singleflight-lock-age',
+        task: 'Compile weekly compliance digest'
+    });
+
+    clock.advance(800);
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-dedupe-singleflight-lock-age',
+        task: 'Compile weekly compliance digest'
+    });
+
+    assert.notEqual(first.taskId, second.taskId);
+    assert.equal(sent.length, 2);
+});
+
 test('dispatchTask suppresses duplicate completed requests inside terminal dedupe window', async () => {
     const clock = createClock(145_000);
     const sent = [];
