@@ -1049,6 +1049,130 @@ test('half-open failure applies cooldown backoff when configured', async () => {
     assert.equal(current.history.at(-1)?.event, 'retry_scheduled_circuit_open');
 });
 
+test('dispatchTask defers when adaptive concurrency limit is saturated', async () => {
+    const clock = createClock(100_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        retryDelayMs: 25,
+        adaptiveConcurrency: {
+            initialLimit: 1,
+            minLimit: 1,
+            maxLimit: 1
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-limit',
+        task: 'Occupy the single available slot'
+    });
+    assert.equal(first.status, 'dispatched');
+
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-limit',
+        task: 'Should be deferred by adaptive limiter'
+    });
+    assert.equal(second.status, 'retry_scheduled');
+    assert.equal(second.history.at(-1)?.event, 'initial_dispatch_concurrency_limited_retry_scheduled');
+    assert.equal(second.nextRetryAt, clock.now() + 25);
+});
+
+test('adaptive concurrency increases limit after healthy completions', async () => {
+    const clock = createClock(110_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        adaptiveConcurrency: {
+            initialLimit: 1,
+            minLimit: 1,
+            maxLimit: 2,
+            increaseStep: 1
+        }
+    });
+
+    const seed = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-grow',
+        task: 'Seed with one healthy completion'
+    });
+
+    clock.advance(10);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: seed.taskId,
+        from: 'agent:adaptive-grow',
+        status: 'success',
+        completedAt: clock.now()
+    }));
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-grow',
+        task: 'Consume slot 1'
+    });
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-grow',
+        task: 'Consume slot 2'
+    });
+
+    assert.equal(first.status, 'dispatched');
+    assert.equal(second.status, 'dispatched');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.adaptiveConcurrency.targets.limitIncreaseCount >= 1, true);
+});
+
+test('adaptive concurrency decreases limit after transient overload signal', async () => {
+    const clock = createClock(120_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {}
+        },
+        now: clock.now,
+        retryDelayMs: 10,
+        maxRetries: 1,
+        adaptiveConcurrency: {
+            initialLimit: 2,
+            minLimit: 1,
+            maxLimit: 2,
+            decreaseMultiplier: 0.5
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-shrink',
+        task: 'slot one'
+    });
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-shrink',
+        task: 'slot two'
+    });
+    assert.equal(first.status, 'dispatched');
+    assert.equal(second.status, 'dispatched');
+
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: first.taskId,
+        from: 'agent:adaptive-shrink',
+        accepted: false,
+        reason: 'service_unavailable retry_after=1',
+        timestamp: clock.now()
+    }));
+
+    const third = await orchestrator.dispatchTask({
+        target: 'agent:adaptive-shrink',
+        task: 'should now be limited at 1 while one remains in flight'
+    });
+    assert.equal(third.status, 'retry_scheduled');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.adaptiveConcurrency.targets.limitDecreaseCount >= 1, true);
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({

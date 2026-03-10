@@ -38,6 +38,14 @@ const DEFAULT_CIRCUIT_BREAKER = Object.freeze({
     cooldownBackoffMultiplier: 1,
     maxCooldownMs: 300_000
 });
+const DEFAULT_ADAPTIVE_CONCURRENCY = Object.freeze({
+    initialLimit: 4,
+    minLimit: 1,
+    maxLimit: 32,
+    increaseStep: 1,
+    decreaseMultiplier: 0.7,
+    latencyHighWatermarkMs: null
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -237,6 +245,58 @@ function resolveMaxRetryHintMs(maxRetryHintMs, fallbackMs) {
     return Math.max(0, Math.floor(value));
 }
 
+function resolveAdaptiveConcurrency(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_ADAPTIVE_CONCURRENCY
+        };
+    }
+
+    const minLimit = Math.max(
+        1,
+        Math.floor(clampPositiveNumber(value.minLimit, DEFAULT_ADAPTIVE_CONCURRENCY.minLimit))
+    );
+    const maxLimit = Math.max(
+        minLimit,
+        Math.floor(clampPositiveNumber(value.maxLimit, DEFAULT_ADAPTIVE_CONCURRENCY.maxLimit))
+    );
+    const initialLimit = Math.min(
+        maxLimit,
+        Math.max(
+            minLimit,
+            Math.floor(clampPositiveNumber(value.initialLimit, DEFAULT_ADAPTIVE_CONCURRENCY.initialLimit))
+        )
+    );
+    const increaseStep = Math.max(
+        1,
+        Math.floor(clampPositiveNumber(value.increaseStep, DEFAULT_ADAPTIVE_CONCURRENCY.increaseStep))
+    );
+    const decreaseMultiplier = Math.min(
+        1,
+        Math.max(
+            0.1,
+            clampPositiveNumber(value.decreaseMultiplier, DEFAULT_ADAPTIVE_CONCURRENCY.decreaseMultiplier)
+        )
+    );
+    const latencyHighWatermarkMs = value.latencyHighWatermarkMs === null || value.latencyHighWatermarkMs === undefined
+        ? null
+        : Math.max(0, Math.floor(clampNonNegativeNumber(
+            value.latencyHighWatermarkMs,
+            DEFAULT_ADAPTIVE_CONCURRENCY.latencyHighWatermarkMs
+        )));
+
+    return {
+        enabled: true,
+        initialLimit,
+        minLimit,
+        maxLimit,
+        increaseStep,
+        decreaseMultiplier,
+        latencyHighWatermarkMs
+    };
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -328,6 +388,7 @@ export class TaskOrchestrator {
         overallTimeoutMs = null,
         retryThrottling = null,
         circuitBreaker = null,
+        adaptiveConcurrency = null,
         random = Math.random,
         now = Date.now,
         logger = console
@@ -382,6 +443,10 @@ export class TaskOrchestrator {
         this.circuitBreakerStateByTarget = this.circuitBreaker.enabled
             ? new Map()
             : null;
+        this.adaptiveConcurrency = resolveAdaptiveConcurrency(adaptiveConcurrency);
+        this.adaptiveConcurrencyByTarget = this.adaptiveConcurrency.enabled
+            ? new Map()
+            : null;
         this.random = typeof random === 'function' ? random : Math.random;
         this.now = typeof now === 'function' ? now : Date.now;
         this.logger = logger;
@@ -419,6 +484,7 @@ export class TaskOrchestrator {
         event = 'timed_out',
         reason = null
     } = {}) {
+        this._releaseAdaptiveConcurrencySlot(record, nowMs, 'overload');
         record.status = 'timed_out';
         record.updatedAt = nowMs;
         record.closedAt = nowMs;
@@ -604,6 +670,131 @@ export class TaskOrchestrator {
         }
 
         return { allowed: true, retryAfterMs: null };
+    }
+
+    _getAdaptiveConcurrencyState(target, { create = true } = {}) {
+        if (!this.adaptiveConcurrency.enabled || !this.adaptiveConcurrencyByTarget) {
+            return null;
+        }
+
+        const key = this._resolveCircuitTarget(target);
+        if (this.adaptiveConcurrencyByTarget.has(key)) {
+            return this.adaptiveConcurrencyByTarget.get(key);
+        }
+
+        if (!create) {
+            return null;
+        }
+
+        const state = {
+            target: key,
+            inFlight: 0,
+            limit: this.adaptiveConcurrency.initialLimit,
+            blockedCount: 0,
+            limitIncreaseCount: 0,
+            limitDecreaseCount: 0
+        };
+        this.adaptiveConcurrencyByTarget.set(key, state);
+        return state;
+    }
+
+    _recordAdaptiveLimitChange(state, nowMs, reason, previousLimit) {
+        if (!state || previousLimit === state.limit) return;
+        this._emitAudit('adaptive_concurrency_limit_updated', {
+            target: state.target,
+            reason,
+            previousLimit,
+            nextLimit: state.limit,
+            inFlight: state.inFlight
+        }, nowMs);
+    }
+
+    _acquireAdaptiveConcurrencySlot(record, nowMs) {
+        if (!this.adaptiveConcurrency.enabled) {
+            return { allowed: true, retryAfterMs: null };
+        }
+
+        if (record.adaptiveConcurrency?.acquired === true) {
+            return { allowed: true, retryAfterMs: null };
+        }
+
+        const state = this._getAdaptiveConcurrencyState(record.target);
+        if (!state) {
+            return { allowed: true, retryAfterMs: null };
+        }
+
+        if (state.inFlight >= state.limit) {
+            state.blockedCount += 1;
+            this._emitAudit('task_send_deferred_adaptive_concurrency', {
+                taskId: record.taskId,
+                target: state.target,
+                inFlight: state.inFlight,
+                limit: state.limit
+            }, nowMs);
+            return {
+                allowed: false,
+                retryAfterMs: this.retryDelayMs
+            };
+        }
+
+        state.inFlight += 1;
+        record.adaptiveConcurrency = {
+            acquired: true,
+            target: state.target,
+            acquiredAt: nowMs
+        };
+        return { allowed: true, retryAfterMs: null };
+    }
+
+    _releaseAdaptiveConcurrencySlot(record, nowMs, outcome = 'neutral') {
+        if (!this.adaptiveConcurrency.enabled || !record?.adaptiveConcurrency?.acquired) {
+            return;
+        }
+
+        const target = record.adaptiveConcurrency.target || record.target;
+        const state = this._getAdaptiveConcurrencyState(target, { create: false });
+        if (!state) {
+            record.adaptiveConcurrency = null;
+            return;
+        }
+
+        state.inFlight = Math.max(0, state.inFlight - 1);
+        const acquiredAt = Number(record.adaptiveConcurrency.acquiredAt);
+        const latencyMs = Number.isFinite(acquiredAt)
+            ? Math.max(0, nowMs - acquiredAt)
+            : null;
+        const latencyThreshold = this.adaptiveConcurrency.latencyHighWatermarkMs;
+        const isSlow = Number.isFinite(latencyThreshold)
+            && Number.isFinite(latencyMs)
+            && latencyMs > latencyThreshold;
+
+        const previousLimit = state.limit;
+        if (outcome === 'healthy' && !isSlow) {
+            state.limit = Math.min(
+                this.adaptiveConcurrency.maxLimit,
+                state.limit + this.adaptiveConcurrency.increaseStep
+            );
+            if (state.limit > previousLimit) {
+                state.limitIncreaseCount += 1;
+                this._recordAdaptiveLimitChange(state, nowMs, 'healthy_completion', previousLimit);
+            }
+        } else if (outcome === 'overload' || isSlow) {
+            state.limit = Math.max(
+                this.adaptiveConcurrency.minLimit,
+                Math.floor(state.limit * this.adaptiveConcurrency.decreaseMultiplier)
+            );
+            if (state.limit < previousLimit) {
+                state.limitDecreaseCount += 1;
+                this._recordAdaptiveLimitChange(
+                    state,
+                    nowMs,
+                    isSlow ? 'high_latency' : 'overload_signal',
+                    previousLimit
+                );
+            }
+        }
+
+        record.adaptiveConcurrency = null;
     }
 
     async hydrate({ replace = true } = {}) {
@@ -1147,6 +1338,7 @@ export class TaskOrchestrator {
             createdAt: request.createdAt,
             updatedAt: request.createdAt,
             lastRetryDelayMs: null,
+            adaptiveConcurrency: null,
             overallDeadlineAt,
             deadlineAt: this._applyOverallDeadline(
                 { overallDeadlineAt },
@@ -1229,6 +1421,21 @@ export class TaskOrchestrator {
                 }
                 return this.getTask(record.taskId);
             }
+            if (error instanceof TaskOrchestratorError && error.code === 'ADAPTIVE_CONCURRENCY_LIMIT') {
+                const nowMs = safeNow(this.now);
+                const scheduled = this._scheduleRetry(record, nowMs, {
+                    reason: 'initial_dispatch_adaptive_concurrency_limited',
+                    event: 'initial_dispatch_concurrency_limited_retry_scheduled',
+                    hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
+                });
+                if (!scheduled.scheduled) {
+                    this._markTimedOut(record, nowMs, {
+                        event: 'timed_out_retry_window_exhausted',
+                        reason: 'initial_dispatch_adaptive_concurrency_limited'
+                    });
+                }
+                return this.getTask(record.taskId);
+            }
             this.tasks.delete(record.taskId);
             this._deleteRecord(record.taskId);
             throw error;
@@ -1293,6 +1500,34 @@ export class TaskOrchestrator {
         try {
             await this._sendTask(record, 'approval_release');
         } catch (error) {
+            if (error instanceof TaskOrchestratorError && error.code === 'CIRCUIT_OPEN') {
+                const scheduled = this._scheduleRetry(record, reviewedAt, {
+                    reason: 'approval_release_circuit_open',
+                    event: 'approval_release_circuit_open_retry_scheduled',
+                    hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
+                });
+                if (!scheduled.scheduled && scheduled.blockedBy === 'retry_window') {
+                    this._markTimedOut(record, reviewedAt, {
+                        event: 'timed_out_retry_window_exhausted',
+                        reason: 'approval_release_circuit_open'
+                    });
+                }
+                return this.getTask(taskId);
+            }
+            if (error instanceof TaskOrchestratorError && error.code === 'ADAPTIVE_CONCURRENCY_LIMIT') {
+                const scheduled = this._scheduleRetry(record, reviewedAt, {
+                    reason: 'approval_release_adaptive_concurrency_limited',
+                    event: 'approval_release_concurrency_limited_retry_scheduled',
+                    hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
+                });
+                if (!scheduled.scheduled && scheduled.blockedBy === 'retry_window') {
+                    this._markTimedOut(record, reviewedAt, {
+                        event: 'timed_out_retry_window_exhausted',
+                        reason: 'approval_release_adaptive_concurrency_limited'
+                    });
+                }
+                return this.getTask(taskId);
+            }
             const scheduled = this._scheduleRetry(record, reviewedAt, {
                 reason: 'approval_release_failed',
                 event: 'approval_release_retry_scheduled',
@@ -1338,6 +1573,17 @@ export class TaskOrchestrator {
                 ? Number(circuit.retryAfterMs)
                 : this.retryDelayMs;
             throw new TaskOrchestratorError('CIRCUIT_OPEN', 'Target circuit is open', {
+                taskId: record.taskId,
+                target: record.target,
+                retryAfterMs
+            });
+        }
+        const adaptiveConcurrency = this._acquireAdaptiveConcurrencySlot(record, sendAt);
+        if (!adaptiveConcurrency.allowed) {
+            const retryAfterMs = Number.isFinite(adaptiveConcurrency.retryAfterMs)
+                ? Number(adaptiveConcurrency.retryAfterMs)
+                : this.retryDelayMs;
+            throw new TaskOrchestratorError('ADAPTIVE_CONCURRENCY_LIMIT', 'Adaptive concurrency limit reached', {
                 taskId: record.taskId,
                 target: record.target,
                 retryAfterMs
@@ -1394,6 +1640,7 @@ export class TaskOrchestrator {
                 attempt: record.attempts,
                 error: message
             }, record.updatedAt);
+            this._releaseAdaptiveConcurrencySlot(record, record.updatedAt, 'overload');
             this._onCircuitSendFailure(record.target, record.updatedAt, 'send_failed');
             throw new TaskOrchestratorError('SEND_FAILED', message, {
                 taskId: record.taskId,
@@ -1422,6 +1669,7 @@ export class TaskOrchestrator {
             const transient = this._isTransientRejectionReason(reason);
 
             if (retryDirective.noRetryPushback) {
+                this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, transient ? 'overload' : 'neutral');
                 record.status = 'rejected';
                 record.closedAt = receipt.timestamp;
                 record.history.push({
@@ -1460,6 +1708,7 @@ export class TaskOrchestrator {
                         });
                         return true;
                     }
+                    this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, 'overload');
                     record.status = 'rejected';
                     record.closedAt = receipt.timestamp;
                     record.history.push({
@@ -1470,9 +1719,11 @@ export class TaskOrchestrator {
                     this._persistRecord(record);
                     return true;
                 }
+                this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, 'overload');
                 return true;
             }
 
+            this._releaseAdaptiveConcurrencySlot(record, receipt.timestamp, transient ? 'overload' : 'neutral');
             record.status = 'rejected';
             record.closedAt = receipt.timestamp;
             record.history.push({
@@ -1528,6 +1779,7 @@ export class TaskOrchestrator {
 
         if (result.status === 'success') {
             record.status = 'completed';
+            this._releaseAdaptiveConcurrencySlot(record, result.completedAt, 'healthy');
             this._creditRetryThrottleTokens(
                 result.completedAt,
                 record.taskId,
@@ -1536,6 +1788,7 @@ export class TaskOrchestrator {
             );
         } else if (result.status === 'partial') {
             record.status = 'partial';
+            this._releaseAdaptiveConcurrencySlot(record, result.completedAt, 'healthy');
             this._creditRetryThrottleTokens(
                 result.completedAt,
                 record.taskId,
@@ -1544,6 +1797,7 @@ export class TaskOrchestrator {
             );
         } else {
             record.status = 'failed';
+            this._releaseAdaptiveConcurrencySlot(record, result.completedAt, 'neutral');
         }
 
         record.history.push({
@@ -1583,6 +1837,9 @@ export class TaskOrchestrator {
             }
 
             if (record.status === 'retry_scheduled') {
+                if (record.adaptiveConcurrency?.acquired) {
+                    this._releaseAdaptiveConcurrencySlot(record, nowMs, 'neutral');
+                }
                 if (!Number.isFinite(record.nextRetryAt)) {
                     const recovered = this._scheduleRetry(record, nowMs, {
                         reason: 'retry_schedule_recovered',
@@ -1618,6 +1875,23 @@ export class TaskOrchestrator {
                             this._markTimedOut(record, nowMs, {
                                 event: 'timed_out_retry_window_exhausted',
                                 reason: 'target_circuit_open'
+                            });
+                            summary.timedOut++;
+                        }
+                        continue;
+                    }
+                    if (error instanceof TaskOrchestratorError && error.code === 'ADAPTIVE_CONCURRENCY_LIMIT') {
+                        const scheduled = this._scheduleRetry(record, nowMs, {
+                            reason: 'adaptive_concurrency_limited',
+                            event: 'retry_scheduled_adaptive_concurrency_limited',
+                            hintMs: Number.isFinite(error.details?.retryAfterMs) ? Number(error.details.retryAfterMs) : null
+                        });
+                        if (scheduled.scheduled) {
+                            summary.scheduledRetries++;
+                        } else if (scheduled.blockedBy === 'retry_window') {
+                            this._markTimedOut(record, nowMs, {
+                                event: 'timed_out_retry_window_exhausted',
+                                reason: 'adaptive_concurrency_limited'
                             });
                             summary.timedOut++;
                         }
@@ -1695,6 +1969,7 @@ export class TaskOrchestrator {
             }
 
             if (record.nextRetryAt === null) {
+                this._releaseAdaptiveConcurrencySlot(record, nowMs, 'overload');
                 const scheduled = this._scheduleRetry(record, nowMs, {
                     reason: 'deadline_exceeded',
                     event: 'retry_scheduled',
@@ -1793,6 +2068,23 @@ export class TaskOrchestrator {
                     halfOpen: 0,
                     closed: 0
                 }
+            },
+            adaptiveConcurrency: {
+                enabled: this.adaptiveConcurrency.enabled,
+                initialLimit: this.adaptiveConcurrency.initialLimit,
+                minLimit: this.adaptiveConcurrency.minLimit,
+                maxLimit: this.adaptiveConcurrency.maxLimit,
+                increaseStep: this.adaptiveConcurrency.increaseStep,
+                decreaseMultiplier: this.adaptiveConcurrency.decreaseMultiplier,
+                latencyHighWatermarkMs: this.adaptiveConcurrency.latencyHighWatermarkMs,
+                targets: {
+                    tracked: 0,
+                    limited: 0,
+                    totalInFlight: 0,
+                    blockedCount: 0,
+                    limitIncreaseCount: 0,
+                    limitDecreaseCount: 0
+                }
             }
         };
 
@@ -1817,6 +2109,19 @@ export class TaskOrchestrator {
                 if (state.status === 'open') metrics.circuitBreaker.targets.open++;
                 else if (state.status === 'half_open') metrics.circuitBreaker.targets.halfOpen++;
                 else metrics.circuitBreaker.targets.closed++;
+            }
+        }
+
+        if (this.adaptiveConcurrency.enabled && this.adaptiveConcurrencyByTarget) {
+            metrics.adaptiveConcurrency.targets.tracked = this.adaptiveConcurrencyByTarget.size;
+            for (const state of this.adaptiveConcurrencyByTarget.values()) {
+                metrics.adaptiveConcurrency.targets.totalInFlight += state.inFlight;
+                metrics.adaptiveConcurrency.targets.blockedCount += state.blockedCount;
+                metrics.adaptiveConcurrency.targets.limitIncreaseCount += state.limitIncreaseCount;
+                metrics.adaptiveConcurrency.targets.limitDecreaseCount += state.limitDecreaseCount;
+                if (state.inFlight >= state.limit) {
+                    metrics.adaptiveConcurrency.targets.limited++;
+                }
             }
         }
 
