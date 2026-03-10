@@ -4390,3 +4390,91 @@ validation_gates:
 - output_schema: loadshed matrix, restoration branch ladder, impact summary
 - protocol_profile: NIMS/ICS + API/JSON + XML
 - validation_gates: critical load preservation pass, civil impact gate, command approval
+
+### packet_id: DPL-CISLUNAR-LOGDEN-001
+- domain: cislunar space domain awareness and logistics denial
+- objective: detect and shape cislunar logistics lanes under contested-space conditions
+- primary_tools: cislunar SSA catalogs, route-risk analytics, orbital logistics planners
+- alternate_tools: static ephemeris board and manual lane-priority adjudication
+- degraded_mode: periodic lane-priority bulletin with conservative conflict assumptions
+- input_requirements: orbital traffic tracks, mission lane priorities, logistics manifests, denial indicators
+- output_schema: route risk table, denial-option matrix, branch trigger set
+- protocol_profile: API/JSON + USMTF + CCSDS OMM/OEM
+- validation_gates: dual-source ephemeris confirmation, confidence floor, authority checkpoint
+
+### packet_id: DPL-COGEW-DECEP-001
+- domain: cognitive and electromagnetic deception detection
+- objective: correlate narrative and spectrum anomalies to detect deception campaigns
+- primary_tools: influence telemetry analytics, EW anomaly fusion, media forensics
+- alternate_tools: manual deception hypothesis board with daily review cycle
+- degraded_mode: high-confidence-source-only deception alert bulletin
+- input_requirements: narrative telemetry, RF baseline behavior, media evidence, commander priorities
+- output_schema: deception hypothesis set, confidence ladder, retask recommendations
+- protocol_profile: STIX/TAXII + CoT + USMTF
+- validation_gates: multi-source corroboration, red-team challenge, legal-policy review gate
+
+### packet_id: DPL-HYPER-BDA-001
+- domain: hypersonic strike BDA and restrike sequencing
+- objective: determine target viability rapidly and sequence restrike options
+- primary_tools: multi-INT BDA fusion, damage-estimation models, dynamic targeting boards
+- alternate_tools: manual post-strike board with ISR confidence scoring
+- degraded_mode: delayed restrike packet with conservative confidence thresholds
+- input_requirements: strike telemetry, ISR battle-damage observations, target baselines, collateral constraints
+- output_schema: BDA confidence table, restrike options, decision trigger matrix
+- protocol_profile: VMF + Link 16 J-series + USMTF
+- validation_gates: ISR confidence threshold, collateral-risk check, command approval gate
+
+### packet_id: DPL-AUTOSALVAGE-LEGAL-001
+- domain: autonomous maritime salvage rights and evidence
+- objective: prioritize salvage operations while preserving legal rights and evidence custody
+- primary_tools: maritime salvage planners, autonomous vessel controllers, evidence chain systems
+- alternate_tools: manual salvage and custody board with legal liaison review
+- degraded_mode: critical-salvage-only posture with delayed legal adjudication packet
+- input_requirements: target manifests, vessel telemetry, legal caveats, custody constraints
+- output_schema: salvage sequence queue, rights adjudication matrix, custody handoff ledger
+- protocol_profile: AIS/NMEA + OGC + NATO APP-11/ADatP-3
+- validation_gates: legal rights check, custody integrity check, coalition releasability pass
+
+### packet_id: DPL-BIOPRINT-TRAUMA-001
+- domain: tactical bioprinted hemorrhage control and stabilization
+- objective: synchronize austere bioprint interventions with triage and evacuation flow
+- primary_tools: bioprint process controls, med-log systems, casualty regulation services
+- alternate_tools: approved-catalog intervention board with manual QA gates
+- degraded_mode: manual-only intervention prioritization for critical casualties
+- input_requirements: casualty acuity, fabrication capacity, sterility QA state, evac timelines
+- output_schema: intervention readiness board, stabilization queue, release-risk matrix
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical authority approval, sterility pass, release confidence floor
+
+### packet_id: DPL-URBAN-GAS-PREVENT-001
+- domain: coalition denied urban underground gas-grid explosion prevention
+- objective: prevent cascading urban gas explosions and restore safe utility service
+- primary_tools: SCADA anomaly analytics, subsurface utility mapping, emergency operations boards
+- alternate_tools: manual utility isolation board and periodic sampling schedule
+- degraded_mode: life-safety-first isolation posture with limited restoration throughput
+- input_requirements: pressure telemetry, map confidence, sabotage indicators, civilian risk corridors
+- output_schema: isolation action list, restoration sequence, civilian risk communication brief
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + OGC
+- validation_gates: life-safety pass, dual-source pressure confirmation, civil-authority coordination
+
+### packet_id: DPL-CLOUD-MODEL-SABOTAGE-001
+- domain: strategic cloud model supply-chain sabotage
+- objective: detect and contain compromised model or dependency chains before mission impact
+- primary_tools: SBOM/attestation services, cloud telemetry platforms, model registry controls
+- alternate_tools: manual provenance review board and static dependency risk register
+- degraded_mode: approved-baseline-only model operations with manual approvals
+- input_requirements: model lineage, dependency graph, attestation status, mission criticality
+- output_schema: sabotage risk heatmap, containment branches, reconstitution task board
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: attestation completeness check, provenance integrity pass, authority gate
+
+### packet_id: DPL-BLACKSTART-FUELSEC-001
+- domain: homeland grid blackstart and fuel convoy security fusion
+- objective: synchronize blackstart sequencing with protected fuel movement under threat
+- primary_tools: grid restoration orchestrators, convoy tracking tools, infrastructure incident boards
+- alternate_tools: manual blackstart board plus convoy waypoint call-sign matrix
+- degraded_mode: minimum-essential load restoration with escorted fuel windows only
+- input_requirements: blackstart node list, convoy routes, threat incidents, crew readiness
+- output_schema: restoration priority matrix, convoy security branch plan, critical-load timeline
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: critical-load verification, convoy threat check, civil-military coordination pass
