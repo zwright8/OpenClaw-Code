@@ -51,6 +51,11 @@ const DEFAULT_DISPATCH_DEDUPLICATION = Object.freeze({
     openOnly: true,
     terminalWindowMs: 0
 });
+const DEFAULT_TERMINAL_TASK_RETENTION = Object.freeze({
+    maxAgeMs: 900_000,
+    maxTasks: 2_000,
+    sweepLimit: 200
+});
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
     'overloaded',
@@ -412,6 +417,35 @@ function resolveDispatchDeduplication(value) {
     };
 }
 
+function resolveTerminalTaskRetention(value) {
+    if (!value || typeof value !== 'object') {
+        return {
+            enabled: false,
+            ...DEFAULT_TERMINAL_TASK_RETENTION
+        };
+    }
+
+    const maxAgeMsRaw = value.maxAgeMs;
+    const maxTasksRaw = value.maxTasks;
+    const maxAgeMs = maxAgeMsRaw === null || maxAgeMsRaw === undefined
+        ? null
+        : Math.max(0, Math.floor(clampNonNegativeNumber(maxAgeMsRaw, DEFAULT_TERMINAL_TASK_RETENTION.maxAgeMs)));
+    const maxTasks = maxTasksRaw === null || maxTasksRaw === undefined
+        ? null
+        : Math.max(1, Math.floor(clampPositiveNumber(maxTasksRaw, DEFAULT_TERMINAL_TASK_RETENTION.maxTasks)));
+    const sweepLimit = Math.max(
+        1,
+        Math.floor(clampPositiveNumber(value.sweepLimit, DEFAULT_TERMINAL_TASK_RETENTION.sweepLimit))
+    );
+
+    return {
+        enabled: maxAgeMs !== null || maxTasks !== null,
+        maxAgeMs,
+        maxTasks,
+        sweepLimit
+    };
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -505,6 +539,7 @@ export class TaskOrchestrator {
         circuitBreaker = null,
         adaptiveConcurrency = null,
         dispatchDeduplication = null,
+        terminalTaskRetention = null,
         transportSendTimeoutMs = 10_000,
         random = Math.random,
         now = Date.now,
@@ -565,6 +600,8 @@ export class TaskOrchestrator {
             ? new Map()
             : null;
         this.dispatchDeduplication = resolveDispatchDeduplication(dispatchDeduplication);
+        this.terminalTaskRetention = resolveTerminalTaskRetention(terminalTaskRetention);
+        this.terminalTasksPruned = 0;
         this.transportSendTimeoutMs = Number.isFinite(transportSendTimeoutMs) && Number(transportSendTimeoutMs) > 0
             ? Number(transportSendTimeoutMs)
             : null;
@@ -1064,6 +1101,85 @@ export class TaskOrchestrator {
             return record;
         }
         return null;
+    }
+
+    _resolveTerminalTimestamp(record) {
+        if (Number.isFinite(Number(record?.closedAt))) {
+            return Number(record.closedAt);
+        }
+        if (Number.isFinite(Number(record?.updatedAt))) {
+            return Number(record.updatedAt);
+        }
+        if (Number.isFinite(Number(record?.createdAt))) {
+            return Number(record.createdAt);
+        }
+        return 0;
+    }
+
+    _pruneTerminalTasks(nowMs = safeNow(this.now), reason = 'maintenance') {
+        if (!this.terminalTaskRetention.enabled) {
+            return 0;
+        }
+
+        const pruneCandidates = [];
+        for (const record of this.tasks.values()) {
+            if (!TERMINAL_STATUSES.has(record.status)) continue;
+            pruneCandidates.push({
+                taskId: record.taskId,
+                terminalAt: this._resolveTerminalTimestamp(record)
+            });
+        }
+
+        if (pruneCandidates.length === 0) {
+            return 0;
+        }
+
+        pruneCandidates.sort((a, b) => a.terminalAt - b.terminalAt);
+        const maxAgeMs = this.terminalTaskRetention.maxAgeMs;
+        const maxTasks = this.terminalTaskRetention.maxTasks;
+        const pruneIds = new Set();
+
+        if (Number.isFinite(maxAgeMs)) {
+            const cutoff = nowMs - Number(maxAgeMs);
+            for (const candidate of pruneCandidates) {
+                if (candidate.terminalAt <= cutoff) {
+                    pruneIds.add(candidate.taskId);
+                }
+            }
+        }
+
+        if (Number.isFinite(maxTasks) && pruneCandidates.length - pruneIds.size > Number(maxTasks)) {
+            const overflow = (pruneCandidates.length - pruneIds.size) - Number(maxTasks);
+            let overflowPruned = 0;
+            for (const candidate of pruneCandidates) {
+                if (pruneIds.has(candidate.taskId)) continue;
+                pruneIds.add(candidate.taskId);
+                overflowPruned += 1;
+                if (overflowPruned >= overflow) break;
+            }
+        }
+
+        if (pruneIds.size === 0) {
+            return 0;
+        }
+
+        const limit = Math.max(1, Math.floor(this.terminalTaskRetention.sweepLimit));
+        const toPrune = Array.from(pruneIds).slice(0, limit);
+        for (const taskId of toPrune) {
+            const record = this.tasks.get(taskId);
+            this.tasks.delete(taskId);
+            this._deleteRecord(taskId);
+            this.terminalTasksPruned += 1;
+            if (record) {
+                this._emitAudit('task_terminal_pruned', {
+                    taskId,
+                    target: record.target,
+                    status: record.status,
+                    reason
+                }, nowMs);
+            }
+        }
+        return toPrune.length;
     }
 
     _parseRetryDirectiveFromReason(reason) {
@@ -2028,7 +2144,8 @@ export class TaskOrchestrator {
             scheduledRetries: 0,
             retried: 0,
             timedOut: 0,
-            transportFailures: 0
+            transportFailures: 0,
+            prunedTerminalTasks: 0
         };
 
         for (const record of this.tasks.values()) {
@@ -2202,6 +2319,8 @@ export class TaskOrchestrator {
             }
         }
 
+        summary.prunedTerminalTasks = this._pruneTerminalTasks(nowMs, 'maintenance');
+
         return summary;
     }
 
@@ -2298,6 +2417,13 @@ export class TaskOrchestrator {
                 windowMs: this.dispatchDeduplication.windowMs,
                 openOnly: this.dispatchDeduplication.openOnly,
                 terminalWindowMs: this.dispatchDeduplication.terminalWindowMs
+            },
+            terminalTaskRetention: {
+                enabled: this.terminalTaskRetention.enabled,
+                maxAgeMs: this.terminalTaskRetention.maxAgeMs,
+                maxTasks: this.terminalTaskRetention.maxTasks,
+                sweepLimit: this.terminalTaskRetention.sweepLimit,
+                prunedTotal: this.terminalTasksPruned
             },
             transportSendTimeoutMs: this.transportSendTimeoutMs
         };

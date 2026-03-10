@@ -1476,6 +1476,113 @@ test('dispatchTask re-dispatches duplicate completed requests after terminal ded
     assert.equal(sent.length, 2);
 });
 
+test('runMaintenance prunes old terminal tasks when terminalTaskRetention.maxAgeMs is configured', async () => {
+    const clock = createClock(170_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        terminalTaskRetention: {
+            maxAgeMs: 100,
+            maxTasks: null,
+            sweepLimit: 50
+        }
+    });
+
+    const stale = await orchestrator.dispatchTask({
+        target: 'agent:worker-retention-age',
+        task: 'old terminal task'
+    });
+    clock.advance(1);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: stale.taskId,
+        from: 'agent:worker-retention-age',
+        status: 'success',
+        output: 'done',
+        completedAt: clock.now()
+    }));
+
+    clock.advance(50);
+    const fresh = await orchestrator.dispatchTask({
+        target: 'agent:worker-retention-age',
+        task: 'fresh terminal task'
+    });
+    clock.advance(1);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: fresh.taskId,
+        from: 'agent:worker-retention-age',
+        status: 'success',
+        output: 'done',
+        completedAt: clock.now()
+    }));
+
+    clock.advance(90);
+    const summary = await orchestrator.runMaintenance(clock.now());
+    assert.equal(summary.prunedTerminalTasks, 1);
+    assert.equal(orchestrator.getTask(stale.taskId), null);
+    assert.ok(orchestrator.getTask(fresh.taskId));
+    assert.equal(orchestrator.getMetrics().terminalTaskRetention.prunedTotal, 1);
+});
+
+test('runMaintenance prunes oldest terminal tasks when terminalTaskRetention.maxTasks is exceeded', async () => {
+    const clock = createClock(180_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        terminalTaskRetention: {
+            maxAgeMs: null,
+            maxTasks: 2,
+            sweepLimit: 10
+        }
+    });
+
+    const first = await orchestrator.dispatchTask({
+        target: 'agent:worker-retention-count',
+        task: 'first'
+    });
+    clock.advance(1);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: first.taskId,
+        from: 'agent:worker-retention-count',
+        status: 'success',
+        output: 'done',
+        completedAt: clock.now()
+    }));
+
+    const second = await orchestrator.dispatchTask({
+        target: 'agent:worker-retention-count',
+        task: 'second'
+    });
+    clock.advance(1);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: second.taskId,
+        from: 'agent:worker-retention-count',
+        status: 'success',
+        output: 'done',
+        completedAt: clock.now()
+    }));
+
+    const third = await orchestrator.dispatchTask({
+        target: 'agent:worker-retention-count',
+        task: 'third'
+    });
+    clock.advance(1);
+    orchestrator.ingestResult(buildTaskResult({
+        taskId: third.taskId,
+        from: 'agent:worker-retention-count',
+        status: 'success',
+        output: 'done',
+        completedAt: clock.now()
+    }));
+
+    const summary = await orchestrator.runMaintenance(clock.now());
+    assert.equal(summary.prunedTerminalTasks, 1);
+    assert.equal(orchestrator.getTask(first.taskId), null);
+    assert.ok(orchestrator.getTask(second.taskId));
+    assert.ok(orchestrator.getTask(third.taskId));
+});
+
 test('helper builders emit schema-valid messages', () => {
     const request = buildTaskRequest({
         from: 'agent:main',
