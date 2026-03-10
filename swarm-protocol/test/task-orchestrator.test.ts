@@ -943,6 +943,112 @@ test('target circuit transitions from open to half-open and closes on success', 
     assert.equal(metrics.circuitBreaker.targets.open, 0);
 });
 
+test('half-open probe budget exhaustion re-opens target circuit', async () => {
+    const clock = createClock(90_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount <= 2) {
+                    throw new Error('target unavailable');
+                }
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 5,
+        circuitBreaker: {
+            failureThreshold: 1,
+            cooldownMs: 50,
+            halfOpenMaxAttempts: 1,
+            successThreshold: 2
+        }
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:circuit-probe-budget',
+            task: 'Open breaker'
+        }),
+        /target unavailable/
+    );
+
+    const queued = await orchestrator.dispatchTask({
+        target: 'agent:circuit-probe-budget',
+        task: 'Retry through half-open'
+    });
+    assert.equal(queued.status, 'retry_scheduled');
+    assert.equal(queued.nextRetryAt, clock.now() + 50);
+
+    clock.advance(50);
+    const firstPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(firstPass.transportFailures, 1);
+
+    let current = orchestrator.getTask(queued.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 50);
+    assert.equal(current.history.at(-1)?.event, 'retry_scheduled_circuit_open');
+
+    const metrics = orchestrator.getMetrics();
+    assert.equal(metrics.circuitBreaker.targets.open, 1);
+    assert.equal(metrics.circuitBreaker.targets.halfOpen, 0);
+});
+
+test('half-open failure applies cooldown backoff when configured', async () => {
+    const clock = createClock(95_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount <= 2) {
+                    throw new Error('target unavailable');
+                }
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 5,
+        circuitBreaker: {
+            failureThreshold: 1,
+            cooldownMs: 50,
+            cooldownBackoffMultiplier: 2,
+            maxCooldownMs: 120,
+            halfOpenMaxAttempts: 1,
+            successThreshold: 2
+        }
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            target: 'agent:circuit-backoff',
+            task: 'Open breaker'
+        }),
+        /target unavailable/
+    );
+
+    const queued = await orchestrator.dispatchTask({
+        target: 'agent:circuit-backoff',
+        task: 'Retry through half-open with backoff'
+    });
+    assert.equal(queued.status, 'retry_scheduled');
+    assert.equal(queued.nextRetryAt, clock.now() + 50);
+
+    clock.advance(50);
+    const firstPass = await orchestrator.runMaintenance(clock.now());
+    assert.equal(firstPass.transportFailures, 1);
+
+    const current = orchestrator.getTask(queued.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, clock.now() + 100);
+    assert.equal(current.history.at(-1)?.event, 'retry_scheduled_circuit_open');
+});
+
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({

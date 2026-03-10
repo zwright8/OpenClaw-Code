@@ -34,7 +34,9 @@ const DEFAULT_CIRCUIT_BREAKER = Object.freeze({
     failureThreshold: 3,
     cooldownMs: 30_000,
     halfOpenMaxAttempts: 1,
-    successThreshold: 1
+    successThreshold: 1,
+    cooldownBackoffMultiplier: 1,
+    maxCooldownMs: 300_000
 });
 const TRANSIENT_REJECTION_MARKERS = [
     'overload',
@@ -211,6 +213,14 @@ function resolveCircuitBreaker(value) {
         successThreshold: Math.max(
             1,
             Math.floor(clampPositiveNumber(value.successThreshold, DEFAULT_CIRCUIT_BREAKER.successThreshold))
+        ),
+        cooldownBackoffMultiplier: Math.max(
+            1,
+            clampPositiveNumber(value.cooldownBackoffMultiplier, DEFAULT_CIRCUIT_BREAKER.cooldownBackoffMultiplier)
+        ),
+        maxCooldownMs: Math.max(
+            1,
+            Math.floor(clampPositiveNumber(value.maxCooldownMs, DEFAULT_CIRCUIT_BREAKER.maxCooldownMs))
         )
     };
 }
@@ -454,26 +464,41 @@ export class TaskOrchestrator {
             consecutiveSuccesses: 0,
             openedAt: null,
             openUntil: null,
-            halfOpenAttempts: 0
+            halfOpenAttempts: 0,
+            currentCooldownMs: this.circuitBreaker.cooldownMs
         };
         this.circuitBreakerStateByTarget.set(key, state);
         return state;
     }
 
-    _openCircuit(target, nowMs, reason) {
+    _openCircuit(target, nowMs, reason, { increaseCooldown = false } = {}) {
         const state = this._getCircuitState(target);
         if (!state) return;
 
+        const baselineCooldownMs = this.circuitBreaker.cooldownMs;
+        let cooldownMs = clampPositiveNumber(state.currentCooldownMs, baselineCooldownMs);
+        if (increaseCooldown && this.circuitBreaker.cooldownBackoffMultiplier > 1) {
+            cooldownMs = Math.min(
+                this.circuitBreaker.maxCooldownMs,
+                Math.max(
+                    baselineCooldownMs,
+                    Math.floor(cooldownMs * this.circuitBreaker.cooldownBackoffMultiplier)
+                )
+            );
+        }
+
         state.status = 'open';
+        state.currentCooldownMs = cooldownMs;
         state.openedAt = nowMs;
-        state.openUntil = nowMs + this.circuitBreaker.cooldownMs;
+        state.openUntil = nowMs + cooldownMs;
         state.consecutiveSuccesses = 0;
         state.halfOpenAttempts = 0;
         this._emitAudit('target_circuit_opened', {
             target: state.target,
             reason,
             openUntil: state.openUntil,
-            failureThreshold: this.circuitBreaker.failureThreshold
+            failureThreshold: this.circuitBreaker.failureThreshold,
+            cooldownMs
         }, nowMs);
     }
 
@@ -488,6 +513,7 @@ export class TaskOrchestrator {
         state.openedAt = null;
         state.openUntil = null;
         state.halfOpenAttempts = 0;
+        state.currentCooldownMs = this.circuitBreaker.cooldownMs;
 
         if (previousStatus !== 'closed') {
             this._emitAudit('target_circuit_closed', {
@@ -503,7 +529,9 @@ export class TaskOrchestrator {
 
         if (state.status === 'half_open') {
             state.consecutiveFailures += 1;
-            this._openCircuit(target, nowMs, `half_open_failure:${reason}`);
+            this._openCircuit(target, nowMs, `half_open_failure:${reason}`, {
+                increaseCooldown: true
+            });
             return;
         }
 
@@ -561,9 +589,15 @@ export class TaskOrchestrator {
 
         if (state.status === 'half_open') {
             if (state.halfOpenAttempts >= this.circuitBreaker.halfOpenMaxAttempts) {
+                this._openCircuit(target, nowMs, 'half_open_probe_budget_exhausted', {
+                    increaseCooldown: true
+                });
                 return {
                     allowed: false,
-                    retryAfterMs: Math.max(1, Math.floor(this.retryDelayMs))
+                    retryAfterMs: Math.max(
+                        1,
+                        Math.floor(clampPositiveNumber(state.currentCooldownMs, this.retryDelayMs))
+                    )
                 };
             }
             state.halfOpenAttempts += 1;
@@ -1752,6 +1786,8 @@ export class TaskOrchestrator {
                 cooldownMs: this.circuitBreaker.cooldownMs,
                 halfOpenMaxAttempts: this.circuitBreaker.halfOpenMaxAttempts,
                 successThreshold: this.circuitBreaker.successThreshold,
+                cooldownBackoffMultiplier: this.circuitBreaker.cooldownBackoffMultiplier,
+                maxCooldownMs: this.circuitBreaker.maxCooldownMs,
                 targets: {
                     open: 0,
                     halfOpen: 0,

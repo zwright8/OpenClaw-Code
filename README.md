@@ -337,7 +337,9 @@ const orchestrator = new TaskOrchestrator({
     failureThreshold: 3,
     cooldownMs: 30_000,
     halfOpenMaxAttempts: 1,
-    successThreshold: 1
+    successThreshold: 1,
+    cooldownBackoffMultiplier: 1.5, // optional: increase cooldown after half-open failures
+    maxCooldownMs: 180_000 // optional ceiling for cooldown backoff
   },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
@@ -364,6 +366,7 @@ await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' })
 ```
 
 `circuitBreaker` prevents repeated dispatch attempts to an unhealthy target by opening per-target circuits after consecutive send failures and only probing again after cooldown.
+When the half-open probe budget is exhausted before recovery, the breaker now re-opens (instead of remaining stuck half-open). You can also enable progressive cooldown backoff with `cooldownBackoffMultiplier` + `maxCooldownMs` to reduce pressure on persistently unhealthy targets.
 
 Transient receipt reasons can also use standard `Retry-After` hints in seconds or HTTP-date format (for example `retry-after: 120` or `retry-after: Tue, 09 Mar 2026 17:05:00 GMT`) and `x-ratelimit-reset`/`ratelimit-reset` hints in either delta-seconds or Unix epoch timestamp form.
 By default, these explicit server hints are honored as-is; set `maxRetryHintMs` if you want to impose an upper bound.
