@@ -129,6 +129,60 @@ test('buildAutonomousBatchPlan temporarily cools repeated failures', () => {
     assert.ok(!plan.selection.skillIds.includes(11));
 });
 
+test('buildAutonomousBatchPlan prefers recent successful outcomes over recent failures', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 21, code: 'SK-00021', title: 'Skill 21' },
+            { id: 22, code: 'SK-00022', title: 'Skill 22' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '21': { attempts: 8, successes: 5, failures: 3, consecutiveFailures: 0, lastWave: 12, lastStatus: 'failed' },
+                '22': { attempts: 8, successes: 5, failures: 3, consecutiveFailures: 0, lastWave: 12, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [22]);
+});
+
+test('buildAutonomousBatchPlan revisits stale entries when performance is tied', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 31, code: 'SK-00031', title: 'Skill 31' },
+            { id: 32, code: 'SK-00032', title: 'Skill 32' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 20,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '31': { attempts: 6, successes: 4, failures: 2, consecutiveFailures: 0, lastWave: 8, lastStatus: 'completed' },
+                '32': { attempts: 6, successes: 4, failures: 2, consecutiveFailures: 0, lastWave: 20, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 21,
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [31]);
+});
+
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
