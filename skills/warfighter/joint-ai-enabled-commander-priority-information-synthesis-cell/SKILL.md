@@ -68,3 +68,8 @@ For each critical tool recommendation, include objective, required inputs, query
 
 - Add `tool_suite_id=ts-operational-ai-mission-order-translation-validation-v1` + `protocol_stack_id=ps-operational-ai-mission-order-translation-validation-stack-v1` when commander priorities must be translated into machine-tasked execution packets with validation gates.
 - Add `tool_suite_id=ts-multi-domain-degraded-weather-fires-recalibration-v1` + `protocol_stack_id=ps-multi-domain-degraded-weather-fires-recalibration-stack-v1` when intelligence confidence shifts because degraded weather impacts targeting and sensor quality.
+
+## Domain Toolchain Override (2026-03-10, Urban Trust and Strategic Continuity Expansion)
+
+- Add `tool_suite_id=ts-ai-fratricide-prevention-gps-denied-urban-v1` + `protocol_stack_id=ps-ai-fratricide-prevention-gps-denied-urban-stack-v1` when commander priority synthesis must reconcile GPS-denied urban identity uncertainty and fratricide risk.
+- Add `tool_suite_id=ts-strategic-rare-earth-refining-cyber-physical-continuity-v1` + `protocol_stack_id=ps-strategic-rare-earth-refining-cyber-physical-continuity-stack-v1` when commander priorities depend on strategic material continuity under combined cyber and physical disruption.

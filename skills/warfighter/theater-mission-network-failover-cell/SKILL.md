@@ -160,3 +160,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when failover planning must preserve coalition private-5G command services under contested spectrum.
 - Add `tool_suite_id=ts-prepositioned-stock-cyber-custody-tamper-assurance-v1` + `protocol_stack_id=ps-prepositioned-stock-cyber-custody-tamper-assurance-stack-v1` when mission network continuity depends on trusted custody and tamper-free release of strategic stock systems.
+
+## Domain Toolchain Override (2026-03-10, Spectrum Discipline and PNT Compensation Expansion)
+
+- Add `tool_suite_id=ts-theater-spectrum-emissions-discipline-enforcement-v1` + `protocol_stack_id=ps-theater-spectrum-emissions-discipline-enforcement-stack-v1` when failover planning depends on strict emissions-control enforcement and detectability reduction.
+- Add `tool_suite_id=ts-strategic-space-weather-pnt-time-transfer-v1` + `protocol_stack_id=ps-strategic-space-weather-pnt-time-transfer-stack-v1` when network continuity decisions require space-weather-aware timing compensation and transfer integrity.

@@ -164,3 +164,8 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 
 - Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when battle rhythm synchronization must reconcile contested JTAC voice and digital terminal-control timelines.
 - Add `tool_suite_id=ts-nc3-courier-eam-bridge-assurance-v1` + `protocol_stack_id=ps-nc3-courier-eam-bridge-assurance-stack-v1` when command cadence must preserve emergency-action message continuity across digital and physical courier pathways.
+
+## Domain Toolchain Override (2026-03-10, Seabed Resilience and Cascade Containment Expansion)
+
+- Add `tool_suite_id=ts-maritime-seabed-infrastructure-sabotage-response-v1` + `protocol_stack_id=ps-maritime-seabed-infrastructure-sabotage-response-stack-v1` when battle rhythm priorities depend on seabed cable/pipeline disruptions and restoration sequencing.
+- Add `tool_suite_id=ts-joint-cyber-kinetic-infrastructure-cascade-containment-v1` + `protocol_stack_id=ps-joint-cyber-kinetic-infrastructure-cascade-containment-stack-v1` when command cadence requires synchronized cyber-physical cascade containment actions.

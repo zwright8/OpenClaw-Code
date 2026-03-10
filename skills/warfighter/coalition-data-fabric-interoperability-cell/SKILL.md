@@ -164,3 +164,8 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 
 - Add `tool_suite_id=ts-civilian-evacuation-digital-twin-traffic-assurance-v1` + `protocol_stack_id=ps-civilian-evacuation-digital-twin-traffic-assurance-stack-v1` when coalition data exchange must synchronize high-volume civilian evacuation throughput and route release controls.
 - Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when coalition data-fabric recommendations depend on contested private-5G service-priority orchestration.
+
+## Domain Toolchain Override (2026-03-10, Coalition Medevac and Port Security Expansion)
+
+- Add `tool_suite_id=ts-coalition-medevac-cross-border-clearance-routing-v1` + `protocol_stack_id=ps-coalition-medevac-cross-border-clearance-routing-stack-v1` when coalition data exchanges must synchronize legal medevac routing and transfer approvals.
+- Add `tool_suite_id=ts-coalition-disaster-relief-dual-use-port-screening-v1` + `protocol_stack_id=ps-coalition-disaster-relief-dual-use-port-screening-stack-v1` when coalition interoperability workflows must balance humanitarian throughput and force-protection screening.

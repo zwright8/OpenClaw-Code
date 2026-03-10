@@ -1056,3 +1056,33 @@ Every skill output should include:
 - Portable desalination biofouling countermeasure + austere water production and distribution support + preventive medicine force health protection + contested logistics sustainment
 - NC3 courier EAM bridge assurance + joint NC3 continuity and EAM assurance + physical message assurance + denied comms commander-intent reconciliation
 - Solar storm radiation force posture + contested space-weather GNSS outage fusion + missile warning and attack assessment + space-domain awareness and SATCOM defense
+
+## New Expansion Wave (2026-03-10, Seabed Resilience, Urban Trust, and Cascade Containment)
+
+- joint-maritime-seabed-infrastructure-sabotage-response-cell
+- theater-ai-fratricide-prevention-gps-denied-urban-cell
+- coalition-disaster-relief-dual-use-port-security-screening-cell
+- strategic-rare-earth-refining-cyber-physical-continuity-cell
+- expeditionary-hypersonic-threat-shelter-reposition-cell
+- homeland-arctic-energy-logistics-and-search-rescue-fusion-cell
+- joint-unmanned-ground-convoy-contested-bridge-negotiation-cell
+- theater-spectrum-emissions-discipline-enforcement-cell
+- coalition-medevac-cross-border-clearance-and-legal-routing-cell
+- tactical-ai-sniper-detection-civilian-shield-mitigation-cell
+- strategic-space-weather-pnt-compensation-and-time-transfer-cell
+- joint-cyber-kinetic-infrastructure-cascade-containment-cell
+
+## Updated Pairings (2026-03-10, Seabed Resilience, Urban Trust, and Cascade Containment)
+
+- Maritime seabed sabotage response + undersea cable defense and repair + maritime domain awareness + coalition port continuity
+- GPS-denied urban fratricide prevention + mission data link management + dynamic targeting governance + legal/ROE compliance
+- Coalition dual-use port screening + civil support crisis coordination + strategic sealift throughput + counter-smuggling interdiction
+- Rare-earth refining continuity + strategic industrial mobilization readiness + cyber-physical infrastructure defense + supply-chain risk monitoring
+- Expeditionary hypersonic shelter reposition + missile warning and attack assessment + force protection base defense + operational energy resilience
+- Arctic energy-logistics SAR fusion + arctic corridor deconfliction + preventive medicine force health protection + homeland defense support
+- Unmanned ground convoy bridge negotiation + contested bridge and gap crossing + autonomous route breach + mobility sustainment planning
+- Spectrum emissions discipline enforcement + contested spectrum mission replanning + EW fratricide prevention + signature management
+- Coalition medevac cross-border legal routing + casualty regulation + coalition legal interoperability + diplomatic clearance synchronization
+- Tactical sniper detection with civilian-shield mitigation + urban operations corridor control + civilian harm mitigation + information integrity and attribution
+- Strategic space-weather PNT compensation + denied precision timing reconstitution + SATCOM anti-jam continuity + NC3 resilience
+- Cyber-kinetic cascade containment + theater mission network failover + homeland critical infrastructure restoration + command continuity assurance
