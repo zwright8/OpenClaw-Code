@@ -5791,3 +5791,83 @@ external_binding:
 - Primary tools: grid restoration orchestration systems, convoy tracking tools, infrastructure incident command boards.
 - Cross-check tools: independent utility restoration mirror and alternate convoy-threat verification service.
 - Typical products: blackstart-convoy synchronization matrix, fuel security route branches, critical-load restoration packet.
+
+### `ps-subsea-data-center-grid-defense-stack-v1`
+- Protocols: `OGC`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: subsea data-center node defense telemetry, cable/power coupling alerts, and restoration control messaging.
+
+### `ps-stratospheric-balloon-spectrum-recovery-stack-v1`
+- Protocols: `Link 16 J-series`, `CoT`, `USMTF`, `API/JSON`.
+- Use for: high-altitude relay track exchange, spectrum denial response, and coalition comms restoration synchronization.
+
+### `ps-rare-isotope-medical-supply-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, radiological safety custody envelopes, `API/JSON`.
+- Use for: isotope inventory and handling status exchange, dose assurance alerts, and treatment continuity coordination.
+
+### `ps-disconnected-mesh-key-compromise-recovery-stack-v1`
+- Protocols: signed key-status exports, `USMTF`, `API/JSON`, offline trust attestation manifests.
+- Use for: compromised key quarantine orders, disconnected mesh rekey progress, and trust-restoration governance.
+
+### `ps-commercial-satcom-priority-restoration-stack-v1`
+- Protocols: `USMTF`, `API/JSON`, mission-priority traffic policy envelopes, `Link 16 J-series`.
+- Use for: commercial SATCOM preemption directives, coalition bandwidth arbitration, and restoration sequencing.
+
+### `ps-arctic-permafrost-runway-bypass-stack-v1`
+- Protocols: `AIXM/FIXM`, `USMTF`, `OGC`, `API/JSON`.
+- Use for: runway stress condition exchange, diversion routing updates, and sortie bypass authority packets.
+
+### `ps-bioforensics-field-lab-custody-stack-v1`
+- Protocols: `HL7/FHIR`, `STIX/TAXII`, `USMTF`, signed evidence-custody manifests.
+- Use for: field sample custody updates, bioforensics confidence exchange, and legal handoff signaling.
+
+### `ps-dam-cascade-attack-response-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `OGC`, `API/JSON`.
+- Use for: dam-breach consequence alerts, evacuation decision packets, and civil-military restoration coordination.
+
+### `ts-subsea-data-center-grid-defense-v1`
+- Use for: subsea data-center and cable landing station defense with shore-grid coupling continuity.
+- Primary tools: seabed telemetry fusion, cable/power dependency mapping, coastal utility status platforms.
+- Cross-check tools: independent undersea sensor confidence board and alternate grid-state verification service.
+- Typical products: node-defense branch matrix, cable-power coupling risk map, prioritized restoration packet.
+
+### `ts-stratospheric-balloon-spectrum-recovery-v1`
+- Use for: stratospheric balloon relay denial response and spectrum recovery under coalition operations.
+- Primary tools: high-altitude track analytics, EW/spectrum conflict managers, coalition comms planners.
+- Cross-check tools: independent signal integrity monitor and alternate relay attribution board.
+- Typical products: relay threat board, spectrum recovery plan, coalition comms restoration timeline.
+
+### `ts-rare-isotope-medical-supply-assurance-v1`
+- Use for: theater rare-isotope medical logistics, radiation safety assurance, and treatment continuity.
+- Primary tools: isotope inventory systems, dosimetry dashboards, med-log orchestration boards.
+- Cross-check tools: independent radiological safety verifier and alternate cold-chain viability monitor.
+- Typical products: isotope continuity matrix, radiation assurance packet, treatment-priority branch plan.
+
+### `ts-disconnected-mesh-key-compromise-v1`
+- Use for: disconnected tactical mesh key-compromise containment and trust restoration.
+- Primary tools: tactical key-lifecycle managers, mesh telemetry analytics, trust attestation services.
+- Cross-check tools: independent revocation ledger and alternate compromise impact board.
+- Typical products: key-quarantine sequence, disconnected rekey timeline, trust-restoration decision packet.
+
+### `ts-commercial-satcom-priority-restoration-v1`
+- Use for: coalition commercial SATCOM mission-priority preemption and restoration governance.
+- Primary tools: commercial SATCOM allocators, traffic-priority analytics, coalition arbitration dashboards.
+- Cross-check tools: independent link-availability verifier and alternate bandwidth conflict board.
+- Typical products: priority/preemption matrix, restoration sequencing plan, coalition caveat adjudication packet.
+
+### `ts-permafrost-runway-failure-bypass-v1`
+- Use for: arctic runway failure prediction driven by permafrost stress and sortie bypass planning.
+- Primary tools: geotechnical runway telemetry, permafrost stress models, diversion planning systems.
+- Cross-check tools: independent pavement integrity assessor and alternate weather/runway viability board.
+- Typical products: runway risk forecast, bypass/diversion options matrix, sortie continuity branch plan.
+
+### `ts-bioforensics-field-lab-custody-v1`
+- Use for: joint bioforensics field-lab sample custody and rapid attribution support.
+- Primary tools: field LIMS, biosequence analytics, evidence and legal workflow systems.
+- Cross-check tools: independent sample-chain auditor and alternate attribution confidence board.
+- Typical products: custody ledger, attribution confidence ladder, legal handoff evidence packet.
+
+### `ts-dam-cascade-attack-response-v1`
+- Use for: hostile dam-cascade consequence analysis, evacuation synchronization, and downstream restoration.
+- Primary tools: hydrologic consequence models, emergency operations systems, critical infrastructure telemetry.
+- Cross-check tools: independent flood-wave validator and alternate evacuation throughput monitor.
+- Typical products: cascade consequence map, evacuation sequencing plan, critical-node restoration packet.

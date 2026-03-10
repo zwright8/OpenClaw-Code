@@ -533,3 +533,59 @@ For each critical recommendation, include:
 - Cross-check tools: independent utility restoration mirror and alternate convoy-threat monitor.
 - Protocols: `NIMS/ICS`, `USMTF`, `API/JSON`.
 - Degraded fallback: manual blackstart priority board with convoy waypoint callouts.
+
+### `subsea-data-center-grid-defense-v1`
+- Use for subsea compute-node defense, cable landing continuity, and shore-grid coupling restoration.
+- Primary tools: subsea telemetry fusion, landing-station diagnostics, grid dependency mapping.
+- Cross-check tools: independent seabed anomaly verifier and alternate utility-state mirror.
+- Protocols: `OGC`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Degraded fallback: mission-essential node defense only with manual restoration board.
+
+### `stratospheric-balloon-spectrum-recovery-v1`
+- Use for balloon relay denial response and coalition spectrum restoration.
+- Primary tools: high-altitude track analytics, EW/spectrum orchestration, coalition comms planning services.
+- Cross-check tools: independent relay-attribution board and alternate RF integrity monitor.
+- Protocols: `Link 16 J-series`, `CoT`, `USMTF`, `API/JSON`.
+- Degraded fallback: critical-traffic-only spectrum windows with fixed reporting cadence.
+
+### `rare-isotope-medical-supply-assurance-v1`
+- Use for theater rare-isotope medical continuity, radiological assurance, and treatment sequencing.
+- Primary tools: isotope inventory/traceability systems, dosimetry monitors, med-log orchestration tools.
+- Cross-check tools: independent radiation safety audit board and alternate treatment-priority validator.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-saving indications only with manual custody and release checks.
+
+### `disconnected-mesh-key-compromise-recovery-v1`
+- Use for containment and recovery after cryptographic compromise in disconnected tactical mesh networks.
+- Primary tools: key lifecycle/orchestration services, mesh network controllers, trust attestation systems.
+- Cross-check tools: independent revocation ledger and alternate compromise impact board.
+- Protocols: signed key-status exports, `USMTF`, `API/JSON`.
+- Degraded fallback: preapproved key ring operation with strict mission-priority restrictions.
+
+### `commercial-satcom-priority-restoration-v1`
+- Use for coalition commercial SATCOM priority preemption and bandwidth restoration.
+- Primary tools: SATCOM traffic arbitration, mission-priority policy engines, coalition bandwidth dashboards.
+- Cross-check tools: independent link quality mirror and alternate allocation conflict board.
+- Protocols: `USMTF`, `API/JSON`, mission-policy envelopes, `Link 16 J-series`.
+- Degraded fallback: essential command-and-safety traffic only with scheduled bandwidth windows.
+
+### `arctic-permafrost-runway-bypass-v1`
+- Use for arctic runway permafrost failure prediction and diversion/bypass decision support.
+- Primary tools: runway geotechnical telemetry, permafrost stress analytics, diversion planners.
+- Cross-check tools: independent runway integrity survey and alternate sortie continuity board.
+- Protocols: `AIXM/FIXM`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: conservative runway closure thresholds and manual sortie reflow matrix.
+
+### `bioforensics-field-lab-custody-v1`
+- Use for rapid bioforensics attribution with evidentiary-quality chain of custody.
+- Primary tools: field LIMS services, sequencing analytics, evidence workflow managers.
+- Cross-check tools: independent custody auditor and alternate attribution confidence board.
+- Protocols: `HL7/FHIR`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: sample triage-only posture with delayed full attribution release.
+
+### `dam-cascade-attack-response-v1`
+- Use for hostile dam-cascade consequence analysis and evacuation synchronization.
+- Primary tools: hydrologic flood-wave models, emergency operations dashboards, civil evacuation route engines.
+- Cross-check tools: independent inundation verifier and alternate downstream impact board.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `OGC`.
+- Degraded fallback: life-safety-first evacuation triggers with hourly manual revalidation.

@@ -5116,3 +5116,91 @@ validation_gates:
 - output_schema: restoration priority matrix, convoy security branch plan, critical-load timeline
 - protocol_profile: NIMS/ICS + USMTF + API/JSON
 - validation_gates: critical-load verification, convoy threat check, civil-military coordination pass
+
+### packet_id: DPL-SUBSEA-DC-GRID-001
+- domain: joint subsea data-center defense and grid coupling continuity
+- objective: defend seabed compute and cable/power nodes while preserving shore-grid continuity
+- primary_tools: subsea telemetry fusion, cable landing diagnostics, grid dependency mappers
+- alternate_tools: manual critical-node board and delayed outage estimation workbook
+- degraded_mode: mission-essential node defense only with conservative restoration assumptions
+- input_requirements: node topology, cable/shore coupling map, threat indicators, restoration assets
+- output_schema: node risk map, coupling failure matrix, restoration branch options
+- protocol_profile: OGC + STIX/TAXII + USMTF + API/JSON
+- validation_gates: dual-source anomaly confirmation, life-safety check, authority approval gate
+
+### packet_id: DPL-BALLOON-SPECREC-001
+- domain: coalition stratospheric balloon relay denial and spectrum recovery
+- objective: suppress hostile relay effects and restore coalition mission spectrum rapidly
+- primary_tools: high-altitude track analytics, EW/spectrum managers, coalition comms allocators
+- alternate_tools: manual relay threat board with preplanned spectrum windows
+- degraded_mode: critical mission traffic only and fixed recovery windows
+- input_requirements: balloon track data, RF contention map, coalition priorities, ROE constraints
+- output_schema: relay threat table, spectrum recovery sequence, coalition comms restoration matrix
+- protocol_profile: Link 16 J-series + CoT + USMTF + API/JSON
+- validation_gates: relay-attribution confidence floor, fratricide-spectrum check, command approval
+
+### packet_id: DPL-ISOTOPE-MEDSUP-001
+- domain: theater rare isotope medical supply and radiation assurance
+- objective: sustain isotope-based treatment support with safe handling and continuity controls
+- primary_tools: isotope inventory/custody systems, dosimetry and contamination monitors, med-log boards
+- alternate_tools: manual isotope release ledger with radiological checklists
+- degraded_mode: life-saving treatment only with strict release controls
+- input_requirements: isotope stock state, custody chain, patient demand, transport status
+- output_schema: isotope continuity board, radiation safety exceptions, treatment-priority sequence
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: radiation safety pass, custody integrity check, medical authority signoff
+
+### packet_id: DPL-MESHKEY-COMP-001
+- domain: tactical disconnected mesh key compromise recovery
+- objective: contain compromised credentials and restore trusted encrypted communications
+- primary_tools: key lifecycle managers, mesh telemetry analyzers, trust attestation services
+- alternate_tools: manual revocation roster and serialized rekey worksheet
+- degraded_mode: mission-priority key ring only with restricted data exchange
+- input_requirements: compromise indicators, node trust state, key inventory, mission priority classes
+- output_schema: quarantine list, rekey sequence, trust-restoration confidence ladder
+- protocol_profile: signed key-status exports + USMTF + API/JSON
+- validation_gates: compromise confirmation, dual-control rekey approval, trust threshold pass
+
+### packet_id: DPL-COMSATCOM-PREEMPT-001
+- domain: coalition commercial SATCOM preemption and restoration
+- objective: reallocate constrained SATCOM while preserving critical coalition mission traffic
+- primary_tools: SATCOM traffic arbiters, policy enforcement engines, coalition bandwidth dashboards
+- alternate_tools: manual priority lane board with time-boxed bandwidth windows
+- degraded_mode: command-and-safety-only SATCOM traffic posture
+- input_requirements: mission traffic classes, available capacity, coalition caveats, outage data
+- output_schema: priority/preemption matrix, restoration timeline, exception adjudication list
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: coalition caveat pass, mission-critical continuity check, approval-role signoff
+
+### packet_id: DPL-PERMAFROST-RWY-001
+- domain: arctic permafrost runway failure prediction and bypass
+- objective: forecast runway structural risk and keep sortie flow through diversion options
+- primary_tools: runway geotechnical sensors, permafrost stress models, diversion route planners
+- alternate_tools: manual runway inspection board and conservative sortie schedule workbook
+- degraded_mode: preapproved diversion-only operations with strict landing thresholds
+- input_requirements: runway condition telemetry, weather state, aircraft profiles, diversion fields
+- output_schema: runway risk index, bypass/diversion matrix, sortie continuity triggers
+- protocol_profile: AIXM/FIXM + USMTF + OGC
+- validation_gates: runway integrity check, weather minima pass, command authorization gate
+
+### packet_id: DPL-BIOFORENSICS-CUST-001
+- domain: joint bioforensics field-lab chain of custody
+- objective: accelerate biological attribution while preserving legal-grade sample integrity
+- primary_tools: field LIMS, sequence analysis systems, evidence workflow and legal case tools
+- alternate_tools: manual sample custody ledger and delayed lab confirmation queue
+- degraded_mode: triage-only attribution with deferred legal-release packet
+- input_requirements: sample metadata, custody transfers, sequencing results, legal constraints
+- output_schema: custody ledger, attribution confidence tiers, legal handoff packet
+- protocol_profile: HL7/FHIR + STIX/TAXII + USMTF
+- validation_gates: custody integrity pass, lab confidence floor, legal review checkpoint
+
+### packet_id: DPL-DAM-CASCADE-001
+- domain: homeland dam cascade attack consequence and evacuation
+- objective: forecast cascading dam effects and synchronize civil-military evacuation/restoration
+- primary_tools: hydrologic consequence models, emergency operations systems, evacuation route planners
+- alternate_tools: manual inundation maps and phased evacuation checklists
+- degraded_mode: life-safety-first evacuation posture with minimum-essential restoration actions
+- input_requirements: dam status telemetry, floodplain maps, population at risk, route capacities
+- output_schema: cascade consequence map, evacuation sequence board, restoration branch plan
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + OGC
+- validation_gates: flood-model confidence check, evacuation throughput validation, civil-authority concurrence
