@@ -201,3 +201,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-precision-effects-weaponeering-ai-assurance-v1` + `protocol_stack_id=ps-precision-effects-weaponeering-ai-assurance-stack-v1` when risk recommendations rely on AI-assisted targeting effects.
 - Add `tool_suite_id=ts-hyperscale-cloud-failover-command-continuity-v1` + `protocol_stack_id=ps-hyperscale-cloud-failover-command-continuity-stack-v1` when command continuity relies on contested cloud infrastructure.
 - Add `packet_id=DPL-NC3-RESILIENCE-ORDER-INTEGRITY-001`, `packet_id=DPL-DENIED-PNT-TIMING-HOLDOVER-001`, and `packet_id=DPL-PRECISION-EFFECTS-WEAPONEERING-AI-ASSURANCE-001` for branches that can alter commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-10, Deepfake Orders, PNT Cross-Check, and AI Poisoning Addendum)
+
+- Add `tool_suite_id=ts-deepfake-orders-auth-countersign-v1` + `protocol_stack_id=ps-deepfake-orders-auth-countersign-stack-v1` when commander risk depends on trusted command-path authentication under synthetic media pressure.
+- Add `tool_suite_id=ts-quantum-navigation-pnt-cross-check-v1` + `protocol_stack_id=ps-quantum-navigation-pnt-cross-check-stack-v1` when mission risk thresholds depend on navigation and timing confidence under spoofing or jamming.
+- Add `tool_suite_id=ts-adversarial-ai-model-poisoning-detection-v1` + `protocol_stack_id=ps-adversarial-ai-model-poisoning-detection-stack-v1` when risk decisions rely on mission AI outputs with uncertain provenance.
+- Add `packet_id=DPL-DEEPFAKE-ORDERS-AUTH-COUNTERSIGN-001`, `packet_id=DPL-QUANTUM-NAV-PNT-CROSS-CHECK-001`, and `packet_id=DPL-ADVERSARIAL-AI-MODEL-POISONING-DETECTION-001` for branches that can materially alter commander risk acceptance.

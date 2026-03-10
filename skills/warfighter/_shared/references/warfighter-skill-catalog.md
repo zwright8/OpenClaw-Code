@@ -1306,3 +1306,33 @@ Every skill output should include:
 - JADC2 data contract drift auditing + mission-data provenance and releasability assurance + coalition data-diode operations
 - Coalition contested medical oxygen distribution + med-log continuity + casualty evacuation and regulation
 - Space-cyber-civil aviation GPS anomaly adjudication + denied PNT transition + SATCOM continuity and flight safety governance
+
+## New Expansion Wave (2026-03-10, Command Authenticity, Industrial Recovery, and Coalition Autonomous Medical Corridors)
+
+- joint-deepfake-orders-authentication-and-countersigning-cell
+- joint-ai-blue-force-electromagnetic-signature-discipline-cell
+- theater-maritime-cable-landing-station-defense-cell
+- contested-space-ground-lasercom-reconfiguration-cell
+- strategic-rare-earth-processing-sabotage-recovery-cell
+- coalition-denied-urban-drone-traffic-separation-cell
+- expeditionary-water-purification-membrane-integrity-cell
+- joint-biometrics-identity-contested-detainee-transfer-cell
+- homeland-critical-rail-node-cyber-physical-restoration-cell
+- coalition-autonomous-ambulance-drone-corridor-cell
+- theater-adversarial-ai-model-poisoning-detection-cell
+- joint-quantum-navigation-pnt-cross-check-cell
+
+## Updated Pairings (2026-03-10, Command Authenticity, Industrial Recovery, and Coalition Autonomous Medical Corridors)
+
+- Deepfake orders authentication + mission command intent reconciliation + coalition interoperability coordinator + legal/ROE compliance
+- Blue-force EM signature discipline + spectrum governance + electronic signature survivability + force-protection base defense
+- Maritime cable landing station defense + undersea battle-network self-healing + theater mission network failover + maritime chokepoint security
+- Space-ground lasercom reconfiguration + SATCOM continuity + contested-space launch and reconstitution + denied-PNT time holdover
+- Rare-earth processing sabotage recovery + strategic industrial mobilization readiness + supply-chain risk monitor + rare-earth magnet allocation governance
+- Coalition urban drone traffic separation + tactical airspace control/deconfliction + coalition private-5G mission-priority + humanitarian corridor deconfliction
+- Expeditionary water membrane integrity + contested austere water production + preventive medicine and force-health protection + force sustainment planning
+- Biometrics contested detainee transfer + detainee accountability + battlefield forensics evidence preservation + coalition legal interoperability
+- Homeland critical rail node restoration + rail bridge recovery + strategic mobility deployment planner + DSCA crisis support
+- Coalition autonomous ambulance drone corridor + casualty evacuation and medical regulation + coalition cross-border medical credentialing + med-log continuity
+- Adversarial AI model poisoning detection + contested AI model governance + mission risk decision support + targeting governance/CDE assurance
+- Quantum navigation PNT cross-check + denied-PNT timing holdover + timing over fiber continuity + precision navigation integrity management

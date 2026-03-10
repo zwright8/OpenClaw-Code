@@ -152,3 +152,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-gray-zone-influence-countercampaign-v1` + `protocol_stack_id=ps-gray-zone-influence-countercampaign-stack-v1` for persistent below-threshold competition that affects alliance cohesion and access.
 - Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when coalition interoperability depends on trusted cross-domain data exchange in denied environments.
 - Add `packet_id=DPL-STRATEGIC-DETERRENCE-SIGNALING-001`, `packet_id=DPL-COALITION-COGNITIVE-EW-DISINFO-COUNTERTARGETING-001`, and `packet_id=DPL-GRAY-ZONE-INFLUENCE-COUNTERCAMPAIGN-001` for branches that can alter coalition force posture.
+
+## Domain Toolchain Override (2026-03-10, Coalition Urban Air Corridors and Medical Autonomy Addendum)
+
+- Add `tool_suite_id=ts-coalition-urban-drone-traffic-separation-v1` + `protocol_stack_id=ps-coalition-urban-drone-traffic-separation-stack-v1` when interoperability depends on coalition urban drone corridor governance under denied-PNT conditions.
+- Add `tool_suite_id=ts-coalition-autonomous-ambulance-drone-corridor-v1` + `protocol_stack_id=ps-coalition-autonomous-ambulance-drone-corridor-stack-v1` when coalition casualty movement relies on autonomous air corridors and cross-border medical routing approvals.
+- Add `packet_id=DPL-COALITION-URBAN-DRONE-TRAFFIC-SEPARATION-001` and `packet_id=DPL-COALITION-AUTONOMOUS-AMBULANCE-DRONE-CORRIDOR-001` for branches that alter coalition airspace and casualty-flow governance.

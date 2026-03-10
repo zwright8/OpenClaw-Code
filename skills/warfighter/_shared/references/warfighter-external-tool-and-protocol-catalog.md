@@ -6737,3 +6737,127 @@ external_binding:
 ### `ps-space-cyber-civil-aviation-gps-anomaly-stack-v1`
 - Standards and protocols: NOTAM/ICAO exchange + ADS-B feeds + signed GNSS anomaly evidence manifests.
 - Transport profile: cross-domain aviation safety channel with cause-attribution acknowledgment chain and route-risk rollback signaling.
+
+## Tool Suite Addendum M (2026-03-10, Command Authenticity, Industrial Recovery, and Coalition Autonomous Medical Corridors)
+
+### `ts-deepfake-orders-auth-countersign-v1`
+- Use for: detection of synthetic command traffic and authenticated countersign governance for mission-critical orders.
+- Primary tools: command media forensics engine, order-signature validation service, countersign workflow board.
+- Cross-check tools: independent command-chain attestation ledger and alternate message custody verifier.
+- Typical products: command authenticity brief, countersign decision matrix, order trust exception log.
+
+### `ts-blue-force-em-signature-discipline-v1`
+- Use for: blue-force electromagnetic signature discipline, survivability scoring, and emission-control branch planning.
+- Primary tools: emitter posture analytics, EMCON policy orchestrator, RF risk scoring dashboard.
+- Cross-check tools: independent blue-force detectability simulator and alternate emissions compliance monitor.
+- Typical products: EM signature heatmap, emission-control branch plan, RF discipline scorecard.
+
+### `ts-maritime-cable-landing-defense-v1`
+- Use for: defense and rapid restoration planning for maritime cable landing stations supporting joint operations.
+- Primary tools: cable landing telemetry board, maritime OT security monitor, sabotage incident commander.
+- Cross-check tools: independent undersea fault localization board and alternate port continuity planner.
+- Typical products: landing-station defense posture, continuity branch package, sabotage response sequence.
+
+### `ts-space-ground-lasercom-reconfiguration-v1`
+- Use for: dynamic reconfiguration of optical space-ground links under jamming, weather degradation, or orbital conflict.
+- Primary tools: lasercom path planner, atmospheric attenuation forecaster, orbital handover manager.
+- Cross-check tools: independent optical link quality monitor and alternate SATCOM fallback adjudicator.
+- Typical products: lasercom reroute order, weather/jam risk timeline, handover branch matrix.
+
+### `ts-rare-earth-processing-sabotage-recovery-v1`
+- Use for: restoration of defense-critical rare-earth processing after sabotage, contamination, or cyber-physical attack.
+- Primary tools: refinery process telemetry monitor, industrial restoration scheduler, strategic stockpile risk board.
+- Cross-check tools: independent supply provenance auditor and alternate production-yield verifier.
+- Typical products: recovery prioritization board, industrial restoration timeline, strategic supply assurance branch map.
+
+### `ts-coalition-urban-drone-traffic-separation-v1`
+- Use for: coalition urban drone traffic deconfliction during denied-PNT and degraded comms operations.
+- Primary tools: coalition UTM controller, urban air corridor digital twin, remote-ID anomaly detector.
+- Cross-check tools: independent collision-risk estimator and alternate airspace congestion monitor.
+- Typical products: urban corridor control order, denied-PNT deconfliction plan, collision-risk ledger.
+
+### `ts-expeditionary-water-membrane-integrity-v1`
+- Use for: expeditionary water purification membrane integrity assurance and contamination risk control.
+- Primary tools: purification plant telemetry service, membrane degradation analytics, contamination verification board.
+- Cross-check tools: independent expeditionary lab sampling chain and alternate throughput confidence monitor.
+- Typical products: membrane health report, contamination branch matrix, maintenance forecast.
+
+### `ts-biometrics-contested-detainee-transfer-v1`
+- Use for: contested detainee identity validation and custody assurance across joint and coalition handoffs.
+- Primary tools: biometric confidence adjudicator, custody transfer ledger, evidence provenance tracker.
+- Cross-check tools: independent roster reconciliation board and alternate identity confidence verifier.
+- Typical products: identity confidence brief, custody transfer assurance matrix, contested handoff risk register.
+
+### `ts-critical-rail-node-cyber-physical-restoration-v1`
+- Use for: cyber-physical restoration of rail chokepoints critical to military deployment and sustainment.
+- Primary tools: rail OT incident monitor, signaling restoration orchestrator, throughput recovery planner.
+- Cross-check tools: independent dispatch integrity monitor and alternate mobility feasibility board.
+- Typical products: rail-node restoration brief, throughput reconstitution timeline, cyber-physical branch chart.
+
+### `ts-coalition-autonomous-ambulance-drone-corridor-v1`
+- Use for: coalition autonomous ambulance drone corridor governance for high-tempo casualty movement.
+- Primary tools: medevac drone corridor controller, casualty flow optimizer, coalition medical routing clearance board.
+- Cross-check tools: independent airspace safety monitor and alternate patient movement regulator.
+- Typical products: corridor operations order, casualty prioritization board, medevac deconfliction matrix.
+
+### `ts-adversarial-ai-model-poisoning-detection-v1`
+- Use for: detection and containment of adversarial model/data poisoning in mission AI systems.
+- Primary tools: model lineage attestation service, data drift and poisoning detector, mission AI containment board.
+- Cross-check tools: independent model-behavior evaluator and alternate dataset provenance verifier.
+- Typical products: poisoning threat estimate, trust recovery plan, mission-AI containment matrix.
+
+### `ts-quantum-navigation-pnt-cross-check-v1`
+- Use for: cross-check of conventional PNT with quantum/inertial references under spoofing and jamming.
+- Primary tools: quantum inertial fusion service, timing anomaly detector, navigation confidence adjudicator.
+- Cross-check tools: independent PNT integrity monitor and alternate timing-source trust board.
+- Typical products: PNT confidence brief, timing integrity branch plan, denied-navigation mitigation matrix.
+
+## Protocol Stack Addendum M (2026-03-10, Command Authenticity, Industrial Recovery, and Coalition Autonomous Medical Corridors)
+
+### `ps-deepfake-orders-auth-countersign-stack-v1`
+- Standards and protocols: USMTF + ACP 127 + signed JOSE/JWS command manifests and DISA PKI countersign artifacts.
+- Transport profile: authority-gated command messaging with mandatory countersign acknowledgment and offline readback fallback.
+
+### `ps-blue-force-em-signature-discipline-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + signed EMCON policy and emitter-trust manifests.
+- Transport profile: low-latency emissions-control exchange with fratricide-safe acknowledgment chain.
+
+### `ps-maritime-cable-landing-defense-stack-v1`
+- Standards and protocols: AIS + OGC infrastructure overlays + IEC 62443 OT incident manifests.
+- Transport profile: encrypted maritime infrastructure incident bus with deterministic degraded-mode continuity updates.
+
+### `ps-space-ground-lasercom-reconfiguration-stack-v1`
+- Standards and protocols: CCSDS optical comms profiles + API/JSON status events + signed orbital handover manifests.
+- Transport profile: adaptive optical route-control channel with confidence-based fallback to SATCOM relay.
+
+### `ps-rare-earth-processing-sabotage-recovery-stack-v1`
+- Standards and protocols: STIX/TAXII incident exchange + IEC 62443 controls + signed provenance and production manifests.
+- Transport profile: segmented industrial recovery channel with escalation-gated restoration acknowledgments.
+
+### `ps-coalition-urban-drone-traffic-separation-stack-v1`
+- Standards and protocols: ASTM F3411 Remote ID + STANAG 4586 + CoT corridor events.
+- Transport profile: coalition UTM synchronization queue with denied-PNT confidence tags and collision-alert acknowledgments.
+
+### `ps-expeditionary-water-membrane-integrity-stack-v1`
+- Standards and protocols: OGC SensorThings + EPA water telemetry profiles + signed contamination manifests.
+- Transport profile: authenticated water telemetry pipeline with purity-threshold alerting and manual lab-validation fallback.
+
+### `ps-biometrics-contested-detainee-transfer-stack-v1`
+- Standards and protocols: EBTS + NIEM custody exchange + signed detainee transfer manifests.
+- Transport profile: encrypted custody ledger sync with handoff acknowledgments and disconnected reconciliation fallback.
+
+### `ps-critical-rail-node-cyber-physical-restoration-stack-v1`
+- Standards and protocols: rail dispatch API/JSON + STIX/TAXII + IEC 62443 restoration directives.
+- Transport profile: cyber-physical restoration channel with milestone acknowledgments and offline dispatch continuity mode.
+
+### `ps-coalition-autonomous-ambulance-drone-corridor-stack-v1`
+- Standards and protocols: STANAG 4586 + HL7/FHIR casualty payloads + CoT medevac corridor events.
+- Transport profile: prioritized medevac corridor bus with patient-priority acknowledgments and legal-clearance fallback queue.
+
+### `ps-adversarial-ai-model-poisoning-detection-stack-v1`
+- Standards and protocols: signed model/dataset provenance manifests + STIX/TAXII threat artifacts + API/JSON model health events.
+- Transport profile: mission-AI trust pipeline with quarantine gating and rollback-safe model promotion controls.
+
+### `ps-quantum-navigation-pnt-cross-check-stack-v1`
+- Standards and protocols: NMEA + IEEE 1588 timing profiles + signed cross-check confidence manifests.
+- Transport profile: deterministic PNT confidence exchange with anti-spoof alerting and holdover-safe fallback timing lane.

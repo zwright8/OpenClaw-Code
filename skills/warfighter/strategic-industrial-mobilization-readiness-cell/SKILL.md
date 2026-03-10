@@ -157,3 +157,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Prioritize `tool_suite_id=ts-field-biologics-assurance-v1` when biologics shortages or contamination risk threatens force-readiness timelines.
 - Use packet `DPL-BIOREACTOR-VAX-001` to map lot assurance, contamination controls, and distribution continuity triggers.
 - If assay chain confidence is incomplete, downgrade to contingency-only readiness guidance and require medical authority review.
+
+## Domain Toolchain Override (2026-03-10, Rare-Earth Recovery and Rail Node Restoration Addendum)
+
+- Prioritize `tool_suite_id=ts-rare-earth-processing-sabotage-recovery-v1` + `protocol_stack_id=ps-rare-earth-processing-sabotage-recovery-stack-v1` when industrial mobilization readiness depends on restoring disrupted rare-earth processing throughput.
+- Prioritize `tool_suite_id=ts-critical-rail-node-cyber-physical-restoration-v1` + `protocol_stack_id=ps-critical-rail-node-cyber-physical-restoration-stack-v1` when force-flow readiness is constrained by rail chokepoint cyber-physical disruption.
+- Add `packet_id=DPL-RARE-EARTH-SABOTAGE-RECOVERY-001` and `packet_id=DPL-CRITICAL-RAIL-NODE-CYBER-PHYSICAL-RESTORE-001` for high-impact industrial and mobility restoration branches.
