@@ -1534,3 +1534,25 @@ Every skill output should include:
 - Coalition information operations civil trust stabilization + information integrity and attribution + MISO support + coalition interoperability coordination
 - Military family readiness crisis sustainment + theater reservist family readiness and retention + force generation planning + retention risk mitigation
 - Contested cyber legal evidence fusion + coalition cyber legal attribution + cross-border cyber forensics and extradition evidence + strategic escalation governance
+
+## New Expansion Wave (2026-03-11, Cislunar Continuity, Expeditionary Infrastructure, and Recovery Authentication)
+
+- joint-cislunar-logistics-and-radiation-storm-mission-continuity-cell
+- coalition-disconnected-tactical-manufacturing-quality-federation-cell
+- homeland-water-treatment-cyber-physical-protection-and-force-health-cell
+- theater-cognitive-ew-disruption-and-countermessaging-governance-cell
+- joint-autonomous-surface-resupply-lane-risk-governance-cell
+- tactical-expeditionary-power-grid-load-forecast-and-fuel-optimization-cell
+- joint-denied-sar-beacon-authentication-and-recovery-cell
+- strategic-semiconductor-packaging-assurance-and-priority-allocation-cell
+
+## Updated Pairings (2026-03-11, Cislunar Continuity, Expeditionary Infrastructure, and Recovery Authentication)
+
+- Cislunar logistics continuity + space-weather GNSS fusion + NC3 continuity/failover + strategic mobility assurance
+- Disconnected tactical manufacturing quality federation + additive repair validation + coalition data-fabric interoperability + munitions interoperability governance
+- Homeland water-treatment cyber-physical protection + DSCA civil-support coordination + force-health protection + critical infrastructure restoration
+- Cognitive-EW disruption governance + spectrum interference resolution + information integrity attribution + human-command escalation controls
+- Autonomous surface resupply lane governance + maritime chokepoint continuity + contested logistics sustainment + autonomous swarm logistics defense
+- Expeditionary power-load and fuel optimization + blackstart fuel convoy security + operational energy resilience + mission network failover
+- Denied SAR beacon authentication + personnel recovery corridor safety + contested medevac prioritization + mission-risk decision support
+- Semiconductor packaging assurance and allocation + strategic industrial mobilization readiness + counterfeit microelectronics quarantine + supply-shock mitigation
