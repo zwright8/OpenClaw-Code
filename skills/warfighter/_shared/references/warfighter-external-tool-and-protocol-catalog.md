@@ -7818,3 +7818,87 @@ external_binding:
 ### `ps-sanctioned-supply-substitution-denial-stack-v1`
 - Standards and protocols: STIX/TAXII threat-sharing + API/JSON trade telemetry + USMTF strategic sustainment briefs.
 - Transport profile: supply substitution-denial lane with enforcement authority gates and adversary adaptation watchpoints.
+
+## Tool Suite Addendum VI (2026-03-11, Navigation Recovery, Industrial Defense, and Legal Observability Expansion)
+
+### `ts-denied-pnt-terrain-nav-recovery-v1`
+- Use for: denied-PNT terrain-relative navigation recovery and precision maneuver continuity under spoofing or jamming.
+- Primary tools: multi-sensor inertial fusion board, terrain-relative nav correlator, mission timing compensation planner.
+- Cross-check tools: independent PNT confidence witness and alternate map-correlation verifier.
+- Typical products: denied-PNT recovery plan, confidence-weighted route matrix, timing offset risk chart.
+
+### `ts-contested-port-humanitarian-inspection-v1`
+- Use for: coalition synchronization of military sealift and humanitarian cargo inspection in contested ports.
+- Primary tools: port throughput command dashboard, customs-inspection scheduler, humanitarian cargo prioritization board.
+- Cross-check tools: independent berth-status mirror and alternate legal-waiver adjudication tracker.
+- Typical products: vessel sequencing plan, inspection deconfliction matrix, humanitarian throughput risk estimate.
+
+### `ts-autonomous-convoy-counter-ambush-v1`
+- Use for: adaptive autonomous convoy rerouting and counter-ambush branch execution in contested ground corridors.
+- Primary tools: convoy autonomy control board, route-threat prediction engine, ISR-backed branch recommendation service.
+- Cross-check tools: independent threat-route witness board and alternate convoy trust-status monitor.
+- Typical products: convoy branch order, ambush trigger matrix, escort posture synchronization packet.
+
+### `ts-critical-mineral-refinery-defense-restart-v1`
+- Use for: defense of strategic critical-mineral refining infrastructure and staged restart after cyber/physical disruption.
+- Primary tools: refinery cyber-physical status dashboard, feedstock viability planner, industrial restart orchestration board.
+- Cross-check tools: independent infrastructure integrity witness and alternate production-readiness adjudication board.
+- Typical products: refinery defense scorecard, restart sequence timeline, strategic mineral allocation risk brief.
+
+### `ts-forward-biothreat-diagnostics-quarantine-v1`
+- Use for: expeditionary biothreat diagnostics surge and quarantine governance for force-health continuity.
+- Primary tools: field diagnostic network coordinator, outbreak anomaly fusion board, quarantine capacity optimizer.
+- Cross-check tools: independent epidemiology witness feed and alternate lab-confidence adjudication board.
+- Typical products: diagnostics surge plan, quarantine trigger ladder, mission continuity health branch.
+
+### `ts-homeland-grid-blackstart-fuel-cyber-v1`
+- Use for: homeland mission-node grid blackstart sequencing with integrated fuel prioritization and cyber-safe energization.
+- Primary tools: utility blackstart orchestration board, fuel dispatch assurance tracker, cyber-safe restoration gate manager.
+- Cross-check tools: independent power-state witness feed and alternate grid integrity adjudication board.
+- Typical products: blackstart branch plan, fuel restoration matrix, cyber-safe energization checklist.
+
+### `ts-orbital-debris-reentry-base-protection-v1`
+- Use for: orbital debris reentry warning fusion and base-protection trigger governance across military installations.
+- Primary tools: reentry uncertainty analytics board, base exposure overlay engine, mission rescheduling coordinator.
+- Cross-check tools: independent orbital warning witness service and alternate base-risk adjudication board.
+- Typical products: reentry warning confidence matrix, protection trigger package, mission continuity branch plan.
+
+### `ts-coalition-detainee-transfer-legal-observability-v1`
+- Use for: coalition detainee transfer assurance with synchronized legal observability and custody accountability.
+- Primary tools: custody transition governance board, legal compliance checkpoint engine, identity verification workflow monitor.
+- Cross-check tools: independent chain-of-custody witness ledger and alternate legal audit adjudication board.
+- Typical products: transfer assurance matrix, custody observability report, coalition legal-risk decision packet.
+
+## Protocol Stack Addendum VI (2026-03-11, All-Domain Continuity and Accountability Expansion)
+
+### `ps-denied-pnt-terrain-nav-recovery-stack-v1`
+- Standards and protocols: Link 16 J-series timing references + VMF maneuver updates + OGC terrain overlays + signed API/JSON nav confidence records.
+- Transport profile: denied-PNT recovery bus with confidence-tier acknowledgments and timing-compensation branch controls.
+
+### `ps-contested-port-humanitarian-inspection-stack-v1`
+- Standards and protocols: AIS/NMEA vessel feeds + API/JSON customs queue records + USMTF movement summaries + signed inspection manifests.
+- Transport profile: contested-port coordination lane with berth-release authority gates and humanitarian priority acknowledgments.
+
+### `ps-autonomous-convoy-counter-ambush-stack-v1`
+- Standards and protocols: CoT route threat updates + VMF ground maneuver messaging + API/JSON autonomy telemetry + signed convoy branch manifests.
+- Transport profile: convoy adaptation channel with ambush-trigger thresholds and reroute acknowledgment chain checks.
+
+### `ps-critical-mineral-refinery-defense-restart-stack-v1`
+- Standards and protocols: STIX/TAXII threat intelligence + API/JSON industrial telemetry + USMTF strategic sustainment summaries + signed restart gate packets.
+- Transport profile: refinery defense and restart lane with cyber-safe energization checks and authority-gated restart approvals.
+
+### `ps-forward-biothreat-diagnostics-quarantine-stack-v1`
+- Standards and protocols: HL7/FHIR diagnostic exchange + API/JSON surveillance telemetry + EDXL alerts + USMTF force-health summaries.
+- Transport profile: forward-biothreat response lane with quarantine threshold gating and clinical confidence acknowledgments.
+
+### `ps-homeland-grid-blackstart-fuel-cyber-stack-v1`
+- Standards and protocols: NIMS/ICS coordination records + API/JSON grid telemetry + STIX/TAXII cyber indicators + USMTF continuity notices.
+- Transport profile: blackstart coordination bus with fuel-priority and cyber-clearance dual-ack checkpoints.
+
+### `ps-orbital-debris-reentry-base-protection-stack-v1`
+- Standards and protocols: API/JSON orbital event telemetry + USMTF warning summaries + CAP/EDXL civil alert exchange + signed base-protection directives.
+- Transport profile: reentry warning lane with uncertainty-bound update cadence and base-action acknowledgment integrity checks.
+
+### `ps-coalition-detainee-transfer-legal-observability-stack-v1`
+- Standards and protocols: API/JSON custody event records + NIEM legal exchange payloads + signed chain-of-custody manifests + USMTF accountability summaries.
+- Transport profile: detainee transfer observability lane with legal checkpoint acknowledgments and custody handoff dual-control gates.

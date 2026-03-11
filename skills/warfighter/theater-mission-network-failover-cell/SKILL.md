@@ -170,3 +170,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-nc3-hardened-fiber-failover-assurance-v1` + `protocol_stack_id=ps-nc3-hardened-fiber-failover-assurance-stack-v1` when failover recommendations include hardened terrestrial NC3 path continuity and acknowledgment integrity.
 - Add `tool_suite_id=ts-coalition-private-5g-mission-failover-v1` + `protocol_stack_id=ps-coalition-private-5g-mission-failover-stack-v1` when mission network failover must preserve coalition private-5G priority services in contested spectrum.
+
+## Domain Toolchain Override (2026-03-11, Homeland Blackstart and Industrial Sustainment Continuity)
+
+- Add `tool_suite_id=ts-homeland-grid-blackstart-fuel-cyber-v1` + `protocol_stack_id=ps-homeland-grid-blackstart-fuel-cyber-stack-v1` when mission network failover depends on coordinated utility restoration, fuel prioritization, and cyber-safe energization at homeland or theater support nodes.
+- Add `tool_suite_id=ts-critical-mineral-refinery-defense-restart-v1` + `protocol_stack_id=ps-critical-mineral-refinery-defense-restart-stack-v1` when failover decisions materially depend on defense-industrial feedstock continuity and refinery restart sequencing.
+- Add `packet_id=DPL-GRID-BLACKSTART-CYBER-001` and `packet_id=DPL-CRITICAL-MINERAL-RESTART-001` for branches that alter mission-service survivability timelines or strategic sustainment assumptions.

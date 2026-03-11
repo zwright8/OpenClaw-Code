@@ -149,3 +149,9 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Space Deconfliction Expansion Addendum (2026-03-11, Reentry Warning and Coalition Port Coupling)
+
+- Add `tool_suite_id=ts-orbital-debris-reentry-base-protection-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-protection-stack-v1` when launch-window deconfliction requires synchronized debris reentry warning branches and base-protection triggers.
+- Add `tool_suite_id=ts-contested-port-humanitarian-inspection-v1` + `protocol_stack_id=ps-contested-port-humanitarian-inspection-stack-v1` when launch or reconstitution windows are coupled to contested-port throughput and humanitarian lane governance.
+- Add `packet_id=DPL-ORBITAL-REENTRY-PROTECT-001` and `packet_id=DPL-PORT-HUMANITARIAN-DECONF-001` for recommendations that change launch timing, base exposure posture, or coalition movement priorities.

@@ -149,3 +149,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-identity-proof-life-reconstitution-v1` + `protocol_stack_id=ps-identity-proof-life-reconstitution-stack-v1` when disconnected identity confidence falls below mission threshold or proof-of-life status is stale.
 - Add `tool_suite_id=ts-disconnected-command-intent-reconciliation-v1` + `protocol_stack_id=ps-disconnected-command-intent-reconciliation-stack-v1` when command guidance forks create competing execution paths across tactical enclaves.
 - Add `packet_id=DPL-IDENTITY-PROOF-LIFE-RECON-001` and `packet_id=DPL-DISCONNECTED-COMMAND-INTENT-RECON-001` for branches that alter authorization boundaries, credential trust, or command release conditions.
+
+## Zero-Trust Expansion Addendum (2026-03-11, Denied Navigation and Convoy Counter-Ambush)
+
+- Add `tool_suite_id=ts-denied-pnt-terrain-nav-recovery-v1` + `protocol_stack_id=ps-denied-pnt-terrain-nav-recovery-stack-v1` when zero-trust routing policy must preserve assured maneuver timing under GNSS spoofing/jamming.
+- Add `tool_suite_id=ts-autonomous-convoy-counter-ambush-v1` + `protocol_stack_id=ps-autonomous-convoy-counter-ambush-stack-v1` when tactical network hardening recommendations directly impact autonomous convoy branch execution.
+- Add `packet_id=DPL-DENIED-PNT-RECOVERY-001` and `packet_id=DPL-CONVOY-COUNTER-AMBUSH-001` for recommendations that shift trust boundaries, route authority, or engagement-risk posture.

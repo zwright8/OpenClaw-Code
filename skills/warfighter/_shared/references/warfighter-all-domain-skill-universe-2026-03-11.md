@@ -58,3 +58,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added cross-theater continuity expansion wave focused on SATCOM denial reconstitution, seabed energy infrastructure defense, additive feedstock provenance, mass-casualty biometric reconciliation, synthetic-media watermark evidence assurance, LVC spectrum rehearsal safety, coalition telecom priority restoration, tactical radiation evacuation routing, under-ice uncrewed resupply, and sanctioned supply substitution-denial planning.
 - Extended shared tool/protocol references with Tool Suite Addendum V and Protocol Stack Addendum V to provide explicit external integration defaults for new and existing skills.
 - Strengthened existing logistics authentication and disconnected maintenance skills with explicit alternate suite/stack selections and stricter invocation controls.
+
+## Run Update (2026-03-11T13:xxZ)
+
+- Added expansion wave covering denied-navigation terrain recovery, contested-port humanitarian inspection synchronization, autonomous convoy counter-ambush adaptation, strategic critical-mineral refinery defense/restart, forward biothreat diagnostics/quarantine, homeland grid blackstart fuel-cyber coordination, orbital debris reentry warning/base protection, and coalition detainee transfer legal observability.
+- Extended shared tool/protocol references with Tool Suite Addendum VI and Protocol Stack Addendum VI to provide concrete external system defaults for these new domains.
+- Improved existing network-hardening, mission-network-failover, and space-launch deconfliction skills with explicit override bindings to new suite/stack pairs and packet references.
