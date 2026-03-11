@@ -230,6 +230,8 @@ npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --li
 npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97
+npm run autonomous:run -- --selection-policy ucb_tuned
+npm run autonomous:run -- --selection-policy d_ucb_tuned --discount-factor 0.97
 npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02

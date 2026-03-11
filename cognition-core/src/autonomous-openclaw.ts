@@ -72,6 +72,7 @@ const LINUCB_FEATURE_NAMES = [
 ];
 const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'ucb',
+    'ucb_tuned',
     'linucb',
     'd_linucb',
     'lints',
@@ -82,6 +83,7 @@ const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'sw_epsilon_ts',
     'sw_kl_ucb',
     'd_ucb',
+    'd_ucb_tuned',
     'd_epsilon_ts',
     'cd_ucb',
     'corral_exp3',
@@ -103,6 +105,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
+    'd_ucb_tuned',
     'd_epsilon_ts',
     'd_linucb',
     'd_lints'
@@ -1165,6 +1168,27 @@ function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, 
         + adjustments.staleBoost;
 }
 
+function computeUcbTunedScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const horizon = Math.max(2, totalAttempts + 1);
+    const empiricalMean = normalized.successes / normalized.attempts;
+    const empiricalVariance = clamp(empiricalMean * (1 - empiricalMean), 0, 0.25);
+    const varianceInflation = Math.sqrt((2 * Math.log(horizon)) / normalized.attempts);
+    const tunedVariance = Math.min(0.25, empiricalVariance + varianceInflation);
+    const exploration = Math.sqrt((Math.log(horizon) / normalized.attempts) * tunedVariance);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return empiricalMean
+        + exploration
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
 function computeBernoulliKlDivergence(p, q) {
     const epsilon = 1e-12;
     const left = clamp(p, epsilon, 1 - epsilon);
@@ -1452,6 +1476,14 @@ function selectCatalogSlice({
                 stat,
                 totalAttempts,
                 total,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy
+            );
+        } else if (scoringPolicy.mode === 'ucb_tuned' || scoringPolicy.mode === 'd_ucb_tuned') {
+            score = computeUcbTunedScore(
+                stat,
+                totalAttempts,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
                 scoringPolicy

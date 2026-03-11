@@ -811,6 +811,107 @@ test('buildAutonomousBatchPlan supports discounted UCB for recency-weighted drif
     assert.deepEqual(plan.selection.skillIds, [64]);
 });
 
+test('buildAutonomousBatchPlan supports UCB-Tuned variance-aware ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 67, code: 'SK-00067', title: 'Skill 67' },
+            { id: 68, code: 'SK-00068', title: 'Skill 68' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 27,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '67': {
+                    attempts: 120,
+                    successes: 95,
+                    failures: 25,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'completed'
+                },
+                '68': {
+                    attempts: 6,
+                    successes: 3,
+                    failures: 3,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'completed'
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 28,
+        selectionPolicyConfig: {
+            mode: 'ucb_tuned'
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [68]);
+});
+
+test('buildAutonomousBatchPlan supports discounted UCB-Tuned ranking under drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 69, code: 'SK-00069', title: 'Skill 69' },
+            { id: 70, code: 'SK-00070', title: 'Skill 70' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 28,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '69': {
+                    attempts: 32,
+                    successes: 24,
+                    failures: 8,
+                    consecutiveFailures: 0,
+                    lastWave: 28,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'failed' },
+                        { wave: 28, status: 'failed' }
+                    ]
+                },
+                '70': {
+                    attempts: 32,
+                    successes: 14,
+                    failures: 18,
+                    consecutiveFailures: 0,
+                    lastWave: 28,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' },
+                        { wave: 28, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 29,
+        selectionPolicyConfig: {
+            mode: 'd_ucb_tuned',
+            discountFactor: 0.6
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [70]);
+});
+
 test('buildAutonomousBatchPlan supports discounted epsilon-thompson ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
