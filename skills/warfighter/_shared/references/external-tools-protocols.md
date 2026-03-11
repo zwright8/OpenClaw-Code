@@ -417,3 +417,16 @@ Include these fields in outputs when tool integration is used:
 - Battlefield identity credential recovery: credential lifecycle and revocation systems + USMTF/STIX/API
 - Theater fiber backbone traffic triage: backbone telemetry + traffic reroute orchestration + USMTF/STIX/API
 - Reserve mobilization training surge: mobilization readiness + training throughput planners + USMTF/API/NATO formats
+
+## Domain Toolchain Profiles (2026-03-11 Expansion B, Cislunar Safety and Homeland Continuity)
+
+- Cislunar rendezvous and deorbit safety: SDA catalogs + conjunction-risk analytics + timing integrity monitors + API/JSON + CCSDS + USMTF
+- SOF low-probability communications discipline: waveform governance tools + signature analytics + mission comms posture boards + VMF + CoT + USMTF
+- Homeland undersea cable insurance/restoration: subsea telemetry fusion + restoration planners + insurance continuity workflows + AIS/NMEA + OGC + USMTF
+- Coalition cloud-denied data-fabric healing: schema translation validators + cross-domain replication brokers + trust-policy engines + API/JSON + USMTF + coalition formats
+- Strategic transformer convoy protection: heavy-lift route analytics + convoy security planners + grid restoration dependency boards + USMTF + VMF + OGC
+- Urban bridge collapse mass-casualty routing: casualty movement regulators + transport reroute tools + civil-support dashboards + HL7/FHIR + NIMS/ICS + USMTF
+- Portable radar emission governance for C-UAS: spectrum assignment tools + radar duty-cycle managers + fratricide-risk checkers + Link 16 + VMF + USMTF
+- Weather-radar spoofing attribution: meteorological data trust engines + EW anomaly analytics + mission weather assurance boards + API/JSON + STIX/TAXII + USMTF
+- Coalition reserve medical license reciprocity: credential federation services + role-privilege validators + surge staffing trackers + HL7/FHIR + NATO APP-11 + USMTF
+- Expeditionary water contamination forecasting: water telemetry + contamination models + force-health surveillance + API/JSON + HL7/FHIR + USMTF

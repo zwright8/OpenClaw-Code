@@ -3622,3 +3622,115 @@ validation_gates:
 - output_schema: surge timeline, throughput allocation matrix, readiness risk ladder
 - protocol_profile: USMTF + API/JSON + NATO APP-11/ADatP-3 aligned
 - validation_gates: throughput feasibility check, instructor sufficiency gate, readiness confidence threshold
+
+## Expansion Packets (2026-03-11, Expansion B)
+
+### packet_id: DPL-CISLUNAR-RDV-DEORBIT-001
+- domain: cislunar logistics rendezvous and deorbit safety
+- objective: synchronize rendezvous windows and deorbit decisions under conjunction and timing uncertainty
+- primary_tools: SDA event broker, conjunction/deorbit risk engine, timing integrity monitor
+- alternate_tools: manual orbital timeline board and conservative deorbit hold worksheet
+- degraded_mode: mission-critical rendezvous and deorbit advisories only with reduced confidence
+- input_requirements: orbital states, planned rendezvous windows, conjunction alerts, timing confidence
+- output_schema: rendezvous safety matrix, deorbit go/no-go gates, continuity branch triggers
+- protocol_profile: CCSDS + API/JSON + USMTF
+- validation_gates: conjunction risk threshold, timing integrity pass, command authority check
+
+### packet_id: DPL-SOF-LPD-COMMS-001
+- domain: SOF low-probability comms discipline
+- objective: reduce comms detectability while preserving mission-essential command links
+- primary_tools: waveform governance service, signature analytics, comms posture board
+- alternate_tools: manual emission-control worksheet and scheduled burst table
+- degraded_mode: mission-essential comm windows with strict EMCON posture
+- input_requirements: waveform inventory, threat emitters, mission phases, authority matrix
+- output_schema: comms discipline ladder, exposure risk score, branch triggers
+- protocol_profile: VMF + CoT + USMTF
+- validation_gates: exposure threshold pass, interoperability check, approval record
+
+### packet_id: DPL-HOMELAND-CABLE-INSURANCE-001
+- domain: homeland undersea cable insurance and restoration
+- objective: prioritize restoration while preserving strategic continuity and insurance traceability
+- primary_tools: cable telemetry fusion, restoration planner, continuity insurance model
+- alternate_tools: outage spreadsheet control with manual restoration board
+- degraded_mode: critical-node restoration advisory with delayed verification
+- input_requirements: cable outage segments, critical mission dependencies, restoration assets, insurance constraints
+- output_schema: restoration priority queue, continuity impact matrix, insurance risk note
+- protocol_profile: AIS/NMEA + OGC + USMTF
+- validation_gates: outage confidence floor, dependency verification, legal/insurance review
+
+### packet_id: DPL-CLOUD-DENIED-FABRIC-HEAL-001
+- domain: coalition cloud-denied data-fabric healing
+- objective: restore trusted data exchange under partitioned cloud conditions
+- primary_tools: replication orchestrator, schema validator, trust-policy engine
+- alternate_tools: manual data reconciliation board and delayed schema checks
+- degraded_mode: mission-essential data channels only with timestamped confidence tags
+- input_requirements: replication topology, schema versions, trust policy rules, link status
+- output_schema: healing runbook, trust scorecard, schema remediation queue
+- protocol_profile: API/JSON + USMTF + signed provenance manifests
+- validation_gates: replication integrity pass, schema drift check, authority validation
+
+### packet_id: DPL-TRANSFORMER-CONVOY-PROTECTION-001
+- domain: strategic transformer heavy-lift convoy protection
+- objective: protect heavy-lift transformer convoys that drive grid reconstitution
+- primary_tools: heavy-lift route optimizer, convoy security scheduler, grid dependency mapper
+- alternate_tools: manual route cell and convoy risk worksheet
+- degraded_mode: essential convoy movement only with conservative threat assumptions
+- input_requirements: convoy routes, threat overlays, transformer criticality, escort capacity
+- output_schema: convoy protection matrix, reroute branches, restoration dependency impacts
+- protocol_profile: USMTF + VMF + OGC
+- validation_gates: survivability threshold pass, route feasibility check, command approval
+
+### packet_id: DPL-URBAN-BRIDGE-COLLAPSE-CASEVAC-001
+- domain: urban bridge collapse casualty routing
+- objective: route casualties and essential traffic after major bridge failure under conflict pressure
+- primary_tools: casualty regulator board, transport reroute engine, civil support dashboard
+- alternate_tools: manual casualty queue and emergency bypass worksheet
+- degraded_mode: priority casualty movement only
+- input_requirements: bridge outage geometry, casualty loads, hospital capacities, bypass routes
+- output_schema: casualty routing matrix, traffic bypass plan, throughput risk timeline
+- protocol_profile: HL7/FHIR + NIMS/ICS + USMTF
+- validation_gates: medical authority check, route safety pass, hospital acknowledgment
+
+### packet_id: DPL-PORTABLE-RADAR-EMISSION-GOV-001
+- domain: portable radar emission governance for C-UAS
+- objective: optimize radar utility while minimizing detection and fratricide risk
+- primary_tools: radar duty-cycle manager, spectrum conflict checker, fratricide-risk estimator
+- alternate_tools: manual radar schedule board and RF conflict checklist
+- degraded_mode: short-window radar activation with strict approval gates
+- input_requirements: radar positions, threat UAV sectors, friendly emitters, mission priorities
+- output_schema: emission schedule, deconfliction actions, detection-risk mitigation steps
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: spectrum conflict pass, fratricide check, authority verification
+
+### packet_id: DPL-WEATHER-RADAR-SPOOF-ATTRIB-001
+- domain: contested weather radar spoofing attribution
+- objective: attribute spoofing attempts and preserve trusted weather products for mission planning
+- primary_tools: weather integrity validator, EW anomaly analytics, mission weather confidence board
+- alternate_tools: manual weather-source comparison and confidence scoring worksheet
+- degraded_mode: conservative weather warning posture with reduced source set
+- input_requirements: weather feeds, anomaly indicators, emitter observations, mission weather thresholds
+- output_schema: spoof attribution brief, trusted feed ladder, weather assurance actions
+- protocol_profile: API/JSON + STIX/TAXII + USMTF
+- validation_gates: source corroboration pass, attribution confidence threshold, command dissemination check
+
+### packet_id: DPL-MEDICAL-RECIPROCITY-SURGE-001
+- domain: coalition reserve medical license reciprocity and surge
+- objective: accelerate cross-coalition credentialing to expand medical surge capacity
+- primary_tools: credential federation broker, privileging validator, surge staffing tracker
+- alternate_tools: manual credential board and staffing reconciliation tracker
+- degraded_mode: mission-critical role reciprocity only
+- input_requirements: provider credentials, coalition role mappings, legal constraints, staffing demand
+- output_schema: reciprocity matrix, staffing surge timeline, care-capacity risk branches
+- protocol_profile: HL7/FHIR + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: credential verification pass, legal reciprocity check, care-safety threshold
+
+### packet_id: DPL-WATER-CONTAMINATION-FORECAST-001
+- domain: expeditionary water contamination forecasting
+- objective: forecast water-source contamination and recommend force-health protective actions
+- primary_tools: water telemetry analytics, contamination forecast models, force-health surveillance panel
+- alternate_tools: manual sampling ledger and contamination trend worksheet
+- degraded_mode: high-confidence source advisories only
+- input_requirements: water source telemetry, contaminant assays, weather/hydrology context, force-health indicators
+- output_schema: contamination risk ladder, source protection plan, health trigger matrix
+- protocol_profile: API/JSON + HL7/FHIR + USMTF
+- validation_gates: sample-chain integrity check, contamination confidence threshold, command approval for source shutdown
