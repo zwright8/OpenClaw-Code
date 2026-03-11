@@ -206,3 +206,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-stack-v1` when failover viability depends on coupled infrastructure anomalies.
 - Add `tool_suite_id=ts-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-v1` + `protocol_stack_id=ps-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-stack-v1` when continuity branches require life-safety convoy arbitration.
 - Add `packet_id=DPL-FEW-NEXUS-ANOMALY-001` and `packet_id=DPL-AUTO-EVAC-ARBITRATION-001` for branches that materially change restoration sequencing or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-v1` + `protocol_stack_id=ps-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-stack-v1` when failover branches require coalition-host-nation telecom corridor recovery.
+- Add `tool_suite_id=ts-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-v1` + `protocol_stack_id=ps-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-stack-v1` when failover viability depends on restored weather sensor confidence for timing and route decisions.
+- Add `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` and `packet_id=DPL-DENIED-WEATHER-SENSOR-RESEED-001` for branches that materially change mission-service survivability, timing confidence, or commander risk acceptance.

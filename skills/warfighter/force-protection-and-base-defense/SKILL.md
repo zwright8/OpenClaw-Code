@@ -239,3 +239,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-theater-autonomous-munitions-storage-fire-response-cell-v1` + `protocol_stack_id=ps-theater-autonomous-munitions-storage-fire-response-cell-stack-v1` when base-defense recommendations include depot fire/explosion contingencies and autonomous suppression governance.
 - Add `tool_suite_id=ts-expeditionary-cold-chain-biologics-denied-corridor-cell-v1` + `protocol_stack_id=ps-expeditionary-cold-chain-biologics-denied-corridor-cell-stack-v1` when force-protection posture depends on life-saving medical sustainment continuity through denied routes.
 - Add `packet_id=DPL-MUNITIONS-STORAGE-FIRE-RESPONSE-001` and `packet_id=DPL-COLD-CHAIN-BIOLOGICS-DENIED-CORRIDOR-001` for branches that materially alter sheltering, casualty-risk posture, or protected sustainment priority.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-theater-electronic-deception-decoy-emitter-governance-cell-v1` + `protocol_stack_id=ps-theater-electronic-deception-decoy-emitter-governance-cell-stack-v1` when base defense plans depend on controlled decoy-emitter campaigns and EW fratricide safeguards.
+- Add `tool_suite_id=ts-strategic-orbital-nuclear-detonation-effects-mitigation-cell-v1` + `protocol_stack_id=ps-strategic-orbital-nuclear-detonation-effects-mitigation-cell-stack-v1` when force-protection branches must account for high-altitude or orbital nuclear-effects continuity.
+- Add `packet_id=DPL-DECOY-EMITTER-GOV-001` and `packet_id=DPL-ORBITAL-NUCLEAR-EFFECTS-MIT-001` for branches that materially change detection risk, continuity posture, or commander release controls.

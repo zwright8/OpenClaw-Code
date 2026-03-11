@@ -1858,3 +1858,33 @@ Every skill output should include:
 - Reserve fuel additive adulteration interdiction + expeditionary bulk fuel contamination response + strategic industrial continuity + anti-fraud custody evidence
 - High-latitude battery thermal survivability + arctic convoy sustainment + energy microgrid continuity + hazardous-material risk controls
 - Fuel-energy-water nexus anomaly adjudication + coalition grid mutual aid + civil infrastructure restoration sequencing + sustainment cascade-risk suppression
+
+## New Expansion Wave (2026-03-11, Strategic Effects Mitigation, Infrastructure Recovery, and Exchange Integrity)
+
+- strategic-orbital-nuclear-detonation-effects-mitigation-cell
+- joint-contested-biometric-pay-and-personnel-reconstitution-cell
+- theater-rapid-runway-crater-repair-autonomy-governance-cell
+- coalition-host-nation-fiber-cut-and-backhaul-restoration-cell
+- expeditionary-water-desalination-brine-signature-management-cell
+- joint-autonomous-casualty-collection-under-fire-safety-cell
+- homeland-cyber-physical-food-distribution-stability-cell
+- strategic-munitions-precursor-chemical-diversion-interdiction-cell
+- joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell
+- coalition-rail-gauge-cargo-transload-survivability-cell
+- theater-electronic-deception-decoy-emitter-governance-cell
+- joint-ai-enabled-prisoner-exchange-fraud-detection-cell
+
+## Updated Pairings (2026-03-11, Strategic Effects Mitigation, Infrastructure Recovery, and Exchange Integrity)
+
+- Orbital nuclear-effects mitigation + NC3 continuity + high-altitude nuclear effects continuity + strategic warning discipline
+- Contested biometric pay/personnel reconstitution + personnel accountability + pay continuity + coalition identity proofing
+- Runway crater repair autonomy governance + airbase dispersal/reconstitution + expeditionary runway recovery + engineer task orchestration
+- Coalition fiber/backhaul restoration + theater mission network failover + coalition telecom priority restoration + releasability adjudication
+- Desalination brine signature management + operational energy/water resilience + littoral survivability + maritime detection-risk suppression
+- Autonomous casualty collection safety + casualty evacuation regulation + austere surgical support + medevac route-threat governance
+- Homeland food distribution stability + DSCA crisis support + critical infrastructure defense + civil-order restoration
+- Munitions precursor diversion interdiction + strategic industrial mobilization + sanctions evasion interdiction + munitions continuity
+- Denied-weather sensor reseeding + weather effects forecast + tactical airspace control + sortie risk reduction
+- Coalition rail-gauge transload survivability + strategic mobility chokepoint wargaming + movement control + coalition logistics interoperability
+- Decoy emitter governance + spectrum interference resolution + electromagnetic fratricide prevention + deception branch control
+- Prisoner exchange fraud detection + truce monitoring + detainee transfer legal observability + coalition evidence assurance

@@ -151,3 +151,9 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-theater-autonomous-decoy-economy-and-inventory-governance-cell-v1` + `protocol_stack_id=ps-theater-autonomous-decoy-economy-and-inventory-governance-cell-stack-v1` when airbase survivability branches depend on decoy allocation and replenishment governance.
 - Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-cell-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-cell-stack-v1` when reconstitution timelines depend on cold-weather energy reliability.
 - Add `packet_id=DPL-DECOY-ECON-001` and `packet_id=DPL-POLAR-BATTERY-SURVIVE-001` for branches that alter dispersal survivability assumptions or sortie regeneration timing.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-theater-rapid-runway-crater-repair-autonomy-governance-cell-v1` + `protocol_stack_id=ps-theater-rapid-runway-crater-repair-autonomy-governance-cell-stack-v1` when reconstitution depends on autonomous crater-repair release controls and sortie-priority sequencing.
+- Add `tool_suite_id=ts-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-v1` + `protocol_stack_id=ps-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-stack-v1` when dispersal and recovery timelines depend on denied-weather forecast trust restoration.
+- Add `packet_id=DPL-RUNWAY-CRATER-AUTONOMY-001` and `packet_id=DPL-DENIED-WEATHER-SENSOR-RESEED-001` for branches that materially alter runway recovery sequence, sortie regeneration confidence, or release authority timing.

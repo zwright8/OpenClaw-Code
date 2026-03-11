@@ -185,3 +185,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-v1` + `protocol_stack_id=ps-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-stack-v1` when zero-trust recommendations depend on validating AI-authored orders against commander intent.
 - Add `tool_suite_id=ts-theater-resilient-battlefield-cloud-federation-admission-control-cell-v1` + `protocol_stack_id=ps-theater-resilient-battlefield-cloud-federation-admission-control-cell-stack-v1` when trust posture depends on cloud federation admission governance under contested operations.
 - Add `packet_id=DPL-AI-ORDER-INTEGRITY-001` and `packet_id=DPL-CLOUDFED-ADMISSION-001` for branches that alter trust boundaries, release authorities, or continuity assumptions.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-v1` + `protocol_stack_id=ps-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-stack-v1` when trust-boundary recommendations depend on coalition telecom backhaul restoration and releasability-safe routing.
+- Add `tool_suite_id=ts-joint-contested-biometric-pay-and-personnel-reconstitution-cell-v1` + `protocol_stack_id=ps-joint-contested-biometric-pay-and-personnel-reconstitution-cell-stack-v1` when disconnected identity confidence and personnel-accountability trust directly impact network authorization posture.
+- Add `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` and `packet_id=DPL-BIOMETRIC-PAY-PERSONNEL-RECON-001` for branches that alter identity trust, route authority, or continuity assumptions.
