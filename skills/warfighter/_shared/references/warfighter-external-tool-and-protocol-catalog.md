@@ -3704,3 +3704,107 @@ external_binding:
 ### `ps-expeditionary-water-contamination-forecast-stack-v1`
 - Standards and protocols: API/JSON sensor events + HL7/FHIR health indicators + USMTF force-health updates.
 - Transport profile: expeditionary water-risk lane with contamination threshold alerts and source isolation branches.
+
+## Tool Suite Addendum V (2026-03-11, Frontier Expansion C)
+
+### `ts-cislunar-resupply-node-protection-v1`
+- Use for: cislunar resupply node protection, relay continuity planning, and orbital sustainment risk control.
+- Primary tools: SDA conjunction board, cislunar logistics scheduler, relay-link health monitor.
+- Cross-check tools: independent orbital witness timeline and alternate relay confidence monitor.
+- Typical products: cislunar resupply window matrix, relay continuity branch pack, sustainment risk ledger.
+
+### `ts-hypersonic-warning-dispersion-v1`
+- Use for: hypersonic warning triage, force dispersion timing, and high-value asset movement synchronization.
+- Primary tools: missile warning fusion board, trajectory/impact predictor, theater movement synchronizer.
+- Cross-check tools: independent sensor confidence board and alternate relocation viability monitor.
+- Typical products: warning-to-dispersion timeline, relocation branch matrix, protected-asset movement order.
+
+### `ts-decoy-swarm-spectrum-deception-v1`
+- Use for: autonomous decoy swarm employment, coalition spectrum deconfliction, and deception effect assessment.
+- Primary tools: autonomous decoy mission planner, EMS allocation manager, RF deception analytics service.
+- Cross-check tools: independent RF witness mesh and alternate deception confidence board.
+- Typical products: decoy swarm employment matrix, spectrum conflict adjudication log, deception scorecard.
+
+### `ts-cognitive-electromagnetic-influence-defense-v1`
+- Use for: cognitive-electronic influence detection, narrative disruption prioritization, and cross-domain response orchestration.
+- Primary tools: OSINT fusion board, EW event timeline service, influence graph analytics platform.
+- Cross-check tools: independent source-credibility ledger and alternate attribution confidence tracker.
+- Typical products: influence threat ladder, counter-influence branch plan, mission narrative integrity status.
+
+### `ts-commercial-satcom-requisition-routing-v1`
+- Use for: rapid commercial SATCOM requisition, mission-priority bandwidth arbitration, and continuity routing control.
+- Primary tools: SATCOM lease broker, link scheduler, mission network failover orchestrator.
+- Cross-check tools: independent link quality witness and alternate lease audit board.
+- Typical products: SATCOM requisition packet, priority routing matrix, continuity comms branch plan.
+
+### `ts-quantum-resistant-key-rollover-v1`
+- Use for: contested post-quantum key rollover governance, crypto continuity assurance, and comms trust restoration.
+- Primary tools: enterprise key management service, cryptographic posture dashboard, message integrity validator.
+- Cross-check tools: independent key-state witness and alternate trust-chain auditor.
+- Typical products: key rollover execution matrix, trust posture summary, comms assurance risk ledger.
+
+### `ts-lpi-lpd-emission-window-orchestration-v1`
+- Use for: LPI/LPD emission-window planning, multisensor timing control, and signature survivability governance.
+- Primary tools: spectrum COP, waveform governance service, emission scheduling planner.
+- Cross-check tools: independent signature exposure witness and alternate timing-integrity monitor.
+- Typical products: emission-window battle rhythm, signature risk controls, low-observable sensor synchronization order.
+
+### `ts-additive-explosive-traceability-v1`
+- Use for: additive explosive provenance controls, lot traceability, and diversion interdiction workflows.
+- Primary tools: additive manufacturing execution service, munitions lot ledger, forensic materials trace board.
+- Cross-check tools: independent custody-chain auditor and alternate diversion anomaly detector.
+- Typical products: explosive provenance ledger, counter-diversion alert matrix, additive compliance packet.
+
+### `ts-civil-drone-emergency-airspace-integration-v1`
+- Use for: coalition civil-drone emergency airspace integration, corridor safety controls, and humanitarian flight continuity.
+- Primary tools: UTM/U-space federation service, civil ATC integration board, coalition airspace deconfliction planner.
+- Cross-check tools: independent Remote ID verifier and alternate corridor safety monitor.
+- Typical products: civil-drone integration order, coalition deconfliction board, emergency corridor protection plan.
+
+### `ts-waterway-lock-dam-cyber-physical-resilience-v1`
+- Use for: lock-and-dam cyber-physical defense, inland waterway throughput continuity, and restoration branch control.
+- Primary tools: ICS telemetry fusion board, inland movement control dashboard, incident response orchestration service.
+- Cross-check tools: independent civil infrastructure witness and alternate throughput confidence board.
+- Typical products: lock-and-dam risk board, cyber-physical incident matrix, throughput restoration branch package.
+
+## Protocol Stack Addendum V (2026-03-11, Frontier Expansion C)
+
+### `ps-cislunar-resupply-assurance-stack-v1`
+- Standards and protocols: CCSDS telemetry/telecommand + API/JSON logistics events + USMTF sustainment summaries.
+- Transport profile: cislunar logistics assurance lane with relay acknowledgments and orbital timing confidence gates.
+
+### `ps-hypersonic-warning-dispersion-stack-v1`
+- Standards and protocols: USMTF warning reports + Link 16 J-series event signaling + API/JSON movement telemetry.
+- Transport profile: hypersonic warning-dispersion lane with relocation acknowledgments and survivability trigger branches.
+
+### `ps-decoy-swarm-spectrum-deception-stack-v1`
+- Standards and protocols: VMF mission tasks + STANAG APP-11C/ADatP-3 coalition exchange + API/JSON RF telemetry.
+- Transport profile: autonomous decoy deception lane with spectrum adjudication checkpoints and coalition acknowledgment chain.
+
+### `ps-cognitive-electromagnetic-influence-defense-stack-v1`
+- Standards and protocols: STIX/TAXII + API/JSON influence telemetry + CoT mission dissemination events.
+- Transport profile: cognitive-electromagnetic defense lane with attribution confidence thresholds and escalation hold points.
+
+### `ps-commercial-satcom-requisition-routing-stack-v1`
+- Standards and protocols: USMTF continuity directives + API/JSON lease/routing events + CCSDS link-health exchanges.
+- Transport profile: commercial SATCOM requisition lane with lease approval checkpoints and mission-priority reroute acknowledgments.
+
+### `ps-quantum-resistant-key-rollover-stack-v1`
+- Standards and protocols: KMI exchange profiles + API/JSON cryptographic state envelopes + USMTF command trust summaries.
+- Transport profile: post-quantum rollover lane with key-state acknowledgments and trust-chain rollback branches.
+
+### `ps-lpi-lpd-emission-window-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + API/JSON emission-window telemetry.
+- Transport profile: low-observable emission-control lane with duty-window acknowledgments and signature-risk failover gates.
+
+### `ps-additive-explosive-traceability-stack-v1`
+- Standards and protocols: USMTF logistics directives + API/JSON provenance events + signed lot custody manifests.
+- Transport profile: additive explosive traceability lane with lot reconciliation checkpoints and diversion containment triggers.
+
+### `ps-civil-drone-emergency-airspace-stack-v1`
+- Standards and protocols: ASTM F3411 Remote ID + AIXM/NOTAM exchange + API/JSON UTM event feeds.
+- Transport profile: coalition civil-drone emergency lane with corridor clearance acknowledgments and deconfliction escalation states.
+
+### `ps-waterway-lock-dam-cyber-physical-stack-v1`
+- Standards and protocols: IEC 62443 profile events + STIX/TAXII threat exchange + API/JSON ICS telemetry.
+- Transport profile: lock-dam cyber-physical resilience lane with incident acknowledgments and throughput restoration branch triggers.

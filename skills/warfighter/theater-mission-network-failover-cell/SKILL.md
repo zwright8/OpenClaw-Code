@@ -150,3 +150,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-strategic-rail-port-mobilization-recovery-v1` + `protocol_stack_id=ps-strategic-rail-port-mobilization-recovery-stack-v1` when theater network failover must align to rail-port throughput restoration and strategic deployment timing.
 - Add `tool_suite_id=ts-civil-infrastructure-priority-fuel-allocation-v1` + `protocol_stack_id=ps-civil-infrastructure-priority-fuel-allocation-stack-v1` when failover priorities require dynamic fuel adjudication across military and civil critical infrastructure nodes.
+
+## Emission Discipline and Hypersonic Dispersal Addendum (2026-03-11)
+
+- Add `tool_suite_id=ts-lpi-lpd-emission-window-orchestration-v1` + `protocol_stack_id=ps-lpi-lpd-emission-window-stack-v1` when failover execution requires low-signature transport windows and coordinated emission control.
+- Add `tool_suite_id=ts-hypersonic-warning-dispersion-v1` + `protocol_stack_id=ps-hypersonic-warning-dispersion-stack-v1` when network path decisions must synchronize with rapid force dispersion under hypersonic warning timelines.
+- Add `packet_id=NET-EMCON-WINDOW-001` and `packet_id=NET-HYPERSONIC-DISPERSION-001` for branches that change transport routes, signature posture, or protected-node survivability.

@@ -149,3 +149,8 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Space Resupply and Commercial SATCOM Continuity Addendum (2026-03-11)
+
+- Add `tool_suite_id=ts-cislunar-resupply-node-protection-v1` + `protocol_stack_id=ps-cislunar-resupply-assurance-stack-v1` when launch-window deconfliction intersects cislunar sustainment, relay risk, or delayed orbital replenishment.
+- Add `tool_suite_id=ts-commercial-satcom-requisition-routing-v1` + `protocol_stack_id=ps-commercial-satcom-requisition-routing-stack-v1` when deconfliction outcomes depend on rapid bandwidth leasing and mission-priority rerouting.
+- Add `packet_id=SPACE-CISLUNAR-RESUPPLY-001` and `packet_id=SPACE-COMS-LEASE-REROUTE-001` for decisions that alter launch timing, relay assignment, or continuity comms posture.

@@ -149,3 +149,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-identity-proof-life-reconstitution-v1` + `protocol_stack_id=ps-identity-proof-life-reconstitution-stack-v1` when disconnected identity confidence falls below mission threshold or proof-of-life status is stale.
 - Add `tool_suite_id=ts-disconnected-command-intent-reconciliation-v1` + `protocol_stack_id=ps-disconnected-command-intent-reconciliation-stack-v1` when command guidance forks create competing execution paths across tactical enclaves.
 - Add `packet_id=DPL-IDENTITY-PROOF-LIFE-RECON-001` and `packet_id=DPL-DISCONNECTED-COMMAND-INTENT-RECON-001` for branches that alter authorization boundaries, credential trust, or command release conditions.
+
+## Zero-Trust PQC and Influence Defense Addendum (2026-03-11)
+
+- Add `tool_suite_id=ts-quantum-resistant-key-rollover-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1` when cryptographic agility posture falls below mission threshold or key-state synchronization is stale.
+- Add `tool_suite_id=ts-cognitive-electromagnetic-influence-defense-v1` + `protocol_stack_id=ps-cognitive-electromagnetic-influence-defense-stack-v1` when cyber effects are coupled with narrative or electromagnetic influence pressure.
+- Add `packet_id=ZT-PQC-ROLLOVER-001` and `packet_id=ZT-COG-EW-INFLUENCE-001` for branches that alter cryptographic trust, access decisions, or mission command confidence.
