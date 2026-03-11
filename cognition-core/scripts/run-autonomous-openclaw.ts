@@ -123,6 +123,7 @@ function parseSelectionPolicy(raw) {
         && value !== 'corral_exp3'
         && value !== 'moss_anytime') {
         throw new Error('--selection-policy must be one of: ucb, ucb_tuned, linucb, d_linucb, lints, d_lints, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, d_ucb, d_ucb_tuned, d_epsilon_ts, cd_ucb, corral_exp3, moss_anytime');
+        throw new Error('--selection-policy must be one of: ucb, ucb_tuned, linucb, d_linucb, lints, d_lints, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, d_ucb, d_ucb_tuned, d_epsilon_ts, cd_ucb, corral_exp3, moss_anytime');
     }
     return value;
 }
