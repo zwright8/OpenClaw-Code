@@ -183,6 +183,39 @@ test('buildAutonomousBatchPlan revisits stale entries when performance is tied',
     assert.deepEqual(plan.selection.skillIds, [31]);
 });
 
+test('buildAutonomousBatchPlan supports epsilon-thompson policy with deterministic ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 41, code: 'SK-00041', title: 'Skill 41' },
+            { id: 42, code: 'SK-00042', title: 'Skill 42' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 14,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '41': { attempts: 10, successes: 8, failures: 2, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' },
+                '42': { attempts: 10, successes: 3, failures: 7, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 15,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [41]);
+});
+
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -213,6 +246,7 @@ test('runAutonomousOpenClaw executes a wave and persists advancing autonomy stat
     assert.equal(first.wavesRun, 1);
     assert.equal(first.totals.plannedSkillTasks, 1);
     assert.equal(first.totals.plannedCapabilityTasks, 1);
+    assert.equal(first.config.selectionPolicy.mode, 'ucb');
     assert.ok(fs.existsSync(statePath));
 
     const stateAfterFirst = loadAutonomousState(statePath);

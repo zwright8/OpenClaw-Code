@@ -32,6 +32,10 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
+  --selection-policy <mode>    Selection policy: ucb|epsilon_ts (default: ucb)
+  --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
+  --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
+  --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
   --no-enqueue-followups       Disable enqueueing generated follow-up tasks
   --json <path>                Optional JSON report output
   --markdown <path>            Optional markdown report output
@@ -72,6 +76,30 @@ function parseHardeningScore(raw) {
     return value;
 }
 
+function parseFloatInRange(raw, flag, min, max) {
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value < min || value > max) {
+        throw new Error(`${flag} must be a number between ${min} and ${max}`);
+    }
+    return value;
+}
+
+function parsePositiveFloat(raw, flag) {
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value <= 0) {
+        throw new Error(`${flag} must be a positive number`);
+    }
+    return value;
+}
+
+function parseSelectionPolicy(raw) {
+    const value = String(raw || '').trim().toLowerCase();
+    if (value !== 'ucb' && value !== 'epsilon_ts') {
+        throw new Error('--selection-policy must be one of: ucb, epsilon_ts');
+    }
+    return value;
+}
+
 function parseArgs(argv) {
     const defaultOutbox = path.resolve(process.cwd(), '../swarm-protocol/state/outbox');
     const options = {
@@ -97,6 +125,12 @@ function parseArgs(argv) {
         skillDeployabilityIndexPath: null,
         skillHardeningProfilePath: null,
         enqueueFollowupTasks: true,
+        selectionPolicyConfig: {
+            mode: 'ucb',
+            thompsonExploration: 0.2,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
         jsonPath: null,
         markdownPath: null,
         help: false
@@ -222,6 +256,26 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--selection-policy') {
+            options.selectionPolicyConfig.mode = parseSelectionPolicy(value);
+            i++;
+            continue;
+        }
+        if (token === '--thompson-exploration') {
+            options.selectionPolicyConfig.thompsonExploration = parseFloatInRange(value, '--thompson-exploration', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--thompson-prior-alpha') {
+            options.selectionPolicyConfig.thompsonPriorAlpha = parsePositiveFloat(value, '--thompson-prior-alpha');
+            i++;
+            continue;
+        }
+        if (token === '--thompson-prior-beta') {
+            options.selectionPolicyConfig.thompsonPriorBeta = parsePositiveFloat(value, '--thompson-prior-beta');
+            i++;
+            continue;
+        }
         if (token === '--json') {
             options.jsonPath = path.resolve(process.cwd(), value);
             i++;
@@ -250,6 +304,7 @@ function printSummary(report) {
     console.log(`Skill catalog path: ${report.config.skillCatalogPath}`);
     console.log(`Skill coverage: ${(report.coverage.skills.coverage * 100).toFixed(2)}% (${report.coverage.skills.successful}/${report.coverage.skills.total})`);
     console.log(`Capability coverage: ${(report.coverage.capabilities.coverage * 100).toFixed(2)}% (${report.coverage.capabilities.successful}/${report.coverage.capabilities.total})`);
+    console.log(`Selection policy: ${report.config.selectionPolicy?.mode || 'unknown'}`);
     console.log(`Hardening profile: ${report.config.skillHardeningProfilePath}`);
     console.log(`Planned skill tasks: ${report.totals.plannedSkillTasks}`);
     console.log(`Planned capability tasks: ${report.totals.plannedCapabilityTasks}`);
@@ -289,7 +344,8 @@ function printSummary(report) {
             skillHardeningMinScore: options.skillHardeningMinScore,
             skillDeployabilityIndexPath: options.skillDeployabilityIndexPath,
             skillHardeningProfilePath: options.skillHardeningProfilePath,
-            enqueueFollowupTasks: options.enqueueFollowupTasks
+            enqueueFollowupTasks: options.enqueueFollowupTasks,
+            selectionPolicyConfig: options.selectionPolicyConfig
         });
 
         await writeAutonomousRunReport({

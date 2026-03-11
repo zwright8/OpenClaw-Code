@@ -34,6 +34,11 @@ const DEFAULT_STALE_WAVE_BOOST = 0.03;
 const MAX_STALE_WAVE_BOOST = 0.2;
 const DEFAULT_MAX_STALE_BOOST = 0.25;
 const MAX_MAX_STALE_BOOST = 1;
+const DEFAULT_SELECTION_POLICY_MODE = 'ucb';
+const DEFAULT_THOMPSON_EXPLORATION = 0.2;
+const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
+const DEFAULT_THOMPSON_PRIOR_BETA = 1;
+const MAX_THOMPSON_PRIOR = 100;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -149,6 +154,38 @@ function normalizeAdaptiveScoreConfig(rawConfig = null) {
                 : DEFAULT_MAX_STALE_BOOST,
             0,
             MAX_MAX_STALE_BOOST
+        )
+    };
+}
+
+function normalizeSelectionPolicyConfig(rawConfig = null) {
+    const value = rawConfig && typeof rawConfig === 'object' ? rawConfig : {};
+    const mode = typeof value.mode === 'string'
+        ? value.mode.trim().toLowerCase()
+        : DEFAULT_SELECTION_POLICY_MODE;
+
+    return {
+        mode: mode === 'epsilon_ts' ? 'epsilon_ts' : DEFAULT_SELECTION_POLICY_MODE,
+        thompsonExploration: clamp(
+            Number.isFinite(Number(value.thompsonExploration))
+                ? Number(value.thompsonExploration)
+                : DEFAULT_THOMPSON_EXPLORATION,
+            0,
+            1
+        ),
+        thompsonPriorAlpha: clamp(
+            Number.isFinite(Number(value.thompsonPriorAlpha))
+                ? Number(value.thompsonPriorAlpha)
+                : DEFAULT_THOMPSON_PRIOR_ALPHA,
+            Number.EPSILON,
+            MAX_THOMPSON_PRIOR
+        ),
+        thompsonPriorBeta: clamp(
+            Number.isFinite(Number(value.thompsonPriorBeta))
+                ? Number(value.thompsonPriorBeta)
+                : DEFAULT_THOMPSON_PRIOR_BETA,
+            Number.EPSILON,
+            MAX_THOMPSON_PRIOR
         )
     };
 }
@@ -467,21 +504,15 @@ function computeRecencyDecay(wavesAgo, halfLifeWaves) {
     return Math.pow(0.5, wavesAgo / halfLifeWaves);
 }
 
-function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig) {
+function computeAdaptiveAdjustments(stat, currentWave, adaptiveScoreConfig) {
     const normalized = normalizeExecutionStat(stat);
-    if (normalized.attempts <= 0) {
-        return Number.POSITIVE_INFINITY;
-    }
-
     const adaptive = normalizeAdaptiveScoreConfig(adaptiveScoreConfig);
-    const smoothedMean = (normalized.successes + 1) / (normalized.attempts + 2);
-    const exploration = Math.sqrt((2 * Math.log(Math.max(1, totalAttempts))) / normalized.attempts);
-    const failurePenalty = normalized.consecutiveFailures >= FAILURE_COOLDOWN_MIN_STREAK
-        ? Math.min(0.45, normalized.consecutiveFailures * 0.08)
-        : 0;
     const lastWave = parseNonNegativeInt(normalized.lastWave, 0);
     const wavesAgo = lastWave > 0 && currentWave > 0
         ? Math.max(0, currentWave - lastWave)
+        : 0;
+    const failurePenalty = normalized.consecutiveFailures >= FAILURE_COOLDOWN_MIN_STREAK
+        ? Math.min(0.45, normalized.consecutiveFailures * 0.08)
         : 0;
 
     let recentOutcomeBonus = 0;
@@ -498,7 +529,95 @@ function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig) 
         ? Math.min(adaptive.maxStaleBoost, wavesAgo * adaptive.staleWaveBoost)
         : 0;
 
-    return smoothedMean + exploration - failurePenalty + recentOutcomeBonus + staleBoost;
+    return {
+        failurePenalty,
+        recentOutcomeBonus,
+        staleBoost
+    };
+}
+
+function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const smoothedMean = (normalized.successes + 1) / (normalized.attempts + 2);
+    const exploration = Math.sqrt((2 * Math.log(Math.max(1, totalAttempts))) / normalized.attempts);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return smoothedMean
+        + exploration
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
+function createDeterministicRng(seedText) {
+    const seed = makeDeterministicSeed(seedText);
+    let offset = 0;
+    return () => {
+        const ratio = pseudoRatio(seed, offset++);
+        if (ratio <= 0) return Number.EPSILON;
+        if (ratio >= 1) return 1 - Number.EPSILON;
+        return ratio;
+    };
+}
+
+function sampleStandardNormal(rng) {
+    const u1 = rng();
+    const u2 = rng();
+    return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+}
+
+function sampleGamma(shape, rng) {
+    if (!Number.isFinite(shape) || shape <= 0) return 0;
+    if (shape < 1) {
+        const u = rng();
+        return sampleGamma(shape + 1, rng) * Math.pow(u, 1 / shape);
+    }
+
+    const d = shape - (1 / 3);
+    const c = 1 / Math.sqrt(9 * d);
+    for (let attempt = 0; attempt < 64; attempt++) {
+        const x = sampleStandardNormal(rng);
+        const onePlusCx = 1 + c * x;
+        if (onePlusCx <= 0) continue;
+        const v = onePlusCx * onePlusCx * onePlusCx;
+        const u = rng();
+        if (u < 1 - 0.0331 * x * x * x * x) {
+            return d * v;
+        }
+        if (Math.log(u) < (0.5 * x * x) + d * (1 - v + Math.log(v))) {
+            return d * v;
+        }
+    }
+    return Math.max(Number.EPSILON, d);
+}
+
+function sampleBeta(alpha, beta, rng) {
+    const x = sampleGamma(alpha, rng);
+    const y = sampleGamma(beta, rng);
+    if (x <= 0 && y <= 0) return 0.5;
+    return x / (x + y);
+}
+
+function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+    const alpha = policy.thompsonPriorAlpha + normalized.successes;
+    const beta = policy.thompsonPriorBeta + normalized.failures;
+    const posteriorMean = alpha / (alpha + beta);
+    const rng = createDeterministicRng(seedText);
+    const posteriorSample = sampleBeta(alpha, beta, rng);
+    const blendedScore = ((1 - policy.thompsonExploration) * posteriorMean)
+        + (policy.thompsonExploration * posteriorSample);
+
+    return blendedScore
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
 }
 
 function cursorDistance(index, pointer, total) {
@@ -514,7 +633,9 @@ function selectCatalogSlice({
     executionStats = {},
     currentWave = 0,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
-    adaptiveScoreConfig = null
+    adaptiveScoreConfig = null,
+    selectionPolicyConfig = null,
+    selectionScope = 'catalog'
 }) {
     const list = Array.isArray(catalog) ? catalog : [];
     if (list.length === 0 || limit <= 0) {
@@ -545,6 +666,8 @@ function selectCatalogSlice({
 
     const totalAttempts = Math.max(1, Object.values(executionStats)
         .reduce((sum, stat) => sum + normalizeExecutionStat(stat).attempts, 0));
+    const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const normalizedCurrentWave = parseNonNegativeInt(currentWave, 0);
 
     const ranked = [];
     const cooled = [];
@@ -556,12 +679,20 @@ function selectCatalogSlice({
         const item = {
             candidate,
             key,
-            score: computeUcbScore(
-                stat,
-                totalAttempts,
-                parseNonNegativeInt(currentWave, 0),
-                adaptiveScoreConfig
-            ),
+            score: normalizedPolicy.mode === 'epsilon_ts'
+                ? computeEpsilonThompsonScore(
+                    stat,
+                    normalizedCurrentWave,
+                    adaptiveScoreConfig,
+                    normalizedPolicy,
+                    `${selectionScope}:${key}:${normalizedCurrentWave}:${stat.attempts}:${stat.successes}:${stat.failures}`
+                )
+                : computeUcbScore(
+                    stat,
+                    totalAttempts,
+                    normalizedCurrentWave,
+                    adaptiveScoreConfig
+                ),
             distance: cursorDistance(index, pointer, total),
             cooled: isInFailureCooldown(stat, currentWave, failureCooldownWaves)
         };
@@ -595,6 +726,7 @@ export function buildAutonomousBatchPlan({
     capabilitiesPerWave = 10,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
+    selectionPolicyConfig = null,
     skillCatalogSource = 'manifest',
     waveIndex = 0,
     nowFactory = Date.now
@@ -603,6 +735,7 @@ export function buildAutonomousBatchPlan({
     const nowMs = safeNow(nowFactory);
     const normalizedWaveIndex = parseNonNegativeInt(waveIndex, normalizedState.runCount + 1);
     const normalizedAdaptiveScoreConfig = normalizeAdaptiveScoreConfig(adaptiveScoreConfig);
+    const normalizedSelectionPolicyConfig = normalizeSelectionPolicyConfig(selectionPolicyConfig);
 
     const skillSuccessfulSet = new Set(normalizedState.successfulSkillIds.map((value) => String(value)));
     const capabilitySuccessfulSet = new Set(normalizedState.successfulCapabilityIds.map((value) => String(value)));
@@ -615,7 +748,9 @@ export function buildAutonomousBatchPlan({
         executionStats: normalizedState.skillExecutionStats,
         currentWave: normalizedWaveIndex,
         failureCooldownWaves: normalizeFailureCooldownWaves(failureCooldownWaves),
-        adaptiveScoreConfig: normalizedAdaptiveScoreConfig
+        adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
+        selectionPolicyConfig: normalizedSelectionPolicyConfig,
+        selectionScope: 'skills'
     });
 
     const capabilitySelection = selectCatalogSlice({
@@ -626,7 +761,9 @@ export function buildAutonomousBatchPlan({
         executionStats: normalizedState.capabilityExecutionStats,
         currentWave: normalizedWaveIndex,
         failureCooldownWaves: normalizeFailureCooldownWaves(failureCooldownWaves),
-        adaptiveScoreConfig: normalizedAdaptiveScoreConfig
+        adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
+        selectionPolicyConfig: normalizedSelectionPolicyConfig,
+        selectionScope: 'capabilities'
     });
 
     const tasks = [];
@@ -844,6 +981,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- skillCatalogSource: ${report.config?.skillCatalogSource || 'unknown'}`,
         `- skillCatalogPath: ${report.config?.skillCatalogPath || 'n/a'}`,
         `- hardeningProfilePath: ${report.config?.skillHardeningProfilePath || 'n/a'}`,
+        `- selectionPolicy: ${report.config?.selectionPolicy?.mode || 'unknown'}`,
         `- planned.skillTasks: ${report.totals?.plannedSkillTasks || 0}`,
         `- planned.capabilityTasks: ${report.totals?.plannedCapabilityTasks || 0}`,
         `- dispatched: ${report.totals?.dispatched || 0}`,
@@ -915,6 +1053,7 @@ export async function runAutonomousOpenClaw({
     enqueueFollowupTasks = true,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
+    selectionPolicyConfig = null,
     nowFactory = Date.now
 } = {}) {
     const resolvedRepoRoot = path.resolve(repoRoot);
@@ -939,6 +1078,7 @@ export async function runAutonomousOpenClaw({
     const normalizedCapabilitiesPerWave = parseNonNegativeInt(capabilitiesPerWave, 0);
     const normalizedFailureCooldownWaves = normalizeFailureCooldownWaves(failureCooldownWaves);
     const normalizedAdaptiveScoreConfig = normalizeAdaptiveScoreConfig(adaptiveScoreConfig);
+    const normalizedSelectionPolicyConfig = normalizeSelectionPolicyConfig(selectionPolicyConfig);
 
     const skillCatalogSource = loadSkillCatalogSource({
         repoRoot: resolvedRepoRoot,
@@ -975,6 +1115,7 @@ export async function runAutonomousOpenClaw({
             capabilitiesPerWave: normalizedCapabilitiesPerWave,
             failureCooldownWaves: normalizedFailureCooldownWaves,
             adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
+            selectionPolicyConfig: normalizedSelectionPolicyConfig,
             skillCatalogSource: skillCatalogSource.source,
             waveIndex: state.runCount + 1,
             nowFactory
@@ -1123,6 +1264,7 @@ export async function runAutonomousOpenClaw({
             botRuntime,
             failureCooldownWaves: normalizedFailureCooldownWaves,
             adaptiveScore: normalizedAdaptiveScoreConfig,
+            selectionPolicy: normalizedSelectionPolicyConfig,
             skillHardeningPolicy,
             skillHardeningMinScore,
             skillDeployabilityIndexPath: effectiveDeployabilityIndexPath,
