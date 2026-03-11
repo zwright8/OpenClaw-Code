@@ -54,6 +54,7 @@ const MAX_THOMPSON_PRIOR = 100;
 const DEFAULT_SLIDING_WINDOW_SIZE = 12;
 const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
+const MAX_CONTEXTUAL_OBSERVATIONS_TRACKED = 512;
 const DEFAULT_DISCOUNT_FACTOR = 0.97;
 const MIN_DISCOUNT_FACTOR = 0.5;
 const DEFAULT_KL_UCB_CONFIDENCE = 3;
@@ -96,8 +97,10 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'ucb_v',
     'ucb_tuned',
     'linucb',
+    'sw_linucb',
     'd_linucb',
     'lints',
+    'sw_lints',
     'd_lints',
     'epsilon_ts',
     'kl_ucb',
@@ -145,6 +148,8 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
     'sw_ucb_v',
     'sw_ucb_tuned',
+    'sw_linucb',
+    'sw_lints',
     'sw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
@@ -162,6 +167,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
 ]);
 const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
     'lints',
+    'sw_lints',
     'd_lints'
 ]);
 const CORRAL_BASE_POLICIES = [
@@ -511,6 +517,22 @@ function normalizeNumericMatrix(rawValues, size, fallbackMatrix) {
     return matrix;
 }
 
+function normalizeContextualObservation(rawObservation = {}, dimension = LINUCB_FEATURE_NAMES.length) {
+    const observation = rawObservation && typeof rawObservation === 'object' ? rawObservation : {};
+    const reward = Number(observation.reward);
+    return {
+        reward: Number.isFinite(reward) ? clamp(reward, 0, 1) : 0,
+        featureVector: normalizeNumericVector(observation.featureVector, dimension, 0)
+    };
+}
+
+function normalizeContextualObservations(rawObservations = [], dimension = LINUCB_FEATURE_NAMES.length) {
+    if (!Array.isArray(rawObservations)) return [];
+    return rawObservations
+        .map((entry) => normalizeContextualObservation(entry, dimension))
+        .slice(-MAX_CONTEXTUAL_OBSERVATIONS_TRACKED);
+}
+
 function normalizeLinUcbModel(rawModel = {}) {
     const model = rawModel && typeof rawModel === 'object' ? rawModel : {};
     const dimension = LINUCB_FEATURE_NAMES.length;
@@ -520,8 +542,45 @@ function normalizeLinUcbModel(rawModel = {}) {
         featureNames: LINUCB_FEATURE_NAMES.slice(),
         samples: parseNonNegativeInt(model.samples, 0),
         matrixA: normalizeNumericMatrix(model.matrixA, dimension, defaultMatrix),
-        vectorB: normalizeNumericVector(model.vectorB, dimension, 0)
+        vectorB: normalizeNumericVector(model.vectorB, dimension, 0),
+        recentObservations: normalizeContextualObservations(model.recentObservations, dimension)
     };
+}
+
+function updateLinModelFromObservation(matrixA, vectorB, featureVector, reward) {
+    const dimension = Math.min(matrixA.length, vectorB.length, featureVector.length);
+    for (let row = 0; row < dimension; row++) {
+        vectorB[row] += featureVector[row] * reward;
+        for (let col = 0; col < dimension; col++) {
+            matrixA[row][col] += featureVector[row] * featureVector[col];
+        }
+    }
+}
+
+function createLinUcbModelFromObservations(observations = [], dimension = LINUCB_FEATURE_NAMES.length) {
+    const matrixA = createIdentityMatrix(dimension);
+    const vectorB = normalizeNumericVector([], dimension, 0);
+    for (const observation of observations) {
+        updateLinModelFromObservation(matrixA, vectorB, observation.featureVector, observation.reward);
+    }
+    return {
+        dimension,
+        featureNames: LINUCB_FEATURE_NAMES.slice(),
+        samples: observations.length,
+        matrixA,
+        vectorB,
+        recentObservations: observations.slice(-MAX_CONTEXTUAL_OBSERVATIONS_TRACKED)
+    };
+}
+
+function resolveContextualModelForScoring(contextualBanditModel, selectionPolicyConfig) {
+    const normalizedModel = normalizeLinUcbModel(contextualBanditModel);
+    const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (normalizedPolicy.mode !== 'sw_linucb' && normalizedPolicy.mode !== 'sw_lints') {
+        return normalizedModel;
+    }
+    const observations = normalizedModel.recentObservations.slice(-normalizedPolicy.slidingWindowSize);
+    return createLinUcbModelFromObservations(observations, normalizedModel.dimension);
 }
 
 function normalizeContextualBanditModels(rawModels = {}) {
@@ -1234,7 +1293,7 @@ function computeLinUcbScore({
 }) {
     const normalizedStat = resolveScoreStats(stat, selectionPolicyConfig);
     const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const normalizedModel = normalizeLinUcbModel(contextualBanditModel);
+    const normalizedModel = resolveContextualModelForScoring(contextualBanditModel, normalizedPolicy);
     const featureVector = computeSelectionFeatureVector(normalizedStat, currentWave);
     const inverse = invertMatrix(normalizedModel.matrixA);
     if (!inverse) {
@@ -1269,7 +1328,7 @@ function computeLinearThompsonScore({
 }) {
     const normalizedStat = resolveScoreStats(stat, selectionPolicyConfig);
     const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const normalizedModel = normalizeLinUcbModel(contextualBanditModel);
+    const normalizedModel = resolveContextualModelForScoring(contextualBanditModel, normalizedPolicy);
     const featureVector = computeSelectionFeatureVector(normalizedStat, currentWave);
     const inverse = invertMatrix(normalizedModel.matrixA);
     if (!inverse) {
@@ -1802,7 +1861,7 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
-        } else if (scoringPolicy.mode === 'linucb' || scoringPolicy.mode === 'd_linucb') {
+        } else if (scoringPolicy.mode === 'linucb' || scoringPolicy.mode === 'sw_linucb' || scoringPolicy.mode === 'd_linucb') {
             const linucb = computeLinUcbScore({
                 stat,
                 currentWave: normalizedCurrentWave,
@@ -2078,6 +2137,13 @@ function updateLinUcbModelDiscounted(model, featureVector, reward, discountFacto
             normalizedModel.matrixA[row][col] += vector[row] * vector[col];
         }
     }
+    normalizedModel.recentObservations = [
+        ...normalizedModel.recentObservations,
+        {
+            reward: boundedReward,
+            featureVector: vector
+        }
+    ].slice(-MAX_CONTEXTUAL_OBSERVATIONS_TRACKED);
     normalizedModel.samples += 1;
     return normalizedModel;
 }
@@ -2182,8 +2248,10 @@ export async function collectAutonomousCoverage({
         }
 
         if (lane && (selectedPolicy === 'linucb'
+            || selectedPolicy === 'sw_linucb'
             || selectedPolicy === 'd_linucb'
             || selectedPolicy === 'lints'
+            || selectedPolicy === 'sw_lints'
             || selectedPolicy === 'd_lints')) {
             const featureVector = extractSelectionFeatureVector(context);
             if (featureVector) {
