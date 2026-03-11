@@ -246,6 +246,73 @@ test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () 
     assert.deepEqual(plan.selection.skillIds, [43]);
 });
 
+test('buildAutonomousBatchPlan supports change-detection UCB for abrupt drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 45, code: 'SK-00045', title: 'Skill 45' },
+            { id: 46, code: 'SK-00046', title: 'Skill 46' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 20,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '45': {
+                    attempts: 24,
+                    successes: 7,
+                    failures: 17,
+                    consecutiveFailures: 0,
+                    lastWave: 20,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 13, status: 'failed' },
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' }
+                    ]
+                },
+                '46': {
+                    attempts: 24,
+                    successes: 15,
+                    failures: 9,
+                    consecutiveFailures: 0,
+                    lastWave: 20,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 13, status: 'completed' },
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 21,
+        selectionPolicyConfig: {
+            mode: 'cd_ucb',
+            changeDetectionMinSamples: 4,
+            changeDetectionThreshold: 1.2,
+            changeDetectionDelta: 0.02
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [45]);
+});
+
 test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -44,6 +44,12 @@ const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
 const DEFAULT_KL_UCB_CONFIDENCE = 3;
 const MAX_KL_UCB_CONFIDENCE = 20;
+const DEFAULT_CD_MIN_SAMPLES = 8;
+const MAX_CD_MIN_SAMPLES = 64;
+const DEFAULT_CD_DRIFT_THRESHOLD = 1.5;
+const MAX_CD_DRIFT_THRESHOLD = 10;
+const DEFAULT_CD_MEAN_DELTA = 0.02;
+const MAX_CD_MEAN_DELTA = 0.5;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -172,7 +178,8 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
         || mode === 'kl_ucb'
         || mode === 'sw_ucb'
         || mode === 'sw_epsilon_ts'
-        || mode === 'sw_kl_ucb')
+        || mode === 'sw_kl_ucb'
+        || mode === 'cd_ucb')
         ? mode
         : DEFAULT_SELECTION_POLICY_MODE;
 
@@ -212,6 +219,27 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_KL_UCB_CONFIDENCE,
             0,
             MAX_KL_UCB_CONFIDENCE
+        ),
+        changeDetectionMinSamples: clamp(
+            Number.isFinite(Number(value.changeDetectionMinSamples))
+                ? parsePositiveInt(value.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES)
+                : DEFAULT_CD_MIN_SAMPLES,
+            2,
+            MAX_CD_MIN_SAMPLES
+        ),
+        changeDetectionThreshold: clamp(
+            Number.isFinite(Number(value.changeDetectionThreshold))
+                ? Number(value.changeDetectionThreshold)
+                : DEFAULT_CD_DRIFT_THRESHOLD,
+            Number.EPSILON,
+            MAX_CD_DRIFT_THRESHOLD
+        ),
+        changeDetectionDelta: clamp(
+            Number.isFinite(Number(value.changeDetectionDelta))
+                ? Number(value.changeDetectionDelta)
+                : DEFAULT_CD_MEAN_DELTA,
+            0,
+            MAX_CD_MEAN_DELTA
         )
     };
 }
@@ -601,6 +629,50 @@ function computeWindowedStats(stat, selectionPolicyConfig) {
     };
 }
 
+function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const values = Array.isArray(outcomes)
+        ? outcomes.map((entry) => (entry?.didSucceed ? 1 : 0))
+        : [];
+    const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
+    if (values.length < minSamples) return 0;
+
+    let runningMean = 0;
+    let cumulativeDeviation = 0;
+    let minDeviation = 0;
+    let changeIndex = 0;
+
+    for (let i = 0; i < values.length; i++) {
+        const reward = values[i];
+        runningMean += (reward - runningMean) / (i + 1);
+        cumulativeDeviation += reward - runningMean - policy.changeDetectionDelta;
+        minDeviation = Math.min(minDeviation, cumulativeDeviation);
+        if ((i + 1) >= minSamples && (cumulativeDeviation - minDeviation) > policy.changeDetectionThreshold) {
+            changeIndex = i + 1;
+        }
+    }
+
+    return clamp(changeIndex, 0, values.length);
+}
+
+function computeChangeDetectedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const changeIndex = detectPageHinkleyChangeIndex(normalized.recentOutcomes, selectionPolicyConfig);
+    const effective = changeIndex > 0
+        ? normalized.recentOutcomes.slice(changeIndex)
+        : normalized.recentOutcomes;
+    const attempts = effective.length > 0 ? effective.length : normalized.attempts;
+    const successes = effective.length > 0
+        ? effective.reduce((count, entry) => count + (entry.didSucceed ? 1 : 0), 0)
+        : normalized.successes;
+    const failures = attempts - successes;
+    return {
+        attempts,
+        successes,
+        failures
+    };
+}
+
 function resolveScoreStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
@@ -611,6 +683,15 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             attempts: windowed.attempts,
             successes: windowed.successes,
             failures: windowed.failures
+        };
+    }
+    if (policy.mode === 'cd_ucb') {
+        const changed = computeChangeDetectedStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: changed.attempts,
+            successes: changed.successes,
+            failures: changed.failures
         };
     }
     return normalized;

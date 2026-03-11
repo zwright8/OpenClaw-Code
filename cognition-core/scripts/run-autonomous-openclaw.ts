@@ -32,12 +32,15 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
-  --selection-policy <mode>    Selection policy: ucb|kl_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_epsilon_ts (default: ucb)
+  --selection-policy <mode>    Selection policy: ucb|kl_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_epsilon_ts|cd_ucb (default: ucb)
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
+  --cd-min-samples <n>         Min outcomes before change detection in cd_ucb (default: 8)
+  --cd-threshold <n>           Drift threshold for cd_ucb Page-Hinkley detector (default: 1.5)
+  --cd-delta <n>               Mean slack delta for cd_ucb detector (default: 0.02)
   --no-enqueue-followups       Disable enqueueing generated follow-up tasks
   --json <path>                Optional JSON report output
   --markdown <path>            Optional markdown report output
@@ -101,8 +104,9 @@ function parseSelectionPolicy(raw) {
         && value !== 'epsilon_ts'
         && value !== 'sw_ucb'
         && value !== 'sw_kl_ucb'
-        && value !== 'sw_epsilon_ts') {
-        throw new Error('--selection-policy must be one of: ucb, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts');
+        && value !== 'sw_epsilon_ts'
+        && value !== 'cd_ucb') {
+        throw new Error('--selection-policy must be one of: ucb, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, cd_ucb');
     }
     return value;
 }
@@ -138,7 +142,10 @@ function parseArgs(argv) {
             thompsonPriorAlpha: 1,
             thompsonPriorBeta: 1,
             klUcbConfidence: 3,
-            slidingWindowSize: 12
+            slidingWindowSize: 12,
+            changeDetectionMinSamples: 8,
+            changeDetectionThreshold: 1.5,
+            changeDetectionDelta: 0.02
         },
         jsonPath: null,
         markdownPath: null,
@@ -292,6 +299,21 @@ function parseArgs(argv) {
         }
         if (token === '--window-size') {
             options.selectionPolicyConfig.slidingWindowSize = parsePositiveInt(value, '--window-size');
+            i++;
+            continue;
+        }
+        if (token === '--cd-min-samples') {
+            options.selectionPolicyConfig.changeDetectionMinSamples = parsePositiveInt(value, '--cd-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--cd-threshold') {
+            options.selectionPolicyConfig.changeDetectionThreshold = parseFloatInRange(value, '--cd-threshold', Number.EPSILON, 10);
+            i++;
+            continue;
+        }
+        if (token === '--cd-delta') {
+            options.selectionPolicyConfig.changeDetectionDelta = parseFloatInRange(value, '--cd-delta', 0, 0.5);
             i++;
             continue;
         }
