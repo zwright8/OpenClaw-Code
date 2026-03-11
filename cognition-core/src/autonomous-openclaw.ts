@@ -101,6 +101,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'kl_ucb',
     'bayes_ucb',
     'sw_ucb',
+    'sw_ucb_tuned',
     'sw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
@@ -138,6 +139,7 @@ const EXP3_IX_POLICY_MODES = new Set([
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
+    'sw_ucb_tuned',
     'sw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
@@ -1761,7 +1763,11 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
-        } else if (scoringPolicy.mode === 'ucb_tuned' || scoringPolicy.mode === 'd_ucb_tuned') {
+        } else if (
+            scoringPolicy.mode === 'ucb_tuned'
+            || scoringPolicy.mode === 'sw_ucb_tuned'
+            || scoringPolicy.mode === 'd_ucb_tuned'
+        ) {
             score = computeUcbTunedScore(
                 stat,
                 totalAttempts,

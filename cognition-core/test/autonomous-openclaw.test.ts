@@ -1215,6 +1215,63 @@ test('buildAutonomousBatchPlan supports UCB-Tuned variance-aware ranking', () =>
     assert.deepEqual(plan.selection.skillIds, [68]);
 });
 
+test('buildAutonomousBatchPlan supports sliding-window UCB-Tuned ranking under drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 169, code: 'SK-00169', title: 'Skill 169' },
+            { id: 170, code: 'SK-00170', title: 'Skill 170' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 28,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '169': {
+                    attempts: 32,
+                    successes: 24,
+                    failures: 8,
+                    consecutiveFailures: 0,
+                    lastWave: 28,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'failed' },
+                        { wave: 28, status: 'failed' }
+                    ]
+                },
+                '170': {
+                    attempts: 32,
+                    successes: 14,
+                    failures: 18,
+                    consecutiveFailures: 0,
+                    lastWave: 28,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' },
+                        { wave: 28, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 29,
+        selectionPolicyConfig: {
+            mode: 'sw_ucb_tuned',
+            slidingWindowSize: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [170]);
+});
+
 test('buildAutonomousBatchPlan supports discounted UCB-Tuned ranking under drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

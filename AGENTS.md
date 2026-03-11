@@ -27,6 +27,7 @@
 - `npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window epsilon-Thompson exploration controls.
 - `npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97` - run autonomous loop with discounted UCB adaptation to emphasize recent outcomes under drift.
 - `npm run autonomous:run -- --selection-policy ucb_tuned` - run autonomous loop with variance-aware UCB-Tuned scoring for bounded outcomes.
+- `npm run autonomous:run -- --selection-policy sw_ucb_tuned --window-size 12` - run autonomous loop with sliding-window UCB-Tuned adaptation for drift-aware variance-sensitive ranking.
 - `npm run autonomous:run -- --selection-policy d_ucb_tuned --discount-factor 0.97` - run autonomous loop with discounted variance-aware UCB-Tuned adaptation under drift.
 - `npm run autonomous:run -- --selection-policy bayes_ucb --bayes-ucb-quantile 0.9` - run autonomous loop with Bayesian optimistic posterior quantile scoring.
 - `npm run autonomous:run -- --selection-policy sw_bayes_ucb --window-size 12 --bayes-ucb-quantile 0.9` - run autonomous loop with sliding-window Bayes-UCB adaptation to recent outcomes.
@@ -108,3 +109,4 @@
 - Verified `e5b014bd87..64243f88ec`: no new README command-map additions were found (range adds warfighter skill/reference content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `64243f88ec..f53642dc5f`: added README command-map workflow for variance-aware UCB-V autonomous run flag (`--selection-policy ucb_v`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `885b0af4fa..10a934ed6b`: no new README command-map additions were found (range updates graded terminal reward learning behavior only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `10a934ed6b..6a8f614b61`: no new README command-map additions were found (range adds AGENTS bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
