@@ -71,6 +71,7 @@ const LINUCB_FEATURE_NAMES = [
 const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'ucb',
     'linucb',
+    'd_linucb',
     'epsilon_ts',
     'kl_ucb',
     'sw_ucb',
@@ -98,7 +99,8 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
-    'd_epsilon_ts'
+    'd_epsilon_ts',
+    'd_linucb'
 ]);
 const CORRAL_BASE_POLICIES = [
     'ucb',
@@ -1347,7 +1349,7 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
-        } else if (scoringPolicy.mode === 'linucb') {
+        } else if (scoringPolicy.mode === 'linucb' || scoringPolicy.mode === 'd_linucb') {
             const linucb = computeLinUcbScore({
                 stat,
                 currentWave: normalizedCurrentWave,
@@ -1485,6 +1487,7 @@ export function buildAutonomousBatchPlan({
                     wave: waveIndex,
                     sourceCatalog: skillCatalogSource,
                     selectionPolicyApplied: skillSelection.selectedPolicy,
+                    selectionPolicyConfig: normalizedSelectionPolicyConfig,
                     selectionFeatures
                 },
                 skillId: entry.id,
@@ -1525,6 +1528,7 @@ export function buildAutonomousBatchPlan({
                     lane: 'capabilities',
                     wave: waveIndex,
                     selectionPolicyApplied: capabilitySelection.selectedPolicy,
+                    selectionPolicyConfig: normalizedSelectionPolicyConfig,
                     selectionFeatures
                 },
                 capabilityId,
@@ -1576,11 +1580,26 @@ function extractSelectionFeatureVector(context) {
 }
 
 function updateLinUcbModel(model, featureVector, reward) {
+    return updateLinUcbModelDiscounted(model, featureVector, reward, 1);
+}
+
+function updateLinUcbModelDiscounted(model, featureVector, reward, discountFactor = 1) {
     const normalizedModel = normalizeLinUcbModel(model);
     const vector = normalizeNumericVector(featureVector, LINUCB_FEATURE_NAMES.length, 0);
     const boundedReward = clamp(Number(reward), 0, 1);
+    const boundedDiscount = clamp(
+        Number.isFinite(Number(discountFactor)) ? Number(discountFactor) : DEFAULT_DISCOUNT_FACTOR,
+        MIN_DISCOUNT_FACTOR,
+        1
+    );
     for (let row = 0; row < vector.length; row++) {
-        normalizedModel.vectorB[row] += vector[row] * boundedReward;
+        normalizedModel.vectorB[row] = (boundedDiscount * normalizedModel.vectorB[row])
+            + (vector[row] * boundedReward);
+        for (let col = 0; col < vector.length; col++) {
+            normalizedModel.matrixA[row][col] *= boundedDiscount;
+        }
+        // Keep ridge regularization stable while discounting historical mass.
+        normalizedModel.matrixA[row][row] += (1 - boundedDiscount);
         for (let col = 0; col < vector.length; col++) {
             normalizedModel.matrixA[row][col] += vector[row] * vector[col];
         }
@@ -1621,6 +1640,7 @@ export async function collectAutonomousCoverage({
         const selectedPolicy = typeof context.autonomy?.selectionPolicyApplied === 'string'
             ? context.autonomy.selectionPolicyApplied.trim().toLowerCase()
             : '';
+        const selectedPolicyConfig = normalizeSelectionPolicyConfig(context.autonomy?.selectionPolicyConfig);
 
         const skillId = toSkillId(context.skillId);
         const capabilityId = normalizeCapabilityId(context.capabilityId);
@@ -1686,13 +1706,17 @@ export async function collectAutonomousCoverage({
             policyExecutionStats[lane][selectedPolicy] = currentPolicy;
         }
 
-        if (lane && selectedPolicy === 'linucb') {
+        if (lane && (selectedPolicy === 'linucb' || selectedPolicy === 'd_linucb')) {
             const featureVector = extractSelectionFeatureVector(context);
             if (featureVector) {
-                contextualBanditModels[lane] = updateLinUcbModel(
+                const discountFactor = selectedPolicy === 'd_linucb'
+                    ? selectedPolicyConfig.discountFactor
+                    : 1;
+                contextualBanditModels[lane] = updateLinUcbModelDiscounted(
                     contextualBanditModels[lane],
                     featureVector,
-                    didSucceed ? 1 : 0
+                    didSucceed ? 1 : 0,
+                    discountFactor
                 );
             }
         }
