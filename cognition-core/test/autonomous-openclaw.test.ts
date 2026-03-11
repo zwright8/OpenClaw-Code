@@ -5,11 +5,17 @@ import os from 'os';
 import path from 'path';
 import {
     buildAutonomousBatchPlan,
+    collectAutonomousCoverage,
     loadCapabilityCatalog,
     loadExternalSkillCatalog,
     loadAutonomousState,
     runAutonomousOpenClaw
 } from '../src/autonomous-openclaw.js';
+import {
+    buildTaskRequest,
+    FileTaskStore
+} from '../../swarm-protocol/runtime.js';
+import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import { loadSkillManifest } from '../../skills/runtime/index.js';
 
 const cwd = path.resolve(process.cwd());
@@ -1470,6 +1476,70 @@ test('runAutonomousOpenClaw records discounted linear thompson contextual model 
     assert.equal(report.config.selectionPolicy.mode, 'd_lints');
     const saved = loadAutonomousState(statePath);
     assert.ok(saved.contextualBanditModels.skills.samples > 0);
+});
+
+test('collectAutonomousCoverage uses graded partial rewards for policy and contextual updates', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 100_000 });
+
+    const linucbRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001111',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00111] Execute test',
+        context: {
+            skillId: 111,
+            autonomy: {
+                lane: 'skills',
+                wave: 5,
+                selectionPolicyApplied: 'linucb',
+                selectionPolicyConfig: { mode: 'linucb' },
+                selectionFeatures: {
+                    values: [1, 0, 0, 0, 0, 0]
+                }
+            }
+        },
+        createdAt: 90_000
+    });
+
+    const ucbRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001112',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00112] Execute test',
+        context: {
+            skillId: 112,
+            autonomy: {
+                lane: 'skills',
+                wave: 5,
+                selectionPolicyApplied: 'ucb',
+                selectionPolicyConfig: { mode: 'ucb' }
+            }
+        },
+        createdAt: 90_100
+    });
+
+    const linucbRecord = buildQueueRecordFromTaskRequest(linucbRequest, { nowFactory: () => 95_000 });
+    linucbRecord.status = 'partial';
+    linucbRecord.updatedAt = 100_100;
+    await store.saveRecord(linucbRecord);
+
+    const ucbRecord = buildQueueRecordFromTaskRequest(ucbRequest, { nowFactory: () => 95_100 });
+    ucbRecord.status = 'partial';
+    ucbRecord.updatedAt = 100_200;
+    await store.saveRecord(ucbRecord);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 100_500 });
+
+    assert.equal(coverage.skillExecutionStats['111'].successes, 1);
+    assert.equal(coverage.skillExecutionStats['112'].successes, 1);
+    assert.ok(Math.abs(coverage.policyExecutionStats.skills.ucb.cumulativeReward - 0.6) < 1e-9);
+    assert.ok(Math.abs(coverage.contextualBanditModels.skills.vectorB[0] - 0.6) < 1e-9);
 });
 
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {

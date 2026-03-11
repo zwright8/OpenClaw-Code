@@ -22,6 +22,14 @@ const SUCCESS_STATUSES = new Set([
     'completed',
     'partial'
 ]);
+const STATUS_REWARD = Object.freeze({
+    completed: 1,
+    partial: 0.6,
+    failed: 0,
+    rejected: 0,
+    timed_out: 0,
+    transport_error: 0
+});
 
 const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
 const MAX_FAILURE_COOLDOWN_WAVES = 20;
@@ -519,6 +527,12 @@ function normalizeRecentOutcomeEntry(rawEntry = {}) {
         status,
         didSucceed: SUCCESS_STATUSES.has(status)
     };
+}
+
+function getStatusReward(status) {
+    const normalizedStatus = normalizeStatus(status);
+    const reward = STATUS_REWARD[normalizedStatus];
+    return Number.isFinite(reward) ? reward : 0;
 }
 
 function normalizeRecentOutcomes(rawOutcomes = []) {
@@ -2089,6 +2103,7 @@ export async function collectAutonomousCoverage({
             0
         );
         const didSucceed = SUCCESS_STATUSES.has(status);
+        const reward = getStatusReward(status);
 
         if (skillId !== null) {
             const key = String(skillId);
@@ -2134,10 +2149,10 @@ export async function collectAutonomousCoverage({
             currentPolicy.attempts += 1;
             if (didSucceed) {
                 currentPolicy.successes += 1;
-                currentPolicy.cumulativeReward += 1;
             } else {
                 currentPolicy.failures += 1;
             }
+            currentPolicy.cumulativeReward += reward;
             policyExecutionStats[lane][selectedPolicy] = currentPolicy;
         }
 
@@ -2153,7 +2168,7 @@ export async function collectAutonomousCoverage({
                 contextualBanditModels[lane] = updateLinUcbModelDiscounted(
                     contextualBanditModels[lane],
                     featureVector,
-                    didSucceed ? 1 : 0,
+                    reward,
                     discountFactor
                 );
             }
