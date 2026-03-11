@@ -1686,3 +1686,29 @@ Every skill output should include:
 - Homeland grid blackstart fuel-cyber coordination + civil support and infrastructure defense + mission network failover
 - Orbital debris reentry warning + space launch conflict deconfliction + base defense continuity
 - Coalition detainee transfer assurance + battlefield forensics custody chain + legal/ROE compliance
+
+## New Expansion Wave (2026-03-11, Undersea Recovery, Time Resilience, and Coalition Assurance)
+
+- joint-undersea-cable-restoration-and-traffic-priority-cell
+- tactical-quantum-pnt-contingency-and-time-distribution-cell
+- coalition-medevac-a2ad-corridor-negotiation-cell
+- strategic-arsenal-air-defense-magazine-survivability-cell
+- homeland-wildfire-smoke-airbase-sortie-continuity-cell
+- theater-bulk-fuel-contamination-detection-and-remediation-cell
+- joint-satellite-ground-station-ransomware-continuity-cell
+- special-operations-maritime-infiltration-tide-traffic-signature-cell
+- coalition-cyber-electromagnetic-order-of-battle-fusion-cell
+- expeditionary-human-machine-breaching-safety-assurance-cell
+
+## Updated Pairings (2026-03-11, Undersea Recovery, Time Resilience, and Coalition Assurance)
+
+- Undersea cable restoration and traffic priority + theater mission network failover + coalition telecom priority restoration + maritime repair-window governance
+- Tactical quantum PNT contingency and time distribution + denied-navigation terrain recovery + dynamic targeting synchronization + integrated air and missile defense timing continuity
+- Coalition medevac A2AD corridor negotiation + casualty evacuation regulation + tactical airspace deconfliction + coalition legal observability assurance
+- Strategic arsenal air defense magazine survivability + long-range fires magazine depth and reconstitution + force-protection base defense + strategic deterrence continuity planning
+- Homeland wildfire-smoke airbase sortie continuity + airport runway defense and recovery + DSCA civil-support coordination + weather effects mission assurance
+- Theater bulk-fuel contamination detection and remediation + operational energy resilience + sustainment sabotage correlation + force-health continuity governance
+- Satellite ground station ransomware continuity + denied space launch reconstitution + NC3 failover assurance + mission command cyber-physical restoration
+- SOF maritime infiltration tide-traffic signature planning + littoral maneuver continuity + signature management and decoy employment + personnel recovery branch governance
+- Coalition cyber-electromagnetic OOB fusion + electronic signature survivability scorecard + cognitive-EW disruption governance + coalition warning translation assurance
+- Expeditionary human-machine breaching safety assurance + combat engineer water obstacle autonomy safety + denied terrain bridge classification + authority-gated route breach execution

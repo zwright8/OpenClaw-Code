@@ -176,3 +176,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-homeland-grid-blackstart-fuel-cyber-v1` + `protocol_stack_id=ps-homeland-grid-blackstart-fuel-cyber-stack-v1` when mission network failover depends on coordinated utility restoration, fuel prioritization, and cyber-safe energization at homeland or theater support nodes.
 - Add `tool_suite_id=ts-critical-mineral-refinery-defense-restart-v1` + `protocol_stack_id=ps-critical-mineral-refinery-defense-restart-stack-v1` when failover decisions materially depend on defense-industrial feedstock continuity and refinery restart sequencing.
 - Add `packet_id=DPL-GRID-BLACKSTART-CYBER-001` and `packet_id=DPL-CRITICAL-MINERAL-RESTART-001` for branches that alter mission-service survivability timelines or strategic sustainment assumptions.
+
+## Domain Toolchain Override (2026-03-11, Undersea Restoration and Ground-Station Cyber Continuity Expansion)
+
+- Add `tool_suite_id=ts-undersea-cable-restoration-traffic-priority-v1` + `protocol_stack_id=ps-undersea-cable-restoration-traffic-priority-stack-v1` when network failover branches depend on undersea cable recovery and mission traffic arbitration.
+- Add `tool_suite_id=ts-satellite-ground-station-ransomware-continuity-v1` + `protocol_stack_id=ps-satellite-ground-station-ransomware-continuity-stack-v1` when failover recommendations must preserve satellite command-path continuity under ransomware disruption.
+- Add `packet_id=DPL-UNDERSEA-CABLE-RESTORE-001` and `packet_id=DPL-SAT-GROUND-RANSOMWARE-CONTINUITY-001` for branches that materially change C2 continuity timelines, fallback topology, or service release conditions.

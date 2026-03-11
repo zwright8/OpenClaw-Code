@@ -64,3 +64,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added expansion wave covering denied-navigation terrain recovery, contested-port humanitarian inspection synchronization, autonomous convoy counter-ambush adaptation, strategic critical-mineral refinery defense/restart, forward biothreat diagnostics/quarantine, homeland grid blackstart fuel-cyber coordination, orbital debris reentry warning/base protection, and coalition detainee transfer legal observability.
 - Extended shared tool/protocol references with Tool Suite Addendum VI and Protocol Stack Addendum VI to provide concrete external system defaults for these new domains.
 - Improved existing network-hardening, mission-network-failover, and space-launch deconfliction skills with explicit override bindings to new suite/stack pairs and packet references.
+
+## Run Update (2026-03-11T18:xxZ)
+
+- Added a ten-skill expansion wave spanning undersea comm restoration, tactical timing/PNT resilience, coalition medevac corridors in A2AD, strategic defensive magazine survivability, wildfire-smoke sortie continuity, fuel contamination remediation, satellite ground-station ransomware continuity, SOF maritime signature-informed infiltration, coalition cyber-EM OOB fusion, and human-machine breaching safety assurance.
+- Extended shared references with Tool Suite Addendum VII and Protocol Stack Addendum VII to provide explicit external tools plus message/transport profiles for each new domain.
+- Improved existing network hardening, mission network failover, force protection, and space launch deconfliction skills with new Addendum VII override bindings for continuity and cross-domain validation.

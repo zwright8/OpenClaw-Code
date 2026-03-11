@@ -7902,3 +7902,107 @@ external_binding:
 ### `ps-coalition-detainee-transfer-legal-observability-stack-v1`
 - Standards and protocols: API/JSON custody event records + NIEM legal exchange payloads + signed chain-of-custody manifests + USMTF accountability summaries.
 - Transport profile: detainee transfer observability lane with legal checkpoint acknowledgments and custody handoff dual-control gates.
+
+## Tool Suite Addendum VII (2026-03-11, Undersea Restoration, Time Resilience, and Coalition Corridor Governance)
+
+### `ts-undersea-cable-restoration-traffic-priority-v1`
+- Use for: restoring contested undersea cable capacity and assigning mission traffic priority during communication disruption.
+- Primary tools: subsea fault localization board, mission traffic arbitration planner, cable repair-window scheduler.
+- Cross-check tools: independent path-integrity witness and alternate bandwidth-allocation adjudication board.
+- Typical products: cable restoration timeline, traffic-priority matrix, comm continuity branch plan.
+
+### `ts-tactical-quantum-pnt-time-distribution-v1`
+- Use for: resilient tactical timing and PNT contingency governance under GNSS denial.
+- Primary tools: timing holdover controller, terrain-relative nav confidence engine, mission timeline compensation board.
+- Cross-check tools: independent timing witness and alternate nav confidence adjudication board.
+- Typical products: timing resilience scorecard, PNT confidence ladder, maneuver timing offset branch triggers.
+
+### `ts-coalition-medevac-a2ad-corridor-v1`
+- Use for: coalition casualty evacuation corridor negotiation and medical movement deconfliction in A2AD environments.
+- Primary tools: medevac corridor risk planner, coalition movement adjudication board, casualty flow synchronizer.
+- Cross-check tools: independent airspace-status mirror and alternate legal/authority validation tracker.
+- Typical products: medevac corridor recommendation set, casualty routing matrix, legal-observability task tracker.
+
+### `ts-arsenal-air-defense-magazine-survivability-v1`
+- Use for: preserving defensive magazine depth and reconstitution pacing for strategic force protection.
+- Primary tools: magazine depletion projection board, defended-asset reprioritization planner, reconstitution scheduler.
+- Cross-check tools: independent shot-doctrine witness and alternate sustainment feasibility adjudicator.
+- Typical products: magazine survivability estimate, defended asset matrix, reconstitution branch ladder.
+
+### `ts-homeland-wildfire-smoke-sortie-continuity-v1`
+- Use for: sustaining homeland airbase sortie generation under wildfire smoke and civil-airspace constraints.
+- Primary tools: smoke dispersion mission forecaster, runway viability board, sortie continuity scheduler.
+- Cross-check tools: independent weather witness and alternate civil-airspace impact adjudication board.
+- Typical products: sortie continuity plan, runway risk matrix, civil-military deconfliction packet.
+
+### `ts-theater-bulk-fuel-contamination-remediation-v1`
+- Use for: detecting and remediating theater bulk-fuel contamination without breaking mission-energy continuity.
+- Primary tools: fuel quality anomaly analyzer, contamination source-correlation board, remediation sequencing planner.
+- Cross-check tools: independent assay witness and alternate release-authority adjudication board.
+- Typical products: contamination confidence report, remediation matrix, energy continuity branch plan.
+
+### `ts-satellite-ground-station-ransomware-continuity-v1`
+- Use for: maintaining satellite ground station command continuity during ransomware and OT/cyber disruption.
+- Primary tools: ground-station incident fusion board, control-path failover orchestrator, crypto-trust validation service.
+- Cross-check tools: independent command-link witness and alternate ransomware impact adjudication board.
+- Typical products: cyber continuity branch plan, command-path restoration matrix, recovery authority tracker.
+
+### `ts-sof-maritime-infiltration-signature-v1`
+- Use for: special operations maritime infiltration and exfiltration planning with signature discipline constraints.
+- Primary tools: littoral tide-window planner, vessel traffic signature analyzer, SOF branch-and-sequel board.
+- Cross-check tools: independent ISR exposure witness and alternate route risk adjudication board.
+- Typical products: infiltration timing plan, exposure risk matrix, exfiltration fallback ladder.
+
+### `ts-coalition-cyber-em-oob-fusion-v1`
+- Use for: coalition fusion of cyber and electromagnetic order-of-battle indicators for defensive campaign planning.
+- Primary tools: cyber threat-intel fusion board, spectrum occupancy analyzer, coalition releasability gate manager.
+- Cross-check tools: independent attribution witness and alternate EM anomaly adjudication board.
+- Typical products: cyber-EM OOB confidence map, synchronized response matrix, coalition warning trigger table.
+
+### `ts-expeditionary-human-machine-breaching-safety-v1`
+- Use for: validating human-machine combat engineer breaching safety and authority-gated execution controls.
+- Primary tools: obstacle and route breach planner, autonomy safety telemetry board, command approval audit tracker.
+- Cross-check tools: independent mission safety witness and alternate authority gate adjudication board.
+- Typical products: breach safety brief, task partition matrix, authority-gated breach checklist.
+
+## Protocol Stack Addendum VII (2026-03-11, External Integration Profiles for Expansion Wave)
+
+### `ps-undersea-cable-restoration-traffic-priority-stack-v1`
+- Standards and protocols: API/JSON cable telemetry + OGC geospatial overlays + USMTF mission comm summaries + signed restoration manifests.
+- Transport profile: undersea restoration lane with traffic-priority release gates and bandwidth reallocation acknowledgments.
+
+### `ps-tactical-quantum-pnt-time-distribution-stack-v1`
+- Standards and protocols: Link 16 J-series timing references + VMF maneuver sync + OGC terrain overlays + signed API/JSON timing confidence records.
+- Transport profile: denied-PNT timing channel with holdover threshold gates and maneuver timeline compensation checks.
+
+### `ps-coalition-medevac-a2ad-corridor-stack-v1`
+- Standards and protocols: AIXM/FIXM corridor status exchange + HL7/FHIR casualty movement + USMTF medevac summaries + NATO APP-11/ADatP-3 coordination payloads.
+- Transport profile: coalition medevac lane with corridor authority acknowledgments and casualty priority checkpoints.
+
+### `ps-arsenal-air-defense-magazine-survivability-stack-v1`
+- Standards and protocols: Link 16 J-series defensive engagement context + USMTF force-protection summaries + API/JSON inventory telemetry + signed reconstitution packets.
+- Transport profile: defensive magazine continuity lane with release-authority gating and branch-trigger acknowledgments.
+
+### `ps-homeland-wildfire-smoke-sortie-continuity-stack-v1`
+- Standards and protocols: AIXM/FIXM airfield status + OGC smoke hazard overlays + NIMS/ICS coordination records + USMTF sortie continuity notices.
+- Transport profile: wildfire-smoke sortie lane with runway viability checks and civil-military airspace acknowledgment chain.
+
+### `ps-theater-bulk-fuel-contamination-remediation-stack-v1`
+- Standards and protocols: API/JSON fuel telemetry + STIX/TAXII sabotage indicators + USMTF sustainment status summaries + HL7/FHIR force-health advisories.
+- Transport profile: fuel remediation channel with contamination confidence gates and release-authority dual confirmation.
+
+### `ps-satellite-ground-station-ransomware-continuity-stack-v1`
+- Standards and protocols: CCSDS-derived control-path telemetry + IEC 62443 event exchange + API/JSON cyber incident status + USMTF continuity directives.
+- Transport profile: ground-station cyber continuity bus with command-path failover acknowledgments and crypto-trust checkpoints.
+
+### `ps-sof-maritime-infiltration-signature-stack-v1`
+- Standards and protocols: AIS/NMEA traffic updates + CoT threat cues + VMF maneuver coordination + signed API/JSON signature assessments.
+- Transport profile: SOF infiltration lane with exposure-threshold gate checks and exfiltration fallback acknowledgments.
+
+### `ps-coalition-cyber-em-oob-fusion-stack-v1`
+- Standards and protocols: STIX/TAXII threat-sharing + Link 16 J-series EW context + VMF operational updates + NATO APP-11/ADatP-3 releasability summaries.
+- Transport profile: coalition cyber-EM fusion lane with attribution confidence gates and response option acknowledgment chain.
+
+### `ps-expeditionary-human-machine-breaching-safety-stack-v1`
+- Standards and protocols: VMF engineer maneuver exchange + CoT obstacle and safety cues + API/JSON autonomy telemetry + USMTF mission safety summaries.
+- Transport profile: breaching safety lane with authority-gated execution checkpoints and human override acknowledgment controls.

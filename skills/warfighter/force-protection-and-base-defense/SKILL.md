@@ -215,3 +215,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-quantum-timing-holdover-fires-iamd-v1` + `protocol_stack_id=ps-quantum-timing-holdover-fires-iamd-stack-v1` when base defense release authority depends on denied-PNT timing integrity across fires and air defense.
 - Add `tool_suite_id=ts-multilingual-emergency-broadcast-auth-v1` + `protocol_stack_id=ps-multilingual-emergency-broadcast-auth-stack-v1` when force protection depends on trusted multilingual warning dissemination under spoofing pressure.
 - Add `packet_id=DPL-QUANTUM-TIMING-HOLDOVER-FIRES-IAMD-001` and `packet_id=DPL-MULTILINGUAL-EMERGENCY-BROADCAST-AUTH-001` for branches that alter release timing, shelter directives, or public-alert posture.
+
+## Domain Toolchain Override (2026-03-11, Wildfire Sortie Continuity and Fuel Safety Expansion)
+
+- Add `tool_suite_id=ts-homeland-wildfire-smoke-sortie-continuity-v1` + `protocol_stack_id=ps-homeland-wildfire-smoke-sortie-continuity-stack-v1` when base-defense recommendations depend on wildfire smoke constraints, runway viability, and civil-airspace conflict resolution.
+- Add `tool_suite_id=ts-theater-bulk-fuel-contamination-remediation-v1` + `protocol_stack_id=ps-theater-bulk-fuel-contamination-remediation-stack-v1` when force protection decisions depend on fuel contamination detection, remediation sequencing, and release-authority integrity.
+- Add `packet_id=DPL-WILDFIRE-SMOKE-SORTIE-CONTINUITY-001` and `packet_id=DPL-BULK-FUEL-CONTAMINATION-REMEDIATION-001` for branches that alter base readiness posture, sortie generation tempo, or protected movement priorities.

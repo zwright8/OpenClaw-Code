@@ -155,3 +155,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-denied-pnt-terrain-nav-recovery-v1` + `protocol_stack_id=ps-denied-pnt-terrain-nav-recovery-stack-v1` when zero-trust routing policy must preserve assured maneuver timing under GNSS spoofing/jamming.
 - Add `tool_suite_id=ts-autonomous-convoy-counter-ambush-v1` + `protocol_stack_id=ps-autonomous-convoy-counter-ambush-stack-v1` when tactical network hardening recommendations directly impact autonomous convoy branch execution.
 - Add `packet_id=DPL-DENIED-PNT-RECOVERY-001` and `packet_id=DPL-CONVOY-COUNTER-AMBUSH-001` for recommendations that shift trust boundaries, route authority, or engagement-risk posture.
+
+## Zero-Trust Expansion Addendum (2026-03-11, Undersea Restoration and Coalition Cyber-EM Fusion)
+
+- Add `tool_suite_id=ts-undersea-cable-restoration-traffic-priority-v1` + `protocol_stack_id=ps-undersea-cable-restoration-traffic-priority-stack-v1` when zero-trust routing policy depends on contested undersea transport restoration and mission traffic arbitration.
+- Add `tool_suite_id=ts-coalition-cyber-em-oob-fusion-v1` + `protocol_stack_id=ps-coalition-cyber-em-oob-fusion-stack-v1` when trust posture recommendations require coalition cyber and electromagnetic order-of-battle corroboration.
+- Add `packet_id=DPL-UNDERSEA-CABLE-RESTORE-001` and `packet_id=DPL-COALITION-CYBER-EM-FUSION-001` for recommendations that alter identity trust boundaries, network priority lanes, or release authorities.

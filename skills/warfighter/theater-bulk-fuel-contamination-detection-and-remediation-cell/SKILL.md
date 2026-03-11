@@ -1,9 +1,9 @@
 ---
-name: joint-space-launch-window-conflict-deconfliction-cell
-description: Support U.S. warfighter planning and operational decision support for Joint Space Launch Window Conflict Deconfliction Cell scenarios across joint and coalition mission environments. Use when planning, synchronizing, or adapting operations that require cross-domain coordination under uncertainty.
+name: theater-bulk-fuel-contamination-detection-and-remediation-cell
+description: Support theater sustainment by detecting bulk fuel contamination, prioritizing remediation actions, and preserving mission energy continuity under contested conditions.
 ---
 
-# Joint Space Launch Window Conflict Deconfliction Cell
+# Theater Bulk Fuel Contamination Detection and Remediation Cell
 
 ## Mission Scope
 
@@ -31,11 +31,11 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: space support effects plan, orbital conflict deconfliction matrix, launch/reconstitution branch triggers.
+Primary products for this skill: fuel contamination confidence report, remediation and release matrix, mission fuel continuity branch plan.
 
 ## Domain Tool Stack
 
-Use these tool categories as the default stack for this skill: space domain awareness catalogs, SATCOM planners, orbital conjunction analyzers, mission assurance dashboards.
+Use these tool categories as the default stack for this skill: fuel quality telemetry analyzers, contamination source-correlation boards, remediation scheduler tools, force-health and sustainment impact monitors.
 
 ## External Tools and Protocol Integration
 
@@ -43,7 +43,7 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded mode stack).
 - Use at least one primary source and one cross-check source before final recommendations.
-- Prefer these protocol families for this skill: API/JSON, USMTF, Link 16 J-series.
+- Prefer these protocol families for this skill: API/JSON, USMTF, STIX/TAXII, HL7/FHIR.
 - Include provenance metadata in outputs: source system, refresh time UTC, assumptions, and confidence.
 
 ## Interoperability Validation Checklist
@@ -148,16 +148,3 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
-
-## Space Deconfliction Expansion Addendum (2026-03-11, Reentry Warning and Coalition Port Coupling)
-
-- Add `tool_suite_id=ts-orbital-debris-reentry-base-protection-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-protection-stack-v1` when launch-window deconfliction requires synchronized debris reentry warning branches and base-protection triggers.
-- Add `tool_suite_id=ts-contested-port-humanitarian-inspection-v1` + `protocol_stack_id=ps-contested-port-humanitarian-inspection-stack-v1` when launch or reconstitution windows are coupled to contested-port throughput and humanitarian lane governance.
-- Add `packet_id=DPL-ORBITAL-REENTRY-PROTECT-001` and `packet_id=DPL-PORT-HUMANITARIAN-DECONF-001` for recommendations that change launch timing, base exposure posture, or coalition movement priorities.
-
-## Space Deconfliction Expansion Addendum (2026-03-11, Ground-Station Ransomware and Timing Resilience Coupling)
-
-- Add `tool_suite_id=ts-satellite-ground-station-ransomware-continuity-v1` + `protocol_stack_id=ps-satellite-ground-station-ransomware-continuity-stack-v1` when launch-window recommendations depend on cyber continuity and command-path integrity across ground stations.
-- Add `tool_suite_id=ts-tactical-quantum-pnt-time-distribution-v1` + `protocol_stack_id=ps-tactical-quantum-pnt-time-distribution-stack-v1` when launch deconfliction branches depend on resilient timing holdover and denied-PNT compensation planning.
-- Add `packet_id=DPL-SAT-GROUND-RANSOMWARE-CONTINUITY-001` and `packet_id=DPL-TACTICAL-QUANTUM-PNT-TIME-001` for recommendations that alter launch timelines, warning windows, or force protection postures.
