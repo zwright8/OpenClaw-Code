@@ -7160,3 +7160,93 @@ validation_gates:
 - output_schema: red-indicator table, deception confidence ladder, warning trigger set
 - protocol_profile: STIX/TAXII + USMTF + signed deception-confidence manifests
 - validation_gates: multi-source corroboration, red-team challenge completion, authority review checkpoint
+
+## Packet Addendum S (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+### packet_id: DPL-HOMELAND-GRID-BLACKSTART-DEFENSE-001
+- domain: homeland grid blackstart and defense support
+- objective: restore power to life-safety and mission-essential loads while synchronizing civil-military authorities
+- primary_tools: utility SCADA coordination board, blackstart sequence planner, emergency authority escalation tracker
+- alternate_tools: manual blackstart whiteboard and hourly authority sync call matrix
+- degraded_mode: mission-essential load restoration only with fixed commander/civil authority check-ins
+- input_requirements: grid damage map, generation restart capability, critical-load list, threat status, authority matrix
+- output_schema: blackstart sequence order, mission-load restoration ladder, authority escalation checklist
+- protocol_profile: IEC 61850 + NIMS/ICS + USMTF
+- validation_gates: life-safety priority pass, authority concurrence, dual-source grid-state confirmation
+
+### packet_id: DPL-BATTLE-STAFF-COGNITIVE-LOAD-001
+- domain: human-machine battle staff cognitive load balancing
+- objective: keep command decision tempo sustainable by balancing workload and automation confidence
+- primary_tools: watchfloor workload dashboard, task orchestration board, automation confidence monitor
+- alternate_tools: manual task board and battle-rhythm staffing worksheet
+- degraded_mode: decision-critical tasks only with manual routing and reduced alert intake
+- input_requirements: alert volume, staff roster, battle-rhythm events, decision deadlines, automation confidence bands
+- output_schema: cognitive heat map, task reallocation plan, decision-latency risk ladder
+- protocol_profile: USMTF + API/JSON + signed decision manifests
+- validation_gates: human-approval thresholds, overload trigger checks, decision-latency SLA pass
+
+### packet_id: DPL-CONTESTED-SPECTRUM-CIVIL-AVIATION-001
+- domain: contested electromagnetic spectrum civil aviation protection
+- objective: protect civil/military flight safety while maneuvering spectrum under EW pressure
+- primary_tools: spectrum conflict manager, flight-route integrity monitor, EW emitter threat board
+- alternate_tools: manual deconfliction board and sector voice reporting net
+- degraded_mode: safety-critical air corridors only with strict comm windows
+- input_requirements: interference map, civil/military routes, emitter threats, GNSS integrity state, airspace restrictions
+- output_schema: deconfliction order, civil-aviation risk matrix, flight-safety trigger table
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF
+- validation_gates: flight-safety threshold pass, fratricide-spectrum check, authority release confirmation
+
+### packet_id: DPL-DEFENSE-INDUSTRIAL-SABOTAGE-001
+- domain: strategic defense industrial base sabotage risk
+- objective: identify and mitigate sabotage risk to mission-critical production and logistics nodes
+- primary_tools: supplier dependency graph analytics, production integrity monitors, chokepoint risk engine
+- alternate_tools: manual supplier criticality matrix and daily production anomaly review board
+- degraded_mode: highest-priority production lines only with manual release authority gates
+- input_requirements: supplier graph, throughput baselines, threat indicators, transportation chokepoints, surge demand
+- output_schema: sabotage risk register, protected-node priority list, continuity branch recommendations
+- protocol_profile: API/JSON + STIX/TAXII + signed production manifests
+- validation_gates: dual-source threat corroboration, production confidence floor, command risk acceptance gate
+
+### packet_id: DPL-ARCTIC-SPACE-WEATHER-AVIATION-001
+- domain: arctic space weather aviation diversion
+- objective: preserve arctic sortie continuity under space-weather-induced comm/nav degradation
+- primary_tools: space-weather warning feeds, arctic diversion planner, navigation-integrity monitor
+- alternate_tools: manual diversion board with periodic weather and comms checks
+- degraded_mode: essential sorties only with conservative weather and nav margins
+- input_requirements: space-weather alerts, route weather, runway status, comm/nav degradation indicators, tanker posture
+- output_schema: diversion branch set, route confidence scores, sortie-risk watchboard
+- protocol_profile: AIXM/FIXM + API/JSON + USMTF
+- validation_gates: runway viability check, navigation integrity threshold, commander go/no-go gate
+
+### packet_id: DPL-COALITION-CIVIL-TRUST-STABILIZATION-001
+- domain: coalition information operations and civil trust stabilization
+- objective: counter adversary narrative attacks and stabilize public trust in coalition operations
+- primary_tools: narrative risk analytics, coalition messaging governance tracker, social anomaly monitor
+- alternate_tools: manual media fusion cell and coalition release coordination log
+- degraded_mode: high-confidence rebuttal releases only with delayed coalition synchronization
+- input_requirements: narrative telemetry, audience sentiment shifts, coalition authorities, incident timeline, risk geography
+- output_schema: stabilization campaign plan, influence confidence ladder, release and rebuttal matrix
+- protocol_profile: STIX/TAXII + NATO APP-11/ADatP-3 + signed release manifests
+- validation_gates: multi-source attribution check, coalition approval pass, civilian-harm messaging review
+
+### packet_id: DPL-MILITARY-FAMILY-READINESS-CRISIS-001
+- domain: military family readiness crisis sustainment
+- objective: sustain family support and reduce readiness/retention loss during prolonged crises
+- primary_tools: family-service availability dashboard, disruption tracking board, mobilization stress analytics
+- alternate_tools: manual support-gap tracker and periodic command family-readiness reviews
+- degraded_mode: highest-risk family cohorts only with manual support assignment
+- input_requirements: service availability, housing/utilities status, childcare/medical constraints, deployment tempo, reserve mobilization data
+- output_schema: family readiness risk dashboard, support prioritization plan, retention mitigation branches
+- protocol_profile: NIEM + API/JSON + USMTF
+- validation_gates: privacy handling compliance, support-tier assignment review, readiness-impact confirmation
+
+### packet_id: DPL-CONTESTED-CYBER-LEGAL-EVIDENCE-001
+- domain: contested cyber legal evidence fusion
+- objective: fuse cyber incident evidence into legally actionable attribution and response recommendations
+- primary_tools: forensic custody platform, cyber telemetry fusion board, legal review workflow engine
+- alternate_tools: manual custody ledger and legal evidence review huddle
+- degraded_mode: provisional attribution summaries with explicit legal confidence bands
+- input_requirements: telemetry artifacts, malware/forensic evidence, custody status, legal constraints, escalation windows
+- output_schema: evidence packet index, legal admissibility matrix, authority escalation ladder
+- protocol_profile: STIX/TAXII + signed custody manifests + USMTF
+- validation_gates: custody integrity pass, legal admissibility check, escalation authority confirmation

@@ -1512,3 +1512,25 @@ Every skill output should include:
 - Electronic protection/spectrum maneuver + spectrum interference resolution + EW fratricide prevention + comms survivability
 - Homeland port cyber-physical defense + DSCA infrastructure continuity + OT cyber incident response + cargo mission prioritization
 - Deception red-indicator fusion + information integrity attribution + all-source collection management + command warning triggers
+
+## New Expansion Wave (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+- joint-homeland-grid-blackstart-and-defense-support-cell
+- theater-human-machine-battle-staff-cognitive-load-balancing-cell
+- joint-contested-electromagnetic-spectrum-civil-aviation-protection-cell
+- strategic-defense-industrial-base-sabotage-risk-cell
+- joint-arctic-space-weather-aviation-diversion-cell
+- coalition-information-operations-civil-trust-stabilization-cell
+- joint-military-family-readiness-crisis-sustainment-cell
+- theater-contested-cyber-legal-evidence-fusion-cell
+
+## Updated Pairings (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+- Homeland grid blackstart defense support + strategic energy grid cyber-physical deterrence + civil infrastructure restoration + DSCA crisis governance
+- Battle-staff cognitive load balancing + JOC battle rhythm management + AI-native mission command assistant + human-agent command escalation matrix
+- Contested spectrum civil aviation protection + tactical airspace control/deconfliction + spectrum governance + coalition evacuation corridor management
+- Defense industrial sabotage risk + strategic industrial mobilization readiness + supply-chain risk and industrial-base monitor + acquisition/contracting support
+- Arctic space-weather aviation diversion + weather/space-weather effects forecast + expeditionary airfield operations + SATCOM resilience planning
+- Coalition information operations civil trust stabilization + information integrity and attribution + MISO support + coalition interoperability coordination
+- Military family readiness crisis sustainment + theater reservist family readiness and retention + force generation planning + retention risk mitigation
+- Contested cyber legal evidence fusion + coalition cyber legal attribution + cross-border cyber forensics and extradition evidence + strategic escalation governance

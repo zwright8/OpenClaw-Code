@@ -7351,3 +7351,87 @@ external_binding:
 ### `ps-joint-deception-red-indicator-fusion-stack-v1`
 - Standards and protocols: STIX/TAXII + USMTF warning summaries + signed deception-confidence manifests.
 - Transport profile: deception warning distribution channel with provenance checks and red-team challenge acknowledgments.
+
+## Tool Suite Addendum S (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+### `ts-homeland-grid-blackstart-defense-support-v1`
+- Use for: homeland grid blackstart synchronization with DSCA authority coordination and mission-load prioritization.
+- Primary tools: utility SCADA coordination boards, blackstart sequence planners, emergency operations command trackers.
+- Cross-check tools: independent grid-state verifier and alternate mission-load adjudication board.
+- Typical products: blackstart synchronization matrix, mission-load restoration ladder, authority escalation checklist.
+
+### `ts-battle-staff-cognitive-load-balancing-v1`
+- Use for: battle-staff cognitive load balancing with human-machine teaming constraints in high-tempo operations.
+- Primary tools: watchfloor workload dashboards, task orchestration boards, automation confidence monitors.
+- Cross-check tools: independent decision-latency witness board and alternate staffing stress monitor.
+- Typical products: cognitive load heat map, staff-task reallocation matrix, decision-velocity risk chart.
+
+### `ts-contested-spectrum-civil-aviation-protection-v1`
+- Use for: joint protection of civil and military aviation during contested electromagnetic operations.
+- Primary tools: spectrum conflict manager, civil-aviation route integrity monitor, EW emitter threat board.
+- Cross-check tools: independent flight-safety telemetry witness and alternate GNSS integrity monitor.
+- Typical products: civil-aviation protection plan, spectrum maneuver order, flight-safety trigger matrix.
+
+### `ts-defense-industrial-base-sabotage-risk-v1`
+- Use for: strategic defense-industrial sabotage risk assessment and continuity planning.
+- Primary tools: supplier dependency graph analytics, production integrity monitors, logistics chokepoint risk engines.
+- Cross-check tools: independent threat-intel corroboration board and alternate throughput confidence monitor.
+- Typical products: sabotage risk register, continuity branch options, protected production priority queue.
+
+### `ts-arctic-space-weather-aviation-diversion-v1`
+- Use for: arctic aviation diversion and sortie continuity under space-weather degradation.
+- Primary tools: space-weather warning services, arctic route planners, degraded navigation integrity boards.
+- Cross-check tools: independent runway viability monitor and alternate comms continuity witness.
+- Typical products: diversion decision matrix, assured-route continuity branch, sortie-risk watchboard.
+
+### `ts-coalition-information-ops-civil-trust-stabilization-v1`
+- Use for: coalition civil-trust stabilization during disinformation and deepfake influence campaigns.
+- Primary tools: narrative risk analytics, coalition release-governance trackers, social signal anomaly boards.
+- Cross-check tools: independent credibility review panel and alternate audience-shift confidence monitor.
+- Typical products: civil-trust stabilization plan, influence confidence ladder, coalition release matrix.
+
+### `ts-military-family-readiness-crisis-sustainment-v1`
+- Use for: family readiness sustainment during prolonged crises affecting force availability and retention.
+- Primary tools: family-service availability dashboards, housing and utility disruption trackers, mobilization stress monitors.
+- Cross-check tools: independent retention-risk analytics and alternate support-gap verification board.
+- Typical products: family readiness risk dashboard, sustainment prioritization plan, retention mitigation branches.
+
+### `ts-contested-cyber-legal-evidence-fusion-v1`
+- Use for: contested-theater cyber evidence fusion with legal chain-of-custody and coalition admissibility controls.
+- Primary tools: forensic evidence chain platforms, cyber incident telemetry fusion boards, legal-review workflow engines.
+- Cross-check tools: independent custody audit ledger and alternate attribution confidence board.
+- Typical products: cyber attribution evidence packet, legal admissibility matrix, response authority ladder.
+
+## Protocol Stack Addendum S (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+### `ps-homeland-grid-blackstart-defense-support-stack-v1`
+- Standards and protocols: IEC 61850 + NIMS/ICS + USMTF restoration directives.
+- Transport profile: blackstart command bus with civil-authority checkpoints and degraded voice fallback.
+
+### `ps-battle-staff-cognitive-load-balancing-stack-v1`
+- Standards and protocols: USMTF + API/JSON staffing telemetry + signed decision-latency manifests.
+- Transport profile: watchfloor workload lane with threshold alerts and manual staffing override gates.
+
+### `ps-contested-spectrum-civil-aviation-protection-stack-v1`
+- Standards and protocols: AIXM/FIXM + Link 16 J-series + USMTF aviation safety summaries.
+- Transport profile: spectrum-aviation coordination lane with GNSS integrity alerts and civil authority acknowledgment chain.
+
+### `ps-defense-industrial-base-sabotage-risk-stack-v1`
+- Standards and protocols: API/JSON supply telemetry + STIX/TAXII + signed production integrity manifests.
+- Transport profile: industrial risk coordination bus with dual-source sabotage corroboration and rollback branches.
+
+### `ps-arctic-space-weather-aviation-diversion-stack-v1`
+- Standards and protocols: AIXM/FIXM + API/JSON space-weather events + USMTF diversion directives.
+- Transport profile: arctic diversion control lane with comms degradation flags and route viability acknowledgment gates.
+
+### `ps-coalition-information-ops-civil-trust-stabilization-stack-v1`
+- Standards and protocols: STIX/TAXII + NATO APP-11/ADatP-3 + signed coalition release manifests.
+- Transport profile: coalition influence-response channel with provenance checks and synchronized release confirmations.
+
+### `ps-military-family-readiness-crisis-sustainment-stack-v1`
+- Standards and protocols: NIEM support-service exchange + API/JSON readiness telemetry + USMTF readiness summaries.
+- Transport profile: family-readiness sustainment lane with privacy-gated data sharing and command impact rollups.
+
+### `ps-contested-cyber-legal-evidence-fusion-stack-v1`
+- Standards and protocols: STIX/TAXII + signed forensic custody manifests + USMTF legal-escalation summaries.
+- Transport profile: cyber legal-evidence bus with custody witness acknowledgments and coalition admissibility checkpoints.

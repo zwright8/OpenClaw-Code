@@ -675,3 +675,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-multi-cloud-mission-data-integrity-v1`.
 - Protocols: signed continuity manifests, `USMTF`, `API/JSON`.
 - Degraded fallback: critical command applications only with strict authority gates and staged recovery.
+
+## Profile Addendum L (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+### `homeland-grid-blackstart-defense-support-v1`
+- Use for homeland grid blackstart synchronization under contested cyber/physical outage conditions.
+- Primary tools: `ts-homeland-grid-blackstart-defense-support-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `IEC 61850`, `NIMS/ICS`, `USMTF`.
+- Degraded fallback: life-safety and mission-essential loads only with hourly authority confirmation.
+
+### `battle-staff-cognitive-load-balancing-v1`
+- Use for balancing watchfloor and battle-staff cognitive load during high-tempo operations.
+- Primary tools: `ts-battle-staff-cognitive-load-balancing-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `USMTF`, `API/JSON`, signed decision-latency manifests.
+- Degraded fallback: decision-critical queue only with manual staffing controls.
+
+### `contested-spectrum-civil-aviation-protection-v1`
+- Use for civil and military flight-safety protection during contested electromagnetic operations.
+- Primary tools: `ts-contested-spectrum-civil-aviation-protection-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `AIXM/FIXM`, `Link 16 J-series`, `USMTF`.
+- Degraded fallback: protected air corridors only with strict comm windows and authority release.
+
+### `defense-industrial-base-sabotage-risk-v1`
+- Use for strategic defense-industrial sabotage risk triage and continuity planning.
+- Primary tools: `ts-defense-industrial-base-sabotage-risk-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: `API/JSON`, `STIX/TAXII`, signed production manifests.
+- Degraded fallback: highest-priority production lines only with manual release gates.
+
+### `arctic-space-weather-aviation-diversion-v1`
+- Use for sortie continuity planning in arctic operations during space-weather degradation.
+- Primary tools: `ts-arctic-space-weather-aviation-diversion-v1`.
+- Cross-check tools: `ts-polar-routing-v1`.
+- Protocols: `AIXM/FIXM`, `API/JSON`, `USMTF`.
+- Degraded fallback: essential sorties only with conservative weather/nav thresholds.
+
+### `coalition-information-ops-civil-trust-stabilization-v1`
+- Use for coalition trust stabilization and influence-response synchronization.
+- Primary tools: `ts-coalition-information-ops-civil-trust-stabilization-v1`.
+- Cross-check tools: `ts-disinformation-counter-v1`.
+- Protocols: `STIX/TAXII`, `NATO APP-11/ADatP-3`, signed coalition release manifests.
+- Degraded fallback: high-confidence releases only with explicit uncertainty and coalition reconfirmation.
+
+### `military-family-readiness-crisis-sustainment-v1`
+- Use for force-readiness support through military family sustainment during extended crises.
+- Primary tools: `ts-military-family-readiness-crisis-sustainment-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIEM`, `API/JSON`, `USMTF` readiness summaries.
+- Degraded fallback: high-risk cohorts only with manual support assignment cadence.
+
+### `contested-cyber-legal-evidence-fusion-v1`
+- Use for cyber incident evidence fusion and legal escalation in contested operations.
+- Primary tools: `ts-contested-cyber-legal-evidence-fusion-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: `STIX/TAXII`, signed custody manifests, `USMTF` legal escalation summaries.
+- Degraded fallback: provisional attribution posture with conservative legal confidence bands.
