@@ -83,6 +83,7 @@ const LINUCB_FEATURE_NAMES = [
 ];
 export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'ucb',
+    'ucb_v',
     'ucb_tuned',
     'linucb',
     'd_linucb',
@@ -1311,6 +1312,27 @@ function computeUcbTunedScore(stat, totalAttempts, currentWave, adaptiveScoreCon
         + adjustments.staleBoost;
 }
 
+function computeUcbVarianceScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const empiricalMean = normalized.successes / normalized.attempts;
+    const empiricalVariance = clamp(empiricalMean * (1 - empiricalMean), 0, 0.25);
+    const horizon = Math.max(2, totalAttempts + 1);
+    const logTerm = Math.log(horizon);
+    const exploration = Math.sqrt((2 * empiricalVariance * logTerm) / normalized.attempts)
+        + ((3 * logTerm) / normalized.attempts);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return empiricalMean
+        + exploration
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
 function computeBernoulliKlDivergence(p, q) {
     const epsilon = 1e-12;
     const left = clamp(p, epsilon, 1 - epsilon);
@@ -1721,6 +1743,14 @@ function selectCatalogSlice({
             );
         } else if (scoringPolicy.mode === 'ucb_tuned' || scoringPolicy.mode === 'd_ucb_tuned') {
             score = computeUcbTunedScore(
+                stat,
+                totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy
+            );
+        } else if (scoringPolicy.mode === 'ucb_v') {
+            score = computeUcbVarianceScore(
                 stat,
                 totalAttempts,
                 normalizedCurrentWave,

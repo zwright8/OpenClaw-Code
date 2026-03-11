@@ -20,6 +20,7 @@
 - `npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json` - run autonomous loop with hardening inputs.
 - `npm run autonomous:run -- --selection-policy linucb --linucb-alpha 0.6` - run autonomous loop with contextual LinUCB exploration using learned execution-state features.
 - `npm run autonomous:run -- --selection-policy d_linucb --discount-factor 0.97 --linucb-alpha 0.6` - run autonomous loop with discounted contextual LinUCB to adapt faster under drift.
+- `npm run autonomous:run -- --selection-policy ucb_v` - run autonomous loop with variance-aware UCB exploration bonuses for bounded binary outcomes.
 - `npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5` - run autonomous loop with contextual linear Thompson sampling for posterior-driven exploration.
 - `npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5` - run autonomous loop with discounted linear Thompson sampling to adapt under drift.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.

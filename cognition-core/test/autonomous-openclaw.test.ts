@@ -442,6 +442,37 @@ test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () 
     assert.deepEqual(plan.selection.skillIds, [43]);
 });
 
+test('buildAutonomousBatchPlan supports ucb_v variance-aware exploration policy', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 91, code: 'SK-00091', title: 'Skill 91' },
+            { id: 92, code: 'SK-00092', title: 'Skill 92' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 17,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '91': { attempts: 2, successes: 2, failures: 0, consecutiveFailures: 0, lastWave: 16, lastStatus: 'completed' },
+                '92': { attempts: 2, successes: 1, failures: 1, consecutiveFailures: 0, lastWave: 16, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 18,
+        selectionPolicyConfig: {
+            mode: 'ucb_v'
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [92]);
+    assert.equal(plan.selection.policy.skills, 'ucb_v');
+});
+
 test('buildAutonomousBatchPlan supports Bayes-UCB policy for optimistic posterior ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
