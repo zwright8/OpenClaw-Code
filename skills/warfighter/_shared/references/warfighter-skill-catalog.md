@@ -1712,3 +1712,33 @@ Every skill output should include:
 - SOF maritime infiltration tide-traffic signature planning + littoral maneuver continuity + signature management and decoy employment + personnel recovery branch governance
 - Coalition cyber-electromagnetic OOB fusion + electronic signature survivability scorecard + cognitive-EW disruption governance + coalition warning translation assurance
 - Expeditionary human-machine breaching safety assurance + combat engineer water obstacle autonomy safety + denied terrain bridge classification + authority-gated route breach execution
+
+## New Expansion Wave (2026-03-11, Strategic Warning, Civil Defense, and Legal-Speed Evidence Synchronization)
+
+- strategic-nc3-command-post-relocation-and-emcon-cell
+- theater-electromagnetic-battle-damage-repair-prioritization-cell
+- coalition-autonomous-border-interdiction-liability-governance-cell
+- expeditionary-rare-blood-plasma-chain-assurance-cell
+- homeland-dam-and-levee-defense-support-priority-cell
+- joint-cislunar-sensor-custody-and-anomaly-attribution-cell
+- theater-disconnected-munitions-lot-traceability-and-recall-cell
+- joint-urban-underground-water-grid-contamination-response-cell
+- coalition-rapid-ceasefire-violation-evidence-synchronization-cell
+- strategic-ai-enabled-adversary-mobilization-indications-cell
+- joint-denied-gps-precision-approach-and-airdrop-certification-cell
+- maritime-critical-chokepoint-salvage-and-insurance-continuity-cell
+
+## Updated Pairings (2026-03-11, Strategic Warning, Civil Defense, and Legal-Speed Evidence Synchronization)
+
+- NC3 command-post relocation + mission network failover + strategic warning and attack assessment + EMCON governance
+- EM battle-damage repair prioritization + joint spectrum interference resolution + fires timing continuity + force-protection survivability
+- Coalition autonomous border liability governance + coalition legal interoperability + border biometrics deconfliction + custody assurance
+- Rare blood and plasma chain assurance + casualty evacuation regulation + austere surgical support + contested med-log continuity
+- Dam and levee defense support prioritization + homeland critical infrastructure priority-of-life operations + DSCA crisis coordination + engineer mobility planning
+- Cislunar sensor custody and anomaly attribution + space launch deconfliction + space-ground emission window governance + strategic reentry warning continuity
+- Disconnected munitions lot traceability and recall + theater-level ammunition interoperability + strategic industrial mobilization + sustainment anti-tamper controls
+- Urban underground water-grid contamination response + force-health protection + civil-support restoration + public warning integrity coordination
+- Ceasefire violation evidence synchronization + coalition battlefield forensics + detainee transfer legal observability + strategic escalation governance
+- AI-enabled adversary mobilization indications + all-source collection management + strategic competition gray-zone response + command warning trigger discipline
+- Denied-GPS precision approach and airdrop certification + tactical airspace deconfliction + denied navigation recovery + expeditionary sortie continuity
+- Maritime chokepoint salvage and insurance continuity + strategic sealift protection + coalition maritime interdiction governance + logistics throughput assurance

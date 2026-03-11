@@ -161,3 +161,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-undersea-cable-restoration-traffic-priority-v1` + `protocol_stack_id=ps-undersea-cable-restoration-traffic-priority-stack-v1` when zero-trust routing policy depends on contested undersea transport restoration and mission traffic arbitration.
 - Add `tool_suite_id=ts-coalition-cyber-em-oob-fusion-v1` + `protocol_stack_id=ps-coalition-cyber-em-oob-fusion-stack-v1` when trust posture recommendations require coalition cyber and electromagnetic order-of-battle corroboration.
 - Add `packet_id=DPL-UNDERSEA-CABLE-RESTORE-001` and `packet_id=DPL-COALITION-CYBER-EM-FUSION-001` for recommendations that alter identity trust boundaries, network priority lanes, or release authorities.
+
+## Domain Toolchain Override (2026-03-11, Strategic Warning and Evidence-Speed Expansion)
+
+- Add `tool_suite_id=ts-strategic-ai-mobilization-indications-v1` + `protocol_stack_id=ps-strategic-ai-mobilization-indications-stack-v1` when hardening recommendations depend on warning-driven defensive posture shifts against adversary mobilization campaigns.
+- Add `tool_suite_id=ts-coalition-ceasefire-evidence-sync-v1` + `protocol_stack_id=ps-coalition-ceasefire-evidence-sync-stack-v1` when network integrity recommendations must preserve legally admissible incident evidence synchronization at coalition boundaries.
+- Add `packet_id=DPL-STRAT-MOB-WARN-001` and `packet_id=DPL-CEASEFIRE-EVIDENCE-SYNC-001` for branches that alter sensor trust posture, legal evidence handling, or alliance release controls.

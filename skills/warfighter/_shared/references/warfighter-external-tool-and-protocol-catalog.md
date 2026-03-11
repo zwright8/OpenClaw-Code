@@ -8006,3 +8006,127 @@ external_binding:
 ### `ps-expeditionary-human-machine-breaching-safety-stack-v1`
 - Standards and protocols: VMF engineer maneuver exchange + CoT obstacle and safety cues + API/JSON autonomy telemetry + USMTF mission safety summaries.
 - Transport profile: breaching safety lane with authority-gated execution checkpoints and human override acknowledgment controls.
+
+## Tool Suite Addendum VIII (2026-03-11, NC3 Resilience, Civil Defense Coupling, and Evidence-Speed Expansion)
+
+### `ts-strategic-nc3-relocation-emcon-v1`
+- Use for: strategic NC3 command-post relocation, EMCON transitions, and emergency-message continuity under contested strike risk.
+- Primary tools: NC3 route survivability dashboard, EAM integrity validator, EMCON posture sequencing planner.
+- Cross-check tools: independent acknowledgment-chain witness and alternate relocation-readiness adjudication board.
+- Typical products: relocation branch matrix, EMCON ladder, EAM continuity exception report.
+
+### `ts-theater-em-battle-damage-repair-priority-v1`
+- Use for: prioritizing electromagnetic mission-system battle-damage repair while preserving C2 and fires timing.
+- Primary tools: EM system outage fusion board, repair workcell scheduler, mission impact scorer.
+- Cross-check tools: independent readiness witness and alternate spare-part sufficiency tracker.
+- Typical products: EM repair priority ladder, C2 continuity risk map, repair branch trigger list.
+
+### `ts-coalition-autonomous-border-liability-v1`
+- Use for: coalition autonomous border interdiction governance with liability partitioning and escalation controls.
+- Primary tools: coalition border COP, autonomy event audit ledger, legal adjudication workflow board.
+- Cross-check tools: independent identity/custody witness and alternate partner-authority validation board.
+- Typical products: liability decision matrix, coalition governance order, escalation-safe intervention branches.
+
+### `ts-expeditionary-rare-blood-plasma-chain-v1`
+- Use for: expeditionary rare-blood and plasma continuity under cold-chain disruption and contested evacuation windows.
+- Primary tools: blood-chain telemetry board, plasma viability estimator, casualty movement prioritizer.
+- Cross-check tools: independent donor-match verifier and alternate cold-chain integrity witness.
+- Typical products: blood/plasma assurance plan, casualty-priority allocation board, spoilage-risk trigger ladder.
+
+### `ts-homeland-dam-levee-defense-support-v1`
+- Use for: DSCA dam and levee defense-support prioritization with force allocation and flood-phase continuity.
+- Primary tools: hydrology hazard dashboard, engineer-force deployment scheduler, evacuation throughput planner.
+- Cross-check tools: independent flood-gauge witness and alternate infrastructure dependency adjudication board.
+- Typical products: priority-of-life defense matrix, engineer deployment sequence, restoration branch chart.
+
+### `ts-cislunar-sensor-custody-attribution-v1`
+- Use for: cislunar sensor custody assurance and anomaly attribution across space-ground warning pathways.
+- Primary tools: cislunar object-track fusion board, sensor custody ledger, anomaly attribution classifier.
+- Cross-check tools: independent track-integrity witness and alternate warning-confidence adjudication board.
+- Typical products: custody confidence ledger, anomaly attribution packet, warning continuity trigger map.
+
+### `ts-disconnected-munitions-lot-recall-v1`
+- Use for: disconnected munitions lot traceability, recall execution, and safe reallocation under degraded logistics.
+- Primary tools: munitions genealogy ledger, lot-risk scorer, recall execution workflow board.
+- Cross-check tools: independent depot inventory mirror and alternate release-authority adjudication service.
+- Typical products: lot recall order, munitions risk register, safe reallocation timeline.
+
+### `ts-urban-underground-water-contamination-response-v1`
+- Use for: urban underground water-grid contamination triage with force-health and civil-order stabilization coupling.
+- Primary tools: water anomaly telemetry board, contamination plume estimator, utility isolation planner.
+- Cross-check tools: independent sampling chain witness and alternate public warning integrity tracker.
+- Typical products: contamination control timeline, force-health trigger matrix, restoration priority ladder.
+
+### `ts-coalition-ceasefire-evidence-sync-v1`
+- Use for: rapid coalition ceasefire-violation evidence synchronization with observer corroboration and legal release discipline.
+- Primary tools: incident geo-event board, observer report reconciler, chain-of-custody ledger.
+- Cross-check tools: independent neutral-observer validation service and alternate legal sufficiency adjudication board.
+- Typical products: ceasefire evidence packet, corroboration confidence matrix, legal release decision timeline.
+
+### `ts-strategic-ai-mobilization-indications-v1`
+- Use for: AI-enabled strategic adversary mobilization indications and warning with deception discrimination.
+- Primary tools: all-source mobilization pattern engine, deception counter-analysis board, strategic warning synchronizer.
+- Cross-check tools: independent anomaly baseline witness and alternate warning-confidence monitor.
+- Typical products: mobilization warning brief, deception-vs-signal confidence ladder, strategic branch trigger ledger.
+
+### `ts-denied-gps-approach-airdrop-certification-v1`
+- Use for: denied-GPS precision approach and airdrop certification under contested PNT and weather constraints.
+- Primary tools: terrain-relative nav confidence engine, approach corridor deconfliction board, drift prediction planner.
+- Cross-check tools: independent approach safety witness and alternate drift-confidence adjudication board.
+- Typical products: fallback approach matrix, airdrop certification checklist, denied-PNT risk ladder.
+
+### `ts-maritime-chokepoint-salvage-insurance-v1`
+- Use for: maritime chokepoint salvage sequencing with insurance continuity to protect coalition throughput.
+- Primary tools: maritime traffic COP, salvage asset scheduler, insurance disruption impact board.
+- Cross-check tools: independent hull-risk witness and alternate cargo-priority adjudication board.
+- Typical products: salvage sequence order, insurance continuity risk matrix, convoy throughput branch triggers.
+
+## Protocol Stack Addendum VIII (2026-03-11, External Integration Profiles for Rapid Cross-Domain Continuity)
+
+### `ps-strategic-nc3-relocation-emcon-stack-v1`
+- Standards and protocols: USMTF emergency message exchange + API/JSON posture telemetry + signed custody manifests + STIX/TAXII threat indicators.
+- Transport profile: NC3 relocation lane with acknowledgment-chain integrity checks and EMCON authority-gated transitions.
+
+### `ps-theater-em-battle-damage-repair-priority-stack-v1`
+- Standards and protocols: Link 16 J-series mission context + VMF repair coordination + API/JSON outage telemetry + USMTF continuity summaries.
+- Transport profile: theater EM repair lane with readiness-threshold gates and mission-impact acknowledgment controls.
+
+### `ps-coalition-autonomous-border-liability-stack-v1`
+- Standards and protocols: NATO APP-11/ADatP-3 coalition coordination + NIEM legal payloads + API/JSON autonomy event records + signed liability manifests.
+- Transport profile: coalition liability lane with dual-authorization checkpoints and escalation-safe evidence acknowledgments.
+
+### `ps-expeditionary-rare-blood-plasma-chain-stack-v1`
+- Standards and protocols: HL7/FHIR blood and casualty exchange + API/JSON cold-chain telemetry + EDXL alerts + USMTF medical continuity reports.
+- Transport profile: rare-blood continuity lane with temperature-threshold invalidation triggers and casualty-priority acknowledgments.
+
+### `ps-homeland-dam-levee-defense-support-stack-v1`
+- Standards and protocols: NIMS/ICS coordination records + CAP/EDXL warning exchange + API/JSON infrastructure telemetry + USMTF support-status summaries.
+- Transport profile: flood-defense support lane with priority-of-life escalation gates and engineer-tasking acknowledgment chain.
+
+### `ps-cislunar-sensor-custody-attribution-stack-v1`
+- Standards and protocols: CCSDS-derived telemetry + API/JSON custody events + USMTF warning summaries + signed anomaly-attribution manifests.
+- Transport profile: cislunar custody lane with track-integrity gates and warning-confidence acknowledgment controls.
+
+### `ps-disconnected-munitions-lot-recall-stack-v1`
+- Standards and protocols: USMTF sustainment advisories + API/JSON lot genealogy exchange + signed release manifests + STIX/TAXII sabotage indicators.
+- Transport profile: munitions recall lane with release-authority dual-control and lot-risk acknowledgment checkpoints.
+
+### `ps-urban-underground-water-contamination-response-stack-v1`
+- Standards and protocols: OGC hazard overlays + API/JSON water telemetry + HL7/FHIR force-health exchange + NIMS/ICS restoration coordination.
+- Transport profile: contamination response lane with sampling-confidence gates and public warning acknowledgment integrity checks.
+
+### `ps-coalition-ceasefire-evidence-sync-stack-v1`
+- Standards and protocols: NIEM evidence payloads + STIX/TAXII incident attribution artifacts + API/JSON observer event exchange + signed custody manifests.
+- Transport profile: ceasefire evidence lane with corroboration thresholds and legal-release dual acknowledgment controls.
+
+### `ps-strategic-ai-mobilization-indications-stack-v1`
+- Standards and protocols: STIX/TAXII intel sharing + API/JSON mobilization telemetry + OGC event overlays + USMTF strategic warning summaries.
+- Transport profile: strategic warning lane with deception-confidence gates and command acknowledgment sequencing.
+
+### `ps-denied-gps-approach-airdrop-certification-stack-v1`
+- Standards and protocols: AIXM/FIXM airspace status + VMF maneuver updates + Link 16 J-series timing references + API/JSON drift confidence records.
+- Transport profile: denied-GPS approach lane with certification authority checkpoints and drift-threshold invalidation controls.
+
+### `ps-maritime-chokepoint-salvage-insurance-stack-v1`
+- Standards and protocols: AIS/NMEA maritime feeds + API/JSON salvage telemetry + NIEM insurance/legal exchange + USMTF throughput summaries.
+- Transport profile: chokepoint salvage lane with cargo-priority release gates and insurance continuity acknowledgments.

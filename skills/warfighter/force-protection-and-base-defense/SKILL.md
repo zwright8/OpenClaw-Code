@@ -221,3 +221,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-homeland-wildfire-smoke-sortie-continuity-v1` + `protocol_stack_id=ps-homeland-wildfire-smoke-sortie-continuity-stack-v1` when base-defense recommendations depend on wildfire smoke constraints, runway viability, and civil-airspace conflict resolution.
 - Add `tool_suite_id=ts-theater-bulk-fuel-contamination-remediation-v1` + `protocol_stack_id=ps-theater-bulk-fuel-contamination-remediation-stack-v1` when force protection decisions depend on fuel contamination detection, remediation sequencing, and release-authority integrity.
 - Add `packet_id=DPL-WILDFIRE-SMOKE-SORTIE-CONTINUITY-001` and `packet_id=DPL-BULK-FUEL-CONTAMINATION-REMEDIATION-001` for branches that alter base readiness posture, sortie generation tempo, or protected movement priorities.
+
+## Domain Toolchain Override (2026-03-11, Precision Airdrop Safety and Chokepoint Recovery)
+
+- Add `tool_suite_id=ts-denied-gps-approach-airdrop-certification-v1` + `protocol_stack_id=ps-denied-gps-approach-airdrop-certification-stack-v1` when base-defense recommendations include denied-PNT precision approach or emergency airdrop sustainment operations.
+- Add `tool_suite_id=ts-maritime-chokepoint-salvage-insurance-v1` + `protocol_stack_id=ps-maritime-chokepoint-salvage-insurance-stack-v1` when base protection depends on maritime throughput restoration and insured sealift continuity.
+- Add `packet_id=DPL-DENIED-GPS-AIRDROP-CERT-001` and `packet_id=DPL-CHOKEPOINT-SALVAGE-INS-001` for branches that materially alter base sustainment rates, route security posture, or force-protection resupply confidence.

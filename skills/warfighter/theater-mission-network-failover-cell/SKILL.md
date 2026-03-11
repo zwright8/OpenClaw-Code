@@ -182,3 +182,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-undersea-cable-restoration-traffic-priority-v1` + `protocol_stack_id=ps-undersea-cable-restoration-traffic-priority-stack-v1` when network failover branches depend on undersea cable recovery and mission traffic arbitration.
 - Add `tool_suite_id=ts-satellite-ground-station-ransomware-continuity-v1` + `protocol_stack_id=ps-satellite-ground-station-ransomware-continuity-stack-v1` when failover recommendations must preserve satellite command-path continuity under ransomware disruption.
 - Add `packet_id=DPL-UNDERSEA-CABLE-RESTORE-001` and `packet_id=DPL-SAT-GROUND-RANSOMWARE-CONTINUITY-001` for branches that materially change C2 continuity timelines, fallback topology, or service release conditions.
+
+## Domain Toolchain Override (2026-03-11, EM Battle-Damage and Infrastructure Defense Coupling)
+
+- Add `tool_suite_id=ts-theater-em-battle-damage-repair-priority-v1` + `protocol_stack_id=ps-theater-em-battle-damage-repair-priority-stack-v1` when failover planning must sequence electromagnetic mission-system repairs against C2 and fires continuity timelines.
+- Add `tool_suite_id=ts-homeland-dam-levee-defense-support-v1` + `protocol_stack_id=ps-homeland-dam-levee-defense-support-stack-v1` when mission-network continuity depends on DSCA infrastructure defense support and flood-driven power/transport disruptions.
+- Add `packet_id=DPL-EM-BDR-PRIORITY-001` and `packet_id=DPL-DAM-LEVEE-DEFENSE-001` for branches that materially change transport survivability, fallback topology, or restoration sequencing.

@@ -161,3 +161,9 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Add `tool_suite_id=ts-satellite-ground-station-ransomware-continuity-v1` + `protocol_stack_id=ps-satellite-ground-station-ransomware-continuity-stack-v1` when launch-window recommendations depend on cyber continuity and command-path integrity across ground stations.
 - Add `tool_suite_id=ts-tactical-quantum-pnt-time-distribution-v1` + `protocol_stack_id=ps-tactical-quantum-pnt-time-distribution-stack-v1` when launch deconfliction branches depend on resilient timing holdover and denied-PNT compensation planning.
 - Add `packet_id=DPL-SAT-GROUND-RANSOMWARE-CONTINUITY-001` and `packet_id=DPL-TACTICAL-QUANTUM-PNT-TIME-001` for recommendations that alter launch timelines, warning windows, or force protection postures.
+
+## Domain Toolchain Override (2026-03-11, Cislunar Custody and Strategic NC3 Coupling)
+
+- Add `tool_suite_id=ts-cislunar-sensor-custody-attribution-v1` + `protocol_stack_id=ps-cislunar-sensor-custody-attribution-stack-v1` when launch-window deconfliction recommendations depend on cislunar track custody and anomaly attribution confidence.
+- Add `tool_suite_id=ts-strategic-nc3-relocation-emcon-v1` + `protocol_stack_id=ps-strategic-nc3-relocation-emcon-stack-v1` when launch conflict branches affect strategic command-post relocation, EMCON posture, or emergency-message continuity.
+- Add `packet_id=DPL-CISLUNAR-CUSTODY-ATTRIB-001` and `packet_id=DPL-NC3-RELOC-EMCON-001` for branches that materially change launch risk acceptance, strategic warning pathways, or authority-gated escalation timing.
