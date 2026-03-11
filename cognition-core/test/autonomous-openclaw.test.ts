@@ -950,6 +950,81 @@ test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across bas
     assert.ok(plan.tasks[0].context?.autonomy?.selectionPolicyApplied);
 });
 
+test('buildAutonomousBatchPlan supports corral_exp3_plus corralling expanded base policy pool', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 247, code: 'SK-00247', title: 'Skill 247' },
+            { id: 248, code: 'SK-00248', title: 'Skill 248' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '247': {
+                    attempts: 24,
+                    successes: 8,
+                    failures: 16,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                },
+                '248': {
+                    attempts: 24,
+                    successes: 16,
+                    failures: 8,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    epsilon_ts: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    kl_ucb: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    cd_ucb: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    ucb_tuned: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    ucb_v: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    bayes_ucb: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    cusum_ucb: { attempts: 10, successes: 10, failures: 0, cumulativeReward: 10 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3_plus',
+            corralGamma: 0,
+            corralEta: 5,
+            changeDetectionMinSamples: 4,
+            cusumThreshold: 1.2,
+            cusumBaselineWeight: 0.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [247]);
+    assert.equal(plan.selection.policy.skills, 'cusum_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'cusum_ucb');
+});
+
 test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

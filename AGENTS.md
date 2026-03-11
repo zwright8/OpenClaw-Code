@@ -41,6 +41,7 @@
 - `npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02` - run autonomous loop with change-detection UCB for abrupt drift handling.
 - `npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15` - run autonomous loop with CUSUM-based abrupt drift detection and baseline adaptation.
 - `npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with EXP3-style policy corralling across UCB/TS/KL-UCB/change-detection arms.
+- `npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2` - run autonomous loop with expanded EXP3 corralling across UCB/TS/KL-UCB/Bayes-UCB/CUSUM experts.
 - `npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with implicit-exploration EXP3 weighting for adversarial/non-stationary reward shifts.
 - `npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with sliding-window EXP3-IX adaptation emphasizing recent adversarial outcomes.
 - `npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with discounted EXP3-IX adaptation to prioritize recent non-stationary reward shifts.

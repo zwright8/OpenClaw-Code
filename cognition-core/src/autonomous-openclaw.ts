@@ -119,6 +119,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'cd_ucb',
     'cusum_ucb',
     'corral_exp3',
+    'corral_exp3_plus',
     'exp3_ix',
     'sw_exp3_ix',
     'd_exp3_ix',
@@ -170,11 +171,24 @@ const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
     'sw_lints',
     'd_lints'
 ]);
-const CORRAL_BASE_POLICIES = [
+const CORRAL_EXP3_BASE_POLICIES = [
     'ucb',
     'epsilon_ts',
     'kl_ucb',
     'cd_ucb'
+];
+const CORRAL_EXP3_PLUS_BASE_POLICIES = [
+    'ucb',
+    'ucb_tuned',
+    'ucb_v',
+    'epsilon_ts',
+    'kl_ucb',
+    'bayes_ucb',
+    'cd_ucb',
+    'cusum_ucb'
+];
+const ALL_CORRAL_BASE_POLICIES = [
+    ...new Set([...CORRAL_EXP3_BASE_POLICIES, ...CORRAL_EXP3_PLUS_BASE_POLICIES])
 ];
 
 function safeNow(nowFactory = Date.now) {
@@ -470,7 +484,7 @@ function normalizePolicyPerformanceByLane(rawStats = {}) {
     const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
     const normalized = {};
 
-    for (const policy of CORRAL_BASE_POLICIES) {
+    for (const policy of ALL_CORRAL_BASE_POLICIES) {
         normalized[policy] = normalizePolicyPerformanceStat(stats[policy]);
     }
 
@@ -1629,9 +1643,12 @@ function computeMossAnytimeScore(stat, totalAttempts, totalArms, currentWave, ad
 function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig) {
     const laneStats = normalizePolicyPerformanceByLane(policyExecutionStats);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const corralPolicies = policy.mode === 'corral_exp3_plus'
+        ? CORRAL_EXP3_PLUS_BASE_POLICIES
+        : CORRAL_EXP3_BASE_POLICIES;
     const gamma = policy.corralGamma;
-    const uniform = 1 / CORRAL_BASE_POLICIES.length;
-    const weighted = CORRAL_BASE_POLICIES.map((name) => {
+    const uniform = 1 / corralPolicies.length;
+    const weighted = corralPolicies.map((name) => {
         const reward = Math.max(0, Number(laneStats[name]?.cumulativeReward || 0));
         const scaled = clamp(reward * policy.corralEta, -30, 30);
         return {
@@ -1640,7 +1657,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         };
     });
     const sumWeights = weighted.reduce((sum, entry) => sum + entry.weight, 0);
-    const safeSum = sumWeights > 0 ? sumWeights : CORRAL_BASE_POLICIES.length;
+    const safeSum = sumWeights > 0 ? sumWeights : corralPolicies.length;
 
     return weighted.map((entry) => {
         const exploitation = entry.weight / safeSum;
@@ -1763,11 +1780,11 @@ function selectCatalogSlice({
     const selectionFeatures = {};
     let selectionProbabilities = {};
 
-    if (normalizedPolicy.mode === 'corral_exp3') {
+    if (normalizedPolicy.mode === 'corral_exp3' || normalizedPolicy.mode === 'corral_exp3_plus') {
         const distribution = resolveCorralPolicyDistribution(policyExecutionStats, normalizedPolicy);
         selectedPolicy = pickPolicyFromDistribution(
             distribution,
-            `${selectionScope}:corral_exp3:${normalizedCurrentWave}:${pointer}:${total}`
+            `${selectionScope}:${normalizedPolicy.mode}:${normalizedCurrentWave}:${pointer}:${total}`
         );
         scoringPolicy = {
             ...normalizedPolicy,
@@ -2235,7 +2252,7 @@ export async function collectAutonomousCoverage({
             capabilityExecutionStats[capabilityId] = current;
         }
 
-        if (lane && CORRAL_BASE_POLICIES.includes(selectedPolicy)) {
+        if (lane && ALL_CORRAL_BASE_POLICIES.includes(selectedPolicy)) {
             const currentPolicy = normalizePolicyPerformanceStat(policyExecutionStats[lane][selectedPolicy]);
             currentPolicy.attempts += 1;
             if (didSucceed) {
@@ -2309,7 +2326,7 @@ function mergePolicyExecutionStats(existingStats = {}, incomingStats = {}) {
     const merged = normalizePolicyExecutionStats({});
 
     for (const lane of ['skills', 'capabilities']) {
-        for (const policy of CORRAL_BASE_POLICIES) {
+        for (const policy of ALL_CORRAL_BASE_POLICIES) {
             const previous = normalizePolicyPerformanceStat(existing[lane][policy]);
             const next = normalizePolicyPerformanceStat(incoming[lane][policy]);
             merged[lane][policy] = next.attempts >= previous.attempts ? next : previous;
