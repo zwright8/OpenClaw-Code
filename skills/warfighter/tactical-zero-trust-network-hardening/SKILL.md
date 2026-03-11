@@ -167,3 +167,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-strategic-ai-mobilization-indications-v1` + `protocol_stack_id=ps-strategic-ai-mobilization-indications-stack-v1` when hardening recommendations depend on warning-driven defensive posture shifts against adversary mobilization campaigns.
 - Add `tool_suite_id=ts-coalition-ceasefire-evidence-sync-v1` + `protocol_stack_id=ps-coalition-ceasefire-evidence-sync-stack-v1` when network integrity recommendations must preserve legally admissible incident evidence synchronization at coalition boundaries.
 - Add `packet_id=DPL-STRAT-MOB-WARN-001` and `packet_id=DPL-CEASEFIRE-EVIDENCE-SYNC-001` for branches that alter sensor trust posture, legal evidence handling, or alliance release controls.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-theater-denied-electronic-warfare-mission-data-reprogramming-cell-v1` + `protocol_stack_id=ps-theater-denied-electronic-warfare-mission-data-reprogramming-cell-stack-v1` when EW mission-data reprogramming and tactical trust restoration are interdependent.
+- Add packet bindings `packet_id=DPL-TACTICAL_ZERO_TRUST_NETWORK_HARDENING-009` (primary) and `packet_id=DPL-TACTICAL_ZERO_TRUST_NETWORK_HARDENING-010` (degraded) to preserve release-authority traceability under denial.
+- Include `validation_owner`, `revalidation_utc`, and `ack_chain_status`; if any are stale, downgrade to advisory-only and escalate to commander network authority.

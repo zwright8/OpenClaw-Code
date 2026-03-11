@@ -227,3 +227,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-denied-gps-approach-airdrop-certification-v1` + `protocol_stack_id=ps-denied-gps-approach-airdrop-certification-stack-v1` when base-defense recommendations include denied-PNT precision approach or emergency airdrop sustainment operations.
 - Add `tool_suite_id=ts-maritime-chokepoint-salvage-insurance-v1` + `protocol_stack_id=ps-maritime-chokepoint-salvage-insurance-stack-v1` when base protection depends on maritime throughput restoration and insured sealift continuity.
 - Add `packet_id=DPL-DENIED-GPS-AIRDROP-CERT-001` and `packet_id=DPL-CHOKEPOINT-SALVAGE-INS-001` for branches that materially alter base sustainment rates, route security posture, or force-protection resupply confidence.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-autonomous-undersea-mine-countermeasure-swarm-governance-cell-v1` + `protocol_stack_id=ps-joint-autonomous-undersea-mine-countermeasure-swarm-governance-cell-stack-v1` for base-defense plans that depend on maritime access-lane clearance and autonomous safety gating.
+- Add packet bindings `packet_id=DPL-FORCE_PROTECTION_AND_BASE_DEFENSE-009` (primary) and `packet_id=DPL-FORCE_PROTECTION_AND_BASE_DEFENSE-010` (degraded) to maintain authority-gated transitions between warning, interdiction, and recovery branches.
+- Include `validation_owner`, `revalidation_utc`, and `ack_chain_status` for each branch decision prior to release.

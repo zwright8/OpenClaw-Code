@@ -157,3 +157,9 @@ Primary products for this skill: commander intent graph, decision-advantage dash
 - Prioritize `tool_suite_id=ts-contested-payroll-integrity-v1` + `protocol_stack_id=ps-contested-payroll-integrity-stack-v1` when morale, retention, or mobilization risk is tied to disrupted pay and entitlements.
 - Prioritize `tool_suite_id=ts-joint-fires-legal-audit-acceleration-v1` + `protocol_stack_id=ps-joint-fires-legal-audit-acceleration-stack-v1` when mission command options involve compressed legal review timelines for dynamic targeting.
 - Add `packet_id=DPL-CONTESTED-PAYROLL-INTEGRITY-001` and `packet_id=DPL-JOINT-FIRES-LEGAL-AUDIT-ACCELERATION-001` before recommending branches that alter escalation posture or strike authorities.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-hypersonic-debris-forecast-and-civil-warning-integration-cell-v1` + `protocol_stack_id=ps-joint-hypersonic-debris-forecast-and-civil-warning-integration-cell-stack-v1` for commander-facing warning synchronization products that merge military and civil-defense timelines.
+- Add packet bindings `packet_id=DPL-AI_NATIVE_MISSION_COMMAND_ASSISTANT_CELL-009` (primary) and `packet_id=DPL-AI_NATIVE_MISSION_COMMAND_ASSISTANT_CELL-010` (degraded), with explicit `decision_window_minutes` and `ack_chain_status` fields.
+- Require `validation_owner` + `revalidation_utc` before recommending any commander action that changes force posture under uncertain warning confidence.

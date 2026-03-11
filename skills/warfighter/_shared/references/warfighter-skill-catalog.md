@@ -1742,3 +1742,33 @@ Every skill output should include:
 - AI-enabled adversary mobilization indications + all-source collection management + strategic competition gray-zone response + command warning trigger discipline
 - Denied-GPS precision approach and airdrop certification + tactical airspace deconfliction + denied navigation recovery + expeditionary sortie continuity
 - Maritime chokepoint salvage and insurance continuity + strategic sealift protection + coalition maritime interdiction governance + logistics throughput assurance
+
+## New Expansion Wave (2026-03-11, Contested Warning, Supply Integrity, and Coalition Legal-Speed Synchronization)
+
+- joint-hypersonic-debris-forecast-and-civil-warning-integration-cell
+- theater-denied-electronic-warfare-mission-data-reprogramming-cell
+- coalition-arctic-convoy-ice-drone-threat-deconfliction-cell
+- strategic-microelectronics-trusted-packaging-chain-of-custody-cell
+- expeditionary-water-scarcity-conflict-preemption-and-force-health-cell
+- homeland-port-rail-hazmat-sabotage-cascade-response-cell
+- joint-autonomous-undersea-mine-countermeasure-swarm-governance-cell
+- theater-forward-trauma-ai-triage-safety-and-bias-audit-cell
+- coalition-multi-jurisdiction-cyber-pursuit-and-evidence-warrant-cell
+- tactical-deepfake-jtac-voice-command-denial-cell
+- joint-commercial-space-ssa-data-fusion-and-tasking-cell
+- strategic-food-fertilizer-shock-military-support-prioritization-cell
+
+## Updated Pairings (2026-03-11, Contested Warning, Supply Integrity, and Coalition Legal-Speed Synchronization)
+
+- Hypersonic debris warning integration + missile warning and attack assessment + DSCA crisis coordination + civil warning authentication
+- Denied EW mission-data reprogramming + spectrum interference resolution + electromagnetic fratricide prevention + command release authority governance
+- Arctic convoy and drone deconfliction + strategic sealift and prepositioning + coalition maritime interoperability + C-UAS defensive timing
+- Trusted microelectronics packaging custody + strategic industrial mobilization readiness + counterfeit electronics assurance + supply-chain risk monitoring
+- Water scarcity conflict preemption + force-health protection + civil affairs stability operations + operational energy/water sustainment
+- Port-rail hazmat sabotage cascade response + homeland critical infrastructure priority-of-life operations + movement control + civil support restoration sequencing
+- Autonomous undersea mine-countermeasure governance + maritime undersea operations + legal/ROE compliance + coalition safety acknowledgment chains
+- Forward trauma AI triage safety/bias audit + casualty evacuation regulation + austere surgical support + medical ethics governance
+- Multi-jurisdiction cyber pursuit and warrant synchronization + coalition cyber legal evidence fusion + strategic deterrence escalation control + partner interoperability
+- JTAC deepfake voice command denial + dynamic targeting governance + fires deconfliction + information integrity attribution
+- Commercial-space SSA fusion and tasking + space-domain awareness and SATCOM defense + launch-window deconfliction + strategic warning continuity
+- Food/fertilizer shock military support prioritization + strategic supply-shock mitigation + civil support crisis management + reserve mobilization sustainment

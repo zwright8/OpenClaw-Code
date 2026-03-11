@@ -167,3 +167,9 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Add `tool_suite_id=ts-cislunar-sensor-custody-attribution-v1` + `protocol_stack_id=ps-cislunar-sensor-custody-attribution-stack-v1` when launch-window deconfliction recommendations depend on cislunar track custody and anomaly attribution confidence.
 - Add `tool_suite_id=ts-strategic-nc3-relocation-emcon-v1` + `protocol_stack_id=ps-strategic-nc3-relocation-emcon-stack-v1` when launch conflict branches affect strategic command-post relocation, EMCON posture, or emergency-message continuity.
 - Add `packet_id=DPL-CISLUNAR-CUSTODY-ATTRIB-001` and `packet_id=DPL-NC3-RELOC-EMCON-001` for branches that materially change launch risk acceptance, strategic warning pathways, or authority-gated escalation timing.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-commercial-space-ssa-data-fusion-and-tasking-cell-v1` + `protocol_stack_id=ps-joint-commercial-space-ssa-data-fusion-and-tasking-cell-stack-v1` when conjunction risk and launch-window deconfliction require blended commercial-military SSA confidence.
+- Add packet bindings `packet_id=DPL-JOINT_SPACE_LAUNCH_WINDOW_CONFLICT_DECONFLICTION_CELL-009` (primary) and `packet_id=DPL-JOINT_SPACE_LAUNCH_WINDOW_CONFLICT_DECONFLICTION_CELL-010` (degraded), with explicit warning-confidence thresholds.
+- Require `validation_owner`, `revalidation_utc`, and `ack_chain_status` before releasing any time-critical deconfliction recommendation to operational authorities.
