@@ -191,3 +191,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when ATO updates require synchronized trusted civil warning and launch/recovery windows.
 - Prioritize `tool_suite_id=ts-battlefield-hazmat-control-v1` + `protocol_stack_id=ps-battlefield-hazmat-control-stack-v1` when sortie flow, divert fields, or evacuation corridors are constrained by hazardous-material events.
 - Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-BATTLEFIELD-HAZMAT-CONTROL-001` for ATO branches that reprioritize air corridors, warning cadence, or launch sequencing.
+
+## Domain Toolchain Override (2026-03-11, Arctic Sortie Recovery and Swarm Corridor Governance Addendum)
+
+- Prioritize `tool_suite_id=ts-arctic-ice-airstrip-thaw-salvage-v1` + `protocol_stack_id=ps-arctic-ice-airstrip-thaw-salvage-stack-v1` when ATO execution depends on thaw-threatened runway integrity, salvage timing, and divert sequencing.
+- Prioritize `tool_suite_id=ts-drone-swarm-civil-air-corridor-grounding-v1` + `protocol_stack_id=ps-drone-swarm-civil-air-corridor-grounding-stack-v1` when ATO cycles include emergency grounding and reroute control for contested civil-military air corridors.
+- Add `packet_id=DPL-ARCTIC-ICE-AIRSTRIP-THAW-SALVAGE-001` and `packet_id=DPL-DRONE-SWARM-CIVIL-AIR-CORRIDOR-GROUNDING-001` for branches that change launch cadence, divert posture, corridor release, or flight-safety gates.

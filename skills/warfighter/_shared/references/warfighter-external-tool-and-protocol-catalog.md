@@ -6999,3 +6999,127 @@ external_binding:
 ### `ps-littoral-transformer-barge-restoration-stack-v1`
 - Standards and protocols: IEC 61850 grid telemetry + USMTF restoration updates + AIS/OGC littoral route overlays.
 - Transport profile: authenticated littoral restoration control channel with convoy acknowledgment chain and degraded voice/readback fallback.
+
+## Tool Suite Addendum P (2026-03-11, Mission Continuity, Industrial Integrity, and Civil-Air Safety)
+
+### `ts-subsea-cable-cut-mission-reroute-v1`
+- Use for: subsea cable-cut isolation, priority-service reroute, and mission-data continuity under maritime sabotage conditions.
+- Primary tools: subsea cable segment health monitor, mission-service dependency graph, cross-domain reroute orchestrator.
+- Cross-check tools: independent latency/error monitor and alternate terrestrial backhaul feasibility board.
+- Typical products: cable-cut impact brief, service reroute order, continuity risk matrix.
+
+### `ts-high-altitude-balloon-mesh-restoration-v1`
+- Use for: rapid restoration of high-altitude balloon mesh communications for denied-terrain C2 resilience.
+- Primary tools: balloon constellation planner, line-of-sight mesh optimizer, tactical comm-priority scheduler.
+- Cross-check tools: independent atmospheric drift validator and alternate SATCOM relay stress monitor.
+- Typical products: balloon relaunch sequence, mesh coverage map, priority-traffic restoration timeline.
+
+### `ts-expeditionary-fuel-fraud-adulteration-hunt-v1`
+- Use for: fuel theft/adulteration detection, confidence scoring, and sustainment continuity in contested supply chains.
+- Primary tools: fuel chain-of-custody ledger, contamination analyzer, convoy fuel integrity dashboard.
+- Cross-check tools: independent sample-chain audit board and alternate vendor anomaly detector.
+- Typical products: fuel integrity risk ledger, adulteration isolation sequence, sustainment branch recommendations.
+
+### `ts-reservist-family-readiness-continuity-v1`
+- Use for: reserve-component mobilization with synchronized family-support and civic service continuity risk controls.
+- Primary tools: mobilization roster synchronizer, family-support service availability tracker, DSCA dependency board.
+- Cross-check tools: independent state-level service readiness mirror and alternate personnel stress indicator board.
+- Typical products: mobilization continuity matrix, family-support gap register, force-availability risk estimate.
+
+### `ts-arctic-ice-airstrip-thaw-salvage-v1`
+- Use for: arctic ice-airstrip thaw risk monitoring, runway salvage sequencing, and sortie regeneration support.
+- Primary tools: ice runway structural monitor, thaw progression model, expeditionary runway repair planner.
+- Cross-check tools: independent weather-ice confidence board and alternate divert-airfield readiness monitor.
+- Typical products: thaw risk timeline, runway salvage sequence, sortie diversion decision matrix.
+
+### `ts-spaceport-launch-pad-decontamination-v1`
+- Use for: contested spaceport toxic-release response, launch-pad decontamination, and mission-safe relaunch gating.
+- Primary tools: propellant hazard telemetry board, pad decon workflow orchestrator, launch-readiness gate tracker.
+- Cross-check tools: independent plume model validator and alternate range-safety adjudication board.
+- Typical products: decontamination order, relaunch readiness matrix, toxic-risk branch package.
+
+### `ts-drone-swarm-civil-air-corridor-grounding-v1`
+- Use for: emergency grounding and rerouting of civil/military air corridors during hostile drone swarm events.
+- Primary tools: UTM emergency control board, corridor occupancy tracker, swarm threat adjudicator.
+- Cross-check tools: independent airspace conflict monitor and alternate civil ATC continuity board.
+- Typical products: corridor grounding order, reroute release matrix, air-safety risk assessment.
+
+### `ts-port-rail-ammunition-surge-safety-v1`
+- Use for: synchronized ammunition surge safety governance across contested ports and rail hubs.
+- Primary tools: munitions compatibility ledger, rail-port movement scheduler, blast-zone safety model.
+- Cross-check tools: independent explosive safety verifier and alternate throughput risk board.
+- Typical products: surge safety release packet, movement-sequence controls, hazard mitigation tracker.
+
+### `ts-cross-border-cyber-forensics-extradition-v1`
+- Use for: cross-border cyber forensics, evidentiary normalization, and extradition/legal handoff preparation.
+- Primary tools: forensic evidence chain manager, legal authority mapping board, cross-border case harmonizer.
+- Cross-check tools: independent timestamp/provenance verifier and alternate treaty-compliance review board.
+- Typical products: forensics confidence packet, extradition handoff matrix, legal-risk escalation ladder.
+
+### `ts-additive-spare-counterfeit-detection-v1`
+- Use for: additive spare-part authenticity validation and counterfeit interdiction under austere maintenance conditions.
+- Primary tools: material signature analyzer, additive process attestation ledger, field maintenance confidence board.
+- Cross-check tools: independent destructive-test sample board and alternate supplier provenance monitor.
+- Typical products: counterfeit detection brief, maintenance release gates, substitute-part confidence map.
+
+### `ts-hospital-ship-littoral-casualty-flow-v1`
+- Use for: hospital-ship and littoral casualty flow optimization during degraded port/airfield medical evacuation capacity.
+- Primary tools: afloat-bed management board, littoral medevac route optimizer, casualty-priority regulator.
+- Cross-check tools: independent patient-movement reconciliation board and alternate host-nation care-capacity tracker.
+- Typical products: casualty flow order, afloat/ashore transfer matrix, care-gap mitigation timeline.
+
+### `ts-strategic-battery-supply-sabotage-response-v1`
+- Use for: strategic battery-material sabotage response, production continuity assurance, and mission-energy allocation.
+- Primary tools: battery precursor integrity ledger, production disruption monitor, mission-energy allocation planner.
+- Cross-check tools: independent supplier trust board and alternate industrial recovery confidence monitor.
+- Typical products: sabotage impact estimate, recovery branch matrix, strategic energy allocation order.
+
+## Protocol Stack Addendum P (2026-03-11, Mission Continuity, Industrial Integrity, and Civil-Air Safety)
+
+### `ps-subsea-cable-cut-mission-reroute-stack-v1`
+- Standards and protocols: AIS/NMEA + USMTF + signed service-dependency reroute manifests.
+- Transport profile: authenticated subsea incident bus with deterministic service reroute acknowledgment chain.
+
+### `ps-high-altitude-balloon-mesh-restoration-stack-v1`
+- Standards and protocols: CoT + USMTF + signed mesh-coverage and relay-priority manifests.
+- Transport profile: low-bandwidth resilient mesh control channel with drift-confidence tags and fallback readback.
+
+### `ps-expeditionary-fuel-fraud-adulteration-hunt-stack-v1`
+- Standards and protocols: GS1 lot traceability + NIEM logistics exchange + signed fuel-quality manifests.
+- Transport profile: segmented fuel integrity exchange with anti-fraud alerts and manual sample-chain fallback.
+
+### `ps-reservist-family-readiness-continuity-stack-v1`
+- Standards and protocols: NIEM personnel/services exchange + NIMS/ICS + signed mobilization continuity manifests.
+- Transport profile: authority-gated readiness synchronization bus with delayed-state reconciliation mode.
+
+### `ps-arctic-ice-airstrip-thaw-salvage-stack-v1`
+- Standards and protocols: OGC weather/ice overlays + AIXM/FIXM + signed runway integrity manifests.
+- Transport profile: arctic runway-status channel with thaw-threshold alerts and divert-safe fallback reporting.
+
+### `ps-spaceport-launch-pad-decontamination-stack-v1`
+- Standards and protocols: NIMS/ICS hazmat packets + API/JSON range events + signed decon release manifests.
+- Transport profile: range-safe decon control queue with launch-gate acknowledgments and hold-state replay.
+
+### `ps-drone-swarm-civil-air-corridor-grounding-stack-v1`
+- Standards and protocols: ASTM F3411 Remote ID + CoT + NATO APP-11/ADatP-3 corridor notices.
+- Transport profile: emergency air-corridor governance lane with conflict acknowledgments and manual ATC fallback.
+
+### `ps-port-rail-ammunition-surge-safety-stack-v1`
+- Standards and protocols: USMTF + rail API/JSON + signed explosive compatibility manifests.
+- Transport profile: synchronized port-rail safety bus with blast-zone gate acknowledgments and throughput-safe fallback.
+
+### `ps-cross-border-cyber-forensics-extradition-stack-v1`
+- Standards and protocols: STIX/TAXII + NIEM justice exchange + signed legal custody manifests.
+- Transport profile: encrypted evidentiary handoff channel with treaty-compliance checkpoints and deferred release queue.
+
+### `ps-additive-spare-counterfeit-detection-stack-v1`
+- Standards and protocols: API/JSON material assurance events + USMTF maintenance updates + signed provenance manifests.
+- Transport profile: maintenance trust pipeline with counterfeit alert gating and substitute-part rollback-safe release.
+
+### `ps-hospital-ship-littoral-casualty-flow-stack-v1`
+- Standards and protocols: HL7/FHIR + STANAG 3204 + signed patient-priority transfer manifests.
+- Transport profile: prioritized afloat-ashore casualty routing bus with custody acknowledgments and disconnected reconciliation.
+
+### `ps-strategic-battery-supply-sabotage-response-stack-v1`
+- Standards and protocols: API/JSON industrial telemetry + NIEM logistics exchange + signed production integrity manifests.
+- Transport profile: strategic battery-supply assurance channel with sabotage-alert acknowledgments and continuity-safe fallback.

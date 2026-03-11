@@ -203,3 +203,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when force protection depends on trusted public warning dissemination under disinformation pressure.
 - Add `tool_suite_id=ts-battlefield-hazmat-control-v1` + `protocol_stack_id=ps-battlefield-hazmat-control-stack-v1` when base defense branches must protect movement corridors during hazardous-material release.
 - Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-BATTLEFIELD-HAZMAT-CONTROL-001` for branches that alter sheltering, route control, or warning authorities.
+
+## Domain Toolchain Override (2026-03-11, Cable-Cut Continuity and Civil-Air Emergency Addendum)
+
+- Add `tool_suite_id=ts-subsea-cable-cut-mission-reroute-v1` + `protocol_stack_id=ps-subsea-cable-cut-mission-reroute-stack-v1` when defended installations depend on subsea-connected mission services and cable-cut sabotage impacts base protection posture.
+- Add `tool_suite_id=ts-drone-swarm-civil-air-corridor-grounding-v1` + `protocol_stack_id=ps-drone-swarm-civil-air-corridor-grounding-stack-v1` when force protection requires emergency grounding/rerouting of mixed civil-military air corridors under swarm attack.
+- Add `packet_id=DPL-SUBSEA-CABLE-CUT-MISSION-REROUTE-001` and `packet_id=DPL-DRONE-SWARM-CIVIL-AIR-CORRIDOR-GROUNDING-001` for branches that alter base readiness, air movement controls, or public safety posture.

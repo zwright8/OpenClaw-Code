@@ -1426,3 +1426,33 @@ Every skill output should include:
 - Battlefield hazmat surge control + civilian evacuation flow management + CBRN response planning + force protection
 - UXO civilian reentry assurance + route clearance/counter-IED fusion + civil-affairs stability operations + humanitarian corridor governance
 - Littoral transformer-barge restoration + maritime convoy protection + host-nation grid support + mission-load restoration
+
+## New Expansion Wave (2026-03-11, Mission Continuity, Industrial Integrity, and Civil-Air Safety)
+
+- theater-subsea-data-center-cable-cut-isolation-and-mission-reroute-cell
+- joint-high-altitude-balloon-mesh-comms-restoration-cell
+- coalition-expeditionary-fuel-fraud-and-adulteration-hunt-cell
+- homeland-reservist-mobilization-family-support-continuity-cell
+- joint-arctic-ice-airstrip-thaw-and-runway-salvage-cell
+- contested-spaceport-rapid-launch-pad-decontamination-cell
+- theater-drone-swarm-civil-air-corridor-emergency-grounding-cell
+- joint-port-rail-ammunition-surge-safety-governance-cell
+- coalition-cross-border-cyber-forensics-and-extradition-evidence-cell
+- tactical-battlefield-additive-spare-part-counterfeit-detection-cell
+- joint-hospital-ship-littoral-casualty-flow-optimizer-cell
+- strategic-battery-supply-chain-sabotage-response-cell
+
+## Updated Pairings (2026-03-11, Mission Continuity, Industrial Integrity, and Civil-Air Safety)
+
+- Subsea cable-cut mission reroute + undersea cable landing station defense + theater mission network failover + coalition data-fabric continuity
+- High-altitude balloon mesh restoration + denied-environment command synchronization + coalition HF bridge interop + SATCOM denial recovery
+- Expeditionary fuel fraud/adulteration hunt + contested logistics sustainment + aviation fuel integrity assurance + anti-corruption procurement controls
+- Reservist family-support continuity + force generation readiness + DSCA civil-support operations + mission-risk decision support
+- Arctic ice-airstrip thaw salvage + expeditionary runway recovery + arctic corridor deconfliction + weather/space-weather effects forecasting
+- Spaceport launch-pad decontamination + military spaceport range-safety continuity + toxic release response + launch-window deconfliction
+- Drone-swarm emergency corridor grounding + tactical airspace control/deconfliction + counter-UAS defense + civil authority evacuation management
+- Port-rail ammunition surge safety + strategic mobility chokepoint wargaming + munitions stockpile governance + explosive safety zoning
+- Cross-border cyber forensics/extradition + coalition cyber legal attribution + information-integrity evidence preservation + sanctions disruption ops
+- Additive spare counterfeit detection + expeditionary fabrication and battle-damage repair + maintenance predictive failure + software/hardware provenance assurance
+- Hospital-ship littoral casualty flow + casualty evacuation and medical regulation + coalition cross-border medevac clearance + burn-care routing support
+- Strategic battery supply sabotage response + strategic industrial mobilization readiness + critical mineral interdiction defense + mission-energy resilience planning

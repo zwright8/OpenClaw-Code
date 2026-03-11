@@ -192,3 +192,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when command cadence depends on trusted civil warning dissemination and adversary narrative disruption control.
 - Add `tool_suite_id=ts-forward-water-sabotage-attribution-v1` + `protocol_stack_id=ps-forward-water-sabotage-attribution-stack-v1` when battle rhythm decisions must synchronize water-network isolation and mission-priority sustainment continuity.
 - Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-FORWARD-WATER-SABOTAGE-ATTRIBUTION-001` for branches that alter command timing, restoration governance, or risk-communication authorities.
+
+## Domain Toolchain Override (2026-03-11, Reserve Continuity and Battery-Supply Sabotage Addendum)
+
+- Add `tool_suite_id=ts-reservist-family-readiness-continuity-v1` + `protocol_stack_id=ps-reservist-family-readiness-continuity-stack-v1` when battle rhythm synchronization requires balancing mobilization tempo with family-support and civic continuity constraints.
+- Add `tool_suite_id=ts-strategic-battery-supply-sabotage-response-v1` + `protocol_stack_id=ps-strategic-battery-supply-sabotage-response-stack-v1` when command cadence depends on strategic battery-material disruption recovery and mission-energy allocation governance.
+- Add `packet_id=DPL-RESERVIST-FAMILY-READINESS-CONTINUITY-001` and `packet_id=DPL-STRATEGIC-BATTERY-SUPPLY-SABOTAGE-RESPONSE-001` for JOC branches that alter force availability posture, industrial recovery sequencing, or mission-energy priorities.
