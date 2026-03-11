@@ -216,6 +216,36 @@ test('buildAutonomousBatchPlan supports epsilon-thompson policy with determinist
     assert.deepEqual(plan.selection.skillIds, [41]);
 });
 
+test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 43, code: 'SK-00043', title: 'Skill 43' },
+            { id: 44, code: 'SK-00044', title: 'Skill 44' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 16,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '43': { attempts: 12, successes: 10, failures: 2, consecutiveFailures: 0, lastWave: 15, lastStatus: 'completed' },
+                '44': { attempts: 12, successes: 4, failures: 8, consecutiveFailures: 0, lastWave: 15, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 17,
+        selectionPolicyConfig: {
+            mode: 'kl_ucb'
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [43]);
+});
+
 test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -269,6 +299,63 @@ test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', (
     });
 
     assert.deepEqual(plan.selection.skillIds, [52]);
+});
+
+test('buildAutonomousBatchPlan supports sliding-window KL-UCB for drift-aware ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 53, code: 'SK-00053', title: 'Skill 53' },
+            { id: 54, code: 'SK-00054', title: 'Skill 54' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 23,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '53': {
+                    attempts: 18,
+                    successes: 11,
+                    failures: 7,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' }
+                    ]
+                },
+                '54': {
+                    attempts: 18,
+                    successes: 8,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 24,
+        selectionPolicyConfig: {
+            mode: 'sw_kl_ucb',
+            slidingWindowSize: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [54]);
 });
 
 test('buildAutonomousBatchPlan supports sliding-window epsilon-thompson ranking', () => {

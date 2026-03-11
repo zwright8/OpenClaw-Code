@@ -42,6 +42,8 @@ const MAX_THOMPSON_PRIOR = 100;
 const DEFAULT_SLIDING_WINDOW_SIZE = 12;
 const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
+const DEFAULT_KL_UCB_CONFIDENCE = 3;
+const MAX_KL_UCB_CONFIDENCE = 20;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -167,8 +169,10 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
         ? value.mode.trim().toLowerCase()
         : DEFAULT_SELECTION_POLICY_MODE;
     const normalizedMode = (mode === 'epsilon_ts'
+        || mode === 'kl_ucb'
         || mode === 'sw_ucb'
-        || mode === 'sw_epsilon_ts')
+        || mode === 'sw_epsilon_ts'
+        || mode === 'sw_kl_ucb')
         ? mode
         : DEFAULT_SELECTION_POLICY_MODE;
 
@@ -201,6 +205,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_SLIDING_WINDOW_SIZE,
             1,
             MAX_SLIDING_WINDOW_SIZE
+        ),
+        klUcbConfidence: clamp(
+            Number.isFinite(Number(value.klUcbConfidence))
+                ? Number(value.klUcbConfidence)
+                : DEFAULT_KL_UCB_CONFIDENCE,
+            0,
+            MAX_KL_UCB_CONFIDENCE
         )
     };
 }
@@ -593,7 +604,7 @@ function computeWindowedStats(stat, selectionPolicyConfig) {
 function resolveScoreStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    if (policy.mode === 'sw_ucb' || policy.mode === 'sw_epsilon_ts') {
+    if (policy.mode === 'sw_ucb' || policy.mode === 'sw_epsilon_ts' || policy.mode === 'sw_kl_ucb') {
         const windowed = computeWindowedStats(normalized, policy);
         return {
             ...normalized,
@@ -620,6 +631,40 @@ function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, 
         - adjustments.failurePenalty
         + adjustments.recentOutcomeBonus
         + adjustments.staleBoost;
+}
+
+function computeBernoulliKlDivergence(p, q) {
+    const epsilon = 1e-12;
+    const left = clamp(p, epsilon, 1 - epsilon);
+    const right = clamp(q, epsilon, 1 - epsilon);
+    return (left * Math.log(left / right))
+        + ((1 - left) * Math.log((1 - left) / (1 - right)));
+}
+
+function computeKlUcbIndex(empiricalMean, attempts, horizon, confidence = DEFAULT_KL_UCB_CONFIDENCE) {
+    if (attempts <= 0) return Number.POSITIVE_INFINITY;
+    if (empiricalMean >= 1) return 1;
+
+    const safeMean = clamp(empiricalMean, 0, 1);
+    const safeHorizon = Math.max(2, horizon);
+    const safeAttempts = Math.max(1, attempts);
+    const bound = (
+        Math.log(safeHorizon)
+        + (confidence * Math.log(Math.max(1, Math.log(safeHorizon))))
+    ) / safeAttempts;
+
+    let low = safeMean;
+    let high = 1;
+    for (let i = 0; i < 28; i++) {
+        const mid = (low + high) / 2;
+        const divergence = computeBernoulliKlDivergence(safeMean, mid);
+        if (divergence > bound) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    return low;
 }
 
 function createDeterministicRng(seedText) {
@@ -689,6 +734,28 @@ function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, sel
         + adjustments.staleBoost;
 }
 
+function computeKlUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const empiricalMean = normalized.successes / normalized.attempts;
+    const index = computeKlUcbIndex(
+        empiricalMean,
+        normalized.attempts,
+        totalAttempts + 1,
+        policy.klUcbConfidence
+    );
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return index
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
 function cursorDistance(index, pointer, total) {
     if (total <= 0) return 0;
     return (index - pointer + total) % total;
@@ -746,24 +813,37 @@ function selectCatalogSlice({
         if (selectedKeySet.has(key)) continue;
         const stat = normalizeExecutionStat(executionStats[key]);
         const scoreStats = resolveScoreStats(stat, normalizedPolicy);
+        let score;
+        if (normalizedPolicy.mode === 'epsilon_ts' || normalizedPolicy.mode === 'sw_epsilon_ts') {
+            score = computeEpsilonThompsonScore(
+                stat,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                normalizedPolicy,
+                `${selectionScope}:${normalizedPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+            );
+        } else if (normalizedPolicy.mode === 'kl_ucb' || normalizedPolicy.mode === 'sw_kl_ucb') {
+            score = computeKlUcbScore(
+                stat,
+                totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                normalizedPolicy
+            );
+        } else {
+            score = computeUcbScore(
+                stat,
+                totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                normalizedPolicy
+            );
+        }
+
         const item = {
             candidate,
             key,
-            score: (normalizedPolicy.mode === 'epsilon_ts' || normalizedPolicy.mode === 'sw_epsilon_ts')
-                ? computeEpsilonThompsonScore(
-                    stat,
-                    normalizedCurrentWave,
-                    adaptiveScoreConfig,
-                    normalizedPolicy,
-                    `${selectionScope}:${normalizedPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
-                )
-                : computeUcbScore(
-                    stat,
-                    totalAttempts,
-                    normalizedCurrentWave,
-                    adaptiveScoreConfig,
-                    normalizedPolicy
-                ),
+            score,
             distance: cursorDistance(index, pointer, total),
             cooled: isInFailureCooldown(stat, currentWave, failureCooldownWaves)
         };

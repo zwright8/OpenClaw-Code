@@ -20,6 +20,7 @@
 - `npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json` - run autonomous loop with hardening inputs.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
 - `npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window epsilon-Thompson exploration controls.
+- `npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3` - run autonomous loop with KL-UCB optimism for bounded binary outcomes.
 - `npm run analyze` - generate cognition analysis report.
 - `tsx scripts/analyze-history.ts --days 7 --json reports/cognition-report.json --markdown reports/cognition-report.md` - produce historical analysis report outputs.
 - `npm run plan:tasks` - emit remediation task requests.
