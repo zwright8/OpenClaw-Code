@@ -19,6 +19,7 @@
 - `npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json` - run worker loop with hardening inputs.
 - `npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json` - run autonomous loop with hardening inputs.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
+- `npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window epsilon-Thompson exploration controls.
 - `npm run analyze` - generate cognition analysis report.
 - `tsx scripts/analyze-history.ts --days 7 --json reports/cognition-report.json --markdown reports/cognition-report.md` - produce historical analysis report outputs.
 - `npm run plan:tasks` - emit remediation task requests.
@@ -68,3 +69,4 @@
 - Verified `b17762e7d8..de0d53f7a0`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `fa980cc80a..a709e82722`: no new README command-map additions were found; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `a709e82722..200d60bcc2`: added README command-map workflow for epsilon-Thompson autonomous run flags (`--selection-policy epsilon_ts`, `--thompson-exploration`, `--thompson-prior-alpha`, `--thompson-prior-beta`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `200d60bcc2..f23cdaeef3`: added README command-map workflow for sliding-window epsilon-Thompson autonomous run flags (`--selection-policy sw_epsilon_ts`, `--window-size`, `--thompson-exploration`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
