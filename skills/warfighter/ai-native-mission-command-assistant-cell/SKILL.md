@@ -145,3 +145,15 @@ Primary products for this skill: commander intent graph, decision-advantage dash
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-11, Commander Intent Compression and Recall Surge Addendum)
+
+- Prioritize `tool_suite_id=ts-ai-native-command-intent-compression-v1` + `protocol_stack_id=ps-ai-native-command-intent-compression-stack-v1` when commander intent must be translated into machine-ingestible tasks for distributed units under severe time pressure.
+- Prioritize `tool_suite_id=ts-reserve-recall-readiness-bridge-v1` + `protocol_stack_id=ps-reserve-recall-readiness-bridge-stack-v1` when decision quality depends on rapid reserve mobilization feasibility and household support continuity.
+- Add `packet_id=DPL-AI-NATIVE-COMMAND-INTENT-COMPRESSION-001` and `packet_id=DPL-RESERVE-RECALL-READINESS-BRIDGE-001` for options that alter force posture, battle rhythm, or commander delegation thresholds.
+
+## Domain Toolchain Override (2026-03-11, Contested Pay and Legal Fires Audit Addendum)
+
+- Prioritize `tool_suite_id=ts-contested-payroll-integrity-v1` + `protocol_stack_id=ps-contested-payroll-integrity-stack-v1` when morale, retention, or mobilization risk is tied to disrupted pay and entitlements.
+- Prioritize `tool_suite_id=ts-joint-fires-legal-audit-acceleration-v1` + `protocol_stack_id=ps-joint-fires-legal-audit-acceleration-stack-v1` when mission command options involve compressed legal review timelines for dynamic targeting.
+- Add `packet_id=DPL-CONTESTED-PAYROLL-INTEGRITY-001` and `packet_id=DPL-JOINT-FIRES-LEGAL-AUDIT-ACCELERATION-001` before recommending branches that alter escalation posture or strike authorities.
