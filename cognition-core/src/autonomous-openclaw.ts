@@ -50,6 +50,9 @@ const DEFAULT_DISCOUNT_FACTOR = 0.97;
 const MIN_DISCOUNT_FACTOR = 0.5;
 const DEFAULT_KL_UCB_CONFIDENCE = 3;
 const MAX_KL_UCB_CONFIDENCE = 20;
+const DEFAULT_BAYES_UCB_QUANTILE = 0.9;
+const MIN_BAYES_UCB_QUANTILE = 0.5;
+const MAX_BAYES_UCB_QUANTILE = 0.999;
 const DEFAULT_CD_MIN_SAMPLES = 8;
 const MAX_CD_MIN_SAMPLES = 64;
 const DEFAULT_CD_DRIFT_THRESHOLD = 1.5;
@@ -79,12 +82,15 @@ const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'd_lints',
     'epsilon_ts',
     'kl_ucb',
+    'bayes_ucb',
     'sw_ucb',
     'sw_epsilon_ts',
     'sw_kl_ucb',
+    'sw_bayes_ucb',
     'd_ucb',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_bayes_ucb',
     'cd_ucb',
     'corral_exp3',
     'moss_anytime'
@@ -98,15 +104,22 @@ const KL_UCB_POLICY_MODES = new Set([
     'kl_ucb',
     'sw_kl_ucb'
 ]);
+const BAYES_UCB_POLICY_MODES = new Set([
+    'bayes_ucb',
+    'sw_bayes_ucb',
+    'd_bayes_ucb'
+]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
     'sw_epsilon_ts',
-    'sw_kl_ucb'
+    'sw_kl_ucb',
+    'sw_bayes_ucb'
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_bayes_ucb',
     'd_linucb',
     'd_lints'
 ]);
@@ -305,6 +318,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_KL_UCB_CONFIDENCE,
             0,
             MAX_KL_UCB_CONFIDENCE
+        ),
+        bayesUcbQuantile: clamp(
+            Number.isFinite(Number(value.bayesUcbQuantile))
+                ? Number(value.bayesUcbQuantile)
+                : DEFAULT_BAYES_UCB_QUANTILE,
+            MIN_BAYES_UCB_QUANTILE,
+            MAX_BAYES_UCB_QUANTILE
         ),
         changeDetectionMinSamples: clamp(
             Number.isFinite(Number(value.changeDetectionMinSamples))
@@ -1312,6 +1332,58 @@ function computeKlUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig
         + adjustments.staleBoost;
 }
 
+function computeStandardNormalQuantile(probability) {
+    const p = clamp(Number(probability), Number.EPSILON, 1 - Number.EPSILON);
+    const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.38357751867269e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+    const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+    const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+    const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+    const pLow = 0.02425;
+    const pHigh = 1 - pLow;
+
+    if (p < pLow) {
+        const q = Math.sqrt(-2 * Math.log(p));
+        return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5])
+            / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+    }
+    if (p > pHigh) {
+        const q = Math.sqrt(-2 * Math.log(1 - p));
+        return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5])
+            / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+    }
+
+    const q = p - 0.5;
+    const r = q * q;
+    return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q
+        / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+
+function computeBayesUcbScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+    const alpha = policy.thompsonPriorAlpha + normalized.successes;
+    const beta = policy.thompsonPriorBeta + normalized.failures;
+    const posteriorMean = alpha / (alpha + beta);
+    const posteriorVariance = (alpha * beta)
+        / (((alpha + beta) ** 2) * (alpha + beta + 1));
+    const zScore = computeStandardNormalQuantile(policy.bayesUcbQuantile);
+    const optimisticIndex = clamp(
+        posteriorMean + (zScore * Math.sqrt(Math.max(0, posteriorVariance))),
+        0,
+        1
+    );
+
+    return optimisticIndex
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
 function computeMossAnytimeScore(stat, totalAttempts, totalArms, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
@@ -1467,6 +1539,13 @@ function selectCatalogSlice({
             score = computeKlUcbScore(
                 stat,
                 totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy
+            );
+        } else if (BAYES_UCB_POLICY_MODES.has(scoringPolicy.mode)) {
+            score = computeBayesUcbScore(
+                stat,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
                 scoringPolicy

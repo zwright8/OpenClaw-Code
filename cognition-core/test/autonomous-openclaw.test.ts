@@ -442,6 +442,40 @@ test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () 
     assert.deepEqual(plan.selection.skillIds, [43]);
 });
 
+test('buildAutonomousBatchPlan supports Bayes-UCB policy for optimistic posterior ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 443, code: 'SK-00443', title: 'Skill 443' },
+            { id: 444, code: 'SK-00444', title: 'Skill 444' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 17,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '443': { attempts: 14, successes: 11, failures: 3, consecutiveFailures: 0, lastWave: 16, lastStatus: 'completed' },
+                '444': { attempts: 14, successes: 5, failures: 9, consecutiveFailures: 0, lastWave: 16, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 18,
+        selectionPolicyConfig: {
+            mode: 'bayes_ucb',
+            bayesUcbQuantile: 0.95,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [443]);
+    assert.equal(plan.selection.policy.skills, 'bayes_ucb');
+});
+
 test('buildAutonomousBatchPlan supports moss_anytime policy for minimax cold-start exploration', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -809,6 +843,67 @@ test('buildAutonomousBatchPlan supports discounted UCB for recency-weighted drif
     });
 
     assert.deepEqual(plan.selection.skillIds, [64]);
+});
+
+test('buildAutonomousBatchPlan supports discounted Bayes-UCB for recency-weighted posterior adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 665, code: 'SK-00665', title: 'Skill 665' },
+            { id: 666, code: 'SK-00666', title: 'Skill 666' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '665': {
+                    attempts: 40,
+                    successes: 30,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                },
+                '666': {
+                    attempts: 40,
+                    successes: 12,
+                    failures: 28,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'd_bayes_ucb',
+            discountFactor: 0.7,
+            bayesUcbQuantile: 0.9,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [666]);
+    assert.equal(plan.selection.policy.skills, 'd_bayes_ucb');
 });
 
 test('buildAutonomousBatchPlan supports UCB-Tuned variance-aware ranking', () => {
