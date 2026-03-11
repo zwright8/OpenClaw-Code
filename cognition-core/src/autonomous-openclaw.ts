@@ -104,6 +104,8 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'cusum_ucb',
     'corral_exp3',
     'exp3_ix',
+    'sw_exp3_ix',
+    'd_exp3_ix',
     'moss_anytime'
 ]);
 const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_MODES);
@@ -122,19 +124,23 @@ const BAYES_UCB_POLICY_MODES = new Set([
     'd_bayes_ucb'
 ]);
 const EXP3_IX_POLICY_MODES = new Set([
-    'exp3_ix'
+    'exp3_ix',
+    'sw_exp3_ix',
+    'd_exp3_ix'
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
     'sw_epsilon_ts',
     'sw_kl_ucb',
-    'sw_bayes_ucb'
+    'sw_bayes_ucb',
+    'sw_exp3_ix'
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
     'd_ucb_tuned',
     'd_epsilon_ts',
     'd_bayes_ucb',
+    'd_exp3_ix',
     'd_linucb',
     'd_lints'
 ]);
