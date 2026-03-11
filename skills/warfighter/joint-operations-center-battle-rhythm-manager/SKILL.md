@@ -180,3 +180,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Add `tool_suite_id=ts-rail-energy-mobility-priority-fusion-v1` + `protocol_stack_id=ps-rail-energy-mobility-priority-fusion-stack-v1` when battle rhythm synchronization depends on contested deployment rail flow and grid load restoration priorities.
 - Add `tool_suite_id=ts-sat-ground-cloud-cutover-defense-v1` + `protocol_stack_id=ps-sat-ground-cloud-cutover-defense-stack-v1` when command cadence must survive satellite-ground-cloud service cutovers.
 - Add `packet_id=DPL-RAIL-ENERGY-MOBILITY-PRIORITY-FUSION-001` and `packet_id=DPL-SAT-GROUND-CLOUD-CUTOVER-DEFENSE-001` for JOC decision branches that reprioritize force flow, service availability, or command timing.
+
+## Domain Toolchain Override (2026-03-10, Grid Escalation and Alert Trust Addendum)
+
+- Add `tool_suite_id=ts-grid-transformer-escort-install-v1` + `protocol_stack_id=ps-grid-transformer-escort-install-stack-v1` when battle rhythm decisions involve transformer convoy security, emplacement sequencing, and mission-priority load restoration.
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when command updates depend on trusted civil warning dissemination under disinformation pressure.
+- Add `packet_id=DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001` and `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` for branches that alter command cadence, restoration sequencing, or public-warning governance.

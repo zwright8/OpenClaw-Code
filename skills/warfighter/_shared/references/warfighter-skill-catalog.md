@@ -1366,3 +1366,33 @@ Every skill output should include:
 - Electromagnetic decoy fratricide audit + electronic warfare fratricide mitigation + signature survivability scorecards + mission data reprogramming
 - Rail-energy mobility prioritization + strategic mobility port-rail chokepoint wargaming + tactical power-grid islanding/blackstart + deployment/distribution optimization
 - Hospital overflow aeromedical routing + coalition burn-care bed matching and evac priority + casualty evacuation C2 fallback + medical logistics continuity
+
+## New Expansion Wave (2026-03-10, Grid Restoration, Custody Integrity, and Trusted Warning Continuity)
+
+- joint-grid-transformer-escort-and-restoration-cell
+- theater-grid-feeder-priority-shed-and-load-balance-cell
+- coalition-custody-handshake-ledger-and-detainee-transfer-cell
+- theater-orbital-debris-reentry-base-hardening-cell
+- joint-expeditionary-data-fabric-zero-touch-hardening-cell
+- tactical-electromagnetic-decoy-fratricide-prevention-auditor-cell
+- coalition-jammer-protected-evacuation-route-bubble-cell
+- theater-port-desalination-brine-output-assurance-cell
+- joint-portable-nuclear-detector-network-resilience-cell
+- coalition-privacy-preserving-biometrics-federation-cell
+- theater-civil-alert-authenticity-broadcast-assurance-cell
+- theater-rail-sabotage-recovery-and-contested-throughput-cell
+
+## Updated Pairings (2026-03-10, Grid Restoration, Custody Integrity, and Trusted Warning Continuity)
+
+- Grid transformer escort/restoration + tactical power-grid islanding and black-start + homeland grid protection and blackstart + DSCA crisis support
+- Feeder priority shed/load balancing + civil power load-shedding coordination + mission network failover + force-protection base defense
+- Custody handshake detainee transfer + detainee operations compliance + battlefield forensics evidence preservation + coalition legal interoperability
+- Orbital debris reentry base hardening + space-ground integration and reentry risk + force-protection base defense + battle-rhythm decision support
+- Expeditionary data-fabric zero-touch hardening + coalition data-fabric interoperability + mission data provenance assurance + zero-trust hardening
+- Electromagnetic decoy fratricide prevention + electronic order of battle management + spectrum interference resolution + mission-data reprogramming
+- Jammer-protected evacuation route bubbles + coalition humanitarian corridor assurance + casualty evacuation C2 fallback + spectrum governance
+- Port desalination brine output assurance + water production and distribution support + maritime quarantine control + preventive medicine force-health protection
+- Portable nuclear detector network resilience + tactical portable nuclear detection/attribution + CBRN consequence management + civil warning continuity
+- Privacy-preserving biometrics federation + coalition border biometrics governance + identity revocation/rekey workflows + detainee transfer assurance
+- Civil alert authenticity broadcast assurance + theater cognitive security and misinformation counter + homeland civil order restoration + mission command support
+- Rail sabotage recovery and contested throughput + strategic mobility chokepoint wargaming + rail bridge recovery + contested logistics sustainment

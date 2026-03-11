@@ -179,3 +179,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-disconnected-jtac-voice-auth-v1` + `protocol_stack_id=ps-disconnected-jtac-voice-auth-stack-v1` when ATO execution depends on authenticated terminal-control voice traffic in degraded communications.
 - Prioritize `tool_suite_id=ts-spectrum-evacuation-corridor-control-v1` + `protocol_stack_id=ps-spectrum-evacuation-corridor-control-stack-v1` when air tasking includes NEO/MEDEVAC corridors under coalition spectrum contestation.
 - Add `packet_id=DPL-DISCONNECTED-JTAC-VOICE-AUTH-001` and `packet_id=DPL-SPECTRUM-EVACUATION-CORRIDOR-CONTROL-001` for branches that alter release authority, corridor timing, or deconfliction windows.
+
+## Domain Toolchain Override (2026-03-10, Alert Integrity and Reentry Continuity Addendum)
+
+- Prioritize `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when ATO updates require trusted civil warning broadcasts around airbase launch, recovery, or NEO windows.
+- Prioritize `tool_suite_id=ts-orbital-debris-reentry-base-hardening-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-hardening-stack-v1` when sortie generation or divert planning is constrained by reentry hazard windows.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001` for ATO branches that alter launch timing, divert posture, public-warning sequencing, or shelter timelines.

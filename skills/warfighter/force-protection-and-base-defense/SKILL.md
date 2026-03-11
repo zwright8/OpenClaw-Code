@@ -191,3 +191,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-orbital-debris-reentry-base-hardening-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-hardening-stack-v1` when base defense posture must account for orbital reentry hazard windows.
 - Add `tool_suite_id=ts-electromagnetic-decoy-fratricide-audit-v1` + `protocol_stack_id=ps-electromagnetic-decoy-fratricide-audit-stack-v1` when base protection depends on decoy/emission plans without blue-force misclassification risk.
 - Add `packet_id=DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001` and `packet_id=DPL-ELECTROMAGNETIC-DECOY-FRATRICIDE-AUDIT-001` for force-protection branches that alter sheltering, EMCON, or response posture.
+
+## Domain Toolchain Override (2026-03-10, Grid Escort and Custody Integrity Addendum)
+
+- Add `tool_suite_id=ts-grid-transformer-escort-install-v1` + `protocol_stack_id=ps-grid-transformer-escort-install-stack-v1` when base survivability depends on rapid transformer convoy escort and substation restoration under threat.
+- Add `tool_suite_id=ts-custody-handshake-ledger-v1` + `protocol_stack_id=ps-custody-handshake-ledger-stack-v1` when base defense decisions include detainee transfer, custody integrity, or legal notification sequencing.
+- Add `packet_id=DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001` and `packet_id=DPL-CUSTODY-HANDSHAKE-LEDGER-001` for branches that change force protection posture, critical infrastructure restoration timing, or detention-transfer controls.

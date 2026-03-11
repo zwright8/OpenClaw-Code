@@ -6721,3 +6721,16 @@ validation_gates:
 - output_schema: routing order, transfer timeline, care-gap risk summary
 - protocol_profile: HL7/FHIR + STANAG 3204 + signed manifests
 - validation_gates: medical authority confirmation, airspace deconfliction pass, patient-custody integrity
+
+## Packet Addendum O (2026-03-10, Grid Escort and Load-Restoration Integrity)
+
+### packet_id: DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001
+- domain: transformer convoy escort and critical-substation restoration
+- objective: protect transformer movement and placement while preserving mission-priority feeder restoration order
+- primary_tools: transformer convoy telemetry board, substation restoration planner, mission-load priority matrix
+- alternate_tools: manual convoy release roster and utility restoration worksheet
+- degraded_mode: mission-essential feeder restoration only with security-first convoy sequencing
+- input_requirements: convoy routes, transformer status, substation readiness, priority load roster, threat indicators
+- output_schema: convoy release plan, installation sequence, load-restoration timeline, risk and branch triggers
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: convoy route security pass, installation readiness check, command authority acknowledgment
