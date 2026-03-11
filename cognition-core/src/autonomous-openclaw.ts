@@ -1785,17 +1785,6 @@ function selectCatalogSlice({
                 - adjustments.failurePenalty
                 + adjustments.recentOutcomeBonus
                 + adjustments.staleBoost;
-        } else if (CONTEXTUAL_THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
-            const linearTs = computeLinearThompsonScore({
-                stat,
-                currentWave: normalizedCurrentWave,
-                adaptiveScoreConfig,
-                selectionPolicyConfig: scoringPolicy,
-                contextualBanditModel,
-                seedText: `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
-            });
-            score = linearTs.score;
-            featureVector = linearTs.featureVector;
         } else {
             score = computeUcbScore(
                 stat,
