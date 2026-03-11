@@ -590,3 +590,29 @@ Every skill output should include:
 - Autonomous maritime picket and search + maritime interdiction support + gray-zone militia attribution
 - Spaceport GNSS emergency response + missile warning posture + space weather mission assurance
 - Multi-theater aeromedical brokerage + casualty regulation + blood cold-chain continuity and donor matching
+
+## New Expansion Wave (2026-03-11, Near-Space Resilience, Polar Recovery, and Strategic Disruption)
+
+- joint-near-space-haps-mesh-resilience-cell
+- theater-disconnected-undersea-surveillance-data-fusion-cell
+- coalition-contested-port-cyber-customs-fraud-fusion-cell
+- joint-autonomous-cargo-airdrop-drift-denial-cell
+- homeland-ai-enabled-wildfire-smoke-airbase-sortie-protection-cell
+- joint-battlefield-quantum-resistant-key-rollover-cell
+- theater-multi-corps-water-bridging-and-bulk-fuel-crossing-cell
+- coalition-denied-polar-sar-deconfliction-and-medical-routing-cell
+- strategic-financial-rail-and-maritime-sanctions-leakage-disruption-cell
+- expeditionary-lithium-battery-fire-suppression-and-energy-continuity-cell
+
+## Updated Pairings (2026-03-11, Near-Space Resilience, Polar Recovery, and Strategic Disruption)
+
+- Near-space HAPS mesh resilience + SATCOM continuity + contested spectrum maneuver + JADC2 failover planning
+- Disconnected undersea surveillance fusion + ASW support + maritime chokepoint defense + warning confidence adjudication
+- Contested port cyber/customs-fraud fusion + homeland/coalition port cyber-physical defense + strategic sealift survivability + legal evidence chain integrity
+- Autonomous cargo airdrop drift denial + tactical airspace control + denied-PNT fallback + expeditionary resupply continuity
+- Wildfire-smoke airbase sortie protection + airfield recovery + DSCA crisis coordination + weather/space-weather effects integration
+- Quantum-resistant key rollover + zero-trust key-material continuity + NC3 resilience + coalition crypto interoperability governance
+- Multi-corps bridging and bulk-fuel crossing + contested bridge/gap crossing + operational energy resilience + maneuver sustainment
+- Denied polar SAR deconfliction + coalition casualty data synchronization + medevac routing + arctic logistics corridor governance
+- Financial rail/maritime sanctions leakage disruption + strategic supply-shock monitoring + coalition cyber legal attribution + gray-zone response planning
+- Expeditionary lithium battery fire continuity + microgrid/energy continuity + base defense emergency response + force-health protection

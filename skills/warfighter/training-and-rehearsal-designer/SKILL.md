@@ -144,3 +144,8 @@ Primary products for this skill: training progression plan, rehearsal script, ev
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-C2-DISP-002`, `DPL-FIRES-LINEAGE-001`, `DPL-COALITION-TRAINREADY-001`.
+- For communications-denied or crypto-transition rehearsal events, include `DPL-CYBER-ICAM-001` and explicit key-rollover rehearsal injects.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.

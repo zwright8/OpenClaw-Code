@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Near-Space HAPS Mesh Resilience Cell"
+  short_description: "Stabilize near-space mesh comms under contested conditions"

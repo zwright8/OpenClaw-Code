@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Autonomous Cargo Airdrop Drift Denial Cell"
+  short_description: "Control autonomous airdrop drift in contested weather/EM conditions"

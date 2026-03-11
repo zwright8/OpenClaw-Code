@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Battlefield Quantum-Resistant Key Rollover Cell"
+  short_description: "Manage crypto rollover to post-quantum-safe battlefield links"
