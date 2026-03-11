@@ -6985,3 +6985,17 @@ external_binding:
 ### `ps-hospital-overflow-aeromedical-routing-stack-v1`
 - Standards and protocols: HL7/FHIR + STANAG 3204 medevac movement updates + signed patient-priority manifests.
 - Transport profile: prioritized care-routing bus with transfer acknowledgments and disconnected patient-reconciliation fallback.
+
+## Tool Suite Addendum O (2026-03-11, Littoral Grid Transformer Barge Restoration)
+
+### `ts-littoral-transformer-barge-restoration-v1`
+- Use for: coalition littoral transformer-barge escort, emplacement, and rapid mission-priority grid restoration under maritime and ground threats.
+- Primary tools: transformer-barge convoy orchestration board, littoral grid load-priority planner, coalition port staging synchronizer.
+- Cross-check tools: independent maritime escort risk monitor and alternate host-nation feeder-restoration validator.
+- Typical products: transformer-barge restoration sequence, mission-load restoration matrix, coalition synchronization timeline.
+
+## Protocol Stack Addendum O (2026-03-11, Littoral Grid Transformer Barge Restoration)
+
+### `ps-littoral-transformer-barge-restoration-stack-v1`
+- Standards and protocols: IEC 61850 grid telemetry + USMTF restoration updates + AIS/OGC littoral route overlays.
+- Transport profile: authenticated littoral restoration control channel with convoy acknowledgment chain and degraded voice/readback fallback.

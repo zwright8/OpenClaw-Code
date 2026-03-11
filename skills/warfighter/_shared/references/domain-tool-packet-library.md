@@ -6734,3 +6734,49 @@ validation_gates:
 - output_schema: convoy release plan, installation sequence, load-restoration timeline, risk and branch triggers
 - protocol_profile: USMTF + NIMS/ICS + API/JSON
 - validation_gates: convoy route security pass, installation readiness check, command authority acknowledgment
+
+## Packet Addendum P (2026-03-11, Civil-Military Continuity and Contested Infrastructure Control)
+
+### packet_id: DPL-FORWARD-WATER-SABOTAGE-ATTRIBUTION-001
+- domain: forward water network sabotage attribution and isolation
+- objective: detect sabotage, isolate compromised nodes, and sustain potable flow to mission-critical sites
+- primary_tools: water telemetry integrity monitor, pressure/quality anomaly detector, valve-isolation orchestrator
+- alternate_tools: manual sampling chain and local utility liaison board
+- degraded_mode: authenticated voice updates with 4-hour manual sampling rollups
+- input_requirements: network topology, pressure/quality trends, alert logs, mission-priority demand map
+- output_schema: sabotage confidence map, node isolation sequence, potable continuity timeline
+- protocol_profile: OGC SensorThings + API/JSON + USMTF
+- validation_gates: dual-source anomaly confirmation, contamination threshold verification, commander approval for wide-area isolation
+
+### packet_id: DPL-SPECTRUM-LEGAL-ATTRIBUTION-001
+- domain: coalition electromagnetic legal attribution and escalation
+- objective: produce coalition-credible legal attribution packets for electromagnetic incidents with escalation options
+- primary_tools: emitter identity adjudicator, legal evidence ledger, coalition escalation decision board
+- alternate_tools: analyst legal matrix and manual chain-of-custody tracker
+- degraded_mode: restricted advisory memo with delayed evidentiary synchronization
+- input_requirements: incident timeline, emitter confidence scores, legal authorities, coalition caveats
+- output_schema: attribution confidence packet, legal basis table, escalation option ladder
+- protocol_profile: Link 16 J-series + STIX/TAXII + NATO APP-11/ADatP-3
+- validation_gates: evidence provenance completeness, legal authority cross-check, coalition releasability pass
+
+### packet_id: DPL-BATTLEFIELD-HAZMAT-CONTROL-001
+- domain: contested battlefield hazmat surge and evacuation corridor control
+- objective: contain hazardous-material surges and preserve protected evacuation movement
+- primary_tools: hazmat plume modeler, corridor viability board, decontamination task scheduler
+- alternate_tools: manual hazard perimeter board and route control worksheet
+- degraded_mode: conservative evacuation hold/release matrix with 6-hour refresh
+- input_requirements: hazard type, plume vectors, corridor geometry, casualty flow demand
+- output_schema: hazard containment timeline, corridor status board, reroute and decon priorities
+- protocol_profile: NIMS/ICS + OGC + USMTF
+- validation_gates: plume model confidence floor, life-safety routing verification, medical authority concurrence
+
+### packet_id: DPL-LITTORAL-TRANSFORMER-BARGE-RESTORATION-001
+- domain: coalition littoral transformer-barge restoration and grid support
+- objective: synchronize barge transformer movement, emplacement, and mission-priority grid restoration
+- primary_tools: maritime convoy planner, transformer emplacement scheduler, feeder restoration dashboard
+- alternate_tools: manual barge movement board and host-nation utility dispatch net
+- degraded_mode: voice readback restoration ladder with UTC acknowledgment ledger
+- input_requirements: barge availability, port status, escort assignments, mission-load priorities
+- output_schema: escort and emplacement sequence, feeder restoration matrix, continuity risk assessment
+- protocol_profile: AIS/NMEA + IEC 61850 + USMTF
+- validation_gates: convoy security confirmation, grid isolation safety gate, commander approval for mission-load reprioritization

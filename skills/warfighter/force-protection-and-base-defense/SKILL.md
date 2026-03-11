@@ -197,3 +197,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-grid-transformer-escort-install-v1` + `protocol_stack_id=ps-grid-transformer-escort-install-stack-v1` when base survivability depends on rapid transformer convoy escort and substation restoration under threat.
 - Add `tool_suite_id=ts-custody-handshake-ledger-v1` + `protocol_stack_id=ps-custody-handshake-ledger-stack-v1` when base defense decisions include detainee transfer, custody integrity, or legal notification sequencing.
 - Add `packet_id=DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001` and `packet_id=DPL-CUSTODY-HANDSHAKE-LEDGER-001` for branches that change force protection posture, critical infrastructure restoration timing, or detention-transfer controls.
+
+## Domain Toolchain Override (2026-03-11, Civil Alert Integrity and Hazmat Corridor Addendum)
+
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when force protection depends on trusted public warning dissemination under disinformation pressure.
+- Add `tool_suite_id=ts-battlefield-hazmat-control-v1` + `protocol_stack_id=ps-battlefield-hazmat-control-stack-v1` when base defense branches must protect movement corridors during hazardous-material release.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-BATTLEFIELD-HAZMAT-CONTROL-001` for branches that alter sheltering, route control, or warning authorities.

@@ -1396,3 +1396,33 @@ Every skill output should include:
 - Privacy-preserving biometrics federation + coalition border biometrics governance + identity revocation/rekey workflows + detainee transfer assurance
 - Civil alert authenticity broadcast assurance + theater cognitive security and misinformation counter + homeland civil order restoration + mission command support
 - Rail sabotage recovery and contested throughput + strategic mobility chokepoint wargaming + rail bridge recovery + contested logistics sustainment
+
+## New Expansion Wave (2026-03-11, Civil Alert Integrity and Infrastructure Continuity)
+
+- joint-civil-alert-authenticity-and-force-protection-cell
+- theater-solar-microgrid-signature-control-and-expeditionary-power-cell
+- homeland-portable-nuclear-detector-network-resilience-cell
+- contested-pow-camp-outbreak-riot-containment-cell
+- joint-urban-mass-casualty-drone-resupply-cell
+- theater-grid-feeder-priority-shedding-and-mission-load-restoration-cell
+- forward-water-network-sabotage-attribution-and-isolation-cell
+- coalition-electromagnetic-legal-attribution-and-escalation-cell
+- strategic-cable-landing-station-denial-and-reconstitution-cell
+- contested-battlefield-hazmat-surge-and-evacuation-corridor-cell
+- joint-uxo-civilian-reentry-corridor-assurance-cell
+- coalition-littoral-transformer-barge-restoration-and-grid-support-cell
+
+## Updated Pairings (2026-03-11, Civil Alert Integrity and Infrastructure Continuity)
+
+- Civil-alert authenticity + force-protection and base defense + information integrity and attribution + JOC battle rhythm synchronization
+- Solar microgrid signature control + operational energy resilience + electromagnetic signature lifecycle management + base defense survivability
+- Portable nuclear detector resilience + CBRN consequence management + civil defense mass evacuation + homeland warning continuity
+- POW camp outbreak/riot containment + detainee accountability + force health protection + contested prisoner transfer governance
+- Urban mass-casualty drone resupply + casualty regulation + aeromedical routing + urban airspace deconfliction
+- Grid feeder priority shedding + critical-infrastructure restoration + mission network failover + strategic mobility sustainment
+- Forward water sabotage attribution + expeditionary water production assurance + preventive medicine + infrastructure defense
+- Electromagnetic legal attribution + spectrum governance + coalition legal interoperability + escalation control planning
+- Cable landing station reconstitution + undersea infrastructure protection + cloud failover defense + mission data continuity
+- Battlefield hazmat surge control + civilian evacuation flow management + CBRN response planning + force protection
+- UXO civilian reentry assurance + route clearance/counter-IED fusion + civil-affairs stability operations + humanitarian corridor governance
+- Littoral transformer-barge restoration + maritime convoy protection + host-nation grid support + mission-load restoration

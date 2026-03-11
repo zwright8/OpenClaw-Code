@@ -186,3 +186,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Add `tool_suite_id=ts-grid-transformer-escort-install-v1` + `protocol_stack_id=ps-grid-transformer-escort-install-stack-v1` when battle rhythm decisions involve transformer convoy security, emplacement sequencing, and mission-priority load restoration.
 - Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when command updates depend on trusted civil warning dissemination under disinformation pressure.
 - Add `packet_id=DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001` and `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` for branches that alter command cadence, restoration sequencing, or public-warning governance.
+
+## Domain Toolchain Override (2026-03-11, Alert Trust and Water-Sabotage Continuity Addendum)
+
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when command cadence depends on trusted civil warning dissemination and adversary narrative disruption control.
+- Add `tool_suite_id=ts-forward-water-sabotage-attribution-v1` + `protocol_stack_id=ps-forward-water-sabotage-attribution-stack-v1` when battle rhythm decisions must synchronize water-network isolation and mission-priority sustainment continuity.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-FORWARD-WATER-SABOTAGE-ATTRIBUTION-001` for branches that alter command timing, restoration governance, or risk-communication authorities.

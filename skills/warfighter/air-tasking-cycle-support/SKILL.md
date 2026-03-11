@@ -185,3 +185,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when ATO updates require trusted civil warning broadcasts around airbase launch, recovery, or NEO windows.
 - Prioritize `tool_suite_id=ts-orbital-debris-reentry-base-hardening-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-hardening-stack-v1` when sortie generation or divert planning is constrained by reentry hazard windows.
 - Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001` for ATO branches that alter launch timing, divert posture, public-warning sequencing, or shelter timelines.
+
+## Domain Toolchain Override (2026-03-11, Civil Alert and Hazmat Air Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when ATO updates require synchronized trusted civil warning and launch/recovery windows.
+- Prioritize `tool_suite_id=ts-battlefield-hazmat-control-v1` + `protocol_stack_id=ps-battlefield-hazmat-control-stack-v1` when sortie flow, divert fields, or evacuation corridors are constrained by hazardous-material events.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-BATTLEFIELD-HAZMAT-CONTROL-001` for ATO branches that reprioritize air corridors, warning cadence, or launch sequencing.
