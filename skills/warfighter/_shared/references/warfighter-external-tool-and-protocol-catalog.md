@@ -3600,3 +3600,107 @@ external_binding:
 ### `ps-expeditionary-battery-fire-continuity-stack-v1`
 - Standards and protocols: IEC 61850 DER telemetry + API/JSON battery incident events + USMTF continuity summaries.
 - Transport profile: battery emergency continuity bus with hazard-isolation acknowledgments and mission-load fallback sequencing.
+
+## Tool Suite Addendum U (2026-03-11, Expansion B)
+
+### `ts-cislunar-rendezvous-deorbit-safety-v1`
+- Use for: cislunar logistics rendezvous sequencing, deorbit safety windows, and mission continuity risk controls.
+- Primary tools: SDA event broker, conjunction/deorbit risk engine, timing integrity monitor.
+- Cross-check tools: independent orbital witness board and alternate timing confidence ledger.
+- Typical products: rendezvous safety matrix, deorbit decision gates, continuity branch packet.
+
+### `ts-sof-lpd-comms-discipline-v1`
+- Use for: SOF LPD/LPI communications discipline and emission exposure reduction under denied conditions.
+- Primary tools: waveform governance service, spectrum posture planner, comms signature analyzer.
+- Cross-check tools: independent RF witness mesh and alternate exposure adjudication board.
+- Typical products: comms discipline ladder, exposure-risk triggers, branch posture matrix.
+
+### `ts-undersea-cable-insurance-restoration-v1`
+- Use for: homeland critical cable outage triage with insurance and restoration synchronization.
+- Primary tools: cable telemetry fusion board, restoration route planner, continuity insurance impact model.
+- Cross-check tools: independent outage witness feed and alternate restoration confidence board.
+- Typical products: outage continuity matrix, restoration priority queue, insurance-impact brief.
+
+### `ts-cloud-denied-data-fabric-healing-v1`
+- Use for: coalition mission data-fabric healing when cloud paths are denied or partitioned.
+- Primary tools: replication orchestrator, schema reconciliation service, trust-policy engine.
+- Cross-check tools: independent provenance witness graph and alternate replication integrity board.
+- Typical products: healing runbook, trust reconstitution scorecard, schema remediation backlog.
+
+### `ts-transformer-heavy-lift-convoy-protection-v1`
+- Use for: strategic heavy-lift transformer convoy routing and protection for grid recovery.
+- Primary tools: heavy-lift route optimizer, convoy protection scheduler, grid dependency mapper.
+- Cross-check tools: independent route threat witness and alternate throughput viability board.
+- Typical products: convoy protection order, survivability timeline, dependency restoration map.
+
+### `ts-urban-bridge-collapse-mass-casualty-routing-v1`
+- Use for: casualty and mobility routing after urban bridge collapse in contested operations.
+- Primary tools: casualty regulator board, transport reroute optimizer, civil support impact dashboard.
+- Cross-check tools: independent hospital capacity witness and alternate route viability checker.
+- Typical products: casualty routing matrix, bypass traffic branches, throughput risk ledger.
+
+### `ts-portable-radar-emission-governance-v1`
+- Use for: portable radar duty-cycle and emission governance for theater C-UAS operations.
+- Primary tools: radar emission manager, spectrum conflict checker, fratricide-risk estimator.
+- Cross-check tools: independent RF deconfliction witness and alternate duty-cycle audit board.
+- Typical products: radar emission schedule, deconfliction gates, detection-risk brief.
+
+### `ts-weather-radar-spoofing-attribution-v1`
+- Use for: weather radar spoofing attribution and mission weather trust restoration.
+- Primary tools: weather data integrity validator, EW anomaly detector, mission weather confidence board.
+- Cross-check tools: independent meteorological witness feed and alternate spoof-attribution model.
+- Typical products: spoof attribution packet, trusted feed ladder, weather assurance note.
+
+### `ts-medical-license-reciprocity-surge-v1`
+- Use for: coalition reserve medical credential reciprocity and surge staffing continuity.
+- Primary tools: credential federation broker, privileging validator, surge staffing tracker.
+- Cross-check tools: independent licensing witness board and alternate staffing sufficiency ledger.
+- Typical products: reciprocity matrix, staffing surge timeline, care-capacity risk map.
+
+### `ts-expeditionary-water-contamination-forecast-v1`
+- Use for: contamination risk forecasting for expeditionary water sources and force-health protection.
+- Primary tools: water telemetry analytics, contamination forecast models, force-health surveillance panel.
+- Cross-check tools: independent sample-chain witness and alternate contamination confidence board.
+- Typical products: contamination risk ladder, source protection actions, health impact branch packet.
+
+## Protocol Stack Addendum U (2026-03-11, Expansion B)
+
+### `ps-cislunar-rendezvous-deorbit-safety-stack-v1`
+- Standards and protocols: CCSDS + API/JSON orbital state envelopes + USMTF safety summaries.
+- Transport profile: cislunar mission safety lane with conjunction acknowledgments and deorbit hold/release gates.
+
+### `ps-sof-lpd-comms-discipline-stack-v1`
+- Standards and protocols: VMF + CoT + signed emission-control manifests.
+- Transport profile: SOF low-observable comms lane with burst scheduling and fallback acknowledgment windows.
+
+### `ps-undersea-cable-insurance-restoration-stack-v1`
+- Standards and protocols: AIS/NMEA + OGC + USMTF restoration directives + signed outage manifests.
+- Transport profile: homeland cable continuity lane with restoration checkpoint acknowledgments and legal/insurance traceability.
+
+### `ps-cloud-denied-data-fabric-healing-stack-v1`
+- Standards and protocols: API/JSON replication manifests + USMTF continuity notices + signed provenance proofs.
+- Transport profile: cloud-denied federation lane with store-and-forward recovery and trust rehydration checkpoints.
+
+### `ps-transformer-heavy-lift-convoy-protection-stack-v1`
+- Standards and protocols: USMTF mobility directives + VMF route updates + signed cargo integrity manifests.
+- Transport profile: heavy-lift convoy protection lane with sabotage triggers and reroute acknowledgment gates.
+
+### `ps-urban-bridge-collapse-mass-casualty-routing-stack-v1`
+- Standards and protocols: HL7/FHIR + NIMS/ICS + USMTF movement summaries.
+- Transport profile: urban casualty reroute lane with hospital load acknowledgments and bridge bypass control points.
+
+### `ps-portable-radar-emission-governance-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + USMTF spectrum directives.
+- Transport profile: C-UAS radar governance lane with duty-cycle approvals and fratricide-risk hold states.
+
+### `ps-weather-radar-spoofing-attribution-stack-v1`
+- Standards and protocols: API/JSON weather integrity events + STIX/TAXII indicators + USMTF mission weather advisories.
+- Transport profile: weather trust-restoration lane with attribution confidence checkpoints and dissemination controls.
+
+### `ps-medical-license-reciprocity-surge-stack-v1`
+- Standards and protocols: HL7/FHIR credential attributes + NATO APP-11 aligned staffing messages + USMTF readiness summaries.
+- Transport profile: coalition medical reciprocity lane with role-approval acknowledgments and surge staffing escalation gates.
+
+### `ps-expeditionary-water-contamination-forecast-stack-v1`
+- Standards and protocols: API/JSON sensor events + HL7/FHIR health indicators + USMTF force-health updates.
+- Transport profile: expeditionary water-risk lane with contamination threshold alerts and source isolation branches.

@@ -616,3 +616,29 @@ Every skill output should include:
 - Denied polar SAR deconfliction + coalition casualty data synchronization + medevac routing + arctic logistics corridor governance
 - Financial rail/maritime sanctions leakage disruption + strategic supply-shock monitoring + coalition cyber legal attribution + gray-zone response planning
 - Expeditionary lithium battery fire continuity + microgrid/energy continuity + base defense emergency response + force-health protection
+
+## New Expansion Wave (2026-03-11, Cislunar Safety, Infrastructure Continuity, and Medical Surge)
+
+- joint-cislunar-logistics-rendezvous-and-deorbit-safety-cell
+- theater-sof-low-probability-of-detection-comms-discipline-cell
+- homeland-critical-undersea-cable-insurance-and-restoration-cell
+- coalition-expeditionary-cloud-denied-data-fabric-healing-cell
+- strategic-grid-transformer-heavy-lift-convoy-protection-cell
+- tactical-urban-bridge-collapse-mass-casualty-routing-cell
+- theater-counter-drone-portable-radar-emission-governance-cell
+- joint-contested-weather-radar-spoofing-attribution-cell
+- coalition-reserve-medical-license-reciprocity-and-surge-cell
+- expeditionary-ai-enabled-water-source-contamination-forecast-cell
+
+## Updated Pairings (2026-03-11, Cislunar Safety, Infrastructure Continuity, and Medical Surge)
+
+- Cislunar rendezvous/deorbit safety + contested cislunar awareness + orbital debris/launch reconstitution + SATCOM continuity
+- SOF LPD comms discipline + tactical spectrum deconfliction + mission network failover + deception/signature management
+- Homeland cable insurance/restoration + undersea cable sabotage attribution + strategic port cyber resilience + NC3 continuity
+- Coalition cloud-denied fabric healing + JADC2 schema translation + mission-data provenance/releasability + coalition interoperability coordination
+- Transformer heavy-lift convoy protection + strategic mobility chokepoint wargaming + grid blackstart support + convoy counter-ambush planning
+- Urban bridge-collapse mass-casualty routing + casualty regulation + civil support crisis cell + megacity sustainment
+- Portable radar emission governance + counter-UAS kill chain integration + electromagnetic fratricide prevention + EW order-of-battle management
+- Weather-radar spoofing attribution + denied-weather sortie risk + info-integrity attribution + cyber-electromagnetic deception response
+- Coalition reserve medical reciprocity surge + cross-border medevac legal routing + credential and privileging workflows + burn-care network operations
+- Expeditionary water contamination forecasting + cyber-physical water treatment protection + preventive medicine and force-health protection + denied-water purification bypass planning
