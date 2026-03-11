@@ -35,6 +35,8 @@ const MAX_STALE_WAVE_BOOST = 0.2;
 const DEFAULT_MAX_STALE_BOOST = 0.25;
 const MAX_MAX_STALE_BOOST = 1;
 const DEFAULT_SELECTION_POLICY_MODE = 'ucb';
+const DEFAULT_LINUCB_ALPHA = 0.6;
+const MAX_LINUCB_ALPHA = 5;
 const DEFAULT_THOMPSON_EXPLORATION = 0.2;
 const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
 const DEFAULT_THOMPSON_PRIOR_BETA = 1;
@@ -58,8 +60,17 @@ const DEFAULT_CORRAL_ETA = 0.8;
 const MAX_CORRAL_ETA = 5;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
+const LINUCB_FEATURE_NAMES = [
+    'bias',
+    'successRate',
+    'failureRate',
+    'failureStreak',
+    'novelty',
+    'staleness'
+];
 const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'ucb',
+    'linucb',
     'epsilon_ts',
     'kl_ucb',
     'sw_ucb',
@@ -225,6 +236,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
 
     return {
         mode: normalizedMode,
+        linucbAlpha: clamp(
+            Number.isFinite(Number(value.linucbAlpha))
+                ? Number(value.linucbAlpha)
+                : DEFAULT_LINUCB_ALPHA,
+            Number.EPSILON,
+            MAX_LINUCB_ALPHA
+        ),
         thompsonExploration: clamp(
             Number.isFinite(Number(value.thompsonExploration))
                 ? Number(value.thompsonExploration)
@@ -348,6 +366,59 @@ function normalizePolicyExecutionStats(rawStats = {}) {
     };
 }
 
+function createIdentityMatrix(size) {
+    const n = parsePositiveInt(size, LINUCB_FEATURE_NAMES.length);
+    const matrix = [];
+    for (let row = 0; row < n; row++) {
+        const values = new Array(n).fill(0);
+        values[row] = 1;
+        matrix.push(values);
+    }
+    return matrix;
+}
+
+function normalizeNumericVector(rawValues, size, fallback = 0) {
+    const values = Array.isArray(rawValues) ? rawValues : [];
+    const normalized = [];
+    for (let i = 0; i < size; i++) {
+        const numeric = Number(values[i]);
+        normalized.push(Number.isFinite(numeric) ? numeric : fallback);
+    }
+    return normalized;
+}
+
+function normalizeNumericMatrix(rawValues, size, fallbackMatrix) {
+    const values = Array.isArray(rawValues) ? rawValues : [];
+    const fallback = Array.isArray(fallbackMatrix) ? fallbackMatrix : createIdentityMatrix(size);
+    const matrix = [];
+    for (let row = 0; row < size; row++) {
+        const sourceRow = Array.isArray(values[row]) ? values[row] : fallback[row];
+        matrix.push(normalizeNumericVector(sourceRow, size, fallback[row][row] ?? 0));
+    }
+    return matrix;
+}
+
+function normalizeLinUcbModel(rawModel = {}) {
+    const model = rawModel && typeof rawModel === 'object' ? rawModel : {};
+    const dimension = LINUCB_FEATURE_NAMES.length;
+    const defaultMatrix = createIdentityMatrix(dimension);
+    return {
+        dimension,
+        featureNames: LINUCB_FEATURE_NAMES.slice(),
+        samples: parseNonNegativeInt(model.samples, 0),
+        matrixA: normalizeNumericMatrix(model.matrixA, dimension, defaultMatrix),
+        vectorB: normalizeNumericVector(model.vectorB, dimension, 0)
+    };
+}
+
+function normalizeContextualBanditModels(rawModels = {}) {
+    const models = rawModels && typeof rawModels === 'object' ? rawModels : {};
+    return {
+        skills: normalizeLinUcbModel(models.skills),
+        capabilities: normalizeLinUcbModel(models.capabilities)
+    };
+}
+
 function normalizeRecentOutcomeEntry(rawEntry = {}) {
     const entry = rawEntry && typeof rawEntry === 'object' ? rawEntry : {};
     const status = normalizeStatus(entry.status);
@@ -449,6 +520,7 @@ function normalizeState(rawState = {}) {
         skillExecutionStats: normalizeSkillExecutionStats(state.skillExecutionStats),
         capabilityExecutionStats: normalizeCapabilityExecutionStats(state.capabilityExecutionStats),
         policyExecutionStats: normalizePolicyExecutionStats(state.policyExecutionStats),
+        contextualBanditModels: normalizeContextualBanditModels(state.contextualBanditModels),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
 }
@@ -840,6 +912,133 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
     return normalized;
 }
 
+function invertMatrix(matrix) {
+    const size = Array.isArray(matrix) ? matrix.length : 0;
+    if (size <= 0) return null;
+    const augmented = matrix.map((row, rowIndex) => {
+        const left = normalizeNumericVector(row, size, 0);
+        const right = new Array(size).fill(0);
+        right[rowIndex] = 1;
+        return [...left, ...right];
+    });
+
+    for (let pivot = 0; pivot < size; pivot++) {
+        let pivotRow = pivot;
+        let pivotValue = Math.abs(augmented[pivot][pivot]);
+        for (let row = pivot + 1; row < size; row++) {
+            const candidate = Math.abs(augmented[row][pivot]);
+            if (candidate > pivotValue) {
+                pivotValue = candidate;
+                pivotRow = row;
+            }
+        }
+        if (pivotValue <= Number.EPSILON) return null;
+        if (pivotRow !== pivot) {
+            const temp = augmented[pivot];
+            augmented[pivot] = augmented[pivotRow];
+            augmented[pivotRow] = temp;
+        }
+        const divisor = augmented[pivot][pivot];
+        for (let col = 0; col < (size * 2); col++) {
+            augmented[pivot][col] /= divisor;
+        }
+        for (let row = 0; row < size; row++) {
+            if (row === pivot) continue;
+            const factor = augmented[row][pivot];
+            if (factor === 0) continue;
+            for (let col = 0; col < (size * 2); col++) {
+                augmented[row][col] -= factor * augmented[pivot][col];
+            }
+        }
+    }
+
+    return augmented.map((row) => row.slice(size));
+}
+
+function multiplyMatrixVector(matrix, vector) {
+    const rows = Array.isArray(matrix) ? matrix : [];
+    const values = Array.isArray(vector) ? vector : [];
+    return rows.map((row) => {
+        const normalizedRow = normalizeNumericVector(row, values.length, 0);
+        let sum = 0;
+        for (let i = 0; i < values.length; i++) {
+            sum += normalizedRow[i] * values[i];
+        }
+        return sum;
+    });
+}
+
+function dotProduct(left, right) {
+    const l = Array.isArray(left) ? left : [];
+    const r = Array.isArray(right) ? right : [];
+    const size = Math.min(l.length, r.length);
+    let total = 0;
+    for (let i = 0; i < size; i++) {
+        total += l[i] * r[i];
+    }
+    return total;
+}
+
+function computeSelectionFeatureVector(stat, currentWave) {
+    const normalized = normalizeExecutionStat(stat);
+    const attempts = Math.max(0, normalized.attempts);
+    const successes = Math.max(0, normalized.successes);
+    const failures = Math.max(0, normalized.failures);
+    const lastWave = parseNonNegativeInt(normalized.lastWave, 0);
+    const wavesSinceAttempt = currentWave > 0 && lastWave > 0
+        ? Math.max(0, currentWave - lastWave)
+        : currentWave > 0 && attempts <= 0 ? currentWave : 0;
+    const successRate = attempts > 0 ? successes / attempts : 0.5;
+    const failureRate = attempts > 0 ? failures / attempts : 0.5;
+    const failureStreak = attempts > 0
+        ? Math.min(1, normalized.consecutiveFailures / Math.max(1, attempts))
+        : 0;
+    const novelty = attempts > 0 ? 0 : 1;
+    const staleness = Math.min(1, wavesSinceAttempt / 12);
+    return [
+        1,
+        successRate,
+        failureRate,
+        failureStreak,
+        novelty,
+        staleness
+    ];
+}
+
+function computeLinUcbScore({
+    stat,
+    currentWave,
+    adaptiveScoreConfig,
+    selectionPolicyConfig,
+    contextualBanditModel
+}) {
+    const normalizedStat = resolveScoreStats(stat, selectionPolicyConfig);
+    const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const normalizedModel = normalizeLinUcbModel(contextualBanditModel);
+    const featureVector = computeSelectionFeatureVector(normalizedStat, currentWave);
+    const inverse = invertMatrix(normalizedModel.matrixA);
+    if (!inverse) {
+        return {
+            score: Number.NEGATIVE_INFINITY,
+            featureVector
+        };
+    }
+    const theta = multiplyMatrixVector(inverse, normalizedModel.vectorB);
+    const expectedReward = dotProduct(theta, featureVector);
+    const projected = multiplyMatrixVector(inverse, featureVector);
+    const uncertainty = Math.sqrt(Math.max(0, dotProduct(featureVector, projected)));
+    const adjustments = computeAdaptiveAdjustments(normalizedStat, currentWave, adaptiveScoreConfig);
+    const score = expectedReward
+        + (normalizedPolicy.linucbAlpha * uncertainty)
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+    return {
+        score,
+        featureVector
+    };
+}
+
 function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
@@ -1054,6 +1253,7 @@ function selectCatalogSlice({
     adaptiveScoreConfig = null,
     selectionPolicyConfig = null,
     policyExecutionStats = {},
+    contextualBanditModel = null,
     selectionScope = 'catalog'
 }) {
     const list = Array.isArray(catalog) ? catalog : [];
@@ -1062,7 +1262,8 @@ function selectCatalogSlice({
             selected: [],
             nextCursor: 0,
             selectedPolicy: normalizeSelectionPolicyConfig(selectionPolicyConfig).mode,
-            policyProbabilities: null
+            policyProbabilities: null,
+            selectionFeatures: {}
         };
     }
 
@@ -1090,6 +1291,7 @@ function selectCatalogSlice({
     let scoringPolicy = normalizedPolicy;
     let selectedPolicy = normalizedPolicy.mode;
     let policyProbabilities = null;
+    const selectionFeatures = {};
 
     if (normalizedPolicy.mode === 'corral_exp3') {
         const distribution = resolveCorralPolicyDistribution(policyExecutionStats, normalizedPolicy);
@@ -1119,6 +1321,7 @@ function selectCatalogSlice({
         const stat = normalizeExecutionStat(executionStats[key]);
         const scoreStats = resolveScoreStats(stat, scoringPolicy);
         let score;
+        let featureVector = null;
         if (THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeEpsilonThompsonScore(
                 stat,
@@ -1144,6 +1347,16 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
+        } else if (scoringPolicy.mode === 'linucb') {
+            const linucb = computeLinUcbScore({
+                stat,
+                currentWave: normalizedCurrentWave,
+                adaptiveScoreConfig,
+                selectionPolicyConfig: scoringPolicy,
+                contextualBanditModel
+            });
+            score = linucb.score;
+            featureVector = linucb.featureVector;
         } else {
             score = computeUcbScore(
                 stat,
@@ -1158,6 +1371,7 @@ function selectCatalogSlice({
             candidate,
             key,
             score,
+            featureVector,
             distance: cursorDistance(index, pointer, total),
             cooled: isInFailureCooldown(stat, currentWave, failureCooldownWaves)
         };
@@ -1175,13 +1389,20 @@ function selectCatalogSlice({
         if (selected.length >= limit) break;
         selected.push(item.candidate);
         selectedKeySet.add(item.key);
+        if (Array.isArray(item.featureVector) && item.featureVector.length > 0) {
+            selectionFeatures[item.key] = {
+                names: LINUCB_FEATURE_NAMES.slice(),
+                values: item.featureVector.map((value) => Number(Number(value).toFixed(6)))
+            };
+        }
     }
 
     return {
         selected,
         nextCursor: pointer,
         selectedPolicy,
-        policyProbabilities
+        policyProbabilities,
+        selectionFeatures
     };
 }
 
@@ -1218,6 +1439,7 @@ export function buildAutonomousBatchPlan({
         adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
         selectionPolicyConfig: normalizedSelectionPolicyConfig,
         policyExecutionStats: normalizedState.policyExecutionStats.skills,
+        contextualBanditModel: normalizedState.contextualBanditModels.skills,
         selectionScope: 'skills'
     });
 
@@ -1232,6 +1454,7 @@ export function buildAutonomousBatchPlan({
         adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
         selectionPolicyConfig: normalizedSelectionPolicyConfig,
         policyExecutionStats: normalizedState.policyExecutionStats.capabilities,
+        contextualBanditModel: normalizedState.contextualBanditModels.capabilities,
         selectionScope: 'capabilities'
     });
 
@@ -1241,6 +1464,15 @@ export function buildAutonomousBatchPlan({
         const entry = skillSelection.selected[i];
         const taskCreatedAt = nowMs + i;
         const skillCode = normalizeSkillCode(entry.code, entry.id);
+        const featureKey = String(entry.id);
+        const selectionFeatures = skillSelection.selectionFeatures[featureKey]
+            || {
+                names: LINUCB_FEATURE_NAMES.slice(),
+                values: computeSelectionFeatureVector(
+                    normalizedState.skillExecutionStats[featureKey],
+                    normalizedWaveIndex
+                )
+            };
         tasks.push(buildTaskRequest({
             from: 'agent:autonomous-openclaw',
             target: 'agent:skills-runtime',
@@ -1252,7 +1484,8 @@ export function buildAutonomousBatchPlan({
                     lane: 'skills',
                     wave: waveIndex,
                     sourceCatalog: skillCatalogSource,
-                    selectionPolicyApplied: skillSelection.selectedPolicy
+                    selectionPolicyApplied: skillSelection.selectedPolicy,
+                    selectionFeatures
                 },
                 skillId: entry.id,
                 skillCode,
@@ -1272,6 +1505,15 @@ export function buildAutonomousBatchPlan({
     for (let i = 0; i < capabilitySelection.selected.length; i++) {
         const capabilityId = capabilitySelection.selected[i];
         const taskCreatedAt = nowMs + skillSelection.selected.length + i;
+        const featureKey = String(capabilityId);
+        const selectionFeatures = capabilitySelection.selectionFeatures[featureKey]
+            || {
+                names: LINUCB_FEATURE_NAMES.slice(),
+                values: computeSelectionFeatureVector(
+                    normalizedState.capabilityExecutionStats[featureKey],
+                    normalizedWaveIndex
+                )
+            };
         tasks.push(buildTaskRequest({
             from: 'agent:autonomous-openclaw',
             target: 'agent:capability-runtime',
@@ -1282,7 +1524,8 @@ export function buildAutonomousBatchPlan({
                 autonomy: {
                     lane: 'capabilities',
                     wave: waveIndex,
-                    selectionPolicyApplied: capabilitySelection.selectedPolicy
+                    selectionPolicyApplied: capabilitySelection.selectedPolicy,
+                    selectionFeatures
                 },
                 capabilityId,
                 capabilityInput: buildCapabilityInput(capabilityId, waveIndex, taskCreatedAt)
@@ -1324,6 +1567,28 @@ function recordRecentOutcome(stat, { status, wave }) {
     return normalized;
 }
 
+function extractSelectionFeatureVector(context) {
+    const values = context?.autonomy?.selectionFeatures?.values;
+    if (!Array.isArray(values)) return null;
+    const vector = normalizeNumericVector(values, LINUCB_FEATURE_NAMES.length, 0);
+    if (vector.length !== LINUCB_FEATURE_NAMES.length) return null;
+    return vector;
+}
+
+function updateLinUcbModel(model, featureVector, reward) {
+    const normalizedModel = normalizeLinUcbModel(model);
+    const vector = normalizeNumericVector(featureVector, LINUCB_FEATURE_NAMES.length, 0);
+    const boundedReward = clamp(Number(reward), 0, 1);
+    for (let row = 0; row < vector.length; row++) {
+        normalizedModel.vectorB[row] += vector[row] * boundedReward;
+        for (let col = 0; col < vector.length; col++) {
+            normalizedModel.matrixA[row][col] += vector[row] * vector[col];
+        }
+    }
+    normalizedModel.samples += 1;
+    return normalizedModel;
+}
+
 export async function collectAutonomousCoverage({
     storePath,
     nowFactory = Date.now
@@ -1341,6 +1606,7 @@ export async function collectAutonomousCoverage({
     const skillExecutionStats = {};
     const capabilityExecutionStats = {};
     const policyExecutionStats = normalizePolicyExecutionStats({});
+    const contextualBanditModels = normalizeContextualBanditModels({});
 
     for (const record of records) {
         const status = normalizeStatus(record?.status);
@@ -1419,6 +1685,17 @@ export async function collectAutonomousCoverage({
             }
             policyExecutionStats[lane][selectedPolicy] = currentPolicy;
         }
+
+        if (lane && selectedPolicy === 'linucb') {
+            const featureVector = extractSelectionFeatureVector(context);
+            if (featureVector) {
+                contextualBanditModels[lane] = updateLinUcbModel(
+                    contextualBanditModels[lane],
+                    featureVector,
+                    didSucceed ? 1 : 0
+                );
+            }
+        }
     }
 
     return {
@@ -1428,7 +1705,8 @@ export async function collectAutonomousCoverage({
         failedCapabilityIds: [...failedCapabilityIds].sort(),
         skillExecutionStats: normalizeSkillExecutionStats(skillExecutionStats),
         capabilityExecutionStats: normalizeCapabilityExecutionStats(capabilityExecutionStats),
-        policyExecutionStats: normalizePolicyExecutionStats(policyExecutionStats)
+        policyExecutionStats: normalizePolicyExecutionStats(policyExecutionStats),
+        contextualBanditModels: normalizeContextualBanditModels(contextualBanditModels)
     };
 }
 
@@ -1469,6 +1747,21 @@ function mergePolicyExecutionStats(existingStats = {}, incomingStats = {}) {
     }
 
     return merged;
+}
+
+function mergeLinUcbModels(existingModel = {}, incomingModel = {}) {
+    const previous = normalizeLinUcbModel(existingModel);
+    const next = normalizeLinUcbModel(incomingModel);
+    return next.samples >= previous.samples ? next : previous;
+}
+
+function mergeContextualBanditModels(existingModels = {}, incomingModels = {}) {
+    const previous = normalizeContextualBanditModels(existingModels);
+    const next = normalizeContextualBanditModels(incomingModels);
+    return {
+        skills: mergeLinUcbModels(previous.skills, next.skills),
+        capabilities: mergeLinUcbModels(previous.capabilities, next.capabilities)
+    };
 }
 
 function createCoverageReport({
@@ -1707,6 +2000,7 @@ export async function runAutonomousOpenClaw({
             skillExecutionStats: mergeExecutionStats(state.skillExecutionStats, coverage.skillExecutionStats),
             capabilityExecutionStats: mergeExecutionStats(state.capabilityExecutionStats, coverage.capabilityExecutionStats),
             policyExecutionStats: mergePolicyExecutionStats(state.policyExecutionStats, coverage.policyExecutionStats),
+            contextualBanditModels: mergeContextualBanditModels(state.contextualBanditModels, coverage.contextualBanditModels),
             updatedAt: safeNow(nowFactory)
         });
 

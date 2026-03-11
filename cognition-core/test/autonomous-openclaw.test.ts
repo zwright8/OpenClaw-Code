@@ -183,6 +183,54 @@ test('buildAutonomousBatchPlan revisits stale entries when performance is tied',
     assert.deepEqual(plan.selection.skillIds, [31]);
 });
 
+test('buildAutonomousBatchPlan supports linucb contextual ranking and feature emission', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 81, code: 'SK-00081', title: 'Skill 81' },
+            { id: 82, code: 'SK-00082', title: 'Skill 82' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 29,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '81': { attempts: 10, successes: 9, failures: 1, consecutiveFailures: 0, lastWave: 29, lastStatus: 'completed' },
+                '82': { attempts: 10, successes: 2, failures: 8, consecutiveFailures: 0, lastWave: 3, lastStatus: 'failed' }
+            },
+            contextualBanditModels: {
+                skills: {
+                    samples: 50,
+                    matrixA: [
+                        [1, 0, 0, 0, 0, 0],
+                        [0, 1, 0, 0, 0, 0],
+                        [0, 0, 1, 0, 0, 0],
+                        [0, 0, 0, 1, 0, 0],
+                        [0, 0, 0, 0, 1, 0],
+                        [0, 0, 0, 0, 0, 1]
+                    ],
+                    vectorB: [0, -1, 0, 0, 0, 2]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 30,
+        selectionPolicyConfig: {
+            mode: 'linucb',
+            linucbAlpha: 0.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [82]);
+    assert.equal(plan.selection.policy.skills, 'linucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'linucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionFeatures?.values?.length, 6);
+});
+
 test('buildAutonomousBatchPlan supports epsilon-thompson policy with deterministic ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -673,6 +721,42 @@ test('buildAutonomousBatchPlan supports discounted epsilon-thompson ranking', ()
     });
 
     assert.deepEqual(plan.selection.skillIds, [66]);
+});
+
+test('runAutonomousOpenClaw records linucb contextual model samples', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const storePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const statePath = path.join(dir, 'autonomy-state-linucb.json');
+
+    const report = await runAutonomousOpenClaw({
+        repoRoot: REPO_ROOT,
+        storePath,
+        outboxDir,
+        archiveDir,
+        statePath,
+        waves: 1,
+        skillsPerWave: 1,
+        capabilitiesPerWave: 1,
+        dispatchLimit: 10,
+        workerCycles: 6,
+        workerIdleCycles: 2,
+        stopOnFullCoverage: false,
+        botRuntime: true,
+        enqueueFollowupTasks: true,
+        selectionPolicyConfig: {
+            mode: 'linucb',
+            linucbAlpha: 0.6
+        },
+        nowFactory: () => Date.now()
+    });
+
+    assert.equal(report.config.selectionPolicy.mode, 'linucb');
+    const saved = loadAutonomousState(statePath);
+    assert.ok(saved.contextualBanditModels.skills.samples > 0);
 });
 
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {

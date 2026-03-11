@@ -18,6 +18,7 @@
 - `npm run skills:marketplace:v2:demo` - run top-package demo for v2 outputs.
 - `npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json` - run worker loop with hardening inputs.
 - `npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json` - run autonomous loop with hardening inputs.
+- `npm run autonomous:run -- --selection-policy linucb --linucb-alpha 0.6` - run autonomous loop with contextual LinUCB exploration using learned execution-state features.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
 - `npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window epsilon-Thompson exploration controls.
 - `npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97` - run autonomous loop with discounted UCB adaptation to emphasize recent outcomes under drift.
