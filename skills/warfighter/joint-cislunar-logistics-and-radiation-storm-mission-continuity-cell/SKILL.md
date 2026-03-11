@@ -47,3 +47,14 @@ Primary products: cislunar continuity matrix, radiation-storm trigger ledger, lo
 - Separate observed telemetry, assessed confidence, and unknowns.
 - If timing integrity cannot be confirmed, mark recommendations `provisional`.
 - Escalate strategic-impact decisions through `../_shared/references/human-agent-command-escalation-matrix.md`.
+
+## Domain Packet Defaults
+
+- Default packet IDs: `DPL-SPACE-C2-LINK-001`, `DPL-C2-DISP-002`, `DPL-TIME-INTEGRITY-001`.
+- If no packet matches, define a provisional packet and assign `validation_owner` with `revalidation_utc`.
+
+## Operational Execution Hardening
+
+- Require `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on primary dependencies; otherwise elevate the alternate stack and mark outputs `provisional`.
+- End every deliverable with `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` tied to authority and protocol checks.

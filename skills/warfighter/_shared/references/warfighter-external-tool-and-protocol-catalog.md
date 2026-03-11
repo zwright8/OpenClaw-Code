@@ -7435,3 +7435,107 @@ external_binding:
 ### `ps-contested-cyber-legal-evidence-fusion-stack-v1`
 - Standards and protocols: STIX/TAXII + signed forensic custody manifests + USMTF legal-escalation summaries.
 - Transport profile: cyber legal-evidence bus with custody witness acknowledgments and coalition admissibility checkpoints.
+
+## Tool Suite Addendum T (2026-03-11, Near-Space Resilience, Polar Recovery, and Strategic Disruption)
+
+### `ts-near-space-haps-resilience-v1`
+- Use for: near-space HAPS relay continuity, mesh C2 survivability, and rapid comm-path reconstitution.
+- Primary tools: HAPS mission manager, tactical mesh topology monitors, SATCOM-HAPS bridge controller.
+- Cross-check tools: independent link-quality witness board and alternate spectrum pressure monitor.
+- Typical products: HAPS continuity matrix, relay failover plan, comm-path risk ledger.
+
+### `ts-undersea-surveillance-fusion-v1`
+- Use for: delayed/disconnected undersea telemetry fusion and confidence-weighted mission cueing.
+- Primary tools: undersea sensor ingest broker, ASW cue fusion board, subsea anomaly classifier.
+- Cross-check tools: independent timing-integrity witness and alternate undersea track adjudication board.
+- Typical products: delayed-fusion confidence ladder, cueing packet, spoof-risk adjudication note.
+
+### `ts-contested-port-cyber-fraud-fusion-v1`
+- Use for: fusion of port OT cyber incidents, customs-fraud indicators, and cargo-priority impacts.
+- Primary tools: port OT SOC dashboard, customs anomaly analytics, berth/cargo mission-priority planner.
+- Cross-check tools: independent custody audit ledger and alternate throughput integrity board.
+- Typical products: contested-port triage matrix, fraud disruption branch plan, cargo continuity brief.
+
+### `ts-autonomous-airdrop-drift-control-v1`
+- Use for: autonomous cargo release timing and drift governance under degraded navigation conditions.
+- Primary tools: airdrop mission planner, drift/error predictor, drop-zone recovery corridor tracker.
+- Cross-check tools: independent meteorological witness model and alternate release authority board.
+- Typical products: drop-governance worksheet, drift trigger matrix, recovery branch packet.
+
+### `ts-homeland-wildfire-airbase-continuity-v1`
+- Use for: wildfire/smoke effects integration with runway viability and sortie-regeneration governance.
+- Primary tools: smoke dispersion forecasting, runway hazard scoring, sortie-priority orchestration board.
+- Cross-check tools: independent air-quality witness feed and alternate runway viability monitor.
+- Typical products: smoke sortie protection ladder, runway risk brief, continuity branch order.
+
+### `ts-quantum-resistant-key-transition-v1`
+- Use for: battlefield cryptographic rollover to post-quantum-safe keying without mission interruption.
+- Primary tools: key lifecycle orchestration service, cross-domain key escrow monitor, crypto policy validator.
+- Cross-check tools: independent key-custody witness ledger and alternate handshake integrity board.
+- Typical products: key rollover sequence plan, crypto exposure log, coalition interoperability checklist.
+
+### `ts-water-bridging-fuel-crossing-v1`
+- Use for: synchronized wet-gap crossing and bulk-fuel transfer under fires and sabotage risk.
+- Primary tools: combat engineer crossing planner, fuel transfer telemetry board, maneuver throughput tracker.
+- Cross-check tools: independent structural-risk witness and alternate fuel-flow reconciliation board.
+- Typical products: crossing-fuel synchronization matrix, survivability branch timeline, corps throughput options.
+
+### `ts-polar-sar-medical-routing-v1`
+- Use for: denied polar search-and-rescue deconfliction and casualty routing assurance.
+- Primary tools: polar route optimizer, SAR deconfliction board, casualty movement coordinator.
+- Cross-check tools: independent weather/ice risk witness and alternate medevac routing board.
+- Typical products: polar SAR priority board, casualty route confidence map, coalition recovery packet.
+
+### `ts-sanctions-leakage-disruption-v1`
+- Use for: rail-maritime-financial sanctions leakage detection and disruption option design.
+- Primary tools: sanctions graph analytics, rail/maritime trade anomaly detectors, interdiction coordination board.
+- Cross-check tools: independent legal-admissibility witness and alternate market-disruption risk monitor.
+- Typical products: leakage topology map, disruption ladder, legal-risk escalation brief.
+
+### `ts-expeditionary-battery-fire-continuity-v1`
+- Use for: lithium battery thermal-runaway response with mission-load continuity in forward operations.
+- Primary tools: battery health telemetry monitors, thermal event suppression planner, critical-load continuity board.
+- Cross-check tools: independent safety witness logs and alternate generator fallback tracker.
+- Typical products: thermal event action matrix, power continuity sequence, safety restoration packet.
+
+## Protocol Stack Addendum T (2026-03-11, Near-Space Resilience, Polar Recovery, and Strategic Disruption)
+
+### `ps-near-space-haps-resilience-stack-v1`
+- Standards and protocols: CoT + USMTF + signed relay-state telemetry manifests.
+- Transport profile: HAPS-mesh continuity lane with relay handoff acknowledgments and degraded HF fallback.
+
+### `ps-undersea-disconnected-fusion-stack-v1`
+- Standards and protocols: API/JSON delayed telemetry envelopes + USMTF warning summaries + signed timing-integrity manifests.
+- Transport profile: disconnected undersea fusion bus with store-and-forward checkpoints and confidence rollback branches.
+
+### `ps-contested-port-cyber-fraud-fusion-stack-v1`
+- Standards and protocols: IEC 62443 event exchange + NIEM customs data exchange + signed custody manifests.
+- Transport profile: port OT/customs fusion lane with dual-authority acknowledgment gates and legal-evidence fallback.
+
+### `ps-autonomous-airdrop-drift-control-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + API/JSON drop-error telemetry manifests.
+- Transport profile: autonomous airdrop control channel with release authority witness checks and manual abort branch.
+
+### `ps-homeland-wildfire-airbase-continuity-stack-v1`
+- Standards and protocols: AIXM/FIXM + NIMS/ICS + USMTF sortie-priority directives.
+- Transport profile: smoke-response operations lane with runway-status acknowledgments and civil-authority coordination fallback.
+
+### `ps-quantum-resistant-key-transition-stack-v1`
+- Standards and protocols: KMIP-compatible key exchange + signed post-quantum key manifests + USMTF crypto-transition summaries.
+- Transport profile: cryptographic rollover bus with staged trust-anchor checkpoints and coalition exception branch handling.
+
+### `ps-water-bridging-fuel-crossing-stack-v1`
+- Standards and protocols: USMTF mobility directives + API/JSON fuel telemetry + signed engineer bridge-status manifests.
+- Transport profile: crossing-fuel synchronization lane with throughput acknowledgments and sabotage-triggered degrade branches.
+
+### `ps-polar-sar-medical-routing-stack-v1`
+- Standards and protocols: Cospas-Sarsat alert exchange + USMTF personnel recovery summaries + signed medevac routing manifests.
+- Transport profile: polar SAR coordination channel with sparse-link retries and multilingual coalition acknowledgment chain.
+
+### `ps-sanctions-leakage-disruption-stack-v1`
+- Standards and protocols: STIX/TAXII + API/JSON trade telemetry + signed legal-escalation manifests.
+- Transport profile: sanctions disruption lane with attribution-confidence checkpoints and policy-approval hold states.
+
+### `ps-expeditionary-battery-fire-continuity-stack-v1`
+- Standards and protocols: IEC 61850 DER telemetry + API/JSON battery incident events + USMTF continuity summaries.
+- Transport profile: battery emergency continuity bus with hazard-isolation acknowledgments and mission-load fallback sequencing.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Expeditionary Lithium Battery Fire Suppression and Energy Continuity Cell"
+  short_description: "Contain battery thermal events while preserving mission power"

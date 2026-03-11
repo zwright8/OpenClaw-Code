@@ -1,0 +1,3 @@
+interface:
+  display_name: "Homeland AI-Enabled Wildfire Smoke Airbase Sortie Protection Cell"
+  short_description: "Protect sortie generation during smoke and wildfire disruption"
