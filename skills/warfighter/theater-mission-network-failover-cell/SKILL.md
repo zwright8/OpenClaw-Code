@@ -200,3 +200,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-v1` + `protocol_stack_id=ps-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-stack-v1` when failover recommendations depend on inland waterway infrastructure continuity, lock/dam control recovery, and DSCA synchronization.
 - Add `tool_suite_id=ts-theater-battlefield-lithium-battery-safety-and-disposal-cell-v1` + `protocol_stack_id=ps-theater-battlefield-lithium-battery-safety-and-disposal-cell-stack-v1` when network failover branches are coupled to energy-storage hazard containment and safe disposal logistics.
 - Add `packet_id=DPL-LOCK-DAM-CYBER-PHYSICAL-CONTINUITY-001` and `packet_id=DPL-BATTLEFIELD-LITHIUM-BATTERY-SAFETY-001` for branches that materially change sustainment continuity, restoration sequence, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-stack-v1` when failover viability depends on coupled infrastructure anomalies.
+- Add `tool_suite_id=ts-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-v1` + `protocol_stack_id=ps-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-stack-v1` when continuity branches require life-safety convoy arbitration.
+- Add `packet_id=DPL-FEW-NEXUS-ANOMALY-001` and `packet_id=DPL-AUTO-EVAC-ARBITRATION-001` for branches that materially change restoration sequencing or commander risk acceptance.

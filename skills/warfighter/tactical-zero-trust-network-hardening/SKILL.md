@@ -179,3 +179,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-tactical-counter-disinformation-civil-signal-assurance-cell-v1` + `protocol_stack_id=ps-tactical-counter-disinformation-civil-signal-assurance-cell-stack-v1` when zero-trust branch recommendations must preserve trusted civil-warning release and command-channel narrative integrity under active information attack.
 - Add `tool_suite_id=ts-joint-iamd-multi-node-radar-deception-recovery-cell-v1` + `protocol_stack_id=ps-joint-iamd-multi-node-radar-deception-recovery-cell-stack-v1` when trust-boundary decisions depend on resilient radar-track confidence and rapid deception recovery.
 - Add `packet_id=DPL-TACTICAL-COUNTER-DISINFORMATION-SIGNAL-001` and `packet_id=DPL-IAMD-RADAR-DECEPTION-RECOVERY-001` for branches that alter network trust posture, release authority timing, or engagement-risk thresholds.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIII Addendum)
+
+- Add `tool_suite_id=ts-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-v1` + `protocol_stack_id=ps-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-stack-v1` when zero-trust recommendations depend on validating AI-authored orders against commander intent.
+- Add `tool_suite_id=ts-theater-resilient-battlefield-cloud-federation-admission-control-cell-v1` + `protocol_stack_id=ps-theater-resilient-battlefield-cloud-federation-admission-control-cell-stack-v1` when trust posture depends on cloud federation admission governance under contested operations.
+- Add `packet_id=DPL-AI-ORDER-INTEGRITY-001` and `packet_id=DPL-CLOUDFED-ADMISSION-001` for branches that alter trust boundaries, release authorities, or continuity assumptions.

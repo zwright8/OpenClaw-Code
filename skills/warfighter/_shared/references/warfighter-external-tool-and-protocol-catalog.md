@@ -8482,3 +8482,127 @@ external_binding:
 ### `ps-theater-battlefield-lithium-battery-safety-and-disposal-cell-stack-v1`
 - Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
 - Use for: thermal hazard alerts, disposal authority sequencing, and mission-energy continuity updates.
+
+## Tool Suite Addendum XII (2026-03-11, Kill-Web Disruption, Data Rights, and Autonomous Civil-Military Continuity)
+
+### `ts-joint-adversary-kill-web-disruption-assessment-cell-v1`
+- Use for: adversary kill-web dependency disruption optioning with escalation-aware branch controls.
+- Primary tools: kill-chain dependency graph engine, sensor-to-shooter latency correlator, disruption branch simulator.
+- Cross-check tools: independent intelligence confidence board and alternate escalation-risk tracker.
+- Typical products: disruption matrix, dependency fracture map, branch release packet.
+
+### `ts-theater-autonomous-decoy-economy-and-inventory-governance-cell-v1`
+- Use for: decoy allocation discipline, autonomous decoy inventory management, and survivability-aware replenishment.
+- Primary tools: decoy inventory ledger, threat-signature exposure analyzer, replenishment optimizer.
+- Cross-check tools: independent force-protection survivability witness and alternate logistics confidence monitor.
+- Typical products: decoy economy board, replenishment branch ladder, survivability risk packet.
+
+### `ts-coalition-mission-data-releasability-waiver-adjudication-cell-v1`
+- Use for: coalition mission-data releasability waivers with legal-policy traceability and tempo protection.
+- Primary tools: releasability rule engine, coalition waiver adjudication portal, legal observability ledger.
+- Cross-check tools: independent policy compliance monitor and alternate partner trust witness.
+- Typical products: waiver decision packet, access control matrix, release-risk ladder.
+
+### `ts-strategic-undersea-chokepoint-autonomous-barrier-orchestration-cell-v1`
+- Use for: autonomous undersea chokepoint barrier planning, legal-safety governance, and recovery sequencing.
+- Primary tools: undersea barrier planner, chokepoint traffic risk engine, autonomy safety interlock board.
+- Cross-check tools: independent maritime safety witness and alternate undersea telemetry confidence board.
+- Typical products: barrier posture map, denial branch matrix, recovery timeline packet.
+
+### `ts-joint-distributed-mission-brief-multilingual-assurance-cell-v1`
+- Use for: multilingual mission brief dissemination with command-intent fidelity controls.
+- Primary tools: translation fidelity checker, intent-drift comparator, distributed briefing workflow board.
+- Cross-check tools: independent linguist verification panel and alternate coalition intent-confidence tracker.
+- Typical products: fidelity scorecard, intent deviation report, release recommendations.
+
+### `ts-theater-resilient-battlefield-cloud-federation-admission-control-cell-v1`
+- Use for: battlefield cloud federation admission policy and workload trust zoning under contested disruption.
+- Primary tools: federation policy engine, workload attestation broker, integrity-aware placement optimizer.
+- Cross-check tools: independent model integrity monitor and alternate continuity failover board.
+- Typical products: admission policy ladder, workload routing plan, failover branch packet.
+
+### `ts-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-v1`
+- Use for: military-civil autonomous evacuation convoy arbitration with life-safety prioritization.
+- Primary tools: convoy deconfliction planner, route survivability optimizer, shelter/medical load balancer.
+- Cross-check tools: independent civil traffic witness and alternate life-safety threshold monitor.
+- Typical products: convoy arbitration matrix, route release board, DSCA tasking packet.
+
+### `ts-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-v1`
+- Use for: AI-generated order integrity checks, commander-intent drift detection, and release gating.
+- Primary tools: order authenticity verifier, intent-diff engine, command approval workflow gate.
+- Cross-check tools: independent synthetic-media forensics board and alternate command-chain witness.
+- Typical products: integrity confidence report, intent deviation ladder, release authority checklist.
+
+### `ts-coalition-denied-environment-digital-map-rights-and-provenance-cell-v1`
+- Use for: denied-environment map rights adjudication and geospatial provenance trust synchronization.
+- Primary tools: geospatial lineage ledger, map-rights policy adjudicator, denied-sync merge planner.
+- Cross-check tools: independent geodesy validation board and alternate provenance confidence tracker.
+- Typical products: map rights matrix, provenance risk packet, update release plan.
+
+### `ts-strategic-reserve-fuel-additive-adulteration-interdiction-cell-v1`
+- Use for: strategic reserve fuel additive adulteration detection, interdiction, and sustainment continuity.
+- Primary tools: fuel chemistry anomaly detector, custody-chain evidence tracker, interdiction branch planner.
+- Cross-check tools: independent lab-confidence witness and alternate sustainment-risk monitor.
+- Typical products: adulteration interdiction map, confidence ladder, sustainment mitigation packet.
+
+### `ts-expeditionary-high-latitude-battery-thermal-survivability-cell-v1`
+- Use for: high-latitude expeditionary battery thermal survivability planning and energy continuity controls.
+- Primary tools: thermal survivability modeler, battery degradation forecaster, cold-weather resupply planner.
+- Cross-check tools: independent safety threshold witness and alternate energy-demand confidence board.
+- Typical products: survivability matrix, sustainment branch ladder, mission-energy packet.
+
+### `ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-v1`
+- Use for: coalition adjudication of coupled fuel-energy-water anomalies and cascade-risk mitigation.
+- Primary tools: nexus anomaly correlator, coalition impact board, mitigation branch sequencer.
+- Cross-check tools: independent infrastructure integrity witness and alternate humanitarian-impact tracker.
+- Typical products: anomaly adjudication report, cascade trigger ladder, coalition tasking matrix.
+
+## Protocol Stack Addendum XII (2026-03-11, External Integration Profiles for Expansion Wave XIII)
+
+### `ps-joint-adversary-kill-web-disruption-assessment-cell-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `Link 16 J-series`, `API/JSON`.
+- Use for: kill-web dependency sharing, disruption options synchronization, and commander acknowledgment trails.
+
+### `ps-theater-autonomous-decoy-economy-and-inventory-governance-cell-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: decoy inventory exchange, threat-signature updates, and survivability branch release.
+
+### `ps-coalition-mission-data-releasability-waiver-adjudication-cell-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: waiver adjudication evidence, coalition policy synchronization, and releasability acknowledgments.
+
+### `ps-strategic-undersea-chokepoint-autonomous-barrier-orchestration-cell-stack-v1`
+- Protocols: `USMTF`, `OGC`, `STIX/TAXII`, `API/JSON`.
+- Use for: undersea barrier posture updates, chokepoint anomaly exchange, and safety-governed release control.
+
+### `ps-joint-distributed-mission-brief-multilingual-assurance-cell-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: multilingual brief distribution, intent fidelity metadata, and coalition acknowledgment consistency.
+
+### `ps-theater-resilient-battlefield-cloud-federation-admission-control-cell-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `OpenTelemetry`, `API/JSON`.
+- Use for: cloud federation trust telemetry, admission policy events, and degraded-mode cutover synchronization.
+
+### `ps-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: evacuation convoy arbitration updates, life-safety priorities, and DSCA command acknowledgment chains.
+
+### `ps-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `VMF`, `API/JSON`.
+- Use for: order authenticity evidence sharing, intent deviation events, and authority-gated release controls.
+
+### `ps-coalition-denied-environment-digital-map-rights-and-provenance-cell-stack-v1`
+- Protocols: `OGC WMS/WFS/WMTS`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: denied geospatial updates, rights metadata exchange, and provenance confidence synchronization.
+
+### `ps-strategic-reserve-fuel-additive-adulteration-interdiction-cell-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `EDI X12`, `API/JSON`.
+- Use for: fuel-quality anomaly indicators, interdiction evidence, and sustainment risk acknowledgments.
+
+### `ps-expeditionary-high-latitude-battery-thermal-survivability-cell-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `STIX/TAXII`, `API/JSON`.
+- Use for: battery thermal-risk telemetry, safety threshold alerts, and cold-weather sustainment branch control.
+
+### `ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: coalition nexus anomaly sharing, cascade-risk adjudication, and mitigation task synchronization.

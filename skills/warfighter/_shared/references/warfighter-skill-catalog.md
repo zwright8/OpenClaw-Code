@@ -1828,3 +1828,33 @@ Every skill output should include:
 - IAMD radar deception recovery + missile-warning false-track adjudication + electromagnetic fratricide prevention + dynamic targeting governance
 - Coalition sanctions-evasion interdiction + illicit finance disruption + maritime chokepoint inspection/quarantine + coalition legal evidence synchronization
 - Battlefield lithium battery safety/disposal + strategic battery thermal-runaway preemption + theater energy microgrid resilience + hazardous-material response corridors
+
+## New Expansion Wave (2026-03-11, Kill-Web Disruption, Data Rights, and Autonomous Civil-Military Continuity)
+
+- joint-adversary-kill-web-disruption-assessment-cell
+- theater-autonomous-decoy-economy-and-inventory-governance-cell
+- coalition-mission-data-releasability-waiver-adjudication-cell
+- strategic-undersea-chokepoint-autonomous-barrier-orchestration-cell
+- joint-distributed-mission-brief-multilingual-assurance-cell
+- theater-resilient-battlefield-cloud-federation-admission-control-cell
+- homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell
+- joint-ai-generated-order-integrity-and-commander-intent-deviation-cell
+- coalition-denied-environment-digital-map-rights-and-provenance-cell
+- strategic-reserve-fuel-additive-adulteration-interdiction-cell
+- expeditionary-high-latitude-battery-thermal-survivability-cell
+- coalition-fuel-energy-water-nexus-anomaly-adjudication-cell
+
+## Updated Pairings (2026-03-11, Kill-Web Disruption, Data Rights, and Autonomous Civil-Military Continuity)
+
+- Adversary kill-web disruption assessment + dynamic targeting governance + mission command risk framing + escalation-safe commander decision packets
+- Autonomous decoy economy governance + integrated air/missile defense survivability + emissions discipline + theater logistics allocation controls
+- Coalition releasability waiver adjudication + coalition legal interoperability + data contract assurance + mission tempo preservation under policy friction
+- Strategic undersea barrier orchestration + maritime chokepoint continuity + undersea sensor trust + legal/ROE acknowledgment chains
+- Distributed multilingual mission-brief assurance + coalition HF bridge language interoperability + command-intent validation + translation risk adjudication
+- Battlefield cloud federation admission control + theater cloud-denied AI inference + mission network failover + cyber trust posture governance
+- Military-civil autonomous evacuation arbitration + DSCA crisis coordination + civil priority-of-life routing + convoy deconfliction integrity
+- AI-generated order integrity and intent deviation + deepfake order denial + commander approval gates + release authority traceability
+- Denied-environment map rights/provenance + terrain-referenced navigation reversion + coalition data rights adjudication + fires safety confidence controls
+- Reserve fuel additive adulteration interdiction + expeditionary bulk fuel contamination response + strategic industrial continuity + anti-fraud custody evidence
+- High-latitude battery thermal survivability + arctic convoy sustainment + energy microgrid continuity + hazardous-material risk controls
+- Fuel-energy-water nexus anomaly adjudication + coalition grid mutual aid + civil infrastructure restoration sequencing + sustainment cascade-risk suppression

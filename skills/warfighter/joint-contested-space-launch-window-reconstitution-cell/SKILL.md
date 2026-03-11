@@ -47,3 +47,9 @@ Primary products for this skill: launch window recovery matrix, payload repriori
 - Separate facts, assessments, and unknowns.
 - Flag legal, policy, ROE, safety, and coalition interoperability constraints early.
 - If authority or data provenance is uncertain, downgrade to advisory-only and require human command approval.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-denied-environment-digital-map-rights-and-provenance-cell-v1` + `protocol_stack_id=ps-coalition-denied-environment-digital-map-rights-and-provenance-cell-stack-v1` when launch-window branches depend on trusted geospatial inputs and coalition rights constraints.
+- Add `tool_suite_id=ts-joint-distributed-mission-brief-multilingual-assurance-cell-v1` + `protocol_stack_id=ps-joint-distributed-mission-brief-multilingual-assurance-cell-stack-v1` when launch coordination requires multilingual command-intent fidelity.
+- Add `packet_id=DPL-MAP-PROVENANCE-001` and `packet_id=DPL-MISSION-BRIEF-MULTI-001` for branches that alter launch authorization confidence or coalition release conditions.
