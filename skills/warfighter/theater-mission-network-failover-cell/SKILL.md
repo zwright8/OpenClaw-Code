@@ -194,3 +194,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-homeland-defense-telecom-911-priority-restoration-cell-v1` + `protocol_stack_id=ps-homeland-defense-telecom-911-priority-restoration-cell-stack-v1` when failover planning depends on restored telecom/911 priority-service pathways.
 - Add `tool_suite_id=ts-coalition-cross-border-power-grid-load-shed-deconfliction-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-power-grid-load-shed-deconfliction-cell-stack-v1` when branch viability depends on cross-border power continuity and load-shed deconfliction.
 - Add `packet_id=DPL-THEATER_MISSION_NETWORK_FAILOVER_CELL-011` and `packet_id=DPL-THEATER_MISSION_NETWORK_FAILOVER_CELL-012` for branches that materially change mission-service availability assumptions.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XII Addendum)
+
+- Add `tool_suite_id=ts-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-v1` + `protocol_stack_id=ps-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-stack-v1` when failover recommendations depend on inland waterway infrastructure continuity, lock/dam control recovery, and DSCA synchronization.
+- Add `tool_suite_id=ts-theater-battlefield-lithium-battery-safety-and-disposal-cell-v1` + `protocol_stack_id=ps-theater-battlefield-lithium-battery-safety-and-disposal-cell-stack-v1` when network failover branches are coupled to energy-storage hazard containment and safe disposal logistics.
+- Add `packet_id=DPL-LOCK-DAM-CYBER-PHYSICAL-CONTINUITY-001` and `packet_id=DPL-BATTLEFIELD-LITHIUM-BATTERY-SAFETY-001` for branches that materially change sustainment continuity, restoration sequence, or commander risk acceptance.

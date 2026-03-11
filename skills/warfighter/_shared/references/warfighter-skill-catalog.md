@@ -1802,3 +1802,29 @@ Every skill output should include:
 - Tactical mission-order watermark/authenticity + information-integrity attribution + deepfake command denial + tactical C2 trust restoration
 - High-altitude nuclear-effects continuity + NC3 resilience + EMP consequence restoration + strategic command survivability
 - Strategic battery thermal-runaway preemption + operational energy resilience + logistics risk routing + base force-protection safety controls
+
+## New Expansion Wave (2026-03-11, Strategic Messaging Integrity, Border Screening, and Critical Continuity)
+
+- strategic-deterrence-signaling-and-messaging-integrity-cell
+- coalition-border-refugee-biometric-deconfliction-and-screening-cell
+- homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell
+- joint-orbital-servicing-inspection-and-counter-tamper-custody-cell
+- tactical-counter-disinformation-civil-signal-assurance-cell
+- theater-autonomous-munitions-storage-fire-response-cell
+- expeditionary-cold-chain-biologics-denied-corridor-cell
+- joint-integrated-air-missile-defense-multi-node-radar-deception-recovery-cell
+- coalition-cyber-sanctions-evasion-shipping-interdiction-cell
+- theater-battlefield-lithium-battery-safety-and-disposal-cell
+
+## Updated Pairings (2026-03-11, Strategic Messaging Integrity, Border Screening, and Critical Continuity)
+
+- Strategic deterrence signaling integrity + strategic competition gray-zone response + coalition warning translation + escalation governance
+- Coalition refugee biometric screening + coalition privacy-preserving biometrics federation + detainee operations law-of-war compliance + humanitarian corridor assurance
+- Homeland lock/dam continuity + civil-defense mass evacuation + DSCA crisis support + rail and inland waterway throughput resilience
+- Orbital servicing tamper custody + cislunar sensor custody and anomaly attribution + launch-window deconfliction + strategic warning continuity
+- Tactical counter-disinformation assurance + AI-enabled OPSEC leak detection + mission-order watermark authenticity + civil alert trust restoration
+- Autonomous munitions fire response + ammunition lot anomaly/quarantine + expeditionary robotic casualty collection + force-protection base defense
+- Denied-corridor biologics cold chain + expeditionary rare blood/plasma assurance + contested medevac prioritization + austere surgical support
+- IAMD radar deception recovery + missile-warning false-track adjudication + electromagnetic fratricide prevention + dynamic targeting governance
+- Coalition sanctions-evasion interdiction + illicit finance disruption + maritime chokepoint inspection/quarantine + coalition legal evidence synchronization
+- Battlefield lithium battery safety/disposal + strategic battery thermal-runaway preemption + theater energy microgrid resilience + hazardous-material response corridors

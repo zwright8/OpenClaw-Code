@@ -8378,3 +8378,107 @@ external_binding:
 ### `ps-strategic-battery-supply-chain-thermal-runaway-preemption-cell-stack-v1`
 - Protocols: `EDI X12`, `STIX/TAXII`, `USMTF`, `API/JSON`.
 - Use for: supplier and logistics risk exchange, thermal incident indicators, and mitigation tasking acknowledgments.
+
+## Tool Suite Addendum XI (2026-03-11, Strategic Signaling Integrity, Homeland Waterway Continuity, and Coalition Border Assurance)
+
+### `ts-strategic-deterrence-signaling-and-messaging-integrity-cell-v1`
+- Use for: strategic deterrence messaging integrity, escalation-safe release timing, and coalition narrative synchronization.
+- Primary tools: strategic signaling workflow board, narrative integrity verifier, release authority adjudication tracker.
+- Cross-check tools: independent public-attribution monitor and alternate escalation-risk confidence board.
+- Typical products: signaling branch matrix, release authority timeline, integrity confidence packet.
+
+### `ts-coalition-border-refugee-biometric-deconfliction-and-screening-cell-v1`
+- Use for: coalition refugee screening surge with biometric deconfliction, legal safeguards, and throughput control.
+- Primary tools: biometric matching services, coalition intake workflow manager, watchlist adjudication board.
+- Cross-check tools: independent humanitarian compliance witness and alternate identity-false-positive monitor.
+- Typical products: screening throughput plan, deconfliction risk ledger, legal-compliance packet.
+
+### `ts-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-v1`
+- Use for: military support to lock/dam cyber-physical disruption and inland waterway continuity restoration.
+- Primary tools: ICS incident board, hydraulic safety analyzer, waterway throughput sequencer.
+- Cross-check tools: independent infrastructure integrity witness and alternate flood-risk escalation monitor.
+- Typical products: continuity branch map, restoration priority list, DSCA support tasking packet.
+
+### `ts-joint-orbital-servicing-inspection-and-counter-tamper-custody-cell-v1`
+- Use for: orbital servicing coordination with tamper-evidence custody and mission assurance.
+- Primary tools: orbital servicing scheduler, telemetry custody ledger, tamper-forensics analyzer.
+- Cross-check tools: independent anomaly attribution monitor and alternate custody-integrity witness.
+- Typical products: servicing sequence order, tamper-custody evidence packet, anomaly response branch tree.
+
+### `ts-tactical-counter-disinformation-civil-signal-assurance-cell-v1`
+- Use for: tactical disinformation suppression and trusted civil-signal release in contested information spaces.
+- Primary tools: narrative anomaly detector, message authenticity verifier, civil-affairs trust dashboard.
+- Cross-check tools: independent multilingual verification board and alternate social-signal drift monitor.
+- Typical products: trusted message release package, disinformation risk map, civil-signal confidence scorecard.
+
+### `ts-theater-autonomous-munitions-storage-fire-response-cell-v1`
+- Use for: autonomous and crewed response governance for munitions storage fire/explosion risk.
+- Primary tools: fire behavior modeler, explosive safety zone planner, depot relocation sequencer.
+- Cross-check tools: independent blast-risk monitor and alternate suppression-system reliability witness.
+- Typical products: fire-response branch matrix, munitions isolation plan, continuity task board.
+
+### `ts-expeditionary-cold-chain-biologics-denied-corridor-cell-v1`
+- Use for: expeditionary biologics and blood-product cold-chain continuity through denied corridors.
+- Primary tools: cold-chain telemetry fusion board, med-log routing optimizer, biologics viability analyzer.
+- Cross-check tools: independent temperature-custody witness and alternate treatment-demand forecast monitor.
+- Typical products: viability confidence board, diversion plan, denied-corridor sustainment packet.
+
+### `ts-joint-iamd-multi-node-radar-deception-recovery-cell-v1`
+- Use for: IAMD track trust recovery after coordinated radar deception across multiple nodes.
+- Primary tools: radar integrity analytics, track-correlation adjudication board, engagement discipline simulator.
+- Cross-check tools: independent warning-fidelity witness and alternate fratricide-risk monitor.
+- Typical products: deception recovery playbook, track-trust ladder, engagement release decision packet.
+
+### `ts-coalition-cyber-sanctions-evasion-shipping-interdiction-cell-v1`
+- Use for: coalition interdiction of cyber-enabled sanctions-evasion shipping networks with legal-evidence assurance.
+- Primary tools: AIS pattern analytics, cyber-finance tracing service, sanctions compliance adjudication workflow.
+- Cross-check tools: independent legal sufficiency witness and alternate coalition release-authority monitor.
+- Typical products: interdiction options matrix, evidence sufficiency packet, escalation risk board.
+
+### `ts-theater-battlefield-lithium-battery-safety-and-disposal-cell-v1`
+- Use for: battlefield lithium battery hazard containment, disposal routing, and energy continuity assurance.
+- Primary tools: thermal anomaly monitor, hazmat disposal workflow board, substitution logistics planner.
+- Cross-check tools: independent safety threshold witness and alternate environmental compliance monitor.
+- Typical products: hazard risk map, disposal/recovery sequence, mission-energy continuity packet.
+
+## Protocol Stack Addendum XI (2026-03-11, External Integration Profiles for Signaling Integrity and Continuity Operations)
+
+### `ps-strategic-deterrence-signaling-and-messaging-integrity-cell-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: strategic signaling packet exchange, narrative integrity evidence, and escalation-safe release acknowledgments.
+
+### `ps-coalition-border-refugee-biometric-deconfliction-and-screening-cell-stack-v1`
+- Protocols: `NIEM`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
+- Use for: coalition refugee screening exchange, biometric confidence updates, and legal-observability synchronization.
+
+### `ps-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: lock/dam incident status exchange, restoration coordination, and DSCA authority-ack chains.
+
+### `ps-joint-orbital-servicing-inspection-and-counter-tamper-custody-cell-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: orbital servicing timelines, tamper-evidence custody transport, and anomaly response control.
+
+### `ps-tactical-counter-disinformation-civil-signal-assurance-cell-stack-v1`
+- Protocols: `STIX/TAXII`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: disinformation indicator transport, civil warning authenticity exchange, and trust-restoration coordination.
+
+### `ps-theater-autonomous-munitions-storage-fire-response-cell-stack-v1`
+- Protocols: `USMTF`, `STANAG-aligned CBRN exchange`, `NIMS/ICS`, `API/JSON`.
+- Use for: explosive fire incident reporting, autonomous suppression governance, and authority-gated response sequencing.
+
+### `ps-expeditionary-cold-chain-biologics-denied-corridor-cell-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: biologics viability telemetry, denied-corridor med-log routing, and continuity release acknowledgments.
+
+### `ps-joint-iamd-multi-node-radar-deception-recovery-cell-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: radar-track confidence exchange, deception recovery branch controls, and engagement-discipline acknowledgments.
+
+### `ps-coalition-cyber-sanctions-evasion-shipping-interdiction-cell-stack-v1`
+- Protocols: `AIS/NMEA`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: sanctions-evasion indicator sharing, interdiction coordination, and legal-evidence custody signaling.
+
+### `ps-theater-battlefield-lithium-battery-safety-and-disposal-cell-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: thermal hazard alerts, disposal authority sequencing, and mission-energy continuity updates.

@@ -173,3 +173,9 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Prioritize `tool_suite_id=ts-joint-commercial-space-ssa-data-fusion-and-tasking-cell-v1` + `protocol_stack_id=ps-joint-commercial-space-ssa-data-fusion-and-tasking-cell-stack-v1` when conjunction risk and launch-window deconfliction require blended commercial-military SSA confidence.
 - Add packet bindings `packet_id=DPL-JOINT_SPACE_LAUNCH_WINDOW_CONFLICT_DECONFLICTION_CELL-009` (primary) and `packet_id=DPL-JOINT_SPACE_LAUNCH_WINDOW_CONFLICT_DECONFLICTION_CELL-010` (degraded), with explicit warning-confidence thresholds.
 - Require `validation_owner`, `revalidation_utc`, and `ack_chain_status` before releasing any time-critical deconfliction recommendation to operational authorities.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XII Addendum)
+
+- Add `tool_suite_id=ts-joint-orbital-servicing-inspection-and-counter-tamper-custody-cell-v1` + `protocol_stack_id=ps-joint-orbital-servicing-inspection-and-counter-tamper-custody-cell-stack-v1` when launch-window recommendations depend on servicing timeline integrity and anti-tamper custody evidence.
+- Add `tool_suite_id=ts-strategic-deterrence-signaling-and-messaging-integrity-cell-v1` + `protocol_stack_id=ps-strategic-deterrence-signaling-and-messaging-integrity-cell-stack-v1` when launch conflict deconfliction alters strategic signaling options, warning posture, or escalation messaging.
+- Add `packet_id=DPL-ORBITAL-SERVICING-TAMPER-CUSTODY-001` and `packet_id=DPL-DETERRENCE-MESSAGING-INTEGRITY-001` for branches that alter launch timing authority, warning confidence, or strategic communication release controls.

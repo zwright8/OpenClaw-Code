@@ -88,3 +88,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added a 12-skill expansion wave focused on Arctic subsea sensor reseed/deception continuity, air-defense emitter decoy logistics, coalition maritime quarantine evidence assurance, rare-earth processing cyber-physical recovery, expeditionary AMR outbreak containment, homeland telecom/911 priority restoration, space-based IR warning false-track adjudication, denied-terrain heavy-lift autonomy safety, coalition cross-border load-shed deconfliction, tactical mission-order watermark authenticity, high-altitude nuclear-effects continuity, and strategic battery thermal-runaway preemption.
 - Extended shared references with Tool Suite Addendum X and Protocol Stack Addendum X to provide explicit external tool/protocol defaults for all new skills.
 - Improved existing mission-command, theater network failover, joint targeting governance, and coalition civilian harm mitigation skills with Expansion Wave XI addendum bindings.
+
+## Run Update (2026-03-11T20:30:00Z)
+
+- Added a 10-skill expansion wave spanning strategic deterrence message integrity, coalition refugee biometric deconfliction, homeland lock/dam cyber-physical continuity, orbital servicing counter-tamper custody, tactical counter-disinformation signal assurance, autonomous munitions fire response, denied-corridor biologics cold-chain continuity, IAMD multi-node radar deception recovery, coalition cyber sanctions-evasion interdiction, and battlefield lithium battery safety/disposal.
+- Extended shared references with Tool Suite Addendum XI, Protocol Stack Addendum XI, and Packet Addendum V to provide explicit external tool and protocol bindings for all new skills.
+- Improved existing zero-trust hardening, mission network failover, space launch deconfliction, and base defense skills with Expansion Wave XII override bindings for faster authority-gated branch execution.
