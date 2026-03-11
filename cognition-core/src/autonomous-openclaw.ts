@@ -81,6 +81,8 @@ const DEFAULT_EXP3_IX_ETA = 1;
 const MAX_EXP3_IX_ETA = 10;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
+const DEFAULT_UCB_V_EXPLORATION = 1;
+const MAX_UCB_V_EXPLORATION = 5;
 const LINUCB_FEATURE_NAMES = [
     'bias',
     'successRate',
@@ -101,11 +103,13 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'kl_ucb',
     'bayes_ucb',
     'sw_ucb',
+    'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'd_ucb',
+    'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
     'd_bayes_ucb',
@@ -139,6 +143,7 @@ const EXP3_IX_POLICY_MODES = new Set([
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
+    'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
     'sw_kl_ucb',
@@ -147,6 +152,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
+    'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
     'd_bayes_ucb',
@@ -426,6 +432,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_MOSS_ALPHA,
             Number.EPSILON,
             MAX_MOSS_ALPHA
+        ),
+        ucbVExploration: clamp(
+            Number.isFinite(Number(value.ucbVExploration))
+                ? Number(value.ucbVExploration)
+                : DEFAULT_UCB_V_EXPLORATION,
+            Number.EPSILON,
+            MAX_UCB_V_EXPLORATION
         )
     };
 }
@@ -1340,12 +1353,14 @@ function computeUcbVarianceScore(stat, totalAttempts, currentWave, adaptiveScore
         return Number.POSITIVE_INFINITY;
     }
 
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const empiricalMean = normalized.successes / normalized.attempts;
     const empiricalVariance = clamp(empiricalMean * (1 - empiricalMean), 0, 0.25);
     const horizon = Math.max(2, totalAttempts + 1);
     const logTerm = Math.log(horizon);
-    const exploration = Math.sqrt((2 * empiricalVariance * logTerm) / normalized.attempts)
-        + ((3 * logTerm) / normalized.attempts);
+    const exploration = Math.sqrt(
+        (2 * policy.ucbVExploration * empiricalVariance * logTerm) / normalized.attempts
+    ) + ((3 * policy.ucbVExploration * logTerm) / normalized.attempts);
     const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
 
     return empiricalMean
@@ -1775,7 +1790,11 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
-        } else if (scoringPolicy.mode === 'ucb_v') {
+        } else if (
+            scoringPolicy.mode === 'ucb_v'
+            || scoringPolicy.mode === 'sw_ucb_v'
+            || scoringPolicy.mode === 'd_ucb_v'
+        ) {
             score = computeUcbVarianceScore(
                 stat,
                 totalAttempts,

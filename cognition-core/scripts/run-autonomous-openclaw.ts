@@ -46,6 +46,7 @@ Options:
   --exp3-ix-gamma <n>          Implicit exploration regularizer for exp3_ix* (0-0.5, default: 0.07)
   --exp3-ix-eta <n>            Exponential weight scale for exp3_ix* (>0 to 10, default: 1)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
+  --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
   --cd-min-samples <n>         Min outcomes before change detection in cd_ucb (default: 8)
   --cd-threshold <n>           Drift threshold for cd_ucb Page-Hinkley detector (default: 1.5)
@@ -156,6 +157,7 @@ function parseArgs(argv) {
             exp3IxGamma: 0.07,
             exp3IxEta: 1,
             mossAlpha: 1,
+            ucbVExploration: 1,
             slidingWindowSize: 12,
             changeDetectionMinSamples: 8,
             changeDetectionThreshold: 1.5,
@@ -337,6 +339,11 @@ function parseArgs(argv) {
         }
         if (token === '--moss-alpha') {
             options.selectionPolicyConfig.mossAlpha = parseFloatInRange(value, '--moss-alpha', Number.EPSILON, 10);
+            i++;
+            continue;
+        }
+        if (token === '--ucb-v-exploration') {
+            options.selectionPolicyConfig.ucbVExploration = parseFloatInRange(value, '--ucb-v-exploration', Number.EPSILON, 5);
             i++;
             continue;
         }

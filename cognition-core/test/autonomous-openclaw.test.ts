@@ -479,6 +479,126 @@ test('buildAutonomousBatchPlan supports ucb_v variance-aware exploration policy'
     assert.equal(plan.selection.policy.skills, 'ucb_v');
 });
 
+test('buildAutonomousBatchPlan supports sliding-window ucb_v drift-aware ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 193, code: 'SK-00193', title: 'Skill 193' },
+            { id: 194, code: 'SK-00194', title: 'Skill 194' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 18,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '193': {
+                    attempts: 20,
+                    successes: 15,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 18,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' }
+                    ]
+                },
+                '194': {
+                    attempts: 20,
+                    successes: 9,
+                    failures: 11,
+                    consecutiveFailures: 0,
+                    lastWave: 18,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 19,
+        selectionPolicyConfig: {
+            mode: 'sw_ucb_v',
+            slidingWindowSize: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [194]);
+    assert.equal(plan.selection.policy.skills, 'sw_ucb_v');
+});
+
+test('buildAutonomousBatchPlan supports discounted ucb_v recency adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 195, code: 'SK-00195', title: 'Skill 195' },
+            { id: 196, code: 'SK-00196', title: 'Skill 196' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 19,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '195': {
+                    attempts: 20,
+                    successes: 15,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 19,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' }
+                    ]
+                },
+                '196': {
+                    attempts: 20,
+                    successes: 9,
+                    failures: 11,
+                    consecutiveFailures: 0,
+                    lastWave: 19,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 20,
+        selectionPolicyConfig: {
+            mode: 'd_ucb_v',
+            discountFactor: 0.7
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [196]);
+    assert.equal(plan.selection.policy.skills, 'd_ucb_v');
+});
+
 test('buildAutonomousBatchPlan supports Bayes-UCB policy for optimistic posterior ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
