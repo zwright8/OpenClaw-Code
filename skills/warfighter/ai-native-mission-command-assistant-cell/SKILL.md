@@ -163,3 +163,9 @@ Primary products for this skill: commander intent graph, decision-advantage dash
 - Prioritize `tool_suite_id=ts-joint-hypersonic-debris-forecast-and-civil-warning-integration-cell-v1` + `protocol_stack_id=ps-joint-hypersonic-debris-forecast-and-civil-warning-integration-cell-stack-v1` for commander-facing warning synchronization products that merge military and civil-defense timelines.
 - Add packet bindings `packet_id=DPL-AI_NATIVE_MISSION_COMMAND_ASSISTANT_CELL-009` (primary) and `packet_id=DPL-AI_NATIVE_MISSION_COMMAND_ASSISTANT_CELL-010` (degraded), with explicit `decision_window_minutes` and `ack_chain_status` fields.
 - Require `validation_owner` + `revalidation_utc` before recommending any commander action that changes force posture under uncertain warning confidence.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XI Addendum)
+
+- Prioritize `tool_suite_id=ts-tactical-mission-order-watermark-and-authenticity-cell-v1` + `protocol_stack_id=ps-tactical-mission-order-watermark-and-authenticity-cell-stack-v1` when mission orders are at elevated spoof/synthetic-injection risk.
+- Prioritize `tool_suite_id=ts-joint-space-based-ir-missile-warning-false-track-adjudication-cell-v1` + `protocol_stack_id=ps-joint-space-based-ir-missile-warning-false-track-adjudication-cell-stack-v1` when strategic warning confidence materially changes commander branch selection.
+- Add `packet_id=DPL-AI_NATIVE_MISSION_COMMAND_ASSISTANT_CELL-011` and `packet_id=DPL-AI_NATIVE_MISSION_COMMAND_ASSISTANT_CELL-012` for branches that alter force posture under contested information integrity.

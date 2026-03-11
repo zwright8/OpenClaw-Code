@@ -167,3 +167,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XI Addendum)
+
+- Prioritize `tool_suite_id=ts-theater-air-defense-emitter-decoy-logistics-cell-v1` + `protocol_stack_id=ps-theater-air-defense-emitter-decoy-logistics-cell-stack-v1` when targeting timelines require synchronized emitter/decoy repositioning and survivability tradeoffs.
+- Prioritize `tool_suite_id=ts-joint-space-based-ir-missile-warning-false-track-adjudication-cell-v1` + `protocol_stack_id=ps-joint-space-based-ir-missile-warning-false-track-adjudication-cell-stack-v1` when warning-track confidence may alter target validation or escalation thresholds.
+- Add `packet_id=DPL-JOINT_TARGETING_STANDARDS_AND_CDE_GOVERNANCE_CELL-005` and `packet_id=DPL-JOINT_TARGETING_STANDARDS_AND_CDE_GOVERNANCE_CELL-006` for high-consequence release recommendations.

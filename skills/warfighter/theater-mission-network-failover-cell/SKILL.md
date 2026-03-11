@@ -188,3 +188,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-theater-em-battle-damage-repair-priority-v1` + `protocol_stack_id=ps-theater-em-battle-damage-repair-priority-stack-v1` when failover planning must sequence electromagnetic mission-system repairs against C2 and fires continuity timelines.
 - Add `tool_suite_id=ts-homeland-dam-levee-defense-support-v1` + `protocol_stack_id=ps-homeland-dam-levee-defense-support-stack-v1` when mission-network continuity depends on DSCA infrastructure defense support and flood-driven power/transport disruptions.
 - Add `packet_id=DPL-EM-BDR-PRIORITY-001` and `packet_id=DPL-DAM-LEVEE-DEFENSE-001` for branches that materially change transport survivability, fallback topology, or restoration sequencing.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XI Addendum)
+
+- Add `tool_suite_id=ts-homeland-defense-telecom-911-priority-restoration-cell-v1` + `protocol_stack_id=ps-homeland-defense-telecom-911-priority-restoration-cell-stack-v1` when failover planning depends on restored telecom/911 priority-service pathways.
+- Add `tool_suite_id=ts-coalition-cross-border-power-grid-load-shed-deconfliction-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-power-grid-load-shed-deconfliction-cell-stack-v1` when branch viability depends on cross-border power continuity and load-shed deconfliction.
+- Add `packet_id=DPL-THEATER_MISSION_NETWORK_FAILOVER_CELL-011` and `packet_id=DPL-THEATER_MISSION_NETWORK_FAILOVER_CELL-012` for branches that materially change mission-service availability assumptions.

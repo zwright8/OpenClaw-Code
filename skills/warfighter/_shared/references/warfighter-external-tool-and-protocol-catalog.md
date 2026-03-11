@@ -8254,3 +8254,127 @@ external_binding:
 ### `ps-strategic-food-fertilizer-shock-military-support-prioritization-cell-stack-v1`
 - Protocols: `NIMS/ICS`, `USMTF`, `EDI X12`, `API/JSON`.
 - Use for: supply shock status exchange, support-priority coordination, and stabilization trigger signaling.
+
+## Tool Suite Addendum X (2026-03-11, Arctic Warning Integrity, Strategic Supply Recovery, and Domestic Continuity Synchronization)
+
+### `ts-joint-arctic-subsea-sensor-reseed-and-deception-cell-v1`
+- Use for: Arctic subsea sensor reseeding, decoy placement, and warning continuity under contested maritime ISR.
+- Primary tools: subsea sensor custody planner, acoustic propagation optimizer, deception-pattern orchestrator.
+- Cross-check tools: independent track-confidence monitor and alternate under-ice route-risk board.
+- Typical products: reseed sequence matrix, deception release ladder, warning continuity branch chart.
+
+### `ts-theater-air-defense-emitter-decoy-logistics-cell-v1`
+- Use for: air-defense emitter survivability and decoy logistics during high-tempo ISR/fires pressure.
+- Primary tools: emitter status fusion board, decoy allocation optimizer, contested-mobility scheduler.
+- Cross-check tools: independent kill-chain exposure monitor and alternate inventory sufficiency witness.
+- Typical products: emitter-decoy pairing matrix, relocation timeline, survivability risk register.
+
+### `ts-coalition-humanitarian-maritime-quarantine-evidence-assurance-cell-v1`
+- Use for: coalition maritime quarantine enforcement with humanitarian throughput and legal evidence assurance.
+- Primary tools: maritime quarantine compliance dashboard, humanitarian cargo prioritizer, custody-evidence ledger.
+- Cross-check tools: independent vessel identity verifier and alternate legal sufficiency adjudication board.
+- Typical products: quarantine enforcement packet, throughput-protection matrix, evidence audit log.
+
+### `ts-strategic-rare-earth-processing-cyber-physical-recovery-cell-v1`
+- Use for: restoring rare-earth processing throughput after cyber-physical disruption affecting defense supply chains.
+- Primary tools: industrial process restoration planner, ICS incident response board, strategic output recovery tracker.
+- Cross-check tools: independent contamination/tamper witness and alternate supplier recovery confidence monitor.
+- Typical products: phased plant restart plan, output restoration ladder, critical dependency risk map.
+
+### `ts-expeditionary-antimicrobial-resistance-outbreak-containment-cell-v1`
+- Use for: expeditionary AMR outbreak detection, containment, and treatment-network continuity.
+- Primary tools: force-health anomaly detector, lab results fusion queue, isolation-evac prioritization board.
+- Cross-check tools: independent outbreak confidence witness and alternate treatment capacity monitor.
+- Typical products: AMR containment branch plan, force-health risk ladder, medevac isolation matrix.
+
+### `ts-homeland-defense-telecom-911-priority-restoration-cell-v1`
+- Use for: military support to telecom/911 priority restoration during homeland attacks and cascading failures.
+- Primary tools: telecom outage fusion board, emergency dispatch status monitor, priority-service restoration scheduler.
+- Cross-check tools: independent call-routing integrity witness and alternate utility dependency mirror.
+- Typical products: priority restoration sequence, DSCA telecom support matrix, continuity exception ledger.
+
+### `ts-joint-space-based-ir-missile-warning-false-track-adjudication-cell-v1`
+- Use for: false-track adjudication in space-based IR warning to maintain strategic response discipline.
+- Primary tools: missile warning track-quality analyzer, multi-sensor correlation board, warning confidence adjudicator.
+- Cross-check tools: independent track-fidelity witness and alternate escalation-threshold monitor.
+- Typical products: false-track confidence ledger, warning reliability brief, escalation guardrail matrix.
+
+### `ts-theater-denied-terrain-heavy-lift-autonomy-safety-cell-v1`
+- Use for: authority-gated safety management of autonomous heavy-lift operations in denied terrain.
+- Primary tools: autonomy safety-case manager, heavy-lift route risk solver, load-certificate validation service.
+- Cross-check tools: independent collision/exposure monitor and alternate human-override readiness board.
+- Typical products: denied-terrain lift safety packet, branch trigger map, authority release checklist.
+
+### `ts-coalition-cross-border-power-grid-load-shed-deconfliction-cell-v1`
+- Use for: coalition cross-border load-shed deconfliction aligned to military mission-critical power priorities.
+- Primary tools: interconnection balancing dashboard, mission-power dependency mapper, coalition adjudication workflow.
+- Cross-check tools: independent frequency-stability witness and alternate partner-compliance tracker.
+- Typical products: load-shed deconfliction board, mission-priority power matrix, escalation timeline.
+
+### `ts-tactical-mission-order-watermark-and-authenticity-cell-v1`
+- Use for: tactical mission-order authenticity assurance with watermarking and spoof denial under contested information.
+- Primary tools: mission-order signing gateway, watermark forensic verifier, acknowledgment-chain ledger.
+- Cross-check tools: independent authenticity confidence monitor and alternate command-trust scoreboard.
+- Typical products: authenticity scorecard, spoof-denial execution drill, trust restoration packet.
+
+### `ts-joint-high-altitude-nuclear-effects-continuity-cell-v1`
+- Use for: mission continuity planning under high-altitude nuclear effects and cascading system degradation.
+- Primary tools: high-altitude effects modeler, NC3 dependency graph board, restoration sequencing planner.
+- Cross-check tools: independent degradation witness and alternate continuity posture monitor.
+- Typical products: continuity branch matrix, dependency-loss map, phased reconstitution order.
+
+### `ts-strategic-battery-supply-chain-thermal-runaway-preemption-cell-v1`
+- Use for: strategic battery thermal-runaway preemption across defense logistics and storage ecosystems.
+- Primary tools: battery telemetry anomaly analytics, supplier provenance ledger, thermal mitigation orchestrator.
+- Cross-check tools: independent safety threshold witness and alternate route/substitution risk board.
+- Typical products: thermal-risk prioritization matrix, preemption tasking order, safety compliance packet.
+
+## Protocol Stack Addendum X (2026-03-11, External Integration Profiles for Recovery-Speed Assurance)
+
+### `ps-joint-arctic-subsea-sensor-reseed-and-deception-cell-stack-v1`
+- Protocols: `USMTF`, `OGC WMS/WFS/WMTS`, `AIS/NMEA`, `API/JSON`.
+- Use for: subsea reseed orders, maritime warning overlays, and deception release acknowledgments.
+
+### `ps-theater-air-defense-emitter-decoy-logistics-cell-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: emitter/decoy posture updates, movement deconfliction, and survivability acknowledgment chains.
+
+### `ps-coalition-humanitarian-maritime-quarantine-evidence-assurance-cell-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `AIS/NMEA`, `API/JSON`.
+- Use for: quarantine status exchange, humanitarian throughput coordination, and evidence custody transport.
+
+### `ps-strategic-rare-earth-processing-cyber-physical-recovery-cell-stack-v1`
+- Protocols: `STIX/TAXII`, `EDI X12`, `USMTF`, `API/JSON`.
+- Use for: industrial incident indicators, supplier/distribution synchronization, and restart authority acknowledgments.
+
+### `ps-expeditionary-antimicrobial-resistance-outbreak-containment-cell-stack-v1`
+- Protocols: `HL7/FHIR`, `EDXL`, `USMTF`, `API/JSON`.
+- Use for: outbreak telemetry, force-health alerts, and isolation/evacuation continuity coordination.
+
+### `ps-homeland-defense-telecom-911-priority-restoration-cell-stack-v1`
+- Protocols: `NIMS/ICS`, `CAP/EDXL`, `USMTF`, `API/JSON`.
+- Use for: emergency dispatch coordination, military support requests, and telecom restoration branch execution.
+
+### `ps-joint-space-based-ir-missile-warning-false-track-adjudication-cell-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: warning track-quality exchange, attribution confidence control, and strategic acknowledgment discipline.
+
+### `ps-theater-denied-terrain-heavy-lift-autonomy-safety-cell-stack-v1`
+- Protocols: `VMF`, `CoT`, `USMTF`, `API/JSON`.
+- Use for: autonomous heavy-lift safety telemetry, denied-route authority checkpoints, and override acknowledgments.
+
+### `ps-coalition-cross-border-power-grid-load-shed-deconfliction-cell-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `IEC CIM`, `USMTF`, `API/JSON`.
+- Use for: coalition load-shed coordination, mission-power priority exchange, and escalation-safe adjudication.
+
+### `ps-tactical-mission-order-watermark-and-authenticity-cell-stack-v1`
+- Protocols: `VMF`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: mission-order authenticity metadata, spoof alerts, and command acknowledgment verification.
+
+### `ps-joint-high-altitude-nuclear-effects-continuity-cell-stack-v1`
+- Protocols: `USMTF`, `STANAG-aligned CBRN exchange`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: high-altitude effect reports, mission dependency degradation exchange, and continuity branch synchronization.
+
+### `ps-strategic-battery-supply-chain-thermal-runaway-preemption-cell-stack-v1`
+- Protocols: `EDI X12`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: supplier and logistics risk exchange, thermal incident indicators, and mitigation tasking acknowledgments.

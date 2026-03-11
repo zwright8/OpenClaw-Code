@@ -54,3 +54,9 @@ Primary products for this skill: civilian harm risk overlay, post-strike harm ve
 - Flag legal, ROE, LOAC, policy, and coalition caveat constraints before recommending action.
 - Do not fabricate classified sources, authorities, or approvals.
 - If data trust or authority is below threshold, downgrade to advisory-only and request human command decision.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XI Addendum)
+
+- Prioritize `tool_suite_id=ts-coalition-humanitarian-maritime-quarantine-evidence-assurance-cell-v1` + `protocol_stack_id=ps-coalition-humanitarian-maritime-quarantine-evidence-assurance-cell-stack-v1` when civilian harm analysis intersects humanitarian maritime quarantine operations.
+- Prioritize `tool_suite_id=ts-tactical-mission-order-watermark-and-authenticity-cell-v1` + `protocol_stack_id=ps-tactical-mission-order-watermark-and-authenticity-cell-stack-v1` when battle-damage claims require robust order-authenticity validation before attribution or release.
+- Add `packet_id=DPL-COALITION_CIVILIAN_HARM_MITIGATION_BATTLE_DAMAGE_CELL-002` and `packet_id=DPL-COALITION_CIVILIAN_HARM_MITIGATION_BATTLE_DAMAGE_CELL-003` for evidence-sensitive recommendations.

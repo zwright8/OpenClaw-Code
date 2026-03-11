@@ -1772,3 +1772,33 @@ Every skill output should include:
 - JTAC deepfake voice command denial + dynamic targeting governance + fires deconfliction + information integrity attribution
 - Commercial-space SSA fusion and tasking + space-domain awareness and SATCOM defense + launch-window deconfliction + strategic warning continuity
 - Food/fertilizer shock military support prioritization + strategic supply-shock mitigation + civil support crisis management + reserve mobilization sustainment
+
+## New Expansion Wave (2026-03-11, Arctic Sensor Integrity, Infrastructure Recovery, and Authenticity Assurance)
+
+- joint-arctic-subsea-sensor-reseed-and-deception-cell
+- theater-air-defense-emitter-decoy-logistics-cell
+- coalition-humanitarian-maritime-quarantine-evidence-assurance-cell
+- strategic-rare-earth-processing-cyber-physical-recovery-cell
+- expeditionary-antimicrobial-resistance-outbreak-containment-cell
+- homeland-defense-telecom-911-priority-restoration-cell
+- joint-space-based-ir-missile-warning-false-track-adjudication-cell
+- theater-denied-terrain-heavy-lift-autonomy-safety-cell
+- coalition-cross-border-power-grid-load-shed-deconfliction-cell
+- tactical-mission-order-watermark-and-authenticity-cell
+- joint-high-altitude-nuclear-effects-continuity-cell
+- strategic-battery-supply-chain-thermal-runaway-preemption-cell
+
+## Updated Pairings (2026-03-11, Arctic Sensor Integrity, Infrastructure Recovery, and Authenticity Assurance)
+
+- Arctic subsea sensor reseed/deception + undersea surveillance fusion + maritime warning continuity + deception-signature governance
+- Air-defense emitter/decoy logistics + integrated air and missile defense resilience + movement control + survivability scoring
+- Coalition humanitarian maritime quarantine evidence assurance + maritime interdiction governance + coalition legal interoperability + humanitarian throughput continuity
+- Rare-earth processing cyber-physical recovery + strategic industrial mobilization readiness + critical mineral security + strategic supply-shock mitigation
+- Expeditionary AMR outbreak containment + force-health protection + casualty regulation + coalition medical isolation coordination
+- Homeland telecom/911 priority restoration + DSCA civil support + homeland infrastructure defense + mission command continuity
+- Space-based IR false-track adjudication + strategic warning discipline + space-domain awareness + escalation control governance
+- Denied-terrain heavy-lift autonomy safety + autonomous convoy governance + engineer mobility support + human-agent escalation controls
+- Cross-border power grid load-shed deconfliction + coalition host-nation grid restoration + mission-energy prioritization + civil stability assurance
+- Tactical mission-order watermark/authenticity + information-integrity attribution + deepfake command denial + tactical C2 trust restoration
+- High-altitude nuclear-effects continuity + NC3 resilience + EMP consequence restoration + strategic command survivability
+- Strategic battery thermal-runaway preemption + operational energy resilience + logistics risk routing + base force-protection safety controls
