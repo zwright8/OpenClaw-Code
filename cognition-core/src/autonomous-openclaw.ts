@@ -50,6 +50,16 @@ const DEFAULT_CD_DRIFT_THRESHOLD = 1.5;
 const MAX_CD_DRIFT_THRESHOLD = 10;
 const DEFAULT_CD_MEAN_DELTA = 0.02;
 const MAX_CD_MEAN_DELTA = 0.5;
+const DEFAULT_CORRAL_GAMMA = 0.12;
+const MAX_CORRAL_GAMMA = 0.8;
+const DEFAULT_CORRAL_ETA = 0.8;
+const MAX_CORRAL_ETA = 5;
+const CORRAL_BASE_POLICIES = [
+    'ucb',
+    'epsilon_ts',
+    'kl_ucb',
+    'cd_ucb'
+];
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -179,7 +189,8 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
         || mode === 'sw_ucb'
         || mode === 'sw_epsilon_ts'
         || mode === 'sw_kl_ucb'
-        || mode === 'cd_ucb')
+        || mode === 'cd_ucb'
+        || mode === 'corral_exp3')
         ? mode
         : DEFAULT_SELECTION_POLICY_MODE;
 
@@ -240,7 +251,57 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CD_MEAN_DELTA,
             0,
             MAX_CD_MEAN_DELTA
+        ),
+        corralGamma: clamp(
+            Number.isFinite(Number(value.corralGamma))
+                ? Number(value.corralGamma)
+                : DEFAULT_CORRAL_GAMMA,
+            0,
+            MAX_CORRAL_GAMMA
+        ),
+        corralEta: clamp(
+            Number.isFinite(Number(value.corralEta))
+                ? Number(value.corralEta)
+                : DEFAULT_CORRAL_ETA,
+            Number.EPSILON,
+            MAX_CORRAL_ETA
         )
+    };
+}
+
+function normalizePolicyPerformanceStat(rawStat = {}) {
+    const stat = rawStat && typeof rawStat === 'object' ? rawStat : {};
+    const attempts = parseNonNegativeInt(stat.attempts, 0);
+    const successes = clamp(parseNonNegativeInt(stat.successes, 0), 0, attempts);
+    const failures = clamp(parseNonNegativeInt(stat.failures, 0), 0, attempts);
+    const cumulativeReward = Number.isFinite(Number(stat.cumulativeReward))
+        ? Math.max(0, Number(stat.cumulativeReward))
+        : successes;
+
+    return {
+        attempts,
+        successes,
+        failures,
+        cumulativeReward
+    };
+}
+
+function normalizePolicyPerformanceByLane(rawStats = {}) {
+    const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+    const normalized = {};
+
+    for (const policy of CORRAL_BASE_POLICIES) {
+        normalized[policy] = normalizePolicyPerformanceStat(stats[policy]);
+    }
+
+    return normalized;
+}
+
+function normalizePolicyExecutionStats(rawStats = {}) {
+    const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+    return {
+        skills: normalizePolicyPerformanceByLane(stats.skills),
+        capabilities: normalizePolicyPerformanceByLane(stats.capabilities)
     };
 }
 
@@ -344,6 +405,7 @@ function normalizeState(rawState = {}) {
             : [],
         skillExecutionStats: normalizeSkillExecutionStats(state.skillExecutionStats),
         capabilityExecutionStats: normalizeCapabilityExecutionStats(state.capabilityExecutionStats),
+        policyExecutionStats: normalizePolicyExecutionStats(state.policyExecutionStats),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
 }
@@ -837,6 +899,42 @@ function computeKlUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig
         + adjustments.staleBoost;
 }
 
+function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig) {
+    const laneStats = normalizePolicyPerformanceByLane(policyExecutionStats);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const gamma = policy.corralGamma;
+    const uniform = 1 / CORRAL_BASE_POLICIES.length;
+    const weighted = CORRAL_BASE_POLICIES.map((name) => {
+        const reward = Math.max(0, Number(laneStats[name]?.cumulativeReward || 0));
+        const scaled = clamp(reward * policy.corralEta, -30, 30);
+        return {
+            name,
+            weight: Math.exp(scaled)
+        };
+    });
+    const sumWeights = weighted.reduce((sum, entry) => sum + entry.weight, 0);
+    const safeSum = sumWeights > 0 ? sumWeights : CORRAL_BASE_POLICIES.length;
+
+    return weighted.map((entry) => {
+        const exploitation = entry.weight / safeSum;
+        return {
+            name: entry.name,
+            probability: ((1 - gamma) * exploitation) + (gamma * uniform)
+        };
+    });
+}
+
+function pickPolicyFromDistribution(distribution, seedText) {
+    const rng = createDeterministicRng(seedText);
+    const roll = rng();
+    let cumulative = 0;
+    for (const item of distribution) {
+        cumulative += item.probability;
+        if (roll <= cumulative) return item.name;
+    }
+    return distribution[distribution.length - 1]?.name || DEFAULT_SELECTION_POLICY_MODE;
+}
+
 function cursorDistance(index, pointer, total) {
     if (total <= 0) return 0;
     return (index - pointer + total) % total;
@@ -852,13 +950,16 @@ function selectCatalogSlice({
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
     selectionPolicyConfig = null,
+    policyExecutionStats = {},
     selectionScope = 'catalog'
 }) {
     const list = Array.isArray(catalog) ? catalog : [];
     if (list.length === 0 || limit <= 0) {
         return {
             selected: [],
-            nextCursor: 0
+            nextCursor: 0,
+            selectedPolicy: normalizeSelectionPolicyConfig(selectionPolicyConfig).mode,
+            policyProbabilities: null
         };
     }
 
@@ -883,8 +984,28 @@ function selectCatalogSlice({
 
     const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const normalizedCurrentWave = parseNonNegativeInt(currentWave, 0);
+    let scoringPolicy = normalizedPolicy;
+    let selectedPolicy = normalizedPolicy.mode;
+    let policyProbabilities = null;
+
+    if (normalizedPolicy.mode === 'corral_exp3') {
+        const distribution = resolveCorralPolicyDistribution(policyExecutionStats, normalizedPolicy);
+        selectedPolicy = pickPolicyFromDistribution(
+            distribution,
+            `${selectionScope}:corral_exp3:${normalizedCurrentWave}:${pointer}:${total}`
+        );
+        scoringPolicy = {
+            ...normalizedPolicy,
+            mode: selectedPolicy
+        };
+        policyProbabilities = Object.fromEntries(distribution.map((entry) => [
+            entry.name,
+            Number(entry.probability.toFixed(6))
+        ]));
+    }
+
     const totalAttempts = Math.max(1, Object.values(executionStats)
-        .reduce((sum, stat) => sum + resolveScoreStats(stat, normalizedPolicy).attempts, 0));
+        .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy).attempts, 0));
 
     const ranked = [];
     const cooled = [];
@@ -893,23 +1014,23 @@ function selectCatalogSlice({
         const key = String(candidate?.id ?? candidate);
         if (selectedKeySet.has(key)) continue;
         const stat = normalizeExecutionStat(executionStats[key]);
-        const scoreStats = resolveScoreStats(stat, normalizedPolicy);
+        const scoreStats = resolveScoreStats(stat, scoringPolicy);
         let score;
-        if (normalizedPolicy.mode === 'epsilon_ts' || normalizedPolicy.mode === 'sw_epsilon_ts') {
+        if (scoringPolicy.mode === 'epsilon_ts' || scoringPolicy.mode === 'sw_epsilon_ts') {
             score = computeEpsilonThompsonScore(
                 stat,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
-                normalizedPolicy,
-                `${selectionScope}:${normalizedPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+                scoringPolicy,
+                `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
             );
-        } else if (normalizedPolicy.mode === 'kl_ucb' || normalizedPolicy.mode === 'sw_kl_ucb') {
+        } else if (scoringPolicy.mode === 'kl_ucb' || scoringPolicy.mode === 'sw_kl_ucb') {
             score = computeKlUcbScore(
                 stat,
                 totalAttempts,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
-                normalizedPolicy
+                scoringPolicy
             );
         } else {
             score = computeUcbScore(
@@ -917,7 +1038,7 @@ function selectCatalogSlice({
                 totalAttempts,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
-                normalizedPolicy
+                scoringPolicy
             );
         }
 
@@ -946,7 +1067,9 @@ function selectCatalogSlice({
 
     return {
         selected,
-        nextCursor: pointer
+        nextCursor: pointer,
+        selectedPolicy,
+        policyProbabilities
     };
 }
 
@@ -982,6 +1105,7 @@ export function buildAutonomousBatchPlan({
         failureCooldownWaves: normalizeFailureCooldownWaves(failureCooldownWaves),
         adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
         selectionPolicyConfig: normalizedSelectionPolicyConfig,
+        policyExecutionStats: normalizedState.policyExecutionStats.skills,
         selectionScope: 'skills'
     });
 
@@ -995,6 +1119,7 @@ export function buildAutonomousBatchPlan({
         failureCooldownWaves: normalizeFailureCooldownWaves(failureCooldownWaves),
         adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
         selectionPolicyConfig: normalizedSelectionPolicyConfig,
+        policyExecutionStats: normalizedState.policyExecutionStats.capabilities,
         selectionScope: 'capabilities'
     });
 
@@ -1014,7 +1139,8 @@ export function buildAutonomousBatchPlan({
                 autonomy: {
                     lane: 'skills',
                     wave: waveIndex,
-                    sourceCatalog: skillCatalogSource
+                    sourceCatalog: skillCatalogSource,
+                    selectionPolicyApplied: skillSelection.selectedPolicy
                 },
                 skillId: entry.id,
                 skillCode,
@@ -1043,7 +1169,8 @@ export function buildAutonomousBatchPlan({
                 planner: 'cognition-core/autonomous-openclaw',
                 autonomy: {
                     lane: 'capabilities',
-                    wave: waveIndex
+                    wave: waveIndex,
+                    selectionPolicyApplied: capabilitySelection.selectedPolicy
                 },
                 capabilityId,
                 capabilityInput: buildCapabilityInput(capabilityId, waveIndex, taskCreatedAt)
@@ -1056,7 +1183,15 @@ export function buildAutonomousBatchPlan({
         tasks,
         selection: {
             skillIds: skillSelection.selected.map((entry) => entry.id),
-            capabilityIds: capabilitySelection.selected.slice()
+            capabilityIds: capabilitySelection.selected.slice(),
+            policy: {
+                skills: skillSelection.selectedPolicy,
+                capabilities: capabilitySelection.selectedPolicy
+            },
+            policyProbabilities: {
+                skills: skillSelection.policyProbabilities,
+                capabilities: capabilitySelection.policyProbabilities
+            }
         },
         nextCursor: {
             skillCursor: skillSelection.nextCursor,
@@ -1093,6 +1228,7 @@ export async function collectAutonomousCoverage({
     const failedCapabilityIds = new Set();
     const skillExecutionStats = {};
     const capabilityExecutionStats = {};
+    const policyExecutionStats = normalizePolicyExecutionStats({});
 
     for (const record of records) {
         const status = normalizeStatus(record?.status);
@@ -1101,6 +1237,12 @@ export async function collectAutonomousCoverage({
         const context = record?.request?.context && typeof record.request.context === 'object'
             ? record.request.context
             : {};
+        const lane = context.autonomy?.lane === 'skills' || context.autonomy?.lane === 'capabilities'
+            ? context.autonomy.lane
+            : null;
+        const selectedPolicy = typeof context.autonomy?.selectionPolicyApplied === 'string'
+            ? context.autonomy.selectionPolicyApplied.trim().toLowerCase()
+            : '';
 
         const skillId = toSkillId(context.skillId);
         const capabilityId = normalizeCapabilityId(context.capabilityId);
@@ -1153,6 +1295,18 @@ export async function collectAutonomousCoverage({
             current = recordRecentOutcome(current, { status, wave: attemptWave });
             capabilityExecutionStats[capabilityId] = current;
         }
+
+        if (lane && CORRAL_BASE_POLICIES.includes(selectedPolicy)) {
+            const currentPolicy = normalizePolicyPerformanceStat(policyExecutionStats[lane][selectedPolicy]);
+            currentPolicy.attempts += 1;
+            if (didSucceed) {
+                currentPolicy.successes += 1;
+                currentPolicy.cumulativeReward += 1;
+            } else {
+                currentPolicy.failures += 1;
+            }
+            policyExecutionStats[lane][selectedPolicy] = currentPolicy;
+        }
     }
 
     return {
@@ -1161,7 +1315,8 @@ export async function collectAutonomousCoverage({
         successfulCapabilityIds: [...successfulCapabilityIds].sort(),
         failedCapabilityIds: [...failedCapabilityIds].sort(),
         skillExecutionStats: normalizeSkillExecutionStats(skillExecutionStats),
-        capabilityExecutionStats: normalizeCapabilityExecutionStats(capabilityExecutionStats)
+        capabilityExecutionStats: normalizeCapabilityExecutionStats(capabilityExecutionStats),
+        policyExecutionStats: normalizePolicyExecutionStats(policyExecutionStats)
     };
 }
 
@@ -1183,6 +1338,22 @@ function mergeExecutionStats(existingStats = {}, incomingStats = {}) {
         const previous = normalizeExecutionStat(existing[key]);
         const next = normalizeExecutionStat(incoming[key]);
         merged[key] = next.attempts >= previous.attempts ? next : previous;
+    }
+
+    return merged;
+}
+
+function mergePolicyExecutionStats(existingStats = {}, incomingStats = {}) {
+    const existing = normalizePolicyExecutionStats(existingStats);
+    const incoming = normalizePolicyExecutionStats(incomingStats);
+    const merged = normalizePolicyExecutionStats({});
+
+    for (const lane of ['skills', 'capabilities']) {
+        for (const policy of CORRAL_BASE_POLICIES) {
+            const previous = normalizePolicyPerformanceStat(existing[lane][policy]);
+            const next = normalizePolicyPerformanceStat(incoming[lane][policy]);
+            merged[lane][policy] = next.attempts >= previous.attempts ? next : previous;
+        }
     }
 
     return merged;
@@ -1249,7 +1420,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         lines.push('- none');
     } else {
         for (const wave of waves) {
-            lines.push(`- wave ${wave.wave}: skillTasks=${wave.planned.skillTasks} capabilityTasks=${wave.planned.capabilityTasks} accepted=${wave.enqueue.accepted} skipped=${wave.enqueue.skipped} stopReason=${wave.worker.stopReason}`);
+            lines.push(`- wave ${wave.wave}: skillTasks=${wave.planned.skillTasks} capabilityTasks=${wave.planned.capabilityTasks} policy.skills=${wave.selection?.policy?.skills || 'n/a'} policy.capabilities=${wave.selection?.policy?.capabilities || 'n/a'} accepted=${wave.enqueue.accepted} skipped=${wave.enqueue.skipped} stopReason=${wave.worker.stopReason}`);
         }
     }
 
@@ -1423,6 +1594,7 @@ export async function runAutonomousOpenClaw({
             failedCapabilityIds: mergeUniqueString(state.failedCapabilityIds, coverage.failedCapabilityIds),
             skillExecutionStats: mergeExecutionStats(state.skillExecutionStats, coverage.skillExecutionStats),
             capabilityExecutionStats: mergeExecutionStats(state.capabilityExecutionStats, coverage.capabilityExecutionStats),
+            policyExecutionStats: mergePolicyExecutionStats(state.policyExecutionStats, coverage.policyExecutionStats),
             updatedAt: safeNow(nowFactory)
         });
 

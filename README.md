@@ -227,6 +227,7 @@ npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0
 npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
+npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
 ```
 
 ## Quick Start

@@ -313,6 +313,48 @@ test('buildAutonomousBatchPlan supports change-detection UCB for abrupt drift', 
     assert.deepEqual(plan.selection.skillIds, [45]);
 });
 
+test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across base policies', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 47, code: 'SK-00047', title: 'Skill 47' },
+            { id: 48, code: 'SK-00048', title: 'Skill 48' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 21,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '47': { attempts: 12, successes: 9, failures: 3, consecutiveFailures: 0, lastWave: 20, lastStatus: 'completed' },
+                '48': { attempts: 12, successes: 5, failures: 7, consecutiveFailures: 0, lastWave: 20, lastStatus: 'completed' }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: { attempts: 10, successes: 4, failures: 6, cumulativeReward: 4 },
+                    epsilon_ts: { attempts: 10, successes: 9, failures: 1, cumulativeReward: 9 },
+                    kl_ucb: { attempts: 10, successes: 3, failures: 7, cumulativeReward: 3 },
+                    cd_ucb: { attempts: 10, successes: 2, failures: 8, cumulativeReward: 2 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 22,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3',
+            corralGamma: 0.05,
+            corralEta: 1.5
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [47]);
+    assert.equal(plan.selection.policy.skills, 'epsilon_ts');
+    assert.ok(plan.tasks[0].context?.autonomy?.selectionPolicyApplied);
+});
+
 test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
