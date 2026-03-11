@@ -527,6 +527,123 @@ test('buildAutonomousBatchPlan supports sliding-window epsilon-thompson ranking'
     assert.deepEqual(plan.selection.skillIds, [62]);
 });
 
+test('buildAutonomousBatchPlan supports discounted UCB for recency-weighted drift adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 63, code: 'SK-00063', title: 'Skill 63' },
+            { id: 64, code: 'SK-00064', title: 'Skill 64' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 25,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '63': {
+                    attempts: 30,
+                    successes: 20,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 25,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' }
+                    ]
+                },
+                '64': {
+                    attempts: 30,
+                    successes: 10,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 25,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 26,
+        selectionPolicyConfig: {
+            mode: 'd_ucb',
+            discountFactor: 0.7
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [64]);
+});
+
+test('buildAutonomousBatchPlan supports discounted epsilon-thompson ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 65, code: 'SK-00065', title: 'Skill 65' },
+            { id: 66, code: 'SK-00066', title: 'Skill 66' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '65': {
+                    attempts: 30,
+                    successes: 20,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                },
+                '66': {
+                    attempts: 30,
+                    successes: 10,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'd_epsilon_ts',
+            discountFactor: 0.7,
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [66]);
+});
+
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

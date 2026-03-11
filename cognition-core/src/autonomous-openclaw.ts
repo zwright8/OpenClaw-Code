@@ -42,6 +42,8 @@ const MAX_THOMPSON_PRIOR = 100;
 const DEFAULT_SLIDING_WINDOW_SIZE = 12;
 const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
+const DEFAULT_DISCOUNT_FACTOR = 0.97;
+const MIN_DISCOUNT_FACTOR = 0.5;
 const DEFAULT_KL_UCB_CONFIDENCE = 3;
 const MAX_KL_UCB_CONFIDENCE = 20;
 const DEFAULT_CD_MIN_SAMPLES = 8;
@@ -189,6 +191,8 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
         || mode === 'sw_ucb'
         || mode === 'sw_epsilon_ts'
         || mode === 'sw_kl_ucb'
+        || mode === 'd_ucb'
+        || mode === 'd_epsilon_ts'
         || mode === 'cd_ucb'
         || mode === 'corral_exp3')
         ? mode
@@ -223,6 +227,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_SLIDING_WINDOW_SIZE,
             1,
             MAX_SLIDING_WINDOW_SIZE
+        ),
+        discountFactor: clamp(
+            Number.isFinite(Number(value.discountFactor))
+                ? Number(value.discountFactor)
+                : DEFAULT_DISCOUNT_FACTOR,
+            MIN_DISCOUNT_FACTOR,
+            1
         ),
         klUcbConfidence: clamp(
             Number.isFinite(Number(value.klUcbConfidence))
@@ -691,6 +702,35 @@ function computeWindowedStats(stat, selectionPolicyConfig) {
     };
 }
 
+function computeDiscountedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const outcomes = normalized.recentOutcomes;
+    if (outcomes.length <= 0) {
+        return {
+            attempts: normalized.attempts,
+            successes: normalized.successes,
+            failures: normalized.failures
+        };
+    }
+
+    let attempts = 0;
+    let successes = 0;
+    for (let index = 0; index < outcomes.length; index++) {
+        const entry = outcomes[index];
+        const age = outcomes.length - 1 - index;
+        const weight = Math.pow(policy.discountFactor, age);
+        attempts += weight;
+        successes += entry.didSucceed ? weight : 0;
+    }
+
+    return {
+        attempts,
+        successes,
+        failures: Math.max(0, attempts - successes)
+    };
+}
+
 function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const values = Array.isArray(outcomes)
@@ -745,6 +785,15 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             attempts: windowed.attempts,
             successes: windowed.successes,
             failures: windowed.failures
+        };
+    }
+    if (policy.mode === 'd_ucb' || policy.mode === 'd_epsilon_ts') {
+        const discounted = computeDiscountedStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: discounted.attempts,
+            successes: discounted.successes,
+            failures: discounted.failures
         };
     }
     if (policy.mode === 'cd_ucb') {
@@ -1016,7 +1065,9 @@ function selectCatalogSlice({
         const stat = normalizeExecutionStat(executionStats[key]);
         const scoreStats = resolveScoreStats(stat, scoringPolicy);
         let score;
-        if (scoringPolicy.mode === 'epsilon_ts' || scoringPolicy.mode === 'sw_epsilon_ts') {
+        if (scoringPolicy.mode === 'epsilon_ts'
+            || scoringPolicy.mode === 'sw_epsilon_ts'
+            || scoringPolicy.mode === 'd_epsilon_ts') {
             score = computeEpsilonThompsonScore(
                 stat,
                 normalizedCurrentWave,
