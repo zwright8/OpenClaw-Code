@@ -144,3 +144,15 @@ Primary products for this skill: security cooperation activity plan, partner cap
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-11, Reserve Recall and Family Continuity Addendum)
+
+- Prioritize `tool_suite_id=ts-reserve-recall-and-veteran-surge-v1` + `protocol_stack_id=ps-reserve-recall-and-veteran-surge-stack-v1` when theater cooperation plans depend on partner augmentation, reserve recall interoperability, or specialist mobilization windows.
+- Prioritize `tool_suite_id=ts-deployed-family-support-continuity-v1` + `protocol_stack_id=ps-deployed-family-support-continuity-stack-v1` when partner force readiness is constrained by childcare, dependent care, or family support bottlenecks.
+- Add `packet_id=DPL-RESERVE-RECALL-AND-VETERAN-SURGE-001` and `packet_id=DPL-DEPLOYED-FAMILY-SUPPORT-CONTINUITY-001` for branch plans that change force generation assumptions or exercise timing.
+
+## Domain Toolchain Override (2026-03-11, Compliance and Rehearsal Fidelity Addendum)
+
+- Prioritize `tool_suite_id=ts-em-environmental-compliance-waiver-v1` + `protocol_stack_id=ps-em-environmental-compliance-waiver-stack-v1` when security cooperation events require expedited emitter and environmental approvals.
+- Prioritize `tool_suite_id=ts-ar-vr-rehearsal-fidelity-assurance-v1` + `protocol_stack_id=ps-ar-vr-rehearsal-fidelity-assurance-stack-v1` when multinational rehearsal realism and timeline synchronization are prerequisites for mission assurance.
+- Add `packet_id=DPL-EM-ENVIRONMENTAL-COMPLIANCE-WAIVER-001` and `packet_id=DPL-AR-VR-REHEARSAL-FIDELITY-ASSURANCE-001` for recommendations that change partner sequencing, release authority, or readiness certification thresholds.
