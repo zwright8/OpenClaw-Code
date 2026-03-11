@@ -246,6 +246,37 @@ test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () 
     assert.deepEqual(plan.selection.skillIds, [43]);
 });
 
+test('buildAutonomousBatchPlan supports moss_anytime policy for minimax cold-start exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 71, code: 'SK-00071', title: 'Skill 71' },
+            { id: 72, code: 'SK-00072', title: 'Skill 72' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 18,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '71': { attempts: 50, successes: 45, failures: 5, consecutiveFailures: 0, lastWave: 17, lastStatus: 'completed' },
+                '72': { attempts: 5, successes: 3, failures: 2, consecutiveFailures: 0, lastWave: 17, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 19,
+        selectionPolicyConfig: {
+            mode: 'moss_anytime',
+            mossAlpha: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [72]);
+});
+
 test('buildAutonomousBatchPlan supports change-detection UCB for abrupt drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

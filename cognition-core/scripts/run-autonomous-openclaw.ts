@@ -32,12 +32,13 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
-  --selection-policy <mode>    Selection policy: ucb|kl_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_epsilon_ts|d_ucb|d_epsilon_ts|cd_ucb|corral_exp3 (default: ucb)
+  --selection-policy <mode>    Selection policy: ucb|kl_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_epsilon_ts|d_ucb|d_epsilon_ts|cd_ucb|corral_exp3|moss_anytime (default: ucb)
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
+  --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
   --cd-min-samples <n>         Min outcomes before change detection in cd_ucb (default: 8)
   --cd-threshold <n>           Drift threshold for cd_ucb Page-Hinkley detector (default: 1.5)
@@ -111,8 +112,9 @@ function parseSelectionPolicy(raw) {
         && value !== 'd_ucb'
         && value !== 'd_epsilon_ts'
         && value !== 'cd_ucb'
-        && value !== 'corral_exp3') {
-        throw new Error('--selection-policy must be one of: ucb, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, d_ucb, d_epsilon_ts, cd_ucb, corral_exp3');
+        && value !== 'corral_exp3'
+        && value !== 'moss_anytime') {
+        throw new Error('--selection-policy must be one of: ucb, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, d_ucb, d_epsilon_ts, cd_ucb, corral_exp3, moss_anytime');
     }
     return value;
 }
@@ -149,6 +151,7 @@ function parseArgs(argv) {
             thompsonPriorBeta: 1,
             discountFactor: 0.97,
             klUcbConfidence: 3,
+            mossAlpha: 1,
             slidingWindowSize: 12,
             changeDetectionMinSamples: 8,
             changeDetectionThreshold: 1.5,
@@ -308,6 +311,11 @@ function parseArgs(argv) {
         }
         if (token === '--kl-ucb-confidence') {
             options.selectionPolicyConfig.klUcbConfidence = parseFloatInRange(value, '--kl-ucb-confidence', 0, 20);
+            i++;
+            continue;
+        }
+        if (token === '--moss-alpha') {
+            options.selectionPolicyConfig.mossAlpha = parseFloatInRange(value, '--moss-alpha', Number.EPSILON, 10);
             i++;
             continue;
         }

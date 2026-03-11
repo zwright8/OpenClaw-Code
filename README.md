@@ -230,6 +230,7 @@ npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97
 npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
+npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2
 ```
 
 ## Quick Start

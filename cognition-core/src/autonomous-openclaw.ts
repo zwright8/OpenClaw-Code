@@ -56,6 +56,39 @@ const DEFAULT_CORRAL_GAMMA = 0.12;
 const MAX_CORRAL_GAMMA = 0.8;
 const DEFAULT_CORRAL_ETA = 0.8;
 const MAX_CORRAL_ETA = 5;
+const DEFAULT_MOSS_ALPHA = 1;
+const MAX_MOSS_ALPHA = 10;
+const SUPPORTED_SELECTION_POLICY_MODES = new Set([
+    'ucb',
+    'epsilon_ts',
+    'kl_ucb',
+    'sw_ucb',
+    'sw_epsilon_ts',
+    'sw_kl_ucb',
+    'd_ucb',
+    'd_epsilon_ts',
+    'cd_ucb',
+    'corral_exp3',
+    'moss_anytime'
+]);
+const THOMPSON_POLICY_MODES = new Set([
+    'epsilon_ts',
+    'sw_epsilon_ts',
+    'd_epsilon_ts'
+]);
+const KL_UCB_POLICY_MODES = new Set([
+    'kl_ucb',
+    'sw_kl_ucb'
+]);
+const SLIDING_WINDOW_POLICY_MODES = new Set([
+    'sw_ucb',
+    'sw_epsilon_ts',
+    'sw_kl_ucb'
+]);
+const DISCOUNTED_POLICY_MODES = new Set([
+    'd_ucb',
+    'd_epsilon_ts'
+]);
 const CORRAL_BASE_POLICIES = [
     'ucb',
     'epsilon_ts',
@@ -186,15 +219,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
     const mode = typeof value.mode === 'string'
         ? value.mode.trim().toLowerCase()
         : DEFAULT_SELECTION_POLICY_MODE;
-    const normalizedMode = (mode === 'epsilon_ts'
-        || mode === 'kl_ucb'
-        || mode === 'sw_ucb'
-        || mode === 'sw_epsilon_ts'
-        || mode === 'sw_kl_ucb'
-        || mode === 'd_ucb'
-        || mode === 'd_epsilon_ts'
-        || mode === 'cd_ucb'
-        || mode === 'corral_exp3')
+    const normalizedMode = SUPPORTED_SELECTION_POLICY_MODES.has(mode)
         ? mode
         : DEFAULT_SELECTION_POLICY_MODE;
 
@@ -276,6 +301,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CORRAL_ETA,
             Number.EPSILON,
             MAX_CORRAL_ETA
+        ),
+        mossAlpha: clamp(
+            Number.isFinite(Number(value.mossAlpha))
+                ? Number(value.mossAlpha)
+                : DEFAULT_MOSS_ALPHA,
+            Number.EPSILON,
+            MAX_MOSS_ALPHA
         )
     };
 }
@@ -778,7 +810,7 @@ function computeChangeDetectedStats(stat, selectionPolicyConfig) {
 function resolveScoreStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    if (policy.mode === 'sw_ucb' || policy.mode === 'sw_epsilon_ts' || policy.mode === 'sw_kl_ucb') {
+    if (SLIDING_WINDOW_POLICY_MODES.has(policy.mode)) {
         const windowed = computeWindowedStats(normalized, policy);
         return {
             ...normalized,
@@ -787,7 +819,7 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             failures: windowed.failures
         };
     }
-    if (policy.mode === 'd_ucb' || policy.mode === 'd_epsilon_ts') {
+    if (DISCOUNTED_POLICY_MODES.has(policy.mode)) {
         const discounted = computeDiscountedStats(normalized, policy);
         return {
             ...normalized,
@@ -948,6 +980,28 @@ function computeKlUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig
         + adjustments.staleBoost;
 }
 
+function computeMossAnytimeScore(stat, totalAttempts, totalArms, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const empiricalMean = normalized.successes / normalized.attempts;
+    const horizon = Math.max(2, totalAttempts + 1);
+    const arms = Math.max(1, totalArms);
+    const ratio = horizon / (arms * Math.max(1, normalized.attempts));
+    const explorationTerm = Math.max(0, Math.log(ratio));
+    const exploration = Math.sqrt(((1 + policy.mossAlpha) * explorationTerm) / (2 * normalized.attempts));
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return empiricalMean
+        + exploration
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
 function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig) {
     const laneStats = normalizePolicyPerformanceByLane(policyExecutionStats);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
@@ -1065,9 +1119,7 @@ function selectCatalogSlice({
         const stat = normalizeExecutionStat(executionStats[key]);
         const scoreStats = resolveScoreStats(stat, scoringPolicy);
         let score;
-        if (scoringPolicy.mode === 'epsilon_ts'
-            || scoringPolicy.mode === 'sw_epsilon_ts'
-            || scoringPolicy.mode === 'd_epsilon_ts') {
+        if (THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeEpsilonThompsonScore(
                 stat,
                 normalizedCurrentWave,
@@ -1075,10 +1127,19 @@ function selectCatalogSlice({
                 scoringPolicy,
                 `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
             );
-        } else if (scoringPolicy.mode === 'kl_ucb' || scoringPolicy.mode === 'sw_kl_ucb') {
+        } else if (KL_UCB_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeKlUcbScore(
                 stat,
                 totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy
+            );
+        } else if (scoringPolicy.mode === 'moss_anytime') {
+            score = computeMossAnytimeScore(
+                stat,
+                totalAttempts,
+                total,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
                 scoringPolicy
