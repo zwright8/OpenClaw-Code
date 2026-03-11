@@ -1582,3 +1582,59 @@ Every skill output should include:
 - Denied polar SAR deconfliction + coalition casualty data synchronization + medevac routing + arctic logistics corridor governance
 - Financial rail/maritime sanctions leakage disruption + strategic supply-shock monitoring + coalition cyber legal attribution + gray-zone response planning
 - Expeditionary lithium battery fire continuity + microgrid/energy continuity + base defense emergency response + force-health protection
+
+## New Expansion Wave (2026-03-11, Mobilization Coupling and Mission Assurance Pending-Lane Closure)
+
+- coalition-strategic-mobilization-rail-port-energy-coupling-cell
+- homeland-defense-critical-infrastructure-priority-of-life-ops-cell
+- joint-combat-engineer-water-obstacle-autonomy-safety-cell
+- joint-expeditionary-cold-chain-biologics-assurance-cell
+- joint-multi-domain-ai-model-assurance-and-drift-response-cell
+- joint-reservist-mobilization-family-readiness-synchronization-cell
+- theater-disconnected-maintenance-knowledge-fabric-cell
+- theater-precision-logistics-deepfake-order-authentication-cell
+
+## Updated Pairings (2026-03-11, Mobilization Coupling and Mission Assurance Pending-Lane Closure)
+
+- Strategic mobilization rail-port-energy coupling + strategic mobility chokepoint wargaming + deployment/distribution optimization + operational energy resilience
+- Homeland priority-of-life restoration + DSCA crisis response + civil infrastructure restoration prioritization + mission command battle rhythm
+- Combat engineer water-obstacle autonomy safety + contested bridge/gap crossing + river crossing synchronization + maneuver sustainment
+- Expeditionary cold-chain biologics assurance + austere surgical support + med-log blood continuity + force-health protection
+- Multi-domain AI model assurance/drift response + mission AI governance + command decision support + human-agent escalation controls
+- Reservist mobilization and family readiness synchronization + force generation planning + retention risk mitigation + domestic support continuity
+- Disconnected maintenance knowledge fabric + expeditionary fabrication repair + predictive maintenance + readiness recovery governance
+- Logistics deepfake order authentication + information integrity attribution + supply-chain anti-corruption + sustainment release authority gating
+
+## New Expansion Wave (2026-03-11, Cross-Domain Recovery and Contested Continuity)
+
+- joint-cbrn-drone-sample-custody-and-lab-routing-cell
+- theater-joint-fuel-water-railhead-sabotage-correlation-cell
+- coalition-civil-maritime-autonomy-jamming-response-cell
+- strategic-launch-industrial-robotics-cyber-resilience-cell
+- theater-denied-cloud-mission-software-patch-attestation-cell
+- joint-cross-border-river-flood-bridging-and-evacuation-cell
+- expeditionary-hardened-field-data-center-relocation-cell
+- joint-space-ground-emission-window-and-rf-fratricide-cell
+- coalition-multilingual-target-warning-authentication-cell
+- joint-wearable-biosurveillance-force-health-anomaly-triage-cell
+- homeland-airport-mass-casualty-runway-defense-and-recovery-cell
+- strategic-orbital-debris-reentry-force-protection-cell
+
+## Updated Pairings (2026-03-11, Cross-Domain Recovery and Contested Continuity)
+
+- CBRN drone sample custody and lab routing + CBRN incident response + forensics evidence chain + coalition notification discipline
+- Fuel-water-railhead sabotage correlation + contested logistics sustainment + infrastructure defense + strategic industrial mobilization risk management
+- Coalition civil maritime autonomy jamming response + maritime convoy protection + orbital/GNSS interference mitigation + legal-interoperability governance
+- Strategic launch industrial robotics cyber resilience + denied launch reconstitution + strategic deterrence readiness + cyber-physical incident response
+- Denied cloud mission software patch attestation + mission-assured software factory support + zero-trust key continuity + theater network failover
+- Cross-border river flood bridging and evacuation + civil support crisis operations + engineer mobility + coalition humanitarian corridor deconfliction
+- Expeditionary hardened field data-center relocation + tactical cloud-edge orchestration + key-material continuity + command-and-control survivability
+- Space-ground emission window and RF fratricide prevention + spectrum interference resolution + EW fratricide prevention + fires timing governance
+- Coalition multilingual warning authentication + information integrity attribution + coalition command interoperability + civil emergency broadcast continuity
+- Wearable biosurveillance anomaly triage + preventive medicine and force health protection + casualty regulation + mission readiness risk support
+- Homeland airport mass-casualty runway defense/recovery + expeditionary runway recovery + integrated evacuation flow control + DSCA homeland defense support
+- Orbital debris reentry force protection + space-domain awareness and SATCOM defense + infrastructure priority-of-life restoration + strategic warning dissemination
+
+## Planning Artifacts (2026-03-11)
+
+- All-domain growth roadmap: `skills/warfighter/_shared/references/warfighter-all-domain-skill-universe-2026-03-11.md`

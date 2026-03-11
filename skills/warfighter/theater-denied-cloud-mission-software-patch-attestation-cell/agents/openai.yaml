@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Denied Cloud Mission Software Patch Attestation Cell"
+  short_description: "Validate and distribute mission software patches in disconnected theaters with cryptographic attestation and rollback safety."

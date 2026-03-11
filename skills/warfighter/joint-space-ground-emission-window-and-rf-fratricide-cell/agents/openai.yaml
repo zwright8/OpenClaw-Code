@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Space Ground Emission Window And RF Fratricide Cell"
+  short_description: "Coordinate space-ground emissions windows to prevent RF fratricide while sustaining sensing, comms, and fires timing."
