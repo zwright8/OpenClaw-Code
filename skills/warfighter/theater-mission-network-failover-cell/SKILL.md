@@ -156,3 +156,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-lpi-lpd-emission-window-orchestration-v1` + `protocol_stack_id=ps-lpi-lpd-emission-window-stack-v1` when failover execution requires low-signature transport windows and coordinated emission control.
 - Add `tool_suite_id=ts-hypersonic-warning-dispersion-v1` + `protocol_stack_id=ps-hypersonic-warning-dispersion-stack-v1` when network path decisions must synchronize with rapid force dispersion under hypersonic warning timelines.
 - Add `packet_id=NET-EMCON-WINDOW-001` and `packet_id=NET-HYPERSONIC-DISPERSION-001` for branches that change transport routes, signature posture, or protected-node survivability.
+
+## Domain Toolchain Override (2026-03-11, Homeland Blackstart and Industrial Sustainment Continuity)
+
+- Add `tool_suite_id=ts-homeland-grid-blackstart-fuel-cyber-v1` + `protocol_stack_id=ps-homeland-grid-blackstart-fuel-cyber-stack-v1` when mission network failover depends on coordinated utility restoration, fuel prioritization, and cyber-safe energization at homeland or theater support nodes.
+- Add `tool_suite_id=ts-critical-mineral-refinery-defense-restart-v1` + `protocol_stack_id=ps-critical-mineral-refinery-defense-restart-stack-v1` when failover decisions materially depend on defense-industrial feedstock continuity and refinery restart sequencing.
+- Add `packet_id=DPL-GRID-BLACKSTART-CYBER-001` and `packet_id=DPL-CRITICAL-MINERAL-RESTART-001` for branches that alter mission-service survivability timelines or strategic sustainment assumptions.

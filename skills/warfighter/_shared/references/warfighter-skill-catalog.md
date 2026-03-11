@@ -642,3 +642,25 @@ Every skill output should include:
 - Weather-radar spoofing attribution + denied-weather sortie risk + info-integrity attribution + cyber-electromagnetic deception response
 - Coalition reserve medical reciprocity surge + cross-border medevac legal routing + credential and privileging workflows + burn-care network operations
 - Expeditionary water contamination forecasting + cyber-physical water treatment protection + preventive medicine and force-health protection + denied-water purification bypass planning
+
+## New Expansion Wave (2026-03-11, Warfighter Continuity and Accountability Set)
+
+- joint-denied-navigation-terrain-relative-recovery-cell
+- coalition-contested-port-humanitarian-inspection-synchronization-cell
+- theater-autonomous-convoy-counter-ambush-adaptation-cell
+- strategic-critical-mineral-refinery-defense-and-restart-cell
+- joint-biothreat-forward-diagnostics-and-quarantine-cell
+- homeland-grid-blackstart-fuel-cyber-coordination-cell
+- joint-orbital-debris-reentry-warning-and-base-protection-cell
+- coalition-detainee-transfer-assurance-and-legal-observability-cell
+
+## Updated Pairings (2026-03-11, Warfighter Continuity and Accountability Set)
+
+- Denied PNT terrain recovery + mission network failover + tactical zero-trust hardening
+- Contested humanitarian port inspection + strategic sealift synchronization + coalition legal interoperability
+- Autonomous convoy counter-ambush adaptation + route clearance and counter-IED fusion + movement control
+- Critical-mineral refinery defense/restart + strategic industrial mobilization + sanctions/substitution denial planning
+- Forward biothreat diagnostics/quarantine + force health protection + casualty regulation
+- Homeland grid blackstart fuel-cyber coordination + civil support and infrastructure defense + mission network failover
+- Orbital debris reentry warning + space launch conflict deconfliction + base defense continuity
+- Coalition detainee transfer assurance + battlefield forensics custody chain + legal/ROE compliance

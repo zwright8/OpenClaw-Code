@@ -155,3 +155,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-quantum-resistant-key-rollover-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1` when cryptographic agility posture falls below mission threshold or key-state synchronization is stale.
 - Add `tool_suite_id=ts-cognitive-electromagnetic-influence-defense-v1` + `protocol_stack_id=ps-cognitive-electromagnetic-influence-defense-stack-v1` when cyber effects are coupled with narrative or electromagnetic influence pressure.
 - Add `packet_id=ZT-PQC-ROLLOVER-001` and `packet_id=ZT-COG-EW-INFLUENCE-001` for branches that alter cryptographic trust, access decisions, or mission command confidence.
+
+## Zero-Trust Expansion Addendum (2026-03-11, Denied Navigation and Convoy Counter-Ambush)
+
+- Add `tool_suite_id=ts-denied-pnt-terrain-nav-recovery-v1` + `protocol_stack_id=ps-denied-pnt-terrain-nav-recovery-stack-v1` when zero-trust routing policy must preserve assured maneuver timing under GNSS spoofing/jamming.
+- Add `tool_suite_id=ts-autonomous-convoy-counter-ambush-v1` + `protocol_stack_id=ps-autonomous-convoy-counter-ambush-stack-v1` when tactical network hardening recommendations directly impact autonomous convoy branch execution.
+- Add `packet_id=DPL-DENIED-PNT-RECOVERY-001` and `packet_id=DPL-CONVOY-COUNTER-AMBUSH-001` for recommendations that shift trust boundaries, route authority, or engagement-risk posture.
