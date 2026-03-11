@@ -50,6 +50,8 @@ Options:
   --cd-min-samples <n>         Min outcomes before change detection in cd_ucb (default: 8)
   --cd-threshold <n>           Drift threshold for cd_ucb Page-Hinkley detector (default: 1.5)
   --cd-delta <n>               Mean slack delta for cd_ucb detector (default: 0.02)
+  --cusum-threshold <n>        Drift threshold for cusum_ucb (default: 1.2)
+  --cusum-baseline-weight <n>  EWMA baseline weight for cusum_ucb (0-1, default: 0.15)
   --corral-gamma <n>           Exploration mix for corral_exp3 (0-0.8, default: 0.12)
   --corral-eta <n>             Exponential reward scaling for corral_exp3 (>0 to 5, default: 0.8)
   --no-enqueue-followups       Disable enqueueing generated follow-up tasks
@@ -158,6 +160,8 @@ function parseArgs(argv) {
             changeDetectionMinSamples: 8,
             changeDetectionThreshold: 1.5,
             changeDetectionDelta: 0.02,
+            cusumThreshold: 1.2,
+            cusumBaselineWeight: 0.15,
             corralGamma: 0.12,
             corralEta: 0.8
         },
@@ -363,6 +367,16 @@ function parseArgs(argv) {
         }
         if (token === '--cd-delta') {
             options.selectionPolicyConfig.changeDetectionDelta = parseFloatInRange(value, '--cd-delta', 0, 0.5);
+            i++;
+            continue;
+        }
+        if (token === '--cusum-threshold') {
+            options.selectionPolicyConfig.cusumThreshold = parseFloatInRange(value, '--cusum-threshold', Number.EPSILON, 20);
+            i++;
+            continue;
+        }
+        if (token === '--cusum-baseline-weight') {
+            options.selectionPolicyConfig.cusumBaselineWeight = parseFloatInRange(value, '--cusum-baseline-weight', Number.EPSILON, 1);
             i++;
             continue;
         }

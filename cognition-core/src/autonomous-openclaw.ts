@@ -59,6 +59,10 @@ const DEFAULT_CD_DRIFT_THRESHOLD = 1.5;
 const MAX_CD_DRIFT_THRESHOLD = 10;
 const DEFAULT_CD_MEAN_DELTA = 0.02;
 const MAX_CD_MEAN_DELTA = 0.5;
+const DEFAULT_CUSUM_THRESHOLD = 1.2;
+const MAX_CUSUM_THRESHOLD = 20;
+const DEFAULT_CUSUM_BASELINE_WEIGHT = 0.15;
+const MAX_CUSUM_BASELINE_WEIGHT = 1;
 const DEFAULT_CORRAL_GAMMA = 0.12;
 const MAX_CORRAL_GAMMA = 0.8;
 const DEFAULT_CORRAL_ETA = 0.8;
@@ -96,6 +100,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_epsilon_ts',
     'd_bayes_ucb',
     'cd_ucb',
+    'cusum_ucb',
     'corral_exp3',
     'exp3_ix',
     'moss_anytime'
@@ -355,6 +360,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CD_MEAN_DELTA,
             0,
             MAX_CD_MEAN_DELTA
+        ),
+        cusumThreshold: clamp(
+            Number.isFinite(Number(value.cusumThreshold))
+                ? Number(value.cusumThreshold)
+                : DEFAULT_CUSUM_THRESHOLD,
+            Number.EPSILON,
+            MAX_CUSUM_THRESHOLD
+        ),
+        cusumBaselineWeight: clamp(
+            Number.isFinite(Number(value.cusumBaselineWeight))
+                ? Number(value.cusumBaselineWeight)
+                : DEFAULT_CUSUM_BASELINE_WEIGHT,
+            Number.EPSILON,
+            MAX_CUSUM_BASELINE_WEIGHT
         ),
         corralGamma: clamp(
             Number.isFinite(Number(value.corralGamma))
@@ -943,6 +962,57 @@ function computeChangeDetectedStats(stat, selectionPolicyConfig) {
     };
 }
 
+function detectCusumChangeIndex(outcomes = [], selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const values = Array.isArray(outcomes)
+        ? outcomes.map((entry) => (entry?.didSucceed ? 1 : 0))
+        : [];
+    const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
+    if (values.length < minSamples) return 0;
+
+    let baselineMean = 0.5;
+    let positiveCusum = 0;
+    let negativeCusum = 0;
+    let changeIndex = 0;
+    const threshold = policy.cusumThreshold;
+    const baselineWeight = policy.cusumBaselineWeight;
+
+    for (let i = 0; i < values.length; i++) {
+        const reward = values[i];
+        baselineMean = ((1 - baselineWeight) * baselineMean) + (baselineWeight * reward);
+        const centered = reward - baselineMean;
+        positiveCusum = Math.max(0, positiveCusum + centered);
+        negativeCusum = Math.max(0, negativeCusum - centered);
+
+        if ((i + 1) >= minSamples && (positiveCusum > threshold || negativeCusum > threshold)) {
+            changeIndex = i + 1;
+            positiveCusum = 0;
+            negativeCusum = 0;
+            baselineMean = reward;
+        }
+    }
+
+    return clamp(changeIndex, 0, values.length);
+}
+
+function computeCusumDetectedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const changeIndex = detectCusumChangeIndex(normalized.recentOutcomes, selectionPolicyConfig);
+    const effective = changeIndex > 0
+        ? normalized.recentOutcomes.slice(changeIndex)
+        : normalized.recentOutcomes;
+    const attempts = effective.length > 0 ? effective.length : normalized.attempts;
+    const successes = effective.length > 0
+        ? effective.reduce((count, entry) => count + (entry.didSucceed ? 1 : 0), 0)
+        : normalized.successes;
+    const failures = attempts - successes;
+    return {
+        attempts,
+        successes,
+        failures
+    };
+}
+
 function resolveScoreStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
@@ -966,6 +1036,15 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
     }
     if (policy.mode === 'cd_ucb') {
         const changed = computeChangeDetectedStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: changed.attempts,
+            successes: changed.successes,
+            failures: changed.failures
+        };
+    }
+    if (policy.mode === 'cusum_ucb') {
+        const changed = computeCusumDetectedStats(normalized, policy);
         return {
             ...normalized,
             attempts: changed.attempts,

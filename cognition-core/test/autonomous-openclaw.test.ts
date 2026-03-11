@@ -574,6 +574,73 @@ test('buildAutonomousBatchPlan supports change-detection UCB for abrupt drift', 
     assert.deepEqual(plan.selection.skillIds, [45]);
 });
 
+test('buildAutonomousBatchPlan supports cusum_ucb for abrupt drift with baseline adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 145, code: 'SK-00145', title: 'Skill 145' },
+            { id: 146, code: 'SK-00146', title: 'Skill 146' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 21,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '145': {
+                    attempts: 24,
+                    successes: 8,
+                    failures: 16,
+                    consecutiveFailures: 0,
+                    lastWave: 21,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' }
+                    ]
+                },
+                '146': {
+                    attempts: 24,
+                    successes: 16,
+                    failures: 8,
+                    consecutiveFailures: 0,
+                    lastWave: 21,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 22,
+        selectionPolicyConfig: {
+            mode: 'cusum_ucb',
+            changeDetectionMinSamples: 4,
+            cusumThreshold: 1.2,
+            cusumBaselineWeight: 0.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [145]);
+});
+
 test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across base policies', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
