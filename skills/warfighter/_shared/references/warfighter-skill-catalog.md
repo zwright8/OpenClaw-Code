@@ -664,3 +664,33 @@ Every skill output should include:
 - Homeland grid blackstart fuel-cyber coordination + civil support and infrastructure defense + mission network failover
 - Orbital debris reentry warning + space launch conflict deconfliction + base defense continuity
 - Coalition detainee transfer assurance + battlefield forensics custody chain + legal/ROE compliance
+
+## New Expansion Wave (2026-03-11, Wave XV Operational Coverage)
+
+- joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell
+- theater-contested-additive-propellant-quality-assurance-cell
+- tactical-quantum-resistant-key-rollover-under-fire-cell
+- joint-denied-gnss-maritime-pilotage-and-port-entry-cell
+- coalition-cross-border-casualty-identity-and-family-notification-cell
+- homeland-defense-critical-pharma-cold-chain-military-support-cell
+- strategic-cislunar-logistics-choke-point-monitoring-cell
+- expeditionary-counter-drone-airfield-ground-crew-safety-cell
+- joint-multi-theater-hostage-proof-of-life-authentication-cell
+- theater-ai-enabled-fuel-theft-and-black-market-interdiction-cell
+- coalition-joint-fires-sensor-to-shooter-latency-audit-cell
+- arctic-over-ice-ground-line-of-communication-resilience-cell
+
+## Updated Pairings (2026-03-11, Wave XV)
+
+- Seabed cable-cut attribution/repair guard + coalition host-nation fiber/backhaul restoration + theater mission network failover
+- Additive propellant QA + strategic munitions precursor diversion interdiction + munitions stockpile/expenditure management
+- Tactical PQC rollover under fire + tactical zero-trust hardening + theater mission network failover
+- Denied-GNSS maritime pilotage/port entry + maritime chokepoint inspection/quarantine + denied-space PNT alternative navigation
+- Coalition casualty identity/family notification + contested medevac airbridge prioritization + detainee operations law-of-war compliance
+- Homeland pharma cold-chain military support + cyber-physical food distribution stability + DSCA crisis operations
+- Strategic cislunar chokepoint monitoring + contested space launch/satellite reconstitution + counterspace anomaly attribution
+- Expeditionary counter-drone ground-crew safety + airbase dispersal/reconstitution + joint counter-UAS urban rooftop defense
+- Hostage proof-of-life authentication + deepfake battlefield media authentication + information integrity and attribution
+- AI-enabled fuel theft interdiction + joint fuel convoy signature suppression + contested logistics sustainment
+- Coalition fires latency audit + joint targeting standards/CDE governance + coalition allied data-link interoperability
+- Arctic over-ice GLOC resilience + arctic maritime-air corridor deconfliction + contested bridge and gap crossing

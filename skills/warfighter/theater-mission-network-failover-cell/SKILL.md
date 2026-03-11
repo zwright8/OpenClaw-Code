@@ -162,3 +162,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-homeland-grid-blackstart-fuel-cyber-v1` + `protocol_stack_id=ps-homeland-grid-blackstart-fuel-cyber-stack-v1` when mission network failover depends on coordinated utility restoration, fuel prioritization, and cyber-safe energization at homeland or theater support nodes.
 - Add `tool_suite_id=ts-critical-mineral-refinery-defense-restart-v1` + `protocol_stack_id=ps-critical-mineral-refinery-defense-restart-stack-v1` when failover decisions materially depend on defense-industrial feedstock continuity and refinery restart sequencing.
 - Add `packet_id=DPL-GRID-BLACKSTART-CYBER-001` and `packet_id=DPL-CRITICAL-MINERAL-RESTART-001` for branches that alter mission-service survivability timelines or strategic sustainment assumptions.
+
+## Mission Network Expansion Wave XV Addendum (2026-03-11)
+
+- Add `tool_suite_id=ts-joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell-v1` + `protocol_stack_id=ps-joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell-stack-v1` when subsea cable damage drives mission network failover sequencing.
+- Add `tool_suite_id=ts-coalition-joint-fires-sensor-to-shooter-latency-audit-cell-v1` + `protocol_stack_id=ps-coalition-joint-fires-sensor-to-shooter-latency-audit-cell-stack-v1` when failover paths affect coalition fires timing and cross-domain latency confidence.
+- Add `packet_id=DPL-SEABED-CABLE-ATTRIBUTION-REPAIR-GUARD-001` and `packet_id=DPL-COALITION-FIRES-S2S-LATENCY-AUDIT-001` for branches that change transport trust posture, route authority, or kill-chain synchronization.

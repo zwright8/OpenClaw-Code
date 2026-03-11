@@ -3734,3 +3734,137 @@ validation_gates:
 - output_schema: contamination risk ladder, source protection plan, health trigger matrix
 - protocol_profile: API/JSON + HL7/FHIR + USMTF
 - validation_gates: sample-chain integrity check, contamination confidence threshold, command approval for source shutdown
+
+## Packet Addendum VIII (2026-03-11, Expansion Wave XV Tool Invocation Packets)
+
+### packet_id: DPL-SEABED-CABLE-ATTRIBUTION-REPAIR-GUARD-001
+- domain: joint autonomous seabed cable cut attribution and repair guard
+- objective: attribute cable-cut causes and synchronize guarded restoration under maritime/cyber threat.
+- primary_tools: undersea telemetry fusion board, maritime COP correlation engine, cyber intrusion attribution service
+- alternate_tools: manual incident triage board and periodic coalition repair-escort synchronization calls
+- degraded_mode: strategic-essential cable routes only with manual command release checks
+- input_requirements: subsea fault telemetry, maritime track history, cyber alerts, repair asset status, authority constraints
+- output_schema: attribution confidence ledger, guarded repair matrix, continuity task queue
+- protocol_profile: USMTF + NMEA/AIS + STIX/TAXII + API/JSON
+- validation_gates: attribution confidence threshold pass, legal-policy review, command approval logged
+
+### packet_id: DPL-ADDITIVE-PROPELLANT-QA-001
+- domain: theater contested additive propellant quality assurance
+- objective: maintain munitions propellant quality confidence and safe release in disrupted production chains.
+- primary_tools: energetics QA analytics, additive production telemetry, contamination forensics workbench
+- alternate_tools: manual lab release board and scheduled contamination adjudication huddles
+- degraded_mode: critical munition lines only with dual engineer/command release authorization
+- input_requirements: batch telemetry, lab confidence scores, contamination indicators, demand priorities, safety thresholds
+- output_schema: quality confidence ledger, release branch ladder, remediation actions
+- protocol_profile: USMTF + STIX/TAXII + EDI X12 + API/JSON
+- validation_gates: lab confidence floor pass, contamination exception adjudication, authority concurrence
+
+### packet_id: DPL-TACTICAL-PQC-ROLLOVER-UNDER-FIRE-001
+- domain: tactical quantum-resistant key rollover under fire
+- objective: execute crypto rollover safely while preserving tactical command continuity and trust boundaries.
+- primary_tools: PQC lifecycle manager, tactical PKI posture board, disconnected key escrow synchronizer
+- alternate_tools: manual key-state board and timed trust-restoration decision loop
+- degraded_mode: mission-essential enclaves only with commander-approved manual trust gates
+- input_requirements: key-state telemetry, enclave mission criticality, link availability, compromise indicators, authority matrix
+- output_schema: rollover branch matrix, trust-restoration packet, continuity risk register
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: crypto integrity pass, command continuity threshold, authority acknowledgment chain
+
+### packet_id: DPL-DENIED-GNSS-MARITIME-PILOTAGE-PORT-ENTRY-001
+- domain: joint denied-GNSS maritime pilotage and port entry
+- objective: preserve safe pilotage and port entry timing under spoofing/jamming and degraded navigation confidence.
+- primary_tools: denied-PNT maritime fusion board, harbor pilotage controller, AIS anomaly adjudicator
+- alternate_tools: manual harbor pilot board and conservative arrival timing windows
+- degraded_mode: high-priority arrivals only with tightened manual navigation controls
+- input_requirements: navigation confidence signals, harbor constraints, vessel priorities, threat indicators, weather state
+- output_schema: pilotage branch plan, port-entry risk ladder, timing confidence update
+- protocol_profile: USMTF + AIS/NMEA + OGC + API/JSON
+- validation_gates: navigation confidence floor, harbor safety check, command release confirmation
+
+### packet_id: DPL-COALITION-CASUALTY-IDENTITY-NOTIFICATION-001
+- domain: coalition cross-border casualty identity and family notification
+- objective: synchronize casualty identity confidence and family notification while preserving privacy and legal compliance.
+- primary_tools: casualty identity reconciler, coalition legal-routing board, family notification coordinator
+- alternate_tools: manual reconciliation panel and scheduled legal-notification adjudication reviews
+- degraded_mode: urgent identity cases only with strict releasability controls
+- input_requirements: casualty records, biometric signals, coalition legal caveats, notification channels, authority posture
+- output_schema: identity confidence ledger, notification synchronization matrix, legal exception queue
+- protocol_profile: NIEM + HL7/FHIR + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: identity confidence threshold, legal/privacy sufficiency pass, coalition concurrence
+
+### packet_id: DPL-HOMELAND-PHARMA-COLD-CHAIN-MILSUP-001
+- domain: homeland defense critical pharma cold-chain military support
+- objective: stabilize pharmaceutical cold-chain throughput during cyber-physical disruption and emergency demand surges.
+- primary_tools: cold-chain telemetry analyzer, logistics disruption forecaster, DSCA support board
+- alternate_tools: manual distribution board and periodic life-safety prioritization checks
+- degraded_mode: mission-essential and life-critical pharmaceuticals only
+- input_requirements: cold storage telemetry, route status, disruption indicators, demand forecasts, authority constraints
+- output_schema: continuity map, support branch ladder, life-safety action queue
+- protocol_profile: NIMS/ICS + NIEM + USMTF + API/JSON
+- validation_gates: temperature-control threshold pass, authority validation, public-safety assurance check
+
+### packet_id: DPL-CISLUNAR-LOGISTICS-CHOKEPOINT-MONITOR-001
+- domain: strategic cislunar logistics choke-point monitoring
+- objective: detect and adjudicate chokepoint anomalies that threaten strategic cislunar logistics continuity.
+- primary_tools: SDA catalog fusion board, cislunar trajectory monitor, orbital custody analytics
+- alternate_tools: manual cislunar watchfloor and timed anomaly adjudication cycles
+- degraded_mode: strategic-essential logistics nodes only with commander release authority
+- input_requirements: orbital tracks, trajectory forecasts, custody confidence, anomaly indicators, strategic priorities
+- output_schema: chokepoint risk board, attribution packet, continuity branch matrix
+- protocol_profile: CCSDS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: anomaly confidence threshold, escalation guardrail pass, command concurrence
+
+### packet_id: DPL-EXPEDITIONARY-CUAS-GROUND-CREW-SAFETY-001
+- domain: expeditionary counter-drone airfield ground-crew safety
+- objective: synchronize counter-drone responses that protect flightline crews while preserving sortie generation.
+- primary_tools: airfield threat tracker, C-UAS engagement controller, flightline safety overlay engine
+- alternate_tools: manual crew-safety board and timed counter-drone deconfliction calls
+- degraded_mode: only pre-cleared low-fratricide engagement patterns with human release gate
+- input_requirements: drone threat tracks, crew location updates, sortie priorities, engagement constraints, authority matrix
+- output_schema: safety matrix, sortie continuity branch ladder, crew protection actions
+- protocol_profile: AIXM/FIXM + VMF + USMTF + API/JSON
+- validation_gates: fratricide-risk threshold pass, crew safety check, command approval chain
+
+### packet_id: DPL-MULTI-THEATER-HOSTAGE-POL-AUTH-001
+- domain: joint multi-theater hostage proof-of-life authentication
+- objective: authenticate proof-of-life artifacts and detect coercion/fraud across theaters.
+- primary_tools: authenticity forensics pipeline, case confidence adjudicator, legal observability ledger
+- alternate_tools: manual authenticity review panel and scheduled legal sufficiency audits
+- degraded_mode: high-confidence cases only with dual command/legal review
+- input_requirements: proof-of-life media, case metadata, biometric indicators, legal constraints, coalition caveats
+- output_schema: confidence ledger, coercion-risk matrix, decision-support packet
+- protocol_profile: NIEM + STIX/TAXII + USMTF + API/JSON
+- validation_gates: authenticity confidence floor, legal sufficiency pass, command concurrence
+
+### packet_id: DPL-AI-FUEL-THEFT-BLACKMARKET-INTERDICT-001
+- domain: theater AI-enabled fuel theft and black-market interdiction
+- objective: detect fuel diversion and synchronize interdiction actions without destabilizing mission energy continuity.
+- primary_tools: fuel telemetry anomaly classifier, convoy accounting ledger, interdiction branch planner
+- alternate_tools: manual fuel accountability board and periodic interdiction review loops
+- degraded_mode: highest-confidence diversion lanes only with legal-command dual release
+- input_requirements: fuel movement telemetry, accounting manifests, diversion indicators, legal authorities, sustainment demand
+- output_schema: diversion risk map, interdiction options matrix, continuity mitigation plan
+- protocol_profile: EDI X12 + STIX/TAXII + USMTF + API/JSON
+- validation_gates: evidence sufficiency threshold, legal release pass, sustainment continuity floor
+
+### packet_id: DPL-COALITION-FIRES-S2S-LATENCY-AUDIT-001
+- domain: coalition joint fires sensor-to-shooter latency audit
+- objective: audit and remediate coalition kill-chain timing degradation before mission impact.
+- primary_tools: kill-chain timing analyzer, coalition data-link audit board, timestamp integrity verifier
+- alternate_tools: manual timing board and periodic coalition fires synchronization checks
+- degraded_mode: highest-priority fire missions only until latency confidence recovers
+- input_requirements: sensor/event timestamps, network latency traces, mission priority queues, coalition caveats, authority posture
+- output_schema: latency audit report, remediation branch ladder, timing integrity scorecard
+- protocol_profile: Link 16 J-series + VMF + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: timing confidence threshold, coalition concurrence, authority release confirmation
+
+### packet_id: DPL-ARCTIC-OVER-ICE-GLOC-RESILIENCE-001
+- domain: arctic over-ice ground line-of-communication resilience
+- objective: preserve over-ice route survivability and sustainment throughput in high-latitude contested environments.
+- primary_tools: ice-route survivability planner, terrain/weather risk fusion board, convoy resilience analyzer
+- alternate_tools: manual route board and scheduled Arctic mobility hazard adjudication loops
+- degraded_mode: mission-essential GLOC lanes only with conservative route release gates
+- input_requirements: ice condition telemetry, route hazards, convoy capacities, sustainment priorities, weather forecasts
+- output_schema: survivability matrix, sustainment branch map, mobility risk trigger ledger
+- protocol_profile: USMTF + OGC + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: route safety threshold, sustainment throughput floor, command concurrence

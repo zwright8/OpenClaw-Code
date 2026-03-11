@@ -145,3 +145,8 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Airbase Reconstitution Expansion Wave XV Addendum (2026-03-11)
+
+- Add `tool_suite_id=ts-expeditionary-counter-drone-airfield-ground-crew-safety-cell-v1` + `protocol_stack_id=ps-expeditionary-counter-drone-airfield-ground-crew-safety-cell-stack-v1` when dispersal and reconstitution planning depends on flightline C-UAS safety gates.
+- Add `tool_suite_id=ts-joint-denied-gnss-maritime-pilotage-and-port-entry-cell-v1` + `protocol_stack_id=ps-joint-denied-gnss-maritime-pilotage-and-port-entry-cell-stack-v1` when port-entry and maritime sustainment timing affect sortie regeneration at dispersed bases.
+- Add `packet_id=DPL-EXPEDITIONARY-CUAS-GROUND-CREW-SAFETY-001` and `packet_id=DPL-DENIED-GNSS-MARITIME-PILOTAGE-PORT-ENTRY-001` for branches that alter crew protection posture, sortie pacing, or sustainment arrival confidence.

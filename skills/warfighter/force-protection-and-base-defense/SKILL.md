@@ -172,3 +172,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when force protection depends on trusted emergency warning traffic and rumor suppression.
 - Add `tool_suite_id=ts-satellite-ground-station-defense-v1` + `protocol_stack_id=ps-satellite-ground-station-defense-stack-v1` when base defense outcomes depend on SATCOM ground segment survivability.
 - Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-SATELLITE-GROUND-STATION-DEFENSE-001` for high-consequence posture changes.
+
+## Force Protection Expansion Wave XV Addendum (2026-03-11)
+
+- Add `tool_suite_id=ts-joint-multi-theater-hostage-proof-of-life-authentication-cell-v1` + `protocol_stack_id=ps-joint-multi-theater-hostage-proof-of-life-authentication-cell-stack-v1` when base-defense decisions depend on hostage media authenticity, coercion risk, or influence exploitation.
+- Add `tool_suite_id=ts-arctic-over-ice-ground-line-of-communication-resilience-cell-v1` + `protocol_stack_id=ps-arctic-over-ice-ground-line-of-communication-resilience-cell-stack-v1` when force-protection posture is constrained by Arctic over-ice route survivability.
+- Add `packet_id=DPL-MULTI-THEATER-HOSTAGE-POL-AUTH-001` and `packet_id=DPL-ARCTIC-OVER-ICE-GLOC-RESILIENCE-001` for branches that change protection priorities, mobility assumptions, or commander risk acceptance.
