@@ -1,10 +1,12 @@
 import path from 'path';
 import {
+    SUPPORTED_SELECTION_POLICY_MODES,
     runAutonomousOpenClaw,
     writeAutonomousRunReport
 } from '../src/autonomous-openclaw.js';
 
 function printHelp() {
+    const policyModes = SUPPORTED_SELECTION_POLICY_MODES.join('|');
     console.log(`Run autonomous OpenClaw skill/capability waves
 
 Usage:
@@ -32,7 +34,7 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
-  --selection-policy <mode>    Selection policy: ucb|ucb_tuned|linucb|d_linucb|lints|d_lints|kl_ucb|bayes_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_bayes_ucb|sw_epsilon_ts|d_ucb|d_ucb_tuned|d_bayes_ucb|d_epsilon_ts|cd_ucb|corral_exp3|moss_anytime (default: ucb)
+  --selection-policy <mode>    Selection policy: ${policyModes} (default: ucb)
   --linucb-alpha <n>           Exploration multiplier for linucb (0-5, default: 0.6)
   --lints-alpha <n>            Posterior covariance scale for lints (0-5, default: 0.5)
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
@@ -41,6 +43,8 @@ Options:
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
+  --exp3-ix-gamma <n>          Implicit exploration regularizer for exp3_ix (0-0.5, default: 0.07)
+  --exp3-ix-eta <n>            Exponential weight scale for exp3_ix (>0 to 10, default: 1)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
   --cd-min-samples <n>         Min outcomes before change detection in cd_ucb (default: 8)
@@ -106,27 +110,8 @@ function parsePositiveFloat(raw, flag) {
 
 function parseSelectionPolicy(raw) {
     const value = String(raw || '').trim().toLowerCase();
-    if (value !== 'ucb'
-        && value !== 'ucb_tuned'
-        && value !== 'linucb'
-        && value !== 'd_linucb'
-        && value !== 'lints'
-        && value !== 'd_lints'
-        && value !== 'kl_ucb'
-        && value !== 'bayes_ucb'
-        && value !== 'epsilon_ts'
-        && value !== 'sw_ucb'
-        && value !== 'sw_kl_ucb'
-        && value !== 'sw_bayes_ucb'
-        && value !== 'sw_epsilon_ts'
-        && value !== 'd_ucb'
-        && value !== 'd_ucb_tuned'
-        && value !== 'd_bayes_ucb'
-        && value !== 'd_epsilon_ts'
-        && value !== 'cd_ucb'
-        && value !== 'corral_exp3'
-        && value !== 'moss_anytime') {
-        throw new Error('--selection-policy must be one of: ucb, ucb_tuned, linucb, d_linucb, lints, d_lints, kl_ucb, bayes_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_bayes_ucb, sw_epsilon_ts, d_ucb, d_ucb_tuned, d_bayes_ucb, d_epsilon_ts, cd_ucb, corral_exp3, moss_anytime');
+    if (!SUPPORTED_SELECTION_POLICY_MODES.includes(value)) {
+        throw new Error(`--selection-policy must be one of: ${SUPPORTED_SELECTION_POLICY_MODES.join(', ')}`);
     }
     return value;
 }
@@ -166,6 +151,8 @@ function parseArgs(argv) {
             discountFactor: 0.97,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1,
             mossAlpha: 1,
             slidingWindowSize: 12,
             changeDetectionMinSamples: 8,
@@ -346,6 +333,16 @@ function parseArgs(argv) {
         }
         if (token === '--moss-alpha') {
             options.selectionPolicyConfig.mossAlpha = parseFloatInRange(value, '--moss-alpha', Number.EPSILON, 10);
+            i++;
+            continue;
+        }
+        if (token === '--exp3-ix-gamma') {
+            options.selectionPolicyConfig.exp3IxGamma = parseFloatInRange(value, '--exp3-ix-gamma', Number.EPSILON, 0.5);
+            i++;
+            continue;
+        }
+        if (token === '--exp3-ix-eta') {
+            options.selectionPolicyConfig.exp3IxEta = parseFloatInRange(value, '--exp3-ix-eta', Number.EPSILON, 10);
             i++;
             continue;
         }

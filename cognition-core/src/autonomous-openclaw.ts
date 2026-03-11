@@ -63,6 +63,10 @@ const DEFAULT_CORRAL_GAMMA = 0.12;
 const MAX_CORRAL_GAMMA = 0.8;
 const DEFAULT_CORRAL_ETA = 0.8;
 const MAX_CORRAL_ETA = 5;
+const DEFAULT_EXP3_IX_GAMMA = 0.07;
+const MAX_EXP3_IX_GAMMA = 0.5;
+const DEFAULT_EXP3_IX_ETA = 1;
+const MAX_EXP3_IX_ETA = 10;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
 const LINUCB_FEATURE_NAMES = [
@@ -73,7 +77,7 @@ const LINUCB_FEATURE_NAMES = [
     'novelty',
     'staleness'
 ];
-const SUPPORTED_SELECTION_POLICY_MODES = new Set([
+export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'ucb',
     'ucb_tuned',
     'linucb',
@@ -93,8 +97,10 @@ const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'd_bayes_ucb',
     'cd_ucb',
     'corral_exp3',
+    'exp3_ix',
     'moss_anytime'
 ]);
+const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_MODES);
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
     'sw_epsilon_ts',
@@ -108,6 +114,9 @@ const BAYES_UCB_POLICY_MODES = new Set([
     'bayes_ucb',
     'sw_bayes_ucb',
     'd_bayes_ucb'
+]);
+const EXP3_IX_POLICY_MODES = new Set([
+    'exp3_ix'
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
@@ -257,7 +266,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
     const mode = typeof value.mode === 'string'
         ? value.mode.trim().toLowerCase()
         : DEFAULT_SELECTION_POLICY_MODE;
-    const normalizedMode = SUPPORTED_SELECTION_POLICY_MODES.has(mode)
+    const normalizedMode = SUPPORTED_SELECTION_POLICY_MODE_SET.has(mode)
         ? mode
         : DEFAULT_SELECTION_POLICY_MODE;
 
@@ -360,6 +369,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CORRAL_ETA,
             Number.EPSILON,
             MAX_CORRAL_ETA
+        ),
+        exp3IxGamma: clamp(
+            Number.isFinite(Number(value.exp3IxGamma))
+                ? Number(value.exp3IxGamma)
+                : DEFAULT_EXP3_IX_GAMMA,
+            Number.EPSILON,
+            MAX_EXP3_IX_GAMMA
+        ),
+        exp3IxEta: clamp(
+            Number.isFinite(Number(value.exp3IxEta))
+                ? Number(value.exp3IxEta)
+                : DEFAULT_EXP3_IX_ETA,
+            Number.EPSILON,
+            MAX_EXP3_IX_ETA
         ),
         mossAlpha: clamp(
             Number.isFinite(Number(value.mossAlpha))
@@ -1442,6 +1465,49 @@ function pickPolicyFromDistribution(distribution, seedText) {
     return distribution[distribution.length - 1]?.name || DEFAULT_SELECTION_POLICY_MODE;
 }
 
+function resolveExp3IxDistribution({
+    catalog,
+    executionStats,
+    totalAttempts,
+    selectionPolicyConfig
+}) {
+    const list = Array.isArray(catalog) ? catalog : [];
+    const attemptsDenominator = Math.max(1, Number(totalAttempts) || 1);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const gamma = policy.exp3IxGamma;
+    const eta = policy.exp3IxEta;
+    const armCount = Math.max(1, list.length);
+    const uniform = 1 / armCount;
+    const weighted = list.map((candidate) => {
+        const key = String(candidate?.id ?? candidate);
+        const stat = resolveScoreStats(executionStats?.[key], selectionPolicyConfig);
+        const attempts = Math.max(0, Number(stat.attempts) || 0);
+        const successes = Math.max(0, Number(stat.successes) || 0);
+        const propensityProxy = attempts > 0
+            ? attempts / attemptsDenominator
+            : uniform;
+        const normalizedReward = attemptsDenominator > 0
+            ? successes / attemptsDenominator
+            : 0;
+        const implicitReward = normalizedReward / (propensityProxy + gamma);
+        const logWeight = clamp(eta * implicitReward, -30, 30);
+        return {
+            key,
+            weight: Math.exp(logWeight)
+        };
+    });
+    const sumWeights = weighted.reduce((sum, entry) => sum + entry.weight, 0);
+    const safeSum = sumWeights > 0 ? sumWeights : armCount;
+    const probabilities = {};
+
+    for (const entry of weighted) {
+        const exploitation = entry.weight / safeSum;
+        probabilities[entry.key] = ((1 - gamma) * exploitation) + (gamma * uniform);
+    }
+
+    return probabilities;
+}
+
 function cursorDistance(index, pointer, total) {
     if (total <= 0) return 0;
     return (index - pointer + total) % total;
@@ -1468,7 +1534,8 @@ function selectCatalogSlice({
             nextCursor: 0,
             selectedPolicy: normalizeSelectionPolicyConfig(selectionPolicyConfig).mode,
             policyProbabilities: null,
-            selectionFeatures: {}
+            selectionFeatures: {},
+            selectionProbabilities: {}
         };
     }
 
@@ -1497,6 +1564,7 @@ function selectCatalogSlice({
     let selectedPolicy = normalizedPolicy.mode;
     let policyProbabilities = null;
     const selectionFeatures = {};
+    let selectionProbabilities = {};
 
     if (normalizedPolicy.mode === 'corral_exp3') {
         const distribution = resolveCorralPolicyDistribution(policyExecutionStats, normalizedPolicy);
@@ -1516,6 +1584,19 @@ function selectCatalogSlice({
 
     const totalAttempts = Math.max(1, Object.values(executionStats)
         .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy).attempts, 0));
+    if (EXP3_IX_POLICY_MODES.has(scoringPolicy.mode)) {
+        selectionProbabilities = resolveExp3IxDistribution({
+            catalog: list,
+            executionStats,
+            totalAttempts,
+            selectionPolicyConfig: scoringPolicy
+        });
+        policyProbabilities = {
+            mode: scoringPolicy.mode,
+            gamma: Number(scoringPolicy.exp3IxGamma.toFixed(6)),
+            eta: Number(scoringPolicy.exp3IxEta.toFixed(6))
+        };
+    }
 
     const ranked = [];
     const cooled = [];
@@ -1588,6 +1669,24 @@ function selectCatalogSlice({
             });
             score = linearTs.score;
             featureVector = linearTs.featureVector;
+        } else if (EXP3_IX_POLICY_MODES.has(scoringPolicy.mode)) {
+            const adjustments = computeAdaptiveAdjustments(stat, normalizedCurrentWave, adaptiveScoreConfig);
+            const probability = Number(selectionProbabilities[key] || 0);
+            score = probability
+                - adjustments.failurePenalty
+                + adjustments.recentOutcomeBonus
+                + adjustments.staleBoost;
+        } else if (CONTEXTUAL_THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
+            const linearTs = computeLinearThompsonScore({
+                stat,
+                currentWave: normalizedCurrentWave,
+                adaptiveScoreConfig,
+                selectionPolicyConfig: scoringPolicy,
+                contextualBanditModel,
+                seedText: `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+            });
+            score = linearTs.score;
+            featureVector = linearTs.featureVector;
         } else {
             score = computeUcbScore(
                 stat,
@@ -1633,7 +1732,8 @@ function selectCatalogSlice({
         nextCursor: pointer,
         selectedPolicy,
         policyProbabilities,
-        selectionFeatures
+        selectionFeatures,
+        selectionProbabilities
     };
 }
 
@@ -1717,7 +1817,8 @@ export function buildAutonomousBatchPlan({
                     sourceCatalog: skillCatalogSource,
                     selectionPolicyApplied: skillSelection.selectedPolicy,
                     selectionPolicyConfig: normalizedSelectionPolicyConfig,
-                    selectionFeatures
+                    selectionFeatures,
+                    selectionProbability: Number(skillSelection.selectionProbabilities[featureKey] || 0)
                 },
                 skillId: entry.id,
                 skillCode,
@@ -1758,7 +1859,8 @@ export function buildAutonomousBatchPlan({
                     wave: waveIndex,
                     selectionPolicyApplied: capabilitySelection.selectedPolicy,
                     selectionPolicyConfig: normalizedSelectionPolicyConfig,
-                    selectionFeatures
+                    selectionFeatures,
+                    selectionProbability: Number(capabilitySelection.selectionProbabilities[featureKey] || 0)
                 },
                 capabilityId,
                 capabilityInput: buildCapabilityInput(capabilityId, waveIndex, taskCreatedAt)

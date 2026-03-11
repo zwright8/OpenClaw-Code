@@ -34,6 +34,7 @@
 - `npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3` - run autonomous loop with KL-UCB optimism for bounded binary outcomes.
 - `npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02` - run autonomous loop with change-detection UCB for abrupt drift handling.
 - `npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with EXP3-style policy corralling across UCB/TS/KL-UCB/change-detection arms.
+- `npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with implicit-exploration EXP3 weighting for adversarial/non-stationary reward shifts.
 - `npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2` - run autonomous loop with anytime-MOSS minimax exploration for hard cold-start allocation.
 - `npm run analyze` - generate cognition analysis report.
 - `tsx scripts/analyze-history.ts --days 7 --json reports/cognition-report.json --markdown reports/cognition-report.md` - produce historical analysis report outputs.
