@@ -32,8 +32,9 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
-  --selection-policy <mode>    Selection policy: ucb|linucb|d_linucb|kl_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_epsilon_ts|d_ucb|d_epsilon_ts|cd_ucb|corral_exp3|moss_anytime (default: ucb)
+  --selection-policy <mode>    Selection policy: ucb|linucb|d_linucb|lints|d_lints|kl_ucb|epsilon_ts|sw_ucb|sw_kl_ucb|sw_epsilon_ts|d_ucb|d_epsilon_ts|cd_ucb|corral_exp3|moss_anytime (default: ucb)
   --linucb-alpha <n>           Exploration multiplier for linucb (0-5, default: 0.6)
+  --lints-alpha <n>            Posterior covariance scale for lints (0-5, default: 0.5)
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
@@ -107,6 +108,8 @@ function parseSelectionPolicy(raw) {
     if (value !== 'ucb'
         && value !== 'linucb'
         && value !== 'd_linucb'
+        && value !== 'lints'
+        && value !== 'd_lints'
         && value !== 'kl_ucb'
         && value !== 'epsilon_ts'
         && value !== 'sw_ucb'
@@ -117,7 +120,7 @@ function parseSelectionPolicy(raw) {
         && value !== 'cd_ucb'
         && value !== 'corral_exp3'
         && value !== 'moss_anytime') {
-        throw new Error('--selection-policy must be one of: ucb, linucb, d_linucb, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, d_ucb, d_epsilon_ts, cd_ucb, corral_exp3, moss_anytime');
+        throw new Error('--selection-policy must be one of: ucb, linucb, d_linucb, lints, d_lints, kl_ucb, epsilon_ts, sw_ucb, sw_kl_ucb, sw_epsilon_ts, d_ucb, d_epsilon_ts, cd_ucb, corral_exp3, moss_anytime');
     }
     return value;
 }
@@ -150,6 +153,7 @@ function parseArgs(argv) {
         selectionPolicyConfig: {
             mode: 'ucb',
             linucbAlpha: 0.6,
+            lintsAlpha: 0.5,
             thompsonExploration: 0.2,
             thompsonPriorAlpha: 1,
             thompsonPriorBeta: 1,
@@ -300,6 +304,11 @@ function parseArgs(argv) {
         }
         if (token === '--linucb-alpha') {
             options.selectionPolicyConfig.linucbAlpha = parseFloatInRange(value, '--linucb-alpha', Number.EPSILON, 5);
+            i++;
+            continue;
+        }
+        if (token === '--lints-alpha') {
+            options.selectionPolicyConfig.lintsAlpha = parseFloatInRange(value, '--lints-alpha', Number.EPSILON, 5);
             i++;
             continue;
         }

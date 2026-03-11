@@ -37,6 +37,8 @@ const MAX_MAX_STALE_BOOST = 1;
 const DEFAULT_SELECTION_POLICY_MODE = 'ucb';
 const DEFAULT_LINUCB_ALPHA = 0.6;
 const MAX_LINUCB_ALPHA = 5;
+const DEFAULT_LINTS_ALPHA = 0.5;
+const MAX_LINTS_ALPHA = 5;
 const DEFAULT_THOMPSON_EXPLORATION = 0.2;
 const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
 const DEFAULT_THOMPSON_PRIOR_BETA = 1;
@@ -72,6 +74,8 @@ const SUPPORTED_SELECTION_POLICY_MODES = new Set([
     'ucb',
     'linucb',
     'd_linucb',
+    'lints',
+    'd_lints',
     'epsilon_ts',
     'kl_ucb',
     'sw_ucb',
@@ -100,7 +104,12 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
     'd_epsilon_ts',
-    'd_linucb'
+    'd_linucb',
+    'd_lints'
+]);
+const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
+    'lints',
+    'd_lints'
 ]);
 const CORRAL_BASE_POLICIES = [
     'ucb',
@@ -244,6 +253,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_LINUCB_ALPHA,
             Number.EPSILON,
             MAX_LINUCB_ALPHA
+        ),
+        lintsAlpha: clamp(
+            Number.isFinite(Number(value.lintsAlpha))
+                ? Number(value.lintsAlpha)
+                : DEFAULT_LINTS_ALPHA,
+            Number.EPSILON,
+            MAX_LINTS_ALPHA
         ),
         thompsonExploration: clamp(
             Number.isFinite(Number(value.thompsonExploration))
@@ -981,6 +997,47 @@ function dotProduct(left, right) {
     return total;
 }
 
+function choleskyDecomposition(matrix) {
+    const size = Array.isArray(matrix) ? matrix.length : 0;
+    if (size <= 0) return null;
+    const lower = [];
+    for (let row = 0; row < size; row++) {
+        lower[row] = new Array(size).fill(0);
+    }
+
+    for (let row = 0; row < size; row++) {
+        for (let col = 0; col <= row; col++) {
+            let sum = matrix[row][col] || 0;
+            for (let k = 0; k < col; k++) {
+                sum -= lower[row][k] * lower[col][k];
+            }
+            if (row === col) {
+                if (sum <= Number.EPSILON) return null;
+                lower[row][col] = Math.sqrt(sum);
+            } else {
+                if (Math.abs(lower[col][col]) <= Number.EPSILON) return null;
+                lower[row][col] = sum / lower[col][col];
+            }
+        }
+    }
+
+    return lower;
+}
+
+function multiplyLowerTriangularVector(lower, vector) {
+    const size = Array.isArray(lower) ? lower.length : 0;
+    const values = normalizeNumericVector(vector, size, 0);
+    const result = new Array(size).fill(0);
+    for (let row = 0; row < size; row++) {
+        let sum = 0;
+        for (let col = 0; col <= row; col++) {
+            sum += (lower[row][col] || 0) * values[col];
+        }
+        result[row] = sum;
+    }
+    return result;
+}
+
 function computeSelectionFeatureVector(stat, currentWave) {
     const normalized = normalizeExecutionStat(stat);
     const attempts = Math.max(0, normalized.attempts);
@@ -1032,6 +1089,56 @@ function computeLinUcbScore({
     const adjustments = computeAdaptiveAdjustments(normalizedStat, currentWave, adaptiveScoreConfig);
     const score = expectedReward
         + (normalizedPolicy.linucbAlpha * uncertainty)
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+    return {
+        score,
+        featureVector
+    };
+}
+
+function computeLinearThompsonScore({
+    stat,
+    currentWave,
+    adaptiveScoreConfig,
+    selectionPolicyConfig,
+    contextualBanditModel,
+    seedText
+}) {
+    const normalizedStat = resolveScoreStats(stat, selectionPolicyConfig);
+    const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const normalizedModel = normalizeLinUcbModel(contextualBanditModel);
+    const featureVector = computeSelectionFeatureVector(normalizedStat, currentWave);
+    const inverse = invertMatrix(normalizedModel.matrixA);
+    if (!inverse) {
+        return {
+            score: Number.NEGATIVE_INFINITY,
+            featureVector
+        };
+    }
+    const thetaMean = multiplyMatrixVector(inverse, normalizedModel.vectorB);
+    const covarianceScale = normalizedPolicy.lintsAlpha * normalizedPolicy.lintsAlpha;
+    const covariance = inverse.map((row) => row.map((value) => value * covarianceScale));
+    let lower = choleskyDecomposition(covariance);
+    if (!lower) {
+        const jittered = covariance.map((row, rowIndex) => row.map((value, colIndex) => {
+            if (rowIndex !== colIndex) return value;
+            return value + 1e-8;
+        }));
+        lower = choleskyDecomposition(jittered);
+    }
+    const rng = createDeterministicRng(seedText);
+    const noise = new Array(thetaMean.length).fill(0).map(() => sampleStandardNormal(rng));
+    const sampledTheta = lower
+        ? (() => {
+            const projectedNoise = multiplyLowerTriangularVector(lower, noise);
+            return thetaMean.map((value, index) => value + projectedNoise[index]);
+        })()
+        : thetaMean;
+    const sampledReward = dotProduct(sampledTheta, featureVector);
+    const adjustments = computeAdaptiveAdjustments(normalizedStat, currentWave, adaptiveScoreConfig);
+    const score = sampledReward
         - adjustments.failurePenalty
         + adjustments.recentOutcomeBonus
         + adjustments.staleBoost;
@@ -1359,6 +1466,17 @@ function selectCatalogSlice({
             });
             score = linucb.score;
             featureVector = linucb.featureVector;
+        } else if (CONTEXTUAL_THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
+            const linearTs = computeLinearThompsonScore({
+                stat,
+                currentWave: normalizedCurrentWave,
+                adaptiveScoreConfig,
+                selectionPolicyConfig: scoringPolicy,
+                contextualBanditModel,
+                seedText: `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+            });
+            score = linearTs.score;
+            featureVector = linearTs.featureVector;
         } else {
             score = computeUcbScore(
                 stat,
@@ -1706,10 +1824,13 @@ export async function collectAutonomousCoverage({
             policyExecutionStats[lane][selectedPolicy] = currentPolicy;
         }
 
-        if (lane && (selectedPolicy === 'linucb' || selectedPolicy === 'd_linucb')) {
+        if (lane && (selectedPolicy === 'linucb'
+            || selectedPolicy === 'd_linucb'
+            || selectedPolicy === 'lints'
+            || selectedPolicy === 'd_lints')) {
             const featureVector = extractSelectionFeatureVector(context);
             if (featureVector) {
-                const discountFactor = selectedPolicy === 'd_linucb'
+                const discountFactor = selectedPolicy === 'd_linucb' || selectedPolicy === 'd_lints'
                     ? selectedPolicyConfig.discountFactor
                     : 1;
                 contextualBanditModels[lane] = updateLinUcbModelDiscounted(

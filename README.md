@@ -225,6 +225,8 @@ npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index
 npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
 npm run autonomous:run -- --selection-policy linucb --linucb-alpha 0.6
 npm run autonomous:run -- --selection-policy d_linucb --discount-factor 0.97 --linucb-alpha 0.6
+npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5
+npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97

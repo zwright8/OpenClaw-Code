@@ -281,6 +281,104 @@ test('buildAutonomousBatchPlan supports discounted linucb contextual ranking und
     assert.equal(plan.tasks[0].context?.autonomy?.selectionFeatures?.values?.length, 6);
 });
 
+test('buildAutonomousBatchPlan supports linear thompson contextual ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 281, code: 'SK-00281', title: 'Skill 281' },
+            { id: 282, code: 'SK-00282', title: 'Skill 282' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 31,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '281': { attempts: 12, successes: 9, failures: 3, consecutiveFailures: 0, lastWave: 31, lastStatus: 'completed' },
+                '282': { attempts: 12, successes: 3, failures: 9, consecutiveFailures: 0, lastWave: 6, lastStatus: 'failed' }
+            },
+            contextualBanditModels: {
+                skills: {
+                    samples: 70,
+                    matrixA: [
+                        [1, 0, 0, 0, 0, 0],
+                        [0, 1, 0, 0, 0, 0],
+                        [0, 0, 1, 0, 0, 0],
+                        [0, 0, 0, 1, 0, 0],
+                        [0, 0, 0, 0, 1, 0],
+                        [0, 0, 0, 0, 0, 1]
+                    ],
+                    vectorB: [0, -1, 0, 0, 0, 2]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 32,
+        selectionPolicyConfig: {
+            mode: 'lints',
+            lintsAlpha: 0.1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [282]);
+    assert.equal(plan.selection.policy.skills, 'lints');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'lints');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionFeatures?.values?.length, 6);
+});
+
+test('buildAutonomousBatchPlan supports discounted linear thompson contextual ranking under drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 283, code: 'SK-00283', title: 'Skill 283' },
+            { id: 284, code: 'SK-00284', title: 'Skill 284' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 32,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '283': { attempts: 12, successes: 9, failures: 3, consecutiveFailures: 0, lastWave: 32, lastStatus: 'completed' },
+                '284': { attempts: 12, successes: 3, failures: 9, consecutiveFailures: 0, lastWave: 7, lastStatus: 'failed' }
+            },
+            contextualBanditModels: {
+                skills: {
+                    samples: 70,
+                    matrixA: [
+                        [1, 0, 0, 0, 0, 0],
+                        [0, 1, 0, 0, 0, 0],
+                        [0, 0, 1, 0, 0, 0],
+                        [0, 0, 0, 1, 0, 0],
+                        [0, 0, 0, 0, 1, 0],
+                        [0, 0, 0, 0, 0, 1]
+                    ],
+                    vectorB: [0, -1, 0, 0, 0, 2]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 33,
+        selectionPolicyConfig: {
+            mode: 'd_lints',
+            discountFactor: 0.9,
+            lintsAlpha: 0.1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [284]);
+    assert.equal(plan.selection.policy.skills, 'd_lints');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_lints');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyConfig?.discountFactor, 0.9);
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionFeatures?.values?.length, 6);
+});
+
 test('buildAutonomousBatchPlan supports epsilon-thompson policy with deterministic ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -842,6 +940,79 @@ test('runAutonomousOpenClaw records discounted linucb contextual model samples',
     });
 
     assert.equal(report.config.selectionPolicy.mode, 'd_linucb');
+    const saved = loadAutonomousState(statePath);
+    assert.ok(saved.contextualBanditModels.skills.samples > 0);
+});
+
+test('runAutonomousOpenClaw records linear thompson contextual model samples', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const storePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const statePath = path.join(dir, 'autonomy-state-lints.json');
+
+    const report = await runAutonomousOpenClaw({
+        repoRoot: REPO_ROOT,
+        storePath,
+        outboxDir,
+        archiveDir,
+        statePath,
+        waves: 1,
+        skillsPerWave: 1,
+        capabilitiesPerWave: 1,
+        dispatchLimit: 10,
+        workerCycles: 6,
+        workerIdleCycles: 2,
+        stopOnFullCoverage: false,
+        botRuntime: true,
+        enqueueFollowupTasks: true,
+        selectionPolicyConfig: {
+            mode: 'lints',
+            lintsAlpha: 0.5
+        },
+        nowFactory: () => Date.now()
+    });
+
+    assert.equal(report.config.selectionPolicy.mode, 'lints');
+    const saved = loadAutonomousState(statePath);
+    assert.ok(saved.contextualBanditModels.skills.samples > 0);
+});
+
+test('runAutonomousOpenClaw records discounted linear thompson contextual model samples', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const storePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const statePath = path.join(dir, 'autonomy-state-d-lints.json');
+
+    const report = await runAutonomousOpenClaw({
+        repoRoot: REPO_ROOT,
+        storePath,
+        outboxDir,
+        archiveDir,
+        statePath,
+        waves: 1,
+        skillsPerWave: 1,
+        capabilitiesPerWave: 1,
+        dispatchLimit: 10,
+        workerCycles: 6,
+        workerIdleCycles: 2,
+        stopOnFullCoverage: false,
+        botRuntime: true,
+        enqueueFollowupTasks: true,
+        selectionPolicyConfig: {
+            mode: 'd_lints',
+            lintsAlpha: 0.5,
+            discountFactor: 0.9
+        },
+        nowFactory: () => Date.now()
+    });
+
+    assert.equal(report.config.selectionPolicy.mode, 'd_lints');
     const saved = loadAutonomousState(statePath);
     assert.ok(saved.contextualBanditModels.skills.samples > 0);
 });
