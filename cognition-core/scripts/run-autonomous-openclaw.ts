@@ -32,10 +32,11 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
-  --selection-policy <mode>    Selection policy: ucb|epsilon_ts (default: ucb)
+  --selection-policy <mode>    Selection policy: ucb|epsilon_ts|sw_ucb|sw_epsilon_ts (default: ucb)
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
+  --window-size <n>            Sliding-window size for sw_* policies (default: 12)
   --no-enqueue-followups       Disable enqueueing generated follow-up tasks
   --json <path>                Optional JSON report output
   --markdown <path>            Optional markdown report output
@@ -94,8 +95,11 @@ function parsePositiveFloat(raw, flag) {
 
 function parseSelectionPolicy(raw) {
     const value = String(raw || '').trim().toLowerCase();
-    if (value !== 'ucb' && value !== 'epsilon_ts') {
-        throw new Error('--selection-policy must be one of: ucb, epsilon_ts');
+    if (value !== 'ucb'
+        && value !== 'epsilon_ts'
+        && value !== 'sw_ucb'
+        && value !== 'sw_epsilon_ts') {
+        throw new Error('--selection-policy must be one of: ucb, epsilon_ts, sw_ucb, sw_epsilon_ts');
     }
     return value;
 }
@@ -129,7 +133,8 @@ function parseArgs(argv) {
             mode: 'ucb',
             thompsonExploration: 0.2,
             thompsonPriorAlpha: 1,
-            thompsonPriorBeta: 1
+            thompsonPriorBeta: 1,
+            slidingWindowSize: 12
         },
         jsonPath: null,
         markdownPath: null,
@@ -273,6 +278,11 @@ function parseArgs(argv) {
         }
         if (token === '--thompson-prior-beta') {
             options.selectionPolicyConfig.thompsonPriorBeta = parsePositiveFloat(value, '--thompson-prior-beta');
+            i++;
+            continue;
+        }
+        if (token === '--window-size') {
+            options.selectionPolicyConfig.slidingWindowSize = parsePositiveInt(value, '--window-size');
             i++;
             continue;
         }

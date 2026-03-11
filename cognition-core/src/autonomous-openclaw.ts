@@ -39,6 +39,9 @@ const DEFAULT_THOMPSON_EXPLORATION = 0.2;
 const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
 const DEFAULT_THOMPSON_PRIOR_BETA = 1;
 const MAX_THOMPSON_PRIOR = 100;
+const DEFAULT_SLIDING_WINDOW_SIZE = 12;
+const MAX_SLIDING_WINDOW_SIZE = 200;
+const MAX_RECENT_OUTCOMES_TRACKED = 128;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -163,9 +166,14 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
     const mode = typeof value.mode === 'string'
         ? value.mode.trim().toLowerCase()
         : DEFAULT_SELECTION_POLICY_MODE;
+    const normalizedMode = (mode === 'epsilon_ts'
+        || mode === 'sw_ucb'
+        || mode === 'sw_epsilon_ts')
+        ? mode
+        : DEFAULT_SELECTION_POLICY_MODE;
 
     return {
-        mode: mode === 'epsilon_ts' ? 'epsilon_ts' : DEFAULT_SELECTION_POLICY_MODE,
+        mode: normalizedMode,
         thompsonExploration: clamp(
             Number.isFinite(Number(value.thompsonExploration))
                 ? Number(value.thompsonExploration)
@@ -186,8 +194,38 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_THOMPSON_PRIOR_BETA,
             Number.EPSILON,
             MAX_THOMPSON_PRIOR
+        ),
+        slidingWindowSize: clamp(
+            Number.isFinite(Number(value.slidingWindowSize))
+                ? Number(value.slidingWindowSize)
+                : DEFAULT_SLIDING_WINDOW_SIZE,
+            1,
+            MAX_SLIDING_WINDOW_SIZE
         )
     };
+}
+
+function normalizeRecentOutcomeEntry(rawEntry = {}) {
+    const entry = rawEntry && typeof rawEntry === 'object' ? rawEntry : {};
+    const status = normalizeStatus(entry.status);
+    return {
+        wave: Number.isFinite(Number(entry.wave))
+            ? parseNonNegativeInt(entry.wave, 0)
+            : 0,
+        status,
+        didSucceed: SUCCESS_STATUSES.has(status)
+    };
+}
+
+function normalizeRecentOutcomes(rawOutcomes = []) {
+    if (!Array.isArray(rawOutcomes)) return [];
+    const normalized = [];
+    for (const rawEntry of rawOutcomes) {
+        const entry = normalizeRecentOutcomeEntry(rawEntry);
+        if (!TERMINAL_STATUSES.has(entry.status)) continue;
+        normalized.push(entry);
+    }
+    return normalized.slice(-MAX_RECENT_OUTCOMES_TRACKED);
 }
 
 function normalizeExecutionStat(rawStat = {}) {
@@ -205,6 +243,7 @@ function normalizeExecutionStat(rawStat = {}) {
     const lastWave = Number.isFinite(Number(stat.lastWave))
         ? parseNonNegativeInt(stat.lastWave, 0)
         : null;
+    const recentOutcomes = normalizeRecentOutcomes(stat.recentOutcomes);
 
     return {
         attempts,
@@ -213,7 +252,8 @@ function normalizeExecutionStat(rawStat = {}) {
         consecutiveFailures,
         lastStatus,
         lastAttemptAt,
-        lastWave
+        lastWave,
+        recentOutcomes
     };
 }
 
@@ -536,8 +576,37 @@ function computeAdaptiveAdjustments(stat, currentWave, adaptiveScoreConfig) {
     };
 }
 
-function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig) {
+function computeWindowedStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const window = normalized.recentOutcomes.slice(-policy.slidingWindowSize);
+    const attempts = window.length;
+    const successes = window.reduce((count, entry) => count + (entry.didSucceed ? 1 : 0), 0);
+    const failures = attempts - successes;
+    return {
+        attempts,
+        successes,
+        failures
+    };
+}
+
+function resolveScoreStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (policy.mode === 'sw_ucb' || policy.mode === 'sw_epsilon_ts') {
+        const windowed = computeWindowedStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: windowed.attempts,
+            successes: windowed.successes,
+            failures: windowed.failures
+        };
+    }
+    return normalized;
+}
+
+function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
         return Number.POSITIVE_INFINITY;
     }
@@ -603,7 +672,7 @@ function sampleBeta(alpha, beta, rng) {
 }
 
 function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText) {
-    const normalized = normalizeExecutionStat(stat);
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
     const alpha = policy.thompsonPriorAlpha + normalized.successes;
@@ -664,10 +733,10 @@ function selectCatalogSlice({
         scanned++;
     }
 
-    const totalAttempts = Math.max(1, Object.values(executionStats)
-        .reduce((sum, stat) => sum + normalizeExecutionStat(stat).attempts, 0));
     const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const normalizedCurrentWave = parseNonNegativeInt(currentWave, 0);
+    const totalAttempts = Math.max(1, Object.values(executionStats)
+        .reduce((sum, stat) => sum + resolveScoreStats(stat, normalizedPolicy).attempts, 0));
 
     const ranked = [];
     const cooled = [];
@@ -676,22 +745,24 @@ function selectCatalogSlice({
         const key = String(candidate?.id ?? candidate);
         if (selectedKeySet.has(key)) continue;
         const stat = normalizeExecutionStat(executionStats[key]);
+        const scoreStats = resolveScoreStats(stat, normalizedPolicy);
         const item = {
             candidate,
             key,
-            score: normalizedPolicy.mode === 'epsilon_ts'
+            score: (normalizedPolicy.mode === 'epsilon_ts' || normalizedPolicy.mode === 'sw_epsilon_ts')
                 ? computeEpsilonThompsonScore(
                     stat,
                     normalizedCurrentWave,
                     adaptiveScoreConfig,
                     normalizedPolicy,
-                    `${selectionScope}:${key}:${normalizedCurrentWave}:${stat.attempts}:${stat.successes}:${stat.failures}`
+                    `${selectionScope}:${normalizedPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
                 )
                 : computeUcbScore(
                     stat,
                     totalAttempts,
                     normalizedCurrentWave,
-                    adaptiveScoreConfig
+                    adaptiveScoreConfig,
+                    normalizedPolicy
                 ),
             distance: cursorDistance(index, pointer, total),
             cooled: isInFailureCooldown(stat, currentWave, failureCooldownWaves)
@@ -833,6 +904,18 @@ export function buildAutonomousBatchPlan({
     };
 }
 
+function recordRecentOutcome(stat, { status, wave }) {
+    const normalized = normalizeExecutionStat(stat);
+    const normalizedStatus = normalizeStatus(status);
+    normalized.recentOutcomes.push({
+        wave: parseNonNegativeInt(wave, 0),
+        status: normalizedStatus,
+        didSucceed: SUCCESS_STATUSES.has(normalizedStatus)
+    });
+    normalized.recentOutcomes = normalized.recentOutcomes.slice(-MAX_RECENT_OUTCOMES_TRACKED);
+    return normalized;
+}
+
 export async function collectAutonomousCoverage({
     storePath,
     nowFactory = Date.now
@@ -873,7 +956,7 @@ export async function collectAutonomousCoverage({
 
         if (skillId !== null) {
             const key = String(skillId);
-            const current = normalizeExecutionStat(skillExecutionStats[key]);
+            let current = normalizeExecutionStat(skillExecutionStats[key]);
             current.attempts += 1;
             if (didSucceed) {
                 current.successes += 1;
@@ -887,11 +970,12 @@ export async function collectAutonomousCoverage({
             current.lastStatus = status;
             current.lastAttemptAt = attemptAt;
             current.lastWave = attemptWave > 0 ? attemptWave : current.lastWave;
+            current = recordRecentOutcome(current, { status, wave: attemptWave });
             skillExecutionStats[key] = current;
         }
 
         if (capabilityId) {
-            const current = normalizeExecutionStat(capabilityExecutionStats[capabilityId]);
+            let current = normalizeExecutionStat(capabilityExecutionStats[capabilityId]);
             current.attempts += 1;
             if (didSucceed) {
                 current.successes += 1;
@@ -905,6 +989,7 @@ export async function collectAutonomousCoverage({
             current.lastStatus = status;
             current.lastAttemptAt = attemptAt;
             current.lastWave = attemptWave > 0 ? attemptWave : current.lastWave;
+            current = recordRecentOutcome(current, { status, wave: attemptWave });
             capabilityExecutionStats[capabilityId] = current;
         }
     }

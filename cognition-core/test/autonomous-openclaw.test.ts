@@ -216,6 +216,121 @@ test('buildAutonomousBatchPlan supports epsilon-thompson policy with determinist
     assert.deepEqual(plan.selection.skillIds, [41]);
 });
 
+test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 51, code: 'SK-00051', title: 'Skill 51' },
+            { id: 52, code: 'SK-00052', title: 'Skill 52' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 22,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '51': {
+                    attempts: 14,
+                    successes: 10,
+                    failures: 4,
+                    consecutiveFailures: 0,
+                    lastWave: 22,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' }
+                    ]
+                },
+                '52': {
+                    attempts: 14,
+                    successes: 8,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 22,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 23,
+        selectionPolicyConfig: {
+            mode: 'sw_ucb',
+            slidingWindowSize: 3
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [52]);
+});
+
+test('buildAutonomousBatchPlan supports sliding-window epsilon-thompson ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 61, code: 'SK-00061', title: 'Skill 61' },
+            { id: 62, code: 'SK-00062', title: 'Skill 62' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '61': {
+                    attempts: 20,
+                    successes: 14,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                },
+                '62': {
+                    attempts: 20,
+                    successes: 9,
+                    failures: 11,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'sw_epsilon_ts',
+            slidingWindowSize: 4,
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [62]);
+});
+
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
