@@ -209,3 +209,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-subsea-cable-cut-mission-reroute-v1` + `protocol_stack_id=ps-subsea-cable-cut-mission-reroute-stack-v1` when defended installations depend on subsea-connected mission services and cable-cut sabotage impacts base protection posture.
 - Add `tool_suite_id=ts-drone-swarm-civil-air-corridor-grounding-v1` + `protocol_stack_id=ps-drone-swarm-civil-air-corridor-grounding-stack-v1` when force protection requires emergency grounding/rerouting of mixed civil-military air corridors under swarm attack.
 - Add `packet_id=DPL-SUBSEA-CABLE-CUT-MISSION-REROUTE-001` and `packet_id=DPL-DRONE-SWARM-CIVIL-AIR-CORRIDOR-GROUNDING-001` for branches that alter base readiness, air movement controls, or public safety posture.
+
+## Domain Toolchain Override (2026-03-11, Timing Integrity and Multilingual Alert Assurance Addendum)
+
+- Add `tool_suite_id=ts-quantum-timing-holdover-fires-iamd-v1` + `protocol_stack_id=ps-quantum-timing-holdover-fires-iamd-stack-v1` when base defense release authority depends on denied-PNT timing integrity across fires and air defense.
+- Add `tool_suite_id=ts-multilingual-emergency-broadcast-auth-v1` + `protocol_stack_id=ps-multilingual-emergency-broadcast-auth-stack-v1` when force protection depends on trusted multilingual warning dissemination under spoofing pressure.
+- Add `packet_id=DPL-QUANTUM-TIMING-HOLDOVER-FIRES-IAMD-001` and `packet_id=DPL-MULTILINGUAL-EMERGENCY-BROADCAST-AUTH-001` for branches that alter release timing, shelter directives, or public-alert posture.

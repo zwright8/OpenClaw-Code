@@ -1456,3 +1456,33 @@ Every skill output should include:
 - Additive spare counterfeit detection + expeditionary fabrication and battle-damage repair + maintenance predictive failure + software/hardware provenance assurance
 - Hospital-ship littoral casualty flow + casualty evacuation and medical regulation + coalition cross-border medevac clearance + burn-care routing support
 - Strategic battery supply sabotage response + strategic industrial mobilization readiness + critical mineral interdiction defense + mission-energy resilience planning
+
+## New Expansion Wave (2026-03-11, Timing Integrity, Civil Resilience, and Spoofing-Adjudication Continuity)
+
+- theater-quantum-timing-holdover-for-fires-and-air-defense-cell
+- coalition-expeditionary-civil-grid-cyber-mutual-aid-cell
+- joint-degraded-aviation-fuel-microbe-contamination-response-cell
+- strategic-rare-earth-shipping-chokepoint-insurance-surge-cell
+- homeland-maritime-prepositioning-port-strike-cargo-recovery-cell
+- joint-civilian-shelter-medical-oxygen-convoy-prioritization-cell
+- theater-denied-gps-rail-precision-offload-synchronization-cell
+- coalition-disaster-relief-aerial-water-drop-deconfliction-cell
+- joint-undersea-sensor-spoofing-confidence-adjudication-cell
+- expeditionary-field-hospital-wastewater-biosecurity-cell
+- strategic-long-duration-grid-blackstart-cyber-guard-cell
+- theater-multilingual-emergency-broadcast-translation-authentication-cell
+
+## Updated Pairings (2026-03-11, Timing Integrity, Civil Resilience, and Spoofing-Adjudication Continuity)
+
+- Quantum timing holdover for fires/IAMD + integrated air and missile defense battle management + dynamic targeting and fires synchronization + denied-PNT transition planning
+- Coalition civil-grid cyber mutual aid + DSCA crisis support + cyber-physical infrastructure defense + operational energy resilience and microgrid
+- Aviation fuel microbe contamination response + forward arming/refueling point management + contested logistics sustainment + preventive medicine force-health protection
+- Rare-earth shipping chokepoint insurance surge + strategic industrial mobilization readiness + supply-chain risk monitor + strategic competition gray-zone response
+- Maritime prepositioning port-strike cargo recovery + strategic sealift/prepositioning coordination + joint deployment and distribution optimization + force sustainment planning
+- Civilian shelter medical oxygen convoy prioritization + casualty evacuation and medical regulation + coalition medevac clearance + civil defense mass evacuation support
+- Denied-GPS rail precision offload synchronization + strategic mobility port-rail chokepoint wargame + deployment/distribution ops center optimization + mission network failover
+- Coalition aerial water-drop deconfliction + tactical airspace control/deconfliction + weather and wildfire effects forecasting + civil-military coordination
+- Undersea sensor spoofing confidence adjudication + anti-submarine warfare support + undersea chokepoint barrier operations + mission-warning governance
+- Field hospital wastewater biosecurity + austere surgical support + preventive medicine and force health protection + host-nation environmental coordination
+- Long-duration grid blackstart cyber guard + homeland critical infrastructure restoration + CEMA integration + command continuity governance
+- Multilingual emergency broadcast translation authentication + information integrity and attribution + psychological operations and MISO support + civil alert continuity governance

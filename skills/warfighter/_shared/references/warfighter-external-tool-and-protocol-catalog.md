@@ -7123,3 +7123,127 @@ external_binding:
 ### `ps-strategic-battery-supply-sabotage-response-stack-v1`
 - Standards and protocols: API/JSON industrial telemetry + NIEM logistics exchange + signed production integrity manifests.
 - Transport profile: strategic battery-supply assurance channel with sabotage-alert acknowledgments and continuity-safe fallback.
+
+## Tool Suite Addendum Q (2026-03-11, Timing Integrity, Civil Resilience, and Spoofing-Adjudication Continuity)
+
+### `ts-quantum-timing-holdover-fires-iamd-v1`
+- Use for: resilient precision timing holdover across fires and integrated air/missile defense during denied PNT conditions.
+- Primary tools: timing confidence fusion board, fires release clock coherence monitor, IAMD track-time integrity adjudicator.
+- Cross-check tools: independent cesium holdover verifier and alternate mission-time witness ledger.
+- Typical products: timing holdover release matrix, fires/IAMD synchronization risk brief, degraded-timing branch package.
+
+### `ts-coalition-civil-grid-cyber-mutual-aid-v1`
+- Use for: coalition mutual-aid cyber defense and expeditionary restoration of civilian grid nodes supporting operations.
+- Primary tools: OT incident fusion board, coalition ticket exchange broker, critical-load restoration sequencer.
+- Cross-check tools: independent utility telemetry mirror and alternate host-nation CERT validation board.
+- Typical products: mutual-aid activation order, cyber isolation sequence, mission-load restoration matrix.
+
+### `ts-aviation-fuel-microbe-contamination-response-v1`
+- Use for: detection and containment of microbial aviation fuel contamination in degraded sustainment environments.
+- Primary tools: fuel microbial assay tracker, tank contamination propagation model, sortie fuel release gate.
+- Cross-check tools: independent lab confirmation queue and alternate fuel farm confidence monitor.
+- Typical products: contamination isolation order, fuel release confidence map, sortie-impact mitigation timeline.
+
+### `ts-rare-earth-shipping-chokepoint-insurance-surge-v1`
+- Use for: rare-earth shipping continuity through contested chokepoints using insurance and reroute surge mechanisms.
+- Primary tools: chokepoint maritime risk model, insurance trigger adjudicator, strategic cargo reroute planner.
+- Cross-check tools: independent shipping lane risk feed and alternate sanctions/compliance watchdog.
+- Typical products: insurance surge activation packet, reroute priority matrix, industrial continuity risk estimate.
+
+### `ts-maritime-prepositioning-port-strike-cargo-recovery-v1`
+- Use for: mission-priority cargo recovery and offload restoration after strikes on maritime prepositioning ports.
+- Primary tools: port strike damage triage board, cargo criticality sequencer, berth-crane recovery scheduler.
+- Cross-check tools: independent sealift readiness ledger and alternate inland transfer feasibility board.
+- Typical products: cargo recovery order, phased offload schedule, mission sustainment gap analysis.
+
+### `ts-civilian-shelter-medical-oxygen-convoy-priority-v1`
+- Use for: prioritization of medical oxygen convoys to civilian shelters and field care nodes under contested logistics.
+- Primary tools: oxygen demand heatmap, convoy risk optimizer, shelter acuity prioritization board.
+- Cross-check tools: independent clinical consumption monitor and alternate route-security adjudicator.
+- Typical products: convoy release ladder, oxygen distribution timeline, shelter risk mitigation branch map.
+
+### `ts-denied-gps-rail-precision-offload-sync-v1`
+- Use for: denied-GPS rail precision offload synchronization and onward force-flow timing integrity.
+- Primary tools: rail waypoint timing reconciler, offload queue optimizer, tactical yard handoff ledger.
+- Cross-check tools: independent inertial timing witness and alternate local dispatch reconciliation board.
+- Typical products: offload synchronization order, onward movement confidence matrix, timing-dispute adjudication packet.
+
+### `ts-coalition-aerial-water-drop-deconfliction-v1`
+- Use for: coalition aerial water-drop and wildfire response deconfliction with military and civil air operations.
+- Primary tools: drop-window scheduler, smoke-plume airspace conflict board, coalition sortie deconfliction matrix.
+- Cross-check tools: independent fire-behavior model and alternate ATC load-balancing board.
+- Typical products: drop deconfliction order, mixed-use airspace risk map, release authority matrix.
+
+### `ts-undersea-sensor-spoofing-confidence-adjudication-v1`
+- Use for: adjudication of spoofed undersea sensor signals and preservation of confidence in seabed warning networks.
+- Primary tools: acoustic anomaly classifier, spoofing confidence ladder, seabed sensor custody ledger.
+- Cross-check tools: independent signature-baseline validator and alternate patrol correlation board.
+- Typical products: spoofing confidence packet, sensor quarantine sequence, mission-alert release guidance.
+
+### `ts-field-hospital-wastewater-biosecurity-v1`
+- Use for: biosecurity control of field-hospital wastewater and downstream contamination risk containment.
+- Primary tools: wastewater pathogen telemetry monitor, containment routing planner, discharge compliance ledger.
+- Cross-check tools: independent sampling chain board and alternate public-health threshold validator.
+- Typical products: biosecurity containment order, discharge-risk timeline, remediation task matrix.
+
+### `ts-long-duration-grid-blackstart-cyber-guard-v1`
+- Use for: cyber-guarded long-duration grid blackstart supporting strategic military and civil continuity.
+- Primary tools: blackstart sequence orchestrator, OT cyber guard dashboard, mission-load restoration planner.
+- Cross-check tools: independent breaker-state witness feed and alternate regional restoration mirror.
+- Typical products: blackstart cyber guard plan, load restoration order, compromise-isolation branch package.
+
+### `ts-multilingual-emergency-broadcast-auth-v1`
+- Use for: authenticated multilingual emergency broadcasting across coalition and civil channels during contested information operations.
+- Primary tools: translation fidelity adjudicator, broadcast signature verifier, channel consistency monitor.
+- Cross-check tools: independent linguist confidence board and alternate civil alert authenticity feed.
+- Typical products: multilingual alert packet, translation confidence map, adversary spoofing counter-message plan.
+
+## Protocol Stack Addendum Q (2026-03-11, Timing Integrity, Civil Resilience, and Spoofing-Adjudication Continuity)
+
+### `ps-quantum-timing-holdover-fires-iamd-stack-v1`
+- Standards and protocols: USMTF + Link 16 J-series timing fields + signed mission-time holdover manifests.
+- Transport profile: deterministic timing-governance channel with release-gate acknowledgments and rollback-safe branching.
+
+### `ps-coalition-civil-grid-cyber-mutual-aid-stack-v1`
+- Standards and protocols: IEC 61850 + STIX/TAXII + NIEM mutual-aid incident exchange.
+- Transport profile: authority-gated coalition OT response bus with delayed-link reconciliation fallback.
+
+### `ps-aviation-fuel-microbe-contamination-response-stack-v1`
+- Standards and protocols: GS1 lot traceability + API/JSON fuel telemetry + signed contamination release manifests.
+- Transport profile: segmented fuel assurance channel with assay-confirmation acknowledgments and manual sampling fallback.
+
+### `ps-rare-earth-shipping-chokepoint-insurance-surge-stack-v1`
+- Standards and protocols: AIS/NMEA + API/JSON maritime insurance events + signed strategic cargo manifests.
+- Transport profile: maritime logistics risk bus with insurance trigger checkpoints and reroute replay capability.
+
+### `ps-maritime-prepositioning-port-strike-cargo-recovery-stack-v1`
+- Standards and protocols: USMTF logistics updates + rail/port API events + signed cargo custody manifests.
+- Transport profile: strike-recovery orchestration queue with berth/crane readiness acknowledgments and degraded voice fallback.
+
+### `ps-civilian-shelter-medical-oxygen-convoy-priority-stack-v1`
+- Standards and protocols: HL7/FHIR + NIMS/ICS convoy packets + signed medical oxygen priority manifests.
+- Transport profile: prioritized shelter-support routing channel with custody acknowledgments and delayed-state sync mode.
+
+### `ps-denied-gps-rail-precision-offload-sync-stack-v1`
+- Standards and protocols: rail API/JSON + USMTF movement updates + signed timing-integrity manifests.
+- Transport profile: denied-PNT offload synchronization lane with handoff witness logging and manual dispatch fallback.
+
+### `ps-coalition-aerial-water-drop-deconfliction-stack-v1`
+- Standards and protocols: AIXM/FIXM + CoT + NATO APP-11/ADatP-3 drop-window notices.
+- Transport profile: mixed-use airspace deconfliction bus with coalition acknowledgment chain and ATC voice fallback.
+
+### `ps-undersea-sensor-spoofing-confidence-adjudication-stack-v1`
+- Standards and protocols: OGC SensorThings + USMTF warning summaries + signed spoofing-confidence manifests.
+- Transport profile: authenticated undersea confidence channel with quarantine-gate acknowledgments.
+
+### `ps-field-hospital-wastewater-biosecurity-stack-v1`
+- Standards and protocols: OGC SensorThings + NIMS/ICS biosecurity packets + signed discharge-control manifests.
+- Transport profile: medical biosecurity telemetry lane with contamination-threshold alerts and manual sample-chain fallback.
+
+### `ps-long-duration-grid-blackstart-cyber-guard-stack-v1`
+- Standards and protocols: IEC 61850 + STIX/TAXII + USMTF restoration directives.
+- Transport profile: cyber-guarded blackstart control bus with command witness logging and compromise rollback branches.
+
+### `ps-multilingual-emergency-broadcast-auth-stack-v1`
+- Standards and protocols: CAP + NIEM alert exchange + signed translation and signature-validation manifests.
+- Transport profile: multilingual broadcast integrity channel with translation-confidence tags and alternate civil-channel confirmation.

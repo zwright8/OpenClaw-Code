@@ -198,3 +198,9 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Add `tool_suite_id=ts-reservist-family-readiness-continuity-v1` + `protocol_stack_id=ps-reservist-family-readiness-continuity-stack-v1` when battle rhythm synchronization requires balancing mobilization tempo with family-support and civic continuity constraints.
 - Add `tool_suite_id=ts-strategic-battery-supply-sabotage-response-v1` + `protocol_stack_id=ps-strategic-battery-supply-sabotage-response-stack-v1` when command cadence depends on strategic battery-material disruption recovery and mission-energy allocation governance.
 - Add `packet_id=DPL-RESERVIST-FAMILY-READINESS-CONTINUITY-001` and `packet_id=DPL-STRATEGIC-BATTERY-SUPPLY-SABOTAGE-RESPONSE-001` for JOC branches that alter force availability posture, industrial recovery sequencing, or mission-energy priorities.
+
+## Domain Toolchain Override (2026-03-11, Grid Cyber Mutual Aid and Port Cargo Recovery Addendum)
+
+- Add `tool_suite_id=ts-coalition-civil-grid-cyber-mutual-aid-v1` + `protocol_stack_id=ps-coalition-civil-grid-cyber-mutual-aid-stack-v1` when JOC cadence depends on coalition OT cyber mutual aid and mission-priority load restoration sequencing.
+- Add `tool_suite_id=ts-maritime-prepositioning-port-strike-cargo-recovery-v1` + `protocol_stack_id=ps-maritime-prepositioning-port-strike-cargo-recovery-stack-v1` when battle rhythm updates must govern post-strike cargo recovery and sustainment force-flow continuity.
+- Add `packet_id=DPL-COALITION-CIVIL-GRID-CYBER-MUTUAL-AID-001` and `packet_id=DPL-MARITIME-PREPOSITIONING-PORT-STRIKE-CARGO-RECOVERY-001` for branches that alter restoration governance, sustainment sequencing, or command timing.
