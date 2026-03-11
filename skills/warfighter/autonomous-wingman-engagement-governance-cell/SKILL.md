@@ -153,3 +153,9 @@ Primary products for this skill: human-machine authority matrix, engagement gove
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-11, Deception and Timing Integrity Hardening)
+
+- Add `tool_suite_id=ts-joint-deception-red-indicator-fusion-v1` with `protocol_stack_id=ps-joint-deception-red-indicator-fusion-stack-v1` when adversary deception indicators or comms spoofing could influence autonomy mode decisions.
+- Require `packet_id=DPL-PNT-TIME-TRANSFER-001` and `protocol_stack_id=ps-contested-pnt-time-transfer-stack-v1` for any recommendation where autonomy behavior depends on contested timing confidence.
+- If either deception-confidence adjudication or mission-time integrity remains below threshold, force `advisory_only: true` and block autonomy mode changes until explicit human re-authorization.

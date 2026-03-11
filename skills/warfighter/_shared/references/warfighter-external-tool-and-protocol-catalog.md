@@ -7247,3 +7247,107 @@ external_binding:
 ### `ps-multilingual-emergency-broadcast-auth-stack-v1`
 - Standards and protocols: CAP + NIEM alert exchange + signed translation and signature-validation manifests.
 - Transport profile: multilingual broadcast integrity channel with translation-confidence tags and alternate civil-channel confirmation.
+
+## Tool Suite Addendum R (2026-03-11, Nuclear/Hypersonic/Space-SOF/Critical Infrastructure Expansion)
+
+### `ts-nuclear-surety-incident-response-v1`
+- Use for: nuclear surety incident consequence triage, command coordination, and protective action sequencing.
+- Primary tools: radiological consequence board, surety incident command tracker, protective action recommendation engine.
+- Cross-check tools: independent dosimetry confidence board and alternate civil warning verification channel.
+- Typical products: surety incident branch plan, protective action timeline, command decision trigger matrix.
+
+### `ts-hypersonic-strike-timeline-assurance-v1`
+- Use for: hypersonic strike timeline assurance, target-quality adjudication, and cross-domain deconfliction.
+- Primary tools: kill-chain timing coherence board, dynamic target confidence monitor, effects deconfliction planner.
+- Cross-check tools: independent sensor-timeline witness and alternate strike-window confidence ledger.
+- Typical products: timeline assurance matrix, deconfliction release gates, strike confidence branch set.
+
+### `ts-contested-pnt-time-transfer-assurance-v1`
+- Use for: assured precision time transfer and contested-PNT continuity under jamming/spoofing pressure.
+- Primary tools: resilient timing fusion board, GNSS anomaly detector, holdover oscillator confidence monitor.
+- Cross-check tools: independent time witness ledger and alternate inertial/PNT confidence board.
+- Typical products: time-transfer release matrix, PNT confidence map, degraded navigation branch chart.
+
+### `ts-strategic-sealift-port-survivability-v1`
+- Use for: strategic sealift convoy defense and damaged-port survivability restoration.
+- Primary tools: convoy threat/risk optimizer, berth-crane survivability tracker, cargo criticality sequencer.
+- Cross-check tools: independent maritime lane threat board and alternate inland offload feasibility monitor.
+- Typical products: convoy defense plan, phased port recovery schedule, sustainment continuity matrix.
+
+### `ts-denied-space-launch-reconstitution-v1`
+- Use for: denied-environment launch-site reconstitution and mission-priority space service restoration.
+- Primary tools: launch complex damage triage board, range safety governance engine, mission-payload priority scheduler.
+- Cross-check tools: independent launch readiness witness and alternate orbital service continuity board.
+- Typical products: launch reconstitution order, range safety release ladder, payload priority decision packet.
+
+### `ts-sof-signature-management-exfiltration-v1`
+- Use for: special operations signature suppression and exfiltration decision support in denied terrain.
+- Primary tools: multi-spectral signature risk board, denied-route exfiltration planner, comms-emission governance tracker.
+- Cross-check tools: independent exposure-probability validator and alternate extraction feasibility board.
+- Typical products: signature control profile, exfiltration timing matrix, exposure mitigation branch map.
+
+### `ts-battlefield-additive-repair-validation-v1`
+- Use for: forward additive repair part validation and mission-safe release under contested sustainment.
+- Primary tools: additive process attestation ledger, material integrity analyzer, repair release authority board.
+- Cross-check tools: independent sample test witness and alternate fleet reliability monitor.
+- Typical products: repair validation packet, release/no-release decision log, reliability risk matrix.
+
+### `ts-joint-electronic-protection-spectrum-maneuver-v1`
+- Use for: joint electromagnetic protection and real-time spectrum maneuver under active EW pressure.
+- Primary tools: EW threat-intent fusion board, waveform agility allocator, mission-priority spectrum controller.
+- Cross-check tools: independent fratricide-spectrum monitor and alternate emitter survivability tracker.
+- Typical products: spectrum maneuver order, EP control timeline, comms survivability confidence map.
+
+### `ts-homeland-port-cyber-physical-defense-coordination-v1`
+- Use for: homeland port cyber-physical defense, cargo throughput continuity, and emergency authority synchronization.
+- Primary tools: OT/IT incident fusion board, port operations continuity tracker, emergency authority escalation manager.
+- Cross-check tools: independent crane/yard telemetry witness and alternate coast-guard port risk board.
+- Typical products: cyber-physical containment order, cargo continuity branch matrix, authority escalation checklist.
+
+### `ts-joint-deception-red-indicator-fusion-v1`
+- Use for: red-indicator fusion to detect adversary deception operations and trigger collection/command response.
+- Primary tools: deception signal fusion board, adversary narrative anomaly tracker, confidence adjudication ladder.
+- Cross-check tools: independent red-team challenge board and alternate source-provenance monitor.
+- Typical products: deception warning packet, confidence-ranked hypothesis board, commander trigger recommendations.
+
+## Protocol Stack Addendum R (2026-03-11, Nuclear/Hypersonic/Space-SOF/Critical Infrastructure Expansion)
+
+### `ps-nuclear-surety-incident-response-stack-v1`
+- Standards and protocols: USMTF + NIMS/ICS incident packets + signed radiological protective-action manifests.
+- Transport profile: surety incident command channel with acknowledgment chain and contaminated-node fallback procedures.
+
+### `ps-hypersonic-strike-timeline-assurance-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + USMTF strike timing summaries.
+- Transport profile: deterministic strike-timeline synchronization lane with cross-sensor timestamp witness checks.
+
+### `ps-contested-pnt-time-transfer-stack-v1`
+- Standards and protocols: USMTF + signed mission-time transfer manifests + API/JSON PNT integrity events.
+- Transport profile: resilient timing-governance bus with spoofing-alert checkpoints and holdover rollback branches.
+
+### `ps-strategic-sealift-port-survivability-stack-v1`
+- Standards and protocols: AIS/NMEA + USMTF logistics updates + signed cargo custody manifests.
+- Transport profile: convoy/port survivability channel with berth readiness acknowledgments and degraded voice fallback.
+
+### `ps-denied-space-launch-reconstitution-stack-v1`
+- Standards and protocols: CCSDS telemetry/event packets + USMTF launch summaries + signed range safety manifests.
+- Transport profile: launch reconstitution control queue with range-gate acknowledgments and replay-safe hold states.
+
+### `ps-sof-signature-management-exfiltration-stack-v1`
+- Standards and protocols: CoT + USMTF special operations summaries + signed exposure-risk manifests.
+- Transport profile: low-probability-of-intercept command lane with delayed acknowledgment reconciliation paths.
+
+### `ps-battlefield-additive-repair-validation-stack-v1`
+- Standards and protocols: API/JSON process attestations + USMTF maintenance updates + signed part provenance manifests.
+- Transport profile: forward repair validation channel with release authority witness logging and counterfeit rollback controls.
+
+### `ps-joint-electronic-protection-spectrum-maneuver-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + signed waveform/spectrum maneuver manifests.
+- Transport profile: mission-priority EP/spectrum lane with fratricide-check acknowledgments and controlled degrade mode.
+
+### `ps-homeland-port-cyber-physical-defense-coordination-stack-v1`
+- Standards and protocols: IEC 62443 event exchange + NIMS/ICS + USMTF continuity directives.
+- Transport profile: cyber-physical port defense bus with emergency authority checkpoints and OT isolation fallback.
+
+### `ps-joint-deception-red-indicator-fusion-stack-v1`
+- Standards and protocols: STIX/TAXII + USMTF warning summaries + signed deception-confidence manifests.
+- Transport profile: deception warning distribution channel with provenance checks and red-team challenge acknowledgments.

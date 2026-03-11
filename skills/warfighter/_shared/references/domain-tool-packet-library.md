@@ -7048,3 +7048,115 @@ validation_gates:
 - output_schema: authenticated multilingual broadcast packet, translation confidence scores, counter-spoof actions
 - protocol_profile: CAP + NIEM + signed manifests
 - validation_gates: translation confidence floor, signature integrity pass, civil authority release check
+
+## Packet Addendum R (2026-03-11, Nuclear/Hypersonic/Space-SOF/Critical Infrastructure Expansion)
+
+### packet_id: DPL-NUCLEAR-SURETY-001
+- domain: joint nuclear surety incident response
+- objective: coordinate protective actions, contamination control, and command decision support during surety incidents
+- primary_tools: radiological consequence board, surety incident command tracker, protective action recommendation engine
+- alternate_tools: manual incident cell board with periodic dosimetry check-ins
+- degraded_mode: hourly authenticated consequence summaries with conservative evacuation assumptions
+- input_requirements: incident location, source confidence, meteorological profile, force/civil exposure estimate
+- output_schema: consequence map, protective action ladder, decision trigger table
+- protocol_profile: USMTF + NIMS/ICS + signed protective-action manifests
+- validation_gates: dual-source dosimetry confidence, authority confirmation, evacuation route viability
+
+### packet_id: DPL-HYPERSONIC-TIMELINE-001
+- domain: hypersonic strike timeline assurance
+- objective: synchronize hypersonic kill-chain timing and deconfliction under compressed decision windows
+- primary_tools: kill-chain timing coherence board, target-quality confidence monitor, effects deconfliction planner
+- alternate_tools: manual timeline board with sensor refresh checkpoints
+- degraded_mode: restricted strike-window recommendations with expanded safety buffers
+- input_requirements: target nomination, sensor timestamps, launch/release windows, no-strike constraints
+- output_schema: timeline matrix, deconfliction conflicts, release gate checklist
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: timestamp integrity pass, target-confidence floor, authority gate verification
+
+### packet_id: DPL-PNT-TIME-TRANSFER-001
+- domain: contested PNT assurance and time transfer
+- objective: preserve mission timing and navigation integrity through resilient time-transfer and holdover governance
+- primary_tools: timing fusion board, spoofing anomaly detector, holdover confidence monitor
+- alternate_tools: manual timing witness ledger plus inertial cross-check workflows
+- degraded_mode: mission-time cell reporting with conservative navigation tolerances
+- input_requirements: unit/platform timing needs, GNSS anomaly events, oscillator states, threat emitter map
+- output_schema: PNT confidence map, time-transfer order, degraded branch triggers
+- protocol_profile: USMTF + signed mission-time transfer manifests + API/JSON
+- validation_gates: cross-source timing corroboration, spoofing confidence threshold, command approval
+
+### packet_id: DPL-SEALIFT-PORT-SURVIVABILITY-001
+- domain: strategic sealift convoy protection and port survivability
+- objective: protect sealift convoys while restoring contested port throughput for mission sustainment
+- primary_tools: convoy threat optimizer, berth-crane survivability tracker, cargo criticality sequencer
+- alternate_tools: manual convoy escort board and port repair prioritization worksheet
+- degraded_mode: daily convoy priority bulletin with conservative berth allocation
+- input_requirements: cargo manifest criticality, convoy schedule, port damage register, threat picture
+- output_schema: convoy protection matrix, port recovery timeline, sustainment risk score
+- protocol_profile: AIS/NMEA + USMTF + signed cargo custody manifests
+- validation_gates: convoy escort feasibility, berth integrity confirmation, mission-priority cargo verification
+
+### packet_id: DPL-DENIED-SPACE-LAUNCH-001
+- domain: denied space launch reconstitution
+- objective: restore launch capability, range safety, and mission-priority payload flow after adversary disruption
+- primary_tools: launch complex damage triage board, range safety governance engine, payload priority scheduler
+- alternate_tools: manual launch readiness tracker with range officer review cycles
+- degraded_mode: payload-priority-only launch sequencing with delayed restoration assumptions
+- input_requirements: pad/system damage state, range safety posture, payload criticality, orbital service gaps
+- output_schema: reconstitution plan, range release checklist, payload launch queue
+- protocol_profile: CCSDS + USMTF + signed range safety manifests
+- validation_gates: range safety approval, telemetry integrity check, launch-readiness confidence floor
+
+### packet_id: DPL-SOF-SIGNATURE-EXFIL-001
+- domain: special operations signature management and exfiltration
+- objective: minimize signature exposure while preserving exfiltration feasibility and command control
+- primary_tools: multi-spectral signature risk board, denied-route exfiltration planner, emission governance tracker
+- alternate_tools: manual signature discipline checklist and extraction route matrix
+- degraded_mode: exfiltration windows only with strict emission-control posture
+- input_requirements: team posture, route options, threat sensor baseline, comms budget
+- output_schema: signature control profile, extraction timeline, exposure risk ladder
+- protocol_profile: CoT + USMTF + signed exposure-risk manifests
+- validation_gates: exposure threshold check, route viability confirmation, authority concurrence
+
+### packet_id: DPL-ADDITIVE-REPAIR-VALIDATION-001
+- domain: battlefield additive manufacturing forward repair validation
+- objective: validate additive repair parts before mission release in contested maintenance environments
+- primary_tools: additive process attestation ledger, material integrity analyzer, repair release authority board
+- alternate_tools: manual part genealogy ledger and sample destructive test queue
+- degraded_mode: mission-limited part release under elevated inspection intervals
+- input_requirements: part geometry/profile, process logs, material batch metadata, mission criticality level
+- output_schema: part validation status, release/no-release gate, reliability risk summary
+- protocol_profile: API/JSON + USMTF maintenance + signed provenance manifests
+- validation_gates: process attestation completeness, material confidence floor, maintenance authority sign-off
+
+### packet_id: DPL-ELECTRONIC-PROTECTION-MANEUVER-001
+- domain: joint electronic protection and spectrum maneuver
+- objective: preserve communications and emitter survivability through adaptive EP and spectrum control
+- primary_tools: EW threat-intent fusion board, waveform agility allocator, mission-priority spectrum controller
+- alternate_tools: static EMCON plan with manual retune windows
+- degraded_mode: mission-essential comm windows with fixed EP posture
+- input_requirements: threat emitters, friendly waveform set, mission phases, ROE constraints
+- output_schema: spectrum maneuver order, EP timeline, comm survivability score
+- protocol_profile: Link 16 J-series + VMF + signed maneuver manifests
+- validation_gates: interoperability pass, fratricide-spectrum check, commander release gate
+
+### packet_id: DPL-HOMELAND-PORT-CYBER-PHYSICAL-001
+- domain: homeland port cyber-physical defense coordination
+- objective: contain cyber-physical disruption while sustaining mission-priority cargo flow and authority escalation
+- primary_tools: OT/IT incident fusion board, port continuity tracker, emergency authority escalation manager
+- alternate_tools: manual incident bridge and cargo triage matrix
+- degraded_mode: periodic continuity bulletins with restricted crane/yard operations
+- input_requirements: incident indicators, crane/yard state, cargo criticality tags, authority matrix
+- output_schema: containment sequence, cargo continuity plan, escalation checklist
+- protocol_profile: IEC 62443 event exchange + NIMS/ICS + USMTF
+- validation_gates: containment evidence check, safety authority validation, continuity threshold pass
+
+### packet_id: DPL-DECEPTION-RED-INDICATOR-001
+- domain: joint deception operations red-indicator fusion
+- objective: detect, score, and escalate deception indicators with confidence-ranked command warnings
+- primary_tools: deception signal fusion board, narrative anomaly tracker, confidence adjudication ladder
+- alternate_tools: manual red-flag watch log and periodic all-source challenge session
+- degraded_mode: conservative warning bulletins with explicit uncertainty bands
+- input_requirements: all-source reports, narrative telemetry, EW anomalies, doctrine baseline
+- output_schema: red-indicator table, deception confidence ladder, warning trigger set
+- protocol_profile: STIX/TAXII + USMTF + signed deception-confidence manifests
+- validation_gates: multi-source corroboration, red-team challenge completion, authority review checkpoint

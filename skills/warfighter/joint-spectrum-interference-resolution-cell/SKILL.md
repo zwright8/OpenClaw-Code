@@ -167,3 +167,9 @@ Use these tool categories as the default stack for this skill: spectrum manageme
 - Prioritize `tool_suite_id=ts-ai-camouflage-discipline-audit-v1` with `protocol_stack_id=ps-ai-camouflage-discipline-stack-v1` when emitter survivability depends on deception discipline and signature-control compliance.
 - Elevate `tool_suite_id=ts-vertical-datum-reconciliation-v1` with `protocol_stack_id=ps-vertical-datum-reconciliation-stack-v1` when targeting or fires timing uncertainty originates from terrain/datum mismatch across systems.
 - If coalition frequency access is constrained by legal clearance delays, add `tool_suite_id=ts-spectrum-licensing-clearance-v1` with `protocol_stack_id=ps-spectrum-licensing-clearance-stack-v1` as a mandatory adjudication branch.
+
+## Domain Toolchain Override (2026-03-11, Electronic Protection and Spectrum Maneuver Upgrade)
+
+- Prioritize `tool_suite_id=ts-joint-electronic-protection-spectrum-maneuver-v1` with `protocol_stack_id=ps-joint-electronic-protection-spectrum-maneuver-stack-v1` when interference incidents include active adversary EW maneuver.
+- Promote `packet_id=DPL-ELECTRONIC-PROTECTION-MANEUVER-001` as the default recommendation packet when comms survivability or fratricide-spectrum risk is mission critical.
+- If timing integrity uncertainty propagates into fires or IAMD kill chains, require a synchronized branch using `tool_suite_id=ts-contested-pnt-time-transfer-assurance-v1` and `protocol_stack_id=ps-contested-pnt-time-transfer-stack-v1` before recommending release.

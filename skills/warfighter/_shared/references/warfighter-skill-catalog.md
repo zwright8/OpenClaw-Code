@@ -1486,3 +1486,29 @@ Every skill output should include:
 - Field hospital wastewater biosecurity + austere surgical support + preventive medicine and force health protection + host-nation environmental coordination
 - Long-duration grid blackstart cyber guard + homeland critical infrastructure restoration + CEMA integration + command continuity governance
 - Multilingual emergency broadcast translation authentication + information integrity and attribution + psychological operations and MISO support + civil alert continuity governance
+
+## New Expansion Wave (2026-03-11, Nuclear Surety, Contested Timing, and Denied-Launch Continuity)
+
+- joint-nuclear-surety-incident-response-cell
+- hypersonic-strike-mission-timeline-assurance-cell
+- contested-pnt-assurance-and-time-transfer-cell
+- strategic-sealift-convoy-protection-and-port-survivability-cell
+- denied-space-launch-reconstitution-cell
+- special-operations-signature-management-and-exfiltration-cell
+- battlefield-additive-manufacturing-forward-repair-validation-cell
+- joint-electronic-protection-and-spectrum-maneuver-cell
+- homeland-port-cyber-physical-defense-coordination-cell
+- joint-deception-operations-red-indicator-fusion-cell
+
+## Updated Pairings (2026-03-11, Nuclear Surety, Contested Timing, and Denied-Launch Continuity)
+
+- Nuclear surety incident response + CBRN consequence management + civil warning continuity + mission command battle rhythm
+- Hypersonic timeline assurance + dynamic targeting + integrated air and missile defense + strike legal/authority governance
+- Contested PNT/time transfer + fires synchronization + air defense battle management + denied-PNT transition planning
+- Strategic sealift/port survivability + strategic mobility chokepoint planning + maritime convoy protection + sustainment continuity
+- Denied launch reconstitution + space-ground integration + range safety governance + SATCOM/PNT restoration
+- SOF signature management/exfiltration + OPSEC leak detection + denied comms resilience + personnel recovery coordination
+- Additive repair validation + expeditionary fabrication + maintenance predictive failure + software/hardware provenance assurance
+- Electronic protection/spectrum maneuver + spectrum interference resolution + EW fratricide prevention + comms survivability
+- Homeland port cyber-physical defense + DSCA infrastructure continuity + OT cyber incident response + cargo mission prioritization
+- Deception red-indicator fusion + information integrity attribution + all-source collection management + command warning triggers
