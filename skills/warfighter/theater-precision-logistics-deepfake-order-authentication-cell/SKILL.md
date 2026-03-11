@@ -35,7 +35,7 @@ Primary products: order authenticity confidence ledger, sustainment release hold
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-logistics-order-authentication-v1` with `protocol_stack_id=ps-logistics-order-authentication-stack-v1`.
-- Alternate: pick a mission-adjacent suite/stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Alternate: `tool_suite_id=ts-disinformation-counter-v1` with `protocol_stack_id=ps-disinformation-attribution-stack-v1`.
 - Degraded: authenticated voice/readback plus UTC acknowledgment ledger and manual sync board.
 
 ## Domain Packet Defaults
@@ -52,6 +52,7 @@ Primary products: order authenticity confidence ledger, sustainment release hold
 ## Tool Invocation Contract
 
 For each critical tool recommendation include objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+Require two-person release confirmation for any sustainment order that changes fuel, munitions, or medical movement priorities.
 
 ## Mission Tool Authority Gates
 

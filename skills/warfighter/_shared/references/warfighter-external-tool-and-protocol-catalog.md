@@ -7714,3 +7714,107 @@ external_binding:
 ### `ps-orbital-debris-reentry-force-protection-stack-v1`
 - Standards and protocols: CCSDS-derived event exchange + API/JSON orbital risk telemetry + USMTF warning summaries.
 - Transport profile: reentry protection bus with alert dissemination and sheltering confirmation gates.
+
+## Tool Suite Addendum V (2026-03-11, Cross-Theater Continuity, Authentication, and Arctic Resupply)
+
+### `ts-multi-orbit-satcom-reconstitution-v1`
+- Use for: restoring mission communications across LEO/MEO/GEO during denied or degraded SATCOM conditions.
+- Primary tools: SATCOM path orchestrator, orbital link-health monitor, comm-priority routing board.
+- Cross-check tools: independent path integrity witness and alternate comm-status adjudication board.
+- Typical products: path restoration order, comm-priority queue matrix, denial recovery branch plan.
+
+### `ts-seabed-energy-pipeline-defense-v1`
+- Use for: protecting and repairing contested undersea fuel/power pipelines supporting theater force sustainment.
+- Primary tools: subsea pipeline telemetry fusion, repair vessel scheduler, maritime risk projection board.
+- Cross-check tools: independent ROV inspection witness and alternate pipeline integrity board.
+- Typical products: pipeline threat map, repair-window prioritization, mission-energy continuity forecast.
+
+### `ts-additive-feedstock-provenance-v1`
+- Use for: validating additive manufacturing feedstock provenance and authorized substitution under supply disruption.
+- Primary tools: material fingerprint analyzer, provenance ledger manager, quality release board.
+- Cross-check tools: independent lot attestation witness and alternate substitution risk adjudicator.
+- Typical products: feedstock trust ledger, substitution approval matrix, production continuity branch chart.
+
+### `ts-mass-casualty-biometric-reconciliation-v1`
+- Use for: reconciling casualty identities at speed using biometric and forensic fusion with notification integrity controls.
+- Primary tools: biometric identity fusion board, forensic case manager, casualty accountability tracker.
+- Cross-check tools: independent personnel roster witness and alternate duplicate-identity adjudication board.
+- Typical products: identity confidence matrix, reconciliation exception log, notification integrity plan.
+
+### `ts-synthetic-media-watermark-assurance-v1`
+- Use for: authenticating watermark-bearing media and preserving legal evidentiary integrity under influence operations.
+- Primary tools: watermark verification engine, media-forensics analytics board, evidentiary release workflow.
+- Cross-check tools: independent cryptographic witness service and alternate chain-of-custody ledger.
+- Typical products: authenticity confidence report, evidentiary release packet, attribution confidence ladder.
+
+### `ts-lvc-spectrum-rehearsal-safety-v1`
+- Use for: deconflicting spectrum during live-virtual-constructive rehearsal to prevent fratricide and unsafe emissions overlap.
+- Primary tools: rehearsal spectrum manager, emit/hold gate board, RF conflict analyzer.
+- Cross-check tools: independent monitoring mesh and alternate incident replay witness board.
+- Typical products: rehearsal spectrum control matrix, safety risk register, emissions governance order.
+
+### `ts-civil-telecom-priority-restoration-v1`
+- Use for: restoring priority civil telecom services that underpin military command continuity and life-safety missions.
+- Primary tools: telecom service restoration dashboard, outage adjudication board, civil-support coordination tracker.
+- Cross-check tools: independent service-level witness and alternate emergency comm-status mirror.
+- Typical products: restoration priority queue, mission-impact telecom status board, continuity branch plan.
+
+### `ts-tactical-radiation-evac-routing-v1`
+- Use for: routing tactical evacuation around radiation hazards while preserving treatment timelines and force protection.
+- Primary tools: radiation hazard fusion board, evacuation route optimizer, casualty flow synchronizer.
+- Cross-check tools: independent dose-model witness and alternate route risk adjudication board.
+- Typical products: radiation-safe route matrix, route invalidation trigger chart, casualty flow optimization packet.
+
+### `ts-under-ice-uncrewed-resupply-v1`
+- Use for: governing under-ice autonomous logistics corridors in denied surface-route scenarios.
+- Primary tools: under-ice route viability engine, uncrewed convoy control board, retrieval contingency planner.
+- Cross-check tools: independent ice-threat witness service and alternate vehicle trust-status board.
+- Typical products: corridor viability brief, autonomy risk matrix, retrieval contingency branch.
+
+### `ts-sanctioned-supply-substitution-denial-v1`
+- Use for: coordinating sanctioned-component substitution and adversary denial actions across strategic supply chains.
+- Primary tools: sanctions enforcement analytics, substitution planning board, trade-route vulnerability monitor.
+- Cross-check tools: independent compliance witness feed and alternate supply-risk adjudication board.
+- Typical products: substitution roadmap, denial campaign matrix, strategic industrial risk estimate.
+
+## Protocol Stack Addendum V (2026-03-11, Cross-Theater Continuity, Authentication, and Arctic Resupply)
+
+### `ps-multi-orbit-satcom-reconstitution-stack-v1`
+- Standards and protocols: API/JSON path telemetry + USMTF mission comm summaries + signed comm-queue manifests.
+- Transport profile: multi-orbit restoration bus with per-path acknowledgment and degraded HF fallback controls.
+
+### `ps-seabed-energy-pipeline-defense-stack-v1`
+- Standards and protocols: AIS/NMEA + OGC geospatial overlays + USMTF sustainment status summaries.
+- Transport profile: subsea pipeline defense lane with repair-window release gates and marine hazard acknowledgments.
+
+### `ps-additive-feedstock-provenance-stack-v1`
+- Standards and protocols: API/JSON provenance records + signed quality manifests + USMTF sustainment advisories.
+- Transport profile: feedstock trust channel with substitution authority checks and production release checkpoints.
+
+### `ps-mass-casualty-biometric-reconciliation-stack-v1`
+- Standards and protocols: API/JSON identity exchange + HL7/FHIR casualty records + USMTF accountability summaries.
+- Transport profile: mass-casualty reconciliation lane with confidence-tier and duplicate-resolution gates.
+
+### `ps-synthetic-media-watermark-assurance-stack-v1`
+- Standards and protocols: STIX/TAXII attribution artifacts + API/JSON forensics outputs + signed custody manifests.
+- Transport profile: synthetic-media assurance channel with legal release acknowledgments and provenance chain checks.
+
+### `ps-lvc-spectrum-rehearsal-safety-stack-v1`
+- Standards and protocols: Link 16 J-series + VMF + USMTF safety governance summaries.
+- Transport profile: LVC rehearsal control bus with emit/hold authority gating and fratricide-risk guardrails.
+
+### `ps-civil-telecom-priority-restoration-stack-v1`
+- Standards and protocols: NIMS/ICS service coordination + EDXL-DE/CAP alerts + USMTF continuity notices.
+- Transport profile: civil telecom restoration lane with life-safety tier acknowledgments and mission-priority confirmations.
+
+### `ps-tactical-radiation-evac-routing-stack-v1`
+- Standards and protocols: CBRN USMTF reporting + OGC hazard overlays + HL7/FHIR patient movement exchange.
+- Transport profile: radiation evacuation routing bus with dose-threshold and reroute invalidation checkpoints.
+
+### `ps-under-ice-uncrewed-resupply-stack-v1`
+- Standards and protocols: API/JSON autonomy telemetry + USMTF logistics continuity summaries + signed retrieval manifests.
+- Transport profile: under-ice logistics channel with vehicle trust checks and beacon-based recovery branch controls.
+
+### `ps-sanctioned-supply-substitution-denial-stack-v1`
+- Standards and protocols: STIX/TAXII threat-sharing + API/JSON trade telemetry + USMTF strategic sustainment briefs.
+- Transport profile: supply substitution-denial lane with enforcement authority gates and adversary adaptation watchpoints.

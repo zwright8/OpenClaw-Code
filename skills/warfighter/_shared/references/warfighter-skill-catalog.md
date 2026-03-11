@@ -1638,3 +1638,29 @@ Every skill output should include:
 ## Planning Artifacts (2026-03-11)
 
 - All-domain growth roadmap: `skills/warfighter/_shared/references/warfighter-all-domain-skill-universe-2026-03-11.md`
+
+## New Expansion Wave (2026-03-11, Cross-Theater Continuity, Authentication, and Arctic Resupply)
+
+- joint-multi-orbit-satcom-denial-reconstitution-cell
+- theater-seabed-energy-pipeline-protection-and-repair-cell
+- theater-denied-additive-feedstock-provenance-and-substitution-cell
+- joint-mass-casualty-biometric-identity-reconciliation-cell
+- joint-synthetic-media-watermark-evidence-assurance-cell
+- theater-live-virtual-constructive-spectrum-rehearsal-safety-cell
+- coalition-civil-telecom-priority-service-restoration-cell
+- joint-tactical-radiation-evacuation-route-optimization-cell
+- theater-uncrewed-under-ice-resupply-corridor-cell
+- strategic-sanctioned-supply-chain-substitution-and-denial-cell
+
+## Updated Pairings (2026-03-11, Cross-Theater Continuity, Authentication, and Arctic Resupply)
+
+- Multi-orbit SATCOM reconstitution + theater mission network failover + denied-PNT timing assurance + joint data-link interoperability
+- Seabed energy-pipeline protection + undersea cable sabotage attribution + maritime chokepoint defense + strategic infrastructure restoration
+- Additive feedstock provenance + expeditionary fabrication repair + counterfeit component detection + software patch attestation
+- Mass-casualty biometric reconciliation + casualty evacuation regulation + forensic evidence custody + family notification integrity governance
+- Synthetic-media watermark evidence assurance + information integrity attribution + coalition cyber legal attribution + public disclosure governance
+- LVC spectrum rehearsal safety + EMSO deconfliction + fires timing governance + RF fratricide prevention controls
+- Coalition civil telecom priority restoration + host-nation grid cyber restoration + civil-support crisis coordination + command continuity planning
+- Tactical radiation evacuation routing + CBRN consequence management + mass-casualty care network + route-threat invalidation triggers
+- Uncrewed under-ice resupply corridors + polar logistics corridor governance + maritime autonomy risk controls + degraded comms recovery
+- Sanctioned supply-chain substitution/denial + strategic industrial mobilization + sanctions leakage disruption + rare-earth supply assurance

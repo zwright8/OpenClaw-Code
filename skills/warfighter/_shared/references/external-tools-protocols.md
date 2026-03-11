@@ -434,3 +434,29 @@ Include these fields in outputs when tool integration is used:
 - Wearable force-health triage: include privacy-handling tag, medical authority reviewer, and readiness effect estimate.
 - Airport mass-casualty runway recovery: include runway viability confidence, casualty throughput threshold, and airlift release status.
 - Orbital reentry protection messaging: include projected footprint uncertainty, alert-zone priority, and force-protection acknowledgment chain.
+
+## Domain Toolchain Profiles (2026-03-11 Cross-Theater Continuity and Authentication Expansion)
+
+- Multi-orbit SATCOM denial reconstitution: SATCOM orchestration suites + link-health telemetry + mission-priority comm routing + API/JSON + USMTF + Link 16 fallback narratives
+- Seabed energy-pipeline protection and repair: undersea infrastructure telemetry + ROV mission planners + maritime risk fusion + AIS/NMEA + OGC + USMTF
+- Denied additive feedstock provenance/substitution: material fingerprinting services + quality release systems + provenance ledgers + API/JSON + signed manifest attestations + USMTF
+- Mass-casualty biometric identity reconciliation: biometric repositories + forensic lab workflow systems + casualty accountability boards + API/JSON + HL7/FHIR + USMTF
+- Synthetic-media watermark evidence assurance: watermark verification engines + media-forensics analytics + legal evidence workflows + STIX/TAXII + API/JSON + signed evidence manifests
+- LVC spectrum rehearsal safety and deconfliction: spectrum planning boards + rehearsal telemetry replay + emissions conflict analytics + Link 16 + VMF + USMTF
+- Coalition civil telecom priority restoration: telecom OSS/BSS + outage adjudication boards + civil emergency dashboards + NIMS/ICS + EDXL-DE/CAP + USMTF
+- Tactical radiation evacuation route optimization: radiological sensor fusion + evacuation route optimizers + casualty flow command boards + CBRN USMTF + OGC + HL7/FHIR
+- Uncrewed under-ice resupply corridors: under-ice navigation telemetry + autonomous logistics controllers + ice-threat models + API/JSON + AIS/NMEA derivatives + USMTF
+- Sanctioned supply substitution and denial: sanctions intelligence analytics + supply-chain substitution planners + trade-route risk monitors + STIX/TAXII + API/JSON + USMTF
+
+## Protocol Mapping Guidance (2026-03-11 Cross-Theater Continuity and Authentication)
+
+- Multi-orbit SATCOM continuity: require per-path acknowledgment status, comm-priority queue tags, and fallback trigger thresholds.
+- Seabed pipeline repair sequencing: include repair window confidence, maritime hazard gate checks, and mission energy impact deltas.
+- Additive feedstock substitutions: include provenance score, substitution authority signature, and quality-release evidence bundle.
+- Biometric reconciliation in mass-casualty events: include confidence ladder, duplicate-identity resolution status, and legal/notification reviewer fields.
+- Watermark evidence assurance: include cryptographic verification method, custody ledger ID, and releasability constraint tags.
+- LVC spectrum rehearsal controls: include fratricide-risk score, emit/hold gates, and post-rehearsal incident replay references.
+- Civil telecom restoration priorities: include life-safety tier, mission-priority service class, and civil-military coordination acknowledgment.
+- Radiation evacuation routing: include projected dose envelope, reroute invalidation trigger, and medic/regulation coordination checkpoints.
+- Under-ice uncrewed logistics: include vehicle trust posture, ice-route uncertainty bounds, and recovery/beacon contingency branch.
+- Sanctioned supply denial campaigns: include enforcement authority, substitution lead time, and adversary adaptation indicators.

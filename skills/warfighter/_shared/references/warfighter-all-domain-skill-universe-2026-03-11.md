@@ -52,3 +52,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Add new skills in waves that each include at least one land, air, maritime, space, cyber, EMSO, sustainment, medical, civil-support, and coalition-focused skill.
 - For each new skill, bind one tool suite, one protocol stack, and at least one packet template in shared references.
 - Keep recommendations advisory-only and authority-gated, with explicit human command approvals for high-consequence actions.
+
+## Run Update (2026-03-11T)
+
+- Added cross-theater continuity expansion wave focused on SATCOM denial reconstitution, seabed energy infrastructure defense, additive feedstock provenance, mass-casualty biometric reconciliation, synthetic-media watermark evidence assurance, LVC spectrum rehearsal safety, coalition telecom priority restoration, tactical radiation evacuation routing, under-ice uncrewed resupply, and sanctioned supply substitution-denial planning.
+- Extended shared tool/protocol references with Tool Suite Addendum V and Protocol Stack Addendum V to provide explicit external integration defaults for new and existing skills.
+- Strengthened existing logistics authentication and disconnected maintenance skills with explicit alternate suite/stack selections and stricter invocation controls.

@@ -35,7 +35,7 @@ Primary products: maintenance knowledge sync ledger, repair confidence heatmap, 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-disconnected-maintenance-knowledge-fabric-v1` with `protocol_stack_id=ps-disconnected-maintenance-knowledge-fabric-stack-v1`.
-- Alternate: pick a mission-adjacent suite/stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Alternate: `tool_suite_id=ts-logistics-distribution-v1` with `protocol_stack_id=ps-logistics-distribution-stack-v1`.
 - Degraded: authenticated voice/readback plus UTC acknowledgment ledger and manual sync board.
 
 ## Domain Packet Defaults
@@ -52,6 +52,7 @@ Primary products: maintenance knowledge sync ledger, repair confidence heatmap, 
 ## Tool Invocation Contract
 
 For each critical tool recommendation include objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+Include replay conflict policy fields (`conflict_mode`, `winning_source`, `manual_review_owner`) whenever disconnected records merge after link restoration.
 
 ## Mission Tool Authority Gates
 
