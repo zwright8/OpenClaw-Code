@@ -157,3 +157,10 @@ Primary products for this skill: commander intent graph, decision-advantage dash
 - Prioritize `tool_suite_id=ts-contested-payroll-integrity-v1` + `protocol_stack_id=ps-contested-payroll-integrity-stack-v1` when morale, retention, or mobilization risk is tied to disrupted pay and entitlements.
 - Prioritize `tool_suite_id=ts-joint-fires-legal-audit-acceleration-v1` + `protocol_stack_id=ps-joint-fires-legal-audit-acceleration-stack-v1` when mission command options involve compressed legal review timelines for dynamic targeting.
 - Add `packet_id=DPL-CONTESTED-PAYROLL-INTEGRITY-001` and `packet_id=DPL-JOINT-FIRES-LEGAL-AUDIT-ACCELERATION-001` before recommending branches that alter escalation posture or strike authorities.
+
+## Domain Toolchain Override (2026-03-12, Warfighter Expansion Wave XXIV)
+
+- Add `tool_suite_id=ts-joint-mission-command-assurance-and-branch-synchronization-v1` + `protocol_stack_id=ps-joint-mission-command-assurance-and-branch-synchronization-stack-v1` when rapid branch synchronization and command-approval integrity are mission-limiting.
+- Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
+- Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
+- Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.

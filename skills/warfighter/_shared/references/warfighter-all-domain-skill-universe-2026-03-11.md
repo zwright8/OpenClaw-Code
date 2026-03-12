@@ -76,3 +76,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added a 12-skill expansion wave focused on NC3 spectrum deception/restoration, hypersonic warning fusion, Arctic airdrop corridors, contested waterway bridge denial/repair, expeditionary detainee evidence integrity, homeland rail mobility cyber defense, directed-energy blue-force exposure governance, coalition disaster-relief airfield digital twin recovery, strategic microelectronics allocation/sabotage monitoring, offshore prepositioning survivability/reload, autonomous wildland base defense, and space-weather mission assurance.
 - Extended shared references with Tool Suite Addendum XVII, Protocol Stack Addendum XVII, and Packet Addendum IX for explicit external tool and protocol bindings.
 - Improved commander-facing mission-risk, zero-trust hardening, mission-network-failover, and offensive-counter-air skills with Wave XVIII override suite/stack/packet bindings.
+
+## Run Update (2026-03-12T15:xxZ)
+
+- Added an 8-skill expansion wave focused on contested Arctic multi-domain recovery, autonomous CBRN decon-corridor fusion, hypersonic raid-break dispersal, grid-denied expeditionary manufacturing/repair, coalition quantum-resistant comms transition, expeditionary water sabotage response, biometric insider-risk identity denial, and space-weather GPS-denial continuity.
+- Extended shared references with Tool Suite Addendum XXIV, Protocol Stack Addendum XXIV, and Packet Addendum X to provide explicit external tool/protocol contracts for new skills and cross-domain updates.
+- Improved 10 existing high-consequence skills with Wave XXIV override bindings for mission-command assurance, resilient targeting/CDE governance, and maritime-homeland cyber-physical continuity branches.

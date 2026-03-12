@@ -4140,3 +4140,117 @@ external_binding:
 ### `ps-space-weather-mission-assurance-solar-storm-branching-stack-v1`
 - Protocols: `CCSDS`, `USMTF`, `OGC`, `API/JSON`.
 - Use for: space weather event exchange, comms/nav impact updates, and mission branch release decisions.
+
+## Tool Suite Addendum XXIV (2026-03-12, Expansion Wave XXIV)
+
+### `ts-contested-arctic-personnel-recovery-and-extraction-v1`
+- Use for: contested Arctic personnel/platform recovery sequencing under weather and comms constraints.
+- Primary tools: Arctic weather route model, recovery corridor planner, cross-domain extraction status board.
+- Cross-check tools: independent rescue readiness witness and alternate corridor viability estimator.
+- Typical products: recovery branch matrix, extraction synchronization packet, authority risk ledger.
+
+### `ts-autonomous-cbrn-sensor-fusion-decon-corridor-v1`
+- Use for: CBRN hazard fusion and decontamination corridor planning with autonomous/human teams.
+- Primary tools: autonomous CBRN mesh monitor, contamination confidence estimator, decon flow planner.
+- Cross-check tools: independent hazard lab witness and alternate decon throughput monitor.
+- Typical products: hazard confidence ladder, decon routing order, protected-mobility packet.
+
+### `ts-joint-hypersonic-raid-break-and-force-dispersal-v1`
+- Use for: raid-break decisions and defended-asset dispersal during hypersonic warning windows.
+- Primary tools: hypersonic track-fusion board, defended-asset prioritizer, dispersal branch sequencer.
+- Cross-check tools: independent warning witness and alternate continuity-impact monitor.
+- Typical products: raid-break ladder, dispersal matrix, continuity packet.
+
+### `ts-grid-denied-expeditionary-manufacturing-repair-v1`
+- Use for: expeditionary repair/manufacturing in grid-denied and logistics-constrained theaters.
+- Primary tools: austere power allocation board, repair triage engine, additive quality attestation node.
+- Cross-check tools: independent quality witness and alternate sustainment feasibility monitor.
+- Typical products: repair priority board, quality gate packet, sustainment branches.
+
+### `ts-coalition-quantum-resistant-comms-transition-v1`
+- Use for: coalition quantum-resistant comms transition with interoperability risk controls.
+- Primary tools: crypto migration planner, coalition key-rollover board, interoperability degradation detector.
+- Cross-check tools: independent crypto assurance witness and alternate coalition comms monitor.
+- Typical products: PQC transition board, rollover sequence packet, interoperability branches.
+
+### `ts-expeditionary-water-infrastructure-sabotage-response-v1`
+- Use for: sabotage attribution and restoration planning for expeditionary water infrastructure.
+- Primary tools: water telemetry anomaly detector, contamination attribution board, restoration sequencer.
+- Cross-check tools: independent water lab witness and alternate health-risk monitor.
+- Typical products: sabotage attribution matrix, restoration branch packet, force-health risk board.
+
+### `ts-joint-biometrics-insider-risk-identity-denial-v1`
+- Use for: joint biometric identity adjudication and insider-risk containment.
+- Primary tools: biometric confidence fusion engine, access-control adjudication board, insider behavior anomaly tracker.
+- Cross-check tools: independent identity witness and alternate insider-risk triage monitor.
+- Typical products: identity confidence matrix, access disposition packet, insider-risk branches.
+
+### `ts-space-weather-gnss-denial-mission-continuity-v1`
+- Use for: mission continuity planning under space weather, GNSS outages, and PNT degradation.
+- Primary tools: heliophysics event watcher, PNT degradation impact model, mission fallback planner.
+- Cross-check tools: independent space weather witness and alternate mission assurance monitor.
+- Typical products: PNT impact ladder, fallback matrix, commander acknowledgment packet.
+
+### `ts-joint-mission-command-assurance-and-branch-synchronization-v1`
+- Use for: command approval integrity and cross-staff branch synchronization under compressed timelines.
+- Primary tools: decision-approval ledger, branch synchronization board, command intent drift monitor.
+- Cross-check tools: independent command-audit witness and alternate branch timing validator.
+- Typical products: command assurance board, synchronized branch packet, approval trace record.
+
+### `ts-joint-cross-domain-resilient-targeting-cde-governance-v1`
+- Use for: resilient targeting and CDE/no-strike governance with degraded sensing and mixed authorities.
+- Primary tools: targeting standards board, CDE integrity analyzer, no-strike geofence monitor.
+- Cross-check tools: independent legal-policy witness and alternate target-validation monitor.
+- Typical products: targeting/CDE matrix, no-strike governance packet, authority risk branches.
+
+### `ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1`
+- Use for: cyber-physical guard operations protecting maritime and homeland critical infrastructure.
+- Primary tools: infrastructure cyber monitor, physical anomaly fusion board, continuity branch planner.
+- Cross-check tools: independent infrastructure integrity witness and alternate continuity monitor.
+- Typical products: cyber-physical risk board, continuity packet, response escalation matrix.
+
+## Protocol Stack Addendum XXIV (2026-03-12, Expansion Wave XXIV)
+
+### `ps-contested-arctic-personnel-recovery-and-extraction-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `OGC`, `API/JSON`.
+- Use for: Arctic extraction route exchange, coalition acknowledgment chains, and recovery release control.
+
+### `ps-autonomous-cbrn-sensor-fusion-decon-corridor-stack-v1`
+- Protocols: `USMTF`, `CBRN Warning and Reporting`, `OGC`, `API/JSON`.
+- Use for: hazard fusion publication, decon corridor control exchange, and safety-gated branch execution.
+
+### `ps-joint-hypersonic-raid-break-and-force-dispersal-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `API/JSON`.
+- Use for: compressed warning dissemination, raid-break decisions, and dispersal branch control.
+
+### `ps-grid-denied-expeditionary-manufacturing-repair-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIMS/ICS`, `API/JSON`.
+- Use for: repair status exchange, supply risk warnings, and austere sustainment branch governance.
+
+### `ps-coalition-quantum-resistant-comms-transition-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `X.509/PQC profiles`, `API/JSON`.
+- Use for: coalition crypto transition milestones, key rollover acknowledgments, and interoperability failover control.
+
+### `ps-expeditionary-water-infrastructure-sabotage-response-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `HL7/FHIR`, `API/JSON`.
+- Use for: contamination/sabotage exchange, restoration branch governance, and force-health warning dissemination.
+
+### `ps-joint-biometrics-insider-risk-identity-denial-stack-v1`
+- Protocols: `NIEM`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: identity adjudication exchange, insider-risk signal publication, and access disposition control.
+
+### `ps-space-weather-gnss-denial-mission-continuity-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `OGC`, `API/JSON`.
+- Use for: space weather impact exchange, PNT degradation warnings, and mission fallback release control.
+
+### `ps-joint-mission-command-assurance-and-branch-synchronization-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `API/JSON`.
+- Use for: authority-gated decision synchronization and command-approval integrity tracking.
+
+### `ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1`
+- Protocols: `USMTF`, `VMF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: target/CDE governance exchange and no-strike boundary fidelity under degraded sensing.
+
+### `ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1`
+- Protocols: `USMTF`, `AIS/NMEA`, `STIX/TAXII`, `API/JSON`.
+- Use for: maritime-homeland cyber-physical risk exchange and continuity response coordination.
