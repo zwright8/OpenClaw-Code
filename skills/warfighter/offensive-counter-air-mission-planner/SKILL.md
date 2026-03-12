@@ -186,3 +186,10 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For military GPS ground-segment disruption impacts on OCA mission timing, include `ts-gps-ground-segment-restoration-v1` with `ps-gps-ground-segment-restoration-stack-v1`.
 - For rail-air-defense crossing prioritization that protects munitions and sortie support corridors, include `ts-rail-air-defense-crossing-priority-v1` with `ps-rail-air-defense-crossing-priority-stack-v1`.
 - For cislunar launch support dependencies affecting global strike posture, include `ts-cislunar-logistics-spaceport-defense-v1` with `ps-cislunar-logistics-spaceport-defense-stack-v1`.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-joint-cislunar-logistics-and-space-lane-contestation-cell-v1 + protocol_stack_id=ps-joint-cislunar-logistics-and-space-lane-contestation-cell-stack-v1 when OCA branch viability depends on contested launch-resupply lanes and orbital sustainment confidence.
+- Add tool_suite_id=ts-joint-gray-zone-commercial-fleet-shadowing-attribution-cell-v1 + protocol_stack_id=ps-joint-gray-zone-commercial-fleet-shadowing-attribution-cell-stack-v1 when maritime gray-zone coercion affects carrier support routing, escalation control, or legal attribution timelines.
+- Add packet_id=DPL-CISLUNAR-LOGISTICS-CONTEST-001 and packet_id=DPL-GRAYZONE-FLEET-SHADOWING-001 for branches that materially change sortie persistence, escalation posture, or command release assumptions.

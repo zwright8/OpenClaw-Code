@@ -197,3 +197,10 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add tool_suite_id=ts-coalition-arctic-fiber-microwave-troposcatter-failover-cell-v1 + protocol_stack_id=ps-coalition-arctic-fiber-microwave-troposcatter-failover-cell-stack-v1 when zero-trust continuity depends on contested arctic transport failover and coalition service-priority routing.
 - Add tool_suite_id=ts-joint-quantum-sensing-spoof-detection-governance-cell-v1 + protocol_stack_id=ps-joint-quantum-sensing-spoof-detection-governance-cell-stack-v1 when trust-boundary decisions depend on spoof-resistant sensing confidence and fallback policy control.
 - Add packet_id=DPL-ARCTIC-TRANSPORT-FAILOVER-001 and packet_id=DPL-QUANTUM-SENSING-SPOOF-GOV-001 for recommendations that shift identity trust boundaries, route authority, or mission-data confidence thresholds.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-strategic-quantum-network-key-custody-and-compromise-response-cell-v1 + protocol_stack_id=ps-strategic-quantum-network-key-custody-and-compromise-response-cell-stack-v1 when zero-trust posture depends on compromised key-custody containment and cryptographic continuity.
+- Add tool_suite_id=ts-homeland-defense-municipal-911-psap-cyber-survivability-cell-v1 + protocol_stack_id=ps-homeland-defense-municipal-911-psap-cyber-survivability-cell-stack-v1 when network trust boundaries must preserve military-civil emergency call continuity.
+- Add packet_id=DPL-QUANTUM-NETWORK-KEY-CUSTODY-001 and packet_id=DPL-MUNICIPAL-911-PSAP-CYBER-001 for recommendations that shift trust boundaries, credential release controls, or life-safety communication authorities.

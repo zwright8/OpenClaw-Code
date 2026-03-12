@@ -8854,3 +8854,128 @@ external_binding:
 ### ps-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-stack-v1
 - Protocols: USMTF, AIS/NMEA, STIX/TAXII, API/JSON.
 - Use for: barge dispersal updates, strike-risk indicators, and survivability-directed reload sequencing.
+
+
+## Tool Suite Addendum XV (2026-03-12, Expansion Wave XVI for Strategic Infrastructure, Space Logistics, and Continuity Security)
+
+### ts-strategic-grid-transformer-supply-sabotage-and-restoration-cell-v1
+- Use for: strategic transformer sabotage detection, restoration sequencing, and defense-industrial continuity under attack.
+- Primary tools: grid dependency graph fusion engine, transformer condition telemetry board, industrial restoration sequencer.
+- Cross-check tools: independent utility reliability witness and alternate sabotage-attribution monitor.
+- Typical products: transformer criticality matrix, restoration ladder, sabotage-response packet.
+
+### ts-joint-cislunar-logistics-and-space-lane-contestation-cell-v1
+- Use for: cislunar logistics lane risk management, contested trajectory routing, and mission-priority orbital sustainment.
+- Primary tools: cislunar trajectory conflict analyzer, orbital custody ledger, launch-resupply arbitration board.
+- Cross-check tools: independent orbital safety witness and alternate space-lane integrity monitor.
+- Typical products: lane-risk board, sustainment branch matrix, cislunar continuity packet.
+
+### ts-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-v1
+- Use for: expeditionary hydrogen microgrid safety, leak containment, and emissions-aware power continuity.
+- Primary tools: fuel-cell telemetry fusion board, leak plume estimator, microgrid dispatch planner.
+- Cross-check tools: independent environmental safety witness and alternate energy resilience monitor.
+- Typical products: safety matrix, containment ladder, emissions continuity packet.
+
+### ts-coalition-maritime-insurance-sanctions-and-convoy-underwriting-cell-v1
+- Use for: coalition convoy underwriting under sanctions stress and legal-compliant maritime continuity.
+- Primary tools: insurance risk engine, sanctions-evasion anomaly board, convoy liability planner.
+- Cross-check tools: independent maritime legal witness and alternate underwriter risk monitor.
+- Typical products: underwriting matrix, sanctions decision ladder, convoy assurance packet.
+
+### ts-homeland-defense-municipal-911-psap-cyber-survivability-cell-v1
+- Use for: municipal PSAP cyber survivability, trusted call-routing continuity, and military-civil emergency integration.
+- Primary tools: PSAP queue integrity monitor, emergency routing failover planner, municipal cyber fusion board.
+- Cross-check tools: independent public-safety cyber witness and alternate telecom survivability monitor.
+- Typical products: PSAP survivability map, routing integrity ladder, emergency continuity packet.
+
+### ts-joint-additive-warhead-liner-quality-assurance-cell-v1
+- Use for: additive warhead liner defect detection, lot traceability, and release authority governance.
+- Primary tools: additive metrology analyzer, defect confidence classifier, ordnance release governance board.
+- Cross-check tools: independent ballistic quality witness and alternate counterfeit-risk monitor.
+- Typical products: liner confidence board, traceability matrix, release-control packet.
+
+### ts-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-v1
+- Use for: rapid runway lighting and approach-aid reconstitution under strike damage and navwar pressure.
+- Primary tools: airfield lighting fault-isolation board, approach-aid integrity monitor, sortie regeneration planner.
+- Cross-check tools: independent flight safety witness and alternate approach-risk monitor.
+- Typical products: aid restoration matrix, sortie sequencing ladder, recertification packet.
+
+### ts-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-v1
+- Use for: coalition battery recycling throughput and critical mineral recovery continuity under contested logistics.
+- Primary tools: battery lifecycle forensics board, mineral recovery optimizer, coalition throughput planner.
+- Cross-check tools: independent industrial compliance witness and alternate sustainment quality monitor.
+- Typical products: recovery matrix, mineral yield ladder, sustainment packet.
+
+### ts-strategic-quantum-network-key-custody-and-compromise-response-cell-v1
+- Use for: strategic quantum-key custody governance, compromise detection, and cryptographic continuity response.
+- Primary tools: quantum key custody ledger, compromise detector, cryptographic rollback planner.
+- Cross-check tools: independent crypto-assurance witness and alternate command-trust monitor.
+- Typical products: key custody matrix, compromise ladder, crypto continuity packet.
+
+### ts-joint-gray-zone-commercial-fleet-shadowing-attribution-cell-v1
+- Use for: gray-zone commercial fleet shadowing attribution and escalation-aware legal observability.
+- Primary tools: vessel behavior anomaly engine, attribution evidence fusion board, escalation branch planner.
+- Cross-check tools: independent maritime intelligence witness and alternate legal-attribution monitor.
+- Typical products: attribution board, escalation matrix, legal-observability packet.
+
+### ts-theater-austere-blood-plasma-donor-screening-and-cold-chain-cell-v1
+- Use for: austere donor screening confidence and plasma cold-chain survivability under contested conditions.
+- Primary tools: donor screening adjudicator, plasma telemetry fusion board, medical distribution planner.
+- Cross-check tools: independent transfusion safety witness and alternate contamination-risk monitor.
+- Typical products: donor confidence ladder, cold-chain matrix, casualty-support packet.
+
+### ts-homeland-defense-satellite-timing-financial-clearing-fallback-cell-v1
+- Use for: financial-clearing continuity when satellite timing degrades and fallback timing authority is required.
+- Primary tools: satellite timing integrity monitor, financial rail resilience simulator, settlement authority board.
+- Cross-check tools: independent treasury continuity witness and alternate timing integrity monitor.
+- Typical products: timing-fallback matrix, clearing continuity ladder, authority-gated settlement packet.
+
+## Protocol Stack Addendum XV (2026-03-12, External Integration Profiles for Expansion Wave XVI)
+
+### ps-strategic-grid-transformer-supply-sabotage-and-restoration-cell-stack-v1
+- Protocols: USMTF, NIMS/ICS, STIX/TAXII, API/JSON.
+- Use for: transformer sabotage alerts, restoration sequencing updates, and command acknowledgment integrity.
+
+### ps-joint-cislunar-logistics-and-space-lane-contestation-cell-stack-v1
+- Protocols: CCSDS, USMTF, STIX/TAXII, API/JSON.
+- Use for: cislunar lane status exchange, trajectory conflict events, and mission-priority sustainment coordination.
+
+### ps-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-stack-v1
+- Protocols: USMTF, OGC, NIMS/ICS, API/JSON.
+- Use for: hydrogen safety telemetry, emissions risk exchange, and power continuity branch control.
+
+### ps-coalition-maritime-insurance-sanctions-and-convoy-underwriting-cell-stack-v1
+- Protocols: NATO APP-11/ADatP-3 aligned, AIS/NMEA, STIX/TAXII, API/JSON.
+- Use for: underwriting risk updates, sanctions-compliance signals, and convoy continuity decisions.
+
+### ps-homeland-defense-municipal-911-psap-cyber-survivability-cell-stack-v1
+- Protocols: NIMS/ICS, NIEM, USMTF, API/JSON.
+- Use for: PSAP survivability events, emergency-routing status, and military-civil continuity synchronization.
+
+### ps-joint-additive-warhead-liner-quality-assurance-cell-stack-v1
+- Protocols: USMTF, STIX/TAXII, EDI X12, API/JSON.
+- Use for: lot quality telemetry exchange, defect confidence updates, and release authority gating.
+
+### ps-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-stack-v1
+- Protocols: AIXM/FIXM, USMTF, VMF, API/JSON.
+- Use for: runway-aid damage updates, recertification checks, and sortie-safe release control.
+
+### ps-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-stack-v1
+- Protocols: NATO APP-11/ADatP-3 aligned, USMTF, OGC, API/JSON.
+- Use for: coalition recycling throughput exchange, mineral recovery confidence, and sustainment coordination.
+
+### ps-strategic-quantum-network-key-custody-and-compromise-response-cell-stack-v1
+- Protocols: USMTF, STIX/TAXII, NIEM, API/JSON.
+- Use for: key-custody status, compromise indicators, and cryptographic continuity branch decisions.
+
+### ps-joint-gray-zone-commercial-fleet-shadowing-attribution-cell-stack-v1
+- Protocols: AIS/NMEA, USMTF, STIX/TAXII, API/JSON.
+- Use for: fleet behavior alerts, attribution evidence exchange, and escalation guardrail synchronization.
+
+### ps-theater-austere-blood-plasma-donor-screening-and-cold-chain-cell-stack-v1
+- Protocols: HL7/FHIR, USMTF, NIEM, API/JSON.
+- Use for: donor-screening confidence exchange, cold-chain telemetry, and casualty-support prioritization.
+
+### ps-homeland-defense-satellite-timing-financial-clearing-fallback-cell-stack-v1
+- Protocols: NIEM, USMTF, STIX/TAXII, API/JSON.
+- Use for: timing degradation alerts, fallback authority events, and financial-clearing continuity status.

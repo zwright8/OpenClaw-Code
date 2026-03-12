@@ -214,3 +214,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add tool_suite_id=ts-strategic-homeland-port-fuel-terminal-cyber-physical-blackstart-cell-v1 + protocol_stack_id=ps-strategic-homeland-port-fuel-terminal-cyber-physical-blackstart-cell-stack-v1 when risk acceptance depends on fuel infrastructure restoration and cyber-safe blackstart sequencing.
 - Add tool_suite_id=ts-strategic-deepfake-diplomatic-hotline-authentication-cell-v1 + protocol_stack_id=ps-strategic-deepfake-diplomatic-hotline-authentication-cell-stack-v1 when strategic decision confidence depends on authenticated crisis communication pathways.
 - Add packet_id=DPL-HOMELAND-PORT-FUEL-BLACKSTART-001 and packet_id=DPL-DEEPFAKE-HOTLINE-AUTH-001 for branches that materially alter commander risk posture, escalation pathways, or continuity assumptions.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-strategic-grid-transformer-supply-sabotage-and-restoration-cell-v1 + protocol_stack_id=ps-strategic-grid-transformer-supply-sabotage-and-restoration-cell-stack-v1 when mission risk depends on power-grid transformer survivability, restoration timing, and sabotage confidence.
+- Add tool_suite_id=ts-homeland-defense-satellite-timing-financial-clearing-fallback-cell-v1 + protocol_stack_id=ps-homeland-defense-satellite-timing-financial-clearing-fallback-cell-stack-v1 when commander risk acceptance depends on timing trust and financial-clearing continuity.
+- Add packet_id=DPL-GRID-TRANSFORMER-RESTORE-001 and packet_id=DPL-SAT-TIMING-FINANCIAL-CLEARING-001 for branches that alter sustainment confidence, escalation posture, or force-readiness assumptions.

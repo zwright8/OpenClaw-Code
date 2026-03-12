@@ -218,3 +218,10 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add tool_suite_id=ts-coalition-undersea-data-center-cable-landing-defense-cell-v1 + protocol_stack_id=ps-coalition-undersea-data-center-cable-landing-defense-cell-stack-v1 when failover branches depend on protected cable-landing continuity and coalition reroute authorities.
 - Add tool_suite_id=ts-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-v1 + protocol_stack_id=ps-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-stack-v1 when network failover viability is coupled to dispersed maritime reload logistics and survivability timing.
 - Add packet_id=DPL-COALITION-CABLE-LANDING-DEFENSE-001 and packet_id=DPL-AMMO-BARGE-DISPERSAL-001 for branches that materially change mission-service availability, sustainment continuity, or commander risk acceptance.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-v1 + protocol_stack_id=ps-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-stack-v1 when failover sequencing depends on airfield aid restoration and sortie-safe recertification timing.
+- Add tool_suite_id=ts-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-v1 + protocol_stack_id=ps-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-stack-v1 when mission-network continuity depends on expeditionary power resilience and hydrogen safety controls.
+- Add packet_id=DPL-RUNWAY-LIGHTING-APPROACH-AID-001 and packet_id=DPL-HYDROGEN-MICROGRID-SAFETY-001 for branches that materially change service survivability timelines or commander risk acceptance.
