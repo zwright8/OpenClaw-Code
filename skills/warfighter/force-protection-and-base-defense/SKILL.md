@@ -265,3 +265,11 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add tool_suite_id=ts-austere-airfield-fod-drone-safety-v1 + protocol_stack_id=ps-austere-airfield-fod-drone-safety-stack-v1 when defended-installation sortie survivability depends on runway hazard and drone-incursion controls.
 - Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when base-defense branches require synchronized military-civil warning and shelter posture.
 - Add packet_id=DPL-AUSTERE-AIRFIELD-FOD-DRONE-SAFETY-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter base alert states, launch controls, or population-protection sequencing.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.

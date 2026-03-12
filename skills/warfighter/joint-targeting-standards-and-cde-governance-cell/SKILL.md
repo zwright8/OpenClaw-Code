@@ -179,3 +179,11 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Prioritize `tool_suite_id=ts-joint-long-range-precision-fires-deconfliction-cell-v1` + `protocol_stack_id=ps-joint-long-range-precision-fires-deconfliction-cell-stack-v1` when release timelines require synchronized cross-domain timing, no-strike integrity, and escalation-safe strike sequencing.
 - Prioritize `tool_suite_id=ts-joint-electromagnetic-spectrum-superiority-cell-v1` + `protocol_stack_id=ps-joint-electromagnetic-spectrum-superiority-cell-stack-v1` when target confidence depends on jammer/deception adjudication and blue-force electromagnetic fratricide prevention.
 - Add `packet_id=DPL-LRPF-DECONFLICTION-001` and `packet_id=DPL-EMSO-SUPERIORITY-001` for high-consequence release recommendations that shift CDE confidence, strike timing, or authority-gate sequencing.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.

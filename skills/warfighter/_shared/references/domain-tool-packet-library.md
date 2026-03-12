@@ -8512,3 +8512,181 @@ validation_gates:
 - output_schema: cannibalization ledger, readiness debt projection, restoration sequence packet
 - protocol_profile: USMTF + NIEM + API/JSON
 - validation_gates: readiness floor protection, component traceability pass, command authority concurrence
+
+## Packet Addendum XII (2026-03-12, Expansion Wave XXIII Tool Invocation Packets)
+
+### packet_id: DPL-ORBITAL-SERVICING-REFUEL-001
+- domain: contested orbital servicing and refuel assurance
+- objective: preserve strategic space mission endurance via custody-verified servicing and refuel sequencing.
+- primary_tools: orbital custody fusion board, servicing timeline adjudicator, propellant transfer confidence monitor
+- alternate_tools: manual servicing ledger and delayed orbital event reconciliation
+- degraded_mode: mission-essential refuel windows only with dual-authority maneuver release
+- input_requirements: servicing requests, orbital tracks, fuel state vectors, authority matrix
+- output_schema: servicing confidence ladder, refuel timeline matrix, maneuver release packet
+- protocol_profile: CCSDS + USMTF + NIEM + API/JSON
+- validation_gates: custody chain pass, collision-risk threshold, strategic authority acknowledgment
+
+### packet_id: DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001
+- domain: denied terrain autonomous drone resupply navigation
+- objective: sustain frontline resupply through denied terrain with PNT-degraded route confidence controls.
+- primary_tools: denied-terrain route planner, drone mission scheduler, navigation confidence analytics board
+- alternate_tools: manual route ladder and periodic visual waypoint verification
+- degraded_mode: critical-class cargo only with strict route confidence threshold
+- input_requirements: terrain overlays, threat emitters, cargo priorities, weather state, drift telemetry
+- output_schema: route confidence map, resupply sequence matrix, branch trigger packet
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: route viability pass, fratricide airspace check, command concurrence
+
+### packet_id: DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001
+- domain: coalition cable-landing defense and data sovereignty governance
+- objective: preserve coalition data continuity while enforcing sovereign routing and releasability controls.
+- primary_tools: cable landing telemetry fusion board, sovereignty policy adjudication engine, coalition route-priority planner
+- alternate_tools: manual sovereignty rules board and periodic legal liaison reconciliation
+- degraded_mode: mission-critical data classes only with explicit sovereign release approvals
+- input_requirements: landing station status, coalition caveats, data classes, route options, threat indicators
+- output_schema: sovereignty routing matrix, releasability ladder, authority packet
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 aligned + NIEM + STIX/TAXII + API/JSON
+- validation_gates: sovereignty compliance pass, coalition caveat check, acknowledgment-chain integrity
+
+### packet_id: DPL-PHARMA-RAW-MATERIAL-RESERVE-001
+- domain: homeland pharma raw-material reserve synchronization
+- objective: sustain military medical readiness through protected precursor reserves and surge conversion planning.
+- primary_tools: pharma reserve inventory board, precursor bottleneck predictor, med-log conversion synchronizer
+- alternate_tools: manual reserve ledger and delayed quality release board
+- degraded_mode: life-saving classes only with senior medical authority release
+- input_requirements: reserve levels, precursor quality data, conversion throughput, casualty demand forecast
+- output_schema: reserve posture matrix, surge conversion ladder, allocation authority packet
+- protocol_profile: HL7/FHIR + USMTF + NIEM + API/JSON
+- validation_gates: quality confidence threshold, contamination pass, authority acknowledgment
+
+### packet_id: DPL-EM-CAMOUFLAGE-DECOY-001
+- domain: joint electromagnetic camouflage and decoy emissions governance
+- objective: reduce detectability while preserving mission effects through controlled decoy emissions and EM discipline.
+- primary_tools: emissions signature planner, decoy waveform mission-data manager, fratricide risk adjudicator
+- alternate_tools: manual EMCON board and static decoy windows
+- degraded_mode: mission-essential emissions only with short pre-approved windows
+- input_requirements: platform signatures, threat sensor coverage, mission phases, decoy inventory
+- output_schema: emissions camouflage timeline, decoy employment matrix, risk controls packet
+- protocol_profile: Link 16 J-series + USMTF + STIX/TAXII + API/JSON
+- validation_gates: fratricide-spectrum pass, interoperability check, commander approval
+
+### packet_id: DPL-RUNWAY-ICE-FOG-AUTOLAND-001
+- domain: expeditionary runway ice/fog autoland assurance
+- objective: preserve sortie generation with low-visibility autoland decisions grounded in runway/weather confidence.
+- primary_tools: runway condition telemetry board, autoland minima adjudicator, sortie timing scheduler
+- alternate_tools: manual weather board and conservative non-precision sequencing
+- degraded_mode: critical sorties only with enhanced weather minima and runway inspection gates
+- input_requirements: runway friction, RVR/visibility, icing severity, aircraft profiles, sortie demand
+- output_schema: hazard-confidence overlay, autoland option set, go/no-go packet
+- protocol_profile: AIXM/FIXM + USMTF + Link 16 J-series + API/JSON
+- validation_gates: runway safety pass, weather confidence floor, aircrew/command concurrence
+
+### packet_id: DPL-MARITIME-EVAC-PORT-SURGE-001
+- domain: joint civilian maritime evacuation and port surge arbitration
+- objective: arbitrate military-civil throughput under evacuation stress while preserving legal and humanitarian controls.
+- primary_tools: port throughput fusion board, evacuation manifest orchestrator, authority queue manager
+- alternate_tools: manual berth board and liaison-driven surge windows
+- degraded_mode: life-safety evacuation classes plus mission-essential military cargo only
+- input_requirements: berth inventory, manifests, corridor risks, legal authorities, coalition caveats
+- output_schema: surge arbitration matrix, throughput branch ladder, authority packet
+- protocol_profile: NIMS/ICS + USMTF + AIS/NMEA + NIEM + API/JSON
+- validation_gates: life-safety priority pass, legal-handover compliance, acknowledgment integrity
+
+### packet_id: DPL-ORBITAL-NUCLEAR-DEBRIS-COLLISION-001
+- domain: strategic orbital nuclear debris collision avoidance
+- objective: reduce strategic satellite loss risk through debris-cloud tracking and authority-gated maneuver planning.
+- primary_tools: debris cloud propagation engine, conjunction confidence adjudicator, strategic maneuver scheduler
+- alternate_tools: manual conjunction board and delayed ephemeris cross-check
+- degraded_mode: high-value constellation nodes only with conservative maneuver envelopes
+- input_requirements: debris observations, satellite ephemerides, fuel margins, mission priorities, authority matrix
+- output_schema: debris risk ladder, maneuver priority matrix, asset protection packet
+- protocol_profile: CCSDS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: conjunction risk threshold, custody confidence floor, strategic release authority
+
+### packet_id: DPL-ORBITAL-LOGISTICS-CONFLICT-001
+- domain: orbital logistics timeline conflict deconfliction
+- objective: resolve servicing and maneuver timeline conflicts across strategic orbital nodes.
+- primary_tools: orbital timeline adjudicator, custody fusion board, maneuver scheduler
+- alternate_tools: manual timeline board and delayed custody reconciliation
+- degraded_mode: strategic-priority nodes only with command callback every 2 hours
+- input_requirements: servicing queue, maneuver windows, fuel states, collision warnings
+- output_schema: conflict ladder, deconflicted timeline, authority packet
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: timeline conflict pass, conjunction threshold, authority acknowledgment
+
+### packet_id: DPL-DENIED-TERRAIN-NAV-CROSSCHECK-001
+- domain: denied terrain navigation cross-check assurance
+- objective: cross-check autonomous resupply route confidence under degraded timing/PNT conditions.
+- primary_tools: route confidence analyzer, timing drift monitor, alternate map matcher
+- alternate_tools: manual waypoint checks and observer relay reports
+- degraded_mode: shortest trusted corridors only with increased escort posture
+- input_requirements: route options, drift telemetry, terrain masks, threat emitters
+- output_schema: confidence deltas, route recommendation, risk packet
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: confidence floor, drift threshold, commander concurrence
+
+### packet_id: DPL-COALITION-DATA-RELEASABILITY-001
+- domain: coalition data releasability and sovereignty controls
+- objective: enforce sovereign and coalition caveat rules while maintaining mission data continuity.
+- primary_tools: caveat adjudicator, route-policy engine, coalition authority ledger
+- alternate_tools: manual releasability board and liaison approvals
+- degraded_mode: minimum necessary data classes only with explicit release approvals
+- input_requirements: data class labels, sovereignty rules, coalition caveats, route options
+- output_schema: releasability decision matrix, route approvals, escalation log
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: caveat compliance pass, sovereign rule pass, acknowledgment integrity
+
+### packet_id: DPL-PHARMA-SURGE-ALLOCATION-001
+- domain: pharmaceutical surge conversion and allocation governance
+- objective: allocate scarce precursor and finished-drug capacity to preserve force-health continuity.
+- primary_tools: surge conversion planner, allocation optimizer, med-log release board
+- alternate_tools: manual allocation ladder and delayed reconciliation board
+- degraded_mode: life-saving categories prioritized with daily senior medical review
+- input_requirements: demand forecast, precursor inventory, conversion limits, distribution constraints
+- output_schema: allocation matrix, conversion priorities, release packet
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical-priority pass, quality release pass, authority acknowledgment
+
+### packet_id: DPL-EM-DECEPTION-SAFETY-001
+- domain: electromagnetic deception and fratricide safety
+- objective: execute decoy emissions while maintaining blue-force spectrum safety and mission interoperability.
+- primary_tools: decoy waveform planner, fratricide risk adjudicator, spectrum deconfliction board
+- alternate_tools: manual EMCON windows and conservative decoy schedule cards
+- degraded_mode: fixed low-risk decoy windows only with commander approval
+- input_requirements: platform signatures, mission phases, threat emitters, friendly spectrum plans
+- output_schema: decoy safety matrix, risk ladder, release packet
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: spectrum fratricide pass, interoperability pass, approval chain complete
+
+### packet_id: DPL-AUSTERE-AIRFIELD-WEATHER-SAFETY-001
+- domain: austere airfield low-visibility weather safety
+- objective: preserve sortie safety under severe visibility and icing constraints at expeditionary strips.
+- primary_tools: weather minima adjudicator, runway telemetry board, sortie scheduler
+- alternate_tools: manual weather board and conservative launch windows
+- degraded_mode: essential sorties only with expanded safety margins
+- input_requirements: visibility/RVR, icing rates, runway friction, sortie priorities
+- output_schema: weather safety board, sortie-safe windows, go/no-go packet
+- protocol_profile: AIXM/FIXM + USMTF + API/JSON
+- validation_gates: minima pass, runway safety pass, airfield commander concurrence
+
+### packet_id: DPL-CIVIL-MIL-PORT-ARBITRATION-001
+- domain: military-civil maritime port arbitration
+- objective: balance civilian evacuation throughput with military sustainment at contested ports.
+- primary_tools: throughput arbitration engine, berth utilization board, manifest synchronizer
+- alternate_tools: manual berth matrix and liaison-mediated priorities
+- degraded_mode: life-safety civilian flows and mission-critical military cargo only
+- input_requirements: manifests, berth availability, authority map, hazard corridors
+- output_schema: arbitration decisions, sequencing plan, authority packet
+- protocol_profile: NIMS/ICS + USMTF + AIS/NMEA + API/JSON
+- validation_gates: life-safety priority pass, legal authority pass, acknowledgement chain integrity
+
+### packet_id: DPL-STRATEGIC-ORBITAL-MANEUVER-AUTH-001
+- domain: strategic orbital maneuver authority controls
+- objective: ensure collision-avoidance maneuvers are released with verified authority and bounded strategic risk.
+- primary_tools: maneuver authority ledger, conjunction risk board, strategic asset priority engine
+- alternate_tools: manual authority callback and delayed maneuver adjudication
+- degraded_mode: highest-risk conjunctions only with dual-key authorization
+- input_requirements: conjunction alerts, fuel state, strategic priority list, authority matrix
+- output_schema: maneuver authorization ladder, priority matrix, release packet
+- protocol_profile: CCSDS + USMTF + NIEM + API/JSON
+- validation_gates: authority validation pass, collision-risk threshold, acknowledgment integrity

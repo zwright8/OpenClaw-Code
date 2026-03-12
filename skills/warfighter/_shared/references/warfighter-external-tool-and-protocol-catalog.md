@@ -9345,3 +9345,87 @@ external_binding:
 ### `ps-reserve-cannibalization-governance-stack-v1`
 - Protocols: `USMTF`, `NIEM`, `API/JSON`.
 - Use for: cannibalization authority events, readiness debt telemetry, and restoration sequencing records.
+
+## Tool Suite Addendum XXIII (2026-03-12, Warfighter Expansion Wave XXIII for Orbital Servicing, Denied-Terrain Resupply, Sovereign Data Continuity, Pharma Reserve Synchronization, EMS Camouflage, Austere Weathered Airfields, and Maritime Evacuation Arbitration)
+
+### `ts-orbital-servicing-refuel-assurance-v1`
+- Use for: contested orbital servicing and refuel assurance with custody-verified branch sequencing for strategic space logistics.
+- Primary tools: orbital custody fusion board, servicing timeline adjudicator, propellant transfer confidence monitor.
+- Cross-check tools: independent SSA custody witness and alternate orbital logistics integrity board.
+- Typical products: servicing confidence ladder, refuel conflict matrix, authority-gated maneuver packet.
+
+### `ts-denied-terrain-drone-resupply-nav-v1`
+- Use for: autonomous drone resupply through denied terrain with PNT degradation controls and branch-safe navigation fallback.
+- Primary tools: denied-terrain route planner, autonomous convoy/drone mission scheduler, navigation confidence analytics board.
+- Cross-check tools: independent route viability witness and alternate timing-drift monitor.
+- Typical products: resupply corridor matrix, nav-confidence ladder, cargo survivability packet.
+
+### `ts-coalition-cable-landing-data-sovereignty-v1`
+- Use for: coalition cable-landing defense, sovereign routing governance, and releasability-safe data continuity decisions.
+- Primary tools: cable landing telemetry fusion board, sovereignty policy adjudication engine, coalition route-priority planner.
+- Cross-check tools: independent legal-releasability witness and alternate landing-station integrity monitor.
+- Typical products: sovereign routing matrix, coalition caveat ladder, continuity authority packet.
+
+### `ts-pharma-raw-material-war-reserve-sync-v1`
+- Use for: raw-material war reserve synchronization, pharmaceutical surge conversion planning, and protected military-civil allocation.
+- Primary tools: pharma reserve inventory board, precursor bottleneck predictor, med-log conversion synchronizer.
+- Cross-check tools: independent quality-release witness and alternate allocation stress monitor.
+- Typical products: reserve posture map, surge conversion ladder, allocation authority packet.
+
+### `ts-electromagnetic-camouflage-decoy-emissions-v1`
+- Use for: electromagnetic camouflage planning, decoy-emission governance, and fratricide-safe spectrum deception.
+- Primary tools: emissions signature planner, decoy waveform mission-data manager, blue-force fratricide risk adjudicator.
+- Cross-check tools: independent RF identity witness and alternate EW deconfliction board.
+- Typical products: camouflage timeline matrix, decoy employment ladder, emissions safety packet.
+
+### `ts-runway-ice-fog-autoland-assurance-v1`
+- Use for: austere runway operations under ice/fog conditions with autoland confidence and sortie-safe sequencing.
+- Primary tools: runway condition telemetry board, low-visibility autoland minima adjudicator, sortie timing scheduler.
+- Cross-check tools: independent airfield weather witness and alternate approach confidence monitor.
+- Typical products: hazard-confidence overlay, autoland branch matrix, sortie continuity packet.
+
+### `ts-civilian-maritime-evac-port-surge-arbitration-v1`
+- Use for: military-civil port surge arbitration during maritime evacuation with legal-authority and throughput controls.
+- Primary tools: port throughput fusion board, evacuation manifest orchestrator, legal authority queue manager.
+- Cross-check tools: independent humanitarian compliance witness and alternate berth utilization monitor.
+- Typical products: surge arbitration matrix, protected corridor ladder, command decision packet.
+
+### `ts-orbital-nuclear-debris-collision-avoidance-v1`
+- Use for: orbital nuclear-effects debris tracking and collision-avoidance governance for strategic constellations.
+- Primary tools: debris cloud propagation engine, conjunction confidence adjudicator, strategic maneuver scheduler.
+- Cross-check tools: independent orbital hazard witness and alternate maneuver fuel-risk monitor.
+- Typical products: debris risk ladder, maneuver priority matrix, strategic asset protection packet.
+
+## Protocol Stack Addendum XXIII (2026-03-12, External Integration Profiles for Expansion Wave XXIII)
+
+### `ps-orbital-servicing-refuel-assurance-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: servicing custody exchange, refuel status telemetry, and strategic maneuver acknowledgments.
+
+### `ps-denied-terrain-drone-resupply-nav-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: resupply route updates, timing drift alerts, and autonomous resupply branch synchronization.
+
+### `ps-coalition-cable-landing-data-sovereignty-stack-v1`
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: landing-station incident telemetry, sovereign-routing decisions, and coalition releasability records.
+
+### `ps-pharma-raw-material-war-reserve-sync-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: reserve status exchange, conversion readiness updates, and medical allocation authority acknowledgments.
+
+### `ps-electromagnetic-camouflage-decoy-emissions-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: decoy/emission control updates, fratricide risk telemetry, and commander release synchronization.
+
+### `ps-runway-ice-fog-autoland-assurance-stack-v1`
+- Protocols: `AIXM/FIXM`, `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: runway hazard status, autoland minima decisions, and sortie timing acknowledgments.
+
+### `ps-civilian-maritime-evac-port-surge-arbitration-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `AIS/NMEA`, `NIEM`, `API/JSON`.
+- Use for: evacuation throughput updates, berth arbitration decisions, and military-civil authority synchronization.
+
+### `ps-orbital-nuclear-debris-collision-avoidance-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: debris hazard exchange, conjunction-risk updates, and maneuver-approval acknowledgment chains.
