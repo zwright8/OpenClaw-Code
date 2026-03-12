@@ -611,11 +611,16 @@ function normalizeContextualBanditModels(rawModels = {}) {
 function normalizeRecentOutcomeEntry(rawEntry = {}) {
     const entry = rawEntry && typeof rawEntry === 'object' ? rawEntry : {};
     const status = normalizeStatus(entry.status);
+    const explicitReward = Number(entry.reward);
+    const reward = Number.isFinite(explicitReward)
+        ? clamp(explicitReward, 0, 1)
+        : getStatusReward(status);
     return {
         wave: Number.isFinite(Number(entry.wave))
             ? parseNonNegativeInt(entry.wave, 0)
             : 0,
         status,
+        reward,
         didSucceed: SUCCESS_STATUSES.has(status)
     };
 }
@@ -987,53 +992,72 @@ function computeAdaptiveAdjustments(stat, currentWave, adaptiveScoreConfig) {
     };
 }
 
-function computeWindowedStats(stat, selectionPolicyConfig) {
-    const normalized = normalizeExecutionStat(stat);
+function summarizeOutcomeStats(outcomes = [], fallbackStat = null, selectionPolicyConfig = null) {
+    const normalizedFallback = normalizeExecutionStat(fallbackStat);
+    const normalizedOutcomes = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
+        : [];
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const window = normalized.recentOutcomes.slice(-policy.slidingWindowSize);
-    const attempts = window.length;
-    const successes = window.reduce((count, entry) => count + (entry.didSucceed ? 1 : 0), 0);
-    const failures = attempts - successes;
-    return {
-        attempts,
-        successes,
-        failures
-    };
-}
+    const useDiscounting = DISCOUNTED_POLICY_MODES.has(policy.mode);
 
-function computeDiscountedStats(stat, selectionPolicyConfig) {
-    const normalized = normalizeExecutionStat(stat);
-    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const outcomes = normalized.recentOutcomes;
-    if (outcomes.length <= 0) {
+    if (normalizedOutcomes.length <= 0) {
         return {
-            attempts: normalized.attempts,
-            successes: normalized.successes,
-            failures: normalized.failures
+            attempts: normalizedFallback.attempts,
+            successes: normalizedFallback.successes,
+            failures: normalizedFallback.failures,
+            lastStatus: normalizedFallback.lastStatus,
+            lastWave: normalizedFallback.lastWave,
+            consecutiveFailures: normalizedFallback.consecutiveFailures
         };
     }
 
     let attempts = 0;
     let successes = 0;
-    for (let index = 0; index < outcomes.length; index++) {
-        const entry = outcomes[index];
-        const age = outcomes.length - 1 - index;
-        const weight = Math.pow(policy.discountFactor, age);
+    for (let index = 0; index < normalizedOutcomes.length; index++) {
+        const entry = normalizedOutcomes[index];
+        const age = normalizedOutcomes.length - 1 - index;
+        const weight = useDiscounting ? Math.pow(policy.discountFactor, age) : 1;
         attempts += weight;
-        successes += entry.didSucceed ? weight : 0;
+        successes += entry.reward * weight;
     }
 
+    let consecutiveFailures = 0;
+    for (let index = normalizedOutcomes.length - 1; index >= 0; index--) {
+        if (SUCCESS_STATUSES.has(normalizedOutcomes[index].status)) break;
+        consecutiveFailures += 1;
+    }
+
+    const lastEntry = normalizedOutcomes[normalizedOutcomes.length - 1];
     return {
         attempts,
         successes,
-        failures: Math.max(0, attempts - successes)
+        failures: Math.max(0, attempts - successes),
+        lastStatus: lastEntry.status || normalizedFallback.lastStatus,
+        lastWave: lastEntry.wave > 0 ? lastEntry.wave : normalizedFallback.lastWave,
+        consecutiveFailures
     };
+}
+
+function computeWindowedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const window = normalized.recentOutcomes.slice(-policy.slidingWindowSize);
+    return summarizeOutcomeStats(window, normalized, {
+        ...policy,
+        mode: 'sw_ucb'
+    });
+}
+
+function computeDiscountedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const outcomes = normalized.recentOutcomes;
+    return summarizeOutcomeStats(outcomes, normalized, selectionPolicyConfig);
 }
 
 function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const values = Array.isArray(outcomes)
-        ? outcomes.map((entry) => (entry?.didSucceed ? 1 : 0))
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry).reward)
         : [];
     const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
     if (values.length < minSamples) return 0;
@@ -1062,22 +1086,15 @@ function computeChangeDetectedStats(stat, selectionPolicyConfig) {
     const effective = changeIndex > 0
         ? normalized.recentOutcomes.slice(changeIndex)
         : normalized.recentOutcomes;
-    const attempts = effective.length > 0 ? effective.length : normalized.attempts;
-    const successes = effective.length > 0
-        ? effective.reduce((count, entry) => count + (entry.didSucceed ? 1 : 0), 0)
-        : normalized.successes;
-    const failures = attempts - successes;
-    return {
-        attempts,
-        successes,
-        failures
-    };
+    return summarizeOutcomeStats(effective, normalized, {
+        mode: 'cd_ucb'
+    });
 }
 
 function detectCusumChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const values = Array.isArray(outcomes)
-        ? outcomes.map((entry) => (entry?.didSucceed ? 1 : 0))
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry).reward)
         : [];
     const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
     if (values.length < minSamples) return 0;
@@ -1113,16 +1130,9 @@ function computeCusumDetectedStats(stat, selectionPolicyConfig) {
     const effective = changeIndex > 0
         ? normalized.recentOutcomes.slice(changeIndex)
         : normalized.recentOutcomes;
-    const attempts = effective.length > 0 ? effective.length : normalized.attempts;
-    const successes = effective.length > 0
-        ? effective.reduce((count, entry) => count + (entry.didSucceed ? 1 : 0), 0)
-        : normalized.successes;
-    const failures = attempts - successes;
-    return {
-        attempts,
-        successes,
-        failures
-    };
+    return summarizeOutcomeStats(effective, normalized, {
+        mode: 'cusum_ucb'
+    });
 }
 
 function resolveScoreStats(stat, selectionPolicyConfig) {
@@ -1134,7 +1144,10 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             ...normalized,
             attempts: windowed.attempts,
             successes: windowed.successes,
-            failures: windowed.failures
+            failures: windowed.failures,
+            lastStatus: windowed.lastStatus,
+            lastWave: windowed.lastWave,
+            consecutiveFailures: windowed.consecutiveFailures
         };
     }
     if (DISCOUNTED_POLICY_MODES.has(policy.mode)) {
@@ -1143,7 +1156,10 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             ...normalized,
             attempts: discounted.attempts,
             successes: discounted.successes,
-            failures: discounted.failures
+            failures: discounted.failures,
+            lastStatus: discounted.lastStatus,
+            lastWave: discounted.lastWave,
+            consecutiveFailures: discounted.consecutiveFailures
         };
     }
     if (policy.mode === 'cd_ucb') {
@@ -1152,7 +1168,10 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             ...normalized,
             attempts: changed.attempts,
             successes: changed.successes,
-            failures: changed.failures
+            failures: changed.failures,
+            lastStatus: changed.lastStatus,
+            lastWave: changed.lastWave,
+            consecutiveFailures: changed.consecutiveFailures
         };
     }
     if (policy.mode === 'cusum_ucb') {
@@ -1161,7 +1180,10 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             ...normalized,
             attempts: changed.attempts,
             successes: changed.successes,
-            failures: changed.failures
+            failures: changed.failures,
+            lastStatus: changed.lastStatus,
+            lastWave: changed.lastWave,
+            consecutiveFailures: changed.consecutiveFailures
         };
     }
     return normalized;
@@ -1903,7 +1925,7 @@ function selectCatalogSlice({
             score = linearTs.score;
             featureVector = linearTs.featureVector;
         } else if (EXP3_IX_POLICY_MODES.has(scoringPolicy.mode)) {
-            const adjustments = computeAdaptiveAdjustments(stat, normalizedCurrentWave, adaptiveScoreConfig);
+            const adjustments = computeAdaptiveAdjustments(scoreStats, normalizedCurrentWave, adaptiveScoreConfig);
             const probability = Number(selectionProbabilities[key] || 0);
             score = probability
                 - adjustments.failurePenalty
@@ -2118,6 +2140,7 @@ function recordRecentOutcome(stat, { status, wave }) {
     normalized.recentOutcomes.push({
         wave: parseNonNegativeInt(wave, 0),
         status: normalizedStatus,
+        reward: getStatusReward(normalizedStatus),
         didSucceed: SUCCESS_STATUSES.has(normalizedStatus)
     });
     normalized.recentOutcomes = normalized.recentOutcomes.slice(-MAX_RECENT_OUTCOMES_TRACKED);

@@ -1186,6 +1186,118 @@ test('buildAutonomousBatchPlan supports discounted exp3_ix for recency-weighted 
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan keeps sliding-window exp3_ix adjustments aligned to recency stats', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 153, code: 'SK-00153', title: 'Skill 153' },
+            { id: 154, code: 'SK-00154', title: 'Skill 154' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '153': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 6,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                },
+                '154': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'sw_exp3_ix',
+            slidingWindowSize: 2,
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [153]);
+    assert.equal(plan.selection.policy.skills, 'sw_exp3_ix');
+});
+
+test('buildAutonomousBatchPlan treats partial outcomes as fractional reward in sliding-window UCB', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 155, code: 'SK-00155', title: 'Skill 155' },
+            { id: 156, code: 'SK-00156', title: 'Skill 156' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 25,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '155': {
+                    attempts: 18,
+                    successes: 15,
+                    failures: 3,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'partial',
+                    recentOutcomes: [
+                        { wave: 22, status: 'partial' },
+                        { wave: 23, status: 'partial' },
+                        { wave: 24, status: 'partial' }
+                    ]
+                },
+                '156': {
+                    attempts: 18,
+                    successes: 9,
+                    failures: 9,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'sw_ucb',
+            slidingWindowSize: 3
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [156]);
+    assert.equal(plan.selection.policy.skills, 'sw_ucb');
+});
+
 test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -2035,6 +2147,8 @@ test('collectAutonomousCoverage uses graded partial rewards for policy and conte
 
     assert.equal(coverage.skillExecutionStats['111'].successes, 1);
     assert.equal(coverage.skillExecutionStats['112'].successes, 1);
+    assert.equal(coverage.skillExecutionStats['111'].recentOutcomes[0].reward, 0.6);
+    assert.equal(coverage.skillExecutionStats['112'].recentOutcomes[0].reward, 0.6);
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.ucb.cumulativeReward - 0.6) < 1e-9);
     assert.ok(Math.abs(coverage.contextualBanditModels.skills.vectorB[0] - 0.6) < 1e-9);
 });
