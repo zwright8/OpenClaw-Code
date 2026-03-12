@@ -999,6 +999,74 @@ test('buildAutonomousBatchPlan supports change-detection UCB for abrupt drift', 
     assert.deepEqual(plan.selection.skillIds, [45]);
 });
 
+test('buildAutonomousBatchPlan supports downward-only Page-Hinkley drift focus', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 745, code: 'SK-00745', title: 'Skill 745' },
+            { id: 746, code: 'SK-00746', title: 'Skill 746' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 31,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '745': {
+                    attempts: 24,
+                    successes: 8,
+                    failures: 16,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' },
+                        { wave: 28, status: 'completed' },
+                        { wave: 29, status: 'completed' },
+                        { wave: 30, status: 'completed' },
+                        { wave: 31, status: 'completed' }
+                    ]
+                },
+                '746': {
+                    attempts: 24,
+                    successes: 14,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'completed' },
+                        { wave: 28, status: 'completed' },
+                        { wave: 29, status: 'failed' },
+                        { wave: 30, status: 'completed' },
+                        { wave: 31, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 32,
+        selectionPolicyConfig: {
+            mode: 'cd_ucb',
+            changeDetectionMinSamples: 4,
+            changeDetectionThreshold: 0.35,
+            changeDetectionDelta: 0.01,
+            changeDetectionDirection: 'down'
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [746]);
+});
+
 test('buildAutonomousBatchPlan supports cusum_ucb for abrupt drift with baseline adaptation', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -1064,6 +1132,74 @@ test('buildAutonomousBatchPlan supports cusum_ucb for abrupt drift with baseline
     });
 
     assert.deepEqual(plan.selection.skillIds, [145]);
+});
+
+test('buildAutonomousBatchPlan supports downward-only CUSUM drift focus', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 845, code: 'SK-00845', title: 'Skill 845' },
+            { id: 846, code: 'SK-00846', title: 'Skill 846' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 32,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '845': {
+                    attempts: 24,
+                    successes: 8,
+                    failures: 16,
+                    consecutiveFailures: 0,
+                    lastWave: 32,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' },
+                        { wave: 28, status: 'failed' },
+                        { wave: 29, status: 'completed' },
+                        { wave: 30, status: 'completed' },
+                        { wave: 31, status: 'completed' },
+                        { wave: 32, status: 'completed' }
+                    ]
+                },
+                '846': {
+                    attempts: 24,
+                    successes: 14,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 32,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'failed' },
+                        { wave: 28, status: 'completed' },
+                        { wave: 29, status: 'completed' },
+                        { wave: 30, status: 'failed' },
+                        { wave: 31, status: 'completed' },
+                        { wave: 32, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 33,
+        selectionPolicyConfig: {
+            mode: 'cusum_ucb',
+            changeDetectionMinSamples: 4,
+            cusumThreshold: 0.35,
+            cusumBaselineWeight: 0.2,
+            changeDetectionDirection: 'down'
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [846]);
 });
 
 test('buildAutonomousBatchPlan supports sw_cd_ucb for recency-windowed Page-Hinkley adaptation', () => {

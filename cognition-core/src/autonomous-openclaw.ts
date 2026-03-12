@@ -76,6 +76,12 @@ const DEFAULT_CD_DRIFT_THRESHOLD = 1.5;
 const MAX_CD_DRIFT_THRESHOLD = 10;
 const DEFAULT_CD_MEAN_DELTA = 0.02;
 const MAX_CD_MEAN_DELTA = 0.5;
+const DEFAULT_CD_DIRECTION = 'both';
+const CD_DIRECTION_MODES = new Set([
+    'up',
+    'down',
+    'both'
+]);
 const DEFAULT_CUSUM_THRESHOLD = 1.2;
 const MAX_CUSUM_THRESHOLD = 20;
 const DEFAULT_CUSUM_BASELINE_WEIGHT = 0.15;
@@ -480,6 +486,14 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             0,
             MAX_CD_MEAN_DELTA
         ),
+        changeDetectionDirection: (() => {
+            const candidate = typeof value.changeDetectionDirection === 'string'
+                ? value.changeDetectionDirection.trim().toLowerCase()
+                : DEFAULT_CD_DIRECTION;
+            return CD_DIRECTION_MODES.has(candidate)
+                ? candidate
+                : DEFAULT_CD_DIRECTION;
+        })(),
         cusumThreshold: clamp(
             Number.isFinite(Number(value.cusumThreshold))
                 ? Number(value.cusumThreshold)
@@ -1173,17 +1187,25 @@ function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = nul
     if (values.length < minSamples) return 0;
 
     let runningMean = 0;
-    let cumulativeDeviation = 0;
-    let minDeviation = 0;
+    let upwardDeviation = 0;
+    let downwardDeviation = 0;
     let changeIndex = 0;
+    const detectUp = policy.changeDetectionDirection === 'up' || policy.changeDetectionDirection === 'both';
+    const detectDown = policy.changeDetectionDirection === 'down' || policy.changeDetectionDirection === 'both';
 
     for (let i = 0; i < values.length; i++) {
         const reward = values[i];
         runningMean += (reward - runningMean) / (i + 1);
-        cumulativeDeviation += reward - runningMean - policy.changeDetectionDelta;
-        minDeviation = Math.min(minDeviation, cumulativeDeviation);
-        if ((i + 1) >= minSamples && (cumulativeDeviation - minDeviation) > policy.changeDetectionThreshold) {
+        const upwardCentered = reward - runningMean - policy.changeDetectionDelta;
+        const downwardCentered = runningMean - reward - policy.changeDetectionDelta;
+        upwardDeviation = Math.max(0, upwardDeviation + upwardCentered);
+        downwardDeviation = Math.max(0, downwardDeviation + downwardCentered);
+        const upTriggered = detectUp && upwardDeviation > policy.changeDetectionThreshold;
+        const downTriggered = detectDown && downwardDeviation > policy.changeDetectionThreshold;
+        if ((i + 1) >= minSamples && (upTriggered || downTriggered)) {
             changeIndex = i + 1;
+            upwardDeviation = 0;
+            downwardDeviation = 0;
         }
     }
 
@@ -1219,6 +1241,8 @@ function detectCusumChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     let changeIndex = 0;
     const threshold = policy.cusumThreshold;
     const baselineWeight = policy.cusumBaselineWeight;
+    const detectUp = policy.changeDetectionDirection === 'up' || policy.changeDetectionDirection === 'both';
+    const detectDown = policy.changeDetectionDirection === 'down' || policy.changeDetectionDirection === 'both';
 
     for (let i = 0; i < values.length; i++) {
         const reward = values[i];
@@ -1227,7 +1251,9 @@ function detectCusumChangeIndex(outcomes = [], selectionPolicyConfig = null) {
         positiveCusum = Math.max(0, positiveCusum + centered);
         negativeCusum = Math.max(0, negativeCusum - centered);
 
-        if ((i + 1) >= minSamples && (positiveCusum > threshold || negativeCusum > threshold)) {
+        const upTriggered = detectUp && positiveCusum > threshold;
+        const downTriggered = detectDown && negativeCusum > threshold;
+        if ((i + 1) >= minSamples && (upTriggered || downTriggered)) {
             changeIndex = i + 1;
             positiveCusum = 0;
             negativeCusum = 0;
