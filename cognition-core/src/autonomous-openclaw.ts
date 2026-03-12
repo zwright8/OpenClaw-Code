@@ -152,7 +152,11 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'cusum_ucb',
     'sw_cusum_ucb',
     'corral_exp3',
+    'sw_corral_exp3',
+    'd_corral_exp3',
     'corral_exp3_plus',
+    'sw_corral_exp3_plus',
+    'd_corral_exp3_plus',
     'exp3_ix',
     'rexp3_ix',
     'sw_exp3_ix',
@@ -257,6 +261,22 @@ const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
 const HYBRID_THOMPSON_POLICY_MODES = new Set([
     'fdsw_epsilon_ts'
 ]);
+const CORRAL_POLICY_MODES = new Set([
+    'corral_exp3',
+    'sw_corral_exp3',
+    'd_corral_exp3',
+    'corral_exp3_plus',
+    'sw_corral_exp3_plus',
+    'd_corral_exp3_plus'
+]);
+const SLIDING_WINDOW_CORRAL_POLICY_MODES = new Set([
+    'sw_corral_exp3',
+    'sw_corral_exp3_plus'
+]);
+const DISCOUNTED_CORRAL_POLICY_MODES = new Set([
+    'd_corral_exp3',
+    'd_corral_exp3_plus'
+]);
 const CORRAL_EXP3_BASE_POLICIES = [
     'ucb',
     'epsilon_ts',
@@ -291,6 +311,12 @@ function parsePositiveInt(raw, fallback = 1) {
 function parseNonNegativeInt(raw, fallback = 0) {
     const value = Number(raw);
     if (!Number.isInteger(value) || value < 0) return fallback;
+    return value;
+}
+
+function parseNonNegativeNumber(raw, fallback = 0) {
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value < 0) return fallback;
     return value;
 }
 
@@ -596,17 +622,33 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
 function normalizePolicyPerformanceStat(rawStat = {}) {
     const stat = rawStat && typeof rawStat === 'object' ? rawStat : {};
     const attempts = parseNonNegativeInt(stat.attempts, 0);
-    const successes = clamp(parseNonNegativeInt(stat.successes, 0), 0, attempts);
-    const failures = clamp(parseNonNegativeInt(stat.failures, 0), 0, attempts);
+    const successes = clamp(parseNonNegativeNumber(stat.successes, 0), 0, attempts);
+    const failures = clamp(parseNonNegativeNumber(stat.failures, 0), 0, attempts);
     const cumulativeReward = Number.isFinite(Number(stat.cumulativeReward))
         ? Math.max(0, Number(stat.cumulativeReward))
         : successes;
+    const lastStatus = typeof stat.lastStatus === 'string' && stat.lastStatus.trim()
+        ? normalizeStatus(stat.lastStatus)
+        : null;
+    const lastWave = Number.isFinite(Number(stat.lastWave))
+        ? parseNonNegativeInt(stat.lastWave, 0)
+        : null;
+    const consecutiveFailures = clamp(
+        parseNonNegativeInt(stat.consecutiveFailures, Math.ceil(failures)),
+        0,
+        attempts
+    );
+    const recentOutcomes = normalizeRecentOutcomes(stat.recentOutcomes);
 
     return {
         attempts,
         successes,
         failures,
-        cumulativeReward
+        cumulativeReward,
+        lastStatus,
+        lastWave,
+        consecutiveFailures,
+        recentOutcomes
     };
 }
 
@@ -1963,17 +2005,36 @@ function computeMossAnytimeScore(stat, totalAttempts, totalArms, currentWave, ad
         + adjustments.staleBoost;
 }
 
-function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig) {
+function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig, currentWave = 0) {
     const laneStats = normalizePolicyPerformanceByLane(policyExecutionStats);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const corralPolicies = policy.mode === 'corral_exp3_plus'
+        || policy.mode === 'sw_corral_exp3_plus'
+        || policy.mode === 'd_corral_exp3_plus'
         ? CORRAL_EXP3_PLUS_BASE_POLICIES
         : CORRAL_EXP3_BASE_POLICIES;
     const gamma = policy.corralGamma;
     const uniform = 1 / corralPolicies.length;
+    const corralScoreConfig = SLIDING_WINDOW_CORRAL_POLICY_MODES.has(policy.mode)
+        ? {
+            mode: 'sw_ucb',
+            slidingWindowSize: policy.slidingWindowSize
+        }
+        : (DISCOUNTED_CORRAL_POLICY_MODES.has(policy.mode)
+            ? {
+                mode: 'd_ucb',
+                discountFactor: policy.discountFactor
+            }
+            : null);
     const weighted = corralPolicies.map((name) => {
-        const reward = Math.max(0, Number(laneStats[name]?.cumulativeReward || 0));
-        const scaled = clamp(reward * policy.corralEta, -30, 30);
+        const stat = corralScoreConfig
+            ? resolveScoreStats(laneStats[name], corralScoreConfig, currentWave)
+            : normalizePolicyPerformanceStat(laneStats[name]);
+        const attempts = Math.max(0, Number(stat.attempts) || 0);
+        const rewardRate = attempts > 0
+            ? clamp((Number(stat.successes) || 0) / attempts, 0, 1)
+            : 0;
+        const scaled = clamp(rewardRate * policy.corralEta, -30, 30);
         return {
             name,
             weight: Math.exp(scaled)
@@ -2104,8 +2165,12 @@ function selectCatalogSlice({
     const selectionFeatures = {};
     let selectionProbabilities = {};
 
-    if (normalizedPolicy.mode === 'corral_exp3' || normalizedPolicy.mode === 'corral_exp3_plus') {
-        const distribution = resolveCorralPolicyDistribution(policyExecutionStats, normalizedPolicy);
+    if (CORRAL_POLICY_MODES.has(normalizedPolicy.mode)) {
+        const distribution = resolveCorralPolicyDistribution(
+            policyExecutionStats,
+            normalizedPolicy,
+            normalizedCurrentWave
+        );
         selectedPolicy = pickPolicyFromDistribution(
             distribution,
             `${selectionScope}:${normalizedPolicy.mode}:${normalizedCurrentWave}:${pointer}:${total}`
@@ -2591,11 +2656,17 @@ export async function collectAutonomousCoverage({
             currentPolicy.attempts += 1;
             if (didSucceed) {
                 currentPolicy.successes += 1;
+                currentPolicy.consecutiveFailures = 0;
             } else {
                 currentPolicy.failures += 1;
+                currentPolicy.consecutiveFailures += 1;
             }
             currentPolicy.cumulativeReward += reward;
-            policyExecutionStats[lane][selectedPolicy] = currentPolicy;
+            currentPolicy.lastStatus = status;
+            currentPolicy.lastWave = attemptWave > 0 ? attemptWave : currentPolicy.lastWave;
+            const policyWithOutcome = recordRecentOutcome(currentPolicy, { status, wave: attemptWave });
+            policyWithOutcome.cumulativeReward = currentPolicy.cumulativeReward;
+            policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
         }
 
         if (lane && (selectedPolicy === 'linucb'

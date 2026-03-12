@@ -261,7 +261,11 @@ npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusu
 npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --cd-direction up
 npm run autonomous:run -- --selection-policy sw_cusum_ucb --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
+npm run autonomous:run -- --selection-policy sw_corral_exp3 --window-size 12 --corral-gamma 0.12 --corral-eta 0.8
+npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-gamma 0.12 --corral-eta 0.8
 npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2
+npm run autonomous:run -- --selection-policy sw_corral_exp3_plus --window-size 12 --corral-gamma 0.08 --corral-eta 1.2
+npm run autonomous:run -- --selection-policy d_corral_exp3_plus --discount-factor 0.97 --corral-gamma 0.08 --corral-eta 1.2
 npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1
 npm run autonomous:run -- --selection-policy rexp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-restart-interval 12
 npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
@@ -271,6 +275,7 @@ npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --
 npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
 ```
 Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted UCB-family, change-detection (`cd_ucb`/`sw_cd_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3-IX variants so partial outcomes are learned as partial credit instead of full wins.
+Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history.
 Change-detection policies also support `--cd-direction up|down|both` so detectors can focus on degradations only, recoveries only, or both shift directions.
 
 ## Quick Start

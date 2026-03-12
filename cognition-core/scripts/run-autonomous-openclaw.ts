@@ -59,8 +59,8 @@ Options:
   --cd-direction <m>           Drift direction for cd_*/cusum_* detectors: up|down|both (default: both)
   --cusum-threshold <n>        Drift threshold for cusum_* and sw_cusum_* modes (default: 1.2)
   --cusum-baseline-weight <n>  EWMA baseline weight for cusum_* and sw_cusum_* modes (0-1, default: 0.15)
-  --corral-gamma <n>           Exploration mix for corral_exp3 (0-0.8, default: 0.12)
-  --corral-eta <n>             Exponential reward scaling for corral_exp3 (>0 to 5, default: 0.8)
+  --corral-gamma <n>           Exploration mix for corral_exp3* (0-0.8, default: 0.12)
+  --corral-eta <n>             Exponential reward-rate scaling for corral_exp3* (>0 to 5, default: 0.8)
   --no-enqueue-followups       Disable enqueueing generated follow-up tasks
   --json <path>                Optional JSON report output
   --markdown <path>            Optional markdown report output
