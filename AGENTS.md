@@ -27,6 +27,7 @@
 - `npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5` - run autonomous loop with sliding-window linear Thompson sampling for recency-weighted contextual exploration.
 - `npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5` - run autonomous loop with discounted linear Thompson sampling to adapt under drift.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
+- `npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25` - run autonomous loop with Bayesian-bootstrap Thompson sampling for bounded non-binary rewards.
 - `npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with uncertainty-adaptive epsilon-Thompson exploration.
 - `npm run autonomous:run -- --selection-policy cp_epsilon_ts --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2` - run autonomous loop with surprise-adaptive changepoint epsilon-Thompson resets for abrupt drift.
 - `npm run autonomous:run -- --selection-policy cd_epsilon_ts --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --thompson-exploration 0.25` - run autonomous loop with Page-Hinkley change-detection epsilon-Thompson adaptation for abrupt drift.
@@ -34,6 +35,7 @@
 - `npm run autonomous:run -- --selection-policy cusum_epsilon_ts --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --thompson-exploration 0.25` - run autonomous loop with CUSUM-based epsilon-Thompson adaptation for abrupt drift.
 - `npm run autonomous:run -- --selection-policy sw_cusum_epsilon_ts --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --thompson-exploration 0.25` - run autonomous loop with sliding-window CUSUM epsilon-Thompson adaptation to prioritize recent abrupt drift shifts.
 - `npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window epsilon-Thompson exploration controls.
+- `npm run autonomous:run -- --selection-policy sw_bb_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window Bayesian-bootstrap Thompson sampling for recency-sensitive reward shifts.
 - `npm run autonomous:run -- --selection-policy sw_auto_epsilon_ts --window-size 12 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8` - run autonomous loop with sliding-window uncertainty-adaptive epsilon-Thompson exploration.
 - `npm run autonomous:run -- --selection-policy sw_cp_epsilon_ts --window-size 12 --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2` - run autonomous loop with sliding-window surprise-adaptive changepoint epsilon-Thompson resets.
 - `npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean --thompson-exploration 0.25` - run autonomous loop with hybrid discounted+sliding-window epsilon-Thompson adaptation for mixed drift regimes.
@@ -47,6 +49,7 @@
 - `npm run autonomous:run -- --selection-policy sw_bayes_ucb --window-size 12 --bayes-ucb-quantile 0.9` - run autonomous loop with sliding-window Bayes-UCB adaptation to recent outcomes.
 - `npm run autonomous:run -- --selection-policy d_bayes_ucb --discount-factor 0.97 --bayes-ucb-quantile 0.9` - run autonomous loop with discounted Bayes-UCB adaptation under non-stationary drift.
 - `npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25` - run autonomous loop with discounted epsilon-Thompson adaptation for non-stationary outcomes.
+- `npm run autonomous:run -- --selection-policy d_bb_ts --discount-factor 0.97 --thompson-exploration 0.25` - run autonomous loop with discounted Bayesian-bootstrap Thompson sampling under non-stationary drift.
 - `npm run autonomous:run -- --selection-policy d_auto_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8` - run autonomous loop with discounted uncertainty-adaptive epsilon-Thompson adaptation under drift.
 - `npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3` - run autonomous loop with KL-UCB optimism for bounded binary outcomes.
 - `npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3` - run autonomous loop with discounted KL-UCB optimism to emphasize recent bounded outcomes under drift.

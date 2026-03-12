@@ -232,6 +232,7 @@ npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1
+npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy cp_epsilon_ts --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2
 npm run autonomous:run -- --selection-policy cd_epsilon_ts --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --thompson-exploration 0.25
@@ -239,6 +240,7 @@ npm run autonomous:run -- --selection-policy sw_cd_epsilon_ts --window-size 12 -
 npm run autonomous:run -- --selection-policy cusum_epsilon_ts --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy sw_cusum_epsilon_ts --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25
+npm run autonomous:run -- --selection-policy sw_bb_ts --window-size 12 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy sw_auto_epsilon_ts --window-size 12 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8
 npm run autonomous:run -- --selection-policy sw_cp_epsilon_ts --window-size 12 --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2
 npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean --thompson-exploration 0.25
@@ -252,6 +254,7 @@ npm run autonomous:run -- --selection-policy bayes_ucb --bayes-ucb-quantile 0.9
 npm run autonomous:run -- --selection-policy sw_bayes_ucb --window-size 12 --bayes-ucb-quantile 0.9
 npm run autonomous:run -- --selection-policy d_bayes_ucb --discount-factor 0.97 --bayes-ucb-quantile 0.9
 npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25
+npm run autonomous:run -- --selection-policy d_bb_ts --discount-factor 0.97 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy d_auto_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8
 npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3

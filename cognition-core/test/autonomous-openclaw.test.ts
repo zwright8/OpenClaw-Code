@@ -528,6 +528,39 @@ test('buildAutonomousBatchPlan supports epsilon-thompson policy with determinist
     assert.deepEqual(plan.selection.skillIds, [41]);
 });
 
+test('buildAutonomousBatchPlan supports bayesian-bootstrap thompson ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 415, code: 'SK-00415', title: 'Skill 415' },
+            { id: 416, code: 'SK-00416', title: 'Skill 416' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 14,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '415': { attempts: 12, successes: 9, failures: 3, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' },
+                '416': { attempts: 12, successes: 4, failures: 8, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 15,
+        selectionPolicyConfig: {
+            mode: 'bb_ts',
+            thompsonExploration: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [415]);
+    assert.equal(plan.selection.policy.skills, 'bb_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'bb_ts');
+});
+
 test('buildAutonomousBatchPlan supports adaptive auto_epsilon_ts exploration under uncertainty', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -2494,6 +2527,66 @@ test('buildAutonomousBatchPlan supports sliding-window epsilon-thompson ranking'
     assert.deepEqual(plan.selection.skillIds, [62]);
 });
 
+test('buildAutonomousBatchPlan supports sliding-window bayesian-bootstrap thompson ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 611, code: 'SK-00611', title: 'Skill 611' },
+            { id: 612, code: 'SK-00612', title: 'Skill 612' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '611': {
+                    attempts: 20,
+                    successes: 14,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                },
+                '612': {
+                    attempts: 20,
+                    successes: 9,
+                    failures: 11,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'sw_bb_ts',
+            slidingWindowSize: 4,
+            thompsonExploration: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [612]);
+    assert.equal(plan.selection.policy.skills, 'sw_bb_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_bb_ts');
+});
+
 test('buildAutonomousBatchPlan supports sliding-window adaptive auto_epsilon_ts ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -3023,6 +3116,66 @@ test('buildAutonomousBatchPlan supports discounted epsilon-thompson ranking', ()
     });
 
     assert.deepEqual(plan.selection.skillIds, [66]);
+});
+
+test('buildAutonomousBatchPlan supports discounted bayesian-bootstrap thompson ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 721, code: 'SK-00721', title: 'Skill 721' },
+            { id: 722, code: 'SK-00722', title: 'Skill 722' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '721': {
+                    attempts: 30,
+                    successes: 20,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                },
+                '722': {
+                    attempts: 30,
+                    successes: 10,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'd_bb_ts',
+            discountFactor: 0.7,
+            thompsonExploration: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [722]);
+    assert.equal(plan.selection.policy.skills, 'd_bb_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_bb_ts');
 });
 
 test('buildAutonomousBatchPlan supports discounted adaptive auto_epsilon_ts ranking', () => {

@@ -125,6 +125,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_lints',
     'd_lints',
     'epsilon_ts',
+    'bb_ts',
     'auto_epsilon_ts',
     'cp_epsilon_ts',
     'cd_epsilon_ts',
@@ -138,6 +139,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
+    'sw_bb_ts',
     'sw_auto_epsilon_ts',
     'sw_cp_epsilon_ts',
     'fdsw_epsilon_ts',
@@ -147,6 +149,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_bb_ts',
     'd_auto_epsilon_ts',
     'd_kl_ucb',
     'd_bayes_ucb',
@@ -183,6 +186,11 @@ const THOMPSON_POLICY_MODES = new Set([
     'fdsw_epsilon_ts',
     'd_epsilon_ts',
     'd_auto_epsilon_ts'
+]);
+const BAYESIAN_BOOTSTRAP_POLICY_MODES = new Set([
+    'bb_ts',
+    'sw_bb_ts',
+    'd_bb_ts'
 ]);
 const CHANGEPOINT_THOMPSON_POLICY_MODES = new Set([
     'cp_epsilon_ts',
@@ -237,6 +245,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_linucb',
     'sw_lints',
     'sw_epsilon_ts',
+    'sw_bb_ts',
     'sw_auto_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
@@ -251,6 +260,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_bb_ts',
     'd_auto_epsilon_ts',
     'd_kl_ucb',
     'd_bayes_ucb',
@@ -1957,6 +1967,57 @@ function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, sel
         + adjustments.staleBoost;
 }
 
+function resolveBayesianBootstrapOutcomes(stat, selectionPolicyConfig = null) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const outcomes = policy.mode === 'sw_bb_ts'
+        ? normalized.recentOutcomes.slice(-policy.slidingWindowSize)
+        : normalized.recentOutcomes;
+    return outcomes.map((entry) => normalizeRecentOutcomeEntry(entry));
+}
+
+function computeBayesianBootstrapThompsonScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+    const outcomes = resolveBayesianBootstrapOutcomes(stat, policy);
+    if (outcomes.length <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const rng = createDeterministicRng(seedText);
+    let weightedReward = 0;
+    let totalWeight = 0;
+    for (let index = 0; index < outcomes.length; index++) {
+        const outcome = outcomes[index];
+        const age = outcomes.length - 1 - index;
+        const recencyWeight = policy.mode === 'd_bb_ts'
+            ? Math.pow(policy.discountFactor, age)
+            : 1;
+        const bootstrapWeight = sampleGamma(1, rng);
+        const combinedWeight = recencyWeight * bootstrapWeight;
+        totalWeight += combinedWeight;
+        weightedReward += outcome.reward * combinedWeight;
+    }
+    const posteriorSample = totalWeight > 0 ? (weightedReward / totalWeight) : 0.5;
+    const posteriorMean = clamp(
+        normalized.successes / Math.max(Number.EPSILON, normalized.attempts),
+        0,
+        1
+    );
+    const blendedScore = ((1 - policy.thompsonExploration) * posteriorMean)
+        + (policy.thompsonExploration * posteriorSample);
+
+    return blendedScore
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
 function computeKlUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
@@ -2270,6 +2331,14 @@ function selectCatalogSlice({
         let featureVector = null;
         if (THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeEpsilonThompsonScore(
+                stat,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy,
+                `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+            );
+        } else if (BAYESIAN_BOOTSTRAP_POLICY_MODES.has(scoringPolicy.mode)) {
+            score = computeBayesianBootstrapThompsonScore(
                 stat,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
