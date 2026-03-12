@@ -325,6 +325,13 @@ const CORRAL_EXP3_BASE_POLICIES = [
     'kl_ucb',
     'cd_ucb'
 ];
+const CORRAL_DRIFT_SPECIALIST_BASE_POLICIES = [
+    'adwin_ucb',
+    'adwin_epsilon_ts',
+    'fdsw_ucb',
+    'fdsw_epsilon_ts',
+    'bge'
+];
 const CORRAL_EXP3_PLUS_BASE_POLICIES = [
     'ucb',
     'ucb_tuned',
@@ -333,7 +340,8 @@ const CORRAL_EXP3_PLUS_BASE_POLICIES = [
     'kl_ucb',
     'bayes_ucb',
     'cd_ucb',
-    'cusum_ucb'
+    'cusum_ucb',
+    ...CORRAL_DRIFT_SPECIALIST_BASE_POLICIES
 ];
 const ALL_CORRAL_BASE_POLICIES = [
     ...new Set([...CORRAL_EXP3_BASE_POLICIES, ...CORRAL_EXP3_PLUS_BASE_POLICIES])

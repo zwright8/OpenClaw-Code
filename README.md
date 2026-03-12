@@ -286,7 +286,7 @@ npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.
 ```
 Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted/hybrid UCB-family (`sw_ucb`/`d_ucb`/`fdsw_ucb`), change-detection (`cd_ucb`/`sw_cd_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3-IX variants so partial outcomes are learned as partial credit instead of full wins.
 Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
-Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history.
+Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history. The expanded `corral_exp3_plus` expert pool also includes ADWIN, hybrid discounted+windowed, and Boltzmann-Gumbel experts for stronger regime-shift routing.
 Change-detection policies also support `--cd-direction up|down|both` so detectors can focus on degradations only, recoveries only, or both shift directions.
 
 ## Quick Start

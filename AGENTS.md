@@ -65,7 +65,7 @@
 - `npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with EXP3-style policy corralling across UCB/TS/KL-UCB/change-detection arms.
 - `npm run autonomous:run -- --selection-policy sw_corral_exp3 --window-size 12 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with sliding-window EXP3 corralling to emphasize recent expert performance.
 - `npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with discounted EXP3 corralling to adapt expert weights under drift.
-- `npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2` - run autonomous loop with expanded EXP3 corralling across UCB/TS/KL-UCB/Bayes-UCB/CUSUM experts.
+- `npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2` - run autonomous loop with expanded EXP3 corralling across UCB/TS/KL-UCB/Bayes-UCB/CUSUM plus ADWIN/hybrid/BGE drift-specialist experts.
 - `npm run autonomous:run -- --selection-policy sw_corral_exp3_plus --window-size 12 --corral-gamma 0.08 --corral-eta 1.2` - run autonomous loop with sliding-window expanded EXP3 corralling for recency-weighted expert routing.
 - `npm run autonomous:run -- --selection-policy d_corral_exp3_plus --discount-factor 0.97 --corral-gamma 0.08 --corral-eta 1.2` - run autonomous loop with discounted expanded EXP3 corralling for non-stationary expert adaptation.
 - `npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with implicit-exploration EXP3 weighting for adversarial/non-stationary reward shifts.

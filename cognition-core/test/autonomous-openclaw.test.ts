@@ -1812,6 +1812,95 @@ test('buildAutonomousBatchPlan supports corral_exp3_plus corralling expanded bas
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'cusum_ucb');
 });
 
+test('buildAutonomousBatchPlan lets corral_exp3_plus route to ADWIN expert when best recent performer', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 847, code: 'SK-00847', title: 'Skill 847' },
+            { id: 848, code: 'SK-00848', title: 'Skill 848' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 29,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '847': {
+                    attempts: 18,
+                    successes: 6,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 28,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' },
+                        { wave: 28, status: 'completed' },
+                        { wave: 29, status: 'completed' }
+                    ]
+                },
+                '848': {
+                    attempts: 18,
+                    successes: 12,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 28,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' },
+                        { wave: 28, status: 'failed' },
+                        { wave: 29, status: 'failed' }
+                    ]
+                }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    epsilon_ts: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    kl_ucb: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    cd_ucb: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    ucb_tuned: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    ucb_v: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    bayes_ucb: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    cusum_ucb: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    adwin_ucb: {
+                        attempts: 20,
+                        successes: 20,
+                        failures: 0,
+                        cumulativeReward: 20,
+                        recentOutcomes: [
+                            { wave: 26, status: 'completed' },
+                            { wave: 27, status: 'completed' },
+                            { wave: 28, status: 'completed' },
+                            { wave: 29, status: 'completed' }
+                        ]
+                    },
+                    adwin_epsilon_ts: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    fdsw_ucb: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    fdsw_epsilon_ts: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 },
+                    bge: { attempts: 20, successes: 10, failures: 10, cumulativeReward: 10 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 30,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3_plus',
+            corralGamma: 0,
+            corralEta: 5,
+            changeDetectionMinSamples: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [847]);
+    assert.equal(plan.selection.policy.skills, 'adwin_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_ucb');
+});
+
 test('buildAutonomousBatchPlan supports sw_corral_exp3 recency-aware expert corralling', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
