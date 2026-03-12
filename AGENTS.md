@@ -66,6 +66,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `09c126ded9..1d3941f8d9`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `ac20ccf744..09c126ded9`: added README command-map workflow for discounted KL-UCB autonomous run flags (`--selection-policy d_kl_ucb`, `--discount-factor`, `--kl-ucb-confidence`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `147359bd7b..22aee8f278`: `package.json` script-map diff is blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent; re-run script verification once manifests are present.
 - Verified `22aee8f278..c4c4e79215`: `package.json` script-map diff is blocked in this checkout because root/`cognition-core`/`swarm-protocol` package manifests are absent; re-run script verification once manifests are present.
