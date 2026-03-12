@@ -145,3 +145,47 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-08, Critical Mineral Denial Expansion)
+
+- Prioritize `tool_suite_id=ts-critical-mineral-denial-mitigation-v1` with `protocol_stack_id=ps-industrial-mobilization-stack-v1` when readiness risk is driven by rare-earth or critical mineral constraints.
+- Use packet `DPL-RARE-EARTH-001` to frame denial impact forecast, substitution options, and stockpile burn-rate controls.
+- If supply-source validation is incomplete, publish advisory-only mitigation options and assign validation owner with suspense.
+
+## Domain Toolchain Override (2026-03-08, Field Biologics Resilience Expansion)
+
+- Prioritize `tool_suite_id=ts-field-biologics-assurance-v1` when biologics shortages or contamination risk threatens force-readiness timelines.
+- Use packet `DPL-BIOREACTOR-VAX-001` to map lot assurance, contamination controls, and distribution continuity triggers.
+- If assay chain confidence is incomplete, downgrade to contingency-only readiness guidance and require medical authority review.
+
+## Domain Toolchain Override (2026-03-10, Rare-Earth Recovery and Rail Node Restoration Addendum)
+
+- Prioritize `tool_suite_id=ts-rare-earth-processing-sabotage-recovery-v1` + `protocol_stack_id=ps-rare-earth-processing-sabotage-recovery-stack-v1` when industrial mobilization readiness depends on restoring disrupted rare-earth processing throughput.
+- Prioritize `tool_suite_id=ts-critical-rail-node-cyber-physical-restoration-v1` + `protocol_stack_id=ps-critical-rail-node-cyber-physical-restoration-stack-v1` when force-flow readiness is constrained by rail chokepoint cyber-physical disruption.
+- Add `packet_id=DPL-RARE-EARTH-SABOTAGE-RECOVERY-001` and `packet_id=DPL-CRITICAL-RAIL-NODE-CYBER-PHYSICAL-RESTORE-001` for high-impact industrial and mobility restoration branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-reserve-cannibalization-governance-v1 + protocol_stack_id=ps-reserve-cannibalization-governance-stack-v1 when industrial readiness recommendations depend on temporary component cannibalization and controlled restoration sequencing.
+- Add tool_suite_id=ts-additive-pharma-authenticity-v1 + protocol_stack_id=ps-additive-pharma-authenticity-stack-v1 when mobilization branches include medical countermeasure surge with strict authenticity gating.
+- Add packet_id=DPL-RESERVE-CANNIBALIZATION-GOVERNANCE-001 and packet_id=DPL-ADDITIVE-PHARMA-AUTH-001 for recommendations that alter depot priorities, workforce load plans, or release authority posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-strategic-rare-gas-energetic-precursor-allocation-v1` + `protocol_stack_id=ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1` when mobilization tempo depends on constrained rare-gas and energetic precursor supply.
+- Add `tool_suite_id=ts-theater-autonomous-fortification-print-farm-v1` + `protocol_stack_id=ps-theater-autonomous-fortification-print-farm-stack-v1` when industrial output must pivot to distributed fortification demand.
+- Add `packet_id=DPL-STRATEGIC-RAREGAS-ENERGETICS-001` and `packet_id=DPL-THEATER-FORTIFICATION-PRINTFARM-002` for strategic allocation and production-shift branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

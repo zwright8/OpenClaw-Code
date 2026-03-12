@@ -142,20 +142,34 @@ Primary products for this skill: network failover playbook, comms continuity dec
 ## Mission Tool and Protocol Catalog Binding
 
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
+- For this domain, prioritize `tool_suite_id=ts-cyber-defense-v1` and `protocol_stack_id=ps-pnt-time-transfer-assurance-stack-v1` when failover decisions depend on both network integrity and resilient timing continuity.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-10, Trusted Command and Cloud Continuity Expansion)
 
-## Domain Toolchain Override (2026-03-10, Mobilization Recovery and Critical Fuel Expansion)
+- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when failover recommendations include hyperscale-region continuity and cloud service dependency sequencing.
+- Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when degraded networks increase risk of synthetic command injection.
 
-- Add `tool_suite_id=ts-strategic-rail-port-mobilization-recovery-v1` + `protocol_stack_id=ps-strategic-rail-port-mobilization-recovery-stack-v1` when theater network failover must align to rail-port throughput restoration and strategic deployment timing.
-- Add `tool_suite_id=ts-civil-infrastructure-priority-fuel-allocation-v1` + `protocol_stack_id=ps-civil-infrastructure-priority-fuel-allocation-stack-v1` when failover priorities require dynamic fuel adjudication across military and civil critical infrastructure nodes.
+## Domain Toolchain Override (2026-03-10, Crypto Survival and Infrastructure Shock Expansion)
 
-## Emission Discipline and Hypersonic Dispersal Addendum (2026-03-11)
+- Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when network failover plans include emergency post-quantum key rollover and disconnected trust operation.
+- Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when failover choices depend on EMP-induced infrastructure degradation and staged service restoration.
 
-- Add `tool_suite_id=ts-lpi-lpd-emission-window-orchestration-v1` + `protocol_stack_id=ps-lpi-lpd-emission-window-stack-v1` when failover execution requires low-signature transport windows and coordinated emission control.
-- Add `tool_suite_id=ts-hypersonic-warning-dispersion-v1` + `protocol_stack_id=ps-hypersonic-warning-dispersion-stack-v1` when network path decisions must synchronize with rapid force dispersion under hypersonic warning timelines.
-- Add `packet_id=NET-EMCON-WINDOW-001` and `packet_id=NET-HYPERSONIC-DISPERSION-001` for branches that change transport routes, signature posture, or protected-node survivability.
+## Domain Toolchain Override (2026-03-10, Private-5G Degradation and Custody Assurance Expansion)
+
+- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when failover planning must preserve coalition private-5G command services under contested spectrum.
+- Add `tool_suite_id=ts-prepositioned-stock-cyber-custody-tamper-assurance-v1` + `protocol_stack_id=ps-prepositioned-stock-cyber-custody-tamper-assurance-stack-v1` when mission network continuity depends on trusted custody and tamper-free release of strategic stock systems.
+
+## Domain Toolchain Override (2026-03-10, Spectrum Discipline and PNT Compensation Expansion)
+
+- Add `tool_suite_id=ts-theater-spectrum-emissions-discipline-enforcement-v1` + `protocol_stack_id=ps-theater-spectrum-emissions-discipline-enforcement-stack-v1` when failover planning depends on strict emissions-control enforcement and detectability reduction.
+- Add `tool_suite_id=ts-strategic-space-weather-pnt-time-transfer-v1` + `protocol_stack_id=ps-strategic-space-weather-pnt-time-transfer-stack-v1` when network continuity decisions require space-weather-aware timing compensation and transfer integrity.
+
+## Domain Toolchain Override (2026-03-10, NC3 Fiber and Coalition 5G Expansion)
+
+- Add `tool_suite_id=ts-nc3-hardened-fiber-failover-assurance-v1` + `protocol_stack_id=ps-nc3-hardened-fiber-failover-assurance-stack-v1` when failover recommendations include hardened terrestrial NC3 path continuity and acknowledgment integrity.
+- Add `tool_suite_id=ts-coalition-private-5g-mission-failover-v1` + `protocol_stack_id=ps-coalition-private-5g-mission-failover-stack-v1` when mission network failover must preserve coalition private-5G priority services in contested spectrum.
 
 ## Domain Toolchain Override (2026-03-11, Homeland Blackstart and Industrial Sustainment Continuity)
 
@@ -163,14 +177,83 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-critical-mineral-refinery-defense-restart-v1` + `protocol_stack_id=ps-critical-mineral-refinery-defense-restart-stack-v1` when failover decisions materially depend on defense-industrial feedstock continuity and refinery restart sequencing.
 - Add `packet_id=DPL-GRID-BLACKSTART-CYBER-001` and `packet_id=DPL-CRITICAL-MINERAL-RESTART-001` for branches that alter mission-service survivability timelines or strategic sustainment assumptions.
 
-## Mission Network Expansion Wave XV Addendum (2026-03-11)
+## Domain Toolchain Override (2026-03-11, Undersea Restoration and Ground-Station Cyber Continuity Expansion)
 
-- Add `tool_suite_id=ts-joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell-v1` + `protocol_stack_id=ps-joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell-stack-v1` when subsea cable damage drives mission network failover sequencing.
-- Add `tool_suite_id=ts-coalition-joint-fires-sensor-to-shooter-latency-audit-cell-v1` + `protocol_stack_id=ps-coalition-joint-fires-sensor-to-shooter-latency-audit-cell-stack-v1` when failover paths affect coalition fires timing and cross-domain latency confidence.
-- Add `packet_id=DPL-SEABED-CABLE-ATTRIBUTION-REPAIR-GUARD-001` and `packet_id=DPL-COALITION-FIRES-S2S-LATENCY-AUDIT-001` for branches that change transport trust posture, route authority, or kill-chain synchronization.
+- Add `tool_suite_id=ts-undersea-cable-restoration-traffic-priority-v1` + `protocol_stack_id=ps-undersea-cable-restoration-traffic-priority-stack-v1` when network failover branches depend on undersea cable recovery and mission traffic arbitration.
+- Add `tool_suite_id=ts-satellite-ground-station-ransomware-continuity-v1` + `protocol_stack_id=ps-satellite-ground-station-ransomware-continuity-stack-v1` when failover recommendations must preserve satellite command-path continuity under ransomware disruption.
+- Add `packet_id=DPL-UNDERSEA-CABLE-RESTORE-001` and `packet_id=DPL-SAT-GROUND-RANSOMWARE-CONTINUITY-001` for branches that materially change C2 continuity timelines, fallback topology, or service release conditions.
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+## Domain Toolchain Override (2026-03-11, EM Battle-Damage and Infrastructure Defense Coupling)
 
-- Add `tool_suite_id=ts-strategic-nc3-spectrum-deception-and-restoration-v1` + `protocol_stack_id=ps-strategic-nc3-spectrum-deception-and-restoration-stack-v1` when failover plans require NC3 trust recovery under EW deception.
-- Add `tool_suite_id=ts-space-weather-mission-assurance-solar-storm-branching-v1` + `protocol_stack_id=ps-space-weather-mission-assurance-solar-storm-branching-stack-v1` when mission network failover branches are triggered by solar storm impacts on SATCOM/PNT.
-- Add `packet_id=DPL-STRATEGIC-NC3-SPECTRUM-DECEPTION-RESTORATION-001` and `packet_id=DPL-SPACE-WEATHER-MISSION-ASSURANCE-SOLAR-STORM-BRANCHING-001` for failover recommendations that affect theater command continuity.
+- Add `tool_suite_id=ts-theater-em-battle-damage-repair-priority-v1` + `protocol_stack_id=ps-theater-em-battle-damage-repair-priority-stack-v1` when failover planning must sequence electromagnetic mission-system repairs against C2 and fires continuity timelines.
+- Add `tool_suite_id=ts-homeland-dam-levee-defense-support-v1` + `protocol_stack_id=ps-homeland-dam-levee-defense-support-stack-v1` when mission-network continuity depends on DSCA infrastructure defense support and flood-driven power/transport disruptions.
+- Add `packet_id=DPL-EM-BDR-PRIORITY-001` and `packet_id=DPL-DAM-LEVEE-DEFENSE-001` for branches that materially change transport survivability, fallback topology, or restoration sequencing.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XI Addendum)
+
+- Add `tool_suite_id=ts-homeland-defense-telecom-911-priority-restoration-cell-v1` + `protocol_stack_id=ps-homeland-defense-telecom-911-priority-restoration-cell-stack-v1` when failover planning depends on restored telecom/911 priority-service pathways.
+- Add `tool_suite_id=ts-coalition-cross-border-power-grid-load-shed-deconfliction-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-power-grid-load-shed-deconfliction-cell-stack-v1` when branch viability depends on cross-border power continuity and load-shed deconfliction.
+- Add `packet_id=DPL-THEATER_MISSION_NETWORK_FAILOVER_CELL-011` and `packet_id=DPL-THEATER_MISSION_NETWORK_FAILOVER_CELL-012` for branches that materially change mission-service availability assumptions.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XII Addendum)
+
+- Add `tool_suite_id=ts-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-v1` + `protocol_stack_id=ps-homeland-critical-waterway-lock-dam-cyber-physical-continuity-cell-stack-v1` when failover recommendations depend on inland waterway infrastructure continuity, lock/dam control recovery, and DSCA synchronization.
+- Add `tool_suite_id=ts-theater-battlefield-lithium-battery-safety-and-disposal-cell-v1` + `protocol_stack_id=ps-theater-battlefield-lithium-battery-safety-and-disposal-cell-stack-v1` when network failover branches are coupled to energy-storage hazard containment and safe disposal logistics.
+- Add `packet_id=DPL-LOCK-DAM-CYBER-PHYSICAL-CONTINUITY-001` and `packet_id=DPL-BATTLEFIELD-LITHIUM-BATTERY-SAFETY-001` for branches that materially change sustainment continuity, restoration sequence, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-cell-stack-v1` when failover viability depends on coupled infrastructure anomalies.
+- Add `tool_suite_id=ts-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-v1` + `protocol_stack_id=ps-homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell-stack-v1` when continuity branches require life-safety convoy arbitration.
+- Add `packet_id=DPL-FEW-NEXUS-ANOMALY-001` and `packet_id=DPL-AUTO-EVAC-ARBITRATION-001` for branches that materially change restoration sequencing or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-v1` + `protocol_stack_id=ps-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-stack-v1` when failover branches require coalition-host-nation telecom corridor recovery.
+- Add `tool_suite_id=ts-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-v1` + `protocol_stack_id=ps-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-stack-v1` when failover viability depends on restored weather sensor confidence for timing and route decisions.
+- Add `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` and `packet_id=DPL-DENIED-WEATHER-SENSOR-RESEED-001` for branches that materially change mission-service survivability, timing confidence, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XV Addendum)
+
+- Add tool_suite_id=ts-coalition-undersea-data-center-cable-landing-defense-cell-v1 + protocol_stack_id=ps-coalition-undersea-data-center-cable-landing-defense-cell-stack-v1 when failover branches depend on protected cable-landing continuity and coalition reroute authorities.
+- Add tool_suite_id=ts-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-v1 + protocol_stack_id=ps-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-stack-v1 when network failover viability is coupled to dispersed maritime reload logistics and survivability timing.
+- Add packet_id=DPL-COALITION-CABLE-LANDING-DEFENSE-001 and packet_id=DPL-AMMO-BARGE-DISPERSAL-001 for branches that materially change mission-service availability, sustainment continuity, or commander risk acceptance.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-v1 + protocol_stack_id=ps-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-stack-v1 when failover sequencing depends on airfield aid restoration and sortie-safe recertification timing.
+- Add tool_suite_id=ts-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-v1 + protocol_stack_id=ps-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-stack-v1 when mission-network continuity depends on expeditionary power resilience and hydrogen safety controls.
+- Add packet_id=DPL-RUNWAY-LIGHTING-APPROACH-AID-001 and packet_id=DPL-HYDROGEN-MICROGRID-SAFETY-001 for branches that materially change service survivability timelines or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVII Addendum)
+
+- Add tool_suite_id=ts-joint-contested-logistics-and-prepositioning-cell-v1 + protocol_stack_id=ps-joint-contested-logistics-and-prepositioning-cell-stack-v1 when failover recommendations depend on distributed sustainment traffic priorities and prepositioned stock release timing.
+- Add tool_suite_id=ts-joint-role-3-medical-network-and-aeromedical-evac-cell-v1 + protocol_stack_id=ps-joint-role-3-medical-network-and-aeromedical-evac-cell-stack-v1 when network continuity branches must preserve Role 3 patient movement, medevac sequencing, and blood cold-chain telemetry.
+- Add packet_id=DPL-CONTESTED-LOGISTICS-001 and packet_id=DPL-ROLE3-AEROMED-001 for branches that materially change service survivability, life-safety routing, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-undersea-data-fabric-reroute-v1 + protocol_stack_id=ps-undersea-data-fabric-reroute-stack-v1 when failover branches depend on damaged subsea backbone restoration and cross-theater reroute governance.
+- Add tool_suite_id=ts-quantum-resistant-key-rollover-v1 + protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1 when mission-network continuity requires accelerated cryptographic migration after key compromise indicators.
+- Add packet_id=DPL-UNDERSEA-DATA-FABRIC-REROUTE-001 and packet_id=DPL-QUANTUM-KEY-ROLLOVER-001 for recommendations that alter mission-thread transport trust or key-state authority posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-cyber-em-spectrum-mission-reroute-v1` + `protocol_stack_id=ps-joint-cyber-em-spectrum-mission-reroute-stack-v1` when mission continuity depends on cross-layer reroute decisions spanning cyber and spectrum paths.
+- Add `tool_suite_id=ts-coalition-denied-identity-insider-expulsion-v1` + `protocol_stack_id=ps-coalition-denied-identity-insider-expulsion-stack-v1` when insider-risk or compromised credentials threaten failover channels.
+- Add `packet_id=DPL-JOINT-CYBER-EM-REROUTE-002` and `packet_id=DPL-COALITION-IDENTITY-INSIDER-001` for failover and trust-restoration execution packets.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

@@ -144,3 +144,31 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+- Add `tool_suite_id=ts-strategic-deterrence-signaling-fusion-v1` + `protocol_stack_id=ps-strategic-deterrence-signaling-fusion-stack-v1` when coalition interoperability risk is shaped by deterrence signaling and escalation synchronization.
+- Add `tool_suite_id=ts-coalition-cognitive-ew-disinfo-countertargeting-v1` + `protocol_stack_id=ps-coalition-cognitive-ew-disinfo-countertargeting-stack-v1` when cross-alliance decision quality is degraded by coordinated influence and EW deception.
+- Add `tool_suite_id=ts-gray-zone-influence-countercampaign-v1` + `protocol_stack_id=ps-gray-zone-influence-countercampaign-stack-v1` for persistent below-threshold competition that affects alliance cohesion and access.
+- Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when coalition interoperability depends on trusted cross-domain data exchange in denied environments.
+- Add `packet_id=DPL-STRATEGIC-DETERRENCE-SIGNALING-001`, `packet_id=DPL-COALITION-COGNITIVE-EW-DISINFO-COUNTERTARGETING-001`, and `packet_id=DPL-GRAY-ZONE-INFLUENCE-COUNTERCAMPAIGN-001` for branches that can alter coalition force posture.
+
+## Domain Toolchain Override (2026-03-10, Coalition Urban Air Corridors and Medical Autonomy Addendum)
+
+- Add `tool_suite_id=ts-coalition-urban-drone-traffic-separation-v1` + `protocol_stack_id=ps-coalition-urban-drone-traffic-separation-stack-v1` when interoperability depends on coalition urban drone corridor governance under denied-PNT conditions.
+- Add `tool_suite_id=ts-coalition-autonomous-ambulance-drone-corridor-v1` + `protocol_stack_id=ps-coalition-autonomous-ambulance-drone-corridor-stack-v1` when coalition casualty movement relies on autonomous air corridors and cross-border medical routing approvals.
+- Add `packet_id=DPL-COALITION-URBAN-DRONE-TRAFFIC-SEPARATION-001` and `packet_id=DPL-COALITION-AUTONOMOUS-AMBULANCE-DRONE-CORRIDOR-001` for branches that alter coalition airspace and casualty-flow governance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

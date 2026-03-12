@@ -3511,617 +3511,5450 @@ validation_gates:
 - protocol_profile: HL7/FHIR + USMTF + API/JSON
 - validation_gates: medical authority confirmation, theater deconfliction pass, patient handoff acknowledgment
 
-## Expansion Packets (2026-03-10, Warfighter Domain Coverage Surge)
+### packet_id: DPL-CJADC2-FABRIC-001
+- domain: CJADC2 data-fabric degradation response
+- objective: maintain decision-quality data flow under partitioned or degraded joint mission networks
+- primary_tools: JADC2 broker health board, cross-domain guard telemetry, edge cache controller
+- alternate_tools: manual replication priority board and delayed-sync COP snapshots
+- degraded_mode: minimum mission data profile with periodic reconciliation
+- input_requirements: critical mission threads, data freshness targets, network health telemetry, authority matrix
+- output_schema: failover sequence, freshness confidence map, decision-impact ledger
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: data provenance pass, cross-source freshness check, commander approval for degraded mode
 
-### packet_id: DPL-AUTONOMOUS-SWARM-CORRIDOR-PRIORITY-001
-- domain: autonomous swarm corridor management
-- objective: allocate and deconflict multi-domain swarm corridors under threat and congestion
-- primary_tools: autonomous corridor orchestrator, mission-priority scheduler, geofence validator
-- alternate_tools: manual corridor timing board and restricted route card
-- degraded_mode: mission-essential corridor updates every 30 minutes via USMTF
-- input_requirements: corridor map, swarm mission priorities, air/ground/maritime conflict overlays, authority constraints
-- output_schema: corridor priority matrix, release gates, conflict resolution sequence
-- protocol_profile: CoT + Link 16 J-series + USMTF + API/JSON
-- validation_gates: fratricide-risk pass, authority check, stale-data threshold
+### packet_id: DPL-SALVO-REARM-001
+- domain: theater ballistic missile salvo reload and rearm
+- objective: prioritize reload and rearm actions to preserve defended asset coverage under sustained attack
+- primary_tools: launcher readiness board, interceptor inventory tracker, movement-control scheduler
+- alternate_tools: manual launcher card system and static defended-asset priority table
+- degraded_mode: top-tier defended assets only with fixed rearm cycles
+- input_requirements: launcher status, inventory by interceptor type, threat salvo forecast, route availability
+- output_schema: rearm queue, defended-asset coverage timeline, risk acceptance prompts
+- protocol_profile: Link 16 J-series + USMTF + VMF
+- validation_gates: inventory reconciliation pass, safety/compatibility check, command release authority
 
-### packet_id: DPL-THEATER-FOOD-WATER-FUEL-DENIAL-001
-- domain: contested sustainment denial resilience
-- objective: preserve food, water, and fuel continuity under interdiction and contamination
-- primary_tools: sustainment forecast engine, contamination telemetry, movement-control allocator
-- alternate_tools: manual commodity ration board and convoy reallocation worksheet
-- degraded_mode: 6-hour sustainment pulse with reduced source confidence
-- input_requirements: commodity stock levels, contamination reports, route availability, demand priority tiers
-- output_schema: denial resilience plan, node triage board, sustainment branch triggers
-- protocol_profile: USMTF + NIMS/ICS + API/JSON + HL7/FHIR
-- validation_gates: life-support priority pass, contamination evidence check, throughput viability gate
+### packet_id: DPL-ASW-HELO-SONO-001
+- domain: anti-submarine helo sonobuoy employment
+- objective: optimize sonobuoy placement and retask timing against evolving submarine behavior
+- primary_tools: sonobuoy pattern planner, acoustic model service, maritime patrol mission board
+- alternate_tools: manual buoy layout worksheet and contact confidence rollup board
+- degraded_mode: conservative barrier pattern with longer refresh cycles
+- input_requirements: patrol area geometry, buoy inventory, acoustic forecast, contact history
+- output_schema: pattern package, confidence-ranked prosecution options, retask timeline
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF
+- validation_gates: acoustic model confidence floor, fratricide deconfliction pass, warfare commander approval
 
-### packet_id: DPL-ADDITIVE-AIRWORTHINESS-CERTIFICATION-001
-- domain: additive aviation maintenance and certification
-- objective: release additive-manufactured parts with auditable airworthiness controls
-- primary_tools: additive QA service, provenance ledger, airworthiness release workflow
-- alternate_tools: catalog-only substitution with manual quality sign-off
-- degraded_mode: approved part-family only with commander risk acceptance note
-- input_requirements: part spec, material batch evidence, fabrication records, aircraft mission profile
-- output_schema: certification packet, release/hold matrix, sortie risk estimate
-- protocol_profile: USMTF + AIXM/FIXM/IWXXM + API/JSON
-- validation_gates: material trace pass, maintenance authority sign-off, sortie risk threshold
+### packet_id: DPL-AIRBASE-HARDEN-001
+- domain: coalition integrated airbase missile shelter hardening
+- objective: sequence shelter and infrastructure hardening to maximize sortie survivability
+- primary_tools: engineering priority board, threat salvo model, infrastructure imagery exploitation
+- alternate_tools: manual damage survey and construction sequence tracker
+- degraded_mode: high-value aircraft sheltering only with manual updates
+- input_requirements: base layouts, aircraft exposure profile, engineering assets, threat density estimates
+- output_schema: hardening sequence matrix, survivability delta estimate, branch trigger log
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: engineering feasibility pass, logistics sufficiency check, coalition authority confirmation
 
-### packet_id: DPL-URBAN-SUBSURFACE-RAID-SAFETY-001
-- domain: urban subsurface raid safety and utility protection
-- objective: plan subsurface maneuver while protecting critical utilities and reducing civilian harm
-- primary_tools: subsurface map fusion, utility status overlays, raid risk simulation tools
-- alternate_tools: manual tunnel sketch board and utility liaison matrix
-- degraded_mode: restricted-maneuver advisory with no-strike defaults
-- input_requirements: tunnel geometry, utility maps, occupancy estimates, route timing window
-- output_schema: subsurface safety overlay, utility protection controls, hazard trigger list
-- protocol_profile: OGC + VMF + USMTF + API/JSON
-- validation_gates: utility conflict check, civilian harm mitigation check, legal authority gate
+### packet_id: DPL-CBRN-ROBOTIC-001
+- domain: tactical CBRN hotzone robotic recon and marking
+- objective: map contamination boundaries and control entry routes without unnecessary human exposure
+- primary_tools: CBRN sensor fusion, robotic mission controller, hazard geospatial overlay tools
+- alternate_tools: manual sampling patrol plan and static contamination boundary board
+- degraded_mode: no-entry advisory posture pending sample chain validation
+- input_requirements: sensor feeds, sample collection chain, terrain map, force disposition
+- output_schema: hazard perimeter overlay, robotic task order, controlled access corridor recommendations
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: sample-chain integrity pass, contamination confidence threshold, command approval for entry
 
-### packet_id: DPL-SANCTIONS-EVASION-MARITIME-DISRUPTION-001
-- domain: coalition maritime sanctions disruption
-- objective: disrupt evasion networks with legal continuity and coalition interoperability
-- primary_tools: vessel network analytics, sanctions fusion service, interdiction evidence workflows
-- alternate_tools: manual vessel watchlist and liaison evidence log
-- degraded_mode: confidence-bounded disruption options only
-- input_requirements: vessel graph, sanctions entities, cargo anomalies, legal constraints
-- output_schema: disruption matrix, evidence chain summary, escalation options board
-- protocol_profile: AIS/NMEA + STIX/TAXII + NATO APP-11/ADatP-3 + USMTF + API/JSON
-- validation_gates: legal-review pass, attribution confidence floor, coalition caveat check
+### packet_id: DPL-LOB-TRIANGULATION-001
+- domain: denied comms line-of-bearing triangulation
+- objective: estimate hostile emitter locations and confidence under comms-denied conditions
+- primary_tools: direction-finding aggregator, triangulation solver, EW confidence review board
+- alternate_tools: manual bearing plot board and analyst confidence worksheet
+- degraded_mode: area-estimate geolocation with high uncertainty and advisory-only recommendations
+- input_requirements: bearing reports, sensor timestamps, terrain constraints, emitter priors
+- output_schema: emitter geolocation candidates, confidence ladder, retask recommendations
+- protocol_profile: CoT + Link 16 J-series + USMTF
+- validation_gates: timestamp alignment check, multi-sensor corroboration, human analyst confirmation
 
-### packet_id: DPL-SATELLITE-GROUND-STATION-DEFENSE-001
-- domain: satellite ground station defense and restoration
-- objective: maintain SATCOM ground segment continuity under cyber-physical attack
-- primary_tools: station SOC telemetry, perimeter anomaly detection, link continuity planners
-- alternate_tools: manual site status board and delayed SATCOM health reports
-- degraded_mode: critical service only with scheduled status synchronization
-- input_requirements: station topology, threat telemetry, service priorities, restoration assets
-- output_schema: defense posture plan, failover ladder, restoration priority queue
-- protocol_profile: USMTF + STIX/TAXII + OGC + API/JSON
-- validation_gates: critical-path continuity check, perimeter integrity check, authority verification
+### packet_id: DPL-WATER-ASSURE-001
+- domain: expeditionary water purification and distribution assurance
+- objective: sustain potable water production/distribution while managing contamination and throughput risks
+- primary_tools: purification telemetry board, water quality lab chain, logistics distribution optimizer
+- alternate_tools: manual ration board and periodic field test ledger
+- degraded_mode: life-support allocation only with strict rationing
+- input_requirements: water source profile, purification capacity, contamination indicators, demand forecast
+- output_schema: production-distribution plan, contamination branch actions, force-health risk score
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: quality threshold pass, contamination response authority, preventive medicine concurrence
+
+### packet_id: DPL-INLAND-WATERWAY-001
+- domain: theater inland waterway logistics under fire
+- objective: keep inland logistics throughput under active threat and chokepoint disruption
+- primary_tools: riverine COP, bridge integrity monitor, convoy scheduler
+- alternate_tools: manual movement board and alternate crossing route worksheet
+- degraded_mode: intermittent convoy windows only with elevated risk controls
+- input_requirements: waterway segment map, threat overlays, crossing status, cargo priorities
+- output_schema: movement schedule, chokepoint risk queue, restoration options
+- protocol_profile: AIS/NMEA + USMTF + VMF
+- validation_gates: route viability check, force-protection risk pass, movement-control release authority
+
+### packet_id: DPL-EW-REPROGRAM-001
+- domain: tactical EW mission-data rapid reprogramming
+- objective: deploy updated mission data quickly while preserving interoperability and control discipline
+- primary_tools: EW mission-data manager, emitter library diff service, signed distribution pipeline
+- alternate_tools: static mission-data profile and manual platform load checklist
+- degraded_mode: defensive baseline-only waveform set until verification completes
+- input_requirements: emitter behavior deltas, platform inventories, authority matrix, release timelines
+- output_schema: reprogram release package, compatibility matrix, operational risk assessment
+- protocol_profile: Link 16 J-series + STIX/TAXII + USMTF
+- validation_gates: signature verification pass, platform compatibility pass, command approval record
+
+### packet_id: DPL-KILLCHAIN-CLOCK-001
+- domain: multi-domain kill-chain clock synchronization
+- objective: maintain timing coherence across sensing, command, and effects under PNT disruption
+- primary_tools: timing integrity monitor, event correlation engine, latency analytics board
+- alternate_tools: manual timing reconciliation card and holdover oscillator checklist
+- degraded_mode: reduced kill-chain tempo with strict timing confidence thresholds
+- input_requirements: time-source trust status, latency measurements, mission windows, dependency graph
+- output_schema: timing confidence report, sync-recovery sequence, decision-impact timeline
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: time-source trust pass, sync drift threshold check, commander risk acceptance confirmation
+
+### packet_id: DPL-NC3-RELOC-EMCON-001
+- domain: joint nuclear command post relocation and EMCON control
+- objective: preserve command continuity while relocating command nodes under emissions and threat constraints
+- primary_tools: NC3 continuity monitor, emissions compliance analyzer, movement control board
+- alternate_tools: manual continuity card and acknowledgment roll-call ledger
+- degraded_mode: minimum-essential command message set with strict readback checks
+- input_requirements: threat warning timeline, relocation candidates, emissions constraints, authority matrix
+- output_schema: relocation ladder, EMCON posture by phase, continuity handoff checklist
+- protocol_profile: USMTF + API/JSON + signed continuity events
+- validation_gates: authority confirmation, continuity integrity pass, acknowledgment chain complete
+
+### packet_id: DPL-TANKER-AIRBRIDGE-001
+- domain: theater strategic tanker and airbridge contested replanning
+- objective: sustain sortie and mobility throughput under airbase attrition and EW threat
+- primary_tools: air mobility scheduler, tanker orbit planner, airfield threat dashboard
+- alternate_tools: manual route board and tanker priority worksheet
+- degraded_mode: essential mission and casualty movement lanes only
+- input_requirements: lift demands, tanker availability, airfield status, threat map
+- output_schema: reroute matrix, tanker assignment plan, sustainment risk timeline
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF
+- validation_gates: deconfliction pass, fuel feasibility check, command release approval
+
+### packet_id: DPL-MAR-TELEMED-001
+- domain: maritime telemedicine and hospital-ship load balancing
+- objective: balance afloat care capacity while preserving triage quality and medevac timing
+- primary_tools: telemedicine broker, bed-status federation, maritime medevac planner
+- alternate_tools: manual patient balancing board and voice-bridge coordination log
+- degraded_mode: life-threatening triage categories only
+- input_requirements: patient acuity list, bed capacity, medevac routes, specialist availability
+- output_schema: transfer queue, afloat load plan, escalation triggers
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: medical authority confirmation, transfer acknowledgment chain, theater deconfliction pass
+
+### packet_id: DPL-SWARMSAFE-CORRIDOR-001
+- domain: civil-military air corridor emergency shutdown under swarm threat
+- objective: close and reopen mixed-use corridors safely with minimal mission and civilian disruption
+- primary_tools: corridor operations board, counter-UAS warning feed, civil ATC portal
+- alternate_tools: manual closure checklist and pilot NOTAM readback matrix
+- degraded_mode: corridor closure until dual-source threat clearance
+- input_requirements: threat detections, corridor traffic load, available alternates, timing windows
+- output_schema: shutdown/reopen matrix, traffic reroute plan, risk acceptance prompts
+- protocol_profile: AIXM/FIXM + CoT + USMTF
+- validation_gates: civil aviation coordination pass, threat confidence threshold, commander approval
+
+### packet_id: DPL-DRONE-FACTORY-001
+- domain: adversary drone factory disruption prioritization
+- objective: rank disruption actions by mission impact, legal constraints, and verification confidence
+- primary_tools: supply-chain mapper, ISR production tracker, sanctions/interdiction board
+- alternate_tools: manual target-system worksheet and campaign effects review board
+- degraded_mode: monitor-only attribution posture with non-kinetic options
+- input_requirements: factory nodes, component dependencies, legal caveats, desired effects
+- output_schema: disruption priority board, branch options, effects confidence ladder
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: source corroboration pass, legal authority check, effect verification plan
+
+### packet_id: DPL-AID-DENIAL-ATTRIB-001
+- domain: coalition humanitarian aid denial campaign attribution
+- objective: attribute denial patterns and restore aid throughput with protected corridor controls
+- primary_tools: convoy incident repository, aid corridor tracker, influence-network analytics
+- alternate_tools: NGO incident rollup ledger and media authenticity worksheet
+- degraded_mode: humanitarian pause advisory with elevated verification gates
+- input_requirements: denial incidents, corridor status, actor hypotheses, coalition caveats
+- output_schema: attribution confidence brief, corridor risk map, restoration triggers
+- protocol_profile: NIMS/ICS + API/JSON + USMTF
+- validation_gates: multi-source corroboration, humanitarian authority concurrence, disclosure approval
+
+### packet_id: DPL-RADHARD-CHIP-ALLOC-001
+- domain: strategic radiation-hardened semiconductor allocation
+- objective: allocate constrained chip supply across priority missions with transparent risk tradeoffs
+- primary_tools: strategic chip inventory ledger, mission dependency graph, allocation board
+- alternate_tools: manual demand workbook and production recovery queue
+- degraded_mode: top-priority mission sustainment only
+- input_requirements: available lots, mission demand, recovery forecasts, authority tiers
+- output_schema: allocation matrix, mission impact risk register, reconstitution plan
+- protocol_profile: API/JSON + XML + USMTF
+- validation_gates: lot provenance pass, authority approval chain, dependency sanity check
+
+### packet_id: DPL-LASER-DAZZLE-001
+- domain: space-ground laser dazzle attribution and recovery
+- objective: attribute dazzle sources and coordinate payload recovery actions with confidence bounds
+- primary_tools: optical anomaly fusion, payload health telemetry board, source-geometry estimator
+- alternate_tools: manual anomaly timeline and legal-attribution review worksheet
+- degraded_mode: restricted payload operation with frequent reassessment
+- input_requirements: anomaly events, sensor provenance, payload state, orbital and ground context
+- output_schema: attribution packet, recovery options, recurrence-risk timeline
+- protocol_profile: CCSDS + API/JSON + USMTF
+- validation_gates: dual-source corroboration, payload safety pass, authority release decision
+
+### packet_id: DPL-PNT-TERRAIN-TRANSITION-001
+- domain: contested PNT terrain-referenced navigation transition
+- objective: move forces from GNSS-dependent nav to terrain/inertial fallback while preserving tempo
+- primary_tools: terrain-route planner, inertial monitor, map-confidence board
+- alternate_tools: manual map-and-compass fallback card and route error worksheet
+- degraded_mode: reduced-tempo movement corridors only
+- input_requirements: route objectives, navwar indicators, terrain references, platform nav capabilities
+- output_schema: transition execution card, route confidence ladder, decision prompts
+- protocol_profile: CoT + VMF + USMTF
+- validation_gates: nav confidence threshold, fratricide risk pass, command acceptance gate
+
+### packet_id: DPL-COLDCHAIN-GRIDLOSS-001
+- domain: expeditionary vaccine cold-chain continuity under grid loss
+- objective: preserve biologic integrity and prioritize redistribution before spoilage thresholds
+- primary_tools: cold-chain telemetry platform, generator/fuel board, med-log allocator
+- alternate_tools: manual temperature ledger and emergency cooler allocation worksheet
+- degraded_mode: essential vaccination and prophylaxis stock only
+- input_requirements: temperature logs, inventory status, power/fuel posture, movement constraints
+- output_schema: continuity plan, spoilage risk queue, redistribution matrix
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: temperature threshold pass, medical authority approval, handoff acknowledgment
+
+### packet_id: DPL-AMMO-DUD-QUAR-001
+- domain: joint ammunition dud-rate anomaly and lot quarantine
+- objective: detect dud-rate anomalies and apply lot quarantine/release controls without mission collapse
+- primary_tools: dud analytics service, lot traceability platform, safety investigation board
+- alternate_tools: manual lot board and range test confirmation worksheet
+- degraded_mode: restricted use profiles pending revalidation
+- input_requirements: dud event telemetry, lot lineage, mission demand profile, safety constraints
+- output_schema: anomaly confidence report, quarantine matrix, lot release timeline
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: anomaly confidence floor, safety authority concurrence, release approval chain
+
+### packet_id: DPL-SHIPSHORE-ENERGY-CABLE-001
+- domain: tactical ship-to-shore energy cable emplacement protection
+- objective: establish and protect expeditionary energy cable links in contested littoral zones
+- primary_tools: seabed survey planner, cable-lay control board, littoral security COP
+- alternate_tools: manual emplacement sequence card and patrol sector worksheet
+- degraded_mode: phased emplacement windows with elevated protective escort
+- input_requirements: route survey, threat overlay, cable and vessel readiness, security assets
+- output_schema: emplacement plan, protection posture matrix, restoration branch card
+- protocol_profile: AIS/NMEA + API/JSON + USMTF
+- validation_gates: route feasibility pass, security coverage threshold, command release approval
+
+### packet_id: DPL-AEROSTAT-RESILIENCE-001
+- domain: joint theater balloon and aerostat surveillance resilience
+- objective: preserve ISR persistence across EW attack, weather disruption, and attrition
+- primary_tools: aerostat fleet health monitor, weather fusion service, EW interference analytics
+- alternate_tools: manual launch/recovery board and optical ISR continuity worksheet
+- degraded_mode: reduced sensor coverage with prioritized collection sectors
+- input_requirements: aerostat inventory status, weather forecast bands, EW threat indicators, ISR priorities
+- output_schema: ISR persistence ladder, launch/recovery sequence, risk-trigger timeline
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: weather-go/no-go threshold pass, EW mitigation check, command release approval
+
+### packet_id: DPL-RAIL-SABOTAGE-RECOVERY-001
+- domain: strategic military rail network sabotage recovery
+- objective: re-establish strategic rail throughput after sabotage and infrastructure strike
+- primary_tools: rail network COP, infrastructure integrity monitor, movement scheduler
+- alternate_tools: manual rail reroute worksheet and civil liaison repair tracker
+- degraded_mode: essential military cargo lanes only with reduced throughput
+- input_requirements: damaged segments, repair assets, lift demand profile, threat overlays
+- output_schema: restoration sequence, throughput projection, reroute decision matrix
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: infrastructure feasibility pass, force-protection route check, authority release confirmation
+
+### packet_id: DPL-MARINER-MOBILIZATION-001
+- domain: joint civilian mariner mobilization and credentialing
+- objective: surge civilian mariner force while maintaining credential trust and assignment quality
+- primary_tools: credential registry, mariner roster federation, sealift assignment board
+- alternate_tools: manual credential verification queue and crewing fallback worksheet
+- degraded_mode: minimum viable crewing for priority strategic sealift missions
+- input_requirements: mariner roster, credential records, vessel demand list, mobilization timeline
+- output_schema: mobilization roster, exception ladder, assignment timeline
+- protocol_profile: USMTF + XML + API/JSON
+- validation_gates: credential provenance pass, assignment authority approval, acknowledgment chain complete
+
+### packet_id: DPL-BATTLEFIELD-HAZMAT-001
+- domain: theater battlefield waste and hazardous material control
+- objective: control hazardous battlefield waste flow and reduce contamination and casualty risk
+- primary_tools: hazmat inventory tracker, contamination telemetry service, disposal scheduler
+- alternate_tools: manual segregation checklist and route clearance coordination board
+- degraded_mode: hold-and-secure posture for high-risk materials only
+- input_requirements: waste categories, contamination readings, disposal capacity, convoy routes
+- output_schema: segregation and disposal plan, contamination risk ledger, branch actions
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: contamination threshold validation, disposal authority concurrence, route security approval
+
+### packet_id: DPL-HEAT-CLIMATE-RISK-001
+- domain: joint heat injury and climate operational risk
+- objective: minimize heat injury and climate exposure casualties while preserving mission tempo
+- primary_tools: WBGT telemetry mesh, force-health dashboard, tempo planner
+- alternate_tools: manual heat index log and hydration discipline card
+- degraded_mode: reduced work windows and high-risk task deferral
+- input_requirements: weather and WBGT data, unit task profile, hydration status, casualty trends
+- output_schema: heat-risk phase card, work-rest controls, casualty prevention triggers
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: risk threshold pass, medical authority concurrence, commander acceptance gate
+
+### packet_id: DPL-OFFSHORE-PLATFORM-DEFENSE-001
+- domain: coalition offshore energy platform defense integration
+- objective: protect offshore platforms while sustaining production and coalition patrol coherence
+- primary_tools: offshore telemetry federation, maritime patrol COP, radar/UAS warning feeds
+- alternate_tools: manual platform vulnerability worksheet and patrol overlap board
+- degraded_mode: perimeter defense-only posture around highest-priority platforms
+- input_requirements: platform criticality map, threat indicators, patrol assets, weather state
+- output_schema: defense posture map, patrol deconfliction matrix, continuity branches
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF
+- validation_gates: patrol coverage sufficiency, coalition authority pass, escalation gate check
+
+### packet_id: DPL-UNDERGROUND-FIBER-RESTORE-001
+- domain: tactical underground fiber rapid restoration
+- objective: restore mission-critical fiber links and prioritize bandwidth for combat-essential services
+- primary_tools: fiber fault localization, restoration dispatch board, SLA monitor
+- alternate_tools: manual splice priority worksheet and comms reroute tracker
+- degraded_mode: minimum command-and-control bandwidth profile only
+- input_requirements: fault locations, repair team availability, mission service priority, threat map
+- output_schema: restoration timeline, bandwidth priority table, fallback branch card
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: fault confirmation pass, repair route security check, command release approval
+
+### packet_id: DPL-AUTONOMOUS-CONVOY-SIGNATURE-001
+- domain: joint autonomous convoy electronic signature discipline
+- objective: reduce convoy detectability and targeting risk through emission and signature controls
+- primary_tools: convoy telemetry COP, emission analytics, route threat forecasting
+- alternate_tools: manual emission control card and convoy deception checklist
+- degraded_mode: conservative movement tempo with strict comms silence windows
+- input_requirements: convoy composition, route options, sensor threat profile, mission priorities
+- output_schema: signature-control schedule, risk ladder, convoy branch recommendations
+- protocol_profile: CoT + USMTF + API/JSON
+- validation_gates: emission threshold pass, route survivability check, commander approval gate
+
+### packet_id: DPL-DENIED-PHARMA-COUNTERFEIT-001
+- domain: theater denied pharmaceutical counterfeit detection
+- objective: identify counterfeit or degraded pharmaceuticals and preserve treatment continuity
+- primary_tools: lot traceability service, field assay telemetry, med-log continuity planner
+- alternate_tools: manual chain-of-custody ledger and substitution prioritization worksheet
+- degraded_mode: critical-care medication lanes only pending lot confirmation
+- input_requirements: drug lot metadata, assay readings, inventory position, treatment demand
+- output_schema: lot confidence matrix, quarantine/release actions, continuity recommendations
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: assay confidence threshold, medical authority concurrence, quarantine chain integrity
+
+### packet_id: DPL-POLAR-SATCOM-REVERSION-001
+- domain: joint polar SATCOM blackout procedural reversion
+- objective: preserve command coordination during polar SATCOM outage via procedural fallback
+- primary_tools: satcom outage telemetry, HF fallback planner, comms availability dashboard
+- alternate_tools: manual comms matrix and procedural message readback ledger
+- degraded_mode: essential command traffic only with interval-based check-ins
+- input_requirements: outage timeline, available alternate comms paths, mission priority queue, weather effects
+- output_schema: reversion ladder, procedural controls, blackout recovery triggers
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: alternate path reliability check, acknowledgment completeness pass, authority release gate
+
+### packet_id: DPL-ORDNANCE-DEMIL-SURGE-001
+- domain: strategic ordnance demil and safe disposal surge
+- objective: safely demil unstable stock while preserving operational munitions availability
+- primary_tools: ordnance safety incident system, demil throughput planner, stockpile readiness dashboard
+- alternate_tools: manual explosive safety worksheet and disposal queue board
+- degraded_mode: emergency stabilization-only actions with disposal delay
+- input_requirements: lot risk profile, disposal capacity, mission demand, safety constraints
+- output_schema: demil surge schedule, risk register, availability impact timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: explosive safety pass, disposal authority approval, operational impact acceptance
+
+### packet_id: DPL-FISHING-FLEET-GRAYZONE-001
+- domain: coalition disputed fishing fleet gray-zone response
+- objective: attribute coercive maritime activity and coordinate calibrated coalition response
+- primary_tools: vessel behavior analytics, AIS anomaly board, legal-policy tracker
+- alternate_tools: manual incident correlation matrix and escalation option worksheet
+- degraded_mode: monitor-and-warn posture with constrained patrol actions
+- input_requirements: vessel movement patterns, incident reports, legal constraints, coalition force posture
+- output_schema: attribution confidence packet, escalation ladder, patrol synchronization plan
+- protocol_profile: AIS/NMEA + NIMS/ICS + USMTF
+- validation_gates: multi-source corroboration, coalition legal concurrence, command escalation approval
+
+### packet_id: DPL-QUANTUM-KEY-ROLLOVER-001
+- domain: joint quantum-resistant tactical key rollover
+- objective: transition tactical enclaves through coordinated key rollover without mission link loss
+- primary_tools: key management orchestrator, COMSEC account ledger, compatibility validator
+- alternate_tools: manual key-state board and emergency fallback net matrix
+- degraded_mode: mission-essential links only with interval-based key confirmations
+- input_requirements: platform crypto inventory, key windows, authority tiers, link dependencies
+- output_schema: rollover sequence card, incompatibility exception queue, continuity risk summary
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: dual-control key release, compatibility pass, acknowledgment-chain completeness
+
+### packet_id: DPL-GRID-LOADSHED-SUPPORT-001
+- domain: theater civil power grid load-shedding military support
+- objective: coordinate military support to load shedding and blackstart while protecting force and civilians
+- primary_tools: grid telemetry COP, dependency mapper, blackstart coordination board
+- alternate_tools: manual outage worksheet and emergency restoration matrix
+- degraded_mode: priority-of-life facilities only with reduced military support footprint
+- input_requirements: outage regions, critical node map, generation status, military demand profile
+- output_schema: load-shed matrix, blackstart branch plan, restoration timeline
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: utility concurrence, force-protection check, authority approval
+
+### packet_id: DPL-BRIDGE-HEAVYLIFT-ROUTING-001
+- domain: coalition denied terrain bridge classification and heavy-lift routing
+- objective: route heavy lift across uncertain bridge classes while minimizing mobility losses
+- primary_tools: engineer route COP, bridge-load estimator, movement scheduler
+- alternate_tools: manual crossing log and route-risk worksheet
+- degraded_mode: restricted vehicle class movement with engineer escort confirmation
+- input_requirements: bridge survey confidence, vehicle classes, threat overlays, engineer assets
+- output_schema: bridge confidence map, route recommendation ladder, crossing triggers
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: load-class confidence threshold, route survivability pass, command release gate
+
+### packet_id: DPL-RESERVE-MEDICAL-SURGE-001
+- domain: strategic reserve component medical readiness surge
+- objective: synchronize reserve medical force surge to stabilize theater care capacity
+- primary_tools: readiness roster federation, credential verifier, med surge planner
+- alternate_tools: manual roster board and credential exception tracker
+- degraded_mode: critical-care specialties only under emergency mobilization profile
+- input_requirements: surge demand forecast, reserve availability, credential status, lift windows
+- output_schema: surge sourcing plan, credential exception ladder, deployment timeline
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: credential pass, deployment authority approval, continuity-of-care check
+
+### packet_id: DPL-CABLE-LANDING-HARDENING-001
+- domain: joint maritime cable landing station hardening and reroute
+- objective: maintain mission network continuity despite landing station disruption or attack
+- primary_tools: landing station monitor, backhaul planner, hardening task board
+- alternate_tools: manual reroute worksheet and repair dispatch tracker
+- degraded_mode: critical command paths only with constrained bandwidth profile
+- input_requirements: station health, backhaul topology, threat vectors, repair crews
+- output_schema: hardening plan, reroute matrix, restoration branch card
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: route integrity pass, hardening completion evidence, authority release
+
+### packet_id: DPL-DISCONNECTED-UAS-BDA-TRIAGE-001
+- domain: tactical disconnected UAS battle damage imagery triage
+- objective: prioritize limited imagery transfer for highest mission decision value
+- primary_tools: imagery triage manager, mission-priority scorer, uplink scheduler
+- alternate_tools: analyst manual triage board and courier media handoff log
+- degraded_mode: top-priority targets only with reduced confidence intervals
+- input_requirements: imagery queue metadata, target priority, bandwidth windows, legal review constraints
+- output_schema: transfer queue, confidence-weighted BDA packet, retask recommendations
+- protocol_profile: CoT + VMF + API/JSON
+- validation_gates: provenance check, confidence floor, release approval
+
+### packet_id: DPL-ASTROINERTIAL-REVERSION-001
+- domain: theater precision navigation astro-inertial reversion
+- objective: preserve maneuver and fires timing through GNSS-denied operation windows
+- primary_tools: nav confidence engine, timing integrity monitor, fallback planner
+- alternate_tools: manual reversion card and time-sync worksheet
+- degraded_mode: reduced-tempo movement and fires timing with pre-briefed corridors
+- input_requirements: PNT outage indicators, platform nav capabilities, route demands, timing tolerance
+- output_schema: reversion ladder, timing assurance matrix, movement confidence map
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: timing integrity threshold, safety/fratricide pass, commander acceptance
+
+### packet_id: DPL-PORT-LABOR-DISRUPTION-001
+- domain: joint civilian port labor disruption contingency
+- objective: sustain military throughput when civilian labor availability degrades
+- primary_tools: port throughput dashboard, cargo priority board, diversion planner
+- alternate_tools: manual manifest reconciliation and terminal status tracker
+- degraded_mode: priority cargo lanes only with longer discharge intervals
+- input_requirements: labor status, cargo priorities, berth availability, diversion constraints
+- output_schema: contingency plan, cargo reprioritization matrix, diversion timeline
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: legal authority check, throughput sufficiency, command release
+
+### packet_id: DPL-BURN-CARE-BROKER-001
+- domain: coalition forward burn-care bed matching and evacuation priority
+- objective: match burn casualties to specialty care capacity within survivability timelines
+- primary_tools: burn bed status board, medevac risk planner, coalition medical coordination portal
+- alternate_tools: manual case board and bed confirmation readback log
+- degraded_mode: highest-acuity casualties only with constrained transport windows
+- input_requirements: casualty severity mix, burn center capacity, transport options, coalition caveats
+- output_schema: burn-bed matching board, evac ladder, continuity branch actions
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: specialty capacity confirmation, transport feasibility pass, medical authority concurrence
+
+### packet_id: DPL-REFINERY-RESTART-001
+- domain: strategic defense fuel refinery cyber-physical restart
+- objective: restart defense-critical refining safely after cyber-physical compromise
+- primary_tools: ICS integrity monitor, process safety board, fuel continuity scheduler
+- alternate_tools: manual process-state checklist and fuel allocation worksheet
+- degraded_mode: emergency fuel production profile with strict safety hold points
+- input_requirements: incident status, process integrity evidence, demand forecast, safety constraints
+- output_schema: restart sequence, safety gate map, fuel continuity risk register
+- protocol_profile: API/JSON + USMTF + XML
+- validation_gates: ICS trust threshold, process safety pass, dual-authorization release
+
+### packet_id: DPL-EOB-DRIFT-DETECTION-001
+- domain: joint electronic order-of-battle drift detection
+- objective: detect EOB drift quickly enough to prevent targeting and protection errors
+- primary_tools: EOB baseline manager, anomaly detector, drift analytics board
+- alternate_tools: manual emitter timeline and confidence adjudication worksheet
+- degraded_mode: advisory-only updates with delayed release cadence
+- input_requirements: baseline EOB, emitter detections, geolocation confidence, mission impact context
+- output_schema: drift alert board, confidence ladder, collection retask list
+- protocol_profile: STIX/TAXII + USMTF + API/JSON
+- validation_gates: source confidence floor, geolocation sanity check, release authority approval
+
+### packet_id: DPL-URBAN-MASCAS-DRONE-RESUPPLY-001
+- domain: tactical urban mass-casualty drone resupply coordination
+- objective: deliver time-critical medical payloads to treatment nodes under denied ground movement
+- primary_tools: drone fleet control, payload allocator, urban corridor scheduler
+- alternate_tools: manual dispatch board and handoff confirmation ledger
+- degraded_mode: critical life-saving payloads only under emergency corridor windows
+- input_requirements: treatment node demand, drone readiness, airspace constraints, threat indicators
+- output_schema: resupply wave plan, payload priority matrix, corridor risk timeline
+- protocol_profile: CoT + HL7/FHIR + USMTF
+- validation_gates: corridor deconfliction pass, payload custody confirmation, command approval
+
+### packet_id: DPL-PORTABLE-NUCLEAR-DETECTOR-RESILIENCE-001
+- domain: joint theater portable nuclear detector network resilience
+- objective: preserve radiological and nuclear warning quality despite detector drift, movement, and comms disruption
+- primary_tools: detector status federation, calibration drift tracker, warning dissemination board
+- alternate_tools: manual detector integrity roster and sample confirmation worksheet
+- degraded_mode: top-threat corridors only with interval-based warning updates
+- input_requirements: detector locations, calibration state, comms health, threat indicators
+- output_schema: coverage matrix, calibration mitigation ladder, warning continuity branch card
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: calibration confidence threshold, warning dissemination pass, authority release gate
+
+### packet_id: DPL-RAPID-DAM-FLOODWAVE-WARNING-001
+- domain: coalition rapid dam inspection and floodwave warning
+- objective: accelerate dam integrity triage and downstream floodwave warning under strike or sabotage conditions
+- primary_tools: dam telemetry monitor, hydrology burst model, downstream warning task board
+- alternate_tools: manual structural triage checklist and floodplain alert worksheet
+- degraded_mode: priority-population warning only with simplified evacuation routes
+- input_requirements: dam condition signals, river flow state, downstream population map, response assets
+- output_schema: integrity triage board, warning timeline, evacuation trigger matrix
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: structural confidence pass, warning acknowledgment completeness, command release approval
+
+### packet_id: DPL-SPECTRUM-FRUGAL-VIDEO-PRIORITIZATION-001
+- domain: tactical spectrum-frugal video intel prioritization
+- objective: maximize decision value from ISR video when bandwidth is constrained or denied
+- primary_tools: clip prioritization engine, bandwidth arbitration board, mission impact scorer
+- alternate_tools: analyst manual clip queue and metadata-only release card
+- degraded_mode: top-priority targets only with delayed full-motion release
+- input_requirements: clip metadata, target priorities, available bandwidth windows, analyst confidence
+- output_schema: prioritized release queue, bandwidth allocation card, confidence-tagged recommendation
+- protocol_profile: CoT + STANAG 4609 + API/JSON
+- validation_gates: provenance check, confidence floor, release authority gate
+
+### packet_id: DPL-BATTERY-THERMAL-RUNAWAY-CONTAINMENT-001
+- domain: theater battery supply chain thermal runaway containment
+- objective: contain battery hazards while preserving mission-critical power continuity
+- primary_tools: battery health telemetry fusion, depot hazard zoning board, power continuity planner
+- alternate_tools: manual hazard inventory worksheet and alternate power dispatch board
+- degraded_mode: mission-essential loads only with emergency battery quarantine posture
+- input_requirements: inventory condition telemetry, storage status, mission load priorities, transport routes
+- output_schema: hazard risk map, containment plan, alternate power continuity ladder
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: hazard threshold pass, quarantine control approval, continuity acceptance gate
+
+### packet_id: DPL-PRECISION-AGRI-DENIAL-FOOD-MONITOR-001
+- domain: joint precision agriculture denial and food security monitor
+- objective: detect and mitigate food-system disruption that can destabilize operations and civil conditions
+- primary_tools: agri-yield analytics board, supply flow monitor, civil stability signal tracker
+- alternate_tools: manual commodity trend board and humanitarian demand estimate worksheet
+- degraded_mode: high-risk region monitoring only with weekly planning cadence
+- input_requirements: crop and input availability signals, market stress indicators, logistics constraints, civil unrest indicators
+- output_schema: disruption risk ledger, recovery priority matrix, stability branch plan
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: multi-source corroboration, policy concurrence, command release gate
+
+### packet_id: DPL-FORWARD-AIRSTRIP-BIRD-STRIKE-SUPPRESSION-001
+- domain: coalition forward airstrip bird-strike risk suppression
+- objective: reduce bird-strike risk at austere airstrips while sustaining sortie generation tempo
+- primary_tools: wildlife activity sensor mesh, runway inspection scheduler, sortie risk board
+- alternate_tools: manual runway hazard log and local wildlife observation board
+- degraded_mode: daylight-sortie windows only with enhanced pre-takeoff inspection intervals
+- input_requirements: wildlife activity trends, runway status, sortie schedule, mitigation assets
+- output_schema: hazard heatmap, sortie risk card, mitigation task board
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: runway inspection pass, mitigation completion check, sortie release approval
+
+### packet_id: DPL-MILITARY-FAMILY-EVAC-SAFEHAVEN-001
+- domain: strategic military family evacuation and safehaven allocation
+- objective: synchronize dependent evacuation and safehaven allocation to protect families and preserve force readiness
+- primary_tools: dependent accountability roster, transport assignment broker, safehaven capacity board
+- alternate_tools: manual accountability ledger and shelter allocation worksheet
+- degraded_mode: priority dependent categories only with phased transport constraints
+- input_requirements: family accountability status, transport availability, safehaven capacity, security conditions
+- output_schema: evacuation phasing plan, safehaven map, reunification tracker
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: accountability completeness, capacity sufficiency, command release approval
+
+### packet_id: DPL-CONTESTED-ADDITIVE-METALLURGY-QA-001
+- domain: joint contested additive metallurgy quality assurance
+- objective: certify mission-critical additive metal parts under contested supply conditions without unsafe release
+- primary_tools: additive process telemetry monitor, nondestructive test planner, part-release governance board
+- alternate_tools: manual quality gate checklist and comparative sourcing worksheet
+- degraded_mode: non-flight-critical and non-safety-critical parts only pending full verification
+- input_requirements: build telemetry, material provenance, test results, mission demand priorities
+- output_schema: quality gate matrix, release confidence ladder, fallback sourcing plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: process conformance pass, material provenance check, release authority approval
+
+### packet_id: DPL-CELLULAR-PRIORITY-SERVICE-RESTORATION-001
+- domain: theater civilian cellular priority service restoration
+- objective: restore emergency and military-support priority cellular services after outage or attack
+- primary_tools: carrier outage COP, priority policy orchestrator, emergency routing board
+- alternate_tools: manual outage worksheet and priority access dispatch card
+- degraded_mode: emergency responder and command-essential users only with constrained service windows
+- input_requirements: outage footprint, backhaul status, priority access policies, emergency demand profile
+- output_schema: restoration sequence, outage impact board, emergency access governance checklist
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: service restoration threshold, authority concurrence, acknowledgment completeness
+
+### packet_id: DPL-DEEPFAKE-VOICE-COMMAND-DETECTION-001
+- domain: coalition deepfake voice command spoofing detection
+- objective: detect synthetic voice command spoofing and restore trusted command-channel operation quickly
+- primary_tools: voice authenticity classifier, command-channel anomaly monitor, re-authentication workflow board
+- alternate_tools: manual callback verification ledger and chain-of-command challenge-response script
+- degraded_mode: advisory-only voice workflows with secondary authentication for all critical decisions
+- input_requirements: voice command captures, channel metadata, threat intelligence context, command roster
+- output_schema: spoofing threat board, trust posture card, containment and re-authentication plan
+- protocol_profile: USMTF + API/JSON + STIX/TAXII
+- validation_gates: authenticity score threshold, callback confirmation pass, command authority release
+
+### packet_id: DPL-ORBITAL-REENTRY-POPULATION-RISK-001
+- domain: joint orbital debris reentry population risk mitigation
+- objective: synchronize warning and protective actions under uncertain debris reentry tracks
+- primary_tools: reentry prediction fusion service, population exposure mapper, warning dissemination board
+- alternate_tools: manual impact corridor worksheet and shelter trigger card
+- degraded_mode: priority-population warning only with widened confidence bounds
+- input_requirements: orbital state vectors, confidence intervals, exposure map, shelter capacity
+- output_schema: risk corridor map, warning ladder, protective posture branch plan
+- protocol_profile: USMTF + API/JSON + CAP
+- validation_gates: trajectory confidence floor, warning acknowledgment threshold, authority release gate
+
+### packet_id: DPL-EXPEDITIONARY-MORGUE-OVERFLOW-001
+- domain: coalition expeditionary morgue overflow management
+- objective: preserve dignified remains handling and legal custody integrity during capacity overflow
+- primary_tools: remains capacity tracker, temporary facility planner, chain-of-custody ledger
+- alternate_tools: manual remains accountability roster and temporary holding checklist
+- degraded_mode: high-priority identification and custody chain only with delayed transfer windows
+- input_requirements: current capacity, casualty influx projection, identity status, transport availability
+- output_schema: overflow disposition matrix, capacity expansion plan, custody assurance tracker
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: custody chain completeness, identity reconciliation pass, command/legal concurrence
+
+### packet_id: DPL-UXO-CIVILIAN-RETURN-CORRIDOR-001
+- domain: theater unexploded ordnance civilian return corridor
+- objective: certify civilian return corridors only after sufficient UXO risk reduction and route assurance
+- primary_tools: clearance mission scheduler, UXO risk map service, route certification board
+- alternate_tools: manual corridor risk log and EOD readiness worksheet
+- degraded_mode: controlled humanitarian movement windows only with continuous route monitoring
+- input_requirements: UXO reports, clearance progress, civilian movement priorities, route conditions
+- output_schema: corridor certification board, clearance priority schedule, risk communication card
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: clearance confidence threshold, route certification pass, authority release gate
+
+### packet_id: DPL-AVIATION-ENGINE-ALLOCATION-SANCTIONS-001
+- domain: strategic aviation spare engines allocation under sanctions
+- objective: maximize mission-capable rates while preserving legal compliance under constrained supply
+- primary_tools: fleet readiness optimizer, spare engine inventory broker, sanctions compliance monitor
+- alternate_tools: manual fleet triage board and sourcing risk worksheet
+- degraded_mode: mission-essential fleets only with deferred noncritical maintenance actions
+- input_requirements: fleet status, engine inventory, sanctions constraints, theater priority list
+- output_schema: allocation priority matrix, readiness risk ladder, constrained sourcing branch plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: compliance pass, readiness floor check, command approval
+
+### packet_id: DPL-MICROGRID-AMMONIA-BLACKSTART-001
+- domain: joint microgrid blackstart fuel-cell ammonia conversion
+- objective: restore mission-essential power through fuel-cell and ammonia conversion pathways after grid loss
+- primary_tools: microgrid restart simulator, conversion planner, mission-load prioritization board
+- alternate_tools: manual blackstart checklist and emergency load-shedding worksheet
+- degraded_mode: life-safety and command-essential loads only with staged restart intervals
+- input_requirements: generation assets, fuel/ammonia availability, load priorities, safety constraints
+- output_schema: blackstart option matrix, conversion sequence card, restoration timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: safety interlock pass, restart feasibility threshold, command release approval
+
+### packet_id: DPL-MARITIME-SALVAGE-INSURANCE-ADJUDICATION-001
+- domain: coalition maritime salvage insurance dispute adjudication
+- objective: keep maritime recovery timelines intact despite liability and insurance disputes
+- primary_tools: salvage operations board, liability evidence manager, recovery milestone tracker
+- alternate_tools: manual dispute issue log and throughput-impact estimation worksheet
+- degraded_mode: minimum viable recovery actions pending formal dispute resolution
+- input_requirements: salvage status, ownership/liability claims, legal constraints, throughput priorities
+- output_schema: dispute decision matrix, evidence packet checklist, recovery deconfliction timeline
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: evidence provenance pass, legal concurrence, command release gate
+
+### packet_id: DPL-CONTESTED-SPACE-LAUNCH-RECONSTITUTION-001
+- domain: joint contested space launch window reconstitution
+- objective: recover assured military access-to-orbit timelines after launch infrastructure, telemetry, or orbital-risk disruption
+- primary_tools: launch schedule recovery board, range status federation, telemetry integrity monitor
+- alternate_tools: manual launch reprioritization worksheet and range-risk review board
+- degraded_mode: mission-essential payloads only with widened launch confidence intervals
+- input_requirements: launch window status, payload priorities, range constraints, orbital risk indicators
+- output_schema: launch recovery matrix, payload reprioritization ladder, risk and decision trigger map
+- protocol_profile: USMTF + CCSDS + API/JSON
+- validation_gates: launch readiness confidence floor, dual-source risk confirmation, command authority release
+
+### packet_id: DPL-RARE-EARTH-PLANT-PROTECT-RESTART-001
+- domain: theater rare-earth separation plant protection and restart
+- objective: preserve defense-industrial rare-earth output and restart safely after sabotage or cyber-physical compromise
+- primary_tools: plant process integrity monitor, mineral throughput optimizer, industrial safety gate tracker
+- alternate_tools: manual contamination and process-state checklist plus output allocation board
+- degraded_mode: critical defense output lines only with strict safety hold points
+- input_requirements: process integrity evidence, contamination indicators, output demand priorities, safety constraints
+- output_schema: protection and restart sequence, output priority board, safety hold-point log
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: process integrity pass, contamination threshold check, dual-authorization release
+
+### packet_id: DPL-UNDER-ICE-CABLE-BREAK-REPAIR-PRIORITY-001
+- domain: coalition under-ice cable break localization and repair priority
+- objective: localize under-ice cable breaks and sequence constrained repair assets to restore mission-critical communications
+- primary_tools: subsea fault localization service, under-ice route risk model, repair asset assignment board
+- alternate_tools: manual break confidence worksheet and repair surge allocation board
+- degraded_mode: command-essential links only with interval-based restoration updates
+- input_requirements: cable topology, fault indicators, available repair assets, comms criticality map
+- output_schema: break-confidence map, repair queue, continuity branch matrix
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: localization confidence floor, repair feasibility check, coalition authority release
+
+### packet_id: DPL-PRIVACY-PRESERVING-BIOMETRICS-FEDERATION-001
+- domain: tactical biometrics privacy-preserving watchlist federation
+- objective: deconflict coalition watchlists with privacy-preserving identity matching and auditable legal-policy compliance
+- primary_tools: privacy-preserving match broker, watchlist synchronization board, identity confidence monitor
+- alternate_tools: manual watchlist reconciliation board and human adjudication review queue
+- degraded_mode: high-risk subjects only with expanded human review and reduced automation
+- input_requirements: watchlist sources, identity confidence thresholds, legal policy constraints, coalition caveats
+- output_schema: federation policy matrix, confidence ladder, deconfliction action tracker
+- protocol_profile: NIEM + API/JSON + STIX/TAXII
+- validation_gates: false-match threshold pass, privacy policy compliance check, authority release gate
+
+### packet_id: DPL-PORT-DESALINATION-BRINE-OUTPUT-ASSURANCE-001
+- domain: strategic water port desalination brine compliance and output assurance
+- objective: sustain mission-critical water output while preserving environmental and host-nation compliance
+- primary_tools: desal output telemetry board, brine discharge compliance monitor, mission water-priority planner
+- alternate_tools: manual output tracking board and compliance exception log
+- degraded_mode: life-safety and command-essential water loads only with constrained production cadence
+- input_requirements: desal plant status, water demand priorities, discharge limits, maintenance constraints
+- output_schema: output assurance dashboard, compliance risk board, emergency continuity branch plan
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: output reliability threshold, compliance pass, command and legal concurrence
+
+### packet_id: DPL-ADDITIVE-FEEDSTOCK-RECYCLING-CERTIFICATION-001
+- domain: joint battlefield additive feedstock recycling and certification
+- objective: recycle and certify additive feedstock safely to sustain expeditionary manufacturing under denied resupply
+- primary_tools: feedstock recovery analytics, blend-certification planner, additive quality release board
+- alternate_tools: manual blend worksheet and part safety adjudication board
+- degraded_mode: non-flight-critical and non-safety-critical parts only pending full certification
+- input_requirements: feedstock inventory state, contamination indicators, blend recipes, part criticality classes
+- output_schema: recycling and blend plan, certification confidence ladder, production-risk timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: feedstock provenance check, certification confidence floor, release authority approval
+
+### packet_id: DPL-ARCTIC-SAR-SATCOM-DEGRADED-001
+- domain: joint Arctic SAR satellite-degraded coordination
+- objective: synchronize rescue operations when SATCOM and PNT degrade in high-latitude environments
+- primary_tools: polar comms status board, SAR incident fusion map, rescue asset allocator
+- alternate_tools: manual distress log and HF voice coordination worksheet
+- degraded_mode: life-saving extraction priorities only with widened route confidence bounds
+- input_requirements: distress reports, weather and ice risk, asset availability, comm/nav status
+- output_schema: rescue corridor matrix, fallback comm/nav ladder, extraction priority board
+- protocol_profile: USMTF + API/JSON + CAP
+- validation_gates: distress verification pass, route risk threshold, authority release approval
+
+### packet_id: DPL-COALITION-HOSPITAL-CYBER-EVAC-001
+- domain: coalition hospital cyber evacuation network
+- objective: maintain safe patient movement when hospital IT systems degrade due to cyber disruption
+- primary_tools: hospital cyber status dashboard, patient movement broker, bed capacity exchange
+- alternate_tools: manual transfer board and paper continuity checklist
+- degraded_mode: critical-care transfers only with manual confirmation loops
+- input_requirements: hospital outage state, patient acuity, transport lanes, legal sharing constraints
+- output_schema: medevac reroute matrix, care continuity branch plan, transfer risk board
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: clinical handoff completeness, cyber risk containment pass, command/medical concurrence
+
+### packet_id: DPL-MUNITIONS-PRECURSOR-DIVERSION-001
+- domain: strategic munitions precursor chemical diversion detection
+- objective: detect and contain precursor diversion or contamination before mission-impacting failures occur
+- primary_tools: precursor inventory integrity monitor, contamination assay queue, supplier risk graph
+- alternate_tools: manual custody ledger and supplier adjudication worksheet
+- degraded_mode: mission-critical production lines only with tightened quality gates
+- input_requirements: lot-level inventory state, assay signals, supplier reliability, demand priorities
+- output_schema: diversion risk board, hold-point ladder, replacement sourcing branch plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: custody integrity threshold, contamination confidence pass, release authority gate
+
+### packet_id: DPL-PORTABLE-BRIDGE-DRONE-LOAD-001
+- domain: tactical portable bridge drone load verification
+- objective: validate portable bridge span integrity and crossing safety under contested reconnaissance constraints
+- primary_tools: bridge geometry assessor, drone structural imaging board, route load classifier
+- alternate_tools: manual engineer span checklist and load estimate worksheet
+- degraded_mode: light vehicle crossings only with expanded safety margins
+- input_requirements: site imagery, span geometry, load demands, threat and timing constraints
+- output_schema: bridge feasibility matrix, load class recommendation, crossing sequence timeline
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: structural confidence floor, engineer concurrence, command release gate
+
+### packet_id: DPL-UNDERSEA-GLIDER-BARRIER-001
+- domain: joint undersea glider barrier and chokepoint surveillance
+- objective: sustain barrier surveillance and rapid cueing across maritime chokepoints with contested ISR
+- primary_tools: glider mission scheduler, acoustic anomaly correlator, chokepoint alert board
+- alternate_tools: manual barrier patrol board and contact-confidence worksheet
+- degraded_mode: high-priority chokepoints only with reduced revisit frequency
+- input_requirements: glider status, acoustic events, chokepoint criticality, recharge availability
+- output_schema: barrier placement plan, sortie and recharge ladder, escalation trigger map
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: barrier coverage threshold, cueing confidence pass, authority release approval
 
 ### packet_id: DPL-CIVIL-ALERT-AUTHENTICITY-001
-- domain: civil warning authentication and rumor control
-- objective: verify alert legitimacy and suppress adversary narrative manipulation
-- primary_tools: warning authenticity validator, media forensics stack, civic trust telemetry
-- alternate_tools: manual source verification matrix and delayed public advisory loop
-- degraded_mode: high-confidence-source-only alert posture
-- input_requirements: incoming alerts, signature metadata, rumor indicators, affected regions
-- output_schema: authenticity verdict table, rumor disruption actions, confidence bulletin
-- protocol_profile: EDXL-DE/CAP + NIMS/ICS + USMTF + API/JSON
-- validation_gates: signature verification pass, source corroboration, public risk threshold check
+- domain: theater disinformation civil alert authenticity
+- objective: authenticate public warning messages and suppress false narratives that degrade protective action compliance
+- primary_tools: alert signature verifier, narrative anomaly detector, correction tracker
+- alternate_tools: manual source attestation worksheet and local authority callback log
+- degraded_mode: trusted-source alerts only with mandatory human confirmation
+- input_requirements: alert payloads, source signatures, narrative telemetry, civil authority roster
+- output_schema: authenticity confidence board, false-alert containment plan, corrective messaging timeline
+- protocol_profile: CAP + NIMS/ICS + API/JSON
+- validation_gates: signature verification pass, source attestation threshold, release authority confirmation
 
-### packet_id: DPL-BATTLEFIELD-IDENTITY-CREDENTIAL-RECOVERY-001
-- domain: battlefield identity and credential recovery
-- objective: re-establish trusted access after credential compromise and replay attempts
-- primary_tools: credential lifecycle manager, revocation broker, access anomaly analytics
-- alternate_tools: manual revocation board with dual-control reissue workflow
-- degraded_mode: mission-essential identity allowlist only
-- input_requirements: compromised credential set, access logs, unit role mappings, mission critical systems
-- output_schema: revocation/reissue sequence, trust re-establishment matrix, access risk board
-- protocol_profile: USMTF + API/JSON + STIX/TAXII
-- validation_gates: identity proofing pass, dual-control approval, replay suppression confirmation
-
-### packet_id: DPL-THEATER-FIBER-BACKBONE-TRAFFIC-TRIAGE-001
-- domain: theater backbone outage management
-- objective: prioritize mission-critical traffic and sequence fiber restoration under attack
-- primary_tools: backbone telemetry, traffic orchestrator, restoration planning services
-- alternate_tools: manual traffic-class triage board and static reroute map
-- degraded_mode: command-and-medical traffic only with timed updates
-- input_requirements: outage topology, traffic classes, mission priorities, repair asset availability
-- output_schema: traffic triage matrix, reroute plan, restoration sequence board
-- protocol_profile: USMTF + STIX/TAXII + API/JSON
-- validation_gates: mission-priority assignment check, reroute viability pass, repair timeline confidence
-
-### packet_id: DPL-RESERVE-MOBILIZATION-TRAINING-SURGE-001
-- domain: reserve mobilization and training surge
-- objective: synchronize reserve call-up, training throughput, and readiness confidence under compressed timelines
-- primary_tools: mobilization readiness systems, training scheduler, instructor/capacity analytics
-- alternate_tools: manual throughput board with unit readiness worksheet
-- degraded_mode: priority-unit-only surge with conservative readiness assumptions
-- input_requirements: mobilization targets, training seat capacity, instructor availability, readiness standards
-- output_schema: surge timeline, throughput allocation matrix, readiness risk ladder
-- protocol_profile: USMTF + API/JSON + NATO APP-11/ADatP-3 aligned
-- validation_gates: throughput feasibility check, instructor sufficiency gate, readiness confidence threshold
-
-## Expansion Packets (2026-03-11, Expansion B)
-
-### packet_id: DPL-CISLUNAR-RDV-DEORBIT-001
-- domain: cislunar logistics rendezvous and deorbit safety
-- objective: synchronize rendezvous windows and deorbit decisions under conjunction and timing uncertainty
-- primary_tools: SDA event broker, conjunction/deorbit risk engine, timing integrity monitor
-- alternate_tools: manual orbital timeline board and conservative deorbit hold worksheet
-- degraded_mode: mission-critical rendezvous and deorbit advisories only with reduced confidence
-- input_requirements: orbital states, planned rendezvous windows, conjunction alerts, timing confidence
-- output_schema: rendezvous safety matrix, deorbit go/no-go gates, continuity branch triggers
-- protocol_profile: CCSDS + API/JSON + USMTF
-- validation_gates: conjunction risk threshold, timing integrity pass, command authority check
-
-### packet_id: DPL-SOF-LPD-COMMS-001
-- domain: SOF low-probability comms discipline
-- objective: reduce comms detectability while preserving mission-essential command links
-- primary_tools: waveform governance service, signature analytics, comms posture board
-- alternate_tools: manual emission-control worksheet and scheduled burst table
-- degraded_mode: mission-essential comm windows with strict EMCON posture
-- input_requirements: waveform inventory, threat emitters, mission phases, authority matrix
-- output_schema: comms discipline ladder, exposure risk score, branch triggers
-- protocol_profile: VMF + CoT + USMTF
-- validation_gates: exposure threshold pass, interoperability check, approval record
-
-### packet_id: DPL-HOMELAND-CABLE-INSURANCE-001
-- domain: homeland undersea cable insurance and restoration
-- objective: prioritize restoration while preserving strategic continuity and insurance traceability
-- primary_tools: cable telemetry fusion, restoration planner, continuity insurance model
-- alternate_tools: outage spreadsheet control with manual restoration board
-- degraded_mode: critical-node restoration advisory with delayed verification
-- input_requirements: cable outage segments, critical mission dependencies, restoration assets, insurance constraints
-- output_schema: restoration priority queue, continuity impact matrix, insurance risk note
-- protocol_profile: AIS/NMEA + OGC + USMTF
-- validation_gates: outage confidence floor, dependency verification, legal/insurance review
-
-### packet_id: DPL-CLOUD-DENIED-FABRIC-HEAL-001
-- domain: coalition cloud-denied data-fabric healing
-- objective: restore trusted data exchange under partitioned cloud conditions
-- primary_tools: replication orchestrator, schema validator, trust-policy engine
-- alternate_tools: manual data reconciliation board and delayed schema checks
-- degraded_mode: mission-essential data channels only with timestamped confidence tags
-- input_requirements: replication topology, schema versions, trust policy rules, link status
-- output_schema: healing runbook, trust scorecard, schema remediation queue
-- protocol_profile: API/JSON + USMTF + signed provenance manifests
-- validation_gates: replication integrity pass, schema drift check, authority validation
-
-### packet_id: DPL-TRANSFORMER-CONVOY-PROTECTION-001
-- domain: strategic transformer heavy-lift convoy protection
-- objective: protect heavy-lift transformer convoys that drive grid reconstitution
-- primary_tools: heavy-lift route optimizer, convoy security scheduler, grid dependency mapper
-- alternate_tools: manual route cell and convoy risk worksheet
-- degraded_mode: essential convoy movement only with conservative threat assumptions
-- input_requirements: convoy routes, threat overlays, transformer criticality, escort capacity
-- output_schema: convoy protection matrix, reroute branches, restoration dependency impacts
-- protocol_profile: USMTF + VMF + OGC
-- validation_gates: survivability threshold pass, route feasibility check, command approval
-
-### packet_id: DPL-URBAN-BRIDGE-COLLAPSE-CASEVAC-001
-- domain: urban bridge collapse casualty routing
-- objective: route casualties and essential traffic after major bridge failure under conflict pressure
-- primary_tools: casualty regulator board, transport reroute engine, civil support dashboard
-- alternate_tools: manual casualty queue and emergency bypass worksheet
-- degraded_mode: priority casualty movement only
-- input_requirements: bridge outage geometry, casualty loads, hospital capacities, bypass routes
-- output_schema: casualty routing matrix, traffic bypass plan, throughput risk timeline
-- protocol_profile: HL7/FHIR + NIMS/ICS + USMTF
-- validation_gates: medical authority check, route safety pass, hospital acknowledgment
-
-### packet_id: DPL-PORTABLE-RADAR-EMISSION-GOV-001
-- domain: portable radar emission governance for C-UAS
-- objective: optimize radar utility while minimizing detection and fratricide risk
-- primary_tools: radar duty-cycle manager, spectrum conflict checker, fratricide-risk estimator
-- alternate_tools: manual radar schedule board and RF conflict checklist
-- degraded_mode: short-window radar activation with strict approval gates
-- input_requirements: radar positions, threat UAV sectors, friendly emitters, mission priorities
-- output_schema: emission schedule, deconfliction actions, detection-risk mitigation steps
-- protocol_profile: Link 16 J-series + VMF + USMTF
-- validation_gates: spectrum conflict pass, fratricide check, authority verification
-
-### packet_id: DPL-WEATHER-RADAR-SPOOF-ATTRIB-001
-- domain: contested weather radar spoofing attribution
-- objective: attribute spoofing attempts and preserve trusted weather products for mission planning
-- primary_tools: weather integrity validator, EW anomaly analytics, mission weather confidence board
-- alternate_tools: manual weather-source comparison and confidence scoring worksheet
-- degraded_mode: conservative weather warning posture with reduced source set
-- input_requirements: weather feeds, anomaly indicators, emitter observations, mission weather thresholds
-- output_schema: spoof attribution brief, trusted feed ladder, weather assurance actions
-- protocol_profile: API/JSON + STIX/TAXII + USMTF
-- validation_gates: source corroboration pass, attribution confidence threshold, command dissemination check
-
-### packet_id: DPL-MEDICAL-RECIPROCITY-SURGE-001
-- domain: coalition reserve medical license reciprocity and surge
-- objective: accelerate cross-coalition credentialing to expand medical surge capacity
-- primary_tools: credential federation broker, privileging validator, surge staffing tracker
-- alternate_tools: manual credential board and staffing reconciliation tracker
-- degraded_mode: mission-critical role reciprocity only
-- input_requirements: provider credentials, coalition role mappings, legal constraints, staffing demand
-- output_schema: reciprocity matrix, staffing surge timeline, care-capacity risk branches
-- protocol_profile: HL7/FHIR + NATO APP-11/ADatP-3 + USMTF
-- validation_gates: credential verification pass, legal reciprocity check, care-safety threshold
-
-### packet_id: DPL-WATER-CONTAMINATION-FORECAST-001
-- domain: expeditionary water contamination forecasting
-- objective: forecast water-source contamination and recommend force-health protective actions
-- primary_tools: water telemetry analytics, contamination forecast models, force-health surveillance panel
-- alternate_tools: manual sampling ledger and contamination trend worksheet
-- degraded_mode: high-confidence source advisories only
-- input_requirements: water source telemetry, contaminant assays, weather/hydrology context, force-health indicators
-- output_schema: contamination risk ladder, source protection plan, health trigger matrix
-- protocol_profile: API/JSON + HL7/FHIR + USMTF
-- validation_gates: sample-chain integrity check, contamination confidence threshold, command approval for source shutdown
-
-## Packet Addendum VIII (2026-03-11, Expansion Wave XV Tool Invocation Packets)
-
-### packet_id: DPL-SEABED-CABLE-ATTRIBUTION-REPAIR-GUARD-001
-- domain: joint autonomous seabed cable cut attribution and repair guard
-- objective: attribute cable-cut causes and synchronize guarded restoration under maritime/cyber threat.
-- primary_tools: undersea telemetry fusion board, maritime COP correlation engine, cyber intrusion attribution service
-- alternate_tools: manual incident triage board and periodic coalition repair-escort synchronization calls
-- degraded_mode: strategic-essential cable routes only with manual command release checks
-- input_requirements: subsea fault telemetry, maritime track history, cyber alerts, repair asset status, authority constraints
-- output_schema: attribution confidence ledger, guarded repair matrix, continuity task queue
-- protocol_profile: USMTF + NMEA/AIS + STIX/TAXII + API/JSON
-- validation_gates: attribution confidence threshold pass, legal-policy review, command approval logged
+### packet_id: DPL-SOLAR-MICROGRID-SIGNATURE-CONTROL-001
+- domain: expeditionary solar microgrid camouflage and signature control
+- objective: preserve mission power while minimizing visual, thermal, and RF detectability
+- primary_tools: microgrid signature modeler, camouflage placement planner, mission load allocator
+- alternate_tools: manual concealment checklist and power rationing worksheet
+- degraded_mode: command and life-safety loads only with conservative signature controls
+- input_requirements: site topology, load priorities, storage state, adversary sensor threat profile
+- output_schema: signature-aware placement matrix, survivability ladder, concealment sustainment plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: signature risk threshold, load continuity floor, command approval gate
 
 ### packet_id: DPL-ADDITIVE-PROPELLANT-QA-001
-- domain: theater contested additive propellant quality assurance
-- objective: maintain munitions propellant quality confidence and safe release in disrupted production chains.
-- primary_tools: energetics QA analytics, additive production telemetry, contamination forensics workbench
-- alternate_tools: manual lab release board and scheduled contamination adjudication huddles
-- degraded_mode: critical munition lines only with dual engineer/command release authorization
-- input_requirements: batch telemetry, lab confidence scores, contamination indicators, demand priorities, safety thresholds
-- output_schema: quality confidence ledger, release branch ladder, remediation actions
-- protocol_profile: USMTF + STIX/TAXII + EDI X12 + API/JSON
-- validation_gates: lab confidence floor pass, contamination exception adjudication, authority concurrence
+- domain: joint contested additive propellant quality assurance
+- objective: assure safe release of additive-manufactured propellant components under denied logistics
+- primary_tools: propellant batch analyzer, process control board, release gate tracker
+- alternate_tools: manual lab adjudication worksheet and safety hold-point board
+- degraded_mode: non-critical energetics only pending full certification confidence
+- input_requirements: batch process records, contamination signals, part criticality classes, mission demand
+- output_schema: QA confidence ladder, release and hold matrix, production-risk timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: provenance pass, certification confidence floor, authority release approval
 
-### packet_id: DPL-TACTICAL-PQC-ROLLOVER-UNDER-FIRE-001
-- domain: tactical quantum-resistant key rollover under fire
-- objective: execute crypto rollover safely while preserving tactical command continuity and trust boundaries.
-- primary_tools: PQC lifecycle manager, tactical PKI posture board, disconnected key escrow synchronizer
-- alternate_tools: manual key-state board and timed trust-restoration decision loop
-- degraded_mode: mission-essential enclaves only with commander-approved manual trust gates
-- input_requirements: key-state telemetry, enclave mission criticality, link availability, compromise indicators, authority matrix
-- output_schema: rollover branch matrix, trust-restoration packet, continuity risk register
+### packet_id: DPL-FOOD-COLD-STORAGE-GRID-DENIAL-001
+- domain: strategic food cold-storage grid denial continuity
+- objective: sustain food readiness and reduce spoilage under prolonged power and fuel disruption
+- primary_tools: cold storage telemetry broker, spoilage risk predictor, distribution reprioritization board
+- alternate_tools: manual inventory quality checks and contingency routing worksheet
+- degraded_mode: mission-essential and life-support rations only with strict rotation controls
+- input_requirements: storage temperatures, inventory criticality, power and fuel status, route access
+- output_schema: continuity map, spoilage-risk ladder, sustainment reroute matrix
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: quality threshold pass, continuity floor, command/sustainment concurrence
+
+### packet_id: DPL-RAILGUN-POWER-BUDGET-001
+- domain: theater electromagnetic railgun power budgeting
+- objective: balance charging cycles, safety margins, and mission shot priorities under constrained energy supply
+- primary_tools: pulse-power planner, charging cycle scheduler, mission shot-priority board
+- alternate_tools: manual power allocation sheet and thermal safety checklist
+- degraded_mode: protective and deterrent readiness posture only with reduced charging cadence
+- input_requirements: power availability, capacitor state, thermal limits, mission priorities
+- output_schema: power budget matrix, charging and shot window ladder, resilience branch plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: thermal safety pass, energy margin threshold, command authority release
+
+### packet_id: DPL-CIVIL-AIR-GPS-SPOOF-DECONFLICTION-001
+- domain: joint civil air GPS spoofing deconfliction
+- objective: preserve safe and prioritized civil-military air movement under navigation spoofing pressure
+- primary_tools: navigation integrity monitor, civil-military corridor manager, reroute decision board
+- alternate_tools: manual ATC-military coordination log and emergency route worksheet
+- degraded_mode: high-priority flights only with fixed readback confirmation loops
+- input_requirements: spoofing indicators, corridor status, flight priorities, alternate nav aid state
+- output_schema: spoofing impact matrix, alternate corridor ladder, deconfliction trigger list
+- protocol_profile: USMTF + AIXM/FIXM + API/JSON
+- validation_gates: spoofing confidence threshold, ATC-military concurrence, authority release gate
+
+### packet_id: DPL-AMMO-PLANT-CYBER-PHYSICAL-SAFETY-001
+- domain: theater ammunition plant cyber-physical safety
+- objective: maintain safe munitions output by sequencing cyber containment and plant safety hold points
+- primary_tools: OT intrusion monitor, industrial safety gate tracker, blast-zone process board
+- alternate_tools: manual process-state checklist and contamination adjudication worksheet
+- degraded_mode: mission-essential lines only with tightened manual safety interlocks
+- input_requirements: OT event telemetry, process-state data, output priorities, safety constraints
+- output_schema: safety hold matrix, output restoration sequence, risk escalation board
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: process integrity pass, safety interlock check, command-authority approval
+
+### packet_id: DPL-LITTORAL-FUEL-BLADDER-SECURITY-001
+- domain: coalition littoral fuel bladder security and distribution
+- objective: harden fuel bladder sites and preserve coalition distribution continuity under strike/sabotage risk
+- primary_tools: fuel posture dashboard, littoral movement planner, fuel quality telemetry board
+- alternate_tools: manual fuel custody log and convoy risk worksheet
+- degraded_mode: command-essential fuel distribution only with conservative transfer cadence
+- input_requirements: storage posture, threat indicators, fuel demand priorities, route availability
+- output_schema: security posture map, redistribution timeline, contamination response triggers
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: quality threshold pass, custody integrity check, coalition release approval
+
+### packet_id: DPL-DRONE-JAMMER-EVAC-ROUTE-BUBBLE-001
+- domain: tactical drone-jammer evacuation route bubble
+- objective: establish jammer-protected evacuation routes while controlling RF fratricide and movement risk
+- primary_tools: jammer coverage planner, route-threat fusion map, movement sequencer
+- alternate_tools: manual route hazard board and RF control worksheet
+- degraded_mode: critical casualty and civilian lanes only with narrow time windows
+- input_requirements: jammer inventory, route geometry, threat UAS patterns, evac priorities
+- output_schema: jammer bubble plan, route viability matrix, branch triggers
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: RF fratricide check, route risk threshold, command approval gate
+
+### packet_id: DPL-TELEMETRY-SUPPLY-CHAIN-ANTI-TAMPER-001
+- domain: strategic telemetry supply-chain anti-tamper
+- objective: detect tampering and restore trusted telemetry component pipelines
+- primary_tools: provenance ledger, firmware attestation verifier, telemetry trust analytics board
+- alternate_tools: manual component trace worksheet and supplier anomaly log
+- degraded_mode: mission-critical telemetry channels only with expanded human review
+- input_requirements: component genealogy, attestation signals, supplier reliability, mission criticality map
+- output_schema: anti-tamper confidence ladder, exception board, trust restoration timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: attestation confidence floor, supplier verification pass, authority release
+
+### packet_id: DPL-BATTLEFIELD-DIALECT-TRANSLATION-RISK-001
+- domain: joint battlefield dialect translation risk
+- objective: reduce mission and civilian harm from mistranslation in dialect-diverse operations
+- primary_tools: translation confidence service, interpreter tasking board, phrase-risk adjudication ledger
+- alternate_tools: manual linguist deconfliction board and local-source confirmation worksheet
+- degraded_mode: essential command phrases only with mandatory dual-interpreter check
+- input_requirements: communication objectives, dialect map, interpreter availability, mission risk context
+- output_schema: dialect confidence heatmap, mistranslation mitigation matrix, escalation triggers
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: translation confidence threshold, partner concurrence check, authority release
+
+### packet_id: DPL-RESERVIST-FAMILY-RETENTION-READINESS-001
+- domain: theater reservist family readiness and retention
+- objective: stabilize reserve force availability by managing family stress and retention risk drivers
+- primary_tools: readiness stress telemetry board, family support tracker, retention risk model
+- alternate_tools: manual support demand tracker and unit attrition worksheet
+- degraded_mode: high-risk units only with weekly manual risk adjudication
+- input_requirements: readiness trends, support workload, deployment tempo, retention indicators
+- output_schema: stress-risk ladder, support allocation matrix, retention branch plan
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: privacy compliance pass, readiness threshold check, command concurrence
+
+### packet_id: DPL-POW-CAMP-OUTBREAK-RIOT-CONTAINMENT-001
+- domain: joint POW camp outbreak and riot containment
+- objective: synchronize outbreak control and riot response while maintaining lawful custody continuity
+- primary_tools: custody continuity dashboard, outbreak spread model, facility incident command board
+- alternate_tools: manual headcount ledger and containment checklist
+- degraded_mode: life-safety and custody-critical actions only with continuous command review
+- input_requirements: detainee census, outbreak indicators, facility force posture, medical capacity
+- output_schema: containment timeline, escalation matrix, custody assurance board
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: medical containment threshold, custody integrity pass, legal/command approval
+
+### packet_id: DPL-ADDITIVE-DRONE-AIRWORTHINESS-INSPECTION-001
+- domain: expeditionary additive drone airworthiness inspection
+- objective: verify safety and mission suitability of additively manufactured drone components before release
+- primary_tools: additive QA release board, non-destructive inspection telemetry, flight risk acceptance tracker
+- alternate_tools: manual inspection checklist and sortie safety worksheet
+- degraded_mode: non-critical payload sorties only pending full certification confidence
+- input_requirements: part batch records, inspection telemetry, mission profile, risk tolerance
+- output_schema: release ladder, inspection packet, sortie risk board
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: inspection confidence floor, release authority gate, airworthiness concurrence
+
+### packet_id: DPL-SATCOM-GROUND-BLACKOUT-RESTORATION-001
+- domain: homeland SATCOM ground station blackout restoration
+- objective: restore SATCOM ground station capability and continuity-of-control during blackout or sabotage events
+- primary_tools: outage status board, power and telemetry reconstitution planner, comm failover manager
+- alternate_tools: manual restoration timeline board and mission-priority checklist
+- degraded_mode: strategic warning and command-essential links only with delayed synchronization
+- input_requirements: outage telemetry, power status, link priorities, restoration authorities
+- output_schema: recovery matrix, failover ladder, authority checklist
+- protocol_profile: USMTF + CCSDS + API/JSON
+- validation_gates: timing integrity pass, comm restoration threshold, authority release confirmation
+
+### packet_id: DPL-AUTONOMOUS-MINESWEEPER-RETASK-001
+- domain: joint maritime autonomous minesweeper retasking
+- objective: retask autonomous mine countermeasure systems as threat and lane priorities shift
+- primary_tools: autonomous mine-countermeasure task board, lane threat fusion map, sortie endurance planner
+- alternate_tools: manual lane-priority board and patrol retask worksheet
+- degraded_mode: strategic and life-safety lanes only with widened confidence thresholds
+- input_requirements: lane priorities, contact confidence, asset health, mission timeline constraints
+- output_schema: retask matrix, safe-lane clearance ladder, escalation trigger board
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: contact confidence threshold, lane criticality check, authority release gate
+
+### packet_id: DPL-LITTORAL-MCM-PRIORITY-LANE-001
+- domain: coalition littoral mine-countermeasure priority lanes
+- objective: prioritize coalition lane clearance and sustainment corridors under constrained MCM capacity
+- primary_tools: lane criticality ranker, coalition route utilization board, minefield uncertainty tracker
+- alternate_tools: manual logistics lane worksheet and coalition planner board
+- degraded_mode: command-essential lanes only with daily reprioritization
+- input_requirements: coalition route demand, mine threat estimates, escort availability, timing windows
+- output_schema: priority lane board, risk-adjusted crossing windows, tasking sequence card
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: coalition concurrence, risk threshold pass, authority confirmation
+
+### packet_id: DPL-UNDERSEA-FIBER-TAP-ATTRIBUTION-001
+- domain: theater undersea fiber tap attribution
+- objective: identify and attribute hostile subsea interception activity with legal and operational traceability
+- primary_tools: cable anomaly correlator, vessel behavior board, attribution confidence engine
+- alternate_tools: manual anomaly timeline and legal evidence worksheet
+- degraded_mode: high-impact segments only with conservative attribution confidence labels
+- input_requirements: cable telemetry anomalies, vessel tracks, maintenance windows, legal evidentiary constraints
+- output_schema: attribution confidence ladder, suspected segment map, escalation recommendation board
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: anomaly confidence floor, legal sufficiency check, command approval gate
+
+### packet_id: DPL-SUBSEA-CABLE-SEGMENT-ISOLATION-001
+- domain: subsea cable segment isolation and mission reroute
+- objective: isolate compromised cable segments and preserve mission-network continuity
+- primary_tools: cable segment switch planner, mission dependency graph, reroute performance monitor
+- alternate_tools: manual circuit patch worksheet and continuity board
+- degraded_mode: mission-critical command links only with reduced bandwidth
+- input_requirements: segment status, dependency priorities, reroute path capacity, timing constraints
+- output_schema: isolation sequence, continuity branch plan, restoration timeline
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: continuity threshold pass, reroute integrity check, authority release confirmation
+
+### packet_id: DPL-BIOFORENSICS-RAPID-ATTRIBUTION-001
+- domain: strategic bioforensics rapid attribution
+- objective: accelerate biologic incident attribution for commander decision support and response alignment
+- primary_tools: genomic marker triage board, sample provenance validator, attribution fusion engine
+- alternate_tools: manual lab adjudication board and epidemiology worksheet
+- degraded_mode: highest-confidence source hypotheses only with expanded uncertainty annotations
+- input_requirements: sample metadata, genomic analysis outputs, incident timeline, intelligence context
+- output_schema: attribution confidence matrix, source hypothesis ladder, decision timeline
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: sample integrity pass, multi-source corroboration threshold, authority release gate
+
+### packet_id: DPL-LAB-CHAIN-CUSTODY-CONTINUITY-001
+- domain: contested lab chain-of-custody continuity
+- objective: preserve evidentiary integrity for biologic samples during contested transport and network disruption
+- primary_tools: custody transfer ledger, sample integrity board, handoff scheduler
+- alternate_tools: signed paper custody packet and manual seal-check log
+- degraded_mode: mission-critical samples only with mandatory dual-witness handoff
+- input_requirements: custody records, transport status, sample condition data, handling authorities
+- output_schema: custody continuity report, transfer exception queue, remediation actions
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: seal integrity check, custody completeness threshold, legal concurrence
+
+### packet_id: DPL-URBAN-SUBSTATION-ISLANDING-001
+- domain: tactical urban substation hardening and islanding
+- objective: maintain mission-essential and life-safety power through controlled substation islanding
+- primary_tools: feeder resilience planner, substation islanding orchestrator, critical-load continuity board
+- alternate_tools: manual switching runbook and restoration worksheet
+- degraded_mode: command-and-life-safety circuits only with strict load shedding controls
+- input_requirements: feeder topology, load priorities, relay states, threat and damage indicators
+- output_schema: islanding sequence matrix, sustainment ladder, restoration branch map
+- protocol_profile: USMTF + API/JSON + IEC CIM
+- validation_gates: relay integrity check, continuity floor, authority approval gate
+
+### packet_id: DPL-GRID-FEEDER-PRIORITY-SHED-001
+- domain: mission-priority feeder shedding and restoration
+- objective: sequence feeder shedding and restoration to preserve military-critical functions with minimal civil harm
+- primary_tools: feeder shed policy board, load criticality index, restoration tracker
+- alternate_tools: manual dispatcher ledger and priority card set
+- degraded_mode: predefined priority tiers only with manual updates each operational period
+- input_requirements: feeder load data, mission criticality tiers, restoration resource status, civil impact estimates
+- output_schema: feeder shed plan, restoration timeline, impact balance summary
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: critical-load preservation threshold, civil impact gate, command concurrence
+
+### packet_id: DPL-AUSTERE-RUNWAY-FOD-DRONE-DEBRIS-001
+- domain: coalition austere runway FOD and drone debris clearance
+- objective: clear runways and restore safe sortie operations after drone strikes or debris contamination
+- primary_tools: debris detection board, sweep sequencing planner, sortie risk gate tracker
+- alternate_tools: manual FOD walkdown checklist and launch safety worksheet
+- degraded_mode: emergency-only launch profile with restrictive payload and weather constraints
+- input_requirements: runway condition imagery, debris characterization, sortie demand, engineering resource state
+- output_schema: clearance timeline, runway confidence board, launch decision matrix
+- protocol_profile: USMTF + API/JSON + AIXM
+- validation_gates: debris clearance threshold, surface safety check, release authority approval
+
+### packet_id: DPL-EXPEDITIONARY-RUNWAY-RAPID-CERTIFICATION-001
+- domain: expeditionary runway rapid recertification
+- objective: recertify runway operating status quickly with auditable engineering evidence
+- primary_tools: runway condition assessor, bearing strength estimator, certification checklist board
+- alternate_tools: manual engineering release card and field test worksheet
+- degraded_mode: day/VFR mission windows only until full certification confidence restored
+- input_requirements: pavement and surface metrics, damage assessments, aircraft class demands, authority constraints
+- output_schema: recertification packet, operating limits matrix, risk acceptance ladder
+- protocol_profile: USMTF + AIXM + API/JSON
+- validation_gates: engineering confidence floor, safety compliance pass, authority release gate
+
+### packet_id: DPL-DENIED-WEATHER-RADAR-GAP-FUSION-001
+- domain: denied weather radar gap fusion
+- objective: produce reliable weather risk guidance when radar inputs are degraded or denied
+- primary_tools: alternate sensor ingest broker, nowcast confidence fusion board, hazard trigger monitor
+- alternate_tools: manual observer board and forecast cross-check worksheet
+- degraded_mode: high-confidence severe weather hazards only with conservative margins
+- input_requirements: satellite and surface sensors, radar outage map, mission schedule, hazard thresholds
+- output_schema: radar-gap hazard map, confidence timeline, branch trigger matrix
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: source health threshold, forecast confidence gate, command concurrence
+
+### packet_id: DPL-MULTI-SENSOR-NOWCAST-FALLBACK-001
+- domain: multi-sensor nowcast fallback
+- objective: sustain mission-relevant short-term weather predictions under sensor attrition
+- primary_tools: satellite and surface fusion board, local effects modeler, confidence scorer
+- alternate_tools: climatology baseline sheet and manual nowcast board
+- degraded_mode: mission-critical windows only with expanded uncertainty bands
+- input_requirements: available sensor feeds, terrain context, mission timing, acceptable risk thresholds
+- output_schema: fallback nowcast packet, confidence degradation ladder, decision card
+- protocol_profile: USMTF + WXXM + API/JSON
+- validation_gates: fusion consistency check, confidence threshold pass, release authority confirmation
+
+### packet_id: DPL-PRISONER-TRANSFER-EVIDENCE-CHAIN-001
+- domain: theater contested prisoner transfer and evidence chain
+- objective: synchronize lawful prisoner transfers while preserving evidence integrity under contested movement constraints
+- primary_tools: transfer coordination board, evidence tracker, legal handoff compliance monitor
+- alternate_tools: signed transfer manifest and manual evidence custody log
+- degraded_mode: high-priority transfers only with enhanced legal/command oversight
+- input_requirements: detainee status, transfer routes, evidence inventory, legal constraints
+- output_schema: transfer sequence matrix, evidence continuity packet, legal risk board
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: custody continuity pass, legal compliance check, authority approval
+
+### packet_id: DPL-CUSTODY-HANDSHAKE-LEDGER-001
+- domain: verified custody handshake ledger
+- objective: record and validate each custody handoff with auditable acknowledgments
+- primary_tools: custody acknowledgment ledger, identity verification board, discrepancy detector
+- alternate_tools: secure voice readback log and manual witness ledger
+- degraded_mode: life-safety and legal-essential records only with immediate reconciliation requirement
+- input_requirements: handoff identities, timestamps, location and route data, witness records
+- output_schema: handshake chronology, discrepancy queue, custody assurance report
+- protocol_profile: USMTF + API/JSON + NIEM
+- validation_gates: identity verification threshold, acknowledgment completeness pass, legal concurrence
+
+### packet_id: DPL-COMPONENT-CANNIBALIZATION-READINESS-001
+- domain: joint high-value component cannibalization readiness
+- objective: optimize component cannibalization decisions while preserving near-term fleet readiness
+- primary_tools: readiness impact model, compatibility matrix, cannibalization approval board
+- alternate_tools: manual readiness tradeoff worksheet and maintenance board
+- degraded_mode: mission-essential platforms only with accelerated reconstitution planning
+- input_requirements: fleet readiness baseline, part inventory, compatibility rules, sortie and mission demand
+- output_schema: cannibalization decision matrix, readiness tradeoff ladder, reconstitution timeline
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: readiness floor pass, compatibility confidence check, authority gate
+
+### packet_id: DPL-CROSS-PLATFORM-PART-SUBSTITUTION-RISK-001
+- domain: cross-platform part substitution risk
+- objective: assess substitution risk and release conditions for non-standard component usage
+- primary_tools: substitution fit/function assessor, safety margin tracker, mission impact calculator
+- alternate_tools: manual engineering adjudication checklist and fallback part allocation board
+- degraded_mode: non-critical mission sets only with narrowed operating envelopes
+- input_requirements: part specifications, platform constraints, safety limits, mission criticality and timeline
+- output_schema: substitution risk board, release condition matrix, rollback and recovery plan
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: engineering conformity pass, safety threshold check, release authority approval
+
+### packet_id: DPL-CISLUNAR-SPACEPORT-001
+- domain: joint cislunar logistics and spaceport defense
+- objective: sustain mission-critical launch throughput and protect key spaceport nodes under contested conditions
+- primary_tools: spaceport timeline board, cislunar cargo flow planner, launch defense monitor
+- alternate_tools: manual launch board and mission-priority cargo worksheet
+- degraded_mode: strategic warning and mission-essential launch windows only with conservative risk gates
+- input_requirements: launch backlog, pad availability, threat indicators, cislunar cargo priority tiers
+- output_schema: launch-defense branch matrix, cargo reprioritization ladder, commander decision triggers
+- protocol_profile: USMTF + API/JSON + CCSDS
+- validation_gates: launch safety threshold pass, threat confidence gate, authority approval
+
+### packet_id: DPL-SPACE-LAUNCH-RESILIENCE-001
+- domain: strategic launch resilience and recovery
+- objective: re-sequence launch operations and recover cadence after infrastructure or cyber disruption
+- primary_tools: launch queue optimizer, pad readiness monitor, conflict adjudication service
+- alternate_tools: manual scheduler and engineering readiness worksheet
+- degraded_mode: limited launch profile with manual revalidation each operational period
+- input_requirements: launch demand queue, infrastructure status, weather/debris constraints, authority rules
+- output_schema: launch reconstitution timeline, pad utilization map, bounded risk options
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: engineering readiness pass, range safety gate, command concurrence
+
+### packet_id: DPL-EM-MED-TELEMETRY-001
+- domain: electromagnetic battlefield medicine telemetry continuity
+- objective: preserve casualty telemetry and med-reg synchronization during active EM disruption
+- primary_tools: casualty telemetry broker, med-reg sync board, interference confidence tracker
+- alternate_tools: manual patient movement board and delayed-sync triage ledger
+- degraded_mode: urgent and immediate category patients only with manual command review
+- input_requirements: patient triage states, telemetry feed health, interference indicators, treatment node capacity
+- output_schema: telemetry continuity matrix, transfer confidence board, degraded branch actions
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: patient identity integrity pass, med authority gate, transfer acknowledgment chain
+
+### packet_id: DPL-DENIED-CASEVAC-DATA-001
+- domain: denied casualty data synchronization
+- objective: reconcile disconnected casualty records and maintain coherent patient movement decisions
+- primary_tools: disconnected case registry reconciler, triage merge engine, transfer timestamp validator
+- alternate_tools: signed paper transfer cards and manual reconciliation board
+- degraded_mode: mission-critical casualty updates only with periodic reconciliation windows
+- input_requirements: disconnected record sets, transfer logs, bed status feeds, network availability windows
+- output_schema: reconciliation exception list, updated movement queue, confidence annotations
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: record completeness threshold, timestamp integrity pass, medical command concurrence
+
+### packet_id: DPL-ARCTIC-UNDERSEA-REPAIR-001
+- domain: coalition contested arctic undersea infrastructure repair
+- objective: localize undersea breaks and sequence coalition repairs while protecting mission traffic
+- primary_tools: subsea break localization engine, ice-route repair planner, protection scheduler
+- alternate_tools: manual vessel patrol board and cable outage worksheet
+- degraded_mode: command-essential links only with constrained route bandwidth
+- input_requirements: break indicators, vessel activity tracks, ice/weather constraints, mission dependency priorities
+- output_schema: repair priority board, risk corridor map, continuity branch ladder
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: localization confidence pass, coalition coordination gate, legal release check
+
+### packet_id: DPL-GPS-GROUND-RESTORE-001
+- domain: hardened military GPS ground segment restoration
+- objective: restore control-segment capability and timing confidence after coordinated disruption
+- primary_tools: outage board, key timing monitor, service restoration planner
+- alternate_tools: manual control segment checklist and fallback timing worksheet
+- degraded_mode: mission-essential timing services only with strict confidence thresholds
+- input_requirements: outage scope, timing drift metrics, cyber/kinetic damage indicators, mission impact priorities
+- output_schema: restoration timeline, service confidence ladder, mitigation action matrix
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: timing integrity threshold pass, security validation gate, release authority approval
+
+### packet_id: DPL-PNT-TIME-TRANSFER-001
+- domain: denied-environment PNT time-transfer assurance
+- objective: maintain trusted time transfer across distributed forces under GNSS degradation
+- primary_tools: time transfer orchestrator, spoof/jam confidence monitor, cross-check reference service
+- alternate_tools: secure manual sync procedure and atomic-clock drift worksheet
+- degraded_mode: critical nodes only with shortened validity windows
+- input_requirements: node timing tolerances, interference map, available references, mission timing dependencies
+- output_schema: timing assurance brief, spoofing risk ladder, failover sequence matrix
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: cross-source confidence pass, drift threshold check, command concurrence
+
+### packet_id: DPL-AMMO-ENERGETICS-SUB-001
+- domain: strategic expeditionary ammunition energetics substitution
+- objective: certify substitute energetics while preserving safety and mission effect requirements
+- primary_tools: substitution certifier, lot performance risk board, allocation scheduler
+- alternate_tools: manual lot worksheet and safety adjudication board
+- degraded_mode: high-priority munitions classes only with conservative operating envelopes
+- input_requirements: substitute chemistry profiles, lot test results, mission demand tiers, safety limits
+- output_schema: release condition matrix, lot risk board, mission allocation ladder
+- protocol_profile: USMTF + API/JSON + XML
+- validation_gates: safety envelope pass, lot confidence threshold, release authority gate
+
+### packet_id: DPL-FWD-WATER-SABOTAGE-001
+- domain: tactical forward water network sabotage attribution
+- objective: detect, attribute, and contain sabotage while sustaining potable supply continuity
+- primary_tools: pipeline anomaly correlator, water integrity monitor, attribution engine
+- alternate_tools: manual sample chain and patrol incident board
+- degraded_mode: life-safety water nodes only with emergency treatment controls
+- input_requirements: sensor anomalies, quality samples, infrastructure maps, incident timeline and access logs
+- output_schema: sabotage confidence ladder, continuity plan, remediation triggers
+- protocol_profile: USMTF + API/JSON + NIEM
+- validation_gates: sample integrity check, attribution confidence floor, command approval
+
+### packet_id: DPL-WATER-OUTPUT-ASSURANCE-001
+- domain: forward and port water output assurance
+- objective: maintain verified output and distribution confidence when water infrastructure is degraded
+- primary_tools: output assurance dashboard, quality trend monitor, distribution prioritization board
+- alternate_tools: manual output ledger and field quality worksheet
+- degraded_mode: command-essential and medical demand nodes only with reduced delivery cadence
+- input_requirements: production rates, quality indicators, storage levels, demand prioritization tiers
+- output_schema: output assurance summary, delivery priority queue, risk-trigger branches
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: quality compliance pass, output minimum threshold, authority concurrence
+
+### packet_id: DPL-DENIED-C2-TRUST-001
+- domain: denied-environment C2 agent trust calibration
+- objective: set, test, and enforce trust boundaries for AI-assisted C2 recommendations in degraded networks
+- primary_tools: authority policy engine, behavior confidence tracker, approval gate board
+- alternate_tools: manual decision authority matrix and secure command log
+- degraded_mode: advisory-only agent posture with mandatory human validation
+- input_requirements: mission authority tiers, agent behavior telemetry, communication latency profile, legal constraints
+- output_schema: trust profile, escalation triggers, constrained employment recommendations
+- protocol_profile: USMTF + API/JSON
+- validation_gates: authority mapping pass, confidence floor check, human approval requirement
+
+### packet_id: DPL-PHYSICAL-MESSAGE-ASSURANCE-001
+- domain: denied-network physical message assurance
+- objective: preserve command message integrity and acknowledgment continuity over physical courier and voice fallback paths
+- primary_tools: courier route planner, custody ledger, delayed-ack monitor
+- alternate_tools: manual chain-of-custody cards and secure voice readback logs
+- degraded_mode: mission-critical message classes only with immediate command confirmation
+- input_requirements: message priorities, courier routes, custody checkpoints, expected acknowledgment windows
+- output_schema: custody timeline, acknowledgment status board, fallback escalation actions
+- protocol_profile: USMTF + API/JSON + secure voice procedures
+- validation_gates: custody completeness pass, acknowledgment threshold check, command release approval
+
+### packet_id: DPL-RAIL-AD-CROSSING-001
+- domain: theater railway air-defense crossing prioritization
+- objective: synchronize rail crossing throughput with mobile air-defense coverage under active threat
+- primary_tools: crossing priority board, ADA allocation engine, corridor threat timeline service
+- alternate_tools: manual crossing worksheet and ADA posture board
+- degraded_mode: command-essential crossings only with restricted convoy windows
+- input_requirements: crossing list, ADA readiness, threat indicators, sustainment demand priorities
+- output_schema: crossing sequence matrix, ADA support plan, risk branch triggers
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: crossing criticality pass, ADA coverage threshold, authority concurrence
+
+### packet_id: DPL-RAIL-BRIDGE-RECOVERY-001
+- domain: theater rail bridge recovery and throughput restoration
+- objective: restore damaged rail bridge functionality while preserving protected movement corridors
+- primary_tools: engineering damage assessment tools, rail movement control board, route capacity analytics
+- alternate_tools: manual repair board and throughput estimate sheet
+- degraded_mode: limited throughput schedule with conservative load restrictions
+- input_requirements: bridge damage states, engineering resources, movement priorities, route alternatives
+- output_schema: repair sequence plan, throughput timeline, dependency matrix
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: engineering feasibility pass, route safety check, command approval
+
+### packet_id: DPL-SPECTRUM-LEGAL-ATTRIB-001
+- domain: coalition battlefield spectrum legal attribution
+- objective: produce legally defensible attribution for contested electromagnetic incidents and support calibrated response
+- primary_tools: spectrum incident correlator, evidence provenance ledger, coalition legal board
+- alternate_tools: manual incident chronology and legal evidence worksheet
+- degraded_mode: high-confidence incidents only with explicit uncertainty caveats
+- input_requirements: RF incident traces, sensor confidence scores, custody chain records, coalition policy constraints
+- output_schema: attribution confidence packet, legal sufficiency checklist, escalation recommendations
+- protocol_profile: USMTF + STIX/TAXII + NIEM
+- validation_gates: provenance integrity pass, legal sufficiency gate, command concurrence
+
+### packet_id: DPL-SPECTRUM-GOV-001
+- domain: coalition spectrum governance and interference adjudication
+- objective: coordinate spectrum conflict resolution and role-scoped emission controls across coalition nodes
+- primary_tools: spectrum governance board, emitter conflict tracker, adjudication timeline monitor
+- alternate_tools: manual allocation table and liaison adjudication log
+- degraded_mode: mission-critical emission classes only with daily manual updates
+- input_requirements: emitter assignments, conflict events, coalition caveats, mission priority ladders
+- output_schema: governance order, conflict resolution matrix, escalation queue
+- protocol_profile: USMTF + API/JSON + NATO APP-11/ADatP-3
+- validation_gates: coalition caveat pass, conflict resolution threshold, authority approval
+
+### packet_id: DPL-GRID-TRANSFORMER-ESCORT-001
+- domain: homeland defense grid transformer escort and installation
+- objective: secure strategic transformer movement and emplacement to restore protected critical loads
+- primary_tools: convoy protection planner, emplacement scheduler, restoration priority board
+- alternate_tools: manual convoy board and installation sequencing worksheet
+- degraded_mode: life-safety and command-essential loads only with restricted convoy tempo
+- input_requirements: transformer inventory, convoy routes, threat map, critical load priorities, install crew readiness
+- output_schema: escort order, installation timeline, protected-load restoration plan
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: route security threshold pass, installation safety gate, authority concurrence
+
+### packet_id: DPL-GRID-LOADSHED-SUPPORT-001
+- domain: military support to civil grid loadshedding
+- objective: align feeder shedding and restoration with mission priorities and civil protection constraints
+- primary_tools: load criticality index, feeder shed policy board, restoration tracker
+- alternate_tools: manual priority list and dispatcher ledger
+- degraded_mode: predefined feeder tiers only with periodic command review
+- input_requirements: feeder status, mission criticality map, civil impact estimates, restoration resources
+- output_schema: loadshed matrix, restoration branch ladder, impact summary
+- protocol_profile: NIMS/ICS + API/JSON + XML
+- validation_gates: critical load preservation pass, civil impact gate, command approval
+
+### packet_id: DPL-AERIAL-REFUEL-GPS-DENIED-001
+- domain: aerial refueling rendezvous under GNSS denial
+- objective: preserve tanker-receiver rendezvous timing and authentication under spoofing/jamming
+- primary_tools: rendezvous track planner, anti-spoof nav validator, tanker cycle monitor
+- alternate_tools: manual rendezvous timeline card with inertial/celestial checkpoints
+- degraded_mode: fixed rendezvous windows with voice plus acknowledgment chain
+- input_requirements: tanker and receiver tracks, timing windows, nav confidence, threat indicators
+- output_schema: rendezvous confidence score, abort triggers, branch timing options
+- protocol_profile: Link 16 J-series + VMF + USMTF + API/JSON
+- validation_gates: anti-spoof check pass, timing uncertainty bound, command approval
+
+### packet_id: DPL-EW-MISSION-DATA-REPROGRAM-001
+- domain: coalition EW mission-data rapid reprogramming
+- objective: reprogram and validate emitter/countermeasure mission data without coalition interoperability breakage
+- primary_tools: EW mission-data compiler, EOB manager, release governance board
+- alternate_tools: approved baseline library plus manual exception register
+- degraded_mode: baseline-only operation until urgent patch validation clears
+- input_requirements: emitter changes, mission data deltas, compatibility constraints, authority tags
+- output_schema: release decision packet, rollback branch, interoperability risk score
+- protocol_profile: USMTF + STIX/TAXII + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: regression pass, coalition schema check, human release authority
+
+### packet_id: DPL-URBAN-SUBSTATION-ISLANDING-DEFENSE-001
+- domain: urban substation cyber-physical islanding defense
+- objective: preserve mission-essential power islands while containing urban grid cascade effects
+- primary_tools: ICS telemetry fusion, relay-state controller, critical-load priority planner
+- alternate_tools: manual switchyard control board and utility status checks
+- degraded_mode: mission-critical feeder-only islanding plan with manual updates
+- input_requirements: substation topology, critical-load list, incident status, repair estimates
+- output_schema: islanding sequence, load-shed matrix, reintegration triggers
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: relay verification, safety perimeter confirmation, civil authority coordination
+
+### packet_id: DPL-MICROELECTRONICS-TRUSTED-FAB-SURGE-001
+- domain: trusted microelectronics surge and anti-tamper lot release
+- objective: increase defense-priority chip output while preserving trust chain and anti-counterfeit controls
+- primary_tools: fab execution stack, secure lot provenance ledger, tamper-screening workflow
+- alternate_tools: approved supplier-only release board with manual dual-control review
+- degraded_mode: essential-platform lot allocation with extended test sampling
+- input_requirements: demand signal, lot inventory, supplier trust score, QA throughput
+- output_schema: surge allocation plan, lot release confidence, risk hold queue
+- protocol_profile: API/JSON + signed ledger exports + USMTF
+- validation_gates: provenance pass, test lot confidence threshold, authority tier check
+
+### packet_id: DPL-LONG-RANGE-FIRES-STOCKPILE-ASSURANCE-001
+- domain: long-range fires stockpile prepositioning
+- objective: position munitions for survivable launch support and reload continuity
+- primary_tools: stockpile allocation manager, contested-route planner, launcher readiness board
+- alternate_tools: fixed theater staging matrix plus manual risk overlays
+- degraded_mode: critical-mission stockpile lane only with reduced sortie assumptions
+- input_requirements: munitions inventory, launcher demand, route risk, adversary strike indicators
+- output_schema: prepositioning matrix, exposure risk score, reload branch triggers
+- protocol_profile: USMTF + VMF + Link 16 J-series + API/JSON
+- validation_gates: depot confirmation, route survivability check, command priority approval
+
+### packet_id: DPL-SEABED-NODE-TAMPER-REPAIR-001
+- domain: seabed critical node tamper alert and repair
+- objective: detect tamper events, preserve evidence, and sequence repair under threat
+- primary_tools: undersea telemetry monitor, ROV tasking planner, repair convoy scheduler
+- alternate_tools: patrol-only anomaly watch with manual evidence log
+- degraded_mode: critical-node triage with delayed repair and heightened monitoring
+- input_requirements: node health streams, anomaly signatures, repair asset readiness, legal constraints
+- output_schema: tamper confidence ladder, repair queue, evidence custody status
+- protocol_profile: AIS/NMEA + OGC + USMTF + API/JSON
+- validation_gates: dual-source anomaly corroboration, custody chain integrity, coalition authorization
+
+### packet_id: DPL-DISINFORMATION-KINETIC-ESCALATION-001
+- domain: disinformation to kinetic escalation warning
+- objective: detect narrative indicators that signal likely near-term kinetic escalation
+- primary_tools: influence telemetry analytics, narrative integrity forensics, escalation indicator board
+- alternate_tools: manual analyst warning board with corroborated source set
+- degraded_mode: high-confidence-source-only watch with commander warning thresholds
+- input_requirements: narrative feeds, engagement spikes, force posture context, adversary patterns
+- output_schema: escalation ladder, trigger probabilities, preemption option board
+- protocol_profile: STIX/TAXII + MISP + USMTF + API/JSON
+- validation_gates: corroboration depth check, false-positive screen, legal-policy review
+
+### packet_id: DPL-DUAL-USE-PORT-CYBER-UNIFIED-COMMAND-001
+- domain: dual-use port cyber incident unified command
+- objective: sustain military force flow and port safety during major OT/IT cyber incidents
+- primary_tools: port cyber SOC dashboard, ICS unified command board, berth throughput planner
+- alternate_tools: manual ICS command board and protected military lane schedule
+- degraded_mode: mission-essential movement-only posture with strict berth control
+- input_requirements: incident scope, berth status, cargo priorities, remediation timeline
+- output_schema: unified command action plan, force-flow continuity matrix, phased recovery gates
+- protocol_profile: NIMS/ICS + USMTF + STIX/TAXII + AIS/NMEA + API/JSON
+- validation_gates: incident containment status, safety gate checks, command authority acknowledgment
+
+### packet_id: DPL-STRATOSPHERIC-BALLOON-ISR-RECONSTITUTION-001
+- domain: stratospheric ISR balloon network reconstitution
+- objective: restore high-altitude ISR persistence and relay continuity after attrition, drift, or attack
+- primary_tools: balloon fleet telemetry fusion, payload retasking planner, relay continuity board
+- alternate_tools: manual coverage-gap board and conservative relaunch sequence worksheet
+- degraded_mode: critical ISR lanes only with preplanned relay priorities
+- input_requirements: balloon health states, payload availability, weather drift model, ISR priority map
+- output_schema: relaunch sequence order, ISR recovery matrix, relay fallback branch ladder
+- protocol_profile: USMTF + CoT + OGC + API/JSON
+- validation_gates: launch safety pass, coverage restoration threshold, commander approval
+
+### packet_id: DPL-ANTARCTIC-LOGISTICS-TREATY-COMPLIANCE-001
+- domain: coalition Antarctic sustainment and treaty compliance
+- objective: maintain mission sustainment while preserving treaty restrictions, environmental safety, and partner coordination
+- primary_tools: polar logistics scheduler, treaty compliance rules engine, weather window board
+- alternate_tools: manual protected-area routing board and legal liaison log
+- degraded_mode: essential sustainment missions only with enhanced legal review
+- input_requirements: cargo priorities, protected-zone maps, weather forecasts, treaty caveats, partner capabilities
+- output_schema: treaty-safe route plan, sustainment timeline, compliance exception queue
+- protocol_profile: USMTF + NIMS/ICS + OGC + API/JSON
+- validation_gates: treaty conformance pass, environmental safety gate, coalition concurrence
+
+### packet_id: DPL-FUEL-ADULTERATION-VEHICLE-PROTECTION-001
+- domain: contested fuel integrity and fleet protection
+- objective: detect contaminated fuel, quarantine affected lots, and protect vehicle readiness
+- primary_tools: fuel assay anomaly detector, lot custody tracker, fleet degradation monitor
+- alternate_tools: manual sample chain and emergency clean-fuel dispatch worksheet
+- degraded_mode: mission-critical platforms only with strict fuel source restrictions
+- input_requirements: fuel assay readings, lot provenance records, vehicle failure trends, route availability
+- output_schema: contamination confidence ladder, quarantine and reroute order, platform operating limits matrix
+- protocol_profile: USMTF + API/JSON + XML + NATO APP-11/ADatP-3
+- validation_gates: contamination threshold pass, lot custody integrity, command risk acceptance
+
+### packet_id: DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001
+- domain: tactical EO and IR decoy effectiveness
+- objective: assess decoy performance and retune deception posture against adversary sensors
+- primary_tools: decoy signature analyzer, sensor exposure fusion board, deception placement optimizer
+- alternate_tools: manual red-cell replay review and camouflage confidence worksheet
+- degraded_mode: high-value target decoy sets only with conservative placement controls
+- input_requirements: decoy placement data, sensor detections, strike near-miss events, terrain and weather context
+- output_schema: effectiveness scorecard, retuning recommendation packet, emissions and placement branch options
+- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
+- validation_gates: detection-reduction threshold pass, fratricide safety check, commander concurrence
+
+### packet_id: DPL-VETERAN-MEDICAL-SURGE-TRANSITION-001
+- domain: DoD-to-veteran medical surge transition
+- objective: prioritize safe patient transfer and continuity of care from military treatment to veteran care systems
+- primary_tools: patient transition broker, specialty bed matcher, continuity risk tracker
+- alternate_tools: manual patient movement board and paper handoff checklist
+- degraded_mode: highest-acuity transfer categories only with enhanced callback checks
+- input_requirements: patient acuity roster, specialty bed availability, transport capacity, follow-up constraints
+- output_schema: transfer priority matrix, bed-matching decisions, continuity risk mitigation plan
+- protocol_profile: HL7/FHIR + USMTF + API/JSON + NIEM
+- validation_gates: record integrity pass, destination capability check, authority approval
+
+### packet_id: DPL-GEOTHERMAL-POWER-NODE-SECURITY-001
+- domain: contested geothermal power node security
+- objective: protect geothermal production and restore mission-critical power loads after disruption
+- primary_tools: geothermal telemetry fusion, ICS anomaly correlator, restoration priority planner
+- alternate_tools: manual plant status board and utility dispatch worksheet
+- degraded_mode: mission-essential load restoration only with hourly risk review
+- input_requirements: generation status, ICS alerts, critical load priorities, repair crew readiness
+- output_schema: security posture report, restoration sequence, load islanding and reintegration triggers
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: safety interlock verification, mission-load preservation pass, authority concurrence
+
+### packet_id: DPL-DENIED-TERRAIN-AVALANCHE-ROUTE-RESCUE-001
+- domain: denied-terrain avalanche route and rescue control
+- objective: preserve mountain mobility while sequencing rescue under avalanche threat and comm degradation
+- primary_tools: avalanche hazard fusion, route viability engine, rescue launch scheduler
+- alternate_tools: manual hazard board and convoy timing card
+- degraded_mode: critical-route convoy windows only with preplanned rescue contingencies
+- input_requirements: snowpack stability data, weather trends, route usage priorities, rescue asset status
+- output_schema: route risk board, closure and reroute directive, rescue synchronization packet
+- protocol_profile: USMTF + VMF + CoT + OGC + API/JSON
+- validation_gates: hazard threshold pass, rescue asset readiness check, command approval
+
+### packet_id: DPL-AUTONOMOUS-MARITIME-TRAFFIC-LIABILITY-001
+- domain: coalition autonomous maritime traffic separation and liability
+- objective: deconflict crewed and autonomous vessels while preserving evidentiary quality for post-incident liability action
+- primary_tools: autonomous lane manager, collision predictor, legal evidence custody ledger
+- alternate_tools: manual traffic separation board and incident chronology worksheet
+- degraded_mode: mission-priority vessel lanes only with restricted autonomy behaviors
+- input_requirements: vessel tracks, autonomy mode states, chokepoint restrictions, legal policy constraints
+- output_schema: lane assignment order, autonomy constraint directives, liability evidence packet
+- protocol_profile: AIS/NMEA + USMTF + STIX/TAXII + API/JSON + NATO APP-11/ADatP-3
+- validation_gates: separation safety threshold pass, custody chain integrity, coalition legal concurrence
+
+### packet_id: DPL-CISLUNAR-LOGDEN-001
+- domain: cislunar space domain awareness and logistics denial
+- objective: detect and shape cislunar logistics lanes under contested-space conditions
+- primary_tools: cislunar SSA catalogs, route-risk analytics, orbital logistics planners
+- alternate_tools: static ephemeris board and manual lane-priority adjudication
+- degraded_mode: periodic lane-priority bulletin with conservative conflict assumptions
+- input_requirements: orbital traffic tracks, mission lane priorities, logistics manifests, denial indicators
+- output_schema: route risk table, denial-option matrix, branch trigger set
+- protocol_profile: API/JSON + USMTF + CCSDS OMM/OEM
+- validation_gates: dual-source ephemeris confirmation, confidence floor, authority checkpoint
+
+### packet_id: DPL-COGEW-DECEP-001
+- domain: cognitive and electromagnetic deception detection
+- objective: correlate narrative and spectrum anomalies to detect deception campaigns
+- primary_tools: influence telemetry analytics, EW anomaly fusion, media forensics
+- alternate_tools: manual deception hypothesis board with daily review cycle
+- degraded_mode: high-confidence-source-only deception alert bulletin
+- input_requirements: narrative telemetry, RF baseline behavior, media evidence, commander priorities
+- output_schema: deception hypothesis set, confidence ladder, retask recommendations
+- protocol_profile: STIX/TAXII + CoT + USMTF
+- validation_gates: multi-source corroboration, red-team challenge, legal-policy review gate
+
+### packet_id: DPL-HYPER-BDA-001
+- domain: hypersonic strike BDA and restrike sequencing
+- objective: determine target viability rapidly and sequence restrike options
+- primary_tools: multi-INT BDA fusion, damage-estimation models, dynamic targeting boards
+- alternate_tools: manual post-strike board with ISR confidence scoring
+- degraded_mode: delayed restrike packet with conservative confidence thresholds
+- input_requirements: strike telemetry, ISR battle-damage observations, target baselines, collateral constraints
+- output_schema: BDA confidence table, restrike options, decision trigger matrix
+- protocol_profile: VMF + Link 16 J-series + USMTF
+- validation_gates: ISR confidence threshold, collateral-risk check, command approval gate
+
+### packet_id: DPL-AUTOSALVAGE-LEGAL-001
+- domain: autonomous maritime salvage rights and evidence
+- objective: prioritize salvage operations while preserving legal rights and evidence custody
+- primary_tools: maritime salvage planners, autonomous vessel controllers, evidence chain systems
+- alternate_tools: manual salvage and custody board with legal liaison review
+- degraded_mode: critical-salvage-only posture with delayed legal adjudication packet
+- input_requirements: target manifests, vessel telemetry, legal caveats, custody constraints
+- output_schema: salvage sequence queue, rights adjudication matrix, custody handoff ledger
+- protocol_profile: AIS/NMEA + OGC + NATO APP-11/ADatP-3
+- validation_gates: legal rights check, custody integrity check, coalition releasability pass
+
+### packet_id: DPL-BIOPRINT-TRAUMA-001
+- domain: tactical bioprinted hemorrhage control and stabilization
+- objective: synchronize austere bioprint interventions with triage and evacuation flow
+- primary_tools: bioprint process controls, med-log systems, casualty regulation services
+- alternate_tools: approved-catalog intervention board with manual QA gates
+- degraded_mode: manual-only intervention prioritization for critical casualties
+- input_requirements: casualty acuity, fabrication capacity, sterility QA state, evac timelines
+- output_schema: intervention readiness board, stabilization queue, release-risk matrix
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical authority approval, sterility pass, release confidence floor
+
+### packet_id: DPL-URBAN-GAS-PREVENT-001
+- domain: coalition denied urban underground gas-grid explosion prevention
+- objective: prevent cascading urban gas explosions and restore safe utility service
+- primary_tools: SCADA anomaly analytics, subsurface utility mapping, emergency operations boards
+- alternate_tools: manual utility isolation board and periodic sampling schedule
+- degraded_mode: life-safety-first isolation posture with limited restoration throughput
+- input_requirements: pressure telemetry, map confidence, sabotage indicators, civilian risk corridors
+- output_schema: isolation action list, restoration sequence, civilian risk communication brief
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + OGC
+- validation_gates: life-safety pass, dual-source pressure confirmation, civil-authority coordination
+
+### packet_id: DPL-CLOUD-MODEL-SABOTAGE-001
+- domain: strategic cloud model supply-chain sabotage
+- objective: detect and contain compromised model or dependency chains before mission impact
+- primary_tools: SBOM/attestation services, cloud telemetry platforms, model registry controls
+- alternate_tools: manual provenance review board and static dependency risk register
+- degraded_mode: approved-baseline-only model operations with manual approvals
+- input_requirements: model lineage, dependency graph, attestation status, mission criticality
+- output_schema: sabotage risk heatmap, containment branches, reconstitution task board
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: attestation completeness check, provenance integrity pass, authority gate
+
+### packet_id: DPL-BLACKSTART-FUELSEC-001
+- domain: homeland grid blackstart and fuel convoy security fusion
+- objective: synchronize blackstart sequencing with protected fuel movement under threat
+- primary_tools: grid restoration orchestrators, convoy tracking tools, infrastructure incident boards
+- alternate_tools: manual blackstart board plus convoy waypoint call-sign matrix
+- degraded_mode: minimum-essential load restoration with escorted fuel windows only
+- input_requirements: blackstart node list, convoy routes, threat incidents, crew readiness
+- output_schema: restoration priority matrix, convoy security branch plan, critical-load timeline
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: critical-load verification, convoy threat check, civil-military coordination pass
+
+### packet_id: DPL-SUBSEA-DC-GRID-001
+- domain: joint subsea data-center defense and grid coupling continuity
+- objective: defend seabed compute and cable/power nodes while preserving shore-grid continuity
+- primary_tools: subsea telemetry fusion, cable landing diagnostics, grid dependency mappers
+- alternate_tools: manual critical-node board and delayed outage estimation workbook
+- degraded_mode: mission-essential node defense only with conservative restoration assumptions
+- input_requirements: node topology, cable/shore coupling map, threat indicators, restoration assets
+- output_schema: node risk map, coupling failure matrix, restoration branch options
+- protocol_profile: OGC + STIX/TAXII + USMTF + API/JSON
+- validation_gates: dual-source anomaly confirmation, life-safety check, authority approval gate
+
+### packet_id: DPL-BALLOON-SPECREC-001
+- domain: coalition stratospheric balloon relay denial and spectrum recovery
+- objective: suppress hostile relay effects and restore coalition mission spectrum rapidly
+- primary_tools: high-altitude track analytics, EW/spectrum managers, coalition comms allocators
+- alternate_tools: manual relay threat board with preplanned spectrum windows
+- degraded_mode: critical mission traffic only and fixed recovery windows
+- input_requirements: balloon track data, RF contention map, coalition priorities, ROE constraints
+- output_schema: relay threat table, spectrum recovery sequence, coalition comms restoration matrix
+- protocol_profile: Link 16 J-series + CoT + USMTF + API/JSON
+- validation_gates: relay-attribution confidence floor, fratricide-spectrum check, command approval
+
+### packet_id: DPL-ISOTOPE-MEDSUP-001
+- domain: theater rare isotope medical supply and radiation assurance
+- objective: sustain isotope-based treatment support with safe handling and continuity controls
+- primary_tools: isotope inventory/custody systems, dosimetry and contamination monitors, med-log boards
+- alternate_tools: manual isotope release ledger with radiological checklists
+- degraded_mode: life-saving treatment only with strict release controls
+- input_requirements: isotope stock state, custody chain, patient demand, transport status
+- output_schema: isotope continuity board, radiation safety exceptions, treatment-priority sequence
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: radiation safety pass, custody integrity check, medical authority signoff
+
+### packet_id: DPL-MESHKEY-COMP-001
+- domain: tactical disconnected mesh key compromise recovery
+- objective: contain compromised credentials and restore trusted encrypted communications
+- primary_tools: key lifecycle managers, mesh telemetry analyzers, trust attestation services
+- alternate_tools: manual revocation roster and serialized rekey worksheet
+- degraded_mode: mission-priority key ring only with restricted data exchange
+- input_requirements: compromise indicators, node trust state, key inventory, mission priority classes
+- output_schema: quarantine list, rekey sequence, trust-restoration confidence ladder
+- protocol_profile: signed key-status exports + USMTF + API/JSON
+- validation_gates: compromise confirmation, dual-control rekey approval, trust threshold pass
+
+### packet_id: DPL-COMSATCOM-PREEMPT-001
+- domain: coalition commercial SATCOM preemption and restoration
+- objective: reallocate constrained SATCOM while preserving critical coalition mission traffic
+- primary_tools: SATCOM traffic arbiters, policy enforcement engines, coalition bandwidth dashboards
+- alternate_tools: manual priority lane board with time-boxed bandwidth windows
+- degraded_mode: command-and-safety-only SATCOM traffic posture
+- input_requirements: mission traffic classes, available capacity, coalition caveats, outage data
+- output_schema: priority/preemption matrix, restoration timeline, exception adjudication list
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: coalition caveat pass, mission-critical continuity check, approval-role signoff
+
+### packet_id: DPL-PERMAFROST-RWY-001
+- domain: arctic permafrost runway failure prediction and bypass
+- objective: forecast runway structural risk and keep sortie flow through diversion options
+- primary_tools: runway geotechnical sensors, permafrost stress models, diversion route planners
+- alternate_tools: manual runway inspection board and conservative sortie schedule workbook
+- degraded_mode: preapproved diversion-only operations with strict landing thresholds
+- input_requirements: runway condition telemetry, weather state, aircraft profiles, diversion fields
+- output_schema: runway risk index, bypass/diversion matrix, sortie continuity triggers
+- protocol_profile: AIXM/FIXM + USMTF + OGC
+- validation_gates: runway integrity check, weather minima pass, command authorization gate
+
+### packet_id: DPL-BIOFORENSICS-CUST-001
+- domain: joint bioforensics field-lab chain of custody
+- objective: accelerate biological attribution while preserving legal-grade sample integrity
+- primary_tools: field LIMS, sequence analysis systems, evidence workflow and legal case tools
+- alternate_tools: manual sample custody ledger and delayed lab confirmation queue
+- degraded_mode: triage-only attribution with deferred legal-release packet
+- input_requirements: sample metadata, custody transfers, sequencing results, legal constraints
+- output_schema: custody ledger, attribution confidence tiers, legal handoff packet
+- protocol_profile: HL7/FHIR + STIX/TAXII + USMTF
+- validation_gates: custody integrity pass, lab confidence floor, legal review checkpoint
+
+### packet_id: DPL-DAM-CASCADE-001
+- domain: homeland dam cascade attack consequence and evacuation
+- objective: forecast cascading dam effects and synchronize civil-military evacuation/restoration
+- primary_tools: hydrologic consequence models, emergency operations systems, evacuation route planners
+- alternate_tools: manual inundation maps and phased evacuation checklists
+- degraded_mode: life-safety-first evacuation posture with minimum-essential restoration actions
+- input_requirements: dam status telemetry, floodplain maps, population at risk, route capacities
+- output_schema: cascade consequence map, evacuation sequence board, restoration branch plan
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + OGC
+- validation_gates: flood-model confidence check, evacuation throughput validation, civil-authority concurrence
+
+### packet_id: DPL-AI-RED-001
+- domain: adversary AI-agent emulation and red-cell kill-chain stress testing
+- objective: expose mission vulnerabilities by simulating adaptive adversary agents and deception branches
+- primary_tools: adversary behavior simulators, campaign wargame engine, event correlation dashboard
+- alternate_tools: manual red-cell branch board with scripted threat injects
+- degraded_mode: daily high-risk branch list with confidence bands
+- input_requirements: mission objective, force posture, threat model, authority constraints
+- output_schema: adversary branch tree, vulnerability ranking, mitigation and trigger recommendations
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: red-team adjudication check, legal-policy gate, command authority confirmation
+
+### packet_id: DPL-EMSIG-CAMO-001
+- domain: electronic signature camouflage and deception discipline
+- objective: reduce detectability while preserving mission-essential communications and sensing
+- primary_tools: signature library, EW planning suite, threat sensor analytics
+- alternate_tools: static emission discipline board with scheduled decoy windows
+- degraded_mode: fixed EMCON cycle and manual compliance checks
+- input_requirements: platform set, mission phases, threat sensor map, ROE constraints
+- output_schema: signature-control timeline, decoy plan, detectability risk score
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: interoperability check, fratricide-spectrum check, commander approval
+
+### packet_id: DPL-FORENSICS-001
+- domain: coalition battlefield forensic evidence preservation
+- objective: preserve evidentiary integrity and chain of custody for battlefield incidents
+- primary_tools: digital forensics suite, evidence registry, coalition legal portal
+- alternate_tools: paper custody ledger and manual forensic triage worksheet
+- degraded_mode: minimum viable custody transfer packet with dual witness validation
+- input_requirements: incident metadata, media artifacts, custody handlers, legal authority tags
+- output_schema: custody ledger, triage priority matrix, legal routing packet
+- protocol_profile: STANAG + USMTF + API/JSON
+- validation_gates: custody integrity verification, legal admissibility check, partner releasability check
+
+### packet_id: DPL-5G-TACTICAL-001
+- domain: tactical private-5G contested basing
+- objective: maintain local high-throughput network services under jamming and infrastructure disruption
+- primary_tools: private 5G orchestrator, RF planner, edge traffic policy engine
+- alternate_tools: LTE fallback network with mission-priority queue board
+- degraded_mode: voice plus low-bandwidth data schedule by mission priority
+- input_requirements: node map, traffic classes, spectrum constraints, threat jamming profile
+- output_schema: cell deployment plan, QoS policy table, fallback sequence
+- protocol_profile: 3GPP + USMTF + CoT
+- validation_gates: RF viability check, mission-priority pass, security policy approval
+
+### packet_id: DPL-MCM-SWARM-001
+- domain: autonomous maritime mine countermeasure swarm control
+- objective: clear maritime lanes with autonomous systems while enforcing safety and authority limits
+- primary_tools: uncrewed maritime mission manager, mine-detection analytics, maritime COP
+- alternate_tools: crewed MCM schedule board with manual correlation
+- degraded_mode: confidence-limited clearance recommendation cycle
+- input_requirements: lane geometry, sensor quality, weather/sea state, autonomy authority matrix
+- output_schema: lane confidence table, swarm tasking order, branch triggers
+- protocol_profile: AIS/NMEA + Link 16 J-series + API/JSON
+- validation_gates: autonomy policy gate, lane confidence floor, human command release
+
+### packet_id: DPL-ARCTIC-ENERGY-001
+- domain: arctic fuel and expeditionary microgrid continuity
+- objective: synchronize fuel movement and electrical microgrid interlocks under contested arctic sustainment
+- primary_tools: fuel planners, microgrid dashboards, arctic route intelligence feeds
+- alternate_tools: manual fuel-power synchronization board with fixed sequencing windows
+- degraded_mode: essential-load-only microgrid profile with conservative fuel burn assumptions
+- input_requirements: fuel status, load profile, route access, threat/weather risks
+- output_schema: continuity plan, interlock timeline, outage risk triggers
+- protocol_profile: USMTF + AIS/NMEA + API/JSON
+- validation_gates: fuel sufficiency check, electrical safety gate, sustainment authority review
+
+### packet_id: DPL-DIGITAL-TWIN-001
+- domain: theater digital twin contested branch generation
+- objective: generate and rank branch/sequel options with simulation-backed confidence scores
+- primary_tools: theater digital twin, simulation orchestrator, campaign assessment dashboard
+- alternate_tools: manual branch matrix with historical analog scoring
+- degraded_mode: high-level branch recommendations with explicit uncertainty bounds
+- input_requirements: mission objectives, force layout, threat model, sustainment constraints
+- output_schema: branch tree, confidence ranking, commander decision triggers
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: model-fidelity gate, assumption traceability check, command review
+
+### packet_id: DPL-BIOTHREAT-WW-001
+- domain: biothreat wastewater sentinel fusion
+- objective: detect early force-health risk from wastewater and epidemiological signal convergence
+- primary_tools: wastewater assay pipeline, biosurveillance analytics, force-health dashboard
+- alternate_tools: manual assay spreadsheet and medical watch desk review
+- degraded_mode: daily sentinel summary with conservative alert thresholds
+- input_requirements: assay readings, population map, baseline disease profile, facility exposure data
+- output_schema: alert ladder, force-health trigger set, mitigation recommendations
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: assay quality check, epidemiology confidence floor, medical authority signoff
+
+### packet_id: DPL-RAIL-SABOTAGE-001
+- domain: contested rail sabotage attribution and repair security
+- objective: attribute rail disruptions and sequence secure repairs to restore military throughput
+- primary_tools: rail telemetry platform, infrastructure forensics system, movement-control board
+- alternate_tools: manual incident board and engineering estimate workbook
+- degraded_mode: daily route status bulletin with conservative throughput assumptions
+- input_requirements: incident logs, route criticality map, repair teams, force-protection posture
+- output_schema: attribution confidence board, repair-security queue, throughput forecast
+- protocol_profile: USMTF + API/JSON + OGC
+- validation_gates: attribution confidence check, engineering feasibility, command approval
+
+### packet_id: DPL-ROBOTICS-RL-001
+- domain: expeditionary robotics reverse logistics and readiness recertification
+- objective: recover, triage, and recertify robotics components to sustain autonomous mission capacity
+- primary_tools: robotics telemetry service, maintenance logistics platform, part qualification tracker
+- alternate_tools: manual cannibalization board and paper recertification checklist
+- degraded_mode: mission-critical components only with manual verification loop
+- input_requirements: system health status, spare inventories, recovery routes, mission demand profile
+- output_schema: reverse-logistics priority queue, recertification status board, readiness estimate
+- protocol_profile: USMTF + API/JSON + STANAG
+- validation_gates: component integrity verification, safety compliance check, maintainer authority gate
+
+### packet_id: DPL-COGNITIVE-EW-001
+- domain: converged cognitive EW and disinformation response
+- objective: fuse narrative and EW threat signals to prioritize synchronized counter-actions
+- primary_tools: narrative analytics suite, EW telemetry fusion board, influence attribution platform
+- alternate_tools: manual narrative watch board and EW incident rollup
+- degraded_mode: periodic high-risk convergence bulletin with confidence ladder
+- input_requirements: narrative corpus, EW events, adversary campaign indicators, mission objectives
+- output_schema: converged timeline, threat linkage graph, prioritized counter-actions
+- protocol_profile: STIX/TAXII + CoT + USMTF
+- validation_gates: attribution confidence floor, policy/legal review, commander release approval
+
+### packet_id: DPL-CHM-BDA-001
+- domain: coalition civilian harm mitigation and post-strike battle damage review
+- objective: reduce civilian harm while preserving mission effects through continuous strike validation
+- primary_tools: collateral estimation engine, ISR BDA suite, civilian incident tracking platform
+- alternate_tools: liaison-driven incident log and manual protected-site verification board
+- degraded_mode: post-strike review packet with heightened uncertainty and restricted recommendations
+- input_requirements: target package, ROE profile, protected-site data, post-strike observations
+- output_schema: harm risk overlay, mitigation branch options, post-strike verification packet
+- protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: civilian harm threshold check, legal compliance review, command approval gate
+
+### packet_id: DPL-EDGE-LLM-C2-001
+- domain: guarded edge-LLM command-and-control assistant operations
+- objective: provide bounded AI decision support with strict authority, provenance, and policy enforcement
+- primary_tools: edge inference runtime, policy guardrail engine, tactical collaboration stack
+- alternate_tools: rules-based decision support playbook and manual watchfloor synthesis
+- degraded_mode: AI summarize-only mode with mandatory human adjudication
+- input_requirements: mission context, authority matrix, policy constraints, source feed metadata
+- output_schema: decision-support brief, provenance ledger, authority compliance report
+- protocol_profile: USMTF + API/JSON + CoT
+- validation_gates: policy conformance check, provenance integrity check, human release approval
+
+### packet_id: DPL-DENIED-NAV-001
+- domain: denied-environment navigation relocalization
+- objective: restore position/time confidence under GNSS denial using terrain and landmark fusion
+- primary_tools: terrain matching engine, landmark fusion service, inertial timing monitor
+- alternate_tools: map-resection SOP and manual dead-reckoning cross-check board
+- degraded_mode: bounded maneuver envelope with conservative navigation confidence limits
+- input_requirements: route geometry, landmark set, inertial drift profile, threat spoofing indicators
+- output_schema: relocalization confidence map, fallback sequence, navigation risk report
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: integrity threshold pass, spoofing check, commander maneuver approval
+
+## Packet Expansion (2026-03-10, Warfighter Infrastructure Trust and Sensor Integrity Wave)
+
+### packet_id: DPL-AI-SENSOR-SPOOF-001
+- domain: adversarial AI sensor spoofing forensics
+- objective: detect and adjudicate spoofed sensor artifacts before they trigger flawed targeting or maneuver decisions
+- primary_tools: multi-sensor fusion board, model forensics analyzer, track-consistency validator
+- alternate_tools: manual sensor adjudication board with dual-intel cross-check
+- degraded_mode: conservative fires hold posture with prioritized truth-track confirmation
+- input_requirements: sensor track set, model outputs, confidence metadata, threat indicators
+- output_schema: spoofing confidence ladder, suppression recommendations, retask order set
+- protocol_profile: STIX/TAXII + USMTF + CoT + API/JSON
+- validation_gates: dual-source confirmation, fratricide-risk check, command authority signoff
+
+### packet_id: DPL-GHOST-TRACK-ADJUDICATION-001
+- domain: theater sensor ghost-track adjudication
+- objective: suppress false tracks and prevent wasted effects or friendly-force risk
+- primary_tools: track arbitration engine, truth-track mirror, confidence adjudication board
+- alternate_tools: manual ghost-track watchfloor matrix
+- degraded_mode: no-strike hold for low-confidence tracks with strict escalation triggers
+- input_requirements: track timeline, sensor quality data, engagement windows, ROE constraints
+- output_schema: ghost-track disposition table, fires hold/release triggers, confidence trend chart
+- protocol_profile: Link 16 J-series + CoT + USMTF + API/JSON
+- validation_gates: confidence floor check, legal/ROE review, command release gate
+
+### packet_id: DPL-LOCK-DAM-DEFENSE-001
+- domain: lock and dam cyber-physical defense
+- objective: preserve inland waterway control integrity and military throughput under cyber-physical attack
+- primary_tools: ICS anomaly analytics, flow-control telemetry, inland mobility impact board
+- alternate_tools: manual lock-state ledger and emergency operator synchronization board
+- degraded_mode: life-safety and mission-essential flow only with manual gate operations
+- input_requirements: gate state telemetry, alarm events, flow model, transport demand map
+- output_schema: defense action matrix, mobility impact forecast, restoration branch plan
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + OGC
+- validation_gates: control integrity check, life-safety check, civil-military coordination pass
+
+### packet_id: DPL-INLAND-WATERWAY-MOBILITY-001
+- domain: inland waterway mobility continuity
+- objective: synchronize military and civilian movement when lock/dam capacity is degraded
+- primary_tools: movement-control planner, barge/rail integration board, route feasibility model
+- alternate_tools: manual throughput board and phased convoy schedule
+- degraded_mode: priority-only throughput windows with conservative transit assumptions
+- input_requirements: throughput baseline, bottleneck list, priority cargo, threat posture
+- output_schema: mobility continuity matrix, alternate routing timeline, risk-trigger map
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: throughput feasibility check, command priority validation, interagency concurrence
+
+### packet_id: DPL-FIRE-DATA-TRANSLATION-001
+- domain: coalition fire mission data translation
+- objective: translate fires mission data across coalition standards without timing or target integrity loss
+- primary_tools: coalition message translation service, fires data validator, timing consistency checker
+- alternate_tools: human translation cell with structured crosswalk templates
+- degraded_mode: preapproved mission templates only with manual confirmation
+- input_requirements: mission packet, source/target formats, timing windows, caveat tags
+- output_schema: translated mission packet, confidence score, exception queue
+- protocol_profile: USMTF + VMF + APP-11/ADatP-3 + API/JSON
+- validation_gates: syntax conformance check, no-strike integrity check, coalition approval gate
+
+### packet_id: DPL-NO-STRIKE-TRANSLATION-ASSURANCE-001
+- domain: no-strike boundary translation assurance
+- objective: prevent no-strike/protected-site errors during coalition data transformations
+- primary_tools: no-strike geofence verifier, translation auditor, protected-site ledger
+- alternate_tools: manual protected-site crosswalk and legal review board
+- degraded_mode: no-strike expansion buffer with restricted engagement release
+- input_requirements: protected-site data, translation output, CDE settings, legal caveats
+- output_schema: no-strike integrity report, exception log, release recommendation
+- protocol_profile: APP-11/ADatP-3 + USMTF + OGC
+- validation_gates: legal compliance check, protected-site delta check, command authorization
+
+### packet_id: DPL-MICROREACTOR-SECURITY-001
+- domain: civil microreactor security
+- objective: prioritize security controls and rapid incident response for theater-relevant microreactor sites
+- primary_tools: reactor telemetry monitor, anomaly detection service, security orchestration board
+- alternate_tools: manual reactor security checklist and liaison incident ledger
+- degraded_mode: mission-essential load protection posture with tightened access control
+- input_requirements: site telemetry, threat indicators, security posture, mission dependencies
+- output_schema: security risk matrix, immediate controls list, response trigger board
+- protocol_profile: NIMS/ICS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: site integrity check, radiological safety confirmation, authority approval
+
+### packet_id: DPL-MICROREACTOR-CONSEQUENCE-001
+- domain: microreactor incident consequence management
+- objective: contain incident effects and coordinate force/civil continuity actions
+- primary_tools: consequence model, emergency operations dashboard, continuity planner
+- alternate_tools: manual consequence worksheet and phased evacuation/restoration plan
+- degraded_mode: life-safety-first response with minimal mission support branch
+- input_requirements: incident class, exposure estimates, dependent infrastructure, evacuation capacity
+- output_schema: consequence map, continuity decision matrix, restoration priorities
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: model confidence gate, civil authority concurrence, command approval
+
+### packet_id: DPL-QUANTUM-TIMING-CROSSWALK-001
+- domain: quantum timing and PNT crosswalk resilience
+- objective: maintain reliable timing during GNSS denial by crosswalking quantum and inertial references
+- primary_tools: quantum timing node monitor, inertial drift analyzer, time integrity ledger
+- alternate_tools: manual timing transfer SOP with periodic dual-control checks
+- degraded_mode: bounded timing windows with mission-priority service only
+- input_requirements: timing source status, drift rates, network latency, mission timing tolerances
+- output_schema: crosswalk matrix, fallback transfer plan, timing confidence report
+- protocol_profile: USMTF + signed timing attestations + API/JSON
+- validation_gates: integrity threshold pass, timing drift check, release authority signoff
+
+### packet_id: DPL-PNT-CROSSWALK-RESILIENCE-001
+- domain: denied-PNT transition governance
+- objective: sequence transition across alternate nav/time references with minimal mission disruption
+- primary_tools: transition orchestrator, nav/time confidence monitor, dependency mapper
+- alternate_tools: manual transition checklist and command timeline board
+- degraded_mode: restricted maneuver envelope until confidence stabilizes
+- input_requirements: current nav confidence, alternate source state, mission phase, threat profile
+- output_schema: transition timeline, confidence ladder, branch-trigger list
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: maneuver safety check, confidence floor gate, command authorization
+
+### packet_id: DPL-DRONEPORT-AIRWORTHINESS-001
+- domain: expeditionary droneport airworthiness
+- objective: certify safe launch/recovery posture for high-tempo autonomous sorties
+- primary_tools: droneport condition telemetry, airworthiness checklist engine, sortie scheduler
+- alternate_tools: manual preflight inspection board and sortie release worksheet
+- degraded_mode: reduced sortie profile with strict prelaunch gates
+- input_requirements: pad/runway state, weather, platform readiness, maintenance status
+- output_schema: airworthiness release matrix, deferred actions queue, sortie limits
+- protocol_profile: AIXM/FIXM + USMTF + API/JSON
+- validation_gates: airworthiness threshold check, weather minima pass, maintainer signoff
+
+### packet_id: DPL-DRONEPORT-TRAFFIC-DECONFLICTION-001
+- domain: autonomous droneport traffic assurance
+- objective: prevent autonomous traffic conflicts around expeditionary droneports
+- primary_tools: UAS traffic orchestrator, conflict detection service, corridor planner
+- alternate_tools: manual launch window board and visual deconfliction ledger
+- degraded_mode: serialized launch/recovery cycle by mission priority
+- input_requirements: traffic demand, corridor geometry, comms state, mission priorities
+- output_schema: deconfliction sequence, hold/release triggers, corridor utilization report
+- protocol_profile: CoT + AIXM/FIXM + USMTF + API/JSON
+- validation_gates: conflict-free path check, mission priority validation, tower/controller approval
+
+### packet_id: DPL-DE-OPTICS-RECOVERY-001
+- domain: directed-energy optics recovery
+- objective: recover mission capability after directed-energy induced optics degradation
+- primary_tools: optics calibration suite, sensor health dashboard, mission capability tracker
+- alternate_tools: manual optical inspection protocol and conservative mission profile worksheet
+- degraded_mode: sensor-limited operations with reduced engagement envelopes
+- input_requirements: event telemetry, optics status, platform mission set, replacement inventory
+- output_schema: recovery sequence, capability degradation map, recertification checkpoints
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: calibration pass, safety check, command release gate
+
+### packet_id: DPL-SENSOR-DEGRADATION-RECOVERY-001
+- domain: tactical sensor degradation continuity
+- objective: triage degraded sensors and preserve mission-critical awareness functions
+- primary_tools: sensor diagnostics service, mission dependency graph, replacement scheduler
+- alternate_tools: manual mission-priority sensor matrix and fallback route board
+- degraded_mode: mission-essential sensing only with increased uncertainty declarations
+- input_requirements: sensor outage list, mission priorities, spare parts status, threat posture
+- output_schema: triage priorities, replacement timeline, uncertainty impacts brief
+- protocol_profile: USMTF + API/JSON + CoT
+- validation_gates: mission assurance check, uncertainty threshold acknowledgment, authority approval
+
+### packet_id: DPL-RARE-EARTH-REFINERY-RECOVERY-001
+- domain: rare-earth refinery sabotage recovery
+- objective: restore critical refining output after sabotage with defense-priority allocation
+- primary_tools: industrial telemetry suite, sabotage forensics board, allocation optimizer
+- alternate_tools: manual production reconciliation and protected-transport schedule board
+- degraded_mode: essential output lines only with tightened quality controls
+- input_requirements: process state, damage assessment, demand profile, security posture
+- output_schema: recovery phase plan, output confidence report, allocation matrix
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: damage attribution check, production quality gate, strategic approval
+
+### packet_id: DPL-CRITICAL-MINERAL-FORCE-ALLOCATION-001
+- domain: critical mineral force-priority allocation
+- objective: allocate constrained refined material to highest-priority military mission chains
+- primary_tools: strategic demand planner, industrial base monitor, allocation adjudication board
+- alternate_tools: manual allocation board with commander priority ladder
+- degraded_mode: top-tier mission allocation only with deferred noncritical demand
+- input_requirements: supply state, demand forecasts, mission priorities, transport constraints
+- output_schema: allocation ledger, deferred demand list, risk map
+- protocol_profile: USMTF + API/JSON
+- validation_gates: mission-priority validation, legal/policy review, strategic signoff
+
+### packet_id: DPL-MARITIME-DECOY-INTEGRATION-001
+- domain: autonomous maritime decoy/chaff integration
+- objective: integrate decoy/chaff actions with fleet maneuver and sensor management
+- primary_tools: maritime deception planner, autonomous decoy controller, fleet COP
+- alternate_tools: manual decoy schedule board and preplanned emission windows
+- degraded_mode: fixed decoy pattern with tighter maneuver constraints
+- input_requirements: fleet posture, threat sensors, decoy inventory, timing windows
+- output_schema: deception timeline, maneuver synchronization map, risk effects summary
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF + API/JSON
+- validation_gates: fratricide-spectrum check, maneuver safety validation, command release
+
+### packet_id: DPL-FLEET-EMISSION-DECEPTION-001
+- domain: fleet emission deception governance
+- objective: control emission discipline while exploiting deception effects across maritime operations
+- primary_tools: emission policy manager, RF analytics board, deception effectiveness tracker
+- alternate_tools: manual EMCON board and periodic deception assessment review
+- degraded_mode: fixed EMCON cycle with commander-approved exceptions only
+- input_requirements: emission posture, threat map, communications priorities, legal caveats
+- output_schema: EMCON-deception matrix, exceptions register, effectiveness scorecard
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: interoperability check, legal/ROE pass, commander signoff
+
+### packet_id: DPL-ARCTIC-UNDER-ICE-LOGISTICS-001
+- domain: coalition arctic under-ice logistics
+- objective: sustain under-ice logistics corridors with coalition interoperability and risk controls
+- primary_tools: Arctic route planner, under-ice movement tracker, coalition logistics board
+- alternate_tools: manual route risk board and phased convoy timing worksheet
+- degraded_mode: limited essential logistics windows with conservative route constraints
+- input_requirements: ice-route condition, logistics demand, coalition caveats, threat posture
+- output_schema: corridor plan, route risk ledger, synchronization timeline
+- protocol_profile: USMTF + AIS/NMEA + API/JSON
+- validation_gates: route viability check, coalition releasability pass, authority gate
+
+### packet_id: DPL-ARCTIC-CASUALTY-CORRIDOR-001
+- domain: under-ice casualty movement corridor
+- objective: synchronize casualty movement and handoff under Arctic denied-access constraints
+- primary_tools: casualty movement regulator, route viability service, med-log synchronizer
+- alternate_tools: manual casualty handoff matrix and fixed transfer checkpoints
+- degraded_mode: life-threatening cases only with constrained transfer windows
+- input_requirements: casualty priority, transfer assets, route state, medical capacity
+- output_schema: casualty corridor sequence, handoff task tracker, delay risk table
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical authority check, route safety validation, command concurrence
+
+### packet_id: DPL-FRATRICIDE-TRACK-INTERLOCK-001
+- domain: sensor-track fratricide prevention interlock
+- objective: enforce confidence-based interlocks before effects release on disputed tracks
+- primary_tools: confidence interlock engine, sensor arbitration board, effects-release gate controller
+- alternate_tools: manual hold/release board with mandatory dual confirmation
+- degraded_mode: hold-by-default posture for disputed tracks
+- input_requirements: track confidence values, effects timeline, force disposition, ROE profile
+- output_schema: hold/release recommendations, interlock audit log, branch trigger chart
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: confidence threshold pass, ROE/legal review, release authority approval
+
+### packet_id: DPL-GROUND-STATION-RESTORATION-001
+- domain: homeland satellite ground-station restoration
+- objective: restore ground-station services in priority order under active threat conditions
+- primary_tools: site telemetry manager, restoration orchestrator, SATCOM mission-priority allocator
+- alternate_tools: manual site restoration board and uplink scheduling worksheet
+- degraded_mode: command-and-safety traffic only with staged restoration windows
+- input_requirements: outage state, mission priority list, recovery teams, threat indicators
+- output_schema: restoration sequence, service continuity matrix, unresolved risk list
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: site security check, service integrity test, authority release gate
+
+### packet_id: DPL-SATCOM-HOMELAND-DEFENSE-001
+- domain: homeland SATCOM mission assurance
+- objective: preserve critical SATCOM support for homeland defense missions during disruption
+- primary_tools: SATCOM traffic policy engine, ground-link monitor, mission service dashboard
+- alternate_tools: manual traffic prioritization board and relay fallback matrix
+- degraded_mode: mission-essential communications only with strict traffic governance
+- input_requirements: traffic classes, link status, mission priorities, coalition caveats
+- output_schema: SATCOM priority matrix, fallback routing plan, assurance risk report
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: mission continuity check, policy compliance pass, command signoff
+
+### packet_id: DPL-WATER-TREATMENT-PROTECTION-001
+- domain: theater water treatment cyber-physical protection
+- objective: preserve treatment integrity and prevent force/civil health impacts from cyber-physical attack
+- primary_tools: ICS telemetry monitor, contamination analytics, utility continuity board
+- alternate_tools: manual treatment-state ledger with emergency sampling workflow
+- degraded_mode: potable-priority distribution only with manual quality checks
+- input_requirements: process telemetry, contamination indicators, demand profile, protection posture
+- output_schema: protection action matrix, contamination risk map, immediate control tasks
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: quality safety check, control integrity gate, authority signoff
+
+### packet_id: DPL-WATER-TREATMENT-CONTINUITY-001
+- domain: water treatment continuity operations
+- objective: sustain minimum essential water service during attack or major system degradation
+- primary_tools: continuity planner, distribution prioritization board, restoration scheduler
+- alternate_tools: manual rationing and distribution worksheet
+- degraded_mode: life-safety-only service profile with strict branch triggers
+- input_requirements: available capacity, demand tiers, outage map, repair resources
+- output_schema: continuity timeline, priority-service matrix, restoration sequence
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: life-safety threshold check, civil-military concurrence, command approval
+
+### packet_id: DPL-COUNTER-UAS-URBAN-ROOFTOP-001
+- domain: joint urban rooftop counter-UAS defense
+- objective: synchronize rooftop sensors/effects to disrupt UAS threats while preserving mission tempo
+- primary_tools: counter-UAS C2, RF detection mesh, rooftop engagement planner
+- alternate_tools: manual sector watchboard and staged response card set
+- degraded_mode: detect-and-track posture with constrained engagement windows
+- input_requirements: threat tracks, rooftop sectors, engagement authorities, no-strike constraints
+- output_schema: sector defense matrix, engagement timeline, escalation triggers
+- protocol_profile: CoT + Link 16 J-series + USMTF + API/JSON
+- validation_gates: geofence compliance check, fratricide check, command release gate
+
+### packet_id: DPL-URBAN-ROOFTOP-FRATRICIDE-INTERLOCK-001
+- domain: rooftop fratricide prevention interlock
+- objective: enforce confidence and deconfliction checks before urban rooftop effects release
+- primary_tools: interlock engine, sensor confidence board, no-strike validator
+- alternate_tools: manual dual-confirmation hold/release board
+- degraded_mode: hold-by-default for ambiguous tracks and congested sectors
+- input_requirements: confidence scores, position errors, protected-site map, ROE tags
+- output_schema: interlock pass/fail table, hold/release actions, residual risk notes
+- protocol_profile: Link 16 J-series + USMTF + OGC
+- validation_gates: confidence floor check, legal/ROE pass, authority signoff
+
+## Packet Expansion (2026-03-10, Cislunar Defense, Cognitive-EW Fusion, and Strategic Supply Assurance)
+
+### packet_id: DPL-CISLUNAR-LOGISTICS-DEFENSE-001
+- domain: joint cislunar logistics defense
+- objective: protect cislunar logistics nodes and transfers under adversary threat and coalition constraints
+- primary_tools: cislunar traffic monitor, orbital threat fusion board, logistics continuity planner
+- alternate_tools: manual cislunar transfer board and mission-priority route matrix
+- degraded_mode: mission-essential transfer windows only with expanded safety buffers
+- input_requirements: ephemeris state, threat indicators, transfer demand, coalition caveats
+- output_schema: protection timeline, prioritized transfer list, branch trigger matrix
+- protocol_profile: USMTF + CCSDS + API/JSON
+- validation_gates: conjunction risk pass, command release gate, coalition concurrence
+
+### packet_id: DPL-ORBITAL-REFUEL-RENDEZVOUS-PROTECTION-001
+- domain: orbital refuel rendezvous protection
+- objective: safeguard refueling rendezvous windows and sequence defensive posture changes
+- primary_tools: rendezvous safety analyzer, fuel-transfer status monitor, mission command board
+- alternate_tools: manual rendezvous checklist with UTC dual-confirm readbacks
+- degraded_mode: serialized refuel operations with strict no-go triggers
+- input_requirements: relative state vectors, fuel status, threat tracks, comms confidence
+- output_schema: rendezvous protection plan, hold/release conditions, assurance log
+- protocol_profile: CCSDS + Link 16 J-series + USMTF + API/JSON
+- validation_gates: geometry safety check, acknowledgment chain pass, authority signoff
+
+### packet_id: DPL-COGNITIVE-EW-PSYOPS-SYNC-001
+- domain: cognitive-ew-psyops synchronization
+- objective: align cognitive messaging, EW actions, and PSYOPS effects in a coherent schedule
+- primary_tools: narrative analytics suite, EW telemetry fusion board, release scheduler
+- alternate_tools: manual effects calendar and cross-functional approval board
+- degraded_mode: limited messaging cadence with conservative EW coupling
+- input_requirements: adversary narrative shifts, EW status, target audiences, policy constraints
+- output_schema: synchronized effects schedule, risk map, branch criteria
+- protocol_profile: USMTF + STIX/TAXII + CoT + API/JSON
+- validation_gates: policy/ROE review, fratricide messaging check, command approval
+
+### packet_id: DPL-INFLUENCE-EFFECT-DECONFLICTION-001
+- domain: influence effect deconfliction
+- objective: prevent adverse interactions between influence activities and kinetic/cyber actions
+- primary_tools: campaign deconfliction engine, event-timeline board, legal review queue
+- alternate_tools: manual deconfliction matrix and decision conference checklist
+- degraded_mode: hold-by-default on conflicting effects
+- input_requirements: planned effects, timing windows, legal caveats, audience assessments
+- output_schema: deconfliction adjudication table, release conditions, residual risk note
+- protocol_profile: USMTF + API/JSON
+- validation_gates: legal concurrence, timing conflict check, commander authorization
+
+### packet_id: DPL-GEOMAGNETIC-GRID-DISTURBANCE-001
+- domain: homeland geomagnetic disturbance response
+- objective: assess geomagnetic grid impacts and protect defense-critical power dependencies
+- primary_tools: geomagnetic forecast service, grid-state estimator, defense-priority load board
+- alternate_tools: manual critical-load worksheet and emergency restoration board
+- degraded_mode: life-safety and mission-essential power only
+- input_requirements: disturbance forecast, transformer status, critical facility load, backup availability
+- output_schema: impact assessment, prioritized mitigation actions, outage branch map
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: safety threshold check, civil-military concurrence, command approval
+
+### packet_id: DPL-GRID-EMERGENCY-BLACKSTART-PRIORITY-001
+- domain: emergency grid blackstart prioritization
+- objective: sequence blackstart actions to restore defense-critical nodes with minimal cascading risk
+- primary_tools: blackstart optimizer, restoration status board, contingency dispatch planner
+- alternate_tools: manual blackstart sequence card and dual-confirm status board
+- degraded_mode: staged restoration for command-and-safety circuits first
+- input_requirements: generation availability, transmission constraints, priority facility list, hazard map
+- output_schema: blackstart sequence, priority restoration matrix, confidence update
+- protocol_profile: NIMS/ICS + USMTF + API/JSON
+- validation_gates: restoration safety check, integrity verification, release authority gate
+
+### packet_id: DPL-ORBITAL-SERVICING-SAFETY-001
+- domain: coalition orbital servicing safety
+- objective: enforce safe servicing plans under contested conditions and coalition legal constraints
+- primary_tools: ephemeris conflict checker, servicing mission planner, coalition ops board
+- alternate_tools: manual servicing safety board and time-window ledger
+- degraded_mode: restricted servicing windows with larger proximity margins
+- input_requirements: servicing geometry, threat posture, coalition permissions, payload state
+- output_schema: servicing safety plan, no-go criteria, coalition coordination tasks
+- protocol_profile: CCSDS + NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: conjunction pass, coalition releasability check, authority signoff
+
+### packet_id: DPL-COALITION-RPO-DECONFLICTION-001
+- domain: coalition rendezvous and proximity operations deconfliction
+- objective: prevent coalition RPO conflicts while preserving mission effectiveness
+- primary_tools: RPO deconfliction engine, alliance coordination board, telemetry integrity service
+- alternate_tools: manual RPO window matrix and coalition hotline readback process
+- degraded_mode: no-close-approach posture except mission-critical exceptions
+- input_requirements: coalition mission windows, asset tracks, confidence bounds, legal caveats
+- output_schema: deconfliction timeline, conflict resolutions, escalation triggers
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: RPO safety threshold, legal review, coalition command concurrence
+
+### packet_id: DPL-DEFENSE-SEMICONDUCTOR-FAB-RECOVERY-001
+- domain: defense semiconductor fab sabotage recovery
+- objective: restore trusted semiconductor output after sabotage with contamination controls
+- primary_tools: fab telemetry monitor, process forensics pipeline, recovery scheduler
+- alternate_tools: manual process-state board and phased recovery worksheet
+- degraded_mode: essential lines only with heightened verification steps
+- input_requirements: damage assessment, process integrity state, tooling availability, demand priorities
+- output_schema: recovery phase plan, trusted output estimate, residual risk log
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: contamination check, process control gate, strategic approval
+
+### packet_id: DPL-TRUSTED-CHIP-SUPPLY-ALLOCATION-001
+- domain: trusted chip military allocation
+- objective: allocate constrained trusted chip output to highest priority defense mission chains
+- primary_tools: demand prioritization board, supply visibility dashboard, allocation adjudicator
+- alternate_tools: manual commander-priority allocation ledger
+- degraded_mode: top-tier mission allocation only with deferred noncritical programs
+- input_requirements: inventory status, mission demand, transport constraints, risk posture
+- output_schema: allocation matrix, deferred demand queue, impact assessment
+- protocol_profile: USMTF + API/JSON
+- validation_gates: mission-priority verification, legal/policy review, strategic signoff
+
+### packet_id: DPL-UNDERSEA-DATA-MULE-DETECTION-001
+- domain: autonomous undersea data-mule detection
+- objective: detect suspicious undersea autonomous data transfer routes and platforms
+- primary_tools: acoustic anomaly detector, subsea route analytics, patrol cueing board
+- alternate_tools: manual acoustic contact ledger and fixed patrol assignment board
+- degraded_mode: high-risk zone monitoring only
+- input_requirements: acoustic traces, route history, known platform signatures, area priorities
+- output_schema: detection confidence table, suspect route map, cueing tasks
+- protocol_profile: AIS/NMEA + CoT + USMTF + API/JSON
+- validation_gates: confidence threshold pass, false-positive check, command approval
+
+### packet_id: DPL-UNDERSEA-EXFILTRATION-DENIAL-001
+- domain: undersea exfiltration denial
+- objective: deny adversary exfiltration paths while preserving friendly undersea operations
+- primary_tools: route denial planner, autonomous intercept controller, subsea COP board
+- alternate_tools: manual denial sector board and timed patrol windows
+- degraded_mode: deny-only in pre-approved high-threat sectors
+- input_requirements: suspected exfiltration routes, own-force routes, denial assets, ROE constraints
+- output_schema: denial plan, deconfliction matrix, escalation triggers
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: fratricide deconfliction check, ROE review, release authority
+
+### packet_id: DPL-ARCTIC-HYBRID-BACKHAUL-RESILIENCE-001
+- domain: Arctic hybrid backhaul resilience
+- objective: preserve forward C2 via fiber-microwave path orchestration in Arctic conditions
+- primary_tools: path health monitor, microwave link planner, failover orchestrator
+- alternate_tools: manual comms status board and route switch checklist
+- degraded_mode: mission-priority traffic only over the most reliable path
+- input_requirements: link health, weather forecast, mission traffic classes, power state
+- output_schema: resilient backhaul plan, failover triggers, service-priority matrix
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: latency threshold pass, availability gate, command concurrence
+
+### packet_id: DPL-FORWARD-BACKHAUL-FAILOVER-001
+- domain: forward backhaul failover
+- objective: execute predictable failover without command-and-control collapse
+- primary_tools: failover policy engine, network telemetry board, dependency mapper
+- alternate_tools: manual failover sequence with checkpoint callouts
+- degraded_mode: serialized failover by mission criticality
+- input_requirements: dependency graph, link status, mission priorities, site constraints
+- output_schema: failover timeline, dependency impact list, recovery verification report
+- protocol_profile: USMTF + API/JSON
+- validation_gates: dependency integrity check, acknowledgment chain, approval gate
+
+### packet_id: DPL-DENIED-SPACE-WEATHER-PNT-RECOVERY-001
+- domain: denied space-weather PNT recovery
+- objective: restore navigation/timing confidence under compounded space-weather and denial effects
+- primary_tools: PNT confidence estimator, timing crosswalk monitor, navigation fusion board
+- alternate_tools: manual nav confidence worksheet and bounded maneuver plan
+- degraded_mode: constrained maneuver envelope until confidence stabilizes
+- input_requirements: space-weather indicators, spoof/jam alerts, timing drift, mission constraints
+- output_schema: recovery sequence, confidence ladder, operational constraints
+- protocol_profile: USMTF + signed timing attestations + Link 16 J-series + API/JSON
+- validation_gates: confidence floor check, timing drift pass, command authorization
+
+### packet_id: DPL-PNT-CONFIDENCE-RECONSTITUTION-001
+- domain: PNT confidence reconstitution
+- objective: re-establish mission-usable PNT confidence through multi-source adjudication
+- primary_tools: source integrity monitor, inertial drift analyzer, fusion adjudicator
+- alternate_tools: manual source ranking board with periodic dual-control checks
+- degraded_mode: timing-critical missions only with expanded safety margins
+- input_requirements: source status, integrity scores, drift rates, mission tolerances
+- output_schema: reconstitution matrix, source trust list, branch triggers
+- protocol_profile: USMTF + API/JSON
+- validation_gates: integrity threshold, safety check, authority signoff
+
+### packet_id: DPL-DNA-TAG-AUTHENTICITY-VERIFY-001
+- domain: DNA-tag authenticity verification
+- objective: verify authenticity of DNA-tagged military supply items before release
+- primary_tools: DNA tag assay pipeline, custody ledger verifier, release decision board
+- alternate_tools: manual sample reconciliation and quarantine worksheet
+- degraded_mode: essential-use releases only with enhanced sample checks
+- input_requirements: sample IDs, custody records, baseline signatures, lot metadata
+- output_schema: authenticity verdict table, quarantine list, release decisions
+- protocol_profile: STIX/TAXII + chain-of-custody envelope + API/JSON
+- validation_gates: assay confidence pass, custody integrity check, approval role signoff
+
+### packet_id: DPL-MILITARY-SUPPLY-DIVERSION-HUNT-001
+- domain: military supply diversion hunting
+- objective: identify and prioritize diversion nodes affecting military logistics chains
+- primary_tools: diversion graph analytics, transport anomaly detector, interdiction planner
+- alternate_tools: manual node-risk matrix and route audit board
+- degraded_mode: top-risk node hunting only
+- input_requirements: shipment telemetry, custody anomalies, financial indicators, route metadata
+- output_schema: diversion-node map, interdiction priorities, confidence notes
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: confidence threshold, legal review, command release gate
+
+### packet_id: DPL-CYBER-FIRES-COLLATERAL-ESTIMATION-001
+- domain: coalition cyber-fires collateral estimation
+- objective: estimate cross-domain collateral effects from cyber-enabled fires options
+- primary_tools: collateral estimation engine, cyber effects simulator, legal review dashboard
+- alternate_tools: manual consequence worksheet and coalition legal review board
+- degraded_mode: only low-collateral options considered pending higher-fidelity analysis
+- input_requirements: target effects plan, network dependencies, protected sites, policy constraints
+- output_schema: collateral estimate table, legal caveat list, option ranking
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + STIX/TAXII + API/JSON
+- validation_gates: no-strike check, legal concurrence, commander approval
+
+### packet_id: DPL-COALITION-CYBER-EFFECT-DECONFLICTION-001
+- domain: coalition cyber effect deconfliction
+- objective: prevent unintended coalition interference across cyber and kinetic effects
+- primary_tools: deconfliction planner, coalition timing board, dependency conflict analyzer
+- alternate_tools: manual deconfliction conference matrix and readback ledger
+- degraded_mode: hold-by-default on conflicting effects windows
+- input_requirements: planned effects windows, mission dependencies, coalition caveats, authorities
+- output_schema: deconfliction decisions, hold/release triggers, residual risk ledger
+- protocol_profile: USMTF + API/JSON
+- validation_gates: dependency conflict check, authority verification, coalition concurrence
+
+### packet_id: DPL-NC3-HARDENED-FIBER-FAILOVER-001
+- domain: joint NC3 hardened fiber failover
+- objective: execute NC3 transport failover while preserving continuity and message integrity
+- primary_tools: path assurance monitor, failover governance board, acknowledgment integrity tracker
+- alternate_tools: manual failover checklist and command readback board
+- degraded_mode: mission-essential NC3 channels only during restoration
+- input_requirements: path status, timing drift, message queue health, command priorities
+- output_schema: failover sequence, continuity risk notes, recovery checkpoints
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: ack-chain check, continuity threshold pass, command authority release
+
+### packet_id: DPL-NC3-ACK-INTEGRITY-CHAIN-001
+- domain: NC3 acknowledgment integrity
+- objective: verify dual-confirm acknowledgment chain for critical NC3 posture changes
+- primary_tools: ack-chain monitor, cryptographic integrity verifier, command audit ledger
+- alternate_tools: manual dual-confirm readback with UTC logging
+- degraded_mode: advisory-only recommendations until chain is restored
+- input_requirements: message IDs, ack timestamps, signer identities, integrity status
+- output_schema: ack integrity report, missing-ack exceptions, escalation cues
+- protocol_profile: USMTF + signed timing attestations + API/JSON
+- validation_gates: dual-confirm pass, cryptographic validation, duty-officer concurrence
+
+### packet_id: DPL-COALITION-PRIVATE5G-MISSION-FAILOVER-001
+- domain: coalition private-5G mission failover
+- objective: shift mission-priority services across coalition enclaves during contested degradation
+- primary_tools: private-5G orchestration controller, coalition QoS board, service dependency map
+- alternate_tools: manual mission-priority table and failover hotline readbacks
+- degraded_mode: critical C2 and life-safety services only
+- input_requirements: service priorities, enclave status, spectrum contention, coalition permissions
+- output_schema: failover plan, preemption schedule, restoration branches
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: releasability check, mission-priority validation, authority gate
+
+### packet_id: DPL-COALITION-PRIVATE5G-QOS-PREEMPTION-001
+- domain: coalition private-5G QoS preemption
+- objective: enforce QoS preemption without violating coalition authority and legal constraints
+- primary_tools: QoS policy engine, traffic monitor, coalition legal/authority checker
+- alternate_tools: manual preemption approval matrix with dual-control release
+- degraded_mode: preemption paused except commander-approved emergency exceptions
+- input_requirements: traffic classes, mission impacts, authority basis, host-nation caveats
+- output_schema: preemption decision log, allowed exceptions list, rollback triggers
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: authority verification, legal review, rollback readiness check
+
+### packet_id: DPL-BIOCUSTODY-PATHOGEN-CHAIN-001
+- domain: joint biocustody and pathogen sample integrity
+- objective: preserve end-to-end chain-of-custody and evidentiary integrity for pathogen samples
+- primary_tools: biosample custody ledgers, chain-of-custody workflow managers, forensic genomics cross-reference boards
+- alternate_tools: manual custody manifest with dual-witness logging and periodic integrity review
+- degraded_mode: paper + voice-confirmed custody transfer with UTC rollup
+- input_requirements: sample identifiers, collection site metadata, handler roster, custody transitions, evidentiary authority tags
+- output_schema: custody chain log, integrity confidence score, exception ledger, attribution-ready packet index
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: dual-witness custody confirmation, signature integrity pass, legal authority check
+
+### packet_id: DPL-PATHOGEN-EVIDENCE-ATTRIBUTION-001
+- domain: pathogen evidence attribution and legal handoff
+- objective: correlate pathogen evidence with incident context for command and legal attribution workflows
+- primary_tools: forensic genomics analytics, incident intelligence correlation board, legal evidence packaging workflow
+- alternate_tools: analyst adjudication worksheet plus manual evidence map
+- degraded_mode: confidence-bounded attribution bulletin every 12 hours
+- input_requirements: sequencing confidence, sample provenance, chain exceptions, incident timeline, partner constraints
+- output_schema: attribution hypothesis set, confidence ladder, legal handoff checklist
+- protocol_profile: STIX/TAXII + USMTF + API/JSON
+- validation_gates: provenance pass, confidence threshold gate, legal review checkpoint
+
+### packet_id: DPL-EM-CYBER-DECEPTION-BREACH-001
+- domain: theater electromagnetic-cyber deception breach response
+- objective: detect and characterize synchronized EW-cyber deception events impacting mission trust
+- primary_tools: EW anomaly fusion services, cyber telemetry correlation engines, deception behavior classifiers
+- alternate_tools: manual incident fusion board plus red-team challenge panel
+- degraded_mode: mission-trust impact bulletin every 6 hours
+- input_requirements: emitter anomalies, cyber incident telemetry, timeline alignment, mission dependency graph
+- output_schema: breach characterization table, mission impact map, containment options
+- protocol_profile: STIX/TAXII + CoT + USMTF
+- validation_gates: cross-domain correlation check, source provenance floor, authority review gate
+
+### packet_id: DPL-THEATER-DECEPTION-ACTIVITY-CHAIN-001
+- domain: theater deception activity chain attribution
+- objective: build confidence-ranked deception activity chains to support commander decisions
+- primary_tools: adversary pattern analytics, EW campaign trackers, cyber intrusion chain mappers
+- alternate_tools: analyst linkage matrix with periodic confidence review
+- degraded_mode: high-confidence chain snapshots only
+- input_requirements: activity indicators, confidence tags, observed effects, branch triggers
+- output_schema: activity chain graph, confidence rank list, recommended branch triggers
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: multi-source corroboration, confidence declaration, escalation-risk review
+
+### packet_id: DPL-COALITION-SOVEREIGN-CLOUD-CONTINUITY-001
+- domain: coalition sovereign cloud mission-data continuity
+- objective: preserve mission data continuity across sovereign enclaves under contested outages
+- primary_tools: sovereign policy controllers, mission data replication services, enclave continuity dashboards
+- alternate_tools: staged manual data handoff board with releasability gating
+- degraded_mode: critical-data-only replication windows with delayed reconciliation
+- input_requirements: enclave boundaries, legal caveats, data priority tiers, trust posture, outage scope
+- output_schema: continuity branch plan, enclave routing matrix, data gap register
+- protocol_profile: NATO APP-11/ADatP-3 + USMTF + API/JSON
+- validation_gates: sovereign caveat validation, lineage integrity pass, coalition authority confirmation
+
+### packet_id: DPL-CROSS-DOMAIN-DATA-RECONSTITUTION-001
+- domain: coalition cross-domain mission data reconstitution
+- objective: reconstitute mission data with integrity and releasability control after cross-domain disruption
+- primary_tools: cross-domain sync orchestrators, signed lineage verifiers, mission data quality monitors
+- alternate_tools: manual reconciliation ledger and schema delta review board
+- degraded_mode: commander-critical datasets only with explicit confidence penalties
+- input_requirements: disrupted data services, schema baselines, lineage signatures, releasability rules
+- output_schema: reconstitution timeline, integrity scorecard, unresolved schema conflict list
+- protocol_profile: USMTF + API/JSON + signed lineage manifests
+- validation_gates: schema conformance, lineage signature validation, coalition releasability pass
+
+### packet_id: DPL-MODEL-WEIGHT-PROVENANCE-VERIFY-001
+- domain: military AI model-weight provenance assurance
+- objective: verify model-weight provenance before mission deployment or update execution
+- primary_tools: signed model registries, artifact attestation verifiers, mission AI release boards
+- alternate_tools: manual hash verification worksheet with independent witness log
+- degraded_mode: freeze to last known-good model with restricted mission scope
+- input_requirements: model hashes, signature chains, release metadata, deployment targets, rollback candidates
+- output_schema: provenance verification report, deployment recommendation, hold/release decisions
+- protocol_profile: API/JSON + USMTF + signed artifact attestations
+- validation_gates: signature chain pass, hash match confirmation, authority gate approval
+
+### packet_id: DPL-MODEL-POISONING-CONTAINMENT-001
+- domain: military AI model poisoning containment and rollback
+- objective: contain suspected model poisoning and execute mission-safe rollback sequences
+- primary_tools: inference drift monitors, anomaly triage engines, controlled rollback workflow managers
+- alternate_tools: manual model quarantine board with conservative fallback operations
+- degraded_mode: advisory-only AI outputs with mandatory human override
+- input_requirements: anomaly indicators, affected model list, mission dependencies, rollback inventories
+- output_schema: containment action list, rollback sequence chart, mission risk delta brief
+- protocol_profile: STIX/TAXII + USMTF + API/JSON
+- validation_gates: anomaly confidence threshold, rollback integrity pass, commander approval check
+
+### packet_id: DPL-SPACEPORT-PROPELLANT-SABOTAGE-001
+- domain: spaceport propellant sabotage response
+- objective: detect and isolate propellant sabotage while preserving launch-critical capabilities
+- primary_tools: propellant quality telemetry, launch infrastructure anomaly detectors, security incident workflows
+- alternate_tools: manual propellant sampling and launch hold board
+- degraded_mode: launch hold with prioritized mission reassessment
+- input_requirements: propellant inventory telemetry, tamper alerts, launch schedule, safety constraints
+- output_schema: sabotage incident map, hold/release recommendations, mitigation timeline
+- protocol_profile: EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: contamination confirmation, blast-hazard review, launch authority decision
+
+### packet_id: DPL-SPACEPORT-TOXIC-PLUME-RESPONSE-001
+- domain: spaceport toxic release consequence management
+- objective: coordinate plume containment, force protection, and launch-site recovery sequencing
+- primary_tools: toxic plume modelers, emergency warning systems, base continuity dashboards
+- alternate_tools: manual hazard zone board and safety officer synchronization calls
+- degraded_mode: static exclusion zones with periodic reassessment
+- input_requirements: release source, meteorological profile, personnel exposure data, critical asset map
+- output_schema: hazard zone overlays, evacuation/shelter actions, recovery priority queue
+- protocol_profile: EDXL-DE/CAP + NIMS/ICS + USMTF
+- validation_gates: plume model confidence, life-safety priority pass, command authorization
+
+### packet_id: DPL-UNDERSEA-CHARGING-NODE-TAMPER-001
+- domain: undersea drone charging node tamper response
+- objective: identify and triage tamper events at undersea charging nodes supporting autonomous operations
+- primary_tools: subsea node telemetry fusion, maritime anomaly trackers, autonomous route managers
+- alternate_tools: periodic node health watchbill and acoustic anomaly checklist
+- degraded_mode: reduced endurance mission profile with manual node avoidance
+- input_requirements: node telemetry, tamper indicators, underwater traffic logs, mission endurance thresholds
+- output_schema: tamper event table, node confidence map, retask recommendations
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: dual-source anomaly corroboration, node integrity threshold, operational authority check
+
+### packet_id: DPL-UNDERSEA-NODE-ENDURANCE-RECOVERY-001
+- domain: undersea charging network endurance recovery
+- objective: restore mission endurance after node outage, tamper, or contamination events
+- primary_tools: endurance planners, charging-node restoration workflows, maritime route optimization tools
+- alternate_tools: manual endurance estimate board with fixed conservative routes
+- degraded_mode: mission-priority-only autonomous sorties
+- input_requirements: remaining node capacity, mission demand, repair timelines, route hazards
+- output_schema: endurance recovery plan, sortie allocation matrix, restoration trigger table
+- protocol_profile: USMTF + API/JSON + AIS/NMEA
+- validation_gates: endurance floor confirmation, repair feasibility check, commander risk acceptance
+
+### packet_id: DPL-HOSPITAL-MICROGRID-BLACKSTART-001
+- domain: coalition civil hospital microgrid blackstart
+- objective: sequence hospital microgrid blackstart to preserve life-critical care continuity
+- primary_tools: microgrid restoration orchestrators, hospital load telemetry, civil emergency command boards
+- alternate_tools: manual blackstart runbook board with utility liaison updates
+- degraded_mode: life-support-only power posture and elective-load shedding
+- input_requirements: hospital critical load list, generator status, fuel availability, casualty surge forecast
+- output_schema: blackstart sequence, load-priority list, outage risk timeline
+- protocol_profile: HL7/FHIR + NIMS/ICS + USMTF
+- validation_gates: life-safety load priority check, generator integrity pass, coalition authority confirmation
+
+### packet_id: DPL-HOSPITAL-TRIAGE-POWER-PRIORITY-001
+- domain: hospital triage and power-priority governance
+- objective: align casualty triage priorities with constrained power restoration decisions
+- primary_tools: casualty triage systems, bed-status dashboards, critical-load prioritization planners
+- alternate_tools: manual triage-power reconciliation board
+- degraded_mode: category-1 casualty support only with explicit risk annotations
+- input_requirements: casualty categories, service-line criticality, available power capacity, evacuation options
+- output_schema: triage-power matrix, service degradation triggers, escalation prompts
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical authority validation, load feasibility pass, ethics/policy check
+
+### packet_id: DPL-RARE-EARTH-MAGNET-RECOVERY-001
+- domain: strategic rare-earth magnet recovery and recycling
+- objective: maximize magnet recovery throughput under strategic supply constraints
+- primary_tools: materials recovery telemetry, recycling process monitors, industrial flow analytics boards
+- alternate_tools: manual inventory and recovery worksheet with weekly adjudication
+- degraded_mode: strategic-priority-only recycling allocations
+- input_requirements: feedstock inventory, recovery yields, plant capacity, contamination rates
+- output_schema: recovery throughput map, bottleneck register, mitigation options
+- protocol_profile: API/JSON + USMTF + industrial telemetry envelopes
+- validation_gates: quality assurance pass, throughput confidence floor, environmental compliance gate
+
+### packet_id: DPL-MISSILE-MAGNET-ALLOCATION-001
+- domain: missile production magnet allocation
+- objective: allocate scarce magnet supply to missile production priorities with mission-aware tradeoffs
+- primary_tools: production planning systems, inventory allocation engines, strategic demand forecasting boards
+- alternate_tools: manual allocation board with commander-prioritized mission ranking
+- degraded_mode: top-tier mission-only allocation schedule
+- input_requirements: missile demand profile, magnet inventory, production constraints, readiness priorities
+- output_schema: allocation matrix, readiness impact forecast, decision trigger ladder
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: strategic priority validation, stock integrity confirmation, authority approval gate
+
+### packet_id: DPL-LITTORAL-AUTONOMOUS-FERRY-RESUPPLY-001
+- domain: littoral autonomous ferry resupply under fire
+- objective: preserve contested littoral sustainment via autonomous ferry routes with defensive deconfliction
+- primary_tools: littoral route-risk planner, autonomous vessel tasking manager, sustainment demand board
+- alternate_tools: manual ferry convoy board and threat update hotline
+- degraded_mode: mission-essential resupply windows only with fixed security escorts
+- input_requirements: route overlays, threat zones, ferry availability, demand priorities
+- output_schema: ferry corridor plan, risk bands, branch triggers
+- protocol_profile: AIS/NMEA + USMTF + API/JSON
+- validation_gates: threat corroboration, route survivability threshold, commander approval
+
+### packet_id: DPL-LITTORAL-RESUPPLY-FIRE-DECONFLICTION-001
+- domain: littoral resupply fires deconfliction
+- objective: prevent fires-fratricide while sustaining autonomous ferry throughput
+- primary_tools: fires deconfliction services, maritime movement board, geofence conflict monitor
+- alternate_tools: manual no-fire window matrix with UTC readback
+- degraded_mode: conservative no-fire corridors and reduced sortie tempo
+- input_requirements: fires windows, ferry tracks, no-strike zones, C2 latency
+- output_schema: deconfliction timeline, no-fire corridors, exception list
+- protocol_profile: VMF + Link 16 J-series + USMTF
+- validation_gates: no-strike pass, conflict-free timing check, authority gate
+
+### packet_id: DPL-DENIED-PNT-ARTILLERY-SURVEY-001
+- domain: denied-PNT artillery survey and alignment
+- objective: recover artillery survey confidence under GNSS denial or spoofing
+- primary_tools: inertial survey solvers, azimuth calibration workflows, ballistic alignment engines
+- alternate_tools: manual survey board with reference-point triangulation
+- degraded_mode: reduced-range fires with strict confidence limits
+- input_requirements: survey control points, drift rates, platform orientation, threat emitters
+- output_schema: survey confidence table, alignment corrections, fires safety notes
+- protocol_profile: USMTF + VMF + API/JSON
+- validation_gates: survey confidence floor, geometry pass, firing authority release
+
+### packet_id: DPL-FIRES-GEOMETRY-CONFIDENCE-DENIED-PNT-001
+- domain: denied-PNT fires geometry confidence
+- objective: verify fire-mission geometry is safe and mission-valid despite degraded PNT
+- primary_tools: geometry safety checker, ballistic confidence engine, counterfire-risk analyzer
+- alternate_tools: manual firing data cross-check worksheet
+- degraded_mode: hold high-risk fire missions pending human confirmation
+- input_requirements: target coordinates, gun line state, timing profile, confidence bounds
+- output_schema: geometry confidence score, fire-mission release recommendation, hold triggers
+- protocol_profile: VMF + USMTF + signed timing attestations
+- validation_gates: geometry safety pass, collateral risk check, command concurrence
+
+### packet_id: DPL-CROSS-BORDER-AEROMEDICAL-BIOSECURITY-001
+- domain: coalition cross-border aeromedical biosecurity
+- objective: coordinate infectious-risk aeromedical transfers across borders with mission continuity
+- primary_tools: aeromedical routing planner, isolation transfer controller, clearance tracking board
+- alternate_tools: liaison routing ledger and paper isolation checklists
+- degraded_mode: urgent-only transfers with expanded isolation constraints
+- input_requirements: patient categories, infection profile, border permissions, aircraft availability
+- output_schema: transfer sequence, isolation controls, legal routing status
+- protocol_profile: HL7/FHIR + USMTF + NATO APP-11/ADatP-3
+- validation_gates: medical authority check, isolation compliance pass, diplomatic clearance confirmation
+
+### packet_id: DPL-BIOSECURE-MEDEVAC-LEGAL-HANDOFF-001
+- domain: biosecure medevac legal handoff
+- objective: preserve legal and medical continuity during cross-border biosecure patient handoffs
+- primary_tools: legal-routing adjudicator, med-log continuity services, custody transfer ledger
+- alternate_tools: manual legal checklist and dual-signature handoff sheet
+- degraded_mode: advisory-only handoff recommendations until legal route is cleared
+- input_requirements: legal authority tags, patient custody chain, receiving-facility readiness, coalition caveats
+- output_schema: legal handoff checklist, custody continuity report, route decision log
+- protocol_profile: USMTF + HL7/FHIR + API/JSON
+- validation_gates: legal basis verification, custody chain integrity, coalition approval gate
+
+### packet_id: DPL-GRID-TRANSFORMER-SABOTAGE-RESTORATION-001
+- domain: homeland grid transformer sabotage restoration
+- objective: triage transformer sabotage impacts and restore military-priority power dependencies
+- primary_tools: transformer telemetry analyzers, restoration orchestration boards, priority-load planners
+- alternate_tools: manual substation status board and blackstart call tree
+- degraded_mode: mission-critical feeders only with rolling reassessment
+- input_requirements: substation damage status, load priorities, repair assets, blackout scope
+- output_schema: restoration priority matrix, repair sequence, defense continuity timeline
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + USMTF
+- validation_gates: life-safety priority check, repair feasibility pass, command approval
+
+### packet_id: DPL-MILITARY-PRIORITY-GRID-BLACKSTART-001
+- domain: military-priority grid blackstart
+- objective: sequence blackstart actions to recover military mission dependencies after sabotage
+- primary_tools: blackstart planners, mission dependency graph engines, utility coordination workflows
+- alternate_tools: manual blackstart checklist with fixed load restoration tiers
+- degraded_mode: command-and-control and casualty-care nodes only
+- input_requirements: generation status, feeder dependencies, mission priority tiers, restoration crews
+- output_schema: blackstart sequence, dependency gates, escalation triggers
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: dependency validation, safety gate pass, authority confirmation
+
+### packet_id: DPL-COUNTER-HYPERSONIC-DECOY-DISCRIMINATION-001
+- domain: hypersonic decoy discrimination
+- objective: classify probable decoys versus credible hypersonic threats for decision support
+- primary_tools: multi-sensor fusion engine, signature discrimination models, warning confidence board
+- alternate_tools: manual trajectory adjudication worksheet
+- degraded_mode: conservative threat posture with mandatory command review
+- input_requirements: track telemetry, sensor confidence, decoy baselines, timeline urgency
+- output_schema: discrimination confidence ladder, warning options, posture triggers
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: cross-sensor corroboration, confidence threshold, authority gate
+
+### packet_id: DPL-HYPERSONIC-WARNING-POSTURE-TRIGGER-001
+- domain: hypersonic warning posture trigger governance
+- objective: translate discrimination confidence into bounded defensive posture decisions
+- primary_tools: warning trigger manager, defensive posture board, escalation risk model
+- alternate_tools: manual trigger matrix and readback confirmation cycle
+- degraded_mode: default high-readiness posture pending confidence recovery
+- input_requirements: confidence scores, defensive asset availability, ROE constraints, latency budget
+- output_schema: posture recommendation set, trigger conditions, rollback cues
+- protocol_profile: USMTF + API/JSON + Link 16 J-series
+- validation_gates: policy/ROE check, collateral risk review, command concurrence
+
+### packet_id: DPL-UNDERSEA-CABLE-LANDING-BLACKSTART-001
+- domain: undersea cable landing station blackstart defense
+- objective: defend and restore cable landing station operations after disruption
+- primary_tools: landing station telemetry monitor, cable fault locator, restoration scheduler
+- alternate_tools: manual continuity board with periodic status polling
+- degraded_mode: essential comms-only routing with strict bandwidth control
+- input_requirements: station power status, cable fault map, threat indicators, route priorities
+- output_schema: restoration sequence, security actions, continuity branch map
+- protocol_profile: USMTF + AIS/NMEA + API/JSON
+- validation_gates: station integrity threshold, route viability pass, authority check
+
+### packet_id: DPL-CABLE-LANDING-COMMS-CONTINUITY-001
+- domain: cable landing comms continuity
+- objective: maintain mission communications during phased landing-station restoration
+- primary_tools: comm-path orchestrator, bandwidth prioritization board, failover path validators
+- alternate_tools: manual traffic priority table and readback log
+- degraded_mode: command-critical traffic only with delayed non-critical exchange
+- input_requirements: traffic classes, path availability, latency constraints, mission priorities
+- output_schema: continuity routing plan, preemption schedule, degradation notices
+- protocol_profile: API/JSON + USMTF + signed restoration manifests
+- validation_gates: priority validation, latency threshold check, commander acceptance
+
+### packet_id: DPL-DISINFORMATION-BANK-RUN-STABILITY-001
+- domain: disinformation-enabled bank-run stability support
+- objective: detect and contain disinformation campaigns driving liquidity shock and operational instability
+- primary_tools: narrative anomaly tracker, liquidity stress monitor, crisis coordination board
+- alternate_tools: manual rumor timeline and financial incident workbook
+- degraded_mode: conservative cash-priority support with frequent command review
+- input_requirements: rumor vectors, transaction anomalies, branch availability, mission payment dependencies
+- output_schema: incident confidence map, containment options, stability risk brief
+- protocol_profile: STIX/TAXII + USMTF + API/JSON
+- validation_gates: source provenance floor, financial impact check, policy/legal review
+
+### packet_id: DPL-COALITION-LIQUIDITY-CONTINUITY-001
+- domain: coalition liquidity continuity under information attack
+- objective: preserve coalition mission-critical payment and procurement continuity during bank-run pressure
+- primary_tools: continuity disbursement planners, coalition finance coordination ledger, fraud anomaly services
+- alternate_tools: manual priority-pay board and contingency disbursement controls
+- degraded_mode: mission-essential disbursements only with manual reconciliation
+- input_requirements: payment priorities, institution status, anti-fraud controls, coalition caveats
+- output_schema: liquidity continuity plan, disbursement risk map, reconciliation queue
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: anti-fraud verification, coalition authority check, treasury/legal clearance
+
+### packet_id: DPL-EXPEDITIONARY-ADDITIVE-MICROELECTRONICS-REPAIR-001
+- domain: expeditionary additive microelectronics repair
+- objective: restore mission electronics via additive repair workflows under austere conditions
+- primary_tools: additive micro-fabrication controllers, diagnostics benches, repair workflow manager
+- alternate_tools: manual repair board and conservative cannibalization workflow
+- degraded_mode: repair only mission-essential components with fixed acceptance thresholds
+- input_requirements: failed component profile, repair materials, test limits, mission criticality
+- output_schema: repair queue, expected recovery windows, acceptance test results
+- protocol_profile: API/JSON + USMTF + signed hardware attestations
+- validation_gates: repair feasibility check, test coverage threshold, release authority approval
+
+### packet_id: DPL-MICROELECTRONICS-ATTESTATION-MISSION-RELEASE-001
+- domain: microelectronics attestation and mission release
+- objective: attest repaired components and govern mission release decisions
+- primary_tools: attestation signer, electrical conformance validator, mission release board
+- alternate_tools: dual-signature manual attestation log
+- degraded_mode: provisional release with elevated monitoring only
+- input_requirements: conformance metrics, signature chain, installation target, mission risk tolerance
+- output_schema: attestation record, trust score, release/hold recommendation
+- protocol_profile: signed hardware attestations + USMTF + API/JSON
+- validation_gates: signature validity, conformance pass, command approval
+
+### packet_id: DPL-AI-SAR-IMAGERY-DECEPTION-DETECTION-001
+- domain: AI-enabled SAR imagery deception detection
+- objective: identify manipulated or deceptive SAR imagery products before operational use
+- primary_tools: SAR anomaly detectors, scene coherence analyzers, target-confidence arbitration services
+- alternate_tools: manual imagery adjudication board with multi-analyst review
+- degraded_mode: high-confidence-only targeting recommendations
+- input_requirements: SAR scene set, metadata provenance, target hypotheses, sensor context
+- output_schema: deception confidence report, trusted scene subset, retask recommendations
+- protocol_profile: USMTF + OGC + API/JSON
+- validation_gates: provenance validation, multi-source corroboration, confidence threshold
+
+### packet_id: DPL-SAR-TARGET-TRUST-RETASK-001
+- domain: SAR target trust and retask governance
+- objective: route collection retasks and targeting holds based on deception confidence
+- primary_tools: ISR tasking broker, target trust dashboard, cross-sensor cueing planner
+- alternate_tools: manual retask request queue and hold matrix
+- degraded_mode: pause non-time-critical targets pending verification
+- input_requirements: trust scores, mission urgency, sensor availability, legal constraints
+- output_schema: retask queue, targeting hold/release table, confidence refresh schedule
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: targeting legal check, trust-floor enforcement, authority release
+
+### packet_id: DPL-MISSILE-TRANSPORTER-ROUTE-SURVIVABILITY-001
+- domain: strategic missile transporter route survivability
+- objective: plan survivable transporter movement under denial and interdiction risk
+- primary_tools: route survivability planner, transporter telemetry monitor, denial-event intelligence feeds
+- alternate_tools: manual movement board with conservative route spacing
+- degraded_mode: reduced movement tempo with hardened concealment windows
+- input_requirements: route network, threat overlays, transporter readiness, movement deadlines
+- output_schema: survivability-ranked routes, timing windows, branch triggers
+- protocol_profile: USMTF + Link 16 J-series + API/JSON
+- validation_gates: survivability threshold check, chokepoint risk pass, command approval
+
+### packet_id: DPL-STRATEGIC-MOBILITY-DENIAL-BRANCH-001
+- domain: strategic mobility denial branch planning
+- objective: define branch options when primary transporter routes are denied or compromised
+- primary_tools: branch planner, strategic movement ledger, alternate route feasibility analyzer
+- alternate_tools: manual branch-and-sequel matrix with readback confirmation
+- degraded_mode: hold posture and decoy movement package only
+- input_requirements: denied segments, alternate route capacity, deception assets, readiness priorities
+- output_schema: branch option set, readiness impacts, decision points
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + API/JSON
+- validation_gates: branch feasibility, mission impact review, authority gate
+
+## Addendum J Packets (2026-03-10, Full-Domain Warfighter Expansion)
+
+### packet_id: DPL-IDENTITY-PROOF-LIFE-RECON-001
+- domain: degraded identity proof-of-life and personnel reconstitution
+- objective: re-establish trusted personnel status and actionable roster confidence under disconnected conditions
+- primary_tools: identity challenge broker, accountability ledger, disconnected credential verifier
+- alternate_tools: manual challenge roster board and liaison confirmation matrix
+- degraded_mode: voice/readback proof-of-life sweep every 6 hours with signed roster delta
+- input_requirements: last known roster, identity factors, unit hierarchy, communication status
+- output_schema: personnel confidence table, unknown-status queue, release-authority trigger list
+- protocol_profile: FIDO2/WebAuthn + signed JSON + USMTF
+- validation_gates: multi-factor pass, command witness confirmation, acknowledgment-chain integrity
+
+### packet_id: DPL-UNDERWATER-POWER-CABLE-LOAD-001
+- domain: underwater power cable repair and load prioritization
+- objective: restore mission-critical power paths and phase non-critical loads during denied repair windows
+- primary_tools: subsea fault localization service, grid load triage board, repair vessel planner
+- alternate_tools: manual outage board and local engineer restoration planner
+- degraded_mode: conservative load-shed matrix with 4-hour commander updates
+- input_requirements: cable segment map, load priorities, repair asset status, threat posture
+- output_schema: restoration sequence, load shedding schedule, continuity confidence score
+- protocol_profile: IEC 61850 + OGC + USMTF
+- validation_gates: fault source confidence, load-priority approval, safety interlock confirmation
+
+### packet_id: DPL-PORT-CRANE-CYBER-PHYSICAL-RECOVERY-001
+- domain: contested port crane cyber-physical restoration
+- objective: isolate compromised crane systems and recover port throughput without unsafe operations
+- primary_tools: OT intrusion monitor, crane diagnostic stack, berth throughput scheduler
+- alternate_tools: manual crane safety board and cargo reflow workbook
+- degraded_mode: berth-by-berth manual operation with strict safety hold points
+- input_requirements: crane health telemetry, berth demand, incident timeline, safety constraints
+- output_schema: isolation actions, recovery sequence, throughput restoration timeline
+- protocol_profile: ICS/OT events + NIMS/ICS + USMTF
+- validation_gates: cyber containment pass, safety lock verification, command release approval
+
+### packet_id: DPL-DISCONNECTED-COMMAND-INTENT-RECON-001
+- domain: disconnected mission command intent reconciliation
+- objective: reconcile conflicting command intent updates and publish authoritative branch/sequel guidance
+- primary_tools: intent ledger, branch trigger graph, delayed-ack reconciliation queue
+- alternate_tools: manual command update tracker and prioritized decision board
+- degraded_mode: hourly intent delta bulletin with commander confirmation requirement
+- input_requirements: commander guidance versions, branch triggers, acknowledgement status, mission priorities
+- output_schema: conflict resolution log, authoritative intent baseline, pending decision queue
+- protocol_profile: USMTF + CoT + signed JSON
+- validation_gates: command witness check, ack-chain verification, legal/authority alignment
+
+### packet_id: DPL-CRITICAL-PHARMA-SURGE-PROTECTION-001
+- domain: homeland critical pharmaceutical surge protection
+- objective: allocate life-saving drug production and distribution while suppressing diversion and fraud
+- primary_tools: pharma production dashboard, strategic stock ledger, diversion anomaly detector
+- alternate_tools: lot-level allocation board and manual anti-diversion review log
+- degraded_mode: daily life-priority distribution with conservative demand assumptions
+- input_requirements: production lines, lot quality status, demand signal, diversion indicators
+- output_schema: allocation matrix, diversion risk score, continuity branch recommendations
+- protocol_profile: HL7/FHIR + GS1 + USMTF
+- validation_gates: lot release verification, demand-source confirmation, anti-diversion authority check
+
+### packet_id: DPL-FORWARD-BLOOD-AUTONOMY-ASSURANCE-001
+- domain: autonomous forward blood routing and temperature assurance
+- objective: deliver blood products safely under contested movement constraints with strict cold-chain assurance
+- primary_tools: autonomous med-log dispatcher, temperature telemetry service, care-priority router
+- alternate_tools: manual medevac blood board and paper temperature custody chain
+- degraded_mode: urgent-only blood routing with reduced route diversity and tighter temperature holds
+- input_requirements: blood inventory, triage demand, route threat map, transport capabilities
+- output_schema: routing plan, temperature exception report, casualty support confidence
+- protocol_profile: HL7/FHIR + cold-chain telemetry + USMTF
+- validation_gates: temperature compliance pass, medical authority confirmation, route survivability threshold
+
+### packet_id: DPL-URBAN-VERTIPORT-DEFENSE-RECOVERY-001
+- domain: urban vertiport defense and traffic recovery
+- objective: defend critical vertiports from drone threats and restore protected mobility traffic
+- primary_tools: urban air traffic manager, counter-UAS board, vertiport access control monitor
+- alternate_tools: manual landing window matrix and observer-based threat board
+- degraded_mode: restricted emergency flights only with tactical escort and voice clearance
+- input_requirements: vertiport status, threat tracks, civilian air corridors, mission priorities
+- output_schema: defense posture, launch window matrix, deconfliction risk summary
+- protocol_profile: AIXM/FIXM + Link 16 + CoT
+- validation_gates: airspace deconfliction pass, collateral risk review, command release gate
+
+### packet_id: DPL-SPACE-CYBER-EM-LAUNCH-DECONF-001
+- domain: coalition space-cyber-electromagnetic launch deconfliction
+- objective: protect launch windows from cyber and spectrum disruption while preserving coalition interoperability
+- primary_tools: launch scheduler, spectrum planner, cyber mission risk dashboard
+- alternate_tools: manual launch board with coalition liaison conflict log
+- degraded_mode: conservative launch windows with pre-briefed cyber/EM holds
+- input_requirements: launch timeline, EM occupancy map, cyber threat posture, coalition constraints
+- output_schema: launch deconfliction matrix, conflict adjudication log, release recommendation
+- protocol_profile: CCSDS + STIX/TAXII + signed coalition manifests
+- validation_gates: conjunction risk check, cyber readiness pass, spectrum approval confirmation
+
+### packet_id: DPL-WATER-MEMBRANE-BYPASS-ASSURANCE-001
+- domain: denied water purification membrane failure and bypass operations
+- objective: preserve potable water continuity by validating bypass treatment and contamination controls
+- primary_tools: water telemetry service, membrane diagnostic board, contamination threshold planner
+- alternate_tools: field sampling chain and manual bypass treatment checklist
+- degraded_mode: emergency potable ration plan with increased sampling cadence
+- input_requirements: membrane status, contamination indicators, demand zones, treatment assets
+- output_schema: bypass action plan, potable confidence level, distribution continuity timeline
+- protocol_profile: EPA schema + OGC + USMTF
+- validation_gates: contamination threshold pass, treatment validation review, public health approval
+
+### packet_id: DPL-BDA-IMAGERY-PROVENANCE-TAMPER-001
+- domain: battle-damage imagery provenance and tamper assurance
+- objective: verify imagery authenticity and confidence before mission-impacting strike/follow-on decisions
+- primary_tools: imagery provenance signer, tamper forensics engine, BDA confidence fusion board
+- alternate_tools: manual chain-of-custody ledger and independent forensic review panel
+- degraded_mode: advisory-only BDA with elevated uncertainty annotation
+- input_requirements: imagery set, source metadata, hash manifests, mission context
+- output_schema: authenticity report, tamper confidence score, decision-usable imagery shortlist
+- protocol_profile: C2PA + STIX/TAXII + USMTF
+- validation_gates: hash-chain verification, provenance signature pass, analyst corroboration minimum
+
+### packet_id: DPL-CIVIL-RAIL-EVAC-PRIORITY-MERGE-001
+- domain: coalition contested civil rail evacuation and military priority merge
+- objective: merge civilian evacuation traffic with military sustainment priorities without system collapse
+- primary_tools: rail movement control board, evacuation manifest service, priority scheduler
+- alternate_tools: station-level manual dispatch board and liaison conflict adjudication matrix
+- degraded_mode: fixed time-window split between civilian and military movement
+- input_requirements: station capacities, evac demand, military movement priorities, threat overlays
+- output_schema: merged rail schedule, queue risk table, continuity branch triggers
+- protocol_profile: rail API schema + NIMS/ICS + USMTF
+- validation_gates: life-safety priority check, crossing conflict pass, command authority confirmation
+
+### packet_id: DPL-RESERVE-MOBILIZATION-PAY-ANTIFRAUD-001
+- domain: strategic reserve mobilization pay continuity and anti-fraud assurance
+- objective: maintain reserve pay and entitlements during rapid mobilization while suppressing fraud and disputes
+- primary_tools: reserve pay readiness dashboard, fraud anomaly analytics, mobilization personnel ledger
+- alternate_tools: manual claims adjudication board and treasury reconciliation workbook
+- degraded_mode: essential entitlements only with manual audit trail and delayed adjustments
+- input_requirements: mobilization roster, entitlement rules, payment status, fraud indicators
+- output_schema: pay continuity status, fraud triage queue, dispute resolution timeline
+- protocol_profile: treasury payment profiles + FIDO claims + signed manifests
+- validation_gates: entitlement validation pass, fraud threshold review, approval-role confirmation
+
+## Packet Addendum K (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+### packet_id: DPL-NC3-RESILIENCE-ORDER-INTEGRITY-001
+- domain: strategic NC3 continuity and order integrity assurance
+- objective: preserve authenticated order pathways and decision continuity under denial conditions
+- primary_tools: NC3 path integrity monitor, order provenance verifier, continuity simulation board
+- alternate_tools: manual authority ledger and two-person command confirmation board
+- degraded_mode: advisory-only posture with constrained decision windows and explicit command confirmation
+- input_requirements: authority map, path health telemetry, timing posture, disruption indicators
+- output_schema: order-chain assurance status, continuity branch matrix, latency risk summary
+- protocol_profile: USMTF + signed order manifests + hardened voice/readback
+- validation_gates: authority validation pass, ack-chain integrity, command witness confirmation
+
+### packet_id: DPL-STRATEGIC-DETERRENCE-SIGNALING-001
+- domain: integrated strategic deterrence signaling
+- objective: synchronize cross-domain signaling options with controlled escalation and coalition alignment
+- primary_tools: deterrence analytics board, escalation simulator, coalition release manager
+- alternate_tools: manual signaling matrix and liaison release coordination board
+- degraded_mode: limited signaling set with preapproved escalation tripwires
+- input_requirements: deterrence objective, adversary thresholds, coalition constraints, release authorities
+- output_schema: signaling options matrix, escalation ladder, synchronized release recommendations
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 + signed release manifests
+- validation_gates: release authority check, coalition interoperability pass, escalation safety threshold
+
+### packet_id: DPL-UNDERSEA-BATTLE-NETWORK-SELF-HEALING-001
+- domain: undersea battle-network self-healing and continuity
+- objective: reroute and restore mission-priority undersea communications during node or cable failures
+- primary_tools: undersea telemetry fusion, autonomous relay controller, resiliency planner
+- alternate_tools: manual reroute workbook and port-level communications contingency board
+- degraded_mode: mission-essential routes only with fixed synchronization windows
+- input_requirements: cable and node status, route priorities, repair assets, threat posture
+- output_schema: self-healing reroute plan, restoration sequence, communications confidence level
+- protocol_profile: OGC + maritime telemetry + USMTF
+- validation_gates: fault confidence threshold, route survivability check, command release approval
+
+### packet_id: DPL-COALITION-COGNITIVE-EW-DISINFO-COUNTERTARGETING-001
+- domain: coalition cognitive EW and disinformation countertargeting
+- objective: expose and counter integrated narrative plus RF deception targeting coalition operations
+- primary_tools: narrative analytics, EW anomaly fusion, authenticity forensics
+- alternate_tools: manual narrative triage board and RF event adjudication log
+- degraded_mode: high-confidence-source-only operations with delayed campaign synchronization
+- input_requirements: influence telemetry, RF anomalies, audience map, campaign objectives
+- output_schema: countertargeting priorities, deception exposure matrix, coalition action plan
+- protocol_profile: STIX/TAXII + CoT + signed coalition evidence manifests
+- validation_gates: source confidence minimum, releasability check, coalition authority confirmation
+
+### packet_id: DPL-DENIED-PNT-TIMING-HOLDOVER-001
+- domain: denied-PNT timing holdover orchestration
+- objective: sustain synchronized mission timing during GNSS denial and spoofing pressure
+- primary_tools: timing drift analyzer, holdover state controller, timing trust verifier
+- alternate_tools: manual timing window board and fixed-interval synchronization planner
+- degraded_mode: mission-essential timing windows only with conservative drift assumptions
+- input_requirements: timing-source health, holdover inventory, synchronization state, mission tolerances
+- output_schema: holdover posture, drift watchlist, resync branch triggers
+- protocol_profile: signed timing-state manifests + USMTF timing advisories
+- validation_gates: spoof-detection pass, drift threshold compliance, command approval gate
+
+### packet_id: DPL-RAPID-MATERIEL-AUTH-COUNTERFEIT-SHIELD-001
+- domain: tactical materiel authenticity and counterfeit shielding
+- objective: prevent counterfeit or tampered components from entering mission systems
+- primary_tools: provenance attestation service, lot anomaly detector, field inspection workflow
+- alternate_tools: manual receipt inspection board and vendor pedigree cross-check log
+- degraded_mode: approved vendor-only intake with mandatory manual release review
+- input_requirements: lot records, part pedigree, subsystem criticality, failure indicators
+- output_schema: counterfeit risk score, release or quarantine decision log, substitution options
+- protocol_profile: signed supply manifests + API/JSON + USMTF sustainment updates
+- validation_gates: pedigree signature pass, anomaly threshold review, approval-role confirmation
+
+### packet_id: DPL-MULTI-DOMAIN-BATTLE-RHYTHM-FRAGMENT-RECOVERY-001
+- domain: multi-domain battle rhythm fragment recovery
+- objective: restore synchronized decision tempo after command timeline fragmentation
+- primary_tools: rhythm fragment merger, dependency graph engine, delayed-ack reconciler
+- alternate_tools: manual timeline board and commander intent adjudication worksheet
+- degraded_mode: fixed battle-rhythm cycle with constrained branch decisions
+- input_requirements: command deltas, dependency map, ack state, mission priorities
+- output_schema: restoration sequence, dependency repair map, command update schedule
+- protocol_profile: USMTF + CoT + signed command delta manifests
+- validation_gates: intent reconciliation pass, ack-chain verification, authority witness check
+
+### packet_id: DPL-AUTONOMOUS-DECOY-CAMPAIGN-EFFECTIVENESS-001
+- domain: autonomous decoy campaign effectiveness
+- objective: maximize adversary misallocation while safeguarding friendly forces and legal constraints
+- primary_tools: decoy orchestration manager, signature analytics, response model engine
+- alternate_tools: manual decoy schedule board and observer-reported effect ledger
+- degraded_mode: limited decoy windows with prebriefed safety and fratricide constraints
+- input_requirements: decoy inventory, threat sensing posture, blue signature map, campaign objectives
+- output_schema: campaign effectiveness scorecard, misallocation estimate, retask plan
+- protocol_profile: CoT + USMTF + signed campaign effect manifests
+- validation_gates: fratricide risk pass, legal and ROE review, command release gate
+
+### packet_id: DPL-PRECISION-EFFECTS-WEAPONEERING-AI-ASSURANCE-001
+- domain: AI-assisted precision effects weaponeering assurance
+- objective: validate AI recommendations for effect and collateral performance before execution
+- primary_tools: effects optimization board, collateral validator, model assurance monitor
+- alternate_tools: manual weaponeering worksheet and independent analyst confidence review
+- degraded_mode: advisory-only AI recommendations with mandatory human approval
+- input_requirements: target data, effect goals, collateral limits, model confidence outputs
+- output_schema: assurance status, confidence and bias register, release recommendation
+- protocol_profile: VMF + USMTF + signed model assurance manifests
+- validation_gates: collateral threshold pass, model confidence minimum, release authority check
+
+### packet_id: DPL-GRAY-ZONE-INFLUENCE-COUNTERCAMPAIGN-001
+- domain: gray-zone influence countercampaign operations
+- objective: counter persistent influence operations that degrade alliance cohesion and operational access
+- primary_tools: influence network analytics, partner synchronization board, campaign attribution tracker
+- alternate_tools: manual liaison matrix and narrative risk scoring worksheet
+- degraded_mode: critical audience protection only with delayed multi-domain coordination
+- input_requirements: influence indicators, partner risk posture, access constraints, campaign priorities
+- output_schema: countercampaign plan, partner action matrix, risk trend summary
+- protocol_profile: STIX/TAXII + NATO APP-11/ADatP-3 + USMTF
+- validation_gates: attribution confidence minimum, releasability check, coalition approval gate
+
+### packet_id: DPL-EXPEDITIONARY-DATA-FABRIC-ZERO-TOUCH-HARDENING-001
+- domain: expeditionary data-fabric zero-touch hardening
+- objective: deploy resilient, policy-enforced data exchange across denied and intermittent networks
+- primary_tools: fabric orchestrator, schema validator, zero-trust policy engine
+- alternate_tools: manual schema mapping board and staged policy rollout checklist
+- degraded_mode: mission-essential data lanes only with manual policy attestations
+- input_requirements: data contracts, enclave boundaries, link constraints, identity posture
+- output_schema: deployment blueprint, trust scorecard, rollback and continuity plan
+- protocol_profile: API/JSON + STIX/TAXII + signed trust-policy manifests
+- validation_gates: schema validation pass, trust threshold check, authority release approval
+
+### packet_id: DPL-HYPERSCALE-CLOUD-FAILOVER-COMMAND-CONTINUITY-001
+- domain: strategic hyperscale cloud failover and command continuity
+- objective: preserve command application availability and decision authority during cloud disruption
+- primary_tools: failover orchestrator, dependency mapper, credential continuity monitor
+- alternate_tools: manual failover runbook board and region-priority service matrix
+- degraded_mode: mission-critical command services only with reduced automation and strict approval gates
+- input_requirements: app dependency graph, cloud region state, credential posture, authority constraints
+- output_schema: failover continuity order, degraded service matrix, reconstitution timeline
+- protocol_profile: signed continuity manifests + USMTF + API/JSON failover events
+- validation_gates: failover readiness check, credential integrity pass, command authority confirmation
+
+## Packet Addendum N (2026-03-10, Reentry Resilience, Contested Evacuation, and Mobility Continuity)
+
+### packet_id: DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001
+- domain: orbital debris reentry base hardening
+- objective: protect mission-critical base nodes against short-notice reentry hazard windows
+- primary_tools: reentry hazard fusion board, base critical-node hardening planner, shelter readiness tracker
+- alternate_tools: manual hazard board and fixed shelter priority matrix
+- degraded_mode: advisory-only hazard posture with conservative sheltering windows
+- input_requirements: reentry track set, base asset criticality, shelter status, mission timeline
+- output_schema: hardening priorities, risk windows, continuity branch triggers
+- protocol_profile: CCSDS/TLE + USMTF + signed manifests
+- validation_gates: track confidence threshold, base authority confirmation, shelter readiness verification
+
+### packet_id: DPL-SPECTRUM-EVACUATION-CORRIDOR-CONTROL-001
+- domain: contested spectrum evacuation corridor control
+- objective: preserve evacuation corridor control under jamming and intermittent coalition interoperability
+- primary_tools: corridor control board, EW congestion analyzer, coalition comms interoperability monitor
+- alternate_tools: manual route release board and liaison voice-confirmation log
+- degraded_mode: phased evacuation windows with strict readback confirmation
+- input_requirements: corridor map, RF health telemetry, evac demand, coalition comms status
+- output_schema: corridor schedule, congestion risk matrix, branch timeline
+- protocol_profile: CoT + NATO APP-11/ADatP-3 + signed manifests
+- validation_gates: deconfliction pass, coalition acknowledgment integrity, authority release check
+
+### packet_id: DPL-AUTONOMOUS-FARP-FUEL-LEAK-HUNT-001
+- domain: autonomous FARP fuel leak detection and containment
+- objective: detect and isolate fuel leaks while preserving sortie fuel continuity
+- primary_tools: fuel telemetry anomaly detector, leak localization planner, FARP risk board
+- alternate_tools: manual leak check roster and hazmat containment worksheet
+- degraded_mode: sortie-essential fuel points only with manual sampling cadence
+- input_requirements: bladder telemetry, FARP layout, sortie plan, hazmat assets
+- output_schema: containment sequence, fuel confidence score, sortie impact estimate
+- protocol_profile: OGC SensorThings + NIMS/ICS + USMTF
+- validation_gates: leak confirmation threshold, hazard safety gate, commander sustainment approval
+
+### packet_id: DPL-DESAL-BRINE-SIGNATURE-MASKING-001
+- domain: expeditionary desal brine signature masking
+- objective: maintain potable water output while reducing detectable discharge signatures and compliance risk
+- primary_tools: desal telemetry service, discharge signature model, environmental risk ledger
+- alternate_tools: manual sampling chain and conservative discharge schedule
+- degraded_mode: reduced production with elevated sampling and delayed discharge windows
+- input_requirements: output demand, salinity and chemical metrics, shoreline risk zones, threat posture
+- output_schema: discharge control plan, signature risk score, water continuity timeline
+- protocol_profile: EPA schema + OGC + signed manifests
+- validation_gates: contamination threshold pass, signature-risk review, public-health authority confirmation
+
+### packet_id: DPL-SAT-GROUND-CLOUD-CUTOVER-DEFENSE-001
+- domain: satellite-ground cloud cutover defense and continuity
+- objective: preserve mission command services during ground/cloud outages or attack-driven cutovers
+- primary_tools: SATCOM ground-segment monitor, cloud failover orchestrator, service dependency map
+- alternate_tools: manual failover runbook board and priority service ledger
+- degraded_mode: mission-critical services only with strict command approval gates
+- input_requirements: service dependencies, region/system health, credential posture, authority constraints
+- output_schema: cutover order, degraded-service matrix, reconstitution schedule
+- protocol_profile: USMTF + API/JSON + signed continuity manifests
+- validation_gates: failover readiness pass, credential integrity check, command witness confirmation
+
+### packet_id: DPL-DISCONNECTED-JTAC-VOICE-AUTH-001
+- domain: disconnected JTAC voice authentication and deconfliction
+- objective: authenticate terminal-control voice traffic and prevent spoof-driven fires fratricide
+- primary_tools: secure voice-auth scorer, fires timeline reconciler, talker identity board
+- alternate_tools: manual readback witness ledger and clearance hold worksheet
+- degraded_mode: no-fire unless dual-witness confirmation is achieved
+- input_requirements: voice clips, call-sign baseline, fires timeline, clearance posture
+- output_schema: voice authenticity confidence, deconfliction exceptions, release recommendation
+- protocol_profile: VMF + ACP 127 + signed voice confidence manifests
+- validation_gates: identity confidence floor, readback integrity, fire-support authority confirmation
+
+### packet_id: DPL-SOLID-ROCKET-MOTOR-PROPELLANT-ALLOCATION-INTEGRITY-001
+- domain: solid rocket motor propellant allocation integrity
+- objective: allocate propellant lots to strategic requirements while suppressing diversion and quality risk
+- primary_tools: lot integrity ledger, industrial throughput board, readiness allocation planner
+- alternate_tools: manual lot priority board and anti-diversion inspection log
+- degraded_mode: strategic-essential allocations only with manual release controls
+- input_requirements: lot status, production throughput, readiness priorities, diversion indicators
+- output_schema: allocation matrix, quality/diversion risk summary, mitigation branches
+- protocol_profile: GS1 + NIEM + signed manifests
+- validation_gates: lot quality pass, diversion threshold review, strategic authority approval
+
+### packet_id: DPL-SHIPYARD-DIGITAL-TWIN-REPAIR-ORCHESTRATION-001
+- domain: shipyard digital twin repair orchestration
+- objective: sequence battle-damage repair for maximal mission-availability recovery
+- primary_tools: shipyard digital twin, dependency scheduler, drydock optimizer
+- alternate_tools: manual repair gantt board and port readiness worksheet
+- degraded_mode: critical hull/system repairs only with fixed dock windows
+- input_requirements: damage assessment, dock availability, parts status, mission priorities
+- output_schema: repair sequence, dock allocation timeline, readiness confidence score
+- protocol_profile: OGC + USMTF + signed repair manifests
+- validation_gates: structural feasibility pass, dock conflict check, release authority confirmation
+
+### packet_id: DPL-BORDER-BIOMETRICS-WATCHLIST-LATENCY-GOVERNANCE-001
+- domain: coalition border biometrics watchlist latency governance
+- objective: maintain identity assurance under delayed watchlist synchronization and denied links
+- primary_tools: biometric sync broker, latency telemetry board, identity confidence adjudicator
+- alternate_tools: manual roster reconciliation sheet and delayed-sync custody ledger
+- degraded_mode: high-risk identities only with elevated manual review threshold
+- input_requirements: watchlist deltas, border crossing queue, sync latency metrics, custody events
+- output_schema: latency status, identity confidence queue, sync recovery sequence
+- protocol_profile: EBTS + NIEM + signed latency manifests
+- validation_gates: false-match threshold pass, custody chain integrity, coalition authority check
+
+### packet_id: DPL-ELECTROMAGNETIC-DECOY-FRATRICIDE-AUDIT-001
+- domain: electromagnetic decoy fratricide audit
+- objective: validate decoy and emission plans to prevent blue-force misclassification and signal collision
+- primary_tools: decoy planner, blue emitter ledger, fratricide risk simulator
+- alternate_tools: manual emission matrix and safety witness board
+- degraded_mode: preapproved decoy windows only with fixed EMCON constraints
+- input_requirements: decoy schedule, emitter profiles, threat sensors, mission timeline
+- output_schema: audit findings, fratricide risk matrix, command release gates
+- protocol_profile: Link 16 + VMF + signed safety manifests
+- validation_gates: blue-force conflict pass, EMCON compliance review, authority acknowledgment
+
+### packet_id: DPL-RAIL-ENERGY-MOBILITY-PRIORITY-FUSION-001
+- domain: rail-energy mobility priority fusion
+- objective: align rail throughput and energy restoration priorities for strategic force flow continuity
+- primary_tools: rail movement optimizer, load-priority planner, deployment timeline board
+- alternate_tools: manual dispatch matrix and energy restoration worksheet
+- degraded_mode: mission-essential route and load set only with periodic reassessment
+- input_requirements: rail topology, grid status, deployment priorities, threat disruptions
+- output_schema: fused priority matrix, restoration sequence, mobility risk estimate
+- protocol_profile: rail API + IEC 61850 + USMTF
+- validation_gates: route viability pass, load-priority authority check, synchronization acknowledgment
+
+### packet_id: DPL-HOSPITAL-OVERFLOW-AEROMEDICAL-ROUTING-001
+- domain: hospital overflow aeromedical routing
+- objective: route casualties across overloaded care networks while preserving survival-critical timelines
+- primary_tools: hospital stress dashboard, aeromedical route optimizer, casualty regulator
+- alternate_tools: manual transfer board and route risk worksheet
+- degraded_mode: priority-1/2 patients only with constrained transfer windows
+- input_requirements: bed availability, patient acuity, air corridor status, transport assets
+- output_schema: routing order, transfer timeline, care-gap risk summary
+- protocol_profile: HL7/FHIR + STANAG 3204 + signed manifests
+- validation_gates: medical authority confirmation, airspace deconfliction pass, patient-custody integrity
+
+## Packet Addendum O (2026-03-10, Grid Escort and Load-Restoration Integrity)
+
+### packet_id: DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001
+- domain: transformer convoy escort and critical-substation restoration
+- objective: protect transformer movement and placement while preserving mission-priority feeder restoration order
+- primary_tools: transformer convoy telemetry board, substation restoration planner, mission-load priority matrix
+- alternate_tools: manual convoy release roster and utility restoration worksheet
+- degraded_mode: mission-essential feeder restoration only with security-first convoy sequencing
+- input_requirements: convoy routes, transformer status, substation readiness, priority load roster, threat indicators
+- output_schema: convoy release plan, installation sequence, load-restoration timeline, risk and branch triggers
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: convoy route security pass, installation readiness check, command authority acknowledgment
+
+## Packet Addendum P (2026-03-11, Civil-Military Continuity and Contested Infrastructure Control)
+
+### packet_id: DPL-FORWARD-WATER-SABOTAGE-ATTRIBUTION-001
+- domain: forward water network sabotage attribution and isolation
+- objective: detect sabotage, isolate compromised nodes, and sustain potable flow to mission-critical sites
+- primary_tools: water telemetry integrity monitor, pressure/quality anomaly detector, valve-isolation orchestrator
+- alternate_tools: manual sampling chain and local utility liaison board
+- degraded_mode: authenticated voice updates with 4-hour manual sampling rollups
+- input_requirements: network topology, pressure/quality trends, alert logs, mission-priority demand map
+- output_schema: sabotage confidence map, node isolation sequence, potable continuity timeline
+- protocol_profile: OGC SensorThings + API/JSON + USMTF
+- validation_gates: dual-source anomaly confirmation, contamination threshold verification, commander approval for wide-area isolation
+
+### packet_id: DPL-SPECTRUM-LEGAL-ATTRIBUTION-001
+- domain: coalition electromagnetic legal attribution and escalation
+- objective: produce coalition-credible legal attribution packets for electromagnetic incidents with escalation options
+- primary_tools: emitter identity adjudicator, legal evidence ledger, coalition escalation decision board
+- alternate_tools: analyst legal matrix and manual chain-of-custody tracker
+- degraded_mode: restricted advisory memo with delayed evidentiary synchronization
+- input_requirements: incident timeline, emitter confidence scores, legal authorities, coalition caveats
+- output_schema: attribution confidence packet, legal basis table, escalation option ladder
+- protocol_profile: Link 16 J-series + STIX/TAXII + NATO APP-11/ADatP-3
+- validation_gates: evidence provenance completeness, legal authority cross-check, coalition releasability pass
+
+### packet_id: DPL-BATTLEFIELD-HAZMAT-CONTROL-001
+- domain: contested battlefield hazmat surge and evacuation corridor control
+- objective: contain hazardous-material surges and preserve protected evacuation movement
+- primary_tools: hazmat plume modeler, corridor viability board, decontamination task scheduler
+- alternate_tools: manual hazard perimeter board and route control worksheet
+- degraded_mode: conservative evacuation hold/release matrix with 6-hour refresh
+- input_requirements: hazard type, plume vectors, corridor geometry, casualty flow demand
+- output_schema: hazard containment timeline, corridor status board, reroute and decon priorities
+- protocol_profile: NIMS/ICS + OGC + USMTF
+- validation_gates: plume model confidence floor, life-safety routing verification, medical authority concurrence
+
+### packet_id: DPL-LITTORAL-TRANSFORMER-BARGE-RESTORATION-001
+- domain: coalition littoral transformer-barge restoration and grid support
+- objective: synchronize barge transformer movement, emplacement, and mission-priority grid restoration
+- primary_tools: maritime convoy planner, transformer emplacement scheduler, feeder restoration dashboard
+- alternate_tools: manual barge movement board and host-nation utility dispatch net
+- degraded_mode: voice readback restoration ladder with UTC acknowledgment ledger
+- input_requirements: barge availability, port status, escort assignments, mission-load priorities
+- output_schema: escort and emplacement sequence, feeder restoration matrix, continuity risk assessment
+- protocol_profile: AIS/NMEA + IEC 61850 + USMTF
+- validation_gates: convoy security confirmation, grid isolation safety gate, commander approval for mission-load reprioritization
+
+## Packet Addendum Q (2026-03-11, Mission Continuity, Industrial Integrity, and Civil-Air Safety)
+
+### packet_id: DPL-SUBSEA-CABLE-CUT-MISSION-REROUTE-001
+- domain: subsea cable-cut mission reroute and service continuity
+- objective: isolate cable-cut effects and reroute mission-priority services with bounded latency risk
+- primary_tools: cable segment fault monitor, mission dependency mapper, reroute orchestrator
+- alternate_tools: manual service-priority board and terrestrial backhaul worksheet
+- degraded_mode: mission-essential services only with 6-hour continuity updates
+- input_requirements: cable topology, service dependency graph, failure segments, latency thresholds
+- output_schema: reroute sequence, service degradation matrix, continuity risk timeline
+- protocol_profile: AIS/NMEA + USMTF + signed manifests
+- validation_gates: dual-source fault confirmation, service-priority authority check, reroute acknowledgment integrity
+
+### packet_id: DPL-HIGH-ALTITUDE-BALLOON-MESH-RESTORATION-001
+- domain: high-altitude balloon mesh communications restoration
+- objective: re-establish denied-terrain command connectivity via balloon mesh relay
+- primary_tools: balloon launch planner, mesh topology engine, traffic-priority scheduler
+- alternate_tools: manual relay planning board and low-rate SATCOM fallback
+- degraded_mode: command-critical traffic only with fixed reporting windows
+- input_requirements: AOI, link demand classes, balloon inventory, atmospheric forecast
+- output_schema: launch and relay sequence, coverage confidence map, traffic restoration plan
+- protocol_profile: CoT + USMTF + signed manifests
+- validation_gates: drift-confidence threshold, relay survivability check, command authority release
+
+### packet_id: DPL-EXPEDITIONARY-FUEL-FRAUD-ADULTERATION-HUNT-001
+- domain: expeditionary fuel fraud and adulteration hunt
+- objective: detect compromised fuel supply nodes and preserve sortie and convoy fuel assurance
+- primary_tools: fuel lot provenance ledger, contamination analyzer, sustainment risk dashboard
+- alternate_tools: manual sampling register and procurement anomaly worksheet
+- degraded_mode: priority fuel points only with increased sampling cadence
+- input_requirements: lot records, fuel quality telemetry, convoy plan, supplier trust indicators
+- output_schema: compromised-node map, remediation sequence, sustainment confidence score
+- protocol_profile: GS1 + NIEM + signed manifests
+- validation_gates: contamination confirmation, chain-of-custody pass, sustainment authority concurrence
+
+### packet_id: DPL-RESERVIST-FAMILY-READINESS-CONTINUITY-001
+- domain: reserve mobilization and family-support continuity
+- objective: synchronize mobilization execution with family-support risk controls to protect force availability
+- primary_tools: mobilization roster board, support-service availability tracker, readiness stress monitor
+- alternate_tools: manual family-support gap ledger and liaison call matrix
+- degraded_mode: critical-support cases only with daily reconciliation
+- input_requirements: mobilization roster, service coverage map, family-support demand, risk thresholds
+- output_schema: readiness continuity matrix, support gap priorities, mobilization risk branch triggers
+- protocol_profile: NIEM + NIMS/ICS + signed manifests
+- validation_gates: personnel data integrity, support coverage verification, command approval for reprioritization
+
+### packet_id: DPL-ARCTIC-ICE-AIRSTRIP-THAW-SALVAGE-001
+- domain: arctic ice-airstrip thaw and runway salvage
+- objective: preserve sortie generation through thaw monitoring, repair sequencing, and divert governance
+- primary_tools: ice integrity monitor, thaw progression model, runway repair scheduler
+- alternate_tools: manual survey board and divert-airfield capacity worksheet
+- degraded_mode: limited sortie windows with conservative load restrictions
+- input_requirements: runway sensor telemetry, temperature trends, engineer assets, sortie demand
+- output_schema: thaw-risk timeline, salvage task sequence, divert trigger matrix
+- protocol_profile: OGC + AIXM/FIXM + USMTF
+- validation_gates: structural confidence floor, repair feasibility check, flight safety concurrence
+
+### packet_id: DPL-SPACEPORT-LAUNCH-PAD-DECONTAMINATION-001
+- domain: contested spaceport launch-pad decontamination
+- objective: control propellant/toxic hazards and return launch pads to safe mission operations
+- primary_tools: hazard telemetry board, pad decon workflow orchestrator, range safety gate tracker
+- alternate_tools: manual decon board and fixed hold-release checklist
+- degraded_mode: no-launch posture with life-safety decon priorities only
+- input_requirements: hazard readings, pad status, decon assets, launch schedule priorities
+- output_schema: decon sequence, launch-gate status, relaunch readiness confidence
+- protocol_profile: NIMS/ICS + API/JSON + signed manifests
+- validation_gates: hazard threshold pass, range safety review, launch authority approval
+
+### packet_id: DPL-DRONE-SWARM-CIVIL-AIR-CORRIDOR-GROUNDING-001
+- domain: hostile drone swarm civil-air-corridor emergency grounding
+- objective: ground and reroute corridors to avoid collision/casualty risk during swarm incursions
+- primary_tools: corridor occupancy board, swarm threat classifier, emergency ATC release manager
+- alternate_tools: manual corridor closure board and liaison voice net
+- degraded_mode: restricted humanitarian/medical corridors only
+- input_requirements: corridor geometry, swarm tracks, civilian/military flight queue, authority constraints
+- output_schema: grounding order, reroute matrix, recovery release criteria
+- protocol_profile: ASTM F3411 + CoT + NATO APP-11/ADatP-3
+- validation_gates: conflict-risk pass, civil aviation authority confirmation, coalition acknowledgment chain
+
+### packet_id: DPL-PORT-RAIL-AMMUNITION-SURGE-SAFETY-001
+- domain: port-rail ammunition surge safety governance
+- objective: execute ammunition throughput surges without violating explosive safety or custody controls
+- primary_tools: compatibility ledger, rail-port movement scheduler, blast-zone modeler
+- alternate_tools: manual movement board and explosive safety worksheet
+- degraded_mode: mission-essential munitions only with reduced throughput tempo
+- input_requirements: lot compatibility data, movement schedule, rail/port capacity, safety zoning
+- output_schema: surge movement sequence, safety gate matrix, custody and risk ledger
+- protocol_profile: USMTF + rail API/JSON + signed manifests
+- validation_gates: compatibility pass, blast-zone verification, authority release record
+
+### packet_id: DPL-CROSS-BORDER-CYBER-FORENSICS-EXTRADITION-001
+- domain: cross-border cyber forensics and extradition evidence handoff
+- objective: preserve evidentiary integrity for legal transfer and coordinated cyber response actions
+- primary_tools: evidence chain manager, treaty authority mapper, forensics normalization pipeline
+- alternate_tools: manual evidence ledger and legal liaison adjudication board
+- degraded_mode: advisory-only legal packet pending complete provenance sync
+- input_requirements: forensic artifacts, chain-of-custody records, legal authorities, partner caveats
+- output_schema: evidentiary confidence packet, extradition handoff matrix, legal-risk ladder
+- protocol_profile: STIX/TAXII + NIEM + signed manifests
+- validation_gates: provenance completeness, treaty compliance check, release authority concurrence
+
+### packet_id: DPL-ADDITIVE-SPARE-COUNTERFEIT-DETECTION-001
+- domain: battlefield additive spare counterfeit detection
+- objective: detect counterfeit/unsafe spares before field installation and mission release
+- primary_tools: material signature analyzer, additive process attestation ledger, maintenance release board
+- alternate_tools: manual inspection worksheet and destructive sample queue
+- degraded_mode: no automated release; human-inspected priority components only
+- input_requirements: part metadata, material analysis, print process logs, platform criticality
+- output_schema: authenticity confidence score, install/reject decision list, substitute-part plan
+- protocol_profile: API/JSON + USMTF + signed manifests
+- validation_gates: material confidence threshold, process attestation pass, maintenance authority approval
+
+### packet_id: DPL-HOSPITAL-SHIP-LITTORAL-CASUALTY-FLOW-001
+- domain: hospital-ship littoral casualty flow optimization
+- objective: synchronize afloat and ashore casualty movement under degraded evacuation capacity
+- primary_tools: afloat-bed status board, littoral route optimizer, casualty-priority regulator
+- alternate_tools: manual transfer matrix and liaison medevac board
+- degraded_mode: priority-1/2 casualties only with fixed transfer windows
+- input_requirements: bed and surgical capacity, casualty acuity, route risk, transfer assets
+- output_schema: transfer order, capacity utilization timeline, care-gap mitigation tasks
+- protocol_profile: HL7/FHIR + STANAG 3204 + signed manifests
+- validation_gates: medical authority confirmation, custody integrity pass, corridor deconfliction check
+
+### packet_id: DPL-STRATEGIC-BATTERY-SUPPLY-SABOTAGE-RESPONSE-001
+- domain: strategic battery supply sabotage response
+- objective: restore battery-material production and allocate limited mission energy stocks after sabotage
+- primary_tools: precursor integrity ledger, production disruption monitor, energy allocation planner
+- alternate_tools: manual supplier risk board and fixed mission-energy release matrix
+- degraded_mode: strategic-essential mission allocations only
+- input_requirements: production status, precursor availability, sabotage indicators, mission energy demand
+- output_schema: sabotage impact map, recovery branch sequence, energy allocation order
+- protocol_profile: API/JSON + NIEM + signed manifests
+- validation_gates: supplier trust verification, production readiness check, strategic authority approval
+
+## Packet Addendum R (2026-03-11, Timing Integrity, Civil Resilience, and Spoofing-Adjudication Continuity)
+
+### packet_id: DPL-QUANTUM-TIMING-HOLDOVER-FIRES-IAMD-001
+- domain: quantum timing holdover for fires and integrated air and missile defense
+- objective: preserve release timing integrity when GPS/PNT precision timing is denied or degraded
+- primary_tools: mission-time coherence board, fires release clock monitor, IAMD track-time integrity gate
+- alternate_tools: manual UTC timing witness log and voice readback timing board
+- degraded_mode: mission-essential fires and defensive engagements only with tighter release windows
+- input_requirements: timing confidence data, fires queue, track quality, authority constraints
+- output_schema: timing holdover matrix, release gate recommendations, synchronization risk timeline
+- protocol_profile: USMTF + Link 16 + signed manifests
+- validation_gates: timing confidence floor, release authority check, acknowledgment integrity
+
+### packet_id: DPL-COALITION-CIVIL-GRID-CYBER-MUTUAL-AID-001
+- domain: coalition civil grid cyber mutual aid
+- objective: activate coalition OT cyber mutual aid and sequence mission-priority load restoration
+- primary_tools: OT incident fusion board, coalition ticket broker, restoration sequencer
+- alternate_tools: manual incident board and host-nation utility liaison worksheet
+- degraded_mode: mission-essential substations only with fixed reconciliation windows
+- input_requirements: incident indicators, feeder status, coalition support availability, mission-load priorities
+- output_schema: mutual-aid activation order, cyber isolation sequence, restoration timeline
+- protocol_profile: IEC 61850 + STIX/TAXII + NIEM
+- validation_gates: incident triage confirmation, coalition authority acknowledgment, restoration safety check
+
+### packet_id: DPL-AVIATION-FUEL-MICROBE-CONTAMINATION-RESPONSE-001
+- domain: aviation fuel microbial contamination response
+- objective: isolate contaminated fuel and preserve safe sortie generation under degraded supply conditions
+- primary_tools: microbial assay tracker, tank contamination model, sortie release gate board
+- alternate_tools: manual lab queue and fuel farm sampling ledger
+- degraded_mode: restricted sortie fuel points only with elevated sampling cadence
+- input_requirements: fuel lot status, assay results, tank network map, sortie demand
+- output_schema: contamination isolation order, fuel release confidence map, sortie impact branch plan
+- protocol_profile: GS1 + API/JSON + signed manifests
+- validation_gates: dual-source contamination confirmation, chain-of-custody integrity, maintenance authority release
+
+### packet_id: DPL-RARE-EARTH-SHIPPING-CHOKEPOINT-INSURANCE-SURGE-001
+- domain: rare-earth shipping chokepoint insurance surge
+- objective: maintain strategic rare-earth flow through contested chokepoints using insurance and reroute levers
+- primary_tools: chokepoint risk model, insurance trigger adjudicator, cargo reroute planner
+- alternate_tools: manual vessel priority board and sanctions compliance checklist
+- degraded_mode: strategic-essential cargo only with conservative reroute windows
+- input_requirements: shipping schedules, threat indicators, insurance triggers, industrial demand priorities
+- output_schema: surge activation packet, reroute matrix, strategic continuity risk estimate
+- protocol_profile: AIS/NMEA + API/JSON + signed manifests
+- validation_gates: threat confidence review, compliance pass, strategic authority approval
+
+### packet_id: DPL-MARITIME-PREPOSITIONING-PORT-STRIKE-CARGO-RECOVERY-001
+- domain: maritime prepositioning port strike cargo recovery
+- objective: recover mission-critical cargo and restore offload capacity after port strike disruption
+- primary_tools: strike damage triage board, cargo criticality sequencer, berth-crane recovery scheduler
+- alternate_tools: manual cargo board and inland transfer worksheet
+- degraded_mode: highest-priority sustainment cargo only with staged offload windows
+- input_requirements: damage report, cargo manifest, berth/crane status, onward movement capacity
+- output_schema: cargo recovery order, phased offload timeline, sustainment gap assessment
+- protocol_profile: USMTF + rail/port API + signed manifests
+- validation_gates: structural safety pass, custody integrity, commander release approval
+
+### packet_id: DPL-CIVILIAN-SHELTER-MEDICAL-OXYGEN-CONVOY-PRIORITY-001
+- domain: civilian shelter medical oxygen convoy prioritization
+- objective: prioritize oxygen movement to shelters and care sites during contested logistics operations
+- primary_tools: oxygen demand heatmap, convoy risk optimizer, shelter acuity board
+- alternate_tools: manual dispatch ledger and liaison call matrix
+- degraded_mode: life-safety shelters only with fixed UTC resupply windows
+- input_requirements: oxygen inventory, shelter demand, route threat, transport assets
+- output_schema: convoy release ladder, shelter oxygen timeline, risk mitigation tasks
+- protocol_profile: HL7/FHIR + NIMS/ICS + signed manifests
+- validation_gates: medical authority concurrence, route security check, custody acknowledgment chain
+
+### packet_id: DPL-DENIED-GPS-RAIL-PRECISION-OFFLOAD-SYNC-001
+- domain: denied GPS rail precision offload synchronization
+- objective: synchronize rail offload and onward movement despite denied PNT and timing uncertainty
+- primary_tools: timing reconciler, offload queue optimizer, handoff witness ledger
+- alternate_tools: manual yard control board and periodic voice synchronization net
+- degraded_mode: mission-essential echelons only with reduced offload tempo
+- input_requirements: train arrivals, yard state, timing confidence, onward movement priorities
+- output_schema: offload sync order, handoff timing confidence map, escalation triggers
+- protocol_profile: rail API + USMTF + signed manifests
+- validation_gates: handoff timing coherence, authority check, movement acknowledgment integrity
+
+### packet_id: DPL-COALITION-AERIAL-WATER-DROP-DECONFLICTION-001
+- domain: coalition aerial water-drop deconfliction
+- objective: deconflict fire-suppression water drops with military and civilian aviation operations
+- primary_tools: drop-window scheduler, airspace conflict board, coalition sortie matrix
+- alternate_tools: manual deconfliction worksheet and ATC liaison net
+- degraded_mode: limited humanitarian flight windows only with conservative separation minima
+- input_requirements: fire behavior, drop aircraft queue, military sortie plan, airspace constraints
+- output_schema: drop deconfliction order, corridor release matrix, mixed-use air risk summary
+- protocol_profile: AIXM/FIXM + CoT + NATO APP-11/ADatP-3
+- validation_gates: airspace conflict pass, civil authority confirmation, coalition acknowledgment chain
+
+### packet_id: DPL-UNDERSEA-SENSOR-SPOOFING-CONFIDENCE-ADJUDICATION-001
+- domain: undersea sensor spoofing confidence adjudication
+- objective: detect and adjudicate spoofed undersea sensor data before warning release decisions
+- primary_tools: acoustic anomaly classifier, confidence ladder board, sensor custody ledger
+- alternate_tools: manual signal adjudication board and patrol-correlation worksheet
+- degraded_mode: advisory-only alerts pending dual-source confirmation
+- input_requirements: acoustic tracks, baseline signatures, custody events, patrol observations
+- output_schema: spoofing confidence packet, quarantine recommendations, release gates
+- protocol_profile: OGC SensorThings + USMTF + signed manifests
+- validation_gates: dual-source confidence threshold, custody integrity check, authority acknowledgment
+
+### packet_id: DPL-FIELD-HOSPITAL-WASTEWATER-BIOSECURITY-001
+- domain: field hospital wastewater biosecurity
+- objective: prevent wastewater-driven biosecurity incidents around expeditionary medical facilities
+- primary_tools: pathogen telemetry monitor, containment routing planner, discharge compliance ledger
+- alternate_tools: manual sample-chain board and field sanitation worksheet
+- degraded_mode: high-risk discharge points only with frequent manual testing
+- input_requirements: wastewater telemetry, pathogen thresholds, disposal capacity, facility load
+- output_schema: containment action plan, discharge risk timeline, remediation tasks
+- protocol_profile: OGC SensorThings + NIMS/ICS + signed manifests
+- validation_gates: pathogen threshold confirmation, containment feasibility pass, medical command approval
+
+### packet_id: DPL-LONG-DURATION-GRID-BLACKSTART-CYBER-GUARD-001
+- domain: long-duration grid blackstart cyber guard
+- objective: execute blackstart while containing OT cyber compromise during strategic outages
+- primary_tools: blackstart orchestrator, OT cyber guard dashboard, mission-load restoration planner
+- alternate_tools: manual breaker-state board and regional utility reconciliation sheet
+- degraded_mode: strategic-essential loads only with staged restoration windows
+- input_requirements: grid state, cyber incident indicators, blackstart asset status, mission-load priorities
+- output_schema: blackstart cyber guard sequence, compromise isolation actions, restoration branch matrix
+- protocol_profile: IEC 61850 + STIX/TAXII + USMTF
+- validation_gates: cyber isolation confirmation, breaker-state verification, restoration authority approval
+
+### packet_id: DPL-MULTILINGUAL-EMERGENCY-BROADCAST-AUTH-001
+- domain: multilingual emergency broadcast translation authentication
+- objective: issue trusted multilingual emergency broadcasts despite spoofing and translation-manipulation attempts
+- primary_tools: translation fidelity adjudicator, signature verifier, channel consistency monitor
+- alternate_tools: manual linguist review board and voice readback confirmation net
+- degraded_mode: limited core-language alerts with elevated human countersignature requirements
+- input_requirements: source alert content, language priorities, channel status, spoofing indicators
+- output_schema: authenticated multilingual broadcast packet, translation confidence scores, counter-spoof actions
+- protocol_profile: CAP + NIEM + signed manifests
+- validation_gates: translation confidence floor, signature integrity pass, civil authority release check
+
+## Packet Addendum R (2026-03-11, Nuclear/Hypersonic/Space-SOF/Critical Infrastructure Expansion)
+
+### packet_id: DPL-NUCLEAR-SURETY-001
+- domain: joint nuclear surety incident response
+- objective: coordinate protective actions, contamination control, and command decision support during surety incidents
+- primary_tools: radiological consequence board, surety incident command tracker, protective action recommendation engine
+- alternate_tools: manual incident cell board with periodic dosimetry check-ins
+- degraded_mode: hourly authenticated consequence summaries with conservative evacuation assumptions
+- input_requirements: incident location, source confidence, meteorological profile, force/civil exposure estimate
+- output_schema: consequence map, protective action ladder, decision trigger table
+- protocol_profile: USMTF + NIMS/ICS + signed protective-action manifests
+- validation_gates: dual-source dosimetry confidence, authority confirmation, evacuation route viability
+
+### packet_id: DPL-HYPERSONIC-TIMELINE-001
+- domain: hypersonic strike timeline assurance
+- objective: synchronize hypersonic kill-chain timing and deconfliction under compressed decision windows
+- primary_tools: kill-chain timing coherence board, target-quality confidence monitor, effects deconfliction planner
+- alternate_tools: manual timeline board with sensor refresh checkpoints
+- degraded_mode: restricted strike-window recommendations with expanded safety buffers
+- input_requirements: target nomination, sensor timestamps, launch/release windows, no-strike constraints
+- output_schema: timeline matrix, deconfliction conflicts, release gate checklist
+- protocol_profile: Link 16 J-series + VMF + USMTF
+- validation_gates: timestamp integrity pass, target-confidence floor, authority gate verification
+
+### packet_id: DPL-PNT-TIME-TRANSFER-001
+- domain: contested PNT assurance and time transfer
+- objective: preserve mission timing and navigation integrity through resilient time-transfer and holdover governance
+- primary_tools: timing fusion board, spoofing anomaly detector, holdover confidence monitor
+- alternate_tools: manual timing witness ledger plus inertial cross-check workflows
+- degraded_mode: mission-time cell reporting with conservative navigation tolerances
+- input_requirements: unit/platform timing needs, GNSS anomaly events, oscillator states, threat emitter map
+- output_schema: PNT confidence map, time-transfer order, degraded branch triggers
+- protocol_profile: USMTF + signed mission-time transfer manifests + API/JSON
+- validation_gates: cross-source timing corroboration, spoofing confidence threshold, command approval
+
+### packet_id: DPL-SEALIFT-PORT-SURVIVABILITY-001
+- domain: strategic sealift convoy protection and port survivability
+- objective: protect sealift convoys while restoring contested port throughput for mission sustainment
+- primary_tools: convoy threat optimizer, berth-crane survivability tracker, cargo criticality sequencer
+- alternate_tools: manual convoy escort board and port repair prioritization worksheet
+- degraded_mode: daily convoy priority bulletin with conservative berth allocation
+- input_requirements: cargo manifest criticality, convoy schedule, port damage register, threat picture
+- output_schema: convoy protection matrix, port recovery timeline, sustainment risk score
+- protocol_profile: AIS/NMEA + USMTF + signed cargo custody manifests
+- validation_gates: convoy escort feasibility, berth integrity confirmation, mission-priority cargo verification
+
+### packet_id: DPL-DENIED-SPACE-LAUNCH-001
+- domain: denied space launch reconstitution
+- objective: restore launch capability, range safety, and mission-priority payload flow after adversary disruption
+- primary_tools: launch complex damage triage board, range safety governance engine, payload priority scheduler
+- alternate_tools: manual launch readiness tracker with range officer review cycles
+- degraded_mode: payload-priority-only launch sequencing with delayed restoration assumptions
+- input_requirements: pad/system damage state, range safety posture, payload criticality, orbital service gaps
+- output_schema: reconstitution plan, range release checklist, payload launch queue
+- protocol_profile: CCSDS + USMTF + signed range safety manifests
+- validation_gates: range safety approval, telemetry integrity check, launch-readiness confidence floor
+
+### packet_id: DPL-SOF-SIGNATURE-EXFIL-001
+- domain: special operations signature management and exfiltration
+- objective: minimize signature exposure while preserving exfiltration feasibility and command control
+- primary_tools: multi-spectral signature risk board, denied-route exfiltration planner, emission governance tracker
+- alternate_tools: manual signature discipline checklist and extraction route matrix
+- degraded_mode: exfiltration windows only with strict emission-control posture
+- input_requirements: team posture, route options, threat sensor baseline, comms budget
+- output_schema: signature control profile, extraction timeline, exposure risk ladder
+- protocol_profile: CoT + USMTF + signed exposure-risk manifests
+- validation_gates: exposure threshold check, route viability confirmation, authority concurrence
+
+### packet_id: DPL-ADDITIVE-REPAIR-VALIDATION-001
+- domain: battlefield additive manufacturing forward repair validation
+- objective: validate additive repair parts before mission release in contested maintenance environments
+- primary_tools: additive process attestation ledger, material integrity analyzer, repair release authority board
+- alternate_tools: manual part genealogy ledger and sample destructive test queue
+- degraded_mode: mission-limited part release under elevated inspection intervals
+- input_requirements: part geometry/profile, process logs, material batch metadata, mission criticality level
+- output_schema: part validation status, release/no-release gate, reliability risk summary
+- protocol_profile: API/JSON + USMTF maintenance + signed provenance manifests
+- validation_gates: process attestation completeness, material confidence floor, maintenance authority sign-off
+
+### packet_id: DPL-ELECTRONIC-PROTECTION-MANEUVER-001
+- domain: joint electronic protection and spectrum maneuver
+- objective: preserve communications and emitter survivability through adaptive EP and spectrum control
+- primary_tools: EW threat-intent fusion board, waveform agility allocator, mission-priority spectrum controller
+- alternate_tools: static EMCON plan with manual retune windows
+- degraded_mode: mission-essential comm windows with fixed EP posture
+- input_requirements: threat emitters, friendly waveform set, mission phases, ROE constraints
+- output_schema: spectrum maneuver order, EP timeline, comm survivability score
+- protocol_profile: Link 16 J-series + VMF + signed maneuver manifests
+- validation_gates: interoperability pass, fratricide-spectrum check, commander release gate
+
+### packet_id: DPL-HOMELAND-PORT-CYBER-PHYSICAL-001
+- domain: homeland port cyber-physical defense coordination
+- objective: contain cyber-physical disruption while sustaining mission-priority cargo flow and authority escalation
+- primary_tools: OT/IT incident fusion board, port continuity tracker, emergency authority escalation manager
+- alternate_tools: manual incident bridge and cargo triage matrix
+- degraded_mode: periodic continuity bulletins with restricted crane/yard operations
+- input_requirements: incident indicators, crane/yard state, cargo criticality tags, authority matrix
+- output_schema: containment sequence, cargo continuity plan, escalation checklist
+- protocol_profile: IEC 62443 event exchange + NIMS/ICS + USMTF
+- validation_gates: containment evidence check, safety authority validation, continuity threshold pass
+
+### packet_id: DPL-DECEPTION-RED-INDICATOR-001
+- domain: joint deception operations red-indicator fusion
+- objective: detect, score, and escalate deception indicators with confidence-ranked command warnings
+- primary_tools: deception signal fusion board, narrative anomaly tracker, confidence adjudication ladder
+- alternate_tools: manual red-flag watch log and periodic all-source challenge session
+- degraded_mode: conservative warning bulletins with explicit uncertainty bands
+- input_requirements: all-source reports, narrative telemetry, EW anomalies, doctrine baseline
+- output_schema: red-indicator table, deception confidence ladder, warning trigger set
+- protocol_profile: STIX/TAXII + USMTF + signed deception-confidence manifests
+- validation_gates: multi-source corroboration, red-team challenge completion, authority review checkpoint
+
+## Packet Addendum S (2026-03-11, Homeland Resilience, Cognitive Staff Load, and Legal-Evidence Fusion)
+
+### packet_id: DPL-HOMELAND-GRID-BLACKSTART-DEFENSE-001
+- domain: homeland grid blackstart and defense support
+- objective: restore power to life-safety and mission-essential loads while synchronizing civil-military authorities
+- primary_tools: utility SCADA coordination board, blackstart sequence planner, emergency authority escalation tracker
+- alternate_tools: manual blackstart whiteboard and hourly authority sync call matrix
+- degraded_mode: mission-essential load restoration only with fixed commander/civil authority check-ins
+- input_requirements: grid damage map, generation restart capability, critical-load list, threat status, authority matrix
+- output_schema: blackstart sequence order, mission-load restoration ladder, authority escalation checklist
+- protocol_profile: IEC 61850 + NIMS/ICS + USMTF
+- validation_gates: life-safety priority pass, authority concurrence, dual-source grid-state confirmation
+
+### packet_id: DPL-BATTLE-STAFF-COGNITIVE-LOAD-001
+- domain: human-machine battle staff cognitive load balancing
+- objective: keep command decision tempo sustainable by balancing workload and automation confidence
+- primary_tools: watchfloor workload dashboard, task orchestration board, automation confidence monitor
+- alternate_tools: manual task board and battle-rhythm staffing worksheet
+- degraded_mode: decision-critical tasks only with manual routing and reduced alert intake
+- input_requirements: alert volume, staff roster, battle-rhythm events, decision deadlines, automation confidence bands
+- output_schema: cognitive heat map, task reallocation plan, decision-latency risk ladder
+- protocol_profile: USMTF + API/JSON + signed decision manifests
+- validation_gates: human-approval thresholds, overload trigger checks, decision-latency SLA pass
+
+### packet_id: DPL-CONTESTED-SPECTRUM-CIVIL-AVIATION-001
+- domain: contested electromagnetic spectrum civil aviation protection
+- objective: protect civil/military flight safety while maneuvering spectrum under EW pressure
+- primary_tools: spectrum conflict manager, flight-route integrity monitor, EW emitter threat board
+- alternate_tools: manual deconfliction board and sector voice reporting net
+- degraded_mode: safety-critical air corridors only with strict comm windows
+- input_requirements: interference map, civil/military routes, emitter threats, GNSS integrity state, airspace restrictions
+- output_schema: deconfliction order, civil-aviation risk matrix, flight-safety trigger table
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF
+- validation_gates: flight-safety threshold pass, fratricide-spectrum check, authority release confirmation
+
+### packet_id: DPL-DEFENSE-INDUSTRIAL-SABOTAGE-001
+- domain: strategic defense industrial base sabotage risk
+- objective: identify and mitigate sabotage risk to mission-critical production and logistics nodes
+- primary_tools: supplier dependency graph analytics, production integrity monitors, chokepoint risk engine
+- alternate_tools: manual supplier criticality matrix and daily production anomaly review board
+- degraded_mode: highest-priority production lines only with manual release authority gates
+- input_requirements: supplier graph, throughput baselines, threat indicators, transportation chokepoints, surge demand
+- output_schema: sabotage risk register, protected-node priority list, continuity branch recommendations
+- protocol_profile: API/JSON + STIX/TAXII + signed production manifests
+- validation_gates: dual-source threat corroboration, production confidence floor, command risk acceptance gate
+
+### packet_id: DPL-ARCTIC-SPACE-WEATHER-AVIATION-001
+- domain: arctic space weather aviation diversion
+- objective: preserve arctic sortie continuity under space-weather-induced comm/nav degradation
+- primary_tools: space-weather warning feeds, arctic diversion planner, navigation-integrity monitor
+- alternate_tools: manual diversion board with periodic weather and comms checks
+- degraded_mode: essential sorties only with conservative weather and nav margins
+- input_requirements: space-weather alerts, route weather, runway status, comm/nav degradation indicators, tanker posture
+- output_schema: diversion branch set, route confidence scores, sortie-risk watchboard
+- protocol_profile: AIXM/FIXM + API/JSON + USMTF
+- validation_gates: runway viability check, navigation integrity threshold, commander go/no-go gate
+
+### packet_id: DPL-COALITION-CIVIL-TRUST-STABILIZATION-001
+- domain: coalition information operations and civil trust stabilization
+- objective: counter adversary narrative attacks and stabilize public trust in coalition operations
+- primary_tools: narrative risk analytics, coalition messaging governance tracker, social anomaly monitor
+- alternate_tools: manual media fusion cell and coalition release coordination log
+- degraded_mode: high-confidence rebuttal releases only with delayed coalition synchronization
+- input_requirements: narrative telemetry, audience sentiment shifts, coalition authorities, incident timeline, risk geography
+- output_schema: stabilization campaign plan, influence confidence ladder, release and rebuttal matrix
+- protocol_profile: STIX/TAXII + NATO APP-11/ADatP-3 + signed release manifests
+- validation_gates: multi-source attribution check, coalition approval pass, civilian-harm messaging review
+
+### packet_id: DPL-MILITARY-FAMILY-READINESS-CRISIS-001
+- domain: military family readiness crisis sustainment
+- objective: sustain family support and reduce readiness/retention loss during prolonged crises
+- primary_tools: family-service availability dashboard, disruption tracking board, mobilization stress analytics
+- alternate_tools: manual support-gap tracker and periodic command family-readiness reviews
+- degraded_mode: highest-risk family cohorts only with manual support assignment
+- input_requirements: service availability, housing/utilities status, childcare/medical constraints, deployment tempo, reserve mobilization data
+- output_schema: family readiness risk dashboard, support prioritization plan, retention mitigation branches
+- protocol_profile: NIEM + API/JSON + USMTF
+- validation_gates: privacy handling compliance, support-tier assignment review, readiness-impact confirmation
+
+### packet_id: DPL-CONTESTED-CYBER-LEGAL-EVIDENCE-001
+- domain: contested cyber legal evidence fusion
+- objective: fuse cyber incident evidence into legally actionable attribution and response recommendations
+- primary_tools: forensic custody platform, cyber telemetry fusion board, legal review workflow engine
+- alternate_tools: manual custody ledger and legal evidence review huddle
+- degraded_mode: provisional attribution summaries with explicit legal confidence bands
+- input_requirements: telemetry artifacts, malware/forensic evidence, custody status, legal constraints, escalation windows
+- output_schema: evidence packet index, legal admissibility matrix, authority escalation ladder
+- protocol_profile: STIX/TAXII + signed custody manifests + USMTF
+- validation_gates: custody integrity pass, legal admissibility check, escalation authority confirmation
+
+## Packet Addendum T (2026-03-11, Mobilization Assurance and Cross-Domain Recovery)
+
+### packet_id: DPL-CBRN-DRONE-CUSTODY-001
+- domain: joint CBRN drone sample custody and lab routing
+- objective: preserve sample custody and contamination confidence while prioritizing lab routing under contested conditions
+- primary_tools: sample custody ledger, contamination confidence adjudication board, lab queue optimizer
+- alternate_tools: manual chain-of-custody notebook and periodic lab-routing sync huddle
+- degraded_mode: highest-risk sample routing only with manual commander/custodian concurrence
+- input_requirements: sample metadata, collection location/time, custody handlers, threat posture, lab capacity
+- output_schema: custody timeline, contamination confidence band, lab routing order
+- protocol_profile: CBRN USMTF + signed custody manifests + HL7/FHIR
+- validation_gates: custody integrity pass, sample viability confirmation, release authority sign-off
+
+### packet_id: DPL-FUEL-WATER-RAILHEAD-SABOTAGE-001
+- domain: fuel-water-railhead sabotage correlation
+- objective: correlate hybrid attack indicators and protect sustainment throughput across rail/fuel/water nodes
+- primary_tools: anomaly correlation engine, railhead incident tracker, sustainment continuity planner
+- alternate_tools: manual sabotage indicator matrix and daily sustainment risk board
+- degraded_mode: mission-priority node protection only with conservative throughput assumptions
+- input_requirements: incident telemetry, rail status, fuel/water node health, threat indicators, convoy schedule
+- output_schema: sabotage correlation heatmap, sustainment branch options, restoration priorities
+- protocol_profile: STIX/TAXII + API/JSON + USMTF
+- validation_gates: dual-source threat corroboration, node criticality validation, commander risk acceptance
+
+### packet_id: DPL-MARITIME-AUTONOMY-JAMMING-001
+- domain: coalition civil maritime autonomy jamming response
+- objective: keep maritime autonomy corridors safe and mission-viable during GNSS and C2 jamming
+- primary_tools: corridor manager, jamming analytics board, convoy reroute planner
+- alternate_tools: manual convoy lane board and scheduled coalition check-ins
+- degraded_mode: safety-critical transit windows only with reduced autonomy permissions
+- input_requirements: corridor map, vessel missions, jamming severity, coalition authority matrix, weather/sea state
+- output_schema: corridor survivability score, reroute order, coalition acknowledgment tracker
+- protocol_profile: AIS/NMEA + Link 16 + USMTF
+- validation_gates: collision risk threshold pass, coalition approval pass, GNSS integrity cross-check
+
+### packet_id: DPL-LAUNCH-ROBOTICS-CYBER-RESILIENCE-001
+- domain: strategic launch industrial robotics cyber resilience
+- objective: preserve launch-industrial robotics throughput while containing cyber-physical intrusions
+- primary_tools: robotics SOC board, production integrity monitor, launch continuity scheduler
+- alternate_tools: manual line-status huddle and restricted production release board
+- degraded_mode: mission-critical launch line only with explicit cyber containment holds
+- input_requirements: industrial telemetry, cyber alerts, launch queue, robotics safety status, authority gates
+- output_schema: containment sequence, production continuity ladder, release/hold decision set
+- protocol_profile: IEC 62443 + API/JSON + USMTF
+- validation_gates: cyber containment verification, safety gate pass, launch authority confirmation
+
+### packet_id: DPL-DENIED-CLOUD-PATCH-ATTESTATION-001
+- domain: denied-cloud mission software patch attestation
+- objective: verify and stage software patches in disconnected theaters without introducing mission risk
+- primary_tools: attestation ledger, theater patch orchestrator, rollback governance board
+- alternate_tools: offline hash-validation workflow and manual deployment ring tracker
+- degraded_mode: critical patching only with delayed validation and strict rollback trigger
+- input_requirements: patch metadata, binary hashes, SBOM evidence, platform inventory, mission criticality
+- output_schema: patch trust status, deployment ring plan, rollback trigger matrix
+- protocol_profile: signed attestation envelopes + API/JSON + USMTF
+- validation_gates: hash/attestation pass, compatibility validation, command release approval
+
+### packet_id: DPL-RIVER-FLOOD-BRIDGING-EVAC-001
+- domain: cross-border river flood bridging and evacuation
+- objective: synchronize bridging and evacuation priorities across borders during flood crisis response
+- primary_tools: flood geospatial board, bridging planner, evacuation movement scheduler
+- alternate_tools: manual flood map board and bridge-slot assignment matrix
+- degraded_mode: life-safety evacuation and key crossing support only
+- input_requirements: flood forecasts, bridge availability, evacuation demand, route status, civil authority constraints
+- output_schema: crossing priority list, evacuation corridor map, engineer support timeline
+- protocol_profile: OGC + NIMS/ICS + USMTF
+- validation_gates: life-safety priority check, crossing safety pass, authority concurrence
+
+### packet_id: DPL-FIELD-DATACENTER-RELOCATION-001
+- domain: expeditionary field data center relocation
+- objective: relocate forward data-center capability while sustaining critical mission services and key custody
+- primary_tools: dependency mapper, cutover planner, key-custody manager
+- alternate_tools: manual service-priority board and scheduled relocation checkpoint log
+- degraded_mode: mission-essential services only with reduced redundancy
+- input_requirements: service dependencies, threat posture, relocation sites, bandwidth/power state, keying status
+- output_schema: cutover sequence, continuity scorecard, custody ledger updates
+- protocol_profile: API/JSON + signed custody manifests + USMTF
+- validation_gates: continuity threshold pass, custody integrity check, mission owner sign-off
+
+### packet_id: DPL-SPACE-GROUND-EMISSION-FRATRICIDE-001
+- domain: space-ground emission window and RF fratricide prevention
+- objective: schedule emissions to prevent self-interference while preserving mission sensing and comms effectiveness
+- primary_tools: emission planner, fratricide risk engine, timing confidence monitor
+- alternate_tools: manual emission-control matrix and periodic spectrum coordination briefs
+- degraded_mode: mission-essential emission windows only with conservative separation buffers
+- input_requirements: emitter catalog, mission windows, interference map, timing confidence, authority constraints
+- output_schema: emission window order, fratricide risk register, go/no-go gates
+- protocol_profile: Link 16 + VMF + USMTF
+- validation_gates: interoperability pass, fratricide threshold pass, commander release gate
+
+### packet_id: DPL-MULTILINGUAL-WARNING-AUTH-001
+- domain: coalition multilingual warning authentication
+- objective: authenticate and translate coalition warnings to reduce spoofing and mistranslation risk
+- primary_tools: translation assurance engine, warning authenticity verifier, coalition release board
+- alternate_tools: bilingual review cell and manual release checklists
+- degraded_mode: high-confidence warning types only with delayed coalition synchronization
+- input_requirements: source warning payload, language targets, authenticity evidence, release authorities, timing deadline
+- output_schema: authenticated multilingual warning set, confidence ladder, coalition acknowledgment status
+- protocol_profile: NATO APP-11/ADatP-3 + signed message manifests + USMTF
+- validation_gates: authenticity pass, translation quality threshold, coalition release approval
+
+### packet_id: DPL-WEARABLE-BIOSURVEILLANCE-TRIAGE-001
+- domain: wearable biosurveillance force-health anomaly triage
+- objective: identify force-health anomalies early and route interventions before mission degradation
+- primary_tools: biosurveillance fusion board, anomaly triage engine, intervention planner
+- alternate_tools: manual anomaly watchlist and periodic force-health review board
+- degraded_mode: highest-severity anomalies only with manual intervention assignment
+- input_requirements: wearable telemetry, baseline health bands, mission tempo, environmental stressors, medical capacity
+- output_schema: anomaly triage queue, intervention recommendations, readiness impact estimate
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: clinical threshold pass, privacy compliance check, readiness-impact confirmation
+
+### packet_id: DPL-HOMELAND-AIRPORT-MASCAL-RUNWAY-001
+- domain: homeland airport mass-casualty runway defense and recovery
+- objective: protect runway operations and casualty throughput during homeland airport attack contingencies
+- primary_tools: airport incident board, runway restoration planner, casualty movement prioritizer
+- alternate_tools: manual airport emergency board and interval-based runway status checks
+- degraded_mode: lifesaving airlift and runway emergency operations only
+- input_requirements: incident severity, runway status, casualty load, airlift demand, authority matrix
+- output_schema: defense/recovery sequence, casualty throughput plan, airlift continuity trigger set
+- protocol_profile: AIXM/FIXM + NIMS/ICS + USMTF
+- validation_gates: runway viability pass, casualty triage safety check, authority release confirmation
+
+### packet_id: DPL-ORBITAL-DEBRIS-REENTRY-PROTECTION-001
+- domain: strategic orbital debris reentry force protection
+- objective: assess and mitigate force/infrastructure risk from hostile or uncontrolled reentry events
+- primary_tools: reentry projection board, force protection alert manager, infrastructure impact planner
+- alternate_tools: manual reentry warning board and periodic shelter/asset update calls
+- degraded_mode: priority force nodes only with conservative alert zones
+- input_requirements: orbital event telemetry, projected footprint, force disposition, critical infrastructure map, alert authorities
+- output_schema: reentry risk map, force-protection branch matrix, warning dissemination plan
+- protocol_profile: CCSDS-derived events + API/JSON + USMTF
+- validation_gates: forecast confidence threshold, alert dissemination acknowledgment, command concurrence
+
+## Packet Addendum U (2026-03-11, Mobilization Coupling and Mission Assurance Pending-Lane Closure)
+
+### packet_id: DPL-MOBILIZATION-COUPLING-001
+- domain: coalition strategic mobilization rail-port-energy coupling
+- objective: optimize coalition force-flow throughput under coupled rail, port, and energy constraints
+- primary_tools: mobilization coupling dashboard, rail/port throughput analyzer, grid/fuel resilience monitor
+- alternate_tools: manual movement-control board and periodic coalition sustainment syncs
+- degraded_mode: mission-priority force packages only with conservative timing and fuel assumptions
+- input_requirements: rail schedules, port berth status, energy posture, force package priority, threat disruptions
+- output_schema: throughput options ladder, coupling risk matrix, recommended force-flow branch
+- protocol_profile: USMTF + API/JSON + signed throughput manifests
+- validation_gates: authority concurrence, throughput confidence floor, mission-priority validation
+
+### packet_id: DPL-PRIORITY-OF-LIFE-RESTORATION-001
+- domain: homeland defense critical infrastructure priority-of-life operations
+- objective: sequence restoration actions to maximize life-safety and mission support during major disruption
+- primary_tools: critical service dependency graph, restoration sequencer, civil-military authority board
+- alternate_tools: manual incident command prioritization matrix and scheduled status check-ins
+- degraded_mode: life-safety and command-essential services only
+- input_requirements: infrastructure outage map, casualty/life-safety indicators, mission dependencies, authority matrix
+- output_schema: restoration order, dependency risk map, authority escalation checklist
+- protocol_profile: NIMS/ICS + NIEM + USMTF
+- validation_gates: life-safety precedence check, authority release pass, service restoration confirmation
+
+### packet_id: DPL-WATER-OBSTACLE-AUTONOMY-SAFETY-001
+- domain: joint combat engineer water obstacle autonomy safety
+- objective: synchronize autonomous and crewed crossing assets while controlling fratricide and safety risk
+- primary_tools: crossing safety monitor, autonomy state board, engineer throughput planner
+- alternate_tools: manual crossing manifest and timed checkpoint reporting
+- degraded_mode: limited crossing windows with manual safety oversight only
+- input_requirements: crossing assets, river/hydrology state, threat picture, crossing timeline, authority constraints
+- output_schema: crossing sequence, safety risk ladder, authority-gated go/no-go table
+- protocol_profile: VMF + CoT + USMTF
+- validation_gates: safety threshold pass, fratricide check, commander approval gate
+
+### packet_id: DPL-BIOLOGICS-COLD-CHAIN-ASSURANCE-001
+- domain: joint expeditionary cold-chain biologics assurance
+- objective: preserve biologics viability and blood product availability during contested expeditionary operations
+- primary_tools: cold-chain telemetry board, biologics viability analyzer, med-log diversion planner
+- alternate_tools: manual temperature custody log and periodic med-log synchronization
+- degraded_mode: lifesaving biologics only with strict conservation and redistribution controls
+- input_requirements: cold-chain sensor data, inventory state, transport route risk, care demand, authority priorities
+- output_schema: viability scorecard, diversion/replenishment plan, mission-impact estimate
+- protocol_profile: HL7/FHIR + API/JSON + USMTF
+- validation_gates: custody integrity pass, viability confidence threshold, medical authority concurrence
+
+### packet_id: DPL-MODEL-DRIFT-RESPONSE-001
+- domain: joint multi-domain AI model assurance and drift response
+- objective: detect mission-impacting model drift and drive controlled rollback/recalibration decisions
+- primary_tools: model trust monitor, drift adjudication engine, rollback governance board
+- alternate_tools: manual drift review board with restricted model release windows
+- degraded_mode: human-led decision support only with AI outputs advisory-limited
+- input_requirements: model performance telemetry, drift indicators, mission impact thresholds, authority matrix
+- output_schema: trust posture summary, rollback/recalibration decision tree, risk acceptance prompts
+- protocol_profile: signed attestation manifests + API/JSON + USMTF
+- validation_gates: drift threshold validation, human authority gate, post-change mission confidence check
+
+### packet_id: DPL-RESERVIST-MOBILIZATION-SYNC-001
+- domain: joint reservist mobilization family readiness synchronization
+- objective: align reserve mobilization tempo with family readiness and employer continuity constraints
+- primary_tools: mobilization synchronization board, family support risk tracker, employer continuity monitor
+- alternate_tools: manual readiness roster and periodic family/employer support synchronization calls
+- degraded_mode: highest-priority reserve formations only with focused family support triage
+- input_requirements: mobilization timelines, family support availability, employer impact, mission force-flow demand
+- output_schema: synchronization matrix, readiness-risk ladder, mitigation action tracker
+- protocol_profile: NIEM + API/JSON + USMTF
+- validation_gates: privacy compliance check, readiness impact validation, command concurrence
+
+### packet_id: DPL-MAINTENANCE-KNOWLEDGE-SYNC-001
+- domain: theater disconnected maintenance knowledge fabric
+- objective: preserve and synchronize maintenance diagnostics and repair lessons under disconnected conditions
+- primary_tools: edge maintenance broker, fault-pattern correlator, replay/reconciliation manager
+- alternate_tools: manual repair bulletin board and delayed sync checkpoints
+- degraded_mode: mission-critical platforms only with manual diagnostic adjudication
+- input_requirements: fault logs, repair actions, platform criticality, link availability, maintenance capacity
+- output_schema: synchronized maintenance knowledge bundle, replay plan, readiness delta estimate
+- protocol_profile: API/JSON store-and-forward + USMTF maintenance summaries + signed manifests
+- validation_gates: data integrity pass, conflict-resolution confirmation, readiness effect check
+
+### packet_id: DPL-LOGISTICS-ORDER-AUTH-001
+- domain: theater precision logistics deepfake order authentication
+- objective: authenticate mission-critical logistics orders and block spoofed release actions
+- primary_tools: order signature validator, synthetic media forensics, release authority verifier
+- alternate_tools: manual dual-person authentication and command voice callback matrix
+- degraded_mode: essential sustainment releases only with dual-manual confirmation
+- input_requirements: order content, signature metadata, source channel evidence, mission urgency, command chain
+- output_schema: authenticity confidence score, release/hold recommendation, escalation checklist
+- protocol_profile: signed command manifests + API/JSON forensics + USMTF
+- validation_gates: authenticity threshold pass, chain-of-command confirmation, release authority approval
+
+## Packet Addendum V (2026-03-11, Signaling Integrity, Border Screening, and Energy Hazard Continuity)
+
+### packet_id: DPL-DETERRENCE-MESSAGING-INTEGRITY-001
+- domain: strategic deterrence signaling and messaging integrity
+- objective: preserve signaling credibility while preventing narrative spoofing and escalation misread
+- primary_tools: signaling workflow board, narrative integrity verifier, release authority adjudication tracker
+- alternate_tools: manual strategic messaging review cell and timed coalition confirmation checks
+- degraded_mode: high-confidence deterrence channels only with explicit commander release gate
+- input_requirements: signaling objective, intended audiences, escalation thresholds, authenticity evidence, coalition constraints
+- output_schema: signaling branch ladder, integrity confidence band, release decision packet
 - protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
-- validation_gates: crypto integrity pass, command continuity threshold, authority acknowledgment chain
+- validation_gates: authenticity threshold pass, escalation guardrail pass, command approval recorded
 
-### packet_id: DPL-DENIED-GNSS-MARITIME-PILOTAGE-PORT-ENTRY-001
-- domain: joint denied-GNSS maritime pilotage and port entry
-- objective: preserve safe pilotage and port entry timing under spoofing/jamming and degraded navigation confidence.
-- primary_tools: denied-PNT maritime fusion board, harbor pilotage controller, AIS anomaly adjudicator
-- alternate_tools: manual harbor pilot board and conservative arrival timing windows
-- degraded_mode: high-priority arrivals only with tightened manual navigation controls
-- input_requirements: navigation confidence signals, harbor constraints, vessel priorities, threat indicators, weather state
-- output_schema: pilotage branch plan, port-entry risk ladder, timing confidence update
-- protocol_profile: USMTF + AIS/NMEA + OGC + API/JSON
-- validation_gates: navigation confidence floor, harbor safety check, command release confirmation
+### packet_id: DPL-COALITION-REFUGEE-BIOMETRIC-SCREENING-001
+- domain: coalition refugee biometric deconfliction and screening
+- objective: increase screening throughput while preserving legal compliance and identity confidence
+- primary_tools: biometric matcher, coalition intake workflow manager, watchlist adjudication board
+- alternate_tools: manual intake triage board and periodic coalition legal-compliance huddles
+- degraded_mode: high-risk screening lanes only with manual dual-review
+- input_requirements: intake volume, biometric captures, watchlist policies, authority matrix, humanitarian constraints
+- output_schema: deconfliction confidence ladder, throughput plan, legal-observability packet
+- protocol_profile: NIEM + NATO APP-11/ADatP-3 aligned + USMTF + API/JSON
+- validation_gates: false-positive threshold pass, legal compliance check, coalition release concurrence
 
-### packet_id: DPL-COALITION-CASUALTY-IDENTITY-NOTIFICATION-001
-- domain: coalition cross-border casualty identity and family notification
-- objective: synchronize casualty identity confidence and family notification while preserving privacy and legal compliance.
-- primary_tools: casualty identity reconciler, coalition legal-routing board, family notification coordinator
-- alternate_tools: manual reconciliation panel and scheduled legal-notification adjudication reviews
-- degraded_mode: urgent identity cases only with strict releasability controls
-- input_requirements: casualty records, biometric signals, coalition legal caveats, notification channels, authority posture
-- output_schema: identity confidence ledger, notification synchronization matrix, legal exception queue
-- protocol_profile: NIEM + HL7/FHIR + NATO APP-11/ADatP-3 aligned + API/JSON
-- validation_gates: identity confidence threshold, legal/privacy sufficiency pass, coalition concurrence
-
-### packet_id: DPL-HOMELAND-PHARMA-COLD-CHAIN-MILSUP-001
-- domain: homeland defense critical pharma cold-chain military support
-- objective: stabilize pharmaceutical cold-chain throughput during cyber-physical disruption and emergency demand surges.
-- primary_tools: cold-chain telemetry analyzer, logistics disruption forecaster, DSCA support board
-- alternate_tools: manual distribution board and periodic life-safety prioritization checks
-- degraded_mode: mission-essential and life-critical pharmaceuticals only
-- input_requirements: cold storage telemetry, route status, disruption indicators, demand forecasts, authority constraints
-- output_schema: continuity map, support branch ladder, life-safety action queue
+### packet_id: DPL-LOCK-DAM-CYBER-PHYSICAL-CONTINUITY-001
+- domain: homeland critical waterway lock/dam cyber-physical continuity
+- objective: restore inland waterway mission throughput under cyber-physical disruption
+- primary_tools: ICS incident board, hydraulic safety analyzer, throughput sequencer
+- alternate_tools: manual incident command matrix and scheduled engineering status check-ins
+- degraded_mode: life-safety and mission-priority locks only
+- input_requirements: lock/dam status, cyber indicators, flood/hydrology state, traffic demand, DSCA authority posture
+- output_schema: continuity branch map, restoration sequence, support task matrix
 - protocol_profile: NIMS/ICS + NIEM + USMTF + API/JSON
-- validation_gates: temperature-control threshold pass, authority validation, public-safety assurance check
+- validation_gates: infrastructure safety pass, authority concurrence, throughput restoration confidence floor
 
-### packet_id: DPL-CISLUNAR-LOGISTICS-CHOKEPOINT-MONITOR-001
-- domain: strategic cislunar logistics choke-point monitoring
-- objective: detect and adjudicate chokepoint anomalies that threaten strategic cislunar logistics continuity.
-- primary_tools: SDA catalog fusion board, cislunar trajectory monitor, orbital custody analytics
-- alternate_tools: manual cislunar watchfloor and timed anomaly adjudication cycles
-- degraded_mode: strategic-essential logistics nodes only with commander release authority
-- input_requirements: orbital tracks, trajectory forecasts, custody confidence, anomaly indicators, strategic priorities
-- output_schema: chokepoint risk board, attribution packet, continuity branch matrix
+### packet_id: DPL-ORBITAL-SERVICING-TAMPER-CUSTODY-001
+- domain: joint orbital servicing inspection and counter-tamper custody
+- objective: synchronize orbital servicing while preserving tamper-evidence and custody integrity
+- primary_tools: orbital servicing scheduler, telemetry custody ledger, tamper-forensics analyzer
+- alternate_tools: manual servicing timeline board and interval custody verification calls
+- degraded_mode: mission-critical servicing tasks only with expanded custody checkpoints
+- input_requirements: object telemetry, servicing windows, custody handlers, anomaly indicators, authority constraints
+- output_schema: servicing sequence order, custody evidence chain, anomaly branch matrix
 - protocol_profile: CCSDS + USMTF + STIX/TAXII + API/JSON
-- validation_gates: anomaly confidence threshold, escalation guardrail pass, command concurrence
+- validation_gates: custody integrity pass, anomaly confidence threshold, release authority acknowledgment
 
-### packet_id: DPL-EXPEDITIONARY-CUAS-GROUND-CREW-SAFETY-001
-- domain: expeditionary counter-drone airfield ground-crew safety
-- objective: synchronize counter-drone responses that protect flightline crews while preserving sortie generation.
-- primary_tools: airfield threat tracker, C-UAS engagement controller, flightline safety overlay engine
-- alternate_tools: manual crew-safety board and timed counter-drone deconfliction calls
-- degraded_mode: only pre-cleared low-fratricide engagement patterns with human release gate
-- input_requirements: drone threat tracks, crew location updates, sortie priorities, engagement constraints, authority matrix
-- output_schema: safety matrix, sortie continuity branch ladder, crew protection actions
-- protocol_profile: AIXM/FIXM + VMF + USMTF + API/JSON
-- validation_gates: fratricide-risk threshold pass, crew safety check, command approval chain
+### packet_id: DPL-TACTICAL-COUNTER-DISINFORMATION-SIGNAL-001
+- domain: tactical counter-disinformation and civil signal assurance
+- objective: suppress adversary narratives and maintain trusted civil-facing mission messaging
+- primary_tools: narrative anomaly detector, message authenticity verifier, civil-affairs trust dashboard
+- alternate_tools: manual rumor triage board and bilingual trusted-messenger validation loop
+- degraded_mode: high-confidence alert classes only with manual release confirmation
+- input_requirements: narrative indicators, source channels, audience map, trust baseline, authority constraints
+- output_schema: disinformation risk map, trusted release plan, confidence scorecard
+- protocol_profile: STIX/TAXII + NIEM + USMTF + API/JSON
+- validation_gates: authenticity pass, translation quality threshold, command release concurrence
 
-### packet_id: DPL-MULTI-THEATER-HOSTAGE-POL-AUTH-001
-- domain: joint multi-theater hostage proof-of-life authentication
-- objective: authenticate proof-of-life artifacts and detect coercion/fraud across theaters.
-- primary_tools: authenticity forensics pipeline, case confidence adjudicator, legal observability ledger
-- alternate_tools: manual authenticity review panel and scheduled legal sufficiency audits
-- degraded_mode: high-confidence cases only with dual command/legal review
-- input_requirements: proof-of-life media, case metadata, biometric indicators, legal constraints, coalition caveats
-- output_schema: confidence ledger, coercion-risk matrix, decision-support packet
-- protocol_profile: NIEM + STIX/TAXII + USMTF + API/JSON
-- validation_gates: authenticity confidence floor, legal sufficiency pass, command concurrence
+### packet_id: DPL-MUNITIONS-STORAGE-FIRE-RESPONSE-001
+- domain: theater autonomous munitions storage fire response
+- objective: contain explosive risk while preserving force protection and munitions continuity
+- primary_tools: fire behavior modeler, explosive safety planner, depot relocation sequencer
+- alternate_tools: manual fire perimeter board and periodic ordnance accountability checks
+- degraded_mode: life-safety suppression and critical inventory relocation only
+- input_requirements: fire telemetry, inventory class/risk, weather, suppression availability, authority posture
+- output_schema: response branch matrix, isolation sequence, continuity task board
+- protocol_profile: USMTF + STANAG-aligned CBRN exchange + NIMS/ICS + API/JSON
+- validation_gates: blast-risk threshold pass, safety authority concurrence, continuity branch readiness
 
-### packet_id: DPL-AI-FUEL-THEFT-BLACKMARKET-INTERDICT-001
-- domain: theater AI-enabled fuel theft and black-market interdiction
-- objective: detect fuel diversion and synchronize interdiction actions without destabilizing mission energy continuity.
-- primary_tools: fuel telemetry anomaly classifier, convoy accounting ledger, interdiction branch planner
-- alternate_tools: manual fuel accountability board and periodic interdiction review loops
-- degraded_mode: highest-confidence diversion lanes only with legal-command dual release
-- input_requirements: fuel movement telemetry, accounting manifests, diversion indicators, legal authorities, sustainment demand
-- output_schema: diversion risk map, interdiction options matrix, continuity mitigation plan
-- protocol_profile: EDI X12 + STIX/TAXII + USMTF + API/JSON
-- validation_gates: evidence sufficiency threshold, legal release pass, sustainment continuity floor
+### packet_id: DPL-COLD-CHAIN-BIOLOGICS-DENIED-CORRIDOR-001
+- domain: expeditionary cold-chain biologics denied corridor continuity
+- objective: sustain biologics viability and prioritized treatment capacity through denied routes
+- primary_tools: cold-chain telemetry board, med-log routing optimizer, viability analyzer
+- alternate_tools: manual temperature custody logs and timed reroute adjudication meetings
+- degraded_mode: lifesaving biologics only with strict conservation controls
+- input_requirements: inventory and viability state, route constraints, care demand, escort posture, authority priorities
+- output_schema: viability scorecard, reroute sequence, continuity risk packet
+- protocol_profile: HL7/FHIR + USMTF + NIEM + API/JSON
+- validation_gates: custody integrity check, viability threshold pass, medical authority release
 
-### packet_id: DPL-COALITION-FIRES-S2S-LATENCY-AUDIT-001
-- domain: coalition joint fires sensor-to-shooter latency audit
-- objective: audit and remediate coalition kill-chain timing degradation before mission impact.
-- primary_tools: kill-chain timing analyzer, coalition data-link audit board, timestamp integrity verifier
-- alternate_tools: manual timing board and periodic coalition fires synchronization checks
-- degraded_mode: highest-priority fire missions only until latency confidence recovers
-- input_requirements: sensor/event timestamps, network latency traces, mission priority queues, coalition caveats, authority posture
-- output_schema: latency audit report, remediation branch ladder, timing integrity scorecard
-- protocol_profile: Link 16 J-series + VMF + NATO APP-11/ADatP-3 aligned + API/JSON
-- validation_gates: timing confidence threshold, coalition concurrence, authority release confirmation
+### packet_id: DPL-IAMD-RADAR-DECEPTION-RECOVERY-001
+- domain: joint IAMD multi-node radar deception recovery
+- objective: restore track trust and engagement discipline after coordinated deception attacks
+- primary_tools: radar integrity analytics, track-correlation adjudication board, engagement simulator
+- alternate_tools: manual track confidence ladder and scheduled cross-sensor adjudication calls
+- degraded_mode: mission-essential engagement lanes only with elevated human release control
+- input_requirements: radar tracks, deception indicators, fusion confidence, ROE constraints, command authorities
+- output_schema: recovery branch ladder, track confidence register, engagement release packet
+- protocol_profile: Link 16 + VMF + USMTF + API/JSON
+- validation_gates: track confidence floor, fratricide-risk check, authority acknowledgment
 
-### packet_id: DPL-ARCTIC-OVER-ICE-GLOC-RESILIENCE-001
-- domain: arctic over-ice ground line-of-communication resilience
-- objective: preserve over-ice route survivability and sustainment throughput in high-latitude contested environments.
-- primary_tools: ice-route survivability planner, terrain/weather risk fusion board, convoy resilience analyzer
-- alternate_tools: manual route board and scheduled Arctic mobility hazard adjudication loops
-- degraded_mode: mission-essential GLOC lanes only with conservative route release gates
-- input_requirements: ice condition telemetry, route hazards, convoy capacities, sustainment priorities, weather forecasts
-- output_schema: survivability matrix, sustainment branch map, mobility risk trigger ledger
-- protocol_profile: USMTF + OGC + NATO APP-11/ADatP-3 aligned + API/JSON
-- validation_gates: route safety threshold, sustainment throughput floor, command concurrence
+### packet_id: DPL-CYBER-SANCTIONS-EVASION-INTERDICTION-001
+- domain: coalition cyber sanctions-evasion shipping interdiction
+- objective: synchronize interdiction options with legal evidence sufficiency and escalation control
+- primary_tools: AIS analytics, cyber-finance tracing engine, sanctions compliance adjudication workflow
+- alternate_tools: manual vessel-risk matrix and periodic coalition legal-review cells
+- degraded_mode: highest-confidence interdictions only with coalition dual-approval
+- input_requirements: vessel telemetry, financial trace indicators, legal authorities, coalition posture, threat context
+- output_schema: interdiction options matrix, evidence sufficiency packet, escalation-risk ladder
+- protocol_profile: AIS/NMEA + STIX/TAXII + USMTF + API/JSON
+- validation_gates: evidence sufficiency pass, coalition concurrence, escalation guardrail pass
 
-## Packet Addendum IX (2026-03-12, Expansion Wave XVIII Tool Invocation Packets)
+### packet_id: DPL-BATTLEFIELD-LITHIUM-BATTERY-SAFETY-001
+- domain: theater battlefield lithium battery safety and disposal
+- objective: prevent thermal-runaway casualties while preserving mission-energy continuity
+- primary_tools: thermal anomaly monitor, hazmat disposal workflow board, substitution logistics planner
+- alternate_tools: manual battery-risk registry and timed disposal convoy checkpoints
+- degraded_mode: high-risk battery classes only with manual safety release authority
+- input_requirements: battery telemetry, inventory state, disposal capacity, mission-energy demand, environmental constraints
+- output_schema: hazard risk map, disposal sequence, continuity confidence packet
+- protocol_profile: NIMS/ICS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: safety threshold pass, disposal authority approval, mission-energy continuity validation
 
-### packet_id: DPL-STRATEGIC-NC3-SPECTRUM-DECEPTION-RESTORATION-001
-- domain: strategic NC3 spectrum deception and restoration
-- objective: identify and isolate deceptive EW effects on NC3 pathways and sequence trusted restoration actions.
-- primary_tools: NC3 relay integrity dashboard, spectrum anomaly attribution engine, cryptographic trust-state monitor
-- alternate_tools: manual warning-path adjudication board and periodic command-channel confidence checks
-- degraded_mode: strategic-essential NC3 paths only with dual command release checks
-- input_requirements: warning-path telemetry, EW event indicators, authentication state, relay availability, authority constraints
-- output_schema: NC3 trust matrix, restoration branch ladder, command-path assurance packet
-- protocol_profile: USMTF + Link 16 J-series + STIX/TAXII + API/JSON
-- validation_gates: trust-threshold pass, legal-policy guardrail check, command approval record
+## Packet Addendum VI (2026-03-11, Expansion Wave XIII Tool Invocation Packets)
 
-### packet_id: DPL-JOINT-HYPERSONIC-WARNING-FUSION-RESPONSE-001
-- domain: joint hypersonic strike warning fusion and response
-- objective: fuse compressed-timeline warning indicators and support defensive branch decisions.
-- primary_tools: multi-domain warning fusion board, track confidence correlator, defended-asset prioritization engine
-- alternate_tools: manual warning reconciliation panel and timed response branch huddles
-- degraded_mode: highest-priority defended assets only with commander release
-- input_requirements: warning tracks, cueing telemetry, interceptor readiness, asset criticality, authorities
-- output_schema: warning confidence matrix, response timing branches, defended-asset decision packet
-- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
-- validation_gates: track-confidence threshold, response window feasibility, authority concurrence
+### packet_id: DPL-KILLWEB-DISRUPT-002
+- domain: joint adversary kill-web disruption assessment
+- objective: prioritize disruption branches that fracture adversary kill-web timing with bounded escalation risk
+- primary_tools: kill-chain dependency graph engine, sensor-to-shooter latency correlator, disruption branch simulator
+- alternate_tools: manual dependency board and command-led red-cell adjudication loop
+- degraded_mode: advisory-only disruption ranking with explicit commander approval gate
+- input_requirements: adversary dependency map, confidence bands, escalation constraints, friendly readiness posture
+- output_schema: disruption branch ladder, dependency fracture map, risk-ack packet
+- protocol_profile: USMTF + STIX/TAXII + Link 16 J-series + API/JSON
+- validation_gates: escalation guardrail pass, confidence threshold pass, authority acknowledgment
 
-### packet_id: DPL-COALITION-ARCTIC-AIRDROP-CORRIDOR-ASSURANCE-001
-- domain: coalition Arctic austere airdrop corridor assurance
-- objective: preserve reliable airdrop corridors under extreme weather and threat conditions.
-- primary_tools: polar weather-risk fusion board, corridor viability planner, coalition airdrop synchronization dashboard
-- alternate_tools: manual corridor adjudication board and conservative drop-window controls
-- degraded_mode: mission-essential drops only with tightened authority checks
-- input_requirements: weather windows, DZ conditions, threat overlays, coalition priorities, release constraints
-- output_schema: corridor confidence map, drop-zone risk matrix, coalition synchronization packet
-- protocol_profile: USMTF + OGC + NATO APP-11/ADatP-3 aligned + API/JSON
-- validation_gates: corridor confidence threshold, DZ safety check, coalition concurrence
+### packet_id: DPL-DECOY-ECON-001
+- domain: theater autonomous decoy economy and inventory governance
+- objective: maintain decoy survivability effect while preventing inventory exhaustion and signature fratricide
+- primary_tools: decoy inventory ledger, threat-signature exposure analyzer, replenishment optimizer
+- alternate_tools: manual decoy allocation board and periodic survivability review cycle
+- degraded_mode: critical front prioritization only with manual release controls
+- input_requirements: decoy inventory state, threat pressure, logistics throughput, mission priorities
+- output_schema: allocation matrix, replenishment sequence, survivability confidence score
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: inventory integrity check, survivability threshold pass, command concurrence
 
-### packet_id: DPL-THEATER-WATERWAY-BRIDGE-DENIAL-RAPID-REPAIR-001
-- domain: theater contested waterway bridge denial and rapid repair
-- objective: synchronize mobility/countermobility decisions and preserve operational tempo across crossings.
-- primary_tools: combat engineer bridge status board, hydrology risk overlay, rapid repair logistics planner
-- alternate_tools: manual crossing board and periodic engineer synchronization cycles
-- degraded_mode: critical crossings only with conservative denial/release gating
-- input_requirements: bridge condition telemetry, engineer assets, river conditions, threat state, command priorities
-- output_schema: denial/repair timeline, crossing branch options, mobility decision packet
-- protocol_profile: USMTF + VMF + OGC + API/JSON
-- validation_gates: crossing safety threshold, maneuver continuity floor, command concurrence
+### packet_id: DPL-REL-WAIVER-001
+- domain: coalition mission data releasability waiver adjudication
+- objective: accelerate waiver decisions while preserving legal-policy traceability and coalition trust
+- primary_tools: releasability rule engine, coalition waiver portal, legal observability ledger
+- alternate_tools: manual waiver board and scheduled legal-policy adjudication huddles
+- degraded_mode: mission-critical waiver lanes only with dual legal-command approval
+- input_requirements: data classes, partner authorities, mission urgency, releasability constraints
+- output_schema: waiver decision packet, access control map, residual-risk register
+- protocol_profile: NATO APP-11/ADatP-3 aligned + NIEM + USMTF + API/JSON
+- validation_gates: policy compliance pass, authority mapping pass, coalition concurrence
 
-### packet_id: DPL-EXPEDITIONARY-PRISONER-PROCESSING-EVIDENCE-INTEGRITY-001
-- domain: expeditionary AI-enabled prisoner processing and evidence integrity
-- objective: maintain lawful detainee processing and evidence chain integrity in disrupted environments.
-- primary_tools: custody workflow orchestrator, biometric confidence adjudicator, evidence chain ledger service
-- alternate_tools: manual intake review board and legal sufficiency checklist loops
-- degraded_mode: urgent processing lanes only with legal-command dual validation
-- input_requirements: intake records, biometric confidence signals, evidence custody metadata, legal constraints, authorities
-- output_schema: intake compliance matrix, evidence integrity ledger, legal-risk branch packet
-- protocol_profile: NIEM + USMTF + HL7/FHIR + API/JSON
-- validation_gates: legal sufficiency pass, identity confidence threshold, command release audit
+### packet_id: DPL-UNDERSEA-BARRIER-AUTO-001
+- domain: strategic undersea chokepoint autonomous barrier orchestration
+- objective: synchronize autonomous barrier posture for deterrence and chokepoint continuity
+- primary_tools: undersea barrier planner, chokepoint traffic risk engine, autonomy safety interlock board
+- alternate_tools: manual maritime exclusion matrix and interval safety adjudication calls
+- degraded_mode: monitoring-only posture with human release authority for barrier activation
+- input_requirements: chokepoint traffic patterns, sensor confidence, legal constraints, safety envelopes
+- output_schema: barrier posture plan, denial branch ladder, safety audit log
+- protocol_profile: USMTF + OGC + STIX/TAXII + API/JSON
+- validation_gates: safety interlock pass, legal/ROE pass, command approval logged
 
-### packet_id: DPL-HOMELAND-RAIL-MOBILITY-CYBER-GUARD-001
-- domain: homeland defense rail network military mobility cyber guard
-- objective: detect rail cyber disruptions and preserve strategic military mobility throughput.
-- primary_tools: rail control cyber-monitor, mobility choke-point analyzer, reroute synchronization dashboard
-- alternate_tools: manual movement-control board and emergency reroute SOP checklists
-- degraded_mode: highest-priority strategic lifts only with dual cyber/mobility approval gates
-- input_requirements: rail telemetry, cyber indicators, movement priorities, chokepoint status, authority posture
-- output_schema: rail cyber risk board, reroute branch matrix, continuity packet
-- protocol_profile: NIMS/ICS + STIX/TAXII + USMTF + API/JSON
-- validation_gates: cyber confidence threshold, mobility throughput floor, authority acknowledgment
+### packet_id: DPL-MISSION-BRIEF-MULTI-001
+- domain: joint distributed mission brief multilingual assurance
+- objective: preserve commander intent across multilingual mission brief dissemination
+- primary_tools: translation fidelity checker, intent-diff comparator, distributed briefing workflow board
+- alternate_tools: human linguist review cell and manual intent reconciliation board
+- degraded_mode: high-confidence language lanes only with explicit interpretation caveats
+- input_requirements: mission brief source, language set, partner audience, confidence targets
+- output_schema: fidelity scorecard, intent drift report, dissemination release plan
+- protocol_profile: USMTF + NIEM + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: fidelity threshold pass, intent alignment pass, release authority concurrence
 
-### packet_id: DPL-JOINT-DE-BLUE-FORCE-EXPOSURE-GOVERNANCE-001
-- domain: joint directed-energy blue-force exposure governance
-- objective: constrain directed-energy risk to friendly forces and protected systems while preserving mission effects.
-- primary_tools: DE employment governance board, friendly exposure risk estimator, protected-sensor overlay engine
-- alternate_tools: manual fratricide-risk matrix and timed safety adjudication checks
-- degraded_mode: pre-cleared low-risk DE patterns only with command release
-- input_requirements: DE system status, blue-force geolocation, propagation forecasts, protected-zone constraints, authorities
-- output_schema: exposure risk ladder, DE safety release matrix, engagement-governance packet
-- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
-- validation_gates: fratricide-risk threshold pass, legal-policy check, command approval chain
+### packet_id: DPL-CLOUDFED-ADMISSION-001
+- domain: theater resilient battlefield cloud federation admission control
+- objective: enforce trusted cloud federation admission while sustaining mission workloads under attack
+- primary_tools: federation policy engine, workload attestation broker, integrity-aware placement optimizer
+- alternate_tools: manual workload allowlist board and timed integrity check-ins
+- degraded_mode: mission-essential workloads only with human gate on federation changes
+- input_requirements: workload criticality, attestation evidence, network posture, resource capacity
+- output_schema: admission decision log, placement branch map, continuity risk ladder
+- protocol_profile: USMTF + STIX/TAXII + OpenTelemetry + API/JSON
+- validation_gates: attestation pass, continuity threshold pass, authority acknowledgment
 
-### packet_id: DPL-COALITION-DISASTER-RELIEF-AIRFIELD-DIGITAL-TWIN-RECOVERY-001
-- domain: coalition disaster relief airfield digital twin recovery
-- objective: restore airfield throughput using digital twin branch analysis during disaster response.
-- primary_tools: airfield digital twin model, runway restoration scheduler, coalition throughput planner
-- alternate_tools: manual runway recovery board and periodic coalition flow prioritization reviews
-- degraded_mode: life-safety and mission-essential sorties only with emergency approval
-- input_requirements: runway damage reports, repair resources, airlift demand, host-nation constraints, authorities
-- output_schema: recovery sequence plan, throughput restoration matrix, coalition tasking packet
-- protocol_profile: AIXM/FIXM + NIMS/ICS + NATO APP-11/ADatP-3 aligned + API/JSON
-- validation_gates: runway safety recertification pass, throughput sufficiency threshold, coalition concurrence
+### packet_id: DPL-AUTO-EVAC-ARBITRATION-001
+- domain: homeland military-civil autonomous evacuation convoy arbitration
+- objective: arbitrate convoy priority lanes for life safety and mission continuity during crisis evacuation
+- primary_tools: convoy deconfliction planner, route survivability optimizer, shelter/medical load balancer
+- alternate_tools: manual traffic control board and periodic life-safety triage synchronization
+- degraded_mode: life-safety convoys only with manual route release confirmation
+- input_requirements: evacuation demand, route status, convoy assets, shelter capacity, authority constraints
+- output_schema: convoy priority board, route arbitration plan, DSCA tasking matrix
+- protocol_profile: NIMS/ICS + NIEM + USMTF + API/JSON
+- validation_gates: life-safety threshold pass, route risk check, command concurrence
 
-### packet_id: DPL-STRATEGIC-MICROELECTRONICS-ALLOCATION-SABOTAGE-MONITOR-001
-- domain: strategic microelectronics foundry priority allocation and sabotage monitor
-- objective: prioritize trusted component output and detect sabotage before mission-system impact.
-- primary_tools: foundry output allocation board, supply-chain provenance analyzer, sabotage anomaly detector
-- alternate_tools: manual component priority board and provenance dispute adjudication loops
-- degraded_mode: mission-essential component families only with strategic command release
-- input_requirements: foundry throughput, component criticality tiers, provenance events, anomaly indicators, demand priorities
-- output_schema: allocation ladder, sabotage risk brief, mission-system assurance packet
-- protocol_profile: EDI X12 + STIX/TAXII + USMTF + API/JSON
-- validation_gates: provenance integrity pass, sabotage-confidence threshold, authority concurrence
+### packet_id: DPL-AI-ORDER-INTEGRITY-001
+- domain: joint AI-generated order integrity and commander-intent deviation
+- objective: detect and control AI-generated order drift before operational release
+- primary_tools: order authenticity verifier, intent-diff engine, command approval workflow gate
+- alternate_tools: manual order review board and dual-person command chain validation
+- degraded_mode: advisory-only order integrity reports with no automated release path
+- input_requirements: generated order text, commander intent references, signature metadata, channel evidence
+- output_schema: integrity confidence score, intent deviation register, release recommendation packet
+- protocol_profile: USMTF + STIX/TAXII + VMF + API/JSON
+- validation_gates: authenticity pass, intent alignment pass, authority approval recorded
 
-### packet_id: DPL-THEATER-OFFSHORE-PREPOSITIONING-SURVIVABILITY-RELOAD-001
-- domain: theater offshore prepositioning ship survivability and reload
-- objective: preserve afloat sustainment continuity through survivability and reload branch planning.
-- primary_tools: maritime sustainment COP board, afloat survivability planner, reload node capacity model
-- alternate_tools: manual afloat sustainment board and conservative reload scheduling windows
-- degraded_mode: critical sustainment lanes only with command-level release checks
-- input_requirements: ship status/location, threat envelopes, reload capacities, sustainment demand, authorities
-- output_schema: survivability matrix, reload branch timeline, continuity packet
-- protocol_profile: USMTF + AIS/NMEA + Link 16 J-series + API/JSON
-- validation_gates: survivability threshold pass, reload feasibility check, authority approval log
+### packet_id: DPL-MAP-PROVENANCE-001
+- domain: coalition denied-environment digital map rights and provenance
+- objective: preserve geospatial trust and rights compliance in denied-update environments
+- primary_tools: geospatial lineage ledger, map-rights policy adjudicator, denied-sync merge planner
+- alternate_tools: manual geospatial reconciliation board and partner rights coordination calls
+- degraded_mode: safety-critical map layers only with explicit provenance caveats
+- input_requirements: map layers, rights metadata, provenance evidence, coalition release constraints
+- output_schema: rights adjudication matrix, provenance confidence board, update release plan
+- protocol_profile: OGC WMS/WFS/WMTS + NIEM + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: rights compliance pass, provenance threshold pass, coalition concurrence
 
-### packet_id: DPL-JOINT-AUTONOMOUS-FIREBREAK-WILDLAND-BASE-DEFENSE-001
-- domain: joint autonomous firebreak and wildland base defense
-- objective: synchronize firebreak operations to protect bases and sustain mission continuity during major wildland fires.
-- primary_tools: wildfire spread predictor, autonomous suppression coordinator, base critical-asset impact board
-- alternate_tools: manual incident board and periodic civil-military fireline deconfliction calls
-- degraded_mode: life-safety and mission-critical assets only with incident-command approval
-- input_requirements: fire spread forecasts, asset maps, autonomous team status, evacuation triggers, authority posture
-- output_schema: firebreak defense plan, mission continuity branches, civil-military coordination packet
-- protocol_profile: NIMS/ICS + OGC + USMTF + API/JSON
-- validation_gates: life-safety threshold pass, suppression safety check, command concurrence
+### packet_id: DPL-FUEL-ADDITIVE-INTERDICT-001
+- domain: strategic reserve fuel additive adulteration interdiction
+- objective: identify and interdict adulteration threats while preserving strategic sustainment flow
+- primary_tools: fuel chemistry anomaly detector, custody-chain evidence tracker, interdiction branch planner
+- alternate_tools: manual fuel sampling schedule and periodic sustainment risk adjudication cell
+- degraded_mode: critical fuel lanes only with laboratory-confirmed interdiction actions
+- input_requirements: sampling telemetry, custody evidence, distribution map, mission demand signals
+- output_schema: interdiction map, confidence ladder, sustainment mitigation actions
+- protocol_profile: USMTF + STIX/TAXII + EDI X12 + API/JSON
+- validation_gates: lab-confidence threshold pass, custody integrity check, command release gate
 
-### packet_id: DPL-SPACE-WEATHER-MISSION-ASSURANCE-SOLAR-STORM-BRANCHING-001
-- domain: space weather mission assurance and solar storm branching
-- objective: assess solar event impacts and branch plans for communications, navigation, and ISR resilience.
-- primary_tools: space weather event monitor, SATCOM/PNT impact model, mission dependency branch planner
-- alternate_tools: manual mission-impact board and conservative comms/nav fallback checklist
-- degraded_mode: critical mission threads only with explicit commander acknowledgment
-- input_requirements: space weather forecasts, system health telemetry, mission dependencies, thresholds, authority constraints
-- output_schema: impact matrix, branch recommendations, assurance watch packet
-- protocol_profile: CCSDS + USMTF + OGC + API/JSON
-- validation_gates: impact confidence threshold, mission assurance floor, command approval chain
+### packet_id: DPL-POLAR-BATTERY-SURVIVE-001
+- domain: expeditionary high-latitude battery thermal survivability
+- objective: reduce thermal-failure risk while preserving high-latitude mission energy endurance
+- primary_tools: thermal survivability modeler, battery degradation forecaster, cold-weather resupply planner
+- alternate_tools: manual battery watchbill and scheduled thermal-check cadence
+- degraded_mode: mission-critical battery classes only with manual safety adjudication
+- input_requirements: battery telemetry, ambient conditions, mission load profile, resupply windows
+- output_schema: survivability matrix, sustainment branch ladder, mission-energy confidence note
+- protocol_profile: USMTF + NIMS/ICS + STIX/TAXII + API/JSON
+- validation_gates: thermal threshold pass, safety compliance check, authority acknowledgment
 
-## Packet Addendum X (2026-03-12, Expansion Wave XXIV)
+### packet_id: DPL-FEW-NEXUS-ANOMALY-001
+- domain: coalition fuel-energy-water nexus anomaly adjudication
+- objective: adjudicate coupled infrastructure anomalies and sequence mitigation before mission cascade
+- primary_tools: nexus anomaly correlator, coalition impact board, mitigation branch sequencer
+- alternate_tools: manual dependency map and periodic coalition anomaly conference
+- degraded_mode: highest-risk cascades only with focused coalition coordination lanes
+- input_requirements: fuel/energy/water telemetry, mission criticality map, civil impact indicators, partner constraints
+- output_schema: anomaly adjudication board, cascade trigger ladder, mitigation task matrix
+- protocol_profile: NATO APP-11/ADatP-3 aligned + NIEM + USMTF + API/JSON
+- validation_gates: cascade-risk threshold pass, coalition concurrence, command approval gate
 
-### packet_id: DPL-CONTESTED-ARCTIC-PERSONNEL-RECOVERY-AND-EXTRACTION-001
-- domain: contested Arctic multi-domain personnel and platform recovery/extraction
-- objective: synchronize extraction decisions under weather, comms, and authority constraints.
-- primary_tools: Arctic weather route model, recovery corridor planner, extraction status board
-- alternate_tools: manual rescue branch matrix and periodic command synchronization checks
-- degraded_mode: life-safety and mission-essential recoveries only with explicit commander release
-- input_requirements: weather windows, asset status, rescue force posture, coalition constraints, authorities
-- output_schema: recovery branch matrix, extraction synchronization packet, authority risk ledger
-- protocol_profile: USMTF + NATO APP-11/ADatP-3 aligned + OGC + API/JSON
-- validation_gates: rescue viability threshold, authority acknowledgment chain, confidence floor
+## Packet Addendum VII (2026-03-11, Expansion Wave XIV Tool Invocation Packets)
 
-### packet_id: DPL-AUTONOMOUS-CBRN-SENSOR-FUSION-DECON-CORRIDOR-001
-- domain: autonomous CBRN sensor fusion and decon corridor control
-- objective: characterize hazards and route protected movement through decon corridors.
-- primary_tools: autonomous CBRN mesh monitor, contamination confidence estimator, decon flow planner
-- alternate_tools: manual contamination board and fixed-interval decon routing checks
-- degraded_mode: minimal protected corridor with command-controlled throughput caps
-- input_requirements: CBRN sensor feeds, hazard lab reports, route capacities, force priorities, authorities
-- output_schema: hazard confidence ladder, decon corridor order, protected-mobility packet
-- protocol_profile: USMTF + CBRN Warning and Reporting + OGC + API/JSON
-- validation_gates: hazard-confidence threshold, decon safety pass, command concurrence
+### packet_id: DPL-ORBITAL-NUCLEAR-EFFECTS-MIT-001
+- domain: strategic orbital nuclear detonation effects mitigation
+- objective: sequence continuity actions for EMP, debris, timing, and strategic warning degradation
+- primary_tools: strategic effects modeler, EMP dependency impact board, warning continuity orchestrator
+- alternate_tools: manual strategic continuity board and periodic command confirmation loop
+- degraded_mode: strategic-essential continuity functions only with explicit commander release gate
+- input_requirements: detonation-effect indicators, mission dependency map, warning channels, continuity authorities
+- output_schema: effects mitigation matrix, continuity branch ladder, warning recovery task board
+- protocol_profile: USMTF + CCSDS + STIX/TAXII + API/JSON
+- validation_gates: strategic continuity threshold pass, escalation guardrail pass, command approval logged
 
-### packet_id: DPL-JOINT-HYPERSONIC-RAID-BREAK-AND-FORCE-DISPERSAL-001
-- domain: joint hypersonic raid-break and force dispersal
-- objective: execute raid-break and dispersal decisions inside compressed warning timelines.
-- primary_tools: hypersonic track-fusion board, defended-asset prioritizer, dispersal branch sequencer
-- alternate_tools: manual warning board and preplanned dispersal templates
-- degraded_mode: preserve highest-priority mission threads only with command release
-- input_requirements: warning tracks, defended assets, dispersal capacity, continuity thresholds, authorities
-- output_schema: raid-break ladder, dispersal matrix, continuity branch packet
-- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
-- validation_gates: warning confidence threshold, branch feasibility pass, command approval chain
-
-### packet_id: DPL-GRID-DENIED-EXPEDITIONARY-MANUFACTURING-REPAIR-001
-- domain: grid-denied expeditionary manufacturing and repair
-- objective: sustain mission systems via austere repair and quality-assured field manufacturing.
-- primary_tools: austere power allocation board, repair triage engine, additive quality attestation node
-- alternate_tools: manual repair sequencing and conservative quality hold points
-- degraded_mode: safety-critical repairs only with reduced throughput and command acknowledgment
-- input_requirements: power budget, damage reports, part availability, quality constraints, authorities
-- output_schema: repair priority board, quality gate packet, sustainment branch matrix
-- protocol_profile: USMTF + STIX/TAXII + NIMS/ICS + API/JSON
-- validation_gates: quality compliance pass, power feasibility threshold, authority release check
-
-### packet_id: DPL-COALITION-QUANTUM-RESISTANT-COMMS-TRANSITION-001
-- domain: coalition quantum-resistant communications transition
-- objective: phase coalition cryptographic modernization while preserving mission continuity.
-- primary_tools: crypto migration planner, coalition key-rollover board, interoperability degradation detector
-- alternate_tools: manual transition matrix and periodic coalition key-sync checkpoints
-- degraded_mode: mission-critical links only with dual-approval key rollover gates
-- input_requirements: crypto inventories, interoperability mappings, rollover schedule, coalition constraints, authorities
-- output_schema: PQC transition board, rollover sequence packet, interoperability risk branches
-- protocol_profile: USMTF + NATO APP-11/ADatP-3 aligned + X.509/PQC profiles + API/JSON
-- validation_gates: key integrity pass, interoperability threshold, coalition acknowledgment
-
-### packet_id: DPL-EXPEDITIONARY-WATER-INFRASTRUCTURE-SABOTAGE-RESPONSE-001
-- domain: expeditionary water infrastructure sabotage response
-- objective: detect sabotage, attribute contamination risk, and sequence water restoration branches.
-- primary_tools: water telemetry anomaly detector, contamination attribution board, restoration sequencer
-- alternate_tools: manual sampling board and fixed restoration phase gates
-- degraded_mode: potable supply for life-safety and mission-essential users only
-- input_requirements: telemetry streams, lab evidence, infrastructure status, demand priorities, authorities
-- output_schema: sabotage attribution matrix, restoration packet, force-health risk board
-- protocol_profile: USMTF + NIMS/ICS + HL7/FHIR + API/JSON
-- validation_gates: contamination confidence threshold, restoration safety pass, command concurrence
-
-### packet_id: DPL-JOINT-BIOMETRICS-INSIDER-RISK-IDENTITY-DENIAL-001
-- domain: joint biometrics identity denial and insider-risk management
-- objective: adjudicate identity confidence and reduce insider compromise exposure.
-- primary_tools: biometric confidence fusion engine, access-control adjudication board, behavior anomaly tracker
-- alternate_tools: manual identity adjudication matrix and periodic insider-risk reviews
-- degraded_mode: privileged access freeze for high-risk categories pending commander review
-- input_requirements: biometric/watchlist records, behavior indicators, access events, legal constraints, authorities
-- output_schema: identity confidence matrix, access disposition packet, insider-risk branches
+### packet_id: DPL-BIOMETRIC-PAY-PERSONNEL-RECON-001
+- domain: contested biometric pay and personnel reconstitution
+- objective: restore trusted personnel identity and pay continuity in denied or disrupted theaters
+- primary_tools: biometric confidence matcher, personnel accounting board, pay continuity adjudicator
+- alternate_tools: manual accountability roster and dual-command pay exception review
+- degraded_mode: mission-essential entitlements only with manual identity validation
+- input_requirements: biometric records, duty status, entitlement profiles, disruption indicators, authority constraints
+- output_schema: identity confidence ledger, pay continuity branch plan, remediation queue
 - protocol_profile: NIEM + USMTF + STIX/TAXII + API/JSON
-- validation_gates: identity confidence threshold, legal-policy pass, approval-chain integrity
+- validation_gates: identity confidence floor, legal-compliance check, authority concurrence
 
-### packet_id: DPL-SPACE-WEATHER-GNSS-DENIAL-MISSION-CONTINUITY-001
-- domain: space weather and GNSS denial mission continuity
-- objective: preserve mission execution under PNT degradation and space weather disruptions.
-- primary_tools: heliophysics event watcher, PNT degradation impact model, fallback branch planner
-- alternate_tools: manual impact board and preplanned non-PNT fallback checklists
-- degraded_mode: critical mission threads only with commander acknowledgment
-- input_requirements: space weather forecasts, GNSS telemetry, mission dependency map, thresholds, authorities
-- output_schema: PNT impact ladder, fallback matrix, command acknowledgment packet
-- protocol_profile: CCSDS + USMTF + OGC + API/JSON
-- validation_gates: impact-confidence threshold, mission assurance floor, command approval chain
+### packet_id: DPL-RUNWAY-CRATER-AUTONOMY-001
+- domain: theater rapid runway crater repair autonomy governance
+- objective: restore runway operability with autonomy release controls and sortie-priority sequencing
+- primary_tools: runway damage analytics, autonomy tasking sequencer, repair timeline optimizer
+- alternate_tools: manual engineer repair board and sortie-priority conference
+- degraded_mode: critical runway segments only with human authorization of autonomous actions
+- input_requirements: crater assessments, repair assets, sortie priorities, threat posture, authority matrix
+- output_schema: repair governance matrix, autonomy release checklist, sortie timeline
+- protocol_profile: USMTF + AIXM/FIXM + VMF + API/JSON
+- validation_gates: engineer feasibility pass, safety threshold pass, command release confirmation
 
-### packet_id: DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001
-- domain: joint mission-command assurance and branch synchronization
-- objective: maintain command approval integrity and synchronized branch execution across staff sections.
-- primary_tools: decision-approval ledger, branch synchronization board, command-intent drift monitor
-- alternate_tools: manual decision timeline and branch sequencing checks
-- degraded_mode: single-branch execution only until approval-chain integrity is restored
-- input_requirements: decision logs, branch triggers, staff dependencies, authority posture, timing constraints
-- output_schema: command assurance board, synchronized branch packet, approval trace
-- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
-- validation_gates: approval integrity pass, branch sync threshold, commander concurrence
+### packet_id: DPL-COALITION-FIBER-BACKHAUL-RESTORE-001
+- domain: coalition host-nation fiber cut and backhaul restoration
+- objective: recover coalition telecom backhaul while preserving mission C2 and releasability constraints
+- primary_tools: telecom route restoration planner, coalition releasability gateway, backhaul priority board
+- alternate_tools: manual telecom restoration matrix and coalition liaison adjudication cycle
+- degraded_mode: priority command and life-safety circuits only with manual release checks
+- input_requirements: cut locations, route health, coalition caveats, mission priority services, restoration crews
+- output_schema: restoration branch map, backhaul priority matrix, coalition tasking board
+- protocol_profile: NATO APP-11/ADatP-3 aligned + NIEM + USMTF + API/JSON
+- validation_gates: releasability pass, restoration confidence threshold, coalition concurrence
 
-### packet_id: DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001
-- domain: cross-domain resilient targeting and CDE/no-strike governance
-- objective: preserve targeting validity and CDE/no-strike control under degraded sensing.
-- primary_tools: targeting standards board, CDE integrity analyzer, no-strike geofence monitor
-- alternate_tools: manual target adjudication board and legal-policy checkpoint loops
-- degraded_mode: constrained engagement set with explicit commander release
-- input_requirements: target metadata, CDE models, no-strike boundaries, sensor confidence, authorities
-- output_schema: targeting/CDE matrix, no-strike governance packet, authority risk branches
-- protocol_profile: USMTF + VMF + NATO APP-11/ADatP-3 aligned + API/JSON
-- validation_gates: CDE threshold pass, no-strike integrity check, legal-policy concurrence
+### packet_id: DPL-DESAL-BRINE-SIGNATURE-001
+- domain: expeditionary desalination brine signature management
+- objective: sustain potable-water production while minimizing detectable signature exposure
+- primary_tools: desalination output planner, brine-signature risk modeler, littoral detection-risk board
+- alternate_tools: manual production watchbill and scheduled signature-risk assessments
+- degraded_mode: life-sustaining water lanes only with tightened signature controls
+- input_requirements: water demand, desal capacity, signature telemetry, environmental conditions, threat ISR profile
+- output_schema: signature-control matrix, water continuity plan, detection-risk ladder
+- protocol_profile: USMTF + OGC + AIS/NMEA + API/JSON
+- validation_gates: water-quality threshold pass, signature-risk ceiling pass, authority acknowledgment
 
-### packet_id: DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001
-- domain: maritime-homeland critical infrastructure cyber-physical guard
-- objective: detect and mitigate cyber-physical threats against critical maritime and homeland nodes.
-- primary_tools: infrastructure cyber monitor, physical anomaly fusion board, continuity branch planner
-- alternate_tools: manual incident board and periodic infrastructure integrity checks
-- degraded_mode: mission-essential infrastructure nodes only with command-level prioritization
-- input_requirements: cyber indicators, physical telemetry, node criticality, continuity thresholds, authorities
-- output_schema: cyber-physical risk board, continuity packet, escalation matrix
+### packet_id: DPL-AUTO-CASUALTY-COLLECTION-001
+- domain: joint autonomous casualty collection under fire safety
+- objective: improve casualty retrieval speed while preserving triage and fratricide safety controls
+- primary_tools: autonomous casevac controller, route-threat adjudicator, treatment handoff coordinator
+- alternate_tools: manual casevac board and periodic casualty retrieval synchronization checks
+- degraded_mode: urgent-category casualties only with manual route release authority
+- input_requirements: casualty status, route threats, retrieval assets, care-facility capacity, ROE constraints
+- output_schema: safety matrix, route release ladder, care transfer packet
+- protocol_profile: HL7/FHIR + USMTF + CoT + API/JSON
+- validation_gates: medical authority pass, route threat threshold, command concurrence
+
+### packet_id: DPL-FOOD-DISTRO-STABILITY-001
+- domain: homeland cyber-physical food distribution stability
+- objective: stabilize food distribution throughput under cyber-physical disruption and civil stress
+- primary_tools: food-node dependency graph, logistics disruption forecaster, DSCA support board
+- alternate_tools: manual civil-military distribution board and periodic route viability checks
+- degraded_mode: essential nutrition and force-sustainment lanes only
+- input_requirements: distribution network state, disruption indicators, demand surges, route capacity, authority posture
+- output_schema: stability map, recovery branch matrix, DSCA action tasker
+- protocol_profile: NIMS/ICS + NIEM + USMTF + API/JSON
+- validation_gates: life-safety and civil-stability check, authority validation, throughput confidence floor
+
+### packet_id: DPL-MUNITION-PRECURSOR-DIVERSION-001
+- domain: strategic munitions precursor chemical diversion interdiction
+- objective: detect precursor diversion early and sequence interdiction without crippling production continuity
+- primary_tools: precursor custody ledger, diversion anomaly detector, interdiction branch planner
+- alternate_tools: manual supplier audit board and timed legal-interdiction review loops
+- degraded_mode: highest-confidence diversion cases only with dual legal-command approval
+- input_requirements: precursor manifests, supplier telemetry, anomaly signals, legal authorities, production demand
+- output_schema: diversion risk board, interdiction matrix, continuity mitigation plan
+- protocol_profile: EDI X12 + STIX/TAXII + USMTF + API/JSON
+- validation_gates: evidence sufficiency pass, legal release gate, production continuity threshold
+
+### packet_id: DPL-DENIED-WEATHER-SENSOR-RESEED-001
+- domain: joint denied-weather sensor reseeding and forecast assurance
+- objective: rebuild weather sensing coverage and forecast trust under contested conditions
+- primary_tools: weather sensor tasking board, forecast confidence calibrator, sortie-weather risk modeler
+- alternate_tools: manual meteorological station board and scheduled forecast confidence reviews
+- degraded_mode: mission-critical weather windows only with conservative forecast assumptions
+- input_requirements: sensor status, weather data gaps, threat to sensors, mission windows, confidence thresholds
+- output_schema: sensor reseed plan, confidence ladder, sortie-risk update
+- protocol_profile: USMTF + OGC + STIX/TAXII + API/JSON
+- validation_gates: data freshness check, confidence threshold pass, commander concurrence
+
+### packet_id: DPL-RAIL-GAUGE-TRANSLOAD-SURVIVE-001
+- domain: coalition rail gauge cargo transload survivability
+- objective: maintain throughput through gauge-break hubs under sabotage and strike risk
+- primary_tools: transload throughput planner, rail corridor risk board, cargo-priority sequencer
+- alternate_tools: manual transload whiteboard and coalition rail liaison adjudication cells
+- degraded_mode: critical cargo classes only with strict route authority gates
+- input_requirements: cargo priorities, rail gauge interfaces, hub capacity, threat indicators, coalition caveats
+- output_schema: survivability matrix, throughput branch ladder, cargo release list
+- protocol_profile: NATO APP-11/ADatP-3 aligned + USMTF + OGC + API/JSON
+- validation_gates: throughput floor pass, coalition concurrence, authority approval recorded
+
+### packet_id: DPL-DECOY-EMITTER-GOV-001
+- domain: theater electronic deception decoy emitter governance
+- objective: execute decoy emitter operations that degrade adversary sensing while preventing blue-force confusion
+- primary_tools: decoy emitter planner, EW conflict adjudication board, release-governance engine
+- alternate_tools: manual EM deception board and timed deconfliction calls
+- degraded_mode: pre-approved low-risk decoy patterns only with human release gate
+- input_requirements: emitter inventory, blue-force emissions, threat sensing profile, authority constraints
+- output_schema: governance matrix, release ladder, fratricide-risk controls
+- protocol_profile: Link 16 J-series + VMF + USMTF + API/JSON
+- validation_gates: EW fratricide check, release authority pass, mission impact validation
+
+### packet_id: DPL-PRISONER-EXCHANGE-FRAUD-001
+- domain: joint AI-enabled prisoner exchange fraud detection
+- objective: detect identity, coercion, and documentation fraud in prisoner exchange workflows
+- primary_tools: exchange anomaly classifier, legal-observability ledger, confidence adjudication board
+- alternate_tools: manual exchange verification panel and periodic legal sufficiency checks
+- degraded_mode: high-confidence exchange lanes only with dual command/legal review
+- input_requirements: exchange rosters, biometric/identity signals, negotiation metadata, legal constraints, coalition caveats
+- output_schema: fraud-confidence board, adjudication ladder, legal assurance packet
+- protocol_profile: NIEM + USMTF + STIX/TAXII + API/JSON
+- validation_gates: fraud-confidence threshold pass, legal sufficiency pass, coalition concurrence
+
+## Packet Addendum VIII (2026-03-12, Expansion Wave XV Tool Invocation Packets)
+
+### packet_id: DPL-HOMELAND-PORT-FUEL-BLACKSTART-001
+- domain: strategic homeland port fuel terminal cyber-physical blackstart
+- objective: restore military-priority terminal throughput while preserving cyber-safe energization
+- primary_tools: terminal SCADA resilience console, fuel quality telemetry fusion board, DSCA restoration orchestrator
+- alternate_tools: manual fuel release board and utility liaison confirmation loop
+- degraded_mode: life-safety and force-priority fuel lanes only with command approval gate
+- input_requirements: terminal status, fuel quality samples, cyber incident indicators, priority demand ladder
+- output_schema: restoration branch matrix, release ladder, command acknowledgment packet
+- protocol_profile: USMTF + NIMS/ICS + STIX/TAXII + API/JSON
+- validation_gates: cyber containment pass, fuel quality pass, command release confirmation
+
+### packet_id: DPL-MILPAY-LEDGER-CONTINUITY-001
+- domain: joint military payment ledger disruption continuity
+- objective: preserve pay and entitlement continuity under contested identity and ledger trust
+- primary_tools: entitlement integrity adjudicator, biometric-pay confidence matcher, command exception routing board
+- alternate_tools: manual entitlement adjudication panel and dual-command exception review
+- degraded_mode: mission-essential entitlements only with manual confidence checks
+- input_requirements: entitlement records, identity confidence signals, ledger health status, command authorities
+- output_schema: continuity matrix, exception ladder, accountability reconciliation packet
+- protocol_profile: NIEM + USMTF + STIX/TAXII + API/JSON
+- validation_gates: entitlement confidence threshold, legal-compliance check, authority concurrence
+
+### packet_id: DPL-COALITION-CABLE-LANDING-DEFENSE-001
+- domain: coalition undersea data center cable landing defense
+- objective: protect landing sites and maintain coalition continuity reroutes under threat
+- primary_tools: seabed cable topology analyzer, coalition releasability gateway, maritime anomaly correlator
+- alternate_tools: manual cable-landing watchboard and coalition telecom liaison loop
+- degraded_mode: command-critical data lanes only with releasability gate
+- input_requirements: cable health telemetry, threat indicators, coalition caveats, reroute capacity
+- output_schema: defense matrix, reroute authority board, continuity ladder
+- protocol_profile: NATO APP-11/ADatP-3 aligned + OGC + STIX/TAXII + API/JSON
+- validation_gates: cable integrity threshold, releasability pass, coalition concurrence
+
+### packet_id: DPL-LASER-DAZZLE-AIRCREW-001
+- domain: expeditionary laser dazzle aircrew incident response
+- objective: triage aircrew exposure and adapt sortie plans while preserving legal evidence integrity
+- primary_tools: aviation safety event correlator, electro-optical exposure risk estimator, evidence custody ledger
+- alternate_tools: manual flight safety board and legal evidence check-in loop
+- degraded_mode: urgent sortie lanes only with medical and command release checks
+- input_requirements: incident logs, medical indicators, sortie schedule, evidence chain metadata
+- output_schema: triage board, sortie adaptation matrix, evidence handoff packet
+- protocol_profile: AIXM/FIXM + USMTF + NIEM + API/JSON
+- validation_gates: medical triage pass, sortie safety threshold, chain-of-evidence validation
+
+### packet_id: DPL-BALLOON-PSEUDOSAT-AIRSPACE-001
+- domain: theater balloon and pseudo-satellite airspace integration
+- objective: deconflict high-altitude operations with air defense and civil air movement
+- primary_tools: high-altitude track manager, corridor deconfliction planner, sensor handover arbitration board
+- alternate_tools: manual airspace control board and scheduled deconfliction conference
+- degraded_mode: pre-cleared high-altitude corridors only with theater authority gate
+- input_requirements: track telemetry, civil corridor schedules, air-defense posture, handover windows
+- output_schema: deconfliction board, engagement safeguard ladder, tasking packet
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF + API/JSON
+- validation_gates: corridor conflict check, engagement safeguard pass, authority acknowledgment
+
+### packet_id: DPL-QUANTUM-SENSING-SPOOF-GOV-001
+- domain: joint quantum sensing spoof detection governance
+- objective: adjudicate spoof-confidence and sequence mission-safe sensor fallback actions
+- primary_tools: quantum anomaly detector, cross-sensor confidence calibrator, mission fallback policy engine
+- alternate_tools: manual sensor-confidence panel and periodic spoof review cycle
+- degraded_mode: highest-confidence sensing lanes only with command approval
+- input_requirements: sensor anomaly metrics, confidence cross-checks, mission dependency map, authority constraints
+- output_schema: spoof confidence matrix, fallback ladder, trust packet
+- protocol_profile: USMTF + STIX/TAXII + OGC + API/JSON
+- validation_gates: confidence threshold pass, fallback viability check, command concurrence
+
+### packet_id: DPL-ARCTIC-TRANSPORT-FAILOVER-001
+- domain: coalition arctic fiber microwave troposcatter failover
+- objective: preserve coalition command transport under arctic weather and threat-driven outages
+- primary_tools: transport path assurance dashboard, arctic weather-threat forecaster, service-priority orchestrator
+- alternate_tools: manual route fallback board and coalition telecom liaison checks
+- degraded_mode: command and life-safety services only with coalition concurrence
+- input_requirements: path health telemetry, weather-risk indicators, service priorities, coalition caveats
+- output_schema: failover matrix, routing ladder, continuity packet
+- protocol_profile: NATO APP-11/ADatP-3 aligned + USMTF + STIX/TAXII + API/JSON
+- validation_gates: path survivability floor, coalition concurrence, authority release logged
+
+### packet_id: DPL-BASE-WATER-CHEM-ATTACK-001
+- domain: homeland base water treatment chemical attack recovery
+- objective: contain contamination and restore safe water throughput for base continuity
+- primary_tools: water sensor fusion board, contamination plume estimator, emergency treatment dispatch planner
+- alternate_tools: manual contamination board and periodic treatment validation cycles
+- degraded_mode: life-sustaining water distribution only with command health authority review
+- input_requirements: contamination telemetry, treatment plant status, base demand profile, public health constraints
+- output_schema: containment map, restoration timeline, continuity risk packet
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: contamination containment pass, treatment safety threshold, command acknowledgment
+
+### packet_id: DPL-DEEPFAKE-HOTLINE-AUTH-001
+- domain: strategic deepfake diplomatic hotline authentication
+- objective: authenticate strategic hotline exchanges and prevent escalation from synthetic spoofing
+- primary_tools: synthetic voice spoof detector, secure attestation ledger, cross-channel confirmation orchestrator
+- alternate_tools: manual challenge-response protocol and strategic liaison verification loop
+- degraded_mode: authenticated pre-approved hotline scripts only with dual authority checks
+- input_requirements: hotline audio/text artifacts, attestation metadata, corroborating channel indicators, authority map
+- output_schema: authenticity confidence board, escalation prevention ladder, confirmation packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: authenticity threshold pass, escalation guardrail pass, dual authority concurrence
+
+### packet_id: DPL-ADDITIVE-FEEDSTOCK-AUTH-001
+- domain: joint contested additive feedstock authenticity and allocation
+- objective: validate feedstock authenticity and allocate scarce additive materials to mission priorities
+- primary_tools: material provenance ledger, spectrochemical verification suite, production priority planner
+- alternate_tools: manual quality verification board and sustainment allocation conference
+- degraded_mode: top-priority repair classes only with command sustainment approval
+- input_requirements: feedstock manifests, spectroscopy outputs, mission demand ladder, counterfeit risk indicators
+- output_schema: authenticity board, interdiction matrix, allocation branch packet
+- protocol_profile: USMTF + STIX/TAXII + EDI X12 + API/JSON
+- validation_gates: authenticity confidence floor, allocation policy pass, authority release check
+
+### packet_id: DPL-SPACEPORT-DUAL-USE-SAFETY-001
+- domain: coalition military spaceport dual-use safety and priority
+- objective: synchronize launch safety and payload-priority decisions at dual-use coalition spaceports
+- primary_tools: range safety monitor, launch scheduling arbiter, coalition payload releasability gateway
+- alternate_tools: manual range safety board and coalition mission-priority conference
+- degraded_mode: strategic-priority launches only with explicit coalition command release
+- input_requirements: launch manifests, hazard envelopes, payload priorities, coalition caveats
+- output_schema: safety board, priority ladder, deconfliction packet
+- protocol_profile: CCSDS + AIXM/FIXM + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: range safety pass, releasability check, coalition concurrence
+
+### packet_id: DPL-AMMO-BARGE-DISPERSAL-001
+- domain: theater autonomous ammo barge dispersal and survivability
+- objective: disperse munitions barges to preserve reload continuity under strike threat
+- primary_tools: littoral autonomy routing controller, munitions custody blast-risk estimator, reload synchronization board
+- alternate_tools: manual littoral routing board and ordnance safety verification cycle
+- degraded_mode: critical reload lanes only with command and ordnance authority gate
+- input_requirements: barge position telemetry, threat indicators, reload demand plan, custody status
+- output_schema: dispersal matrix, survivability ladder, synchronization packet
 - protocol_profile: USMTF + AIS/NMEA + STIX/TAXII + API/JSON
-- validation_gates: threat-confidence threshold, continuity floor, authority acknowledgment
+- validation_gates: survivability threshold pass, custody integrity pass, command release confirmation
+
+
+## Packet Addendum IX (2026-03-12, Expansion Wave XVI Tool Invocation Packets)
+
+### packet_id: DPL-GRID-TRANSFORMER-RESTORE-001
+- domain: strategic grid transformer supply sabotage and restoration
+- objective: restore transformer-enabled power corridors while preserving sabotage attribution confidence
+- primary_tools: grid dependency graph fusion engine, transformer condition telemetry board, industrial restoration sequencer
+- alternate_tools: manual utility reliability board and command-priority restoration ladder
+- degraded_mode: life-safety and mission-critical feeders only with command release gate
+- input_requirements: transformer status, feeder dependency graph, sabotage indicators, restoration assets
+- output_schema: criticality matrix, restoration ladder, sabotage-response packet
+- protocol_profile: USMTF + NIMS/ICS + STIX/TAXII + API/JSON
+- validation_gates: sabotage confidence threshold, restoration safety pass, authority concurrence
+
+### packet_id: DPL-CISLUNAR-LOGISTICS-CONTEST-001
+- domain: joint cislunar logistics and space-lane contestation
+- objective: preserve mission-priority cislunar logistics flows under contested trajectory conditions
+- primary_tools: cislunar trajectory conflict analyzer, orbital custody ledger, launch-resupply arbitration board
+- alternate_tools: manual orbital lane board and scheduled coalition space liaison review
+- degraded_mode: strategic-priority payload lanes only with command and safety concurrence
+- input_requirements: lane status, trajectory conflicts, payload priorities, launch windows, custody telemetry
+- output_schema: lane-risk board, branch matrix, sustainment packet
+- protocol_profile: CCSDS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: safety pass, mission-priority validation, authority acknowledgment
+
+### packet_id: DPL-HYDROGEN-MICROGRID-SAFETY-001
+- domain: theater hydrogen fuel-cell microgrid safety and emissions control
+- objective: sustain expeditionary power while controlling hydrogen leak and emissions risk
+- primary_tools: fuel-cell telemetry fusion board, leak plume estimator, microgrid dispatch planner
+- alternate_tools: manual power dispatch board and periodic leak-risk patrol checks
+- degraded_mode: life-safety and C2 loads only with strict safety controls
+- input_requirements: hydrogen system telemetry, leak sensors, load priorities, weather conditions
+- output_schema: safety matrix, containment ladder, continuity packet
+- protocol_profile: USMTF + OGC + NIMS/ICS + API/JSON
+- validation_gates: safety threshold pass, emissions ceiling pass, authority concurrence
+
+### packet_id: DPL-MARITIME-INSURANCE-UNDERWRITE-001
+- domain: coalition maritime insurance sanctions and convoy underwriting
+- objective: maintain sanctioned-compliant convoy underwriting and shipping continuity
+- primary_tools: insurance risk engine, sanctions-evasion anomaly board, convoy liability planner
+- alternate_tools: manual underwriting board and legal review synchronization loop
+- degraded_mode: high-confidence convoy lanes only with coalition legal-command release
+- input_requirements: cargo manifests, sanctions indicators, convoy threat posture, insurer constraints
+- output_schema: underwriting matrix, sanctions ladder, convoy assurance packet
+- protocol_profile: NATO APP-11/ADatP-3 aligned + AIS/NMEA + STIX/TAXII + API/JSON
+- validation_gates: sanctions-compliance pass, legal sufficiency pass, coalition concurrence
+
+### packet_id: DPL-MUNICIPAL-911-PSAP-CYBER-001
+- domain: homeland defense municipal 911 PSAP cyber survivability
+- objective: preserve trusted emergency-call routing under cyber disruption
+- primary_tools: PSAP queue integrity monitor, emergency routing failover planner, municipal cyber fusion board
+- alternate_tools: manual PSAP call tree board and telecom liaison checks
+- degraded_mode: life-threatening calls only with military-civil command oversight
+- input_requirements: call-center telemetry, routing integrity indicators, cyber alerts, mutual-aid capacity
+- output_schema: survivability map, routing ladder, emergency continuity packet
+- protocol_profile: NIMS/ICS + NIEM + USMTF + API/JSON
+- validation_gates: call-routing integrity pass, response-capacity threshold, authority concurrence
+
+### packet_id: DPL-ADDITIVE-WARHEAD-LINER-QA-001
+- domain: joint additive warhead liner quality assurance
+- objective: validate liner integrity and prevent unsafe lot release
+- primary_tools: additive metrology analyzer, defect confidence classifier, ordnance release governance board
+- alternate_tools: manual lot-inspection panel and periodic ballistic witness review
+- degraded_mode: mission-essential lots only with dual technical-command release
+- input_requirements: lot data, metrology outputs, defect thresholds, mission demand priorities
+- output_schema: confidence board, traceability matrix, release-control packet
+- protocol_profile: USMTF + STIX/TAXII + EDI X12 + API/JSON
+- validation_gates: defect confidence threshold, safety release pass, authority acknowledgment
+
+### packet_id: DPL-RUNWAY-LIGHTING-APPROACH-AID-001
+- domain: theater rapid runway lighting and approach-aid reconstitution
+- objective: restore landing aid availability while preserving sortie safety under nav degradation
+- primary_tools: airfield lighting fault-isolation board, approach-aid integrity monitor, sortie regeneration planner
+- alternate_tools: manual airfield restoration board and staged recertification checks
+- degraded_mode: daylight/emergency operations only until aid confidence is restored
+- input_requirements: runway damage status, lighting diagnostics, approach-aid telemetry, sortie priorities
+- output_schema: restoration matrix, sequencing ladder, recertification packet
+- protocol_profile: AIXM/FIXM + USMTF + VMF + API/JSON
+- validation_gates: aid integrity threshold, safety pass, command release check
+
+### packet_id: DPL-BATTERY-RECYCLING-MINERAL-RECOVERY-001
+- domain: coalition cross-border battery recycling and critical mineral recovery
+- objective: recover critical mineral throughput while protecting quality and custody trust
+- primary_tools: battery lifecycle forensics board, mineral recovery optimizer, coalition throughput planner
+- alternate_tools: manual recovery board and coalition industrial liaison workflow
+- degraded_mode: top-priority military-grade mineral streams only with coalition release gate
+- input_requirements: battery feedstock inventory, plant throughput, quality telemetry, coalition caveats
+- output_schema: recovery matrix, yield ladder, sustainment packet
+- protocol_profile: NATO APP-11/ADatP-3 aligned + USMTF + OGC + API/JSON
+- validation_gates: quality threshold pass, throughput floor pass, coalition concurrence
+
+### packet_id: DPL-QUANTUM-NETWORK-KEY-CUSTODY-001
+- domain: strategic quantum network key custody and compromise response
+- objective: preserve command cryptographic continuity under suspected key compromise
+- primary_tools: quantum key custody ledger, compromise detector, cryptographic rollback planner
+- alternate_tools: manual key-custody board and challenge-response verification loops
+- degraded_mode: authenticated mission-essential channels only with dual command release
+- input_requirements: key custody logs, anomaly indicators, trust chain status, command authorities
+- output_schema: custody matrix, compromise ladder, crypto continuity packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: compromise confidence threshold, rollback viability pass, authority concurrence
+
+### packet_id: DPL-GRAYZONE-FLEET-SHADOWING-001
+- domain: joint gray-zone commercial fleet shadowing attribution
+- objective: attribute coercive fleet shadowing while controlling escalation risk
+- primary_tools: vessel behavior anomaly engine, attribution evidence fusion board, escalation branch planner
+- alternate_tools: manual maritime watchfloor board and legal-attribution review cycle
+- degraded_mode: advisory-only attribution updates until confidence exceeds escalation threshold
+- input_requirements: AIS tracks, behavior indicators, legal authorities, coalition caveats, threat context
+- output_schema: attribution board, escalation matrix, legal packet
+- protocol_profile: AIS/NMEA + USMTF + STIX/TAXII + API/JSON
+- validation_gates: attribution confidence floor, escalation guardrail pass, authority acknowledgment
+
+### packet_id: DPL-AUSTERE-BLOOD-PLASMA-SCREENING-001
+- domain: theater austere blood plasma donor screening and cold-chain
+- objective: maximize safe transfusion throughput in austere conditions
+- primary_tools: donor screening adjudicator, plasma telemetry fusion board, medical distribution planner
+- alternate_tools: manual donor board and cold-chain integrity spot checks
+- degraded_mode: urgent transfusion classes only with medical authority gate
+- input_requirements: donor screening results, cold-chain telemetry, casualty demand, contamination indicators
+- output_schema: donor confidence ladder, cold-chain matrix, support packet
+- protocol_profile: HL7/FHIR + USMTF + NIEM + API/JSON
+- validation_gates: screening confidence pass, cold-chain integrity threshold, medical concurrence
+
+### packet_id: DPL-SAT-TIMING-FINANCIAL-CLEARING-001
+- domain: homeland defense satellite timing financial clearing fallback
+- objective: sustain financial-clearing continuity under timing degradation and spoof/jam pressure
+- primary_tools: satellite timing integrity monitor, financial rail resilience simulator, settlement authority board
+- alternate_tools: manual settlement exception board and alternate timing witness checks
+- degraded_mode: mission-essential defense disbursements only with treasury-command dual approval
+- input_requirements: timing confidence metrics, rail health indicators, settlement backlogs, authority posture
+- output_schema: fallback hierarchy matrix, continuity ladder, settlement packet
+- protocol_profile: NIEM + USMTF + STIX/TAXII + API/JSON
+- validation_gates: timing confidence floor, clearing integrity pass, dual authority concurrence
+
+### packet_id: DPL-IAMD-DEPLETION-001
+- domain: joint integrated air and missile defense depletion forecasting
+- objective: forecast interceptor endurance and prioritize defended assets under dense salvo pressure.
+- primary_tools: IAMD battle manager, interceptor inventory service, salvo prediction engine
+- alternate_tools: manual sector defense board and fixed shot doctrine worksheet
+- degraded_mode: priority defended assets only with hourly manual inventory reconciliation
+- input_requirements: track quality feeds, interceptor stock status, defended asset criticality, threat salvo estimates
+- output_schema: depletion forecast curve, defended asset priority ladder, reload decision triggers
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: track confidence threshold, inventory integrity pass, command approval chain
+
+### packet_id: DPL-CONTESTED-PR-001
+- domain: contested personnel recovery and isolated operator support
+- objective: synchronize support and recovery windows for isolated personnel in denied environments.
+- primary_tools: personnel recovery coordination system, ISR cueing broker, survivor authentication service
+- alternate_tools: PRCC manual board and pre-briefed evasion support checklist
+- degraded_mode: survival-support essentials only with delayed ISR refresh
+- input_requirements: isolation event metadata, threat overlays, ISR availability, authentication indicators, authority constraints
+- output_schema: recovery branch matrix, support timeline, command decision prompts
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: identity confidence threshold, legal/authority pass, survivability floor
+
+### packet_id: DPL-JLOTS-PORT-OPEN-001
+- domain: expeditionary port opening and JLOTS synchronization
+- objective: maximize contested offload throughput while preserving force protection and sustainment continuity.
+- primary_tools: JLOTS planner, port movement control dashboard, hydrographic/sea-state analytics
+- alternate_tools: manual offload sequencing board and daily throughput worksheet
+- degraded_mode: mission-essential cargo classes only with restricted offload windows
+- input_requirements: ship arrival schedule, cargo priorities, beachhead capacity, sea-state forecasts, threat indicators
+- output_schema: offload sequence, throughput bands, reroute branches
+- protocol_profile: USMTF + NIMS/ICS + AIS/NMEA + API/JSON
+- validation_gates: throughput sufficiency threshold, hazard/deconfliction pass, commander release approval
+
+### packet_id: DPL-GRID-BLACKSTART-001
+- domain: homeland defense critical grid blackstart coordination
+- objective: restore power to military and life-safety critical nodes during major grid disruption.
+- primary_tools: blackstart orchestration suite, infrastructure dependency graph, emergency operations dashboard
+- alternate_tools: manual restoration board and utility liaison synchronization matrix
+- degraded_mode: critical military and hospital nodes only with staged restoration acknowledgments
+- input_requirements: outage topology, blackstart resource status, critical-node list, restoration constraints, authorities
+- output_schema: restoration sequence map, support request ladder, branch trigger conditions
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: life-safety priority pass, dependency validation, interagency command concurrence
+
+### packet_id: DPL-INFOADV-PSYOPS-001
+- domain: theater information advantage and psychological operations assessment
+- objective: evaluate influence effects and branch messaging options within legal-policy constraints.
+- primary_tools: narrative analytics platform, audience segmentation engine, authenticity forensics tools
+- alternate_tools: manual media assessment board and audience response trend worksheet
+- degraded_mode: high-confidence influence indicators only with conservative release criteria
+- input_requirements: narrative corpus, target audience map, behavior indicators, release authorities, legal constraints
+- output_schema: influence effect scorecard, message option matrix, release governance prompts
+- protocol_profile: STIX/TAXII + CoT + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: source credibility threshold, legal-policy gate, command release approval
+
+### packet_id: DPL-BATTLEFIELD-FORENSICS-001
+- domain: contested battlefield forensics and war crimes evidence chain
+- objective: preserve legally defensible forensic evidence while supporting operational tempo.
+- primary_tools: digital evidence management platform, geotagged collection workflow, forensic integrity validator
+- alternate_tools: paper custody logs with delayed digital attestation and periodic legal review
+- degraded_mode: highest-value evidence classes only with immediate chain-of-custody controls
+- input_requirements: incident records, collection priorities, identity records, forensic media, authority posture
+- output_schema: evidence priority list, custody integrity ledger, legal handoff packet
+- protocol_profile: NIEM + STIX/TAXII + USMTF + API/JSON
+- validation_gates: custody continuity pass, attribution confidence threshold, legal sufficiency review
+
+### packet_id: DPL-JADC2-BRIDGE-001
+- domain: joint JADC2 data-link bridging and message priority
+- objective: preserve command intent across heterogeneous links with deterministic message priority.
+- primary_tools: data-link gateway manager, message broker priority engine, acknowledgment monitor
+- alternate_tools: manual bridge matrix and voice confirmation for mission-essential messages
+- degraded_mode: command-critical messages only with strict acknowledgment windows
+- input_requirements: network topology, link availability, message classes, latency bands, authority constraints
+- output_schema: priority ladder, translation matrix, degraded continuity plan
+- protocol_profile: Link 16 J-series + VMF + USMTF + API/JSON
+- validation_gates: translation integrity pass, latency threshold check, acknowledgment-chain integrity
+
+### packet_id: DPL-AURORAL-COMMS-001
+- domain: Arctic communications auroral disturbance mitigation
+- objective: maintain mission communication continuity during ionospheric and auroral disruption.
+- primary_tools: space weather monitor, HF propagation model, SATCOM health dashboard
+- alternate_tools: manual comms fallback board and preplanned relay schedule cards
+- degraded_mode: mission-critical traffic only with periodic comms windows
+- input_requirements: auroral forecast, node locations, comms priorities, relay availability, timing constraints
+- output_schema: impact forecast, fallback network matrix, recovery sequencing timeline
+- protocol_profile: CCSDS + USMTF + Link 16 J-series + API/JSON
+- validation_gates: confidence threshold pass, comms continuity floor, command approval
+
+### packet_id: DPL-BDR-MANUFACTURING-001
+- domain: theater advanced manufacturing battle damage repair certification
+- objective: certify forward-manufactured repairs with traceable safety and release authority evidence.
+- primary_tools: additive manufacturing execution system, PLM/digital thread platform, nondestructive inspection analytics
+- alternate_tools: manual repair certification workbook and delayed digital attestation process
+- degraded_mode: critical repairs only with elevated authority and follow-on inspection mandates
+- input_requirements: damage report, part design baseline, material pedigree, inspection data, release authorities
+- output_schema: certification packet, substitution risk matrix, release-to-service recommendation
+- protocol_profile: API/JSON + NIEM + USMTF + OGC
+- validation_gates: material pedigree pass, inspection sufficiency threshold, release authority signature
+
+## Packet Addendum X (2026-03-12, Expansion Wave XX Tool Invocation Packets)
+
+### packet_id: DPL-NUCLEAR-AUTH-CONTAINMENT-001
+- domain: nuclear command authentication and incident containment
+- objective: validate command-path authenticity and support rapid containment branching during high-consequence nuclear incidents.
+- primary_tools: order-authentication verifier, incident containment planner, EMP/fallout consequence model
+- alternate_tools: manual dual-control authentication board and strategic continuity watchfloor
+- degraded_mode: authenticated mission-essential directives only with dual-command acknowledgment
+- input_requirements: command message metadata, authentication artifacts, incident telemetry, continuity authorities
+- output_schema: command assurance ledger, containment branch matrix, continuity packet
+- protocol_profile: USMTF + NIEM + NIMS/ICS + STIX/TAXII + API/JSON
+- validation_gates: cryptographic/authentication pass, authority concurrence, acknowledgment chain integrity
+
+### packet_id: DPL-SPACE-RPO-DENIAL-001
+- domain: contested space domain awareness and rendezvous denial
+- objective: detect and govern responses to hostile rendezvous/proximity operations while preserving mission custody confidence.
+- primary_tools: orbital custody board, rendezvous anomaly detector, defensive maneuver planner
+- alternate_tools: manual conjunction-risk board and coalition SSA liaison workflow
+- degraded_mode: priority orbital assets only with conservative defensive standoff posture
+- input_requirements: ephemeris updates, sensor confidence, proximity alerts, maneuver fuel state, authority posture
+- output_schema: custody map, maneuver branch ladder, denial-response packet
+- protocol_profile: CCSDS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: custody confidence threshold, maneuver safety pass, authority acknowledgment
+
+### packet_id: DPL-URBAN-SUBTERRANEAN-LIFESUPPORT-001
+- domain: denied urban subterranean operations and life support
+- objective: sustain subterranean mission survivability through hazard control and life-support endurance planning.
+- primary_tools: subterranean map fusion engine, atmospheric hazard telemetry board, tunnel sustainment planner
+- alternate_tools: manual tunnel hazard board and engineer patrol checks
+- degraded_mode: mission-essential tunnel sectors only with strict time-on-target limits
+- input_requirements: tunnel topology, atmospheric telemetry, casualty status, power/water/oxygen endurance, threat posture
+- output_schema: survivability map, life-support matrix, mission branch packet
+- protocol_profile: USMTF + CoT + OGC + NIMS/ICS + API/JSON
+- validation_gates: hazard threshold pass, life-support sufficiency floor, command concurrence
+
+### packet_id: DPL-STRAT-MOBILITY-CHOKEPOINT-001
+- domain: strategic mobility rail air sealift chokepoint optimization
+- objective: maximize multimodal force flow through contested chokepoints with resilient reroute branches.
+- primary_tools: mobility throughput optimizer, chokepoint disruption predictor, multimodal deconfliction planner
+- alternate_tools: manual joint movement board and periodic route viability review
+- degraded_mode: mission-essential cargo and force classes only with elevated release authority
+- input_requirements: movement demands, node capacities, route threats, sealift/airlift availability, allied caveats
+- output_schema: mobility matrix, chokepoint mitigation ladder, reroute packet
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 aligned + AIS/NMEA + API/JSON
+- validation_gates: throughput sufficiency pass, deconfliction pass, command release approval
+
+### packet_id: DPL-THEATER-BLOOD-BIOLOGICS-ASSURANCE-001
+- domain: contested theater blood supply and biologics assurance
+- objective: preserve safe blood and biologics availability under contested logistics and degraded cold-chain conditions.
+- primary_tools: donor-biologics screening adjudicator, cold-chain telemetry fusion board, medical distribution planner
+- alternate_tools: manual medical allocation board and contamination-risk spot checks
+- degraded_mode: urgent transfusion and life-saving biologics classes only with medical authority gate
+- input_requirements: screening results, cold-chain telemetry, casualty demand, contamination indicators, transport constraints
+- output_schema: biologics confidence ladder, cold-chain matrix, distribution packet
+- protocol_profile: HL7/FHIR + USMTF + NIEM + API/JSON
+- validation_gates: screening confidence threshold, cold-chain integrity pass, medical concurrence
+
+### packet_id: DPL-SPECTRUM-DECEPTION-EMITTER-AUTH-001
+- domain: electromagnetic spectrum deception and emitter authentication
+- objective: coordinate deception effects while preserving friendly emitter trust and fratricide-safe control.
+- primary_tools: electronic order-of-battle fusion board, emitter fingerprint validator, deception effects monitor
+- alternate_tools: manual spectrum board and conservative emission control playbook
+- degraded_mode: command-critical emissions only with restrictive spectrum windows
+- input_requirements: emitter telemetry, EOB updates, deception objectives, ROE constraints, threat context
+- output_schema: emitter trust matrix, deception branch ladder, spectrum safety packet
+- protocol_profile: USMTF + Link 16 J-series + STIX/TAXII + API/JSON
+- validation_gates: emitter confidence floor, fratricide risk gate, authority acknowledgment
+
+### packet_id: DPL-SOF-LOWSIG-LOGISTICS-INTEROP-001
+- domain: special operations low signature logistics interoperability
+- objective: sustain SOF mission endurance via low-observable logistics branches and compromise-aware controls.
+- primary_tools: clandestine route planner, low-signature sustainment ledger, compromise-risk analytics board
+- alternate_tools: manual sustainment board and pre-briefed denial-area resupply plan cards
+- degraded_mode: survival and mission-critical supplies only with tight signature controls
+- input_requirements: mission sustainment demand, route observability metrics, compromise indicators, partner constraints
+- output_schema: sustainment matrix, compromise trigger ladder, SOF support packet
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: signature risk threshold, sustainment sufficiency pass, command concurrence
+
+### packet_id: DPL-AUTON-TARGET-HUMAN-OVERRIDE-001
+- domain: autonomous target recognition human override assurance
+- objective: enforce reliable human override and ROE-constrained release decisions for autonomous targeting support.
+- primary_tools: model confidence validator, human-override routing board, ROE release-gate adjudicator
+- alternate_tools: manual target review board and conservative release checklist
+- degraded_mode: advisory-only target suggestions until human approval and confidence thresholds are met
+- input_requirements: sensor evidence, model confidence telemetry, ROE rules, command authorities, collateral estimates
+- output_schema: confidence bands, override event log, release packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: confidence threshold pass, ROE/legal pass, human approval acknowledgment
+
+### packet_id: DPL-BATTLEFIELD-WEATHER-EFFECTS-001
+- domain: battlefield weather nowcast and effects window
+- objective: optimize mission timing with near-real-time weather effects prediction and risk-informed branches.
+- primary_tools: tactical nowcast engine, terrain-weather impact model, effects-window scheduler
+- alternate_tools: manual weather branch board and periodic meteorological advisory updates
+- degraded_mode: weather-conservative mission windows only with elevated risk controls
+- input_requirements: weather observations, model nowcast outputs, terrain overlays, mission schedules, risk thresholds
+- output_schema: effects window map, weather branch matrix, timing packet
+- protocol_profile: OGC + USMTF + AIXM/FIXM + API/JSON
+- validation_gates: model confidence floor, weather risk threshold pass, command concurrence
+
+### packet_id: DPL-LEGAL-TARGETING-CIVHARM-EVIDENCE-001
+- domain: joint theater legal targeting and civilian harm evidence
+- objective: provide auditable legal-targeting recommendations with civilian-harm evidence integrity.
+- primary_tools: targeting legality board, civilian-harm evidence ledger, legal audit-trace validator
+- alternate_tools: manual legal review board and delayed evidence attestation workflow
+- degraded_mode: advisory-only legal risk updates with no release recommendation until evidence confidence improves
+- input_requirements: target data, legal authorities, civilian pattern-of-life indicators, damage evidence, ROE constraints
+- output_schema: legal sufficiency matrix, civilian-harm ladder, command audit packet
+- protocol_profile: USMTF + NIEM + STIX/TAXII + API/JSON
+- validation_gates: legal sufficiency pass, evidence integrity threshold, authority acknowledgment
+
+### packet_id: DPL-HYPERSONIC-WARN-ALLOC-001
+- domain: strategic hypersonic warning and interceptor allocation
+- objective: preserve defended-asset survivability by optimizing interceptor use under compressed warning timelines
+- primary_tools: strategic warning fusion board, track-confidence analyzer, interceptor-allocation doctrine engine
+- alternate_tools: manual defended-asset board with preplanned interceptor ladders
+- degraded_mode: commander-prioritized defended-asset ladder updated every 15 minutes via USMTF
+- input_requirements: threat track set, defended asset priority list, interceptor inventory, ROE constraints
+- output_schema: warning-confidence ladder, allocation branches, defended-asset risk state
+- protocol_profile: Link 16 J-series + USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: track confidence threshold, dual-source warning confirmation, release authority acknowledgment
+
+### packet_id: DPL-CIVSHIELD-EXPLOIT-COUNTER-001
+- domain: theater civilian shield exploitation countering
+- objective: detect and counter adversary use of civilian shielding while preserving lawful targeting and mission tempo
+- primary_tools: pattern-of-life exploitation detector, civilian-presence confidence model, legal-harm adjudication board
+- alternate_tools: manual legal review board and incident confidence worksheet
+- degraded_mode: restricted-target advisory bulletin every 6 hours with confidence bands
+- input_requirements: ISR tracks, civilian density overlays, target nominations, legal constraints
+- output_schema: exploitation pattern map, legal branch options, harm-risk confidence table
+- protocol_profile: USMTF + STIX/TAXII + NIEM + CoT + API/JSON
+- validation_gates: legal sufficiency pass, civilian-presence confidence floor, commander acknowledgment chain
+
+### packet_id: DPL-ARCTIC-SAR-MEDAUTH-001
+- domain: joint arctic SAR and casualty authentication
+- objective: synchronize Arctic survivor recovery and casualty routing with robust authentication confidence under contested conditions
+- primary_tools: polar SAR route planner, survivor-authentication validator, cold-weather casualty regulation board
+- alternate_tools: manual rescue branch board and beacon verification log
+- degraded_mode: text-only rescue ladder updates every 2 hours via USMTF and CoT
+- input_requirements: beacon telemetry, weather/ice state, rescue asset status, casualty triage profile
+- output_schema: rescue branch matrix, survivor-auth confidence ledger, casualty routing recommendations
+- protocol_profile: USMTF + CoT + HL7/FHIR + AIS/NMEA + API/JSON
+- validation_gates: beacon authenticity check, dual-source location confidence, medical authority confirmation
+
+### packet_id: DPL-HUMINT-BIOMETRIC-CROSSCUE-001
+- domain: denied-environment HUMINT biometric cross-cueing
+- objective: fuse HUMINT and biometrics to raise confidence while controlling source compromise and misidentification risk
+- primary_tools: HUMINT confidence ledger, biometric edge-watchlist fusion service, source-compromise risk board
+- alternate_tools: manual source board with biometric reconciliation worksheet
+- degraded_mode: confidence-banded watchlist advisory updates every 8 hours
+- input_requirements: source reports, biometric captures, watchlist records, source risk indicators
+- output_schema: cross-cue confidence map, source-risk ladder, recommended branch actions
+- protocol_profile: USMTF + STIX/TAXII + NIEM + CoT + API/JSON
+- validation_gates: source reliability threshold, biometric quality floor, legal-policy use authorization
+
+### packet_id: DPL-COALITION-CYBER-KINETIC-CASCADE-001
+- domain: coalition critical infrastructure cyber-kinetic cascade response
+- objective: identify and contain infrastructure cascade effects while coordinating coalition restoration and force support
+- primary_tools: coalition ICS telemetry fusion board, cyber-physical cascade predictor, restoration-priority synchronizer
+- alternate_tools: manual critical-node board and coalition incident tracker
+- degraded_mode: coalition restoration SITREP every 4 hours with mission-priority load map
+- input_requirements: infrastructure telemetry, incident set, mission dependency graph, coalition authority map
+- output_schema: cascade consequence map, restoration branch matrix, coordination task board
+- protocol_profile: NIMS/ICS + USMTF + STIX/TAXII + NIEM + OGC + API/JSON
+- validation_gates: life-safety priority gate, coalition authority confirmation, acknowledgment-chain integrity
+
+### packet_id: DPL-MUNITIONS-ENERGETICS-DISPERSAL-001
+- domain: joint munitions energetics safety and dispersal
+- objective: preserve munitions survivability and safety by balancing explosive compatibility, throughput, and dispersal timing
+- primary_tools: munitions compatibility planner, energetics aging/risk monitor, depot dispersal scheduler
+- alternate_tools: manual compatibility worksheet and dispersal timeline board
+- degraded_mode: daily safety-priority dispersal order with reduced throughput assumptions
+- input_requirements: lot genealogy, storage constraints, threat posture, movement capacity
+- output_schema: compatibility matrix, dispersal branch ladder, energetics risk register
+- protocol_profile: USMTF + NIEM + OGC + API/JSON
+- validation_gates: explosive compatibility pass, safety authority approval, transport-risk threshold check
+
+## Packet Addendum XI (2026-03-12, Expansion Wave XXII Tool Invocation Packets)
+
+### packet_id: DPL-UNDERSEA-DATA-FABRIC-REROUTE-001
+- domain: strategic undersea data-fabric rupture and reroute continuity
+- objective: maintain mission-network continuity by triaging undersea data-fabric ruptures and sequencing trusted reroutes.
+- primary_tools: subsea cable telemetry manager, maritime anomaly fusion board, mission-network path orchestrator
+- alternate_tools: manual rupture board and periodic route viability polling
+- degraded_mode: mission-essential traffic only with signed reroute acknowledgments every 2 hours
+- input_requirements: cable telemetry, route topology, threat posture, mission priority ladder
+- output_schema: rupture confidence ledger, reroute matrix, continuity branch packet
+- protocol_profile: USMTF + CCSDS + STIX/TAXII + AIS/NMEA + API/JSON
+- validation_gates: dual-source rupture confirmation, route viability threshold, command acknowledgment integrity
+
+### packet_id: DPL-ADDITIVE-PHARMA-AUTH-001
+- domain: contested additive pharma countermeasure authenticity
+- objective: assure authenticity and safe release of additively produced pharmaceutical countermeasures.
+- primary_tools: lot genealogy ledger, spectral assay verifier, med-log release adjudication board
+- alternate_tools: manual QA board with delayed digital attestation
+- degraded_mode: life-saving countermeasure classes only with senior medical authority release
+- input_requirements: lot records, assay outputs, contamination indicators, casualty demand forecast
+- output_schema: authenticity attestation, release risk ladder, substitution branch matrix
+- protocol_profile: HL7/FHIR + NIEM + USMTF + API/JSON
+- validation_gates: assay confidence threshold, chain-of-custody pass, medical concurrence
+
+### packet_id: DPL-COALITION-MISSILE-WARNING-SHELTER-001
+- domain: coalition ballistic-missile civil warning and shelter synchronization
+- objective: synchronize warning release and shelter operations without degrading military command tempo.
+- primary_tools: missile warning fusion board, civil alerting orchestration engine, shelter capacity monitor
+- alternate_tools: manual alert timeline board and liaison reporting net
+- degraded_mode: priority population zones only with 30-minute shelter status updates
+- input_requirements: warning tracks, shelter inventories, civil authority map, coalition caveats
+- output_schema: warning timeline, shelter stress map, authority packet
+- protocol_profile: Link 16 J-series + CAP + NIEM + USMTF + API/JSON
+- validation_gates: warning confidence floor, shelter capacity sanity check, authority release record
+
+### packet_id: DPL-QUANTUM-KEY-ROLLOVER-001
+- domain: theater quantum-resistant mission-key rollover
+- objective: execute controlled mission-key rollover to quantum-resistant profiles while preserving continuity.
+- primary_tools: cryptographic key lifecycle manager, trust posture auditor, mission-thread dependency mapper
+- alternate_tools: manual key-state ledger and staged offline rollover plan
+- degraded_mode: high-priority mission threads only with dual-authority release
+- input_requirements: key inventory, compromise indicators, mission dependencies, authority matrix
+- output_schema: rollover readiness matrix, isolation branch ladder, continuity packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: key-state integrity pass, compromise adjudication confidence, authority acknowledgments
+
+### packet_id: DPL-WATERBORNE-DRONE-PORT-SECURITY-001
+- domain: expeditionary waterborne drone port security
+- objective: maintain secure port ingress under waterborne drone swarm pressure.
+- primary_tools: harbor surveillance fusion board, waterborne UxS tracker, pier defense planner
+- alternate_tools: manual watch bill and conservative ingress schedule cards
+- degraded_mode: mission-essential convoy windows only with high-alert escort posture
+- input_requirements: maritime tracks, drone indicators, convoy schedule, pier defense assets
+- output_schema: threat overlay, defense branch ladder, ingress protection packet
+- protocol_profile: AIS/NMEA + USMTF + VMF + API/JSON
+- validation_gates: threat confidence threshold, escort sufficiency check, command concurrence
+
+### packet_id: DPL-HOMELAND-FOOD-COLDCHAIN-CONTINUITY-001
+- domain: homeland cyber-physical food cold-chain continuity
+- objective: preserve force sustainment and civil stability by managing cold-chain cyber-physical disruption.
+- primary_tools: cold-chain telemetry system, logistics integrity analytics board, ICS resilience planner
+- alternate_tools: manual depot status board and ration-priority worksheet
+- degraded_mode: force-critical stock classes only with daily continuity packet
+- input_requirements: temperature telemetry, depot status, cyber incident set, demand forecast
+- output_schema: disruption impact map, sustainment risk ladder, restoration packet
+- protocol_profile: NIMS/ICS + NIEM + USMTF + STIX/TAXII + API/JSON
+- validation_gates: telemetry confidence floor, contamination risk pass, restoration authority acknowledgment
+
+### packet_id: DPL-AUSTERE-AIRFIELD-FOD-DRONE-SAFETY-001
+- domain: coalition austere airfield FOD and drone incursion safety
+- objective: preserve sortie safety by fusing FOD hazard controls with drone incursion response.
+- primary_tools: runway inspection telemetry board, counter-UAS tracker, sortie safety scheduler
+- alternate_tools: manual runway sweep board and observer net
+- degraded_mode: limited sortie windows with mandatory pre-launch clearance
+- input_requirements: runway status, FOD findings, incursion alerts, sortie schedule
+- output_schema: hazard and incursion overlay, safe launch window board, clearance task packet
+- protocol_profile: AIXM/FIXM + USMTF + Link 16 J-series + API/JSON
+- validation_gates: runway safety pass, drone confidence threshold, airfield commander approval
+
+### packet_id: DPL-ACOUSTIC-DECEPTION-COUNTERTARGETING-001
+- domain: battlefield acoustic deception countertargeting
+- objective: detect adversary acoustic deception and preserve targeting integrity.
+- primary_tools: acoustic signature analyzer, fires confidence adjudicator, EW-acoustic cross-cue board
+- alternate_tools: manual signal review board and periodic red-team replay
+- degraded_mode: conservative fires approval ladder with mandatory dual-source checks
+- input_requirements: acoustic captures, fires nominations, EW tracks, terrain overlays
+- output_schema: deception confidence ledger, countertargeting options, retask packet
+- protocol_profile: USMTF + STIX/TAXII + OGC + API/JSON
+- validation_gates: signature fidelity check, dual-source confidence threshold, legal/ROE concurrence
+
+### packet_id: DPL-DENIED-PNT-ARTILLERY-TIMING-001
+- domain: theater denied-PNT artillery timing assurance
+- objective: maintain synchronized fires timing in denied-PNT conditions with minimized fratricide risk.
+- primary_tools: timing integrity monitor, fire-control synchronization board, alternate timing planner
+- alternate_tools: manual timing ladder and voice-confirmed fire control checkpoints
+- degraded_mode: reduced-rate precision fires with strict timing validation gates
+- input_requirements: timing sources, fire missions, drift telemetry, ROE constraints
+- output_schema: timing confidence board, drift matrix, alternate timing packet
+- protocol_profile: Link 16 J-series + USMTF + STANAG + API/JSON
+- validation_gates: drift threshold pass, synchronization confidence floor, release authority acknowledgment
+
+### packet_id: DPL-RESERVE-CANNIBALIZATION-GOVERNANCE-001
+- domain: strategic reserve-component cannibalization governance
+- objective: optimize controlled component cannibalization while containing readiness debt and sustainment risk.
+- primary_tools: fleet readiness ledger, component cannibalization tracker, maintenance debt forecast board
+- alternate_tools: manual readiness board and component demand worksheet
+- degraded_mode: critical platform classes only with weekly senior review
+- input_requirements: fleet status, component inventories, maintenance backlog, deployment demand
+- output_schema: cannibalization ledger, readiness debt projection, restoration sequence packet
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: readiness floor protection, component traceability pass, command authority concurrence
+
+## Packet Addendum XII (2026-03-12, Expansion Wave XXIII Tool Invocation Packets)
+
+### packet_id: DPL-ORBITAL-SERVICING-REFUEL-001
+- domain: contested orbital servicing and refuel assurance
+- objective: preserve strategic space mission endurance via custody-verified servicing and refuel sequencing.
+- primary_tools: orbital custody fusion board, servicing timeline adjudicator, propellant transfer confidence monitor
+- alternate_tools: manual servicing ledger and delayed orbital event reconciliation
+- degraded_mode: mission-essential refuel windows only with dual-authority maneuver release
+- input_requirements: servicing requests, orbital tracks, fuel state vectors, authority matrix
+- output_schema: servicing confidence ladder, refuel timeline matrix, maneuver release packet
+- protocol_profile: CCSDS + USMTF + NIEM + API/JSON
+- validation_gates: custody chain pass, collision-risk threshold, strategic authority acknowledgment
+
+### packet_id: DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001
+- domain: denied terrain autonomous drone resupply navigation
+- objective: sustain frontline resupply through denied terrain with PNT-degraded route confidence controls.
+- primary_tools: denied-terrain route planner, drone mission scheduler, navigation confidence analytics board
+- alternate_tools: manual route ladder and periodic visual waypoint verification
+- degraded_mode: critical-class cargo only with strict route confidence threshold
+- input_requirements: terrain overlays, threat emitters, cargo priorities, weather state, drift telemetry
+- output_schema: route confidence map, resupply sequence matrix, branch trigger packet
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: route viability pass, fratricide airspace check, command concurrence
+
+### packet_id: DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001
+- domain: coalition cable-landing defense and data sovereignty governance
+- objective: preserve coalition data continuity while enforcing sovereign routing and releasability controls.
+- primary_tools: cable landing telemetry fusion board, sovereignty policy adjudication engine, coalition route-priority planner
+- alternate_tools: manual sovereignty rules board and periodic legal liaison reconciliation
+- degraded_mode: mission-critical data classes only with explicit sovereign release approvals
+- input_requirements: landing station status, coalition caveats, data classes, route options, threat indicators
+- output_schema: sovereignty routing matrix, releasability ladder, authority packet
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 aligned + NIEM + STIX/TAXII + API/JSON
+- validation_gates: sovereignty compliance pass, coalition caveat check, acknowledgment-chain integrity
+
+### packet_id: DPL-PHARMA-RAW-MATERIAL-RESERVE-001
+- domain: homeland pharma raw-material reserve synchronization
+- objective: sustain military medical readiness through protected precursor reserves and surge conversion planning.
+- primary_tools: pharma reserve inventory board, precursor bottleneck predictor, med-log conversion synchronizer
+- alternate_tools: manual reserve ledger and delayed quality release board
+- degraded_mode: life-saving classes only with senior medical authority release
+- input_requirements: reserve levels, precursor quality data, conversion throughput, casualty demand forecast
+- output_schema: reserve posture matrix, surge conversion ladder, allocation authority packet
+- protocol_profile: HL7/FHIR + USMTF + NIEM + API/JSON
+- validation_gates: quality confidence threshold, contamination pass, authority acknowledgment
+
+### packet_id: DPL-EM-CAMOUFLAGE-DECOY-001
+- domain: joint electromagnetic camouflage and decoy emissions governance
+- objective: reduce detectability while preserving mission effects through controlled decoy emissions and EM discipline.
+- primary_tools: emissions signature planner, decoy waveform mission-data manager, fratricide risk adjudicator
+- alternate_tools: manual EMCON board and static decoy windows
+- degraded_mode: mission-essential emissions only with short pre-approved windows
+- input_requirements: platform signatures, threat sensor coverage, mission phases, decoy inventory
+- output_schema: emissions camouflage timeline, decoy employment matrix, risk controls packet
+- protocol_profile: Link 16 J-series + USMTF + STIX/TAXII + API/JSON
+- validation_gates: fratricide-spectrum pass, interoperability check, commander approval
+
+### packet_id: DPL-RUNWAY-ICE-FOG-AUTOLAND-001
+- domain: expeditionary runway ice/fog autoland assurance
+- objective: preserve sortie generation with low-visibility autoland decisions grounded in runway/weather confidence.
+- primary_tools: runway condition telemetry board, autoland minima adjudicator, sortie timing scheduler
+- alternate_tools: manual weather board and conservative non-precision sequencing
+- degraded_mode: critical sorties only with enhanced weather minima and runway inspection gates
+- input_requirements: runway friction, RVR/visibility, icing severity, aircraft profiles, sortie demand
+- output_schema: hazard-confidence overlay, autoland option set, go/no-go packet
+- protocol_profile: AIXM/FIXM + USMTF + Link 16 J-series + API/JSON
+- validation_gates: runway safety pass, weather confidence floor, aircrew/command concurrence
+
+### packet_id: DPL-MARITIME-EVAC-PORT-SURGE-001
+- domain: joint civilian maritime evacuation and port surge arbitration
+- objective: arbitrate military-civil throughput under evacuation stress while preserving legal and humanitarian controls.
+- primary_tools: port throughput fusion board, evacuation manifest orchestrator, authority queue manager
+- alternate_tools: manual berth board and liaison-driven surge windows
+- degraded_mode: life-safety evacuation classes plus mission-essential military cargo only
+- input_requirements: berth inventory, manifests, corridor risks, legal authorities, coalition caveats
+- output_schema: surge arbitration matrix, throughput branch ladder, authority packet
+- protocol_profile: NIMS/ICS + USMTF + AIS/NMEA + NIEM + API/JSON
+- validation_gates: life-safety priority pass, legal-handover compliance, acknowledgment integrity
+
+### packet_id: DPL-ORBITAL-NUCLEAR-DEBRIS-COLLISION-001
+- domain: strategic orbital nuclear debris collision avoidance
+- objective: reduce strategic satellite loss risk through debris-cloud tracking and authority-gated maneuver planning.
+- primary_tools: debris cloud propagation engine, conjunction confidence adjudicator, strategic maneuver scheduler
+- alternate_tools: manual conjunction board and delayed ephemeris cross-check
+- degraded_mode: high-value constellation nodes only with conservative maneuver envelopes
+- input_requirements: debris observations, satellite ephemerides, fuel margins, mission priorities, authority matrix
+- output_schema: debris risk ladder, maneuver priority matrix, asset protection packet
+- protocol_profile: CCSDS + USMTF + STIX/TAXII + API/JSON
+- validation_gates: conjunction risk threshold, custody confidence floor, strategic release authority
+
+### packet_id: DPL-ORBITAL-LOGISTICS-CONFLICT-001
+- domain: orbital logistics timeline conflict deconfliction
+- objective: resolve servicing and maneuver timeline conflicts across strategic orbital nodes.
+- primary_tools: orbital timeline adjudicator, custody fusion board, maneuver scheduler
+- alternate_tools: manual timeline board and delayed custody reconciliation
+- degraded_mode: strategic-priority nodes only with command callback every 2 hours
+- input_requirements: servicing queue, maneuver windows, fuel states, collision warnings
+- output_schema: conflict ladder, deconflicted timeline, authority packet
+- protocol_profile: CCSDS + USMTF + API/JSON
+- validation_gates: timeline conflict pass, conjunction threshold, authority acknowledgment
+
+### packet_id: DPL-DENIED-TERRAIN-NAV-CROSSCHECK-001
+- domain: denied terrain navigation cross-check assurance
+- objective: cross-check autonomous resupply route confidence under degraded timing/PNT conditions.
+- primary_tools: route confidence analyzer, timing drift monitor, alternate map matcher
+- alternate_tools: manual waypoint checks and observer relay reports
+- degraded_mode: shortest trusted corridors only with increased escort posture
+- input_requirements: route options, drift telemetry, terrain masks, threat emitters
+- output_schema: confidence deltas, route recommendation, risk packet
+- protocol_profile: USMTF + CoT + API/JSON
+- validation_gates: confidence floor, drift threshold, commander concurrence
+
+### packet_id: DPL-COALITION-DATA-RELEASABILITY-001
+- domain: coalition data releasability and sovereignty controls
+- objective: enforce sovereign and coalition caveat rules while maintaining mission data continuity.
+- primary_tools: caveat adjudicator, route-policy engine, coalition authority ledger
+- alternate_tools: manual releasability board and liaison approvals
+- degraded_mode: minimum necessary data classes only with explicit release approvals
+- input_requirements: data class labels, sovereignty rules, coalition caveats, route options
+- output_schema: releasability decision matrix, route approvals, escalation log
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: caveat compliance pass, sovereign rule pass, acknowledgment integrity
+
+### packet_id: DPL-PHARMA-SURGE-ALLOCATION-001
+- domain: pharmaceutical surge conversion and allocation governance
+- objective: allocate scarce precursor and finished-drug capacity to preserve force-health continuity.
+- primary_tools: surge conversion planner, allocation optimizer, med-log release board
+- alternate_tools: manual allocation ladder and delayed reconciliation board
+- degraded_mode: life-saving categories prioritized with daily senior medical review
+- input_requirements: demand forecast, precursor inventory, conversion limits, distribution constraints
+- output_schema: allocation matrix, conversion priorities, release packet
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: medical-priority pass, quality release pass, authority acknowledgment
+
+### packet_id: DPL-EM-DECEPTION-SAFETY-001
+- domain: electromagnetic deception and fratricide safety
+- objective: execute decoy emissions while maintaining blue-force spectrum safety and mission interoperability.
+- primary_tools: decoy waveform planner, fratricide risk adjudicator, spectrum deconfliction board
+- alternate_tools: manual EMCON windows and conservative decoy schedule cards
+- degraded_mode: fixed low-risk decoy windows only with commander approval
+- input_requirements: platform signatures, mission phases, threat emitters, friendly spectrum plans
+- output_schema: decoy safety matrix, risk ladder, release packet
+- protocol_profile: Link 16 J-series + USMTF + API/JSON
+- validation_gates: spectrum fratricide pass, interoperability pass, approval chain complete
+
+### packet_id: DPL-AUSTERE-AIRFIELD-WEATHER-SAFETY-001
+- domain: austere airfield low-visibility weather safety
+- objective: preserve sortie safety under severe visibility and icing constraints at expeditionary strips.
+- primary_tools: weather minima adjudicator, runway telemetry board, sortie scheduler
+- alternate_tools: manual weather board and conservative launch windows
+- degraded_mode: essential sorties only with expanded safety margins
+- input_requirements: visibility/RVR, icing rates, runway friction, sortie priorities
+- output_schema: weather safety board, sortie-safe windows, go/no-go packet
+- protocol_profile: AIXM/FIXM + USMTF + API/JSON
+- validation_gates: minima pass, runway safety pass, airfield commander concurrence
+
+### packet_id: DPL-CIVIL-MIL-PORT-ARBITRATION-001
+- domain: military-civil maritime port arbitration
+- objective: balance civilian evacuation throughput with military sustainment at contested ports.
+- primary_tools: throughput arbitration engine, berth utilization board, manifest synchronizer
+- alternate_tools: manual berth matrix and liaison-mediated priorities
+- degraded_mode: life-safety civilian flows and mission-critical military cargo only
+- input_requirements: manifests, berth availability, authority map, hazard corridors
+- output_schema: arbitration decisions, sequencing plan, authority packet
+- protocol_profile: NIMS/ICS + USMTF + AIS/NMEA + API/JSON
+- validation_gates: life-safety priority pass, legal authority pass, acknowledgement chain integrity
+
+### packet_id: DPL-STRATEGIC-ORBITAL-MANEUVER-AUTH-001
+- domain: strategic orbital maneuver authority controls
+- objective: ensure collision-avoidance maneuvers are released with verified authority and bounded strategic risk.
+- primary_tools: maneuver authority ledger, conjunction risk board, strategic asset priority engine
+- alternate_tools: manual authority callback and delayed maneuver adjudication
+- degraded_mode: highest-risk conjunctions only with dual-key authorization
+- input_requirements: conjunction alerts, fuel state, strategic priority list, authority matrix
+- output_schema: maneuver authorization ladder, priority matrix, release packet
+- protocol_profile: CCSDS + USMTF + NIEM + API/JSON
+- validation_gates: authority validation pass, collision-risk threshold, acknowledgment integrity
+
+## Packet Addendum XIII (2026-03-12, Expansion Wave XXIV Tool Invocation Packets)
+
+### packet_id: DPL-JOINT-CYBER-EM-REROUTE-001
+- domain: joint cyber-electromagnetic spectrum mission reroute
+- objective: preserve mission-thread continuity via synchronized cyber and spectrum rerouting under active disruption.
+- primary_tools: route arbitration board, cyber containment planner, spectrum reroute synchronizer
+- alternate_tools: manual reroute board and voice-confirmed fallback channels
+- degraded_mode: critical mission threads only with elevated command approvals
+- input_requirements: link status, incident telemetry, mission dependencies, authority constraints
+- output_schema: reroute ladder, continuity matrix, authority packet
+- protocol_profile: USMTF + Link 16 J-series + STIX/TAXII + VMF + API/JSON
+- validation_gates: route viability pass, acknowledgment-chain integrity, commander concurrence
+
+### packet_id: DPL-JOINT-CYBER-EM-REROUTE-002
+- domain: joint cyber-electromagnetic degraded fallback
+- objective: execute degraded fallback when primary cross-layer reroute paths are unavailable.
+- primary_tools: contingency route board, mission-priority filter, acknowledgment watchdog
+- alternate_tools: manual branch cards and periodic callback checks
+- degraded_mode: life-safety and mission-essential functions only
+- input_requirements: contingency routes, mission priorities, fallback channel health
+- output_schema: fallback branch matrix, risk deltas, escalation packet
+- protocol_profile: USMTF + VMF + API/JSON
+- validation_gates: fallback confidence floor, authority pass, ack timeout compliance
+
+### packet_id: DPL-THEATER-FORTIFICATION-PRINTFARM-001
+- domain: theater autonomous fortification print-farm orchestration
+- objective: sequence autonomous fortification output to maximize survivability under contested timelines.
+- primary_tools: print-farm scheduler, structural validator, engineer task board
+- alternate_tools: manual build queue and periodic site-inspection board
+- degraded_mode: highest-priority positions only with reduced template set
+- input_requirements: threat overlays, print capacity, material inventory, task priorities
+- output_schema: build queue matrix, structural confidence ledger, release packet
+- protocol_profile: USMTF + NIEM + STANAG + API/JSON
+- validation_gates: structural pass, material quality check, command approval
+
+### packet_id: DPL-THEATER-FORTIFICATION-PRINTFARM-002
+- domain: contested fortification fallback and material rationing
+- objective: preserve essential fortification throughput during material shortage or disruption.
+- primary_tools: material rationing planner, critical-position prioritizer, QA risk board
+- alternate_tools: manual rationing ladder and engineer callback loop
+- degraded_mode: critical sectors only with elevated QA gates
+- input_requirements: material stock, sector priority, threat forecasts, construction backlog
+- output_schema: rationing matrix, critical-sector schedule, authority packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: rationing policy pass, survivability threshold, commander concurrence
+
+### packet_id: DPL-STRATEGIC-RAREGAS-ENERGETICS-001
+- domain: strategic rare gas and energetic precursor allocation
+- objective: allocate constrained precursor supply to preserve mission-essential production and operations.
+- primary_tools: precursor custody ledger, demand forecast engine, allocation adjudicator
+- alternate_tools: manual allocation ladder and delayed reconciliation board
+- degraded_mode: mission-critical classes only with daily senior review
+- input_requirements: inventories, demand forecasts, production constraints, authority matrix
+- output_schema: allocation ladder, transfer matrix, decision packet
+- protocol_profile: USMTF + NIEM + STIX/TAXII + API/JSON
+- validation_gates: custody pass, demand-confidence threshold, approval chain integrity
+
+### packet_id: DPL-STRATEGIC-RAREGAS-ENERGETICS-002
+- domain: energetic precursor disruption fallback
+- objective: enforce constrained fallback allocations when precursor chain disruption persists.
+- primary_tools: disruption impact board, substitution risk monitor, priority scheduler
+- alternate_tools: manual substitution board and periodic expert adjudication
+- degraded_mode: strategic deterrence and life-safety priorities only
+- input_requirements: disruption telemetry, substitution candidates, mission priorities
+- output_schema: fallback allocation board, risk deltas, escalation packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: substitution safety pass, priority compliance, strategic authority concurrence
+
+### packet_id: DPL-JOINT-DEEP-OCEAN-SOSUS-001
+- domain: deep-ocean SOSUS reconstitution
+- objective: restore undersea surveillance coverage and cue quality after node degradation or attack.
+- primary_tools: acoustic fusion board, seabed integrity monitor, restoration scheduler
+- alternate_tools: manual coverage board and delayed sensor reconciliation
+- degraded_mode: strategic chokepoints only with higher false-positive tolerance
+- input_requirements: node status, acoustic tracks, repair windows, threat indicators
+- output_schema: restoration sequence, cue confidence ledger, authority packet
+- protocol_profile: USMTF + STANAG + OGC + AIS/NMEA + API/JSON
+- validation_gates: coverage threshold pass, decoy-discrimination confidence, maritime commander approval
+
+### packet_id: DPL-JOINT-DEEP-OCEAN-SOSUS-002
+- domain: deep-ocean decoy discrimination fallback
+- objective: maintain cue validity when adversary decoy pressure degrades acoustic certainty.
+- primary_tools: decoy signature adjudicator, confidence-risk board, alternate cue cross-check engine
+- alternate_tools: manual analyst fusion and conservative cue release windows
+- degraded_mode: dual-source cueing only
+- input_requirements: acoustic signatures, cross-domain cues, decoy intelligence updates
+- output_schema: decoy confidence matrix, release ladder, escalation packet
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: dual-source pass, confidence floor, authority acknowledgment
+
+### packet_id: DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-001
+- domain: homeland defense pharma/biologics cold-chain assurance
+- objective: preserve military-civil biologics continuity under cyber-physical disruption.
+- primary_tools: cold-chain telemetry board, contamination adjudicator, med-log routing engine
+- alternate_tools: manual cold-storage board and periodic transport verification
+- degraded_mode: life-saving classes only with senior medical release
+- input_requirements: storage telemetry, route options, demand forecast, contamination indicators
+- output_schema: continuity matrix, protected route ladder, authority packet
+- protocol_profile: HL7/FHIR + NIMS/ICS + NIEM + USMTF + API/JSON
+- validation_gates: cold integrity pass, contamination threshold, medical authority concurrence
+
+### packet_id: DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-002
+- domain: biologics distribution fallback and contamination containment
+- objective: execute constrained distribution when contamination or transport failures occur.
+- primary_tools: containment board, substitution planner, emergency dispatch scheduler
+- alternate_tools: manual substitution ladder and local authority call tree
+- degraded_mode: emergency and mission-essential patients only
+- input_requirements: contamination events, substitute inventory, casualty demand, legal constraints
+- output_schema: constrained distribution plan, risk deltas, escalation packet
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: clinical safety pass, substitution approval, acknowledgment integrity
+
+### packet_id: DPL-COALITION-IDENTITY-INSIDER-001
+- domain: coalition denied-environment identity proofing
+- objective: establish trusted coalition identities under degraded comms and contested data quality.
+- primary_tools: federated trust board, credential reconciliation engine, watchlist cross-checker
+- alternate_tools: manual trust worksheets and liaison verification queue
+- degraded_mode: mission-essential identities only with dual-auth checks
+- input_requirements: identity claims, credential evidence, coalition caveats, risk indicators
+- output_schema: trust matrix, credential disposition ladder, authority packet
+- protocol_profile: NIEM + CJIS + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: trust confidence floor, coalition caveat pass, legal authority acknowledgment
+
+### packet_id: DPL-COALITION-IDENTITY-INSIDER-002
+- domain: insider-risk expulsion and legal handoff
+- objective: isolate, expel, and legally hand off insider-risk actors while preserving coalition mission tempo.
+- primary_tools: insider containment workflow engine, legal handoff ledger, access revocation orchestrator
+- alternate_tools: manual revocation board and rapid legal liaison cell
+- degraded_mode: temporary mission partitioning with high-risk account quarantine
+- input_requirements: insider indicators, access graph, legal jurisdiction map, mission dependencies
+- output_schema: expulsion ladder, handoff checklist, continuity packet
+- protocol_profile: NIEM + STIX/TAXII + API/JSON
+- validation_gates: legal handoff pass, revocation confirmation, acknowledgment-chain integrity
+
+### packet_id: DPL-THEATER-LLM-OPSEC-INJECTION-001
+- domain: theater mission AI/LLM OPSEC posture hardening
+- objective: enforce mission-safe model operations and block prompt-injection pathways.
+- primary_tools: model gateway policy engine, injection detector, retrieval provenance auditor
+- alternate_tools: manual prompt review board and conservative model-output allowlist
+- degraded_mode: read-only advisory responses with strict human validation
+- input_requirements: prompt logs, model responses, retrieval traces, policy set
+- output_schema: trust posture board, containment matrix, release packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: injection detection pass, provenance integrity, authority concurrence
+
+### packet_id: DPL-THEATER-LLM-OPSEC-INJECTION-002
+- domain: mission AI compromise fallback and controlled rollback
+- objective: contain suspected model compromise and revert to trusted operation mode.
+- primary_tools: rollback orchestrator, compromise-impact board, alternate workflow scheduler
+- alternate_tools: manual rollback checklist and isolated analyst cell
+- degraded_mode: critical mission tasks only through approved fallback workflows
+- input_requirements: compromise telemetry, rollback snapshots, mission impact map
+- output_schema: rollback plan, impact ledger, escalation packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: rollback integrity pass, mission safety threshold, commander approval
+
+### packet_id: DPL-JOINT-CASUALTY-FAMILY-NOTIFY-001
+- domain: multi-theater casualty information integrity and family notification
+- objective: synchronize casualty record integrity with dignified family notification sequencing.
+- primary_tools: casualty reconciliation board, notification workflow orchestrator, authority compliance monitor
+- alternate_tools: manual casualty board and phased notification call tree
+- degraded_mode: highest-confidence verified casualties only with senior approval
+- input_requirements: casualty records, personnel accountability updates, family contact pathways, legal constraints
+- output_schema: casualty integrity matrix, notification sequence board, authority packet
+- protocol_profile: USMTF + NIEM + HL7/FHIR + API/JSON
+- validation_gates: record integrity pass, legal-ethical notification compliance, command concurrence
+
+### packet_id: DPL-JOINT-CASUALTY-FAMILY-NOTIFY-002
+- domain: casualty notification fallback under communications disruption
+- objective: maintain trusted notification integrity when primary communication pathways fail.
+- primary_tools: fallback contact planner, jurisdiction liaison board, notification integrity monitor
+- alternate_tools: manual liaison chain and delayed verification board
+- degraded_mode: staged notifications with explicit confidence labeling
+- input_requirements: communication availability, verification status, jurisdiction contacts, mission tempo constraints
+- output_schema: fallback sequence ladder, confidence labels, escalation packet
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: confidence threshold pass, liaison acknowledgment, authority-chain integrity
+
+## Packet Addendum XIV (2026-03-12, Expansion Wave XXV Tool Invocation Packets)
+
+### packet_id: DPL-CISLUNAR-LOGISTICS-INTERDICTION-001
+- domain: cislunar logistics interdiction and strategic reconstitution
+- objective: interdict adversary logistics while preserving allied custody integrity and strategic continuity.
+- primary_tools: cislunar custody ledger, conjunction adjudicator, maneuver release board
+- alternate_tools: manual orbital custody board and delayed branch approval workflow
+- degraded_mode: highest-consequence maneuver branches only with dual-command approval
+- input_requirements: orbital logistics tracks, conjunction alerts, authority matrix, fuel state
+- output_schema: custody confidence ladder, interdiction branch matrix, release packet
+- protocol_profile: CCSDS + USMTF + NIEM + API/JSON
+- validation_gates: custody integrity pass, escalation-risk threshold, acknowledgment-chain integrity
+
+### packet_id: DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001
+- domain: underwater data-center cooling grid defense
+- objective: sustain mission-critical compute continuity during cyber-physical cooling-grid disruption.
+- primary_tools: cooling telemetry fusion board, anomaly detector, critical-load shed orchestrator
+- alternate_tools: manual load-priority board and periodic facility callback checks
+- degraded_mode: mission-essential compute loads only with conservative thermal envelopes
+- input_requirements: cooling telemetry, cyber alerts, mission dependency map, authority constraints
+- output_schema: cooling defense matrix, mission-impact ladder, restoration packet
+- protocol_profile: USMTF + STIX/TAXII + NIMS/ICS + API/JSON
+- validation_gates: thermal safety pass, mission-load continuity threshold, commander concurrence
+
+### packet_id: DPL-COALITION-RAPID-AIRFIELD-DENIAL-REVERSAL-001
+- domain: coalition rapid airfield capture and denial reversal
+- objective: restore runway and sortie capacity with coalition-safe authority and deconfliction controls.
+- primary_tools: runway denial assessment board, engineering clearance scheduler, sortie regeneration planner
+- alternate_tools: manual denial checklist and coalition liaison synchronization board
+- degraded_mode: mission-critical sortie windows only with elevated engineering checks
+- input_requirements: runway damage profile, denial type, engineering capacity, coalition caveats
+- output_schema: denial-reversal sequence, sortie ladder, authority packet
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF + API/JSON
+- validation_gates: clearance pass, coalition caveat compliance, acknowledgment integrity
+
+### packet_id: DPL-HOMELAND-PHOTONICS-OPTICS-SUPPLY-001
+- domain: homeland photonics and optics supply assurance
+- objective: preserve mission-critical optical and photonic component availability during disruption.
+- primary_tools: supply assurance ledger, bottleneck forecast engine, strategic allocation board
+- alternate_tools: manual allocation matrix and periodic vendor confidence reviews
+- degraded_mode: strategic warning, targeting, and life-safety systems only
+- input_requirements: supply telemetry, production lead times, mission demand priorities, authority constraints
+- output_schema: supply posture matrix, allocation ladder, continuity packet
+- protocol_profile: USMTF + NIEM + STIX/TAXII + API/JSON
+- validation_gates: supply confidence floor, strategic-priority compliance, approval-chain integrity
+
+### packet_id: DPL-JOINT-BRIDGE-TUNNEL-BREACH-SYNC-001
+- domain: autonomous bridge and tunnel denial breach synchronization
+- objective: sequence autonomous and manned breach actions to restore joint maneuver corridors safely.
+- primary_tools: route-recon board, breach scheduler, mobility restoration command planner
+- alternate_tools: manual engineer sequencing board and conservative route release windows
+- degraded_mode: life-safety and mission-essential corridors only
+- input_requirements: denial map, structural status, breach assets, maneuver priorities
+- output_schema: breach sequence matrix, mobility ladder, release packet
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: structural safety pass, fratricide risk threshold, commander concurrence
+
+### packet_id: DPL-EXPEDITIONARY-NEUROCOGNITIVE-RTD-001
+- domain: expeditionary neurocognitive screening and return-to-duty governance
+- objective: optimize neurocognitive triage and return-to-duty decisions while protecting clinical safety.
+- primary_tools: neuro-screening workflow manager, patient regulation board, duty-status adjudicator
+- alternate_tools: manual triage worksheet and periodic medical review cell
+- degraded_mode: urgent clinical-risk cases and mission-essential personnel only
+- input_requirements: screening outcomes, treatment capacity, duty requirements, medical authority matrix
+- output_schema: screening throughput board, duty disposition ladder, authority packet
+- protocol_profile: HL7/FHIR + USMTF + NIEM + API/JSON
+- validation_gates: clinical safety pass, duty-governance compliance, acknowledgment integrity
+
+### packet_id: DPL-JOINT-DRONE-FIBER-BACKHAUL-HUNT-001
+- domain: adversary drone-fiber backhaul hunt and neutralization
+- objective: expose and neutralize hybrid drone/fiber relay chains disrupting mission command and control.
+- primary_tools: counter-UAS analytics board, backhaul anomaly mapper, neutralization coordinator
+- alternate_tools: manual threat fusion board and delayed neutralization authority queue
+- degraded_mode: highest-confidence relay nodes only with conservative escalation limits
+- input_requirements: relay indicators, drone tracks, terrain constraints, legal authorities
+- output_schema: threat hunt matrix, neutralization ladder, command packet
+- protocol_profile: STIX/TAXII + Link 16 J-series + USMTF + CoT + API/JSON
+- validation_gates: attribution confidence floor, collateral-risk threshold, authority-chain integrity
+
+### packet_id: DPL-COALITION-PORTABLE-NUCLEAR-INTERDICTION-001
+- domain: coalition portable nuclear detection and interdiction evidence integrity
+- objective: interdict portable nuclear threats with contamination control and legal-forensic custody integrity.
+- primary_tools: radiological detection fusion board, interdiction command workflow, forensic custody ledger
+- alternate_tools: manual interdiction board and liaison-led legal handoff chain
+- degraded_mode: highest-risk detections only with dual-approval release
+- input_requirements: detection telemetry, threat confidence, jurisdiction map, custody requirements
+- output_schema: interdiction sequence, custody ladder, escalation packet
+- protocol_profile: USMTF + NIEM + CJIS + NIMS/ICS + API/JSON
+- validation_gates: contamination control pass, legal custody compliance, acknowledgment integrity

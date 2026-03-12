@@ -150,26 +150,83 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-disconnected-command-intent-reconciliation-v1` + `protocol_stack_id=ps-disconnected-command-intent-reconciliation-stack-v1` when command guidance forks create competing execution paths across tactical enclaves.
 - Add `packet_id=DPL-IDENTITY-PROOF-LIFE-RECON-001` and `packet_id=DPL-DISCONNECTED-COMMAND-INTENT-RECON-001` for branches that alter authorization boundaries, credential trust, or command release conditions.
 
-## Zero-Trust PQC and Influence Defense Addendum (2026-03-11)
-
-- Add `tool_suite_id=ts-quantum-resistant-key-rollover-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1` when cryptographic agility posture falls below mission threshold or key-state synchronization is stale.
-- Add `tool_suite_id=ts-cognitive-electromagnetic-influence-defense-v1` + `protocol_stack_id=ps-cognitive-electromagnetic-influence-defense-stack-v1` when cyber effects are coupled with narrative or electromagnetic influence pressure.
-- Add `packet_id=ZT-PQC-ROLLOVER-001` and `packet_id=ZT-COG-EW-INFLUENCE-001` for branches that alter cryptographic trust, access decisions, or mission command confidence.
-
 ## Zero-Trust Expansion Addendum (2026-03-11, Denied Navigation and Convoy Counter-Ambush)
 
 - Add `tool_suite_id=ts-denied-pnt-terrain-nav-recovery-v1` + `protocol_stack_id=ps-denied-pnt-terrain-nav-recovery-stack-v1` when zero-trust routing policy must preserve assured maneuver timing under GNSS spoofing/jamming.
 - Add `tool_suite_id=ts-autonomous-convoy-counter-ambush-v1` + `protocol_stack_id=ps-autonomous-convoy-counter-ambush-stack-v1` when tactical network hardening recommendations directly impact autonomous convoy branch execution.
 - Add `packet_id=DPL-DENIED-PNT-RECOVERY-001` and `packet_id=DPL-CONVOY-COUNTER-AMBUSH-001` for recommendations that shift trust boundaries, route authority, or engagement-risk posture.
 
-## Zero-Trust Expansion Wave XV Addendum (2026-03-11)
+## Zero-Trust Expansion Addendum (2026-03-11, Undersea Restoration and Coalition Cyber-EM Fusion)
 
-- Add `tool_suite_id=ts-tactical-quantum-resistant-key-rollover-under-fire-cell-v1` + `protocol_stack_id=ps-tactical-quantum-resistant-key-rollover-under-fire-cell-stack-v1` when cryptographic rollover under contact risks mission command disruption.
-- Add `tool_suite_id=ts-theater-ai-enabled-fuel-theft-and-black-market-interdiction-cell-v1` + `protocol_stack_id=ps-theater-ai-enabled-fuel-theft-and-black-market-interdiction-cell-stack-v1` when compromised fuel logistics threaten enclave uptime and tactical movement plans.
-- Add `packet_id=DPL-TACTICAL-PQC-ROLLOVER-UNDER-FIRE-001` and `packet_id=DPL-AI-FUEL-THEFT-BLACKMARKET-INTERDICT-001` for branches that alter key trust boundaries, sustainment access controls, or command release conditions.
+- Add `tool_suite_id=ts-undersea-cable-restoration-traffic-priority-v1` + `protocol_stack_id=ps-undersea-cable-restoration-traffic-priority-stack-v1` when zero-trust routing policy depends on contested undersea transport restoration and mission traffic arbitration.
+- Add `tool_suite_id=ts-coalition-cyber-em-oob-fusion-v1` + `protocol_stack_id=ps-coalition-cyber-em-oob-fusion-stack-v1` when trust posture recommendations require coalition cyber and electromagnetic order-of-battle corroboration.
+- Add `packet_id=DPL-UNDERSEA-CABLE-RESTORE-001` and `packet_id=DPL-COALITION-CYBER-EM-FUSION-001` for recommendations that alter identity trust boundaries, network priority lanes, or release authorities.
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+## Domain Toolchain Override (2026-03-11, Strategic Warning and Evidence-Speed Expansion)
 
-- Add `tool_suite_id=ts-homeland-rail-mobility-cyber-guard-v1` + `protocol_stack_id=ps-homeland-rail-mobility-cyber-guard-stack-v1` when hardening recommendations depend on rail mobility network cyber resilience.
-- Add `tool_suite_id=ts-expeditionary-prisoner-processing-evidence-integrity-v1` + `protocol_stack_id=ps-expeditionary-prisoner-processing-evidence-integrity-stack-v1` when zero-trust controls must extend to custody/evidence workflows in expeditionary operations.
-- Add `packet_id=DPL-HOMELAND-RAIL-MOBILITY-CYBER-GUARD-001` and `packet_id=DPL-EXPEDITIONARY-PRISONER-PROCESSING-EVIDENCE-INTEGRITY-001` for authority-gated zero-trust branch execution.
+- Add `tool_suite_id=ts-strategic-ai-mobilization-indications-v1` + `protocol_stack_id=ps-strategic-ai-mobilization-indications-stack-v1` when hardening recommendations depend on warning-driven defensive posture shifts against adversary mobilization campaigns.
+- Add `tool_suite_id=ts-coalition-ceasefire-evidence-sync-v1` + `protocol_stack_id=ps-coalition-ceasefire-evidence-sync-stack-v1` when network integrity recommendations must preserve legally admissible incident evidence synchronization at coalition boundaries.
+- Add `packet_id=DPL-STRAT-MOB-WARN-001` and `packet_id=DPL-CEASEFIRE-EVIDENCE-SYNC-001` for branches that alter sensor trust posture, legal evidence handling, or alliance release controls.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-theater-denied-electronic-warfare-mission-data-reprogramming-cell-v1` + `protocol_stack_id=ps-theater-denied-electronic-warfare-mission-data-reprogramming-cell-stack-v1` when EW mission-data reprogramming and tactical trust restoration are interdependent.
+- Add packet bindings `packet_id=DPL-TACTICAL_ZERO_TRUST_NETWORK_HARDENING-009` (primary) and `packet_id=DPL-TACTICAL_ZERO_TRUST_NETWORK_HARDENING-010` (degraded) to preserve release-authority traceability under denial.
+- Include `validation_owner`, `revalidation_utc`, and `ack_chain_status`; if any are stale, downgrade to advisory-only and escalate to commander network authority.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XII Addendum)
+
+- Add `tool_suite_id=ts-tactical-counter-disinformation-civil-signal-assurance-cell-v1` + `protocol_stack_id=ps-tactical-counter-disinformation-civil-signal-assurance-cell-stack-v1` when zero-trust branch recommendations must preserve trusted civil-warning release and command-channel narrative integrity under active information attack.
+- Add `tool_suite_id=ts-joint-iamd-multi-node-radar-deception-recovery-cell-v1` + `protocol_stack_id=ps-joint-iamd-multi-node-radar-deception-recovery-cell-stack-v1` when trust-boundary decisions depend on resilient radar-track confidence and rapid deception recovery.
+- Add `packet_id=DPL-TACTICAL-COUNTER-DISINFORMATION-SIGNAL-001` and `packet_id=DPL-IAMD-RADAR-DECEPTION-RECOVERY-001` for branches that alter network trust posture, release authority timing, or engagement-risk thresholds.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIII Addendum)
+
+- Add `tool_suite_id=ts-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-v1` + `protocol_stack_id=ps-joint-ai-generated-order-integrity-and-commander-intent-deviation-cell-stack-v1` when zero-trust recommendations depend on validating AI-authored orders against commander intent.
+- Add `tool_suite_id=ts-theater-resilient-battlefield-cloud-federation-admission-control-cell-v1` + `protocol_stack_id=ps-theater-resilient-battlefield-cloud-federation-admission-control-cell-stack-v1` when trust posture depends on cloud federation admission governance under contested operations.
+- Add `packet_id=DPL-AI-ORDER-INTEGRITY-001` and `packet_id=DPL-CLOUDFED-ADMISSION-001` for branches that alter trust boundaries, release authorities, or continuity assumptions.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-v1` + `protocol_stack_id=ps-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-stack-v1` when trust-boundary recommendations depend on coalition telecom backhaul restoration and releasability-safe routing.
+- Add `tool_suite_id=ts-joint-contested-biometric-pay-and-personnel-reconstitution-cell-v1` + `protocol_stack_id=ps-joint-contested-biometric-pay-and-personnel-reconstitution-cell-stack-v1` when disconnected identity confidence and personnel-accountability trust directly impact network authorization posture.
+- Add `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` and `packet_id=DPL-BIOMETRIC-PAY-PERSONNEL-RECON-001` for branches that alter identity trust, route authority, or continuity assumptions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XV Addendum)
+
+- Add tool_suite_id=ts-coalition-arctic-fiber-microwave-troposcatter-failover-cell-v1 + protocol_stack_id=ps-coalition-arctic-fiber-microwave-troposcatter-failover-cell-stack-v1 when zero-trust continuity depends on contested arctic transport failover and coalition service-priority routing.
+- Add tool_suite_id=ts-joint-quantum-sensing-spoof-detection-governance-cell-v1 + protocol_stack_id=ps-joint-quantum-sensing-spoof-detection-governance-cell-stack-v1 when trust-boundary decisions depend on spoof-resistant sensing confidence and fallback policy control.
+- Add packet_id=DPL-ARCTIC-TRANSPORT-FAILOVER-001 and packet_id=DPL-QUANTUM-SENSING-SPOOF-GOV-001 for recommendations that shift identity trust boundaries, route authority, or mission-data confidence thresholds.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-strategic-quantum-network-key-custody-and-compromise-response-cell-v1 + protocol_stack_id=ps-strategic-quantum-network-key-custody-and-compromise-response-cell-stack-v1 when zero-trust posture depends on compromised key-custody containment and cryptographic continuity.
+- Add tool_suite_id=ts-homeland-defense-municipal-911-psap-cyber-survivability-cell-v1 + protocol_stack_id=ps-homeland-defense-municipal-911-psap-cyber-survivability-cell-stack-v1 when network trust boundaries must preserve military-civil emergency call continuity.
+- Add packet_id=DPL-QUANTUM-NETWORK-KEY-CUSTODY-001 and packet_id=DPL-MUNICIPAL-911-PSAP-CYBER-001 for recommendations that shift trust boundaries, credential release controls, or life-safety communication authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVII Addendum)
+
+- Add tool_suite_id=ts-joint-cyber-mission-assurance-and-hunt-forward-cell-v1 + protocol_stack_id=ps-joint-cyber-mission-assurance-and-hunt-forward-cell-stack-v1 when zero-trust recommendations depend on hunt-forward threat suppression and mission-system survivability across coalition enclaves.
+- Add tool_suite_id=ts-joint-space-control-and-counterspace-mission-cell-v1 + protocol_stack_id=ps-joint-space-control-and-counterspace-mission-cell-stack-v1 when trust posture depends on protected space-control telemetry, SATCOM continuity, and escalation-safe counterspace branch controls.
+- Add packet_id=DPL-CYBER-HUNT-FWD-001 and packet_id=DPL-SPACE-COUNTERSPACE-001 for recommendations that shift trust boundaries, cross-domain release authority, or strategic continuity assumptions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-cyber-em-spectrum-mission-reroute-v1` + `protocol_stack_id=ps-joint-cyber-em-spectrum-mission-reroute-stack-v1` when mission survivability requires synchronized cyber+EM rerouting under active disruption.
+- Add `tool_suite_id=ts-theater-llm-opsec-prompt-injection-defense-v1` + `protocol_stack_id=ps-theater-llm-opsec-prompt-injection-defense-stack-v1` for AI-enabled C2 stacks exposed to prompt injection or retrieval poisoning.
+- Add `packet_id=DPL-JOINT-CYBER-EM-REROUTE-001` and `packet_id=DPL-THEATER-LLM-OPSEC-INJECTION-001` for primary and degraded trust-restoration branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

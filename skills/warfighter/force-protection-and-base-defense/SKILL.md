@@ -161,20 +161,127 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - For distributed radiological/nuclear warning coverage resilience, include `ts-portable-nuclear-detector-resilience-v1` with `ps-portable-nuclear-detector-resilience-stack-v1`.
 - For rapid floodwave warning after dam strike or sabotage, include `ts-rapid-dam-floodwave-warning-v1` with `ps-rapid-dam-floodwave-warning-stack-v1`.
 - For synthetic voice spoofing against guard-force command nets, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
+- For theater-wide UXO risk before civilian re-entry near installations, include `ts-uxo-civilian-return-corridor-v1` with `ps-uxo-civilian-return-corridor-stack-v1`.
+- For orbital debris reentry force-protection warning impacts, include `ts-orbital-reentry-population-risk-v1` with `ps-orbital-reentry-population-risk-stack-v1`.
 - For strategic port water assurance under prolonged disruption, include `ts-port-desalination-brine-output-assurance-v1` with `ps-port-desalination-brine-output-assurance-stack-v1`.
 - For coalition identity sharing under privacy and legal constraints, include `ts-privacy-preserving-biometrics-federation-v1` with `ps-privacy-preserving-biometrics-federation-stack-v1`.
+- For civil warning authentication during adversary information attacks near installations, include `ts-civil-alert-authenticity-v1` with `ps-civil-alert-authenticity-stack-v1`.
+- For expeditionary power survivability with low-signature generation, include `ts-solar-microgrid-signature-control-v1` with `ps-solar-microgrid-signature-control-stack-v1`.
+- For jammer-protected evacuation and casualty movement in dense terrain, include `ts-drone-jammer-evac-route-bubble-v1` with `ps-drone-jammer-evac-route-bubble-stack-v1`.
+- For coalition littoral fuel cache defense around expeditionary bases, include `ts-littoral-fuel-bladder-security-v1` with `ps-littoral-fuel-bladder-security-stack-v1`.
+- For detainee facility outbreak and riot risk near joint bases, include `ts-pow-camp-outbreak-riot-containment-v1` with `ps-pow-camp-outbreak-riot-containment-stack-v1`.
+- For urban power-substation attack and cascading outage risk at defended installations, include `ts-urban-substation-islanding-v1` with `ps-urban-substation-islanding-stack-v1`.
+- For mission-priority feeder shedding during prolonged grid disruption, include `ts-grid-feeder-priority-shed-v1` with `ps-grid-feeder-priority-shed-stack-v1`.
+- For detention transfer operations where custody and evidence integrity can be contested, include `ts-prisoner-transfer-evidence-chain-v1` with `ps-prisoner-transfer-evidence-chain-stack-v1`.
+- For verified handoff tracking across detainee movements, include `ts-custody-handshake-ledger-v1` with `ps-custody-handshake-ledger-stack-v1`.
 - For forward operating base water network sabotage and attribution, include `ts-forward-water-sabotage-attribution-v1` with `ps-forward-water-sabotage-attribution-stack-v1`.
 - For transformer convoy escort and emplacement during homeland defense power restoration, include `ts-grid-transformer-escort-install-v1` with `ps-grid-transformer-escort-install-stack-v1`.
 - For coalition electromagnetic incident legal framing at defended installations, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.
 
-## Domain Toolchain Override (2026-03-10, Warfighter Domain Coverage Surge)
+## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
 
-- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when force protection depends on trusted emergency warning traffic and rumor suppression.
-- Add `tool_suite_id=ts-satellite-ground-station-defense-v1` + `protocol_stack_id=ps-satellite-ground-station-defense-stack-v1` when base defense outcomes depend on SATCOM ground segment survivability.
-- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-SATELLITE-GROUND-STATION-DEFENSE-001` for high-consequence posture changes.
+- Add `tool_suite_id=ts-autonomous-decoy-campaign-effectiveness-v1` + `protocol_stack_id=ps-autonomous-decoy-campaign-effectiveness-stack-v1` when force protection depends on adversary misallocation and deception survivability.
+- Add `tool_suite_id=ts-rapid-materiel-authentication-counterfeit-shield-v1` + `protocol_stack_id=ps-rapid-materiel-authentication-counterfeit-shield-stack-v1` when base survivability depends on trusted spares and component authenticity.
+- Add `tool_suite_id=ts-undersea-battle-network-self-healing-v1` + `protocol_stack_id=ps-undersea-battle-network-self-healing-stack-v1` when defended installations depend on undersea-linked communications continuity.
+- Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when base defense response requires resilient cross-domain data sharing.
+- Add `packet_id=DPL-AUTONOMOUS-DECOY-CAMPAIGN-EFFECTIVENESS-001`, `packet_id=DPL-RAPID-MATERIEL-AUTH-COUNTERFEIT-SHIELD-001`, and `packet_id=DPL-UNDERSEA-BATTLE-NETWORK-SELF-HEALING-001` for high-consequence force protection branches.
 
-## Force Protection Expansion Wave XV Addendum (2026-03-11)
+## Domain Toolchain Override (2026-03-10, Reentry and Decoy Fratricide Assurance Addendum)
 
-- Add `tool_suite_id=ts-joint-multi-theater-hostage-proof-of-life-authentication-cell-v1` + `protocol_stack_id=ps-joint-multi-theater-hostage-proof-of-life-authentication-cell-stack-v1` when base-defense decisions depend on hostage media authenticity, coercion risk, or influence exploitation.
-- Add `tool_suite_id=ts-arctic-over-ice-ground-line-of-communication-resilience-cell-v1` + `protocol_stack_id=ps-arctic-over-ice-ground-line-of-communication-resilience-cell-stack-v1` when force-protection posture is constrained by Arctic over-ice route survivability.
-- Add `packet_id=DPL-MULTI-THEATER-HOSTAGE-POL-AUTH-001` and `packet_id=DPL-ARCTIC-OVER-ICE-GLOC-RESILIENCE-001` for branches that change protection priorities, mobility assumptions, or commander risk acceptance.
+- Add `tool_suite_id=ts-orbital-debris-reentry-base-hardening-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-hardening-stack-v1` when base defense posture must account for orbital reentry hazard windows.
+- Add `tool_suite_id=ts-electromagnetic-decoy-fratricide-audit-v1` + `protocol_stack_id=ps-electromagnetic-decoy-fratricide-audit-stack-v1` when base protection depends on decoy/emission plans without blue-force misclassification risk.
+- Add `packet_id=DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001` and `packet_id=DPL-ELECTROMAGNETIC-DECOY-FRATRICIDE-AUDIT-001` for force-protection branches that alter sheltering, EMCON, or response posture.
+
+## Domain Toolchain Override (2026-03-10, Grid Escort and Custody Integrity Addendum)
+
+- Add `tool_suite_id=ts-grid-transformer-escort-install-v1` + `protocol_stack_id=ps-grid-transformer-escort-install-stack-v1` when base survivability depends on rapid transformer convoy escort and substation restoration under threat.
+- Add `tool_suite_id=ts-custody-handshake-ledger-v1` + `protocol_stack_id=ps-custody-handshake-ledger-stack-v1` when base defense decisions include detainee transfer, custody integrity, or legal notification sequencing.
+- Add `packet_id=DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001` and `packet_id=DPL-CUSTODY-HANDSHAKE-LEDGER-001` for branches that change force protection posture, critical infrastructure restoration timing, or detention-transfer controls.
+
+## Domain Toolchain Override (2026-03-11, Civil Alert Integrity and Hazmat Corridor Addendum)
+
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when force protection depends on trusted public warning dissemination under disinformation pressure.
+- Add `tool_suite_id=ts-battlefield-hazmat-control-v1` + `protocol_stack_id=ps-battlefield-hazmat-control-stack-v1` when base defense branches must protect movement corridors during hazardous-material release.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-BATTLEFIELD-HAZMAT-CONTROL-001` for branches that alter sheltering, route control, or warning authorities.
+
+## Domain Toolchain Override (2026-03-11, Cable-Cut Continuity and Civil-Air Emergency Addendum)
+
+- Add `tool_suite_id=ts-subsea-cable-cut-mission-reroute-v1` + `protocol_stack_id=ps-subsea-cable-cut-mission-reroute-stack-v1` when defended installations depend on subsea-connected mission services and cable-cut sabotage impacts base protection posture.
+- Add `tool_suite_id=ts-drone-swarm-civil-air-corridor-grounding-v1` + `protocol_stack_id=ps-drone-swarm-civil-air-corridor-grounding-stack-v1` when force protection requires emergency grounding/rerouting of mixed civil-military air corridors under swarm attack.
+- Add `packet_id=DPL-SUBSEA-CABLE-CUT-MISSION-REROUTE-001` and `packet_id=DPL-DRONE-SWARM-CIVIL-AIR-CORRIDOR-GROUNDING-001` for branches that alter base readiness, air movement controls, or public safety posture.
+
+## Domain Toolchain Override (2026-03-11, Timing Integrity and Multilingual Alert Assurance Addendum)
+
+- Add `tool_suite_id=ts-quantum-timing-holdover-fires-iamd-v1` + `protocol_stack_id=ps-quantum-timing-holdover-fires-iamd-stack-v1` when base defense release authority depends on denied-PNT timing integrity across fires and air defense.
+- Add `tool_suite_id=ts-multilingual-emergency-broadcast-auth-v1` + `protocol_stack_id=ps-multilingual-emergency-broadcast-auth-stack-v1` when force protection depends on trusted multilingual warning dissemination under spoofing pressure.
+- Add `packet_id=DPL-QUANTUM-TIMING-HOLDOVER-FIRES-IAMD-001` and `packet_id=DPL-MULTILINGUAL-EMERGENCY-BROADCAST-AUTH-001` for branches that alter release timing, shelter directives, or public-alert posture.
+
+## Domain Toolchain Override (2026-03-11, Wildfire Sortie Continuity and Fuel Safety Expansion)
+
+- Add `tool_suite_id=ts-homeland-wildfire-smoke-sortie-continuity-v1` + `protocol_stack_id=ps-homeland-wildfire-smoke-sortie-continuity-stack-v1` when base-defense recommendations depend on wildfire smoke constraints, runway viability, and civil-airspace conflict resolution.
+- Add `tool_suite_id=ts-theater-bulk-fuel-contamination-remediation-v1` + `protocol_stack_id=ps-theater-bulk-fuel-contamination-remediation-stack-v1` when force protection decisions depend on fuel contamination detection, remediation sequencing, and release-authority integrity.
+- Add `packet_id=DPL-WILDFIRE-SMOKE-SORTIE-CONTINUITY-001` and `packet_id=DPL-BULK-FUEL-CONTAMINATION-REMEDIATION-001` for branches that alter base readiness posture, sortie generation tempo, or protected movement priorities.
+
+## Domain Toolchain Override (2026-03-11, Precision Airdrop Safety and Chokepoint Recovery)
+
+- Add `tool_suite_id=ts-denied-gps-approach-airdrop-certification-v1` + `protocol_stack_id=ps-denied-gps-approach-airdrop-certification-stack-v1` when base-defense recommendations include denied-PNT precision approach or emergency airdrop sustainment operations.
+- Add `tool_suite_id=ts-maritime-chokepoint-salvage-insurance-v1` + `protocol_stack_id=ps-maritime-chokepoint-salvage-insurance-stack-v1` when base protection depends on maritime throughput restoration and insured sealift continuity.
+- Add `packet_id=DPL-DENIED-GPS-AIRDROP-CERT-001` and `packet_id=DPL-CHOKEPOINT-SALVAGE-INS-001` for branches that materially alter base sustainment rates, route security posture, or force-protection resupply confidence.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-autonomous-undersea-mine-countermeasure-swarm-governance-cell-v1` + `protocol_stack_id=ps-joint-autonomous-undersea-mine-countermeasure-swarm-governance-cell-stack-v1` for base-defense plans that depend on maritime access-lane clearance and autonomous safety gating.
+- Add packet bindings `packet_id=DPL-FORCE_PROTECTION_AND_BASE_DEFENSE-009` (primary) and `packet_id=DPL-FORCE_PROTECTION_AND_BASE_DEFENSE-010` (degraded) to maintain authority-gated transitions between warning, interdiction, and recovery branches.
+- Include `validation_owner`, `revalidation_utc`, and `ack_chain_status` for each branch decision prior to release.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XII Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-munitions-storage-fire-response-cell-v1` + `protocol_stack_id=ps-theater-autonomous-munitions-storage-fire-response-cell-stack-v1` when base-defense recommendations include depot fire/explosion contingencies and autonomous suppression governance.
+- Add `tool_suite_id=ts-expeditionary-cold-chain-biologics-denied-corridor-cell-v1` + `protocol_stack_id=ps-expeditionary-cold-chain-biologics-denied-corridor-cell-stack-v1` when force-protection posture depends on life-saving medical sustainment continuity through denied routes.
+- Add `packet_id=DPL-MUNITIONS-STORAGE-FIRE-RESPONSE-001` and `packet_id=DPL-COLD-CHAIN-BIOLOGICS-DENIED-CORRIDOR-001` for branches that materially alter sheltering, casualty-risk posture, or protected sustainment priority.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-theater-electronic-deception-decoy-emitter-governance-cell-v1` + `protocol_stack_id=ps-theater-electronic-deception-decoy-emitter-governance-cell-stack-v1` when base defense plans depend on controlled decoy-emitter campaigns and EW fratricide safeguards.
+- Add `tool_suite_id=ts-strategic-orbital-nuclear-detonation-effects-mitigation-cell-v1` + `protocol_stack_id=ps-strategic-orbital-nuclear-detonation-effects-mitigation-cell-stack-v1` when force-protection branches must account for high-altitude or orbital nuclear-effects continuity.
+- Add `packet_id=DPL-DECOY-EMITTER-GOV-001` and `packet_id=DPL-ORBITAL-NUCLEAR-EFFECTS-MIT-001` for branches that materially change detection risk, continuity posture, or commander release controls.
+
+## Force Protection Expansion Wave XIX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-grid-blackstart-defense-v1` + `protocol_stack_id=ps-grid-blackstart-defense-stack-v1` when base-defense risk posture depends on blackstart sequencing, backup-power endurance, or critical-node restoration.
+- Add `tool_suite_id=ts-battlefield-forensics-war-crimes-chain-v1` + `protocol_stack_id=ps-battlefield-forensics-war-crimes-chain-stack-v1` when force-protection actions require evidentiary integrity and legally defensible attribution.
+- Add `tool_suite_id=ts-auroral-comms-mitigation-v1` + `protocol_stack_id=ps-auroral-comms-mitigation-stack-v1` when high-latitude comm reliability drives guard-force command and emergency response continuity.
+- Add `packet_id=DPL-GRID-BLACKSTART-001`, `packet_id=DPL-BATTLEFIELD-FORENSICS-001`, and `packet_id=DPL-AURORAL-COMMS-001` for branches that alter protection conditions, escalation thresholds, or commander risk acceptance.
+
+## Force Protection Expansion Wave XX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-urban-subterranean-life-support-v1` + `protocol_stack_id=ps-urban-subterranean-life-support-stack-v1` when base-defense posture depends on subterranean access control, tunnel hazard management, and life-support survivability.
+- Add `tool_suite_id=ts-spectrum-deception-emitter-auth-v1` + `protocol_stack_id=ps-spectrum-deception-emitter-auth-stack-v1` when force-protection branches require trusted emitter identification and deception governance under EW pressure.
+- Add `tool_suite_id=ts-battlefield-weather-effects-window-v1` + `protocol_stack_id=ps-battlefield-weather-effects-window-stack-v1` when weather nowcasting materially affects guard-force movement, aerial surveillance windows, or emergency response continuity.
+- Add `packet_id=DPL-URBAN-SUBTERRANEAN-LIFESUPPORT-001`, `packet_id=DPL-SPECTRUM-DECEPTION-EMITTER-AUTH-001`, and `packet_id=DPL-BATTLEFIELD-WEATHER-EFFECTS-001` for branches that alter base-defense readiness conditions or escalation controls.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-austere-airfield-fod-drone-safety-v1 + protocol_stack_id=ps-austere-airfield-fod-drone-safety-stack-v1 when defended-installation sortie survivability depends on runway hazard and drone-incursion controls.
+- Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when base-defense branches require synchronized military-civil warning and shelter posture.
+- Add packet_id=DPL-AUSTERE-AIRFIELD-FOD-DRONE-SAFETY-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter base alert states, launch controls, or population-protection sequencing.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-fortification-print-farm-v1` + `protocol_stack_id=ps-theater-autonomous-fortification-print-farm-stack-v1` when base survivability depends on rapid autonomous fortification output.
+- Add `tool_suite_id=ts-homeland-defense-pharma-biologics-cold-chain-assurance-v1` + `protocol_stack_id=ps-homeland-defense-pharma-biologics-cold-chain-assurance-stack-v1` when casualty resilience depends on reliable biologics logistics.
+- Add `packet_id=DPL-THEATER-FORTIFICATION-PRINTFARM-001` and `packet_id=DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-001` for force-protection branches with medical sustainment coupling.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

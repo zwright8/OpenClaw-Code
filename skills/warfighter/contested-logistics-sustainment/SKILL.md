@@ -41,6 +41,12 @@ Use these tool categories as the default stack for this skill: movement and dist
 
 Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-logistics-distribution-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
+- Alternate: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-geo-maritime-stack-v1`.
+- Degraded: mission-essential sustainment board with manual reconciliation and scheduled command confirmations.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -187,3 +193,22 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-port-crane-cyber-physical-recovery-v1` + `protocol_stack_id=ps-port-crane-cyber-physical-recovery-stack-v1` when sustainment throughput depends on contested port crane restoration and OT safety controls.
 - Add `tool_suite_id=ts-civil-rail-evac-priority-merge-v1` + `protocol_stack_id=ps-civil-rail-evac-priority-merge-stack-v1` when military sustainment movement must be synchronized with life-safety rail evacuation demand.
 - Add `packet_id=DPL-PORT-CRANE-CYBER-PHYSICAL-RECOVERY-001` and `packet_id=DPL-CIVIL-RAIL-EVAC-PRIORITY-MERGE-001` for sustainment branches that alter port unloading cadence, rail throughput, or distribution sequencing.
+
+## Logistics Continuity Addendum (2026-03-12, Arctic Rescue, Munitions Safety, and Coalition Cascade Response)
+
+- Add `tool_suite_id=ts-arctic-sar-medical-auth-v1` + `protocol_stack_id=ps-arctic-sar-medical-auth-stack-v1` when sustainment plans include contested Arctic personnel recovery and hypothermia-driven casualty routing.
+- Add `tool_suite_id=ts-munitions-energetics-dispersal-v1` + `protocol_stack_id=ps-munitions-energetics-dispersal-stack-v1` when munitions safety compatibility and depot dispersal timing drive sustainment feasibility.
+- Add `tool_suite_id=ts-coalition-infra-cyber-kinetic-cascade-v1` + `protocol_stack_id=ps-coalition-infra-cyber-kinetic-cascade-stack-v1` when sustainment continuity depends on coalition infrastructure restoration after cyber-kinetic shocks.
+- Add `packet_id=DPL-ARCTIC-SAR-MEDAUTH-001`, `packet_id=DPL-MUNITIONS-ENERGETICS-DISPERSAL-001`, and `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001` for branches that materially change throughput confidence, life-support posture, or mission sustainment viability.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-fortification-print-farm-v1` + `protocol_stack_id=ps-theater-autonomous-fortification-print-farm-stack-v1` when contested sustainment must prioritize distributed fortification and engineer support output.
+- Add `tool_suite_id=ts-strategic-rare-gas-energetic-precursor-allocation-v1` + `protocol_stack_id=ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1` when sustainment feasibility depends on energetic precursor flow assurance.
+- Add `packet_id=DPL-THEATER-FORTIFICATION-PRINTFARM-001` and `packet_id=DPL-STRATEGIC-RAREGAS-ENERGETICS-002` for logistics branches that hinge on industrial throughput confidence.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

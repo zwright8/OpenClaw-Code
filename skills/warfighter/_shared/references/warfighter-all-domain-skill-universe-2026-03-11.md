@@ -65,20 +65,87 @@ This reference expands the warfighter skill roadmap across major military action
 - Extended shared tool/protocol references with Tool Suite Addendum VI and Protocol Stack Addendum VI to provide concrete external system defaults for these new domains.
 - Improved existing network-hardening, mission-network-failover, and space-launch deconfliction skills with explicit override bindings to new suite/stack pairs and packet references.
 
-## Run Update (2026-03-11T23:xx:xxZ)
+## Run Update (2026-03-11T18:xxZ)
 
-- Added a 12-skill expansion wave focused on seabed cable-cut attribution/repair guard, contested additive propellant QA, tactical PQC rollover under fire, denied-GNSS maritime pilotage/port entry, coalition casualty identity + family notification synchronization, homeland pharma cold-chain military support, strategic cislunar logistics chokepoint monitoring, expeditionary counter-drone flightline crew safety, multi-theater hostage proof-of-life authentication, AI-enabled fuel-theft/black-market interdiction, coalition fires sensor-to-shooter latency auditing, and Arctic over-ice GLOC resilience.
-- Extended shared references with Tool Suite Addendum XIV, Protocol Stack Addendum XIV, and Packet Addendum VIII to provide explicit external tool and protocol bindings for this wave.
-- Improved existing tactical zero-trust hardening, theater mission-network failover, airbase dispersal/reconstitution, and force-protection skills with Expansion Wave XV override bindings for faster authority-gated branch execution.
+- Added a ten-skill expansion wave spanning undersea comm restoration, tactical timing/PNT resilience, coalition medevac corridors in A2AD, strategic defensive magazine survivability, wildfire-smoke sortie continuity, fuel contamination remediation, satellite ground-station ransomware continuity, SOF maritime signature-informed infiltration, coalition cyber-EM OOB fusion, and human-machine breaching safety assurance.
+- Extended shared references with Tool Suite Addendum VII and Protocol Stack Addendum VII to provide explicit external tools plus message/transport profiles for each new domain.
+- Improved existing network hardening, mission network failover, force protection, and space launch deconfliction skills with new Addendum VII override bindings for continuity and cross-domain validation.
 
-## Run Update (2026-03-12T01:xxZ)
+## Run Update (2026-03-11T19:xxZ)
 
-- Added a 12-skill expansion wave focused on NC3 spectrum deception/restoration, hypersonic warning fusion, Arctic airdrop corridors, contested waterway bridge denial/repair, expeditionary detainee evidence integrity, homeland rail mobility cyber defense, directed-energy blue-force exposure governance, coalition disaster-relief airfield digital twin recovery, strategic microelectronics allocation/sabotage monitoring, offshore prepositioning survivability/reload, autonomous wildland base defense, and space-weather mission assurance.
-- Extended shared references with Tool Suite Addendum XVII, Protocol Stack Addendum XVII, and Packet Addendum IX for explicit external tool and protocol bindings.
-- Improved commander-facing mission-risk, zero-trust hardening, mission-network-failover, and offensive-counter-air skills with Wave XVIII override suite/stack/packet bindings.
+- Added a 12-skill expansion wave focused on strategic NC3 relocation and EMCON continuity, theater electromagnetic battle-damage repair prioritization, coalition autonomous-border liability governance, expeditionary rare blood/plasma assurance, homeland dam-levee defense support prioritization, cislunar sensor custody and anomaly attribution, disconnected munitions lot recall governance, urban underground water contamination response, coalition ceasefire-violation evidence synchronization, AI-enabled adversary mobilization indications, denied-GPS precision approach/airdrop certification, and maritime chokepoint salvage insurance continuity.
+- Extended shared references with Tool Suite Addendum VIII and Protocol Stack Addendum VIII to provide concrete external tools and interoperable transport/message profiles for this wave and adjacent legacy skills.
+- Improved existing network hardening, network failover, space launch deconfliction, and base-defense skills with Addendum VIII override bindings and mission packet identifiers for faster branch execution in contested operations.
 
-## Run Update (2026-03-12T15:xxZ)
+## Run Update (2026-03-11T18:20:00Z)
 
-- Added an 8-skill expansion wave focused on contested Arctic multi-domain recovery, autonomous CBRN decon-corridor fusion, hypersonic raid-break dispersal, grid-denied expeditionary manufacturing/repair, coalition quantum-resistant comms transition, expeditionary water sabotage response, biometric insider-risk identity denial, and space-weather GPS-denial continuity.
-- Extended shared references with Tool Suite Addendum XXIV, Protocol Stack Addendum XXIV, and Packet Addendum X to provide explicit external tool/protocol contracts for new skills and cross-domain updates.
-- Improved 10 existing high-consequence skills with Wave XXIV override bindings for mission-command assurance, resilient targeting/CDE governance, and maritime-homeland cyber-physical continuity branches.
+- Added a 12-skill expansion wave focused on hypersonic debris civil warning integration, denied EW mission-data reprogramming, Arctic convoy ice/drone deconfliction, trusted microelectronics packaging custody, expeditionary water-scarcity conflict preemption, port-rail hazmat sabotage cascade response, autonomous undersea MCM swarm governance, forward trauma AI triage safety/bias audits, coalition multi-jurisdiction cyber pursuit and warrant synchronization, JTAC deepfake voice-command denial, commercial-space SSA fusion/tasking, and strategic food-fertilizer shock military-support prioritization.
+- Extended shared references with Tool Suite Addendum IX and Protocol Stack Addendum IX to provide explicit external tool/protocol defaults for all new domains.
+- Improved existing mission-command, zero-trust hardening, force-protection, and launch deconfliction skills with Expansion Wave X override bindings for faster commander packet execution.
+
+## Run Update (2026-03-11T19:00:00Z)
+
+- Added a 12-skill expansion wave focused on Arctic subsea sensor reseed/deception continuity, air-defense emitter decoy logistics, coalition maritime quarantine evidence assurance, rare-earth processing cyber-physical recovery, expeditionary AMR outbreak containment, homeland telecom/911 priority restoration, space-based IR warning false-track adjudication, denied-terrain heavy-lift autonomy safety, coalition cross-border load-shed deconfliction, tactical mission-order watermark authenticity, high-altitude nuclear-effects continuity, and strategic battery thermal-runaway preemption.
+- Extended shared references with Tool Suite Addendum X and Protocol Stack Addendum X to provide explicit external tool/protocol defaults for all new skills.
+- Improved existing mission-command, theater network failover, joint targeting governance, and coalition civilian harm mitigation skills with Expansion Wave XI addendum bindings.
+
+## Run Update (2026-03-11T20:30:00Z)
+
+- Added a 10-skill expansion wave spanning strategic deterrence message integrity, coalition refugee biometric deconfliction, homeland lock/dam cyber-physical continuity, orbital servicing counter-tamper custody, tactical counter-disinformation signal assurance, autonomous munitions fire response, denied-corridor biologics cold-chain continuity, IAMD multi-node radar deception recovery, coalition cyber sanctions-evasion interdiction, and battlefield lithium battery safety/disposal.
+- Extended shared references with Tool Suite Addendum XI, Protocol Stack Addendum XI, and Packet Addendum V to provide explicit external tool and protocol bindings for all new skills.
+- Improved existing zero-trust hardening, mission network failover, space launch deconfliction, and base defense skills with Expansion Wave XII override bindings for faster authority-gated branch execution.
+
+## Run Update (2026-03-11T21:xx:xxZ)
+
+- Added a 12-skill expansion wave focused on adversary kill-web disruption assessment, autonomous decoy economy governance, coalition releasability waiver adjudication, strategic undersea barrier orchestration, distributed multilingual mission-brief assurance, resilient battlefield cloud federation admission control, military-civil autonomous evacuation arbitration, AI-generated order integrity and intent-deviation detection, denied-environment map rights/provenance governance, strategic reserve fuel additive interdiction, expeditionary high-latitude battery thermal survivability, and coalition fuel-energy-water nexus anomaly adjudication.
+- Extended shared references with Tool Suite Addendum XII, Protocol Stack Addendum XII, and Packet Addendum VI to provide explicit external tool and protocol bindings for all new skills.
+- Improved existing tactical zero-trust hardening, theater mission network failover, contested launch-window reconstitution, and airbase dispersal/reconstitution skills with Expansion Wave XIII addendum bindings for faster authority-gated branch execution.
+
+## Run Update (2026-03-11T22:xx:xxZ)
+
+- Added a 12-skill expansion wave focused on orbital nuclear-effects mitigation, contested biometric pay/personnel reconstitution, runway crater-repair autonomy governance, coalition fiber/backhaul restoration, desalination brine-signature suppression, autonomous casualty collection under fire safety, homeland food distribution cyber-physical stability, munitions precursor-diversion interdiction, denied-weather sensor reseeding, coalition rail-gauge transload survivability, electronic deception decoy-emitter governance, and AI-enabled prisoner-exchange fraud detection.
+- Extended shared references with Tool Suite Addendum XIII, Protocol Stack Addendum XIII, and Packet Addendum VII to provide explicit external tool and protocol bindings for all new skills.
+- Improved existing tactical zero-trust hardening, mission network failover, airbase dispersal/reconstitution, and force-protection skills with Expansion Wave XIV override bindings for faster authority-gated branch execution.
+
+## Run Update (2026-03-12T02:xx:xxZ)
+
+- Added a 12-skill expansion wave focused on strategic homeland port-fuel blackstart defense, joint military pay-ledger continuity under cyber disruption, coalition undersea cable-landing defense for data-center continuity, expeditionary laser-dazzle aircrew incident response, high-altitude balloon/pseudo-satellite airspace integration, quantum-sensing spoof governance, arctic fiber/microwave/troposcatter coalition failover, homeland base water-treatment chemical-attack recovery, strategic deepfake diplomatic-hotline authentication, contested additive feedstock authenticity/allocation, coalition dual-use military spaceport safety-priority arbitration, and autonomous ammo-barge dispersal survivability.
+- Extended shared references with Tool Suite Addendum XIV, Protocol Stack Addendum XIV, and Packet Addendum VIII to provide explicit external tool/protocol defaults and invocation packets for all new domains.
+- Improved existing mission-risk, tactical zero-trust hardening, and theater mission-network failover skills with Expansion Wave XV override bindings for continuity, trust, and command-approval integrity.
+
+
+## Run Update (2026-03-12T04:xx:xxZ)
+
+- Added a 12-skill expansion wave focused on strategic grid-transformer sabotage/restoration, cislunar logistics lane contestation, expeditionary hydrogen microgrid safety, coalition maritime insurance/sanctions underwriting continuity, municipal 911 PSAP cyber survivability, additive warhead-liner quality assurance, rapid runway lighting/approach-aid reconstitution, coalition battery recycling and critical-mineral recovery, strategic quantum key custody compromise response, gray-zone commercial fleet shadowing attribution, austere blood/plasma donor screening and cold-chain assurance, and homeland satellite-timing financial-clearing fallback continuity.
+- Extended shared references with Tool Suite Addendum XV, Protocol Stack Addendum XV, and Packet Addendum IX to provide concrete external tool/protocol defaults and invocation packets for all new domains.
+- Improved existing mission-risk, tactical zero-trust hardening, theater mission-network failover, and offensive counter-air planning skills with Expansion Wave XVI override bindings for trust, timing, and continuity control.
+
+## Run Update (2026-03-12T08:xx:xxZ)
+
+- Added a 10-skill expansion wave focused on space-control/counterspace mission governance, cyber mission assurance and hunt-forward synchronization, electromagnetic spectrum superiority control, long-range precision fires deconfliction, contested logistics and prepositioning continuity, Role 3 medical network and aeromedical evacuation balancing, strategic deterrence and NC3 resilience, information advantage and influence operations, personnel recovery for isolated operators, and military police detainee/site-security integrity.
+- Bound each new skill to explicit external tool categories and protocol families (including USMTF, Link 16, VMF, STIX/TAXII, HL7/FHIR, and NIEM/CJIS exchange profiles) with authority-gated output requirements.
+- Improved existing tactical zero-trust hardening, theater mission-network failover, and joint targeting/CDE governance skills with Expansion Wave XVII override bindings and packet IDs for faster cross-domain command decisions.
+
+## Run Update (2026-03-12T15:xx:xxZ)
+
+- Added a 10-skill expansion wave focused on strategic undersea data-fabric rupture reroute continuity, contested additive pharmaceutical countermeasure authenticity, coalition ballistic-missile civil warning and shelter synchronization, theater quantum-resistant mission-key rollover, expeditionary waterborne drone port security, homeland cyber-physical food cold-chain continuity, coalition austere airfield FOD/drone safety, battlefield acoustic deception countertargeting, denied-PNT artillery timing assurance, and reserve-component cannibalization governance.
+- Extended shared references with Tool Suite Addendum XXII, Protocol Stack Addendum XXII, and Packet Addendum XI to bind every new skill to concrete external tools, protocol families, and invocation packet IDs.
+- Improved existing warfighter skills by fixing malformed Expansion Wave XVIII override sections that previously contained escaped newline literals, restoring readable and executable override guidance.
+
+## Run Update (2026-03-12T17:xx:xxZ)
+
+- Added an 8-skill expansion wave focused on contested orbital servicing/refuel assurance, denied-terrain autonomous drone resupply navigation, coalition cable-landing data sovereignty governance, homeland pharma raw-material war-reserve synchronization, joint electromagnetic camouflage/decoy emissions control, expeditionary runway ice-fog autoland assurance, military-civil maritime evacuation port-surge arbitration, and strategic orbital nuclear-debris collision avoidance.
+- Extended shared references with Tool Suite Addendum XXIII, Protocol Stack Addendum XXIII, and Packet Addendum XII to bind each new skill to concrete external tool suites, protocol families, and packet IDs.
+- Improved ten existing warfighter skills with Expansion Wave XXIII override bindings to accelerate authority-gated branching when orbital logistics, sovereign data continuity, denied-terrain resupply, and low-visibility sortie conditions drive commander risk posture.
+
+## Run Update (2026-03-12T18:xx:xxZ)
+
+- Added an 8-skill expansion wave focused on joint cyber-electromagnetic mission reroute control, autonomous fortification print-farm governance, strategic rare-gas and energetic precursor allocation, deep-ocean SOSUS reconstitution/decoy discrimination, homeland pharmaceutical-biologics cold-chain assurance, coalition denied identity proofing with insider-risk expulsion, theater LLM OPSEC and prompt-injection defense, and multi-theater casualty-information/family-notification integrity.
+- Extended shared references with Tool Suite Addendum XXIV, Protocol Stack Addendum XXIV, and Packet Addendum XIII to bind each new skill to concrete external tools, protocol families, and executable packet IDs.
+- Improved ten existing warfighter skills with Expansion Wave XXIV override bindings for cyber-EM reroute trust, AI-security containment, strategic precursor sustainment, fortification surge control, medical continuity, and coalition identity assurance.
+
+## Run Update (2026-03-12T19:xx:xxZ)
+
+- Added an 8-skill expansion wave focused on cislunar logistics interdiction/reconstitution, underwater data-center cooling-grid defense, coalition rapid airfield denial reversal, homeland photonics/optics supply assurance, autonomous bridge/tunnel breach synchronization, expeditionary neurocognitive return-to-duty governance, drone-fiber relay hunt/neutralization, and coalition portable nuclear interdiction evidence integrity.
+- Extended shared references with Tool Suite Addendum XXV, Protocol Stack Addendum XXV, and Packet Addendum XIV to bind each new skill to concrete external tools, protocol families, and packet IDs.
+- Improved ten existing warfighter skills with Expansion Wave XXV override bindings for cislunar logistics continuity, underwater compute infrastructure defense, autonomous breach coordination, photonics supply assurance, and high-consequence interdiction governance.

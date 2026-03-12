@@ -68,6 +68,21 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+- Focus on standards governance and quality control; do not provide strike package construction, aimpoint optimization, or attack geometry instructions.
+- Require no-strike/restricted target reconciliation evidence before releasing any recommendation with projected effects.
+- If CDE inputs are stale, incomplete, or disputed, mark recommendations as `provisional`, downgrade to advisory-only, and require command/legal review.
+
+## RF/PNT Adversarial Integrity Checks
+
+- Require explicit RF emitter-identity confidence and blue-force conflict checks before validating target data pipelines.
+- Require a cross-domain GPS/PNT anomaly check when timing, track quality, or geolocation trust is degraded.
+- If RF identity confidence or PNT trust is below mission threshold, output only a blocked or advisory status with remediation owners and suspense.
+
+## Targeting Governance Authority Gate
+
+- Require command/legal verification tokens for all high-consequence recommendations: `authority_tier`, `legal_review_id`, `no_strike_sync_utc`, `cde_method_version`, and `approval_role`.
+- If target identity confidence, CDE method traceability, or no-strike synchronization is not current, output only a blocked status with remediation actions and suspense.
+- Never emit content that can be interpreted as target execution direction; keep outputs limited to governance assurance, quality control, and risk communication.
 
 ## Tool Protocol Playbooks
 
@@ -153,9 +168,34 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-12, Warfighter Expansion Wave XXIV)
+## Domain Toolchain Override (2026-03-11, Expansion Wave XI Addendum)
 
-- Add `tool_suite_id=ts-joint-mission-command-assurance-and-branch-synchronization-v1` + `protocol_stack_id=ps-joint-mission-command-assurance-and-branch-synchronization-stack-v1` when rapid branch synchronization and command-approval integrity are mission-limiting.
-- Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
-- Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
-- Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.
+- Prioritize `tool_suite_id=ts-theater-air-defense-emitter-decoy-logistics-cell-v1` + `protocol_stack_id=ps-theater-air-defense-emitter-decoy-logistics-cell-stack-v1` when targeting timelines require synchronized emitter/decoy repositioning and survivability tradeoffs.
+- Prioritize `tool_suite_id=ts-joint-space-based-ir-missile-warning-false-track-adjudication-cell-v1` + `protocol_stack_id=ps-joint-space-based-ir-missile-warning-false-track-adjudication-cell-stack-v1` when warning-track confidence may alter target validation or escalation thresholds.
+- Add `packet_id=DPL-JOINT_TARGETING_STANDARDS_AND_CDE_GOVERNANCE_CELL-005` and `packet_id=DPL-JOINT_TARGETING_STANDARDS_AND_CDE_GOVERNANCE_CELL-006` for high-consequence release recommendations.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVII Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-long-range-precision-fires-deconfliction-cell-v1` + `protocol_stack_id=ps-joint-long-range-precision-fires-deconfliction-cell-stack-v1` when release timelines require synchronized cross-domain timing, no-strike integrity, and escalation-safe strike sequencing.
+- Prioritize `tool_suite_id=ts-joint-electromagnetic-spectrum-superiority-cell-v1` + `protocol_stack_id=ps-joint-electromagnetic-spectrum-superiority-cell-stack-v1` when target confidence depends on jammer/deception adjudication and blue-force electromagnetic fratricide prevention.
+- Add `packet_id=DPL-LRPF-DECONFLICTION-001` and `packet_id=DPL-EMSO-SUPERIORITY-001` for high-consequence release recommendations that shift CDE confidence, strike timing, or authority-gate sequencing.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-deep-ocean-sosus-reconstitution-decoy-v1` + `protocol_stack_id=ps-joint-deep-ocean-sosus-reconstitution-decoy-stack-v1` when maritime targeting depends on decoy-discriminated undersea cues.
+- Add `tool_suite_id=ts-joint-cyber-em-spectrum-mission-reroute-v1` + `protocol_stack_id=ps-joint-cyber-em-spectrum-mission-reroute-stack-v1` when contested data-link conditions affect CDE confidence.
+- Add `packet_id=DPL-JOINT-DEEP-OCEAN-SOSUS-001` and `packet_id=DPL-JOINT-CYBER-EM-REROUTE-001` for targeting-approval branches that hinge on external cue validity.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

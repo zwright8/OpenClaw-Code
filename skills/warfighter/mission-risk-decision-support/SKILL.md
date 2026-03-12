@@ -41,6 +41,12 @@ Use these tool categories as the default stack for this skill: mission risk anal
 
 Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3 aligned.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-strategic-deterrence-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
+- Alternate: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
+- Degraded: command-approved risk ledger with authenticated voice confirmation and UTC acknowledgment logging.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -152,20 +158,100 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-10, Mission Thread and Civilian Harm Crosswalk Addendum)
+## Domain Packet Defaults
 
-- Add `tool_suite_id=ts-sce-mission-thread-assurance-v1` + `protocol_stack_id=ps-sce-mission-thread-assurance-stack-v1` when commander risk depends on coupled space-cyber-electromagnetic services.
-- Add `tool_suite_id=ts-civilian-harm-restoration-v1` + `protocol_stack_id=ps-civilian-harm-restoration-stack-v1` when mission recommendations affect protected populations or critical services restoration.
-- Add `packet_id=DPL-SCE-MISSION-THREAD-001` and `packet_id=DPL-CIVHARM-RESTORE-001` for risk branches that can alter force posture or escalation.
+- Default packet IDs: `DPL-TELECOM-PRIORITY-001`, `DPL-AUTON-MAP-POISON-001`, `DPL-FINRAIL-PAYROLL-001`.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.
 
-## Domain Toolchain Override (2026-03-10, Quantum Navigation and Strategic Sustainment Addendum)
+## Domain Toolchain Override (2026-03-08)
 
-- Add `tool_suite_id=ts-quantum-pnt-denial-mitigation-v1` + `protocol_stack_id=ps-quantum-pnt-denial-mitigation-stack-v1` when mission risk posture depends on timing integrity or denied-PNT confidence.
-- Add `tool_suite_id=ts-expeditionary-rare-battery-recycling-energy-recovery-v1` + `protocol_stack_id=ps-expeditionary-rare-battery-recycling-energy-recovery-stack-v1` when risk acceptance depends on tactical energy endurance.
-- Add `packet_id=DPL-QUANTUM-PNT-DENIAL-MITIGATION-001` and `packet_id=DPL-EXPEDITIONARY-RARE-BATTERY-RECYCLING-ENERGY-RECOVERY-001` when these dependencies materially change commander GO/NO-GO decisions.
+- Prioritize `tool_suite_id=ts-telecom-priority-routing-v1` + `protocol_stack_id=ps-telecom-priority-routing-stack-v1` when commander risk hinges on communications continuity.
+- Elevate `tool_suite_id=ts-autonomy-map-poisoning-detect-v1` + `protocol_stack_id=ps-autonomy-map-poisoning-stack-v1` when navigation trust is uncertain.
+- If financial rail disruption affects force readiness, add `tool_suite_id=ts-financial-rail-payroll-v1` + `protocol_stack_id=ps-financial-rail-payroll-stack-v1` as a required cross-check branch.
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+## Domain Toolchain Override (2026-03-08, Timing and Sustainment Integrity Addendum)
 
-- Add `tool_suite_id=ts-strategic-nc3-spectrum-deception-and-restoration-v1` + `protocol_stack_id=ps-strategic-nc3-spectrum-deception-and-restoration-stack-v1` when commander risk posture depends on trusted NC3 warning and command continuity.
-- Add `tool_suite_id=ts-space-weather-mission-assurance-solar-storm-branching-v1` + `protocol_stack_id=ps-space-weather-mission-assurance-solar-storm-branching-stack-v1` when risk acceptance is sensitive to SATCOM/PNT degradation from solar activity.
-- Add `packet_id=DPL-STRATEGIC-NC3-SPECTRUM-DECEPTION-RESTORATION-001` and `packet_id=DPL-SPACE-WEATHER-MISSION-ASSURANCE-SOLAR-STORM-BRANCHING-001` for branches that can alter theater force posture.
+- Add `tool_suite_id=ts-anti-jam-gps-epoch-recovery-v1` + `protocol_stack_id=ps-anti-jam-gps-epoch-stack-v1` when risk posture depends on synchronized timing in denied PNT conditions.
+- Add `tool_suite_id=ts-denied-fuel-bladder-integrity-v1` + `protocol_stack_id=ps-denied-fuel-bladder-integrity-stack-v1` when sustainment reliability is vulnerable to fuel contamination or sabotage.
+- Add `packet_id=DPL-LONG-RANGE-FIRES-LOT-001` for any recommendation that changes long-range fires allocation based on ammunition reliability assumptions.
+
+## Operational Execution Hardening
+
+- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
+- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
+
+## Domain Toolchain Override (2026-03-08, Signature and Data Integrity Addendum)
+
+- Add `tool_suite_id=ts-electronic-signature-survivability-v1` + `protocol_stack_id=ps-electronic-signature-survivability-stack-v1` when risk posture depends on adversary sensing pressure.
+- Add `tool_suite_id=ts-multi-cloud-mission-data-integrity-v1` + `protocol_stack_id=ps-multi-cloud-mission-data-integrity-stack-v1` when branch viability depends on cross-cloud data trust.
+- Add `packet_id=DPL-PRIORITY-OF-LIFE-ROUTING-001` when force protection and civil continuity tradeoffs affect commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-09, Solar Storm and Counterfeit Supply Addendum)
+
+- Add `tool_suite_id=ts-space-weather-solar-storm-mission-assurance-v1` + `protocol_stack_id=ps-space-weather-solar-storm-mission-assurance-stack-v1` when mission risk depends on timing, SATCOM, or grid fragility during geomagnetic disturbance.
+- Add `tool_suite_id=ts-homeland-microelectronics-counterfeit-quarantine-v1` + `protocol_stack_id=ps-homeland-microelectronics-counterfeit-quarantine-stack-v1` when recommendation confidence depends on trusted military microelectronics pedigree.
+- Add `packet_id=DPL-SPACE-WEATHER-SOLAR-STORM-MISSION-ASSURANCE-001` and `packet_id=DPL-HOMELAND-MICROELECTRONICS-COUNTERFEIT-QUARANTINE-001` for risk branches that change commander acceptance thresholds.
+
+## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+
+- Add `tool_suite_id=ts-nc3-resilience-and-order-integrity-v1` + `protocol_stack_id=ps-nc3-resilience-and-order-integrity-stack-v1` when mission risk depends on authenticated strategic command continuity.
+- Add `tool_suite_id=ts-denied-pnt-timing-holdover-v1` + `protocol_stack_id=ps-denied-pnt-timing-holdover-stack-v1` when risk posture depends on synchronized timing under GNSS denial.
+- Add `tool_suite_id=ts-precision-effects-weaponeering-ai-assurance-v1` + `protocol_stack_id=ps-precision-effects-weaponeering-ai-assurance-stack-v1` when risk recommendations rely on AI-assisted targeting effects.
+- Add `tool_suite_id=ts-hyperscale-cloud-failover-command-continuity-v1` + `protocol_stack_id=ps-hyperscale-cloud-failover-command-continuity-stack-v1` when command continuity relies on contested cloud infrastructure.
+- Add `packet_id=DPL-NC3-RESILIENCE-ORDER-INTEGRITY-001`, `packet_id=DPL-DENIED-PNT-TIMING-HOLDOVER-001`, and `packet_id=DPL-PRECISION-EFFECTS-WEAPONEERING-AI-ASSURANCE-001` for branches that can alter commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-10, Deepfake Orders, PNT Cross-Check, and AI Poisoning Addendum)
+
+- Add `tool_suite_id=ts-deepfake-orders-auth-countersign-v1` + `protocol_stack_id=ps-deepfake-orders-auth-countersign-stack-v1` when commander risk depends on trusted command-path authentication under synthetic media pressure.
+- Add `tool_suite_id=ts-quantum-navigation-pnt-cross-check-v1` + `protocol_stack_id=ps-quantum-navigation-pnt-cross-check-stack-v1` when mission risk thresholds depend on navigation and timing confidence under spoofing or jamming.
+- Add `tool_suite_id=ts-adversarial-ai-model-poisoning-detection-v1` + `protocol_stack_id=ps-adversarial-ai-model-poisoning-detection-stack-v1` when risk decisions rely on mission AI outputs with uncertain provenance.
+- Add `packet_id=DPL-DEEPFAKE-ORDERS-AUTH-COUNTERSIGN-001`, `packet_id=DPL-QUANTUM-NAV-PNT-CROSS-CHECK-001`, and `packet_id=DPL-ADVERSARIAL-AI-MODEL-POISONING-DETECTION-001` for branches that can materially alter commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XV Addendum)
+
+- Add tool_suite_id=ts-strategic-homeland-port-fuel-terminal-cyber-physical-blackstart-cell-v1 + protocol_stack_id=ps-strategic-homeland-port-fuel-terminal-cyber-physical-blackstart-cell-stack-v1 when risk acceptance depends on fuel infrastructure restoration and cyber-safe blackstart sequencing.
+- Add tool_suite_id=ts-strategic-deepfake-diplomatic-hotline-authentication-cell-v1 + protocol_stack_id=ps-strategic-deepfake-diplomatic-hotline-authentication-cell-stack-v1 when strategic decision confidence depends on authenticated crisis communication pathways.
+- Add packet_id=DPL-HOMELAND-PORT-FUEL-BLACKSTART-001 and packet_id=DPL-DEEPFAKE-HOTLINE-AUTH-001 for branches that materially alter commander risk posture, escalation pathways, or continuity assumptions.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
+
+- Add tool_suite_id=ts-strategic-grid-transformer-supply-sabotage-and-restoration-cell-v1 + protocol_stack_id=ps-strategic-grid-transformer-supply-sabotage-and-restoration-cell-stack-v1 when mission risk depends on power-grid transformer survivability, restoration timing, and sabotage confidence.
+- Add tool_suite_id=ts-homeland-defense-satellite-timing-financial-clearing-fallback-cell-v1 + protocol_stack_id=ps-homeland-defense-satellite-timing-financial-clearing-fallback-cell-stack-v1 when commander risk acceptance depends on timing trust and financial-clearing continuity.
+- Add packet_id=DPL-GRID-TRANSFORMER-RESTORE-001 and packet_id=DPL-SAT-TIMING-FINANCIAL-CLEARING-001 for branches that alter sustainment confidence, escalation posture, or force-readiness assumptions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XIX Addendum)
+
+- Add `tool_suite_id=ts-iamd-depletion-forecast-v1` + `protocol_stack_id=ps-iamd-depletion-forecast-stack-v1` when mission risk depends on interceptor endurance and defended-asset reprioritization under sustained salvos.
+- Add `tool_suite_id=ts-contested-personnel-recovery-v1` + `protocol_stack_id=ps-contested-personnel-recovery-stack-v1` when commander risk posture depends on isolated personnel survival, authentication confidence, or contested recovery feasibility.
+- Add `tool_suite_id=ts-jadc2-datalink-bridging-priority-v1` + `protocol_stack_id=ps-jadc2-datalink-bridging-priority-stack-v1` when risk acceptance depends on cross-link translation fidelity and message-priority acknowledgment integrity.
+- Add `packet_id=DPL-IAMD-DEPLETION-001`, `packet_id=DPL-CONTESTED-PR-001`, and `packet_id=DPL-JADC2-BRIDGE-001` when these dependencies materially change commander GO/NO-GO decisions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XX Addendum)
+
+- Add `tool_suite_id=ts-nuclear-command-auth-containment-v1` + `protocol_stack_id=ps-nuclear-command-auth-containment-stack-v1` when mission risk depends on trusted strategic order-path authentication or high-consequence incident containment.
+- Add `tool_suite_id=ts-strategic-mobility-chokepoint-optimizer-v1` + `protocol_stack_id=ps-strategic-mobility-chokepoint-optimizer-stack-v1` when commander risk acceptance depends on rail-air-sealift throughput resilience.
+- Add `tool_suite_id=ts-auton-target-human-override-assurance-v1` + `protocol_stack_id=ps-auton-target-human-override-assurance-stack-v1` when recommendations depend on autonomous targeting confidence and deterministic human override controls.
+- Add `packet_id=DPL-NUCLEAR-AUTH-CONTAINMENT-001`, `packet_id=DPL-STRAT-MOBILITY-CHOKEPOINT-001`, and `packet_id=DPL-AUTON-TARGET-HUMAN-OVERRIDE-001` for branches that materially change GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-theater-llm-opsec-prompt-injection-defense-v1` + `protocol_stack_id=ps-theater-llm-opsec-prompt-injection-defense-stack-v1` when commander risk acceptance depends on trusted mission-AI outputs and prompt-injection containment.
+- Add `tool_suite_id=ts-strategic-rare-gas-energetic-precursor-allocation-v1` + `protocol_stack_id=ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1` when recommendation confidence depends on precursor sustainment availability.
+- Add `packet_id=DPL-THEATER-LLM-OPSEC-INJECTION-001` and `packet_id=DPL-STRATEGIC-RAREGAS-ENERGETICS-001` for branches that materially alter GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
