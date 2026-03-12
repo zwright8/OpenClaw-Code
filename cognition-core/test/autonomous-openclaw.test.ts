@@ -774,6 +774,128 @@ test('buildAutonomousBatchPlan supports moss_anytime policy for minimax cold-sta
     assert.deepEqual(plan.selection.skillIds, [72]);
 });
 
+test('buildAutonomousBatchPlan supports sliding-window moss_anytime drift-aware ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 73, code: 'SK-00073', title: 'Skill 73' },
+            { id: 74, code: 'SK-00074', title: 'Skill 74' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '73': {
+                    attempts: 24,
+                    successes: 18,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                },
+                '74': {
+                    attempts: 24,
+                    successes: 11,
+                    failures: 13,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'sw_moss_anytime',
+            mossAlpha: 1.2,
+            slidingWindowSize: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [74]);
+    assert.equal(plan.selection.policy.skills, 'sw_moss_anytime');
+});
+
+test('buildAutonomousBatchPlan supports discounted moss_anytime recency adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 75, code: 'SK-00075', title: 'Skill 75' },
+            { id: 76, code: 'SK-00076', title: 'Skill 76' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 27,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '75': {
+                    attempts: 24,
+                    successes: 17,
+                    failures: 7,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' }
+                    ]
+                },
+                '76': {
+                    attempts: 24,
+                    successes: 10,
+                    failures: 14,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 28,
+        selectionPolicyConfig: {
+            mode: 'd_moss_anytime',
+            mossAlpha: 1.2,
+            discountFactor: 0.7
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [76]);
+    assert.equal(plan.selection.policy.skills, 'd_moss_anytime');
+});
+
 test('buildAutonomousBatchPlan supports change-detection UCB for abrupt drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

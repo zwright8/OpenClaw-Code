@@ -252,6 +252,8 @@ npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3
 npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
 npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
 npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2
+npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2
+npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
 ```
 Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted UCB-family, change-detection (`cd_ucb`/`cusum_ucb`), and EXP3-IX variants so partial outcomes are learned as partial credit instead of full wins.
 

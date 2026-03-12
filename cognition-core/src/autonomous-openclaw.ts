@@ -124,7 +124,9 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'exp3_ix',
     'sw_exp3_ix',
     'd_exp3_ix',
-    'moss_anytime'
+    'moss_anytime',
+    'sw_moss_anytime',
+    'd_moss_anytime'
 ]);
 const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_MODES);
 const THOMPSON_POLICY_MODES = new Set([
@@ -156,7 +158,8 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
-    'sw_exp3_ix'
+    'sw_exp3_ix',
+    'sw_moss_anytime'
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
@@ -167,7 +170,8 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_bayes_ucb',
     'd_exp3_ix',
     'd_linucb',
-    'd_lints'
+    'd_lints',
+    'd_moss_anytime'
 ]);
 const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
     'lints',
@@ -1870,7 +1874,11 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
-        } else if (scoringPolicy.mode === 'moss_anytime') {
+        } else if (
+            scoringPolicy.mode === 'moss_anytime'
+            || scoringPolicy.mode === 'sw_moss_anytime'
+            || scoringPolicy.mode === 'd_moss_anytime'
+        ) {
             score = computeMossAnytimeScore(
                 stat,
                 totalAttempts,

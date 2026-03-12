@@ -47,6 +47,8 @@
 - `npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with sliding-window EXP3-IX adaptation emphasizing recent adversarial outcomes.
 - `npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with discounted EXP3-IX adaptation to prioritize recent non-stationary reward shifts.
 - `npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2` - run autonomous loop with anytime-MOSS minimax exploration for hard cold-start allocation.
+- `npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2` - run autonomous loop with sliding-window anytime-MOSS adaptation focused on recent outcomes under drift.
+- `npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2` - run autonomous loop with discounted anytime-MOSS adaptation to emphasize recency in non-stationary conditions.
 - `npm run analyze` - generate cognition analysis report.
 - `tsx scripts/analyze-history.ts --days 7 --json reports/cognition-report.json --markdown reports/cognition-report.md` - produce historical analysis report outputs.
 - `npm run plan:tasks` - emit remediation task requests.
