@@ -51,6 +51,12 @@ const DEFAULT_THOMPSON_EXPLORATION = 0.2;
 const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
 const DEFAULT_THOMPSON_PRIOR_BETA = 1;
 const MAX_THOMPSON_PRIOR = 100;
+const DEFAULT_HYBRID_TS_AGGREGATION = 'mean';
+const HYBRID_TS_AGGREGATION_MODES = new Set([
+    'min',
+    'mean',
+    'max'
+]);
 const DEFAULT_SLIDING_WINDOW_SIZE = 12;
 const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
@@ -109,6 +115,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
+    'fdsw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'd_ucb',
@@ -134,6 +141,7 @@ const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_M
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
     'sw_epsilon_ts',
+    'fdsw_epsilon_ts',
     'd_epsilon_ts'
 ]);
 const KL_UCB_POLICY_MODES = new Set([
@@ -191,6 +199,9 @@ const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
     'lints',
     'sw_lints',
     'd_lints'
+]);
+const HYBRID_THOMPSON_POLICY_MODES = new Set([
+    'fdsw_epsilon_ts'
 ]);
 const CORRAL_EXP3_BASE_POLICIES = [
     'ucb',
@@ -376,6 +387,14 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             Number.EPSILON,
             MAX_THOMPSON_PRIOR
         ),
+        hybridTsAggregation: (() => {
+            const candidate = typeof value.hybridTsAggregation === 'string'
+                ? value.hybridTsAggregation.trim().toLowerCase()
+                : DEFAULT_HYBRID_TS_AGGREGATION;
+            return HYBRID_TS_AGGREGATION_MODES.has(candidate)
+                ? candidate
+                : DEFAULT_HYBRID_TS_AGGREGATION;
+        })(),
         slidingWindowSize: clamp(
             Number.isFinite(Number(value.slidingWindowSize))
                 ? Number(value.slidingWindowSize)
@@ -1072,6 +1091,43 @@ function computeDiscountedStats(stat, selectionPolicyConfig) {
     return summarizeOutcomeStats(outcomes, normalized, selectionPolicyConfig);
 }
 
+function aggregatePair(left, right, mode = DEFAULT_HYBRID_TS_AGGREGATION) {
+    if (mode === 'min') return Math.min(left, right);
+    if (mode === 'max') return Math.max(left, right);
+    return (left + right) / 2;
+}
+
+function computeHybridThompsonStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const windowed = computeWindowedStats(normalized, {
+        ...policy,
+        mode: 'sw_epsilon_ts'
+    });
+    const discounted = computeDiscountedStats(normalized, {
+        ...policy,
+        mode: 'd_epsilon_ts'
+    });
+    const aggregationMode = policy.hybridTsAggregation;
+    const windowMean = windowed.attempts > 0 ? windowed.successes / windowed.attempts : 0.5;
+    const discountedMean = discounted.attempts > 0 ? discounted.successes / discounted.attempts : 0.5;
+    const attempts = Math.max(
+        0,
+        aggregatePair(windowed.attempts, discounted.attempts, aggregationMode)
+    );
+    const successRate = aggregatePair(windowMean, discountedMean, aggregationMode);
+    const latestOutcome = normalized.recentOutcomes[normalized.recentOutcomes.length - 1] || null;
+
+    return {
+        attempts,
+        successes: successRate * attempts,
+        failures: Math.max(0, attempts - (successRate * attempts)),
+        lastStatus: latestOutcome?.status || normalized.lastStatus,
+        lastWave: latestOutcome?.wave > 0 ? latestOutcome.wave : normalized.lastWave,
+        consecutiveFailures: Math.max(windowed.consecutiveFailures, discounted.consecutiveFailures)
+    };
+}
+
 function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const values = Array.isArray(outcomes)
@@ -1186,6 +1242,18 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             lastStatus: discounted.lastStatus,
             lastWave: discounted.lastWave,
             consecutiveFailures: discounted.consecutiveFailures
+        };
+    }
+    if (HYBRID_THOMPSON_POLICY_MODES.has(policy.mode)) {
+        const hybrid = computeHybridThompsonStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: hybrid.attempts,
+            successes: hybrid.successes,
+            failures: hybrid.failures,
+            lastStatus: hybrid.lastStatus,
+            lastWave: hybrid.lastWave,
+            consecutiveFailures: hybrid.consecutiveFailures
         };
     }
     if (PAGE_HINKLEY_POLICY_MODES.has(policy.mode)) {

@@ -28,6 +28,7 @@
 - `npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5` - run autonomous loop with discounted linear Thompson sampling to adapt under drift.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
 - `npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25` - run autonomous loop with sliding-window epsilon-Thompson exploration controls.
+- `npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean --thompson-exploration 0.25` - run autonomous loop with hybrid discounted+sliding-window epsilon-Thompson adaptation for mixed drift regimes.
 - `npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97` - run autonomous loop with discounted UCB adaptation to emphasize recent outcomes under drift.
 - `npm run autonomous:run -- --selection-policy d_ucb_v --discount-factor 0.97 --ucb-v-exploration 1` - run autonomous loop with discounted variance-aware UCB-V adaptation for non-stationary outcomes.
 - `npm run autonomous:run -- --selection-policy ucb_tuned` - run autonomous loop with variance-aware UCB-Tuned scoring for bounded outcomes.

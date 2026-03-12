@@ -40,6 +40,7 @@ Options:
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
+  --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_epsilon_ts: min|mean|max (default: mean)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
@@ -151,6 +152,7 @@ function parseArgs(argv) {
             thompsonExploration: 0.2,
             thompsonPriorAlpha: 1,
             thompsonPriorBeta: 1,
+            hybridTsAggregation: 'mean',
             discountFactor: 0.97,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
@@ -319,6 +321,15 @@ function parseArgs(argv) {
         }
         if (token === '--thompson-prior-beta') {
             options.selectionPolicyConfig.thompsonPriorBeta = parsePositiveFloat(value, '--thompson-prior-beta');
+            i++;
+            continue;
+        }
+        if (token === '--hybrid-ts-aggregation') {
+            const mode = String(value || '').trim().toLowerCase();
+            if (!['min', 'mean', 'max'].includes(mode)) {
+                throw new Error('--hybrid-ts-aggregation must be one of: min, mean, max');
+            }
+            options.selectionPolicyConfig.hybridTsAggregation = mode;
             i++;
             continue;
         }
