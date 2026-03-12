@@ -71,6 +71,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `8889db4d1b..956c8340fd`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `3893284622..c520cf64c9`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `fa307c8e93..8889db4d1b`: added README command-map workflow for hybrid discounted+sliding-window epsilon-Thompson autonomous run flags (`--selection-policy fdsw_epsilon_ts`, `--window-size`, `--discount-factor`, `--hybrid-ts-aggregation`, `--thompson-exploration`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `282ce3cb9a..3893284622`: added README command-map workflows for sliding-window change-detection autonomous run flags (`--selection-policy sw_cd_ucb|sw_cusum_ucb`, `--window-size`, `--cd-min-samples`, `--cd-threshold`, `--cd-delta`, `--cusum-threshold`, `--cusum-baseline-weight`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
