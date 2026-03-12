@@ -1961,6 +1961,163 @@ test('buildAutonomousBatchPlan supports d_corral_exp3_plus discounted expert cor
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'cusum_ucb');
 });
 
+test('buildAutonomousBatchPlan supports bge policy for Boltzmann-Gumbel exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 861, code: 'SK-00861', title: 'Skill 861' },
+            { id: 862, code: 'SK-00862', title: 'Skill 862' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 30,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '861': { attempts: 120, successes: 98, failures: 22, consecutiveFailures: 0, lastWave: 29, lastStatus: 'completed' },
+                '862': { attempts: 120, successes: 54, failures: 66, consecutiveFailures: 0, lastWave: 29, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 31,
+        selectionPolicyConfig: {
+            mode: 'bge',
+            boltzmannGumbelC: 0.5
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [861]);
+    assert.equal(plan.selection.policy.skills, 'bge');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'bge');
+});
+
+test('buildAutonomousBatchPlan supports sw_bge for recency-weighted Boltzmann-Gumbel exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 863, code: 'SK-00863', title: 'Skill 863' },
+            { id: 864, code: 'SK-00864', title: 'Skill 864' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 36,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '863': {
+                    attempts: 16,
+                    successes: 12,
+                    failures: 4,
+                    lastWave: 35,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 33, status: 'failed' },
+                        { wave: 34, status: 'failed' },
+                        { wave: 35, status: 'failed' },
+                        { wave: 36, status: 'failed' }
+                    ]
+                },
+                '864': {
+                    attempts: 16,
+                    successes: 8,
+                    failures: 8,
+                    lastWave: 35,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 33, status: 'completed' },
+                        { wave: 34, status: 'completed' },
+                        { wave: 35, status: 'completed' },
+                        { wave: 36, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 37,
+        selectionPolicyConfig: {
+            mode: 'sw_bge',
+            boltzmannGumbelC: 0.5,
+            slidingWindowSize: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [864]);
+    assert.equal(plan.selection.policy.skills, 'sw_bge');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_bge');
+});
+
+test('buildAutonomousBatchPlan supports d_bge for discounted Boltzmann-Gumbel exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 865, code: 'SK-00865', title: 'Skill 865' },
+            { id: 866, code: 'SK-00866', title: 'Skill 866' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 43,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '865': {
+                    attempts: 8,
+                    successes: 6,
+                    failures: 2,
+                    lastWave: 42,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 36, status: 'completed' },
+                        { wave: 37, status: 'completed' },
+                        { wave: 38, status: 'completed' },
+                        { wave: 39, status: 'completed' },
+                        { wave: 40, status: 'failed' },
+                        { wave: 41, status: 'failed' },
+                        { wave: 42, status: 'failed' },
+                        { wave: 43, status: 'failed' }
+                    ]
+                },
+                '866': {
+                    attempts: 8,
+                    successes: 3,
+                    failures: 5,
+                    lastWave: 42,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 36, status: 'failed' },
+                        { wave: 37, status: 'failed' },
+                        { wave: 38, status: 'failed' },
+                        { wave: 39, status: 'failed' },
+                        { wave: 40, status: 'completed' },
+                        { wave: 41, status: 'completed' },
+                        { wave: 42, status: 'completed' },
+                        { wave: 43, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 44,
+        selectionPolicyConfig: {
+            mode: 'd_bge',
+            boltzmannGumbelC: 0.5,
+            discountFactor: 0.6
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [866]);
+    assert.equal(plan.selection.policy.skills, 'd_bge');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_bge');
+});
+
 test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

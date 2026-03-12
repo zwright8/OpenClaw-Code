@@ -106,6 +106,8 @@ const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
 const DEFAULT_UCB_V_EXPLORATION = 1;
 const MAX_UCB_V_EXPLORATION = 5;
+const DEFAULT_BOLTZMANN_GUMBEL_C = 0.5;
+const MAX_BOLTZMANN_GUMBEL_C = 5;
 const LINUCB_FEATURE_NAMES = [
     'bias',
     'successRate',
@@ -167,6 +169,9 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'rexp3_ix',
     'sw_exp3_ix',
     'd_exp3_ix',
+    'bge',
+    'sw_bge',
+    'd_bge',
     'moss_anytime',
     'sw_moss_anytime',
     'd_moss_anytime'
@@ -250,10 +255,16 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'sw_exp3_ix',
+    'sw_bge',
     'sw_moss_anytime'
 ]);
 const MULTI_WINDOW_UCB_POLICY_MODES = new Set([
     'mw_ucb'
+]);
+const BOLTZMANN_GUMBEL_POLICY_MODES = new Set([
+    'bge',
+    'sw_bge',
+    'd_bge'
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
@@ -265,6 +276,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_kl_ucb',
     'd_bayes_ucb',
     'd_exp3_ix',
+    'd_bge',
     'd_linucb',
     'd_lints',
     'd_moss_anytime'
@@ -651,6 +663,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_UCB_V_EXPLORATION,
             Number.EPSILON,
             MAX_UCB_V_EXPLORATION
+        ),
+        boltzmannGumbelC: clamp(
+            Number.isFinite(Number(value.boltzmannGumbelC))
+                ? Number(value.boltzmannGumbelC)
+                : DEFAULT_BOLTZMANN_GUMBEL_C,
+            Number.EPSILON,
+            MAX_BOLTZMANN_GUMBEL_C
         )
     };
 }
@@ -1902,6 +1921,11 @@ function sampleStandardNormal(rng) {
     return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
 }
 
+function sampleStandardGumbel(rng) {
+    const u = clamp(rng(), Number.EPSILON, 1 - Number.EPSILON);
+    return -Math.log(-Math.log(u));
+}
+
 function sampleGamma(shape, rng) {
     if (!Number.isFinite(shape) || shape <= 0) return 0;
     if (shape < 1) {
@@ -2013,6 +2037,27 @@ function computeBayesianBootstrapThompsonScore(stat, currentWave, adaptiveScoreC
         + (policy.thompsonExploration * posteriorSample);
 
     return blendedScore
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
+function computeBoltzmannGumbelScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const attempts = Math.max(1, normalized.attempts);
+    const empiricalMean = clamp(normalized.successes / attempts, 0, 1);
+    const explorationScale = policy.boltzmannGumbelC / Math.sqrt(attempts);
+    const rng = createDeterministicRng(seedText);
+    const gumbel = sampleStandardGumbel(rng);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return empiricalMean
+        + (explorationScale * gumbel)
         - adjustments.failurePenalty
         + adjustments.recentOutcomeBonus
         + adjustments.staleBoost;
@@ -2339,6 +2384,14 @@ function selectCatalogSlice({
             );
         } else if (BAYESIAN_BOOTSTRAP_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeBayesianBootstrapThompsonScore(
+                stat,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy,
+                `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+            );
+        } else if (BOLTZMANN_GUMBEL_POLICY_MODES.has(scoringPolicy.mode)) {
+            score = computeBoltzmannGumbelScore(
                 stat,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,

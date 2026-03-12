@@ -52,6 +52,7 @@ Options:
   --exp3-restart-interval <n>  Epoch length for rexp3_ix periodic restarts (default: 12)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
+  --boltzmann-gumbel-c <n>     Exploration constant for bge* policies (>0 to 5, default: 0.5)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
   --multi-window-sizes <list>  Comma-separated window sizes for mw_ucb (default: 4,8,16,32)
   --cd-min-samples <n>         Min outcomes before change detection in cd_* and sw_cd_* modes (default: 8)
@@ -190,6 +191,7 @@ function parseArgs(argv) {
             exp3RestartInterval: 12,
             mossAlpha: 1,
             ucbVExploration: 1,
+            boltzmannGumbelC: 0.5,
             slidingWindowSize: 12,
             multiWindowSizes: [4, 8, 16, 32],
             changeDetectionMinSamples: 8,
@@ -402,6 +404,11 @@ function parseArgs(argv) {
         }
         if (token === '--ucb-v-exploration') {
             options.selectionPolicyConfig.ucbVExploration = parseFloatInRange(value, '--ucb-v-exploration', Number.EPSILON, 5);
+            i++;
+            continue;
+        }
+        if (token === '--boltzmann-gumbel-c') {
+            options.selectionPolicyConfig.boltzmannGumbelC = parseFloatInRange(value, '--boltzmann-gumbel-c', Number.EPSILON, 5);
             i++;
             continue;
         }
