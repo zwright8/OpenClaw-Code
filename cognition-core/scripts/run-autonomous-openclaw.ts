@@ -53,6 +53,7 @@ Options:
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
+  --multi-window-sizes <list>  Comma-separated window sizes for mw_ucb (default: 4,8,16,32)
   --cd-min-samples <n>         Min outcomes before change detection in cd_* and sw_cd_* modes (default: 8)
   --cd-threshold <n>           Drift threshold for cd_* and sw_cd_* Page-Hinkley detector (default: 1.5)
   --cd-delta <n>               Mean slack delta for cd_* and sw_cd_* detector (default: 0.02)
@@ -133,6 +134,18 @@ function parseChangeDetectionDirection(raw) {
     return value;
 }
 
+function parseMultiWindowSizes(raw) {
+    const tokens = String(raw || '')
+        .split(',')
+        .map((value) => value.trim())
+        .filter(Boolean);
+    if (tokens.length === 0) {
+        throw new Error('--multi-window-sizes must include at least one integer');
+    }
+    const values = tokens.map((value) => parsePositiveInt(value, '--multi-window-sizes'));
+    return [...new Set(values)];
+}
+
 function parseArgs(argv) {
     const defaultOutbox = path.resolve(process.cwd(), '../swarm-protocol/state/outbox');
     const options = {
@@ -178,6 +191,7 @@ function parseArgs(argv) {
             mossAlpha: 1,
             ucbVExploration: 1,
             slidingWindowSize: 12,
+            multiWindowSizes: [4, 8, 16, 32],
             changeDetectionMinSamples: 8,
             changeDetectionThreshold: 1.5,
             changeDetectionDelta: 0.02,
@@ -408,6 +422,11 @@ function parseArgs(argv) {
         }
         if (token === '--window-size') {
             options.selectionPolicyConfig.slidingWindowSize = parsePositiveInt(value, '--window-size');
+            i++;
+            continue;
+        }
+        if (token === '--multi-window-sizes') {
+            options.selectionPolicyConfig.multiWindowSizes = parseMultiWindowSizes(value);
             i++;
             continue;
         }

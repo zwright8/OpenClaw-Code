@@ -2318,6 +2318,65 @@ test('buildAutonomousBatchPlan supports sliding-window UCB to react to drift', (
     assert.deepEqual(plan.selection.skillIds, [52]);
 });
 
+test('buildAutonomousBatchPlan supports mw_ucb multi-window adaptation under mixed drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 521, code: 'SK-00521', title: 'Skill 521' },
+            { id: 522, code: 'SK-00522', title: 'Skill 522' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 23,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '521': {
+                    attempts: 20,
+                    successes: 18,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' }
+                    ]
+                },
+                '522': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 24,
+        selectionPolicyConfig: {
+            mode: 'mw_ucb',
+            multiWindowSizes: [2, 4, 8]
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [522]);
+    assert.equal(plan.selection.policy.skills, 'mw_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'mw_ucb');
+});
+
 test('buildAutonomousBatchPlan supports sliding-window KL-UCB for drift-aware ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

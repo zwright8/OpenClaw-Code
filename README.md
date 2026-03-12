@@ -244,6 +244,7 @@ npm run autonomous:run -- --selection-policy sw_cp_epsilon_ts --window-size 12 -
 npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97
 npm run autonomous:run -- --selection-policy d_ucb_v --discount-factor 0.97 --ucb-v-exploration 1
+npm run autonomous:run -- --selection-policy mw_ucb --multi-window-sizes 4,8,16,32
 npm run autonomous:run -- --selection-policy ucb_tuned
 npm run autonomous:run -- --selection-policy sw_ucb_tuned --window-size 12
 npm run autonomous:run -- --selection-policy d_ucb_tuned --discount-factor 0.97

@@ -63,6 +63,8 @@ const HYBRID_TS_AGGREGATION_MODES = new Set([
     'mean',
     'max'
 ]);
+const DEFAULT_MULTI_WINDOW_SIZES = Object.freeze([4, 8, 16, 32]);
+const MAX_MULTI_WINDOW_CANDIDATES = 10;
 const DEFAULT_SLIDING_WINDOW_SIZE = 12;
 const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
@@ -132,6 +134,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'kl_ucb',
     'bayes_ucb',
     'sw_ucb',
+    'mw_ucb',
     'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
@@ -239,6 +242,9 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_bayes_ucb',
     'sw_exp3_ix',
     'sw_moss_anytime'
+]);
+const MULTI_WINDOW_UCB_POLICY_MODES = new Set([
+    'mw_ucb'
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
@@ -421,6 +427,25 @@ function normalizeAdaptiveScoreConfig(rawConfig = null) {
     };
 }
 
+function normalizeMultiWindowSizes(rawValue) {
+    const values = Array.isArray(rawValue)
+        ? rawValue
+        : (typeof rawValue === 'string'
+            ? rawValue.split(',')
+            : DEFAULT_MULTI_WINDOW_SIZES);
+    const normalized = [...new Set(values
+        .map((value) => Number(value))
+        .filter((value) => Number.isInteger(value) && value > 0)
+        .map((value) => clamp(value, 2, MAX_SLIDING_WINDOW_SIZE))
+        .filter((value) => Number.isInteger(value) && value >= 2)
+    )]
+        .sort((left, right) => left - right)
+        .slice(0, MAX_MULTI_WINDOW_CANDIDATES);
+    return normalized.length > 0
+        ? normalized
+        : DEFAULT_MULTI_WINDOW_SIZES.slice();
+}
+
 function normalizeSelectionPolicyConfig(rawConfig = null) {
     const value = rawConfig && typeof rawConfig === 'object' ? rawConfig : {};
     const mode = typeof value.mode === 'string'
@@ -503,6 +528,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             1,
             MAX_SLIDING_WINDOW_SIZE
         ),
+        multiWindowSizes: normalizeMultiWindowSizes(value.multiWindowSizes),
         discountFactor: clamp(
             Number.isFinite(Number(value.discountFactor))
                 ? Number(value.discountFactor)
@@ -1749,6 +1775,28 @@ function computeUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, 
         + adjustments.staleBoost;
 }
 
+function computeMultiWindowUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    let bestScore = Number.NEGATIVE_INFINITY;
+    for (const windowSize of policy.multiWindowSizes) {
+        const score = computeUcbScore(
+            stat,
+            totalAttempts,
+            currentWave,
+            adaptiveScoreConfig,
+            {
+                ...policy,
+                mode: 'sw_ucb',
+                slidingWindowSize: windowSize
+            }
+        );
+        if (score > bestScore) {
+            bestScore = score;
+        }
+    }
+    return bestScore;
+}
+
 function computeUcbTunedScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
@@ -2274,6 +2322,14 @@ function selectCatalogSlice({
             || scoringPolicy.mode === 'd_ucb_v'
         ) {
             score = computeUcbVarianceScore(
+                stat,
+                totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy
+            );
+        } else if (MULTI_WINDOW_UCB_POLICY_MODES.has(scoringPolicy.mode)) {
+            score = computeMultiWindowUcbScore(
                 stat,
                 totalAttempts,
                 normalizedCurrentWave,
