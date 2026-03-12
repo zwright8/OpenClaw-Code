@@ -93,3 +93,9 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-homeland-defense-pharma-biologics-cold-chain-assurance-v1` + `protocol_stack_id=ps-homeland-defense-pharma-biologics-cold-chain-assurance-stack-v1` when Role 3 continuity depends on resilient biologics and pharmaceutical chain integrity.
 - Add `tool_suite_id=ts-joint-multi-theater-casualty-family-notification-integrity-v1` + `protocol_stack_id=ps-joint-multi-theater-casualty-family-notification-integrity-stack-v1` when casualty data integrity and family notification timing drive command decisions.
 - Add `packet_id=DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-001` and `packet_id=DPL-JOINT-CASUALTY-FAMILY-NOTIFY-001` for clinical sustainment and notification-integrity branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

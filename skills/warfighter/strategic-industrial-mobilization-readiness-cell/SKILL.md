@@ -183,3 +183,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-strategic-rare-gas-energetic-precursor-allocation-v1` + `protocol_stack_id=ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1` when mobilization tempo depends on constrained rare-gas and energetic precursor supply.
 - Add `tool_suite_id=ts-theater-autonomous-fortification-print-farm-v1` + `protocol_stack_id=ps-theater-autonomous-fortification-print-farm-stack-v1` when industrial output must pivot to distributed fortification demand.
 - Add `packet_id=DPL-STRATEGIC-RAREGAS-ENERGETICS-001` and `packet_id=DPL-THEATER-FORTIFICATION-PRINTFARM-002` for strategic allocation and production-shift branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

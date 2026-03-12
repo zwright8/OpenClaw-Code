@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Adversary Drone Fiber Backhaul Hunt and Neutralization Cell"
+  short_description: "Detect and disrupt drone-linked relay backhaul networks"

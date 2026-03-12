@@ -193,3 +193,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-joint-deep-ocean-sosus-reconstitution-decoy-v1` + `protocol_stack_id=ps-joint-deep-ocean-sosus-reconstitution-decoy-stack-v1` when maritime targeting depends on decoy-discriminated undersea cues.
 - Add `tool_suite_id=ts-joint-cyber-em-spectrum-mission-reroute-v1` + `protocol_stack_id=ps-joint-cyber-em-spectrum-mission-reroute-stack-v1` when contested data-link conditions affect CDE confidence.
 - Add `packet_id=DPL-JOINT-DEEP-OCEAN-SOSUS-001` and `packet_id=DPL-JOINT-CYBER-EM-REROUTE-001` for targeting-approval branches that hinge on external cue validity.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

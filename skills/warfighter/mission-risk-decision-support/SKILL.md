@@ -249,3 +249,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-theater-llm-opsec-prompt-injection-defense-v1` + `protocol_stack_id=ps-theater-llm-opsec-prompt-injection-defense-stack-v1` when commander risk acceptance depends on trusted mission-AI outputs and prompt-injection containment.
 - Add `tool_suite_id=ts-strategic-rare-gas-energetic-precursor-allocation-v1` + `protocol_stack_id=ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1` when recommendation confidence depends on precursor sustainment availability.
 - Add `packet_id=DPL-THEATER-LLM-OPSEC-INJECTION-001` and `packet_id=DPL-STRATEGIC-RAREGAS-ENERGETICS-001` for branches that materially alter GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

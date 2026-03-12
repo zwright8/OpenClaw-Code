@@ -251,3 +251,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-joint-cyber-em-spectrum-mission-reroute-v1` + `protocol_stack_id=ps-joint-cyber-em-spectrum-mission-reroute-stack-v1` when mission continuity depends on cross-layer reroute decisions spanning cyber and spectrum paths.
 - Add `tool_suite_id=ts-coalition-denied-identity-insider-expulsion-v1` + `protocol_stack_id=ps-coalition-denied-identity-insider-expulsion-stack-v1` when insider-risk or compromised credentials threaten failover channels.
 - Add `packet_id=DPL-JOINT-CYBER-EM-REROUTE-002` and `packet_id=DPL-COALITION-IDENTITY-INSIDER-001` for failover and trust-restoration execution packets.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

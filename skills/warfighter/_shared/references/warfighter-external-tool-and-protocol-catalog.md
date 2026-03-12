@@ -9513,3 +9513,87 @@ external_binding:
 ### `ps-joint-multi-theater-casualty-family-notification-integrity-stack-v1`
 - Protocols: `USMTF`, `NIEM`, `HL7/FHIR`, `API/JSON`.
 - Use for: casualty data reconciliation, family-notification workflow status, and authority-chain integrity checks.
+
+## Tool Suite Addendum XXV (2026-03-12, Warfighter Expansion Wave XXV for Cislunar Logistics Interdiction, Underwater Data-Center Grid Defense, Rapid Airfield Denial Reversal, Photonics Supply Assurance, Autonomous Breach Synchronization, Neurocognitive Readiness Governance, Drone-Fiber Relay Hunt, and Portable Nuclear Interdiction)
+
+### `ts-joint-cislunar-logistics-interdiction-reconstitution-v1`
+- Use for: cislunar logistics interdiction, custody assurance, and strategic reconstitution under contested maneuver timelines.
+- Primary tools: cislunar custody ledger, conjunction/conflict adjudicator, strategic maneuver release board.
+- Cross-check tools: independent SSA custody witness and alternate mission-support continuity monitor.
+- Typical products: custody confidence ladder, interdiction branch matrix, maneuver authority packet.
+
+### `ts-theater-underwater-datacenter-cooling-grid-defense-v1`
+- Use for: underwater data-center cooling grid defense and mission-network continuity under cyber-physical attack.
+- Primary tools: cooling-loop telemetry fusion board, cyber-physical anomaly detector, critical-load shed orchestrator.
+- Cross-check tools: independent grid-integrity witness and alternate facility resilience monitor.
+- Typical products: cooling defense matrix, mission-impact ladder, restoration authority packet.
+
+### `ts-coalition-rapid-airfield-denial-reversal-v1`
+- Use for: coalition rapid airfield seizure, denial reversal, and sortie restoration in contested environments.
+- Primary tools: runway denial assessment board, engineering clearance scheduler, coalition sortie regeneration planner.
+- Cross-check tools: independent runway status witness and alternate deconfliction timeline board.
+- Typical products: denial-reversal sequence, sortie regeneration ladder, coalition authority packet.
+
+### `ts-homeland-photonics-optics-supply-assurance-v1`
+- Use for: homeland photonics/optics supply assurance for sensing, targeting, and strategic mission continuity.
+- Primary tools: photonics bottleneck analytics, trusted supplier custody ledger, mission-allocation adjudicator.
+- Cross-check tools: independent production witness and alternate demand-stress monitor.
+- Typical products: supply posture matrix, allocation ladder, strategic continuity packet.
+
+### `ts-joint-autonomous-bridge-tunnel-breach-sync-v1`
+- Use for: autonomous breach synchronization and joint mobility restoration across denied bridge and tunnel chokepoints.
+- Primary tools: engineer route-recon board, autonomous breach scheduler, mobility restoration command planner.
+- Cross-check tools: independent structural risk witness and alternate maneuver corridor monitor.
+- Typical products: breach sequence matrix, mobility risk ladder, commander release packet.
+
+### `ts-expeditionary-neurocognitive-screening-rtd-v1`
+- Use for: expeditionary neurocognitive screening and return-to-duty governance balancing clinical safety and readiness.
+- Primary tools: neuro-screening workflow manager, patient regulation board, duty-status adjudication tracker.
+- Cross-check tools: independent clinical-integrity witness and alternate capacity stress monitor.
+- Typical products: screening throughput matrix, duty disposition ladder, medical authority packet.
+
+### `ts-joint-drone-fiber-backhaul-hunt-neutralization-v1`
+- Use for: detection and neutralization of adversary drone-linked fiber relay networks affecting mission C2.
+- Primary tools: counter-UAS analytics board, fiber relay anomaly mapper, cross-domain neutralization coordinator.
+- Cross-check tools: independent threat attribution witness and alternate route integrity monitor.
+- Typical products: threat hunt matrix, neutralization ladder, command decision packet.
+
+### `ts-coalition-portable-nuclear-interdiction-evidence-v1`
+- Use for: coalition portable nuclear detection/interdiction with high-confidence legal and forensic custody continuity.
+- Primary tools: radiological detection fusion board, interdiction command workflow engine, forensic custody ledger.
+- Cross-check tools: independent contamination witness and alternate legal-evidence audit board.
+- Typical products: interdiction sequence matrix, custody confidence ladder, escalation authority packet.
+
+## Protocol Stack Addendum XXV (2026-03-12, External Integration Profiles for Expansion Wave XXV)
+
+### `ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: custody-status exchange, maneuver conflict adjudication, and reconstitution authority acknowledgments.
+
+### `ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIMS/ICS`, `NIEM`, `API/JSON`.
+- Use for: cooling-grid telemetry, cyber incident containment, and mission-load restoration synchronization.
+
+### `ps-coalition-rapid-airfield-denial-reversal-stack-v1`
+- Protocols: `AIXM/FIXM`, `Link 16 J-series`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: runway status exchange, engineering clearance updates, and coalition sortie release acknowledgments.
+
+### `ps-homeland-photonics-optics-supply-assurance-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: supply posture updates, disruption indicators, and strategic allocation approval exchange.
+
+### `ps-joint-autonomous-bridge-tunnel-breach-sync-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `NIEM`, `API/JSON`.
+- Use for: breach sequencing updates, mobility-corridor status exchange, and authority-gated maneuver synchronization.
+
+### `ps-expeditionary-neurocognitive-screening-rtd-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: neuro-screening status exchange, care-routing decisions, and return-to-duty authority acknowledgments.
+
+### `ps-joint-drone-fiber-backhaul-hunt-neutralization-stack-v1`
+- Protocols: `STIX/TAXII`, `Link 16 J-series`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: drone/fiber threat telemetry, neutralization branch updates, and command release synchronization.
+
+### `ps-coalition-portable-nuclear-interdiction-evidence-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `CJIS`, `NIMS/ICS`, `API/JSON`.
+- Use for: radiological detection alerts, interdiction authority exchange, and evidence-chain acknowledgment integrity.

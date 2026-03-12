@@ -279,3 +279,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-theater-autonomous-fortification-print-farm-v1` + `protocol_stack_id=ps-theater-autonomous-fortification-print-farm-stack-v1` when base survivability depends on rapid autonomous fortification output.
 - Add `tool_suite_id=ts-homeland-defense-pharma-biologics-cold-chain-assurance-v1` + `protocol_stack_id=ps-homeland-defense-pharma-biologics-cold-chain-assurance-stack-v1` when casualty resilience depends on reliable biologics logistics.
 - Add `packet_id=DPL-THEATER-FORTIFICATION-PRINTFARM-001` and `packet_id=DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-001` for force-protection branches with medical sustainment coupling.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

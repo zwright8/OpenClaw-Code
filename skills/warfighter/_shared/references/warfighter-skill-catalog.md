@@ -1961,3 +1961,25 @@ Every skill output should include:
 - Coalition denied identity proofing and insider-risk expulsion + coalition data-link trust + cyber mission assurance/hunt-forward + legal handoff controls.
 - Theater LLM OPSEC and prompt-injection defense + mission command AI assurance + cyber hunt-forward + model-poisoning response controls.
 - Multi-theater casualty information and family-notification integrity + personnel accountability + reserve/family readiness synchronization + legal/ethical authority gates.
+
+## New Expansion Wave (2026-03-12, Wave XXV)
+
+- joint-cislunar-logistics-interdiction-and-reconstitution-cell
+- theater-underwater-data-center-cooling-grid-defense-cell
+- coalition-rapid-airfield-capture-and-runway-denial-reversal-cell
+- homeland-critical-photonics-and-optics-supply-assurance-cell
+- joint-autonomous-bridge-and-tunnel-denial-breach-synchronization-cell
+- expeditionary-neurocognitive-injury-screening-and-return-to-duty-cell
+- joint-adversary-drone-fiber-backhaul-hunt-and-neutralization-cell
+- coalition-portable-nuclear-detection-interdiction-and-evidence-chain-cell
+
+## Updated Pairings (2026-03-12, Wave XXV)
+
+- Cislunar logistics interdiction/reconstitution + strategic deterrence and NC3 resilience + contested launch continuity + mission-network branch authority control.
+- Underwater data-center cooling-grid defense + cyber mission assurance/hunt-forward + mission-network failover + critical infrastructure resilience.
+- Coalition rapid airfield denial reversal + airbase dispersal/reconstitution + counter-UAS airfield defense + coalition sortie regeneration.
+- Homeland photonics/optics supply assurance + strategic industrial mobilization readiness + targeting sensor continuity + strategic supply-shock mitigation.
+- Autonomous bridge/tunnel breach synchronization + denied-terrain heavy-lift autonomy safety + river-crossing under fire synchronization + force protection routing.
+- Expeditionary neurocognitive screening and return-to-duty + Role 3 medical network/aeromedical evacuation + force health surveillance + leadership risk decisions.
+- Drone-fiber backhaul hunt/neutralization + cyber-electromagnetic mission reroute + spectrum interference resolution + command-and-control continuity.
+- Coalition portable nuclear interdiction/evidence chain + nuclear command incident containment + CBRN consequence response + coalition legal handoff integrity.

@@ -101,3 +101,9 @@ Use these tool categories as the default stack for this skill: SIEM and EDR plat
 - Add `tool_suite_id=ts-theater-llm-opsec-prompt-injection-defense-v1` + `protocol_stack_id=ps-theater-llm-opsec-prompt-injection-defense-stack-v1` when hunt-forward operations include mission AI systems or agentic workflows.
 - Add `tool_suite_id=ts-coalition-denied-identity-insider-expulsion-v1` + `protocol_stack_id=ps-coalition-denied-identity-insider-expulsion-stack-v1` when active insider-risk containment must synchronize with coalition identity systems.
 - Add `packet_id=DPL-THEATER-LLM-OPSEC-INJECTION-002` and `packet_id=DPL-COALITION-IDENTITY-INSIDER-002` for operator-safe containment and expulsion branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
+- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
+- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.

@@ -1,0 +1,56 @@
+---
+name: joint-autonomous-bridge-and-tunnel-denial-breach-synchronization-cell
+description: Support U.S. warfighter planning for autonomous breach synchronization and mobility restoration across denied bridge and tunnel chokepoints.
+---
+
+# Joint Autonomous Bridge and Tunnel Denial Breach Synchronization Cell
+
+## Mission Scope
+
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in this domain.
+- Confirm engineering authorities, maneuver intent, civil infrastructure constraints, and commander decisions before recommendations.
+- Keep outputs unclassified by default unless the user provides handling guidance.
+
+## Workflow
+
+1. Build mission context with chokepoint status, denial mechanisms, and mobility-critical dependencies.
+2. Generate branch options with explicit tradeoffs in breach speed, force protection, sustainment load, and civil impact.
+3. Select toolchain profile (primary, alternate, degraded) and protocol/message paths.
+4. Map each external output to decision points with confidence and validation gates.
+5. Deliver commander-facing recommendations plus staff tasks, owners, and suspense.
+
+## Required Output Format
+
+1. Situation snapshot.
+2. Recommended branch and rationale.
+3. Alternatives and trigger conditions.
+4. Decision points and approval gates.
+5. Staff tasking with suspense.
+
+## Domain Tool Stack
+
+Use these tool categories by default: engineer route-recon systems, autonomous breach mission schedulers, and mobility restoration command boards.
+
+## Protocol Profile
+
+Preferred protocol families for this skill: USMTF, VMF, CoT, NIEM, API/JSON.
+
+## Domain Toolchain Defaults
+
+- Primary: select a mission-fit tool_suite_id from ../_shared/references/warfighter-external-tool-and-protocol-catalog.md.
+- Alternate: select a cross-check tool_suite_id with independent provenance.
+- Degraded: commander-approved manual breach synchronization board with UTC acknowledgment logging.
+
+## External Tools and Protocol Integration
+
+- Use ../_shared/references/warfighter-external-tool-and-protocol-catalog.md for concrete tool suites and protocol stacks.
+- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-JOINT-BRIDGE-TUNNEL-BREACH-SYNC-001 for critical recommendations.
+- Include tool_suite_id, protocol_stack_id, packet_id, data freshness (UTC), confidence, and fallback path for each high-impact branch.
+- If no packet matches, define a provisional packet with validation_owner and revalidation_utc.
+
+## Guardrails
+
+- Separate facts, assessed judgments, assumptions, and unknowns.
+- Flag legal/policy/ROE constraints and coalition interoperability limits early.
+- Downgrade to advisory-only when authority, provenance, or acknowledgment integrity is uncertain.
+- Do not fabricate sources, approvals, or operational authorities.
