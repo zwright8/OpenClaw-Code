@@ -208,3 +208,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-quantum-navigation-pnt-cross-check-v1` + `protocol_stack_id=ps-quantum-navigation-pnt-cross-check-stack-v1` when mission risk thresholds depend on navigation and timing confidence under spoofing or jamming.
 - Add `tool_suite_id=ts-adversarial-ai-model-poisoning-detection-v1` + `protocol_stack_id=ps-adversarial-ai-model-poisoning-detection-stack-v1` when risk decisions rely on mission AI outputs with uncertain provenance.
 - Add `packet_id=DPL-DEEPFAKE-ORDERS-AUTH-COUNTERSIGN-001`, `packet_id=DPL-QUANTUM-NAV-PNT-CROSS-CHECK-001`, and `packet_id=DPL-ADVERSARIAL-AI-MODEL-POISONING-DETECTION-001` for branches that can materially alter commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XV Addendum)
+
+- Add tool_suite_id=ts-strategic-homeland-port-fuel-terminal-cyber-physical-blackstart-cell-v1 + protocol_stack_id=ps-strategic-homeland-port-fuel-terminal-cyber-physical-blackstart-cell-stack-v1 when risk acceptance depends on fuel infrastructure restoration and cyber-safe blackstart sequencing.
+- Add tool_suite_id=ts-strategic-deepfake-diplomatic-hotline-authentication-cell-v1 + protocol_stack_id=ps-strategic-deepfake-diplomatic-hotline-authentication-cell-stack-v1 when strategic decision confidence depends on authenticated crisis communication pathways.
+- Add packet_id=DPL-HOMELAND-PORT-FUEL-BLACKSTART-001 and packet_id=DPL-DEEPFAKE-HOTLINE-AUTH-001 for branches that materially alter commander risk posture, escalation pathways, or continuity assumptions.

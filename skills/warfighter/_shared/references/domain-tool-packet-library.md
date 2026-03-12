@@ -7854,3 +7854,137 @@ validation_gates:
 - output_schema: fraud-confidence board, adjudication ladder, legal assurance packet
 - protocol_profile: NIEM + USMTF + STIX/TAXII + API/JSON
 - validation_gates: fraud-confidence threshold pass, legal sufficiency pass, coalition concurrence
+
+## Packet Addendum VIII (2026-03-12, Expansion Wave XV Tool Invocation Packets)
+
+### packet_id: DPL-HOMELAND-PORT-FUEL-BLACKSTART-001
+- domain: strategic homeland port fuel terminal cyber-physical blackstart
+- objective: restore military-priority terminal throughput while preserving cyber-safe energization
+- primary_tools: terminal SCADA resilience console, fuel quality telemetry fusion board, DSCA restoration orchestrator
+- alternate_tools: manual fuel release board and utility liaison confirmation loop
+- degraded_mode: life-safety and force-priority fuel lanes only with command approval gate
+- input_requirements: terminal status, fuel quality samples, cyber incident indicators, priority demand ladder
+- output_schema: restoration branch matrix, release ladder, command acknowledgment packet
+- protocol_profile: USMTF + NIMS/ICS + STIX/TAXII + API/JSON
+- validation_gates: cyber containment pass, fuel quality pass, command release confirmation
+
+### packet_id: DPL-MILPAY-LEDGER-CONTINUITY-001
+- domain: joint military payment ledger disruption continuity
+- objective: preserve pay and entitlement continuity under contested identity and ledger trust
+- primary_tools: entitlement integrity adjudicator, biometric-pay confidence matcher, command exception routing board
+- alternate_tools: manual entitlement adjudication panel and dual-command exception review
+- degraded_mode: mission-essential entitlements only with manual confidence checks
+- input_requirements: entitlement records, identity confidence signals, ledger health status, command authorities
+- output_schema: continuity matrix, exception ladder, accountability reconciliation packet
+- protocol_profile: NIEM + USMTF + STIX/TAXII + API/JSON
+- validation_gates: entitlement confidence threshold, legal-compliance check, authority concurrence
+
+### packet_id: DPL-COALITION-CABLE-LANDING-DEFENSE-001
+- domain: coalition undersea data center cable landing defense
+- objective: protect landing sites and maintain coalition continuity reroutes under threat
+- primary_tools: seabed cable topology analyzer, coalition releasability gateway, maritime anomaly correlator
+- alternate_tools: manual cable-landing watchboard and coalition telecom liaison loop
+- degraded_mode: command-critical data lanes only with releasability gate
+- input_requirements: cable health telemetry, threat indicators, coalition caveats, reroute capacity
+- output_schema: defense matrix, reroute authority board, continuity ladder
+- protocol_profile: NATO APP-11/ADatP-3 aligned + OGC + STIX/TAXII + API/JSON
+- validation_gates: cable integrity threshold, releasability pass, coalition concurrence
+
+### packet_id: DPL-LASER-DAZZLE-AIRCREW-001
+- domain: expeditionary laser dazzle aircrew incident response
+- objective: triage aircrew exposure and adapt sortie plans while preserving legal evidence integrity
+- primary_tools: aviation safety event correlator, electro-optical exposure risk estimator, evidence custody ledger
+- alternate_tools: manual flight safety board and legal evidence check-in loop
+- degraded_mode: urgent sortie lanes only with medical and command release checks
+- input_requirements: incident logs, medical indicators, sortie schedule, evidence chain metadata
+- output_schema: triage board, sortie adaptation matrix, evidence handoff packet
+- protocol_profile: AIXM/FIXM + USMTF + NIEM + API/JSON
+- validation_gates: medical triage pass, sortie safety threshold, chain-of-evidence validation
+
+### packet_id: DPL-BALLOON-PSEUDOSAT-AIRSPACE-001
+- domain: theater balloon and pseudo-satellite airspace integration
+- objective: deconflict high-altitude operations with air defense and civil air movement
+- primary_tools: high-altitude track manager, corridor deconfliction planner, sensor handover arbitration board
+- alternate_tools: manual airspace control board and scheduled deconfliction conference
+- degraded_mode: pre-cleared high-altitude corridors only with theater authority gate
+- input_requirements: track telemetry, civil corridor schedules, air-defense posture, handover windows
+- output_schema: deconfliction board, engagement safeguard ladder, tasking packet
+- protocol_profile: AIXM/FIXM + Link 16 J-series + USMTF + API/JSON
+- validation_gates: corridor conflict check, engagement safeguard pass, authority acknowledgment
+
+### packet_id: DPL-QUANTUM-SENSING-SPOOF-GOV-001
+- domain: joint quantum sensing spoof detection governance
+- objective: adjudicate spoof-confidence and sequence mission-safe sensor fallback actions
+- primary_tools: quantum anomaly detector, cross-sensor confidence calibrator, mission fallback policy engine
+- alternate_tools: manual sensor-confidence panel and periodic spoof review cycle
+- degraded_mode: highest-confidence sensing lanes only with command approval
+- input_requirements: sensor anomaly metrics, confidence cross-checks, mission dependency map, authority constraints
+- output_schema: spoof confidence matrix, fallback ladder, trust packet
+- protocol_profile: USMTF + STIX/TAXII + OGC + API/JSON
+- validation_gates: confidence threshold pass, fallback viability check, command concurrence
+
+### packet_id: DPL-ARCTIC-TRANSPORT-FAILOVER-001
+- domain: coalition arctic fiber microwave troposcatter failover
+- objective: preserve coalition command transport under arctic weather and threat-driven outages
+- primary_tools: transport path assurance dashboard, arctic weather-threat forecaster, service-priority orchestrator
+- alternate_tools: manual route fallback board and coalition telecom liaison checks
+- degraded_mode: command and life-safety services only with coalition concurrence
+- input_requirements: path health telemetry, weather-risk indicators, service priorities, coalition caveats
+- output_schema: failover matrix, routing ladder, continuity packet
+- protocol_profile: NATO APP-11/ADatP-3 aligned + USMTF + STIX/TAXII + API/JSON
+- validation_gates: path survivability floor, coalition concurrence, authority release logged
+
+### packet_id: DPL-BASE-WATER-CHEM-ATTACK-001
+- domain: homeland base water treatment chemical attack recovery
+- objective: contain contamination and restore safe water throughput for base continuity
+- primary_tools: water sensor fusion board, contamination plume estimator, emergency treatment dispatch planner
+- alternate_tools: manual contamination board and periodic treatment validation cycles
+- degraded_mode: life-sustaining water distribution only with command health authority review
+- input_requirements: contamination telemetry, treatment plant status, base demand profile, public health constraints
+- output_schema: containment map, restoration timeline, continuity risk packet
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: contamination containment pass, treatment safety threshold, command acknowledgment
+
+### packet_id: DPL-DEEPFAKE-HOTLINE-AUTH-001
+- domain: strategic deepfake diplomatic hotline authentication
+- objective: authenticate strategic hotline exchanges and prevent escalation from synthetic spoofing
+- primary_tools: synthetic voice spoof detector, secure attestation ledger, cross-channel confirmation orchestrator
+- alternate_tools: manual challenge-response protocol and strategic liaison verification loop
+- degraded_mode: authenticated pre-approved hotline scripts only with dual authority checks
+- input_requirements: hotline audio/text artifacts, attestation metadata, corroborating channel indicators, authority map
+- output_schema: authenticity confidence board, escalation prevention ladder, confirmation packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: authenticity threshold pass, escalation guardrail pass, dual authority concurrence
+
+### packet_id: DPL-ADDITIVE-FEEDSTOCK-AUTH-001
+- domain: joint contested additive feedstock authenticity and allocation
+- objective: validate feedstock authenticity and allocate scarce additive materials to mission priorities
+- primary_tools: material provenance ledger, spectrochemical verification suite, production priority planner
+- alternate_tools: manual quality verification board and sustainment allocation conference
+- degraded_mode: top-priority repair classes only with command sustainment approval
+- input_requirements: feedstock manifests, spectroscopy outputs, mission demand ladder, counterfeit risk indicators
+- output_schema: authenticity board, interdiction matrix, allocation branch packet
+- protocol_profile: USMTF + STIX/TAXII + EDI X12 + API/JSON
+- validation_gates: authenticity confidence floor, allocation policy pass, authority release check
+
+### packet_id: DPL-SPACEPORT-DUAL-USE-SAFETY-001
+- domain: coalition military spaceport dual-use safety and priority
+- objective: synchronize launch safety and payload-priority decisions at dual-use coalition spaceports
+- primary_tools: range safety monitor, launch scheduling arbiter, coalition payload releasability gateway
+- alternate_tools: manual range safety board and coalition mission-priority conference
+- degraded_mode: strategic-priority launches only with explicit coalition command release
+- input_requirements: launch manifests, hazard envelopes, payload priorities, coalition caveats
+- output_schema: safety board, priority ladder, deconfliction packet
+- protocol_profile: CCSDS + AIXM/FIXM + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: range safety pass, releasability check, coalition concurrence
+
+### packet_id: DPL-AMMO-BARGE-DISPERSAL-001
+- domain: theater autonomous ammo barge dispersal and survivability
+- objective: disperse munitions barges to preserve reload continuity under strike threat
+- primary_tools: littoral autonomy routing controller, munitions custody blast-risk estimator, reload synchronization board
+- alternate_tools: manual littoral routing board and ordnance safety verification cycle
+- degraded_mode: critical reload lanes only with command and ordnance authority gate
+- input_requirements: barge position telemetry, threat indicators, reload demand plan, custody status
+- output_schema: dispersal matrix, survivability ladder, synchronization packet
+- protocol_profile: USMTF + AIS/NMEA + STIX/TAXII + API/JSON
+- validation_gates: survivability threshold pass, custody integrity pass, command release confirmation

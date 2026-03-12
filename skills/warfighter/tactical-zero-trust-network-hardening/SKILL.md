@@ -191,3 +191,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-v1` + `protocol_stack_id=ps-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-stack-v1` when trust-boundary recommendations depend on coalition telecom backhaul restoration and releasability-safe routing.
 - Add `tool_suite_id=ts-joint-contested-biometric-pay-and-personnel-reconstitution-cell-v1` + `protocol_stack_id=ps-joint-contested-biometric-pay-and-personnel-reconstitution-cell-stack-v1` when disconnected identity confidence and personnel-accountability trust directly impact network authorization posture.
 - Add `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` and `packet_id=DPL-BIOMETRIC-PAY-PERSONNEL-RECON-001` for branches that alter identity trust, route authority, or continuity assumptions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XV Addendum)
+
+- Add tool_suite_id=ts-coalition-arctic-fiber-microwave-troposcatter-failover-cell-v1 + protocol_stack_id=ps-coalition-arctic-fiber-microwave-troposcatter-failover-cell-stack-v1 when zero-trust continuity depends on contested arctic transport failover and coalition service-priority routing.
+- Add tool_suite_id=ts-joint-quantum-sensing-spoof-detection-governance-cell-v1 + protocol_stack_id=ps-joint-quantum-sensing-spoof-detection-governance-cell-stack-v1 when trust-boundary decisions depend on spoof-resistant sensing confidence and fallback policy control.
+- Add packet_id=DPL-ARCTIC-TRANSPORT-FAILOVER-001 and packet_id=DPL-QUANTUM-SENSING-SPOOF-GOV-001 for recommendations that shift identity trust boundaries, route authority, or mission-data confidence thresholds.

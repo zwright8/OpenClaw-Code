@@ -212,3 +212,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-v1` + `protocol_stack_id=ps-coalition-host-nation-fiber-cut-and-backhaul-restoration-cell-stack-v1` when failover branches require coalition-host-nation telecom corridor recovery.
 - Add `tool_suite_id=ts-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-v1` + `protocol_stack_id=ps-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-stack-v1` when failover viability depends on restored weather sensor confidence for timing and route decisions.
 - Add `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` and `packet_id=DPL-DENIED-WEATHER-SENSOR-RESEED-001` for branches that materially change mission-service survivability, timing confidence, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XV Addendum)
+
+- Add tool_suite_id=ts-coalition-undersea-data-center-cable-landing-defense-cell-v1 + protocol_stack_id=ps-coalition-undersea-data-center-cable-landing-defense-cell-stack-v1 when failover branches depend on protected cable-landing continuity and coalition reroute authorities.
+- Add tool_suite_id=ts-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-v1 + protocol_stack_id=ps-theater-autonomous-ammo-barge-dispersal-and-survivability-cell-stack-v1 when network failover viability is coupled to dispersed maritime reload logistics and survivability timing.
+- Add packet_id=DPL-COALITION-CABLE-LANDING-DEFENSE-001 and packet_id=DPL-AMMO-BARGE-DISPERSAL-001 for branches that materially change mission-service availability, sustainment continuity, or commander risk acceptance.
