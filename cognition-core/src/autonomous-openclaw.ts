@@ -109,6 +109,10 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_lints',
     'd_lints',
     'epsilon_ts',
+    'cd_epsilon_ts',
+    'sw_cd_epsilon_ts',
+    'cusum_epsilon_ts',
+    'sw_cusum_epsilon_ts',
     'kl_ucb',
     'bayes_ucb',
     'sw_ucb',
@@ -140,6 +144,10 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
 const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_MODES);
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
+    'cd_epsilon_ts',
+    'sw_cd_epsilon_ts',
+    'cusum_epsilon_ts',
+    'sw_cusum_epsilon_ts',
     'sw_epsilon_ts',
     'fdsw_epsilon_ts',
     'd_epsilon_ts'
@@ -161,15 +169,21 @@ const EXP3_IX_POLICY_MODES = new Set([
 ]);
 const PAGE_HINKLEY_POLICY_MODES = new Set([
     'cd_ucb',
-    'sw_cd_ucb'
+    'sw_cd_ucb',
+    'cd_epsilon_ts',
+    'sw_cd_epsilon_ts'
 ]);
 const CUSUM_POLICY_MODES = new Set([
     'cusum_ucb',
-    'sw_cusum_ucb'
+    'sw_cusum_ucb',
+    'cusum_epsilon_ts',
+    'sw_cusum_epsilon_ts'
 ]);
 const WINDOWED_CHANGE_DETECTION_POLICY_MODES = new Set([
     'sw_cd_ucb',
-    'sw_cusum_ucb'
+    'sw_cusum_ucb',
+    'sw_cd_epsilon_ts',
+    'sw_cusum_epsilon_ts'
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
@@ -2251,10 +2265,6 @@ function extractSelectionFeatureVector(context) {
     const vector = normalizeNumericVector(values, LINUCB_FEATURE_NAMES.length, 0);
     if (vector.length !== LINUCB_FEATURE_NAMES.length) return null;
     return vector;
-}
-
-function updateLinUcbModel(model, featureVector, reward) {
-    return updateLinUcbModelDiscounted(model, featureVector, reward, 1);
 }
 
 function updateLinUcbModelDiscounted(model, featureVector, reward, discountFactor = 1) {
