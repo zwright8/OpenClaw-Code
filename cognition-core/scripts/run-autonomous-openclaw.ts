@@ -58,6 +58,7 @@ Options:
   --cd-min-samples <n>         Min outcomes before change detection in cd_* and sw_cd_* modes (default: 8)
   --cd-threshold <n>           Drift threshold for cd_* and sw_cd_* Page-Hinkley detector (default: 1.5)
   --cd-delta <n>               Mean slack delta for cd_* and sw_cd_* detector (default: 0.02)
+  --adwin-delta <n>            ADWIN confidence delta for adwin_* modes (1e-6 to 0.5, default: 0.002)
   --cd-direction <m>           Drift direction for cd_*/cusum_* detectors: up|down|both (default: both)
   --cusum-threshold <n>        Drift threshold for cusum_* and sw_cusum_* modes (default: 1.2)
   --cusum-baseline-weight <n>  EWMA baseline weight for cusum_* and sw_cusum_* modes (0-1, default: 0.15)
@@ -197,6 +198,7 @@ function parseArgs(argv) {
             changeDetectionMinSamples: 8,
             changeDetectionThreshold: 1.5,
             changeDetectionDelta: 0.02,
+            adwinDelta: 0.002,
             changeDetectionDirection: 'both',
             cusumThreshold: 1.2,
             cusumBaselineWeight: 0.15,
@@ -449,6 +451,11 @@ function parseArgs(argv) {
         }
         if (token === '--cd-delta') {
             options.selectionPolicyConfig.changeDetectionDelta = parseFloatInRange(value, '--cd-delta', 0, 0.5);
+            i++;
+            continue;
+        }
+        if (token === '--adwin-delta') {
+            options.selectionPolicyConfig.adwinDelta = parseFloatInRange(value, '--adwin-delta', 1e-6, 0.5);
             i++;
             continue;
         }

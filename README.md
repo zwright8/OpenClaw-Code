@@ -260,10 +260,12 @@ npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --cd-direction down
+npm run autonomous:run -- --selection-policy adwin_ucb --cd-min-samples 8 --adwin-delta 0.002
 npm run autonomous:run -- --selection-policy sw_cd_ucb --window-size 12 --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
 npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
 npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --cd-direction up
 npm run autonomous:run -- --selection-policy sw_cusum_ucb --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
+npm run autonomous:run -- --selection-policy adwin_epsilon_ts --cd-min-samples 8 --adwin-delta 0.002 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
 npm run autonomous:run -- --selection-policy sw_corral_exp3 --window-size 12 --corral-gamma 0.12 --corral-eta 0.8
 npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-gamma 0.12 --corral-eta 0.8

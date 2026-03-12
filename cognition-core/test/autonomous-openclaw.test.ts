@@ -2118,6 +2118,155 @@ test('buildAutonomousBatchPlan supports d_bge for discounted Boltzmann-Gumbel ex
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_bge');
 });
 
+test('buildAutonomousBatchPlan supports adwin_ucb adaptive-window drift re-ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 867, code: 'SK-00867', title: 'Skill 867' },
+            { id: 868, code: 'SK-00868', title: 'Skill 868' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 48,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '867': {
+                    attempts: 12,
+                    successes: 8,
+                    failures: 4,
+                    lastWave: 47,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 37, status: 'completed' },
+                        { wave: 38, status: 'completed' },
+                        { wave: 39, status: 'completed' },
+                        { wave: 40, status: 'completed' },
+                        { wave: 41, status: 'completed' },
+                        { wave: 42, status: 'completed' },
+                        { wave: 43, status: 'failed' },
+                        { wave: 44, status: 'failed' },
+                        { wave: 45, status: 'failed' },
+                        { wave: 46, status: 'failed' },
+                        { wave: 47, status: 'failed' },
+                        { wave: 48, status: 'failed' }
+                    ]
+                },
+                '868': {
+                    attempts: 12,
+                    successes: 4,
+                    failures: 8,
+                    lastWave: 47,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 37, status: 'failed' },
+                        { wave: 38, status: 'failed' },
+                        { wave: 39, status: 'failed' },
+                        { wave: 40, status: 'failed' },
+                        { wave: 41, status: 'failed' },
+                        { wave: 42, status: 'failed' },
+                        { wave: 43, status: 'completed' },
+                        { wave: 44, status: 'completed' },
+                        { wave: 45, status: 'completed' },
+                        { wave: 46, status: 'completed' },
+                        { wave: 47, status: 'completed' },
+                        { wave: 48, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 49,
+        selectionPolicyConfig: {
+            mode: 'adwin_ucb',
+            adwinDelta: 0.01,
+            changeDetectionMinSamples: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [868]);
+    assert.equal(plan.selection.policy.skills, 'adwin_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_ucb');
+});
+
+test('buildAutonomousBatchPlan supports adwin_epsilon_ts adaptive-window Thompson re-ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 869, code: 'SK-00869', title: 'Skill 869' },
+            { id: 870, code: 'SK-00870', title: 'Skill 870' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 52,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '869': {
+                    attempts: 12,
+                    successes: 8,
+                    failures: 4,
+                    lastWave: 51,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 41, status: 'completed' },
+                        { wave: 42, status: 'completed' },
+                        { wave: 43, status: 'completed' },
+                        { wave: 44, status: 'completed' },
+                        { wave: 45, status: 'completed' },
+                        { wave: 46, status: 'completed' },
+                        { wave: 47, status: 'failed' },
+                        { wave: 48, status: 'failed' },
+                        { wave: 49, status: 'failed' },
+                        { wave: 50, status: 'failed' },
+                        { wave: 51, status: 'failed' },
+                        { wave: 52, status: 'failed' }
+                    ]
+                },
+                '870': {
+                    attempts: 12,
+                    successes: 4,
+                    failures: 8,
+                    lastWave: 51,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 41, status: 'failed' },
+                        { wave: 42, status: 'failed' },
+                        { wave: 43, status: 'failed' },
+                        { wave: 44, status: 'failed' },
+                        { wave: 45, status: 'failed' },
+                        { wave: 46, status: 'failed' },
+                        { wave: 47, status: 'completed' },
+                        { wave: 48, status: 'completed' },
+                        { wave: 49, status: 'completed' },
+                        { wave: 50, status: 'completed' },
+                        { wave: 51, status: 'completed' },
+                        { wave: 52, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 53,
+        selectionPolicyConfig: {
+            mode: 'adwin_epsilon_ts',
+            adwinDelta: 0.01,
+            changeDetectionMinSamples: 4,
+            thompsonExploration: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [870]);
+    assert.equal(plan.selection.policy.skills, 'adwin_epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_epsilon_ts');
+});
+
 test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

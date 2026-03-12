@@ -82,6 +82,9 @@ const DEFAULT_CD_DRIFT_THRESHOLD = 1.5;
 const MAX_CD_DRIFT_THRESHOLD = 10;
 const DEFAULT_CD_MEAN_DELTA = 0.02;
 const MAX_CD_MEAN_DELTA = 0.5;
+const DEFAULT_ADWIN_DELTA = 0.002;
+const MIN_ADWIN_DELTA = 1e-6;
+const MAX_ADWIN_DELTA = 0.5;
 const DEFAULT_CD_DIRECTION = 'both';
 const CD_DIRECTION_MODES = new Set([
     'up',
@@ -156,8 +159,10 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_kl_ucb',
     'd_bayes_ucb',
     'cd_ucb',
+    'adwin_ucb',
     'sw_cd_ucb',
     'cusum_ucb',
+    'adwin_epsilon_ts',
     'sw_cusum_ucb',
     'corral_exp3',
     'sw_corral_exp3',
@@ -180,6 +185,7 @@ const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_M
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
     'auto_epsilon_ts',
+    'adwin_epsilon_ts',
     'cp_epsilon_ts',
     'cd_epsilon_ts',
     'sw_cd_epsilon_ts',
@@ -230,6 +236,10 @@ const PAGE_HINKLEY_POLICY_MODES = new Set([
     'sw_cd_ucb',
     'cd_epsilon_ts',
     'sw_cd_epsilon_ts'
+]);
+const ADWIN_POLICY_MODES = new Set([
+    'adwin_ucb',
+    'adwin_epsilon_ts'
 ]);
 const CUSUM_POLICY_MODES = new Set([
     'cusum_ucb',
@@ -592,6 +602,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CD_MEAN_DELTA,
             0,
             MAX_CD_MEAN_DELTA
+        ),
+        adwinDelta: clamp(
+            Number.isFinite(Number(value.adwinDelta))
+                ? Number(value.adwinDelta)
+                : DEFAULT_ADWIN_DELTA,
+            MIN_ADWIN_DELTA,
+            MAX_ADWIN_DELTA
         ),
         changeDetectionDirection: (() => {
             const candidate = typeof value.changeDetectionDirection === 'string'
@@ -1479,6 +1496,75 @@ function computeCusumDetectedStats(stat, selectionPolicyConfig) {
     });
 }
 
+function computeAdwinCutThreshold({
+    leftCount,
+    rightCount,
+    totalCount,
+    variance,
+    delta
+}) {
+    if (leftCount <= 0 || rightCount <= 0 || totalCount <= 1) return Number.POSITIVE_INFINITY;
+    const harmonic = 1 / ((1 / leftCount) + (1 / rightCount));
+    const deltaPrime = clamp(delta / totalCount, Number.EPSILON, 1 - Number.EPSILON);
+    const logTerm = Math.log(2 / deltaPrime);
+    const varianceTerm = Math.sqrt(((2 * Math.max(0, variance)) * logTerm) / harmonic);
+    const correctionTerm = (2 * logTerm) / (3 * harmonic);
+    return varianceTerm + correctionTerm;
+}
+
+function detectAdwinChangeIndex(outcomes = [], selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const values = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry).reward)
+        : [];
+    const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
+    if (values.length < (2 * minSamples)) return 0;
+
+    const prefix = new Array(values.length + 1).fill(0);
+    const prefixSquares = new Array(values.length + 1).fill(0);
+    for (let i = 0; i < values.length; i++) {
+        prefix[i + 1] = prefix[i] + values[i];
+        prefixSquares[i + 1] = prefixSquares[i] + (values[i] * values[i]);
+    }
+
+    const totalCount = values.length;
+    const totalSum = prefix[totalCount];
+    const totalSquareSum = prefixSquares[totalCount];
+    const windowMean = totalSum / totalCount;
+    const windowVariance = Math.max(0, (totalSquareSum / totalCount) - (windowMean * windowMean));
+    let changeIndex = 0;
+
+    for (let split = minSamples; split <= totalCount - minSamples; split++) {
+        const leftCount = split;
+        const rightCount = totalCount - split;
+        const leftMean = prefix[split] / leftCount;
+        const rightMean = (totalSum - prefix[split]) / rightCount;
+        const threshold = computeAdwinCutThreshold({
+            leftCount,
+            rightCount,
+            totalCount,
+            variance: windowVariance,
+            delta: policy.adwinDelta
+        });
+        if (Math.abs(leftMean - rightMean) > threshold) {
+            changeIndex = split;
+        }
+    }
+
+    return clamp(changeIndex, 0, totalCount);
+}
+
+function computeAdwinDetectedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const changeIndex = detectAdwinChangeIndex(normalized.recentOutcomes, selectionPolicyConfig);
+    const effective = changeIndex > 0
+        ? normalized.recentOutcomes.slice(changeIndex)
+        : normalized.recentOutcomes;
+    return summarizeOutcomeStats(effective, normalized, {
+        mode: 'adwin_ucb'
+    });
+}
+
 function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
@@ -1504,6 +1590,18 @@ function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
             lastStatus: changepoint.lastStatus,
             lastWave: changepoint.lastWave,
             consecutiveFailures: changepoint.consecutiveFailures
+        };
+    }
+    if (ADWIN_POLICY_MODES.has(policy.mode)) {
+        const changed = computeAdwinDetectedStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: changed.attempts,
+            successes: changed.successes,
+            failures: changed.failures,
+            lastStatus: changed.lastStatus,
+            lastWave: changed.lastWave,
+            consecutiveFailures: changed.consecutiveFailures
         };
     }
     if (SLIDING_WINDOW_POLICY_MODES.has(policy.mode)) {
