@@ -151,3 +151,9 @@ Primary products for this skill: coalition link architecture plan, gateway routi
 - Add tool_suite_id=ts-undersea-data-fabric-reroute-v1 + protocol_stack_id=ps-undersea-data-fabric-reroute-stack-v1 when coalition data-link continuity depends on rerouting through damaged undersea backbone segments.
 - Add tool_suite_id=ts-quantum-resistant-key-rollover-v1 + protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1 when interoperability recommendations require coordinated key-state migration across allied mission networks.
 - Add packet_id=DPL-UNDERSEA-DATA-FABRIC-REROUTE-001 and packet_id=DPL-QUANTUM-KEY-ROLLOVER-001 for recommendations that alter federation trust posture, routing policy, or coalition acknowledgment pathways.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-cyber-em-spectrum-mission-reroute-v1` + `protocol_stack_id=ps-joint-cyber-em-spectrum-mission-reroute-stack-v1` when allied data-link continuity depends on dynamic rerouting across cyber and spectrum layers.
+- Add `tool_suite_id=ts-coalition-denied-identity-insider-expulsion-v1` + `protocol_stack_id=ps-coalition-denied-identity-insider-expulsion-stack-v1` when interoperability trust depends on coalition credential hygiene and insider expulsion controls.
+- Add `packet_id=DPL-JOINT-CYBER-EM-REROUTE-001` and `packet_id=DPL-COALITION-IDENTITY-INSIDER-001` for interoperability branch execution under contested trust conditions.

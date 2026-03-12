@@ -9429,3 +9429,87 @@ external_binding:
 ### `ps-orbital-nuclear-debris-collision-avoidance-stack-v1`
 - Protocols: `CCSDS`, `USMTF`, `STIX/TAXII`, `API/JSON`.
 - Use for: debris hazard exchange, conjunction-risk updates, and maneuver-approval acknowledgment chains.
+
+## Tool Suite Addendum XXIV (2026-03-12, Warfighter Expansion Wave XXIV for Cyber-EM Reroute Control, Autonomous Fortification, Strategic Precursor Allocation, Deep-Ocean Surveillance Recovery, Medical Cold-Chain Assurance, Coalition Insider-Risk Expulsion, Mission-AI OPSEC Defense, and Casualty-Notification Integrity)
+
+### `ts-joint-cyber-em-spectrum-mission-reroute-v1`
+- Use for: synchronized cyber and electromagnetic reroute control when contested links degrade mission threads.
+- Primary tools: cross-domain route arbitration board, cyber incident containment planner, spectrum reroute synchronizer.
+- Cross-check tools: independent link-status witness and alternate message-delivery confidence monitor.
+- Typical products: reroute authority ladder, cross-layer failover matrix, mission-thread continuity packet.
+
+### `ts-theater-autonomous-fortification-print-farm-v1`
+- Use for: autonomous additive construction and fortification print-farm orchestration for contested survivability timelines.
+- Primary tools: print-farm mission scheduler, structural integrity validator, engineer task allocation board.
+- Cross-check tools: independent construction QA witness and alternate material risk monitor.
+- Typical products: fortification queue matrix, structural confidence ladder, authority-gated build packet.
+
+### `ts-strategic-rare-gas-energetic-precursor-allocation-v1`
+- Use for: strategic allocation of rare gases and energetic precursors across defense-industrial and operational demand.
+- Primary tools: precursor custody ledger, bottleneck forecast engine, strategic allocation adjudicator.
+- Cross-check tools: independent quality/release witness and alternate demand stress board.
+- Typical products: allocation ladder, industrial-to-operational transfer matrix, surge sustainment packet.
+
+### `ts-joint-deep-ocean-sosus-reconstitution-decoy-v1`
+- Use for: deep-ocean SOSUS network restoration and adversary decoy discrimination for maritime warning continuity.
+- Primary tools: undersea acoustic fusion board, seabed node integrity monitor, decoy signature adjudicator.
+- Cross-check tools: independent sonar confidence witness and alternate maritime cue board.
+- Typical products: node restoration sequence, decoy confidence ledger, cueing authority packet.
+
+### `ts-homeland-defense-pharma-biologics-cold-chain-assurance-v1`
+- Use for: military-civil pharmaceutical and biologics cold-chain continuity under cyber-physical disruption.
+- Primary tools: cold-chain telemetry assurance board, contamination/diversion adjudicator, med-log distribution synchronizer.
+- Cross-check tools: independent storage integrity witness and alternate casualty-demand balancing board.
+- Typical products: medicine continuity map, protected routing ladder, clinical sustainment packet.
+
+### `ts-coalition-denied-identity-insider-expulsion-v1`
+- Use for: coalition identity proofing, credential recovery, and insider-risk expulsion under denied and degraded conditions.
+- Primary tools: federated identity trust board, insider-risk containment workflow engine, coalition legal handoff ledger.
+- Cross-check tools: independent identity witness and alternate credential anomaly monitor.
+- Typical products: identity trust matrix, expulsion branch ladder, authority handoff packet.
+
+### `ts-theater-llm-opsec-prompt-injection-defense-v1`
+- Use for: mission AI/LLM operational security with prompt-injection detection, containment, and trusted fallback.
+- Primary tools: model gateway policy engine, prompt injection detector, retrieval provenance auditor.
+- Cross-check tools: independent red-team witness and alternate output-integrity monitor.
+- Typical products: AI trust posture board, containment branch matrix, release authority packet.
+
+### `ts-joint-multi-theater-casualty-family-notification-integrity-v1`
+- Use for: casualty-information integrity and synchronized family-notification governance across theaters.
+- Primary tools: casualty record reconciliation board, notification workflow orchestrator, authority/legal compliance monitor.
+- Cross-check tools: independent personnel-accountability witness and alternate notification integrity monitor.
+- Typical products: casualty integrity ladder, notification sequence matrix, dignified communication packet.
+
+## Protocol Stack Addendum XXIV (2026-03-12, External Integration Profiles for Expansion Wave XXIV)
+
+### `ps-joint-cyber-em-spectrum-mission-reroute-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `STIX/TAXII`, `VMF`, `API/JSON`.
+- Use for: cyber-EM reroute state exchange, failover acknowledgment, and mission-thread continuity control.
+
+### `ps-theater-autonomous-fortification-print-farm-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STANAG`, `API/JSON`.
+- Use for: autonomous build requests, structural validation exchange, and engineer task synchronization.
+
+### `ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: strategic precursor status exchange, allocation approvals, and industrial disruption alerts.
+
+### `ps-joint-deep-ocean-sosus-reconstitution-decoy-stack-v1`
+- Protocols: `USMTF`, `STANAG`, `OGC`, `AIS/NMEA`, `API/JSON`.
+- Use for: undersea surveillance node status, decoy discrimination updates, and maritime cue acknowledgments.
+
+### `ps-homeland-defense-pharma-biologics-cold-chain-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: biologics integrity alerts, protected distribution updates, and medical continuity coordination.
+
+### `ps-coalition-denied-identity-insider-expulsion-stack-v1`
+- Protocols: `NIEM`, `CJIS`, `NATO APP-11/ADatP-3 aligned`, `STIX/TAXII`, `API/JSON`.
+- Use for: coalition identity verification exchange, insider-risk escalation, and legal authority handoff acknowledgments.
+
+### `ps-theater-llm-opsec-prompt-injection-defense-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: mission AI security events, prompt-injection containment state exchange, and approval-gated model operations.
+
+### `ps-joint-multi-theater-casualty-family-notification-integrity-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `HL7/FHIR`, `API/JSON`.
+- Use for: casualty data reconciliation, family-notification workflow status, and authority-chain integrity checks.

@@ -200,3 +200,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-munitions-energetics-dispersal-v1` + `protocol_stack_id=ps-munitions-energetics-dispersal-stack-v1` when munitions safety compatibility and depot dispersal timing drive sustainment feasibility.
 - Add `tool_suite_id=ts-coalition-infra-cyber-kinetic-cascade-v1` + `protocol_stack_id=ps-coalition-infra-cyber-kinetic-cascade-stack-v1` when sustainment continuity depends on coalition infrastructure restoration after cyber-kinetic shocks.
 - Add `packet_id=DPL-ARCTIC-SAR-MEDAUTH-001`, `packet_id=DPL-MUNITIONS-ENERGETICS-DISPERSAL-001`, and `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001` for branches that materially change throughput confidence, life-support posture, or mission sustainment viability.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-fortification-print-farm-v1` + `protocol_stack_id=ps-theater-autonomous-fortification-print-farm-stack-v1` when contested sustainment must prioritize distributed fortification and engineer support output.
+- Add `tool_suite_id=ts-strategic-rare-gas-energetic-precursor-allocation-v1` + `protocol_stack_id=ps-strategic-rare-gas-energetic-precursor-allocation-stack-v1` when sustainment feasibility depends on energetic precursor flow assurance.
+- Add `packet_id=DPL-THEATER-FORTIFICATION-PRINTFARM-001` and `packet_id=DPL-STRATEGIC-RAREGAS-ENERGETICS-002` for logistics branches that hinge on industrial throughput confidence.

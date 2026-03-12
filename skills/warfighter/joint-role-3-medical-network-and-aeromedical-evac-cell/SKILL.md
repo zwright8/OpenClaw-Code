@@ -87,3 +87,9 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add tool_suite_id=ts-additive-pharma-authenticity-v1 + protocol_stack_id=ps-additive-pharma-authenticity-stack-v1 when casualty survival depends on accelerated verification of theater-manufactured pharmaceutical countermeasures.
 - Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when evacuation and bed management branches require synchronized civil warning posture under ballistic threat.
 - Add packet_id=DPL-ADDITIVE-PHARMA-AUTH-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter medical routing, mass-casualty posture, or shelter-linked evacuation timing.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIV Addendum)
+
+- Add `tool_suite_id=ts-homeland-defense-pharma-biologics-cold-chain-assurance-v1` + `protocol_stack_id=ps-homeland-defense-pharma-biologics-cold-chain-assurance-stack-v1` when Role 3 continuity depends on resilient biologics and pharmaceutical chain integrity.
+- Add `tool_suite_id=ts-joint-multi-theater-casualty-family-notification-integrity-v1` + `protocol_stack_id=ps-joint-multi-theater-casualty-family-notification-integrity-stack-v1` when casualty data integrity and family notification timing drive command decisions.
+- Add `packet_id=DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-001` and `packet_id=DPL-JOINT-CASUALTY-FAMILY-NOTIFY-001` for clinical sustainment and notification-integrity branches.

@@ -8690,3 +8690,181 @@ validation_gates:
 - output_schema: maneuver authorization ladder, priority matrix, release packet
 - protocol_profile: CCSDS + USMTF + NIEM + API/JSON
 - validation_gates: authority validation pass, collision-risk threshold, acknowledgment integrity
+
+## Packet Addendum XIII (2026-03-12, Expansion Wave XXIV Tool Invocation Packets)
+
+### packet_id: DPL-JOINT-CYBER-EM-REROUTE-001
+- domain: joint cyber-electromagnetic spectrum mission reroute
+- objective: preserve mission-thread continuity via synchronized cyber and spectrum rerouting under active disruption.
+- primary_tools: route arbitration board, cyber containment planner, spectrum reroute synchronizer
+- alternate_tools: manual reroute board and voice-confirmed fallback channels
+- degraded_mode: critical mission threads only with elevated command approvals
+- input_requirements: link status, incident telemetry, mission dependencies, authority constraints
+- output_schema: reroute ladder, continuity matrix, authority packet
+- protocol_profile: USMTF + Link 16 J-series + STIX/TAXII + VMF + API/JSON
+- validation_gates: route viability pass, acknowledgment-chain integrity, commander concurrence
+
+### packet_id: DPL-JOINT-CYBER-EM-REROUTE-002
+- domain: joint cyber-electromagnetic degraded fallback
+- objective: execute degraded fallback when primary cross-layer reroute paths are unavailable.
+- primary_tools: contingency route board, mission-priority filter, acknowledgment watchdog
+- alternate_tools: manual branch cards and periodic callback checks
+- degraded_mode: life-safety and mission-essential functions only
+- input_requirements: contingency routes, mission priorities, fallback channel health
+- output_schema: fallback branch matrix, risk deltas, escalation packet
+- protocol_profile: USMTF + VMF + API/JSON
+- validation_gates: fallback confidence floor, authority pass, ack timeout compliance
+
+### packet_id: DPL-THEATER-FORTIFICATION-PRINTFARM-001
+- domain: theater autonomous fortification print-farm orchestration
+- objective: sequence autonomous fortification output to maximize survivability under contested timelines.
+- primary_tools: print-farm scheduler, structural validator, engineer task board
+- alternate_tools: manual build queue and periodic site-inspection board
+- degraded_mode: highest-priority positions only with reduced template set
+- input_requirements: threat overlays, print capacity, material inventory, task priorities
+- output_schema: build queue matrix, structural confidence ledger, release packet
+- protocol_profile: USMTF + NIEM + STANAG + API/JSON
+- validation_gates: structural pass, material quality check, command approval
+
+### packet_id: DPL-THEATER-FORTIFICATION-PRINTFARM-002
+- domain: contested fortification fallback and material rationing
+- objective: preserve essential fortification throughput during material shortage or disruption.
+- primary_tools: material rationing planner, critical-position prioritizer, QA risk board
+- alternate_tools: manual rationing ladder and engineer callback loop
+- degraded_mode: critical sectors only with elevated QA gates
+- input_requirements: material stock, sector priority, threat forecasts, construction backlog
+- output_schema: rationing matrix, critical-sector schedule, authority packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: rationing policy pass, survivability threshold, commander concurrence
+
+### packet_id: DPL-STRATEGIC-RAREGAS-ENERGETICS-001
+- domain: strategic rare gas and energetic precursor allocation
+- objective: allocate constrained precursor supply to preserve mission-essential production and operations.
+- primary_tools: precursor custody ledger, demand forecast engine, allocation adjudicator
+- alternate_tools: manual allocation ladder and delayed reconciliation board
+- degraded_mode: mission-critical classes only with daily senior review
+- input_requirements: inventories, demand forecasts, production constraints, authority matrix
+- output_schema: allocation ladder, transfer matrix, decision packet
+- protocol_profile: USMTF + NIEM + STIX/TAXII + API/JSON
+- validation_gates: custody pass, demand-confidence threshold, approval chain integrity
+
+### packet_id: DPL-STRATEGIC-RAREGAS-ENERGETICS-002
+- domain: energetic precursor disruption fallback
+- objective: enforce constrained fallback allocations when precursor chain disruption persists.
+- primary_tools: disruption impact board, substitution risk monitor, priority scheduler
+- alternate_tools: manual substitution board and periodic expert adjudication
+- degraded_mode: strategic deterrence and life-safety priorities only
+- input_requirements: disruption telemetry, substitution candidates, mission priorities
+- output_schema: fallback allocation board, risk deltas, escalation packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: substitution safety pass, priority compliance, strategic authority concurrence
+
+### packet_id: DPL-JOINT-DEEP-OCEAN-SOSUS-001
+- domain: deep-ocean SOSUS reconstitution
+- objective: restore undersea surveillance coverage and cue quality after node degradation or attack.
+- primary_tools: acoustic fusion board, seabed integrity monitor, restoration scheduler
+- alternate_tools: manual coverage board and delayed sensor reconciliation
+- degraded_mode: strategic chokepoints only with higher false-positive tolerance
+- input_requirements: node status, acoustic tracks, repair windows, threat indicators
+- output_schema: restoration sequence, cue confidence ledger, authority packet
+- protocol_profile: USMTF + STANAG + OGC + AIS/NMEA + API/JSON
+- validation_gates: coverage threshold pass, decoy-discrimination confidence, maritime commander approval
+
+### packet_id: DPL-JOINT-DEEP-OCEAN-SOSUS-002
+- domain: deep-ocean decoy discrimination fallback
+- objective: maintain cue validity when adversary decoy pressure degrades acoustic certainty.
+- primary_tools: decoy signature adjudicator, confidence-risk board, alternate cue cross-check engine
+- alternate_tools: manual analyst fusion and conservative cue release windows
+- degraded_mode: dual-source cueing only
+- input_requirements: acoustic signatures, cross-domain cues, decoy intelligence updates
+- output_schema: decoy confidence matrix, release ladder, escalation packet
+- protocol_profile: USMTF + STIX/TAXII + API/JSON
+- validation_gates: dual-source pass, confidence floor, authority acknowledgment
+
+### packet_id: DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-001
+- domain: homeland defense pharma/biologics cold-chain assurance
+- objective: preserve military-civil biologics continuity under cyber-physical disruption.
+- primary_tools: cold-chain telemetry board, contamination adjudicator, med-log routing engine
+- alternate_tools: manual cold-storage board and periodic transport verification
+- degraded_mode: life-saving classes only with senior medical release
+- input_requirements: storage telemetry, route options, demand forecast, contamination indicators
+- output_schema: continuity matrix, protected route ladder, authority packet
+- protocol_profile: HL7/FHIR + NIMS/ICS + NIEM + USMTF + API/JSON
+- validation_gates: cold integrity pass, contamination threshold, medical authority concurrence
+
+### packet_id: DPL-HOMELAND-PHARMA-BIOLOGICS-COLDCHAIN-002
+- domain: biologics distribution fallback and contamination containment
+- objective: execute constrained distribution when contamination or transport failures occur.
+- primary_tools: containment board, substitution planner, emergency dispatch scheduler
+- alternate_tools: manual substitution ladder and local authority call tree
+- degraded_mode: emergency and mission-essential patients only
+- input_requirements: contamination events, substitute inventory, casualty demand, legal constraints
+- output_schema: constrained distribution plan, risk deltas, escalation packet
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: clinical safety pass, substitution approval, acknowledgment integrity
+
+### packet_id: DPL-COALITION-IDENTITY-INSIDER-001
+- domain: coalition denied-environment identity proofing
+- objective: establish trusted coalition identities under degraded comms and contested data quality.
+- primary_tools: federated trust board, credential reconciliation engine, watchlist cross-checker
+- alternate_tools: manual trust worksheets and liaison verification queue
+- degraded_mode: mission-essential identities only with dual-auth checks
+- input_requirements: identity claims, credential evidence, coalition caveats, risk indicators
+- output_schema: trust matrix, credential disposition ladder, authority packet
+- protocol_profile: NIEM + CJIS + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: trust confidence floor, coalition caveat pass, legal authority acknowledgment
+
+### packet_id: DPL-COALITION-IDENTITY-INSIDER-002
+- domain: insider-risk expulsion and legal handoff
+- objective: isolate, expel, and legally hand off insider-risk actors while preserving coalition mission tempo.
+- primary_tools: insider containment workflow engine, legal handoff ledger, access revocation orchestrator
+- alternate_tools: manual revocation board and rapid legal liaison cell
+- degraded_mode: temporary mission partitioning with high-risk account quarantine
+- input_requirements: insider indicators, access graph, legal jurisdiction map, mission dependencies
+- output_schema: expulsion ladder, handoff checklist, continuity packet
+- protocol_profile: NIEM + STIX/TAXII + API/JSON
+- validation_gates: legal handoff pass, revocation confirmation, acknowledgment-chain integrity
+
+### packet_id: DPL-THEATER-LLM-OPSEC-INJECTION-001
+- domain: theater mission AI/LLM OPSEC posture hardening
+- objective: enforce mission-safe model operations and block prompt-injection pathways.
+- primary_tools: model gateway policy engine, injection detector, retrieval provenance auditor
+- alternate_tools: manual prompt review board and conservative model-output allowlist
+- degraded_mode: read-only advisory responses with strict human validation
+- input_requirements: prompt logs, model responses, retrieval traces, policy set
+- output_schema: trust posture board, containment matrix, release packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: injection detection pass, provenance integrity, authority concurrence
+
+### packet_id: DPL-THEATER-LLM-OPSEC-INJECTION-002
+- domain: mission AI compromise fallback and controlled rollback
+- objective: contain suspected model compromise and revert to trusted operation mode.
+- primary_tools: rollback orchestrator, compromise-impact board, alternate workflow scheduler
+- alternate_tools: manual rollback checklist and isolated analyst cell
+- degraded_mode: critical mission tasks only through approved fallback workflows
+- input_requirements: compromise telemetry, rollback snapshots, mission impact map
+- output_schema: rollback plan, impact ledger, escalation packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: rollback integrity pass, mission safety threshold, commander approval
+
+### packet_id: DPL-JOINT-CASUALTY-FAMILY-NOTIFY-001
+- domain: multi-theater casualty information integrity and family notification
+- objective: synchronize casualty record integrity with dignified family notification sequencing.
+- primary_tools: casualty reconciliation board, notification workflow orchestrator, authority compliance monitor
+- alternate_tools: manual casualty board and phased notification call tree
+- degraded_mode: highest-confidence verified casualties only with senior approval
+- input_requirements: casualty records, personnel accountability updates, family contact pathways, legal constraints
+- output_schema: casualty integrity matrix, notification sequence board, authority packet
+- protocol_profile: USMTF + NIEM + HL7/FHIR + API/JSON
+- validation_gates: record integrity pass, legal-ethical notification compliance, command concurrence
+
+### packet_id: DPL-JOINT-CASUALTY-FAMILY-NOTIFY-002
+- domain: casualty notification fallback under communications disruption
+- objective: maintain trusted notification integrity when primary communication pathways fail.
+- primary_tools: fallback contact planner, jurisdiction liaison board, notification integrity monitor
+- alternate_tools: manual liaison chain and delayed verification board
+- degraded_mode: staged notifications with explicit confidence labeling
+- input_requirements: communication availability, verification status, jurisdiction contacts, mission tempo constraints
+- output_schema: fallback sequence ladder, confidence labels, escalation packet
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: confidence threshold pass, liaison acknowledgment, authority-chain integrity

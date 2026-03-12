@@ -1939,3 +1939,25 @@ Every skill output should include:
 - Acoustic deception countertargeting + EW fratricide prevention + targeting governance + fires synchronization.
 - Denied-PNT artillery timing assurance + denied-PNT time transfer + long-range fires deconfliction + legal ROE compliance.
 - Reserve cannibalization governance + industrial mobilization readiness + maintenance recovery planning + strategic mobility force flow.
+
+## New Expansion Wave (2026-03-12, Wave XXIV)
+
+- joint-cyber-electromagnetic-spectrum-control-and-mission-reroute-cell
+- theater-autonomous-construction-and-fortification-print-farm-cell
+- strategic-rare-gas-and-energetic-precursor-allocation-cell
+- joint-deep-ocean-sosus-reconstitution-and-decoy-discrimination-cell
+- homeland-defense-pharmaceutical-biologics-cold-chain-assurance-cell
+- coalition-denied-identity-proofing-and-insider-risk-expulsion-cell
+- theater-large-language-model-operations-security-and-prompt-injection-defense-cell
+- joint-multi-theater-casualty-information-and-family-notification-integrity-cell
+
+## Updated Pairings (2026-03-12, Wave XXIV)
+
+- Joint cyber-EM mission reroute + joint allied data-link interoperability + tactical zero-trust hardening + theater mission network failover.
+- Autonomous fortification print-farm governance + force protection/base defense + contested logistics sustainment + combat engineer route/breach support.
+- Strategic rare-gas and energetic precursor allocation + industrial mobilization readiness + munitions continuity planning + strategic risk decision support.
+- Deep-ocean SOSUS reconstitution/decoy discrimination + maritime targeting confidence + undersea node repair sequencing + anti-submarine cue fusion.
+- Homeland pharmaceutical/biologics cold-chain assurance + Role 3 medical network continuity + casualty regulation + civil support medical resilience.
+- Coalition denied identity proofing and insider-risk expulsion + coalition data-link trust + cyber mission assurance/hunt-forward + legal handoff controls.
+- Theater LLM OPSEC and prompt-injection defense + mission command AI assurance + cyber hunt-forward + model-poisoning response controls.
+- Multi-theater casualty information and family-notification integrity + personnel accountability + reserve/family readiness synchronization + legal/ethical authority gates.
