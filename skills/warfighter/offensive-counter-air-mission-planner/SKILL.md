@@ -175,3 +175,9 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For military GPS ground-segment disruption impacts on OCA mission timing, include `ts-gps-ground-segment-restoration-v1` with `ps-gps-ground-segment-restoration-stack-v1`.
 - For rail-air-defense crossing prioritization that protects munitions and sortie support corridors, include `ts-rail-air-defense-crossing-priority-v1` with `ps-rail-air-defense-crossing-priority-stack-v1`.
 - For cislunar launch support dependencies affecting global strike posture, include `ts-cislunar-logistics-spaceport-defense-v1` with `ps-cislunar-logistics-spaceport-defense-stack-v1`.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-hypersonic-warning-fusion-and-response-v1` + `protocol_stack_id=ps-joint-hypersonic-warning-fusion-and-response-stack-v1` when OCA options must branch against compressed warning timelines from hypersonic threats.
+- Add `tool_suite_id=ts-coalition-arctic-austere-airdrop-corridor-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-austere-airdrop-corridor-assurance-stack-v1` when OCA support sorties are coupled with Arctic sustainment and airdrop corridors.
+- Add `packet_id=DPL-JOINT-HYPERSONIC-WARNING-FUSION-RESPONSE-001` and `packet_id=DPL-COALITION-ARCTIC-AIRDROP-CORRIDOR-ASSURANCE-001` for OCA recommendations that can alter escalation posture or sortie-risk acceptance.

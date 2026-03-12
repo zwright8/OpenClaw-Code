@@ -168,3 +168,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell-v1` + `protocol_stack_id=ps-joint-autonomous-seabed-cable-cut-attribution-and-repair-guard-cell-stack-v1` when subsea cable damage drives mission network failover sequencing.
 - Add `tool_suite_id=ts-coalition-joint-fires-sensor-to-shooter-latency-audit-cell-v1` + `protocol_stack_id=ps-coalition-joint-fires-sensor-to-shooter-latency-audit-cell-stack-v1` when failover paths affect coalition fires timing and cross-domain latency confidence.
 - Add `packet_id=DPL-SEABED-CABLE-ATTRIBUTION-REPAIR-GUARD-001` and `packet_id=DPL-COALITION-FIRES-S2S-LATENCY-AUDIT-001` for branches that change transport trust posture, route authority, or kill-chain synchronization.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-nc3-spectrum-deception-and-restoration-v1` + `protocol_stack_id=ps-strategic-nc3-spectrum-deception-and-restoration-stack-v1` when failover plans require NC3 trust recovery under EW deception.
+- Add `tool_suite_id=ts-space-weather-mission-assurance-solar-storm-branching-v1` + `protocol_stack_id=ps-space-weather-mission-assurance-solar-storm-branching-stack-v1` when mission network failover branches are triggered by solar storm impacts on SATCOM/PNT.
+- Add `packet_id=DPL-STRATEGIC-NC3-SPECTRUM-DECEPTION-RESTORATION-001` and `packet_id=DPL-SPACE-WEATHER-MISSION-ASSURANCE-SOLAR-STORM-BRANCHING-001` for failover recommendations that affect theater command continuity.

@@ -3868,3 +3868,137 @@ validation_gates:
 - output_schema: survivability matrix, sustainment branch map, mobility risk trigger ledger
 - protocol_profile: USMTF + OGC + NATO APP-11/ADatP-3 aligned + API/JSON
 - validation_gates: route safety threshold, sustainment throughput floor, command concurrence
+
+## Packet Addendum IX (2026-03-12, Expansion Wave XVIII Tool Invocation Packets)
+
+### packet_id: DPL-STRATEGIC-NC3-SPECTRUM-DECEPTION-RESTORATION-001
+- domain: strategic NC3 spectrum deception and restoration
+- objective: identify and isolate deceptive EW effects on NC3 pathways and sequence trusted restoration actions.
+- primary_tools: NC3 relay integrity dashboard, spectrum anomaly attribution engine, cryptographic trust-state monitor
+- alternate_tools: manual warning-path adjudication board and periodic command-channel confidence checks
+- degraded_mode: strategic-essential NC3 paths only with dual command release checks
+- input_requirements: warning-path telemetry, EW event indicators, authentication state, relay availability, authority constraints
+- output_schema: NC3 trust matrix, restoration branch ladder, command-path assurance packet
+- protocol_profile: USMTF + Link 16 J-series + STIX/TAXII + API/JSON
+- validation_gates: trust-threshold pass, legal-policy guardrail check, command approval record
+
+### packet_id: DPL-JOINT-HYPERSONIC-WARNING-FUSION-RESPONSE-001
+- domain: joint hypersonic strike warning fusion and response
+- objective: fuse compressed-timeline warning indicators and support defensive branch decisions.
+- primary_tools: multi-domain warning fusion board, track confidence correlator, defended-asset prioritization engine
+- alternate_tools: manual warning reconciliation panel and timed response branch huddles
+- degraded_mode: highest-priority defended assets only with commander release
+- input_requirements: warning tracks, cueing telemetry, interceptor readiness, asset criticality, authorities
+- output_schema: warning confidence matrix, response timing branches, defended-asset decision packet
+- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
+- validation_gates: track-confidence threshold, response window feasibility, authority concurrence
+
+### packet_id: DPL-COALITION-ARCTIC-AIRDROP-CORRIDOR-ASSURANCE-001
+- domain: coalition Arctic austere airdrop corridor assurance
+- objective: preserve reliable airdrop corridors under extreme weather and threat conditions.
+- primary_tools: polar weather-risk fusion board, corridor viability planner, coalition airdrop synchronization dashboard
+- alternate_tools: manual corridor adjudication board and conservative drop-window controls
+- degraded_mode: mission-essential drops only with tightened authority checks
+- input_requirements: weather windows, DZ conditions, threat overlays, coalition priorities, release constraints
+- output_schema: corridor confidence map, drop-zone risk matrix, coalition synchronization packet
+- protocol_profile: USMTF + OGC + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: corridor confidence threshold, DZ safety check, coalition concurrence
+
+### packet_id: DPL-THEATER-WATERWAY-BRIDGE-DENIAL-RAPID-REPAIR-001
+- domain: theater contested waterway bridge denial and rapid repair
+- objective: synchronize mobility/countermobility decisions and preserve operational tempo across crossings.
+- primary_tools: combat engineer bridge status board, hydrology risk overlay, rapid repair logistics planner
+- alternate_tools: manual crossing board and periodic engineer synchronization cycles
+- degraded_mode: critical crossings only with conservative denial/release gating
+- input_requirements: bridge condition telemetry, engineer assets, river conditions, threat state, command priorities
+- output_schema: denial/repair timeline, crossing branch options, mobility decision packet
+- protocol_profile: USMTF + VMF + OGC + API/JSON
+- validation_gates: crossing safety threshold, maneuver continuity floor, command concurrence
+
+### packet_id: DPL-EXPEDITIONARY-PRISONER-PROCESSING-EVIDENCE-INTEGRITY-001
+- domain: expeditionary AI-enabled prisoner processing and evidence integrity
+- objective: maintain lawful detainee processing and evidence chain integrity in disrupted environments.
+- primary_tools: custody workflow orchestrator, biometric confidence adjudicator, evidence chain ledger service
+- alternate_tools: manual intake review board and legal sufficiency checklist loops
+- degraded_mode: urgent processing lanes only with legal-command dual validation
+- input_requirements: intake records, biometric confidence signals, evidence custody metadata, legal constraints, authorities
+- output_schema: intake compliance matrix, evidence integrity ledger, legal-risk branch packet
+- protocol_profile: NIEM + USMTF + HL7/FHIR + API/JSON
+- validation_gates: legal sufficiency pass, identity confidence threshold, command release audit
+
+### packet_id: DPL-HOMELAND-RAIL-MOBILITY-CYBER-GUARD-001
+- domain: homeland defense rail network military mobility cyber guard
+- objective: detect rail cyber disruptions and preserve strategic military mobility throughput.
+- primary_tools: rail control cyber-monitor, mobility choke-point analyzer, reroute synchronization dashboard
+- alternate_tools: manual movement-control board and emergency reroute SOP checklists
+- degraded_mode: highest-priority strategic lifts only with dual cyber/mobility approval gates
+- input_requirements: rail telemetry, cyber indicators, movement priorities, chokepoint status, authority posture
+- output_schema: rail cyber risk board, reroute branch matrix, continuity packet
+- protocol_profile: NIMS/ICS + STIX/TAXII + USMTF + API/JSON
+- validation_gates: cyber confidence threshold, mobility throughput floor, authority acknowledgment
+
+### packet_id: DPL-JOINT-DE-BLUE-FORCE-EXPOSURE-GOVERNANCE-001
+- domain: joint directed-energy blue-force exposure governance
+- objective: constrain directed-energy risk to friendly forces and protected systems while preserving mission effects.
+- primary_tools: DE employment governance board, friendly exposure risk estimator, protected-sensor overlay engine
+- alternate_tools: manual fratricide-risk matrix and timed safety adjudication checks
+- degraded_mode: pre-cleared low-risk DE patterns only with command release
+- input_requirements: DE system status, blue-force geolocation, propagation forecasts, protected-zone constraints, authorities
+- output_schema: exposure risk ladder, DE safety release matrix, engagement-governance packet
+- protocol_profile: USMTF + Link 16 J-series + VMF + API/JSON
+- validation_gates: fratricide-risk threshold pass, legal-policy check, command approval chain
+
+### packet_id: DPL-COALITION-DISASTER-RELIEF-AIRFIELD-DIGITAL-TWIN-RECOVERY-001
+- domain: coalition disaster relief airfield digital twin recovery
+- objective: restore airfield throughput using digital twin branch analysis during disaster response.
+- primary_tools: airfield digital twin model, runway restoration scheduler, coalition throughput planner
+- alternate_tools: manual runway recovery board and periodic coalition flow prioritization reviews
+- degraded_mode: life-safety and mission-essential sorties only with emergency approval
+- input_requirements: runway damage reports, repair resources, airlift demand, host-nation constraints, authorities
+- output_schema: recovery sequence plan, throughput restoration matrix, coalition tasking packet
+- protocol_profile: AIXM/FIXM + NIMS/ICS + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: runway safety recertification pass, throughput sufficiency threshold, coalition concurrence
+
+### packet_id: DPL-STRATEGIC-MICROELECTRONICS-ALLOCATION-SABOTAGE-MONITOR-001
+- domain: strategic microelectronics foundry priority allocation and sabotage monitor
+- objective: prioritize trusted component output and detect sabotage before mission-system impact.
+- primary_tools: foundry output allocation board, supply-chain provenance analyzer, sabotage anomaly detector
+- alternate_tools: manual component priority board and provenance dispute adjudication loops
+- degraded_mode: mission-essential component families only with strategic command release
+- input_requirements: foundry throughput, component criticality tiers, provenance events, anomaly indicators, demand priorities
+- output_schema: allocation ladder, sabotage risk brief, mission-system assurance packet
+- protocol_profile: EDI X12 + STIX/TAXII + USMTF + API/JSON
+- validation_gates: provenance integrity pass, sabotage-confidence threshold, authority concurrence
+
+### packet_id: DPL-THEATER-OFFSHORE-PREPOSITIONING-SURVIVABILITY-RELOAD-001
+- domain: theater offshore prepositioning ship survivability and reload
+- objective: preserve afloat sustainment continuity through survivability and reload branch planning.
+- primary_tools: maritime sustainment COP board, afloat survivability planner, reload node capacity model
+- alternate_tools: manual afloat sustainment board and conservative reload scheduling windows
+- degraded_mode: critical sustainment lanes only with command-level release checks
+- input_requirements: ship status/location, threat envelopes, reload capacities, sustainment demand, authorities
+- output_schema: survivability matrix, reload branch timeline, continuity packet
+- protocol_profile: USMTF + AIS/NMEA + Link 16 J-series + API/JSON
+- validation_gates: survivability threshold pass, reload feasibility check, authority approval log
+
+### packet_id: DPL-JOINT-AUTONOMOUS-FIREBREAK-WILDLAND-BASE-DEFENSE-001
+- domain: joint autonomous firebreak and wildland base defense
+- objective: synchronize firebreak operations to protect bases and sustain mission continuity during major wildland fires.
+- primary_tools: wildfire spread predictor, autonomous suppression coordinator, base critical-asset impact board
+- alternate_tools: manual incident board and periodic civil-military fireline deconfliction calls
+- degraded_mode: life-safety and mission-critical assets only with incident-command approval
+- input_requirements: fire spread forecasts, asset maps, autonomous team status, evacuation triggers, authority posture
+- output_schema: firebreak defense plan, mission continuity branches, civil-military coordination packet
+- protocol_profile: NIMS/ICS + OGC + USMTF + API/JSON
+- validation_gates: life-safety threshold pass, suppression safety check, command concurrence
+
+### packet_id: DPL-SPACE-WEATHER-MISSION-ASSURANCE-SOLAR-STORM-BRANCHING-001
+- domain: space weather mission assurance and solar storm branching
+- objective: assess solar event impacts and branch plans for communications, navigation, and ISR resilience.
+- primary_tools: space weather event monitor, SATCOM/PNT impact model, mission dependency branch planner
+- alternate_tools: manual mission-impact board and conservative comms/nav fallback checklist
+- degraded_mode: critical mission threads only with explicit commander acknowledgment
+- input_requirements: space weather forecasts, system health telemetry, mission dependencies, thresholds, authority constraints
+- output_schema: impact matrix, branch recommendations, assurance watch packet
+- protocol_profile: CCSDS + USMTF + OGC + API/JSON
+- validation_gates: impact confidence threshold, mission assurance floor, command approval chain

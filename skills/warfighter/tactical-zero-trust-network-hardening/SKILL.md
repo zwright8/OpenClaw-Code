@@ -167,3 +167,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-tactical-quantum-resistant-key-rollover-under-fire-cell-v1` + `protocol_stack_id=ps-tactical-quantum-resistant-key-rollover-under-fire-cell-stack-v1` when cryptographic rollover under contact risks mission command disruption.
 - Add `tool_suite_id=ts-theater-ai-enabled-fuel-theft-and-black-market-interdiction-cell-v1` + `protocol_stack_id=ps-theater-ai-enabled-fuel-theft-and-black-market-interdiction-cell-stack-v1` when compromised fuel logistics threaten enclave uptime and tactical movement plans.
 - Add `packet_id=DPL-TACTICAL-PQC-ROLLOVER-UNDER-FIRE-001` and `packet_id=DPL-AI-FUEL-THEFT-BLACKMARKET-INTERDICT-001` for branches that alter key trust boundaries, sustainment access controls, or command release conditions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add `tool_suite_id=ts-homeland-rail-mobility-cyber-guard-v1` + `protocol_stack_id=ps-homeland-rail-mobility-cyber-guard-stack-v1` when hardening recommendations depend on rail mobility network cyber resilience.
+- Add `tool_suite_id=ts-expeditionary-prisoner-processing-evidence-integrity-v1` + `protocol_stack_id=ps-expeditionary-prisoner-processing-evidence-integrity-stack-v1` when zero-trust controls must extend to custody/evidence workflows in expeditionary operations.
+- Add `packet_id=DPL-HOMELAND-RAIL-MOBILITY-CYBER-GUARD-001` and `packet_id=DPL-EXPEDITIONARY-PRISONER-PROCESSING-EVIDENCE-INTEGRITY-001` for authority-gated zero-trust branch execution.

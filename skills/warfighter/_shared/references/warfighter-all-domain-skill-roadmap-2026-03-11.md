@@ -64,3 +64,9 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Coalition medical credential revocation and emergency re-privileging under cyber attack.
 - Expeditionary AI model drift governance for autonomous sustainment routing.
 - Multi-theater legal evidence harmonization for sanctions and maritime interdiction campaigns.
+
+## Run Update (2026-03-12T01:xxZ)
+
+- Added Expansion Wave XVIII with 12 cross-domain warfighter skills covering NC3 spectrum deception/restoration, hypersonic warning-response fusion, Arctic austere airdrop assurance, contested bridge denial/repair, expeditionary detainee processing evidence integrity, homeland rail mobility cyber guard, directed-energy blue-force exposure governance, coalition disaster-relief airfield digital twin recovery, strategic microelectronics allocation and sabotage monitoring, offshore prepositioning ship survivability/reload, autonomous wildland base defense, and space-weather mission assurance.
+- Extended shared references with Tool Suite Addendum XVII, Protocol Stack Addendum XVII, and Packet Addendum IX to bind each new domain to concrete external tools and interoperable protocol profiles.
+- Improved high-usage existing skills with Expansion Wave XVIII override bindings to accelerate authority-gated branch generation under NC3, hypersonic warning, rail mobility, and space-weather stressors.

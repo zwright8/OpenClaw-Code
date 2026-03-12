@@ -163,3 +163,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-quantum-pnt-denial-mitigation-v1` + `protocol_stack_id=ps-quantum-pnt-denial-mitigation-stack-v1` when mission risk posture depends on timing integrity or denied-PNT confidence.
 - Add `tool_suite_id=ts-expeditionary-rare-battery-recycling-energy-recovery-v1` + `protocol_stack_id=ps-expeditionary-rare-battery-recycling-energy-recovery-stack-v1` when risk acceptance depends on tactical energy endurance.
 - Add `packet_id=DPL-QUANTUM-PNT-DENIAL-MITIGATION-001` and `packet_id=DPL-EXPEDITIONARY-RARE-BATTERY-RECYCLING-ENERGY-RECOVERY-001` when these dependencies materially change commander GO/NO-GO decisions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-nc3-spectrum-deception-and-restoration-v1` + `protocol_stack_id=ps-strategic-nc3-spectrum-deception-and-restoration-stack-v1` when commander risk posture depends on trusted NC3 warning and command continuity.
+- Add `tool_suite_id=ts-space-weather-mission-assurance-solar-storm-branching-v1` + `protocol_stack_id=ps-space-weather-mission-assurance-solar-storm-branching-stack-v1` when risk acceptance is sensitive to SATCOM/PNT degradation from solar activity.
+- Add `packet_id=DPL-STRATEGIC-NC3-SPECTRUM-DECEPTION-RESTORATION-001` and `packet_id=DPL-SPACE-WEATHER-MISSION-ASSURANCE-SOLAR-STORM-BRANCHING-001` for branches that can alter theater force posture.
