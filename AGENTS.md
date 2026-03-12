@@ -94,6 +94,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `fa8dbb3f79..4dfe4479ea`: added README command-map workflows for Boltzmann-Gumbel autonomous run flags (`--selection-policy bge|sw_bge|d_bge`, `--window-size`, `--discount-factor`, `--boltzmann-gumbel-c`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `6f35422c90..1c7fa01e9d`: no new README command-map additions were found (range adds warfighter skill/reference content and protocol bindings only); `package.json` script-map diff remains blocked in this checkout because `swarm-protocol` package manifest is absent.
 - Verified `a748d29c22..6f35422c90`: added README command-map workflows for Bayesian-bootstrap Thompson autonomous run flags (`--selection-policy bb_ts|sw_bb_ts|d_bb_ts`, `--window-size`, `--discount-factor`, `--thompson-exploration`); `package.json` script-map diff remains blocked in this checkout because `swarm-protocol` package manifest is absent.
 - Verified `1c6bbf5115..96c37731fa`: no new README command-map additions were found (range updates AGENTS verification bookkeeping/hash correction only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
