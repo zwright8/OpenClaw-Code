@@ -1476,6 +1476,65 @@ test('buildAutonomousBatchPlan supports discounted Bayes-UCB for recency-weighte
     assert.equal(plan.selection.policy.skills, 'd_bayes_ucb');
 });
 
+test('buildAutonomousBatchPlan supports discounted KL-UCB for recency-weighted optimistic ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 667, code: 'SK-00667', title: 'Skill 667' },
+            { id: 668, code: 'SK-00668', title: 'Skill 668' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '667': {
+                    attempts: 40,
+                    successes: 30,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                },
+                '668': {
+                    attempts: 40,
+                    successes: 12,
+                    failures: 28,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'd_kl_ucb',
+            discountFactor: 0.7,
+            klUcbConfidence: 3
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [668]);
+    assert.equal(plan.selection.policy.skills, 'd_kl_ucb');
+});
+
 test('buildAutonomousBatchPlan supports UCB-Tuned variance-aware ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

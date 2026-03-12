@@ -115,6 +115,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_kl_ucb',
     'd_bayes_ucb',
     'cd_ucb',
     'cusum_ucb',
@@ -133,7 +134,8 @@ const THOMPSON_POLICY_MODES = new Set([
 ]);
 const KL_UCB_POLICY_MODES = new Set([
     'kl_ucb',
-    'sw_kl_ucb'
+    'sw_kl_ucb',
+    'd_kl_ucb'
 ]);
 const BAYES_UCB_POLICY_MODES = new Set([
     'bayes_ucb',
@@ -161,6 +163,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_kl_ucb',
     'd_bayes_ucb',
     'd_exp3_ix',
     'd_linucb',

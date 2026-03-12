@@ -38,6 +38,7 @@
 - `npm run autonomous:run -- --selection-policy d_bayes_ucb --discount-factor 0.97 --bayes-ucb-quantile 0.9` - run autonomous loop with discounted Bayes-UCB adaptation under non-stationary drift.
 - `npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25` - run autonomous loop with discounted epsilon-Thompson adaptation for non-stationary outcomes.
 - `npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3` - run autonomous loop with KL-UCB optimism for bounded binary outcomes.
+- `npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3` - run autonomous loop with discounted KL-UCB optimism to emphasize recent bounded outcomes under drift.
 - `npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02` - run autonomous loop with change-detection UCB for abrupt drift handling.
 - `npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15` - run autonomous loop with CUSUM-based abrupt drift detection and baseline adaptation.
 - `npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with EXP3-style policy corralling across UCB/TS/KL-UCB/change-detection arms.

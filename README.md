@@ -243,6 +243,7 @@ npm run autonomous:run -- --selection-policy sw_bayes_ucb --window-size 12 --bay
 npm run autonomous:run -- --selection-policy d_bayes_ucb --discount-factor 0.97 --bayes-ucb-quantile 0.9
 npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
+npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
 npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
