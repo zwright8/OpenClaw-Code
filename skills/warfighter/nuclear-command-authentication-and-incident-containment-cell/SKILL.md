@@ -54,3 +54,7 @@ Preferred protocol families for this skill: USMTF, NIEM, NIMS/ICS, STIX/TAXII, A
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, data provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add tool_suite_id=ts-nuclear-order-path-integrity-attestation-v1 + protocol_stack_id=ps-nuclear-order-path-integrity-attestation-stack-v1 when command confidence depends on independent authentication path verification under degraded comms.\n- Add tool_suite_id=ts-post-detonation-containment-zone-priority-router-v1 + protocol_stack_id=ps-post-detonation-containment-zone-priority-router-stack-v1 when containment and survivability recommendations depend on plume dynamics and hospital surge synchronization.\n- Add packet_id=DPL-NUCLEAR-AUTH-CONTAINMENT-001 and packet_id=DPL-CONTAINMENT-ZONE-PRIORITY-001 for recommendations that alter continuity posture or incident response command sequencing.

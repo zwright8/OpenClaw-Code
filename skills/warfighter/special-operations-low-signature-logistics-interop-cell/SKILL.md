@@ -54,3 +54,7 @@ Preferred protocol families for this skill: USMTF, VMF, CoT, API/JSON.
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, data provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add tool_suite_id=ts-low-signature-logistics-cross-domain-sync-v1 + protocol_stack_id=ps-low-signature-logistics-cross-domain-sync-stack-v1 when SOF sustainment requires tightly synchronized handoffs across denied air, ground, and maritime nodes.\n- Add tool_suite_id=ts-denied-terrain-cache-exposure-risk-audit-v1 + protocol_stack_id=ps-denied-terrain-cache-exposure-risk-audit-stack-v1 when branch options depend on cache survivability and adversary pattern-of-life detection risk.\n- Add packet_id=DPL-LOW-SIGNATURE-LOG-INTEROP-001 and packet_id=DPL-CACHE-EXPOSURE-RISK-001 for recommendations that alter resupply cadence, route discipline, or exposure posture.

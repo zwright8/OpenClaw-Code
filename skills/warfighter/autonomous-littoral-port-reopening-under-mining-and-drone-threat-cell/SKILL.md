@@ -1,9 +1,9 @@
 ---
-name: contested-space-domain-awareness-and-rendezvous-denial-cell
-description: Support U.S. space warfighters with contested orbital awareness, hostile rendezvous risk detection, and defensive maneuver branch planning.
+name: autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell
+description: Guide joint maritime teams on rapid port reopening under sea-mine contamination, drone attack pressure, and constrained convoy protection resources.
 ---
 
-# Contested Space Domain Awareness and Rendezvous Denial Cell
+# Autonomous Littoral Port Reopening Under Mining and Drone Threat Cell
 
 ## Mission Scope
 
@@ -29,11 +29,11 @@ description: Support U.S. space warfighters with contested orbital awareness, ho
 
 ## Domain Tool Stack
 
-Use these tool categories by default: space object custody analytics, rendezvous anomaly detection tools, orbital defensive maneuver planners.
+Use these tool categories by default: minefield mapping fusion, autonomous harbor reconnaissance control, and convoy risk re-sequencing planners.
 
 ## Protocol Profile
 
-Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
+Preferred protocol families for this skill: IHO S-100, AIS, Link 16 J-series, STANAG, API/JSON.
 
 ## Domain Toolchain Defaults
 
@@ -44,7 +44,7 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 ## External Tools and Protocol Integration
 
 - Use ../_shared/references/warfighter-external-tool-and-protocol-catalog.md to bind concrete tool suites and protocol stacks.
-- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-SPACE-RPO-DENIAL-001 for critical recommendations.
+- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-LITTORAL-PORT-REOPENING-001 for critical recommendations.
 - Include tool_suite_id, protocol_stack_id, packet_id, data freshness (UTC), confidence, and fallback path in each high-impact branch.
 - If no direct packet match exists, define a provisional packet with validation_owner and revalidation_utc.
 
@@ -57,4 +57,4 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-space-rendezvous-anomaly-vetting-v1 + protocol_stack_id=ps-space-rendezvous-anomaly-vetting-stack-v1 when defensive maneuver branches depend on validated hostile proximity intent assessments.\n- Add tool_suite_id=ts-orbital-custody-sensor-divergence-reconcile-v1 + protocol_stack_id=ps-orbital-custody-sensor-divergence-reconcile-stack-v1 when commander confidence depends on resolving conflicting commercial, coalition, and military track custody.\n- Add packet_id=DPL-SPACE-RPO-DENIAL-001 and packet_id=DPL-ORBITAL-CUSTODY-RECONCILE-001 for recommendations that alter maneuver timing, attribution posture, or escalation risk.
+- Add tool_suite_id=ts-littoral-port-mining-drone-clearance-fusion-v1 + protocol_stack_id=ps-littoral-port-mining-drone-clearance-fusion-stack-v1 when port reopening depends on synchronized mine and drone threat suppression.\n- Add tool_suite_id=ts-convoy-berth-priority-risk-arbitration-v1 + protocol_stack_id=ps-convoy-berth-priority-risk-arbitration-stack-v1 when branching requires balancing throughput, escort scarcity, and strike risk.\n- Add packet_id=DPL-LITTORAL-PORT-REOPENING-001 and packet_id=DPL-CONVOY-BERTH-RISK-ARBITRATION-001 for recommendations that alter channel opening sequence or convoy release authority.

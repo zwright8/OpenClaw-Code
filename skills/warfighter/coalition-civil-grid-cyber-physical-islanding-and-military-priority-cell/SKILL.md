@@ -1,9 +1,9 @@
 ---
-name: contested-space-domain-awareness-and-rendezvous-denial-cell
-description: Support U.S. space warfighters with contested orbital awareness, hostile rendezvous risk detection, and defensive maneuver branch planning.
+name: coalition-civil-grid-cyber-physical-islanding-and-military-priority-cell
+description: Support coalition commanders with civil-grid islanding options, cyber-physical contingency prioritization, and military-critical feeder restoration sequencing.
 ---
 
-# Contested Space Domain Awareness and Rendezvous Denial Cell
+# Coalition Civil Grid Cyber-Physical Islanding and Military Priority Cell
 
 ## Mission Scope
 
@@ -29,11 +29,11 @@ description: Support U.S. space warfighters with contested orbital awareness, ho
 
 ## Domain Tool Stack
 
-Use these tool categories by default: space object custody analytics, rendezvous anomaly detection tools, orbital defensive maneuver planners.
+Use these tool categories by default: grid state estimators, substation cyber telemetry fusion, and feeder-priority restoration planners.
 
 ## Protocol Profile
 
-Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
+Preferred protocol families for this skill: IEC 61850, DNP3, NERC CIP, NIEM, API/JSON.
 
 ## Domain Toolchain Defaults
 
@@ -44,7 +44,7 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 ## External Tools and Protocol Integration
 
 - Use ../_shared/references/warfighter-external-tool-and-protocol-catalog.md to bind concrete tool suites and protocol stacks.
-- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-SPACE-RPO-DENIAL-001 for critical recommendations.
+- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-COALITION-GRID-ISLANDING-PRIORITY-001 for critical recommendations.
 - Include tool_suite_id, protocol_stack_id, packet_id, data freshness (UTC), confidence, and fallback path in each high-impact branch.
 - If no direct packet match exists, define a provisional packet with validation_owner and revalidation_utc.
 
@@ -57,4 +57,4 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-space-rendezvous-anomaly-vetting-v1 + protocol_stack_id=ps-space-rendezvous-anomaly-vetting-stack-v1 when defensive maneuver branches depend on validated hostile proximity intent assessments.\n- Add tool_suite_id=ts-orbital-custody-sensor-divergence-reconcile-v1 + protocol_stack_id=ps-orbital-custody-sensor-divergence-reconcile-stack-v1 when commander confidence depends on resolving conflicting commercial, coalition, and military track custody.\n- Add packet_id=DPL-SPACE-RPO-DENIAL-001 and packet_id=DPL-ORBITAL-CUSTODY-RECONCILE-001 for recommendations that alter maneuver timing, attribution posture, or escalation risk.
+- Add tool_suite_id=ts-coalition-grid-islanding-priority-broker-v1 + protocol_stack_id=ps-coalition-grid-islanding-priority-broker-stack-v1 when coalition and military loads must be partitioned under active disruption.\n- Add tool_suite_id=ts-substation-cyber-physical-rollback-and-verification-v1 + protocol_stack_id=ps-substation-cyber-physical-rollback-and-verification-stack-v1 when restoration choices depend on trusted state rollback and protection relay validation.\n- Add packet_id=DPL-COALITION-GRID-ISLANDING-PRIORITY-001 and packet_id=DPL-SUBSTATION-ROLLBACK-VERIFY-001 for recommendations that change power-sharing posture or critical-load continuity.

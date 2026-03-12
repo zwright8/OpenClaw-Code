@@ -54,3 +54,7 @@ Preferred protocol families for this skill: USMTF, Link 16 J-series, STIX/TAXII,
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, data provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add tool_suite_id=ts-emitter-fingerprint-authentication-fusion-v1 + protocol_stack_id=ps-emitter-fingerprint-authentication-fusion-stack-v1 when spectrum deception branches depend on high-confidence emitter identity discrimination.\n- Add tool_suite_id=ts-electromagnetic-decoy-fratricide-precheck-v1 + protocol_stack_id=ps-electromagnetic-decoy-fratricide-precheck-stack-v1 when decoy plans could increase blue-force misclassification risk.\n- Add packet_id=DPL-EMITTER-AUTH-FUSION-001 and packet_id=DPL-EM-DECOY-FRATRICIDE-PRECHECK-001 for recommendations that alter EMCON, targeting confidence, or counter-deception posture.

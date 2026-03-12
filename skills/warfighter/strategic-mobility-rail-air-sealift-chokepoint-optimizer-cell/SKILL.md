@@ -54,3 +54,7 @@ Preferred protocol families for this skill: USMTF, NATO APP-11/ADatP-3 aligned, 
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, data provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add tool_suite_id=ts-strategic-chokepoint-mobility-resilience-optimizer-v1 + protocol_stack_id=ps-strategic-chokepoint-mobility-resilience-optimizer-stack-v1 when force-flow recommendations depend on simultaneous rail, airlift, and sealift disruption forecasts.\n- Add tool_suite_id=ts-port-rail-bridge-damage-repair-priority-sequencer-v1 + protocol_stack_id=ps-port-rail-bridge-damage-repair-priority-sequencer-stack-v1 when strategic mobility posture requires synchronized repair and reroute sequencing across allied infrastructure.\n- Add packet_id=DPL-STRATEGIC-MOBILITY-CHOKEPOINT-001 and packet_id=DPL-INFRA-REPAIR-PRIORITY-001 for recommendations that alter deployment timing, force package order, or sustainment risk.

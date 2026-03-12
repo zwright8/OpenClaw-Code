@@ -54,3 +54,7 @@ Preferred protocol families for this skill: USMTF, CoT, OGC, NIMS/ICS, API/JSON.
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, data provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add tool_suite_id=ts-subterranean-air-quality-collapse-predictor-v1 + protocol_stack_id=ps-subterranean-air-quality-collapse-predictor-stack-v1 when route viability depends on oxygen/contaminant risk and power-denied ventilation conditions.\n- Add tool_suite_id=ts-urban-underground-communications-relay-stitcher-v1 + protocol_stack_id=ps-urban-underground-communications-relay-stitcher-stack-v1 when mission assurance depends on resilient command links in subterranean complexes.\n- Add packet_id=DPL-SUBTERRANEAN-LIFE-SUPPORT-001 and packet_id=DPL-UNDERGROUND-COMMS-RELAY-001 for recommendations that alter entry windows, rescue posture, or team safety thresholds.

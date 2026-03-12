@@ -1,9 +1,9 @@
 ---
-name: contested-space-domain-awareness-and-rendezvous-denial-cell
-description: Support U.S. space warfighters with contested orbital awareness, hostile rendezvous risk detection, and defensive maneuver branch planning.
+name: expeditionary-water-purification-contamination-attribution-cell
+description: Assist expeditionary sustainment units with water contamination detection, attribution triage, and purification fallback routing under sabotage or CBRN pressure.
 ---
 
-# Contested Space Domain Awareness and Rendezvous Denial Cell
+# Expeditionary Water Purification Contamination Attribution Cell
 
 ## Mission Scope
 
@@ -29,11 +29,11 @@ description: Support U.S. space warfighters with contested orbital awareness, ho
 
 ## Domain Tool Stack
 
-Use these tool categories by default: space object custody analytics, rendezvous anomaly detection tools, orbital defensive maneuver planners.
+Use these tool categories by default: field water quality telemetry analytics, contamination source attribution systems, and purification throughput optimizers.
 
 ## Protocol Profile
 
-Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
+Preferred protocol families for this skill: OGC SensorThings, NIEM, STANAG, CBRN message sets, API/JSON.
 
 ## Domain Toolchain Defaults
 
@@ -44,7 +44,7 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 ## External Tools and Protocol Integration
 
 - Use ../_shared/references/warfighter-external-tool-and-protocol-catalog.md to bind concrete tool suites and protocol stacks.
-- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-SPACE-RPO-DENIAL-001 for critical recommendations.
+- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-EXPEDITIONARY-WATER-CONTAM-ATTRIBUTION-001 for critical recommendations.
 - Include tool_suite_id, protocol_stack_id, packet_id, data freshness (UTC), confidence, and fallback path in each high-impact branch.
 - If no direct packet match exists, define a provisional packet with validation_owner and revalidation_utc.
 
@@ -57,4 +57,4 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-space-rendezvous-anomaly-vetting-v1 + protocol_stack_id=ps-space-rendezvous-anomaly-vetting-stack-v1 when defensive maneuver branches depend on validated hostile proximity intent assessments.\n- Add tool_suite_id=ts-orbital-custody-sensor-divergence-reconcile-v1 + protocol_stack_id=ps-orbital-custody-sensor-divergence-reconcile-stack-v1 when commander confidence depends on resolving conflicting commercial, coalition, and military track custody.\n- Add packet_id=DPL-SPACE-RPO-DENIAL-001 and packet_id=DPL-ORBITAL-CUSTODY-RECONCILE-001 for recommendations that alter maneuver timing, attribution posture, or escalation risk.
+- Add tool_suite_id=ts-expeditionary-water-contamination-cause-fusion-v1 + protocol_stack_id=ps-expeditionary-water-contamination-cause-fusion-stack-v1 when commanders need rapid attribution between sabotage, industrial leak, and natural-source failures.\n- Add tool_suite_id=ts-water-purification-throughput-and-distribution-priority-v1 + protocol_stack_id=ps-water-purification-throughput-and-distribution-priority-stack-v1 when branch viability depends on constrained purification assets and casualty-prevention demand.\n- Add packet_id=DPL-EXPEDITIONARY-WATER-CONTAM-ATTRIBUTION-001 and packet_id=DPL-WATER-THROUGHPUT-PRIORITY-001 for recommendations that alter potable water release or rationing posture.

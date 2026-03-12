@@ -54,3 +54,7 @@ Preferred protocol families for this skill: OGC, USMTF, AIXM/FIXM, API/JSON.
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, data provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
+
+- Add tool_suite_id=ts-battlefield-microclimate-effects-window-fusion-v1 + protocol_stack_id=ps-battlefield-microclimate-effects-window-fusion-stack-v1 when maneuver and ISR branches depend on minute-scale weather transitions in complex terrain.\n- Add tool_suite_id=ts-denied-weather-sensor-gap-reconstruction-v1 + protocol_stack_id=ps-denied-weather-sensor-gap-reconstruction-stack-v1 when commanders need weather confidence under radars denied by EW, terrain masking, or strike damage.\n- Add packet_id=DPL-BATTLEFIELD-WEATHER-EFFECTS-WINDOW-001 and packet_id=DPL-WEATHER-GAP-RECONSTRUCTION-001 for recommendations that alter launch, movement, or casualty-evac windows.

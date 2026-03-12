@@ -1,9 +1,9 @@
 ---
-name: contested-space-domain-awareness-and-rendezvous-denial-cell
-description: Support U.S. space warfighters with contested orbital awareness, hostile rendezvous risk detection, and defensive maneuver branch planning.
+name: joint-digital-twin-deception-detection-and-mission-assurance-cell
+description: Help joint mission planners validate digital twin integrity, detect adversary deception injections, and preserve decision confidence across distributed operations.
 ---
 
-# Contested Space Domain Awareness and Rendezvous Denial Cell
+# Joint Digital Twin Deception Detection and Mission Assurance Cell
 
 ## Mission Scope
 
@@ -29,11 +29,11 @@ description: Support U.S. space warfighters with contested orbital awareness, ho
 
 ## Domain Tool Stack
 
-Use these tool categories by default: space object custody analytics, rendezvous anomaly detection tools, orbital defensive maneuver planners.
+Use these tool categories by default: digital twin provenance verifiers, model drift and tamper detectors, and mission assurance replay systems.
 
 ## Protocol Profile
 
-Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
+Preferred protocol families for this skill: STIX/TAXII, NIEM, OpenTelemetry, NIST SP 800-53 mappings, API/JSON.
 
 ## Domain Toolchain Defaults
 
@@ -44,7 +44,7 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 ## External Tools and Protocol Integration
 
 - Use ../_shared/references/warfighter-external-tool-and-protocol-catalog.md to bind concrete tool suites and protocol stacks.
-- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-SPACE-RPO-DENIAL-001 for critical recommendations.
+- Use ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-DIGITAL-TWIN-DECEPTION-ASSURANCE-001 for critical recommendations.
 - Include tool_suite_id, protocol_stack_id, packet_id, data freshness (UTC), confidence, and fallback path in each high-impact branch.
 - If no direct packet match exists, define a provisional packet with validation_owner and revalidation_utc.
 
@@ -57,4 +57,4 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-space-rendezvous-anomaly-vetting-v1 + protocol_stack_id=ps-space-rendezvous-anomaly-vetting-stack-v1 when defensive maneuver branches depend on validated hostile proximity intent assessments.\n- Add tool_suite_id=ts-orbital-custody-sensor-divergence-reconcile-v1 + protocol_stack_id=ps-orbital-custody-sensor-divergence-reconcile-stack-v1 when commander confidence depends on resolving conflicting commercial, coalition, and military track custody.\n- Add packet_id=DPL-SPACE-RPO-DENIAL-001 and packet_id=DPL-ORBITAL-CUSTODY-RECONCILE-001 for recommendations that alter maneuver timing, attribution posture, or escalation risk.
+- Add tool_suite_id=ts-digital-twin-provenance-tamper-audit-v1 + protocol_stack_id=ps-digital-twin-provenance-tamper-audit-stack-v1 when branch selection depends on trusted synthetic environment fidelity.\n- Add tool_suite_id=ts-cross-domain-model-drift-conflict-resolver-v1 + protocol_stack_id=ps-cross-domain-model-drift-conflict-resolver-stack-v1 when recommendations depend on reconciling divergent model states under contested data refresh.\n- Add packet_id=DPL-DIGITAL-TWIN-DECEPTION-ASSURANCE-001 and packet_id=DPL-MODEL-DRIFT-CONFLICT-RESOLVE-001 for recommendations that influence mission-go/no-go posture.
