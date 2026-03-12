@@ -173,3 +173,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Prioritize `tool_suite_id=ts-theater-air-defense-emitter-decoy-logistics-cell-v1` + `protocol_stack_id=ps-theater-air-defense-emitter-decoy-logistics-cell-stack-v1` when targeting timelines require synchronized emitter/decoy repositioning and survivability tradeoffs.
 - Prioritize `tool_suite_id=ts-joint-space-based-ir-missile-warning-false-track-adjudication-cell-v1` + `protocol_stack_id=ps-joint-space-based-ir-missile-warning-false-track-adjudication-cell-stack-v1` when warning-track confidence may alter target validation or escalation thresholds.
 - Add `packet_id=DPL-JOINT_TARGETING_STANDARDS_AND_CDE_GOVERNANCE_CELL-005` and `packet_id=DPL-JOINT_TARGETING_STANDARDS_AND_CDE_GOVERNANCE_CELL-006` for high-consequence release recommendations.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVII Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-long-range-precision-fires-deconfliction-cell-v1` + `protocol_stack_id=ps-joint-long-range-precision-fires-deconfliction-cell-stack-v1` when release timelines require synchronized cross-domain timing, no-strike integrity, and escalation-safe strike sequencing.
+- Prioritize `tool_suite_id=ts-joint-electromagnetic-spectrum-superiority-cell-v1` + `protocol_stack_id=ps-joint-electromagnetic-spectrum-superiority-cell-stack-v1` when target confidence depends on jammer/deception adjudication and blue-force electromagnetic fratricide prevention.
+- Add `packet_id=DPL-LRPF-DECONFLICTION-001` and `packet_id=DPL-EMSO-SUPERIORITY-001` for high-consequence release recommendations that shift CDE confidence, strike timing, or authority-gate sequencing.

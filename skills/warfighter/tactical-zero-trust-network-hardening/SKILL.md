@@ -204,3 +204,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add tool_suite_id=ts-strategic-quantum-network-key-custody-and-compromise-response-cell-v1 + protocol_stack_id=ps-strategic-quantum-network-key-custody-and-compromise-response-cell-stack-v1 when zero-trust posture depends on compromised key-custody containment and cryptographic continuity.
 - Add tool_suite_id=ts-homeland-defense-municipal-911-psap-cyber-survivability-cell-v1 + protocol_stack_id=ps-homeland-defense-municipal-911-psap-cyber-survivability-cell-stack-v1 when network trust boundaries must preserve military-civil emergency call continuity.
 - Add packet_id=DPL-QUANTUM-NETWORK-KEY-CUSTODY-001 and packet_id=DPL-MUNICIPAL-911-PSAP-CYBER-001 for recommendations that shift trust boundaries, credential release controls, or life-safety communication authorities.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVII Addendum)
+
+- Add tool_suite_id=ts-joint-cyber-mission-assurance-and-hunt-forward-cell-v1 + protocol_stack_id=ps-joint-cyber-mission-assurance-and-hunt-forward-cell-stack-v1 when zero-trust recommendations depend on hunt-forward threat suppression and mission-system survivability across coalition enclaves.
+- Add tool_suite_id=ts-joint-space-control-and-counterspace-mission-cell-v1 + protocol_stack_id=ps-joint-space-control-and-counterspace-mission-cell-stack-v1 when trust posture depends on protected space-control telemetry, SATCOM continuity, and escalation-safe counterspace branch controls.
+- Add packet_id=DPL-CYBER-HUNT-FWD-001 and packet_id=DPL-SPACE-COUNTERSPACE-001 for recommendations that shift trust boundaries, cross-domain release authority, or strategic continuity assumptions.

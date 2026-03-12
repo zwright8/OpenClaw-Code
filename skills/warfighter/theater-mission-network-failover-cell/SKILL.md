@@ -225,3 +225,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add tool_suite_id=ts-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-v1 + protocol_stack_id=ps-theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell-stack-v1 when failover sequencing depends on airfield aid restoration and sortie-safe recertification timing.
 - Add tool_suite_id=ts-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-v1 + protocol_stack_id=ps-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-stack-v1 when mission-network continuity depends on expeditionary power resilience and hydrogen safety controls.
 - Add packet_id=DPL-RUNWAY-LIGHTING-APPROACH-AID-001 and packet_id=DPL-HYDROGEN-MICROGRID-SAFETY-001 for branches that materially change service survivability timelines or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVII Addendum)
+
+- Add tool_suite_id=ts-joint-contested-logistics-and-prepositioning-cell-v1 + protocol_stack_id=ps-joint-contested-logistics-and-prepositioning-cell-stack-v1 when failover recommendations depend on distributed sustainment traffic priorities and prepositioned stock release timing.
+- Add tool_suite_id=ts-joint-role-3-medical-network-and-aeromedical-evac-cell-v1 + protocol_stack_id=ps-joint-role-3-medical-network-and-aeromedical-evac-cell-stack-v1 when network continuity branches must preserve Role 3 patient movement, medevac sequencing, and blood cold-chain telemetry.
+- Add packet_id=DPL-CONTESTED-LOGISTICS-001 and packet_id=DPL-ROLE3-AEROMED-001 for branches that materially change service survivability, life-safety routing, or commander risk acceptance.

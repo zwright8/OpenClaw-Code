@@ -1888,3 +1888,28 @@ Every skill output should include:
 - Coalition rail-gauge transload survivability + strategic mobility chokepoint wargaming + movement control + coalition logistics interoperability
 - Decoy emitter governance + spectrum interference resolution + electromagnetic fratricide prevention + deception branch control
 - Prisoner exchange fraud detection + truce monitoring + detainee transfer legal observability + coalition evidence assurance
+
+## New Expansion Wave (2026-03-12, Joint Cross-Domain Control and Continuity)
+
+- joint-space-control-and-counterspace-mission-cell
+- joint-cyber-mission-assurance-and-hunt-forward-cell
+- joint-electromagnetic-spectrum-superiority-cell
+- joint-long-range-precision-fires-deconfliction-cell
+- joint-contested-logistics-and-prepositioning-cell
+- joint-role-3-medical-network-and-aeromedical-evac-cell
+- joint-strategic-deterrence-and-nc3-resilience-cell
+- joint-information-advantage-and-influence-operations-cell
+- joint-personnel-recovery-and-isolated-operator-support-cell
+- joint-military-police-detainee-and-site-security-cell
+
+## Updated Pairings (2026-03-12, Joint Cross-Domain Control and Continuity)
+
+- Space control/counterspace mission cell + strategic deterrence/NC3 resilience + mission-network failover + launch-window deconfliction
+- Cyber mission assurance/hunt-forward + tactical zero-trust hardening + coalition cyber-EM OOB fusion + mission command continuity
+- Electromagnetic spectrum superiority + joint targeting/CDE governance + air and missile defense + decoy-emitter governance
+- Long-range precision fires deconfliction + dynamic targeting governance + no-strike boundary assurance + civilian-harm mitigation
+- Contested logistics/prepositioning + strategic mobility chokepoint optimization + anti-counterfeit custody + sustainment branch risk controls
+- Role 3 medical network/aeromedical evacuation + blood-biologics assurance + casualty regulation + medevac corridor deconfliction
+- Information advantage/influence ops + tactical counter-disinformation assurance + mission-order authenticity + civil alert trust restoration
+- Personnel recovery/isolated operator support + combat search-and-rescue coordination + ISR cueing + denied-airspace timing deconfliction
+- Military police detainee/site security + custody handshake ledger + battlefield forensics evidence preservation + coalition legal handoff assurance
