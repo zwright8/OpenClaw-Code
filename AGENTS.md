@@ -87,6 +87,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `c5c9169414..cee4aa726a`: no new README command-map additions were found (range adds warfighter skill/reference content and protocol override updates only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `db43beb77f..3086a52544`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `3086a52544..9e4b0af1a2`: added README command-map workflow for periodic-restart EXP3-IX autonomous run flags (`--selection-policy rexp3_ix`, `--exp3-ix-gamma`, `--exp3-ix-eta`, `--exp3-restart-interval`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `9e4b0af1a2..d34ea7478a`: added README command-map workflows for recency-aware policy corralling variants (`--selection-policy sw_corral_exp3|d_corral_exp3|sw_corral_exp3_plus|d_corral_exp3_plus`, `--window-size`, `--discount-factor`, `--corral-gamma`, `--corral-eta`); `package.json` script-map diff remains blocked in this checkout because root package manifest is absent.
