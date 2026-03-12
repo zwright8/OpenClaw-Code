@@ -528,6 +528,42 @@ test('buildAutonomousBatchPlan supports epsilon-thompson policy with determinist
     assert.deepEqual(plan.selection.skillIds, [41]);
 });
 
+test('buildAutonomousBatchPlan supports adaptive auto_epsilon_ts exploration under uncertainty', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 411, code: 'SK-00411', title: 'Skill 411' },
+            { id: 412, code: 'SK-00412', title: 'Skill 412' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 18,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '411': { attempts: 16, successes: 13, failures: 3, consecutiveFailures: 0, lastWave: 17, lastStatus: 'completed' },
+                '412': { attempts: 2, successes: 1, failures: 1, consecutiveFailures: 0, lastWave: 17, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 19,
+        selectionPolicyConfig: {
+            mode: 'auto_epsilon_ts',
+            thompsonExploration: 0,
+            thompsonUncertaintyWeight: 1.5,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [412]);
+    assert.equal(plan.selection.policy.skills, 'auto_epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'auto_epsilon_ts');
+});
+
 test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -1901,6 +1937,71 @@ test('buildAutonomousBatchPlan supports sliding-window epsilon-thompson ranking'
     assert.deepEqual(plan.selection.skillIds, [62]);
 });
 
+test('buildAutonomousBatchPlan supports sliding-window adaptive auto_epsilon_ts ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 565, code: 'SK-00565', title: 'Skill 565' },
+            { id: 566, code: 'SK-00566', title: 'Skill 566' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 58,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '565': {
+                    attempts: 8,
+                    successes: 6,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 57,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { status: 'completed', wave: 57, reward: 1 },
+                        { status: 'completed', wave: 56, reward: 1 },
+                        { status: 'completed', wave: 55, reward: 1 },
+                        { status: 'failed', wave: 54, reward: 0 },
+                        { status: 'completed', wave: 53, reward: 1 }
+                    ]
+                },
+                '566': {
+                    attempts: 8,
+                    successes: 6,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 57,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { status: 'completed', wave: 57, reward: 1 },
+                        { status: 'failed', wave: 56, reward: 0 },
+                        { status: 'failed', wave: 55, reward: 0 },
+                        { status: 'failed', wave: 54, reward: 0 },
+                        { status: 'completed', wave: 53, reward: 1 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 59,
+        selectionPolicyConfig: {
+            mode: 'sw_auto_epsilon_ts',
+            slidingWindowSize: 3,
+            thompsonExploration: 0,
+            thompsonUncertaintyWeight: 1,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [565]);
+    assert.equal(plan.selection.policy.skills, 'sw_auto_epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_auto_epsilon_ts');
+});
+
 test('buildAutonomousBatchPlan supports hybrid fdsw_epsilon_ts ranking under mixed drift', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -2365,6 +2466,73 @@ test('buildAutonomousBatchPlan supports discounted epsilon-thompson ranking', ()
     });
 
     assert.deepEqual(plan.selection.skillIds, [66]);
+});
+
+test('buildAutonomousBatchPlan supports discounted adaptive auto_epsilon_ts ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 735, code: 'SK-00735', title: 'Skill 735' },
+            { id: 736, code: 'SK-00736', title: 'Skill 736' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 72,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '735': {
+                    attempts: 8,
+                    successes: 6,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 71,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { status: 'completed', wave: 71, reward: 1 },
+                        { status: 'completed', wave: 70, reward: 1 },
+                        { status: 'failed', wave: 69, reward: 0 },
+                        { status: 'failed', wave: 68, reward: 0 },
+                        { status: 'failed', wave: 67, reward: 0 },
+                        { status: 'failed', wave: 66, reward: 0 }
+                    ]
+                },
+                '736': {
+                    attempts: 8,
+                    successes: 5,
+                    failures: 3,
+                    consecutiveFailures: 1,
+                    lastWave: 71,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { status: 'failed', wave: 71, reward: 0 },
+                        { status: 'failed', wave: 70, reward: 0 },
+                        { status: 'completed', wave: 69, reward: 1 },
+                        { status: 'completed', wave: 68, reward: 1 },
+                        { status: 'completed', wave: 67, reward: 1 },
+                        { status: 'completed', wave: 66, reward: 1 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 73,
+        selectionPolicyConfig: {
+            mode: 'd_auto_epsilon_ts',
+            discountFactor: 0.85,
+            thompsonExploration: 0,
+            thompsonUncertaintyWeight: 1,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [736]);
+    assert.equal(plan.selection.policy.skills, 'd_auto_epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_auto_epsilon_ts');
 });
 
 test('runAutonomousOpenClaw records linucb contextual model samples', async (t) => {

@@ -51,6 +51,8 @@ const DEFAULT_THOMPSON_EXPLORATION = 0.2;
 const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
 const DEFAULT_THOMPSON_PRIOR_BETA = 1;
 const MAX_THOMPSON_PRIOR = 100;
+const DEFAULT_THOMPSON_UNCERTAINTY_WEIGHT = 0.5;
+const MAX_THOMPSON_UNCERTAINTY_WEIGHT = 2;
 const DEFAULT_HYBRID_TS_AGGREGATION = 'mean';
 const HYBRID_TS_AGGREGATION_MODES = new Set([
     'min',
@@ -109,6 +111,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_lints',
     'd_lints',
     'epsilon_ts',
+    'auto_epsilon_ts',
     'cd_epsilon_ts',
     'sw_cd_epsilon_ts',
     'cusum_epsilon_ts',
@@ -119,6 +122,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
+    'sw_auto_epsilon_ts',
     'fdsw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
@@ -126,6 +130,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_auto_epsilon_ts',
     'd_kl_ucb',
     'd_bayes_ucb',
     'cd_ucb',
@@ -144,13 +149,21 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
 const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_MODES);
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
+    'auto_epsilon_ts',
     'cd_epsilon_ts',
     'sw_cd_epsilon_ts',
     'cusum_epsilon_ts',
     'sw_cusum_epsilon_ts',
     'sw_epsilon_ts',
+    'sw_auto_epsilon_ts',
     'fdsw_epsilon_ts',
-    'd_epsilon_ts'
+    'd_epsilon_ts',
+    'd_auto_epsilon_ts'
+]);
+const ADAPTIVE_THOMPSON_POLICY_MODES = new Set([
+    'auto_epsilon_ts',
+    'sw_auto_epsilon_ts',
+    'd_auto_epsilon_ts'
 ]);
 const KL_UCB_POLICY_MODES = new Set([
     'kl_ucb',
@@ -192,6 +205,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_linucb',
     'sw_lints',
     'sw_epsilon_ts',
+    'sw_auto_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'sw_exp3_ix',
@@ -202,6 +216,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
+    'd_auto_epsilon_ts',
     'd_kl_ucb',
     'd_bayes_ucb',
     'd_exp3_ix',
@@ -400,6 +415,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_THOMPSON_PRIOR_BETA,
             Number.EPSILON,
             MAX_THOMPSON_PRIOR
+        ),
+        thompsonUncertaintyWeight: clamp(
+            Number.isFinite(Number(value.thompsonUncertaintyWeight))
+                ? Number(value.thompsonUncertaintyWeight)
+                : DEFAULT_THOMPSON_UNCERTAINTY_WEIGHT,
+            0,
+            MAX_THOMPSON_UNCERTAINTY_WEIGHT
         ),
         hybridTsAggregation: (() => {
             const candidate = typeof value.hybridTsAggregation === 'string'
@@ -1666,10 +1688,25 @@ function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, sel
     const alpha = policy.thompsonPriorAlpha + normalized.successes;
     const beta = policy.thompsonPriorBeta + normalized.failures;
     const posteriorMean = alpha / (alpha + beta);
+    const posteriorVariance = (alpha * beta) / (((alpha + beta) ** 2) * (alpha + beta + 1));
     const rng = createDeterministicRng(seedText);
     const posteriorSample = sampleBeta(alpha, beta, rng);
-    const blendedScore = ((1 - policy.thompsonExploration) * posteriorMean)
-        + (policy.thompsonExploration * posteriorSample);
+    const effectiveExploration = ADAPTIVE_THOMPSON_POLICY_MODES.has(policy.mode)
+        ? clamp(
+            policy.thompsonExploration
+            + (
+                policy.thompsonUncertaintyWeight
+                * (
+                    (2 * Math.sqrt(Math.max(0, posteriorVariance)))
+                    + (1 / Math.sqrt(normalized.attempts + 1))
+                )
+            ),
+            0,
+            1
+        )
+        : policy.thompsonExploration;
+    const blendedScore = ((1 - effectiveExploration) * posteriorMean)
+        + (effectiveExploration * posteriorSample);
 
     return blendedScore
         - adjustments.failurePenalty

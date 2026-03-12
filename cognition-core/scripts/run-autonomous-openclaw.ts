@@ -40,6 +40,7 @@ Options:
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
+  --thompson-uncertainty-weight <n>  Uncertainty bonus scaling for auto_epsilon_ts* (0-2, default: 0.5)
   --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_epsilon_ts: min|mean|max (default: mean)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
@@ -152,6 +153,7 @@ function parseArgs(argv) {
             thompsonExploration: 0.2,
             thompsonPriorAlpha: 1,
             thompsonPriorBeta: 1,
+            thompsonUncertaintyWeight: 0.5,
             hybridTsAggregation: 'mean',
             discountFactor: 0.97,
             klUcbConfidence: 3,
@@ -321,6 +323,11 @@ function parseArgs(argv) {
         }
         if (token === '--thompson-prior-beta') {
             options.selectionPolicyConfig.thompsonPriorBeta = parsePositiveFloat(value, '--thompson-prior-beta');
+            i++;
+            continue;
+        }
+        if (token === '--thompson-uncertainty-weight') {
+            options.selectionPolicyConfig.thompsonUncertaintyWeight = parseFloatInRange(value, '--thompson-uncertainty-weight', 0, 2);
             i++;
             continue;
         }
