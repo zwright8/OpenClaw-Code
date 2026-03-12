@@ -97,6 +97,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `b95647a4cf..555b6e877f`: no new README command-map additions were found (range adds warfighter skill/reference content and protocol/tool addenda only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `6bff313649..1f01921ab0`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `1f01921ab0..9b7e8174c5`: expanded README command-map guidance for `corral_exp3_plus` to include ADWIN/hybrid/BGE drift-specialist experts; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `1f15012e58..6bff313649`: added README command-map workflow for hybrid discounted+sliding-window UCB autonomous run flags (`--selection-policy fdsw_ucb`, `--window-size`, `--discount-factor`, `--hybrid-ts-aggregation`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
