@@ -1814,6 +1814,68 @@ test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ran
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports rexp3_ix periodic restarts for wave-level drift adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 501, code: 'SK-00501', title: 'Skill 501' },
+            { id: 502, code: 'SK-00502', title: 'Skill 502' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 23,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '501': {
+                    attempts: 40,
+                    successes: 30,
+                    failures: 10,
+                    consecutiveFailures: 2,
+                    lastWave: 23,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'failed' }
+                    ]
+                },
+                '502': {
+                    attempts: 40,
+                    successes: 10,
+                    failures: 30,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 24,
+        selectionPolicyConfig: {
+            mode: 'rexp3_ix',
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1,
+            exp3RestartInterval: 2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [502]);
+    assert.equal(plan.selection.policy.skills, 'rexp3_ix');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'rexp3_ix');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan supports sliding-window exp3_ix for drift-aware adversarial ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

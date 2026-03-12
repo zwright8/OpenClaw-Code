@@ -58,6 +58,7 @@
 - `npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8` - run autonomous loop with EXP3-style policy corralling across UCB/TS/KL-UCB/change-detection arms.
 - `npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2` - run autonomous loop with expanded EXP3 corralling across UCB/TS/KL-UCB/Bayes-UCB/CUSUM experts.
 - `npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with implicit-exploration EXP3 weighting for adversarial/non-stationary reward shifts.
+- `npm run autonomous:run -- --selection-policy rexp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-restart-interval 12` - run autonomous loop with periodic EXP3-IX restarts (Rexp3-style) to reset stale adversarial weights under regime shifts.
 - `npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with sliding-window EXP3-IX adaptation emphasizing recent adversarial outcomes.
 - `npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with discounted EXP3-IX adaptation to prioritize recent non-stationary reward shifts.
 - `npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2` - run autonomous loop with anytime-MOSS minimax exploration for hard cold-start allocation.

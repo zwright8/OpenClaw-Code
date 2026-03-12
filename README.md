@@ -263,6 +263,7 @@ npm run autonomous:run -- --selection-policy sw_cusum_ucb --window-size 12 --cd-
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
 npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2
 npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1
+npm run autonomous:run -- --selection-policy rexp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-restart-interval 12
 npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
 npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
 npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2

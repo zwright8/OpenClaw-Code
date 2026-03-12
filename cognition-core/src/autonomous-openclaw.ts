@@ -98,6 +98,8 @@ const DEFAULT_EXP3_IX_GAMMA = 0.07;
 const MAX_EXP3_IX_GAMMA = 0.5;
 const DEFAULT_EXP3_IX_ETA = 1;
 const MAX_EXP3_IX_ETA = 10;
+const DEFAULT_EXP3_RESTART_INTERVAL = 12;
+const MAX_EXP3_RESTART_INTERVAL = 200;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
 const DEFAULT_UCB_V_EXPLORATION = 1;
@@ -152,6 +154,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'corral_exp3',
     'corral_exp3_plus',
     'exp3_ix',
+    'rexp3_ix',
     'sw_exp3_ix',
     'd_exp3_ix',
     'moss_anytime',
@@ -195,8 +198,12 @@ const BAYES_UCB_POLICY_MODES = new Set([
 ]);
 const EXP3_IX_POLICY_MODES = new Set([
     'exp3_ix',
+    'rexp3_ix',
     'sw_exp3_ix',
     'd_exp3_ix'
+]);
+const RESTARTED_EXP3_POLICY_MODES = new Set([
+    'rexp3_ix'
 ]);
 const PAGE_HINKLEY_POLICY_MODES = new Set([
     'cd_ucb',
@@ -561,6 +568,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_EXP3_IX_ETA,
             Number.EPSILON,
             MAX_EXP3_IX_ETA
+        ),
+        exp3RestartInterval: clamp(
+            Number.isFinite(Number(value.exp3RestartInterval))
+                ? parsePositiveInt(value.exp3RestartInterval, DEFAULT_EXP3_RESTART_INTERVAL)
+                : DEFAULT_EXP3_RESTART_INTERVAL,
+            1,
+            MAX_EXP3_RESTART_INTERVAL
         ),
         mossAlpha: clamp(
             Number.isFinite(Number(value.mossAlpha))
@@ -1167,6 +1181,24 @@ function computeDiscountedStats(stat, selectionPolicyConfig) {
     return summarizeOutcomeStats(outcomes, normalized, selectionPolicyConfig);
 }
 
+function computeRestartedExp3Stats(stat, selectionPolicyConfig, currentWave = 0) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const wave = parseNonNegativeInt(currentWave, 0);
+    if (wave <= 0) return normalized;
+
+    const restartInterval = parsePositiveInt(policy.exp3RestartInterval, DEFAULT_EXP3_RESTART_INTERVAL);
+    const epochStartWave = wave - ((wave - 1) % restartInterval);
+    const effective = normalized.recentOutcomes.filter((entry) => {
+        const outcome = normalizeRecentOutcomeEntry(entry);
+        return outcome.wave >= epochStartWave;
+    });
+
+    return summarizeOutcomeStats(effective, normalized, {
+        mode: 'rexp3_ix'
+    });
+}
+
 function aggregatePair(left, right, mode = DEFAULT_HYBRID_TS_AGGREGATION) {
     if (mode === 'min') return Math.min(left, right);
     if (mode === 'max') return Math.max(left, right);
@@ -1350,9 +1382,21 @@ function computeCusumDetectedStats(stat, selectionPolicyConfig) {
     });
 }
 
-function resolveScoreStats(stat, selectionPolicyConfig) {
+function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (RESTARTED_EXP3_POLICY_MODES.has(policy.mode)) {
+        const restarted = computeRestartedExp3Stats(normalized, policy, currentWave);
+        return {
+            ...normalized,
+            attempts: restarted.attempts,
+            successes: restarted.successes,
+            failures: restarted.failures,
+            lastStatus: restarted.lastStatus,
+            lastWave: restarted.lastWave,
+            consecutiveFailures: restarted.consecutiveFailures
+        };
+    }
     if (CHANGEPOINT_THOMPSON_POLICY_MODES.has(policy.mode)) {
         const changepoint = computeChangePointThompsonStats(normalized, policy);
         return {
@@ -1962,7 +2006,8 @@ function resolveExp3IxDistribution({
     catalog,
     executionStats,
     totalAttempts,
-    selectionPolicyConfig
+    selectionPolicyConfig,
+    currentWave
 }) {
     const list = Array.isArray(catalog) ? catalog : [];
     const attemptsDenominator = Math.max(1, Number(totalAttempts) || 1);
@@ -1973,7 +2018,7 @@ function resolveExp3IxDistribution({
     const uniform = 1 / armCount;
     const weighted = list.map((candidate) => {
         const key = String(candidate?.id ?? candidate);
-        const stat = resolveScoreStats(executionStats?.[key], selectionPolicyConfig);
+        const stat = resolveScoreStats(executionStats?.[key], selectionPolicyConfig, currentWave);
         const attempts = Math.max(0, Number(stat.attempts) || 0);
         const successes = Math.max(0, Number(stat.successes) || 0);
         const propensityProxy = attempts > 0
@@ -2076,18 +2121,27 @@ function selectCatalogSlice({
     }
 
     const totalAttempts = Math.max(1, Object.values(executionStats)
-        .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy).attempts, 0));
+        .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy, normalizedCurrentWave).attempts, 0));
     if (EXP3_IX_POLICY_MODES.has(scoringPolicy.mode)) {
         selectionProbabilities = resolveExp3IxDistribution({
             catalog: list,
             executionStats,
             totalAttempts,
-            selectionPolicyConfig: scoringPolicy
+            selectionPolicyConfig: scoringPolicy,
+            currentWave: normalizedCurrentWave
         });
         policyProbabilities = {
             mode: scoringPolicy.mode,
             gamma: Number(scoringPolicy.exp3IxGamma.toFixed(6)),
-            eta: Number(scoringPolicy.exp3IxEta.toFixed(6))
+            eta: Number(scoringPolicy.exp3IxEta.toFixed(6)),
+            ...(scoringPolicy.mode === 'rexp3_ix'
+                ? {
+                    restartInterval: parsePositiveInt(
+                        scoringPolicy.exp3RestartInterval,
+                        DEFAULT_EXP3_RESTART_INTERVAL
+                    )
+                }
+                : {})
         };
     }
 
@@ -2098,7 +2152,7 @@ function selectCatalogSlice({
         const key = String(candidate?.id ?? candidate);
         if (selectedKeySet.has(key)) continue;
         const stat = normalizeExecutionStat(executionStats[key]);
-        const scoreStats = resolveScoreStats(stat, scoringPolicy);
+        const scoreStats = resolveScoreStats(stat, scoringPolicy, normalizedCurrentWave);
         let score;
         let featureVector = null;
         if (THOMPSON_POLICY_MODES.has(scoringPolicy.mode)) {
