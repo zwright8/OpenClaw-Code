@@ -564,6 +564,157 @@ test('buildAutonomousBatchPlan supports adaptive auto_epsilon_ts exploration und
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'auto_epsilon_ts');
 });
 
+test('buildAutonomousBatchPlan supports cp_epsilon_ts surprise-adaptive drift resets', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 413, code: 'SK-00413', title: 'Skill 413' },
+            { id: 414, code: 'SK-00414', title: 'Skill 414' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 19,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '413': {
+                    attempts: 28,
+                    successes: 20,
+                    failures: 8,
+                    consecutiveFailures: 0,
+                    lastWave: 18,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 7, status: 'completed' },
+                        { wave: 8, status: 'completed' },
+                        { wave: 9, status: 'completed' },
+                        { wave: 10, status: 'completed' },
+                        { wave: 11, status: 'completed' },
+                        { wave: 12, status: 'completed' },
+                        { wave: 13, status: 'completed' },
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' }
+                    ]
+                },
+                '414': {
+                    attempts: 28,
+                    successes: 8,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 18,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 7, status: 'failed' },
+                        { wave: 8, status: 'failed' },
+                        { wave: 9, status: 'failed' },
+                        { wave: 10, status: 'failed' },
+                        { wave: 11, status: 'failed' },
+                        { wave: 12, status: 'failed' },
+                        { wave: 13, status: 'failed' },
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 19,
+        selectionPolicyConfig: {
+            mode: 'cp_epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            thompsonHazardRate: 0.1,
+            thompsonSurpriseSensitivity: 2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [414]);
+    assert.equal(plan.selection.policy.skills, 'cp_epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'cp_epsilon_ts');
+});
+
+test('buildAutonomousBatchPlan supports sw_cp_epsilon_ts windowed surprise-adaptive resets', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 415, code: 'SK-00415', title: 'Skill 415' },
+            { id: 416, code: 'SK-00416', title: 'Skill 416' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 20,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '415': {
+                    attempts: 28,
+                    successes: 18,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 19,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 12, status: 'completed' },
+                        { wave: 13, status: 'completed' },
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' }
+                    ]
+                },
+                '416': {
+                    attempts: 28,
+                    successes: 10,
+                    failures: 18,
+                    consecutiveFailures: 0,
+                    lastWave: 19,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 12, status: 'failed' },
+                        { wave: 13, status: 'failed' },
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 20,
+        selectionPolicyConfig: {
+            mode: 'sw_cp_epsilon_ts',
+            slidingWindowSize: 4,
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            thompsonHazardRate: 0.08,
+            thompsonSurpriseSensitivity: 2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [416]);
+    assert.equal(plan.selection.policy.skills, 'sw_cp_epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_cp_epsilon_ts');
+});
+
 test('buildAutonomousBatchPlan supports KL-UCB policy for bounded outcomes', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

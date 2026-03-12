@@ -41,6 +41,8 @@ Options:
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
   --thompson-uncertainty-weight <n>  Uncertainty bonus scaling for auto_epsilon_ts* (0-2, default: 0.5)
+  --thompson-hazard-rate <n>   Base changepoint hazard for cp_epsilon_ts* (0-0.5, default: 0.08)
+  --thompson-surprise-sensitivity <n>  Surprise-to-hazard scaling for cp_epsilon_ts* (0-5, default: 1)
   --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_epsilon_ts: min|mean|max (default: mean)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
@@ -163,6 +165,8 @@ function parseArgs(argv) {
             thompsonPriorAlpha: 1,
             thompsonPriorBeta: 1,
             thompsonUncertaintyWeight: 0.5,
+            thompsonHazardRate: 0.08,
+            thompsonSurpriseSensitivity: 1,
             hybridTsAggregation: 'mean',
             discountFactor: 0.97,
             klUcbConfidence: 3,
@@ -338,6 +342,16 @@ function parseArgs(argv) {
         }
         if (token === '--thompson-uncertainty-weight') {
             options.selectionPolicyConfig.thompsonUncertaintyWeight = parseFloatInRange(value, '--thompson-uncertainty-weight', 0, 2);
+            i++;
+            continue;
+        }
+        if (token === '--thompson-hazard-rate') {
+            options.selectionPolicyConfig.thompsonHazardRate = parseFloatInRange(value, '--thompson-hazard-rate', 0, 0.5);
+            i++;
+            continue;
+        }
+        if (token === '--thompson-surprise-sensitivity') {
+            options.selectionPolicyConfig.thompsonSurpriseSensitivity = parseFloatInRange(value, '--thompson-surprise-sensitivity', 0, 5);
             i++;
             continue;
         }

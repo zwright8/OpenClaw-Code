@@ -53,6 +53,10 @@ const DEFAULT_THOMPSON_PRIOR_BETA = 1;
 const MAX_THOMPSON_PRIOR = 100;
 const DEFAULT_THOMPSON_UNCERTAINTY_WEIGHT = 0.5;
 const MAX_THOMPSON_UNCERTAINTY_WEIGHT = 2;
+const DEFAULT_THOMPSON_HAZARD_RATE = 0.08;
+const MAX_THOMPSON_HAZARD_RATE = 0.5;
+const DEFAULT_THOMPSON_SURPRISE_SENSITIVITY = 1;
+const MAX_THOMPSON_SURPRISE_SENSITIVITY = 5;
 const DEFAULT_HYBRID_TS_AGGREGATION = 'mean';
 const HYBRID_TS_AGGREGATION_MODES = new Set([
     'min',
@@ -118,6 +122,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_lints',
     'epsilon_ts',
     'auto_epsilon_ts',
+    'cp_epsilon_ts',
     'cd_epsilon_ts',
     'sw_cd_epsilon_ts',
     'cusum_epsilon_ts',
@@ -129,6 +134,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_ucb_tuned',
     'sw_epsilon_ts',
     'sw_auto_epsilon_ts',
+    'sw_cp_epsilon_ts',
     'fdsw_epsilon_ts',
     'sw_kl_ucb',
     'sw_bayes_ucb',
@@ -156,15 +162,21 @@ const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_M
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
     'auto_epsilon_ts',
+    'cp_epsilon_ts',
     'cd_epsilon_ts',
     'sw_cd_epsilon_ts',
     'cusum_epsilon_ts',
     'sw_cusum_epsilon_ts',
     'sw_epsilon_ts',
     'sw_auto_epsilon_ts',
+    'sw_cp_epsilon_ts',
     'fdsw_epsilon_ts',
     'd_epsilon_ts',
     'd_auto_epsilon_ts'
+]);
+const CHANGEPOINT_THOMPSON_POLICY_MODES = new Set([
+    'cp_epsilon_ts',
+    'sw_cp_epsilon_ts'
 ]);
 const ADAPTIVE_THOMPSON_POLICY_MODES = new Set([
     'auto_epsilon_ts',
@@ -428,6 +440,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_THOMPSON_UNCERTAINTY_WEIGHT,
             0,
             MAX_THOMPSON_UNCERTAINTY_WEIGHT
+        ),
+        thompsonHazardRate: clamp(
+            Number.isFinite(Number(value.thompsonHazardRate))
+                ? Number(value.thompsonHazardRate)
+                : DEFAULT_THOMPSON_HAZARD_RATE,
+            0,
+            MAX_THOMPSON_HAZARD_RATE
+        ),
+        thompsonSurpriseSensitivity: clamp(
+            Number.isFinite(Number(value.thompsonSurpriseSensitivity))
+                ? Number(value.thompsonSurpriseSensitivity)
+                : DEFAULT_THOMPSON_SURPRISE_SENSITIVITY,
+            0,
+            MAX_THOMPSON_SURPRISE_SENSITIVITY
         ),
         hybridTsAggregation: (() => {
             const candidate = typeof value.hybridTsAggregation === 'string'
@@ -1178,6 +1204,51 @@ function computeHybridThompsonStats(stat, selectionPolicyConfig) {
     };
 }
 
+function computeChangePointThompsonStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const outcomes = policy.mode === 'sw_cp_epsilon_ts'
+        ? normalized.recentOutcomes.slice(-policy.slidingWindowSize)
+        : normalized.recentOutcomes;
+    if (outcomes.length === 0) return normalized;
+
+    const priorMean = policy.thompsonPriorAlpha / (policy.thompsonPriorAlpha + policy.thompsonPriorBeta);
+    let weightedSuccesses = 0;
+    let weightedFailures = 0;
+
+    for (const entry of outcomes) {
+        const outcome = normalizeRecentOutcomeEntry(entry);
+        const attempts = weightedSuccesses + weightedFailures;
+        const posteriorMean = attempts > 0 ? (weightedSuccesses / attempts) : priorMean;
+        const surprise = Math.abs(outcome.reward - posteriorMean);
+        const hazard = clamp(
+            policy.thompsonHazardRate + (surprise * policy.thompsonSurpriseSensitivity),
+            policy.thompsonHazardRate,
+            0.95
+        );
+        const retention = 1 - hazard;
+        weightedSuccesses = (weightedSuccesses * retention) + outcome.reward;
+        weightedFailures = (weightedFailures * retention) + (1 - outcome.reward);
+    }
+
+    let consecutiveFailures = 0;
+    for (let i = outcomes.length - 1; i >= 0; i--) {
+        const status = normalizeRecentOutcomeEntry(outcomes[i]).status;
+        if (SUCCESS_STATUSES.has(status)) break;
+        consecutiveFailures += 1;
+    }
+    const lastEntry = normalizeRecentOutcomeEntry(outcomes[outcomes.length - 1]);
+
+    return {
+        attempts: weightedSuccesses + weightedFailures,
+        successes: weightedSuccesses,
+        failures: weightedFailures,
+        lastStatus: lastEntry.status || normalized.lastStatus,
+        lastWave: lastEntry.wave > 0 ? lastEntry.wave : normalized.lastWave,
+        consecutiveFailures
+    };
+}
+
 function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const values = Array.isArray(outcomes)
@@ -1282,6 +1353,18 @@ function computeCusumDetectedStats(stat, selectionPolicyConfig) {
 function resolveScoreStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (CHANGEPOINT_THOMPSON_POLICY_MODES.has(policy.mode)) {
+        const changepoint = computeChangePointThompsonStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: changepoint.attempts,
+            successes: changepoint.successes,
+            failures: changepoint.failures,
+            lastStatus: changepoint.lastStatus,
+            lastWave: changepoint.lastWave,
+            consecutiveFailures: changepoint.consecutiveFailures
+        };
+    }
     if (SLIDING_WINDOW_POLICY_MODES.has(policy.mode)) {
         const windowed = computeWindowedStats(normalized, policy);
         return {
