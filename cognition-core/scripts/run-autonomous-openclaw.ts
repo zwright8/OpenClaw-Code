@@ -49,6 +49,7 @@ Options:
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Implicit exploration regularizer for exp3_ix* (0-0.5, default: 0.07)
   --exp3-ix-eta <n>            Exponential weight scale for exp3_ix* (>0 to 10, default: 1)
+  --exp3-share-alpha <n>       Share-mixing strength for exp3_s* (0-1, default: 0.08)
   --exp3-restart-interval <n>  Epoch length for rexp3_ix periodic restarts (default: 12)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
@@ -189,6 +190,7 @@ function parseArgs(argv) {
             bayesUcbQuantile: 0.9,
             exp3IxGamma: 0.07,
             exp3IxEta: 1,
+            exp3ShareAlpha: 0.08,
             exp3RestartInterval: 12,
             mossAlpha: 1,
             ucbVExploration: 1,
@@ -421,6 +423,11 @@ function parseArgs(argv) {
         }
         if (token === '--exp3-ix-eta') {
             options.selectionPolicyConfig.exp3IxEta = parseFloatInRange(value, '--exp3-ix-eta', Number.EPSILON, 10);
+            i++;
+            continue;
+        }
+        if (token === '--exp3-share-alpha') {
+            options.selectionPolicyConfig.exp3ShareAlpha = parseFloatInRange(value, '--exp3-share-alpha', 0, 1);
             i++;
             continue;
         }

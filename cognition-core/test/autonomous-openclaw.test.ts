@@ -2391,6 +2391,59 @@ test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ran
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports exp3_s share-mixing to smooth adversarial probabilities', () => {
+    const baseInput = {
+        skillCatalog: [
+            { id: 540, code: 'SK-00540', title: 'Skill 540' },
+            { id: 541, code: 'SK-00541', title: 'Skill 541' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 23,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '540': { attempts: 48, successes: 30, failures: 18, consecutiveFailures: 0, lastWave: 22, lastStatus: 'completed' },
+                '541': { attempts: 12, successes: 4, failures: 8, consecutiveFailures: 0, lastWave: 22, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 2,
+        capabilitiesPerWave: 0,
+        waveIndex: 24,
+        nowFactory: () => 100_000
+    };
+    const ixPlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1
+        }
+    });
+    const sharedPlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'exp3_s',
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1,
+            exp3ShareAlpha: 1
+        }
+    });
+
+    const ixProbabilities = ixPlan.tasks
+        .map((task) => Number(task.context?.autonomy?.selectionProbability || 0));
+    const sharedProbabilities = sharedPlan.tasks
+        .map((task) => Number(task.context?.autonomy?.selectionProbability || 0));
+    const ixSpread = Math.abs(ixProbabilities[0] - ixProbabilities[1]);
+    const sharedSpread = Math.abs(sharedProbabilities[0] - sharedProbabilities[1]);
+
+    assert.equal(sharedPlan.selection.policy.skills, 'exp3_s');
+    assert.equal(sharedPlan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'exp3_s');
+    assert.ok(sharedSpread < ixSpread);
+});
+
 test('buildAutonomousBatchPlan supports rexp3_ix periodic restarts for wave-level drift adaptation', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -2513,6 +2566,67 @@ test('buildAutonomousBatchPlan supports sliding-window exp3_ix for drift-aware a
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports sliding-window exp3_s adaptation emphasizing recent adversarial outcomes', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 171, code: 'SK-00171', title: 'Skill 171' },
+            { id: 172, code: 'SK-00172', title: 'Skill 172' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '171': {
+                    attempts: 40,
+                    successes: 30,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' }
+                    ]
+                },
+                '172': {
+                    attempts: 40,
+                    successes: 12,
+                    failures: 28,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'sw_exp3_s',
+            slidingWindowSize: 3,
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1,
+            exp3ShareAlpha: 0.1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [172]);
+    assert.equal(plan.selection.policy.skills, 'sw_exp3_s');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_exp3_s');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan supports discounted exp3_ix for recency-weighted adversarial ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -2576,6 +2690,73 @@ test('buildAutonomousBatchPlan supports discounted exp3_ix for recency-weighted 
     assert.deepEqual(plan.selection.skillIds, [152]);
     assert.equal(plan.selection.policy.skills, 'd_exp3_ix');
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_exp3_ix');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
+test('buildAutonomousBatchPlan supports discounted exp3_s adaptation for recency-weighted adversarial ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 173, code: 'SK-00173', title: 'Skill 173' },
+            { id: 174, code: 'SK-00174', title: 'Skill 174' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 25,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '173': {
+                    attempts: 12,
+                    successes: 9,
+                    failures: 3,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                },
+                '174': {
+                    attempts: 12,
+                    successes: 3,
+                    failures: 9,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 26,
+        selectionPolicyConfig: {
+            mode: 'd_exp3_s',
+            discountFactor: 0.6,
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1,
+            exp3ShareAlpha: 0.1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [174]);
+    assert.equal(plan.selection.policy.skills, 'd_exp3_s');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_exp3_s');
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 

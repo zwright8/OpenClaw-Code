@@ -103,6 +103,8 @@ const DEFAULT_EXP3_IX_GAMMA = 0.07;
 const MAX_EXP3_IX_GAMMA = 0.5;
 const DEFAULT_EXP3_IX_ETA = 1;
 const MAX_EXP3_IX_ETA = 10;
+const DEFAULT_EXP3_SHARE_ALPHA = 0.08;
+const MAX_EXP3_SHARE_ALPHA = 1;
 const DEFAULT_EXP3_RESTART_INTERVAL = 12;
 const MAX_EXP3_RESTART_INTERVAL = 200;
 const DEFAULT_MOSS_ALPHA = 1;
@@ -172,9 +174,12 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_corral_exp3_plus',
     'd_corral_exp3_plus',
     'exp3_ix',
+    'exp3_s',
     'rexp3_ix',
     'sw_exp3_ix',
+    'sw_exp3_s',
     'd_exp3_ix',
+    'd_exp3_s',
     'bge',
     'sw_bge',
     'd_bge',
@@ -223,11 +228,19 @@ const BAYES_UCB_POLICY_MODES = new Set([
     'sw_bayes_ucb',
     'd_bayes_ucb'
 ]);
-const EXP3_IX_POLICY_MODES = new Set([
+const EXP3_POLICY_MODES = new Set([
     'exp3_ix',
+    'exp3_s',
     'rexp3_ix',
     'sw_exp3_ix',
-    'd_exp3_ix'
+    'sw_exp3_s',
+    'd_exp3_ix',
+    'd_exp3_s'
+]);
+const EXP3_SHARE_POLICY_MODES = new Set([
+    'exp3_s',
+    'sw_exp3_s',
+    'd_exp3_s'
 ]);
 const RESTARTED_EXP3_POLICY_MODES = new Set([
     'rexp3_ix'
@@ -266,6 +279,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'sw_exp3_ix',
+    'sw_exp3_s',
     'sw_bge',
     'sw_moss_anytime'
 ]);
@@ -287,6 +301,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_kl_ucb',
     'd_bayes_ucb',
     'd_exp3_ix',
+    'd_exp3_s',
     'd_bge',
     'd_linucb',
     'd_lints',
@@ -671,6 +686,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_EXP3_IX_ETA,
             Number.EPSILON,
             MAX_EXP3_IX_ETA
+        ),
+        exp3ShareAlpha: clamp(
+            Number.isFinite(Number(value.exp3ShareAlpha))
+                ? Number(value.exp3ShareAlpha)
+                : DEFAULT_EXP3_SHARE_ALPHA,
+            0,
+            MAX_EXP3_SHARE_ALPHA
         ),
         exp3RestartInterval: clamp(
             Number.isFinite(Number(value.exp3RestartInterval))
@@ -2382,6 +2404,7 @@ function resolveExp3IxDistribution({
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const gamma = policy.exp3IxGamma;
     const eta = policy.exp3IxEta;
+    const shareAlpha = policy.exp3ShareAlpha;
     const armCount = Math.max(1, list.length);
     const uniform = 1 / armCount;
     const weighted = list.map((candidate) => {
@@ -2402,11 +2425,22 @@ function resolveExp3IxDistribution({
             weight: Math.exp(logWeight)
         };
     });
-    const sumWeights = weighted.reduce((sum, entry) => sum + entry.weight, 0);
+    const sharedWeights = EXP3_SHARE_POLICY_MODES.has(policy.mode)
+        ? (() => {
+            const rawSum = weighted.reduce((sum, entry) => sum + entry.weight, 0);
+            const averageWeight = rawSum > 0 ? (rawSum / armCount) : 1;
+            const boundedShare = clamp(shareAlpha, 0, 1);
+            return weighted.map((entry) => ({
+                ...entry,
+                weight: ((1 - boundedShare) * entry.weight) + (boundedShare * averageWeight)
+            }));
+        })()
+        : weighted;
+    const sumWeights = sharedWeights.reduce((sum, entry) => sum + entry.weight, 0);
     const safeSum = sumWeights > 0 ? sumWeights : armCount;
     const probabilities = {};
 
-    for (const entry of weighted) {
+    for (const entry of sharedWeights) {
         const exploitation = entry.weight / safeSum;
         probabilities[entry.key] = ((1 - gamma) * exploitation) + (gamma * uniform);
     }
@@ -2494,7 +2528,7 @@ function selectCatalogSlice({
 
     const totalAttempts = Math.max(1, Object.values(executionStats)
         .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy, normalizedCurrentWave).attempts, 0));
-    if (EXP3_IX_POLICY_MODES.has(scoringPolicy.mode)) {
+    if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
         selectionProbabilities = resolveExp3IxDistribution({
             catalog: list,
             executionStats,
@@ -2506,6 +2540,11 @@ function selectCatalogSlice({
             mode: scoringPolicy.mode,
             gamma: Number(scoringPolicy.exp3IxGamma.toFixed(6)),
             eta: Number(scoringPolicy.exp3IxEta.toFixed(6)),
+            ...(EXP3_SHARE_POLICY_MODES.has(scoringPolicy.mode)
+                ? {
+                    shareAlpha: Number(scoringPolicy.exp3ShareAlpha.toFixed(6))
+                }
+                : {}),
             ...(scoringPolicy.mode === 'rexp3_ix'
                 ? {
                     restartInterval: parsePositiveInt(
@@ -2632,7 +2671,7 @@ function selectCatalogSlice({
             });
             score = linearTs.score;
             featureVector = linearTs.featureVector;
-        } else if (EXP3_IX_POLICY_MODES.has(scoringPolicy.mode)) {
+        } else if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
             const adjustments = computeAdaptiveAdjustments(scoreStats, normalizedCurrentWave, adaptiveScoreConfig);
             const probability = Number(selectionProbabilities[key] || 0);
             score = probability
