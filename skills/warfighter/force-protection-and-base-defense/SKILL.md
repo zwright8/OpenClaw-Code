@@ -259,3 +259,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-spectrum-deception-emitter-auth-v1` + `protocol_stack_id=ps-spectrum-deception-emitter-auth-stack-v1` when force-protection branches require trusted emitter identification and deception governance under EW pressure.
 - Add `tool_suite_id=ts-battlefield-weather-effects-window-v1` + `protocol_stack_id=ps-battlefield-weather-effects-window-stack-v1` when weather nowcasting materially affects guard-force movement, aerial surveillance windows, or emergency response continuity.
 - Add `packet_id=DPL-URBAN-SUBTERRANEAN-LIFESUPPORT-001`, `packet_id=DPL-SPECTRUM-DECEPTION-EMITTER-AUTH-001`, and `packet_id=DPL-BATTLEFIELD-WEATHER-EFFECTS-001` for branches that alter base-defense readiness conditions or escalation controls.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-austere-airfield-fod-drone-safety-v1 + protocol_stack_id=ps-austere-airfield-fod-drone-safety-stack-v1 when defended-installation sortie survivability depends on runway hazard and drone-incursion controls.
+- Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when base-defense branches require synchronized military-civil warning and shelter posture.
+- Add packet_id=DPL-AUSTERE-AIRFIELD-FOD-DRONE-SAFETY-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter base alert states, launch controls, or population-protection sequencing.

@@ -81,3 +81,9 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 
 - Default packet IDs: DPL-ROLE3-AEROMED-001, DPL-BLOOD-BIOLOGICS-CONTINUITY-001.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-additive-pharma-authenticity-v1 + protocol_stack_id=ps-additive-pharma-authenticity-stack-v1 when casualty survival depends on accelerated verification of theater-manufactured pharmaceutical countermeasures.
+- Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when evacuation and bed management branches require synchronized civil warning posture under ballistic threat.
+- Add packet_id=DPL-ADDITIVE-PHARMA-AUTH-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter medical routing, mass-casualty posture, or shelter-linked evacuation timing.

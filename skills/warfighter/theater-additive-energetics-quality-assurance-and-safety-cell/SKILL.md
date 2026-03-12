@@ -57,4 +57,6 @@ Preferred protocol families for this skill: USMTF, NIEM, STANAG, OGC, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-additive-energetics-lot-trace-and-defect-screen-v1 + protocol_stack_id=ps-additive-energetics-lot-trace-and-defect-screen-stack-v1 when mission tempo depends on high-confidence lot release decisions.\n- Add tool_suite_id=ts-expeditionary-blast-radius-storage-compliance-v1 + protocol_stack_id=ps-expeditionary-blast-radius-storage-compliance-stack-v1 when branch options hinge on safety-distance compliance and depot hardening tradeoffs.\n- Add packet_id=DPL-ADDITIVE-ENERGETICS-QA-001 and packet_id=DPL-ENERGETICS-STORAGE-COMPLIANCE-001 for recommendations that alter handling controls, transport windows, or hazard posture.
+- Add tool_suite_id=ts-additive-energetics-lot-trace-and-defect-screen-v1 + protocol_stack_id=ps-additive-energetics-lot-trace-and-defect-screen-stack-v1 when mission tempo depends on high-confidence lot release decisions.
+- Add tool_suite_id=ts-expeditionary-blast-radius-storage-compliance-v1 + protocol_stack_id=ps-expeditionary-blast-radius-storage-compliance-stack-v1 when branch options hinge on safety-distance compliance and depot hardening tradeoffs.
+- Add packet_id=DPL-ADDITIVE-ENERGETICS-QA-001 and packet_id=DPL-ENERGETICS-STORAGE-COMPLIANCE-001 for recommendations that alter handling controls, transport windows, or hazard posture.

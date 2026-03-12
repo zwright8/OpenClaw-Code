@@ -145,3 +145,9 @@ Primary products for this skill: coalition link architecture plan, gateway routi
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-undersea-data-fabric-reroute-v1 + protocol_stack_id=ps-undersea-data-fabric-reroute-stack-v1 when coalition data-link continuity depends on rerouting through damaged undersea backbone segments.
+- Add tool_suite_id=ts-quantum-resistant-key-rollover-v1 + protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1 when interoperability recommendations require coordinated key-state migration across allied mission networks.
+- Add packet_id=DPL-UNDERSEA-DATA-FABRIC-REROUTE-001 and packet_id=DPL-QUANTUM-KEY-ROLLOVER-001 for recommendations that alter federation trust posture, routing policy, or coalition acknowledgment pathways.

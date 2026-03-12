@@ -163,3 +163,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Prioritize `tool_suite_id=ts-rare-earth-processing-sabotage-recovery-v1` + `protocol_stack_id=ps-rare-earth-processing-sabotage-recovery-stack-v1` when industrial mobilization readiness depends on restoring disrupted rare-earth processing throughput.
 - Prioritize `tool_suite_id=ts-critical-rail-node-cyber-physical-restoration-v1` + `protocol_stack_id=ps-critical-rail-node-cyber-physical-restoration-stack-v1` when force-flow readiness is constrained by rail chokepoint cyber-physical disruption.
 - Add `packet_id=DPL-RARE-EARTH-SABOTAGE-RECOVERY-001` and `packet_id=DPL-CRITICAL-RAIL-NODE-CYBER-PHYSICAL-RESTORE-001` for high-impact industrial and mobility restoration branches.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-reserve-cannibalization-governance-v1 + protocol_stack_id=ps-reserve-cannibalization-governance-stack-v1 when industrial readiness recommendations depend on temporary component cannibalization and controlled restoration sequencing.
+- Add tool_suite_id=ts-additive-pharma-authenticity-v1 + protocol_stack_id=ps-additive-pharma-authenticity-stack-v1 when mobilization branches include medical countermeasure surge with strict authenticity gating.
+- Add packet_id=DPL-RESERVE-CANNIBALIZATION-GOVERNANCE-001 and packet_id=DPL-ADDITIVE-PHARMA-AUTH-001 for recommendations that alter depot priorities, workforce load plans, or release authority posture.

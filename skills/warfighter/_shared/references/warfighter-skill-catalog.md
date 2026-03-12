@@ -1913,3 +1913,29 @@ Every skill output should include:
 - Information advantage/influence ops + tactical counter-disinformation assurance + mission-order authenticity + civil alert trust restoration
 - Personnel recovery/isolated operator support + combat search-and-rescue coordination + ISR cueing + denied-airspace timing deconfliction
 - Military police detainee/site security + custody handshake ledger + battlefield forensics evidence preservation + coalition legal handoff assurance
+
+## New Expansion Wave (2026-03-12, Wave XXII)
+
+- strategic-theater-undersea-data-fabric-rupture-and-reroute-cell
+- joint-contested-additive-pharma-countermeasure-authenticity-cell
+- coalition-ballistic-missile-civil-warning-and-shelter-synchronization-cell
+- theater-quantum-resistant-mission-key-rollover-cell
+- joint-expeditionary-waterborne-drone-port-security-cell
+- homeland-defense-cyber-physical-food-cold-chain-continuity-cell
+- coalition-austere-airfield-fod-and-drone-incursion-safety-cell
+- joint-battlefield-acoustic-deception-countertargeting-cell
+- theater-denied-pnt-artillery-timing-assurance-cell
+- strategic-reserve-component-cannibalization-governance-cell
+
+## Updated Pairings (2026-03-12, Wave XXII)
+
+- Undersea data-fabric reroute + theater mission network failover + coalition cable-landing defense + mission command continuity.
+- Additive pharma authenticity + contested blood/biologics assurance + med-log distribution + legal chain-of-custody review.
+- Coalition missile warning/shelter sync + hypersonic warning allocation + DSCA crisis support + public-information assurance.
+- Quantum-resistant key rollover + zero-trust hardening + mission data replication + NC3 continuity checks.
+- Waterborne drone port security + maritime chokepoint control + JLOTS synchronization + convoy escort governance.
+- Homeland food cold-chain continuity + critical infrastructure cyber-kinetic coordination + strategic sustainment planning + civil stability operations.
+- Austere airfield FOD/drone safety + airbase dispersal and rapid reconstitution + counter-UAS integration + sortie generation control.
+- Acoustic deception countertargeting + EW fratricide prevention + targeting governance + fires synchronization.
+- Denied-PNT artillery timing assurance + denied-PNT time transfer + long-range fires deconfliction + legal ROE compliance.
+- Reserve cannibalization governance + industrial mobilization readiness + maintenance recovery planning + strategic mobility force flow.

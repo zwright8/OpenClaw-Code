@@ -57,4 +57,6 @@ Preferred protocol families for this skill: USMTF, STIX/TAXII, NIEM, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-target-recognition-override-verification-lab-v1 + protocol_stack_id=ps-target-recognition-override-verification-lab-stack-v1 when release confidence depends on auditable human override latency and false-positive suppression performance.\n- Add tool_suite_id=ts-combat-vision-model-drift-alerting-v1 + protocol_stack_id=ps-combat-vision-model-drift-alerting-stack-v1 when target-recognition recommendations depend on sensor drift, occlusion, or adversary camouflage pressure.\n- Add packet_id=DPL-TARGET-OVERRIDE-VERIFICATION-001 and packet_id=DPL-VISION-DRIFT-ALERTING-001 for recommendations that alter engagement posture or recognition confidence gates.
+- Add tool_suite_id=ts-target-recognition-override-verification-lab-v1 + protocol_stack_id=ps-target-recognition-override-verification-lab-stack-v1 when release confidence depends on auditable human override latency and false-positive suppression performance.
+- Add tool_suite_id=ts-combat-vision-model-drift-alerting-v1 + protocol_stack_id=ps-combat-vision-model-drift-alerting-stack-v1 when target-recognition recommendations depend on sensor drift, occlusion, or adversary camouflage pressure.
+- Add packet_id=DPL-TARGET-OVERRIDE-VERIFICATION-001 and packet_id=DPL-VISION-DRIFT-ALERTING-001 for recommendations that alter engagement posture or recognition confidence gates.

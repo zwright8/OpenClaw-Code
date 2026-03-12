@@ -57,4 +57,6 @@ Preferred protocol families for this skill: USMTF, NIEM, STIX/TAXII, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-legal-targeting-evidence-provenance-ledger-v1 + protocol_stack_id=ps-legal-targeting-evidence-provenance-ledger-stack-v1 when recommendation credibility depends on chain-of-custody integrity across multi-source strike evidence.\n- Add tool_suite_id=ts-civilian-harm-indicator-triangulation-v1 + protocol_stack_id=ps-civilian-harm-indicator-triangulation-stack-v1 when commanders require fast branch updates from NGOs, ISR, and local authority reporting divergence.\n- Add packet_id=DPL-LEGAL-TARGETING-PROVENANCE-001 and packet_id=DPL-CIVILIAN-HARM-TRIANGULATION-001 for recommendations that alter engagement approval, mitigation posture, or disclosure sequencing.
+- Add tool_suite_id=ts-legal-targeting-evidence-provenance-ledger-v1 + protocol_stack_id=ps-legal-targeting-evidence-provenance-ledger-stack-v1 when recommendation credibility depends on chain-of-custody integrity across multi-source strike evidence.
+- Add tool_suite_id=ts-civilian-harm-indicator-triangulation-v1 + protocol_stack_id=ps-civilian-harm-indicator-triangulation-stack-v1 when commanders require fast branch updates from NGOs, ISR, and local authority reporting divergence.
+- Add packet_id=DPL-LEGAL-TARGETING-PROVENANCE-001 and packet_id=DPL-CIVILIAN-HARM-TRIANGULATION-001 for recommendations that alter engagement approval, mitigation posture, or disclosure sequencing.

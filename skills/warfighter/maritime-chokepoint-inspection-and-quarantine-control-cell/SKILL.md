@@ -64,3 +64,9 @@ Primary products for this skill: chokepoint inspection priority board, quarantin
 - Flag gaps where assumptions exceed evidence.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-waterborne-drone-port-security-v1 + protocol_stack_id=ps-waterborne-drone-port-security-stack-v1 when chokepoint inspection branches require synchronized defensive controls against waterborne drone threats.
+- Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when maritime civil traffic controls must align with ballistic warning and shelter directives.
+- Add packet_id=DPL-WATERBORNE-DRONE-PORT-SECURITY-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter inspection tempo, harbor access posture, or quarantine release authority.

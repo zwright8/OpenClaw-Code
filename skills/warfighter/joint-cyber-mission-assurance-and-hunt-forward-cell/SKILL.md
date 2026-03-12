@@ -81,3 +81,9 @@ Use these tool categories as the default stack for this skill: SIEM and EDR plat
 
 - Default packet IDs: DPL-CYBER-HUNT-FWD-001, DPL-MISSION-SYSTEM-HARDENING-001.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-quantum-resistant-key-rollover-v1 + protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1 when hunt-forward findings indicate cryptographic compromise requiring emergency key rollover.
+- Add tool_suite_id=ts-undersea-data-fabric-reroute-v1 + protocol_stack_id=ps-undersea-data-fabric-reroute-stack-v1 when adversary cyber-physical actions disrupt undersea communications paths supporting mission assurance.
+- Add packet_id=DPL-QUANTUM-KEY-ROLLOVER-001 and packet_id=DPL-UNDERSEA-DATA-FABRIC-REROUTE-001 for recommendations that alter trust posture, incident containment boundaries, or continuity release decisions.

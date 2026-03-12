@@ -57,4 +57,6 @@ Preferred protocol families for this skill: USMTF, HL7/FHIR, STANAG, AIS, API/JS
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-multimodal-medevac-corridor-deconfliction-v1 + protocol_stack_id=ps-multimodal-medevac-corridor-deconfliction-stack-v1 when patient movement depends on synchronized rail, air, and sea lift under threat.\n- Add tool_suite_id=ts-casualty-load-balancing-and-bed-availability-fusion-v1 + protocol_stack_id=ps-casualty-load-balancing-and-bed-availability-fusion-stack-v1 when branch recommendations require balancing transport windows with treatment-capacity constraints.\n- Add packet_id=DPL-MULTIMODAL-MEDEVAC-DECONFLICTION-001 and packet_id=DPL-CASUALTY-BED-FUSION-001 for recommendations that alter medevac sequencing or protected-route allocation.
+- Add tool_suite_id=ts-multimodal-medevac-corridor-deconfliction-v1 + protocol_stack_id=ps-multimodal-medevac-corridor-deconfliction-stack-v1 when patient movement depends on synchronized rail, air, and sea lift under threat.
+- Add tool_suite_id=ts-casualty-load-balancing-and-bed-availability-fusion-v1 + protocol_stack_id=ps-casualty-load-balancing-and-bed-availability-fusion-stack-v1 when branch recommendations require balancing transport windows with treatment-capacity constraints.
+- Add packet_id=DPL-MULTIMODAL-MEDEVAC-DECONFLICTION-001 and packet_id=DPL-CASUALTY-BED-FUSION-001 for recommendations that alter medevac sequencing or protected-route allocation.

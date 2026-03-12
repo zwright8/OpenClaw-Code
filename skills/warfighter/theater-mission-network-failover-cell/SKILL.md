@@ -231,3 +231,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add tool_suite_id=ts-joint-contested-logistics-and-prepositioning-cell-v1 + protocol_stack_id=ps-joint-contested-logistics-and-prepositioning-cell-stack-v1 when failover recommendations depend on distributed sustainment traffic priorities and prepositioned stock release timing.
 - Add tool_suite_id=ts-joint-role-3-medical-network-and-aeromedical-evac-cell-v1 + protocol_stack_id=ps-joint-role-3-medical-network-and-aeromedical-evac-cell-stack-v1 when network continuity branches must preserve Role 3 patient movement, medevac sequencing, and blood cold-chain telemetry.
 - Add packet_id=DPL-CONTESTED-LOGISTICS-001 and packet_id=DPL-ROLE3-AEROMED-001 for branches that materially change service survivability, life-safety routing, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-undersea-data-fabric-reroute-v1 + protocol_stack_id=ps-undersea-data-fabric-reroute-stack-v1 when failover branches depend on damaged subsea backbone restoration and cross-theater reroute governance.
+- Add tool_suite_id=ts-quantum-resistant-key-rollover-v1 + protocol_stack_id=ps-quantum-resistant-key-rollover-stack-v1 when mission-network continuity requires accelerated cryptographic migration after key compromise indicators.
+- Add packet_id=DPL-UNDERSEA-DATA-FABRIC-REROUTE-001 and packet_id=DPL-QUANTUM-KEY-ROLLOVER-001 for recommendations that alter mission-thread transport trust or key-state authority posture.

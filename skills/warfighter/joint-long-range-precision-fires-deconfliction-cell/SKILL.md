@@ -81,3 +81,9 @@ Use these tool categories as the default stack for this skill: targeting systems
 
 - Default packet IDs: DPL-LRPF-DECONFLICTION-001, DPL-LRPF-CDE-AUTHORITY-001.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-denied-pnt-artillery-timing-assurance-v1 + protocol_stack_id=ps-denied-pnt-artillery-timing-assurance-stack-v1 when fires deconfliction confidence depends on denied-PNT timing integrity.
+- Add tool_suite_id=ts-acoustic-deception-countertargeting-v1 + protocol_stack_id=ps-acoustic-deception-countertargeting-stack-v1 when adversary acoustic deception can distort sensor-to-shooter confidence and no-strike adherence.
+- Add packet_id=DPL-DENIED-PNT-ARTILLERY-TIMING-001 and packet_id=DPL-ACOUSTIC-DECEPTION-COUNTERTARGETING-001 for recommendations that alter release windows, weapon pairing, or hold-fire thresholds.

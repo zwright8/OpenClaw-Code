@@ -57,4 +57,6 @@ Preferred protocol families for this skill: STIX/TAXII, NIEM, OpenTelemetry, NIS
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-digital-twin-provenance-tamper-audit-v1 + protocol_stack_id=ps-digital-twin-provenance-tamper-audit-stack-v1 when branch selection depends on trusted synthetic environment fidelity.\n- Add tool_suite_id=ts-cross-domain-model-drift-conflict-resolver-v1 + protocol_stack_id=ps-cross-domain-model-drift-conflict-resolver-stack-v1 when recommendations depend on reconciling divergent model states under contested data refresh.\n- Add packet_id=DPL-DIGITAL-TWIN-DECEPTION-ASSURANCE-001 and packet_id=DPL-MODEL-DRIFT-CONFLICT-RESOLVE-001 for recommendations that influence mission-go/no-go posture.
+- Add tool_suite_id=ts-digital-twin-provenance-tamper-audit-v1 + protocol_stack_id=ps-digital-twin-provenance-tamper-audit-stack-v1 when branch selection depends on trusted synthetic environment fidelity.
+- Add tool_suite_id=ts-cross-domain-model-drift-conflict-resolver-v1 + protocol_stack_id=ps-cross-domain-model-drift-conflict-resolver-stack-v1 when recommendations depend on reconciling divergent model states under contested data refresh.
+- Add packet_id=DPL-DIGITAL-TWIN-DECEPTION-ASSURANCE-001 and packet_id=DPL-MODEL-DRIFT-CONFLICT-RESOLVE-001 for recommendations that influence mission-go/no-go posture.

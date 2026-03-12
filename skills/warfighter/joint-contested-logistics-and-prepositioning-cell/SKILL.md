@@ -81,3 +81,9 @@ Use these tool categories as the default stack for this skill: logistics C2 syst
 
 - Default packet IDs: DPL-CONTESTED-LOGISTICS-001, DPL-PREPOSITIONING-SURVIVABILITY-001.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-reserve-cannibalization-governance-v1 + protocol_stack_id=ps-reserve-cannibalization-governance-stack-v1 when prepositioning branches depend on controlled component cannibalization and readiness-debt acceptance.
+- Add tool_suite_id=ts-homeland-food-cold-chain-continuity-v1 + protocol_stack_id=ps-homeland-food-cold-chain-continuity-stack-v1 when sustainment options depend on cold-chain resilience across military and civil demand competition.
+- Add packet_id=DPL-RESERVE-CANNIBALIZATION-GOVERNANCE-001 and packet_id=DPL-HOMELAND-FOOD-COLDCHAIN-CONTINUITY-001 for recommendations that alter sustainment release timing or inventory protection priorities.

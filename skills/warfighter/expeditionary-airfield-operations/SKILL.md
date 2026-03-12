@@ -144,3 +144,9 @@ Primary products for this skill: expeditionary airfield operations plan, sortie 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
+
+- Add tool_suite_id=ts-austere-airfield-fod-drone-safety-v1 + protocol_stack_id=ps-austere-airfield-fod-drone-safety-stack-v1 when sortie generation depends on integrated FOD and drone-incursion safety controls.
+- Add tool_suite_id=ts-waterborne-drone-port-security-v1 + protocol_stack_id=ps-waterborne-drone-port-security-stack-v1 when airfield sustainment is coupled to port ingress threatened by waterborne drone swarms.
+- Add packet_id=DPL-AUSTERE-AIRFIELD-FOD-DRONE-SAFETY-001 and packet_id=DPL-WATERBORNE-DRONE-PORT-SECURITY-001 for recommendations that alter launch cadence, ramp posture, or resupply flow constraints.
