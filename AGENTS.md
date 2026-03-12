@@ -83,6 +83,8 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `db43beb77f..3086a52544`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `3086a52544..9e4b0af1a2`: added README command-map workflow for periodic-restart EXP3-IX autonomous run flags (`--selection-policy rexp3_ix`, `--exp3-ix-gamma`, `--exp3-ix-eta`, `--exp3-restart-interval`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `8dca4f38ab..db43beb77f`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `28fdda7164..8dca4f38ab`: added README command-map workflows for surprise-adaptive changepoint epsilon-Thompson autonomous run flags (`--selection-policy cp_epsilon_ts|sw_cp_epsilon_ts`, `--window-size`, `--thompson-hazard-rate`, `--thompson-surprise-sensitivity`, `--thompson-exploration`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `304006cfcd..aa27f3ed5c`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
