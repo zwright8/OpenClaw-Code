@@ -148,6 +148,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_auto_epsilon_ts',
     'sw_cp_epsilon_ts',
     'fdsw_epsilon_ts',
+    'fdsw_ucb',
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'd_ucb',
@@ -298,6 +299,9 @@ const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
 ]);
 const HYBRID_THOMPSON_POLICY_MODES = new Set([
     'fdsw_epsilon_ts'
+]);
+const HYBRID_UCB_POLICY_MODES = new Set([
+    'fdsw_ucb'
 ]);
 const CORRAL_POLICY_MODES = new Set([
     'corral_exp3',
@@ -1350,6 +1354,37 @@ function computeHybridThompsonStats(stat, selectionPolicyConfig) {
     };
 }
 
+function computeHybridUcbStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const windowed = computeWindowedStats(normalized, {
+        ...policy,
+        mode: 'sw_ucb'
+    });
+    const discounted = computeDiscountedStats(normalized, {
+        ...policy,
+        mode: 'd_ucb'
+    });
+    const aggregationMode = policy.hybridTsAggregation;
+    const windowMean = windowed.attempts > 0 ? windowed.successes / windowed.attempts : 0.5;
+    const discountedMean = discounted.attempts > 0 ? discounted.successes / discounted.attempts : 0.5;
+    const attempts = Math.max(
+        0,
+        aggregatePair(windowed.attempts, discounted.attempts, aggregationMode)
+    );
+    const successRate = aggregatePair(windowMean, discountedMean, aggregationMode);
+    const latestOutcome = normalized.recentOutcomes[normalized.recentOutcomes.length - 1] || null;
+
+    return {
+        attempts,
+        successes: successRate * attempts,
+        failures: Math.max(0, attempts - (successRate * attempts)),
+        lastStatus: latestOutcome?.status || normalized.lastStatus,
+        lastWave: latestOutcome?.wave > 0 ? latestOutcome.wave : normalized.lastWave,
+        consecutiveFailures: Math.max(windowed.consecutiveFailures, discounted.consecutiveFailures)
+    };
+}
+
 function computeChangePointThompsonStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
@@ -1630,6 +1665,18 @@ function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
     }
     if (HYBRID_THOMPSON_POLICY_MODES.has(policy.mode)) {
         const hybrid = computeHybridThompsonStats(normalized, policy);
+        return {
+            ...normalized,
+            attempts: hybrid.attempts,
+            successes: hybrid.successes,
+            failures: hybrid.failures,
+            lastStatus: hybrid.lastStatus,
+            lastWave: hybrid.lastWave,
+            consecutiveFailures: hybrid.consecutiveFailures
+        };
+    }
+    if (HYBRID_UCB_POLICY_MODES.has(policy.mode)) {
+        const hybrid = computeHybridUcbStats(normalized, policy);
         return {
             ...normalized,
             attempts: hybrid.attempts,

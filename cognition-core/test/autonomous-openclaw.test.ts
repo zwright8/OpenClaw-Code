@@ -3029,6 +3029,75 @@ test('buildAutonomousBatchPlan supports hybrid fdsw_epsilon_ts ranking under mix
     assert.deepEqual(plan.selection.skillIds, [82]);
 });
 
+test('buildAutonomousBatchPlan supports hybrid fdsw_ucb ranking under mixed drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 83, code: 'SK-00083', title: 'Skill 83' },
+            { id: 84, code: 'SK-00084', title: 'Skill 84' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '83': {
+                    attempts: 24,
+                    successes: 14,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                },
+                '84': {
+                    attempts: 24,
+                    successes: 10,
+                    failures: 14,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'fdsw_ucb',
+            slidingWindowSize: 4,
+            discountFactor: 0.8,
+            hybridTsAggregation: 'mean'
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.equal(plan.selection.policy.skills, 'fdsw_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'fdsw_ucb');
+    assert.deepEqual(plan.selection.skillIds, [84]);
+});
+
 test('buildAutonomousBatchPlan supports discounted UCB for recency-weighted drift adaptation', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
