@@ -181,3 +181,17 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For denied-environment agent trust calibration of autonomous C2 assistants, include `ts-denied-c2-agent-trust-v1` with `ps-denied-c2-agent-trust-stack-v1`.
 - For battlefield medical telemetry continuity under electromagnetic disruption, include `ts-em-battlefield-med-telemetry-v1` with `ps-em-battlefield-med-telemetry-stack-v1`.
 - For coalition legal attribution of contested electromagnetic events, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.
+
+## Tactical Edge Expansion Wave XIX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-jadc2-datalink-bridging-priority-v1` + `protocol_stack_id=ps-jadc2-datalink-bridging-priority-stack-v1` when edge nodes broker heterogeneous tactical links with strict command-message precedence.
+- Add `tool_suite_id=ts-information-advantage-psyops-assessment-v1` + `protocol_stack_id=ps-information-advantage-psyops-assessment-stack-v1` when edge compute supports influence telemetry, release governance, and narrative response timing.
+- Add `tool_suite_id=ts-bdr-manufacturing-certification-v1` + `protocol_stack_id=ps-bdr-manufacturing-certification-stack-v1` when forward compute supports repair-certification digital threads and release authority workflows.
+- Add `packet_id=DPL-JADC2-BRIDGE-001`, `packet_id=DPL-INFOADV-PSYOPS-001`, and `packet_id=DPL-BDR-MANUFACTURING-001` for recommendations that materially affect mission continuity, command trust, or safety release posture.
+
+## Tactical Edge Expansion Wave XX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-space-rpo-denial-awareness-v1` + `protocol_stack_id=ps-space-rpo-denial-awareness-stack-v1` when edge orchestration depends on contested orbital custody, relay survivability, and hostile rendezvous disruption signals.
+- Add `tool_suite_id=ts-sof-lowsig-logistics-interop-v1` + `protocol_stack_id=ps-sof-lowsig-logistics-interop-stack-v1` when distributed edge nodes support denied-area low-signature sustainment coordination.
+- Add `tool_suite_id=ts-legal-targeting-civharm-evidence-v1` + `protocol_stack_id=ps-legal-targeting-civharm-evidence-stack-v1` when tactical edge products influence strike legality evidence, civilian-harm adjudication, or auditable release workflows.
+- Add `packet_id=DPL-SPACE-RPO-DENIAL-001`, `packet_id=DPL-SOF-LOWSIG-LOGISTICS-INTEROP-001`, and `packet_id=DPL-LEGAL-TARGETING-CIVHARM-EVIDENCE-001` for branches that materially affect command trust, compliance posture, or mission continuity.

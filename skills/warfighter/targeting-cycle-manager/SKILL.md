@@ -144,3 +144,9 @@ Primary products for this skill: joint integrated prioritized target list suppor
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Targeting Expansion Addendum (2026-03-12, Civilian Shield Countering and Hypersonic Compression)
+
+- Add `tool_suite_id=ts-civilian-shield-pattern-counter-v1` + `protocol_stack_id=ps-civilian-shield-pattern-counter-stack-v1` when adversaries exploit civilian shielding to degrade lawful targeting confidence.
+- Add `tool_suite_id=ts-hypersonic-warning-interceptor-allocation-v1` + `protocol_stack_id=ps-hypersonic-warning-interceptor-allocation-stack-v1` when targeting priorities are compressed by strategic missile timelines.
+- Add `tool_suite_id=ts-denied-humint-biometric-crosscue-v1` + `protocol_stack_id=ps-denied-humint-biometric-crosscue-stack-v1` when target confidence depends on HUMINT/biometric cross-cue under denied conditions.
+- Add `packet_id=DPL-CIVSHIELD-EXPLOIT-COUNTER-001`, `packet_id=DPL-HYPERSONIC-WARN-ALLOC-001`, and `packet_id=DPL-HUMINT-BIOMETRIC-CROSSCUE-001` for branches that materially alter release timing, legal confidence, or target validity.

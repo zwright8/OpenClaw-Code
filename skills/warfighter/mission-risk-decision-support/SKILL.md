@@ -221,3 +221,17 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add tool_suite_id=ts-strategic-grid-transformer-supply-sabotage-and-restoration-cell-v1 + protocol_stack_id=ps-strategic-grid-transformer-supply-sabotage-and-restoration-cell-stack-v1 when mission risk depends on power-grid transformer survivability, restoration timing, and sabotage confidence.
 - Add tool_suite_id=ts-homeland-defense-satellite-timing-financial-clearing-fallback-cell-v1 + protocol_stack_id=ps-homeland-defense-satellite-timing-financial-clearing-fallback-cell-stack-v1 when commander risk acceptance depends on timing trust and financial-clearing continuity.
 - Add packet_id=DPL-GRID-TRANSFORMER-RESTORE-001 and packet_id=DPL-SAT-TIMING-FINANCIAL-CLEARING-001 for branches that alter sustainment confidence, escalation posture, or force-readiness assumptions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XIX Addendum)
+
+- Add `tool_suite_id=ts-iamd-depletion-forecast-v1` + `protocol_stack_id=ps-iamd-depletion-forecast-stack-v1` when mission risk depends on interceptor endurance and defended-asset reprioritization under sustained salvos.
+- Add `tool_suite_id=ts-contested-personnel-recovery-v1` + `protocol_stack_id=ps-contested-personnel-recovery-stack-v1` when commander risk posture depends on isolated personnel survival, authentication confidence, or contested recovery feasibility.
+- Add `tool_suite_id=ts-jadc2-datalink-bridging-priority-v1` + `protocol_stack_id=ps-jadc2-datalink-bridging-priority-stack-v1` when risk acceptance depends on cross-link translation fidelity and message-priority acknowledgment integrity.
+- Add `packet_id=DPL-IAMD-DEPLETION-001`, `packet_id=DPL-CONTESTED-PR-001`, and `packet_id=DPL-JADC2-BRIDGE-001` when these dependencies materially change commander GO/NO-GO decisions.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XX Addendum)
+
+- Add `tool_suite_id=ts-nuclear-command-auth-containment-v1` + `protocol_stack_id=ps-nuclear-command-auth-containment-stack-v1` when mission risk depends on trusted strategic order-path authentication or high-consequence incident containment.
+- Add `tool_suite_id=ts-strategic-mobility-chokepoint-optimizer-v1` + `protocol_stack_id=ps-strategic-mobility-chokepoint-optimizer-stack-v1` when commander risk acceptance depends on rail-air-sealift throughput resilience.
+- Add `tool_suite_id=ts-auton-target-human-override-assurance-v1` + `protocol_stack_id=ps-auton-target-human-override-assurance-stack-v1` when recommendations depend on autonomous targeting confidence and deterministic human override controls.
+- Add `packet_id=DPL-NUCLEAR-AUTH-CONTAINMENT-001`, `packet_id=DPL-STRAT-MOBILITY-CHOKEPOINT-001`, and `packet_id=DPL-AUTON-TARGET-HUMAN-OVERRIDE-001` for branches that materially change GO/NO-GO posture.

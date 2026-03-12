@@ -193,3 +193,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-port-crane-cyber-physical-recovery-v1` + `protocol_stack_id=ps-port-crane-cyber-physical-recovery-stack-v1` when sustainment throughput depends on contested port crane restoration and OT safety controls.
 - Add `tool_suite_id=ts-civil-rail-evac-priority-merge-v1` + `protocol_stack_id=ps-civil-rail-evac-priority-merge-stack-v1` when military sustainment movement must be synchronized with life-safety rail evacuation demand.
 - Add `packet_id=DPL-PORT-CRANE-CYBER-PHYSICAL-RECOVERY-001` and `packet_id=DPL-CIVIL-RAIL-EVAC-PRIORITY-MERGE-001` for sustainment branches that alter port unloading cadence, rail throughput, or distribution sequencing.
+
+## Logistics Continuity Addendum (2026-03-12, Arctic Rescue, Munitions Safety, and Coalition Cascade Response)
+
+- Add `tool_suite_id=ts-arctic-sar-medical-auth-v1` + `protocol_stack_id=ps-arctic-sar-medical-auth-stack-v1` when sustainment plans include contested Arctic personnel recovery and hypothermia-driven casualty routing.
+- Add `tool_suite_id=ts-munitions-energetics-dispersal-v1` + `protocol_stack_id=ps-munitions-energetics-dispersal-stack-v1` when munitions safety compatibility and depot dispersal timing drive sustainment feasibility.
+- Add `tool_suite_id=ts-coalition-infra-cyber-kinetic-cascade-v1` + `protocol_stack_id=ps-coalition-infra-cyber-kinetic-cascade-stack-v1` when sustainment continuity depends on coalition infrastructure restoration after cyber-kinetic shocks.
+- Add `packet_id=DPL-ARCTIC-SAR-MEDAUTH-001`, `packet_id=DPL-MUNITIONS-ENERGETICS-DISPERSAL-001`, and `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001` for branches that materially change throughput confidence, life-support posture, or mission sustainment viability.

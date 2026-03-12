@@ -245,3 +245,17 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-theater-electronic-deception-decoy-emitter-governance-cell-v1` + `protocol_stack_id=ps-theater-electronic-deception-decoy-emitter-governance-cell-stack-v1` when base defense plans depend on controlled decoy-emitter campaigns and EW fratricide safeguards.
 - Add `tool_suite_id=ts-strategic-orbital-nuclear-detonation-effects-mitigation-cell-v1` + `protocol_stack_id=ps-strategic-orbital-nuclear-detonation-effects-mitigation-cell-stack-v1` when force-protection branches must account for high-altitude or orbital nuclear-effects continuity.
 - Add `packet_id=DPL-DECOY-EMITTER-GOV-001` and `packet_id=DPL-ORBITAL-NUCLEAR-EFFECTS-MIT-001` for branches that materially change detection risk, continuity posture, or commander release controls.
+
+## Force Protection Expansion Wave XIX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-grid-blackstart-defense-v1` + `protocol_stack_id=ps-grid-blackstart-defense-stack-v1` when base-defense risk posture depends on blackstart sequencing, backup-power endurance, or critical-node restoration.
+- Add `tool_suite_id=ts-battlefield-forensics-war-crimes-chain-v1` + `protocol_stack_id=ps-battlefield-forensics-war-crimes-chain-stack-v1` when force-protection actions require evidentiary integrity and legally defensible attribution.
+- Add `tool_suite_id=ts-auroral-comms-mitigation-v1` + `protocol_stack_id=ps-auroral-comms-mitigation-stack-v1` when high-latitude comm reliability drives guard-force command and emergency response continuity.
+- Add `packet_id=DPL-GRID-BLACKSTART-001`, `packet_id=DPL-BATTLEFIELD-FORENSICS-001`, and `packet_id=DPL-AURORAL-COMMS-001` for branches that alter protection conditions, escalation thresholds, or commander risk acceptance.
+
+## Force Protection Expansion Wave XX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-urban-subterranean-life-support-v1` + `protocol_stack_id=ps-urban-subterranean-life-support-stack-v1` when base-defense posture depends on subterranean access control, tunnel hazard management, and life-support survivability.
+- Add `tool_suite_id=ts-spectrum-deception-emitter-auth-v1` + `protocol_stack_id=ps-spectrum-deception-emitter-auth-stack-v1` when force-protection branches require trusted emitter identification and deception governance under EW pressure.
+- Add `tool_suite_id=ts-battlefield-weather-effects-window-v1` + `protocol_stack_id=ps-battlefield-weather-effects-window-stack-v1` when weather nowcasting materially affects guard-force movement, aerial surveillance windows, or emergency response continuity.
+- Add `packet_id=DPL-URBAN-SUBTERRANEAN-LIFESUPPORT-001`, `packet_id=DPL-SPECTRUM-DECEPTION-EMITTER-AUTH-001`, and `packet_id=DPL-BATTLEFIELD-WEATHER-EFFECTS-001` for branches that alter base-defense readiness conditions or escalation controls.
