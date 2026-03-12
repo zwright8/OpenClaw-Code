@@ -88,6 +88,8 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `1c6bbf5115..96c37731fa`: no new README command-map additions were found (range updates AGENTS verification bookkeeping/hash correction only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `063c6cc351..1c6bbf5115`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `c5c9169414..cee4aa726a`: no new README command-map additions were found (range adds warfighter skill/reference content and protocol override updates only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `cee4aa726a..063c6cc351`: added README command-map workflow for multi-window UCB autonomous run flags (`--selection-policy mw_ucb`, `--multi-window-sizes`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `db43beb77f..3086a52544`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
