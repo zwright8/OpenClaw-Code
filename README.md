@@ -245,6 +245,8 @@ npm run autonomous:run -- --selection-policy sw_auto_epsilon_ts --window-size 12
 npm run autonomous:run -- --selection-policy sw_cp_epsilon_ts --window-size 12 --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2
 npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy fdsw_ucb --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean
+npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation adaptive --thompson-exploration 0.25
+npm run autonomous:run -- --selection-policy fdsw_ucb --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation adaptive
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97
 npm run autonomous:run -- --selection-policy d_ucb_v --discount-factor 0.97 --ucb-v-exploration 1
 npm run autonomous:run -- --selection-policy mw_ucb --multi-window-sizes 4,8,16,32
@@ -288,6 +290,7 @@ npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --
 npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
 ```
 Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted/hybrid UCB-family (`sw_ucb`/`d_ucb`/`fdsw_ucb`), change-detection (`cd_ucb`/`sw_cd_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3 families (`exp3_ix`/`exp3_s` with `sw_`/`d_` variants) so partial outcomes are learned as partial credit instead of full wins.
+Hybrid `fdsw_*` policies now also support `--hybrid-ts-aggregation adaptive`, which tilts toward sliding-window estimates when very recent performance is shifting and toward discounted estimates when recent behavior is stable.
 Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
 Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history. The expanded `corral_exp3_plus` expert pool also includes ADWIN, hybrid discounted+windowed, and Boltzmann-Gumbel experts for stronger regime-shift routing.
 `exp3_s` adds share-mixing (`--exp3-share-alpha`) to keep a controlled probability floor across all arms under adversarial drift while still using EXP3-IX implicit-exploration weighting.

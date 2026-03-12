@@ -43,7 +43,7 @@ Options:
   --thompson-uncertainty-weight <n>  Uncertainty bonus scaling for auto_epsilon_ts* (0-2, default: 0.5)
   --thompson-hazard-rate <n>   Base changepoint hazard for cp_epsilon_ts* (0-0.5, default: 0.08)
   --thompson-surprise-sensitivity <n>  Surprise-to-hazard scaling for cp_epsilon_ts* (0-5, default: 1)
-  --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_* hybrid policies: min|mean|max (default: mean)
+  --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_* hybrid policies: min|mean|max|adaptive (default: mean)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
@@ -379,8 +379,8 @@ function parseArgs(argv) {
         }
         if (token === '--hybrid-ts-aggregation') {
             const mode = String(value || '').trim().toLowerCase();
-            if (!['min', 'mean', 'max'].includes(mode)) {
-                throw new Error('--hybrid-ts-aggregation must be one of: min, mean, max');
+            if (!['min', 'mean', 'max', 'adaptive'].includes(mode)) {
+                throw new Error('--hybrid-ts-aggregation must be one of: min, mean, max, adaptive');
             }
             options.selectionPolicyConfig.hybridTsAggregation = mode;
             i++;

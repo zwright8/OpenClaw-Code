@@ -61,7 +61,8 @@ const DEFAULT_HYBRID_TS_AGGREGATION = 'mean';
 const HYBRID_TS_AGGREGATION_MODES = new Set([
     'min',
     'mean',
-    'max'
+    'max',
+    'adaptive'
 ]);
 const DEFAULT_MULTI_WINDOW_SIZES = Object.freeze([4, 8, 16, 32]);
 const MAX_MULTI_WINDOW_CANDIDATES = 10;
@@ -1347,31 +1348,84 @@ function computeRestartedExp3Stats(stat, selectionPolicyConfig, currentWave = 0)
     });
 }
 
-function aggregatePair(left, right, mode = DEFAULT_HYBRID_TS_AGGREGATION) {
+function computeAdaptiveHybridWindowWeight({
+    outcomes = [],
+    windowedAttempts = 0,
+    discountedAttempts = 0,
+    selectionPolicyConfig = null
+}) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const normalizedOutcomes = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
+        : [];
+    if (normalizedOutcomes.length < 2) return 0.5;
+
+    const recent = normalizedOutcomes.slice(-Math.max(2, policy.slidingWindowSize));
+    const midpoint = Math.floor(recent.length / 2);
+    if (midpoint <= 0 || midpoint >= recent.length) return 0.5;
+    const older = recent.slice(0, midpoint);
+    const newer = recent.slice(midpoint);
+    if (older.length <= 0 || newer.length <= 0) return 0.5;
+
+    const olderMean = older.reduce((sum, entry) => sum + entry.reward, 0) / older.length;
+    const newerMean = newer.reduce((sum, entry) => sum + entry.reward, 0) / newer.length;
+    const driftSignal = clamp(Math.abs(newerMean - olderMean), 0, 1);
+    const windowReliability = windowedAttempts / (windowedAttempts + 4);
+    const discountedReliability = discountedAttempts / (discountedAttempts + 4);
+    const reliabilityTilt = (windowReliability - discountedReliability) * 0.15;
+
+    return clamp((0.2 + (0.7 * driftSignal)) + reliabilityTilt, 0.1, 0.9);
+}
+
+function aggregateHybridPair({
+    left,
+    right,
+    mode = DEFAULT_HYBRID_TS_AGGREGATION,
+    adaptiveWeight = 0.5
+}) {
     if (mode === 'min') return Math.min(left, right);
     if (mode === 'max') return Math.max(left, right);
+    if (mode === 'adaptive') return (adaptiveWeight * left) + ((1 - adaptiveWeight) * right);
     return (left + right) / 2;
 }
 
-function computeHybridThompsonStats(stat, selectionPolicyConfig) {
+function computeHybridStats(stat, selectionPolicyConfig, windowMode, discountMode) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const windowed = computeWindowedStats(normalized, {
         ...policy,
-        mode: 'sw_epsilon_ts'
+        mode: windowMode
     });
     const discounted = computeDiscountedStats(normalized, {
         ...policy,
-        mode: 'd_epsilon_ts'
+        mode: discountMode
     });
     const aggregationMode = policy.hybridTsAggregation;
+    const adaptiveWeight = aggregationMode === 'adaptive'
+        ? computeAdaptiveHybridWindowWeight({
+            outcomes: normalized.recentOutcomes,
+            windowedAttempts: windowed.attempts,
+            discountedAttempts: discounted.attempts,
+            selectionPolicyConfig: policy
+        })
+        : 0.5;
     const windowMean = windowed.attempts > 0 ? windowed.successes / windowed.attempts : 0.5;
     const discountedMean = discounted.attempts > 0 ? discounted.successes / discounted.attempts : 0.5;
     const attempts = Math.max(
         0,
-        aggregatePair(windowed.attempts, discounted.attempts, aggregationMode)
+        aggregateHybridPair({
+            left: windowed.attempts,
+            right: discounted.attempts,
+            mode: aggregationMode,
+            adaptiveWeight
+        })
     );
-    const successRate = aggregatePair(windowMean, discountedMean, aggregationMode);
+    const successRate = aggregateHybridPair({
+        left: windowMean,
+        right: discountedMean,
+        mode: aggregationMode,
+        adaptiveWeight
+    });
     const latestOutcome = normalized.recentOutcomes[normalized.recentOutcomes.length - 1] || null;
 
     return {
@@ -1384,35 +1438,12 @@ function computeHybridThompsonStats(stat, selectionPolicyConfig) {
     };
 }
 
-function computeHybridUcbStats(stat, selectionPolicyConfig) {
-    const normalized = normalizeExecutionStat(stat);
-    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const windowed = computeWindowedStats(normalized, {
-        ...policy,
-        mode: 'sw_ucb'
-    });
-    const discounted = computeDiscountedStats(normalized, {
-        ...policy,
-        mode: 'd_ucb'
-    });
-    const aggregationMode = policy.hybridTsAggregation;
-    const windowMean = windowed.attempts > 0 ? windowed.successes / windowed.attempts : 0.5;
-    const discountedMean = discounted.attempts > 0 ? discounted.successes / discounted.attempts : 0.5;
-    const attempts = Math.max(
-        0,
-        aggregatePair(windowed.attempts, discounted.attempts, aggregationMode)
-    );
-    const successRate = aggregatePair(windowMean, discountedMean, aggregationMode);
-    const latestOutcome = normalized.recentOutcomes[normalized.recentOutcomes.length - 1] || null;
+function computeHybridThompsonStats(stat, selectionPolicyConfig) {
+    return computeHybridStats(stat, selectionPolicyConfig, 'sw_epsilon_ts', 'd_epsilon_ts');
+}
 
-    return {
-        attempts,
-        successes: successRate * attempts,
-        failures: Math.max(0, attempts - (successRate * attempts)),
-        lastStatus: latestOutcome?.status || normalized.lastStatus,
-        lastWave: latestOutcome?.wave > 0 ? latestOutcome.wave : normalized.lastWave,
-        consecutiveFailures: Math.max(windowed.consecutiveFailures, discounted.consecutiveFailures)
-    };
+function computeHybridUcbStats(stat, selectionPolicyConfig) {
+    return computeHybridStats(stat, selectionPolicyConfig, 'sw_ucb', 'd_ucb');
 }
 
 function computeChangePointThompsonStats(stat, selectionPolicyConfig) {
