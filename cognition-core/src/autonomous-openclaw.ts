@@ -118,7 +118,9 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_kl_ucb',
     'd_bayes_ucb',
     'cd_ucb',
+    'sw_cd_ucb',
     'cusum_ucb',
+    'sw_cusum_ucb',
     'corral_exp3',
     'corral_exp3_plus',
     'exp3_ix',
@@ -148,6 +150,18 @@ const EXP3_IX_POLICY_MODES = new Set([
     'exp3_ix',
     'sw_exp3_ix',
     'd_exp3_ix'
+]);
+const PAGE_HINKLEY_POLICY_MODES = new Set([
+    'cd_ucb',
+    'sw_cd_ucb'
+]);
+const CUSUM_POLICY_MODES = new Set([
+    'cusum_ucb',
+    'sw_cusum_ucb'
+]);
+const WINDOWED_CHANGE_DETECTION_POLICY_MODES = new Set([
+    'sw_cd_ucb',
+    'sw_cusum_ucb'
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
@@ -1086,10 +1100,14 @@ function detectPageHinkleyChangeIndex(outcomes = [], selectionPolicyConfig = nul
 
 function computeChangeDetectedStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
-    const changeIndex = detectPageHinkleyChangeIndex(normalized.recentOutcomes, selectionPolicyConfig);
-    const effective = changeIndex > 0
-        ? normalized.recentOutcomes.slice(changeIndex)
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const detectorInput = WINDOWED_CHANGE_DETECTION_POLICY_MODES.has(policy.mode)
+        ? normalized.recentOutcomes.slice(-policy.slidingWindowSize)
         : normalized.recentOutcomes;
+    const changeIndex = detectPageHinkleyChangeIndex(detectorInput, selectionPolicyConfig);
+    const effective = changeIndex > 0
+        ? detectorInput.slice(changeIndex)
+        : detectorInput;
     return summarizeOutcomeStats(effective, normalized, {
         mode: 'cd_ucb'
     });
@@ -1130,10 +1148,14 @@ function detectCusumChangeIndex(outcomes = [], selectionPolicyConfig = null) {
 
 function computeCusumDetectedStats(stat, selectionPolicyConfig) {
     const normalized = normalizeExecutionStat(stat);
-    const changeIndex = detectCusumChangeIndex(normalized.recentOutcomes, selectionPolicyConfig);
-    const effective = changeIndex > 0
-        ? normalized.recentOutcomes.slice(changeIndex)
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const detectorInput = WINDOWED_CHANGE_DETECTION_POLICY_MODES.has(policy.mode)
+        ? normalized.recentOutcomes.slice(-policy.slidingWindowSize)
         : normalized.recentOutcomes;
+    const changeIndex = detectCusumChangeIndex(detectorInput, selectionPolicyConfig);
+    const effective = changeIndex > 0
+        ? detectorInput.slice(changeIndex)
+        : detectorInput;
     return summarizeOutcomeStats(effective, normalized, {
         mode: 'cusum_ucb'
     });
@@ -1166,7 +1188,7 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             consecutiveFailures: discounted.consecutiveFailures
         };
     }
-    if (policy.mode === 'cd_ucb') {
+    if (PAGE_HINKLEY_POLICY_MODES.has(policy.mode)) {
         const changed = computeChangeDetectedStats(normalized, policy);
         return {
             ...normalized,
@@ -1178,7 +1200,7 @@ function resolveScoreStats(stat, selectionPolicyConfig) {
             consecutiveFailures: changed.consecutiveFailures
         };
     }
-    if (policy.mode === 'cusum_ucb') {
+    if (CUSUM_POLICY_MODES.has(policy.mode)) {
         const changed = computeCusumDetectedStats(normalized, policy);
         return {
             ...normalized,

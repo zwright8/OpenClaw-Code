@@ -245,7 +245,9 @@ npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97
 npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3
 npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
+npm run autonomous:run -- --selection-policy sw_cd_ucb --window-size 12 --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
 npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
+npm run autonomous:run -- --selection-policy sw_cusum_ucb --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8
 npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2
 npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1
@@ -255,7 +257,7 @@ npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2
 npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2
 npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
 ```
-Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted UCB-family, change-detection (`cd_ucb`/`cusum_ucb`), and EXP3-IX variants so partial outcomes are learned as partial credit instead of full wins.
+Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted UCB-family, change-detection (`cd_ucb`/`sw_cd_ucb`/`cusum_ucb`/`sw_cusum_ucb`), and EXP3-IX variants so partial outcomes are learned as partial credit instead of full wins.
 
 ## Quick Start
 

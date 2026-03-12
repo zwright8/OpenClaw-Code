@@ -1030,6 +1030,162 @@ test('buildAutonomousBatchPlan supports cusum_ucb for abrupt drift with baseline
     assert.deepEqual(plan.selection.skillIds, [145]);
 });
 
+test('buildAutonomousBatchPlan supports sw_cd_ucb for recency-windowed Page-Hinkley adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 345, code: 'SK-00345', title: 'Skill 345' },
+            { id: 346, code: 'SK-00346', title: 'Skill 346' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '345': {
+                    attempts: 32,
+                    successes: 12,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                },
+                '346': {
+                    attempts: 32,
+                    successes: 20,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'sw_cd_ucb',
+            slidingWindowSize: 4,
+            changeDetectionMinSamples: 4,
+            changeDetectionThreshold: 10,
+            changeDetectionDelta: 0.02
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [345]);
+    assert.equal(plan.selection.policy.skills, 'sw_cd_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_cd_ucb');
+});
+
+test('buildAutonomousBatchPlan supports sw_cusum_ucb for recency-windowed CUSUM adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 445, code: 'SK-00445', title: 'Skill 445' },
+            { id: 446, code: 'SK-00446', title: 'Skill 446' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 27,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '445': {
+                    attempts: 32,
+                    successes: 12,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' }
+                    ]
+                },
+                '446': {
+                    attempts: 32,
+                    successes: 20,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 28,
+        selectionPolicyConfig: {
+            mode: 'sw_cusum_ucb',
+            slidingWindowSize: 4,
+            changeDetectionMinSamples: 4,
+            cusumThreshold: 10,
+            cusumBaselineWeight: 0.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [445]);
+    assert.equal(plan.selection.policy.skills, 'sw_cusum_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_cusum_ucb');
+});
+
 test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across base policies', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
