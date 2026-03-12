@@ -1,9 +1,9 @@
 ---
-name: coalition-interoperability-coordinator
-description: Coordinate interoperability with allies and partners. Use when mapping capability gaps, data-sharing boundaries, and procedural differences in combined operations.
+name: joint-biosurveillance-field-lab-chain-of-custody-cell
+description: Coordinate field biosurveillance sampling, lab throughput, and evidence-grade chain-of-custody under contested operational conditions.
 ---
 
-# Coalition Interoperability Coordinator
+# Joint Biosurveillance Field Lab Chain of Custody Cell
 
 ## Mission Scope
 
@@ -13,17 +13,17 @@ description: Coordinate interoperability with allies and partners. Use when mapp
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: partner capabilities, comms/data standards, policy constraints, mission requirements.
-2. Identify assumptions, decision thresholds, and what intelligence or reporting would invalidate the current plan.
-3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
+1. Frame the mission problem using current intent, threat pressures, operational constraints, and known assumptions.
+2. Define measurable objectives, risk thresholds, branch conditions, and indicators that would invalidate the preferred plan.
+3. Build a recommended option and at least two alternatives with explicit tradeoffs in tempo, survivability, sustainment load, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
-5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
+5. Convert the decision into execution-ready products with owners, suspense dates, coordination links, and required reports.
 
 ## Required Output Format
 
 Deliver results in this order:
 
-1. Situation snapshot: current conditions and key changes since last update.
+1. Situation snapshot: current conditions and key changes since the last update.
 2. Recommended option: one clearly stated recommendation and rationale.
 3. Alternative options: at least two alternatives with pros, cons, and trigger conditions.
 4. Decision points: what must be decided now, later, or pre-delegated.
@@ -31,19 +31,24 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: interoperability gap matrix, combined SOP alignment actions, liaison priorities.
+Primary products for this skill: biosurveillance confidence ladder, sample chain-of-custody exception ledger, field-lab throughput branch plan.
+
+## Domain Tool Stack
+
+Use these tool categories as the default stack for this skill: force health surveillance systems, lab information management systems, sample logistics trackers, outbreak risk analytics boards.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Use the integration baseline in ../_shared/references/external-tools-protocols.md and select specific systems-of-record aligned to this mission.
+- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Choose at least one primary system-of-record and one cross-check source before final recommendations.
-- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, or `OGC`).
+- Use at least one primary source and one cross-check source before final recommendations.
+- Prefer these protocol families for this skill: HL7/FHIR, NIEM, USMTF, STIX/TAXII, API/JSON.
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
 ## Interoperability Validation Checklist
 
-- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
+- Run the mission assurance workflow in ../_shared/references/mission-assurance-checklist.md before final release.
 - Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
 - If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
 
@@ -144,38 +149,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Default Mission Tool Binding
 
-## Domain Toolchain Override (2026-03-10, Strategic Continuity and Countertargeting Expansion)
+Use this default binding unless mission constraints require an alternate path:
 
-- Add `tool_suite_id=ts-strategic-deterrence-signaling-fusion-v1` + `protocol_stack_id=ps-strategic-deterrence-signaling-fusion-stack-v1` when coalition interoperability risk is shaped by deterrence signaling and escalation synchronization.
-- Add `tool_suite_id=ts-coalition-cognitive-ew-disinfo-countertargeting-v1` + `protocol_stack_id=ps-coalition-cognitive-ew-disinfo-countertargeting-stack-v1` when cross-alliance decision quality is degraded by coordinated influence and EW deception.
-- Add `tool_suite_id=ts-gray-zone-influence-countercampaign-v1` + `protocol_stack_id=ps-gray-zone-influence-countercampaign-stack-v1` for persistent below-threshold competition that affects alliance cohesion and access.
-- Add `tool_suite_id=ts-expeditionary-data-fabric-zero-touch-hardening-v1` + `protocol_stack_id=ps-expeditionary-data-fabric-zero-touch-hardening-stack-v1` when coalition interoperability depends on trusted cross-domain data exchange in denied environments.
-- Add `packet_id=DPL-STRATEGIC-DETERRENCE-SIGNALING-001`, `packet_id=DPL-COALITION-COGNITIVE-EW-DISINFO-COUNTERTARGETING-001`, and `packet_id=DPL-GRAY-ZONE-INFLUENCE-COUNTERCAMPAIGN-001` for branches that can alter coalition force posture.
-
-## Domain Toolchain Override (2026-03-10, Coalition Urban Air Corridors and Medical Autonomy Addendum)
-
-- Add `tool_suite_id=ts-coalition-urban-drone-traffic-separation-v1` + `protocol_stack_id=ps-coalition-urban-drone-traffic-separation-stack-v1` when interoperability depends on coalition urban drone corridor governance under denied-PNT conditions.
-- Add `tool_suite_id=ts-coalition-autonomous-ambulance-drone-corridor-v1` + `protocol_stack_id=ps-coalition-autonomous-ambulance-drone-corridor-stack-v1` when coalition casualty movement relies on autonomous air corridors and cross-border medical routing approvals.
-- Add `packet_id=DPL-COALITION-URBAN-DRONE-TRAFFIC-SEPARATION-001` and `packet_id=DPL-COALITION-AUTONOMOUS-AMBULANCE-DRONE-CORRIDOR-001` for branches that alter coalition airspace and casualty-flow governance.
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
-
-- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
-- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
-- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
-- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
-- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXV Addendum)
-
-- Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
-- Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
-- Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVII Addendum)
-
-- Add `tool_suite_id=ts-theater-cislunar-logistics-custody-conjunction-assurance-v1` + `protocol_stack_id=ps-theater-cislunar-logistics-custody-conjunction-assurance-stack-v1` when coalition interoperability planning depends on shared cislunar custody status, conjunction confidence, and release authorities.
-- Add `tool_suite_id=ts-joint-biosurveillance-field-lab-chain-of-custody-v1` + `protocol_stack_id=ps-joint-biosurveillance-field-lab-chain-of-custody-stack-v1` when coalition force-health and bio-event sharing require evidence-grade sample custody and cross-border validation.
-- Add `tool_suite_id=ts-strategic-cognitive-electromagnetic-deception-exposure-v1` + `protocol_stack_id=ps-strategic-cognitive-electromagnetic-deception-exposure-stack-v1` when allied interoperability decisions are degraded by combined disinformation and spectrum-deception pressure.
-- Add `packet_id=DPL-CISLUNAR-CUSTODY-CONJUNCTION-001`, `packet_id=DPL-BIOSURVEILLANCE-FIELD-LAB-CUSTODY-001`, and `packet_id=DPL-COGNITIVE-EM-DECEPTION-EXPOSURE-001` for branches that can alter coalition posture or release authorities.
+- Primary: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-medical-readiness-stack-v1`.
+- Alternate: `tool_suite_id=ts-cbrn-consequence-v1` with `protocol_stack_id=ps-cbrn-emergency-stack-v1`.
+- Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.

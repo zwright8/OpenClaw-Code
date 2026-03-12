@@ -187,3 +187,9 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 
 - Add tool_suite_id=ts-joint-hypersonic-strike-civil-warning-deconfliction-v1 + protocol_stack_id=ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1 when strike-window recommendations require synchronized civil warning and escalation-safe release timing.
 - Add packet_id=DPL-HYPERSONIC-CIVWARN-DECONF-001 for branches that materially change launch-window sequencing or strategic warning posture.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVII Addendum)
+
+- Add `tool_suite_id=ts-theater-hypersonic-strike-bda-corroboration-v1` + `protocol_stack_id=ps-theater-hypersonic-strike-bda-corroboration-stack-v1` when compressed strike timelines require multi-source battle-damage corroboration before escalation-sensitive branch selection.
+- Add `tool_suite_id=ts-joint-quantum-pnt-fallback-assurance-v1` + `protocol_stack_id=ps-joint-quantum-pnt-fallback-assurance-stack-v1` when OCA timing, rendezvous sequencing, or release authorities depend on contested PNT fallback confidence.
+- Add `packet_id=DPL-HYPERSONIC-BDA-CORROBORATION-001` and `packet_id=DPL-QUANTUM-PNT-FALLBACK-001` for branches that can alter commander go/no-go posture.

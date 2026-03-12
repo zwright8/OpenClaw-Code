@@ -149,3 +149,16 @@ Use these tool categories as the default stack for this skill: maritime C2 syste
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Default Mission Tool Binding
+
+Use this default binding unless mission constraints require an alternate path:
+
+- Primary: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
+- Alternate: `tool_suite_id=ts-coalition-maritime-chokepoint-autonomous-escort-mine-risk-v1` with `protocol_stack_id=ps-coalition-maritime-chokepoint-autonomous-escort-mine-risk-stack-v1`.
+- Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVII Addendum)
+
+- Add `tool_suite_id=ts-coalition-sanctions-maritime-insurance-evasion-disruption-v1` + `protocol_stack_id=ps-coalition-sanctions-maritime-insurance-evasion-disruption-stack-v1` for sea-control recommendations that depend on sanctions-evasion interdiction and legal-evidence continuity.
+- Add `tool_suite_id=ts-coalition-under-ice-autonomous-resupply-corridor-v1` + `protocol_stack_id=ps-coalition-under-ice-autonomous-resupply-corridor-stack-v1` when Arctic under-ice logistics corridors influence maritime posture, escort allocation, or casualty-flow branches.
+- Add `packet_id=DPL-MARITIME-INSURANCE-EVASION-DISRUPTION-001` and `packet_id=DPL-UNDER-ICE-AUTONOMOUS-RESUPPLY-001` for branches that materially change force protection or coalition routing posture.

@@ -430,3 +430,47 @@ For each critical recommendation, include:
 - Cross-check tools: independent readiness confidence board and alternate throughput verification tracker.
 - Protocols: `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned`.
 - Degraded fallback: priority-unit surge mode with conservative readiness assumptions.
+
+## Profile Set (2026-03-12 Expansion Wave XXVII - Cislunar Custody, Quantum-PNT Fallback, Infrastructure Blackstart, and Cognitive-EM Deception)
+
+### `theater-cislunar-custody-conjunction-assurance-v1`
+- Use for cislunar logistics custody and conjunction-safe maneuver authority synchronization.
+- Primary tools: cislunar conjunction board + custody ledger + maneuver release workflow.
+- Cross-check tools: independent conjunction witness and alternate custody audit board.
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-essential custody updates only with conservative maneuver thresholds.
+
+### `joint-quantum-pnt-fallback-assurance-v1`
+- Use for assured navigation and timing branches under GNSS denial or deception.
+- Primary tools: pnt integrity monitor + inertial/celestial fusion board + timing drift tracker.
+- Cross-check tools: independent trusted-time witness and alternate drift monitor.
+- Protocols: `USMTF`, `VMF`, `CoT`, `Link 16 J-series`, `API/JSON`.
+- Degraded fallback: mission-essential routes only with fixed confidence refresh cadence.
+
+### `homeland-base-grid-blackstart-synchronization-v1`
+- Use for military base islanded-grid blackstart coordination with civil utility restoration.
+- Primary tools: grid telemetry board + microgrid orchestrator + utility synchronization workflow.
+- Cross-check tools: independent power quality monitor and alternate restoration status mirror.
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: life-safety and c2 loads only with strict command check-ins.
+
+### `joint-biosurveillance-field-lab-custody-v1`
+- Use for field sample custody assurance and lab-throughput governance in contested operations.
+- Primary tools: biosurveillance fusion board + lims workflow + sample logistics tracker.
+- Cross-check tools: independent custody audit queue and alternate outbreak confidence board.
+- Protocols: `HL7/FHIR`, `NIEM`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: high-priority sample classes only with elevated uncertainty labels.
+
+### `coalition-sanctions-maritime-insurance-evasion-disruption-v1`
+- Use for coalition disruption of maritime insurance/ownership evasion networks with legal evidence continuity.
+- Primary tools: vessel network analytics + sanctions adjudication board + evidence-custody workflow.
+- Cross-check tools: independent legal confidence reviewer and alternate ownership-anomaly monitor.
+- Protocols: `AIS/NMEA`, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
+- Degraded fallback: high-confidence disruption candidates only with coalition legal hold points.
+
+### `strategic-cognitive-em-deception-exposure-v1`
+- Use for attribution and response planning against blended information and electromagnetic deception campaigns.
+- Primary tools: narrative telemetry fusion + rf anomaly analytics + policy-governed response workflow.
+- Cross-check tools: independent source-credibility ledger and alternate campaign impact monitor.
+- Protocols: `STIX/TAXII`, `NIEM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: attribution advisories only with no autonomous response release.
