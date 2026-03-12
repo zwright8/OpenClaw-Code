@@ -82,6 +82,8 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `8dca4f38ab..db43beb77f`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `28fdda7164..8dca4f38ab`: added README command-map workflows for surprise-adaptive changepoint epsilon-Thompson autonomous run flags (`--selection-policy cp_epsilon_ts|sw_cp_epsilon_ts`, `--window-size`, `--thompson-hazard-rate`, `--thompson-surprise-sensitivity`, `--thompson-exploration`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `304006cfcd..aa27f3ed5c`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `2165a0c469..304006cfcd`: added README command-map workflows for directional change-detection autonomous run flags (`--cd-direction up|down|both`) across Page-Hinkley/CUSUM examples; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `8eaff02804..2165a0c469`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
