@@ -8958,3 +8958,181 @@ validation_gates:
 - output_schema: interdiction sequence, custody ladder, escalation packet
 - protocol_profile: USMTF + NIEM + CJIS + NIMS/ICS + API/JSON
 - validation_gates: contamination control pass, legal custody compliance, acknowledgment integrity
+
+## Packet Addendum XV (2026-03-12, Expansion Wave XXVI Tool Invocation Packets)
+
+### packet_id: DPL-HYPERSONIC-CIVWARN-DECONF-001
+- domain: hypersonic strike window and civil-warning deconfliction
+- objective: synchronize compressed strike-window decisions with civil-warning dissemination and escalation controls.
+- primary_tools: strike timeline adjudicator, warning relay monitor, release authority board
+- alternate_tools: manual release ladder and voice confirmation matrix
+- degraded_mode: highest-consequence windows only with dual-command approval
+- input_requirements: strike timeline, warning-channel status, authority matrix, civilian-risk posture
+- output_schema: synchronized window matrix, warning latency ladder, release packet
+- protocol_profile: USMTF + Link 16 J-series + CAP + API/JSON
+- validation_gates: warning latency threshold, authority concurrence, acknowledgment integrity
+
+### packet_id: DPL-HYPERSONIC-CIVWARN-DECONF-002
+- domain: strategic warning fallback for strike deconfliction
+- objective: preserve warning integrity when primary dissemination channels degrade during time-critical release windows.
+- primary_tools: warning fallback scheduler, alternate channel integrity board, escalation gate manager
+- alternate_tools: manual civil warning call tree and delayed mission branch board
+- degraded_mode: advisory-only timing recommendations with hold-fire default
+- input_requirements: fallback channel status, timing deltas, authority constraints
+- output_schema: fallback warning sequence, confidence labels, decision packet
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: fallback channel pass, confidence floor, commander acknowledgment
+
+### packet_id: DPL-PNT-TIME-MESH-RECOVERY-001
+- domain: contested PNT time-distribution mesh recovery
+- objective: restore trusted timing distribution for synchronized fires, maneuver, and command events.
+- primary_tools: time-integrity monitor, mesh reroute orchestrator, drift confidence board
+- alternate_tools: manual timing ladder and periodic trusted-time checkpoints
+- degraded_mode: mission-essential timing events only with stricter confidence bounds
+- input_requirements: timing offsets, mesh health, platform timing tolerance, threat indicators
+- output_schema: restoration sequence, confidence map, branch packet
+- protocol_profile: USMTF + VMF + CoT + Link 16 J-series + API/JSON
+- validation_gates: drift threshold pass, dual-source validation, authority concurrence
+
+### packet_id: DPL-PNT-TIME-MESH-RECOVERY-002
+- domain: denied-timing fallback governance
+- objective: execute constrained timing fallback when primary mesh recovery cannot meet mission thresholds.
+- primary_tools: fallback clock-source manager, risk ladder board, precision-fire scheduler
+- alternate_tools: manual timing windows and conservative release queue
+- degraded_mode: no high-tempo fires unless trusted timing floor is re-established
+- input_requirements: fallback source status, mission priorities, legal ROE constraints
+- output_schema: fallback timing ladder, risk deltas, command packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: trusted-time floor, ROE compliance, acknowledgment integrity
+
+### packet_id: DPL-COALITION-CHOKEPOINT-ESCORT-MINE-001
+- domain: coalition maritime chokepoint autonomous escort and mine-risk adjudication
+- objective: assign escorts and route traffic through mined chokepoints while preserving coalition interoperability and throughput.
+- primary_tools: maritime COP, escort optimizer, mine-risk adjudication board
+- alternate_tools: liaison-driven convoy windows and manual hazard board
+- degraded_mode: protected transit lanes only with reduced throughput assumptions
+- input_requirements: vessel manifests, escort assets, mine indicators, coalition caveats
+- output_schema: escort matrix, risk ledger, coalition transit packet
+- protocol_profile: AIS/NMEA + USMTF + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: coalition caveat pass, mine-risk confidence threshold, release authority acknowledgment
+
+### packet_id: DPL-COALITION-CHOKEPOINT-ESCORT-MINE-002
+- domain: chokepoint transit fallback under mine-uncertainty
+- objective: maintain life-safety and mission-essential throughput when mine confidence is degraded.
+- primary_tools: hazard uncertainty board, convoy sequencing engine, emergency reroute planner
+- alternate_tools: manual escort board and delayed transit release queue
+- degraded_mode: humanitarian and mission-essential classes only
+- input_requirements: hazard confidence bands, convoy priorities, alternate routes
+- output_schema: fallback transit plan, confidence labels, escalation packet
+- protocol_profile: USMTF + AIS/NMEA + API/JSON
+- validation_gates: life-safety priority pass, uncertainty disclosure, command concurrence
+
+### packet_id: DPL-HOMELAND-MANUFACTURING-SURVIVABILITY-001
+- domain: homeland critical manufacturing cyber-physical survivability
+- objective: preserve strategic manufacturing outputs by containing cyber-physical disruption and prioritizing mission-essential production.
+- primary_tools: industrial telemetry fusion board, incident triage workflow, production-priority adjudicator
+- alternate_tools: manual outage board and phased restart checklist
+- degraded_mode: mission-critical output lines only with daily commander review
+- input_requirements: facility status, incident telemetry, output priorities, workforce readiness
+- output_schema: survivability matrix, containment branch board, continuity packet
+- protocol_profile: USMTF + STIX/TAXII + NIEM + NIMS/ICS + API/JSON
+- validation_gates: containment pass, output-priority compliance, authority-chain integrity
+
+### packet_id: DPL-HOMELAND-MANUFACTURING-SURVIVABILITY-002
+- domain: strategic industrial restart fallback
+- objective: coordinate phased restart and surge allocation after severe disruption to defense-critical manufacturing nodes.
+- primary_tools: restart scheduler, bottleneck forecast board, strategic allocation queue
+- alternate_tools: manual surge worksheet and executive adjudication board
+- degraded_mode: deterrence and life-safety output classes only
+- input_requirements: restart status, bottleneck estimates, demand priorities
+- output_schema: phased restart ladder, allocation matrix, command packet
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: restart safety pass, strategic-priority alignment, acknowledgment integrity
+
+### packet_id: DPL-EXPEDITIONARY-MICROREACTOR-SAFEGUARDS-001
+- domain: expeditionary forward-power microreactor safeguards
+- objective: govern microreactor safety and mission-power continuity under contested conditions.
+- primary_tools: reactor telemetry board, mission load-priority engine, radiological contingency planner
+- alternate_tools: manual safety checklist and periodic engineering board review
+- degraded_mode: life-safety and C2 loads only
+- input_requirements: reactor health data, load priorities, hazard indicators, authority constraints
+- output_schema: safeguards board, load-priority ladder, contingency packet
+- protocol_profile: USMTF + NIMS/ICS + NIEM + API/JSON
+- validation_gates: safety threshold pass, contamination-risk controls, authority concurrence
+
+### packet_id: DPL-EXPEDITIONARY-MICROREACTOR-SAFEGUARDS-002
+- domain: microreactor emergency fallback and grid isolation
+- objective: isolate reactor risk and preserve mission-essential power continuity during safety anomalies.
+- primary_tools: isolation orchestrator, emergency load shed board, hazard-control monitor
+- alternate_tools: manual emergency playbook and voice-confirmed load controls
+- degraded_mode: emergency-only power profile
+- input_requirements: anomaly telemetry, isolation path, mission-essential loads
+- output_schema: isolation sequence, emergency load map, escalation packet
+- protocol_profile: USMTF + NIMS/ICS + API/JSON
+- validation_gates: isolation integrity pass, life-safety power floor, commander approval
+
+### packet_id: DPL-BATTLEFIELD-ROBOTIC-REPAIR-RECOVERY-001
+- domain: joint battlefield robotic repair and recovery orchestration
+- objective: maximize recovery throughput and repair confidence for damaged platforms in contested zones.
+- primary_tools: recovery fleet manager, damage triage engine, repair queue orchestrator
+- alternate_tools: manual recovery board and periodic maintenance adjudication cell
+- degraded_mode: high-value mission-essential platforms only
+- input_requirements: platform damage states, route threats, recovery assets, parts inventory
+- output_schema: recovery queue, repair confidence ladder, mobility packet
+- protocol_profile: USMTF + VMF + CoT + API/JSON
+- validation_gates: route risk threshold, repair feasibility pass, authority concurrence
+
+### packet_id: DPL-BATTLEFIELD-ROBOTIC-REPAIR-RECOVERY-002
+- domain: robotic sustainment fallback under autonomy degradation
+- objective: maintain repair/recovery continuity when autonomous agents lose confidence or comms degrade.
+- primary_tools: fallback dispatch board, crewed-assist scheduler, confidence monitor
+- alternate_tools: manual dispatch worksheet and delayed status rollup
+- degraded_mode: reduced sortie and maneuver tempo with explicit risk labeling
+- input_requirements: autonomy confidence, crew availability, mission priorities
+- output_schema: fallback dispatch ladder, tempo impact summary, command packet
+- protocol_profile: USMTF + API/JSON
+- validation_gates: human-supervision pass, risk disclosure, acknowledgment-chain integrity
+
+### packet_id: DPL-STRATEGIC-COGNITIVE-WARFARE-001
+- domain: strategic cognitive warfare attribution and response
+- objective: attribute coordinated influence campaigns and frame response options within legal-policy boundaries.
+- primary_tools: narrative telemetry fusion board, attribution adjudicator, policy response workflow engine
+- alternate_tools: analyst-led influence board and manual release governance table
+- degraded_mode: attribution advisories only with no autonomous messaging release
+- input_requirements: narrative corpus, source reliability scores, campaign indicators, policy constraints
+- output_schema: attribution confidence ladder, response options matrix, release packet
+- protocol_profile: STIX/TAXII + NIEM + USMTF + API/JSON
+- validation_gates: source-confidence floor, legal-policy review, command approval record
+
+### packet_id: DPL-STRATEGIC-COGNITIVE-WARFARE-002
+- domain: coalition messaging fallback and counter-influence continuity
+- objective: preserve coalition message coherence during information disruption and attribution uncertainty.
+- primary_tools: coalition message harmonizer, fallback dissemination monitor, impact-risk board
+- alternate_tools: liaison-led messaging matrix and delayed synchronization calls
+- degraded_mode: synchronized facts-only messaging with uncertainty labels
+- input_requirements: coalition caveats, message priorities, channel availability
+- output_schema: fallback messaging ladder, coherence score, escalation packet
+- protocol_profile: NIEM + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: coalition caveat pass, uncertainty disclosure, authority acknowledgment
+
+### packet_id: DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-001
+- domain: undersea cable sabotage forensics and restoration
+- objective: attribute probable sabotage events with evidentiary integrity and prioritize restoration branches.
+- primary_tools: undersea telemetry fusion board, anomaly forensics engine, restoration scheduler
+- alternate_tools: manual incident board and delayed forensic review cell
+- degraded_mode: critical trunk lines only with conservative attribution confidence
+- input_requirements: segment health telemetry, vessel activity, forensic indicators, restoration assets
+- output_schema: forensic confidence ladder, restoration sequence, authority packet
+- protocol_profile: AIS/NMEA + USMTF + STIX/TAXII + NIEM + API/JSON
+- validation_gates: evidence custody pass, dual-source anomaly corroboration, command concurrence
+
+### packet_id: DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-002
+- domain: cable restoration fallback under unresolved attribution
+- objective: restore mission-critical connectivity while preserving investigative integrity when attribution remains uncertain.
+- primary_tools: continuity reroute planner, forensic hold ledger, restoration-priority board
+- alternate_tools: manual reroute board and periodic investigative status check
+- degraded_mode: mission-essential traffic classes only
+- input_requirements: reroute capacity, investigative holds, mission priorities
+- output_schema: fallback restoration ladder, custody exceptions log, command packet
+- protocol_profile: USMTF + NIEM + API/JSON
+- validation_gates: continuity threshold pass, investigative integrity controls, authority-chain acknowledgment

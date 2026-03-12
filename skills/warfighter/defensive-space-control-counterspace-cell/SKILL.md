@@ -144,3 +144,9 @@ Primary products for this skill: defensive space control plan, restoration prior
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-joint-hypersonic-strike-civil-warning-deconfliction-v1 + protocol_stack_id=ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1 when space-control recommendations must synchronize warning timelines with time-critical strike branch decisions.
+- Add packet_id=DPL-HYPERSONIC-CIVWARN-DECONF-002 for branches that shift strategic warning release timing or escalation controls.

@@ -1983,3 +1983,25 @@ Every skill output should include:
 - Expeditionary neurocognitive screening and return-to-duty + Role 3 medical network/aeromedical evacuation + force health surveillance + leadership risk decisions.
 - Drone-fiber backhaul hunt/neutralization + cyber-electromagnetic mission reroute + spectrum interference resolution + command-and-control continuity.
 - Coalition portable nuclear interdiction/evidence chain + nuclear command incident containment + CBRN consequence response + coalition legal handoff integrity.
+
+## New Expansion Wave (2026-03-12, Wave XXVI)
+
+- joint-hypersonic-strike-window-and-civil-warning-deconfliction-cell
+- theater-contested-pnt-time-distribution-mesh-recovery-cell
+- coalition-maritime-chokepoint-autonomous-escort-and-mine-risk-cell
+- homeland-critical-manufacturing-cyber-physical-survivability-cell
+- expeditionary-forward-power-microreactor-safeguards-cell
+- joint-battlefield-robotic-repair-and-recovery-orchestration-cell
+- strategic-cognitive-warfare-attribution-and-response-cell
+- joint-undersea-cable-sabotage-forensics-and-restoration-cell
+
+## Updated Pairings (2026-03-12, Wave XXVI)
+
+- Hypersonic strike-window and civil-warning deconfliction + strategic deterrence signaling integrity + launch-window governance + civil alert assurance.
+- Contested PNT time-mesh recovery + denied-space PNT alternative navigation + long-range fires synchronization + ROE-safe timing control.
+- Coalition maritime chokepoint escort/mine-risk arbitration + maritime interdiction + autonomous convoy governance + coalition transit legal assurance.
+- Homeland critical manufacturing cyber-physical survivability + strategic industrial mobilization readiness + supply-shock mitigation + mission-output continuity.
+- Expeditionary forward microreactor safeguards + force protection/base defense + operational energy resilience + radiological consequence management.
+- Battlefield robotic repair/recovery orchestration + contested logistics/prepositioning + autonomous sustainment governance + maneuver corridor restoration.
+- Strategic cognitive warfare attribution/response + tactical counter-disinformation assurance + coalition information operations + policy-legal release governance.
+- Undersea cable sabotage forensics/restoration + mission-network failover + maritime anomaly attribution + coalition data continuity governance.

@@ -160,3 +160,9 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Add `tool_suite_id=ts-orbital-debris-reentry-base-protection-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-protection-stack-v1` when launch-window deconfliction requires synchronized debris reentry warning branches and base-protection triggers.
 - Add `tool_suite_id=ts-contested-port-humanitarian-inspection-v1` + `protocol_stack_id=ps-contested-port-humanitarian-inspection-stack-v1` when launch or reconstitution windows are coupled to contested-port throughput and humanitarian lane governance.
 - Add `packet_id=DPL-ORBITAL-REENTRY-PROTECT-001` and `packet_id=DPL-PORT-HUMANITARIAN-DECONF-001` for recommendations that change launch timing, base exposure posture, or coalition movement priorities.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-joint-hypersonic-strike-civil-warning-deconfliction-v1 + protocol_stack_id=ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1 when launch-window deconfliction must integrate strategic warning timelines and civil-risk dissemination latency.
+- Add packet_id=DPL-HYPERSONIC-CIVWARN-DECONF-001 for branches that shift launch-window release authority or escalation posture.

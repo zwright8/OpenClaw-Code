@@ -149,3 +149,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added an 8-skill expansion wave focused on cislunar logistics interdiction/reconstitution, underwater data-center cooling-grid defense, coalition rapid airfield denial reversal, homeland photonics/optics supply assurance, autonomous bridge/tunnel breach synchronization, expeditionary neurocognitive return-to-duty governance, drone-fiber relay hunt/neutralization, and coalition portable nuclear interdiction evidence integrity.
 - Extended shared references with Tool Suite Addendum XXV, Protocol Stack Addendum XXV, and Packet Addendum XIV to bind each new skill to concrete external tools, protocol families, and packet IDs.
 - Improved ten existing warfighter skills with Expansion Wave XXV override bindings for cislunar logistics continuity, underwater compute infrastructure defense, autonomous breach coordination, photonics supply assurance, and high-consequence interdiction governance.
+
+## Run Update (2026-03-12T20:xx:xxZ)
+
+- Added an 8-skill expansion wave focused on hypersonic strike-window and civil-warning deconfliction, denied-PNT time-mesh recovery, coalition maritime chokepoint autonomous escort with mine-risk adjudication, homeland critical-manufacturing cyber-physical survivability, expeditionary forward-power microreactor safeguards, robotic battlefield repair/recovery orchestration, strategic cognitive warfare attribution and response, and undersea cable sabotage forensics/restoration.
+- Extended shared references with Tool Suite Addendum XXVI, Protocol Stack Addendum XXVI, and Packet Addendum XV to bind each new skill to concrete external tools, protocol families, and packet IDs.
+- Improved ten existing warfighter skills with Expansion Wave XXVI override bindings for strike-window warning integrity, denied-PNT timing confidence, mission-network continuity, microreactor force-protection dependencies, and cognitive-warfare response governance.

@@ -257,3 +257,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-joint-undersea-cable-sabotage-forensics-restoration-v1 + protocol_stack_id=ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1 when failover assumptions depend on subsea trunk restoration and verified forensic attribution.
+- Add packet_id=DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-002 for branches that materially alter failover timing or coalition releasability.

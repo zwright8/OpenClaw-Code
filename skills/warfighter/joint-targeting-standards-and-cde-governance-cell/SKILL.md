@@ -199,3 +199,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-theater-contested-pnt-time-mesh-recovery-v1 + protocol_stack_id=ps-theater-contested-pnt-time-mesh-recovery-stack-v1 when targeting confidence depends on denied-PNT time-transfer recovery and fires synchronization integrity.
+- Add packet_id=DPL-PNT-TIME-MESH-RECOVERY-001 for branches that alter target-release timing or collateral-risk assumptions.

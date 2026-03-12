@@ -64,3 +64,9 @@ Preferred protocol families for this skill: CoT, Link 16 J-series, USMTF.
 - Flag assumptions that exceed available evidence.
 - Identify legal, policy, ROE, coalition, and safety constraints early.
 - Do not fabricate sources, authorities, approvals, or system access.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-joint-battlefield-robotic-repair-recovery-orchestration-v1 + protocol_stack_id=ps-joint-battlefield-robotic-repair-recovery-orchestration-stack-v1 when swarm sustainment viability depends on robotic recovery throughput and repair queue authority.
+- Add packet_id=DPL-BATTLEFIELD-ROBOTIC-REPAIR-RECOVERY-001 for branches that materially change autonomous sustainment tempo or convoy exposure risk.

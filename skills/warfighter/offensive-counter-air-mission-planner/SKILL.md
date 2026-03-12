@@ -181,3 +181,9 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Add `tool_suite_id=ts-joint-hypersonic-warning-fusion-and-response-v1` + `protocol_stack_id=ps-joint-hypersonic-warning-fusion-and-response-stack-v1` when OCA options must branch against compressed warning timelines from hypersonic threats.
 - Add `tool_suite_id=ts-coalition-arctic-austere-airdrop-corridor-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-austere-airdrop-corridor-assurance-stack-v1` when OCA support sorties are coupled with Arctic sustainment and airdrop corridors.
 - Add `packet_id=DPL-JOINT-HYPERSONIC-WARNING-FUSION-RESPONSE-001` and `packet_id=DPL-COALITION-ARCTIC-AIRDROP-CORRIDOR-ASSURANCE-001` for OCA recommendations that can alter escalation posture or sortie-risk acceptance.
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-joint-hypersonic-strike-civil-warning-deconfliction-v1 + protocol_stack_id=ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1 when strike-window recommendations require synchronized civil warning and escalation-safe release timing.
+- Add packet_id=DPL-HYPERSONIC-CIVWARN-DECONF-001 for branches that materially change launch-window sequencing or strategic warning posture.

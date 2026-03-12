@@ -9597,3 +9597,87 @@ external_binding:
 ### `ps-coalition-portable-nuclear-interdiction-evidence-stack-v1`
 - Protocols: `USMTF`, `NIEM`, `CJIS`, `NIMS/ICS`, `API/JSON`.
 - Use for: radiological detection alerts, interdiction authority exchange, and evidence-chain acknowledgment integrity.
+
+## Tool Suite Addendum XXVI (2026-03-12, Warfighter Expansion Wave XXVI for Hypersonic Civil-Warning Deconfliction, Denied-PNT Time Mesh Recovery, Coalition Maritime Escort/Mine-Risk Arbitration, Homeland Manufacturing Survivability, Expeditionary Microreactor Safeguards, Robotic Recovery Orchestration, Cognitive Warfare Attribution, and Undersea Cable Forensics)
+
+### `ts-joint-hypersonic-strike-civil-warning-deconfliction-v1`
+- Use for: compressed strike-window planning with synchronized military release authority and civil-warning dissemination.
+- Primary tools: strike timeline adjudicator, strategic warning relay monitor, civil alert latency board.
+- Cross-check tools: independent warning delivery witness and alternate escalation-risk monitor.
+- Typical products: strike-window matrix, warning latency ladder, authority release packet.
+
+### `ts-theater-contested-pnt-time-mesh-recovery-v1`
+- Use for: contested timing/PNT mesh recovery to preserve synchronized fires, maneuver, and C2 event timing.
+- Primary tools: time-integrity monitor, mesh reroute orchestrator, precision-timing confidence board.
+- Cross-check tools: independent trusted-time witness and alternate timing drift monitor.
+- Typical products: time-mesh restoration ladder, timing confidence map, command risk packet.
+
+### `ts-coalition-maritime-chokepoint-autonomous-escort-mine-risk-v1`
+- Use for: coalition chokepoint escort assignment with autonomous vessel routing and mine-risk controls.
+- Primary tools: coalition maritime COP, escort assignment optimizer, mine-risk adjudication board.
+- Cross-check tools: independent transit-compliance witness and alternate hazard confidence monitor.
+- Typical products: escort matrix, mine-risk confidence ledger, coalition transit packet.
+
+### `ts-homeland-critical-manufacturing-cyber-physical-survivability-v1`
+- Use for: defense-critical manufacturing resilience under cyber-physical disruption with strategic readiness prioritization.
+- Primary tools: industrial telemetry fusion board, cyber anomaly triage engine, production-priority adjudicator.
+- Cross-check tools: independent quality witness and alternate supply shock monitor.
+- Typical products: manufacturing survivability matrix, containment branch ladder, output continuity packet.
+
+### `ts-expeditionary-forward-power-microreactor-safeguards-v1`
+- Use for: expeditionary microreactor safety governance and mission-power continuity under contested conditions.
+- Primary tools: reactor health telemetry board, mission load-priority scheduler, radiological response planner.
+- Cross-check tools: independent safety witness and alternate power continuity monitor.
+- Typical products: reactor safeguards board, load-priority ladder, contingency authority packet.
+
+### `ts-joint-battlefield-robotic-repair-recovery-orchestration-v1`
+- Use for: robotic and crewed battlefield recovery/repair orchestration to sustain maneuver and logistics tempo.
+- Primary tools: autonomous recovery fleet manager, damage triage planner, repair queue orchestrator.
+- Cross-check tools: independent recovery throughput witness and alternate mobility risk board.
+- Typical products: robotic recovery queue, repair confidence matrix, mobility restoration packet.
+
+### `ts-strategic-cognitive-warfare-attribution-response-v1`
+- Use for: strategic cognitive warfare attribution and policy-gated response planning across allied information ecosystems.
+- Primary tools: narrative telemetry fusion engine, attribution adjudication board, response governance workflow manager.
+- Cross-check tools: independent source-credibility witness and alternate campaign-impact monitor.
+- Typical products: attribution confidence ladder, response matrix, strategic communication packet.
+
+### `ts-joint-undersea-cable-sabotage-forensics-restoration-v1`
+- Use for: undersea cable sabotage forensics, custody integrity, and restoration prioritization for mission-network continuity.
+- Primary tools: undersea telemetry fusion board, maritime anomaly forensics engine, restoration sequence planner.
+- Cross-check tools: independent forensic witness and alternate connectivity continuity monitor.
+- Typical products: forensic confidence ladder, restoration matrix, continuity authority packet.
+
+## Protocol Stack Addendum XXVI (2026-03-12, External Integration Profiles for Expansion Wave XXVI)
+
+### `ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `CAP`, `NIEM`, `API/JSON`.
+- Use for: strike-window state exchange, warning dissemination status, and authority acknowledgments.
+
+### `ps-theater-contested-pnt-time-mesh-recovery-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `Link 16 J-series`, `API/JSON`.
+- Use for: time-sync confidence updates, mesh reroute decisions, and branch acknowledgment chains.
+
+### `ps-coalition-maritime-chokepoint-autonomous-escort-mine-risk-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `Link 16 J-series`, `API/JSON`.
+- Use for: escort assignment exchange, hazard updates, and coalition transit approvals.
+
+### `ps-homeland-critical-manufacturing-cyber-physical-survivability-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `NIMS/ICS`, `API/JSON`.
+- Use for: industrial incident telemetry, disruption containment synchronization, and strategic allocation acknowledgments.
+
+### `ps-expeditionary-forward-power-microreactor-safeguards-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: reactor safety posture exchange, mission power-priority updates, and emergency authority synchronization.
+
+### `ps-joint-battlefield-robotic-repair-recovery-orchestration-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `NIEM`, `API/JSON`.
+- Use for: robotic tasking updates, repair queue synchronization, and mobility-restoration acknowledgment integrity.
+
+### `ps-strategic-cognitive-warfare-attribution-response-stack-v1`
+- Protocols: `STIX/TAXII`, `NIEM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: attribution evidence exchange, coalition narrative-risk updates, and policy-gated response approvals.
+
+### `ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: undersea event telemetry, forensic custody records, and restoration-sequencing acknowledgments.

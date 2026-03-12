@@ -149,3 +149,9 @@ Use these tool categories as the default stack for this skill: OSINT intelligenc
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+
+- Add tool_suite_id=ts-strategic-cognitive-warfare-attribution-response-v1 + protocol_stack_id=ps-strategic-cognitive-warfare-attribution-response-stack-v1 when gray-zone competition hinges on cross-platform narrative attribution and policy-gated response options.
+- Add packet_id=DPL-STRATEGIC-COGNITIVE-WARFARE-001 for branches that change signaling posture or coalition messaging release authority.
