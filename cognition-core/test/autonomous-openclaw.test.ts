@@ -342,6 +342,66 @@ test('buildAutonomousBatchPlan supports sliding-window linucb contextual ranking
     assert.equal(plan.tasks[0].context?.autonomy?.selectionFeatures?.values?.length, 6);
 });
 
+test('buildAutonomousBatchPlan supports adwin_linucb contextual drift adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 187, code: 'SK-00187', title: 'Skill 187' },
+            { id: 188, code: 'SK-00188', title: 'Skill 188' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 35,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '187': { attempts: 10, successes: 8, failures: 2, consecutiveFailures: 0, lastWave: 35, lastStatus: 'completed' },
+                '188': { attempts: 10, successes: 2, failures: 8, consecutiveFailures: 0, lastWave: 20, lastStatus: 'failed' }
+            },
+            contextualBanditModels: {
+                skills: {
+                    samples: 8,
+                    matrixA: [
+                        [1, 0, 0, 0, 0, 0],
+                        [0, 1, 0, 0, 0, 0],
+                        [0, 0, 1, 0, 0, 0],
+                        [0, 0, 0, 1, 0, 0],
+                        [0, 0, 0, 0, 1, 0],
+                        [0, 0, 0, 0, 0, 1]
+                    ],
+                    vectorB: [0, 2, -2, 0, 0, -2],
+                    recentObservations: [
+                        { reward: 0, featureVector: [1, 0.8, 0.2, 0, 0, 0] },
+                        { reward: 0, featureVector: [1, 0.8, 0.2, 0, 0, 0] },
+                        { reward: 0, featureVector: [1, 0.8, 0.2, 0, 0, 0] },
+                        { reward: 0, featureVector: [1, 0.8, 0.2, 0, 0, 0] },
+                        { reward: 1, featureVector: [1, 0.2, 0.8, 0, 0, 1] },
+                        { reward: 1, featureVector: [1, 0.2, 0.8, 0, 0, 1] },
+                        { reward: 1, featureVector: [1, 0.2, 0.8, 0, 0, 1] },
+                        { reward: 1, featureVector: [1, 0.2, 0.8, 0, 0, 1] }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 36,
+        selectionPolicyConfig: {
+            mode: 'adwin_linucb',
+            linucbAlpha: 0.1,
+            changeDetectionMinSamples: 2,
+            adwinDelta: 0.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [188]);
+    assert.equal(plan.selection.policy.skills, 'adwin_linucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_linucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionFeatures?.values?.length, 6);
+});
+
 test('buildAutonomousBatchPlan supports linear thompson contextual ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -4681,6 +4741,71 @@ test('collectAutonomousCoverage uses graded partial rewards for policy and conte
     assert.equal(coverage.policyExecutionStats.skills.ucb.recentOutcomes[0].status, 'partial');
     assert.equal(coverage.policyExecutionStats.skills.ucb.recentOutcomes[0].reward, 0.6);
     assert.ok(Math.abs(coverage.contextualBanditModels.skills.vectorB[0] - 0.6) < 1e-9);
+});
+
+test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints contextual updates', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 100_000 });
+
+    const adwinLintsRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001113',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00113] Execute test',
+        context: {
+            skillId: 113,
+            autonomy: {
+                lane: 'skills',
+                wave: 7,
+                selectionPolicyApplied: 'adwin_lints',
+                selectionPolicyConfig: { mode: 'adwin_lints' },
+                selectionFeatures: {
+                    values: [1, 0.1, 0.9, 0, 0, 1]
+                }
+            }
+        },
+        createdAt: 90_000
+    });
+
+    const exp3Request = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001114',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00114] Execute test',
+        context: {
+            skillId: 114,
+            autonomy: {
+                lane: 'skills',
+                wave: 7,
+                selectionPolicyApplied: 'd_exp3_s',
+                selectionPolicyConfig: { mode: 'd_exp3_s', discountFactor: 0.9 }
+            }
+        },
+        createdAt: 90_100
+    });
+
+    const adwinLintsRecord = buildQueueRecordFromTaskRequest(adwinLintsRequest, { nowFactory: () => 95_000 });
+    adwinLintsRecord.status = 'completed';
+    adwinLintsRecord.updatedAt = 100_100;
+    await store.saveRecord(adwinLintsRecord);
+
+    const exp3Record = buildQueueRecordFromTaskRequest(exp3Request, { nowFactory: () => 95_100 });
+    exp3Record.status = 'partial';
+    exp3Record.updatedAt = 100_200;
+    await store.saveRecord(exp3Record);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 100_500 });
+
+    assert.equal(coverage.policyExecutionStats.skills.adwin_lints.attempts, 1);
+    assert.ok(Math.abs(coverage.policyExecutionStats.skills.adwin_lints.cumulativeReward - 1) < 1e-9);
+    assert.equal(coverage.policyExecutionStats.skills.d_exp3_s.attempts, 1);
+    assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_exp3_s.cumulativeReward - 0.6) < 1e-9);
+    assert.ok(coverage.contextualBanditModels.skills.samples > 0);
 });
 
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {

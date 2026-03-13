@@ -226,11 +226,13 @@ npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.in
 npm run autonomous:run -- --selection-policy linucb --linucb-alpha 0.6
 npm run autonomous:run -- --selection-policy sw_linucb --window-size 12 --linucb-alpha 0.6
 npm run autonomous:run -- --selection-policy d_linucb --discount-factor 0.97 --linucb-alpha 0.6
+npm run autonomous:run -- --selection-policy adwin_linucb --cd-min-samples 8 --adwin-delta 0.002 --linucb-alpha 0.6
 npm run autonomous:run -- --selection-policy ucb_v --ucb-v-exploration 1
 npm run autonomous:run -- --selection-policy sw_ucb_v --window-size 12 --ucb-v-exploration 1
 npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5
+npm run autonomous:run -- --selection-policy adwin_lints --cd-min-samples 8 --adwin-delta 0.002 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1

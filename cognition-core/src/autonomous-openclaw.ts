@@ -137,9 +137,11 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'linucb',
     'sw_linucb',
     'd_linucb',
+    'adwin_linucb',
     'lints',
     'sw_lints',
     'd_lints',
+    'adwin_lints',
     'epsilon_ts',
     'bb_ts',
     'auto_epsilon_ts',
@@ -269,7 +271,9 @@ const PAGE_HINKLEY_POLICY_MODES = new Set([
 ]);
 const ADWIN_POLICY_MODES = new Set([
     'adwin_ucb',
-    'adwin_epsilon_ts'
+    'adwin_epsilon_ts',
+    'adwin_linucb',
+    'adwin_lints'
 ]);
 const CUSUM_POLICY_MODES = new Set([
     'cusum_ucb',
@@ -340,7 +344,12 @@ const DISCOUNTED_POLICY_MODES = new Set([
 const CONTEXTUAL_THOMPSON_POLICY_MODES = new Set([
     'lints',
     'sw_lints',
-    'd_lints'
+    'd_lints',
+    'adwin_lints'
+]);
+const ADWIN_CONTEXTUAL_POLICY_MODES = new Set([
+    'adwin_linucb',
+    'adwin_lints'
 ]);
 const HYBRID_THOMPSON_POLICY_MODES = new Set([
     'fdsw_epsilon_ts'
@@ -388,10 +397,6 @@ const CORRAL_EXP3_PLUS_BASE_POLICIES = [
     'cusum_ucb',
     ...CORRAL_DRIFT_SPECIALIST_BASE_POLICIES
 ];
-const ALL_CORRAL_BASE_POLICIES = [
-    ...new Set([...CORRAL_EXP3_BASE_POLICIES, ...CORRAL_EXP3_PLUS_BASE_POLICIES])
-];
-
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
     return Number.isFinite(value) ? value : Date.now();
@@ -820,8 +825,18 @@ function normalizePolicyPerformanceStat(rawStat = {}) {
 function normalizePolicyPerformanceByLane(rawStats = {}) {
     const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
     const normalized = {};
+    const trackedPolicies = new Set(SUPPORTED_SELECTION_POLICY_MODES);
 
-    for (const policy of ALL_CORRAL_BASE_POLICIES) {
+    for (const key of Object.keys(stats)) {
+        const normalizedKey = typeof key === 'string'
+            ? key.trim().toLowerCase()
+            : '';
+        if (SUPPORTED_SELECTION_POLICY_MODE_SET.has(normalizedKey)) {
+            trackedPolicies.add(normalizedKey);
+        }
+    }
+
+    for (const policy of trackedPolicies) {
         normalized[policy] = normalizePolicyPerformanceStat(stats[policy]);
     }
 
@@ -927,6 +942,16 @@ function createLinUcbModelFromObservations(observations = [], dimension = LINUCB
 function resolveContextualModelForScoring(contextualBanditModel, selectionPolicyConfig) {
     const normalizedModel = normalizeLinUcbModel(contextualBanditModel);
     const normalizedPolicy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (ADWIN_CONTEXTUAL_POLICY_MODES.has(normalizedPolicy.mode)) {
+        const changeIndex = detectAdwinObservationChangeIndex(
+            normalizedModel.recentObservations,
+            normalizedPolicy
+        );
+        const observations = changeIndex > 0
+            ? normalizedModel.recentObservations.slice(changeIndex)
+            : normalizedModel.recentObservations;
+        return createLinUcbModelFromObservations(observations, normalizedModel.dimension);
+    }
     if (normalizedPolicy.mode !== 'sw_linucb' && normalizedPolicy.mode !== 'sw_lints') {
         return normalizedModel;
     }
@@ -1671,24 +1696,51 @@ function detectAdwinChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const values = Array.isArray(outcomes)
         ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry).reward)
         : [];
-    const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
-    if (values.length < (2 * minSamples)) return 0;
+    return detectAdwinChangeIndexForValues({
+        values,
+        minSamples: policy.changeDetectionMinSamples,
+        adwinDelta: policy.adwinDelta
+    });
+}
 
-    const prefix = new Array(values.length + 1).fill(0);
-    const prefixSquares = new Array(values.length + 1).fill(0);
-    for (let i = 0; i < values.length; i++) {
-        prefix[i + 1] = prefix[i] + values[i];
-        prefixSquares[i + 1] = prefixSquares[i] + (values[i] * values[i]);
+function detectAdwinChangeIndexForValues({
+    values = [],
+    minSamples = DEFAULT_CD_MIN_SAMPLES,
+    adwinDelta = DEFAULT_ADWIN_DELTA
+}) {
+    const series = Array.isArray(values)
+        ? values
+            .map((value) => Number(value))
+            .filter((value) => Number.isFinite(value))
+            .map((value) => clamp(value, 0, 1))
+        : [];
+    const normalizedMinSamples = clamp(
+        parsePositiveInt(minSamples, DEFAULT_CD_MIN_SAMPLES),
+        2,
+        MAX_CD_MIN_SAMPLES
+    );
+    const normalizedDelta = clamp(
+        Number.isFinite(Number(adwinDelta)) ? Number(adwinDelta) : DEFAULT_ADWIN_DELTA,
+        MIN_ADWIN_DELTA,
+        MAX_ADWIN_DELTA
+    );
+    if (series.length < (2 * normalizedMinSamples)) return 0;
+
+    const prefix = new Array(series.length + 1).fill(0);
+    const prefixSquares = new Array(series.length + 1).fill(0);
+    for (let i = 0; i < series.length; i++) {
+        prefix[i + 1] = prefix[i] + series[i];
+        prefixSquares[i + 1] = prefixSquares[i] + (series[i] * series[i]);
     }
 
-    const totalCount = values.length;
+    const totalCount = series.length;
     const totalSum = prefix[totalCount];
     const totalSquareSum = prefixSquares[totalCount];
     const windowMean = totalSum / totalCount;
     const windowVariance = Math.max(0, (totalSquareSum / totalCount) - (windowMean * windowMean));
     let changeIndex = 0;
 
-    for (let split = minSamples; split <= totalCount - minSamples; split++) {
+    for (let split = normalizedMinSamples; split <= totalCount - normalizedMinSamples; split++) {
         const leftCount = split;
         const rightCount = totalCount - split;
         const leftMean = prefix[split] / leftCount;
@@ -1698,7 +1750,7 @@ function detectAdwinChangeIndex(outcomes = [], selectionPolicyConfig = null) {
             rightCount,
             totalCount,
             variance: windowVariance,
-            delta: policy.adwinDelta
+            delta: normalizedDelta
         });
         if (Math.abs(leftMean - rightMean) > threshold) {
             changeIndex = split;
@@ -1706,6 +1758,18 @@ function detectAdwinChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     }
 
     return clamp(changeIndex, 0, totalCount);
+}
+
+function detectAdwinObservationChangeIndex(observations = [], selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const values = Array.isArray(observations)
+        ? observations.map((entry) => normalizeContextualObservation(entry).reward)
+        : [];
+    return detectAdwinChangeIndexForValues({
+        values,
+        minSamples: policy.changeDetectionMinSamples,
+        adwinDelta: policy.adwinDelta
+    });
 }
 
 function computeAdwinDetectedStats(stat, selectionPolicyConfig) {
@@ -2884,7 +2948,12 @@ function selectCatalogSlice({
                 adaptiveScoreConfig,
                 scoringPolicy
             );
-        } else if (scoringPolicy.mode === 'linucb' || scoringPolicy.mode === 'sw_linucb' || scoringPolicy.mode === 'd_linucb') {
+        } else if (
+            scoringPolicy.mode === 'linucb'
+            || scoringPolicy.mode === 'sw_linucb'
+            || scoringPolicy.mode === 'd_linucb'
+            || scoringPolicy.mode === 'adwin_linucb'
+        ) {
             const linucb = computeLinUcbScore({
                 stat,
                 currentWave: normalizedCurrentWave,
@@ -3255,7 +3324,7 @@ export async function collectAutonomousCoverage({
             capabilityExecutionStats[capabilityId] = current;
         }
 
-        if (lane && ALL_CORRAL_BASE_POLICIES.includes(selectedPolicy)) {
+        if (lane && SUPPORTED_SELECTION_POLICY_MODE_SET.has(selectedPolicy)) {
             const currentPolicy = normalizePolicyPerformanceStat(policyExecutionStats[lane][selectedPolicy]);
             currentPolicy.attempts += 1;
             if (didSucceed) {
@@ -3276,9 +3345,11 @@ export async function collectAutonomousCoverage({
         if (lane && (selectedPolicy === 'linucb'
             || selectedPolicy === 'sw_linucb'
             || selectedPolicy === 'd_linucb'
+            || selectedPolicy === 'adwin_linucb'
             || selectedPolicy === 'lints'
             || selectedPolicy === 'sw_lints'
-            || selectedPolicy === 'd_lints')) {
+            || selectedPolicy === 'd_lints'
+            || selectedPolicy === 'adwin_lints')) {
             const featureVector = extractSelectionFeatureVector(context);
             if (featureVector) {
                 const discountFactor = selectedPolicy === 'd_linucb' || selectedPolicy === 'd_lints'
@@ -3335,7 +3406,7 @@ function mergePolicyExecutionStats(existingStats = {}, incomingStats = {}) {
     const merged = normalizePolicyExecutionStats({});
 
     for (const lane of ['skills', 'capabilities']) {
-        for (const policy of ALL_CORRAL_BASE_POLICIES) {
+        for (const policy of SUPPORTED_SELECTION_POLICY_MODES) {
             const previous = normalizePolicyPerformanceStat(existing[lane][policy]);
             const next = normalizePolicyPerformanceStat(incoming[lane][policy]);
             merged[lane][policy] = next.attempts >= previous.attempts ? next : previous;

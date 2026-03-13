@@ -21,11 +21,13 @@
 - `npm run autonomous:run -- --selection-policy linucb --linucb-alpha 0.6` - run autonomous loop with contextual LinUCB exploration using learned execution-state features.
 - `npm run autonomous:run -- --selection-policy sw_linucb --window-size 12 --linucb-alpha 0.6` - run autonomous loop with sliding-window contextual LinUCB adaptation focused on recent execution drift.
 - `npm run autonomous:run -- --selection-policy d_linucb --discount-factor 0.97 --linucb-alpha 0.6` - run autonomous loop with discounted contextual LinUCB to adapt faster under drift.
+- `npm run autonomous:run -- --selection-policy adwin_linucb --cd-min-samples 8 --adwin-delta 0.002 --linucb-alpha 0.6` - run autonomous loop with ADWIN-trimmed contextual LinUCB to drop stale observations after drift detection.
 - `npm run autonomous:run -- --selection-policy ucb_v --ucb-v-exploration 1` - run autonomous loop with variance-aware UCB exploration bonuses for bounded binary outcomes.
 - `npm run autonomous:run -- --selection-policy sw_ucb_v --window-size 12 --ucb-v-exploration 1` - run autonomous loop with sliding-window UCB-V adaptation for recency drift.
 - `npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5` - run autonomous loop with contextual linear Thompson sampling for posterior-driven exploration.
 - `npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5` - run autonomous loop with sliding-window linear Thompson sampling for recency-weighted contextual exploration.
 - `npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5` - run autonomous loop with discounted linear Thompson sampling to adapt under drift.
+- `npm run autonomous:run -- --selection-policy adwin_lints --cd-min-samples 8 --adwin-delta 0.002 --lints-alpha 0.5` - run autonomous loop with ADWIN-trimmed linear Thompson sampling to emphasize post-drift contextual evidence.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
 - `npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25` - run autonomous loop with Bayesian-bootstrap Thompson sampling for bounded non-binary rewards.
 - `npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with uncertainty-adaptive epsilon-Thompson exploration.
