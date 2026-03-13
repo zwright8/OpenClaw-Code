@@ -123,6 +123,7 @@ const DEFAULT_EXP3_RESTART_INTERVAL = 12;
 const MAX_EXP3_RESTART_INTERVAL = 200;
 const DEFAULT_EXP3_AUTO_ETA = false;
 const DEFAULT_TSALLIS_ETA_SCALE = 1;
+const DEFAULT_TSALLIS_AUTO_ETA = false;
 const MAX_TSALLIS_ETA_SCALE = 10;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
@@ -857,6 +858,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             Number.EPSILON,
             MAX_TSALLIS_ETA_SCALE
         ),
+        tsallisAutoEta: Boolean(value.tsallisAutoEta ?? DEFAULT_TSALLIS_AUTO_ETA),
         mossAlpha: clamp(
             Number.isFinite(Number(value.mossAlpha))
                 ? Number(value.mossAlpha)
@@ -3064,7 +3066,7 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
     return Math.max(0, cumulativeEstimatedLoss);
 }
 
-function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPropensity, eta) {
+function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPropensity, eta, implicitGamma) {
     const normalizedOutcomes = Array.isArray(outcomes)
         ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
         : [];
@@ -3090,7 +3092,8 @@ function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPro
             : uniformPropensity;
         const instantaneousLoss = 1 - clamp(Number(entry.reward), 0, 1);
         const baseline = propensity >= baselineThreshold ? 0.5 : 0;
-        const importanceWeight = Math.min(importanceWeightCap, 1 / propensity);
+        const denominator = propensity + implicitGamma;
+        const importanceWeight = Math.min(importanceWeightCap, 1 / denominator);
         const estimatedLoss = ((instantaneousLoss - baseline) * importanceWeight) + baseline;
         cumulativeEstimatedLoss += discountWeight * estimatedLoss;
     }
@@ -3110,11 +3113,10 @@ function resolveTsallisRuntimeParameters(policy, _armCount, totalAttempts) {
         Number.EPSILON,
         MAX_TSALLIS_ETA_SCALE
     );
-    const eta = clamp(
-        etaScale / Math.sqrt(safeAttempts),
-        Number.EPSILON,
-        MAX_EXP3_IX_ETA
-    );
+    const suggestedEta = policy.tsallisAutoEta
+        ? ((4 * etaScale) / Math.sqrt(safeAttempts))
+        : (etaScale / Math.sqrt(safeAttempts));
+    const eta = clamp(suggestedEta, Number.EPSILON, MAX_EXP3_IX_ETA);
     const implicitGamma = Number.isFinite(Number(policy.exp3ImplicitGamma))
         ? clamp(Number(policy.exp3ImplicitGamma), Number.EPSILON, MAX_EXP3_IX_GAMMA)
         : explorationGamma;
@@ -3190,7 +3192,8 @@ function resolveTsallisInfDistribution({
             outcomes,
             policy,
             uniform,
-            runtime.eta
+            runtime.eta,
+            runtime.implicitGamma
         );
         return {
             key,
@@ -3455,7 +3458,8 @@ function selectCatalogSlice({
                 explorationGamma: Number(tsallisRuntime.explorationGamma.toFixed(6)),
                 implicitGamma: Number(tsallisRuntime.implicitGamma.toFixed(6)),
                 eta: Number(tsallisRuntime.eta.toFixed(6)),
-                etaScale: Number(tsallisRuntime.etaScale.toFixed(6))
+                etaScale: Number(tsallisRuntime.etaScale.toFixed(6)),
+                autoEta: Boolean(scoringPolicy.tsallisAutoEta)
             };
         }
     }

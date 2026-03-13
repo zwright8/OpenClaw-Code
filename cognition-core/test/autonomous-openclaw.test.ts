@@ -3541,6 +3541,86 @@ test('buildAutonomousBatchPlan applies Tsallis-INF reduced-variance loss estimat
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan applies Tsallis implicit-gamma smoothing to low-propensity loss estimates', () => {
+    const baseInput = {
+        skillCatalog: [
+            { id: 605, code: 'SK-00605', title: 'Skill 605' },
+            { id: 606, code: 'SK-00606', title: 'Skill 606' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 31,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '605': {
+                    attempts: 11,
+                    successes: 10,
+                    failures: 1,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed', propensity: 0.2 },
+                        { wave: 22, status: 'completed', propensity: 0.2 },
+                        { wave: 23, status: 'completed', propensity: 0.2 },
+                        { wave: 24, status: 'completed', propensity: 0.2 },
+                        { wave: 25, status: 'completed', propensity: 0.2 },
+                        { wave: 26, status: 'completed', propensity: 0.2 },
+                        { wave: 27, status: 'completed', propensity: 0.2 },
+                        { wave: 28, status: 'completed', propensity: 0.2 },
+                        { wave: 29, status: 'completed', propensity: 0.2 },
+                        { wave: 30, status: 'completed', propensity: 0.2 },
+                        { wave: 31, status: 'failed', propensity: 0.01 }
+                    ]
+                },
+                '606': {
+                    attempts: 5,
+                    successes: 0,
+                    failures: 5,
+                    consecutiveFailures: 5,
+                    lastWave: 31,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 27, status: 'failed', propensity: 0.4 },
+                        { wave: 28, status: 'failed', propensity: 0.4 },
+                        { wave: 29, status: 'failed', propensity: 0.4 },
+                        { wave: 30, status: 'failed', propensity: 0.4 },
+                        { wave: 31, status: 'failed', propensity: 0.4 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 32,
+        nowFactory: () => 100_000
+    };
+    const withoutImplicitGamma = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            exp3ImplicitGamma: Number.EPSILON,
+            tsallisEtaScale: 1
+        }
+    });
+    const withImplicitGamma = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            exp3ImplicitGamma: 0.3,
+            tsallisEtaScale: 1
+        }
+    });
+
+    assert.deepEqual(withoutImplicitGamma.selection.skillIds, [606]);
+    assert.deepEqual(withImplicitGamma.selection.skillIds, [605]);
+});
+
 test('buildAutonomousBatchPlan supports sw_tsallis_inf recency-aware adversarial ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -3909,6 +3989,43 @@ test('buildAutonomousBatchPlan supports exp3_ix auto-eta with decoupled implicit
         Number(runtimePolicy?.implicitGamma),
         Number((Number(runtimePolicy?.eta) / 2).toFixed(6))
     );
+});
+
+test('buildAutonomousBatchPlan supports tsallis_inf auto-eta calibration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 492, code: 'SK-00492', title: 'Skill 492' },
+            { id: 493, code: 'SK-00493', title: 'Skill 493' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 22,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '492': { attempts: 60, successes: 18, failures: 42, consecutiveFailures: 0, lastWave: 21, lastStatus: 'failed' },
+                '493': { attempts: 40, successes: 24, failures: 16, consecutiveFailures: 0, lastWave: 21, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 23,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1,
+            tsallisAutoEta: true
+        },
+        nowFactory: () => 100_000
+    });
+
+    const runtimePolicy = plan.selection.policyProbabilities.skills;
+    assert.equal(runtimePolicy?.mode, 'tsallis_inf');
+    assert.equal(runtimePolicy?.autoEta, true);
+    assert.ok(Number(runtimePolicy?.eta) > 0);
+    assert.ok(Number(runtimePolicy?.eta) < 1);
 });
 
 test('buildAutonomousBatchPlan supports exp3_s share-mixing to smooth adversarial probabilities', () => {
