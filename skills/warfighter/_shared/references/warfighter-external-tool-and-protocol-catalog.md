@@ -9929,3 +9929,37 @@ external_binding:
 ### `ps-arctic-long-range-uas-icing-link-resilience-stack-v1`
 - Protocols: `Link 16 J-series`, `USMTF`, `METAR/TAF`, HF data exchanges, `API/JSON`.
 - Use for: icing warnings, link health transitions, and Arctic ISR persistence branch updates.
+
+## Tool Suite Addendum XXIX (2026-03-13, Fast-Follow Coverage)
+
+### `ts-joint-autonomous-battlefield-mesh-key-ceremony-v1`
+- Use for: autonomous battlefield mesh key-ceremony governance, compromise containment, and rekey sequencing.
+- Primary tools: key lifecycle managers, mesh telemetry monitors, compromise forensics queue.
+- Cross-check tools: independent trust witness and alternate key audit board.
+- Typical products: trust posture map, rekey sequence ladder, authority packet.
+
+### `ts-theater-solar-flare-satcom-fallback-priority-v1`
+- Use for: SATCOM fallback priority management under severe solar flare and ionospheric disturbance.
+- Primary tools: space weather warning board, satcom link health monitor, traffic arbitration workflow.
+- Cross-check tools: independent link witness and alternate timing-integrity board.
+- Typical products: fallback priority ladder, traffic shedding matrix, continuity packet.
+
+### `ts-coalition-portable-desalination-cyber-biological-assurance-v1`
+- Use for: coalition portable desalination assurance under concurrent cyber and biological contamination risk.
+- Primary tools: water quality telemetry, ICS anomaly monitor, biosurveillance diagnostics.
+- Cross-check tools: independent lab witness and alternate utility continuity board.
+- Typical products: trust scorecard, contamination branch map, coalition continuity packet.
+
+## Protocol Stack Addendum XXIX (2026-03-13, Fast-Follow Coverage)
+
+### `ps-joint-autonomous-battlefield-mesh-key-ceremony-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `VMF`, `CoT`, `API/JSON`.
+- Use for: compromise alerts, key-ceremony status exchanges, and command acknowledgment chains.
+
+### `ps-theater-solar-flare-satcom-fallback-priority-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `Link 16 J-series`, `CoT`, `API/JSON`.
+- Use for: solar-event status updates, traffic-priority changes, and fallback-route command release.
+
+### `ps-coalition-portable-desalination-cyber-biological-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
+- Use for: contamination evidence exchange, cyber incident synchronization, and coalition water release governance.

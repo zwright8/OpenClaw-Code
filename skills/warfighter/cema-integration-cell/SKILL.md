@@ -150,3 +150,9 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-special-operations-low-signature-mesh-trust-v1` + `protocol_stack_id=ps-special-operations-low-signature-mesh-trust-stack-v1` when CEMA recommendations depend on disconnected low-signature mesh trust and key-material survivability.
 - Add `tool_suite_id=ts-battlefield-neuromorphic-sensor-anomaly-triage-v1` + `protocol_stack_id=ps-battlefield-neuromorphic-sensor-anomaly-triage-stack-v1` when EW/spectrum posture is shaped by uncertain neuromorphic sensor anomalies.
 - Add `packet_id=DPL-SOF-LOW-SIGNATURE-MESH-TRUST-001` and `packet_id=DPL-NEUROMORPHIC-SENSOR-TRIAGE-001` for branches that materially alter spectrum-emissions, deception, or mission data-trust posture.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXIX Addendum)
+
+- Add `tool_suite_id=ts-joint-autonomous-battlefield-mesh-key-ceremony-v1` + `protocol_stack_id=ps-joint-autonomous-battlefield-mesh-key-ceremony-stack-v1` when electromagnetic-cyber integration outputs depend on rapid trust restoration after mesh key compromise.
+- Add `tool_suite_id=ts-theater-solar-flare-satcom-fallback-priority-v1` + `protocol_stack_id=ps-theater-solar-flare-satcom-fallback-priority-stack-v1` when solar activity and spectrum stress jointly constrain SATCOM mission traffic.
+- Add `packet_id=DPL-MESH-KEY-CEREMONY-001` and `packet_id=DPL-SOLAR-FLARE-SATCOM-FALLBACK-001` for branches that can alter command-and-control continuity posture.

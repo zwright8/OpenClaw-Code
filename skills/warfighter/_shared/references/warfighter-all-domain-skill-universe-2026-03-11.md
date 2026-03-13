@@ -155,3 +155,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added an 8-skill expansion wave focused on hypersonic strike-window and civil-warning deconfliction, denied-PNT time-mesh recovery, coalition maritime chokepoint autonomous escort with mine-risk adjudication, homeland critical-manufacturing cyber-physical survivability, expeditionary forward-power microreactor safeguards, robotic battlefield repair/recovery orchestration, strategic cognitive warfare attribution and response, and undersea cable sabotage forensics/restoration.
 - Extended shared references with Tool Suite Addendum XXVI, Protocol Stack Addendum XXVI, and Packet Addendum XV to bind each new skill to concrete external tools, protocol families, and packet IDs.
 - Improved ten existing warfighter skills with Expansion Wave XXVI override bindings for strike-window warning integrity, denied-PNT timing confidence, mission-network continuity, microreactor force-protection dependencies, and cognitive-warfare response governance.
+
+## Run Update (2026-03-13T16:xx:xxZ)
+
+- Added a 3-skill fast-follow expansion wave focused on autonomous mesh key-ceremony under compromise, solar-flare SATCOM fallback priority governance, and coalition portable desalination cyber-biological assurance.
+- Extended shared references with Tool Suite Addendum XXIX, Protocol Stack Addendum XXIX, and Packet Addendum XVII for executable external-tool and protocol bindings.
+- Improved CEMA integration guidance with Wave XXIX override bindings for communications trust restoration and resilient fallback routing.

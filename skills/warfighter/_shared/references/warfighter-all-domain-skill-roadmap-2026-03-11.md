@@ -84,3 +84,9 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Extended the external tool/protocol catalog with Tool Suite Addendum XXVIII and Protocol Stack Addendum XXVIII to map each new domain to concrete external tools and protocol stacks.
 - Extended the domain packet library and joint-operations toolchain profiles with Wave XXVIII packet IDs and profile bindings to support authority-gated, degraded-mode mission recommendations.
 - Improved existing high-usage skills (`offensive-counter-air-mission-planner`, `naval-surface-warfare-coordinator`, `coalition-interoperability-coordinator`, and `cema-integration-cell`) with Expansion Wave XXVIII override bindings and packet references.
+
+## Run Update (2026-03-13T16:xx:xxZ)
+
+- Added Expansion Wave XXIX with 3 fast-follow warfighter skills covering autonomous battlefield mesh key-ceremony governance, solar-flare SATCOM fallback priority control, and coalition portable desalination cyber-biological assurance.
+- Extended shared references with Tool Suite Addendum XXIX, Protocol Stack Addendum XXIX, and Packet Addendum XVII to bind fast-follow skills to concrete external tools, protocol families, and packet IDs.
+- Improved `cema-integration-cell` with Expansion Wave XXIX override bindings for mesh trust-restoration and anti-jam continuity branches.

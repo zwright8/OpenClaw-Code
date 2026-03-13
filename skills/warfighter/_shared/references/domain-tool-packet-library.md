@@ -9402,3 +9402,36 @@ validation_gates:
 - output_schema: icing risk card, link branch matrix, ISR persistence packet
 - protocol_profile: Link 16 J-series + USMTF + METAR/TAF + HF data exchanges + API/JSON
 - validation_gates: icing safety threshold, link resilience floor, commander concurrence
+
+### packet_id: DPL-MESH-KEY-CEREMONY-001
+- domain: joint autonomous battlefield mesh network key ceremony
+- objective: restore trusted mesh comms under compromise without breaking commander decision tempo.
+- primary_tools: key lifecycle manager, mesh telemetry monitor, compromise forensics queue
+- alternate_tools: manual key ceremony board and delayed trust reconciliation workflow
+- degraded_mode: mission-essential mesh links only with conservative trust thresholds
+- input_requirements: compromise indicators, key inventory, mesh topology, authority constraints
+- output_schema: trust posture board, rekey sequence, authority packet
+- protocol_profile: USMTF + STIX/TAXII + VMF + CoT + API/JSON
+- validation_gates: key integrity pass, independent trust corroboration, command concurrence
+
+### packet_id: DPL-SOLAR-FLARE-SATCOM-FALLBACK-001
+- domain: theater solar flare satcom fallback priority
+- objective: preserve mission continuity by shifting traffic to resilient fallback paths during solar events.
+- primary_tools: space weather board, satcom link monitor, traffic arbitration workflow
+- alternate_tools: manual traffic priority worksheet and scheduled fallback windows
+- degraded_mode: critical-traffic-only routing with fixed update intervals
+- input_requirements: solar event indicators, link health, traffic demand, command priorities
+- output_schema: fallback ladder, traffic matrix, continuity packet
+- protocol_profile: CCSDS + USMTF + Link 16 J-series + CoT + API/JSON
+- validation_gates: link confidence floor, timing-integrity pass, command concurrence
+
+### packet_id: DPL-PORTABLE-DESAL-CYBER-BIO-001
+- domain: coalition portable desalination cyber biological assurance
+- objective: sustain coalition potable-water continuity during cyber-biological contamination risk.
+- primary_tools: water telemetry, ics anomaly monitor, biosurveillance diagnostics
+- alternate_tools: manual sampling board and delayed coalition release conference
+- degraded_mode: life-support water classes only with strict contamination thresholds
+- input_requirements: contamination indicators, telemetry status, coalition caveats, sustainment demand
+- output_schema: trust scorecard, contamination branch map, continuity packet
+- protocol_profile: HL7/FHIR + NIMS/ICS + NATO APP-11/ADatP-3 aligned + USMTF + API/JSON
+- validation_gates: contamination confidence pass, cyber-containment check, coalition approval chain
