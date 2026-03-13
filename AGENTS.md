@@ -118,6 +118,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `982302987b..5135dec6c6`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `a4910f5567..982302987b`: added README command-map workflows for ADWIN Bayesian selectors (`--selection-policy adwin_bb_ts|adwin_bayes_ucb`, `--cd-min-samples`, `--adwin-delta`, `--thompson-exploration`, `--bayes-ucb-quantile`) and extended autonomous runtime policy support plus regression coverage for adaptive-window reranking; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `c4737308ac..caa1dcf14c`: added README command-map workflow for BOB-style adaptive window routing (`--selection-policy bob_sw_ucb`, `--multi-window-sizes`, `--bob-gamma`) and wired autonomous runtime + coverage tracking for selected-window meta-policy outcomes; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `b895d565e2..f82989e9e6`: no new README command-map additions were found (range adds AGENTS verification bookkeeping plus warfighter skill/reference content and bindings only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
