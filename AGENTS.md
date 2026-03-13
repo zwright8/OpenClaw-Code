@@ -120,6 +120,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `c62bc52072..a705e29f3c`: no new README command-map additions were found (range adds AGENTS verification bookkeeping/hash correction only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `5135dec6c6..c62bc52072`: added README command-map workflows for empirical-Bayes Bayesian prior warm-start controls (`--thompson-meta-prior-strength`) across `epsilon_ts` and `bayes_ucb`, and wired autonomous runtime + regression coverage for global-pseudocount cold-start stabilization; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `982302987b..5135dec6c6`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `a4910f5567..982302987b`: added README command-map workflows for ADWIN Bayesian selectors (`--selection-policy adwin_bb_ts|adwin_bayes_ucb`, `--cd-min-samples`, `--adwin-delta`, `--thompson-exploration`, `--bayes-ucb-quantile`) and extended autonomous runtime policy support plus regression coverage for adaptive-window reranking; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
