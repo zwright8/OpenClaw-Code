@@ -2207,6 +2207,163 @@ test('buildAutonomousBatchPlan supports d_bge for discounted Boltzmann-Gumbel ex
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_bge');
 });
 
+test('buildAutonomousBatchPlan supports phe policy for perturbed-history exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 1161, code: 'SK-01161', title: 'Skill 1161' },
+            { id: 1162, code: 'SK-01162', title: 'Skill 1162' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 30,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '1161': { attempts: 120, successes: 90, failures: 30, consecutiveFailures: 0, lastWave: 29, lastStatus: 'completed' },
+                '1162': { attempts: 120, successes: 40, failures: 80, consecutiveFailures: 0, lastWave: 29, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 31,
+        selectionPolicyConfig: {
+            mode: 'phe',
+            phePerturbationScale: 2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [1161]);
+    assert.equal(plan.selection.policy.skills, 'phe');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'phe');
+});
+
+test('buildAutonomousBatchPlan supports sw_phe for recency-weighted perturbed-history exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 1163, code: 'SK-01163', title: 'Skill 1163' },
+            { id: 1164, code: 'SK-01164', title: 'Skill 1164' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 36,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '1163': {
+                    attempts: 16,
+                    successes: 12,
+                    failures: 4,
+                    lastWave: 35,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 33, status: 'failed' },
+                        { wave: 34, status: 'failed' },
+                        { wave: 35, status: 'failed' },
+                        { wave: 36, status: 'failed' }
+                    ]
+                },
+                '1164': {
+                    attempts: 16,
+                    successes: 8,
+                    failures: 8,
+                    lastWave: 35,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 33, status: 'completed' },
+                        { wave: 34, status: 'completed' },
+                        { wave: 35, status: 'completed' },
+                        { wave: 36, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 37,
+        selectionPolicyConfig: {
+            mode: 'sw_phe',
+            phePerturbationScale: 2,
+            slidingWindowSize: 4
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [1164]);
+    assert.equal(plan.selection.policy.skills, 'sw_phe');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_phe');
+});
+
+test('buildAutonomousBatchPlan supports d_phe for discounted perturbed-history exploration', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 1165, code: 'SK-01165', title: 'Skill 1165' },
+            { id: 1166, code: 'SK-01166', title: 'Skill 1166' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 43,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '1165': {
+                    attempts: 8,
+                    successes: 6,
+                    failures: 2,
+                    lastWave: 42,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 36, status: 'completed' },
+                        { wave: 37, status: 'completed' },
+                        { wave: 38, status: 'completed' },
+                        { wave: 39, status: 'completed' },
+                        { wave: 40, status: 'failed' },
+                        { wave: 41, status: 'failed' },
+                        { wave: 42, status: 'failed' },
+                        { wave: 43, status: 'failed' }
+                    ]
+                },
+                '1166': {
+                    attempts: 8,
+                    successes: 3,
+                    failures: 5,
+                    lastWave: 42,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 36, status: 'failed' },
+                        { wave: 37, status: 'failed' },
+                        { wave: 38, status: 'failed' },
+                        { wave: 39, status: 'failed' },
+                        { wave: 40, status: 'completed' },
+                        { wave: 41, status: 'completed' },
+                        { wave: 42, status: 'completed' },
+                        { wave: 43, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 44,
+        selectionPolicyConfig: {
+            mode: 'd_phe',
+            phePerturbationScale: 2,
+            discountFactor: 0.6
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [1166]);
+    assert.equal(plan.selection.policy.skills, 'd_phe');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_phe');
+});
+
 test('buildAutonomousBatchPlan supports adwin_ucb adaptive-window drift re-ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -114,6 +114,8 @@ const DEFAULT_UCB_V_EXPLORATION = 1;
 const MAX_UCB_V_EXPLORATION = 5;
 const DEFAULT_BOLTZMANN_GUMBEL_C = 0.5;
 const MAX_BOLTZMANN_GUMBEL_C = 5;
+const DEFAULT_PHE_PERTURBATION_SCALE = 2;
+const MAX_PHE_PERTURBATION_SCALE = 10;
 const LINUCB_FEATURE_NAMES = [
     'bias',
     'successRate',
@@ -184,6 +186,9 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'bge',
     'sw_bge',
     'd_bge',
+    'phe',
+    'sw_phe',
+    'd_phe',
     'moss_anytime',
     'sw_moss_anytime',
     'd_moss_anytime'
@@ -282,6 +287,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_exp3_ix',
     'sw_exp3_s',
     'sw_bge',
+    'sw_phe',
     'sw_moss_anytime'
 ]);
 const MULTI_WINDOW_UCB_POLICY_MODES = new Set([
@@ -291,6 +297,11 @@ const BOLTZMANN_GUMBEL_POLICY_MODES = new Set([
     'bge',
     'sw_bge',
     'd_bge'
+]);
+const PHE_POLICY_MODES = new Set([
+    'phe',
+    'sw_phe',
+    'd_phe'
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
@@ -304,6 +315,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_exp3_ix',
     'd_exp3_s',
     'd_bge',
+    'd_phe',
     'd_linucb',
     'd_lints',
     'd_moss_anytime'
@@ -722,6 +734,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_BOLTZMANN_GUMBEL_C,
             Number.EPSILON,
             MAX_BOLTZMANN_GUMBEL_C
+        ),
+        phePerturbationScale: clamp(
+            Number.isFinite(Number(value.phePerturbationScale))
+                ? Number(value.phePerturbationScale)
+                : DEFAULT_PHE_PERTURBATION_SCALE,
+            Number.EPSILON,
+            MAX_PHE_PERTURBATION_SCALE
         )
     };
 }
@@ -2132,6 +2151,17 @@ function sampleStandardGumbel(rng) {
     return -Math.log(-Math.log(u));
 }
 
+function sampleBinomial(trials, probability, rng) {
+    const n = Math.max(0, Math.floor(Number(trials) || 0));
+    if (n <= 0) return 0;
+    const p = clamp(Number(probability), 0, 1);
+    let successes = 0;
+    for (let i = 0; i < n; i++) {
+        if (rng() < p) successes += 1;
+    }
+    return successes;
+}
+
 function sampleGamma(shape, rng) {
     if (!Number.isFinite(shape) || shape <= 0) return 0;
     if (shape < 1) {
@@ -2264,6 +2294,27 @@ function computeBoltzmannGumbelScore(stat, currentWave, adaptiveScoreConfig, sel
 
     return empiricalMean
         + (explorationScale * gumbel)
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
+function computePheScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const attempts = Math.max(1, Math.round(normalized.attempts));
+    const rewardSum = clamp(normalized.successes, 0, normalized.attempts);
+    const pseudoCount = Math.max(1, Math.ceil(policy.phePerturbationScale * attempts));
+    const rng = createDeterministicRng(seedText);
+    const pseudoSuccesses = sampleBinomial(pseudoCount, 0.5, rng);
+    const perturbedMean = (rewardSum + pseudoSuccesses) / (normalized.attempts + pseudoCount);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return perturbedMean
         - adjustments.failurePenalty
         + adjustments.recentOutcomeBonus
         + adjustments.staleBoost;
@@ -2615,6 +2666,14 @@ function selectCatalogSlice({
             );
         } else if (BOLTZMANN_GUMBEL_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeBoltzmannGumbelScore(
+                stat,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy,
+                `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+            );
+        } else if (PHE_POLICY_MODES.has(scoringPolicy.mode)) {
+            score = computePheScore(
                 stat,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,

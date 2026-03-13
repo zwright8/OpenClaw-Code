@@ -285,6 +285,9 @@ npm run autonomous:run -- --selection-policy d_exp3_s --discount-factor 0.97 --e
 npm run autonomous:run -- --selection-policy bge --boltzmann-gumbel-c 0.5
 npm run autonomous:run -- --selection-policy sw_bge --window-size 12 --boltzmann-gumbel-c 0.5
 npm run autonomous:run -- --selection-policy d_bge --discount-factor 0.97 --boltzmann-gumbel-c 0.5
+npm run autonomous:run -- --selection-policy phe --phe-perturbation-scale 2
+npm run autonomous:run -- --selection-policy sw_phe --window-size 12 --phe-perturbation-scale 2
+npm run autonomous:run -- --selection-policy d_phe --discount-factor 0.97 --phe-perturbation-scale 2
 npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2
 npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2
 npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
@@ -292,6 +295,7 @@ npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.
 Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted/hybrid UCB-family (`sw_ucb`/`d_ucb`/`fdsw_ucb`), change-detection (`cd_ucb`/`sw_cd_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3 families (`exp3_ix`/`exp3_s` with `sw_`/`d_` variants) so partial outcomes are learned as partial credit instead of full wins.
 Hybrid `fdsw_*` policies now also support `--hybrid-ts-aggregation adaptive`, which tilts toward sliding-window estimates when very recent performance is shifting and toward discounted estimates when recent behavior is stable.
 Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
+Perturbed-History Exploration (`phe`/`sw_phe`/`d_phe`) is available as a lightweight pseudo-reward perturbation policy (`--phe-perturbation-scale`) to sustain exploration without full posterior sampling overhead.
 Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history. The expanded `corral_exp3_plus` expert pool also includes ADWIN, hybrid discounted+windowed, and Boltzmann-Gumbel experts for stronger regime-shift routing.
 `exp3_s` adds share-mixing (`--exp3-share-alpha`) to keep a controlled probability floor across all arms under adversarial drift while still using EXP3-IX implicit-exploration weighting.
 Change-detection policies also support `--cd-direction up|down|both` so detectors can focus on degradations only, recoveries only, or both shift directions.

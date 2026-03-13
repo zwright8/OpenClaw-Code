@@ -80,6 +80,9 @@
 - `npm run autonomous:run -- --selection-policy bge --boltzmann-gumbel-c 0.5` - run autonomous loop with Boltzmann-Gumbel exploration using uncertainty-scaled perturbations.
 - `npm run autonomous:run -- --selection-policy sw_bge --window-size 12 --boltzmann-gumbel-c 0.5` - run autonomous loop with sliding-window Boltzmann-Gumbel adaptation for recent drift.
 - `npm run autonomous:run -- --selection-policy d_bge --discount-factor 0.97 --boltzmann-gumbel-c 0.5` - run autonomous loop with discounted Boltzmann-Gumbel exploration for non-stationary regimes.
+- `npm run autonomous:run -- --selection-policy phe --phe-perturbation-scale 2` - run autonomous loop with Perturbed-History Exploration pseudo-reward perturbations for efficient stochastic exploration.
+- `npm run autonomous:run -- --selection-policy sw_phe --window-size 12 --phe-perturbation-scale 2` - run autonomous loop with sliding-window Perturbed-History Exploration for recency-aware drift adaptation.
+- `npm run autonomous:run -- --selection-policy d_phe --discount-factor 0.97 --phe-perturbation-scale 2` - run autonomous loop with discounted Perturbed-History Exploration to emphasize recent outcomes under drift.
 - `npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2` - run autonomous loop with anytime-MOSS minimax exploration for hard cold-start allocation.
 - `npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2` - run autonomous loop with sliding-window anytime-MOSS adaptation focused on recent outcomes under drift.
 - `npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2` - run autonomous loop with discounted anytime-MOSS adaptation to emphasize recency in non-stationary conditions.
