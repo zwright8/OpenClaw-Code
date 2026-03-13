@@ -51,6 +51,8 @@ const DEFAULT_THOMPSON_EXPLORATION = 0.2;
 const DEFAULT_THOMPSON_PRIOR_ALPHA = 1;
 const DEFAULT_THOMPSON_PRIOR_BETA = 1;
 const MAX_THOMPSON_PRIOR = 100;
+const DEFAULT_THOMPSON_META_PRIOR_STRENGTH = 0;
+const MAX_THOMPSON_META_PRIOR_STRENGTH = 500;
 const DEFAULT_THOMPSON_UNCERTAINTY_WEIGHT = 0.5;
 const MAX_THOMPSON_UNCERTAINTY_WEIGHT = 2;
 const DEFAULT_THOMPSON_HAZARD_RATE = 0.08;
@@ -611,6 +613,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_THOMPSON_PRIOR_BETA,
             Number.EPSILON,
             MAX_THOMPSON_PRIOR
+        ),
+        thompsonMetaPriorStrength: clamp(
+            Number.isFinite(Number(value.thompsonMetaPriorStrength))
+                ? Number(value.thompsonMetaPriorStrength)
+                : DEFAULT_THOMPSON_META_PRIOR_STRENGTH,
+            0,
+            MAX_THOMPSON_META_PRIOR_STRENGTH
         ),
         thompsonUncertaintyWeight: clamp(
             Number.isFinite(Number(value.thompsonUncertaintyWeight))
@@ -2490,12 +2499,65 @@ function sampleBeta(alpha, beta, rng) {
     return x / (x + y);
 }
 
-function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText) {
+function resolveBayesianPosteriorPrior(policy, bayesianMetaPrior = null) {
+    const fallbackAlpha = clamp(policy.thompsonPriorAlpha, Number.EPSILON, MAX_THOMPSON_PRIOR);
+    const fallbackBeta = clamp(policy.thompsonPriorBeta, Number.EPSILON, MAX_THOMPSON_PRIOR);
+    if (!bayesianMetaPrior || typeof bayesianMetaPrior !== 'object') {
+        return {
+            alpha: fallbackAlpha,
+            beta: fallbackBeta
+        };
+    }
+    const maxMetaPrior = MAX_THOMPSON_PRIOR + MAX_THOMPSON_META_PRIOR_STRENGTH;
+    return {
+        alpha: clamp(Number(bayesianMetaPrior.alpha), Number.EPSILON, maxMetaPrior) || fallbackAlpha,
+        beta: clamp(Number(bayesianMetaPrior.beta), Number.EPSILON, maxMetaPrior) || fallbackBeta
+    };
+}
+
+function resolveBayesianMetaPrior(executionStats = {}, selectionPolicyConfig = null, currentWave = 0) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const strength = clamp(
+        Number(policy.thompsonMetaPriorStrength),
+        0,
+        MAX_THOMPSON_META_PRIOR_STRENGTH
+    );
+    if (strength <= Number.EPSILON) {
+        return {
+            alpha: policy.thompsonPriorAlpha,
+            beta: policy.thompsonPriorBeta
+        };
+    }
+    const stats = executionStats && typeof executionStats === 'object'
+        ? Object.values(executionStats)
+        : [];
+    let attempts = 0;
+    let successes = 0;
+    for (const rawStat of stats) {
+        const resolved = resolveScoreStats(rawStat, selectionPolicyConfig, currentWave);
+        attempts += Math.max(0, Number(resolved.attempts) || 0);
+        successes += Math.max(0, Number(resolved.successes) || 0);
+    }
+    if (attempts <= Number.EPSILON) {
+        return {
+            alpha: policy.thompsonPriorAlpha,
+            beta: policy.thompsonPriorBeta
+        };
+    }
+    const empiricalMean = clamp(successes / attempts, 0, 1);
+    return {
+        alpha: policy.thompsonPriorAlpha + (empiricalMean * strength),
+        beta: policy.thompsonPriorBeta + ((1 - empiricalMean) * strength)
+    };
+}
+
+function computeEpsilonThompsonScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig, seedText, bayesianMetaPrior = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
-    const alpha = policy.thompsonPriorAlpha + normalized.successes;
-    const beta = policy.thompsonPriorBeta + normalized.failures;
+    const prior = resolveBayesianPosteriorPrior(policy, bayesianMetaPrior);
+    const alpha = prior.alpha + normalized.successes;
+    const beta = prior.beta + normalized.failures;
     const posteriorMean = alpha / (alpha + beta);
     const posteriorVariance = (alpha * beta) / (((alpha + beta) ** 2) * (alpha + beta + 1));
     const rng = createDeterministicRng(seedText);
@@ -2664,7 +2726,7 @@ function computeStandardNormalQuantile(probability) {
         / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
 }
 
-function computeBayesUcbScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+function computeBayesUcbScore(stat, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null, bayesianMetaPrior = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
         return Number.POSITIVE_INFINITY;
@@ -2672,8 +2734,9 @@ function computeBayesUcbScore(stat, currentWave, adaptiveScoreConfig, selectionP
 
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
-    const alpha = policy.thompsonPriorAlpha + normalized.successes;
-    const beta = policy.thompsonPriorBeta + normalized.failures;
+    const prior = resolveBayesianPosteriorPrior(policy, bayesianMetaPrior);
+    const alpha = prior.alpha + normalized.successes;
+    const beta = prior.beta + normalized.failures;
     const posteriorMean = alpha / (alpha + beta);
     const posteriorVariance = (alpha * beta)
         / (((alpha + beta) ** 2) * (alpha + beta + 1));
@@ -2973,6 +3036,11 @@ function selectCatalogSlice({
     let policyProbabilities = null;
     const selectionFeatures = {};
     let selectionProbabilities = {};
+    const bayesianMetaPrior = resolveBayesianMetaPrior(
+        executionStats,
+        scoringPolicy,
+        normalizedCurrentWave
+    );
 
     if (CORRAL_POLICY_MODES.has(normalizedPolicy.mode)) {
         const distribution = resolveCorralPolicyDistribution(
@@ -3070,7 +3138,8 @@ function selectCatalogSlice({
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
                 scoringPolicy,
-                `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`
+                `${selectionScope}:${scoringPolicy.mode}:${key}:${normalizedCurrentWave}:${scoreStats.attempts}:${scoreStats.successes}:${scoreStats.failures}`,
+                bayesianMetaPrior
             );
         } else if (BAYESIAN_BOOTSTRAP_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeBayesianBootstrapThompsonScore(
@@ -3102,7 +3171,8 @@ function selectCatalogSlice({
                 totalAttempts,
                 normalizedCurrentWave,
                 adaptiveScoreConfig,
-                scoringPolicy
+                scoringPolicy,
+                bayesianMetaPrior
             );
         } else if (BAYES_UCB_POLICY_MODES.has(scoringPolicy.mode)) {
             score = computeBayesUcbScore(

@@ -40,6 +40,7 @@ Options:
   --thompson-exploration <n>   Thompson posterior sampling weight 0-1 (default: 0.2)
   --thompson-prior-alpha <n>   Thompson prior alpha (>0, default: 1)
   --thompson-prior-beta <n>    Thompson prior beta (>0, default: 1)
+  --thompson-meta-prior-strength <n>  Pseudocount strength for empirical global Bayesian prior (0-500, default: 0)
   --thompson-uncertainty-weight <n>  Uncertainty bonus scaling for auto_epsilon_ts* (0-2, default: 0.5)
   --thompson-hazard-rate <n>   Base changepoint hazard for cp_epsilon_ts* (0-0.5, default: 0.08)
   --thompson-surprise-sensitivity <n>  Surprise-to-hazard scaling for cp_epsilon_ts* (0-5, default: 1)
@@ -189,6 +190,7 @@ function parseArgs(argv) {
             thompsonExploration: 0.2,
             thompsonPriorAlpha: 1,
             thompsonPriorBeta: 1,
+            thompsonMetaPriorStrength: 0,
             thompsonUncertaintyWeight: 0.5,
             thompsonHazardRate: 0.08,
             thompsonSurpriseSensitivity: 1,
@@ -379,6 +381,11 @@ function parseArgs(argv) {
         }
         if (token === '--thompson-prior-beta') {
             options.selectionPolicyConfig.thompsonPriorBeta = parsePositiveFloat(value, '--thompson-prior-beta');
+            i++;
+            continue;
+        }
+        if (token === '--thompson-meta-prior-strength') {
+            options.selectionPolicyConfig.thompsonMetaPriorStrength = parseFloatInRange(value, '--thompson-meta-prior-strength', 0, 500);
             i++;
             continue;
         }

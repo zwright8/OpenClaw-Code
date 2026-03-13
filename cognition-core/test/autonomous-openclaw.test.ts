@@ -4010,6 +4010,62 @@ test('buildAutonomousBatchPlan supports sliding-window epsilon-thompson ranking'
     assert.deepEqual(plan.selection.skillIds, [62]);
 });
 
+test('buildAutonomousBatchPlan supports epsilon-thompson empirical meta-prior warm start', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 71, code: 'SK-00071', title: 'Skill 71' },
+            { id: 72, code: 'SK-00072', title: 'Skill 72' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '71': {
+                    attempts: 1,
+                    successes: 1,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed'
+                },
+                '72': {
+                    attempts: 10,
+                    successes: 6,
+                    failures: 4,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed'
+                },
+                '999': {
+                    attempts: 100,
+                    successes: 5,
+                    failures: 95,
+                    consecutiveFailures: 2,
+                    lastWave: 24,
+                    lastStatus: 'failed'
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            thompsonMetaPriorStrength: 24
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [72]);
+});
+
 test('buildAutonomousBatchPlan supports sliding-window bayesian-bootstrap thompson ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -4495,6 +4551,62 @@ test('buildAutonomousBatchPlan supports discounted Bayes-UCB for recency-weighte
 
     assert.deepEqual(plan.selection.skillIds, [666]);
     assert.equal(plan.selection.policy.skills, 'd_bayes_ucb');
+});
+
+test('buildAutonomousBatchPlan supports Bayes-UCB empirical meta-prior warm start', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 6651, code: 'SK-06651', title: 'Skill 6651' },
+            { id: 6652, code: 'SK-06652', title: 'Skill 6652' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '6651': {
+                    attempts: 1,
+                    successes: 1,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed'
+                },
+                '6652': {
+                    attempts: 10,
+                    successes: 6,
+                    failures: 4,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed'
+                },
+                '999': {
+                    attempts: 100,
+                    successes: 5,
+                    failures: 95,
+                    consecutiveFailures: 2,
+                    lastWave: 26,
+                    lastStatus: 'failed'
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'bayes_ucb',
+            bayesUcbQuantile: 0.9,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            thompsonMetaPriorStrength: 24
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [6652]);
 });
 
 test('buildAutonomousBatchPlan supports discounted KL-UCB for recency-weighted optimistic ranking', () => {
