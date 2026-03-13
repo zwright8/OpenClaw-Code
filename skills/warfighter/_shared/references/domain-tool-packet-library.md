@@ -9968,3 +9968,137 @@ validation_gates:
 - output_schema: anti-hoarding action matrix, distribution branch ladder, stability trigger ledger
 - protocol_profile: USMTF + NIMS/ICS + NIEM + STIX/TAXII + API/JSON
 - validation_gates: demand-signal confidence pass, lane feasibility threshold, authority acknowledgment
+
+## Packet Addendum XXI (2026-03-13, Expansion Wave XXXIII)
+
+### packet_id: DPL-JOINT-UNDERSEA-CABLE-REPEATER-SALVAGE-RESTORATION-001
+- domain: undersea cable repeater salvage and rapid restoration
+- objective: prioritize repeater salvage and restoration actions that preserve command-network continuity under contested maritime conditions
+- primary_tools: repeater damage classifier, salvage asset scheduler, restoration governance board
+- alternate_tools: manual undersea repair board and delayed cable telemetry reconciliation cell
+- degraded_mode: mission-critical backbone segments only with fixed acknowledgment windows
+- input_requirements: repeater fault telemetry, route criticality map, salvage asset availability, threat overlays
+- output_schema: salvage priority ledger, restoration branch ladder, command continuity trigger list
+- protocol_profile: AIS/NMEA + USMTF + OGC WMS/WFS/WMTS + STIX/TAXII + API/JSON
+- validation_gates: dual-source fault confirmation, repair feasibility threshold, command authority acknowledgment
+
+### packet_id: DPL-SPACE-CISLUNAR-CONJUNCTION-RESCUE-ASSET-PRIORITY-001
+- domain: cislunar conjunction rescue and asset-priority governance
+- objective: arbitrate rescue windows and maneuver custody to protect strategic cislunar assets during contested operations
+- primary_tools: conjunction risk fusion board, rescue-window scheduler, orbital custody workflow
+- alternate_tools: manual maneuver conflict board and delayed coalition caveat reconciliation queue
+- degraded_mode: mission-essential rescue classes only with dual authority release
+- input_requirements: ephemeris tracks, conjunction severity, custody constraints, coalition maneuver caveats
+- output_schema: rescue priority queue, custody risk matrix, maneuver release triggers
+- protocol_profile: CCSDS + USMTF + NATO APP-11/ADatP-3 aligned + NIEM + API/JSON
+- validation_gates: conjunction confidence threshold, custody legal pass, strategic authority acknowledgment
+
+### packet_id: DPL-HOMELAND-GRID-BLACKSTART-FUEL-WATER-RAIL-COORDINATION-001
+- domain: homeland blackstart and critical infrastructure synchronization
+- objective: synchronize power blackstart with fuel, water, and rail restoration to sustain DSCA and force mobility priorities
+- primary_tools: blackstart dependency graph, infrastructure priority arbiter, DSCA sequencing board
+- alternate_tools: manual ICS infrastructure board and periodic utility liaison updates
+- degraded_mode: life-safety and mission-critical corridors only with staged restoration controls
+- input_requirements: grid outage telemetry, fuel and water node status, rail corridor throughput, support-force readiness
+- output_schema: blackstart dependency ladder, synchronization matrix, DSCA trigger timeline
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + NIEM + USMTF + API/JSON
+- validation_gates: life-safety threshold pass, jurisdictional authority concurrence, corridor feasibility confirmation
+
+### packet_id: DPL-COALITION-LEGAL-MISSION-DATA-RELEASE-EVIDENCE-ASSURANCE-001
+- domain: coalition legal mission-data release and evidence assurance
+- objective: enforce coalition releasability decisions with evidence-grade provenance and policy-caveat compliance
+- primary_tools: releasability adjudication board, evidence sufficiency ledger, legal exception workflow
+- alternate_tools: manual releasability matrix and legal counsel cross-check roster
+- degraded_mode: high-confidence low-sensitivity data classes only with dual legal approval
+- input_requirements: mission data descriptors, caveat policies, evidentiary chain metadata, authority mappings
+- output_schema: releasability matrix, evidence confidence ladder, legal release queue
+- protocol_profile: NIEM + USMTF + NATO APP-11/ADatP-3 aligned + signed evidence manifests + API/JSON
+- validation_gates: policy-caveat pass, evidence integrity check, coalition authority acknowledgment
+
+### packet_id: DPL-JOINT-URBAN-TUNNEL-SPECTRUM-NAV-HOSTAGE-RECOVERY-001
+- domain: urban tunnel hostage recovery with spectrum-denied navigation
+- objective: plan and synchronize hostage recovery in subterranean terrain under contested spectrum and denied navigation conditions
+- primary_tools: subterranean spectrum mapper, route confidence engine, hostage recovery synchronization board
+- alternate_tools: manual tunnel route board and inertial navigation cross-check team
+- degraded_mode: life-threatening hostage scenarios only with conservative movement windows
+- input_requirements: tunnel geometry map, spectrum interference indicators, hostage location confidence, blue-force positions
+- output_schema: tunnel spectrum map, route confidence ladder, recovery release triggers
+- protocol_profile: USMTF + VMF + CoT + OGC WMS/WFS/WMTS + API/JSON
+- validation_gates: route confidence threshold, blue-force deconfliction pass, command release approval
+
+### packet_id: DPL-THEATER-FORWARD-ADDITIVE-MUNITIONS-QUALITY-RELEASE-001
+- domain: theater forward additive munitions quality and release
+- objective: adjudicate additive-produced munitions lot quality and release timing under contested sustainment demands
+- primary_tools: additive lot telemetry board, ballistic confidence adjudicator, release authority workflow
+- alternate_tools: manual lot-test board and delayed metrology verification queue
+- degraded_mode: mission-essential lot classes only with tightened release constraints
+- input_requirements: lot production telemetry, metrology test results, contamination indicators, demand priority stack
+- output_schema: lot confidence board, release queue, sustainment quality trigger ledger
+- protocol_profile: USMTF + STIX/TAXII + NIEM + signed quality manifests + API/JSON
+- validation_gates: metrology pass threshold, contamination confidence check, release authority acknowledgment
+
+### packet_id: DPL-COALITION-ARCTIC-ICEBREAKER-CONVOY-PORT-DENIAL-RECOVERY-001
+- domain: coalition Arctic convoy and denied-port recovery
+- objective: restore Arctic convoy throughput and denied-port operations while preserving coalition caveat compliance
+- primary_tools: icebreaker corridor planner, denied-port recovery scheduler, coalition sustainment board
+- alternate_tools: manual convoy staging board and liaison-driven caveat reconciliation cell
+- degraded_mode: mission-critical convoy classes only with conservative ice and threat assumptions
+- input_requirements: ice condition telemetry, convoy fuel/endurance data, port damage status, coalition restrictions
+- output_schema: convoy risk matrix, recovery timeline, sustainment release triggers
+- protocol_profile: AIS/NMEA + USMTF + NATO APP-11/ADatP-3 aligned + NIMS/ICS + API/JSON
+- validation_gates: corridor safety threshold, port recovery feasibility, coalition authority confirmation
+
+### packet_id: DPL-STRATEGIC-AI-NUCLEAR-INCIDENT-WARNING-INTEGRITY-001
+- domain: strategic nuclear-incident warning integrity
+- objective: protect warning authenticity and escalation messaging integrity against AI-enabled spoofing or disinformation
+- primary_tools: warning-authenticity analyzer, escalation communication verifier, public-warning release governance board
+- alternate_tools: manual warning corroboration board and fixed-channel emergency authentication drill
+- degraded_mode: emergency warning classes only with explicit strategic command concurrence
+- input_requirements: warning message artifacts, cryptographic signatures, civil alert readiness status, adversary spoof indicators
+- output_schema: authenticity confidence board, communication branch map, release authority triggers
+- protocol_profile: USMTF + EDXL-DE/CAP + NIEM + STIX/TAXII + API/JSON
+- validation_gates: cryptographic integrity pass, dual-source corroboration, strategic authority acknowledgment
+
+### packet_id: DPL-EXPEDITIONARY-RIVER-CROSSING-AUTONOMY-EW-DECONFLICTION-001
+- domain: expeditionary river crossing autonomy and EW deconfliction
+- objective: synchronize autonomous crossing operations with cyber-electromagnetic deconfliction to preserve maneuver tempo and survivability
+- primary_tools: autonomy crossing coordinator, EW fratricide prevention board, corridor release workflow
+- alternate_tools: manual crossing matrix with fixed EMCON windows and human spot checks
+- degraded_mode: mission-essential crossing packages only with constrained emissions windows
+- input_requirements: hydrology and bank conditions, autonomy route plans, spectrum usage plan, maneuver priorities
+- output_schema: crossing autonomy matrix, EW deconfliction ladder, corridor release triggers
+- protocol_profile: USMTF + VMF + CoT + Link 16 J-series + API/JSON
+- validation_gates: route survivability threshold, EM fratricide check, command release authorization
+
+### packet_id: DPL-JOINT-HYPERSONIC-DEFENSE-SENSOR-FUSION-CIVIL-CONTINUITY-001
+- domain: hypersonic defense sensor fusion and civil continuity
+- objective: fuse hypersonic threat cues with military intercept and civil-warning continuity actions
+- primary_tools: hypersonic cue fusion board, intercept priority arbiter, civil continuity synchronization workflow
+- alternate_tools: manual cue corroboration board and pre-scripted civil warning ladder
+- degraded_mode: highest-confidence cue classes only with pre-authorized warning timelines
+- input_requirements: cue track confidence, interceptor availability, population shelter capacity, warning channel status
+- output_schema: cue confidence board, intercept/warning branch ladder, continuity release triggers
+- protocol_profile: Link 16 J-series + USMTF + EDXL-DE/CAP + NIEM + API/JSON
+- validation_gates: cue confidence floor, warning timeliness threshold, dual military-civil authority acknowledgment
+
+### packet_id: DPL-HOMELAND-PORT-RANSOMWARE-MANIFEST-RECOVERY-CUSTOMS-TRIAGE-001
+- domain: homeland port ransomware manifest and customs recovery
+- objective: recover manifest integrity, triage customs throughput, and restore mission-critical port flow after ransomware events
+- primary_tools: manifest recovery engine, customs triage arbiter, port cyber-recovery workflow
+- alternate_tools: manual manifest ledger with staged customs release board
+- degraded_mode: mission-essential cargo classes only with strict custody verification
+- input_requirements: manifest backup availability, ransomware impact scope, customs queue depth, cargo mission priority data
+- output_schema: manifest recovery confidence map, customs triage queue, port flow restoration triggers
+- protocol_profile: NIMS/ICS + NIEM + STIX/TAXII + USMTF + API/JSON
+- validation_gates: manifest integrity pass, custody chain confirmation, port authority release acknowledgment
+
+### packet_id: DPL-COALITION-PRISONER-EXCHANGE-BIOMETRIC-LEGAL-CHAIN-SYNC-001
+- domain: coalition prisoner-exchange biometric and legal-chain synchronization
+- objective: synchronize exchange timelines with biometric confidence and legal chain-of-custody controls across coalition partners
+- primary_tools: prisoner exchange scheduler, biometric confidence adjudicator, legal chain workflow
+- alternate_tools: manual exchange roster board and paper custody witness procedure
+- degraded_mode: humanitarian-priority exchanges only with explicit coalition legal sign-off
+- input_requirements: detainee identity records, biometric confidence data, custody handoff timelines, legal caveats
+- output_schema: biometric assurance ledger, legal chain sync matrix, exchange authority trigger list
+- protocol_profile: NIEM + USMTF + VMF + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: biometric confidence threshold, custody continuity pass, coalition legal acknowledgment

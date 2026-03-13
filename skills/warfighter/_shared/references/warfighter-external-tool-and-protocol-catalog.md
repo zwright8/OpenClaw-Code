@@ -10458,3 +10458,127 @@ external_binding:
 ### `ps-strategic-food-port-hoarding-distribution-stability-stack-v1`
 - Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
 - Use for: anti-hoarding indicators, distribution branch synchronization, and readiness/stability authority acknowledgments.
+
+## Tool Suite Addendum XXXIII (2026-03-13, All-Domain Warfighter Expansion Wave XXXIII)
+
+### `ts-joint-undersea-cable-repeater-salvage-rapid-restoration-v1`
+- Use for: undersea repeater triage, salvage sequencing, and rapid command-network restoration under contested maritime pressure.
+- Primary tools: repeater damage classifier, salvage asset scheduler, command-backbone restoration board.
+- Cross-check tools: independent hydrographic witness and alternate cable telemetry integrity monitor.
+- Typical products: repeater salvage priority ledger, restoration branch ladder, command continuity packet.
+
+### `ts-space-domain-cislunar-conjunction-rescue-asset-priority-v1`
+- Use for: cislunar conjunction rescue prioritization, maneuver custody arbitration, and strategic asset survival decisions.
+- Primary tools: conjunction risk fusion board, rescue-window scheduler, orbital custody assurance workflow.
+- Cross-check tools: independent ephemeris witness and alternate coalition caveat monitor.
+- Typical products: cislunar rescue queue, maneuver risk matrix, strategic orbit continuity packet.
+
+### `ts-homeland-grid-blackstart-fuel-water-rail-coordination-v1`
+- Use for: synchronized homeland blackstart actions that couple power restoration with fuel, water, and rail mission throughput.
+- Primary tools: blackstart dependency graph, fuel-water-rail priority arbiter, DSCA support sequencing board.
+- Cross-check tools: independent utility witness and alternate transportation continuity monitor.
+- Typical products: blackstart dependency ladder, infrastructure synchronization board, DSCA continuity packet.
+
+### `ts-coalition-legal-mission-data-release-evidence-assurance-v1`
+- Use for: coalition mission-data release decisions requiring legal caveat validation and evidence-grade provenance.
+- Primary tools: releasability adjudication board, evidence sufficiency ledger, coalition legal exception workflow.
+- Cross-check tools: independent legal sufficiency witness and alternate policy-caveat monitor.
+- Typical products: releasability matrix, evidence confidence ladder, coalition legal release packet.
+
+### `ts-joint-urban-tunnel-spectrum-navigation-hostage-recovery-v1`
+- Use for: urban tunnel hostage-recovery planning where contested spectrum and denied navigation affect timing.
+- Primary tools: subterranean spectrum mapper, tunnel route confidence engine, hostage recovery synchronization board.
+- Cross-check tools: independent ISR witness and alternate blue-force position confidence monitor.
+- Typical products: tunnel spectrum map, hostage branch ladder, subterranean command packet.
+
+### `ts-theater-forward-additive-munitions-quality-release-v1`
+- Use for: forward additive munitions lot quality governance and controlled release under sustainment stress.
+- Primary tools: additive lot telemetry board, ballistic confidence adjudicator, release authority workflow.
+- Cross-check tools: independent metrology witness and alternate supply-chain contamination monitor.
+- Typical products: additive lot confidence board, release governance queue, theater sustainment quality packet.
+
+### `ts-coalition-arctic-icebreaker-convoy-port-denial-recovery-v1`
+- Use for: coalition Arctic convoy routing and denied-port recovery sequencing in severe-weather contested theaters.
+- Primary tools: icebreaker corridor planner, port denial recovery scheduler, coalition sustainment governance board.
+- Cross-check tools: independent ice-condition witness and alternate maritime caveat monitor.
+- Typical products: convoy risk matrix, port-denial recovery timeline, coalition polar sustainment packet.
+
+### `ts-strategic-ai-enabled-nuclear-incident-warning-integrity-v1`
+- Use for: strategic warning authenticity checks during nuclear-incident messaging under AI-enabled spoofing pressure.
+- Primary tools: warning-authenticity analyzer, escalation communication verifier, public-warning release governance board.
+- Cross-check tools: independent cryptographic trust witness and alternate civil-alert integrity monitor.
+- Typical products: warning-authenticity confidence board, escalation communication branch map, strategic public-protection packet.
+
+### `ts-expeditionary-river-crossing-autonomy-ew-deconfliction-v1`
+- Use for: autonomous river-crossing execution with synchronized EW/cyber deconfliction and maneuver timing control.
+- Primary tools: river crossing autonomy coordinator, EW fratricide prevention board, maneuver corridor release workflow.
+- Cross-check tools: independent terrain/hydrology witness and alternate emissions-discipline monitor.
+- Typical products: autonomy release matrix, EW deconfliction ladder, maneuver corridor assurance packet.
+
+### `ts-joint-hypersonic-defense-sensor-fusion-civil-continuity-v1`
+- Use for: hypersonic cue fusion linked to civil warning/shelter continuity decisions across military and homeland channels.
+- Primary tools: hypersonic cue fusion board, intercept-priority arbiter, civil continuity synchronization workflow.
+- Cross-check tools: independent track-quality witness and alternate civil-alert readiness monitor.
+- Typical products: cue confidence board, intercept/civil-warning branch ladder, homeland continuity packet.
+
+### `ts-homeland-port-ransomware-manifest-recovery-customs-triage-v1`
+- Use for: port throughput restoration after ransomware attacks through manifest recovery and customs triage governance.
+- Primary tools: manifest recovery engine, customs throughput arbiter, port cyber-recovery workflow.
+- Cross-check tools: independent cargo custody witness and alternate maritime logistics continuity monitor.
+- Typical products: manifest recovery confidence map, customs triage queue, mission-flow restoration packet.
+
+### `ts-coalition-prisoner-exchange-biometric-legal-chain-sync-v1`
+- Use for: coalition prisoner-exchange synchronization with biometric confidence and legal chain-of-custody integrity.
+- Primary tools: prisoner exchange scheduler, biometric confidence adjudicator, coalition legal chain workflow.
+- Cross-check tools: independent detainee identity witness and alternate legal compliance monitor.
+- Typical products: biometric assurance ledger, legal chain sync matrix, coalition exchange authority packet.
+
+## Protocol Stack Addendum XXXIII (2026-03-13, All-Domain Warfighter Expansion Wave XXXIII)
+
+### `ps-joint-undersea-cable-repeater-salvage-rapid-restoration-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `OGC WMS/WFS/WMTS`, `STIX/TAXII`, `API/JSON`.
+- Use for: undersea repeater damage exchange, salvage task release, and command-backbone restoration acknowledgments.
+
+### `ps-space-domain-cislunar-conjunction-rescue-asset-priority-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `API/JSON`.
+- Use for: cislunar conjunction telemetry exchange, rescue priority updates, and coalition maneuver authority checks.
+
+### `ps-homeland-grid-blackstart-fuel-water-rail-coordination-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: blackstart status synchronization, infrastructure priority arbitration, and DSCA support approvals.
+
+### `ps-coalition-legal-mission-data-release-evidence-assurance-stack-v1`
+- Protocols: `NIEM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, signed evidence manifests, `API/JSON`.
+- Use for: mission-data releasability exchange, legal caveat adjudication, and evidence-chain authority acknowledgments.
+
+### `ps-joint-urban-tunnel-spectrum-navigation-hostage-recovery-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: tunnel spectrum updates, subterranean route confidence exchange, and hostage recovery release controls.
+
+### `ps-theater-forward-additive-munitions-quality-release-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, signed quality manifests, `API/JSON`.
+- Use for: additive lot telemetry exchange, munitions quality adjudication, and release authority gates.
+
+### `ps-coalition-arctic-icebreaker-convoy-port-denial-recovery-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIMS/ICS`, `API/JSON`.
+- Use for: Arctic convoy status exchange, denied-port recovery tasking, and coalition sustainment approvals.
+
+### `ps-strategic-ai-enabled-nuclear-incident-warning-integrity-stack-v1`
+- Protocols: `USMTF`, `EDXL-DE/CAP`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: warning-authenticity checks, escalation communication coordination, and civil-alert authority verification.
+
+### `ps-expeditionary-river-crossing-autonomy-ew-deconfliction-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `Link 16 J-series`, `API/JSON`.
+- Use for: river-crossing autonomy updates, EW deconfliction synchronization, and maneuver corridor release approvals.
+
+### `ps-joint-hypersonic-defense-sensor-fusion-civil-continuity-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`.
+- Use for: hypersonic cue exchange, intercept branch synchronization, and civil-warning continuity acknowledgments.
+
+### `ps-homeland-port-ransomware-manifest-recovery-customs-triage-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: manifest recovery updates, customs triage synchronization, and port restoration authority gates.
+
+### `ps-coalition-prisoner-exchange-biometric-legal-chain-sync-stack-v1`
+- Protocols: `NIEM`, `USMTF`, `VMF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: prisoner exchange status exchange, biometric confidence updates, and coalition legal handoff acknowledgments.

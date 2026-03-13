@@ -2123,3 +2123,33 @@ Every skill output should include:
 - Spaceport propellant safety launch-window restoration + contested space launch and satellite reconstitution + strategic deterrence and NC3 resilience
 - Tactical loitering-munition swarm priority defense + counter-UAS kill-chain integration + integrated air and missile defense cell
 - Strategic food-port hoarding stabilization + strategic food and water denial risk and distribution + civil-defense mass evacuation shelter
+
+## New Expansion Wave (2026-03-13, Wave XXXIII)
+
+- joint-undersea-cable-repeater-salvage-and-rapid-restoration-cell
+- space-domain-cislunar-conjunction-rescue-and-asset-priority-cell
+- homeland-grid-blackstart-fuel-water-rail-coordination-cell
+- coalition-legal-mission-data-release-and-evidence-assurance-cell
+- joint-urban-tunnel-spectrum-navigation-and-hostage-recovery-cell
+- theater-forward-additive-munitions-quality-release-cell
+- coalition-arctic-icebreaker-convoy-and-port-denial-recovery-cell
+- strategic-ai-enabled-nuclear-incident-public-warning-integrity-cell
+- expeditionary-river-crossing-autonomy-and-ew-deconfliction-cell
+- joint-hypersonic-defense-sensor-fusion-and-civil-continuity-cell
+- homeland-port-ransomware-manifest-recovery-and-customs-triage-cell
+- coalition-prisoner-exchange-biometric-legal-chain-synchronization-cell
+
+## Updated Pairings (2026-03-13, Wave XXXIII)
+
+- Undersea cable repeater salvage restoration + naval undersea cable protection and restoration + coalition contested undersea cable repair rights and security.
+- Cislunar conjunction rescue and asset priority + contested space launch and satellite reconstitution + coalition denied-space maneuver custody arbitration.
+- Homeland grid blackstart fuel-water-rail coordination + defense support of civil authorities crisis response + contested rail and mobility sustainment planning.
+- Coalition legal mission-data release and evidence assurance + coalition legal interoperability and status-of-forces + coalition mission data provenance and releasability auditor.
+- Joint urban tunnel spectrum-navigation hostage recovery + contested megacity underground utility mapping + special operations support and personnel recovery coordination.
+- Theater forward additive munitions quality release + contested additive manufacturing feedstock assurance + strategic munitions sustainment risk governance.
+- Coalition Arctic icebreaker convoy and port-denial recovery + coalition under-ice autonomous resupply corridor + arctic maritime air corridor deconfliction.
+- Strategic AI-enabled nuclear incident public-warning integrity + strategic deterrence and NC3 resilience + civil alert authentication and rumor control.
+- Expeditionary river-crossing autonomy and EW deconfliction + contested bridge and gap crossing operations + battlefield electromagnetic fratricide prevention.
+- Joint hypersonic defense sensor fusion and civil continuity + ballistic missile defense battle management + coalition ballistic missile civil-warning synchronization.
+- Homeland port ransomware manifest recovery and customs triage + coalition contested port cyber customs fraud fusion + coalition contested port crane cyber-physical recovery.
+- Coalition prisoner exchange biometric legal-chain synchronization + coalition detainee transfer assurance and legal observability + coalition cross-border casualty identity and family notification.

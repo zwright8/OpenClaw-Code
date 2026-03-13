@@ -113,3 +113,10 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Extended shared references with Tool Suite Addendum XXXII, Protocol Stack Addendum XXXII, and Packet Addendum XX to bind each mission domain to concrete external tools and protocol families.
 - Extended joint-operations external toolchain profiles with Wave XXXII profile bindings for command survivability, medical surge synchronization, strategic sustainment continuity, and tactical swarm defense.
 - Improved existing high-usage skills `mission-risk-decision-support`, `coalition-interoperability-coordinator`, and `cema-integration-cell` with Expansion Wave XXXII override bindings and packet references.
+
+## Run Update (2026-03-13T16:xx:xxZ)
+
+- Added Expansion Wave XXXIII with 12 new warfighter skills covering undersea cable repeater salvage restoration, cislunar conjunction rescue/asset priority, homeland grid blackstart fuel-water-rail synchronization, coalition legal mission-data release evidence assurance, urban tunnel hostage recovery under spectrum denial, forward additive munitions quality release, coalition Arctic icebreaker convoy port-denial recovery, AI-enabled nuclear-incident warning integrity, expeditionary river-crossing autonomy EW deconfliction, hypersonic defense sensor-fusion civil continuity, homeland port ransomware manifest/customs recovery, and coalition prisoner-exchange biometric legal-chain synchronization.
+- Extended shared references with Tool Suite Addendum XXXIII, Protocol Stack Addendum XXXIII, and Packet Addendum XXI to bind each mission domain to concrete external tools and protocol families.
+- Extended joint-operations external toolchain profiles with Wave XXXIII profile bindings for undersea restoration, strategic warning integrity, homeland infrastructure resilience, coalition legal release control, and hypersonic civil-continuity synchronization.
+- Improved existing high-usage skills `mission-risk-decision-support`, `coalition-interoperability-coordinator`, and `cema-integration-cell` with Expansion Wave XXXIII override bindings and packet references.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Urban Tunnel Spectrum Navigation and Hostage Recovery Cell"
+  short_description: "Plan hostage-recovery operations in dense urban tunnel networks with spectrum-denied navigation controls."
