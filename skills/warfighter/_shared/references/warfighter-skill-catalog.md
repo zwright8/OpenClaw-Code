@@ -2183,3 +2183,33 @@ Every skill output should include:
 - Tactical drone-swarm EMP hardening and recovery + autonomous swarm countermeasures + electromagnetic fratricide prevention + command-and-control restoration.
 - Strategic seabed critical-mineral supply denial mitigation + strategic industrial mobilization readiness + rare-earth processing recovery + supply-shock risk governance.
 - Civil nuclear plant grid-islanding population protection + strategic warning continuity + critical infrastructure defense + public-warning integrity assurance.
+
+## New Expansion Wave (2026-03-13, Wave XXXV)
+
+- joint-strategic-hypersonic-launch-attribution-and-escalation-control-cell
+- theater-autonomous-rail-yard-hazmat-collision-and-force-flow-recovery-cell
+- coalition-cross-border-undersea-power-cable-sabotage-response-cell
+- homeland-911-cell-broadcast-authentication-and-mass-notification-continuity-cell
+- expeditionary-water-purification-membrane-contamination-recovery-cell
+- joint-space-constellation-safe-mode-recovery-and-mission-priority-cell
+- tactical-urban-substation-microgrid-hostage-continuity-cell
+- joint-maritime-drone-carrier-air-defense-magazine-arbitration-cell
+- coalition-medical-biobank-cold-chain-and-battlefield-genomics-assurance-cell
+- theater-electromagnetic-decoy-corridor-and-civil-aviation-protection-cell
+- strategic-quantum-network-operations-center-cyber-resilience-cell
+- joint-civilian-evacuation-biometric-family-reunification-integrity-cell
+
+## Updated Pairings (2026-03-13, Wave XXXV)
+
+- Strategic hypersonic launch attribution/escalation control + NC3 resilience + public warning integrity + commander release governance.
+- Autonomous rail-yard hazmat recovery + strategic mobility chokepoint continuity + logistics force-flow governance + DSCA hazard containment.
+- Coalition undersea power-cable sabotage response + coalition legal interoperability + critical infrastructure cyber-physical continuity + maritime repair-rights adjudication.
+- Homeland 911 and mass-notification authenticity + tactical counter-disinformation + civil support continuity + command-path trust restoration.
+- Expeditionary water-purification contamination recovery + force-health protection + austere logistics sustainment + medical evacuation demand balancing.
+- Space constellation safe-mode recovery + cislunar sustainment governance + orbital custody assurance + strategic mission-priority arbitration.
+- Urban substation microgrid hostage continuity + force-protection routing + civil-defense evacuation sequencing + tactical ISR confidence governance.
+- Maritime drone-carrier air-defense magazine arbitration + integrated air and missile defense depletion management + defended-asset priority controls + naval maneuver survivability.
+- Coalition medical biobank/genomics assurance + coalition cross-border medical credentialing + biosurveillance custody integrity + contested cold-chain continuity.
+- Electromagnetic decoy corridor and civil aviation protection + EW fratricide prevention + contested-spectrum governance + sortie safety deconfliction.
+- Strategic quantum network cyber resilience + mission key-custody continuity + zero-trust hardening + strategic command trust assurance.
+- Civilian evacuation biometric family reunification integrity + humanitarian corridor governance + coalition identity proofing + legal handoff assurance.

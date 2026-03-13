@@ -10706,3 +10706,127 @@ external_binding:
 ### `ps-joint-civil-nuclear-plant-grid-islanding-population-protection-stack-v1`
 - Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `NIEM`, `API/JSON`.
 - Use for: grid-islanding status exchange, emergency cooling alerts, and civil population-protection messaging approvals.
+
+## Tool Suite Addendum XXXV (2026-03-13, All-Domain Warfighter Expansion Wave XXXV)
+
+### `ts-joint-strategic-hypersonic-launch-attribution-escalation-control-v1`
+- Use for: rapid hypersonic-launch attribution, consequence forecasting, and escalation-safe response control.
+- Primary tools: launch attribution fusion board, cross-domain consequence modeler, escalation branch governance engine.
+- Cross-check tools: independent warning-authenticity witness and alternate strategic continuity risk board.
+- Typical products: attribution confidence ladder, escalation branch matrix, commander release packet.
+
+### `ts-theater-autonomous-rail-yard-hazmat-force-flow-recovery-v1`
+- Use for: autonomous rail-yard collision response with hazmat containment and force-flow restoration.
+- Primary tools: rail-yard digital twin, hazmat plume containment planner, force-flow recovery scheduler.
+- Cross-check tools: independent rail safety witness and alternate logistics continuity monitor.
+- Typical products: containment priority matrix, force-flow restoration ladder, movement authority packet.
+
+### `ts-coalition-cross-border-undersea-power-cable-sabotage-response-v1`
+- Use for: coalition response to cross-border undersea power-cable sabotage with synchronized legal authorities.
+- Primary tools: undersea cable telemetry fusion board, cross-border legal authority ledger, grid restoration dependency engine.
+- Cross-check tools: independent utility integrity witness and alternate treaty-caveat monitor.
+- Typical products: sabotage impact matrix, authority synchronization ladder, coalition restoration packet.
+
+### `ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1`
+- Use for: authenticating emergency cell broadcasts and preserving 911/mass-notification trust under disruption.
+- Primary tools: emergency alert authenticity analyzer, PSAP continuity dashboard, public warning release workflow.
+- Cross-check tools: independent telecom integrity witness and alternate misinformation exposure monitor.
+- Typical products: warning authenticity ladder, notification continuity matrix, civil assurance packet.
+
+### `ts-expeditionary-water-purification-membrane-contamination-recovery-v1`
+- Use for: expeditionary water-purification contamination recovery with force-health risk controls.
+- Primary tools: field-water telemetry board, membrane contamination adjudicator, purification recovery scheduler.
+- Cross-check tools: independent water-quality witness and alternate casualty-health demand monitor.
+- Typical products: contamination response matrix, potable-water continuity ladder, medical sustainment packet.
+
+### `ts-joint-space-constellation-safe-mode-recovery-priority-v1`
+- Use for: constellation safe-mode cascade recovery and mission-priority restoration in contested orbital operations.
+- Primary tools: constellation health monitor, safe-mode recovery planner, mission-priority arbitration board.
+- Cross-check tools: independent ephemeris integrity witness and alternate launch-service dependency monitor.
+- Typical products: recovery sequence ladder, mission-priority matrix, orbital continuity packet.
+
+### `ts-tactical-urban-substation-microgrid-hostage-continuity-v1`
+- Use for: urban substation crisis response balancing microgrid continuity and hostage-safe maneuver options.
+- Primary tools: urban power topology board, microgrid islanding controller, hostage-safe corridor planner.
+- Cross-check tools: independent municipal-grid witness and alternate tactical ISR confidence monitor.
+- Typical products: power-hostage tradeoff matrix, corridor release ladder, joint response packet.
+
+### `ts-joint-maritime-drone-carrier-air-defense-magazine-arbitration-v1`
+- Use for: maritime drone-carrier raid defense with air-defense magazine arbitration and defended-asset prioritization.
+- Primary tools: maritime track fusion board, interceptor expenditure forecaster, defended-asset arbitration engine.
+- Cross-check tools: independent track-quality witness and alternate magazine survivability monitor.
+- Typical products: interceptor allocation ladder, defended-node matrix, naval defense packet.
+
+### `ts-coalition-medical-biobank-cold-chain-genomics-assurance-v1`
+- Use for: coalition medical biobank continuity and battlefield genomics integrity under contested logistics.
+- Primary tools: genomic sample custody ledger, biobank cold-chain telemetry board, coalition medical release workflow.
+- Cross-check tools: independent clinical QA witness and alternate cold-chain integrity monitor.
+- Typical products: sample trust matrix, cold-chain continuity ladder, coalition medical assurance packet.
+
+### `ts-theater-electromagnetic-decoy-corridor-civil-aviation-protection-v1`
+- Use for: electromagnetic decoy corridor execution while protecting civil aviation safety in contested spectrum.
+- Primary tools: spectrum corridor planner, decoy-emission governance engine, civil-airspace deconfliction board.
+- Cross-check tools: independent aviation safety witness and alternate EM fratricide monitor.
+- Typical products: decoy corridor matrix, civil-air safety ladder, emissions-control packet.
+
+### `ts-strategic-quantum-network-ops-center-cyber-resilience-v1`
+- Use for: strategic quantum-network cyber resilience, key-custody recovery, and command-path trust restoration.
+- Primary tools: quantum key-custody ledger, network anomaly correlation board, strategic cyber recovery orchestrator.
+- Cross-check tools: independent cryptographic assurance witness and alternate mission-network continuity monitor.
+- Typical products: key-trust ladder, compromise containment matrix, strategic cyber recovery packet.
+
+### `ts-joint-civilian-evacuation-biometric-family-reunification-integrity-v1`
+- Use for: biometric identity assurance and family-reunification integrity during large-scale civilian evacuation operations.
+- Primary tools: evacuation identity reconciliation board, biometric confidence adjudicator, reunification workflow tracker.
+- Cross-check tools: independent legal-compliance witness and alternate humanitarian throughput monitor.
+- Typical products: identity confidence matrix, reunification sequence ladder, civil protection packet.
+
+## Protocol Stack Addendum XXXV (2026-03-13, All-Domain Warfighter Expansion Wave XXXV)
+
+### `ps-joint-strategic-hypersonic-launch-attribution-escalation-control-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: launch attribution exchange, escalation branch acknowledgments, and strategic warning synchronization.
+
+### `ps-theater-autonomous-rail-yard-hazmat-force-flow-recovery-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: hazmat incident status, force-flow reroute decisions, and rail restoration authority exchange.
+
+### `ps-coalition-cross-border-undersea-power-cable-sabotage-response-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NIMS/ICS`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: sabotage telemetry, coalition authority synchronization, and grid restoration decisions.
+
+### `ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `NIMS/ICS`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: warning-authenticity events, 911 continuity updates, and public-notification governance.
+
+### `ps-expeditionary-water-purification-membrane-contamination-recovery-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `HL7/FHIR`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: contamination alerts, purification recovery sequencing, and force-health risk coordination.
+
+### `ps-joint-space-constellation-safe-mode-recovery-priority-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: safe-mode status exchange, mission-priority arbitration, and recovery release acknowledgments.
+
+### `ps-tactical-urban-substation-microgrid-hostage-continuity-stack-v1`
+- Protocols: `NIMS/ICS`, `USMTF`, `CoT`, `NIEM`, `API/JSON`.
+- Use for: power-hostage status updates, corridor risk synchronization, and tactical continuity decisions.
+
+### `ps-joint-maritime-drone-carrier-air-defense-magazine-arbitration-stack-v1`
+- Protocols: `AIS/NMEA`, `Link 16 J-series`, `USMTF`, `VMF`, `API/JSON`.
+- Use for: raid telemetry exchange, interceptor-allocation decisions, and defended-asset release controls.
+
+### `ps-coalition-medical-biobank-cold-chain-genomics-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: genomic sample custody exchange, cold-chain alerts, and coalition clinical release governance.
+
+### `ps-theater-electromagnetic-decoy-corridor-civil-aviation-protection-stack-v1`
+- Protocols: `Link 16 J-series`, `AIXM/FIXM`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: decoy corridor control, civil-airspace safety coordination, and emission-governance acknowledgments.
+
+### `ps-strategic-quantum-network-ops-center-cyber-resilience-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, signed key-status exports, `API/JSON`.
+- Use for: quantum network cyber events, key-custody remediation, and command-path trust restoration.
+
+### `ps-joint-civilian-evacuation-biometric-family-reunification-integrity-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `USMTF`, `EDXL-DE/CAP`, `API/JSON`.
+- Use for: identity reconciliation exchange, family reunification status, and evacuation authority synchronization.

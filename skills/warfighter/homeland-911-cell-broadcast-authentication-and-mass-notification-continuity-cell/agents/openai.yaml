@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Homeland 911 Cell Broadcast Authentication and Mass Notification Continuity Cell"
+  short_description: "Authenticate warnings and preserve 911 continuity"

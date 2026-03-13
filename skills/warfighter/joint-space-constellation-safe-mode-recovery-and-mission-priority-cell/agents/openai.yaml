@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Space Constellation Safe-Mode Recovery and Mission Priority Cell"
+  short_description: "Restore contested constellations from safe-mode cascades"

@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Tactical Urban Substation Microgrid Hostage Continuity Cell"
+  short_description: "Manage substation attacks with hostage-safe power continuity"
