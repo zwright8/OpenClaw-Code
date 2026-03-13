@@ -3526,6 +3526,165 @@ test('buildAutonomousBatchPlan supports sliding-window exp3_s adaptation emphasi
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports adwin_exp3_ix adaptive-window adversarial ranking after abrupt drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 175, code: 'SK-00175', title: 'Skill 175' },
+            { id: 176, code: 'SK-00176', title: 'Skill 176' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '175': {
+                    attempts: 24,
+                    successes: 12,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 25,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' }
+                    ]
+                },
+                '176': {
+                    attempts: 24,
+                    successes: 12,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 25,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'adwin_exp3_ix',
+            changeDetectionMinSamples: 4,
+            adwinDelta: 0.01,
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [176]);
+    assert.equal(plan.selection.policy.skills, 'adwin_exp3_ix');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_exp3_ix');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
+test('buildAutonomousBatchPlan supports adwin_exp3_s share-mixing with adaptive-window drift trimming', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 177, code: 'SK-00177', title: 'Skill 177' },
+            { id: 178, code: 'SK-00178', title: 'Skill 178' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 27,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '177': {
+                    attempts: 24,
+                    successes: 12,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' }
+                    ]
+                },
+                '178': {
+                    attempts: 24,
+                    successes: 12,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 26,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 28,
+        selectionPolicyConfig: {
+            mode: 'adwin_exp3_s',
+            changeDetectionMinSamples: 4,
+            adwinDelta: 0.01,
+            exp3IxGamma: 0.07,
+            exp3IxEta: 1,
+            exp3ShareAlpha: 0.1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [178]);
+    assert.equal(plan.selection.policy.skills, 'adwin_exp3_s');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_exp3_s');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan supports discounted exp3_ix for recency-weighted adversarial ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

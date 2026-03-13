@@ -202,6 +202,8 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_corral_exp3_plus',
     'exp3_ix',
     'exp3_s',
+    'adwin_exp3_ix',
+    'adwin_exp3_s',
     'rexp3_ix',
     'sw_exp3_ix',
     'sw_exp3_s',
@@ -265,6 +267,8 @@ const BAYES_UCB_POLICY_MODES = new Set([
 const EXP3_POLICY_MODES = new Set([
     'exp3_ix',
     'exp3_s',
+    'adwin_exp3_ix',
+    'adwin_exp3_s',
     'rexp3_ix',
     'sw_exp3_ix',
     'sw_exp3_s',
@@ -273,6 +277,7 @@ const EXP3_POLICY_MODES = new Set([
 ]);
 const EXP3_SHARE_POLICY_MODES = new Set([
     'exp3_s',
+    'adwin_exp3_s',
     'sw_exp3_s',
     'd_exp3_s'
 ]);
@@ -2929,6 +2934,9 @@ function resolveExp3RecentOutcomes(stat, selectionPolicyConfig, currentWave = 0)
     let outcomes = normalized.recentOutcomes.slice();
     if (policy.mode === 'sw_exp3_ix' || policy.mode === 'sw_exp3_s') {
         outcomes = outcomes.slice(-policy.slidingWindowSize);
+    } else if (policy.mode === 'adwin_exp3_ix' || policy.mode === 'adwin_exp3_s') {
+        const changeIndex = detectAdwinChangeIndex(outcomes, policy);
+        outcomes = changeIndex > 0 ? outcomes.slice(changeIndex) : outcomes;
     } else if (policy.mode === 'rexp3_ix') {
         const restartInterval = parsePositiveInt(policy.exp3RestartInterval, DEFAULT_EXP3_RESTART_INTERVAL);
         const wave = parseNonNegativeInt(currentWave, 0);

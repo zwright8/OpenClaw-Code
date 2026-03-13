@@ -292,6 +292,8 @@ npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3
 npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-auto-eta
 npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-implicit-gamma 0.03 --exp3-ix-eta 0.8
 npm run autonomous:run -- --selection-policy exp3_s --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
+npm run autonomous:run -- --selection-policy adwin_exp3_ix --cd-min-samples 8 --adwin-delta 0.002 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
+npm run autonomous:run -- --selection-policy adwin_exp3_s --cd-min-samples 8 --adwin-delta 0.002 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
 npm run autonomous:run -- --selection-policy rexp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-restart-interval 12
 npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
 npm run autonomous:run -- --selection-policy sw_exp3_s --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
@@ -307,7 +309,7 @@ npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2
 npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2
 npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
 ```
-Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted/hybrid UCB-family (`sw_ucb`/`d_ucb`/`fdsw_ucb`), change-detection (`cd_ucb`/`sw_cd_ucb`/`glr_kl_ucb`/`sw_glr_kl_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3 families (`exp3_ix`/`exp3_s` with `sw_`/`d_` variants) so partial outcomes are learned as partial credit instead of full wins.
+Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted/hybrid UCB-family (`sw_ucb`/`d_ucb`/`fdsw_ucb`), change-detection (`cd_ucb`/`sw_cd_ucb`/`glr_kl_ucb`/`sw_glr_kl_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3 families (`exp3_ix`/`exp3_s` with `adwin_`/`sw_`/`d_` variants) so partial outcomes are learned as partial credit instead of full wins.
 Hybrid `fdsw_*` policies now also support `--hybrid-ts-aggregation adaptive`, which tilts toward sliding-window estimates when very recent performance is shifting and toward discounted estimates when recent behavior is stable.
 `bob_sw_ucb` adds a bandit-over-window controller that adaptively routes `sw_ucb` scoring to the strongest window length using outcome-weighted meta-window performance with an exploration floor (`--bob-gamma`).
 Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
