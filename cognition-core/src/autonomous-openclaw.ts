@@ -112,9 +112,11 @@ const DEFAULT_CORRAL_UNCERTAINTY_WEIGHT = 0.35;
 const MAX_CORRAL_UNCERTAINTY_WEIGHT = 3;
 const DEFAULT_EXP3_EXPLORATION_GAMMA = 0.07;
 const DEFAULT_EXP3_IMPLICIT_GAMMA = null;
+const DEFAULT_EXP3_IMPORTANCE_WEIGHT_CAP = 50;
 const MAX_EXP3_IX_GAMMA = 0.5;
 const DEFAULT_EXP3_IX_ETA = 1;
 const MAX_EXP3_IX_ETA = 10;
+const MAX_EXP3_IMPORTANCE_WEIGHT_CAP = 1_000;
 const DEFAULT_EXP3_SHARE_ALPHA = 0.08;
 const MAX_EXP3_SHARE_ALPHA = 1;
 const DEFAULT_EXP3_RESTART_INTERVAL = 12;
@@ -790,6 +792,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
         exp3ImplicitGamma: Number.isFinite(Number(value.exp3ImplicitGamma))
             ? clamp(Number(value.exp3ImplicitGamma), Number.EPSILON, MAX_EXP3_IX_GAMMA)
             : DEFAULT_EXP3_IMPLICIT_GAMMA,
+        exp3ImportanceWeightCap: clamp(
+            Number.isFinite(Number(value.exp3ImportanceWeightCap))
+                ? Number(value.exp3ImportanceWeightCap)
+                : DEFAULT_EXP3_IMPORTANCE_WEIGHT_CAP,
+            1,
+            MAX_EXP3_IMPORTANCE_WEIGHT_CAP
+        ),
         exp3IxEta: clamp(
             Number.isFinite(Number(value.exp3IxEta))
                 ? Number(value.exp3IxEta)
@@ -2985,6 +2994,13 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
         || policy.mode === 'd_corral_exp3'
         || policy.mode === 'd_corral_exp3_plus';
     let cumulativeEstimatedLoss = 0;
+    const importanceWeightCap = clamp(
+        Number.isFinite(Number(policy.exp3ImportanceWeightCap))
+            ? Number(policy.exp3ImportanceWeightCap)
+            : DEFAULT_EXP3_IMPORTANCE_WEIGHT_CAP,
+        1,
+        MAX_EXP3_IMPORTANCE_WEIGHT_CAP
+    );
     for (let index = 0; index < normalizedOutcomes.length; index++) {
         const entry = normalizedOutcomes[index];
         const age = normalizedOutcomes.length - 1 - index;
@@ -2993,7 +3009,9 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
             ? clamp(Number(entry.propensity), Number.EPSILON, 1)
             : uniformPropensity;
         const instantaneousLoss = 1 - clamp(Number(entry.reward), 0, 1);
-        const estimatedLoss = instantaneousLoss / (propensity + implicitGamma);
+        const denominator = propensity + implicitGamma;
+        const importanceWeight = Math.min(importanceWeightCap, 1 / denominator);
+        const estimatedLoss = instantaneousLoss * importanceWeight;
         cumulativeEstimatedLoss += discountWeight * estimatedLoss;
     }
 

@@ -3329,6 +3329,75 @@ test('buildAutonomousBatchPlan uses propensity-aware EXP3-IX implicit losses fro
     assert.ok(probabilities['602'] > probabilities['601']);
 });
 
+test('buildAutonomousBatchPlan clips EXP3 implicit importance weights for extreme low-propensity outcomes', () => {
+    const buildPlan = (exp3ImportanceWeightCap) => buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 611, code: 'SK-00611', title: 'Skill 611' },
+            { id: 612, code: 'SK-00612', title: 'Skill 612' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 31,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '611': {
+                    attempts: 1,
+                    successes: 1,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'partial',
+                    recentOutcomes: [
+                        { wave: 31, status: 'partial', propensity: 0.000001 }
+                    ]
+                },
+                '612': {
+                    attempts: 1,
+                    successes: 0,
+                    failures: 1,
+                    consecutiveFailures: 1,
+                    lastWave: 31,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 31, status: 'failed', propensity: 0.8 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 2,
+        capabilitiesPerWave: 0,
+        waveIndex: 32,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3IxEta: 1,
+            exp3ImportanceWeightCap
+        },
+        nowFactory: () => 100_000
+    });
+
+    const uncappedLike = buildPlan(1_000);
+    const capped = buildPlan(2);
+    const uncappedProbabilities = Object.fromEntries(
+        uncappedLike.tasks.map((task) => [
+            String(task.context?.skillId),
+            Number(task.context?.autonomy?.selectionProbability || 0)
+        ])
+    );
+    const cappedProbabilities = Object.fromEntries(
+        capped.tasks.map((task) => [
+            String(task.context?.skillId),
+            Number(task.context?.autonomy?.selectionProbability || 0)
+        ])
+    );
+
+    assert.ok(uncappedProbabilities['612'] > uncappedProbabilities['611']);
+    assert.ok(cappedProbabilities['611'] > cappedProbabilities['612']);
+});
+
 test('buildAutonomousBatchPlan supports exp3_ix auto-eta with decoupled implicit gamma', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
