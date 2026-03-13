@@ -55,6 +55,7 @@ Options:
   --exp3-restart-interval <n>  Epoch length for rexp3_ix periodic restarts (default: 12)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
+  --risk-variance-weight <n>   Variance penalty for mv_ucb* risk-aware scoring (0-5, default: 0.6)
   --boltzmann-gumbel-c <n>     Exploration constant for bge* policies (>0 to 5, default: 0.5)
   --phe-perturbation-scale <n> Pseudoreward scale a for phe* policies (>0 to 10, default: 2)
   --bob-gamma <n>              Exploration floor for bob_sw_ucb window meta-bandit (0-0.8, default: 0.12)
@@ -202,6 +203,7 @@ function parseArgs(argv) {
             exp3RestartInterval: 12,
             mossAlpha: 1,
             ucbVExploration: 1,
+            riskVarianceWeight: 0.6,
             boltzmannGumbelC: 0.5,
             bobGamma: 0.12,
             phePerturbationScale: 2,
@@ -424,6 +426,11 @@ function parseArgs(argv) {
         }
         if (token === '--ucb-v-exploration') {
             options.selectionPolicyConfig.ucbVExploration = parseFloatInRange(value, '--ucb-v-exploration', Number.EPSILON, 5);
+            i++;
+            continue;
+        }
+        if (token === '--risk-variance-weight') {
+            options.selectionPolicyConfig.riskVarianceWeight = parseFloatInRange(value, '--risk-variance-weight', 0, 5);
             i++;
             continue;
         }

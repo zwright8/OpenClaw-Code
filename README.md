@@ -229,6 +229,9 @@ npm run autonomous:run -- --selection-policy d_linucb --discount-factor 0.97 --l
 npm run autonomous:run -- --selection-policy adwin_linucb --cd-min-samples 8 --adwin-delta 0.002 --linucb-alpha 0.6
 npm run autonomous:run -- --selection-policy ucb_v --ucb-v-exploration 1
 npm run autonomous:run -- --selection-policy sw_ucb_v --window-size 12 --ucb-v-exploration 1
+npm run autonomous:run -- --selection-policy mv_ucb --risk-variance-weight 0.6
+npm run autonomous:run -- --selection-policy sw_mv_ucb --window-size 12 --risk-variance-weight 0.6
+npm run autonomous:run -- --selection-policy d_mv_ucb --discount-factor 0.97 --risk-variance-weight 0.6
 npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5
@@ -305,6 +308,7 @@ Hybrid `fdsw_*` policies now also support `--hybrid-ts-aggregation adaptive`, wh
 `bob_sw_ucb` adds a bandit-over-window controller that adaptively routes `sw_ucb` scoring to the strongest window length using outcome-weighted meta-window performance with an exploration floor (`--bob-gamma`).
 Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
 Perturbed-History Exploration (`phe`/`sw_phe`/`d_phe`) is available as a lightweight pseudo-reward perturbation policy (`--phe-perturbation-scale`) to sustain exploration without full posterior sampling overhead.
+Mean-variance UCB (`mv_ucb`/`sw_mv_ucb`/`d_mv_ucb`) is available to penalize high outcome volatility while still exploring (`--risk-variance-weight`).
 Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history. The expanded `corral_exp3_plus` expert pool also includes ADWIN, hybrid discounted+windowed, and Boltzmann-Gumbel experts for stronger regime-shift routing. Use `--corral-min-attempts` + `--corral-forced-exploration` to guarantee under-sampled experts keep receiving exploration mass before full exploitation.
 EXP3 modes now decouple exploration mixing (`--exp3-ix-gamma`) from implicit-exploration denominator control (`--exp3-implicit-gamma`) so you can tune exploration pressure and loss-estimate regularization independently. `--exp3-auto-eta` auto-calibrates eta as `sqrt((2*log(K+1))/(N*K))` and defaults the implicit gamma to `eta/2` when no explicit implicit gamma is provided.
 `exp3_s` adds share-mixing (`--exp3-share-alpha`) to keep a controlled probability floor across all arms under adversarial drift while still using EXP3-IX implicit-exploration weighting.

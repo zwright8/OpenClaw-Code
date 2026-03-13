@@ -989,6 +989,194 @@ test('buildAutonomousBatchPlan supports discounted ucb_v recency adaptation', ()
     assert.equal(plan.selection.policy.skills, 'd_ucb_v');
 });
 
+test('buildAutonomousBatchPlan supports mean-variance UCB risk-aware ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 297, code: 'SK-00297', title: 'Skill 297' },
+            { id: 298, code: 'SK-00298', title: 'Skill 298' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 20,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '297': {
+                    attempts: 6,
+                    successes: 4,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 20,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'partial', reward: 1 },
+                        { wave: 16, status: 'partial', reward: 0 },
+                        { wave: 17, status: 'partial', reward: 1 },
+                        { wave: 18, status: 'partial', reward: 0 },
+                        { wave: 19, status: 'partial', reward: 1 },
+                        { wave: 20, status: 'partial', reward: 1 }
+                    ]
+                },
+                '298': {
+                    attempts: 6,
+                    successes: 4,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 20,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 15, status: 'partial', reward: 0.62 },
+                        { wave: 16, status: 'partial', reward: 0.68 },
+                        { wave: 17, status: 'partial', reward: 0.66 },
+                        { wave: 18, status: 'partial', reward: 0.67 },
+                        { wave: 19, status: 'partial', reward: 0.69 },
+                        { wave: 20, status: 'partial', reward: 0.68 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 21,
+        selectionPolicyConfig: {
+            mode: 'mv_ucb',
+            riskVarianceWeight: 1.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [298]);
+    assert.equal(plan.selection.policy.skills, 'mv_ucb');
+});
+
+test('buildAutonomousBatchPlan supports sliding-window mean-variance UCB adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 299, code: 'SK-00299', title: 'Skill 299' },
+            { id: 300, code: 'SK-00300', title: 'Skill 300' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 21,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '299': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 21,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'partial', reward: 0.5 },
+                        { wave: 17, status: 'partial', reward: 0.5 },
+                        { wave: 18, status: 'partial', reward: 1 },
+                        { wave: 19, status: 'partial', reward: 0 },
+                        { wave: 20, status: 'partial', reward: 1 },
+                        { wave: 21, status: 'partial', reward: 0 }
+                    ]
+                },
+                '300': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 21,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'partial', reward: 0.5 },
+                        { wave: 17, status: 'partial', reward: 0.5 },
+                        { wave: 18, status: 'partial', reward: 0.45 },
+                        { wave: 19, status: 'partial', reward: 0.55 },
+                        { wave: 20, status: 'partial', reward: 0.5 },
+                        { wave: 21, status: 'partial', reward: 0.5 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 22,
+        selectionPolicyConfig: {
+            mode: 'sw_mv_ucb',
+            slidingWindowSize: 4,
+            riskVarianceWeight: 1.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [300]);
+    assert.equal(plan.selection.policy.skills, 'sw_mv_ucb');
+});
+
+test('buildAutonomousBatchPlan supports discounted mean-variance UCB adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 301, code: 'SK-00301', title: 'Skill 301' },
+            { id: 302, code: 'SK-00302', title: 'Skill 302' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 22,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '301': {
+                    attempts: 6,
+                    successes: 3.6,
+                    failures: 2.4,
+                    consecutiveFailures: 0,
+                    lastWave: 22,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 17, status: 'partial', reward: 0.6 },
+                        { wave: 18, status: 'partial', reward: 0.6 },
+                        { wave: 19, status: 'partial', reward: 0.6 },
+                        { wave: 20, status: 'partial', reward: 1 },
+                        { wave: 21, status: 'partial', reward: 0 },
+                        { wave: 22, status: 'partial', reward: 0.8 }
+                    ]
+                },
+                '302': {
+                    attempts: 6,
+                    successes: 3.6,
+                    failures: 2.4,
+                    consecutiveFailures: 0,
+                    lastWave: 22,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 17, status: 'partial', reward: 0.6 },
+                        { wave: 18, status: 'partial', reward: 0.6 },
+                        { wave: 19, status: 'partial', reward: 0.6 },
+                        { wave: 20, status: 'partial', reward: 0.58 },
+                        { wave: 21, status: 'partial', reward: 0.62 },
+                        { wave: 22, status: 'partial', reward: 0.6 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 23,
+        selectionPolicyConfig: {
+            mode: 'd_mv_ucb',
+            discountFactor: 0.7,
+            riskVarianceWeight: 1.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [302]);
+    assert.equal(plan.selection.policy.skills, 'd_mv_ucb');
+});
+
 test('buildAutonomousBatchPlan supports Bayes-UCB policy for optimistic posterior ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

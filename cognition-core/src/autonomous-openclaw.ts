@@ -120,6 +120,8 @@ const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
 const DEFAULT_UCB_V_EXPLORATION = 1;
 const MAX_UCB_V_EXPLORATION = 5;
+const DEFAULT_RISK_VARIANCE_WEIGHT = 0.6;
+const MAX_RISK_VARIANCE_WEIGHT = 5;
 const DEFAULT_BOLTZMANN_GUMBEL_C = 0.5;
 const MAX_BOLTZMANN_GUMBEL_C = 5;
 const DEFAULT_PHE_PERTURBATION_SCALE = 2;
@@ -135,6 +137,7 @@ const LINUCB_FEATURE_NAMES = [
 export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'ucb',
     'ucb_v',
+    'mv_ucb',
     'ucb_tuned',
     'linucb',
     'sw_linucb',
@@ -155,6 +158,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'kl_ucb',
     'bayes_ucb',
     'sw_ucb',
+    'sw_mv_ucb',
     'mw_ucb',
     'bob_sw_ucb',
     'sw_ucb_v',
@@ -168,6 +172,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_kl_ucb',
     'sw_bayes_ucb',
     'd_ucb',
+    'd_mv_ucb',
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
@@ -299,6 +304,7 @@ const GLR_KL_UCB_POLICY_MODES = new Set([
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
+    'sw_mv_ucb',
     'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_linucb',
@@ -320,6 +326,11 @@ const MULTI_WINDOW_UCB_POLICY_MODES = new Set([
 const BOB_WINDOW_UCB_POLICY_MODES = new Set([
     'bob_sw_ucb'
 ]);
+const RISK_AWARE_UCB_POLICY_MODES = new Set([
+    'mv_ucb',
+    'sw_mv_ucb',
+    'd_mv_ucb'
+]);
 const BOLTZMANN_GUMBEL_POLICY_MODES = new Set([
     'bge',
     'sw_bge',
@@ -332,6 +343,7 @@ const PHE_POLICY_MODES = new Set([
 ]);
 const DISCOUNTED_POLICY_MODES = new Set([
     'd_ucb',
+    'd_mv_ucb',
     'd_ucb_v',
     'd_ucb_tuned',
     'd_epsilon_ts',
@@ -784,6 +796,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_UCB_V_EXPLORATION,
             Number.EPSILON,
             MAX_UCB_V_EXPLORATION
+        ),
+        riskVarianceWeight: clamp(
+            Number.isFinite(Number(value.riskVarianceWeight))
+                ? Number(value.riskVarianceWeight)
+                : DEFAULT_RISK_VARIANCE_WEIGHT,
+            0,
+            MAX_RISK_VARIANCE_WEIGHT
         ),
         boltzmannGumbelC: clamp(
             Number.isFinite(Number(value.boltzmannGumbelC))
@@ -1815,7 +1834,6 @@ function computeAdwinDetectedStats(stat, selectionPolicyConfig) {
         mode: 'adwin_ucb'
     });
 }
-
 function detectGlrKlUcbChangeIndex(outcomes = [], selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const values = Array.isArray(outcomes)
@@ -2292,6 +2310,66 @@ function computeUcbVarianceScore(stat, totalAttempts, currentWave, adaptiveScore
     const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
 
     return empiricalMean
+        + exploration
+        - adjustments.failurePenalty
+        + adjustments.recentOutcomeBonus
+        + adjustments.staleBoost;
+}
+
+function resolveRiskAwareOutcomes(stat, selectionPolicyConfig = null) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (policy.mode === 'sw_mv_ucb') {
+        return normalized.recentOutcomes.slice(-policy.slidingWindowSize);
+    }
+    return normalized.recentOutcomes;
+}
+
+function computeRewardVariance(outcomes, selectionPolicyConfig, fallbackMean) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const normalizedOutcomes = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
+        : [];
+    if (normalizedOutcomes.length <= 0) {
+        return clamp((fallbackMean || 0) * (1 - (fallbackMean || 0)), 0, 0.25);
+    }
+
+    const useDiscounting = policy.mode === 'd_mv_ucb';
+    let weightSum = 0;
+    let weightedSum = 0;
+    let weightedSquareSum = 0;
+    for (let index = 0; index < normalizedOutcomes.length; index++) {
+        const entry = normalizedOutcomes[index];
+        const age = normalizedOutcomes.length - 1 - index;
+        const weight = useDiscounting ? Math.pow(policy.discountFactor, age) : 1;
+        weightSum += weight;
+        weightedSum += entry.reward * weight;
+        weightedSquareSum += (entry.reward * entry.reward) * weight;
+    }
+    if (weightSum <= Number.EPSILON) {
+        return clamp((fallbackMean || 0) * (1 - (fallbackMean || 0)), 0, 0.25);
+    }
+
+    const mean = weightedSum / weightSum;
+    return Math.max(0, (weightedSquareSum / weightSum) - (mean * mean));
+}
+
+function computeMeanVarianceUcbScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
+    const normalized = resolveScoreStats(stat, selectionPolicyConfig);
+    if (normalized.attempts <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const attempts = Math.max(1, normalized.attempts);
+    const empiricalMean = clamp(normalized.successes / attempts, 0, 1);
+    const outcomes = resolveRiskAwareOutcomes(stat, policy);
+    const outcomeVariance = computeRewardVariance(outcomes, policy, empiricalMean);
+    const exploration = Math.sqrt((2 * Math.log(Math.max(2, totalAttempts + 1))) / attempts);
+    const adjustments = computeAdaptiveAdjustments(normalized, currentWave, adaptiveScoreConfig);
+
+    return empiricalMean
+        - (policy.riskVarianceWeight * outcomeVariance)
         + exploration
         - adjustments.failurePenalty
         + adjustments.recentOutcomeBonus
@@ -3037,6 +3115,14 @@ function selectCatalogSlice({
             || scoringPolicy.mode === 'd_ucb_v'
         ) {
             score = computeUcbVarianceScore(
+                stat,
+                totalAttempts,
+                normalizedCurrentWave,
+                adaptiveScoreConfig,
+                scoringPolicy
+            );
+        } else if (RISK_AWARE_UCB_POLICY_MODES.has(scoringPolicy.mode)) {
+            score = computeMeanVarianceUcbScore(
                 stat,
                 totalAttempts,
                 normalizedCurrentWave,

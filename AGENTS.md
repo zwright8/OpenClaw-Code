@@ -24,6 +24,9 @@
 - `npm run autonomous:run -- --selection-policy adwin_linucb --cd-min-samples 8 --adwin-delta 0.002 --linucb-alpha 0.6` - run autonomous loop with ADWIN-trimmed contextual LinUCB to drop stale observations after drift detection.
 - `npm run autonomous:run -- --selection-policy ucb_v --ucb-v-exploration 1` - run autonomous loop with variance-aware UCB exploration bonuses for bounded binary outcomes.
 - `npm run autonomous:run -- --selection-policy sw_ucb_v --window-size 12 --ucb-v-exploration 1` - run autonomous loop with sliding-window UCB-V adaptation for recency drift.
+- `npm run autonomous:run -- --selection-policy mv_ucb --risk-variance-weight 0.6` - run autonomous loop with mean-variance UCB to penalize volatile outcomes while preserving optimism.
+- `npm run autonomous:run -- --selection-policy sw_mv_ucb --window-size 12 --risk-variance-weight 0.6` - run autonomous loop with sliding-window mean-variance UCB adaptation focused on recent volatility shifts.
+- `npm run autonomous:run -- --selection-policy d_mv_ucb --discount-factor 0.97 --risk-variance-weight 0.6` - run autonomous loop with discounted mean-variance UCB to emphasize recency while damping high-variance arms.
 - `npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5` - run autonomous loop with contextual linear Thompson sampling for posterior-driven exploration.
 - `npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5` - run autonomous loop with sliding-window linear Thompson sampling for recency-weighted contextual exploration.
 - `npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5` - run autonomous loop with discounted linear Thompson sampling to adapt under drift.
