@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Civil Nuclear Plant Grid Islanding Population Protection Cell"
+  short_description: "Coordinate civil nuclear plant grid-islanding, emergency cooling continuity, and population protection messaging under crisis conditions."

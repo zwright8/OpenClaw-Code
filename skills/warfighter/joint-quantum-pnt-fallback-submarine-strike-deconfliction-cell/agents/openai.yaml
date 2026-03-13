@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Quantum PNT Fallback Submarine Strike Deconfliction Cell"
+  short_description: "Coordinate quantum-assisted PNT fallback with submarine strike deconfliction under denied and degraded navigation conditions."

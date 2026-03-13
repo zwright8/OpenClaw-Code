@@ -2153,3 +2153,33 @@ Every skill output should include:
 - Joint hypersonic defense sensor fusion and civil continuity + ballistic missile defense battle management + coalition ballistic missile civil-warning synchronization.
 - Homeland port ransomware manifest recovery and customs triage + coalition contested port cyber customs fraud fusion + coalition contested port crane cyber-physical recovery.
 - Coalition prisoner exchange biometric legal-chain synchronization + coalition detainee transfer assurance and legal observability + coalition cross-border casualty identity and family notification.
+
+## New Expansion Wave (2026-03-13, Wave XXXIV)
+
+- joint-deep-undersea-repair-rights-adjudication-and-restoration-cell
+- space-domain-cislunar-sustainment-legal-governance-and-cargo-priority-cell
+- homeland-critical-infrastructure-water-power-comms-mutual-aid-continuity-cell
+- coalition-autonomous-humanitarian-airlift-airspace-liability-cell
+- theater-forward-microreactor-fuel-security-and-blackstart-cell
+- joint-quantum-pnt-fallback-submarine-strike-deconfliction-cell
+- expeditionary-arctic-permafrost-fuel-pipeline-breach-recovery-cell
+- joint-mass-casualty-biosurveillance-isolation-evacuation-cell
+- coalition-legal-autonomous-weapons-incident-investigation-cell
+- tactical-drone-swarm-emp-hardening-and-mission-recovery-cell
+- strategic-seabed-critical-mineral-supply-denial-mitigation-cell
+- joint-civil-nuclear-plant-grid-islanding-population-protection-cell
+
+## Updated Pairings (2026-03-13, Wave XXXIV)
+
+- Deep-undersea repair-rights adjudication + undersea cable repeater salvage restoration + coalition legal interoperability + command-backbone continuity governance.
+- Cislunar sustainment legal cargo priority + cislunar conjunction rescue + orbital servicing/refuel assurance + coalition maneuver custody controls.
+- Homeland water-power-comms mutual aid continuity + homeland grid blackstart fuel-water-rail coordination + DSCA crisis support + civil alert assurance.
+- Coalition autonomous humanitarian airlift liability governance + contested spectrum civil aviation protection + coalition austere airfield safety + relief throughput prioritization.
+- Theater microreactor fuel security and blackstart + operational energy resilience + base defense force protection + theater mission-network continuity.
+- Quantum PNT fallback and submarine strike deconfliction + denied-PNT timing assurance + long-range fires deconfliction + undersea cue confidence.
+- Arctic permafrost pipeline breach recovery + arctic and extreme environment ops + fuel contamination response + expeditionary sustainment branch control.
+- Mass-casualty biosurveillance isolation evacuation + Role 3 medical network synchronization + casualty evacuation regulation + force-health protection.
+- Coalition legal autonomous-weapons incident investigation + battlefield forensics evidence preservation + mission-data releasability adjudication + legal chain-of-custody synchronization.
+- Tactical drone-swarm EMP hardening and recovery + autonomous swarm countermeasures + electromagnetic fratricide prevention + command-and-control restoration.
+- Strategic seabed critical-mineral supply denial mitigation + strategic industrial mobilization readiness + rare-earth processing recovery + supply-shock risk governance.
+- Civil nuclear plant grid-islanding population protection + strategic warning continuity + critical infrastructure defense + public-warning integrity assurance.

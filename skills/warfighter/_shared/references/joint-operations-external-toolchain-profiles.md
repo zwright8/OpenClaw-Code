@@ -989,3 +989,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent detainee identity witness + alternate legal compliance monitor.
 - Protocols: `NIEM`, `USMTF`, `VMF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
 - Degraded fallback: humanitarian-priority exchanges only with explicit coalition legal sign-off.
+
+## Profile Set (2026-03-13 Expansion Wave XXXIV - Deep Undersea Rights Adjudication, Cislunar Sustainment Governance, Homeland Mutual Aid Continuity, and High-Consequence Recovery Control)
+
+### `joint-deep-undersea-repair-rights-adjudication-restoration-v1`
+- Use for: adjudicating deep-undersea repair rights and restoration sequencing for command-backbone continuity.
+- Primary tools: repair-rights adjudicator + salvage legal workflow + restoration branch scheduler.
+- Cross-check tools: independent treaty/commercial-rights witness + alternate hydrographic integrity monitor.
+- Protocols: `AIS/NMEA`, `USMTF`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: mission-critical segments only with dual legal-command approval.
+
+### `space-domain-cislunar-sustainment-legal-governance-cargo-priority-v1`
+- Use for: cislunar sustainment cargo-priority arbitration with legal caveat and custody governance.
+- Primary tools: cargo-priority board + orbital legal adjudicator + maneuver custody workflow.
+- Cross-check tools: independent ephemeris witness + alternate coalition caveat monitor.
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: mission-essential cargo classes only with staged authority release.
+
+### `homeland-critical-infrastructure-water-power-comms-mutual-aid-continuity-v1`
+- Use for: cross-state mutual-aid synchronization restoring water, power, and communications continuity.
+- Primary tools: infrastructure dependency fusion board + mutual-aid allocator + restoration orchestrator.
+- Cross-check tools: independent utility-status witness + alternate emergency comms integrity monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-safety and mission-critical corridors only with staged restoration controls.
+
+### `coalition-autonomous-humanitarian-airlift-airspace-liability-v1`
+- Use for: coalition autonomous humanitarian airlift corridor governance and airspace liability control.
+- Primary tools: corridor scheduler + liability adjudication board + humanitarian throughput optimizer.
+- Cross-check tools: independent airspace safety witness + alternate legal caveat monitor.
+- Protocols: `AIXM/FIXM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `API/JSON`.
+- Degraded fallback: highest-priority corridors only with explicit coalition approval.
+
+### `theater-forward-microreactor-fuel-security-blackstart-v1`
+- Use for: theater microreactor fuel security and blackstart-driven energy restoration.
+- Primary tools: fuel-custody monitor + sabotage anomaly detector + blackstart sequencing board.
+- Cross-check tools: independent reactor safety witness + alternate load-priority integrity monitor.
+- Protocols: `USMTF`, `NIMS/ICS`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-critical loads only with conservative reactor release margins.
+
+### `joint-quantum-pnt-fallback-submarine-strike-deconfliction-v1`
+- Use for: quantum PNT fallback and submarine strike deconfliction in denied navigation conditions.
+- Primary tools: quantum timing confidence board + submarine corridor deconflictor + fires release workflow.
+- Cross-check tools: independent nav-integrity witness + alternate undersea track-confidence monitor.
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`.
+- Degraded fallback: high-confidence strike packages only with dual command release.
+
+### `expeditionary-arctic-permafrost-fuel-pipeline-breach-recovery-v1`
+- Use for: Arctic pipeline breach containment and permafrost-safe expeditionary sustainment recovery.
+- Primary tools: breach detector + permafrost impact board + expeditionary fuel reroute scheduler.
+- Cross-check tools: independent environmental integrity witness + alternate convoy sustainment monitor.
+- Protocols: `USMTF`, `NIMS/ICS`, `OGC WMS/WFS/WMTS`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-essential fuel routes only with strict environmental safeguards.
+
+### `joint-mass-casualty-biosurveillance-isolation-evacuation-v1`
+- Use for: biosurveillance-led isolation corridors and evacuation synchronization during mass-casualty events.
+- Primary tools: biosurveillance fusion board + isolation corridor planner + evacuation workflow.
+- Cross-check tools: independent clinical surveillance witness + alternate casualty-flow integrity monitor.
+- Protocols: `HL7/FHIR`, `USMTF`, `NIMS/ICS`, `EDXL-DE/CAP`, `API/JSON`.
+- Degraded fallback: life-threatening cohorts only with conservative movement controls.
+
+### `coalition-legal-autonomous-weapons-incident-investigation-v1`
+- Use for: coalition legal forensics and evidence custody after autonomous-weapon incidents.
+- Primary tools: legal triage board + autonomous telemetry forensic engine + custody workflow.
+- Cross-check tools: independent legal sufficiency witness + alternate digital evidence integrity monitor.
+- Protocols: `NIEM`, `USMTF`, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: high-confidence incidents only with staged coalition legal release.
+
+### `tactical-drone-swarm-emp-hardening-mission-recovery-v1`
+- Use for: EMP hardening assurance and tactical mission recovery after drone-swarm electromagnetic attacks.
+- Primary tools: EMP vulnerability assessor + impact recovery orchestrator + tactical comms reconstitution planner.
+- Cross-check tools: independent electronic survivability witness + alternate mission-thread continuity monitor.
+- Protocols: `Link 16 J-series`, `USMTF`, `CoT`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: mission-critical threads only with constrained emissions windows.
+
+### `strategic-seabed-critical-mineral-supply-denial-mitigation-v1`
+- Use for: strategic mitigation of seabed critical-mineral supply denial affecting readiness and industrial output.
+- Primary tools: seabed disruption board + mineral allocation adjudicator + industrial continuity workflow.
+- Cross-check tools: independent maritime supply witness + alternate demand-stress monitor.
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, `AIS/NMEA`, `API/JSON`.
+- Degraded fallback: strategic deterrence and mission-essential production lines only.
+
+### `joint-civil-nuclear-plant-grid-islanding-population-protection-v1`
+- Use for: civil nuclear grid-islanding, emergency cooling continuity, and population-protection synchronization.
+- Primary tools: islanding decision board + emergency cooling monitor + warning governance engine.
+- Cross-check tools: independent reactor safety witness + alternate civil-alert readiness monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: reactor-cooling and life-safety actions only with dual authority confirmation.

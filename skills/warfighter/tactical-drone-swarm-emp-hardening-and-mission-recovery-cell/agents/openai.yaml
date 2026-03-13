@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tactical Drone Swarm EMP Hardening and Mission Recovery Cell"
+  short_description: "Coordinate EMP hardening checks and mission-recovery sequencing after tactical drone-swarm electromagnetic attacks."

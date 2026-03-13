@@ -120,3 +120,9 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Extended shared references with Tool Suite Addendum XXXIII, Protocol Stack Addendum XXXIII, and Packet Addendum XXI to bind each mission domain to concrete external tools and protocol families.
 - Extended joint-operations external toolchain profiles with Wave XXXIII profile bindings for undersea restoration, strategic warning integrity, homeland infrastructure resilience, coalition legal release control, and hypersonic civil-continuity synchronization.
 - Improved existing high-usage skills `mission-risk-decision-support`, `coalition-interoperability-coordinator`, and `cema-integration-cell` with Expansion Wave XXXIII override bindings and packet references.
+
+## Run Update (2026-03-13T17:07:30Z)
+
+- Added Expansion Wave XXXIV with 12 new warfighter skills covering deep-undersea repair-rights adjudication, cislunar sustainment legal cargo governance, homeland water-power-comms mutual-aid continuity, coalition autonomous humanitarian airlift liability control, theater microreactor blackstart security, quantum-PNT submarine-strike deconfliction, Arctic permafrost pipeline breach recovery, mass-casualty biosurveillance isolation/evacuation, coalition legal autonomous-weapons incident investigation, tactical drone-swarm EMP recovery, strategic seabed critical-mineral denial mitigation, and civil nuclear grid-islanding population protection.
+- Extended shared references with Tool Suite Addendum XXXIV, Protocol Stack Addendum XXXIV, Packet Addendum XXII, and Profile Set Wave XXXIV to bind every new skill to concrete external tools, protocols, and packet schemas.
+- Improved `mission-risk-decision-support`, `coalition-interoperability-coordinator`, and `cema-integration-cell` with Expansion Wave XXXIV override bindings for high-consequence legal-custody governance, critical-infrastructure continuity, and electromagnetic mission-recovery control.
