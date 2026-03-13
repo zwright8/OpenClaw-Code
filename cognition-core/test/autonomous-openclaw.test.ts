@@ -2494,6 +2494,186 @@ test('buildAutonomousBatchPlan supports sw_corral_exp3 recency-aware expert corr
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'epsilon_ts');
 });
 
+test('buildAutonomousBatchPlan supports adwin_corral_exp3 abrupt-drift expert corralling', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 753, code: 'SK-00753', title: 'Skill 753' },
+            { id: 754, code: 'SK-00754', title: 'Skill 754' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 43,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '753': { attempts: 10, successes: 8, failures: 2, consecutiveFailures: 0, lastWave: 42, lastStatus: 'completed' },
+                '754': { attempts: 10, successes: 4, failures: 6, consecutiveFailures: 0, lastWave: 42, lastStatus: 'completed' }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: {
+                        attempts: 24,
+                        successes: 12,
+                        failures: 12,
+                        cumulativeReward: 12,
+                        recentOutcomes: [
+                            { wave: 31, status: 'failed' },
+                            { wave: 32, status: 'failed' },
+                            { wave: 33, status: 'failed' },
+                            { wave: 34, status: 'failed' },
+                            { wave: 35, status: 'failed' },
+                            { wave: 36, status: 'failed' },
+                            { wave: 37, status: 'completed' },
+                            { wave: 38, status: 'completed' },
+                            { wave: 39, status: 'completed' },
+                            { wave: 40, status: 'completed' },
+                            { wave: 41, status: 'completed' },
+                            { wave: 42, status: 'completed' }
+                        ]
+                    },
+                    epsilon_ts: {
+                        attempts: 24,
+                        successes: 12,
+                        failures: 12,
+                        cumulativeReward: 12,
+                        recentOutcomes: [
+                            { wave: 31, status: 'completed' },
+                            { wave: 32, status: 'completed' },
+                            { wave: 33, status: 'completed' },
+                            { wave: 34, status: 'completed' },
+                            { wave: 35, status: 'completed' },
+                            { wave: 36, status: 'completed' },
+                            { wave: 37, status: 'failed' },
+                            { wave: 38, status: 'failed' },
+                            { wave: 39, status: 'failed' },
+                            { wave: 40, status: 'failed' },
+                            { wave: 41, status: 'failed' },
+                            { wave: 42, status: 'failed' }
+                        ]
+                    },
+                    kl_ucb: { attempts: 24, successes: 12, failures: 12, cumulativeReward: 12 },
+                    cd_ucb: { attempts: 24, successes: 12, failures: 12, cumulativeReward: 12 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 44,
+        selectionPolicyConfig: {
+            mode: 'adwin_corral_exp3',
+            corralGamma: 0,
+            corralEta: 5,
+            changeDetectionMinSamples: 4,
+            adwinDelta: 0.01
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [753]);
+    assert.equal(plan.selection.policy.skills, 'ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'ucb');
+});
+
+test('buildAutonomousBatchPlan supports adwin_corral_exp3_plus drift-specialist recency routing', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 859, code: 'SK-00859', title: 'Skill 859' },
+            { id: 860, code: 'SK-00860', title: 'Skill 860' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 60,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '859': {
+                    attempts: 16,
+                    successes: 7,
+                    failures: 9,
+                    consecutiveFailures: 0,
+                    lastWave: 59,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 56, status: 'failed' },
+                        { wave: 57, status: 'failed' },
+                        { wave: 58, status: 'completed' },
+                        { wave: 59, status: 'completed' }
+                    ]
+                },
+                '860': {
+                    attempts: 16,
+                    successes: 13,
+                    failures: 3,
+                    consecutiveFailures: 0,
+                    lastWave: 59,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 56, status: 'completed' },
+                        { wave: 57, status: 'completed' },
+                        { wave: 58, status: 'failed' },
+                        { wave: 59, status: 'failed' }
+                    ]
+                }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    epsilon_ts: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    kl_ucb: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    cd_ucb: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    ucb_tuned: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    ucb_v: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    bayes_ucb: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    cusum_ucb: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    adwin_ucb: {
+                        attempts: 24,
+                        successes: 12,
+                        failures: 12,
+                        cumulativeReward: 12,
+                        recentOutcomes: [
+                            { wave: 49, status: 'failed' },
+                            { wave: 50, status: 'failed' },
+                            { wave: 51, status: 'failed' },
+                            { wave: 52, status: 'failed' },
+                            { wave: 53, status: 'failed' },
+                            { wave: 54, status: 'failed' },
+                            { wave: 55, status: 'completed' },
+                            { wave: 56, status: 'completed' },
+                            { wave: 57, status: 'completed' },
+                            { wave: 58, status: 'completed' },
+                            { wave: 59, status: 'completed' },
+                            { wave: 60, status: 'completed' }
+                        ]
+                    },
+                    adwin_epsilon_ts: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    fdsw_ucb: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    fdsw_epsilon_ts: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 },
+                    bge: { attempts: 30, successes: 18, failures: 12, cumulativeReward: 18 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 61,
+        selectionPolicyConfig: {
+            mode: 'adwin_corral_exp3_plus',
+            corralGamma: 0,
+            corralEta: 5,
+            changeDetectionMinSamples: 4,
+            adwinDelta: 0.01
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [859]);
+    assert.equal(plan.selection.policy.skills, 'adwin_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_ucb');
+});
+
 test('buildAutonomousBatchPlan supports d_corral_exp3_plus discounted expert corralling', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -199,9 +199,11 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'corral_exp3',
     'sw_corral_exp3',
     'd_corral_exp3',
+    'adwin_corral_exp3',
     'corral_exp3_plus',
     'sw_corral_exp3_plus',
     'd_corral_exp3_plus',
+    'adwin_corral_exp3_plus',
     'exp3_ix',
     'exp3_s',
     'adwin_exp3_ix',
@@ -396,9 +398,17 @@ const CORRAL_POLICY_MODES = new Set([
     'corral_exp3',
     'sw_corral_exp3',
     'd_corral_exp3',
+    'adwin_corral_exp3',
     'corral_exp3_plus',
     'sw_corral_exp3_plus',
-    'd_corral_exp3_plus'
+    'd_corral_exp3_plus',
+    'adwin_corral_exp3_plus'
+]);
+const CORRAL_PLUS_POLICY_MODES = new Set([
+    'corral_exp3_plus',
+    'sw_corral_exp3_plus',
+    'd_corral_exp3_plus',
+    'adwin_corral_exp3_plus'
 ]);
 const SLIDING_WINDOW_CORRAL_POLICY_MODES = new Set([
     'sw_corral_exp3',
@@ -407,6 +417,10 @@ const SLIDING_WINDOW_CORRAL_POLICY_MODES = new Set([
 const DISCOUNTED_CORRAL_POLICY_MODES = new Set([
     'd_corral_exp3',
     'd_corral_exp3_plus'
+]);
+const ADWIN_CORRAL_POLICY_MODES = new Set([
+    'adwin_corral_exp3',
+    'adwin_corral_exp3_plus'
 ]);
 const CORRAL_EXP3_BASE_POLICIES = [
     'ucb',
@@ -2797,9 +2811,7 @@ function computeMossAnytimeScore(stat, totalAttempts, totalArms, currentWave, ad
 function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig, currentWave = 0) {
     const laneStats = normalizePolicyPerformanceByLane(policyExecutionStats);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const corralPolicies = policy.mode === 'corral_exp3_plus'
-        || policy.mode === 'sw_corral_exp3_plus'
-        || policy.mode === 'd_corral_exp3_plus'
+    const corralPolicies = CORRAL_PLUS_POLICY_MODES.has(policy.mode)
         ? CORRAL_EXP3_PLUS_BASE_POLICIES
         : CORRAL_EXP3_BASE_POLICIES;
     const gamma = policy.corralGamma;
@@ -2977,8 +2989,11 @@ function resolveCorralRecentOutcomes(stat, selectionPolicyConfig) {
     const normalized = normalizePolicyPerformanceStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     let outcomes = normalized.recentOutcomes.slice();
-    if (policy.mode === 'sw_corral_exp3' || policy.mode === 'sw_corral_exp3_plus') {
+    if (SLIDING_WINDOW_CORRAL_POLICY_MODES.has(policy.mode)) {
         outcomes = outcomes.slice(-policy.slidingWindowSize);
+    } else if (ADWIN_CORRAL_POLICY_MODES.has(policy.mode)) {
+        const changeIndex = detectAdwinChangeIndex(outcomes, policy);
+        outcomes = changeIndex > 0 ? outcomes.slice(changeIndex) : outcomes;
     }
     return outcomes.map((entry) => normalizeRecentOutcomeEntry(entry));
 }
