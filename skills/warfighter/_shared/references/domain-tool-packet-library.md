@@ -10829,3 +10829,137 @@ validation_gates:
 - output_schema: screening board, repatriation ladder, custody-health packet
 - protocol_profile: HL7/FHIR + NIEM + USMTF + signed custody exports + API/JSON
 - validation_gates: medical QA pass, roster-integrity threshold, authority concurrence
+
+## Packet Addendum XXIX (2026-03-13, Expansion Wave XL)
+
+### packet_id: DPL-JOINT-WEATHER-RADAR-SPECTRUM-DECONFLICTION-001
+- domain: joint battlefield weather-radar and spectrum deconfliction
+- objective: preserve trusted mission-weather dissemination while deconflicting radar emissions with EW plans and airspace timing.
+- primary_tools: spectrum assignment board, weather-radar operations picture, mission-weather workflow, electromagnetic emissions planner
+- alternate_tools: manual emissions board and reduced weather-update cycle
+- degraded_mode: mission-essential weather products only with fixed radar windows and conservative emission controls
+- input_requirements: radar status, emissions plan, weather product priorities, airspace timeline, EW constraints
+- output_schema: radar-spectrum separation matrix, weather integrity ladder, emissions-governance packet
+- protocol_profile: OGC WMS/WFS/WMTS + AIXM/FIXM/IWXXM + USMTF + Link 16 J-series + API/JSON
+- validation_gates: radar-health pass, spectrum-conflict threshold, airspace acknowledgment integrity
+
+### packet_id: DPL-COALITION-MERCHANT-MARINE-CREW-VETTING-SEALIFT-001
+- domain: coalition merchant marine crew vetting and sealift assurance
+- objective: protect coalition sealift continuity by reconciling crew trust, sanctions constraints, and port-release timing.
+- primary_tools: crew-vetting ledger, sealift manning board, port-access workflow, sanctions-screening service
+- alternate_tools: manual crew manifest board and liaison screening cell
+- degraded_mode: mission-essential voyages only with dual-approval crew release
+- input_requirements: crew rosters, vessel schedule, port-access rules, sanctions/watchlist results, cargo priority
+- output_schema: crew trust board, sealift manning ladder, port-release packet
+- protocol_profile: AIS/NMEA + NIEM + NATO APP-11/ADatP-3 aligned + USMTF + API/JSON
+- validation_gates: identity-confidence pass, coalition acknowledgment chain, voyage-readiness threshold
+
+### packet_id: DPL-EXPEDITIONARY-HELICOPTER-BROWNOUT-DRONE-DECONFLICTION-001
+- domain: expeditionary helicopter brownout and drone deconfliction
+- objective: release rotary-wing movements only when brownout, low-altitude UAS conflict, and landing-zone safety are within limits.
+- primary_tools: dust and visibility hazard model, landing-zone surveillance board, UAS separation workflow, sortie timing planner
+- alternate_tools: manual landing-zone check sheet and fixed drone exclusion windows
+- degraded_mode: casualty or mission-essential movements only with conservative visibility minimums
+- input_requirements: wind and dust conditions, LZ geometry, UAS tracks, sortie demand, safety limits
+- output_schema: landing-zone hazard board, arrival-departure ladder, aviation safety packet
+- protocol_profile: AIXM/FIXM/IWXXM + CoT + Link 16 J-series + USMTF + API/JSON
+- validation_gates: visibility-confidence pass, UAS separation threshold, aviation release acknowledgment
+
+### packet_id: DPL-HOMELAND-CIVIL-NUCLEAR-GRID-LOSS-MILSUP-001
+- domain: homeland civil nuclear plant grid loss military support
+- objective: synchronize DSCA protection and sustainment support when offsite power loss threatens cooling continuity and population safety.
+- primary_tools: plant status dashboard, emergency cooling support board, protected-route planner, population-alert workflow
+- alternate_tools: manual incident board and staged DSCA support worksheet
+- degraded_mode: cooling and life-safety support only with fixed public-protection criteria
+- input_requirements: plant status, backup-power availability, route security, public-protection posture, DSCA authority
+- output_schema: cooling-support decision board, protected support ladder, population-protection support packet
+- protocol_profile: NIMS/ICS + NIEM + EDXL-DE/CAP + USMTF + API/JSON
+- validation_gates: reactor-status confidence, DSCA authority confirmation, alert acknowledgment integrity
+
+### packet_id: DPL-THEATER-TEMPORARY-BRIDGE-UAS-RELEASE-001
+- domain: theater rapid temporary bridge UAS inspection and release
+- objective: accelerate bridge release for military movement using UAS inspection without sacrificing load-class safety.
+- primary_tools: UAS inspection planner, structural defect triage board, bridge load-class workflow, mobility release tracker
+- alternate_tools: manual engineer inspection team and paper load-class worksheet
+- degraded_mode: life-safety or mission-essential crossings only with conservative load restrictions
+- input_requirements: bridge imagery, span configuration, defect cues, load demands, route priorities
+- output_schema: bridge inspection matrix, load-release ladder, mobility packet
+- protocol_profile: OGC WMS/WFS/WMTS + CoT + VMF + USMTF + API/JSON
+- validation_gates: structural-confidence pass, engineer acknowledgment, route-release threshold
+
+### packet_id: DPL-STRATEGIC-LNG-BUNKER-FLEET-FUEL-ALLOCATION-001
+- domain: strategic contested LNG bunker and fleet fuel allocation
+- objective: allocate contested LNG and associated fleet fuel while preserving critical maritime readiness and port safety.
+- primary_tools: LNG inventory ledger, bunker scheduling board, fleet demand-priority planner, port-risk workflow
+- alternate_tools: manual bunker allocation board and phased fueling worksheet
+- degraded_mode: deterrence-critical fleet movements only with strict berth and fuel-release controls
+- input_requirements: fuel inventory, vessel demand, berth status, sabotage indicators, mission priorities
+- output_schema: fuel priority board, bunker allocation ladder, fleet sustainment packet
+- protocol_profile: AIS/NMEA + NIEM + USMTF + STIX/TAXII + API/JSON
+- validation_gates: fuel-quality pass, berth-availability threshold, sustainment-release acknowledgment
+
+### packet_id: DPL-TACTICAL-CIVIL-EVACUATION-PUBLIC-ADDRESS-AUTH-001
+- domain: tactical civil evacuation public-address authentication
+- objective: ensure evacuation messages are authentic, understood, and synchronized with life-safety movement control.
+- primary_tools: message-authentication workflow, translation assurance board, civil-alert dissemination planner, rumor-monitoring dashboard
+- alternate_tools: manual readback witness chain and fixed-script loudspeaker worksheet
+- degraded_mode: life-safety messages only with authenticated fixed phrases and local witness confirmation
+- input_requirements: evacuation message, language set, broadcast routes, threat indicators, movement-control plan
+- output_schema: message authenticity board, evacuation broadcast ladder, civil-trust packet
+- protocol_profile: EDXL-DE/CAP + CoT + NIEM + USMTF + API/JSON
+- validation_gates: message-auth pass, translation confidence threshold, civil-alert acknowledgment integrity
+
+### packet_id: DPL-JOINT-SPACE-LAUNCH-RANGE-SPECTRUM-DECONFLICTION-001
+- domain: joint space launch range spectrum deconfliction
+- objective: protect launch timing by resolving spectrum conflicts that could degrade telemetry, range safety, or mission assurance.
+- primary_tools: range-spectrum scheduler, telemetry health board, launch-window adjudicator, interference monitoring workflow
+- alternate_tools: manual range-control board and fixed spectrum hold windows
+- degraded_mode: highest-priority launches only with reduced telemetry paths and additional release gates
+- input_requirements: launch manifest, telemetry requirements, spectrum occupancy, range status, interference alerts
+- output_schema: spectrum release board, launch-window ladder, telemetry assurance packet
+- protocol_profile: CCSDS + AIXM/FIXM + USMTF + Link 16 J-series + API/JSON
+- validation_gates: telemetry-integrity pass, range-safety acknowledgment, interference threshold
+
+### packet_id: DPL-THEATER-UNDERGROUND-HOSPITAL-OXYGEN-POWER-001
+- domain: theater underground hospital oxygen and power continuity
+- objective: preserve protected hospital care by synchronizing oxygen generation, power continuity, and casualty-load balancing.
+- primary_tools: hospital utility dashboard, oxygen generation board, critical-load planner, casualty-flow tracker
+- alternate_tools: manual utility board and reduced-care-area worksheet
+- degraded_mode: life-saving wards only with strict load shedding and oxygen rationing triggers
+- input_requirements: oxygen status, power profile, casualty load, generator health, protective posture
+- output_schema: oxygen-power continuity board, clinical load ladder, subterranean care packet
+- protocol_profile: HL7/FHIR + NIMS/ICS + USMTF + NIEM + API/JSON
+- validation_gates: utility-confidence pass, clinical-capacity threshold, medical-command acknowledgment
+
+### packet_id: DPL-JOINT-DISCONNECTED-AI-MODEL-UPDATE-ATTESTATION-001
+- domain: joint disconnected mission AI model update attestation
+- objective: authorize disconnected model updates only when provenance, compatibility, and rollback safety are verified.
+- primary_tools: model attestation ledger, artifact-signature verifier, mission-thread compatibility board, rollback workflow
+- alternate_tools: manual signature witness board and staged update hold worksheet
+- degraded_mode: no new model release unless safety-critical patch with dual approval and rollback ready
+- input_requirements: update package, signature chain, compatibility results, rollback snapshot, mission context
+- output_schema: model-release board, attestation ladder, rollback packet
+- protocol_profile: USMTF + STIX/TAXII + signed artifact manifests + NIEM + API/JSON
+- validation_gates: provenance pass, compatibility threshold, rollback-readiness acknowledgment
+
+### packet_id: DPL-HOMELAND-RESERVIST-EMPLOYER-PROTECTION-MOBILIZATION-001
+- domain: homeland reservist employer protection and mobilization assurance
+- objective: maintain reserve call-up continuity by reconciling employer impacts, statutory protections, and transport readiness.
+- primary_tools: reservist readiness board, employer-impact tracker, mobilization authority workflow, transportation synchronization planner
+- alternate_tools: manual employer contact roster and phased call-up worksheet
+- degraded_mode: highest-priority reserve billets only with manual authority checks and delayed employer reconciliation
+- input_requirements: mobilization demand, reservist roster, employer data, authority status, transport options
+- output_schema: employer-impact board, mobilization assurance ladder, reserve call-up packet
+- protocol_profile: NIEM + NIMS/ICS + USMTF + signed readiness exports + API/JSON
+- validation_gates: readiness-confidence pass, authority confirmation, transport-synchronization threshold
+
+### packet_id: DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001
+- domain: strategic commercial port crane firmware rollback and sealift recovery
+- objective: restore trusted crane operations and sealift throughput after OT compromise without triggering unsafe pier actions.
+- primary_tools: crane OT telemetry board, firmware rollback workflow, pier throughput planner, sealift berth-priority tracker
+- alternate_tools: manual crane safety board and phased berth release worksheet
+- degraded_mode: defense-critical cargo only with crane-by-crane manual release and reduced pier tempo
+- input_requirements: OT alert state, firmware baselines, crane status, berth schedule, sealift priorities
+- output_schema: crane rollback board, pier recovery ladder, sealift recovery packet
+- protocol_profile: STIX/TAXII + AIS/NMEA + NIMS/ICS + USMTF + API/JSON
+- validation_gates: OT-integrity pass, crane-safety threshold, berth-release acknowledgment

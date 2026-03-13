@@ -1456,3 +1456,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent medical QA witness + alternate roster-integrity monitor.
 - Protocols: `HL7/FHIR`, `NIEM`, `USMTF`, signed custody exports, `API/JSON`.
 - Degraded fallback: high-confidence health-status classes only with staged transport release.
+
+## Profile Set (2026-03-13 Expansion Wave XL - Weather-Radar Spectrum Control, Sealift Crew Vetting, Brownout Safety, Civil Nuclear Grid-Loss Support, Bridge UAS Release, LNG Fleet Fuel Allocation, Public-Address Authentication, Launch-Range Spectrum Control, Underground Hospital Continuity, Disconnected AI Update Attestation, Reserve Mobilization Assurance, and Port Crane Firmware Rollback)
+
+### `joint-weather-radar-spectrum-deconfliction-v1`
+- Use for: joint air-land decisions where weather-radar integrity and electromagnetic release windows must stay synchronized.
+- Primary tools: spectrum assignment board + weather-radar operations picture + mission-weather workflow.
+- Cross-check tools: independent radar health witness + alternate spectrum-conflict monitor.
+- Protocols: `OGC WMS/WFS/WMTS`, `AIXM/FIXM/IWXXM`, `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Degraded fallback: mission-essential weather products only with fixed radar windows and conservative emissions control.
+
+### `coalition-merchant-marine-crew-vetting-sealift-assurance-v1`
+- Use for: coalition sealift decisions where crew trust, port release, and sanctions or watchlist synchronization determine voyage viability.
+- Primary tools: crew-vetting ledger + sealift manning board + port-access workflow.
+- Cross-check tools: independent crew-identity witness + alternate voyage-readiness monitor.
+- Protocols: `AIS/NMEA`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
+- Degraded fallback: mission-essential voyages only with liaison screening and dual-approval release.
+
+### `expeditionary-helicopter-brownout-drone-deconfliction-v1`
+- Use for: austere rotary-wing branches where brownout, drone conflict, and LZ release timing govern flight safety.
+- Primary tools: dust and visibility hazard model + landing-zone surveillance board + UAS separation workflow.
+- Cross-check tools: independent brownout witness + alternate low-altitude airspace monitor.
+- Protocols: `AIXM/FIXM/IWXXM`, `CoT`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Degraded fallback: casualty or mission-essential movements only with fixed drone exclusion windows and conservative visibility minimums.
+
+### `homeland-civil-nuclear-plant-grid-loss-military-support-v1`
+- Use for: homeland DSCA branches where plant grid loss, emergency cooling support, and public-protection timing determine military support release.
+- Primary tools: plant status dashboard + emergency cooling support board + protected-route planner.
+- Cross-check tools: independent reactor-status witness + alternate public-protection monitor.
+- Protocols: `NIMS/ICS`, `NIEM`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Degraded fallback: cooling and life-safety support only with staged public-protection actions.
+
+### `theater-rapid-temporary-bridge-uas-inspection-release-v1`
+- Use for: engineer mobility branches where UAS inspection confidence controls temporary-bridge release and force-flow timing.
+- Primary tools: UAS inspection planner + structural defect triage board + bridge load-class workflow.
+- Cross-check tools: independent engineer witness + alternate route-capacity monitor.
+- Protocols: `OGC WMS/WFS/WMTS`, `CoT`, `VMF`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-safety or mission-essential crossings only with conservative load restrictions and manual engineer release.
+
+### `strategic-contested-lng-bunker-fleet-fuel-allocation-v1`
+- Use for: fleet sustainment decisions where LNG inventory, bunker access, and port-risk indicators determine maritime readiness.
+- Primary tools: LNG inventory ledger + bunker scheduling board + fleet demand-priority planner.
+- Cross-check tools: independent cargo-quality witness + alternate berth-availability monitor.
+- Protocols: `AIS/NMEA`, `NIEM`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: deterrence-critical fleet movements only with reduced berth tempo and strict fuel-release control.
+
+### `tactical-civil-evacuation-public-address-auth-v1`
+- Use for: tactical civil-protection branches where broadcast authenticity, translation fidelity, and movement control shape civilian trust.
+- Primary tools: message-authentication workflow + translation assurance board + civil-alert dissemination planner.
+- Cross-check tools: independent linguistic witness + alternate broadcast-integrity monitor.
+- Protocols: `EDXL-DE/CAP`, `CoT`, `NIEM`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-safety messages only with authenticated fixed phrases and local readback witness.
+
+### `joint-space-launch-range-spectrum-deconfliction-v1`
+- Use for: launch-range decisions where telemetry integrity, spectrum assignments, and window release timing compete under pressure.
+- Primary tools: range-spectrum scheduler + telemetry health board + launch-window adjudicator.
+- Cross-check tools: independent range-safety witness + alternate telemetry-integrity monitor.
+- Protocols: `CCSDS`, `AIXM/FIXM`, `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Degraded fallback: highest-priority launches only with reduced telemetry paths and extra release gates.
+
+### `theater-underground-hospital-oxygen-power-continuity-v1`
+- Use for: protected-hospital branches where oxygen, electrical continuity, and casualty-load balancing determine survival outcomes.
+- Primary tools: hospital utility dashboard + oxygen generation board + critical-load planner.
+- Cross-check tools: independent biomedical systems witness + alternate bed-capacity monitor.
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: life-saving wards only with strict load shedding and oxygen rationing triggers.
+
+### `joint-disconnected-mission-ai-model-update-attestation-v1`
+- Use for: disconnected mission-AI updates where provenance, compatibility, and rollback readiness determine release authority.
+- Primary tools: model attestation ledger + artifact-signature verifier + mission-thread compatibility board.
+- Cross-check tools: independent provenance witness + alternate model-drift monitor.
+- Protocols: `USMTF`, `STIX/TAXII`, signed artifact manifests, `NIEM`, `API/JSON`.
+- Degraded fallback: no new model release unless safety-critical patch with dual approval and rollback ready.
+
+### `homeland-reservist-employer-protection-mobilization-assurance-v1`
+- Use for: reserve mobilization decisions where employer protections, authority status, and transport synchronization shape call-up continuity.
+- Primary tools: reservist readiness board + employer-impact tracker + mobilization authority workflow.
+- Cross-check tools: independent personnel-readiness witness + alternate employer-response monitor.
+- Protocols: `NIEM`, `NIMS/ICS`, `USMTF`, signed readiness exports, `API/JSON`.
+- Degraded fallback: highest-priority reserve billets only with manual employer reconciliation and delayed transport alignment.
+
+### `strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1`
+- Use for: strategic port recovery branches where crane OT rollback safety and military sealift throughput must remain coupled.
+- Primary tools: crane OT telemetry board + firmware rollback workflow + pier throughput planner.
+- Cross-check tools: independent OT integrity witness + alternate cargo-flow monitor.
+- Protocols: `STIX/TAXII`, `AIS/NMEA`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Degraded fallback: defense-critical cargo only with crane-by-crane manual release and reduced pier tempo.

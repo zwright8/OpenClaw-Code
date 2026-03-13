@@ -2319,3 +2319,33 @@ Every skill output should include:
 - Joint unmanned orbit reentry debris and civil airspace warning + space-ground integration and reentry risk + tactical airspace control and deconfliction + civil air-warning continuity.
 - Homeland defense-industrial copper transformer theft and grid priority + homeland critical infrastructure water-power-comms mutual aid continuity + homeland energy-market cyber disruption and defense-industrial load priority + strategic industrial mobilization readiness.
 - Strategic prisoner-of-war camp disease screening and repatriation + mortuary affairs and personnel accountability + coalition joint personnel accounting and repatriation + expeditionary antimicrobial-resistance outbreak isolation and force-health continuity.
+
+## New Expansion Wave (2026-03-13, Wave XL)
+
+- joint-battlefield-weather-radar-and-spectrum-deconfliction-cell
+- coalition-merchant-marine-crew-vetting-and-sealift-assurance-cell
+- expeditionary-helicopter-brownout-and-drone-deconfliction-cell
+- homeland-civil-nuclear-plant-grid-loss-military-support-cell
+- theater-rapid-temporary-bridge-uas-inspection-and-release-cell
+- strategic-contested-lng-bunker-and-fleet-fuel-allocation-cell
+- tactical-civil-evacuation-public-address-authentication-cell
+- joint-space-launch-range-spectrum-deconfliction-cell
+- theater-underground-hospital-oxygen-and-power-continuity-cell
+- joint-disconnected-mission-ai-model-update-attestation-cell
+- homeland-reservist-employer-protection-and-mobilization-assurance-cell
+- strategic-commercial-port-crane-firmware-rollback-and-sealift-recovery-cell
+
+## Updated Pairings (2026-03-13, Wave XL)
+
+- Battlefield weather-radar and spectrum deconfliction + electromagnetic battle management + weather-space-weather effects forecast + theater airspace control and deconfliction.
+- Coalition merchant marine crew vetting and sealift assurance + strategic sealift and prepositioning coordination + coalition interoperability + sanctions/export-control impact assessment.
+- Expeditionary helicopter brownout and drone deconfliction + combat search and rescue coordination + expeditionary airfield operations + tactical UAS traffic management.
+- Homeland civil nuclear plant grid-loss military support + defense support of civil authorities crisis response + joint civil nuclear plant grid islanding and population protection + operational energy resilience and microgrid.
+- Rapid temporary bridge UAS inspection and release + contested bridge and gap crossing operations + engineer mobility and countermobility + joint rail bridge sabotage restoration and force flow.
+- Strategic contested LNG bunker and fleet fuel allocation + naval convoy escort and sea-lane protection + contested logistics sustainment + strategic mobility deployment planning.
+- Tactical civil evacuation public-address authentication + population protection and noncombatant evacuation operations + information integrity and attribution + tactical psychological operations and MISO.
+- Joint space launch range spectrum deconfliction + contested space launch and satellite reconstitution + space domain awareness and SATCOM defense + CEMA integration.
+- Theater underground hospital oxygen and power continuity + joint role 3 medical network and aeromedical evacuation + casualty evacuation and medical regulation + urban hospital oxygen-power cascade response.
+- Joint disconnected mission AI model update attestation + tactical edge AI model assurance + theater mission data poisoning detection and model quarantine + mission-assured software factory support.
+- Homeland reservist employer protection and mobilization assurance + multi-domain reserve mobilization readiness + reserve and guard mobilization planner + strategic industrial mobilization readiness.
+- Strategic commercial port crane firmware rollback and sealift recovery + port-opening JRSOI integration + homeland port ransomware manifest recovery and customs triage + coalition contested port crane cyber-physical recovery.

@@ -99,3 +99,10 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XL Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-helicopter-brownout-drone-deconfliction-v1` + `protocol_stack_id=ps-expeditionary-helicopter-brownout-drone-deconfliction-stack-v1` when aeromedical lift or casualty pickup branches depend on landing-zone visibility and low-altitude UAS separation confidence.
+- Add `tool_suite_id=ts-theater-underground-hospital-oxygen-power-continuity-v1` + `protocol_stack_id=ps-theater-underground-hospital-oxygen-power-continuity-stack-v1` when Role 3 survival depends on protected-facility oxygen, power, and casualty-load balancing.
+- Add `tool_suite_id=ts-homeland-civil-nuclear-plant-grid-loss-military-support-v1` + `protocol_stack_id=ps-homeland-civil-nuclear-plant-grid-loss-military-support-stack-v1` when mass-casualty or radiological support decisions depend on synchronized DSCA cooling and public-protection actions.
+- Add `packet_id=DPL-EXPEDITIONARY-HELICOPTER-BROWNOUT-DRONE-DECONFLICTION-001`, `packet_id=DPL-THEATER-UNDERGROUND-HOSPITAL-OXYGEN-POWER-001`, and `packet_id=DPL-HOMELAND-CIVIL-NUCLEAR-GRID-LOSS-MILSUP-001` for medical branches that materially alter survival posture, evacuation timing, or protected-facility continuity.

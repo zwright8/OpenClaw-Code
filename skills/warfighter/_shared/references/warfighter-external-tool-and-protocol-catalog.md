@@ -11256,3 +11256,127 @@ external_binding:
 ### `ps-strategic-pow-camp-disease-screening-repatriation-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, `USMTF`, signed custody exports, `API/JSON`.
 - Use for: camp health telemetry, custody-transfer status, and repatriation approval synchronization.
+
+## Tool Suite Addendum XL (2026-03-13, Weather-Radar Spectrum Control, Sealift Crew Vetting, Brownout Safety, Civil Nuclear Grid-Loss Support, Bridge UAS Release, LNG Fleet Fuel Allocation, Public-Address Authentication, Launch-Range Spectrum Control, Underground Hospital Continuity, Disconnected AI Update Attestation, Reserve Mobilization Assurance, and Port Crane Firmware Rollback)
+
+### `ts-joint-weather-radar-spectrum-deconfliction-v1`
+- Use for: joint weather-radar operations that must remain deconflicted from electromagnetic attack plans and mission-weather dissemination timelines.
+- Primary tools: spectrum assignment board, weather-radar operations picture, mission-weather product workflow, electromagnetic emissions planner.
+- Cross-check tools: independent radar health witness and alternate spectrum-conflict monitor.
+- Typical products: radar-spectrum separation matrix, weather integrity ladder, emissions-governance packet.
+
+### `ts-coalition-merchant-marine-crew-vetting-sealift-assurance-v1`
+- Use for: coalition sealift branches where merchant crew trust, sanctions/watchlist checks, and port-release confidence determine throughput.
+- Primary tools: crew-vetting ledger, sealift manning board, port-access workflow, sanctions-screening service.
+- Cross-check tools: independent crew-identity witness and alternate voyage-readiness monitor.
+- Typical products: crew trust board, sealift manning ladder, port-release packet.
+
+### `ts-expeditionary-helicopter-brownout-drone-deconfliction-v1`
+- Use for: expeditionary rotary-wing operations where brownout risk, UAS conflict, and landing-zone release timing must remain synchronized.
+- Primary tools: dust and visibility hazard model, landing-zone surveillance board, UAS separation workflow, sortie timing planner.
+- Cross-check tools: independent brownout witness and alternate low-altitude airspace monitor.
+- Typical products: landing-zone hazard board, arrival-departure ladder, aviation safety packet.
+
+### `ts-homeland-civil-nuclear-plant-grid-loss-military-support-v1`
+- Use for: homeland civil nuclear support branches where offsite-power loss, emergency cooling continuity, and DSCA protection timing must remain aligned.
+- Primary tools: plant status dashboard, emergency cooling support board, protected-route planner, population-alert workflow.
+- Cross-check tools: independent reactor-status witness and alternate public-protection monitor.
+- Typical products: cooling-support decision board, protected support ladder, population-protection support packet.
+
+### `ts-theater-rapid-temporary-bridge-uas-inspection-release-v1`
+- Use for: theater engineer mobility branches where UAS inspection confidence and temporary bridge release determine force-flow timing.
+- Primary tools: UAS inspection planner, structural defect triage board, bridge load-class workflow, mobility release tracker.
+- Cross-check tools: independent engineer witness and alternate route-capacity monitor.
+- Typical products: bridge inspection matrix, load-release ladder, mobility packet.
+
+### `ts-strategic-contested-lng-bunker-fleet-fuel-allocation-v1`
+- Use for: strategic fleet sustainment where LNG bunkering, contested port access, and sabotage-aware fuel allocation determine sortie or transit viability.
+- Primary tools: LNG inventory ledger, bunker scheduling board, fleet demand-priority planner, port-risk workflow.
+- Cross-check tools: independent cargo-quality witness and alternate berth-availability monitor.
+- Typical products: fuel priority board, bunker allocation ladder, fleet sustainment packet.
+
+### `ts-tactical-civil-evacuation-public-address-auth-v1`
+- Use for: tactical civil-evacuation operations where loudspeaker or public-address authenticity and message timing govern civilian movement trust.
+- Primary tools: message-authentication workflow, translation assurance board, civil-alert dissemination planner, rumor-monitoring dashboard.
+- Cross-check tools: independent linguistic witness and alternate broadcast-integrity monitor.
+- Typical products: message authenticity board, evacuation broadcast ladder, civil-trust packet.
+
+### `ts-joint-space-launch-range-spectrum-deconfliction-v1`
+- Use for: joint military or dual-use launch operations where range spectrum, telemetry integrity, and launch-window timing compete for release authority.
+- Primary tools: range-spectrum scheduler, telemetry health board, launch-window adjudicator, interference monitoring workflow.
+- Cross-check tools: independent range-safety witness and alternate telemetry-integrity monitor.
+- Typical products: spectrum release board, launch-window ladder, telemetry assurance packet.
+
+### `ts-theater-underground-hospital-oxygen-power-continuity-v1`
+- Use for: protected or underground hospital operations where oxygen generation, power continuity, and casualty-load balancing must stay synchronized.
+- Primary tools: hospital utility dashboard, oxygen generation board, critical-load planner, casualty-flow tracker.
+- Cross-check tools: independent biomedical systems witness and alternate bed-capacity monitor.
+- Typical products: oxygen-power continuity board, clinical load ladder, subterranean care packet.
+
+### `ts-joint-disconnected-mission-ai-model-update-attestation-v1`
+- Use for: disconnected mission AI update branches where signed provenance, compatibility checks, and rollback safety determine release authority.
+- Primary tools: model attestation ledger, artifact-signature verifier, mission-thread compatibility board, rollback workflow.
+- Cross-check tools: independent provenance witness and alternate model-drift monitor.
+- Typical products: model-release board, attestation ladder, rollback packet.
+
+### `ts-homeland-reservist-employer-protection-mobilization-assurance-v1`
+- Use for: homeland reserve call-up operations where employer protection, statutory authorities, and mobilization continuity shape force-flow readiness.
+- Primary tools: reservist readiness board, employer-impact tracker, mobilization authority workflow, transportation synchronization planner.
+- Cross-check tools: independent personnel-readiness witness and alternate employer-response monitor.
+- Typical products: employer-impact board, mobilization assurance ladder, reserve call-up packet.
+
+### `ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1`
+- Use for: strategic port recovery when crane firmware compromise, OT safety, and military sealift throughput must be restored under time pressure.
+- Primary tools: crane OT telemetry board, firmware rollback workflow, pier throughput planner, sealift berth-priority tracker.
+- Cross-check tools: independent OT integrity witness and alternate cargo-flow monitor.
+- Typical products: crane rollback board, pier recovery ladder, sealift recovery packet.
+
+## Protocol Stack Addendum XL (2026-03-13, External Integration Profiles for Expansion Wave XL)
+
+### `ps-joint-weather-radar-spectrum-deconfliction-stack-v1`
+- Protocols: `OGC WMS/WFS/WMTS`, `AIXM/FIXM/IWXXM`, `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: radar status exchange, emissions deconfliction, mission-weather publication, and airspace-impact acknowledgments.
+
+### `ps-coalition-merchant-marine-crew-vetting-sealift-assurance-stack-v1`
+- Protocols: `AIS/NMEA`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
+- Use for: crew-trust exchange, port-access updates, sanctions/watchlist synchronization, and coalition voyage release.
+
+### `ps-expeditionary-helicopter-brownout-drone-deconfliction-stack-v1`
+- Protocols: `AIXM/FIXM/IWXXM`, `CoT`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Use for: landing-zone hazard exchange, UAS separation updates, approach release, and rotary-wing safety synchronization.
+
+### `ps-homeland-civil-nuclear-plant-grid-loss-military-support-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `EDXL-DE/CAP`, `USMTF`, `API/JSON`.
+- Use for: plant-status alerts, DSCA support tasking, route-protection updates, and public-protection acknowledgments.
+
+### `ps-theater-rapid-temporary-bridge-uas-inspection-release-stack-v1`
+- Protocols: `OGC WMS/WFS/WMTS`, `CoT`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: inspection imagery exchange, structural defect reporting, load-class release, and mobility-corridor synchronization.
+
+### `ps-strategic-contested-lng-bunker-fleet-fuel-allocation-stack-v1`
+- Protocols: `AIS/NMEA`, `NIEM`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: bunker availability exchange, port-risk alerts, fleet fuel prioritization, and sustainment release governance.
+
+### `ps-tactical-civil-evacuation-public-address-auth-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `CoT`, `NIEM`, `USMTF`, `API/JSON`.
+- Use for: message-authentication exchange, evacuation broadcast updates, translation integrity checks, and civil-trust acknowledgments.
+
+### `ps-joint-space-launch-range-spectrum-deconfliction-stack-v1`
+- Protocols: `CCSDS`, `AIXM/FIXM`, `USMTF`, `Link 16 J-series`, `API/JSON`.
+- Use for: launch-range spectrum assignments, telemetry-integrity status, window adjudication, and interference response.
+
+### `ps-theater-underground-hospital-oxygen-power-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: oxygen and power continuity status, casualty-load synchronization, and clinical support release governance.
+
+### `ps-joint-disconnected-mission-ai-model-update-attestation-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, signed artifact manifests, `NIEM`, `API/JSON`.
+- Use for: update attestation exchange, mission-compatibility status, rollback controls, and model-release acknowledgments.
+
+### `ps-homeland-reservist-employer-protection-mobilization-assurance-stack-v1`
+- Protocols: `NIEM`, `NIMS/ICS`, `USMTF`, signed readiness exports, `API/JSON`.
+- Use for: employer-protection status, reserve mobilization updates, transport synchronization, and authority acknowledgments.
+
+### `ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1`
+- Protocols: `STIX/TAXII`, `AIS/NMEA`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Use for: OT incident exchange, firmware rollback status, berth-priority updates, and military sealift recovery governance.
