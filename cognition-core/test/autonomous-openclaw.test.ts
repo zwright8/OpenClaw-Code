@@ -2050,6 +2050,50 @@ test('buildAutonomousBatchPlan supports d_corral_exp3_plus discounted expert cor
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'cusum_ucb');
 });
 
+test('buildAutonomousBatchPlan lets corral_exp3 force exploration toward under-sampled experts', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 953, code: 'SK-00953', title: 'Skill 953' },
+            { id: 954, code: 'SK-00954', title: 'Skill 954' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 33,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '953': { attempts: 14, successes: 9, failures: 5, consecutiveFailures: 0, lastWave: 32, lastStatus: 'completed' },
+                '954': { attempts: 14, successes: 8, failures: 6, consecutiveFailures: 0, lastWave: 32, lastStatus: 'completed' }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: { attempts: 20, successes: 15, failures: 5, cumulativeReward: 15 },
+                    epsilon_ts: { attempts: 20, successes: 14, failures: 6, cumulativeReward: 14 },
+                    kl_ucb: { attempts: 20, successes: 13, failures: 7, cumulativeReward: 13 },
+                    cd_ucb: { attempts: 0, successes: 0, failures: 0, cumulativeReward: 0 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 34,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3',
+            corralGamma: 0,
+            corralEta: 5,
+            corralMinPolicyAttempts: 1,
+            corralForcedExploration: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [953]);
+    assert.equal(plan.selection.policy.skills, 'cd_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'cd_ucb');
+});
+
 test('buildAutonomousBatchPlan supports bge policy for Boltzmann-Gumbel exploration', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

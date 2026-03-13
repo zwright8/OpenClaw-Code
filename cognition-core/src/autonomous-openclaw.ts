@@ -100,6 +100,10 @@ const DEFAULT_CORRAL_GAMMA = 0.12;
 const MAX_CORRAL_GAMMA = 0.8;
 const DEFAULT_CORRAL_ETA = 0.8;
 const MAX_CORRAL_ETA = 5;
+const DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS = 0;
+const MAX_CORRAL_MIN_POLICY_ATTEMPTS = 200;
+const DEFAULT_CORRAL_FORCED_EXPLORATION = 0.25;
+const MAX_CORRAL_FORCED_EXPLORATION = 1;
 const DEFAULT_EXP3_IX_GAMMA = 0.07;
 const MAX_EXP3_IX_GAMMA = 0.5;
 const DEFAULT_EXP3_IX_ETA = 1;
@@ -685,6 +689,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CORRAL_ETA,
             Number.EPSILON,
             MAX_CORRAL_ETA
+        ),
+        corralMinPolicyAttempts: clamp(
+            Number.isFinite(Number(value.corralMinPolicyAttempts))
+                ? parseNonNegativeInt(value.corralMinPolicyAttempts, DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS)
+                : DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS,
+            0,
+            MAX_CORRAL_MIN_POLICY_ATTEMPTS
+        ),
+        corralForcedExploration: clamp(
+            Number.isFinite(Number(value.corralForcedExploration))
+                ? Number(value.corralForcedExploration)
+                : DEFAULT_CORRAL_FORCED_EXPLORATION,
+            0,
+            MAX_CORRAL_FORCED_EXPLORATION
         ),
         exp3IxGamma: clamp(
             Number.isFinite(Number(value.exp3IxGamma))
@@ -2448,17 +2466,54 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         const scaled = clamp(rewardRate * policy.corralEta, -30, 30);
         return {
             name,
+            attempts,
             weight: Math.exp(scaled)
         };
     });
     const sumWeights = weighted.reduce((sum, entry) => sum + entry.weight, 0);
     const safeSum = sumWeights > 0 ? sumWeights : corralPolicies.length;
-
-    return weighted.map((entry) => {
+    const baseDistribution = weighted.map((entry) => {
         const exploitation = entry.weight / safeSum;
         return {
             name: entry.name,
             probability: ((1 - gamma) * exploitation) + (gamma * uniform)
+        };
+    });
+    const minPolicyAttempts = clamp(
+        parseNonNegativeInt(policy.corralMinPolicyAttempts, DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS),
+        0,
+        MAX_CORRAL_MIN_POLICY_ATTEMPTS
+    );
+    if (minPolicyAttempts <= 0) {
+        return baseDistribution;
+    }
+
+    const underSampled = weighted
+        .map((entry) => ({
+            name: entry.name,
+            deficit: Math.max(0, minPolicyAttempts - entry.attempts)
+        }))
+        .filter((entry) => entry.deficit > 0);
+    if (underSampled.length === 0) {
+        return baseDistribution;
+    }
+
+    const forcedMass = clamp(policy.corralForcedExploration, 0, MAX_CORRAL_FORCED_EXPLORATION);
+    if (forcedMass <= 0) {
+        return baseDistribution;
+    }
+    const totalDeficit = underSampled.reduce((sum, entry) => sum + entry.deficit, 0);
+    const fallbackShare = 1 / underSampled.length;
+    const underSampledShareByName = Object.fromEntries(underSampled.map((entry) => [
+        entry.name,
+        totalDeficit > 0 ? (entry.deficit / totalDeficit) : fallbackShare
+    ]));
+
+    return baseDistribution.map((entry) => {
+        const underShare = Number(underSampledShareByName[entry.name] || 0);
+        return {
+            name: entry.name,
+            probability: ((1 - forcedMass) * entry.probability) + (forcedMass * underShare)
         };
     });
 }
