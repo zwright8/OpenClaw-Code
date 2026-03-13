@@ -2273,3 +2273,19 @@ Every skill output should include:
 - Theater undersea autonomous decoy discrimination and submarine-lane assurance + anti-submarine warfare support + undersea deception resilience + lane-release confidence control.
 - Joint urban critical hospital oxygen-power cascade response + civil defense medical surge synchronization + infrastructure restoration + life-safety continuity.
 - Homeland port radiological screening surge and military sealift continuity + strategic sealift coordination + customs-security resilience + DSCA port throughput governance.
+
+## New Expansion Wave (2026-03-13, Wave XXXVIII)
+
+- strategic-civil-reserve-air-fleet-activation-and-aeromedical-surge-cell
+- joint-airborne-assault-drop-zone-integrity-and-parachute-recovery-cell
+- joint-maritime-rescue-swimmer-and-surf-zone-recovery-cell
+- joint-littoral-underwater-obstacle-reduction-and-beach-recon-cell
+- theater-coastal-radar-and-harbor-approach-fusion-cell
+
+## Updated Pairings (2026-03-13, Wave XXXVIII)
+
+- Civil Reserve Air Fleet activation and aeromedical surge + strategic mobility deployment planning + contested airbridge governance + diplomatic-clearance synchronization.
+- Airborne assault drop-zone integrity and parachute recovery + autonomous cargo airdrop drift denial + airborne weather assurance + follow-on resupply continuity.
+- Maritime rescue-swimmer and surf-zone recovery + combat search and rescue coordination + coastal survivor authentication + casualty handoff governance.
+- Littoral underwater obstacle reduction and beach recon + amphibious assault coordination + shore-entry lane release + autonomous littoral reconnaissance cueing.
+- Coastal radar and harbor-approach fusion + strategic port security and harbor defense + port-opening surveillance assurance + small-craft or low-slow track adjudication.

@@ -149,3 +149,7 @@ Use these tool categories as the default stack for this skill: AIS maritime feed
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-coastal-radar-harbor-approach-fusion-v1` with `protocol_stack_id=ps-theater-coastal-radar-harbor-approach-fusion-stack-v1` when harbor defense depends on low-slow track adjudication, coastal radar fusion, or port-approach screening confidence.
+- Add `packet_id=DPL-COASTAL-RADAR-HARBOR-APPROACH-001` for recommendations that alter screening posture, harbor approach controls, or alert-state transitions.

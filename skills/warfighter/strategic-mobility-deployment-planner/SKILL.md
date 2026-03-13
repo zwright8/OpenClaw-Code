@@ -144,3 +144,7 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXVIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-civil-reserve-air-fleet-aeromedical-surge-v1` with `protocol_stack_id=ps-strategic-civil-reserve-air-fleet-aeromedical-surge-stack-v1` when deployment flow depends on commercial-carrier activation, patient movement surge, or diplomatic airbridge sequencing.
+- Add `packet_id=DPL-CRAF-AEROMED-SURGE-001` for recommendations that alter strategic airlift allocation, patient movement priority, or clearance timing.

@@ -1333,3 +1333,40 @@ For each critical recommendation, include:
 - Cross-check tools: independent radiation safety witness + alternate congestion monitor.
 - Protocols: `NIMS/ICS`, `USMTF`, `NIEM`, `AIS/NMEA`, `API/JSON`.
 - Degraded fallback: mission-essential sealift and life-safety cargo only with staged authority release.
+
+## Profile Set (2026-03-13 Expansion Wave XXXVIII - Civil Lift Surge, Airborne Entry Integrity, Surf-Zone Recovery, Littoral Breach Recon, and Coastal Approach Fusion)
+
+### `strategic-civil-reserve-air-fleet-aeromedical-surge-v1`
+- Use for: contested strategic lift decisions where Civil Reserve Air Fleet activation, patient movement priority, and diplomatic-clearance timing must remain synchronized.
+- Primary tools: strategic airlift allocation board + patient movement requirement tracker + civil carrier status service.
+- Cross-check tools: independent manifest reconciliation cell + alternate carrier-availability monitor.
+- Protocols: `USMTF`, `HL7/FHIR`, `AIXM/FIXM`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-essential airbridge only with manual clearance board and UTC readback log.
+
+### `joint-airborne-drop-zone-integrity-parachute-recovery-v1`
+- Use for: airborne-entry decisions where drop-zone certification, jump timing, and recovery continuity drive release confidence.
+- Primary tools: drop-zone survey manager + airborne weather feed + jump-manifest tracker.
+- Cross-check tools: independent ground-observer witness + alternate obstacle or terrain-risk monitor.
+- Protocols: `USMTF`, `VMF`, `AIXM/FIXM/IWXXM`, `CoT`, `API/JSON`.
+- Degraded fallback: high-confidence jump windows only with manual DZ board and staged recovery release.
+
+### `joint-maritime-rescue-swimmer-surf-zone-recovery-v1`
+- Use for: coastal and surf-zone personnel-recovery decisions where swimmer or hoist method, survivor authentication, and casualty handoff timing must stay aligned.
+- Primary tools: maritime COP and drift estimator + rescue-swimmer or hoist readiness board + patient-regulation workflow.
+- Cross-check tools: independent survivor-authentication witness + alternate coastal weather monitor.
+- Protocols: `USMTF`, `AIS/NMEA`, `HL7/FHIR`, `CoT`, `API/JSON`.
+- Degraded fallback: high-confidence rescue windows only with voice SAR board and manual drift plot.
+
+### `joint-littoral-underwater-obstacle-reduction-beach-recon-v1`
+- Use for: amphibious and littoral decisions where beach hydrography, underwater obstacles, and recon coverage determine lane-release authority.
+- Primary tools: hydrographic survey service + UUV mission planner + obstacle cue board.
+- Cross-check tools: independent shoreline recon witness + alternate obstacle-identity monitor.
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `USMTF`, `CoT`, `API/JSON`.
+- Degraded fallback: mission-essential lanes only with beachmaster manual board and conservative clearance thresholds.
+
+### `theater-coastal-radar-harbor-approach-fusion-v1`
+- Use for: port and coastal-defense decisions where low-slow track confidence, harbor-approach screening, and port-authority synchronization determine alert posture.
+- Primary tools: coastal radar service + AIS analytics board + shoreline EO or IR fusion workflow.
+- Cross-check tools: independent harbor watch witness + alternate track-provenance monitor.
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `CoT`, `USMTF`, `API/JSON`.
+- Degraded fallback: mission-essential port movements only with harbor watch bill and fixed approach-risk windows.

@@ -10638,3 +10638,58 @@ validation_gates:
 - output_schema: screening priority matrix, sealift continuity ladder, port assurance packet
 - protocol_profile: NIMS/ICS + USMTF + NIEM + AIS/NMEA + API/JSON
 - validation_gates: radiation safety pass, throughput sufficiency check, command-port authority acknowledgment
+
+### packet_id: DPL-CRAF-AEROMED-SURGE-001
+- domain: Civil Reserve Air Fleet activation and aeromedical surge
+- objective: synchronize civilian carrier activation, patient movement priority, and airbridge clearance decisions under contested lift demand.
+- primary_tools: strategic airlift allocation board, patient movement requirement tracker, civil carrier status service, diplomatic-clearance workflow
+- alternate_tools: manual airbridge board and dual manifest reconciliation cell
+- degraded_mode: mission-essential airlift and critical patient movement only with staged approval
+- input_requirements: lift demand, patient categories, carrier availability, diplomatic clearance status, threat and weather
+- output_schema: activation ladder, lane allocation matrix, clearance-risk packet
+- protocol_profile: USMTF + HL7/FHIR + AIXM/FIXM + NIEM + API/JSON
+- validation_gates: carrier commitment confirmation, patient movement authority, diplomatic clearance acknowledgment
+
+### packet_id: DPL-AIRBORNE-DROPZONE-INTEGRITY-001
+- domain: airborne assault drop-zone integrity and parachute recovery
+- objective: certify drop-zone viability while preserving safe jump timing, recovery continuity, and follow-on resupply confidence.
+- primary_tools: drop-zone survey manager, airborne weather feed, jump-manifest tracker, recovery-force coordination board
+- alternate_tools: manual DZ survey card and observer check-in worksheet
+- degraded_mode: high-confidence jump windows only with strict recovery-force release gates
+- input_requirements: DZ survey status, winds and weather, obstacle overlays, jump manifest, recovery-team readiness
+- output_schema: DZ integrity matrix, jump-window confidence ladder, recovery continuity packet
+- protocol_profile: USMTF + VMF + AIXM/FIXM/IWXXM + CoT + API/JSON
+- validation_gates: survey validity pass, weather threshold check, airspace coordination acknowledgment
+
+### packet_id: DPL-MARITIME-RESCUE-SWIMMER-001
+- domain: maritime rescue-swimmer and surf-zone recovery
+- objective: choose safe swimmer or hoist recovery methods while preserving survivor authentication and casualty handoff continuity.
+- primary_tools: maritime COP and drift estimator, rescue-swimmer or hoist readiness board, surf and sea-state model, patient-regulation handoff workflow
+- alternate_tools: voice SAR board and manual drift plot
+- degraded_mode: high-confidence rescue windows only with staged pickup and handoff approvals
+- input_requirements: last-known position, drift estimate, sea-state and surf data, survivor signals, casualty handoff capacity
+- output_schema: rescue viability matrix, pickup-method ladder, casualty handoff packet
+- protocol_profile: USMTF + AIS/NMEA + HL7/FHIR + CoT + API/JSON
+- validation_gates: survivor-authentication confidence, sea-state threshold, medical handoff acknowledgment
+
+### packet_id: DPL-LITTORAL-BEACH-OBSTACLE-001
+- domain: littoral underwater obstacle reduction and beach reconnaissance
+- objective: preserve amphibious lane-release confidence by reconciling beach hydrography, underwater obstacles, and shoreline reconnaissance.
+- primary_tools: hydrographic survey service, UUV mission planner, obstacle cue board, beachmaster lane-control workflow
+- alternate_tools: manual beachmaster board and timed recon update worksheet
+- degraded_mode: mission-essential lanes only with conservative clearance thresholds
+- input_requirements: beach geometry, hydrographic state, obstacle reports, recon coverage, lane-release criteria
+- output_schema: lane-clearance matrix, obstacle confidence ladder, recon-to-release packet
+- protocol_profile: AIS/NMEA + OGC WMS/WFS/WMTS + USMTF + CoT + API/JSON
+- validation_gates: hydrographic confidence floor, obstacle identity pass, lane-release authority acknowledgment
+
+### packet_id: DPL-COASTAL-RADAR-HARBOR-APPROACH-001
+- domain: coastal radar and harbor-approach fusion
+- objective: adjudicate low-slow and small-craft track confidence while preserving safe harbor-approach screening and port alert posture.
+- primary_tools: coastal radar service, AIS analytics board, shoreline EO or IR sensor fusion, port-security surveillance workflow
+- alternate_tools: harbor watch bill and manual low-slow track ledger
+- degraded_mode: mission-essential port movements only with fixed approach-risk windows
+- input_requirements: radar tracks, AIS baseline, harbor geometry, low-slow track cues, port-security posture
+- output_schema: harbor-approach confidence board, low-slow adjudication matrix, port-screening escalation packet
+- protocol_profile: AIS/NMEA + OGC WMS/WFS/WMTS + CoT + USMTF + API/JSON
+- validation_gates: track-provenance pass, port-authority coordination acknowledgment, approach-safety threshold

@@ -11078,3 +11078,57 @@ external_binding:
 ### `ps-homeland-port-radiological-screening-surge-military-sealift-continuity-stack-v1`
 - Protocols: `NIMS/ICS`, `USMTF`, `NIEM`, `AIS/NMEA`, `API/JSON`.
 - Use for: radiological screening status, sealift priority decisions, and port authority synchronization.
+
+## Tool Suite Addendum XXXVIII (2026-03-13, Civil Lift Surge, Airborne Entry Integrity, Surf-Zone Recovery, Littoral Breach Recon, and Coastal Approach Fusion)
+
+### `ts-strategic-civil-reserve-air-fleet-aeromedical-surge-v1`
+- Use for: Civil Reserve Air Fleet activation, civilian carrier integration, aeromedical surge routing, and diplomatic clearance synchronization under contested lift demand.
+- Primary tools: strategic airlift allocation board, patient movement requirement tracker, civil carrier status service, diplomatic-clearance workflow.
+- Cross-check tools: independent manifest reconciliation cell and alternate carrier-availability monitor.
+- Typical products: carrier activation ladder, aeromedical surge lane matrix, clearance-risk packet.
+
+### `ts-joint-airborne-drop-zone-integrity-parachute-recovery-v1`
+- Use for: airborne assault drop-zone certification, jump-window assurance, and parachute or bundle recovery continuity.
+- Primary tools: drop-zone survey manager, airborne weather and wind feed, jump-manifest tracker, recovery-force coordination board.
+- Cross-check tools: independent ground-observer witness and alternate obstacle or terrain-risk monitor.
+- Typical products: DZ integrity matrix, jump-window confidence ladder, recovery continuity packet.
+
+### `ts-joint-maritime-rescue-swimmer-surf-zone-recovery-v1`
+- Use for: maritime rescue-swimmer employment, surf-zone casualty recovery, and afloat-to-shore handoff synchronization.
+- Primary tools: maritime COP and drift estimator, rescue-swimmer or hoist readiness board, surf and sea-state model, patient-regulation handoff workflow.
+- Cross-check tools: independent survivor-authentication witness and alternate coastal weather monitor.
+- Typical products: rescue viability matrix, pickup-method decision ladder, casualty handoff packet.
+
+### `ts-joint-littoral-underwater-obstacle-reduction-beach-recon-v1`
+- Use for: littoral underwater obstacle reduction, beach reconnaissance, and amphibious lane-release assurance.
+- Primary tools: hydrographic survey service, UUV mission planner, mine or obstacle cue board, beachmaster lane-control workflow.
+- Cross-check tools: independent shoreline recon witness and alternate obstacle-identity monitor.
+- Typical products: lane-clearance matrix, obstacle confidence ladder, recon-to-release packet.
+
+### `ts-theater-coastal-radar-harbor-approach-fusion-v1`
+- Use for: coastal radar fusion, harbor-approach threat screening, and low-slow maritime or low-altitude track adjudication.
+- Primary tools: coastal radar service, AIS analytics board, shoreline EO or IR sensor fusion, port-security surveillance workflow.
+- Cross-check tools: independent harbor watch witness and alternate track-provenance monitor.
+- Typical products: harbor-approach confidence board, low-slow adjudication matrix, port-screening escalation packet.
+
+## Protocol Stack Addendum XXXVIII (2026-03-13, Civil Lift Surge, Airborne Entry Integrity, Surf-Zone Recovery, Littoral Breach Recon, and Coastal Approach Fusion)
+
+### `ps-strategic-civil-reserve-air-fleet-aeromedical-surge-stack-v1`
+- Protocols: `USMTF`, `HL7/FHIR`, `AIXM/FIXM`, `NIEM`, `API/JSON`.
+- Use for: CRAF activation acknowledgments, patient movement synchronization, diplomatic-clearance status exchange, and strategic airbridge branch control.
+
+### `ps-joint-airborne-drop-zone-integrity-parachute-recovery-stack-v1`
+- Protocols: `USMTF`, `VMF`, `AIXM/FIXM/IWXXM`, `CoT`, `API/JSON`.
+- Use for: DZ survey updates, jump-window validation, recovery-team check-ins, and airborne risk synchronization.
+
+### `ps-joint-maritime-rescue-swimmer-surf-zone-recovery-stack-v1`
+- Protocols: `USMTF`, `AIS/NMEA`, `HL7/FHIR`, `CoT`, `API/JSON`.
+- Use for: drift and maritime track exchange, swimmer or hoist readiness, survivor handoff status, and medical routing synchronization.
+
+### `ps-joint-littoral-underwater-obstacle-reduction-beach-recon-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: beach recon updates, underwater obstacle cue sharing, lane-release decisions, and shore-entry coordination.
+
+### `ps-theater-coastal-radar-harbor-approach-fusion-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `CoT`, `USMTF`, `API/JSON`.
+- Use for: coastal radar track exchange, harbor-approach confidence updates, low-slow track adjudication, and port-screening synchronization.
