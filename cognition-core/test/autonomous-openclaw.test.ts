@@ -2592,6 +2592,47 @@ test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ran
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports exp3_ix auto-eta with decoupled implicit gamma', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 490, code: 'SK-00490', title: 'Skill 490' },
+            { id: 491, code: 'SK-00491', title: 'Skill 491' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 22,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '490': { attempts: 80, successes: 16, failures: 64, consecutiveFailures: 0, lastWave: 21, lastStatus: 'failed' },
+                '491': { attempts: 20, successes: 14, failures: 6, consecutiveFailures: 0, lastWave: 21, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 23,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3IxEta: 1,
+            exp3AutoEta: true
+        },
+        nowFactory: () => 100_000
+    });
+
+    const runtimePolicy = plan.selection.policyProbabilities.skills;
+    assert.equal(runtimePolicy?.mode, 'exp3_ix');
+    assert.equal(runtimePolicy?.autoEta, true);
+    assert.ok(Number(runtimePolicy?.eta) > 0);
+    assert.ok(Number(runtimePolicy?.eta) < 1);
+    assert.equal(
+        Number(runtimePolicy?.implicitGamma),
+        Number((Number(runtimePolicy?.eta) / 2).toFixed(6))
+    );
+});
+
 test('buildAutonomousBatchPlan supports exp3_s share-mixing to smooth adversarial probabilities', () => {
     const baseInput = {
         skillCatalog: [

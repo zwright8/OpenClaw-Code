@@ -104,7 +104,8 @@ const DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS = 0;
 const MAX_CORRAL_MIN_POLICY_ATTEMPTS = 200;
 const DEFAULT_CORRAL_FORCED_EXPLORATION = 0.25;
 const MAX_CORRAL_FORCED_EXPLORATION = 1;
-const DEFAULT_EXP3_IX_GAMMA = 0.07;
+const DEFAULT_EXP3_EXPLORATION_GAMMA = 0.07;
+const DEFAULT_EXP3_IMPLICIT_GAMMA = null;
 const MAX_EXP3_IX_GAMMA = 0.5;
 const DEFAULT_EXP3_IX_ETA = 1;
 const MAX_EXP3_IX_ETA = 10;
@@ -112,6 +113,7 @@ const DEFAULT_EXP3_SHARE_ALPHA = 0.08;
 const MAX_EXP3_SHARE_ALPHA = 1;
 const DEFAULT_EXP3_RESTART_INTERVAL = 12;
 const MAX_EXP3_RESTART_INTERVAL = 200;
+const DEFAULT_EXP3_AUTO_ETA = false;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
 const DEFAULT_UCB_V_EXPLORATION = 1;
@@ -704,13 +706,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             0,
             MAX_CORRAL_FORCED_EXPLORATION
         ),
-        exp3IxGamma: clamp(
-            Number.isFinite(Number(value.exp3IxGamma))
-                ? Number(value.exp3IxGamma)
-                : DEFAULT_EXP3_IX_GAMMA,
+        exp3ExplorationGamma: clamp(
+            Number.isFinite(Number(value.exp3ExplorationGamma))
+                ? Number(value.exp3ExplorationGamma)
+                : (
+                    Number.isFinite(Number(value.exp3IxGamma))
+                        ? Number(value.exp3IxGamma)
+                        : DEFAULT_EXP3_EXPLORATION_GAMMA
+                ),
             Number.EPSILON,
             MAX_EXP3_IX_GAMMA
         ),
+        exp3ImplicitGamma: Number.isFinite(Number(value.exp3ImplicitGamma))
+            ? clamp(Number(value.exp3ImplicitGamma), Number.EPSILON, MAX_EXP3_IX_GAMMA)
+            : DEFAULT_EXP3_IMPLICIT_GAMMA,
         exp3IxEta: clamp(
             Number.isFinite(Number(value.exp3IxEta))
                 ? Number(value.exp3IxEta)
@@ -718,6 +727,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             Number.EPSILON,
             MAX_EXP3_IX_ETA
         ),
+        exp3AutoEta: Boolean(value.exp3AutoEta ?? DEFAULT_EXP3_AUTO_ETA),
         exp3ShareAlpha: clamp(
             Number.isFinite(Number(value.exp3ShareAlpha))
                 ? Number(value.exp3ShareAlpha)
@@ -2529,6 +2539,42 @@ function pickPolicyFromDistribution(distribution, seedText) {
     return distribution[distribution.length - 1]?.name || DEFAULT_SELECTION_POLICY_MODE;
 }
 
+function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
+    const safeArmCount = Math.max(1, parsePositiveInt(armCount, 1));
+    const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
+    const explorationGamma = clamp(
+        Number(policy.exp3ExplorationGamma),
+        Number.EPSILON,
+        MAX_EXP3_IX_GAMMA
+    );
+    let eta = clamp(
+        Number(policy.exp3IxEta),
+        Number.EPSILON,
+        MAX_EXP3_IX_ETA
+    );
+    if (policy.exp3AutoEta) {
+        // Exp3-IX recommendation for adversarial horizon n with k arms:
+        // eta = sqrt((2 * log(k + 1)) / (n * k)), gamma_implicit = eta / 2.
+        const suggestedEta = Math.sqrt(
+            (2 * Math.log(safeArmCount + 1))
+            / (safeAttempts * safeArmCount)
+        );
+        eta = clamp(suggestedEta, Number.EPSILON, MAX_EXP3_IX_ETA);
+    }
+    const implicitGamma = Number.isFinite(Number(policy.exp3ImplicitGamma))
+        ? clamp(Number(policy.exp3ImplicitGamma), Number.EPSILON, MAX_EXP3_IX_GAMMA)
+        : (
+            policy.exp3AutoEta
+                ? clamp(eta / 2, Number.EPSILON, MAX_EXP3_IX_GAMMA)
+                : explorationGamma
+        );
+    return {
+        eta,
+        explorationGamma,
+        implicitGamma
+    };
+}
+
 function resolveExp3IxDistribution({
     catalog,
     executionStats,
@@ -2539,10 +2585,12 @@ function resolveExp3IxDistribution({
     const list = Array.isArray(catalog) ? catalog : [];
     const attemptsDenominator = Math.max(1, Number(totalAttempts) || 1);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
-    const gamma = policy.exp3IxGamma;
-    const eta = policy.exp3IxEta;
-    const shareAlpha = policy.exp3ShareAlpha;
     const armCount = Math.max(1, list.length);
+    const runtime = resolveExp3RuntimeParameters(policy, armCount, attemptsDenominator);
+    const gamma = runtime.explorationGamma;
+    const eta = runtime.eta;
+    const implicitGamma = runtime.implicitGamma;
+    const shareAlpha = policy.exp3ShareAlpha;
     const uniform = 1 / armCount;
     const weighted = list.map((candidate) => {
         const key = String(candidate?.id ?? candidate);
@@ -2555,7 +2603,7 @@ function resolveExp3IxDistribution({
         const normalizedReward = attemptsDenominator > 0
             ? successes / attemptsDenominator
             : 0;
-        const implicitReward = normalizedReward / (propensityProxy + gamma);
+        const implicitReward = normalizedReward / (propensityProxy + implicitGamma);
         const logWeight = clamp(eta * implicitReward, -30, 30);
         return {
             key,
@@ -2666,6 +2714,7 @@ function selectCatalogSlice({
     const totalAttempts = Math.max(1, Object.values(executionStats)
         .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy, normalizedCurrentWave).attempts, 0));
     if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
+        const exp3Runtime = resolveExp3RuntimeParameters(scoringPolicy, total, totalAttempts);
         selectionProbabilities = resolveExp3IxDistribution({
             catalog: list,
             executionStats,
@@ -2675,8 +2724,10 @@ function selectCatalogSlice({
         });
         policyProbabilities = {
             mode: scoringPolicy.mode,
-            gamma: Number(scoringPolicy.exp3IxGamma.toFixed(6)),
-            eta: Number(scoringPolicy.exp3IxEta.toFixed(6)),
+            explorationGamma: Number(exp3Runtime.explorationGamma.toFixed(6)),
+            implicitGamma: Number(exp3Runtime.implicitGamma.toFixed(6)),
+            eta: Number(exp3Runtime.eta.toFixed(6)),
+            autoEta: Boolean(scoringPolicy.exp3AutoEta),
             ...(EXP3_SHARE_POLICY_MODES.has(scoringPolicy.mode)
                 ? {
                     shareAlpha: Number(scoringPolicy.exp3ShareAlpha.toFixed(6))

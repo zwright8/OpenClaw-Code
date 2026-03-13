@@ -277,6 +277,8 @@ npm run autonomous:run -- --selection-policy sw_corral_exp3_plus --window-size 1
 npm run autonomous:run -- --selection-policy d_corral_exp3_plus --discount-factor 0.97 --corral-gamma 0.08 --corral-eta 1.2
 npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2 --corral-min-attempts 2 --corral-forced-exploration 0.3
 npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1
+npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-auto-eta
+npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-implicit-gamma 0.03 --exp3-ix-eta 0.8
 npm run autonomous:run -- --selection-policy exp3_s --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
 npm run autonomous:run -- --selection-policy rexp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-restart-interval 12
 npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
@@ -298,6 +300,7 @@ Hybrid `fdsw_*` policies now also support `--hybrid-ts-aggregation adaptive`, wh
 Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
 Perturbed-History Exploration (`phe`/`sw_phe`/`d_phe`) is available as a lightweight pseudo-reward perturbation policy (`--phe-perturbation-scale`) to sustain exploration without full posterior sampling overhead.
 Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`) and support `sw_`/`d_` variants so policy-corralling can adapt to recent drift instead of locking on stale cumulative history. The expanded `corral_exp3_plus` expert pool also includes ADWIN, hybrid discounted+windowed, and Boltzmann-Gumbel experts for stronger regime-shift routing. Use `--corral-min-attempts` + `--corral-forced-exploration` to guarantee under-sampled experts keep receiving exploration mass before full exploitation.
+EXP3 modes now decouple exploration mixing (`--exp3-ix-gamma`) from implicit-exploration denominator control (`--exp3-implicit-gamma`) so you can tune exploration pressure and loss-estimate regularization independently. `--exp3-auto-eta` auto-calibrates eta as `sqrt((2*log(K+1))/(N*K))` and defaults the implicit gamma to `eta/2` when no explicit implicit gamma is provided.
 `exp3_s` adds share-mixing (`--exp3-share-alpha`) to keep a controlled probability floor across all arms under adversarial drift while still using EXP3-IX implicit-exploration weighting.
 Change-detection policies also support `--cd-direction up|down|both` so detectors can focus on degradations only, recoveries only, or both shift directions.
 

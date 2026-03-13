@@ -47,8 +47,10 @@ Options:
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
-  --exp3-ix-gamma <n>          Implicit exploration regularizer for exp3_ix* (0-0.5, default: 0.07)
+  --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
+  --exp3-implicit-gamma <n>    Implicit-exploration denominator gamma for exp3_ix* (0-0.5, default: exp3-ix-gamma, or eta/2 with --exp3-auto-eta)
   --exp3-ix-eta <n>            Exponential weight scale for exp3_ix* (>0 to 10, default: 1)
+  --exp3-auto-eta              Auto-tune exp3_ix eta via sqrt((2*log(K+1))/(N*K)); defaults implicit gamma to eta/2 unless overridden
   --exp3-share-alpha <n>       Share-mixing strength for exp3_s* (0-1, default: 0.08)
   --exp3-restart-interval <n>  Epoch length for rexp3_ix periodic restarts (default: 12)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
@@ -191,8 +193,10 @@ function parseArgs(argv) {
             discountFactor: 0.97,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
-            exp3IxGamma: 0.07,
+            exp3ExplorationGamma: 0.07,
+            exp3ImplicitGamma: null,
             exp3IxEta: 1,
+            exp3AutoEta: false,
             exp3ShareAlpha: 0.08,
             exp3RestartInterval: 12,
             mossAlpha: 1,
@@ -235,6 +239,10 @@ function parseArgs(argv) {
         }
         if (token === '--no-enqueue-followups') {
             options.enqueueFollowupTasks = false;
+            continue;
+        }
+        if (token === '--exp3-auto-eta') {
+            options.selectionPolicyConfig.exp3AutoEta = true;
             continue;
         }
 
@@ -428,7 +436,12 @@ function parseArgs(argv) {
             continue;
         }
         if (token === '--exp3-ix-gamma') {
-            options.selectionPolicyConfig.exp3IxGamma = parseFloatInRange(value, '--exp3-ix-gamma', Number.EPSILON, 0.5);
+            options.selectionPolicyConfig.exp3ExplorationGamma = parseFloatInRange(value, '--exp3-ix-gamma', Number.EPSILON, 0.5);
+            i++;
+            continue;
+        }
+        if (token === '--exp3-implicit-gamma') {
+            options.selectionPolicyConfig.exp3ImplicitGamma = parseFloatInRange(value, '--exp3-implicit-gamma', Number.EPSILON, 0.5);
             i++;
             continue;
         }
