@@ -1049,12 +1049,17 @@ function normalizeRecentOutcomeEntry(rawEntry = {}) {
     const reward = Number.isFinite(explicitReward)
         ? clamp(explicitReward, 0, 1)
         : getStatusReward(status);
+    const explicitPropensity = Number(entry.propensity);
+    const propensity = Number.isFinite(explicitPropensity)
+        ? clamp(explicitPropensity, Number.EPSILON, 1)
+        : null;
     return {
         wave: Number.isFinite(Number(entry.wave))
             ? parseNonNegativeInt(entry.wave, 0)
             : 0,
         status,
         reward,
+        propensity,
         didSucceed: SUCCESS_STATUSES.has(status)
     };
 }
@@ -2918,6 +2923,49 @@ function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
     };
 }
 
+function resolveExp3RecentOutcomes(stat, selectionPolicyConfig, currentWave = 0) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    let outcomes = normalized.recentOutcomes.slice();
+    if (policy.mode === 'sw_exp3_ix' || policy.mode === 'sw_exp3_s') {
+        outcomes = outcomes.slice(-policy.slidingWindowSize);
+    } else if (policy.mode === 'rexp3_ix') {
+        const restartInterval = parsePositiveInt(policy.exp3RestartInterval, DEFAULT_EXP3_RESTART_INTERVAL);
+        const wave = parseNonNegativeInt(currentWave, 0);
+        if (wave > 0 && restartInterval > 0) {
+            const restartWave = wave - ((wave - 1) % restartInterval);
+            outcomes = outcomes.filter((entry) => {
+                const normalizedOutcome = normalizeRecentOutcomeEntry(entry);
+                return normalizedOutcome.wave >= restartWave;
+            });
+        }
+    }
+    return outcomes.map((entry) => normalizeRecentOutcomeEntry(entry));
+}
+
+function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, implicitGamma) {
+    const normalizedOutcomes = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
+        : [];
+    if (normalizedOutcomes.length <= 0) return 0;
+
+    const useDiscounting = policy.mode === 'd_exp3_ix' || policy.mode === 'd_exp3_s';
+    let cumulativeEstimatedLoss = 0;
+    for (let index = 0; index < normalizedOutcomes.length; index++) {
+        const entry = normalizedOutcomes[index];
+        const age = normalizedOutcomes.length - 1 - index;
+        const discountWeight = useDiscounting ? Math.pow(policy.discountFactor, age) : 1;
+        const propensity = Number.isFinite(Number(entry.propensity))
+            ? clamp(Number(entry.propensity), Number.EPSILON, 1)
+            : uniformPropensity;
+        const instantaneousLoss = 1 - clamp(Number(entry.reward), 0, 1);
+        const estimatedLoss = instantaneousLoss / (propensity + implicitGamma);
+        cumulativeEstimatedLoss += discountWeight * estimatedLoss;
+    }
+
+    return Math.max(0, cumulativeEstimatedLoss);
+}
+
 function resolveExp3IxDistribution({
     catalog,
     executionStats,
@@ -2935,21 +2983,33 @@ function resolveExp3IxDistribution({
     const implicitGamma = runtime.implicitGamma;
     const shareAlpha = policy.exp3ShareAlpha;
     const uniform = 1 / armCount;
-    const weighted = list.map((candidate) => {
+    const perArmLoss = list.map((candidate) => {
         const key = String(candidate?.id ?? candidate);
-        const stat = resolveScoreStats(executionStats?.[key], selectionPolicyConfig, currentWave);
-        const attempts = Math.max(0, Number(stat.attempts) || 0);
-        const successes = Math.max(0, Number(stat.successes) || 0);
-        const propensityProxy = attempts > 0
-            ? attempts / attemptsDenominator
-            : uniform;
-        const normalizedReward = attemptsDenominator > 0
-            ? successes / attemptsDenominator
-            : 0;
-        const implicitReward = normalizedReward / (propensityProxy + implicitGamma);
-        const logWeight = clamp(eta * implicitReward, -30, 30);
+        const outcomes = resolveExp3RecentOutcomes(
+            executionStats?.[key],
+            selectionPolicyConfig,
+            currentWave
+        );
+        const cumulativeEstimatedLoss = computeExp3ImplicitEstimatedLoss(
+            outcomes,
+            policy,
+            uniform,
+            implicitGamma
+        );
         return {
             key,
+            loss: cumulativeEstimatedLoss
+        };
+    });
+    const minimumLoss = perArmLoss.reduce(
+        (minimum, entry) => Math.min(minimum, entry.loss),
+        Number.POSITIVE_INFINITY
+    );
+    const weighted = perArmLoss.map((entry) => {
+        const centeredLoss = entry.loss - (Number.isFinite(minimumLoss) ? minimumLoss : 0);
+        const logWeight = clamp(-eta * centeredLoss, -60, 60);
+        return {
+            key: entry.key,
             weight: Math.exp(logWeight)
         };
     });
@@ -3473,13 +3533,18 @@ export function buildAutonomousBatchPlan({
     };
 }
 
-function recordRecentOutcome(stat, { status, wave }) {
+function recordRecentOutcome(stat, { status, wave, propensity = null }) {
     const normalized = normalizeExecutionStat(stat);
     const normalizedStatus = normalizeStatus(status);
+    const explicitPropensity = Number(propensity);
+    const normalizedPropensity = Number.isFinite(explicitPropensity)
+        ? clamp(explicitPropensity, Number.EPSILON, 1)
+        : null;
     normalized.recentOutcomes.push({
         wave: parseNonNegativeInt(wave, 0),
         status: normalizedStatus,
         reward: getStatusReward(normalizedStatus),
+        propensity: normalizedPropensity,
         didSucceed: SUCCESS_STATUSES.has(normalizedStatus)
     });
     normalized.recentOutcomes = normalized.recentOutcomes.slice(-MAX_RECENT_OUTCOMES_TRACKED);
@@ -3574,6 +3639,9 @@ export async function collectAutonomousCoverage({
         );
         const didSucceed = SUCCESS_STATUSES.has(status);
         const reward = getStatusReward(status);
+        const selectionProbability = Number.isFinite(Number(context.autonomy?.selectionProbability))
+            ? clamp(Number(context.autonomy.selectionProbability), Number.EPSILON, 1)
+            : null;
 
         if (skillId !== null) {
             const key = String(skillId);
@@ -3591,7 +3659,11 @@ export async function collectAutonomousCoverage({
             current.lastStatus = status;
             current.lastAttemptAt = attemptAt;
             current.lastWave = attemptWave > 0 ? attemptWave : current.lastWave;
-            current = recordRecentOutcome(current, { status, wave: attemptWave });
+            current = recordRecentOutcome(current, {
+                status,
+                wave: attemptWave,
+                propensity: selectionProbability
+            });
             skillExecutionStats[key] = current;
         }
 
@@ -3610,7 +3682,11 @@ export async function collectAutonomousCoverage({
             current.lastStatus = status;
             current.lastAttemptAt = attemptAt;
             current.lastWave = attemptWave > 0 ? attemptWave : current.lastWave;
-            current = recordRecentOutcome(current, { status, wave: attemptWave });
+            current = recordRecentOutcome(current, {
+                status,
+                wave: attemptWave,
+                propensity: selectionProbability
+            });
             capabilityExecutionStats[capabilityId] = current;
         }
 
@@ -3627,7 +3703,11 @@ export async function collectAutonomousCoverage({
             currentPolicy.cumulativeReward += reward;
             currentPolicy.lastStatus = status;
             currentPolicy.lastWave = attemptWave > 0 ? attemptWave : currentPolicy.lastWave;
-            const policyWithOutcome = recordRecentOutcome(currentPolicy, { status, wave: attemptWave });
+            const policyWithOutcome = recordRecentOutcome(currentPolicy, {
+                status,
+                wave: attemptWave,
+                propensity: selectionProbability
+            });
             policyWithOutcome.cumulativeReward = currentPolicy.cumulativeReward;
             policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
         }
@@ -3651,7 +3731,11 @@ export async function collectAutonomousCoverage({
                 currentMeta.cumulativeReward += reward;
                 currentMeta.lastStatus = status;
                 currentMeta.lastWave = attemptWave > 0 ? attemptWave : currentMeta.lastWave;
-                const metaWithOutcome = recordRecentOutcome(currentMeta, { status, wave: attemptWave });
+                const metaWithOutcome = recordRecentOutcome(currentMeta, {
+                    status,
+                    wave: attemptWave,
+                    propensity: selectionProbability
+                });
                 metaWithOutcome.cumulativeReward = currentMeta.cumulativeReward;
                 windowPolicyExecutionStats[lane][key] = metaWithOutcome;
             }

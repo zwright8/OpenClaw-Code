@@ -3190,6 +3190,65 @@ test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ran
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan uses propensity-aware EXP3-IX implicit losses from recent outcomes', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 601, code: 'SK-00601', title: 'Skill 601' },
+            { id: 602, code: 'SK-00602', title: 'Skill 602' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 31,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '601': {
+                    attempts: 1,
+                    successes: 1,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'partial',
+                    recentOutcomes: [
+                        { wave: 31, status: 'partial', propensity: 0.05 }
+                    ]
+                },
+                '602': {
+                    attempts: 1,
+                    successes: 1,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'partial',
+                    recentOutcomes: [
+                        { wave: 31, status: 'partial', propensity: 0.8 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 2,
+        capabilitiesPerWave: 0,
+        waveIndex: 32,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3IxEta: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [602, 601]);
+    const probabilities = Object.fromEntries(
+        plan.tasks.map((task) => [
+            String(task.context?.skillId),
+            Number(task.context?.autonomy?.selectionProbability || 0)
+        ])
+    );
+    assert.ok(probabilities['602'] > probabilities['601']);
+});
+
 test('buildAutonomousBatchPlan supports exp3_ix auto-eta with decoupled implicit gamma', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -5343,7 +5402,8 @@ test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints c
                 lane: 'skills',
                 wave: 7,
                 selectionPolicyApplied: 'd_exp3_s',
-                selectionPolicyConfig: { mode: 'd_exp3_s', discountFactor: 0.9 }
+                selectionPolicyConfig: { mode: 'd_exp3_s', discountFactor: 0.9 },
+                selectionProbability: 0.37
             }
         },
         createdAt: 90_100
@@ -5365,6 +5425,7 @@ test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints c
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.adwin_lints.cumulativeReward - 1) < 1e-9);
     assert.equal(coverage.policyExecutionStats.skills.d_exp3_s.attempts, 1);
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_exp3_s.cumulativeReward - 0.6) < 1e-9);
+    assert.ok(Math.abs((coverage.skillExecutionStats['114'].recentOutcomes[0]?.propensity || 0) - 0.37) < 1e-9);
     assert.ok(coverage.contextualBanditModels.skills.samples > 0);
 });
 
