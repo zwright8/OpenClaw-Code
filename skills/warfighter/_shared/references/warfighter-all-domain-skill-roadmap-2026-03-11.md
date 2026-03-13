@@ -77,3 +77,10 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Extended the external tool/protocol catalog with Tool Suite Addendum XXVII and Protocol Stack Addendum XXVII to map each new domain to concrete tool families and protocol bindings.
 - Extended the domain packet library and joint-operations toolchain profiles with Wave XXVII packet IDs and profile bindings to support authority-gated, degraded-mode mission recommendations.
 - Improved existing high-usage skills (`offensive-counter-air-mission-planner`, `naval-surface-warfare-coordinator`, and `coalition-interoperability-coordinator`) with Expansion Wave XXVII override bindings and packet references.
+
+## Run Update (2026-03-13Txx:xxZ)
+
+- Added Expansion Wave XXVIII with 12 additional warfighter skills covering joint munition-energy coupled targeting deconfliction, contested megacity autonomous evacuation governance, coalition deepfake C2 authenticity validation, expeditionary bioreactor fuel/ration sustainment, undersea cable tap attribution with rapid reroute, denied-space launch window reallocation, homeland port radiological screening surge coordination, SOF low-signature mesh trust assurance, IAMD decoy discrimination and interceptor priority, coalition rare-earth supply shock allocation, battlefield neuromorphic sensor anomaly triage, and Arctic long-range UAS icing/link resilience.
+- Extended the external tool/protocol catalog with Tool Suite Addendum XXVIII and Protocol Stack Addendum XXVIII to map each new domain to concrete external tools and protocol stacks.
+- Extended the domain packet library and joint-operations toolchain profiles with Wave XXVIII packet IDs and profile bindings to support authority-gated, degraded-mode mission recommendations.
+- Improved existing high-usage skills (`offensive-counter-air-mission-planner`, `naval-surface-warfare-coordinator`, `coalition-interoperability-coordinator`, and `cema-integration-cell`) with Expansion Wave XXVIII override bindings and packet references.

@@ -9805,3 +9805,127 @@ external_binding:
 ### `ps-urban-tunnel-methane-blast-risk-control-stack-v1`
 - Protocols: `OGC WMS/WFS/WMTS`, `VMF`, `CoT`, `USMTF`, `API/JSON`.
 - Use for: subsurface hazard updates, route control status, and blast-risk decision acknowledgment chains.
+
+## Tool Suite Addendum XXVIII (2026-03-13, External Integration Profiles for Expansion Wave XXVIII)
+
+### `ts-joint-munition-energy-coupled-targeting-deconfliction-v1`
+- Use for: joint theater deconfliction of scarce kinetic and directed-energy effects.
+- Primary tools: effects allocation planner, directed-energy readiness board, munitions availability governor.
+- Cross-check tools: independent strike-effects arbiter and alternate theater allocation monitor.
+- Typical products: coupled effects matrix, retask authority ladder, escalation-gated decision packet.
+
+### `ts-contested-megacity-autonomous-evacuation-governance-v1`
+- Use for: contested megacity evacuation corridor control with autonomous and crewed traffic.
+- Primary tools: urban mobility digital twin, autonomy liability governance board, shelter throughput synchronizer.
+- Cross-check tools: independent route hazard witness and alternate congestion risk monitor.
+- Typical products: evacuation corridor control board, movement risk ladder, civil-military synchronization packet.
+
+### `ts-coalition-deepfake-c2-authenticity-validation-v1`
+- Use for: coalition C2 order validation under deepfake/spoofing pressure.
+- Primary tools: message-signature verifier, media-forensics engine, coalition trust adjudication board.
+- Cross-check tools: independent authenticity witness and alternate order-fragment integrity queue.
+- Typical products: order authenticity scorecard, trust restoration branch set, authority packet.
+
+### `ts-expeditionary-bioreactor-fuel-ration-sustainment-v1`
+- Use for: expeditionary local generation of fuel and ration support using bioreactor pipelines.
+- Primary tools: bioprocess control stack, contamination analytics board, sustainment priority allocator.
+- Cross-check tools: independent assay witness and alternate commodity continuity monitor.
+- Typical products: production resilience board, contamination-risk ladder, sustainment authority packet.
+
+### `ts-undersea-cable-tap-attribution-and-rapid-reroute-v1`
+- Use for: attribution and mitigation of suspected undersea cable tapping/manipulation events.
+- Primary tools: subsea telemetry correlation board, maritime anomaly fusion, comms reroute orchestrator.
+- Cross-check tools: independent subsea event witness and alternate SATCOM failover monitor.
+- Typical products: cable anomaly attribution board, reroute priority sequence, command continuity packet.
+
+### `ts-joint-denied-space-launch-window-reallocation-v1`
+- Use for: denied/disrupted launch window reallocation for military space mission priorities.
+- Primary tools: range scheduling optimizer, conjunction safety monitor, launch-readiness adjudicator.
+- Cross-check tools: independent orbital safety witness and alternate launch continuity board.
+- Typical products: launch-window reallocation matrix, risk ladder, authority release packet.
+
+### `ts-homeland-port-radiological-screening-surge-v1`
+- Use for: U.S. port radiological screening surge coordination with military-civil throughput continuity.
+- Primary tools: port inspection dashboard, radiation fusion analytics, continuity-of-commerce workflow.
+- Cross-check tools: independent hazard adjudication queue and alternate cargo screening monitor.
+- Typical products: screening surge board, suspicious cargo escalation ladder, continuity packet.
+
+### `ts-special-operations-low-signature-mesh-trust-v1`
+- Use for: trust assurance in low-signature SOF mesh networks under disconnected operations.
+- Primary tools: mesh trust monitor, edge key lifecycle broker, disconnected data sync governor.
+- Cross-check tools: independent identity attestation witness and alternate replay-risk monitor.
+- Typical products: mesh trust posture report, sync authority matrix, secure comms fallback packet.
+
+### `ts-iamd-decoy-discrimination-and-interceptor-priority-v1`
+- Use for: integrated air and missile defense decoy discrimination and interceptor prioritization.
+- Primary tools: multi-sensor decoy classifier, interceptor allocation planner, confidence adjudication board.
+- Cross-check tools: independent track truth witness and alternate inventory stress monitor.
+- Typical products: decoy confidence heatmap, interceptor branch matrix, release authority packet.
+
+### `ts-coalition-rare-earth-supply-shock-priority-allocation-v1`
+- Use for: coalition mission-priority allocation during rare-earth and strategic-material shocks.
+- Primary tools: industrial criticality allocator, readiness impact analyzer, coalition distribution board.
+- Cross-check tools: independent component scarcity witness and alternate mission-risk monitor.
+- Typical products: component priority matrix, coalition allocation ladder, strategic sustainment packet.
+
+### `ts-battlefield-neuromorphic-sensor-anomaly-triage-v1`
+- Use for: battlefield triage of neuromorphic/edge sensor anomalies impacting mission confidence.
+- Primary tools: anomaly triage pipeline, model-drift monitor, ISR fusion confidence board.
+- Cross-check tools: independent false-positive witness and alternate cueing risk monitor.
+- Typical products: anomaly queue board, confidence-tiered cueing matrix, triage authority packet.
+
+### `ts-arctic-long-range-uas-icing-link-resilience-v1`
+- Use for: Arctic long-range UAS icing and comm-link resilience management.
+- Primary tools: icing nowcast analytics, UAS fleet health telemetry, SATCOM/HF resilience orchestrator.
+- Cross-check tools: independent weather hazard witness and alternate link degradation monitor.
+- Typical products: icing risk operations card, link resilience branch map, ISR persistence packet.
+
+## Protocol Stack Addendum XXVIII (2026-03-13, External Integration Profiles for Expansion Wave XXVIII)
+
+### `ps-joint-munition-energy-coupled-targeting-deconfliction-stack-v1`
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `API/JSON`.
+- Use for: cross-theater effects allocation updates and authority-gated retask acknowledgments.
+
+### `ps-contested-megacity-autonomous-evacuation-governance-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: evacuation corridor state exchange, autonomous movement control, and civil-military synchronization.
+
+### `ps-coalition-deepfake-c2-authenticity-validation-stack-v1`
+- Protocols: `USMTF`, signed manifests, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: coalition message authenticity, provenance exchange, and authority-safe order validation.
+
+### `ps-expeditionary-bioreactor-fuel-ration-sustainment-stack-v1`
+- Protocols: `USMTF`, `HL7/FHIR`, `NIMS/ICS`, `API/JSON`.
+- Use for: bioreactor output updates, contamination alerts, and sustainment allocation branches.
+
+### `ps-undersea-cable-tap-attribution-and-rapid-reroute-stack-v1`
+- Protocols: `AIS/NMEA`, `STIX/TAXII`, `USMTF`, `CCSDS`, `API/JSON`.
+- Use for: subsea anomaly attribution, reroute sequencing, and command continuity acknowledgments.
+
+### `ps-joint-denied-space-launch-window-reallocation-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: launch-window updates, conjunction safety decisions, and mission-priority release gating.
+
+### `ps-homeland-port-radiological-screening-surge-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `AIS/NMEA`, `USMTF`, `API/JSON`.
+- Use for: screening surge posture, suspicious cargo escalation, and continuity-of-commerce decisions.
+
+### `ps-special-operations-low-signature-mesh-trust-stack-v1`
+- Protocols: `CoT`, `VMF`, signed attestation exchanges, `USMTF`, `API/JSON`.
+- Use for: mesh trust posture sync, disconnected authority handoff, and key lifecycle integrity.
+
+### `ps-iamd-decoy-discrimination-and-interceptor-priority-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: decoy discrimination confidence exchange, interceptor branch updates, and release authority acknowledgment.
+
+### `ps-coalition-rare-earth-supply-shock-priority-allocation-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: coalition component criticality updates, allocation decisions, and readiness branch governance.
+
+### `ps-battlefield-neuromorphic-sensor-anomaly-triage-stack-v1`
+- Protocols: `CoT`, `OGC WMS/WFS/WMTS`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: anomaly triage status exchange, model-drift alerts, and confidence-gated cueing release.
+
+### `ps-arctic-long-range-uas-icing-link-resilience-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `METAR/TAF`, HF data exchanges, `API/JSON`.
+- Use for: icing warnings, link health transitions, and Arctic ISR persistence branch updates.

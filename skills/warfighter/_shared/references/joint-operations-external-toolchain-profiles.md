@@ -474,3 +474,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent source-credibility ledger and alternate campaign impact monitor.
 - Protocols: `STIX/TAXII`, `NIEM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
 - Degraded fallback: attribution advisories only with no autonomous response release.
+
+## Profile Set (2026-03-13 Expansion Wave XXVIII - Deepfake C2 Integrity, Munition-Energy Deconfliction, Undersea Cable Reroute, and Arctic UAS Resilience)
+
+### `joint-munition-energy-coupled-targeting-deconfliction-v1`
+- Use for cross-theater deconfliction of kinetic and directed-energy effects under constrained inventory.
+- Primary tools: effects allocation planner + energy readiness board + munitions governance workflow.
+- Cross-check tools: independent strike-effects arbiter and alternate theater inventory monitor.
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `API/JSON`.
+- Degraded fallback: highest-priority effects only with commander escalation gate.
+
+### `contested-megacity-autonomous-evacuation-governance-v1`
+- Use for contested megacity evacuation corridor governance across military and civil actors.
+- Primary tools: urban mobility twin + corridor control scheduler + autonomy liability board.
+- Cross-check tools: independent route hazard witness and alternate shelter throughput monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Degraded fallback: life-safety corridors only with reduced autonomous release rules.
+
+### `coalition-deepfake-c2-authenticity-validation-v1`
+- Use for coalition command message authenticity validation against deepfake/spoofing threats.
+- Primary tools: signature verifier + media forensics engine + coalition trust adjudication board.
+- Cross-check tools: independent authenticity witness and alternate order-fragment integrity queue.
+- Protocols: `USMTF`, signed manifests, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: authenticated-high-confidence orders only with dual human approval.
+
+### `expeditionary-bioreactor-fuel-ration-sustainment-v1`
+- Use for expeditionary local fuel/ration sustainment under contested logistics and contamination risk.
+- Primary tools: bioprocess telemetry stack + contamination analytics board + sustainment allocator.
+- Cross-check tools: independent assay witness and alternate continuity monitor.
+- Protocols: `USMTF`, `HL7/FHIR`, `NIMS/ICS`, `API/JSON`.
+- Degraded fallback: life-support commodity classes only with elevated safety controls.
+
+### `undersea-cable-tap-attribution-and-rapid-reroute-v1`
+- Use for probable undersea cable compromise attribution and rapid command continuity reroute.
+- Primary tools: subsea anomaly fusion + maritime telemetry correlator + reroute orchestrator.
+- Cross-check tools: independent subsea event witness and alternate SATCOM continuity monitor.
+- Protocols: `AIS/NMEA`, `STIX/TAXII`, `USMTF`, `CCSDS`, `API/JSON`.
+- Degraded fallback: mission-essential flows only with fixed synchronization intervals.
+
+### `joint-denied-space-launch-window-reallocation-v1`
+- Use for military launch window reprioritization when range or conjunction limits deny planned timelines.
+- Primary tools: launch schedule optimizer + conjunction monitor + readiness adjudication board.
+- Cross-check tools: independent orbital safety witness and alternate launch continuity tracker.
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: highest-priority launches only with conservative safety constraints.
+
+### `homeland-port-radiological-screening-surge-v1`
+- Use for homeland radiological port screening surge coordination with continuity-of-commerce safeguards.
+- Primary tools: port inspection board + radiation fusion analytics + continuity workflow.
+- Cross-check tools: independent hazard adjudication queue and alternate screening throughput monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `AIS/NMEA`, `USMTF`, `API/JSON`.
+- Degraded fallback: high-risk cargo classes only with explicit command review.
+
+### `special-operations-low-signature-mesh-trust-v1`
+- Use for low-signature SOF mesh trust assurance in disconnected and denied environments.
+- Primary tools: mesh trust monitor + edge key lifecycle broker + disconnected sync manager.
+- Cross-check tools: independent identity attestation witness and alternate replay-risk monitor.
+- Protocols: `CoT`, `VMF`, signed attestation exchanges, `USMTF`, `API/JSON`.
+- Degraded fallback: essential command flows only with strict dual-control identity checks.
+
+### `iamd-decoy-discrimination-and-interceptor-priority-v1`
+- Use for integrated air and missile defense decoy discrimination and interceptor allocation governance.
+- Primary tools: decoy classifier + interceptor allocator + track confidence board.
+- Cross-check tools: independent track-truth witness and alternate inventory stress monitor.
+- Protocols: `Link 16 J-series`, `USMTF`, `CoT`, `API/JSON`.
+- Degraded fallback: highest-value defended assets only with conservative release thresholds.
+
+### `coalition-rare-earth-supply-shock-priority-allocation-v1`
+- Use for coalition critical-component allocation under rare-earth and strategic material shocks.
+- Primary tools: industrial criticality board + readiness impact analyzer + coalition distribution workflow.
+- Cross-check tools: independent scarcity witness and alternate mission-risk monitor.
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: mission-essential platforms only with rolling coalition concurrence gates.
+
+### `battlefield-neuromorphic-sensor-anomaly-triage-v1`
+- Use for triage and confidence governance of neuromorphic edge sensor anomaly streams.
+- Primary tools: anomaly triage workflow + model drift monitor + confidence adjudication board.
+- Cross-check tools: independent false-positive witness and alternate cueing-risk monitor.
+- Protocols: `CoT`, `OGC WMS/WFS/WMTS`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Degraded fallback: high-confidence cueing classes only with mandatory human verification.
+
+### `arctic-long-range-uas-icing-link-resilience-v1`
+- Use for Arctic UAS icing hazard and comm-link resilience governance for persistent ISR lanes.
+- Primary tools: icing nowcast analytics + UAS fleet health monitor + SATCOM/HF resilience orchestrator.
+- Cross-check tools: independent weather witness and alternate link degradation tracker.
+- Protocols: `Link 16 J-series`, `USMTF`, `METAR/TAF`, HF data exchanges, `API/JSON`.
+- Degraded fallback: essential ISR routes only with tighter icing/link confidence thresholds.

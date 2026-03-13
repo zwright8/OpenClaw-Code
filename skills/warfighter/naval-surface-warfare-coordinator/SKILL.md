@@ -162,3 +162,9 @@ Use this default binding unless mission constraints require an alternate path:
 - Add `tool_suite_id=ts-coalition-sanctions-maritime-insurance-evasion-disruption-v1` + `protocol_stack_id=ps-coalition-sanctions-maritime-insurance-evasion-disruption-stack-v1` for sea-control recommendations that depend on sanctions-evasion interdiction and legal-evidence continuity.
 - Add `tool_suite_id=ts-coalition-under-ice-autonomous-resupply-corridor-v1` + `protocol_stack_id=ps-coalition-under-ice-autonomous-resupply-corridor-stack-v1` when Arctic under-ice logistics corridors influence maritime posture, escort allocation, or casualty-flow branches.
 - Add `packet_id=DPL-MARITIME-INSURANCE-EVASION-DISRUPTION-001` and `packet_id=DPL-UNDER-ICE-AUTONOMOUS-RESUPPLY-001` for branches that materially change force protection or coalition routing posture.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXVIII Addendum)
+
+- Add `tool_suite_id=ts-undersea-cable-tap-attribution-and-rapid-reroute-v1` + `protocol_stack_id=ps-undersea-cable-tap-attribution-and-rapid-reroute-stack-v1` when maritime recommendations depend on subsea cable compromise attribution and rapid C2 reroute.
+- Add `tool_suite_id=ts-homeland-port-radiological-screening-surge-v1` + `protocol_stack_id=ps-homeland-port-radiological-screening-surge-stack-v1` when naval support posture intersects U.S. port radiological screening and continuity-of-commerce risk.
+- Add `packet_id=DPL-UNDERSEA-CABLE-TAP-REROUTE-001` and `packet_id=DPL-HOMELAND-PORT-RAD-SURGE-001` for branches that materially alter maritime force protection or logistics routing.

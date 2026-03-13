@@ -179,3 +179,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-joint-biosurveillance-field-lab-chain-of-custody-v1` + `protocol_stack_id=ps-joint-biosurveillance-field-lab-chain-of-custody-stack-v1` when coalition force-health and bio-event sharing require evidence-grade sample custody and cross-border validation.
 - Add `tool_suite_id=ts-strategic-cognitive-electromagnetic-deception-exposure-v1` + `protocol_stack_id=ps-strategic-cognitive-electromagnetic-deception-exposure-stack-v1` when allied interoperability decisions are degraded by combined disinformation and spectrum-deception pressure.
 - Add `packet_id=DPL-CISLUNAR-CUSTODY-CONJUNCTION-001`, `packet_id=DPL-BIOSURVEILLANCE-FIELD-LAB-CUSTODY-001`, and `packet_id=DPL-COGNITIVE-EM-DECEPTION-EXPOSURE-001` for branches that can alter coalition posture or release authorities.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXVIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-deepfake-c2-authenticity-validation-v1` + `protocol_stack_id=ps-coalition-deepfake-c2-authenticity-validation-stack-v1` when coalition order integrity is threatened by synthetic media or spoofed command traffic.
+- Add `tool_suite_id=ts-coalition-rare-earth-supply-shock-priority-allocation-v1` + `protocol_stack_id=ps-coalition-rare-earth-supply-shock-priority-allocation-stack-v1` when interoperability risk is driven by mission-critical component scarcity across allied force packages.
+- Add `packet_id=DPL-COALITION-DEEPFAKE-C2-AUTH-001` and `packet_id=DPL-COALITION-RARE-EARTH-ALLOCATION-001` for recommendations that alter coalition release authorities or readiness-sharing assumptions.

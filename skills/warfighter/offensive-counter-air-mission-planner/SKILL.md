@@ -193,3 +193,9 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - Add `tool_suite_id=ts-theater-hypersonic-strike-bda-corroboration-v1` + `protocol_stack_id=ps-theater-hypersonic-strike-bda-corroboration-stack-v1` when compressed strike timelines require multi-source battle-damage corroboration before escalation-sensitive branch selection.
 - Add `tool_suite_id=ts-joint-quantum-pnt-fallback-assurance-v1` + `protocol_stack_id=ps-joint-quantum-pnt-fallback-assurance-stack-v1` when OCA timing, rendezvous sequencing, or release authorities depend on contested PNT fallback confidence.
 - Add `packet_id=DPL-HYPERSONIC-BDA-CORROBORATION-001` and `packet_id=DPL-QUANTUM-PNT-FALLBACK-001` for branches that can alter commander go/no-go posture.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXVIII Addendum)
+
+- Add `tool_suite_id=ts-iamd-decoy-discrimination-and-interceptor-priority-v1` + `protocol_stack_id=ps-iamd-decoy-discrimination-and-interceptor-priority-stack-v1` when OCA recommendations depend on separating decoy saturation from high-confidence missile or aircraft threats.
+- Add `tool_suite_id=ts-joint-munition-energy-coupled-targeting-deconfliction-v1` + `protocol_stack_id=ps-joint-munition-energy-coupled-targeting-deconfliction-stack-v1` when OCA support requires cross-theater kinetic and directed-energy allocation tradeoffs.
+- Add `packet_id=DPL-IAMD-DECOY-DISCRIMINATION-001` and `packet_id=DPL-MUNITION-ENERGY-DECONFLICTION-001` for branches that materially alter sortie-risk acceptance or interceptor release posture.
