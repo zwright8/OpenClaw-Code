@@ -47,6 +47,7 @@
 - `npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97` - run autonomous loop with discounted UCB adaptation to emphasize recent outcomes under drift.
 - `npm run autonomous:run -- --selection-policy d_ucb_v --discount-factor 0.97 --ucb-v-exploration 1` - run autonomous loop with discounted variance-aware UCB-V adaptation for non-stationary outcomes.
 - `npm run autonomous:run -- --selection-policy mw_ucb --multi-window-sizes 4,8,16,32` - run autonomous loop with multi-window UCB adaptation that opportunistically picks the strongest recency horizon under mixed drift.
+- `npm run autonomous:run -- --selection-policy bob_sw_ucb --multi-window-sizes 4,8,16,32 --bob-gamma 0.12` - run autonomous loop with a bandit-over-window controller that adaptively routes SW-UCB to the strongest recency horizon while preserving exploration.
 - `npm run autonomous:run -- --selection-policy ucb_tuned` - run autonomous loop with variance-aware UCB-Tuned scoring for bounded outcomes.
 - `npm run autonomous:run -- --selection-policy sw_ucb_tuned --window-size 12` - run autonomous loop with sliding-window UCB-Tuned adaptation for drift-aware variance-sensitive ranking.
 - `npm run autonomous:run -- --selection-policy d_ucb_tuned --discount-factor 0.97` - run autonomous loop with discounted variance-aware UCB-Tuned adaptation under drift.

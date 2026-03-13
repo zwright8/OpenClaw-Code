@@ -57,6 +57,7 @@ Options:
   --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
   --boltzmann-gumbel-c <n>     Exploration constant for bge* policies (>0 to 5, default: 0.5)
   --phe-perturbation-scale <n> Pseudoreward scale a for phe* policies (>0 to 10, default: 2)
+  --bob-gamma <n>              Exploration floor for bob_sw_ucb window meta-bandit (0-0.8, default: 0.12)
   --window-size <n>            Sliding-window size for sw_* policies (default: 12)
   --multi-window-sizes <list>  Comma-separated window sizes for mw_ucb (default: 4,8,16,32)
   --cd-min-samples <n>         Min outcomes before change detection in cd_* / glr_* and sw_* variants (default: 8)
@@ -202,6 +203,7 @@ function parseArgs(argv) {
             mossAlpha: 1,
             ucbVExploration: 1,
             boltzmannGumbelC: 0.5,
+            bobGamma: 0.12,
             phePerturbationScale: 2,
             slidingWindowSize: 12,
             multiWindowSizes: [4, 8, 16, 32],
@@ -432,6 +434,11 @@ function parseArgs(argv) {
         }
         if (token === '--phe-perturbation-scale') {
             options.selectionPolicyConfig.phePerturbationScale = parseFloatInRange(value, '--phe-perturbation-scale', Number.EPSILON, 10);
+            i++;
+            continue;
+        }
+        if (token === '--bob-gamma') {
+            options.selectionPolicyConfig.bobGamma = parseFloatInRange(value, '--bob-gamma', 0, 0.8);
             i++;
             continue;
         }

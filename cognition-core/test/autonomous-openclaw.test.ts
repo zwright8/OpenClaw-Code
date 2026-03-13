@@ -3445,6 +3445,73 @@ test('buildAutonomousBatchPlan supports mw_ucb multi-window adaptation under mix
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'mw_ucb');
 });
 
+test('buildAutonomousBatchPlan supports bob_sw_ucb adaptive meta-window routing under drift', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 621, code: 'SK-00621', title: 'Skill 621' },
+            { id: 622, code: 'SK-00622', title: 'Skill 622' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '621': {
+                    attempts: 20,
+                    successes: 18,
+                    failures: 2,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' }
+                    ]
+                },
+                '622': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 24,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' }
+                    ]
+                }
+            },
+            windowPolicyExecutionStats: {
+                skills: {
+                    '2': { attempts: 30, successes: 10, failures: 20, cumulativeReward: 10 },
+                    '8': { attempts: 30, successes: 25, failures: 5, cumulativeReward: 25 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'bob_sw_ucb',
+            multiWindowSizes: [2, 8],
+            bobGamma: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [621]);
+    assert.equal(plan.selection.policy.skills, 'bob_sw_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'bob_sw_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyConfig?.selectedWindowSize, 8);
+});
+
 test('buildAutonomousBatchPlan supports sliding-window KL-UCB for drift-aware ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -4806,6 +4873,48 @@ test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints c
     assert.equal(coverage.policyExecutionStats.skills.d_exp3_s.attempts, 1);
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_exp3_s.cumulativeReward - 0.6) < 1e-9);
     assert.ok(coverage.contextualBanditModels.skills.samples > 0);
+});
+
+test('collectAutonomousCoverage tracks bob_sw_ucb selected window outcomes', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 100_000 });
+
+    const bobRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001113',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00113] Execute test',
+        context: {
+            skillId: 113,
+            autonomy: {
+                lane: 'skills',
+                wave: 6,
+                selectionPolicyApplied: 'bob_sw_ucb',
+                selectionPolicyConfig: {
+                    mode: 'bob_sw_ucb',
+                    selectedWindowSize: 8,
+                    multiWindowSizes: [4, 8, 16]
+                }
+            }
+        },
+        createdAt: 90_100
+    });
+
+    const bobRecord = buildQueueRecordFromTaskRequest(bobRequest, { nowFactory: () => 95_100 });
+    bobRecord.status = 'partial';
+    bobRecord.updatedAt = 100_300;
+    await store.saveRecord(bobRecord);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 100_500 });
+
+    assert.equal(coverage.windowPolicyExecutionStats.skills['8'].attempts, 1);
+    assert.equal(coverage.windowPolicyExecutionStats.skills['8'].successes, 1);
+    assert.ok(Math.abs(coverage.windowPolicyExecutionStats.skills['8'].cumulativeReward - 0.6) < 1e-9);
+    assert.equal(coverage.windowPolicyExecutionStats.skills['8'].recentOutcomes[0].reward, 0.6);
 });
 
 test('runAutonomousOpenClaw executes a wave and persists advancing autonomy state', async (t) => {

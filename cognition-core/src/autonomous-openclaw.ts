@@ -66,6 +66,8 @@ const HYBRID_TS_AGGREGATION_MODES = new Set([
 ]);
 const DEFAULT_MULTI_WINDOW_SIZES = Object.freeze([4, 8, 16, 32]);
 const MAX_MULTI_WINDOW_CANDIDATES = 10;
+const DEFAULT_BOB_GAMMA = 0.12;
+const MAX_BOB_GAMMA = 0.8;
 const DEFAULT_SLIDING_WINDOW_SIZE = 12;
 const MAX_SLIDING_WINDOW_SIZE = 200;
 const MAX_RECENT_OUTCOMES_TRACKED = 128;
@@ -154,6 +156,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'bayes_ucb',
     'sw_ucb',
     'mw_ucb',
+    'bob_sw_ucb',
     'sw_ucb_v',
     'sw_ucb_tuned',
     'sw_epsilon_ts',
@@ -313,6 +316,9 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
 ]);
 const MULTI_WINDOW_UCB_POLICY_MODES = new Set([
     'mw_ucb'
+]);
+const BOB_WINDOW_UCB_POLICY_MODES = new Set([
+    'bob_sw_ucb'
 ]);
 const BOLTZMANN_GUMBEL_POLICY_MODES = new Set([
     'bge',
@@ -623,6 +629,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             MAX_SLIDING_WINDOW_SIZE
         ),
         multiWindowSizes: normalizeMultiWindowSizes(value.multiWindowSizes),
+        bobGamma: clamp(
+            Number.isFinite(Number(value.bobGamma))
+                ? Number(value.bobGamma)
+                : DEFAULT_BOB_GAMMA,
+            0,
+            MAX_BOB_GAMMA
+        ),
         discountFactor: clamp(
             Number.isFinite(Number(value.discountFactor))
                 ? Number(value.discountFactor)
@@ -848,6 +861,25 @@ function normalizePolicyExecutionStats(rawStats = {}) {
     return {
         skills: normalizePolicyPerformanceByLane(stats.skills),
         capabilities: normalizePolicyPerformanceByLane(stats.capabilities)
+    };
+}
+
+function normalizeWindowPolicyPerformanceByLane(rawStats = {}) {
+    const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+    const normalized = {};
+    for (const [windowKey, value] of Object.entries(stats)) {
+        const parsedWindow = parsePositiveInt(windowKey, 0);
+        if (parsedWindow <= 0) continue;
+        normalized[String(parsedWindow)] = normalizePolicyPerformanceStat(value);
+    }
+    return normalized;
+}
+
+function normalizeWindowPolicyExecutionStats(rawStats = {}) {
+    const stats = rawStats && typeof rawStats === 'object' ? rawStats : {};
+    return {
+        skills: normalizeWindowPolicyPerformanceByLane(stats.skills),
+        capabilities: normalizeWindowPolicyPerformanceByLane(stats.capabilities)
     };
 }
 
@@ -1079,6 +1111,7 @@ function normalizeState(rawState = {}) {
         skillExecutionStats: normalizeSkillExecutionStats(state.skillExecutionStats),
         capabilityExecutionStats: normalizeCapabilityExecutionStats(state.capabilityExecutionStats),
         policyExecutionStats: normalizePolicyExecutionStats(state.policyExecutionStats),
+        windowPolicyExecutionStats: normalizeWindowPolicyExecutionStats(state.windowPolicyExecutionStats),
         contextualBanditModels: normalizeContextualBanditModels(state.contextualBanditModels),
         updatedAt: Number.isFinite(Number(state.updatedAt)) ? Number(state.updatedAt) : null
     };
@@ -2181,6 +2214,46 @@ function computeMultiWindowUcbScore(stat, totalAttempts, currentWave, adaptiveSc
     return bestScore;
 }
 
+function resolveBobWindowDistribution(windowPolicyExecutionStats = {}, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const candidates = normalizeMultiWindowSizes(policy.multiWindowSizes);
+    if (candidates.length <= 0) {
+        return [{
+            windowSize: DEFAULT_SLIDING_WINDOW_SIZE,
+            probability: 1
+        }];
+    }
+
+    const laneStats = windowPolicyExecutionStats && typeof windowPolicyExecutionStats === 'object'
+        ? windowPolicyExecutionStats
+        : {};
+    const parsedStats = candidates.map((windowSize) => ({
+        windowSize,
+        stat: normalizePolicyPerformanceStat(laneStats[String(windowSize)])
+    }));
+    const totalMetaAttempts = Math.max(
+        1,
+        parsedStats.reduce((sum, entry) => sum + entry.stat.attempts, 0)
+    );
+    const scores = parsedStats.map(({ stat }) => {
+        const rewardRate = (stat.cumulativeReward + 1) / (stat.attempts + 2);
+        const exploration = Math.sqrt((2 * Math.log(totalMetaAttempts + 1)) / (stat.attempts + 1));
+        return rewardRate + exploration;
+    });
+    const maxScore = Math.max(...scores);
+    const expScores = scores.map((score) => Math.exp(clamp(score - maxScore, -50, 50)));
+    const expTotal = expScores.reduce((sum, value) => sum + value, 0);
+    const softmax = expTotal > 0
+        ? expScores.map((value) => value / expTotal)
+        : new Array(candidates.length).fill(1 / candidates.length);
+    const floor = policy.bobGamma / candidates.length;
+
+    return candidates.map((windowSize, index) => ({
+        windowSize,
+        probability: ((1 - policy.bobGamma) * softmax[index]) + floor
+    }));
+}
+
 function computeUcbTunedScore(stat, totalAttempts, currentWave, adaptiveScoreConfig, selectionPolicyConfig = null) {
     const normalized = resolveScoreStats(stat, selectionPolicyConfig);
     if (normalized.attempts <= 0) {
@@ -2751,6 +2824,7 @@ function selectCatalogSlice({
     adaptiveScoreConfig = null,
     selectionPolicyConfig = null,
     policyExecutionStats = {},
+    windowPolicyExecutionStats = {},
     contextualBanditModel = null,
     selectionScope = 'catalog'
 }) {
@@ -2760,6 +2834,7 @@ function selectCatalogSlice({
             selected: [],
             nextCursor: 0,
             selectedPolicy: normalizeSelectionPolicyConfig(selectionPolicyConfig).mode,
+            appliedSelectionPolicyConfig: normalizeSelectionPolicyConfig(selectionPolicyConfig),
             policyProbabilities: null,
             selectionFeatures: {},
             selectionProbabilities: {}
@@ -2789,6 +2864,7 @@ function selectCatalogSlice({
     const normalizedCurrentWave = parseNonNegativeInt(currentWave, 0);
     let scoringPolicy = normalizedPolicy;
     let selectedPolicy = normalizedPolicy.mode;
+    let appliedSelectionPolicyConfig = normalizedPolicy;
     let policyProbabilities = null;
     const selectionFeatures = {};
     let selectionProbabilities = {};
@@ -2811,6 +2887,33 @@ function selectCatalogSlice({
             entry.name,
             Number(entry.probability.toFixed(6))
         ]));
+    } else if (BOB_WINDOW_UCB_POLICY_MODES.has(normalizedPolicy.mode)) {
+        const distribution = resolveBobWindowDistribution(windowPolicyExecutionStats, normalizedPolicy);
+        const selectedWindowSize = Number(pickPolicyFromDistribution(
+            distribution.map((entry) => ({
+                name: String(entry.windowSize),
+                probability: entry.probability
+            })),
+            `${selectionScope}:${normalizedPolicy.mode}:window:${normalizedCurrentWave}:${pointer}:${total}`
+        ));
+        scoringPolicy = {
+            ...normalizedPolicy,
+            mode: 'sw_ucb',
+            slidingWindowSize: selectedWindowSize
+        };
+        appliedSelectionPolicyConfig = {
+            ...normalizedPolicy,
+            selectedWindowSize
+        };
+        policyProbabilities = {
+            mode: normalizedPolicy.mode,
+            gamma: Number(normalizedPolicy.bobGamma.toFixed(6)),
+            selectedWindowSize,
+            windows: Object.fromEntries(distribution.map((entry) => [
+                String(entry.windowSize),
+                Number(entry.probability.toFixed(6))
+            ]))
+        };
     }
 
     const totalAttempts = Math.max(1, Object.values(executionStats)
@@ -3025,6 +3128,7 @@ function selectCatalogSlice({
         selected,
         nextCursor: pointer,
         selectedPolicy,
+        appliedSelectionPolicyConfig,
         policyProbabilities,
         selectionFeatures,
         selectionProbabilities
@@ -3064,6 +3168,7 @@ export function buildAutonomousBatchPlan({
         adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
         selectionPolicyConfig: normalizedSelectionPolicyConfig,
         policyExecutionStats: normalizedState.policyExecutionStats.skills,
+        windowPolicyExecutionStats: normalizedState.windowPolicyExecutionStats.skills,
         contextualBanditModel: normalizedState.contextualBanditModels.skills,
         selectionScope: 'skills'
     });
@@ -3079,6 +3184,7 @@ export function buildAutonomousBatchPlan({
         adaptiveScoreConfig: normalizedAdaptiveScoreConfig,
         selectionPolicyConfig: normalizedSelectionPolicyConfig,
         policyExecutionStats: normalizedState.policyExecutionStats.capabilities,
+        windowPolicyExecutionStats: normalizedState.windowPolicyExecutionStats.capabilities,
         contextualBanditModel: normalizedState.contextualBanditModels.capabilities,
         selectionScope: 'capabilities'
     });
@@ -3110,7 +3216,7 @@ export function buildAutonomousBatchPlan({
                     wave: waveIndex,
                     sourceCatalog: skillCatalogSource,
                     selectionPolicyApplied: skillSelection.selectedPolicy,
-                    selectionPolicyConfig: normalizedSelectionPolicyConfig,
+                    selectionPolicyConfig: skillSelection.appliedSelectionPolicyConfig,
                     selectionFeatures,
                     selectionProbability: Number(skillSelection.selectionProbabilities[featureKey] || 0)
                 },
@@ -3152,7 +3258,7 @@ export function buildAutonomousBatchPlan({
                     lane: 'capabilities',
                     wave: waveIndex,
                     selectionPolicyApplied: capabilitySelection.selectedPolicy,
-                    selectionPolicyConfig: normalizedSelectionPolicyConfig,
+                    selectionPolicyConfig: capabilitySelection.appliedSelectionPolicyConfig,
                     selectionFeatures,
                     selectionProbability: Number(capabilitySelection.selectionProbabilities[featureKey] || 0)
                 },
@@ -3254,6 +3360,7 @@ export async function collectAutonomousCoverage({
     const skillExecutionStats = {};
     const capabilityExecutionStats = {};
     const policyExecutionStats = normalizePolicyExecutionStats({});
+    const windowPolicyExecutionStats = normalizeWindowPolicyExecutionStats({});
     const contextualBanditModels = normalizeContextualBanditModels({});
 
     for (const record of records) {
@@ -3342,6 +3449,31 @@ export async function collectAutonomousCoverage({
             policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
         }
 
+        if (lane && selectedPolicy === 'bob_sw_ucb') {
+            const selectedWindowSize = parsePositiveInt(
+                selectedPolicyConfig.selectedWindowSize,
+                selectedPolicyConfig.slidingWindowSize
+            );
+            if (selectedWindowSize > 0) {
+                const key = String(selectedWindowSize);
+                const currentMeta = normalizePolicyPerformanceStat(windowPolicyExecutionStats[lane][key]);
+                currentMeta.attempts += 1;
+                if (didSucceed) {
+                    currentMeta.successes += 1;
+                    currentMeta.consecutiveFailures = 0;
+                } else {
+                    currentMeta.failures += 1;
+                    currentMeta.consecutiveFailures += 1;
+                }
+                currentMeta.cumulativeReward += reward;
+                currentMeta.lastStatus = status;
+                currentMeta.lastWave = attemptWave > 0 ? attemptWave : currentMeta.lastWave;
+                const metaWithOutcome = recordRecentOutcome(currentMeta, { status, wave: attemptWave });
+                metaWithOutcome.cumulativeReward = currentMeta.cumulativeReward;
+                windowPolicyExecutionStats[lane][key] = metaWithOutcome;
+            }
+        }
+
         if (lane && (selectedPolicy === 'linucb'
             || selectedPolicy === 'sw_linucb'
             || selectedPolicy === 'd_linucb'
@@ -3373,6 +3505,7 @@ export async function collectAutonomousCoverage({
         skillExecutionStats: normalizeSkillExecutionStats(skillExecutionStats),
         capabilityExecutionStats: normalizeCapabilityExecutionStats(capabilityExecutionStats),
         policyExecutionStats: normalizePolicyExecutionStats(policyExecutionStats),
+        windowPolicyExecutionStats: normalizeWindowPolicyExecutionStats(windowPolicyExecutionStats),
         contextualBanditModels: normalizeContextualBanditModels(contextualBanditModels)
     };
 }
@@ -3410,6 +3543,26 @@ function mergePolicyExecutionStats(existingStats = {}, incomingStats = {}) {
             const previous = normalizePolicyPerformanceStat(existing[lane][policy]);
             const next = normalizePolicyPerformanceStat(incoming[lane][policy]);
             merged[lane][policy] = next.attempts >= previous.attempts ? next : previous;
+        }
+    }
+
+    return merged;
+}
+
+function mergeWindowPolicyExecutionStats(existingStats = {}, incomingStats = {}) {
+    const previous = normalizeWindowPolicyExecutionStats(existingStats);
+    const next = normalizeWindowPolicyExecutionStats(incomingStats);
+    const merged = normalizeWindowPolicyExecutionStats({});
+
+    for (const lane of ['skills', 'capabilities']) {
+        const keys = new Set([
+            ...Object.keys(previous[lane]),
+            ...Object.keys(next[lane])
+        ]);
+        for (const key of keys) {
+            const prior = normalizePolicyPerformanceStat(previous[lane][key]);
+            const incomingStat = normalizePolicyPerformanceStat(next[lane][key]);
+            merged[lane][key] = incomingStat.attempts >= prior.attempts ? incomingStat : prior;
         }
     }
 
@@ -3667,6 +3820,10 @@ export async function runAutonomousOpenClaw({
             skillExecutionStats: mergeExecutionStats(state.skillExecutionStats, coverage.skillExecutionStats),
             capabilityExecutionStats: mergeExecutionStats(state.capabilityExecutionStats, coverage.capabilityExecutionStats),
             policyExecutionStats: mergePolicyExecutionStats(state.policyExecutionStats, coverage.policyExecutionStats),
+            windowPolicyExecutionStats: mergeWindowPolicyExecutionStats(
+                state.windowPolicyExecutionStats,
+                coverage.windowPolicyExecutionStats
+            ),
             contextualBanditModels: mergeContextualBanditModels(state.contextualBanditModels, coverage.contextualBanditModels),
             updatedAt: safeNow(nowFactory)
         });
