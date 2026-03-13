@@ -112,6 +112,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `b895d565e2..f82989e9e6`: no new README command-map additions were found (range adds AGENTS verification bookkeeping plus warfighter skill/reference content and bindings only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `204af43363..b895d565e2`: added README command-map workflows for ADWIN-contextual autonomous run flags (`--selection-policy adwin_linucb|adwin_lints`, `--adwin-delta`, `--cd-min-samples`, `--linucb-alpha`, `--lints-alpha`) and expanded autonomous policy telemetry tracking across all supported selectors; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `b4b7b23ab1..e43ede7cdb`: no new README command-map additions were found (range adds bot idempotent task replay cache/collision-guard behavior only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `0692189a76..b4b7b23ab1`: added README command-map workflow for anti-starvation corral expert exploration controls (`--selection-policy corral_exp3_plus`, `--corral-gamma`, `--corral-eta`, `--corral-min-attempts`, `--corral-forced-exploration`); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
