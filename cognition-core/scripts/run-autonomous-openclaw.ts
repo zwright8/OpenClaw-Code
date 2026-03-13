@@ -55,6 +55,7 @@ Options:
   --exp3-auto-eta              Auto-tune exp3_ix eta via sqrt((2*log(K+1))/(N*K)); defaults implicit gamma to eta/2 unless overridden
   --exp3-share-alpha <n>       Share-mixing strength for exp3_s* (0-1, default: 0.08)
   --exp3-restart-interval <n>  Epoch length for rexp3_ix periodic restarts (default: 12)
+  --tsallis-eta-scale <n>      Learning-rate scale for tsallis_inf* (0-10, default: 1)
   --moss-alpha <n>             Exploration multiplier for moss_anytime (>0 to 10, default: 1)
   --ucb-v-exploration <n>      Exploration multiplier for ucb_v* (>0 to 5, default: 1)
   --risk-variance-weight <n>   Variance penalty for mv_ucb* risk-aware scoring (0-5, default: 0.6)
@@ -205,6 +206,7 @@ function parseArgs(argv) {
             exp3AutoEta: false,
             exp3ShareAlpha: 0.08,
             exp3RestartInterval: 12,
+            tsallisEtaScale: 1,
             mossAlpha: 1,
             ucbVExploration: 1,
             riskVarianceWeight: 0.6,
@@ -486,6 +488,11 @@ function parseArgs(argv) {
         }
         if (token === '--exp3-restart-interval') {
             options.selectionPolicyConfig.exp3RestartInterval = parsePositiveInt(value, '--exp3-restart-interval');
+            i++;
+            continue;
+        }
+        if (token === '--tsallis-eta-scale') {
+            options.selectionPolicyConfig.tsallisEtaScale = parseFloatInRange(value, '--tsallis-eta-scale', Number.EPSILON, 10);
             i++;
             continue;
         }

@@ -122,6 +122,8 @@ const MAX_EXP3_SHARE_ALPHA = 1;
 const DEFAULT_EXP3_RESTART_INTERVAL = 12;
 const MAX_EXP3_RESTART_INTERVAL = 200;
 const DEFAULT_EXP3_AUTO_ETA = false;
+const DEFAULT_TSALLIS_ETA_SCALE = 1;
+const MAX_TSALLIS_ETA_SCALE = 10;
 const DEFAULT_MOSS_ALPHA = 1;
 const MAX_MOSS_ALPHA = 10;
 const DEFAULT_UCB_V_EXPLORATION = 1;
@@ -213,6 +215,9 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'sw_exp3_s',
     'd_exp3_ix',
     'd_exp3_s',
+    'tsallis_inf',
+    'sw_tsallis_inf',
+    'd_tsallis_inf',
     'bge',
     'sw_bge',
     'd_bge',
@@ -279,6 +284,11 @@ const EXP3_POLICY_MODES = new Set([
     'd_exp3_ix',
     'd_exp3_s'
 ]);
+const TSALLIS_POLICY_MODES = new Set([
+    'tsallis_inf',
+    'sw_tsallis_inf',
+    'd_tsallis_inf'
+]);
 const EXP3_SHARE_POLICY_MODES = new Set([
     'exp3_s',
     'adwin_exp3_s',
@@ -335,6 +345,7 @@ const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_bayes_ucb',
     'sw_exp3_ix',
     'sw_exp3_s',
+    'sw_tsallis_inf',
     'sw_bge',
     'sw_phe',
     'sw_moss_anytime'
@@ -372,6 +383,7 @@ const DISCOUNTED_POLICY_MODES = new Set([
     'd_bayes_ucb',
     'd_exp3_ix',
     'd_exp3_s',
+    'd_tsallis_inf',
     'd_bge',
     'd_phe',
     'd_linucb',
@@ -834,6 +846,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_EXP3_RESTART_INTERVAL,
             1,
             MAX_EXP3_RESTART_INTERVAL
+        ),
+        tsallisEtaScale: clamp(
+            Number.isFinite(Number(value.tsallisEtaScale))
+                ? Number(value.tsallisEtaScale)
+                : DEFAULT_TSALLIS_ETA_SCALE,
+            Number.EPSILON,
+            MAX_TSALLIS_ETA_SCALE
         ),
         mossAlpha: clamp(
             Number.isFinite(Number(value.mossAlpha))
@@ -2966,9 +2985,16 @@ function resolveExp3RecentOutcomes(stat, selectionPolicyConfig, currentWave = 0)
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     let outcomes = normalized.recentOutcomes.slice();
-    if (policy.mode === 'sw_exp3_ix' || policy.mode === 'sw_exp3_s') {
+    if (
+        policy.mode === 'sw_exp3_ix'
+        || policy.mode === 'sw_exp3_s'
+        || policy.mode === 'sw_tsallis_inf'
+    ) {
         outcomes = outcomes.slice(-policy.slidingWindowSize);
-    } else if (policy.mode === 'adwin_exp3_ix' || policy.mode === 'adwin_exp3_s') {
+    } else if (
+        policy.mode === 'adwin_exp3_ix'
+        || policy.mode === 'adwin_exp3_s'
+    ) {
         const changeIndex = detectAdwinChangeIndex(outcomes, policy);
         outcomes = changeIndex > 0 ? outcomes.slice(changeIndex) : outcomes;
     } else if (policy.mode === 'rexp3_ix') {
@@ -3006,6 +3032,7 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
 
     const useDiscounting = policy.mode === 'd_exp3_ix'
         || policy.mode === 'd_exp3_s'
+        || policy.mode === 'd_tsallis_inf'
         || policy.mode === 'd_corral_exp3'
         || policy.mode === 'd_corral_exp3_plus';
     let cumulativeEstimatedLoss = 0;
@@ -3031,6 +3058,131 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
     }
 
     return Math.max(0, cumulativeEstimatedLoss);
+}
+
+function resolveTsallisRuntimeParameters(policy, _armCount, totalAttempts) {
+    const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
+    const explorationGamma = clamp(
+        Number(policy.exp3ExplorationGamma),
+        Number.EPSILON,
+        MAX_EXP3_IX_GAMMA
+    );
+    const etaScale = clamp(
+        Number(policy.tsallisEtaScale),
+        Number.EPSILON,
+        MAX_TSALLIS_ETA_SCALE
+    );
+    const eta = clamp(
+        etaScale / Math.sqrt(safeAttempts),
+        Number.EPSILON,
+        MAX_EXP3_IX_ETA
+    );
+    const implicitGamma = Number.isFinite(Number(policy.exp3ImplicitGamma))
+        ? clamp(Number(policy.exp3ImplicitGamma), Number.EPSILON, MAX_EXP3_IX_GAMMA)
+        : explorationGamma;
+    return {
+        eta,
+        etaScale,
+        explorationGamma,
+        implicitGamma
+    };
+}
+
+function solveTsallisSlack(losses, eta) {
+    if (!Array.isArray(losses) || losses.length === 0) return null;
+    const safeEta = clamp(Number(eta), Number.EPSILON, MAX_EXP3_IX_ETA);
+    const finiteLosses = losses
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value));
+    if (finiteLosses.length !== losses.length) {
+        return null;
+    }
+    const minLoss = Math.min(...finiteLosses);
+    const maxLoss = Math.max(...finiteLosses);
+    const target = 1;
+    const evaluate = (slack) => finiteLosses.reduce((sum, loss) => {
+        const margin = Math.max(0, slack - loss);
+        return sum + ((safeEta * margin) ** 2);
+    }, 0);
+    let low = minLoss;
+    let high = Math.max(minLoss + (1 / safeEta), maxLoss + (1 / safeEta));
+    let value = evaluate(high);
+    let growthGuard = 0;
+    while (value < target && growthGuard < 32) {
+        high += Math.max(1 / safeEta, (high - low) || 1);
+        value = evaluate(high);
+        growthGuard += 1;
+    }
+    if (value < target) {
+        return high;
+    }
+    for (let iteration = 0; iteration < 64; iteration++) {
+        const mid = (low + high) / 2;
+        const midValue = evaluate(mid);
+        if (midValue >= target) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    return high;
+}
+
+function resolveTsallisInfDistribution({
+    catalog,
+    executionStats,
+    totalAttempts,
+    selectionPolicyConfig,
+    currentWave
+}) {
+    const list = Array.isArray(catalog) ? catalog : [];
+    const attemptsDenominator = Math.max(1, Number(totalAttempts) || 1);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const armCount = Math.max(1, list.length);
+    const runtime = resolveTsallisRuntimeParameters(policy, armCount, attemptsDenominator);
+    const uniform = 1 / armCount;
+    const perArmLoss = list.map((candidate) => {
+        const key = String(candidate?.id ?? candidate);
+        const outcomes = resolveExp3RecentOutcomes(
+            executionStats?.[key],
+            selectionPolicyConfig,
+            currentWave
+        );
+        const cumulativeEstimatedLoss = computeExp3ImplicitEstimatedLoss(
+            outcomes,
+            policy,
+            uniform,
+            runtime.implicitGamma
+        );
+        return {
+            key,
+            loss: cumulativeEstimatedLoss
+        };
+    });
+    const minimumLoss = perArmLoss.reduce(
+        (minimum, entry) => Math.min(minimum, entry.loss),
+        Number.POSITIVE_INFINITY
+    );
+    const centeredLosses = perArmLoss.map((entry) => (
+        entry.loss - (Number.isFinite(minimumLoss) ? minimumLoss : 0)
+    ));
+    const slack = solveTsallisSlack(centeredLosses, runtime.eta);
+    const rawWeights = centeredLosses.map((loss) => {
+        if (!Number.isFinite(slack)) return 0;
+        const margin = Math.max(0, slack - loss);
+        return (runtime.eta * margin) ** 2;
+    });
+    const rawSum = rawWeights.reduce((sum, weight) => sum + weight, 0);
+    const safeRawSum = rawSum > 0 ? rawSum : armCount;
+    const probabilities = {};
+
+    for (let index = 0; index < perArmLoss.length; index++) {
+        const key = perArmLoss[index].key;
+        const exploitation = (rawWeights[index] || 0) / safeRawSum;
+        probabilities[key] = ((1 - runtime.explorationGamma) * exploitation) + (runtime.explorationGamma * uniform);
+    }
+
+    return probabilities;
 }
 
 function resolveExp3IxDistribution({
@@ -3221,35 +3373,53 @@ function selectCatalogSlice({
 
     const totalAttempts = Math.max(1, Object.values(executionStats)
         .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy, normalizedCurrentWave).attempts, 0));
-    if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
-        const exp3Runtime = resolveExp3RuntimeParameters(scoringPolicy, total, totalAttempts);
-        selectionProbabilities = resolveExp3IxDistribution({
-            catalog: list,
-            executionStats,
-            totalAttempts,
-            selectionPolicyConfig: scoringPolicy,
-            currentWave: normalizedCurrentWave
-        });
-        policyProbabilities = {
-            mode: scoringPolicy.mode,
-            explorationGamma: Number(exp3Runtime.explorationGamma.toFixed(6)),
-            implicitGamma: Number(exp3Runtime.implicitGamma.toFixed(6)),
-            eta: Number(exp3Runtime.eta.toFixed(6)),
-            autoEta: Boolean(scoringPolicy.exp3AutoEta),
-            ...(EXP3_SHARE_POLICY_MODES.has(scoringPolicy.mode)
-                ? {
-                    shareAlpha: Number(scoringPolicy.exp3ShareAlpha.toFixed(6))
-                }
-                : {}),
-            ...(scoringPolicy.mode === 'rexp3_ix'
-                ? {
-                    restartInterval: parsePositiveInt(
-                        scoringPolicy.exp3RestartInterval,
-                        DEFAULT_EXP3_RESTART_INTERVAL
-                    )
-                }
-                : {})
-        };
+    if (EXP3_POLICY_MODES.has(scoringPolicy.mode) || TSALLIS_POLICY_MODES.has(scoringPolicy.mode)) {
+        if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
+            const exp3Runtime = resolveExp3RuntimeParameters(scoringPolicy, total, totalAttempts);
+            selectionProbabilities = resolveExp3IxDistribution({
+                catalog: list,
+                executionStats,
+                totalAttempts,
+                selectionPolicyConfig: scoringPolicy,
+                currentWave: normalizedCurrentWave
+            });
+            policyProbabilities = {
+                mode: scoringPolicy.mode,
+                explorationGamma: Number(exp3Runtime.explorationGamma.toFixed(6)),
+                implicitGamma: Number(exp3Runtime.implicitGamma.toFixed(6)),
+                eta: Number(exp3Runtime.eta.toFixed(6)),
+                autoEta: Boolean(scoringPolicy.exp3AutoEta),
+                ...(EXP3_SHARE_POLICY_MODES.has(scoringPolicy.mode)
+                    ? {
+                        shareAlpha: Number(scoringPolicy.exp3ShareAlpha.toFixed(6))
+                    }
+                    : {}),
+                ...(scoringPolicy.mode === 'rexp3_ix'
+                    ? {
+                        restartInterval: parsePositiveInt(
+                            scoringPolicy.exp3RestartInterval,
+                            DEFAULT_EXP3_RESTART_INTERVAL
+                        )
+                    }
+                    : {})
+            };
+        } else {
+            const tsallisRuntime = resolveTsallisRuntimeParameters(scoringPolicy, total, totalAttempts);
+            selectionProbabilities = resolveTsallisInfDistribution({
+                catalog: list,
+                executionStats,
+                totalAttempts,
+                selectionPolicyConfig: scoringPolicy,
+                currentWave: normalizedCurrentWave
+            });
+            policyProbabilities = {
+                mode: scoringPolicy.mode,
+                explorationGamma: Number(tsallisRuntime.explorationGamma.toFixed(6)),
+                implicitGamma: Number(tsallisRuntime.implicitGamma.toFixed(6)),
+                eta: Number(tsallisRuntime.eta.toFixed(6)),
+                etaScale: Number(tsallisRuntime.etaScale.toFixed(6))
+            };
+        }
     }
 
     const ranked = [];
@@ -3390,7 +3560,7 @@ function selectCatalogSlice({
             });
             score = linearTs.score;
             featureVector = linearTs.featureVector;
-        } else if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
+        } else if (EXP3_POLICY_MODES.has(scoringPolicy.mode) || TSALLIS_POLICY_MODES.has(scoringPolicy.mode)) {
             const adjustments = computeAdaptiveAdjustments(scoreStats, normalizedCurrentWave, adaptiveScoreConfig);
             const probability = Number(selectionProbabilities[key] || 0);
             score = probability

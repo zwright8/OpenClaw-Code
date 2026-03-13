@@ -97,6 +97,9 @@
 - `npm run autonomous:run -- --selection-policy sw_exp3_s --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08` - run autonomous loop with sliding-window EXP3.S-style share mixing for recency-aware adversarial drift.
 - `npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1` - run autonomous loop with discounted EXP3-IX adaptation to prioritize recent non-stationary reward shifts.
 - `npm run autonomous:run -- --selection-policy d_exp3_s --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08` - run autonomous loop with discounted EXP3.S-style share mixing for non-stationary adversarial adaptation.
+- `npm run autonomous:run -- --selection-policy tsallis_inf --exp3-ix-gamma 0.07 --tsallis-eta-scale 1` - run autonomous loop with Tsallis-INF adversarial weighting using propensity-aware implicit losses.
+- `npm run autonomous:run -- --selection-policy sw_tsallis_inf --window-size 12 --exp3-ix-gamma 0.07 --tsallis-eta-scale 1` - run autonomous loop with sliding-window Tsallis-INF adaptation emphasizing recent adversarial outcomes.
+- `npm run autonomous:run -- --selection-policy d_tsallis_inf --discount-factor 0.97 --exp3-ix-gamma 0.07 --tsallis-eta-scale 1` - run autonomous loop with discounted Tsallis-INF adaptation to prioritize recent non-stationary adversarial rewards.
 - `npm run autonomous:run -- --selection-policy bge --boltzmann-gumbel-c 0.5` - run autonomous loop with Boltzmann-Gumbel exploration using uncertainty-scaled perturbations.
 - `npm run autonomous:run -- --selection-policy sw_bge --window-size 12 --boltzmann-gumbel-c 0.5` - run autonomous loop with sliding-window Boltzmann-Gumbel adaptation for recent drift.
 - `npm run autonomous:run -- --selection-policy d_bge --discount-factor 0.97 --boltzmann-gumbel-c 0.5` - run autonomous loop with discounted Boltzmann-Gumbel exploration for non-stationary regimes.

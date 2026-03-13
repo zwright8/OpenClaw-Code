@@ -3450,6 +3450,163 @@ test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ran
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports tsallis_inf policy for adversarial-style ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 591, code: 'SK-00591', title: 'Skill 591' },
+            { id: 592, code: 'SK-00592', title: 'Skill 592' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 22,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '591': { attempts: 44, successes: 14, failures: 30, consecutiveFailures: 0, lastWave: 21, lastStatus: 'failed' },
+                '592': { attempts: 14, successes: 11, failures: 3, consecutiveFailures: 0, lastWave: 21, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 23,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [592]);
+    assert.equal(plan.selection.policy.skills, 'tsallis_inf');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'tsallis_inf');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
+test('buildAutonomousBatchPlan supports sw_tsallis_inf recency-aware adversarial ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 593, code: 'SK-00593', title: 'Skill 593' },
+            { id: 594, code: 'SK-00594', title: 'Skill 594' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '593': {
+                    attempts: 40,
+                    successes: 20,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' }
+                    ]
+                },
+                '594': {
+                    attempts: 40,
+                    successes: 20,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'sw_tsallis_inf',
+            slidingWindowSize: 3,
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [594]);
+    assert.equal(plan.selection.policy.skills, 'sw_tsallis_inf');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_tsallis_inf');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
+test('buildAutonomousBatchPlan supports d_tsallis_inf discounted adversarial adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 595, code: 'SK-00595', title: 'Skill 595' },
+            { id: 596, code: 'SK-00596', title: 'Skill 596' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 24,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '595': {
+                    attempts: 40,
+                    successes: 20,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' }
+                    ]
+                },
+                '596': {
+                    attempts: 40,
+                    successes: 20,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 23,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 25,
+        selectionPolicyConfig: {
+            mode: 'd_tsallis_inf',
+            discountFactor: 0.9,
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [596]);
+    assert.equal(plan.selection.policy.skills, 'd_tsallis_inf');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'd_tsallis_inf');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan uses propensity-aware EXP3-IX implicit losses from recent outcomes', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
