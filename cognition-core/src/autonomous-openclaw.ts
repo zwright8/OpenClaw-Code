@@ -292,6 +292,17 @@ const TSALLIS_POLICY_MODES = new Set([
     'adwin_tsallis_inf',
     'd_tsallis_inf'
 ]);
+const ADVERSARIAL_RECENCY_POLICY_MODES = new Set([
+    ...EXP3_POLICY_MODES,
+    ...TSALLIS_POLICY_MODES
+]);
+const DISCOUNTED_ADVERSARIAL_POLICY_MODES = new Set([
+    'd_exp3_ix',
+    'd_exp3_s',
+    'd_tsallis_inf',
+    'd_corral_exp3',
+    'd_corral_exp3_plus'
+]);
 const EXP3_SHARE_POLICY_MODES = new Set([
     'exp3_s',
     'adwin_exp3_s',
@@ -3036,11 +3047,7 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
         : [];
     if (normalizedOutcomes.length <= 0) return 0;
 
-    const useDiscounting = policy.mode === 'd_exp3_ix'
-        || policy.mode === 'd_exp3_s'
-        || policy.mode === 'd_tsallis_inf'
-        || policy.mode === 'd_corral_exp3'
-        || policy.mode === 'd_corral_exp3_plus';
+    const useDiscounting = DISCOUNTED_ADVERSARIAL_POLICY_MODES.has(policy.mode);
     let cumulativeEstimatedLoss = 0;
     const importanceWeightCap = clamp(
         Number.isFinite(Number(policy.exp3ImportanceWeightCap))
@@ -3064,6 +3071,62 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
     }
 
     return Math.max(0, cumulativeEstimatedLoss);
+}
+
+function computeDiscountedEffectiveSampleSize(outcomeCount, discountFactor) {
+    const count = Math.max(0, parsePositiveInt(outcomeCount, 0));
+    if (count <= 0) return 0;
+    const factor = clamp(
+        Number(discountFactor),
+        MIN_DISCOUNT_FACTOR,
+        1
+    );
+    let sumWeights = 0;
+    let sumSquaredWeights = 0;
+    for (let age = 0; age < count; age++) {
+        const weight = Math.pow(factor, age);
+        sumWeights += weight;
+        sumSquaredWeights += (weight * weight);
+    }
+    if (sumSquaredWeights <= 0) return 0;
+    return (sumWeights * sumWeights) / sumSquaredWeights;
+}
+
+function resolveAdversarialEffectiveAttempts({
+    catalog,
+    executionStats,
+    selectionPolicyConfig,
+    currentWave = 0,
+    fallbackAttempts = 1
+}) {
+    const list = Array.isArray(catalog) ? catalog : [];
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const normalizedCurrentWave = parseNonNegativeInt(currentWave, 0);
+    if (!ADVERSARIAL_RECENCY_POLICY_MODES.has(policy.mode)) {
+        return Math.max(1, Number(fallbackAttempts) || 1);
+    }
+    let effectiveAttempts = 0;
+    for (const candidate of list) {
+        const key = String(candidate?.id ?? candidate);
+        const outcomes = resolveExp3RecentOutcomes(
+            executionStats?.[key],
+            policy,
+            normalizedCurrentWave
+        );
+        if (outcomes.length <= 0) continue;
+        if (DISCOUNTED_ADVERSARIAL_POLICY_MODES.has(policy.mode)) {
+            effectiveAttempts += computeDiscountedEffectiveSampleSize(
+                outcomes.length,
+                policy.discountFactor
+            );
+        } else {
+            effectiveAttempts += outcomes.length;
+        }
+    }
+    if (effectiveAttempts <= 0) {
+        return Math.max(1, Number(fallbackAttempts) || 1);
+    }
+    return Math.max(1, effectiveAttempts);
 }
 
 function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPropensity, eta, implicitGamma) {
@@ -3101,8 +3164,8 @@ function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPro
     return cumulativeEstimatedLoss;
 }
 
-function resolveTsallisRuntimeParameters(policy, _armCount, totalAttempts) {
-    const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
+function resolveTsallisRuntimeParameters(policy, _armCount, effectiveAttempts) {
+    const safeAttempts = Math.max(1, Number(effectiveAttempts) || 1);
     const explorationGamma = clamp(
         Number(policy.exp3ExplorationGamma),
         Number.EPSILON,
@@ -3171,12 +3234,12 @@ function solveTsallisSlack(losses, eta) {
 function resolveTsallisInfDistribution({
     catalog,
     executionStats,
-    totalAttempts,
+    effectiveAttempts,
     selectionPolicyConfig,
     currentWave
 }) {
     const list = Array.isArray(catalog) ? catalog : [];
-    const attemptsDenominator = Math.max(1, Number(totalAttempts) || 1);
+    const attemptsDenominator = Math.max(1, Number(effectiveAttempts) || 1);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const armCount = Math.max(1, list.length);
     const runtime = resolveTsallisRuntimeParameters(policy, armCount, attemptsDenominator);
@@ -3229,12 +3292,12 @@ function resolveTsallisInfDistribution({
 function resolveExp3IxDistribution({
     catalog,
     executionStats,
-    totalAttempts,
+    effectiveAttempts,
     selectionPolicyConfig,
     currentWave
 }) {
     const list = Array.isArray(catalog) ? catalog : [];
-    const attemptsDenominator = Math.max(1, Number(totalAttempts) || 1);
+    const attemptsDenominator = Math.max(1, Number(effectiveAttempts) || 1);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const armCount = Math.max(1, list.length);
     const runtime = resolveExp3RuntimeParameters(policy, armCount, attemptsDenominator);
@@ -3415,12 +3478,19 @@ function selectCatalogSlice({
     const totalAttempts = Math.max(1, Object.values(executionStats)
         .reduce((sum, stat) => sum + resolveScoreStats(stat, scoringPolicy, normalizedCurrentWave).attempts, 0));
     if (EXP3_POLICY_MODES.has(scoringPolicy.mode) || TSALLIS_POLICY_MODES.has(scoringPolicy.mode)) {
+        const effectiveAttempts = resolveAdversarialEffectiveAttempts({
+            catalog: list,
+            executionStats,
+            selectionPolicyConfig: scoringPolicy,
+            currentWave: normalizedCurrentWave,
+            fallbackAttempts: totalAttempts
+        });
         if (EXP3_POLICY_MODES.has(scoringPolicy.mode)) {
-            const exp3Runtime = resolveExp3RuntimeParameters(scoringPolicy, total, totalAttempts);
+            const exp3Runtime = resolveExp3RuntimeParameters(scoringPolicy, total, effectiveAttempts);
             selectionProbabilities = resolveExp3IxDistribution({
                 catalog: list,
                 executionStats,
-                totalAttempts,
+                effectiveAttempts,
                 selectionPolicyConfig: scoringPolicy,
                 currentWave: normalizedCurrentWave
             });
@@ -3429,6 +3499,7 @@ function selectCatalogSlice({
                 explorationGamma: Number(exp3Runtime.explorationGamma.toFixed(6)),
                 implicitGamma: Number(exp3Runtime.implicitGamma.toFixed(6)),
                 eta: Number(exp3Runtime.eta.toFixed(6)),
+                effectiveAttempts: Number(effectiveAttempts.toFixed(6)),
                 autoEta: Boolean(scoringPolicy.exp3AutoEta),
                 ...(EXP3_SHARE_POLICY_MODES.has(scoringPolicy.mode)
                     ? {
@@ -3445,11 +3516,11 @@ function selectCatalogSlice({
                     : {})
             };
         } else {
-            const tsallisRuntime = resolveTsallisRuntimeParameters(scoringPolicy, total, totalAttempts);
+            const tsallisRuntime = resolveTsallisRuntimeParameters(scoringPolicy, total, effectiveAttempts);
             selectionProbabilities = resolveTsallisInfDistribution({
                 catalog: list,
                 executionStats,
-                totalAttempts,
+                effectiveAttempts,
                 selectionPolicyConfig: scoringPolicy,
                 currentWave: normalizedCurrentWave
             });
@@ -3459,6 +3530,7 @@ function selectCatalogSlice({
                 implicitGamma: Number(tsallisRuntime.implicitGamma.toFixed(6)),
                 eta: Number(tsallisRuntime.eta.toFixed(6)),
                 etaScale: Number(tsallisRuntime.etaScale.toFixed(6)),
+                effectiveAttempts: Number(effectiveAttempts.toFixed(6)),
                 autoEta: Boolean(scoringPolicy.tsallisAutoEta)
             };
         }

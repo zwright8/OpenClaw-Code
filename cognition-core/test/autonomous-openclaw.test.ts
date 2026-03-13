@@ -4028,6 +4028,164 @@ test('buildAutonomousBatchPlan supports tsallis_inf auto-eta calibration', () =>
     assert.ok(Number(runtimePolicy?.eta) < 1);
 });
 
+test('buildAutonomousBatchPlan uses recency-effective attempts for d_exp3_ix auto-eta', () => {
+    const baseInput = {
+        skillCatalog: [
+            { id: 494, code: 'SK-00494', title: 'Skill 494' },
+            { id: 495, code: 'SK-00495', title: 'Skill 495' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 30,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '494': {
+                    attempts: 2_000,
+                    successes: 1_000,
+                    failures: 1_000,
+                    consecutiveFailures: 0,
+                    lastWave: 29,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'failed', propensity: 0.5 },
+                        { wave: 26, status: 'failed', propensity: 0.5 },
+                        { wave: 27, status: 'completed', propensity: 0.5 },
+                        { wave: 28, status: 'completed', propensity: 0.5 },
+                        { wave: 29, status: 'failed', propensity: 0.5 }
+                    ]
+                },
+                '495': {
+                    attempts: 2_000,
+                    successes: 1_000,
+                    failures: 1_000,
+                    consecutiveFailures: 0,
+                    lastWave: 29,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'completed', propensity: 0.5 },
+                        { wave: 26, status: 'completed', propensity: 0.5 },
+                        { wave: 27, status: 'failed', propensity: 0.5 },
+                        { wave: 28, status: 'failed', propensity: 0.5 },
+                        { wave: 29, status: 'completed', propensity: 0.5 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 31,
+        nowFactory: () => 100_000
+    };
+
+    const exp3Plan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3AutoEta: true
+        }
+    });
+    const discountedPlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'd_exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3AutoEta: true,
+            discountFactor: 0.8
+        }
+    });
+
+    const exp3Runtime = exp3Plan.selection.policyProbabilities.skills;
+    const discountedRuntime = discountedPlan.selection.policyProbabilities.skills;
+    assert.equal(exp3Runtime?.mode, 'exp3_ix');
+    assert.equal(discountedRuntime?.mode, 'd_exp3_ix');
+    assert.ok(Number(discountedRuntime?.effectiveAttempts) < Number(exp3Runtime?.effectiveAttempts));
+    assert.ok(Number(discountedRuntime?.eta) > Number(exp3Runtime?.eta));
+});
+
+test('buildAutonomousBatchPlan uses recency-effective attempts for d_tsallis_inf auto-eta', () => {
+    const baseInput = {
+        skillCatalog: [
+            { id: 496, code: 'SK-00496', title: 'Skill 496' },
+            { id: 497, code: 'SK-00497', title: 'Skill 497' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 30,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '496': {
+                    attempts: 2_000,
+                    successes: 1_000,
+                    failures: 1_000,
+                    consecutiveFailures: 0,
+                    lastWave: 29,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'failed', propensity: 0.5 },
+                        { wave: 26, status: 'completed', propensity: 0.5 },
+                        { wave: 27, status: 'failed', propensity: 0.5 },
+                        { wave: 28, status: 'completed', propensity: 0.5 },
+                        { wave: 29, status: 'failed', propensity: 0.5 }
+                    ]
+                },
+                '497': {
+                    attempts: 2_000,
+                    successes: 1_000,
+                    failures: 1_000,
+                    consecutiveFailures: 0,
+                    lastWave: 29,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 25, status: 'completed', propensity: 0.5 },
+                        { wave: 26, status: 'failed', propensity: 0.5 },
+                        { wave: 27, status: 'completed', propensity: 0.5 },
+                        { wave: 28, status: 'failed', propensity: 0.5 },
+                        { wave: 29, status: 'completed', propensity: 0.5 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 31,
+        nowFactory: () => 100_000
+    };
+
+    const tsallisPlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            tsallisAutoEta: true,
+            tsallisEtaScale: 1
+        }
+    });
+    const discountedPlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'd_tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            tsallisAutoEta: true,
+            tsallisEtaScale: 1,
+            discountFactor: 0.8
+        }
+    });
+
+    const tsallisRuntime = tsallisPlan.selection.policyProbabilities.skills;
+    const discountedRuntime = discountedPlan.selection.policyProbabilities.skills;
+    assert.equal(tsallisRuntime?.mode, 'tsallis_inf');
+    assert.equal(discountedRuntime?.mode, 'd_tsallis_inf');
+    assert.ok(Number(discountedRuntime?.effectiveAttempts) < Number(tsallisRuntime?.effectiveAttempts));
+    assert.ok(Number(discountedRuntime?.eta) > Number(tsallisRuntime?.eta));
+});
+
 test('buildAutonomousBatchPlan supports exp3_s share-mixing to smooth adversarial probabilities', () => {
     const baseInput = {
         skillCatalog: [
