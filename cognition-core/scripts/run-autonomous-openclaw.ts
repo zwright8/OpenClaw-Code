@@ -70,7 +70,7 @@ Options:
   --cusum-threshold <n>        Drift threshold for cusum_* and sw_cusum_* modes (default: 1.2)
   --cusum-baseline-weight <n>  EWMA baseline weight for cusum_* and sw_cusum_* modes (0-1, default: 0.15)
   --corral-gamma <n>           Exploration mix for corral_exp3* (0-0.8, default: 0.12)
-  --corral-eta <n>             Exponential reward-rate scaling for corral_exp3* (>0 to 5, default: 0.8)
+  --corral-eta <n>             Exponential implicit-loss scaling for corral_exp3* (>0 to 5, default: 0.8)
   --corral-min-attempts <n>    Minimum expert attempts before corral_exp3* fully exploits (>=0, default: 0)
   --corral-forced-exploration <n> Forced probability mass for under-sampled corral experts (0-1, default: 0.25)
   --corral-uncertainty-weight <n>  UCB-style uncertainty bonus weight for under-sampled corral experts (0-3, default: 0.35)

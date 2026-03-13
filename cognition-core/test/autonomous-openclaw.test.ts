@@ -2142,6 +2142,86 @@ test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across bas
     assert.ok(plan.tasks[0].context?.autonomy?.selectionPolicyApplied);
 });
 
+test('buildAutonomousBatchPlan corral_exp3 uses propensity-aware implicit losses from expert outcomes', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 911, code: 'SK-00911', title: 'Skill 911' },
+            { id: 912, code: 'SK-00912', title: 'Skill 912' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 42,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '911': { attempts: 12, successes: 10, failures: 2, consecutiveFailures: 0, lastWave: 41, lastStatus: 'completed' },
+                '912': { attempts: 12, successes: 6, failures: 6, consecutiveFailures: 0, lastWave: 41, lastStatus: 'completed' }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: {
+                        attempts: 2,
+                        successes: 1,
+                        failures: 1,
+                        cumulativeReward: 1.2,
+                        recentOutcomes: [
+                            { wave: 40, status: 'partial', propensity: 0.05 },
+                            { wave: 41, status: 'partial', propensity: 0.05 }
+                        ]
+                    },
+                    epsilon_ts: {
+                        attempts: 2,
+                        successes: 1,
+                        failures: 1,
+                        cumulativeReward: 1.2,
+                        recentOutcomes: [
+                            { wave: 40, status: 'partial', propensity: 0.8 },
+                            { wave: 41, status: 'partial', propensity: 0.8 }
+                        ]
+                    },
+                    kl_ucb: {
+                        attempts: 2,
+                        successes: 0,
+                        failures: 2,
+                        cumulativeReward: 0,
+                        recentOutcomes: [
+                            { wave: 40, status: 'failed', propensity: 0.6 },
+                            { wave: 41, status: 'failed', propensity: 0.6 }
+                        ]
+                    },
+                    cd_ucb: {
+                        attempts: 2,
+                        successes: 0,
+                        failures: 2,
+                        cumulativeReward: 0,
+                        recentOutcomes: [
+                            { wave: 40, status: 'failed', propensity: 0.6 },
+                            { wave: 41, status: 'failed', propensity: 0.6 }
+                        ]
+                    }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 43,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3',
+            corralGamma: 0,
+            corralEta: 1,
+            corralUncertaintyWeight: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [911]);
+    assert.equal(plan.selection.policy.skills, 'epsilon_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'epsilon_ts');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionPolicyProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan supports corral_exp3 uncertainty bonus for under-sampled experts', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -5586,6 +5666,43 @@ test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints c
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_exp3_s.cumulativeReward - 0.6) < 1e-9);
     assert.ok(Math.abs((coverage.skillExecutionStats['114'].recentOutcomes[0]?.propensity || 0) - 0.37) < 1e-9);
     assert.ok(coverage.contextualBanditModels.skills.samples > 0);
+});
+
+test('collectAutonomousCoverage uses policy probability propensity for corral policy outcomes', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 110_000 });
+
+    const corralRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001115',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00115] Execute test',
+        context: {
+            skillId: 115,
+            autonomy: {
+                lane: 'skills',
+                wave: 8,
+                selectionPolicyApplied: 'epsilon_ts',
+                selectionPolicyConfig: { mode: 'corral_exp3' },
+                selectionProbability: 0.9,
+                selectionPolicyProbability: 0.22
+            }
+        },
+        createdAt: 100_000
+    });
+
+    const corralRecord = buildQueueRecordFromTaskRequest(corralRequest, { nowFactory: () => 105_000 });
+    corralRecord.status = 'completed';
+    corralRecord.updatedAt = 110_100;
+    await store.saveRecord(corralRecord);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 110_500 });
+    assert.ok(Math.abs((coverage.policyExecutionStats.skills.epsilon_ts.recentOutcomes[0]?.propensity || 0) - 0.22) < 1e-9);
+    assert.ok(Math.abs((coverage.skillExecutionStats['115'].recentOutcomes[0]?.propensity || 0) - 0.9) < 1e-9);
 });
 
 test('collectAutonomousCoverage tracks bob_sw_ucb selected window outcomes', async (t) => {

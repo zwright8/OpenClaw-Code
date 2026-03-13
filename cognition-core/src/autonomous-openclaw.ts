@@ -2795,6 +2795,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         : CORRAL_EXP3_BASE_POLICIES;
     const gamma = policy.corralGamma;
     const uniform = 1 / corralPolicies.length;
+    const implicitGamma = Math.max(Number.EPSILON, gamma);
     const corralScoreConfig = SLIDING_WINDOW_CORRAL_POLICY_MODES.has(policy.mode)
         ? {
             mode: 'sw_ucb',
@@ -2807,27 +2808,39 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
             }
             : null);
     const scoredPolicies = corralPolicies.map((name) => {
+        const rawStat = normalizePolicyPerformanceStat(laneStats[name]);
         const stat = corralScoreConfig
-            ? resolveScoreStats(laneStats[name], corralScoreConfig, currentWave)
-            : normalizePolicyPerformanceStat(laneStats[name]);
+            ? resolveScoreStats(rawStat, corralScoreConfig, currentWave)
+            : rawStat;
         const attempts = Math.max(0, Number(stat.attempts) || 0);
-        const rewardRate = attempts > 0
-            ? clamp((Number(stat.successes) || 0) / attempts, 0, 1)
-            : 0;
+        const successes = clamp(Number(stat.successes) || 0, 0, attempts);
+        const outcomes = resolveCorralRecentOutcomes(rawStat, policy);
+        const cumulativeEstimatedLoss = outcomes.length > 0
+            ? computeExp3ImplicitEstimatedLoss(outcomes, policy, uniform, implicitGamma)
+            : ((attempts - successes) / (uniform + implicitGamma));
         return {
             name,
             attempts,
-            rewardRate
+            loss: cumulativeEstimatedLoss
         };
     });
     const totalCorralAttempts = scoredPolicies.reduce((sum, entry) => sum + entry.attempts, 0);
+    const minimumLoss = scoredPolicies.reduce(
+        (minimum, entry) => Math.min(minimum, entry.loss),
+        Number.POSITIVE_INFINITY
+    );
     const weighted = scoredPolicies.map((entry) => {
         const uncertaintyBonus = policy.corralUncertaintyWeight
             * Math.sqrt(
                 Math.log(Math.max(2, totalCorralAttempts + corralPolicies.length + 1))
                 / (entry.attempts + 1)
             );
-        const scaled = clamp((entry.rewardRate + uncertaintyBonus) * policy.corralEta, -30, 30);
+        const centeredLoss = entry.loss - (Number.isFinite(minimumLoss) ? minimumLoss : 0);
+        const scaled = clamp(
+            (-policy.corralEta * centeredLoss) + uncertaintyBonus,
+            -60,
+            60
+        );
         return {
             name: entry.name,
             weight: Math.exp(scaled)
@@ -2951,13 +2964,26 @@ function resolveExp3RecentOutcomes(stat, selectionPolicyConfig, currentWave = 0)
     return outcomes.map((entry) => normalizeRecentOutcomeEntry(entry));
 }
 
+function resolveCorralRecentOutcomes(stat, selectionPolicyConfig) {
+    const normalized = normalizePolicyPerformanceStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    let outcomes = normalized.recentOutcomes.slice();
+    if (policy.mode === 'sw_corral_exp3' || policy.mode === 'sw_corral_exp3_plus') {
+        outcomes = outcomes.slice(-policy.slidingWindowSize);
+    }
+    return outcomes.map((entry) => normalizeRecentOutcomeEntry(entry));
+}
+
 function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, implicitGamma) {
     const normalizedOutcomes = Array.isArray(outcomes)
         ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
         : [];
     if (normalizedOutcomes.length <= 0) return 0;
 
-    const useDiscounting = policy.mode === 'd_exp3_ix' || policy.mode === 'd_exp3_s';
+    const useDiscounting = policy.mode === 'd_exp3_ix'
+        || policy.mode === 'd_exp3_s'
+        || policy.mode === 'd_corral_exp3'
+        || policy.mode === 'd_corral_exp3_plus';
     let cumulativeEstimatedLoss = 0;
     for (let index = 0; index < normalizedOutcomes.length; index++) {
         const entry = normalizedOutcomes[index];
@@ -3071,6 +3097,7 @@ function selectCatalogSlice({
             nextCursor: 0,
             selectedPolicy: normalizeSelectionPolicyConfig(selectionPolicyConfig).mode,
             appliedSelectionPolicyConfig: normalizeSelectionPolicyConfig(selectionPolicyConfig),
+            selectedPolicyProbability: null,
             policyProbabilities: null,
             selectionFeatures: {},
             selectionProbabilities: {}
@@ -3101,6 +3128,7 @@ function selectCatalogSlice({
     let scoringPolicy = normalizedPolicy;
     let selectedPolicy = normalizedPolicy.mode;
     let appliedSelectionPolicyConfig = normalizedPolicy;
+    let selectedPolicyProbability = null;
     let policyProbabilities = null;
     const selectionFeatures = {};
     let selectionProbabilities = {};
@@ -3124,6 +3152,7 @@ function selectCatalogSlice({
             ...normalizedPolicy,
             mode: selectedPolicy
         };
+        selectedPolicyProbability = Number(distribution.find((entry) => entry.name === selectedPolicy)?.probability || 0);
         policyProbabilities = Object.fromEntries(distribution.map((entry) => [
             entry.name,
             Number(entry.probability.toFixed(6))
@@ -3380,6 +3409,7 @@ function selectCatalogSlice({
         nextCursor: pointer,
         selectedPolicy,
         appliedSelectionPolicyConfig,
+        selectedPolicyProbability,
         policyProbabilities,
         selectionFeatures,
         selectionProbabilities
@@ -3468,6 +3498,9 @@ export function buildAutonomousBatchPlan({
                     sourceCatalog: skillCatalogSource,
                     selectionPolicyApplied: skillSelection.selectedPolicy,
                     selectionPolicyConfig: skillSelection.appliedSelectionPolicyConfig,
+                    selectionPolicyProbability: Number.isFinite(Number(skillSelection.selectedPolicyProbability))
+                        ? Number(skillSelection.selectedPolicyProbability)
+                        : null,
                     selectionFeatures,
                     selectionProbability: Number(skillSelection.selectionProbabilities[featureKey] || 0)
                 },
@@ -3510,6 +3543,9 @@ export function buildAutonomousBatchPlan({
                     wave: waveIndex,
                     selectionPolicyApplied: capabilitySelection.selectedPolicy,
                     selectionPolicyConfig: capabilitySelection.appliedSelectionPolicyConfig,
+                    selectionPolicyProbability: Number.isFinite(Number(capabilitySelection.selectedPolicyProbability))
+                        ? Number(capabilitySelection.selectedPolicyProbability)
+                        : null,
                     selectionFeatures,
                     selectionProbability: Number(capabilitySelection.selectionProbabilities[featureKey] || 0)
                 },
@@ -3650,6 +3686,9 @@ export async function collectAutonomousCoverage({
         const selectionProbability = Number.isFinite(Number(context.autonomy?.selectionProbability))
             ? clamp(Number(context.autonomy.selectionProbability), Number.EPSILON, 1)
             : null;
+        const selectionPolicyProbability = Number.isFinite(Number(context.autonomy?.selectionPolicyProbability))
+            ? clamp(Number(context.autonomy.selectionPolicyProbability), Number.EPSILON, 1)
+            : null;
 
         if (skillId !== null) {
             const key = String(skillId);
@@ -3714,7 +3753,7 @@ export async function collectAutonomousCoverage({
             const policyWithOutcome = recordRecentOutcome(currentPolicy, {
                 status,
                 wave: attemptWave,
-                propensity: selectionProbability
+                propensity: selectionPolicyProbability ?? selectionProbability
             });
             policyWithOutcome.cumulativeReward = currentPolicy.cumulativeReward;
             policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
@@ -3742,7 +3781,7 @@ export async function collectAutonomousCoverage({
                 const metaWithOutcome = recordRecentOutcome(currentMeta, {
                     status,
                     wave: attemptWave,
-                    propensity: selectionProbability
+                    propensity: selectionPolicyProbability ?? selectionProbability
                 });
                 metaWithOutcome.cumulativeReward = currentMeta.cumulativeReward;
                 windowPolicyExecutionStats[lane][key] = metaWithOutcome;
