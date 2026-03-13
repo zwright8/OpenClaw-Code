@@ -3485,6 +3485,62 @@ test('buildAutonomousBatchPlan supports tsallis_inf policy for adversarial-style
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan applies Tsallis-INF reduced-variance loss estimation for propensity-aware ranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 603, code: 'SK-00603', title: 'Skill 603' },
+            { id: 604, code: 'SK-00604', title: 'Skill 604' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 31,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '603': {
+                    attempts: 30,
+                    successes: 15,
+                    failures: 15,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 30, status: 'completed', propensity: 0.2 },
+                        { wave: 31, status: 'failed', propensity: 0.2 }
+                    ]
+                },
+                '604': {
+                    attempts: 30,
+                    successes: 15,
+                    failures: 15,
+                    consecutiveFailures: 0,
+                    lastWave: 31,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 31, status: 'failed', propensity: 0.4 }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 32,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [603]);
+    assert.equal(plan.selection.policy.skills, 'tsallis_inf');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'tsallis_inf');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan supports sw_tsallis_inf recency-aware adversarial ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -3064,6 +3064,40 @@ function computeExp3ImplicitEstimatedLoss(outcomes, policy, uniformPropensity, i
     return Math.max(0, cumulativeEstimatedLoss);
 }
 
+function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPropensity, eta) {
+    const normalizedOutcomes = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
+        : [];
+    if (normalizedOutcomes.length <= 0) return 0;
+
+    const useDiscounting = policy.mode === 'd_tsallis_inf';
+    const importanceWeightCap = clamp(
+        Number.isFinite(Number(policy.exp3ImportanceWeightCap))
+            ? Number(policy.exp3ImportanceWeightCap)
+            : DEFAULT_EXP3_IMPORTANCE_WEIGHT_CAP,
+        1,
+        MAX_EXP3_IMPORTANCE_WEIGHT_CAP
+    );
+    const baselineThreshold = Math.max(Number.EPSILON, eta ** 2);
+    let cumulativeEstimatedLoss = 0;
+
+    for (let index = 0; index < normalizedOutcomes.length; index++) {
+        const entry = normalizedOutcomes[index];
+        const age = normalizedOutcomes.length - 1 - index;
+        const discountWeight = useDiscounting ? Math.pow(policy.discountFactor, age) : 1;
+        const propensity = Number.isFinite(Number(entry.propensity))
+            ? clamp(Number(entry.propensity), Number.EPSILON, 1)
+            : uniformPropensity;
+        const instantaneousLoss = 1 - clamp(Number(entry.reward), 0, 1);
+        const baseline = propensity >= baselineThreshold ? 0.5 : 0;
+        const importanceWeight = Math.min(importanceWeightCap, 1 / propensity);
+        const estimatedLoss = ((instantaneousLoss - baseline) * importanceWeight) + baseline;
+        cumulativeEstimatedLoss += discountWeight * estimatedLoss;
+    }
+
+    return cumulativeEstimatedLoss;
+}
+
 function resolveTsallisRuntimeParameters(policy, _armCount, totalAttempts) {
     const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
     const explorationGamma = clamp(
@@ -3152,11 +3186,11 @@ function resolveTsallisInfDistribution({
             selectionPolicyConfig,
             currentWave
         );
-        const cumulativeEstimatedLoss = computeExp3ImplicitEstimatedLoss(
+        const cumulativeEstimatedLoss = computeTsallisReducedVarianceEstimatedLoss(
             outcomes,
             policy,
             uniform,
-            runtime.implicitGamma
+            runtime.eta
         );
         return {
             key,
