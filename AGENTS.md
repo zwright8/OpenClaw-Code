@@ -56,6 +56,8 @@
 - `npm run autonomous:run -- --selection-policy d_auto_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8` - run autonomous loop with discounted uncertainty-adaptive epsilon-Thompson adaptation under drift.
 - `npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3` - run autonomous loop with KL-UCB optimism for bounded binary outcomes.
 - `npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3` - run autonomous loop with discounted KL-UCB optimism to emphasize recent bounded outcomes under drift.
+- `npm run autonomous:run -- --selection-policy glr_kl_ucb --cd-min-samples 8 --cd-threshold 0.25 --cd-delta 0.02 --kl-ucb-confidence 3` - run autonomous loop with Bernoulli GLR change-detection + KL-UCB optimism for abrupt regime shifts.
+- `npm run autonomous:run -- --selection-policy sw_glr_kl_ucb --window-size 12 --cd-min-samples 8 --cd-threshold 0.25 --cd-delta 0.02 --kl-ucb-confidence 3` - run autonomous loop with sliding-window Bernoulli GLR + KL-UCB adaptation focused on recent abrupt drift.
 - `npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02` - run autonomous loop with change-detection UCB for abrupt drift handling.
 - `npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --cd-direction down` - run autonomous loop with Page-Hinkley detection focused on downward drift only.
 - `npm run autonomous:run -- --selection-policy adwin_ucb --cd-min-samples 8 --adwin-delta 0.002` - run autonomous loop with ADWIN adaptive-window UCB to auto-trim stale outcomes after detected distribution shifts.

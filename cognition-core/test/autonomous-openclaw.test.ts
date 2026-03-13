@@ -1695,6 +1695,163 @@ test('buildAutonomousBatchPlan supports sw_cusum_epsilon_ts for recency-windowed
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_cusum_epsilon_ts');
 });
 
+test('buildAutonomousBatchPlan supports glr_kl_ucb for abrupt-shift KL-UCB adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 455, code: 'SK-00455', title: 'Skill 455' },
+            { id: 456, code: 'SK-00456', title: 'Skill 456' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 27,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '455': {
+                    attempts: 36,
+                    successes: 16,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' }
+                    ]
+                },
+                '456': {
+                    attempts: 36,
+                    successes: 20,
+                    failures: 16,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 28,
+        selectionPolicyConfig: {
+            mode: 'glr_kl_ucb',
+            changeDetectionMinSamples: 4,
+            changeDetectionThreshold: 0.25,
+            changeDetectionDelta: 0.02,
+            klUcbConfidence: 3
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [455]);
+    assert.equal(plan.selection.policy.skills, 'glr_kl_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'glr_kl_ucb');
+});
+
+test('buildAutonomousBatchPlan supports sw_glr_kl_ucb for recency-windowed GLR KL-UCB adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 457, code: 'SK-00457', title: 'Skill 457' },
+            { id: 458, code: 'SK-00458', title: 'Skill 458' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 27,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '457': {
+                    attempts: 36,
+                    successes: 16,
+                    failures: 20,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' },
+                        { wave: 26, status: 'completed' },
+                        { wave: 27, status: 'completed' }
+                    ]
+                },
+                '458': {
+                    attempts: 36,
+                    successes: 20,
+                    failures: 16,
+                    consecutiveFailures: 0,
+                    lastWave: 27,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' },
+                        { wave: 26, status: 'failed' },
+                        { wave: 27, status: 'failed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 28,
+        selectionPolicyConfig: {
+            mode: 'sw_glr_kl_ucb',
+            slidingWindowSize: 8,
+            changeDetectionMinSamples: 4,
+            changeDetectionThreshold: 0.25,
+            changeDetectionDelta: 0.02,
+            klUcbConfidence: 3
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [457]);
+    assert.equal(plan.selection.policy.skills, 'sw_glr_kl_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'sw_glr_kl_ucb');
+});
+
 test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across base policies', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -169,6 +169,8 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_bb_ts',
     'd_auto_epsilon_ts',
     'd_kl_ucb',
+    'glr_kl_ucb',
+    'sw_glr_kl_ucb',
     'd_bayes_ucb',
     'cd_ucb',
     'adwin_ucb',
@@ -233,7 +235,9 @@ const ADAPTIVE_THOMPSON_POLICY_MODES = new Set([
 const KL_UCB_POLICY_MODES = new Set([
     'kl_ucb',
     'sw_kl_ucb',
-    'd_kl_ucb'
+    'd_kl_ucb',
+    'glr_kl_ucb',
+    'sw_glr_kl_ucb'
 ]);
 const BAYES_UCB_POLICY_MODES = new Set([
     'bayes_ucb',
@@ -278,6 +282,13 @@ const WINDOWED_CHANGE_DETECTION_POLICY_MODES = new Set([
     'sw_cusum_ucb',
     'sw_cd_epsilon_ts',
     'sw_cusum_epsilon_ts'
+]);
+const WINDOWED_GLR_KL_UCB_POLICY_MODES = new Set([
+    'sw_glr_kl_ucb'
+]);
+const GLR_KL_UCB_POLICY_MODES = new Set([
+    'glr_kl_ucb',
+    'sw_glr_kl_ucb'
 ]);
 const SLIDING_WINDOW_POLICY_MODES = new Set([
     'sw_ucb',
@@ -1708,116 +1719,143 @@ function computeAdwinDetectedStats(stat, selectionPolicyConfig) {
     });
 }
 
+function detectGlrKlUcbChangeIndex(outcomes = [], selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const values = Array.isArray(outcomes)
+        ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry).reward)
+        : [];
+    const minSamples = parsePositiveInt(policy.changeDetectionMinSamples, DEFAULT_CD_MIN_SAMPLES);
+    if (values.length < (2 * minSamples)) return 0;
+
+    const totalCount = values.length;
+    const prefix = new Array(totalCount + 1).fill(0);
+    for (let i = 0; i < totalCount; i++) {
+        prefix[i + 1] = prefix[i] + values[i];
+    }
+
+    const detectUp = policy.changeDetectionDirection === 'up' || policy.changeDetectionDirection === 'both';
+    const detectDown = policy.changeDetectionDirection === 'down' || policy.changeDetectionDirection === 'both';
+    const delta = Math.max(Number.EPSILON, policy.changeDetectionDelta);
+    const baseThreshold = policy.changeDetectionThreshold
+        * (Math.log(Math.max(2, totalCount)) + Math.log(1 / delta));
+
+    let changeIndex = 0;
+    for (let split = minSamples; split <= totalCount - minSamples; split++) {
+        const leftCount = split;
+        const rightCount = totalCount - split;
+        const leftSum = prefix[split];
+        const rightSum = prefix[totalCount] - leftSum;
+        const leftMean = leftSum / leftCount;
+        const rightMean = rightSum / rightCount;
+
+        const upShift = rightMean > leftMean;
+        const downShift = rightMean < leftMean;
+        const directionAllowed = (detectUp && upShift) || (detectDown && downShift);
+        if (!directionAllowed) continue;
+
+        const pooledMean = (leftSum + rightSum) / totalCount;
+        const glrStatistic = (
+            leftCount * computeBernoulliKlDivergence(leftMean, pooledMean)
+        ) + (
+            rightCount * computeBernoulliKlDivergence(rightMean, pooledMean)
+        );
+        if (glrStatistic > baseThreshold) {
+            changeIndex = split;
+        }
+    }
+
+    return clamp(changeIndex, 0, totalCount);
+}
+
+function computeGlrDetectedStats(stat, selectionPolicyConfig) {
+    const normalized = normalizeExecutionStat(stat);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const detectorInput = WINDOWED_GLR_KL_UCB_POLICY_MODES.has(policy.mode)
+        ? normalized.recentOutcomes.slice(-policy.slidingWindowSize)
+        : normalized.recentOutcomes;
+    const changeIndex = detectGlrKlUcbChangeIndex(detectorInput, policy);
+    const effective = changeIndex > 0
+        ? detectorInput.slice(changeIndex)
+        : detectorInput;
+    return summarizeOutcomeStats(effective, normalized, {
+        mode: 'glr_kl_ucb'
+    });
+}
+
+function mergeResolvedScoreStats(normalized, resolved) {
+    return {
+        ...normalized,
+        attempts: resolved.attempts,
+        successes: resolved.successes,
+        failures: resolved.failures,
+        lastStatus: resolved.lastStatus,
+        lastWave: resolved.lastWave,
+        consecutiveFailures: resolved.consecutiveFailures
+    };
+}
+
 function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
     const normalized = normalizeExecutionStat(stat);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     if (RESTARTED_EXP3_POLICY_MODES.has(policy.mode)) {
-        const restarted = computeRestartedExp3Stats(normalized, policy, currentWave);
-        return {
-            ...normalized,
-            attempts: restarted.attempts,
-            successes: restarted.successes,
-            failures: restarted.failures,
-            lastStatus: restarted.lastStatus,
-            lastWave: restarted.lastWave,
-            consecutiveFailures: restarted.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeRestartedExp3Stats(normalized, policy, currentWave)
+        );
     }
     if (CHANGEPOINT_THOMPSON_POLICY_MODES.has(policy.mode)) {
-        const changepoint = computeChangePointThompsonStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: changepoint.attempts,
-            successes: changepoint.successes,
-            failures: changepoint.failures,
-            lastStatus: changepoint.lastStatus,
-            lastWave: changepoint.lastWave,
-            consecutiveFailures: changepoint.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeChangePointThompsonStats(normalized, policy)
+        );
     }
     if (ADWIN_POLICY_MODES.has(policy.mode)) {
-        const changed = computeAdwinDetectedStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: changed.attempts,
-            successes: changed.successes,
-            failures: changed.failures,
-            lastStatus: changed.lastStatus,
-            lastWave: changed.lastWave,
-            consecutiveFailures: changed.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeAdwinDetectedStats(normalized, policy)
+        );
+    }
+    if (GLR_KL_UCB_POLICY_MODES.has(policy.mode)) {
+        return mergeResolvedScoreStats(
+            normalized,
+            computeGlrDetectedStats(normalized, policy)
+        );
     }
     if (SLIDING_WINDOW_POLICY_MODES.has(policy.mode)) {
-        const windowed = computeWindowedStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: windowed.attempts,
-            successes: windowed.successes,
-            failures: windowed.failures,
-            lastStatus: windowed.lastStatus,
-            lastWave: windowed.lastWave,
-            consecutiveFailures: windowed.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeWindowedStats(normalized, policy)
+        );
     }
     if (DISCOUNTED_POLICY_MODES.has(policy.mode)) {
-        const discounted = computeDiscountedStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: discounted.attempts,
-            successes: discounted.successes,
-            failures: discounted.failures,
-            lastStatus: discounted.lastStatus,
-            lastWave: discounted.lastWave,
-            consecutiveFailures: discounted.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeDiscountedStats(normalized, policy)
+        );
     }
     if (HYBRID_THOMPSON_POLICY_MODES.has(policy.mode)) {
-        const hybrid = computeHybridThompsonStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: hybrid.attempts,
-            successes: hybrid.successes,
-            failures: hybrid.failures,
-            lastStatus: hybrid.lastStatus,
-            lastWave: hybrid.lastWave,
-            consecutiveFailures: hybrid.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeHybridThompsonStats(normalized, policy)
+        );
     }
     if (HYBRID_UCB_POLICY_MODES.has(policy.mode)) {
-        const hybrid = computeHybridUcbStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: hybrid.attempts,
-            successes: hybrid.successes,
-            failures: hybrid.failures,
-            lastStatus: hybrid.lastStatus,
-            lastWave: hybrid.lastWave,
-            consecutiveFailures: hybrid.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeHybridUcbStats(normalized, policy)
+        );
     }
     if (PAGE_HINKLEY_POLICY_MODES.has(policy.mode)) {
-        const changed = computeChangeDetectedStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: changed.attempts,
-            successes: changed.successes,
-            failures: changed.failures,
-            lastStatus: changed.lastStatus,
-            lastWave: changed.lastWave,
-            consecutiveFailures: changed.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeChangeDetectedStats(normalized, policy)
+        );
     }
     if (CUSUM_POLICY_MODES.has(policy.mode)) {
-        const changed = computeCusumDetectedStats(normalized, policy);
-        return {
-            ...normalized,
-            attempts: changed.attempts,
-            successes: changed.successes,
-            failures: changed.failures,
-            lastStatus: changed.lastStatus,
-            lastWave: changed.lastWave,
-            consecutiveFailures: changed.consecutiveFailures
-        };
+        return mergeResolvedScoreStats(
+            normalized,
+            computeCusumDetectedStats(normalized, policy)
+        );
     }
     return normalized;
 }
