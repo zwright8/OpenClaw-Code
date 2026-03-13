@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Theater Quantum-Resistant Datalink Key Rollover and Emission Discipline Cell"
+  short_description: "Harden datalinks with key rollover and EM discipline"

@@ -2243,3 +2243,33 @@ Every skill output should include:
 - Theater EW civil GPS fallback + precision-fire safeguards + navigation trust assurance + civilian airspace coordination.
 - Joint dam spillway sabotage response + downstream evacuation synchronization + cyber-physical infrastructure defense + civil-military warning integrity.
 - Coalition battlefield-cloud reconstitution + cross-border data-integrity attestation + cyber recovery governance + operational releasability assurance.
+
+## New Expansion Wave (2026-03-13, Wave XXXVII)
+
+- joint-arctic-subsea-sensor-grid-reseed-and-ice-threat-forecast-cell
+- theater-quantum-resistant-datalink-key-rollover-and-emission-discipline-cell
+- coalition-forward-airfield-counter-drone-rearming-and-sortie-resilience-cell
+- homeland-space-weather-grid-financial-clearing-military-support-cell
+- expeditionary-antimicrobial-resistance-outbreak-isolation-and-force-health-continuity-cell
+- joint-cislunar-propellant-depot-custody-and-emergency-rendezvous-cell
+- tactical-denied-pnt-precision-fires-human-override-safety-cell
+- strategic-defense-industrial-additive-feedstock-counterfeit-eradication-cell
+- coalition-border-refugee-biometric-deconfliction-and-insider-risk-screening-cell
+- theater-undersea-autonomous-decoy-discrimination-and-submarine-lane-assurance-cell
+- joint-urban-critical-hospital-oxygen-power-cascade-response-cell
+- homeland-port-radiological-screening-surge-and-military-sealift-continuity-cell
+
+## Updated Pairings (2026-03-13, Wave XXXVII)
+
+- Arctic subsea sensor-grid reseed and ice-threat forecasting + undersea lane assurance + coalition under-ice infrastructure continuity + hydrographic confidence governance.
+- Quantum-resistant datalink key rollover and emissions discipline + CEMA integration + tactical network hardening + mission command trust restoration.
+- Coalition forward airfield counter-drone rearming and sortie resilience + airbase dispersal/reconstitution + counter-UAS kill-chain integration + coalition interoperability release controls.
+- Homeland space-weather grid and financial-clearing military support + defense support of civil authorities + timing-trust continuity + strategic restoration governance.
+- Expeditionary antimicrobial-resistance outbreak isolation and force-health continuity + casualty regulation + preventive medicine + contested medical sustainment.
+- Joint cislunar propellant depot custody and emergency rendezvous + contested space sustainment + orbital custody assurance + mission-priority arbitration.
+- Tactical denied-PNT precision-fires human-override safety + long-range fires deconfliction + denied navigation resilience + authority-gated release assurance.
+- Strategic defense-industrial additive feedstock counterfeit eradication + industrial mobilization readiness + munitions quality assurance + supply-chain provenance governance.
+- Coalition border refugee biometric deconfliction and insider-risk screening + coalition identity proofing + legal handoff assurance + humanitarian throughput governance.
+- Theater undersea autonomous decoy discrimination and submarine-lane assurance + anti-submarine warfare support + undersea deception resilience + lane-release confidence control.
+- Joint urban critical hospital oxygen-power cascade response + civil defense medical surge synchronization + infrastructure restoration + life-safety continuity.
+- Homeland port radiological screening surge and military sealift continuity + strategic sealift coordination + customs-security resilience + DSCA port throughput governance.

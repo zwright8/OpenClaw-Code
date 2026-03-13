@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Urban Critical Hospital Oxygen Power Cascade Response Cell"
+  short_description: "Stabilize urban hospital oxygen and power cascades"
