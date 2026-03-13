@@ -184,11 +184,13 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'glr_kl_ucb',
     'sw_glr_kl_ucb',
     'd_bayes_ucb',
+    'adwin_bayes_ucb',
     'cd_ucb',
     'adwin_ucb',
     'sw_cd_ucb',
     'cusum_ucb',
     'adwin_epsilon_ts',
+    'adwin_bb_ts',
     'sw_cusum_ucb',
     'corral_exp3',
     'sw_corral_exp3',
@@ -232,6 +234,7 @@ const THOMPSON_POLICY_MODES = new Set([
 ]);
 const BAYESIAN_BOOTSTRAP_POLICY_MODES = new Set([
     'bb_ts',
+    'adwin_bb_ts',
     'sw_bb_ts',
     'd_bb_ts'
 ]);
@@ -253,6 +256,7 @@ const KL_UCB_POLICY_MODES = new Set([
 ]);
 const BAYES_UCB_POLICY_MODES = new Set([
     'bayes_ucb',
+    'adwin_bayes_ucb',
     'sw_bayes_ucb',
     'd_bayes_ucb'
 ]);
@@ -282,6 +286,8 @@ const PAGE_HINKLEY_POLICY_MODES = new Set([
 const ADWIN_POLICY_MODES = new Set([
     'adwin_ucb',
     'adwin_epsilon_ts',
+    'adwin_bb_ts',
+    'adwin_bayes_ucb',
     'adwin_linucb',
     'adwin_lints'
 ]);

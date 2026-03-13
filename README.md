@@ -277,6 +277,8 @@ npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusu
 npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --cd-direction up
 npm run autonomous:run -- --selection-policy sw_cusum_ucb --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
 npm run autonomous:run -- --selection-policy adwin_epsilon_ts --cd-min-samples 8 --adwin-delta 0.002 --thompson-exploration 0.25
+npm run autonomous:run -- --selection-policy adwin_bb_ts --cd-min-samples 8 --adwin-delta 0.002 --thompson-exploration 0.25
+npm run autonomous:run -- --selection-policy adwin_bayes_ucb --cd-min-samples 8 --adwin-delta 0.002 --bayes-ucb-quantile 0.9
 npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
 npm run autonomous:run -- --selection-policy sw_corral_exp3 --window-size 12 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
 npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
@@ -313,6 +315,7 @@ Corral EXP3 families now weight experts by bounded reward-rate (`reward/attempt`
 EXP3 modes now decouple exploration mixing (`--exp3-ix-gamma`) from implicit-exploration denominator control (`--exp3-implicit-gamma`) so you can tune exploration pressure and loss-estimate regularization independently. `--exp3-auto-eta` auto-calibrates eta as `sqrt((2*log(K+1))/(N*K))` and defaults the implicit gamma to `eta/2` when no explicit implicit gamma is provided.
 `exp3_s` adds share-mixing (`--exp3-share-alpha`) to keep a controlled probability floor across all arms under adversarial drift while still using EXP3-IX implicit-exploration weighting.
 Change-detection policies also support `--cd-direction up|down|both` so detectors can focus on degradations only, recoveries only, or both shift directions.
+ADWIN adaptive-window modes now include Bayesian-bootstrap Thompson (`adwin_bb_ts`) and Bayes-UCB quantile scoring (`adwin_bayes_ucb`) so both posterior-sampling and optimistic-posterior selectors can drop stale pre-drift outcomes without manual window tuning.
 
 ## Quick Start
 

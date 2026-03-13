@@ -3005,6 +3005,156 @@ test('buildAutonomousBatchPlan supports adwin_epsilon_ts adaptive-window Thompso
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_epsilon_ts');
 });
 
+test('buildAutonomousBatchPlan supports adwin_bb_ts adaptive-window Bayesian-bootstrap reranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 871, code: 'SK-00871', title: 'Skill 871' },
+            { id: 872, code: 'SK-00872', title: 'Skill 872' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 56,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '871': {
+                    attempts: 12,
+                    successes: 8,
+                    failures: 4,
+                    lastWave: 55,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 45, status: 'completed' },
+                        { wave: 46, status: 'completed' },
+                        { wave: 47, status: 'completed' },
+                        { wave: 48, status: 'completed' },
+                        { wave: 49, status: 'completed' },
+                        { wave: 50, status: 'completed' },
+                        { wave: 51, status: 'failed' },
+                        { wave: 52, status: 'failed' },
+                        { wave: 53, status: 'failed' },
+                        { wave: 54, status: 'failed' },
+                        { wave: 55, status: 'failed' },
+                        { wave: 56, status: 'failed' }
+                    ]
+                },
+                '872': {
+                    attempts: 12,
+                    successes: 4,
+                    failures: 8,
+                    lastWave: 55,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 45, status: 'failed' },
+                        { wave: 46, status: 'failed' },
+                        { wave: 47, status: 'failed' },
+                        { wave: 48, status: 'failed' },
+                        { wave: 49, status: 'failed' },
+                        { wave: 50, status: 'failed' },
+                        { wave: 51, status: 'completed' },
+                        { wave: 52, status: 'completed' },
+                        { wave: 53, status: 'completed' },
+                        { wave: 54, status: 'completed' },
+                        { wave: 55, status: 'completed' },
+                        { wave: 56, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 57,
+        selectionPolicyConfig: {
+            mode: 'adwin_bb_ts',
+            adwinDelta: 0.01,
+            changeDetectionMinSamples: 4,
+            thompsonExploration: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [872]);
+    assert.equal(plan.selection.policy.skills, 'adwin_bb_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_bb_ts');
+});
+
+test('buildAutonomousBatchPlan supports adwin_bayes_ucb adaptive-window posterior quantile reranking', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 873, code: 'SK-00873', title: 'Skill 873' },
+            { id: 874, code: 'SK-00874', title: 'Skill 874' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 60,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '873': {
+                    attempts: 12,
+                    successes: 8,
+                    failures: 4,
+                    lastWave: 59,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 49, status: 'completed' },
+                        { wave: 50, status: 'completed' },
+                        { wave: 51, status: 'completed' },
+                        { wave: 52, status: 'completed' },
+                        { wave: 53, status: 'completed' },
+                        { wave: 54, status: 'completed' },
+                        { wave: 55, status: 'failed' },
+                        { wave: 56, status: 'failed' },
+                        { wave: 57, status: 'failed' },
+                        { wave: 58, status: 'failed' },
+                        { wave: 59, status: 'failed' },
+                        { wave: 60, status: 'failed' }
+                    ]
+                },
+                '874': {
+                    attempts: 12,
+                    successes: 4,
+                    failures: 8,
+                    lastWave: 59,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 49, status: 'failed' },
+                        { wave: 50, status: 'failed' },
+                        { wave: 51, status: 'failed' },
+                        { wave: 52, status: 'failed' },
+                        { wave: 53, status: 'failed' },
+                        { wave: 54, status: 'failed' },
+                        { wave: 55, status: 'completed' },
+                        { wave: 56, status: 'completed' },
+                        { wave: 57, status: 'completed' },
+                        { wave: 58, status: 'completed' },
+                        { wave: 59, status: 'completed' },
+                        { wave: 60, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 61,
+        selectionPolicyConfig: {
+            mode: 'adwin_bayes_ucb',
+            adwinDelta: 0.01,
+            changeDetectionMinSamples: 4,
+            bayesUcbQuantile: 0.9
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [874]);
+    assert.equal(plan.selection.policy.skills, 'adwin_bayes_ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_bayes_ucb');
+});
+
 test('buildAutonomousBatchPlan supports exp3_ix policy for adversarial-style ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
