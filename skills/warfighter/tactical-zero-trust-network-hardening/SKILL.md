@@ -236,3 +236,9 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 
 - Add tool_suite_id=ts-joint-undersea-cable-sabotage-forensics-restoration-v1 + protocol_stack_id=ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1 when mission-network survivability depends on undersea cable forensics, routing integrity, and restoration sequencing.
 - Add packet_id=DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-001 for branches that change network trust posture or external routing dependencies.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-deepfake-command-auth-assurance-v1` + `protocol_stack_id=ps-theater-deepfake-command-auth-assurance-stack-v1` when network hardening recommendations must neutralize spoofed command traffic and preserve authenticated command release continuity.
+- Add `tool_suite_id=ts-strategic-military-cloud-break-glass-continuity-v1` + `protocol_stack_id=ps-strategic-military-cloud-break-glass-continuity-stack-v1` when trust-boundary decisions depend on sovereign cloud break-glass migration and mission-data custody controls.
+- Add `packet_id=DPL-THEATER-DEEPFAKE-COMMAND-AUTH-ASSURANCE-001` and `packet_id=DPL-STRATEGIC-MILITARY-CLOUD-BREAK-GLASS-CONTINUITY-001` for branches that shift trust boundaries, command-release controls, or continuity authority posture.

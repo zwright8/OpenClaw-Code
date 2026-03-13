@@ -560,3 +560,88 @@ For each critical recommendation, include:
 - Cross-check tools: independent weather witness and alternate link degradation tracker.
 - Protocols: `Link 16 J-series`, `USMTF`, `METAR/TAF`, HF data exchanges, `API/JSON`.
 - Degraded fallback: essential ISR routes only with tighter icing/link confidence thresholds.
+## Profile Set (2026-03-13 Expansion Wave XXVIII - Arctic Cable Continuity, Deepfake Command Defense, Medical Surge, Strategic Fabrication Recovery, and Space-Weather/Cyber Cascades)
+
+### `arctic-subsea-cable-ice-keel-repair-v1`
+- Use for arctic cable strike-risk forecasting and repair-window governance under maritime contest.
+- Primary tools: under-ice hazard model + cable telemetry board + repair dispatch workflow.
+- Cross-check tools: independent cryosphere witness and alternate continuity monitor.
+- Protocols: `AIS/NMEA`, `USMTF`, `OGC`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-essential cable trunks only with strict traffic classes.
+
+### `deepfake-command-auth-assurance-v1`
+- Use for command-net deepfake/spoof detection and authenticated release continuity.
+- Primary tools: command-auth forensics + order-signature integrity ledger + release governance workflow.
+- Cross-check tools: independent acknowledgment witness and alternate intent-divergence monitor.
+- Protocols: `USMTF`, signed auth events, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Degraded fallback: high-consequence command classes only with dual-control release.
+
+### `coalition-medical-oxygen-anesthetic-surge-v1`
+- Use for coalition oxygen/anesthetic surge management during casualty and logistics stress.
+- Primary tools: oxygen stress board + anesthetic allocator + coalition med-reg workflow.
+- Cross-check tools: independent pharmacy custody witness and alternate surgical demand monitor.
+- Protocols: `HL7/FHIR`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `API/JSON`.
+- Degraded fallback: life-saving surgery classes only with strict usage controls.
+
+### `rare-earth-magnet-cyber-sabotage-rollback-v1`
+- Use for strategic magnet fabrication rollback and trusted output restoration after cyber sabotage.
+- Primary tools: process integrity monitor + rollback orchestrator + output priority board.
+- Cross-check tools: independent assay witness and alternate quality drift monitor.
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, signed manifests, `API/JSON`.
+- Degraded fallback: mission-critical component lines only with quality-release holds.
+
+### `disconnected-biometric-roe-audit-v1`
+- Use for edge biometric and ROE confidence auditing in disconnected tactical operations.
+- Primary tools: identity confidence board + watchlist delta reconciler + ROE exception workflow.
+- Cross-check tools: independent adjudication queue and alternate legal compliance monitor.
+- Protocols: `USMTF`, `VMF`, `CoT`, `NIEM`, `API/JSON`.
+- Degraded fallback: restricted identity action set with commander approval for exceptions.
+
+### `rail-bridge-drone-swarm-defense-repair-v1`
+- Use for defending and repairing military-critical rail bridge chokepoints under drone swarm attacks.
+- Primary tools: bridge telemetry board + counter-uas scheduler + mobility reroute optimizer.
+- Cross-check tools: independent structural integrity witness and alternate force-flow monitor.
+- Protocols: `USMTF`, `CoT`, `NIMS/ICS`, `OGC`, `API/JSON`.
+- Degraded fallback: mission-essential bridge nodes only with fixed convoy windows.
+
+### `additive-propellant-thermal-aging-assurance-v1`
+- Use for thermal-aging confidence and safe release governance of additive-manufactured propellant lots.
+- Primary tools: thermal-aging analytics + lot release workflow + field safety stress model.
+- Cross-check tools: independent energetic assay witness and alternate munition reliability monitor.
+- Protocols: `USMTF`, `NIEM`, signed assay manifests, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: highest-confidence lots only with constrained employment envelopes.
+
+### `satnav-civil-timing-blackout-response-v1`
+- Use for military-civil timing continuity when SATNAV timing services are degraded or denied.
+- Primary tools: timing integrity monitor + holdover confidence board + restoration coordinator.
+- Cross-check tools: independent oscillator witness and alternate timing anomaly monitor.
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: command and life-safety timing domains only with strict drift thresholds.
+
+### `coalition-rotary-wing-dustoff-weather-routing-v1`
+- Use for contested-weather coalition DUSTOFF route governance and casualty timing confidence.
+- Primary tools: weather-threat corridor engine + medevac route optimizer + coalition casualty workflow.
+- Cross-check tools: independent weather confidence witness and alternate casualty priority monitor.
+- Protocols: `USMTF`, `AIXM/FIXM`, `NATO APP-11/ADatP-3 aligned`, `CoT`, `API/JSON`.
+- Degraded fallback: highest-acuity casualty corridors only with conservative weather minima.
+
+### `space-weather-cyber-cascade-risk-v1`
+- Use for cascading mission-risk adjudication when space-weather events drive cyber/network disruption.
+- Primary tools: geomagnetic risk board + cascade correlation engine + service continuity planner.
+- Cross-check tools: independent space-weather witness and alternate network resilience monitor.
+- Protocols: `CCSDS`, `USMTF`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-critical services only with explicit outage risk labels.
+
+### `strategic-military-cloud-break-glass-continuity-v1`
+- Use for sovereignty-preserving break-glass continuity across strategic military cloud workloads.
+- Primary tools: sovereignty policy board + workload evacuation orchestrator + custody continuity ledger.
+- Cross-check tools: independent legal caveat witness and alternate provider resilience monitor.
+- Protocols: `USMTF`, `NIEM`, signed sovereignty events, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: sovereign mission-essential workload classes only with strict data egress controls.
+
+### `undersea-autonomous-glider-acoustic-resilience-v1`
+- Use for acoustic deception resilience in autonomous undersea glider cueing and mission release.
+- Primary tools: acoustic anomaly fusion + glider trust monitor + cue validation workflow.
+- Cross-check tools: independent acoustic corroboration witness and alternate cue reliability monitor.
+- Protocols: `AIS/NMEA`, `USMTF`, `CoT`, `OGC`, `API/JSON`.
+- Degraded fallback: high-confidence cue classes only with conservative maneuver release.

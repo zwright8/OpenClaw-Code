@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Expeditionary Additive Propellant Thermal-Aging Monitor Cell"
+  short_description: "Validate thermal aging risk for expeditionary additive propellants"

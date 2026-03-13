@@ -9963,3 +9963,126 @@ external_binding:
 ### `ps-coalition-portable-desalination-cyber-biological-assurance-stack-v1`
 - Protocols: `HL7/FHIR`, `NIMS/ICS`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
 - Use for: contamination evidence exchange, cyber incident synchronization, and coalition water release governance.
+## Tool Suite Addendum XXVIII (2026-03-13, Warfighter Expansion Wave XXVIII for Arctic Cable Ice-Keel Threats, Deepfake Command Defense, Medical Gas Surge, Strategic Magnet Fabrication Recovery, Disconnected Biometric-ROE Audit, Rail Bridge Swarm Defense, Additive Propellant Aging, SATNAV Timing Blackout, Contested DUSTOFF Routing, Space-Weather Cyber Cascades, Cloud Break-Glass Sovereignty, and Undersea Glider Acoustic Resilience)
+
+### `ts-arctic-subsea-cable-ice-keel-repair-v1`
+- Use for: arctic cable integrity forecasting, ice-keel strike branch selection, and repair-window prioritization under threat.
+- Primary tools: under-ice bathymetry analytics, cable strain telemetry board, repair vessel sequencing workflow.
+- Cross-check tools: independent cryosphere/ice witness and alternate cable continuity monitor.
+- Typical products: ice-keel risk ladder, repair window matrix, mission-network continuity packet.
+
+### `ts-theater-deepfake-command-auth-assurance-v1`
+- Use for: deepfake/spoofed command traffic detection and authenticated command-net continuity under influence pressure.
+- Primary tools: voice/auth signal forensics engine, order-signature integrity ledger, command release governance workflow.
+- Cross-check tools: independent command acknowledgment witness and alternate intent-divergence monitor.
+- Typical products: command-auth anomaly board, trusted order release ladder, containment authority packet.
+
+### `ts-coalition-medical-oxygen-anesthetic-surge-v1`
+- Use for: coalition oxygen/anesthetic surge allocation to preserve Role 2/3 throughput under constrained med-log chains.
+- Primary tools: oxygen stress telemetry board, anesthetic stock optimizer, coalition med-reg synchronization workflow.
+- Cross-check tools: independent pharmacy custody witness and alternate surgical demand monitor.
+- Typical products: oxygen stress map, anesthesia allocation ladder, coalition surgical continuity packet.
+
+### `ts-strategic-rare-earth-magnet-cyber-sabotage-rollback-v1`
+- Use for: cyber-sabotage rollback and production integrity recovery in strategic rare-earth magnet fabrication lines.
+- Primary tools: industrial process integrity monitor, fabrication rollback orchestrator, strategic output priority board.
+- Cross-check tools: independent assay witness and alternate quality drift monitor.
+- Typical products: fabrication integrity ledger, rollback sequence matrix, strategic output continuity packet.
+
+### `ts-tactical-disconnected-biometric-roe-audit-v1`
+- Use for: disconnected-edge biometric confidence and ROE-aligned identity engagement governance.
+- Primary tools: edge identity confidence board, watchlist delta reconciler, ROE exception workflow.
+- Cross-check tools: independent biometric adjudication queue and alternate legal compliance monitor.
+- Typical products: biometric confidence ladder, ROE exception log, identity-risk decision packet.
+
+### `ts-joint-rail-bridge-drone-swarm-defense-repair-v1`
+- Use for: rapid defense and repair sequencing of military rail bridges under drone swarm and precision effects.
+- Primary tools: bridge health telemetry board, counter-UAS defense scheduler, force-flow reroute optimizer.
+- Cross-check tools: independent structural integrity witness and alternate mobility throughput monitor.
+- Typical products: bridge defense matrix, repair priority ladder, strategic mobility continuity packet.
+
+### `ts-theater-additive-propellant-thermal-aging-assurance-v1`
+- Use for: thermal-aging assurance and release governance for expeditionary additive-manufactured propellant lots.
+- Primary tools: propellant aging analytics board, lot release governance workflow, field safety stress model.
+- Cross-check tools: independent energetic assay witness and alternate munition reliability monitor.
+- Typical products: thermal-aging confidence ledger, lot release matrix, munitions safety packet.
+
+### `ts-homeland-satnav-civil-timing-blackout-response-v1`
+- Use for: military-civil timing continuity and holdover restoration during SATNAV disruption/blackout.
+- Primary tools: timing integrity monitor, holdover confidence board, civil-military restoration coordinator.
+- Cross-check tools: independent oscillator witness and alternate timing anomaly monitor.
+- Typical products: timing blackout impact map, holdover restoration ladder, continuity authority packet.
+
+### `ts-coalition-rotary-wing-dustoff-contested-weather-routing-v1`
+- Use for: coalition rotary-wing casualty routing through contested weather and degraded comms conditions.
+- Primary tools: weather-threat corridor engine, medevac route optimizer, coalition casualty synchronization workflow.
+- Cross-check tools: independent weather confidence witness and alternate casualty priority monitor.
+- Typical products: dustoff route confidence map, weather branch ladder, coalition casualty timing packet.
+
+### `ts-joint-space-weather-cyber-cascade-risk-v1`
+- Use for: joint mission-risk control when space-weather disruptions cascade into cyber/timing/network failures.
+- Primary tools: geomagnetic risk board, cyber cascade correlation engine, mission service continuity planner.
+- Cross-check tools: independent space-weather witness and alternate network resilience monitor.
+- Typical products: cascade risk ladder, mission continuity matrix, commander continuity packet.
+
+### `ts-strategic-military-cloud-break-glass-continuity-v1`
+- Use for: sovereignty-preserving break-glass continuity for strategic military cloud workloads and data custody.
+- Primary tools: cloud sovereignty policy board, workload evacuation orchestrator, data custody continuity ledger.
+- Cross-check tools: independent legal caveat witness and alternate provider resilience monitor.
+- Typical products: break-glass branch matrix, custody continuity ladder, strategic cloud authority packet.
+
+### `ts-theater-undersea-autonomous-glider-acoustic-resilience-v1`
+- Use for: resilient autonomous undersea glider cueing against acoustic deception and false-track manipulation.
+- Primary tools: acoustic anomaly fusion board, glider trust posture monitor, undersea cue validation workflow.
+- Cross-check tools: independent acoustic corroboration witness and alternate cue reliability monitor.
+- Typical products: acoustic deception confidence map, glider trust ladder, undersea cueing authority packet.
+
+## Protocol Stack Addendum XXVIII (2026-03-13, External Integration Profiles for Expansion Wave XXVIII)
+
+### `ps-arctic-subsea-cable-ice-keel-repair-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `OGC WMS/WFS/WMTS`, `NIEM`, `API/JSON`.
+- Use for: ice-keel risk exchange, cable health updates, and repair-window authority acknowledgment chains.
+
+### `ps-theater-deepfake-command-auth-assurance-stack-v1`
+- Protocols: `USMTF`, signed voice-auth events, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: command-auth anomaly exchange, order-signature integrity evidence, and release authority synchronization.
+
+### `ps-coalition-medical-oxygen-anesthetic-surge-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `API/JSON`.
+- Use for: coalition medical gas status exchange, surgical throughput updates, and cross-border care authority acknowledgments.
+
+### `ps-strategic-rare-earth-magnet-cyber-sabotage-rollback-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, signed provenance manifests, `API/JSON`.
+- Use for: fabrication sabotage telemetry, rollback sequence coordination, and strategic production authority acknowledgments.
+
+### `ps-tactical-disconnected-biometric-roe-audit-stack-v1`
+- Protocols: `USMTF`, `VMF`, `CoT`, `NIEM`, `API/JSON`.
+- Use for: edge identity confidence updates, ROE audit exceptions, and disconnected release acknowledgment integrity.
+
+### `ps-joint-rail-bridge-drone-swarm-defense-repair-stack-v1`
+- Protocols: `USMTF`, `CoT`, `NIMS/ICS`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: bridge threat and repair status exchange, force-flow reroute synchronization, and mobility authority gates.
+
+### `ps-theater-additive-propellant-thermal-aging-assurance-stack-v1`
+- Protocols: `USMTF`, `NIEM`, signed assay manifests, `STIX/TAXII`, `API/JSON`.
+- Use for: propellant thermal-aging evidence exchange, lot release governance, and safety authority acknowledgments.
+
+### `ps-homeland-satnav-civil-timing-blackout-response-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: timing blackout status exchange, holdover recovery synchronization, and military-civil continuity authority approvals.
+
+### `ps-coalition-rotary-wing-dustoff-contested-weather-routing-stack-v1`
+- Protocols: `USMTF`, `AIXM/FIXM`, `NATO APP-11/ADatP-3 aligned`, `CoT`, `API/JSON`.
+- Use for: medevac weather corridor updates, coalition route release synchronization, and casualty-priority acknowledgment chains.
+
+### `ps-joint-space-weather-cyber-cascade-risk-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `STIX/TAXII`, `NIEM`, `API/JSON`.
+- Use for: space-weather impact telemetry, cyber-cascade branch updates, and mission continuity authority acknowledgments.
+
+### `ps-strategic-military-cloud-break-glass-continuity-stack-v1`
+- Protocols: `USMTF`, `NIEM`, signed sovereignty events, `STIX/TAXII`, `API/JSON`.
+- Use for: strategic cloud break-glass triggers, custody continuity events, and workload migration authority synchronization.
+
+### `ps-theater-undersea-autonomous-glider-acoustic-resilience-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `CoT`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: undersea acoustic anomaly exchange, glider cue-trust updates, and mission cueing acknowledgment integrity.

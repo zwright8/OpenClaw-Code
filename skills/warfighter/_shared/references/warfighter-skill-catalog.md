@@ -2005,3 +2005,33 @@ Every skill output should include:
 - Battlefield robotic repair/recovery orchestration + contested logistics/prepositioning + autonomous sustainment governance + maneuver corridor restoration.
 - Strategic cognitive warfare attribution/response + tactical counter-disinformation assurance + coalition information operations + policy-legal release governance.
 - Undersea cable sabotage forensics/restoration + mission-network failover + maritime anomaly attribution + coalition data continuity governance.
+
+## New Expansion Wave (2026-03-13, Wave XXVIII)
+
+- joint-arctic-subsea-cable-ice-keel-strike-prediction-and-repair-cell
+- theater-counter-deepfake-command-net-and-auth-handshake-cell
+- coalition-contested-medical-oxygen-and-anesthetic-surge-cell
+- strategic-rare-earth-magnet-fabrication-cyber-sabotage-rollback-cell
+- tactical-disconnected-biometric-rules-of-engagement-audit-cell
+- joint-hardened-rail-bridge-drone-swarm-defense-and-repair-cell
+- theater-expeditionary-additive-propellant-thermal-aging-monitor-cell
+- homeland-defense-satnav-civil-timing-integrity-blackout-cell
+- coalition-rotary-wing-dustoff-weather-contested-routing-cell
+- joint-space-weather-cyber-cascade-mission-risk-cell
+- strategic-military-cloud-sovereignty-break-glass-continuity-cell
+- theater-undersea-autonomous-glider-acoustic-deception-resilience-cell
+
+## Updated Pairings (2026-03-13, Wave XXVIII)
+
+- Arctic subsea cable ice-keel repair + undersea cable continuity + maritime threat routing + command network survivability.
+- Deepfake command-auth handshake defense + AI-order integrity + mission command assurance + release authority traceability.
+- Coalition oxygen/anesthetic surge + role-2/3 medical throughput + contested logistics triage + casualty outcome stabilization.
+- Strategic rare-earth magnet sabotage rollback + critical manufacturing cyber-physical survivability + strategic industrial continuity.
+- Disconnected biometric-ROE audit + identity confidence governance + legal/ROE compliance + fratricide risk suppression.
+- Rail bridge drone-swarm defense/repair + strategic force-flow continuity + counter-UAS protection + mobility reroute governance.
+- Additive propellant thermal-aging assurance + munitions safety release + expeditionary manufacturing quality confidence.
+- SATNAV civil timing blackout continuity + contested time-distribution recovery + military-civil infrastructure synchronization.
+- Coalition contested-weather DUSTOFF routing + aeromedical prioritization + weather-threat deconfliction + cross-border casualty movement.
+- Space-weather cyber-cascade mission risk control + mission network continuity + timing confidence + strategic warning integration.
+- Strategic cloud break-glass sovereignty continuity + mission-data custody + emergency workload migration + legal/authority safeguards.
+- Undersea autonomous glider acoustic deception resilience + undersea cue trust restoration + mission-safe release controls.

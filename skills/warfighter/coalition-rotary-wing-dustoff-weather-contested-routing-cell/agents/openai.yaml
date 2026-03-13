@@ -1,0 +1,3 @@
+interface:
+  display_name: "Coalition Rotary-Wing DUSTOFF Weather Contested Routing Cell"
+  short_description: "Route contested DUSTOFF missions through weather and threat"
