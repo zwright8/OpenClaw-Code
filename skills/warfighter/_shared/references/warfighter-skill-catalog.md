@@ -2035,3 +2035,33 @@ Every skill output should include:
 - Space-weather cyber-cascade mission risk control + mission network continuity + timing confidence + strategic warning integration.
 - Strategic cloud break-glass sovereignty continuity + mission-data custody + emergency workload migration + legal/authority safeguards.
 - Undersea autonomous glider acoustic deception resilience + undersea cue trust restoration + mission-safe release controls.
+
+## New Expansion Wave (2026-03-13, Wave XXX)
+
+- joint-arctic-over-ice-logistics-corridor-assurance-cell
+- theater-underground-fiber-cut-and-comms-reroute-cell
+- joint-microgrid-islanded-base-cluster-load-shedding-cell
+- coalition-autonomous-maritime-mine-countermeasure-deconfliction-cell
+- tactical-electromagnetic-signature-discipline-and-emcon-cell
+- joint-rapid-camouflage-concealment-and-deception-allocation-cell
+- theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell
+- joint-contested-prisoner-transfer-and-detainee-accountability-cell
+- strategic-food-and-water-denial-risk-and-distribution-cell
+- homeland-defense-critical-911-psap-military-support-cell
+- joint-rail-bridge-sabotage-restoration-and-force-flow-cell
+- coalition-denied-space-maneuver-custody-arbitration-cell
+
+## Updated Pairings (2026-03-13, Wave XXX)
+
+- Arctic over-ice logistics corridor assurance + contested logistics sustainment + polar route risk management + coalition mobility governance.
+- Underground fiber-cut reroute + mission network failover + tactical zero-trust hardening + command continuity risk management.
+- Islanded base microgrid load-shedding + operational energy resilience + force protection/base defense + civil utility synchronization.
+- Coalition autonomous maritime MCM deconfliction + maritime chokepoint control + autonomous convoy governance + coalition release authority discipline.
+- Tactical EM signature discipline/EMCON + EW fratricide prevention + spectrum interference resolution + deception/emissions governance.
+- Rapid camouflage/concealment/deception allocation + force survivability planning + adversary sensor disruption + decoy economy governance.
+- Battlefield forensics and war-crimes preservation + legal/ROE compliance + detainee accountability + strategic information integrity.
+- Contested prisoner transfer and detainee accountability + military police site security + truce/prisoner exchange monitoring + coalition legal handoff integrity.
+- Strategic food-water denial risk/distribution + strategic supply-shock mitigation + DSCA stabilization support + readiness risk decision support.
+- Homeland critical 911 PSAP military support + civil telecom priority restoration + critical infrastructure cyber-physical defense + life-safety command coordination.
+- Rail-bridge sabotage restoration and force-flow + strategic mobility chokepoint wargaming + combat engineering repair + convoy protection reroute.
+- Coalition denied-space maneuver custody arbitration + contested launch/reconstitution + space-domain awareness continuity + coalition caveat-aware release governance.

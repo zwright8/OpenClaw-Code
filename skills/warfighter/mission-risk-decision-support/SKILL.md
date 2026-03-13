@@ -255,3 +255,12 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXX Addendum)
+
+- Add `tool_suite_id=ts-theater-underground-fiber-cut-comms-reroute-v1` + `protocol_stack_id=ps-theater-underground-fiber-cut-comms-reroute-stack-v1` when commander risk depends on restoring command continuity after terrestrial backhaul loss.
+- Add `tool_suite_id=ts-joint-microgrid-islanded-base-load-shedding-v1` + `protocol_stack_id=ps-joint-microgrid-islanded-base-load-shedding-stack-v1` when recommendation viability depends on islanded base power continuity and controlled load shedding.
+- Add `tool_suite_id=ts-coalition-autonomous-maritime-mcm-deconfliction-v1` + `protocol_stack_id=ps-coalition-autonomous-maritime-mcm-deconfliction-stack-v1` when mission branches depend on coalition autonomous MCM lane release confidence.
+- Add `tool_suite_id=ts-joint-rail-bridge-sabotage-restoration-force-flow-v1` + `protocol_stack_id=ps-joint-rail-bridge-sabotage-restoration-force-flow-stack-v1` when risk posture hinges on rapid restoration of rail-bridge mobility chokepoints.
+- Add `tool_suite_id=ts-coalition-denied-space-maneuver-custody-arbitration-v1` + `protocol_stack_id=ps-coalition-denied-space-maneuver-custody-arbitration-stack-v1` when recommendations require coalition custody arbitration for denied-space maneuver release.
+- Add `packet_id=DPL-THEATER-UNDERGROUND-FIBER-REROUTE-001`, `packet_id=DPL-JOINT-MICROGRID-ISLANDED-LOAD-001`, `packet_id=DPL-COALITION-AUTONOMOUS-MCM-DECONFLICTION-001`, `packet_id=DPL-JOINT-RAIL-BRIDGE-SABOTAGE-RESTORATION-001`, and `packet_id=DPL-COALITION-DENIED-SPACE-CUSTODY-001` for branches that materially alter commander GO/NO-GO decisions.

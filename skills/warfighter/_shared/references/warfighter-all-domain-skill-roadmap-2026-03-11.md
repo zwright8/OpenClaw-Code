@@ -94,3 +94,9 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Extended the external tool/protocol catalog with Tool Suite Addendum XXVIII and Protocol Stack Addendum XXVIII to bind each new mission domain to concrete external tools and interoperable protocol stacks.
 - Extended the domain packet library and joint-operations toolchain profiles with Wave XXVIII packet IDs and profile bindings for authority-gated, degraded-mode mission recommendations.
 - Improved existing high-usage skills (`naval-surface-warfare-coordinator`, `coalition-interoperability-coordinator`, and `tactical-zero-trust-network-hardening`) with Expansion Wave XXVIII override bindings and packet references.
+
+## Run Update (2026-03-13T18:xx:xxZ)
+
+- Added Expansion Wave XXX with 12 additional warfighter skills covering Arctic over-ice corridor assurance, underground fiber-cut command reroute, islanded base-cluster load shedding, coalition autonomous maritime MCM deconfliction, tactical EMCON signature discipline, rapid CCD allocation, battlefield forensics/war-crimes evidence preservation, contested prisoner transfer accountability, strategic food-water denial distribution, homeland critical PSAP/911 continuity support, rail-bridge sabotage force-flow restoration, and coalition denied-space custody arbitration.
+- Extended shared references with Tool Suite Addendum XXX, Protocol Stack Addendum XXX, and Packet Addendum XVIII to bind each new domain to concrete external tools and protocol families.
+- Improved existing high-usage skill `mission-risk-decision-support` with Expansion Wave XXX override bindings and packet IDs for faster authority-gated commander risk decisions.

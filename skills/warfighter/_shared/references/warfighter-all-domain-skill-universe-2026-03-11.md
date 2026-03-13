@@ -161,3 +161,9 @@ This reference expands the warfighter skill roadmap across major military action
 - Added a 3-skill fast-follow expansion wave focused on autonomous mesh key-ceremony under compromise, solar-flare SATCOM fallback priority governance, and coalition portable desalination cyber-biological assurance.
 - Extended shared references with Tool Suite Addendum XXIX, Protocol Stack Addendum XXIX, and Packet Addendum XVII for executable external-tool and protocol bindings.
 - Improved CEMA integration guidance with Wave XXIX override bindings for communications trust restoration and resilient fallback routing.
+
+## Run Update (2026-03-13T18:xx:xxZ)
+
+- Added Expansion Wave XXX with 12 additional warfighter skills focused on Arctic logistics assurance, comms reroute after buried-fiber disruption, islanded base power governance, coalition autonomous MCM deconfliction, tactical EM signature discipline, rapid deception asset allocation, forensic evidence preservation, contested detainee transfer accountability, strategic food-water denial mitigation, homeland PSAP continuity support, rail bridge sabotage recovery, and denied-space custody arbitration.
+- Extended shared references with Tool Suite Addendum XXX, Protocol Stack Addendum XXX, and Packet Addendum XVIII for executable external-tool and protocol bindings.
+- Improved `mission-risk-decision-support` with Wave XXX override bindings for command continuity, mobility restoration, coalition MCM release confidence, and denied-space custody governance.

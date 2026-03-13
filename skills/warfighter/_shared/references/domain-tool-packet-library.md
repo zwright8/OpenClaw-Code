@@ -9566,3 +9566,137 @@ validation_gates:
 - output_schema: deception confidence map, trust ladder, cueing authority packet
 - protocol_profile: AIS/NMEA + USMTF + CoT + OGC + API/JSON
 - validation_gates: cue confidence floor, cross-sensor corroboration, command acknowledgment integrity
+
+## Packet Addendum XVIII (2026-03-13, Expansion Wave XXX)
+
+### packet_id: DPL-JOINT-ARCTIC-OVER-ICE-LOGISTICS-001
+- domain: arctic over-ice sustainment assurance
+- objective: keep Arctic over-ice logistics corridors viable under weather and threat pressure
+- primary_tools: over-ice route risk engine, convoy telemetry board, sustainment branch planner
+- alternate_tools: manual convoy board and delayed weather feed matrix
+- degraded_mode: mission-essential convoy classes only with 6-hour sync windows
+- input_requirements: route segments, weather risk bands, convoy loads, adversary threat indicators
+- output_schema: corridor confidence table, reroute branch ladder, command trigger list
+- protocol_profile: USMTF + AIS/NMEA + OGC
+- validation_gates: dual-source weather confirmation, convoy telemetry freshness, command approval integrity
+
+### packet_id: DPL-THEATER-UNDERGROUND-FIBER-REROUTE-001
+- domain: theater communications resilience
+- objective: restore command continuity after underground fiber disruption
+- primary_tools: fiber fault correlator, reroute orchestrator, c2 path integrity board
+- alternate_tools: manual path fallback matrix and satcom-only continuity board
+- degraded_mode: critical command traffic only with fixed ack windows
+- input_requirements: segment faults, path priorities, route dependencies, authority tiers
+- output_schema: fault attribution map, reroute sequence, continuity risk score
+- protocol_profile: USMTF + STIX/TAXII + NIEM
+- validation_gates: acknowledgement chain verified, path viability check, authority gate pass
+
+### packet_id: DPL-JOINT-MICROGRID-ISLANDED-LOAD-001
+- domain: islanded base power continuity
+- objective: optimize load shedding and service continuity across islanded base clusters
+- primary_tools: microgrid telemetry, critical load board, fuel endurance scheduler
+- alternate_tools: manual load worksheet and generator status calls
+- degraded_mode: life-safety and c2 loads only
+- input_requirements: load priorities, generation capacity, fuel levels, repair ETA
+- output_schema: load-shed matrix, islanding branch map, restoration priority list
+- protocol_profile: USMTF + NIMS/ICS + EDXL-DE/CAP
+- validation_gates: life-safety pass, c2 continuity check, command release record
+
+### packet_id: DPL-COALITION-AUTONOMOUS-MCM-DECONFLICTION-001
+- domain: coalition maritime mine countermeasure operations
+- objective: prevent autonomous MCM fratricide while preserving chokepoint throughput
+- primary_tools: autonomous MCM mission scheduler, mine-risk fusion board, maritime lane controller
+- alternate_tools: manual patrol deconfliction board and coalition liaison matrix
+- degraded_mode: daylight/high-confidence lanes only
+- input_requirements: mission lanes, vehicle tracks, hazard maps, coalition caveats
+- output_schema: lane release matrix, mine-risk confidence ladder, conflict exceptions log
+- protocol_profile: AIS/NMEA + Link 16 J-series + NATO APP-11/ADatP-3
+- validation_gates: coalition caveat check, lane safety threshold, release authority chain
+
+### packet_id: DPL-TACTICAL-EM-SIGNATURE-EMCON-001
+- domain: tactical emissions discipline and EMCON
+- objective: reduce adversary detection while preserving mission-essential comms
+- primary_tools: emission planner, signature monitor, tactical waveform governance board
+- alternate_tools: static EMCON schedule and manual retune board
+- degraded_mode: mission-essential comm windows only
+- input_requirements: platform set, mission phases, threat sensors, comm priorities
+- output_schema: EMCON timeline, exposure risk score, mitigation action queue
+- protocol_profile: USMTF + Link 16 J-series + VMF
+- validation_gates: fratricide-spectrum check, comms continuity floor, commander approval
+
+### packet_id: DPL-JOINT-RAPID-CCD-ALLOCATION-001
+- domain: camouflage concealment deception allocation
+- objective: allocate decoys and concealment assets to maximize survivability
+- primary_tools: decoy allocator, concealment effectiveness board, survivability branch planner
+- alternate_tools: manual allocation worksheet with periodic reconnaissance validation
+- degraded_mode: highest-value assets only
+- input_requirements: asset priority, terrain mask, adversary sensing profile, available CCD inventory
+- output_schema: CCD allocation matrix, deception confidence map, branch trigger list
+- protocol_profile: USMTF + CoT + OGC
+- validation_gates: survivability delta threshold, inventory integrity check, authority approval
+
+### packet_id: DPL-THEATER-BATTLEFIELD-FORENSICS-PRESERVATION-001
+- domain: battlefield forensics and legal evidence preservation
+- objective: preserve chain-of-custody and legal admissibility under contested operations
+- primary_tools: forensic custody ledger, geotag evidence capture, legal transfer workflow
+- alternate_tools: paper custody log with synchronized digital photo archive
+- degraded_mode: high-severity incidents only
+- input_requirements: incident reports, evidence metadata, custody handlers, legal authority profile
+- output_schema: custody chain table, evidence integrity score, legal transfer queue
+- protocol_profile: NIEM + signed evidence manifests + USMTF
+- validation_gates: custody continuity pass, metadata completeness, legal handoff confirmation
+
+### packet_id: DPL-JOINT-CONTESTED-PRISONER-TRANSFER-001
+- domain: contested detainee transfer and accountability
+- objective: synchronize transfer routes and identity confidence while preserving legal compliance
+- primary_tools: transfer scheduler, biometric confidence board, custody exception workflow
+- alternate_tools: manual transfer log and periodic identity verification board
+- degraded_mode: urgent transfer classes only
+- input_requirements: detainee records, route threats, receiving facility status, legal caveats
+- output_schema: transfer plan table, identity confidence ladder, compliance exception queue
+- protocol_profile: NIEM + USMTF + NATO APP-11/ADatP-3
+- validation_gates: identity confidence threshold, legal caveat check, custody acknowledgment chain
+
+### packet_id: DPL-STRATEGIC-FOOD-WATER-DENIAL-001
+- domain: strategic resource denial mitigation
+- objective: detect and mitigate food-water denial risk impacting force readiness and stability
+- primary_tools: resource stress predictor, distribution optimizer, instability trigger monitor
+- alternate_tools: manual stock board and regional liaison reporting
+- degraded_mode: critical populations and force nodes only
+- input_requirements: stock levels, route status, demand projections, threat indicators
+- output_schema: denial trigger ledger, priority distribution matrix, mitigation branch options
+- protocol_profile: USMTF + NIMS/ICS + NIEM
+- validation_gates: life-safety prioritization pass, route feasibility check, authority approval
+
+### packet_id: DPL-HOMELAND-CRITICAL-911-PSAP-SUPPORT-001
+- domain: homeland PSAP/911 continuity support
+- objective: sustain emergency call handling with military support during outages and attacks
+- primary_tools: psap status dashboard, telecom reroute workflow, incident surge allocator
+- alternate_tools: manual dispatch board and interagency voice bridge
+- degraded_mode: life-safety call classes only
+- input_requirements: psap outage map, call volume trends, telecom status, support assets
+- output_schema: continuity status ladder, support allocation matrix, escalation timeline
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + NIEM
+- validation_gates: life-safety threshold pass, jurisdictional authorization, command acknowledgment
+
+### packet_id: DPL-JOINT-RAIL-BRIDGE-SABOTAGE-RESTORATION-001
+- domain: military mobility rail-bridge restoration
+- objective: restore force-flow after sabotage through synchronized engineering and reroute plans
+- primary_tools: bridge integrity monitor, repair queue planner, force-flow reroute board
+- alternate_tools: manual engineer board and rail movement estimate workbook
+- degraded_mode: strategic load classes only
+- input_requirements: damage assessments, repair assets, route capacities, convoy protection status
+- output_schema: restoration queue, reroute confidence table, mobility decision triggers
+- protocol_profile: USMTF + NIMS/ICS + OGC
+- validation_gates: engineering feasibility pass, throughput confidence check, approval chain verification
+
+### packet_id: DPL-COALITION-DENIED-SPACE-CUSTODY-001
+- domain: coalition denied-space custody arbitration
+- objective: arbitrate custody and maneuver release under conjunction and releasability constraints
+- primary_tools: custody arbitration board, conjunction risk monitor, coalition release workflow
+- alternate_tools: manual authority matrix and delayed orbital safety reconciliation
+- degraded_mode: mission-critical maneuvers only
+- input_requirements: custody claims, conjunction alerts, coalition caveats, maneuver priorities
+- output_schema: custody resolution ledger, maneuver release matrix, authority exceptions log
+- protocol_profile: CCSDS + USMTF + NATO APP-11/ADatP-3
+- validation_gates: conjunction safety pass, coalition caveat compliance, release authority acknowledgment

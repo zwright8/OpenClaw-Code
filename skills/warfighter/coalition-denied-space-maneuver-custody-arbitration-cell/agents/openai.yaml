@@ -1,0 +1,3 @@
+interface:
+  display_name: "Coalition Denied-Space Maneuver Custody Arbitration Cell"
+  short_description: "Arbitrate coalition custody and maneuver authorities in denied space operations with conjunction safety and releasability controls."

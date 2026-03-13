@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Underground Fiber Cut and Comms Reroute Cell"
+  short_description: "Preserve joint command continuity when buried fiber and terrestrial backhaul are disrupted by kinetic or cyber sabotage."

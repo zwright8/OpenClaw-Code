@@ -645,3 +645,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent acoustic corroboration witness and alternate cue reliability monitor.
 - Protocols: `AIS/NMEA`, `USMTF`, `CoT`, `OGC`, `API/JSON`.
 - Degraded fallback: high-confidence cue classes only with conservative maneuver release.
+
+## Profile Set (2026-03-13 Expansion Wave XXX - Arctic Logistics, Fiber Continuity, Islanded Microgrids, MCM Autonomy, EMCON, Forensics, Detainee Transfer, Resource Denial, PSAP Continuity, Mobility Restoration, and Denied-Space Custody)
+
+### `joint-arctic-over-ice-logistics-corridor-assurance-v1`
+- Use for sustained over-ice logistics when Arctic weather and adversary disruption threaten throughput.
+- Primary tools: ice-route risk engine + convoy viability board + sustainment branch planner.
+- Cross-check tools: independent cryosphere witness and alternate convoy telemetry board.
+- Protocols: `USMTF`, `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: mission-essential convoy classes only with conservative route confidence thresholds.
+
+### `theater-underground-fiber-cut-comms-reroute-v1`
+- Use for command continuity when buried fiber and terrestrial backhaul are degraded or sabotaged.
+- Primary tools: fiber fault fusion board + reroute orchestrator + c2 path integrity monitor.
+- Cross-check tools: independent transport witness and alternate satcom continuity monitor.
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `CoT`, `API/JSON`.
+- Degraded fallback: highest-priority command traffic only with fixed acknowledgment cycles.
+
+### `joint-microgrid-islanded-base-load-shedding-v1`
+- Use for islanded military base-cluster load shedding and continuity governance.
+- Primary tools: base microgrid telemetry + critical-load arbitrator + fuel endurance scheduler.
+- Cross-check tools: independent power-quality witness and alternate contingency load board.
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `EDXL-DE/CAP`, `API/JSON`.
+- Degraded fallback: life-safety and c2 loads only with strict command check-ins.
+
+### `coalition-autonomous-maritime-mcm-deconfliction-v1`
+- Use for coalition autonomous mine-countermeasure deconfliction and lane safety release.
+- Primary tools: autonomous MCM task board + mine-risk fusion engine + chokepoint lane scheduler.
+- Cross-check tools: independent sonar confidence witness and alternate maritime safety board.
+- Protocols: `AIS/NMEA`, `Link 16 J-series`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: highest-confidence lane clearances only with dual coalition release.
+
+### `tactical-electromagnetic-signature-discipline-emcon-v1`
+- Use for tactical emissions discipline and EMCON transition control in contested sensing environments.
+- Primary tools: emission control planner + signature exposure monitor + waveform governance board.
+- Cross-check tools: independent RF witness and alternate signature drift tracker.
+- Protocols: `USMTF`, `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`.
+- Degraded fallback: mission-essential windows only with tighter emission constraints.
+
+### `joint-rapid-camouflage-concealment-deception-allocation-v1`
+- Use for rapid CCD asset allocation to preserve survivability of critical formations and nodes.
+- Primary tools: decoy planner + concealment allocation board + survivability branch scheduler.
+- Cross-check tools: independent observation witness and alternate deception-effect monitor.
+- Protocols: `USMTF`, `CoT`, `OGC WMS/WFS/WMTS`, `NIEM`, `API/JSON`.
+- Degraded fallback: highest-value assets only with periodic reconnaissance validation.
+
+### `theater-battlefield-forensics-war-crimes-preservation-v1`
+- Use for battlefield forensics preservation, custody integrity, and law-of-war evidence handoff.
+- Primary tools: forensic custody ledger + geotagged evidence workflow + legal transfer tracker.
+- Cross-check tools: independent evidence integrity witness and alternate legal sufficiency board.
+- Protocols: `NIEM`, signed evidence manifests, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: high-severity incidents only with mandatory legal review gates.
+
+### `joint-contested-prisoner-transfer-detainee-accountability-v1`
+- Use for contested prisoner transfer with identity confidence and custody continuity controls.
+- Primary tools: transfer scheduler + biometric confidence board + compliance exception workflow.
+- Cross-check tools: independent transfer witness and alternate custody audit board.
+- Protocols: `NIEM`, `USMTF`, `VMF`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: urgent transfer classes only with explicit command approval.
+
+### `strategic-food-water-denial-distribution-v1`
+- Use for strategic food-water denial risk mitigation and priority distribution governance.
+- Primary tools: denial trigger predictor + distribution optimizer + instability monitor.
+- Cross-check tools: independent humanitarian risk witness and alternate supply continuity board.
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: life-safety and mission-critical populations only with conservative assumptions.
+
+### `homeland-defense-critical-911-psap-support-v1`
+- Use for military support to PSAP/911 continuity under homeland disruption.
+- Primary tools: PSAP continuity board + incident surge allocator + telecom restoration workflow.
+- Cross-check tools: independent emergency-services witness and alternate call-routing monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-safety call classes only with fixed interagency sync windows.
+
+### `joint-rail-bridge-sabotage-restoration-force-flow-v1`
+- Use for rail-bridge sabotage restoration and force-flow reroute under contested mobility conditions.
+- Primary tools: bridge integrity monitor + repair sequencing board + mobility reroute planner.
+- Cross-check tools: independent structural witness and alternate throughput confidence board.
+- Protocols: `USMTF`, `NIMS/ICS`, `OGC WMS/WFS/WMTS`, `CoT`, `API/JSON`.
+- Degraded fallback: strategic load classes only with conservative route release criteria.
+
+### `coalition-denied-space-maneuver-custody-arbitration-v1`
+- Use for coalition denied-space custody arbitration with conjunction-safe maneuver release controls.
+- Primary tools: custody conflict board + conjunction risk monitor + coalition release workflow.
+- Cross-check tools: independent orbital safety witness and alternate coalition caveat monitor.
+- Protocols: `CCSDS`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-critical maneuvers only with dual coalition authority signatures.
