@@ -106,6 +106,8 @@ const DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS = 0;
 const MAX_CORRAL_MIN_POLICY_ATTEMPTS = 200;
 const DEFAULT_CORRAL_FORCED_EXPLORATION = 0.25;
 const MAX_CORRAL_FORCED_EXPLORATION = 1;
+const DEFAULT_CORRAL_UNCERTAINTY_WEIGHT = 0.35;
+const MAX_CORRAL_UNCERTAINTY_WEIGHT = 3;
 const DEFAULT_EXP3_EXPLORATION_GAMMA = 0.07;
 const DEFAULT_EXP3_IMPLICIT_GAMMA = null;
 const MAX_EXP3_IX_GAMMA = 0.5;
@@ -746,6 +748,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_CORRAL_FORCED_EXPLORATION,
             0,
             MAX_CORRAL_FORCED_EXPLORATION
+        ),
+        corralUncertaintyWeight: clamp(
+            Number.isFinite(Number(value.corralUncertaintyWeight))
+                ? Number(value.corralUncertaintyWeight)
+                : DEFAULT_CORRAL_UNCERTAINTY_WEIGHT,
+            0,
+            MAX_CORRAL_UNCERTAINTY_WEIGHT
         ),
         exp3ExplorationGamma: clamp(
             Number.isFinite(Number(value.exp3ExplorationGamma))
@@ -2718,7 +2727,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
                 discountFactor: policy.discountFactor
             }
             : null);
-    const weighted = corralPolicies.map((name) => {
+    const scoredPolicies = corralPolicies.map((name) => {
         const stat = corralScoreConfig
             ? resolveScoreStats(laneStats[name], corralScoreConfig, currentWave)
             : normalizePolicyPerformanceStat(laneStats[name]);
@@ -2726,10 +2735,22 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         const rewardRate = attempts > 0
             ? clamp((Number(stat.successes) || 0) / attempts, 0, 1)
             : 0;
-        const scaled = clamp(rewardRate * policy.corralEta, -30, 30);
         return {
             name,
             attempts,
+            rewardRate
+        };
+    });
+    const totalCorralAttempts = scoredPolicies.reduce((sum, entry) => sum + entry.attempts, 0);
+    const weighted = scoredPolicies.map((entry) => {
+        const uncertaintyBonus = policy.corralUncertaintyWeight
+            * Math.sqrt(
+                Math.log(Math.max(2, totalCorralAttempts + corralPolicies.length + 1))
+                / (entry.attempts + 1)
+            );
+        const scaled = clamp((entry.rewardRate + uncertaintyBonus) * policy.corralEta, -30, 30);
+        return {
+            name: entry.name,
             weight: Math.exp(scaled)
         };
     });

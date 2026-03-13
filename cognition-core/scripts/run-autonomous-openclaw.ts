@@ -72,6 +72,7 @@ Options:
   --corral-eta <n>             Exponential reward-rate scaling for corral_exp3* (>0 to 5, default: 0.8)
   --corral-min-attempts <n>    Minimum expert attempts before corral_exp3* fully exploits (>=0, default: 0)
   --corral-forced-exploration <n> Forced probability mass for under-sampled corral experts (0-1, default: 0.25)
+  --corral-uncertainty-weight <n>  UCB-style uncertainty bonus weight for under-sampled corral experts (0-3, default: 0.35)
   --no-enqueue-followups       Disable enqueueing generated follow-up tasks
   --json <path>                Optional JSON report output
   --markdown <path>            Optional markdown report output
@@ -219,7 +220,8 @@ function parseArgs(argv) {
             corralGamma: 0.12,
             corralEta: 0.8,
             corralMinPolicyAttempts: 0,
-            corralForcedExploration: 0.25
+            corralForcedExploration: 0.25,
+            corralUncertaintyWeight: 0.35
         },
         jsonPath: null,
         markdownPath: null,
@@ -536,6 +538,11 @@ function parseArgs(argv) {
         }
         if (token === '--corral-forced-exploration') {
             options.selectionPolicyConfig.corralForcedExploration = parseFloatInRange(value, '--corral-forced-exploration', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--corral-uncertainty-weight') {
+            options.selectionPolicyConfig.corralUncertaintyWeight = parseFloatInRange(value, '--corral-uncertainty-weight', 0, 3);
             i++;
             continue;
         }

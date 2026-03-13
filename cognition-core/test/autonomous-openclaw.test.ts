@@ -2142,6 +2142,49 @@ test('buildAutonomousBatchPlan supports corral_exp3 policy adaptation across bas
     assert.ok(plan.tasks[0].context?.autonomy?.selectionPolicyApplied);
 });
 
+test('buildAutonomousBatchPlan supports corral_exp3 uncertainty bonus for under-sampled experts', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 901, code: 'SK-00901', title: 'Skill 901' },
+            { id: 902, code: 'SK-00902', title: 'Skill 902' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 33,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '901': { attempts: 12, successes: 9, failures: 3, consecutiveFailures: 0, lastWave: 32, lastStatus: 'completed' },
+                '902': { attempts: 12, successes: 5, failures: 7, consecutiveFailures: 0, lastWave: 32, lastStatus: 'completed' }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: { attempts: 2, successes: 1, failures: 1, cumulativeReward: 1 },
+                    epsilon_ts: { attempts: 160, successes: 140, failures: 20, cumulativeReward: 140 },
+                    kl_ucb: { attempts: 160, successes: 80, failures: 80, cumulativeReward: 80 },
+                    cd_ucb: { attempts: 160, successes: 80, failures: 80, cumulativeReward: 80 }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 34,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3',
+            corralGamma: 0,
+            corralEta: 3,
+            corralUncertaintyWeight: 2.5
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [901]);
+    assert.equal(plan.selection.policy.skills, 'ucb');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'ucb');
+});
+
 test('buildAutonomousBatchPlan supports corral_exp3_plus corralling expanded base policy pool', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
