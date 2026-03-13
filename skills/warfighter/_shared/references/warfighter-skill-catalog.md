@@ -2065,3 +2065,31 @@ Every skill output should include:
 - Homeland critical 911 PSAP military support + civil telecom priority restoration + critical infrastructure cyber-physical defense + life-safety command coordination.
 - Rail-bridge sabotage restoration and force-flow + strategic mobility chokepoint wargaming + combat engineering repair + convoy protection reroute.
 - Coalition denied-space maneuver custody arbitration + contested launch/reconstitution + space-domain awareness continuity + coalition caveat-aware release governance.
+
+## New Expansion Wave (2026-03-13, Wave XXXI)
+
+- joint-civil-internet-blackout-military-mesh-bridging-cell
+- theater-uas-battery-charging-network-denial-recovery-cell
+- strategic-pharmaceutical-supply-chain-contamination-countermeasure-cell
+- joint-low-earth-orbit-satcom-traffic-priority-denial-recovery-cell
+- homeland-chemical-rail-derailment-military-support-evacuation-cell
+- coalition-ai-targeting-policy-explainability-and-audit-cell
+- expeditionary-runway-gps-spoofing-approach-continuity-cell
+- joint-fuel-farm-foam-fire-cascade-containment-cell
+- theater-prison-break-high-value-detainee-recapture-coordination-cell
+- contested-data-center-water-cooling-failure-mission-load-shedding-cell
+- strategic-reserve-component-callup-transport-synchronization-cell
+- coalition-maritime-fiber-landing-station-kinetic-cyber-defense-cell
+
+## Updated Pairings (2026-03-13, Wave XXXI)
+
+- Civil internet blackout mesh bridging + theater mission network failover + homeland PSAP continuity support
+- UAS battery-charging denial recovery + autonomous ground resupply + operational energy resilience and microgrid
+- Pharmaceutical contamination countermeasure + preventive medicine and force health protection + medical logistics continuity
+- LEO SATCOM denial recovery + denied-PNT time transfer assurance + space-weather cyber-cascade mission risk
+- Coalition AI targeting explainability audit + targeting standards/CDE governance + legal ROE compliance checker
+- Fuel-farm cascade containment + expeditionary fuel pipeline and bulk water terminal support + contested logistics sustainment
+- Prison-break HVD recapture + biometrics watchlist exploitation + detainee transfer accountability
+- Data-center cooling load shedding + tactical cloud edge compute orchestrator + strategic military cloud break-glass continuity
+- Reserve callup transport synchronization + strategic mobility chokepoint wargame + deployment and distribution ops center optimizer
+- Coalition maritime fiber landing defense + allied undersea telemetry cable landing defense + coalition cable sovereignty operations

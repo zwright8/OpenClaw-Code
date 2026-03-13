@@ -156,3 +156,11 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-joint-autonomous-battlefield-mesh-key-ceremony-v1` + `protocol_stack_id=ps-joint-autonomous-battlefield-mesh-key-ceremony-stack-v1` when electromagnetic-cyber integration outputs depend on rapid trust restoration after mesh key compromise.
 - Add `tool_suite_id=ts-theater-solar-flare-satcom-fallback-priority-v1` + `protocol_stack_id=ps-theater-solar-flare-satcom-fallback-priority-stack-v1` when solar activity and spectrum stress jointly constrain SATCOM mission traffic.
 - Add `packet_id=DPL-MESH-KEY-CEREMONY-001` and `packet_id=DPL-SOLAR-FLARE-SATCOM-FALLBACK-001` for branches that can alter command-and-control continuity posture.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXI Addendum)
+
+- Add `tool_suite_id=ts-joint-low-earth-orbit-satcom-traffic-priority-denial-recovery-v1` + `protocol_stack_id=ps-joint-low-earth-orbit-satcom-traffic-priority-denial-recovery-stack-v1` when CEMA recommendations depend on resilient SATCOM prioritization under jamming and denial.
+- Add `tool_suite_id=ts-joint-civil-internet-blackout-military-mesh-bridging-v1` + `protocol_stack_id=ps-joint-civil-internet-blackout-military-mesh-bridging-stack-v1` when electromagnetic and cyber disruption degrade civil-military backbone continuity.
+- Add `tool_suite_id=ts-contested-data-center-water-cooling-failure-load-shedding-v1` + `protocol_stack_id=ps-contested-data-center-water-cooling-failure-load-shedding-stack-v1` when mission-network survivability depends on thermal-stressed compute load shedding.
+- Add `tool_suite_id=ts-coalition-maritime-fiber-landing-station-kinetic-cyber-defense-v1` + `protocol_stack_id=ps-coalition-maritime-fiber-landing-station-kinetic-cyber-defense-stack-v1` when CEMA posture depends on landing-station cable defense and rapid cyber attribution.
+- Add `packet_id=DPL-JOINT-LEO-SATCOM-PRIORITY-DENIAL-RECOVERY-001`, `packet_id=DPL-JOINT-CIVIL-INTERNET-BLACKOUT-MESH-BRIDGING-001`, `packet_id=DPL-CONTESTED-DATACENTER-COOLING-LOADSHED-001`, and `packet_id=DPL-COALITION-MARITIME-FIBER-LANDING-KINETIC-CYBER-DEFENSE-001` for branches that alter emission-control, network-hardening, or command continuity posture.

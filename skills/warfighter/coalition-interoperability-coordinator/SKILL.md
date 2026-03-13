@@ -188,3 +188,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-medical-oxygen-anesthetic-surge-v1` + `protocol_stack_id=ps-coalition-medical-oxygen-anesthetic-surge-stack-v1` when coalition interoperability decisions depend on shared oxygen/anesthetic medical logistics and surgical throughput continuity.
 - Add `tool_suite_id=ts-coalition-rotary-wing-dustoff-contested-weather-routing-v1` + `protocol_stack_id=ps-coalition-rotary-wing-dustoff-contested-weather-routing-stack-v1` when interoperability recommendations depend on cross-border medevac route governance under contested weather and airspace.
 - Add `packet_id=DPL-COALITION-MEDICAL-OXYGEN-ANESTHETIC-SURGE-001` and `packet_id=DPL-COALITION-ROTARY-WING-DUSTOFF-WEATHER-ROUTING-001` for branches that alter coalition casualty-flow governance or clinical resource release authorities.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXI Addendum)
+
+- Add `tool_suite_id=ts-coalition-ai-targeting-policy-explainability-audit-v1` + `protocol_stack_id=ps-coalition-ai-targeting-policy-explainability-audit-stack-v1` when coalition release confidence depends on explainable AI-assisted targeting.
+- Add `tool_suite_id=ts-coalition-maritime-fiber-landing-station-kinetic-cyber-defense-v1` + `protocol_stack_id=ps-coalition-maritime-fiber-landing-station-kinetic-cyber-defense-stack-v1` when allied interoperability depends on landing-station cable continuity under combined kinetic/cyber threat.
+- Add `tool_suite_id=ts-joint-civil-internet-blackout-military-mesh-bridging-v1` + `protocol_stack_id=ps-joint-civil-internet-blackout-military-mesh-bridging-stack-v1` when coalition command sharing depends on civil-military mesh fallback pathways.
+- Add `packet_id=DPL-COALITION-AI-TARGETING-EXPLAINABILITY-AUDIT-001`, `packet_id=DPL-COALITION-MARITIME-FIBER-LANDING-KINETIC-CYBER-DEFENSE-001`, and `packet_id=DPL-JOINT-CIVIL-INTERNET-BLACKOUT-MESH-BRIDGING-001` for branches that materially alter coalition authority gates or cross-domain release timelines.

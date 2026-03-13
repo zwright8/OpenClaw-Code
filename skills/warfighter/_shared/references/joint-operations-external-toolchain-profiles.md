@@ -731,3 +731,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent orbital safety witness and alternate coalition caveat monitor.
 - Protocols: `CCSDS`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `NIEM`, `API/JSON`.
 - Degraded fallback: mission-critical maneuvers only with dual coalition authority signatures.
+
+## Profile Set (2026-03-13 Expansion Wave XXXI - Internet Blackout Bridging, UAS Energy Recovery, Pharma Assurance, LEO SATCOM Denial Recovery, Homeland Hazmat Support, AI Targeting Audit, and Mission Compute Continuity)
+
+### `joint-civil-internet-blackout-military-mesh-bridging-v1`
+- Use for civil-military command continuity when internet backbone and exchange points fail.
+- Primary tools: blackout impact correlator + mesh bridge orchestrator + authority continuity board.
+- Cross-check tools: independent telecom outage witness and alternate emergency-routing integrity monitor.
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `CoT`, `API/JSON`.
+- Degraded fallback: life-safety and command traffic classes only with fixed acknowledgment windows.
+
+### `theater-uas-battery-charging-network-denial-recovery-v1`
+- Use for preserving UAS sortie generation during battery logistics and charging-node disruption.
+- Primary tools: battery telemetry board + charging reroute optimizer + sortie endurance planner.
+- Cross-check tools: independent energy logistics witness and alternate UAS readiness monitor.
+- Protocols: `USMTF`, `VMF`, `CoT`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: mission-essential UAS routes only with conservative endurance assumptions.
+
+### `strategic-pharmaceutical-supply-chain-contamination-countermeasure-v1`
+- Use for strategic pharmaceutical contamination detection, quarantine governance, and release confidence.
+- Primary tools: pharma provenance ledger + contamination analytics board + quarantine release workflow.
+- Cross-check tools: independent assay witness and alternate clinical demand continuity monitor.
+- Protocols: `HL7/FHIR`, `USMTF`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: life-saving and mission-critical formulary classes only with explicit medical command concurrence.
+
+### `joint-low-earth-orbit-satcom-traffic-priority-denial-recovery-v1`
+- Use for traffic arbitration and denied-link recovery across contested LEO SATCOM constellations.
+- Primary tools: satcom priority arbiter + denial correlation board + mission reroute scheduler.
+- Cross-check tools: independent link-status witness and alternate timing continuity monitor.
+- Protocols: `CCSDS`, `USMTF`, `Link 16 J-series`, `NIEM`, `API/JSON`.
+- Degraded fallback: command and time-sensitive traffic only with fixed sync intervals.
+
+### `homeland-chemical-rail-derailment-support-evacuation-v1`
+- Use for military support to chemical derailment evacuation and decon corridor synchronization.
+- Primary tools: plume risk board + evacuation corridor scheduler + decon task orchestrator.
+- Cross-check tools: independent hazmat witness and alternate civil mobility continuity monitor.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-safety evacuation classes only with staged decon operations.
+
+### `coalition-ai-targeting-policy-explainability-audit-v1`
+- Use for coalition AI targeting explainability review and policy-caveat audit before release.
+- Primary tools: explainability board + policy exception adjudicator + coalition audit ledger.
+- Cross-check tools: independent legal sufficiency witness and alternate data provenance monitor.
+- Protocols: `USMTF`, `Link 16 J-series`, `NATO APP-11/ADatP-3 aligned`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: high-confidence low-collateral targets only with dual coalition approval.
+
+### `expeditionary-runway-gps-spoofing-approach-continuity-v1`
+- Use for expeditionary runway approach continuity under GNSS spoofing and nav-aid degradation.
+- Primary tools: approach integrity monitor + spoofing fusion board + runway branch scheduler.
+- Cross-check tools: independent nav integrity witness and alternate airspace safety monitor.
+- Protocols: `AIXM/FIXM`, `USMTF`, `Link 16 J-series`, `CoT`, `API/JSON`.
+- Degraded fallback: essential flights only with conservative approach minima.
+
+### `joint-fuel-farm-foam-fire-cascade-containment-v1`
+- Use for containing fuel-farm and foam-system fire cascades while preserving mission fuel continuity.
+- Primary tools: fire spread predictor + suppression optimizer + fuel continuity board.
+- Cross-check tools: independent safety witness and alternate fuel throughput assurance monitor.
+- Protocols: `NIMS/ICS`, `USMTF`, `NIEM`, `CoT`, `API/JSON`.
+- Degraded fallback: mission-essential fuel nodes only with strict safety controls.
+
+### `theater-prison-break-hvd-recapture-coordination-v1`
+- Use for contested recapture coordination when high-value detainees escape or transfer chains fail.
+- Primary tools: recapture priority board + movement corridor threat fusion + detention integrity workflow.
+- Cross-check tools: independent custody witness and alternate legal compliance monitor.
+- Protocols: `NIEM`, `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Degraded fallback: highest-risk detainees only with explicit command authorization.
+
+### `contested-data-center-water-cooling-failure-load-shedding-v1`
+- Use for mission compute preservation during cooling outages and contested facility disruptions.
+- Primary tools: thermal dependency graph + mission load arbiter + compute failover orchestrator.
+- Cross-check tools: independent facility reliability witness and alternate service confidence monitor.
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `NIMS/ICS`, `API/JSON`.
+- Degraded fallback: mission-critical workloads only with staged failover windows.
+
+### `strategic-reserve-component-callup-transport-synchronization-v1`
+- Use for strategic reserve callup timing synchronized to mobilization and transport throughput.
+- Primary tools: callup throughput dashboard + mobilization scheduler + transport deconflictor.
+- Cross-check tools: independent personnel readiness witness and alternate mobility corridor monitor.
+- Protocols: `USMTF`, `NIEM`, `NIMS/ICS`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: mission-essential reserve specialties only with prioritized transport lanes.
+
+### `coalition-maritime-fiber-landing-station-kinetic-cyber-defense-v1`
+- Use for coalition fiber landing-station defense against kinetic strikes and cyber compromise.
+- Primary tools: landing station defense board + cable resilience analyzer + coalition response orchestrator.
+- Cross-check tools: independent cable telemetry witness and alternate cyber attribution monitor.
+- Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Degraded fallback: mission-critical cable routes only with fixed security patrol and release windows.
