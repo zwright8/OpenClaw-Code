@@ -3607,6 +3607,85 @@ test('buildAutonomousBatchPlan supports d_tsallis_inf discounted adversarial ada
     assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
 });
 
+test('buildAutonomousBatchPlan supports adwin_tsallis_inf abrupt-drift adversarial adaptation', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 597, code: 'SK-00597', title: 'Skill 597' },
+            { id: 598, code: 'SK-00598', title: 'Skill 598' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 26,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '597': {
+                    attempts: 24,
+                    successes: 12,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 25,
+                    lastStatus: 'failed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'completed' },
+                        { wave: 15, status: 'completed' },
+                        { wave: 16, status: 'completed' },
+                        { wave: 17, status: 'completed' },
+                        { wave: 18, status: 'completed' },
+                        { wave: 19, status: 'completed' },
+                        { wave: 20, status: 'failed' },
+                        { wave: 21, status: 'failed' },
+                        { wave: 22, status: 'failed' },
+                        { wave: 23, status: 'failed' },
+                        { wave: 24, status: 'failed' },
+                        { wave: 25, status: 'failed' }
+                    ]
+                },
+                '598': {
+                    attempts: 24,
+                    successes: 12,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 25,
+                    lastStatus: 'completed',
+                    recentOutcomes: [
+                        { wave: 14, status: 'failed' },
+                        { wave: 15, status: 'failed' },
+                        { wave: 16, status: 'failed' },
+                        { wave: 17, status: 'failed' },
+                        { wave: 18, status: 'failed' },
+                        { wave: 19, status: 'failed' },
+                        { wave: 20, status: 'completed' },
+                        { wave: 21, status: 'completed' },
+                        { wave: 22, status: 'completed' },
+                        { wave: 23, status: 'completed' },
+                        { wave: 24, status: 'completed' },
+                        { wave: 25, status: 'completed' }
+                    ]
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 27,
+        selectionPolicyConfig: {
+            mode: 'adwin_tsallis_inf',
+            changeDetectionMinSamples: 4,
+            adwinDelta: 0.01,
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [598]);
+    assert.equal(plan.selection.policy.skills, 'adwin_tsallis_inf');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'adwin_tsallis_inf');
+    assert.ok(Number(plan.tasks[0].context?.autonomy?.selectionProbability) > 0);
+});
+
 test('buildAutonomousBatchPlan uses propensity-aware EXP3-IX implicit losses from recent outcomes', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -217,6 +217,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_exp3_s',
     'tsallis_inf',
     'sw_tsallis_inf',
+    'adwin_tsallis_inf',
     'd_tsallis_inf',
     'bge',
     'sw_bge',
@@ -287,6 +288,7 @@ const EXP3_POLICY_MODES = new Set([
 const TSALLIS_POLICY_MODES = new Set([
     'tsallis_inf',
     'sw_tsallis_inf',
+    'adwin_tsallis_inf',
     'd_tsallis_inf'
 ]);
 const EXP3_SHARE_POLICY_MODES = new Set([
@@ -309,6 +311,7 @@ const ADWIN_POLICY_MODES = new Set([
     'adwin_epsilon_ts',
     'adwin_bb_ts',
     'adwin_bayes_ucb',
+    'adwin_tsallis_inf',
     'adwin_linucb',
     'adwin_lints'
 ]);
@@ -2994,6 +2997,7 @@ function resolveExp3RecentOutcomes(stat, selectionPolicyConfig, currentWave = 0)
     } else if (
         policy.mode === 'adwin_exp3_ix'
         || policy.mode === 'adwin_exp3_s'
+        || policy.mode === 'adwin_tsallis_inf'
     ) {
         const changeIndex = detectAdwinChangeIndex(outcomes, policy);
         outcomes = changeIndex > 0 ? outcomes.slice(changeIndex) : outcomes;
