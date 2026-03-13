@@ -2213,3 +2213,33 @@ Every skill output should include:
 - Electromagnetic decoy corridor and civil aviation protection + EW fratricide prevention + contested-spectrum governance + sortie safety deconfliction.
 - Strategic quantum network cyber resilience + mission key-custody continuity + zero-trust hardening + strategic command trust assurance.
 - Civilian evacuation biometric family reunification integrity + humanitarian corridor governance + coalition identity proofing + legal handoff assurance.
+
+## New Expansion Wave (2026-03-13, Wave XXXVI)
+
+- joint-strategic-portable-reactor-radiological-incident-containment-and-force-continuity-cell
+- theater-ai-enabled-air-defense-identification-friend-foe-spoofing-recovery-cell
+- coalition-under-ice-subsea-fiber-repair-and-sovereign-data-routing-cell
+- homeland-energy-market-cyber-disruption-and-defense-industrial-load-priority-cell
+- expeditionary-battlefield-additive-bioprinting-medical-quality-assurance-cell
+- joint-orbital-spectrum-interference-attribution-and-mission-deconfliction-cell
+- tactical-autonomous-breacher-swarm-human-override-safety-cell
+- coalition-humanitarian-seaport-biosecurity-screening-and-military-throughput-cell
+- strategic-rare-isotope-supply-chain-denial-and-medical-deterrence-continuity-cell
+- theater-electronic-warfare-civil-gps-fallback-and-precision-fire-safeguard-cell
+- joint-cyber-physical-dam-spillway-sabotage-and-downstream-evacuation-sync-cell
+- coalition-cross-border-battlefield-cloud-reconstitution-and-data-integrity-cell
+
+## Updated Pairings (2026-03-13, Wave XXXVI)
+
+- Portable-reactor radiological containment + mission energy continuity + homeland civil warning synchronization + commander release governance.
+- AI air-defense IFF spoofing recovery + integrated air and missile defense threat confidence + defended-asset reprioritization + escalation control timing.
+- Coalition under-ice subsea fiber repair + sovereign data-routing governance + treaty caveat synchronization + command-backbone continuity.
+- Homeland energy-market cyber disruption response + defense-industrial load priority + DSCA restoration governance + critical infrastructure resilience.
+- Expeditionary additive bioprinting QA + casualty-care release governance + biomaterial custody integrity + austere medical sustainment.
+- Joint orbital spectrum interference attribution + space-ground mission deconfliction + service continuity arbitration + coalition release controls.
+- Tactical autonomous breacher-swarm override safety + urban maneuver assurance + fratricide prevention + human-on-the-loop command trust.
+- Coalition humanitarian seaport biosecurity screening + military throughput arbitration + public-health protection + host-nation interoperability.
+- Strategic rare-isotope denial mitigation + medical continuity + deterrence sustainment + strategic logistics allocation confidence.
+- Theater EW civil GPS fallback + precision-fire safeguards + navigation trust assurance + civilian airspace coordination.
+- Joint dam spillway sabotage response + downstream evacuation synchronization + cyber-physical infrastructure defense + civil-military warning integrity.
+- Coalition battlefield-cloud reconstitution + cross-border data-integrity attestation + cyber recovery governance + operational releasability assurance.

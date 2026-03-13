@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Theater AI-Enabled Air Defense Identification Friend-or-Foe Spoofing Recovery Cell"
+  short_description: "Recover IFF trust after spoofing pressure"

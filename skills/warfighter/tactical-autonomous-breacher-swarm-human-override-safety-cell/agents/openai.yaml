@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Tactical Autonomous Breacher Swarm Human Override Safety Cell"
+  short_description: "Enforce human override safety for breacher swarms"

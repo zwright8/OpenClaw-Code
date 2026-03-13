@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Theater Electronic Warfare Civil GPS Fallback and Precision-Fire Safeguard Cell"
+  short_description: "Safeguard fires with civil GPS fallback plans"
