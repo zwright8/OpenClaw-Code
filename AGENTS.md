@@ -102,6 +102,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `5a44065c43..072dab6f97`: no new README command-map additions were found (range adds AGENTS verification bookkeeping plus warfighter skill/reference content and bindings only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `59ca2b49f6..5a44065c43`: added README command-map workflows for adaptive hybrid `fdsw_*` aggregation (`--selection-policy fdsw_epsilon_ts|fdsw_ucb`, `--window-size`, `--discount-factor`, `--hybrid-ts-aggregation adaptive`, `--thompson-exploration`) and aligned CLI help/validation to accept `adaptive`; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `5f681993ae..5b4ba94156`: added README command-map workflows for EXP3.S-style share-mixing autonomous run flags (`--selection-policy exp3_s|sw_exp3_s|d_exp3_s`, `--window-size`, `--discount-factor`, `--exp3-ix-gamma`, `--exp3-ix-eta`, `--exp3-share-alpha`); `package.json` script-map diff remains blocked in this checkout because root package manifest is absent.
 - Verified `b95647a4cf..555b6e877f`: no new README command-map additions were found (range adds warfighter skill/reference content and protocol/tool addenda only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
