@@ -2289,3 +2289,33 @@ Every skill output should include:
 - Maritime rescue-swimmer and surf-zone recovery + combat search and rescue coordination + coastal survivor authentication + casualty handoff governance.
 - Littoral underwater obstacle reduction and beach recon + amphibious assault coordination + shore-entry lane release + autonomous littoral reconnaissance cueing.
 - Coastal radar and harbor-approach fusion + strategic port security and harbor defense + port-opening surveillance assurance + small-craft or low-slow track adjudication.
+
+## New Expansion Wave (2026-03-13, Wave XXXIX)
+
+- joint-ballistic-missile-raid-shelter-capacity-and-population-protection-cell
+- theater-forward-fuel-bladder-contamination-and-airbase-sortie-recovery-cell
+- coalition-host-nation-5g-outage-and-tactical-backhaul-restoration-cell
+- homeland-civil-telecom-priority-service-and-cyber-reserve-activation-cell
+- strategic-solid-rocket-motor-supply-surge-and-safety-assurance-cell
+- expeditionary-ice-runway-bearing-and-heavy-lift-sustainment-cell
+- joint-special-operations-clandestine-maritime-resupply-signature-control-cell
+- theater-integrated-air-and-missile-defense-magazine-redistribution-cell
+- coalition-portable-bridge-raft-safety-and-refugee-river-crossing-cell
+- joint-unmanned-orbit-reentry-debris-and-civil-airspace-warning-cell
+- homeland-defense-industrial-copper-transformer-theft-and-grid-priority-cell
+- strategic-prisoner-of-war-camp-disease-screening-and-repatriation-cell
+
+## Updated Pairings (2026-03-13, Wave XXXIX)
+
+- Ballistic missile raid shelter capacity and population protection + ballistic missile defense battle management + population protection and noncombatant evacuation operations + public warning integrity assurance.
+- Forward fuel bladder contamination and airbase sortie recovery + expeditionary airfield operations + airbase dispersal and rapid reconstitution + expeditionary fuel pipeline and bulk water terminal support.
+- Coalition host-nation 5G outage and tactical backhaul restoration + theater mission network failover + coalition interoperability coordinator + tactical zero-trust network hardening.
+- Homeland civil telecom priority service and cyber reserve activation + theater civil telecom restoration and priority routing + defense support of civil authorities crisis response + strategic reserve cyber activation and force flow.
+- Strategic solid rocket motor supply surge and safety assurance + strategic industrial mobilization readiness + strategic nuclear triad readiness support + munitions stockpile and expenditure management.
+- Expeditionary ice runway bearing and heavy lift sustainment + strategic mobility deployment planning + Arctic maritime air corridor deconfliction + denied-PNT heavy-airlift drop-zone certification.
+- Joint special operations clandestine maritime resupply signature control + special operations low-signature logistics interoperability + deception signature management and decoy employment + coastal radar and harbor-approach fusion.
+- Theater integrated air and missile defense magazine redistribution + integrated air and missile defense cell + long-range fires magazine depth and reconstitution + air-defense artillery fire-control governance.
+- Coalition portable bridge raft safety and refugee river crossing + contested bridge and gap crossing operations + joint mass evacuation flow control + coalition humanitarian corridor convoy deconfliction.
+- Joint unmanned orbit reentry debris and civil airspace warning + space-ground integration and reentry risk + tactical airspace control and deconfliction + civil air-warning continuity.
+- Homeland defense-industrial copper transformer theft and grid priority + homeland critical infrastructure water-power-comms mutual aid continuity + homeland energy-market cyber disruption and defense-industrial load priority + strategic industrial mobilization readiness.
+- Strategic prisoner-of-war camp disease screening and repatriation + mortuary affairs and personnel accountability + coalition joint personnel accounting and repatriation + expeditionary antimicrobial-resistance outbreak isolation and force-health continuity.

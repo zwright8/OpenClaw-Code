@@ -11132,3 +11132,127 @@ external_binding:
 ### `ps-theater-coastal-radar-harbor-approach-fusion-stack-v1`
 - Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `CoT`, `USMTF`, `API/JSON`.
 - Use for: coastal radar track exchange, harbor-approach confidence updates, low-slow track adjudication, and port-screening synchronization.
+
+## Tool Suite Addendum XXXIX (2026-03-13, Missile-Raid Protection, Fuel Recovery, Coalition Backhaul, Telecom Priority Activation, Industrial Surge, Arctic Sustainment, SOF Resupply, IAMD Redistribution, River-Crossing Safety, Reentry Warning, Grid Theft Mitigation, and Repatriation Health)
+
+### `ts-joint-ballistic-missile-raid-shelter-population-protection-v1`
+- Use for: ballistic missile raid warning branches that must align shelter allocation and life-safety movement control.
+- Primary tools: missile warning fusion board, shelter occupancy tracker, protected movement planner, civil-alert release workflow.
+- Cross-check tools: independent warning-timeline witness and alternate shelter-accountability monitor.
+- Typical products: shelter decision board, protected movement ladder, population-protection packet.
+
+### `ts-theater-forward-fuel-bladder-contamination-airbase-sortie-recovery-v1`
+- Use for: forward fuel contamination isolation and sortie recovery at expeditionary or theater airbases.
+- Primary tools: fuel quality telemetry board, contamination isolation workflow, sortie generation scheduler, storage-transfer topology map.
+- Cross-check tools: independent laboratory witness and alternate burn-rate monitor.
+- Typical products: fuel isolation matrix, sortie recovery ladder, airbase assurance packet.
+
+### `ts-coalition-host-nation-5g-backhaul-restoration-v1`
+- Use for: coalition host-nation 5G outage response and tactical backhaul restoration under releasability constraints.
+- Primary tools: cellular outage map, tactical backhaul planner, coalition caveat ledger, network trust-health board.
+- Cross-check tools: independent spectrum witness and alternate route-availability monitor.
+- Typical products: coverage-gap matrix, restoration ladder, coalition telecom packet.
+
+### `ts-homeland-civil-telecom-priority-cyber-reserve-activation-v1`
+- Use for: homeland telecom priority-service activation paired with cyber reserve mobilization under emergency conditions.
+- Primary tools: telecom priority-service board, cyber reserve roster tracker, outage-impact dashboard, emergency-routing workflow.
+- Cross-check tools: independent provider-status witness and alternate reserve-readiness monitor.
+- Typical products: activation board, reserve call-up ladder, emergency routing packet.
+
+### `ts-strategic-solid-rocket-motor-supply-surge-safety-assurance-v1`
+- Use for: strategic solid rocket motor industrial surge with lot-release and hazardous logistics assurance.
+- Primary tools: industrial readiness ledger, motor lot confidence board, hazardous transport tracker, strategic demand-priority planner.
+- Cross-check tools: independent quality witness and alternate facility-safety monitor.
+- Typical products: lot confidence ladder, surge allocation matrix, safety-release packet.
+
+### `ts-expeditionary-ice-runway-bearing-heavy-lift-sustainment-v1`
+- Use for: Arctic ice-runway bearing certification and heavy-airlift sustainment under austere conditions.
+- Primary tools: ice-thickness modeler, runway stress board, heavy-lift slot scheduler, Arctic weather feed.
+- Cross-check tools: independent ice-sounding witness and alternate runway-deformation monitor.
+- Typical products: bearing matrix, slot ladder, cold-weather sustainment packet.
+
+### `ts-joint-sof-clandestine-maritime-resupply-signature-control-v1`
+- Use for: special operations maritime resupply where littoral signature control and custody-assured handoff govern timing.
+- Primary tools: low-signature maritime route board, coastal surveillance risk engine, cargo custody ledger, comms-window planner.
+- Cross-check tools: independent coastal-watch witness and alternate handoff-integrity monitor.
+- Typical products: signature board, littoral window ladder, custody-handoff packet.
+
+### `ts-theater-iamd-magazine-redistribution-v1`
+- Use for: theater IAMD magazine redistribution when depletion, reload timing, and defended-asset priority must stay synchronized.
+- Primary tools: magazine depth board, defended-asset priority engine, reload scheduler, threat-raid forecast panel.
+- Cross-check tools: independent depletion witness and alternate transport-timing monitor.
+- Typical products: defended-asset board, redistribution ladder, reload-risk packet.
+
+### `ts-coalition-portable-bridge-raft-refugee-crossing-safety-v1`
+- Use for: coalition refugee river crossing where portable bridge or raft safety and humanitarian throughput must both hold.
+- Primary tools: river current board, bridge or raft capacity calculator, humanitarian flow tracker, legal-handoff workflow.
+- Cross-check tools: independent engineer-safety witness and alternate population-pressure monitor.
+- Typical products: crossing safety matrix, throughput ladder, legal-handoff packet.
+
+### `ts-joint-unmanned-orbit-reentry-debris-civil-airspace-warning-v1`
+- Use for: unmanned orbital reentry events where debris risk, civil-airspace warning, and protected-asset coordination must align.
+- Primary tools: orbital event tracker, debris footprint modeler, civil-airspace warning workflow, protected-asset risk board.
+- Cross-check tools: independent ephemeris witness and alternate public-warning timeliness monitor.
+- Typical products: reentry risk board, warning ladder, debris response packet.
+
+### `ts-homeland-defense-industrial-copper-transformer-theft-grid-priority-v1`
+- Use for: homeland theft-driven grid disruption that threatens defense-industrial continuity and restoration priority.
+- Primary tools: grid restoration board, industrial load-priority dashboard, utility asset ledger, incident coordination workflow.
+- Cross-check tools: independent utility-status witness and alternate replacement-availability monitor.
+- Typical products: theft disruption matrix, transformer priority ladder, industrial continuity packet.
+
+### `ts-strategic-pow-camp-disease-screening-repatriation-v1`
+- Use for: POW camp disease screening and repatriation branches where custody, transport, and health assurance must remain coupled.
+- Primary tools: camp screening dashboard, custody roster ledger, transport-priority planner, legal-handoff workflow.
+- Cross-check tools: independent medical QA witness and alternate roster-integrity monitor.
+- Typical products: screening board, repatriation ladder, custody-health packet.
+
+## Protocol Stack Addendum XXXIX (2026-03-13, Missile-Raid Protection, Fuel Recovery, Coalition Backhaul, Telecom Priority Activation, Industrial Surge, Arctic Sustainment, SOF Resupply, IAMD Redistribution, River-Crossing Safety, Reentry Warning, Grid Theft Mitigation, and Repatriation Health)
+
+### `ps-joint-ballistic-missile-raid-shelter-population-protection-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`.
+- Use for: raid warning exchange, shelter status synchronization, and life-safety protective-action acknowledgments.
+
+### `ps-theater-forward-fuel-bladder-contamination-airbase-sortie-recovery-stack-v1`
+- Protocols: `AIXM/FIXM`, `USMTF`, `CoT`, `NIEM`, `API/JSON`.
+- Use for: fuel-quality status exchange, sortie recovery timelines, and base safety release governance.
+
+### `ps-coalition-host-nation-5g-backhaul-restoration-stack-v1`
+- Protocols: `3GPP/O-RAN`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `STIX/TAXII`, `API/JSON`.
+- Use for: outage telemetry exchange, coalition backhaul restoration updates, and network trust acknowledgments.
+
+### `ps-homeland-civil-telecom-priority-cyber-reserve-activation-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `EDXL-DE/CAP`, `API/JSON`.
+- Use for: priority-service activation status, reserve mobilization updates, and emergency routing synchronization.
+
+### `ps-strategic-solid-rocket-motor-supply-surge-safety-assurance-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, signed custody exports, `API/JSON`.
+- Use for: lot-release exchange, hazardous transport status, and strategic industrial surge governance.
+
+### `ps-expeditionary-ice-runway-bearing-heavy-lift-sustainment-stack-v1`
+- Protocols: `AIXM/FIXM/IWXXM`, `OGC WMS/WFS/WMTS`, `USMTF`, `CoT`, `API/JSON`.
+- Use for: runway-bearing updates, heavy-lift slot status, and Arctic sustainment branch acknowledgments.
+
+### `ps-joint-sof-clandestine-maritime-resupply-signature-control-stack-v1`
+- Protocols: `USMTF`, `AIS/NMEA`, `CoT`, `VMF`, `API/JSON`.
+- Use for: littoral route-status exchange, custody-handoff confirmations, and low-signature timing governance.
+
+### `ps-theater-iamd-magazine-redistribution-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `VMF`, `AIXM/FIXM`, `API/JSON`.
+- Use for: magazine status exchange, defended-asset reprioritization, and reload release governance.
+
+### `ps-coalition-portable-bridge-raft-refugee-crossing-safety-stack-v1`
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `NIEM`, `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Use for: crossing-site updates, humanitarian throughput synchronization, and coalition legal-handoff acknowledgments.
+
+### `ps-joint-unmanned-orbit-reentry-debris-civil-airspace-warning-stack-v1`
+- Protocols: `CCSDS`, `AIXM/FIXM`, `USMTF`, `EDXL-DE/CAP`, `API/JSON`.
+- Use for: reentry confidence exchange, airspace warning updates, and public-safety coordination.
+
+### `ps-homeland-defense-industrial-copper-transformer-theft-grid-priority-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Use for: theft incident reporting, restoration priority exchange, and industrial continuity acknowledgments.
+
+### `ps-strategic-pow-camp-disease-screening-repatriation-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `USMTF`, signed custody exports, `API/JSON`.
+- Use for: camp health telemetry, custody-transfer status, and repatriation approval synchronization.

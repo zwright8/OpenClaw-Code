@@ -1370,3 +1370,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent harbor watch witness + alternate track-provenance monitor.
 - Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `CoT`, `USMTF`, `API/JSON`.
 - Degraded fallback: mission-essential port movements only with harbor watch bill and fixed approach-risk windows.
+
+## Profile Set (2026-03-13 Expansion Wave XXXIX - Missile-Raid Protection, Fuel Recovery, Coalition Backhaul, Telecom Priority Activation, Industrial Surge, Arctic Sustainment, SOF Resupply, IAMD Redistribution, River-Crossing Safety, Reentry Warning, Grid Theft Mitigation, and Repatriation Health)
+
+### `joint-ballistic-missile-raid-shelter-population-protection-v1`
+- Use for: missile-raid response where warning confidence, shelter allocation, and population protection timing must remain synchronized.
+- Primary tools: missile warning fusion board + shelter occupancy tracker + protected movement planner.
+- Cross-check tools: independent warning-timeline witness + alternate shelter-accountability monitor.
+- Protocols: `Link 16 J-series`, `USMTF`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`.
+- Degraded fallback: shelter-in-place and life-safety actions only with fixed protective-action rules.
+
+### `theater-forward-fuel-bladder-contamination-airbase-sortie-recovery-v1`
+- Use for: airbase recovery branches where fuel contamination isolation and sortie regeneration are tightly coupled.
+- Primary tools: fuel quality telemetry board + contamination isolation workflow + sortie generation scheduler.
+- Cross-check tools: independent laboratory witness + alternate burn-rate monitor.
+- Protocols: `AIXM/FIXM`, `USMTF`, `CoT`, `NIEM`, `API/JSON`.
+- Degraded fallback: mission-essential sorties only with conservative fuel-release controls.
+
+### `coalition-host-nation-5g-backhaul-restoration-v1`
+- Use for: coalition telecom continuity when host-nation 5G outages and tactical backhaul reroutes affect mission-network trust.
+- Primary tools: cellular outage map + tactical backhaul planner + coalition caveat ledger.
+- Cross-check tools: independent spectrum witness + alternate route-availability monitor.
+- Protocols: `3GPP/O-RAN`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: mission-essential links only with constrained coalition release controls.
+
+### `homeland-civil-telecom-priority-cyber-reserve-activation-v1`
+- Use for: homeland emergency conditions where telecom priority-service activation and cyber reserve call-up must remain aligned.
+- Primary tools: telecom priority-service board + cyber reserve roster tracker + outage-impact dashboard.
+- Cross-check tools: independent provider-status witness + alternate reserve-readiness monitor.
+- Protocols: `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `EDXL-DE/CAP`, `API/JSON`.
+- Degraded fallback: life-safety circuits only with manual call trees and strict routing controls.
+
+### `strategic-solid-rocket-motor-supply-surge-safety-assurance-v1`
+- Use for: strategic industrial surge where rocket-motor lot integrity, safety release, and transport timing must remain coupled.
+- Primary tools: industrial readiness ledger + motor lot confidence board + hazardous transport tracker.
+- Cross-check tools: independent quality witness + alternate facility-safety monitor.
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, signed custody exports, `API/JSON`.
+- Degraded fallback: deterrence-critical allocations only with dual quality approval.
+
+### `expeditionary-ice-runway-bearing-heavy-lift-sustainment-v1`
+- Use for: Arctic sustainment decisions where ice-runway bearing confidence and heavy-lift slot timing determine mission viability.
+- Primary tools: ice-thickness modeler + runway stress board + heavy-lift slot scheduler.
+- Cross-check tools: independent ice-sounding witness + alternate runway-deformation monitor.
+- Protocols: `AIXM/FIXM/IWXXM`, `OGC WMS/WFS/WMTS`, `USMTF`, `CoT`, `API/JSON`.
+- Degraded fallback: mission-essential airlift only with conservative bearing classes.
+
+### `joint-sof-clandestine-maritime-resupply-signature-control-v1`
+- Use for: SOF littoral sustainment where signature control, route exposure, and custody-assured handoff govern resupply timing.
+- Primary tools: low-signature maritime route board + coastal surveillance risk engine + cargo custody ledger.
+- Cross-check tools: independent coastal-watch witness + alternate handoff-integrity monitor.
+- Protocols: `USMTF`, `AIS/NMEA`, `CoT`, `VMF`, `API/JSON`.
+- Degraded fallback: mission-essential resupply only with fixed exposure windows and paper custody chain.
+
+### `theater-iamd-magazine-redistribution-v1`
+- Use for: theater air-defense sustainment where magazine depletion, defended-asset priority, and reload routing must stay synchronized.
+- Primary tools: magazine depth board + defended-asset priority engine + reload scheduler.
+- Cross-check tools: independent depletion witness + alternate transport-timing monitor.
+- Protocols: `Link 16 J-series`, `USMTF`, `VMF`, `AIXM/FIXM`, `API/JSON`.
+- Degraded fallback: highest-priority defended assets only with fixed holdback rules.
+
+### `coalition-portable-bridge-raft-refugee-crossing-safety-v1`
+- Use for: coalition river-crossing response where engineer safety, humanitarian throughput, and legal handoffs must remain synchronized.
+- Primary tools: river current board + bridge or raft capacity calculator + humanitarian flow tracker.
+- Cross-check tools: independent engineer-safety witness + alternate population-pressure monitor.
+- Protocols: `NATO APP-11/ADatP-3 aligned`, `NIEM`, `USMTF`, `OGC WMS/WFS/WMTS`, `API/JSON`.
+- Degraded fallback: life-safety crossings only with fixed site limits and visual hydrology checks.
+
+### `joint-unmanned-orbit-reentry-debris-civil-airspace-warning-v1`
+- Use for: reentry-warning decisions where orbital confidence, debris-footprint risk, and civil-airspace notification must stay aligned.
+- Primary tools: orbital event tracker + debris footprint modeler + civil-airspace warning workflow.
+- Cross-check tools: independent ephemeris witness + alternate warning-timeliness monitor.
+- Protocols: `CCSDS`, `AIXM/FIXM`, `USMTF`, `EDXL-DE/CAP`, `API/JSON`.
+- Degraded fallback: life-safety warnings only with fixed airspace restrictions and manual notice release.
+
+### `homeland-defense-industrial-copper-transformer-theft-grid-priority-v1`
+- Use for: homeland restoration branches where theft-driven grid losses threaten defense-industrial continuity and priority-service restoration.
+- Primary tools: grid restoration board + industrial load-priority dashboard + utility asset ledger.
+- Cross-check tools: independent utility-status witness + alternate replacement-availability monitor.
+- Protocols: `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Degraded fallback: defense-critical loads only with staged restoration gates.
+
+### `strategic-pow-camp-disease-screening-repatriation-v1`
+- Use for: camp health and repatriation decisions where custody integrity, screening throughput, and transport release must remain synchronized.
+- Primary tools: camp screening dashboard + custody roster ledger + transport-priority planner.
+- Cross-check tools: independent medical QA witness + alternate roster-integrity monitor.
+- Protocols: `HL7/FHIR`, `NIEM`, `USMTF`, signed custody exports, `API/JSON`.
+- Degraded fallback: high-confidence health-status classes only with staged transport release.

@@ -144,3 +144,7 @@ Primary products for this skill: crossing operation execution matrix, site selec
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
+
+- Add `tool_suite_id=ts-coalition-portable-bridge-raft-refugee-crossing-safety-v1` with `protocol_stack_id=ps-coalition-portable-bridge-raft-refugee-crossing-safety-stack-v1` when crossing recommendations depend on refugee throughput, portable-bridge or raft safety, or coalition legal-handoff timing.
+- Add `packet_id=DPL-COALITION-BRIDGE-RAFT-REFUGEE-CROSSING-001` for recommendations that materially change crossing-site release, life-safety throughput, or coalition engineer support posture.

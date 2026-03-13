@@ -144,3 +144,8 @@ Primary products for this skill: expeditionary airfield operations plan, sortie 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
+
+- Add `tool_suite_id=ts-theater-forward-fuel-bladder-contamination-airbase-sortie-recovery-v1` with `protocol_stack_id=ps-theater-forward-fuel-bladder-contamination-airbase-sortie-recovery-stack-v1` when airfield outputs depend on fuel contamination isolation, storage-transfer safety, or sortie recovery sequencing.
+- Add `tool_suite_id=ts-expeditionary-ice-runway-bearing-heavy-lift-sustainment-v1` with `protocol_stack_id=ps-expeditionary-ice-runway-bearing-heavy-lift-sustainment-stack-v1` when runway certification, heavy-lift slot allocation, or Arctic sustainment limits govern airfield viability.
+- Add `packet_id=DPL-THEATER-FORWARD-FUEL-BLADDER-CONTAMINATION-001` and `packet_id=DPL-EXPEDITIONARY-ICE-RUNWAY-BEARING-001` for recommendations that materially change sortie recovery posture or runway-release confidence.

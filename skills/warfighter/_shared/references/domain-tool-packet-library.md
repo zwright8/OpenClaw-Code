@@ -10639,6 +10639,8 @@ validation_gates:
 - protocol_profile: NIMS/ICS + USMTF + NIEM + AIS/NMEA + API/JSON
 - validation_gates: radiation safety pass, throughput sufficiency check, command-port authority acknowledgment
 
+## Packet Addendum XXVI (2026-03-13, Expansion Wave XXXVIII)
+
 ### packet_id: DPL-CRAF-AEROMED-SURGE-001
 - domain: Civil Reserve Air Fleet activation and aeromedical surge
 - objective: synchronize civilian carrier activation, patient movement priority, and airbridge clearance decisions under contested lift demand.
@@ -10693,3 +10695,137 @@ validation_gates:
 - output_schema: harbor-approach confidence board, low-slow adjudication matrix, port-screening escalation packet
 - protocol_profile: AIS/NMEA + OGC WMS/WFS/WMTS + CoT + USMTF + API/JSON
 - validation_gates: track-provenance pass, port-authority coordination acknowledgment, approach-safety threshold
+
+## Packet Addendum XXVII (2026-03-13, Expansion Wave XXXIX)
+
+### packet_id: DPL-JOINT-BALLISTIC-MISSILE-RAID-SHELTER-001
+- domain: joint ballistic missile raid shelter capacity and population protection
+- objective: align raid warning confidence, shelter allocation, and population protection decisions under compressed missile timelines.
+- primary_tools: missile warning fusion board, shelter occupancy tracker, protected movement planner, civil-alert release workflow
+- alternate_tools: manual warning ladder and paper shelter accountability board
+- degraded_mode: shelter-in-place and life-safety actions only with fixed protective-action criteria
+- input_requirements: warning status, shelter capacity, defended-asset posture, population density, alert-channel availability
+- output_schema: shelter decision board, protected movement ladder, population-protection packet
+- protocol_profile: Link 16 J-series + USMTF + EDXL-DE/CAP + NIEM + API/JSON
+- validation_gates: warning confidence floor, shelter accountability pass, alert acknowledgment integrity
+
+### packet_id: DPL-THEATER-FORWARD-FUEL-BLADDER-CONTAMINATION-001
+- domain: theater forward fuel bladder contamination and airbase sortie recovery
+- objective: isolate contaminated fuel sources while restoring safe sortie generation and airbase sustainment flow.
+- primary_tools: fuel quality telemetry board, contamination isolation workflow, sortie generation scheduler, storage-transfer topology map
+- alternate_tools: manual fuel quarantine board and independent lab verification lane
+- degraded_mode: mission-essential sorties only with conservative fuel-release controls
+- input_requirements: fuel assay data, storage layout, sortie demand, safety limits, redistribution options
+- output_schema: fuel isolation matrix, sortie recovery ladder, airbase assurance packet
+- protocol_profile: AIXM/FIXM + USMTF + CoT + NIEM + API/JSON
+- validation_gates: lab-confidence pass, fuel-release approval, sortie safety threshold
+
+### packet_id: DPL-COALITION-HOST-NATION-5G-BACKHAUL-RESTORATION-001
+- domain: coalition host-nation 5G outage and tactical backhaul restoration
+- objective: restore coalition telecom continuity by reconciling host-nation outages, releasability constraints, and tactical backhaul options.
+- primary_tools: cellular outage map, tactical backhaul planner, coalition caveat ledger, network trust-health board
+- alternate_tools: manual comms-restoration board and fixed relay fallback worksheet
+- degraded_mode: mission-essential links only with constrained coalition release controls
+- input_requirements: outage telemetry, backhaul path status, coalition caveats, trust-health indicators, mission-thread priorities
+- output_schema: coverage-gap matrix, restoration ladder, coalition telecom packet
+- protocol_profile: 3GPP/O-RAN + USMTF + NATO APP-11/ADatP-3 aligned + STIX/TAXII + API/JSON
+- validation_gates: route-availability pass, coalition acknowledgment integrity, trust-health threshold
+
+### packet_id: DPL-HOMELAND-CIVIL-TELECOM-PRIORITY-CYBER-RESERVE-001
+- domain: homeland civil telecom priority service and cyber reserve activation
+- objective: preserve emergency telecom continuity by synchronizing priority-service activation and cyber reserve mobilization.
+- primary_tools: telecom priority-service board, cyber reserve roster tracker, outage-impact dashboard, emergency-routing workflow
+- alternate_tools: manual priority queue worksheet and reserve call tree
+- degraded_mode: life-safety circuits only with strict emergency-routing controls
+- input_requirements: outage map, provider status, reserve availability, emergency load, statutory authority status
+- output_schema: activation board, reserve call-up ladder, emergency routing packet
+- protocol_profile: NIMS/ICS + NIEM + STIX/TAXII + EDXL-DE/CAP + API/JSON
+- validation_gates: authority confirmation, provider acknowledgment, reserve-readiness threshold
+
+### packet_id: DPL-STRATEGIC-SOLID-ROCKET-MOTOR-SURGE-001
+- domain: strategic solid rocket motor supply surge and safety assurance
+- objective: surge solid rocket motor production and transport while preserving lot integrity and industrial safety.
+- primary_tools: industrial readiness ledger, motor lot confidence board, hazardous transport tracker, strategic demand-priority planner
+- alternate_tools: manual lot-release board and phased transport window worksheet
+- degraded_mode: deterrence-critical allocations only with dual-quality approval
+- input_requirements: inventory status, lot lineage, facility readiness, transport limits, demand priorities
+- output_schema: lot confidence ladder, surge allocation matrix, safety-release packet
+- protocol_profile: USMTF + NIEM + STIX/TAXII + signed custody exports + API/JSON
+- validation_gates: lot-integrity pass, facility-safety threshold, transport-release acknowledgment
+
+### packet_id: DPL-EXPEDITIONARY-ICE-RUNWAY-BEARING-001
+- domain: expeditionary ice runway bearing and heavy-lift sustainment
+- objective: certify ice-runway bearing confidence while preserving heavy-lift throughput and Arctic sustainment viability.
+- primary_tools: ice-thickness modeler, runway stress board, heavy-lift slot scheduler, Arctic weather feed
+- alternate_tools: manual ice sounding worksheet and reduced-weight sortie board
+- degraded_mode: mission-essential airlift only with conservative bearing classifications
+- input_requirements: ice thickness, temperature trends, runway geometry, lift demand, weather outlook
+- output_schema: bearing matrix, slot ladder, cold-weather sustainment packet
+- protocol_profile: AIXM/FIXM/IWXXM + OGC WMS/WFS/WMTS + USMTF + CoT + API/JSON
+- validation_gates: bearing-confidence threshold, weather window pass, release acknowledgment chain
+
+### packet_id: DPL-JOINT-SOF-CLANDESTINE-MARITIME-RESUPPLY-001
+- domain: joint special operations clandestine maritime resupply and signature control
+- objective: deliver maritime resupply under low-signature conditions while preserving custody-assured handoffs and timing discipline.
+- primary_tools: low-signature maritime route board, coastal surveillance risk engine, cargo custody ledger, comms-window planner
+- alternate_tools: manual littoral window board and paper custody witness chain
+- degraded_mode: mission-essential resupply only with fixed exposure windows and staged release controls
+- input_requirements: resupply demand, route risk, surveillance cues, custody requirements, comms windows
+- output_schema: signature board, littoral window ladder, custody-handoff packet
+- protocol_profile: USMTF + AIS/NMEA + CoT + VMF + API/JSON
+- validation_gates: route-confidence pass, custody-integrity threshold, timing acknowledgment integrity
+
+### packet_id: DPL-THEATER-IAMD-MAGAZINE-REDISTRIBUTION-001
+- domain: theater integrated air and missile defense magazine redistribution
+- objective: rebalance IAMD magazine depth while preserving defended-asset priority and reload timing confidence.
+- primary_tools: magazine depth board, defended-asset priority engine, reload scheduler, threat-raid forecast panel
+- alternate_tools: manual depletion board and fixed reload-priority worksheet
+- degraded_mode: highest-priority defended assets only with conservative holdback rules
+- input_requirements: magazine status, defended-asset priorities, raid forecast, transport availability, reload-site readiness
+- output_schema: defended-asset board, redistribution ladder, reload-risk packet
+- protocol_profile: Link 16 J-series + USMTF + VMF + AIXM/FIXM + API/JSON
+- validation_gates: magazine-accountability pass, raid-confidence threshold, authority release acknowledgment
+
+### packet_id: DPL-COALITION-BRIDGE-RAFT-REFUGEE-CROSSING-001
+- domain: coalition portable bridge raft safety and refugee river crossing
+- objective: preserve life-safety crossing throughput by reconciling engineer safety, hydrology, and humanitarian handoff constraints.
+- primary_tools: river current board, bridge or raft capacity calculator, humanitarian flow tracker, legal-handoff workflow
+- alternate_tools: manual crossing-site board and paper flow-control manifest
+- degraded_mode: life-safety crossings only with fixed site limits and visual current checks
+- input_requirements: hydrology, site geometry, capacity data, population pressure, legal caveats
+- output_schema: crossing safety matrix, throughput ladder, legal-handoff packet
+- protocol_profile: NATO APP-11/ADatP-3 aligned + NIEM + USMTF + OGC WMS/WFS/WMTS + API/JSON
+- validation_gates: engineer-safety pass, throughput sufficiency threshold, coalition acknowledgment chain
+
+### packet_id: DPL-JOINT-UNMANNED-ORBIT-REENTRY-DEBRIS-001
+- domain: joint unmanned orbit reentry debris and civil airspace warning
+- objective: issue timely reentry warnings while preserving airspace safety and protected-asset coordination.
+- primary_tools: orbital event tracker, debris footprint modeler, civil-airspace warning workflow, protected-asset risk board
+- alternate_tools: manual ephemeris board and staged notice-release ladder
+- degraded_mode: life-safety warnings only with fixed airspace restriction templates
+- input_requirements: orbital state vector, reentry confidence, footprint model, airspace usage, warning-channel readiness
+- output_schema: reentry risk board, warning ladder, debris response packet
+- protocol_profile: CCSDS + AIXM/FIXM + USMTF + EDXL-DE/CAP + API/JSON
+- validation_gates: ephemeris confidence pass, warning timeliness threshold, civil-airspace coordination acknowledgment
+
+### packet_id: DPL-HOMELAND-COPPER-TRANSFORMER-THEFT-001
+- domain: homeland defense-industrial copper transformer theft and grid priority
+- objective: mitigate theft-driven grid degradation while preserving defense-industrial restoration priority and continuity.
+- primary_tools: grid restoration board, industrial load-priority dashboard, utility asset ledger, incident coordination workflow
+- alternate_tools: manual replacement queue board and phased load-priority worksheet
+- degraded_mode: defense-critical loads only with strict restoration staging
+- input_requirements: theft incident reports, utility status, asset inventory, industrial priorities, civil-support authority
+- output_schema: theft disruption matrix, transformer priority ladder, industrial continuity packet
+- protocol_profile: NIMS/ICS + NIEM + STIX/TAXII + USMTF + API/JSON
+- validation_gates: inventory-confidence pass, utility acknowledgment, restoration threshold
+
+### packet_id: DPL-STRATEGIC-POW-CAMP-DISEASE-SCREENING-001
+- domain: strategic prisoner-of-war camp disease screening and repatriation
+- objective: synchronize camp disease screening, custody assurance, and repatriation sequencing under legal and medical constraints.
+- primary_tools: camp screening dashboard, custody roster ledger, transport-priority planner, legal-handoff workflow
+- alternate_tools: manual screening ledger and paper custody-transfer board
+- degraded_mode: high-confidence health-status classes only with staged transport release
+- input_requirements: camp health data, roster integrity, transport capacity, legal handoff status, repatriation priorities
+- output_schema: screening board, repatriation ladder, custody-health packet
+- protocol_profile: HL7/FHIR + NIEM + USMTF + signed custody exports + API/JSON
+- validation_gates: medical QA pass, roster-integrity threshold, authority concurrence

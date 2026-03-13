@@ -189,3 +189,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-solid-rocket-motor-supply-surge-safety-assurance-v1` with `protocol_stack_id=ps-strategic-solid-rocket-motor-supply-surge-safety-assurance-stack-v1` when mobilization recommendations depend on rocket-motor lot integrity, hazardous transport windows, or deterrence-critical surge allocations.
+- Add `tool_suite_id=ts-homeland-defense-industrial-copper-transformer-theft-grid-priority-v1` with `protocol_stack_id=ps-homeland-defense-industrial-copper-transformer-theft-grid-priority-stack-v1` when industrial readiness depends on theft-driven grid degradation, transformer replacement timelines, or defense-load priority.
+- Add `packet_id=DPL-STRATEGIC-SOLID-ROCKET-MOTOR-SURGE-001` and `packet_id=DPL-HOMELAND-COPPER-TRANSFORMER-THEFT-001` for recommendations that materially change industrial surge posture, utility restoration priority, or strategic sustainment confidence.
