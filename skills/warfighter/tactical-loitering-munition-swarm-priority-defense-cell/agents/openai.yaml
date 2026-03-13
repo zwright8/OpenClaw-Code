@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tactical Loitering Munition Swarm Priority Defense Cell"
+  short_description: "Prioritize defended assets and interception timing against loitering-munition swarm attacks."

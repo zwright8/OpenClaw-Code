@@ -10334,3 +10334,127 @@ external_binding:
 ### `ps-coalition-maritime-fiber-landing-station-kinetic-cyber-defense-stack-v1`
 - Protocols: `AIS/NMEA`, `USMTF`, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
 - Use for: landing-station threat telemetry, cable-route continuity exchange, and coalition defense coordination gates.
+
+## Tool Suite Addendum XXXII (2026-03-13, All-Domain Warfighter Expansion Wave XXXII)
+
+### `ts-joint-arctic-gps-denied-heavy-airlift-dropzone-certification-v1`
+- Use for: certifying heavy-airlift drop-zone viability in Arctic terrain under GNSS denial and weather volatility.
+- Primary tools: drop-zone terrain confidence engine, denied-PNT approach planner, heavy-airlift release governance board.
+- Cross-check tools: independent weather/ice witness and alternate navigation confidence monitor.
+- Typical products: drop-zone confidence map, release window ladder, commander airlift branch packet.
+
+### `ts-theater-hardened-fiber-satcom-hybrid-command-backbone-v1`
+- Use for: resilient theater command backbone planning across hardened fiber and SATCOM hybrid paths under attack.
+- Primary tools: hybrid path orchestrator, transport survivability graph, command-traffic priority arbiter.
+- Cross-check tools: independent telecom outage witness and alternate command-path integrity monitor.
+- Typical products: path arbitration ledger, continuity branch matrix, command traffic release packet.
+
+### `ts-coalition-maritime-autonomous-convoy-fuel-denial-mitigation-v1`
+- Use for: coalition autonomous maritime convoy routing when fuel denial and chokepoint threats constrain throughput.
+- Primary tools: convoy fuel-risk board, autonomous lane scheduler, coalition maritime release workflow.
+- Cross-check tools: independent vessel endurance witness and alternate coalition caveat monitor.
+- Typical products: fuel-denial mitigation matrix, convoy branch ladder, coalition sustainment packet.
+
+### `ts-homeland-rail-grid-cyber-physical-evacuation-priority-v1`
+- Use for: synchronizing rail mobility and power-grid restoration to sustain evacuation and force-mobility corridors.
+- Primary tools: rail-grid dependency graph, evacuation priority arbiter, restoration sequencing board.
+- Cross-check tools: independent civil-utility witness and alternate transportation continuity monitor.
+- Typical products: evacuation corridor priority map, restoration queue, civil-military support packet.
+
+### `ts-strategic-microelectronics-fab-water-power-continuity-v1`
+- Use for: preserving strategic microelectronics fabrication output under water and power disruption or sabotage.
+- Primary tools: fab utility dependency monitor, process continuity planner, strategic output protection board.
+- Cross-check tools: independent quality-assurance witness and alternate utility integrity monitor.
+- Typical products: fab continuity matrix, utility branch ladder, strategic output assurance packet.
+
+### `ts-expeditionary-forward-blood-cold-chain-drone-relay-v1`
+- Use for: forward blood-product relay continuity using autonomous drone corridors under contested logistics.
+- Primary tools: blood cold-chain telemetry board, drone relay scheduler, med-reg synchronization workflow.
+- Cross-check tools: independent cold-chain witness and alternate casualty demand monitor.
+- Typical products: blood relay branch table, cold-chain confidence ladder, medical continuity packet.
+
+### `ts-joint-undersea-chokepoint-acoustic-decoy-adjudication-v1`
+- Use for: adjudicating acoustic decoy threats in undersea chokepoints to protect cue trust and mission timing.
+- Primary tools: undersea acoustic anomaly fusion board, decoy discrimination engine, chokepoint cue governance board.
+- Cross-check tools: independent sonar witness and alternate contact-confidence monitor.
+- Typical products: decoy adjudication ledger, cue confidence matrix, undersea release packet.
+
+### `ts-coalition-border-biometric-watchlist-disruption-recovery-v1`
+- Use for: recovering coalition biometric watchlist operations after disruption while preserving legal identity confidence.
+- Primary tools: watchlist restoration board, biometric confidence adjudicator, coalition legal transfer workflow.
+- Cross-check tools: independent identity evidence witness and alternate cross-border compliance monitor.
+- Typical products: watchlist recovery ladder, identity confidence matrix, coalition release packet.
+
+### `ts-theater-civilian-hospital-overflow-military-triage-synchronization-v1`
+- Use for: military triage synchronization when civilian hospital networks exceed surge capacity.
+- Primary tools: hospital surge telemetry board, triage routing planner, joint med-reg coordination workflow.
+- Cross-check tools: independent bed-status witness and alternate casualty-flow monitor.
+- Typical products: overflow synchronization matrix, triage branch ladder, medical surge packet.
+
+### `ts-joint-spaceport-propellant-safety-launch-window-restoration-v1`
+- Use for: restoring launch windows while enforcing propellant safety, custody, and hazard controls.
+- Primary tools: propellant safety telemetry board, launch-window recovery scheduler, custody assurance workflow.
+- Cross-check tools: independent hazard witness and alternate launch-readiness confidence monitor.
+- Typical products: launch recovery branch map, propellant custody ladder, strategic release packet.
+
+### `ts-tactical-loitering-munition-swarm-priority-defense-v1`
+- Use for: defended-asset prioritization and interception timing against dense loitering munition swarm attacks.
+- Primary tools: swarm threat fusion board, interceptor allocation optimizer, tactical air-defense release workflow.
+- Cross-check tools: independent track-confidence witness and alternate defended-asset survivability monitor.
+- Typical products: defense priority matrix, interceptor branch ladder, tactical defense packet.
+
+### `ts-strategic-food-port-hoarding-distribution-stability-v1`
+- Use for: strategic food-port anti-hoarding stabilization and distribution continuity under contested demand shocks.
+- Primary tools: port throughput and hoarding detector, strategic distribution optimizer, stability risk governance board.
+- Cross-check tools: independent humanitarian-demand witness and alternate supply continuity monitor.
+- Typical products: anti-hoarding action matrix, distribution branch ladder, strategic stability packet.
+
+## Protocol Stack Addendum XXXII (2026-03-13, All-Domain Warfighter Expansion Wave XXXII)
+
+### `ps-joint-arctic-gps-denied-heavy-airlift-dropzone-certification-stack-v1`
+- Protocols: `USMTF`, `AIXM/FIXM`, `CoT`, `NATO APP-11/ADatP-3 aligned`, `API/JSON`.
+- Use for: Arctic drop-zone certification exchange, denied-PNT release checks, and heavy-airlift authority acknowledgments.
+
+### `ps-theater-hardened-fiber-satcom-hybrid-command-backbone-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, `CoT`, `API/JSON`.
+- Use for: hybrid backbone status exchange, path failover sequencing, and command continuity acknowledgment chains.
+
+### `ps-coalition-maritime-autonomous-convoy-fuel-denial-mitigation-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `Link 16 J-series`, `API/JSON`.
+- Use for: coalition convoy route and fuel-status exchange, lane release governance, and maritime authority confirmations.
+
+### `ps-homeland-rail-grid-cyber-physical-evacuation-priority-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `USMTF`, `NIEM`, `API/JSON`.
+- Use for: evacuation priority updates, rail-grid restoration synchronization, and civil-military support approvals.
+
+### `ps-strategic-microelectronics-fab-water-power-continuity-stack-v1`
+- Protocols: `USMTF`, `STIX/TAXII`, `NIEM`, signed quality manifests, `API/JSON`.
+- Use for: fab utility disruption alerts, process continuity actions, and strategic production authority gates.
+
+### `ps-expeditionary-forward-blood-cold-chain-drone-relay-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: forward blood relay updates, cold-chain integrity status, and medevac/triage synchronization acknowledgments.
+
+### `ps-joint-undersea-chokepoint-acoustic-decoy-adjudication-stack-v1`
+- Protocols: `AIS/NMEA`, `USMTF`, `OGC WMS/WFS/WMTS`, `Link 16 J-series`, `API/JSON`.
+- Use for: acoustic decoy adjudication exchange, undersea cue confidence updates, and release control confirmations.
+
+### `ps-coalition-border-biometric-watchlist-disruption-recovery-stack-v1`
+- Protocols: `NIEM`, `USMTF`, `NATO APP-11/ADatP-3 aligned`, `STIX/TAXII`, `API/JSON`.
+- Use for: watchlist recovery status exchange, biometric confidence updates, and coalition legal authority acknowledgments.
+
+### `ps-theater-civilian-hospital-overflow-military-triage-synchronization-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `NIMS/ICS`, `EDXL-DE/CAP`, `API/JSON`.
+- Use for: hospital surge telemetry, triage-routing synchronization, and military support release approvals.
+
+### `ps-joint-spaceport-propellant-safety-launch-window-restoration-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `NIEM`, signed custody manifests, `API/JSON`.
+- Use for: launch-window restoration updates, propellant safety custody exchange, and strategic release authority checks.
+
+### `ps-tactical-loitering-munition-swarm-priority-defense-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `VMF`, `CoT`, `API/JSON`.
+- Use for: swarm track dissemination, interceptor-priority updates, and defended-asset release governance.
+
+### `ps-strategic-food-port-hoarding-distribution-stability-stack-v1`
+- Protocols: `USMTF`, `NIMS/ICS`, `NIEM`, `STIX/TAXII`, `API/JSON`.
+- Use for: anti-hoarding indicators, distribution branch synchronization, and readiness/stability authority acknowledgments.

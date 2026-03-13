@@ -2093,3 +2093,33 @@ Every skill output should include:
 - Data-center cooling load shedding + tactical cloud edge compute orchestrator + strategic military cloud break-glass continuity
 - Reserve callup transport synchronization + strategic mobility chokepoint wargame + deployment and distribution ops center optimizer
 - Coalition maritime fiber landing defense + allied undersea telemetry cable landing defense + coalition cable sovereignty operations
+
+## New Expansion Wave (2026-03-13, Wave XXXII)
+
+- joint-arctic-gps-denied-heavy-airlift-dropzone-certification-cell
+- theater-hardened-fiber-satcom-hybrid-command-backbone-cell
+- coalition-maritime-autonomous-convoy-fuel-denial-mitigation-cell
+- homeland-rail-grid-cyber-physical-evacuation-priority-cell
+- strategic-microelectronics-fab-water-power-continuity-cell
+- expeditionary-forward-blood-cold-chain-drone-relay-cell
+- joint-undersea-chokepoint-acoustic-decoy-adjudication-cell
+- coalition-border-biometric-watchlist-disruption-recovery-cell
+- theater-civilian-hospital-overflow-military-triage-synchronization-cell
+- joint-spaceport-propellant-safety-launch-window-restoration-cell
+- tactical-loitering-munition-swarm-priority-defense-cell
+- strategic-food-port-hoarding-and-distribution-stability-cell
+
+## Updated Pairings (2026-03-13, Wave XXXII)
+
+- Arctic denied-PNT heavy-airlift drop-zone certification + denied-PNT time transfer assurance + tactical airspace control and deconfliction
+- Hardened fiber-SATCOM hybrid command backbone + theater mission network failover + tactical zero-trust network hardening
+- Coalition maritime autonomous convoy fuel-denial mitigation + contested maritime logistics protection + coalition interoperability coordinator
+- Homeland rail-grid evacuation priority + defense support of civil authorities crisis + critical infrastructure cyber-physical defense
+- Strategic microelectronics fab continuity + strategic industrial mobilization readiness + supply-chain risk and industrial-base monitor
+- Forward blood cold-chain drone relay + casualty evacuation and medical regulation + austere surgical support coordinator
+- Undersea acoustic decoy adjudication + anti-submarine warfare support + naval undersea cable protection and restoration
+- Coalition biometric watchlist disruption recovery + biometrics and watchlist exploitation + coalition denied-environment identity proofing
+- Civilian hospital overflow military triage synchronization + coalition contested medical oxygen and anesthetic surge + medical C4I and patient movement fusion
+- Spaceport propellant safety launch-window restoration + contested space launch and satellite reconstitution + strategic deterrence and NC3 resilience
+- Tactical loitering-munition swarm priority defense + counter-UAS kill-chain integration + integrated air and missile defense cell
+- Strategic food-port hoarding stabilization + strategic food and water denial risk and distribution + civil-defense mass evacuation shelter

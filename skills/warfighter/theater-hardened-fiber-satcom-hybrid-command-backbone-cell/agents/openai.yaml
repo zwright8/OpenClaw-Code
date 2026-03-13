@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Hardened Fiber SATCOM Hybrid Command Backbone Cell"
+  short_description: "Plan hybrid fiber-SATCOM command backbones that remain resilient under simultaneous cyber and kinetic disruption."
