@@ -32,6 +32,7 @@
 - `npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5` - run autonomous loop with discounted linear Thompson sampling to adapt under drift.
 - `npm run autonomous:run -- --selection-policy adwin_lints --cd-min-samples 8 --adwin-delta 0.002 --lints-alpha 0.5` - run autonomous loop with ADWIN-trimmed linear Thompson sampling to emphasize post-drift contextual evidence.
 - `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with epsilon-Thompson exploration controls.
+- `npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.25 --thompson-prior-alpha 1 --thompson-prior-beta 1 --thompson-meta-prior-strength 24` - run autonomous loop with empirical-Bayes Thompson prior warm-start to reduce cold-start variance.
 - `npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25` - run autonomous loop with Bayesian-bootstrap Thompson sampling for bounded non-binary rewards.
 - `npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1` - run autonomous loop with uncertainty-adaptive epsilon-Thompson exploration.
 - `npm run autonomous:run -- --selection-policy cp_epsilon_ts --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2` - run autonomous loop with surprise-adaptive changepoint epsilon-Thompson resets for abrupt drift.
@@ -55,6 +56,7 @@
 - `npm run autonomous:run -- --selection-policy sw_ucb_tuned --window-size 12` - run autonomous loop with sliding-window UCB-Tuned adaptation for drift-aware variance-sensitive ranking.
 - `npm run autonomous:run -- --selection-policy d_ucb_tuned --discount-factor 0.97` - run autonomous loop with discounted variance-aware UCB-Tuned adaptation under drift.
 - `npm run autonomous:run -- --selection-policy bayes_ucb --bayes-ucb-quantile 0.9` - run autonomous loop with Bayesian optimistic posterior quantile scoring.
+- `npm run autonomous:run -- --selection-policy bayes_ucb --bayes-ucb-quantile 0.9 --thompson-meta-prior-strength 24` - run autonomous loop with empirical-Bayes prior warm-start for Bayes-UCB cold-start stabilization.
 - `npm run autonomous:run -- --selection-policy sw_bayes_ucb --window-size 12 --bayes-ucb-quantile 0.9` - run autonomous loop with sliding-window Bayes-UCB adaptation to recent outcomes.
 - `npm run autonomous:run -- --selection-policy d_bayes_ucb --discount-factor 0.97 --bayes-ucb-quantile 0.9` - run autonomous loop with discounted Bayes-UCB adaptation under non-stationary drift.
 - `npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25` - run autonomous loop with discounted epsilon-Thompson adaptation for non-stationary outcomes.
@@ -118,6 +120,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `5135dec6c6..3dbe685737`: added README command-map workflows for empirical-Bayes Bayesian prior warm-start controls (`--thompson-meta-prior-strength`) across `epsilon_ts` and `bayes_ucb`, and wired autonomous runtime + regression coverage for global-pseudocount cold-start stabilization; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `982302987b..5135dec6c6`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `a4910f5567..982302987b`: added README command-map workflows for ADWIN Bayesian selectors (`--selection-policy adwin_bb_ts|adwin_bayes_ucb`, `--cd-min-samples`, `--adwin-delta`, `--thompson-exploration`, `--bayes-ucb-quantile`) and extended autonomous runtime policy support plus regression coverage for adaptive-window reranking; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `c4737308ac..caa1dcf14c`: added README command-map workflow for BOB-style adaptive window routing (`--selection-policy bob_sw_ucb`, `--multi-window-sizes`, `--bob-gamma`) and wired autonomous runtime + coverage tracking for selected-window meta-policy outcomes; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
