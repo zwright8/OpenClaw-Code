@@ -107,6 +107,7 @@ const DEFAULT_CORRAL_GAMMA = 0.12;
 const MAX_CORRAL_GAMMA = 0.8;
 const DEFAULT_CORRAL_ETA = 0.8;
 const MAX_CORRAL_ETA = 5;
+const DEFAULT_CORRAL_AUTO_ETA = false;
 const DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS = 0;
 const MAX_CORRAL_MIN_POLICY_ATTEMPTS = 200;
 const DEFAULT_CORRAL_FORCED_EXPLORATION = 0.25;
@@ -801,6 +802,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             Number.EPSILON,
             MAX_CORRAL_ETA
         ),
+        corralAutoEta: Boolean(value.corralAutoEta ?? DEFAULT_CORRAL_AUTO_ETA),
         corralMinPolicyAttempts: clamp(
             Number.isFinite(Number(value.corralMinPolicyAttempts))
                 ? parseNonNegativeInt(value.corralMinPolicyAttempts, DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS)
@@ -2871,6 +2873,56 @@ function computeMossAnytimeScore(stat, totalAttempts, totalArms, currentWave, ad
         + adjustments.staleBoost;
 }
 
+function computeAdversarialAutoEta(armCount, totalAttempts) {
+    const safeArmCount = Math.max(1, parsePositiveInt(armCount, 1));
+    const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
+    return Math.sqrt(
+        (2 * Math.log(safeArmCount + 1))
+        / (safeAttempts * safeArmCount)
+    );
+}
+
+function resolveCorralRuntimeParameters(policy, policyCount, effectiveAttempts) {
+    let eta = clamp(
+        Number(policy.corralEta),
+        Number.EPSILON,
+        MAX_CORRAL_ETA
+    );
+    if (policy.corralAutoEta) {
+        eta = clamp(
+            computeAdversarialAutoEta(policyCount, effectiveAttempts),
+            Number.EPSILON,
+            MAX_CORRAL_ETA
+        );
+    }
+    return {
+        eta,
+        effectiveAttempts: Math.max(1, Number(effectiveAttempts) || 1),
+        autoEta: Boolean(policy.corralAutoEta)
+    };
+}
+
+function resolveCorralEffectiveAttempts(scoredPolicies, selectionPolicyConfig) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    let effectiveAttempts = 0;
+    for (const entry of scoredPolicies) {
+        const outcomeCount = parseNonNegativeInt(entry.outcomeCount, 0);
+        if (outcomeCount > 0) {
+            if (DISCOUNTED_CORRAL_POLICY_MODES.has(policy.mode)) {
+                effectiveAttempts += computeDiscountedEffectiveSampleSize(
+                    outcomeCount,
+                    policy.discountFactor
+                );
+            } else {
+                effectiveAttempts += outcomeCount;
+            }
+        } else {
+            effectiveAttempts += Math.max(0, Number(entry.attempts) || 0);
+        }
+    }
+    return Math.max(1, effectiveAttempts);
+}
+
 function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyConfig, currentWave = 0) {
     const laneStats = normalizePolicyPerformanceByLane(policyExecutionStats);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
@@ -2905,9 +2957,12 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         return {
             name,
             attempts,
+            outcomeCount: outcomes.length,
             loss: cumulativeEstimatedLoss
         };
     });
+    const effectiveAttempts = resolveCorralEffectiveAttempts(scoredPolicies, policy);
+    const corralRuntime = resolveCorralRuntimeParameters(policy, corralPolicies.length, effectiveAttempts);
     const totalCorralAttempts = scoredPolicies.reduce((sum, entry) => sum + entry.attempts, 0);
     const minimumLoss = scoredPolicies.reduce(
         (minimum, entry) => Math.min(minimum, entry.loss),
@@ -2921,7 +2976,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
             );
         const centeredLoss = entry.loss - (Number.isFinite(minimumLoss) ? minimumLoss : 0);
         const scaled = clamp(
-            (-policy.corralEta * centeredLoss) + uncertaintyBonus,
+            (-corralRuntime.eta * centeredLoss) + uncertaintyBonus,
             -60,
             60
         );
@@ -2945,7 +3000,10 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         MAX_CORRAL_MIN_POLICY_ATTEMPTS
     );
     if (minPolicyAttempts <= 0) {
-        return baseDistribution;
+        return {
+            distribution: baseDistribution,
+            runtime: corralRuntime
+        };
     }
 
     const underSampled = weighted
@@ -2955,12 +3013,18 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         }))
         .filter((entry) => entry.deficit > 0);
     if (underSampled.length === 0) {
-        return baseDistribution;
+        return {
+            distribution: baseDistribution,
+            runtime: corralRuntime
+        };
     }
 
     const forcedMass = clamp(policy.corralForcedExploration, 0, MAX_CORRAL_FORCED_EXPLORATION);
     if (forcedMass <= 0) {
-        return baseDistribution;
+        return {
+            distribution: baseDistribution,
+            runtime: corralRuntime
+        };
     }
     const totalDeficit = underSampled.reduce((sum, entry) => sum + entry.deficit, 0);
     const fallbackShare = 1 / underSampled.length;
@@ -2969,13 +3033,16 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         totalDeficit > 0 ? (entry.deficit / totalDeficit) : fallbackShare
     ]));
 
-    return baseDistribution.map((entry) => {
-        const underShare = Number(underSampledShareByName[entry.name] || 0);
-        return {
-            name: entry.name,
-            probability: ((1 - forcedMass) * entry.probability) + (forcedMass * underShare)
-        };
-    });
+    return {
+        distribution: baseDistribution.map((entry) => {
+            const underShare = Number(underSampledShareByName[entry.name] || 0);
+            return {
+                name: entry.name,
+                probability: ((1 - forcedMass) * entry.probability) + (forcedMass * underShare)
+            };
+        }),
+        runtime: corralRuntime
+    };
 }
 
 function pickPolicyFromDistribution(distribution, seedText) {
@@ -2990,8 +3057,6 @@ function pickPolicyFromDistribution(distribution, seedText) {
 }
 
 function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
-    const safeArmCount = Math.max(1, parsePositiveInt(armCount, 1));
-    const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
     const explorationGamma = clamp(
         Number(policy.exp3ExplorationGamma),
         Number.EPSILON,
@@ -3005,10 +3070,7 @@ function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
     if (policy.exp3AutoEta) {
         // Exp3-IX recommendation for adversarial horizon n with k arms:
         // eta = sqrt((2 * log(k + 1)) / (n * k)), gamma_implicit = eta / 2.
-        const suggestedEta = Math.sqrt(
-            (2 * Math.log(safeArmCount + 1))
-            / (safeAttempts * safeArmCount)
-        );
+        const suggestedEta = computeAdversarialAutoEta(armCount, totalAttempts);
         eta = clamp(suggestedEta, Number.EPSILON, MAX_EXP3_IX_ETA);
     }
     const implicitGamma = Number.isFinite(Number(policy.exp3ImplicitGamma))
@@ -3456,7 +3518,7 @@ function selectCatalogSlice({
     );
 
     if (CORRAL_POLICY_MODES.has(normalizedPolicy.mode)) {
-        const distribution = resolveCorralPolicyDistribution(
+        const { distribution, runtime } = resolveCorralPolicyDistribution(
             policyExecutionStats,
             normalizedPolicy,
             normalizedCurrentWave
@@ -3474,6 +3536,13 @@ function selectCatalogSlice({
             entry.name,
             Number(entry.probability.toFixed(6))
         ]));
+        policyProbabilities._runtime = {
+            mode: normalizedPolicy.mode,
+            gamma: Number(normalizedPolicy.corralGamma.toFixed(6)),
+            eta: Number(runtime.eta.toFixed(6)),
+            effectiveAttempts: Number(runtime.effectiveAttempts.toFixed(6)),
+            autoEta: Boolean(runtime.autoEta)
+        };
     } else if (BOB_WINDOW_UCB_POLICY_MODES.has(normalizedPolicy.mode)) {
         const distribution = resolveBobWindowDistribution(windowPolicyExecutionStats, normalizedPolicy);
         const selectedWindowSize = Number(pickPolicyFromDistribution(
