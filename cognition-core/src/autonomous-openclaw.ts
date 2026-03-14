@@ -567,6 +567,14 @@ function parseNonNegativeNumber(raw, fallback = 0) {
     return value;
 }
 
+function normalizeRetryJitterStrategy(value, fallback = 'symmetric') {
+    const normalized = String(value || '').trim().toLowerCase();
+    if (normalized === 'symmetric' || normalized === 'full' || normalized === 'decorrelated') {
+        return normalized;
+    }
+    return fallback;
+}
+
 function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
 }
@@ -5179,6 +5187,7 @@ export async function runAutonomousOpenClaw({
     botRetryBaseDelayMs = 200,
     botRetryMaxDelayMs = 5_000,
     botRetryJitter = 0.2,
+    botRetryJitterStrategy = 'symmetric',
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
@@ -5313,6 +5322,7 @@ export async function runAutonomousOpenClaw({
             botRetryBaseDelayMs,
             botRetryMaxDelayMs,
             botRetryJitter,
+            botRetryJitterStrategy,
             botAttemptTimeoutMs,
             botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold,
@@ -5469,6 +5479,7 @@ export async function runAutonomousOpenClaw({
             botRetryBaseDelayMs: parseNonNegativeInt(botRetryBaseDelayMs, 200),
             botRetryMaxDelayMs: parseNonNegativeInt(botRetryMaxDelayMs, 5_000),
             botRetryJitter: clamp(parseNonNegativeNumber(botRetryJitter, 0.2), 0, 1),
+            botRetryJitterStrategy: normalizeRetryJitterStrategy(botRetryJitterStrategy, 'symmetric'),
             botAttemptTimeoutMs: parseNonNegativeInt(botAttemptTimeoutMs, 120_000),
             botRetryBudgetRatio: clamp(parseNonNegativeNumber(botRetryBudgetRatio, 0), 0, 1),
             botCircuitBreakerFailureThreshold: parseNonNegativeInt(botCircuitBreakerFailureThreshold, 0),

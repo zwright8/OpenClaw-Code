@@ -54,6 +54,14 @@ function normalizeRetryJitter(value, fallback = 0.2) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeRetryJitterStrategy(value, fallback = 'symmetric') {
+    const normalized = String(value || '').trim().toLowerCase();
+    if (normalized === 'symmetric' || normalized === 'full' || normalized === 'decorrelated') {
+        return normalized;
+    }
+    return fallback;
+}
+
 function normalizeRetryBudgetRatio(value, fallback = 0) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
@@ -163,11 +171,13 @@ function isTransientBotFailure(execution) {
     return /timed?\s*out|timeout|transport|rate\s*limit|too many requests|throttl|econn|eai_again|enotfound|temporar|unavailable|502|503|504/.test(output);
 }
 
-function computeRetryDelayMs({
+export function computeRetryDelayMs({
     baseDelayMs,
     maxDelayMs,
     attempt,
     jitter,
+    jitterStrategy = 'symmetric',
+    previousDelayMs = null,
     rng = Math.random
 }) {
     const normalizedBase = Math.max(0, parseNonNegativeInt(baseDelayMs, 200));
@@ -176,8 +186,22 @@ function computeRetryDelayMs({
     const uncapped = normalizedBase * Math.pow(2, exponent);
     const capped = Math.min(normalizedMax, uncapped);
     const jitterRatio = normalizeRetryJitter(jitter, 0.2);
+    const normalizedStrategy = normalizeRetryJitterStrategy(jitterStrategy, 'symmetric');
     if (capped <= 0 || jitterRatio <= 0) return capped;
     const random = typeof rng === 'function' ? clamp(Number(rng()) || 0, 0, 1) : 0.5;
+    if (normalizedStrategy === 'full') {
+        const minDelay = capped * (1 - jitterRatio);
+        const maxDelay = capped;
+        const delay = minDelay + ((maxDelay - minDelay) * random);
+        return Math.max(0, Math.round(delay));
+    }
+    if (normalizedStrategy === 'decorrelated') {
+        const previous = Math.max(normalizedBase, parseNonNegativeInt(previousDelayMs, normalizedBase));
+        const rawUpperBound = Math.min(normalizedMax, previous * 3);
+        const effectiveUpperBound = normalizedBase + ((rawUpperBound - normalizedBase) * jitterRatio);
+        const delay = normalizedBase + ((effectiveUpperBound - normalizedBase) * random);
+        return Math.max(0, Math.round(delay));
+    }
     const offset = ((random * 2) - 1) * jitterRatio;
     return Math.max(0, Math.round(capped * (1 + offset)));
 }
@@ -405,6 +429,7 @@ export async function processOutboxEnvelopes({
     botRetryBaseDelayMs = 200,
     botRetryMaxDelayMs = 5_000,
     botRetryJitter = 0.2,
+    botRetryJitterStrategy = 'symmetric',
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
@@ -440,6 +465,7 @@ export async function processOutboxEnvelopes({
         parseNonNegativeInt(botRetryMaxDelayMs, 5_000)
     );
     const normalizedBotRetryJitter = normalizeRetryJitter(botRetryJitter, 0.2);
+    const normalizedBotRetryJitterStrategy = normalizeRetryJitterStrategy(botRetryJitterStrategy, 'symmetric');
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
@@ -656,6 +682,7 @@ export async function processOutboxEnvelopes({
             if (bot) {
                 let execution = null;
                 let attempts = 0;
+                let previousRetryDelayMs = null;
                 let transientFailureRetried = false;
                 let retryBudgetBlocked = false;
                 const startedInCircuitHalfOpen = circuitBreakerEnabled
@@ -738,13 +765,18 @@ export async function processOutboxEnvelopes({
                         retryBudgetTokens = Math.max(0, retryBudgetTokens - 1);
                     }
                     // eslint-disable-next-line no-await-in-loop
-                    await sleep(computeRetryDelayMs({
+                    const retryDelayMs = computeRetryDelayMs({
                         baseDelayMs: normalizedBotRetryBaseDelayMs,
                         maxDelayMs: normalizedBotRetryMaxDelayMs,
                         attempt: attempts,
                         jitter: normalizedBotRetryJitter,
+                        jitterStrategy: normalizedBotRetryJitterStrategy,
+                        previousDelayMs: previousRetryDelayMs,
                         rng
-                    }));
+                    });
+                    previousRetryDelayMs = retryDelayMs;
+                    // eslint-disable-next-line no-await-in-loop
+                    await sleep(retryDelayMs);
                 }
                 if (!execution) {
                     execution = {

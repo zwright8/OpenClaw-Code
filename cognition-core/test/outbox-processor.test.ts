@@ -8,7 +8,10 @@ import {
     FileTaskStore
 } from '../../swarm-protocol/runtime.js';
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
-import { processOutboxEnvelopes } from '../src/outbox-processor.js';
+import {
+    computeRetryDelayMs,
+    processOutboxEnvelopes
+} from '../src/outbox-processor.js';
 
 const cwd = path.resolve(process.cwd());
 const REPO_ROOT = path.basename(cwd) === 'cognition-core'
@@ -48,6 +51,62 @@ function makeRequest(
         createdAt: 50_000
     });
 }
+
+test('computeRetryDelayMs supports symmetric jitter strategy', () => {
+    const delay = computeRetryDelayMs({
+        baseDelayMs: 100,
+        maxDelayMs: 100,
+        attempt: 1,
+        jitter: 0.2,
+        jitterStrategy: 'symmetric',
+        rng: () => 0
+    });
+    assert.equal(delay, 80);
+});
+
+test('computeRetryDelayMs supports full jitter strategy', () => {
+    const minDelay = computeRetryDelayMs({
+        baseDelayMs: 100,
+        maxDelayMs: 100,
+        attempt: 1,
+        jitter: 1,
+        jitterStrategy: 'full',
+        rng: () => 0
+    });
+    const maxDelay = computeRetryDelayMs({
+        baseDelayMs: 100,
+        maxDelayMs: 100,
+        attempt: 1,
+        jitter: 1,
+        jitterStrategy: 'full',
+        rng: () => 1
+    });
+    assert.equal(minDelay, 0);
+    assert.equal(maxDelay, 100);
+});
+
+test('computeRetryDelayMs supports decorrelated jitter strategy', () => {
+    const minDelay = computeRetryDelayMs({
+        baseDelayMs: 100,
+        maxDelayMs: 1_000,
+        attempt: 2,
+        jitter: 1,
+        jitterStrategy: 'decorrelated',
+        previousDelayMs: 80,
+        rng: () => 0
+    });
+    const maxDelay = computeRetryDelayMs({
+        baseDelayMs: 100,
+        maxDelayMs: 1_000,
+        attempt: 2,
+        jitter: 1,
+        jitterStrategy: 'decorrelated',
+        previousDelayMs: 80,
+        rng: () => 1
+    });
+    assert.equal(minDelay, 100);
+    assert.equal(maxDelay, 300);
+});
 
 test('processOutboxEnvelopes ingests receipt/result and archives processed files', async (t) => {
     const dir = mkTmpDir();

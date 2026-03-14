@@ -26,6 +26,7 @@ Options:
   --bot-retry-base-ms <n>      Base backoff delay in milliseconds for retries (default: 200)
   --bot-retry-max-ms <n>       Max backoff delay in milliseconds for retries (default: 5000)
   --bot-retry-jitter <0-1>     Retry delay jitter ratio (default: 0.2)
+  --bot-retry-jitter-strategy <mode> Retry jitter strategy: symmetric|full|decorrelated (default: symmetric)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
@@ -95,6 +96,14 @@ function parseFloatInRange(raw, flag, min, max) {
     return value;
 }
 
+function parseRetryJitterStrategy(raw, flag) {
+    const value = String(raw || '').trim().toLowerCase();
+    if (value !== 'symmetric' && value !== 'full' && value !== 'decorrelated') {
+        throw new Error(`${flag} must be one of: symmetric, full, decorrelated`);
+    }
+    return value;
+}
+
 function parseArgs(argv) {
     const defaultOutbox = path.resolve(process.cwd(), '../swarm-protocol/state/outbox');
     const options = {
@@ -116,6 +125,7 @@ function parseArgs(argv) {
         botRetryBaseDelayMs: 200,
         botRetryMaxDelayMs: 5_000,
         botRetryJitter: 0.2,
+        botRetryJitterStrategy: 'symmetric',
         botAttemptTimeoutMs: 120_000,
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
@@ -243,6 +253,11 @@ function parseArgs(argv) {
         }
         if (token === '--bot-retry-jitter') {
             options.botRetryJitter = parseRatio(value, '--bot-retry-jitter');
+            i++;
+            continue;
+        }
+        if (token === '--bot-retry-jitter-strategy') {
+            options.botRetryJitterStrategy = parseRetryJitterStrategy(value, '--bot-retry-jitter-strategy');
             i++;
             continue;
         }
@@ -403,6 +418,7 @@ function printSummary(stats) {
             botRetryBaseDelayMs: options.botRetryBaseDelayMs,
             botRetryMaxDelayMs: options.botRetryMaxDelayMs,
             botRetryJitter: options.botRetryJitter,
+            botRetryJitterStrategy: options.botRetryJitterStrategy,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
