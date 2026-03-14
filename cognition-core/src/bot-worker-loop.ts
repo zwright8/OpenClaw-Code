@@ -178,6 +178,9 @@ export async function runBotWorkerLoop({
     botCircuitBreakerCooldownMs = 30_000,
     botCircuitBreakerHalfOpenMaxProbes = 1,
     botCircuitBreakerHalfOpenSuccessThreshold = 1,
+    botCircuitBreakerFailureRateThreshold = 0,
+    botCircuitBreakerFailureRateWindow = 20,
+    botCircuitBreakerFailureRateMinSamples = 8,
     nowFactory = Date.now
 } = {}) {
     if (!storePath || typeof storePath !== 'string') {
@@ -267,6 +270,9 @@ export async function runBotWorkerLoop({
             botCircuitBreakerCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold,
+            botCircuitBreakerFailureRateThreshold,
+            botCircuitBreakerFailureRateWindow,
+            botCircuitBreakerFailureRateMinSamples,
             nowFactory: now
         });
 

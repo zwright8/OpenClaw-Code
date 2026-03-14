@@ -5123,6 +5123,9 @@ export async function runAutonomousOpenClaw({
     botCircuitBreakerCooldownMs = 30_000,
     botCircuitBreakerHalfOpenMaxProbes = 1,
     botCircuitBreakerHalfOpenSuccessThreshold = 1,
+    botCircuitBreakerFailureRateThreshold = 0,
+    botCircuitBreakerFailureRateWindow = 20,
+    botCircuitBreakerFailureRateMinSamples = 8,
     enqueueFollowupTasks = true,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
@@ -5248,6 +5251,9 @@ export async function runAutonomousOpenClaw({
             botCircuitBreakerCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold,
+            botCircuitBreakerFailureRateThreshold,
+            botCircuitBreakerFailureRateWindow,
+            botCircuitBreakerFailureRateMinSamples,
             enqueueFollowupTasks,
             nowFactory
         });
@@ -5395,6 +5401,9 @@ export async function runAutonomousOpenClaw({
             botCircuitBreakerCooldownMs: parseNonNegativeInt(botCircuitBreakerCooldownMs, 30_000),
             botCircuitBreakerHalfOpenMaxProbes: parsePositiveInt(botCircuitBreakerHalfOpenMaxProbes, 1),
             botCircuitBreakerHalfOpenSuccessThreshold: parsePositiveInt(botCircuitBreakerHalfOpenSuccessThreshold, 1),
+            botCircuitBreakerFailureRateThreshold: clamp(parseNonNegativeNumber(botCircuitBreakerFailureRateThreshold, 0), 0, 1),
+            botCircuitBreakerFailureRateWindow: parsePositiveInt(botCircuitBreakerFailureRateWindow, 20),
+            botCircuitBreakerFailureRateMinSamples: parsePositiveInt(botCircuitBreakerFailureRateMinSamples, 8),
             enqueueFollowupTasks
         },
         coverage,

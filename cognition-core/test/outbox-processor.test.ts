@@ -679,3 +679,161 @@ test('processOutboxEnvelopes requires configured half-open success probes before
     assert.equal(third?.status, 'completed');
     assert.match(third?.result?.output || '', /Half-open probe 2 succeeded/);
 });
+
+test('processOutboxEnvelopes opens circuit breaker on rolling transient failure-rate threshold', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000741', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000742', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000743', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000744', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000745', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000746', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 96_000 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 96_001
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const outcomes = [
+        'failure',
+        'success',
+        'failure',
+        'success',
+        'failure'
+    ];
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 0,
+        botCircuitBreakerFailureRateThreshold: 0.6,
+        botCircuitBreakerFailureRateWindow: 5,
+        botCircuitBreakerFailureRateMinSamples: 5,
+        botCircuitBreakerCooldownMs: 10_000,
+        nowFactory: () => 5_000,
+        botExecute: async () => {
+            const next = outcomes[attempts];
+            attempts++;
+            if (next === 'failure') {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient transport timeout contacting runtime.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 5);
+    assert.equal(stats.botCircuitBreakerOpened, 1);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 1);
+
+    const records = await store.loadRecords();
+    const fifth = records.find((entry) => entry.taskId === requests[4].id);
+    const sixth = records.find((entry) => entry.taskId === requests[5].id);
+    assert.equal(fifth?.status, 'failed');
+    assert.match(fifth?.result?.output || '', /failure-rate threshold/);
+    assert.equal(sixth?.status, 'failed');
+    assert.match(sixth?.result?.output || '', /circuit breaker is open/);
+});
+
+test('processOutboxEnvelopes keeps failure-rate breaker closed below min sample gate', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000751', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000752', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000753', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000754', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 97_000 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 97_001
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 0,
+        botCircuitBreakerFailureRateThreshold: 0.5,
+        botCircuitBreakerFailureRateWindow: 5,
+        botCircuitBreakerFailureRateMinSamples: 5,
+        botCircuitBreakerCooldownMs: 10_000,
+        nowFactory: () => 6_000,
+        botExecute: async () => {
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'Transient transport timeout contacting runtime.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 4);
+    assert.equal(stats.botCircuitBreakerOpened, 0);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 0);
+});

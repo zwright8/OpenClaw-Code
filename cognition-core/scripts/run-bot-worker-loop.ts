@@ -38,6 +38,9 @@ Options:
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
+  --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
+  --bot-circuit-breaker-failure-rate-window <n> Rolling sample window used for failure-rate thresholding (default: 20)
+  --bot-circuit-breaker-failure-rate-min-samples <n> Min rolling samples before failure-rate threshold can open breaker (default: 8)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
   --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
   --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
@@ -119,6 +122,9 @@ function parseArgs(argv) {
         botAttemptTimeoutMs: 120_000,
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
+        botCircuitBreakerFailureRateThreshold: 0,
+        botCircuitBreakerFailureRateWindow: 20,
+        botCircuitBreakerFailureRateMinSamples: 8,
         botCircuitBreakerCooldownMs: 30_000,
         botCircuitBreakerHalfOpenMaxProbes: 1,
         botCircuitBreakerHalfOpenSuccessThreshold: 1,
@@ -277,6 +283,21 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-circuit-breaker-failure-rate-threshold') {
+            options.botCircuitBreakerFailureRateThreshold = parseRatio(value, '--bot-circuit-breaker-failure-rate-threshold');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-failure-rate-window') {
+            options.botCircuitBreakerFailureRateWindow = parsePositiveInt(value, '--bot-circuit-breaker-failure-rate-window');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-failure-rate-min-samples') {
+            options.botCircuitBreakerFailureRateMinSamples = parsePositiveInt(value, '--bot-circuit-breaker-failure-rate-min-samples');
+            i++;
+            continue;
+        }
         if (token === '--bot-circuit-breaker-cooldown-ms') {
             options.botCircuitBreakerCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-cooldown-ms', true);
             i++;
@@ -371,6 +392,9 @@ function printSummary(report) {
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
+            botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,
+            botCircuitBreakerFailureRateWindow: options.botCircuitBreakerFailureRateWindow,
+            botCircuitBreakerFailureRateMinSamples: options.botCircuitBreakerFailureRateMinSamples,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
