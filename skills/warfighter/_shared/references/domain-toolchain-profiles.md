@@ -730,3 +730,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent test witness and alternate mission allocation board
 - Protocol binding: signed lot manifests + API/JSON + USMTF + OPC UA
 - Fallback path: mission-essential lots only with manual pedigree confirmation and narrowed environmental screening
+
+## New Toolchain Wave (2026-03-14, Expansion Wave XLIX)
+
+### `TC-BIO-ADJUVANT-086`
+
+- Domain: strategic vaccine adjuvant and lipid nanoparticle surge
+- Primary systems: adjuvant pedigree ledger, lipid-nanoparticle cold-chain tracker, fill-finish scheduler
+- Cross-check systems: independent sterility witness and alternate medical-demand priority board
+- Protocol binding: signed material-cert manifests + HL7/FHIR + API/JSON + USMTF
+- Fallback path: mission-essential countermeasure lots only with dual-control release review
+
+### `TC-STERILITY-087`
+
+- Domain: theater forward sterility release and bioprocess assurance
+- Primary systems: batch-record ledger, sterility assay dashboard, field release-authority board
+- Cross-check systems: independent assay witness and alternate quarantine tracker
+- Protocol binding: signed batch manifests + HL7/FHIR + API/JSON + USMTF
+- Fallback path: hold-and-test posture with commander-approved emergency release only
+
+### `TC-DETAINEE-APPEAL-088`
+
+- Domain: coalition detainee appeals translation and custody transparency
+- Primary systems: appeal timeline board, translation QA workbench, custody ledger
+- Cross-check systems: independent legal-liaison witness and alternate ICRC-notification tracker
+- Protocol binding: NIEM + CJIS + signed custody manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: time-bound manual appeals review with dual-review translation and protected custody updates
+
+### `TC-PR-FAMILY-089`
+
+- Domain: joint personnel recovery family authentication and deception denial
+- Primary systems: PR authentication board, secure notification ledger, media-authenticity verifier
+- Cross-check systems: independent survival-report witness and alternate casualty-assistance coordination board
+- Protocol binding: signed notification manifests + USMTF + STIX/TAXII + API/JSON + CoT
+- Fallback path: dual-channel human verification only with notification freeze on unresolved identity conflict
+
+### `TC-WATER-OT-090`
+
+- Domain: homeland municipal water cyber chemical attack triage
+- Primary systems: water SCADA safety board, sample-chain ledger, emergency-operations support board
+- Cross-check systems: independent lab witness and alternate public-works status mirror
+- Protocol binding: NIMS/ICS + EDXL-DE/CAP + OPC UA + API/JSON + USMTF
+- Fallback path: life-safety-first water isolation with hourly command and civil-lead review
+
+### `TC-CABLE-SHIP-091`
+
+- Domain: strategic undersea cable repair ship escort and priority
+- Primary systems: cable fault board, repair-ship readiness tracker, escort assignment planner
+- Cross-check systems: independent landing-station status witness and alternate reroute board
+- Protocol binding: AIS/NMEA + OGC + signed repair manifests + API/JSON + USMTF
+- Fallback path: mission-essential repair routes only with fixed escort windows and manual acknowledgment
+
+### `TC-OFFSHORE-BLACKSTART-092`
+
+- Domain: theater offshore energy platform blackstart and defense
+- Primary systems: platform OT health board, restart sequencer, maritime defense COP
+- Cross-check systems: independent export-flow witness and alternate coastal-grid status board
+- Protocol binding: AIS/NMEA + OGC + OPC UA + signed maintenance manifests + USMTF
+- Fallback path: minimum-safe export posture only with platform-by-platform release approval
+
+### `TC-BREACH-CERT-093`
+
+- Domain: joint robotic breach lane certification and human override
+- Primary systems: engineer lane-certification board, autonomy telemetry validator, blue-force hazard overlay
+- Cross-check systems: independent explosive-hazard witness and alternate override drill log
+- Protocol binding: CoT + VMF + signed autonomy attestations + API/JSON + USMTF
+- Fallback path: manual breach certification only with explicit commander acceptance of reduced tempo

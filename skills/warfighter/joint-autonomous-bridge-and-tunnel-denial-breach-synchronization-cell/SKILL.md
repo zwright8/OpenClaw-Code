@@ -54,3 +54,8 @@ Preferred protocol families for this skill: USMTF, VMF, CoT, NIEM, API/JSON.
 - Flag legal/policy/ROE constraints and coalition interoperability limits early.
 - Downgrade to advisory-only when authority, provenance, or acknowledgment integrity is uncertain.
 - Do not fabricate sources, approvals, or operational authorities.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-joint-robotic-breach-lane-certification-human-override-v1` + `protocol_stack_id=ps-joint-robotic-breach-lane-certification-human-override-stack-v1` when autonomous or robotic breach options require lane-certification evidence, human-override drills, or blue-force hazard validation before commitment.
+- Add `packet_id=DPL-ROBOTIC-BREACH-LANE-CERT-001` for branches that materially alter breach tempo, safety confidence, or commander GO/NO-GO posture.

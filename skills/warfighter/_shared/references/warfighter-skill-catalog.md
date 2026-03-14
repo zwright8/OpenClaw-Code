@@ -2464,3 +2464,25 @@ Every skill output should include:
 - Joint orbital mission data downlink window and ground priority + space domain awareness and satcom defense + joint space launch window conflict deconfliction + contested space launch and satellite reconstitution.
 - Joint urban rubble route clearance and structural collapse rescue + route clearance and counter-IED fusion + defense support of civil authorities crisis cell + joint civil dam failure and floodplain operations cell.
 - Strategic semiconductor test burn-in and mission priority + strategic industrial mobilization readiness + supply chain risk and industrial base monitor + strategic guidance seeker IMU and accelerometer priority cell.
+
+## New Expansion Wave (2026-03-14, Wave XLIX)
+
+- strategic-vaccine-adjuvant-lipid-nanoparticle-surge-cell
+- theater-forward-sterility-release-and-bioprocess-assurance-cell
+- coalition-detainee-appeals-translation-and-custody-transparency-cell
+- joint-personnel-recovery-family-authentication-and-deception-denial-cell
+- homeland-municipal-water-cyber-chemical-attack-triage-cell
+- strategic-undersea-cable-repair-ship-escort-and-priority-cell
+- theater-offshore-energy-platform-blackstart-and-defense-cell
+- joint-robotic-breach-lane-certification-and-human-override-cell
+
+## Updated Pairings (2026-03-14, Wave XLIX)
+
+- Vaccine adjuvant/LNP surge + strategic biomanufacturing countermeasure + vaccine/antitoxin surge + medical logistics continuity.
+- Forward sterility release + contested additive pharma authenticity + Role 3 medical network + countermeasure distribution governance.
+- Coalition detainee appeals translation + custody handshake ledger + coalition legal interoperability + battlefield forensics evidence integrity.
+- PR family authentication/deception denial + joint personnel recovery integration + casualty information/family notification integrity + information-integrity assurance.
+- Municipal water cyber-chemical triage + urban underground water-grid contamination response + DSCA crisis support + cyber-physical infrastructure defense.
+- Undersea cable repair ship escort priority + cable landing blackstart defense + theater mission network failover + maritime undersea control.
+- Offshore energy platform blackstart defense + coalition offshore energy platform defense integration + operational energy resilience + strategic fuel and grid continuity.
+- Robotic breach-lane certification + autonomous bridge/tunnel breach synchronization + human-machine breaching safety assurance + combat engineering obstacle intelligence.

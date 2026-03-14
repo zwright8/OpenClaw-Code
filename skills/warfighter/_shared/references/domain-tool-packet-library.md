@@ -11903,3 +11903,93 @@ validation_gates:
 - output_schema: semiconductor release ladder, burn-in capacity board, mission-priority lot queue
 - protocol_profile: signed lot manifests + API/JSON + USMTF + OPC UA
 - validation_gates: pedigree verification, screening completion, release authority approval
+
+## Packet Addendum XXXVIII (2026-03-14, Expansion Wave XLIX Bio-Surge, Custody Transparency, and Infrastructure Resilience Packets)
+
+### packet_id: DPL-VACCINE-ADJUVANT-LNP-SURGE-001
+- domain: strategic vaccine adjuvant and lipid nanoparticle surge
+- objective: preserve countermeasure readiness by allocating scarce adjuvants, LNP inputs, and fill-finish capacity without unsafe release shortcuts.
+- primary_tools: adjuvant pedigree ledger, lipid-nanoparticle cold-chain tracker, fill-finish scheduler
+- alternate_tools: manual specialty-input board and release-priority worksheet
+- degraded_mode: mission-essential countermeasure lots only with dual-control release review
+- input_requirements: specialty-input inventory, cold-chain status, fill-finish capacity, demand priority, authority thresholds
+- output_schema: adjuvant allocation board, fill-finish risk ladder, release-priority matrix
+- protocol_profile: signed material-cert manifests + HL7/FHIR + API/JSON + USMTF
+- validation_gates: pedigree verification, cold-chain confirmation, command approval
+
+### packet_id: DPL-STERILITY-RELEASE-BIOPROCESS-001
+- domain: theater forward sterility release and bioprocess assurance
+- objective: release field-produced biologics or diagnostics only when assay confidence, quarantine posture, and mission urgency remain within approved limits.
+- primary_tools: batch-record ledger, sterility assay dashboard, field release-authority board
+- alternate_tools: manual batch worksheet and quarantine decision log
+- degraded_mode: hold-and-test posture with commander-approved emergency release only
+- input_requirements: batch records, assay results, contamination indicators, quarantine status, authority matrix
+- output_schema: batch-release board, contamination branch matrix, assay-confidence ledger
+- protocol_profile: signed batch manifests + HL7/FHIR + API/JSON + USMTF
+- validation_gates: assay pass, batch-record integrity, medical authority approval
+
+### packet_id: DPL-DETAINEE-APPEALS-CUSTODY-001
+- domain: coalition detainee appeals translation and custody transparency
+- objective: preserve legitimacy and legal compliance by synchronizing appeals, translation quality, and custody transparency across coalition partners.
+- primary_tools: appeal timeline board, translation QA workbench, custody ledger
+- alternate_tools: manual appeal ledger and bilingual review worksheet
+- degraded_mode: time-bound manual appeals review with dual-review translation and protected custody updates
+- input_requirements: detainee case status, appeal windows, translation backlog, custody chain, coalition caveats
+- output_schema: appeal schedule matrix, translation exception log, custody-transparency packet
+- protocol_profile: NIEM + CJIS + signed custody manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: legal basis check, translation review pass, custody acknowledgment integrity
+
+### packet_id: DPL-PR-FAMILY-AUTH-DECEPTION-001
+- domain: joint personnel recovery family authentication and deception denial
+- objective: keep recovery decisions and family notifications anchored to trusted identity evidence when adversaries spoof survivor reports or command updates.
+- primary_tools: PR authentication board, secure notification ledger, media-authenticity verifier
+- alternate_tools: manual challenge-and-reply worksheet and notification hold board
+- degraded_mode: dual-channel human verification only with notification freeze on unresolved identity conflict
+- input_requirements: isolated-personnel reports, authentication artifacts, spoof indicators, family-contact status, authority thresholds
+- output_schema: authentication-confidence matrix, notification integrity board, deception-denial branch plan
+- protocol_profile: signed notification manifests + USMTF + STIX/TAXII + API/JSON + CoT
+- validation_gates: identity verification, notification authority check, acknowledgment integrity
+
+### packet_id: DPL-MUNICIPAL-WATER-CYBER-CHEM-001
+- domain: homeland municipal water cyber chemical attack triage
+- objective: prioritize isolation, sampling, restoration, and military support when OT compromise and contamination indicators threaten public safety and defense missions.
+- primary_tools: water SCADA safety board, sample-chain ledger, emergency-operations support board
+- alternate_tools: ICS paper board and manual sample-custody worksheet
+- degraded_mode: life-safety-first water isolation with hourly command and civil-lead review
+- input_requirements: contamination signals, OT status, service-area impacts, sampling chain, mission dependencies
+- output_schema: contamination triage map, isolation ladder, DSCA support board
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + OPC UA + API/JSON + USMTF
+- validation_gates: sample-chain verification, civil-lead confirmation, command approval
+
+### packet_id: DPL-CABLE-REPAIR-SHIP-ESCORT-001
+- domain: strategic undersea cable repair ship escort and priority
+- objective: restore cable capacity by sequencing repair ships and escorts against threat windows without losing restoration priority discipline.
+- primary_tools: cable fault board, repair-ship readiness tracker, escort assignment planner
+- alternate_tools: manual ship-priority board and reroute worksheet
+- degraded_mode: mission-essential repair routes only with fixed escort windows and manual acknowledgment
+- input_requirements: cable fault status, repair-ship availability, threat picture, escort readiness, route constraints
+- output_schema: repair-ship priority board, escort matrix, restoration branch ladder
+- protocol_profile: AIS/NMEA + OGC + signed repair manifests + API/JSON + USMTF
+- validation_gates: repair authority confirmation, ship readiness check, escort approval
+
+### packet_id: DPL-OFFSHORE-ENERGY-BLACKSTART-001
+- domain: theater offshore energy platform blackstart and defense
+- objective: restore offshore energy output and platform survivability without bypassing OT safety, maritime defense, or export-path controls.
+- primary_tools: platform OT health board, restart sequencer, maritime defense COP
+- alternate_tools: manual restart worksheet and patrol-allocation board
+- degraded_mode: minimum-safe export posture only with platform-by-platform release approval
+- input_requirements: platform status, OT faults, blackstart readiness, threat picture, export dependencies
+- output_schema: blackstart ladder, platform defense matrix, export-continuity board
+- protocol_profile: AIS/NMEA + OGC + OPC UA + signed maintenance manifests + USMTF
+- validation_gates: OT safety pass, blackstart confirmation, command approval
+
+### packet_id: DPL-ROBOTIC-BREACH-LANE-CERT-001
+- domain: joint robotic breach lane certification and human override
+- objective: certify robotic breach lanes and human-override readiness before committing forces through obstacles under fire.
+- primary_tools: engineer lane-certification board, autonomy telemetry validator, blue-force hazard overlay
+- alternate_tools: manual lane-cert worksheet and override drill log
+- degraded_mode: manual breach certification only with explicit commander acceptance of reduced tempo
+- input_requirements: obstacle status, robotic system health, telemetry confidence, blue-force layout, approval thresholds
+- output_schema: lane-certification board, autonomy risk ledger, override branch package
+- protocol_profile: CoT + VMF + signed autonomy attestations + API/JSON + USMTF
+- validation_gates: telemetry verification, lane proof pass, human-override drill confirmation

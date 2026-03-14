@@ -2146,3 +2146,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-strategic-supply-shock-v1`.
 - Protocols: signed lot manifests, `API/JSON`, `USMTF`, `OPC UA`.
 - Degraded fallback: mission-essential lots only with manual pedigree confirmation and narrowed environmental screening.
+
+## Profile Addendum T (2026-03-14, Bio-Surge Integrity, Custody Transparency, Water Attack Triage, and Robotic Breach Assurance)
+
+### `bio-adjuvant-lnp-surge-v1`
+- Use for strategic vaccine adjuvant, lipid nanoparticle, and fill-finish prioritization when specialty biologics inputs become the pacing constraint.
+- Primary tools: `ts-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: signed material-cert manifests, `HL7/FHIR`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential countermeasure lots only with dual-control release review.
+
+### `forward-sterility-bioprocess-release-v1`
+- Use for forward sterility release and field bioprocess governance when biologics or diagnostics need trusted emergency release decisions.
+- Primary tools: `ts-theater-forward-sterility-release-bioprocess-assurance-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: signed batch manifests, `HL7/FHIR`, `API/JSON`, `USMTF`.
+- Degraded fallback: hold-and-test posture with commander-approved emergency release only.
+
+### `coalition-detainee-appeals-transparency-v1`
+- Use for coalition detainee appeal timelines, multilingual translation QA, and custody-transparency exchange under legal scrutiny.
+- Primary tools: `ts-coalition-detainee-appeals-custody-transparency-v1`.
+- Cross-check tools: `ts-detainee-accountability-v1`.
+- Protocols: `NIEM`, `CJIS`, signed custody manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: manual appeals review with dual-review translation and protected custody updates.
+
+### `pr-family-auth-deception-denial-v1`
+- Use for trusted PR updates and family notification when isolated-personnel reporting or command messages may be spoofed.
+- Primary tools: `ts-joint-personnel-recovery-family-auth-deception-denial-v1`.
+- Cross-check tools: `ts-disinformation-counter-v1`.
+- Protocols: signed notification manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `CoT`.
+- Degraded fallback: dual-channel human verification only with notification freeze on unresolved identity conflict.
+
+### `municipal-water-cyber-chemical-triage-v1`
+- Use for municipal water OT compromise and contamination triage when DSCA support may be needed to preserve public safety and mission continuity.
+- Primary tools: `ts-homeland-municipal-water-cyber-chemical-triage-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OPC UA`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety-first water isolation with hourly command and civil-lead review.
+
+### `cable-repair-ship-escort-priority-v1`
+- Use for strategic undersea cable repair-ship prioritization when escort scarcity and maritime threat windows drive restoration order.
+- Primary tools: `ts-strategic-undersea-cable-repair-ship-escort-priority-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, signed repair manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential repair routes only with fixed escort windows and manual acknowledgment.
+
+### `offshore-energy-blackstart-defense-v1`
+- Use for offshore energy platform blackstart and defense when military fuel, power, or communications continuity depend on surviving platform outages or sabotage.
+- Primary tools: `ts-theater-offshore-energy-platform-blackstart-defense-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, `OPC UA`, signed maintenance manifests, `USMTF`.
+- Degraded fallback: minimum-safe export posture only with platform-by-platform release approval.
+
+### `robotic-breach-lane-certification-v1`
+- Use for robotic breach-lane certification and human-override governance before maneuver forces commit through cleared routes.
+- Primary tools: `ts-joint-robotic-breach-lane-certification-human-override-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `CoT`, `VMF`, signed autonomy attestations, `API/JSON`, `USMTF`.
+- Degraded fallback: manual breach certification only with explicit commander acceptance of reduced tempo.

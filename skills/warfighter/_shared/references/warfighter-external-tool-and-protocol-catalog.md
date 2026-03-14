@@ -12252,3 +12252,87 @@ external_binding:
 ### `ps-strategic-semiconductor-test-burn-in-mission-priority-stack-v1`
 - Protocols: signed lot manifests, `API/JSON`, `USMTF`, `OPC UA`.
 - Use for: semiconductor screening state, burn-in queue updates, and release approvals.
+
+## Tool Suite Addendum XLIX (2026-03-14, Bio-Surge Integrity, Custody Transparency, Water Attack Triage, and Robotic Breach Assurance)
+
+### `ts-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-v1`
+- Use for: allocating vaccine adjuvants, lipid nanoparticles, and fill-finish capacity when specialty biologics inputs constrain countermeasure readiness.
+- Primary tools: adjuvant pedigree ledger, lipid-nanoparticle cold-chain tracker, fill-finish scheduler.
+- Cross-check tools: independent sterility witness and alternate medical-demand priority board.
+- Typical products: adjuvant allocation board, fill-finish risk ladder, release-priority matrix.
+
+### `ts-theater-forward-sterility-release-bioprocess-assurance-v1`
+- Use for: forward sterility release, batch-record assurance, and quarantine governance for field-produced biologics and diagnostics.
+- Primary tools: batch-record ledger, sterility assay dashboard, field release-authority board.
+- Cross-check tools: independent assay witness and alternate quarantine tracker.
+- Typical products: batch-release board, contamination branch matrix, assay-confidence ledger.
+
+### `ts-coalition-detainee-appeals-custody-transparency-v1`
+- Use for: coalition detainee appeals management, translation quality control, and custody transparency under legal and legitimacy pressure.
+- Primary tools: appeal timeline board, translation QA workbench, custody ledger.
+- Cross-check tools: independent legal-liaison witness and alternate ICRC-notification tracker.
+- Typical products: appeal schedule matrix, translation exception log, custody-transparency packet.
+
+### `ts-joint-personnel-recovery-family-auth-deception-denial-v1`
+- Use for: trusted personnel-recovery updates, family-notification authentication, and adversary spoofing or deepfake denial.
+- Primary tools: PR authentication board, secure notification ledger, media-authenticity verifier.
+- Cross-check tools: independent survival-report witness and alternate casualty-assistance coordination board.
+- Typical products: authentication-confidence matrix, notification integrity board, deception-denial branch plan.
+
+### `ts-homeland-municipal-water-cyber-chemical-triage-v1`
+- Use for: homeland water-system OT compromise, chemical contamination triage, and military-support prioritization during public-safety emergencies.
+- Primary tools: water SCADA safety board, sample-chain ledger, emergency-operations support board.
+- Cross-check tools: independent lab witness and alternate public-works status mirror.
+- Typical products: contamination triage map, isolation ladder, DSCA support board.
+
+### `ts-strategic-undersea-cable-repair-ship-escort-priority-v1`
+- Use for: prioritizing undersea cable repair ships, escort allocation, and restoration sequencing when maritime threat windows constrain recovery.
+- Primary tools: cable fault board, repair-ship readiness tracker, escort assignment planner.
+- Cross-check tools: independent landing-station status witness and alternate reroute board.
+- Typical products: repair-ship priority board, escort matrix, restoration branch ladder.
+
+### `ts-theater-offshore-energy-platform-blackstart-defense-v1`
+- Use for: blackstart restoration, OT defense, and maritime protection for offshore energy platforms that support military power, fuel, or communications continuity.
+- Primary tools: platform OT health board, restart sequencer, maritime defense COP.
+- Cross-check tools: independent export-flow witness and alternate coastal-grid status board.
+- Typical products: blackstart ladder, platform defense matrix, export-continuity board.
+
+### `ts-joint-robotic-breach-lane-certification-human-override-v1`
+- Use for: robotic breach-lane certification, autonomy confidence tracking, and human-override governance before maneuver commitment.
+- Primary tools: engineer lane-certification board, autonomy telemetry validator, blue-force hazard overlay.
+- Cross-check tools: independent explosive-hazard witness and alternate override drill log.
+- Typical products: lane-certification board, autonomy risk ledger, override branch package.
+
+## Protocol Stack Addendum XLIX (2026-03-14, External Integration Profiles for Expansion Wave XLIX)
+
+### `ps-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-stack-v1`
+- Protocols: signed material-cert manifests, `HL7/FHIR`, `API/JSON`, `USMTF`.
+- Use for: specialty-input pedigree exchange, fill-finish priority updates, and release approvals.
+
+### `ps-theater-forward-sterility-release-bioprocess-assurance-stack-v1`
+- Protocols: signed batch manifests, `HL7/FHIR`, `API/JSON`, `USMTF`.
+- Use for: batch-status exchange, assay confidence updates, and quarantine or release acknowledgments.
+
+### `ps-coalition-detainee-appeals-custody-transparency-stack-v1`
+- Protocols: `NIEM`, `CJIS`, signed custody manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: appeal-status exchange, translation exception handling, and coalition custody transparency acknowledgments.
+
+### `ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1`
+- Protocols: signed notification manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `CoT`.
+- Use for: authentication updates, spoof-indicator exchange, and protected family-notification acknowledgments.
+
+### `ps-homeland-municipal-water-cyber-chemical-triage-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: contamination alerts, OT safety state exchange, and military-support approval routing.
+
+### `ps-strategic-undersea-cable-repair-ship-escort-priority-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, signed repair manifests, `API/JSON`, `USMTF`.
+- Use for: repair-ship movement state, escort tasking, and restoration-priority acknowledgments.
+
+### `ps-theater-offshore-energy-platform-blackstart-defense-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `OPC UA`, signed maintenance manifests, `USMTF`.
+- Use for: platform OT state exchange, blackstart sequencing, and defense-posture acknowledgments.
+
+### `ps-joint-robotic-breach-lane-certification-human-override-stack-v1`
+- Protocols: `CoT`, `VMF`, signed autonomy attestations, `API/JSON`, `USMTF`.
+- Use for: robotic breach status, lane-certification evidence, and human-override control acknowledgments.

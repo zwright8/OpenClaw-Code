@@ -1,9 +1,9 @@
 ---
-name: strategic-biomanufacturing-countermeasure-cell
-description: Support U.S. warfighter planning and decision support for Strategic Biomanufacturing Countermeasure Cell. Use when missions require strategic-biomanufacturing-countermeasure-cell planning, integrated options, and protocol-aware staff outputs.
+name: strategic-bioindustrial-defense-vaccine-and-antitoxin-surge-cell
+description: Coordinate strategic bioindustrial defense for vaccine and antitoxin surge under wartime disruption. Use when military decision makers must align force-health protection with manufacturing, distribution, and prioritization constraints.
 ---
 
-# Strategic Biomanufacturing Countermeasure Cell
+# Strategic Bioindustrial Defense Vaccine and Antitoxin Surge Cell
 
 ## Mission Scope
 
@@ -13,8 +13,8 @@ description: Support U.S. warfighter planning and decision support for Strategic
 
 ## Workflow
 
-1. Frame the mission problem using these core inputs: commander objectives, force disposition, operating constraints, and key intelligence gaps.
-2. Identify assumptions, decision thresholds, and what reporting or indicators would invalidate the current plan.
+1. Frame the mission problem using domain-specific inputs and command objectives.
+2. Identify assumptions, decision thresholds, and what reporting would invalidate the current plan.
 3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
 4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
 5. Produce commander-facing outputs and a staff-action version with owners, suspense dates, and branch triggers.
@@ -31,15 +31,14 @@ Deliver results in this order:
 
 ## Domain Products
 
-Primary products for this skill: countermeasure surge plan, biomanufacturing risk monitor, distribution timeline branches.
+Primary products for this skill: vaccine-antitoxin surge ladder, bioindustrial bottleneck heatmap, force-health prioritization board.
 
 ## External Tools and Protocol Integration
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
+- Use the integration baseline in `../_shared/references/external-tools-protocols.md` and select a domain toolchain profile relevant to this mission.
 - Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Prioritize these tools or protocol families for this domain: biomanufacturing MES systems, biosurveillance feeds, medical logistics planners.
-- State the protocol or message format for outbound coordination (for example USMTF, API/JSON, STIX/TAXII).
 - Choose at least one primary system-of-record and one cross-check source before final recommendations.
+- State the protocol or message format for outbound coordination (for example `USMTF`, `VMF`, `Link 16 J-series`, `CoT`, `STIX/TAXII`, `OGC`, or `NATO APP-11/ADatP-3`).
 - Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
 
 ## Interoperability Validation Checklist
@@ -145,8 +144,12 @@ Primary products for this skill: countermeasure surge plan, biomanufacturing ris
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-10, Maneuver Assurance and Strategic Continuity Expansion)
+
+- Add `tool_suite_id=ts-bioindustrial-vaccine-antitoxin-surge-v1` + `protocol_stack_id=ps-bioindustrial-vaccine-antitoxin-surge-stack-v1` when producing critical recommendations for this mission domain.
+
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
 
-- Add `tool_suite_id=ts-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-v1` + `protocol_stack_id=ps-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-stack-v1` when countermeasure viability depends on adjuvant pedigree, LNP scarcity, or fill-finish throughput.
-- Add `tool_suite_id=ts-theater-forward-sterility-release-bioprocess-assurance-v1` + `protocol_stack_id=ps-theater-forward-sterility-release-bioprocess-assurance-stack-v1` when release confidence depends on sterility assays, quarantine decisions, or batch-record integrity.
-- Add `packet_id=DPL-VACCINE-ADJUVANT-LNP-SURGE-001` and `packet_id=DPL-STERILITY-RELEASE-BIOPROCESS-001` for branches that materially alter production tempo, release posture, or commander risk acceptance.
+- Add `tool_suite_id=ts-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-v1` + `protocol_stack_id=ps-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-stack-v1` when vaccine or antitoxin surge options depend on adjuvant lots, LNP inputs, or fill-finish capacity.
+- Add `tool_suite_id=ts-theater-forward-sterility-release-bioprocess-assurance-v1` + `protocol_stack_id=ps-theater-forward-sterility-release-bioprocess-assurance-stack-v1` when emergency countermeasure release depends on trusted sterility, quarantine, or assay-confidence evidence.
+- Add `packet_id=DPL-VACCINE-ADJUVANT-LNP-SURGE-001` and `packet_id=DPL-STERILITY-RELEASE-BIOPROCESS-001` for branches that materially alter antitoxin release timing, strategic medical readiness, or allied distribution posture.

@@ -301,3 +301,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-joint-distributed-mission-brief-multilingual-assurance-v1` + `protocol_stack_id=ps-joint-distributed-mission-brief-multilingual-assurance-stack-v1` when interoperability depends on preserving commander intent across multilingual briefs and disconnected partner distribution paths.
 - Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when coalition support decisions depend on reconciling utility anomalies across shared bases, ports, or treatment nodes.
 - Add `packet_id=DPL-RELEASABILITY-WAIVER-001`, `packet_id=DPL-MULTILINGUAL-MISSION-BRIEF-001`, and `packet_id=DPL-FEW-NEXUS-ANOMALY-001` for branches that materially change coalition release, translation trust, or shared-support posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-coalition-detainee-appeals-custody-transparency-v1` + `protocol_stack_id=ps-coalition-detainee-appeals-custody-transparency-stack-v1` when interoperability depends on common detainee appeals handling, translation quality, or custody-transparency trust.
+- Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when coalition recovery coordination depends on trusted family messaging, survivor authentication, or spoof denial.
+- Add `packet_id=DPL-DETAINEE-APPEALS-CUSTODY-001` and `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially change coalition legitimacy, detainee compliance, or shared recovery confidence.
