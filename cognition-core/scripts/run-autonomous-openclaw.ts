@@ -61,6 +61,9 @@ Options:
   --latency-tail-penalty-weight <n> Tail-latency ranking penalty weight against latency target overruns (0-1, default: 0)
   --latency-tail-percentile <n> Tail percentile used for risk penalty (0.5-0.999, default: 0.95)
   --latency-tail-min-samples <n> Min measured durations before tail-latency penalties activate (default: 8)
+  --latency-cvar-penalty-weight <n> CVaR tail-latency ranking penalty weight against latency target overruns (0-1, default: 0)
+  --latency-cvar-percentile <n> Tail percentile used to form CVaR tail set (0.5-0.999, default: 0.95)
+  --latency-cvar-min-samples <n> Min measured durations before CVaR penalties activate (default: 8)
   --failure-burst-penalty-weight <n> Short-vs-long window failure-burst penalty weight (0-1, default: 0)
   --failure-burst-short-window <n> Short recency window used to estimate burst failures (2-64, default: 8)
   --failure-burst-long-window <n> Long recency window baseline for failure bursts (2-256, default: 32)
@@ -242,6 +245,9 @@ function parseArgs(argv) {
             latencyTailPenaltyWeight: 0,
             latencyTailPercentile: 0.95,
             latencyTailMinSamples: 8,
+            latencyCvarPenaltyWeight: 0,
+            latencyCvarPercentile: 0.95,
+            latencyCvarMinSamples: 8,
             failureBurstPenaltyWeight: 0,
             failureBurstShortWindow: 8,
             failureBurstLongWindow: 32,
@@ -566,6 +572,21 @@ function parseArgs(argv) {
         }
         if (token === '--latency-tail-min-samples') {
             options.selectionPolicyConfig.latencyTailMinSamples = parsePositiveInt(value, '--latency-tail-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--latency-cvar-penalty-weight') {
+            options.selectionPolicyConfig.latencyCvarPenaltyWeight = parseFloatInRange(value, '--latency-cvar-penalty-weight', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--latency-cvar-percentile') {
+            options.selectionPolicyConfig.latencyCvarPercentile = parseFloatInRange(value, '--latency-cvar-percentile', 0.5, 0.999);
+            i++;
+            continue;
+        }
+        if (token === '--latency-cvar-min-samples') {
+            options.selectionPolicyConfig.latencyCvarMinSamples = parsePositiveInt(value, '--latency-cvar-min-samples');
             i++;
             continue;
         }

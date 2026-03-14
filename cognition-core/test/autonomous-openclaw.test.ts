@@ -939,6 +939,132 @@ test('buildAutonomousBatchPlan ignores tail-latency penalties until minimum meas
     assert.deepEqual(plan.selection.skillIds, [491]);
 });
 
+test('buildAutonomousBatchPlan applies CVaR tail-latency penalties to severe tail candidates', () => {
+    const severeTailOutcomes = [
+        ...Array.from({ length: 18 }, () => ({ status: 'completed', reward: 1, durationMs: 1_000 })),
+        ...Array.from({ length: 2 }, () => ({ status: 'completed', reward: 1, durationMs: 8_000 }))
+    ];
+    const stableOutcomes = Array.from({ length: 20 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 1_000
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 493, code: 'SK-00493', title: 'Skill 493' },
+            { id: 494, code: 'SK-00494', title: 'Skill 494' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 52,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '493': {
+                    attempts: 20,
+                    successes: 19,
+                    failures: 1,
+                    consecutiveFailures: 0,
+                    lastWave: 51,
+                    lastStatus: 'completed',
+                    recentOutcomes: severeTailOutcomes
+                },
+                '494': {
+                    attempts: 20,
+                    successes: 15,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 51,
+                    lastStatus: 'completed',
+                    recentOutcomes: stableOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 53,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            latencyTargetMs: 1_000,
+            latencyCvarPenaltyWeight: 0.6,
+            latencyCvarPercentile: 0.95,
+            latencyCvarMinSamples: 8
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [494]);
+});
+
+test('buildAutonomousBatchPlan ignores CVaR tail-latency penalties until minimum measured samples are reached', () => {
+    const severeTailOutcomes = [
+        ...Array.from({ length: 18 }, () => ({ status: 'completed', reward: 1, durationMs: 1_000 })),
+        ...Array.from({ length: 2 }, () => ({ status: 'completed', reward: 1, durationMs: 8_000 }))
+    ];
+    const stableOutcomes = Array.from({ length: 20 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 1_000
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 495, code: 'SK-00495', title: 'Skill 495' },
+            { id: 496, code: 'SK-00496', title: 'Skill 496' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 54,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '495': {
+                    attempts: 20,
+                    successes: 19,
+                    failures: 1,
+                    consecutiveFailures: 0,
+                    lastWave: 53,
+                    lastStatus: 'completed',
+                    recentOutcomes: severeTailOutcomes
+                },
+                '496': {
+                    attempts: 20,
+                    successes: 15,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 53,
+                    lastStatus: 'completed',
+                    recentOutcomes: stableOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 55,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            latencyTargetMs: 1_000,
+            latencyCvarPenaltyWeight: 0.6,
+            latencyCvarPercentile: 0.95,
+            latencyCvarMinSamples: 25
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [495]);
+});
+
 test('buildAutonomousBatchPlan applies failure-burst penalties to abrupt reliability regressions', () => {
     const burstyOutcomes = [
         ...Array.from({ length: 16 }, () => ({ status: 'completed', reward: 1 })),

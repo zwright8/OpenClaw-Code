@@ -172,6 +172,13 @@ const MIN_LATENCY_TAIL_PERCENTILE = 0.5;
 const MAX_LATENCY_TAIL_PERCENTILE = 0.999;
 const DEFAULT_LATENCY_TAIL_MIN_SAMPLES = 8;
 const MAX_LATENCY_TAIL_MIN_SAMPLES = 256;
+const DEFAULT_LATENCY_CVAR_PENALTY_WEIGHT = 0;
+const MAX_LATENCY_CVAR_PENALTY_WEIGHT = 1;
+const DEFAULT_LATENCY_CVAR_PERCENTILE = 0.95;
+const MIN_LATENCY_CVAR_PERCENTILE = 0.5;
+const MAX_LATENCY_CVAR_PERCENTILE = 0.999;
+const DEFAULT_LATENCY_CVAR_MIN_SAMPLES = 8;
+const MAX_LATENCY_CVAR_MIN_SAMPLES = 256;
 const DEFAULT_FAILURE_BURST_PENALTY_WEIGHT = 0;
 const MAX_FAILURE_BURST_PENALTY_WEIGHT = 1;
 const DEFAULT_FAILURE_BURST_SHORT_WINDOW = 8;
@@ -1065,6 +1072,27 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             1,
             MAX_LATENCY_TAIL_MIN_SAMPLES
         ),
+        latencyCvarPenaltyWeight: clamp(
+            Number.isFinite(Number(value.latencyCvarPenaltyWeight))
+                ? Number(value.latencyCvarPenaltyWeight)
+                : DEFAULT_LATENCY_CVAR_PENALTY_WEIGHT,
+            0,
+            MAX_LATENCY_CVAR_PENALTY_WEIGHT
+        ),
+        latencyCvarPercentile: clamp(
+            Number.isFinite(Number(value.latencyCvarPercentile))
+                ? Number(value.latencyCvarPercentile)
+                : DEFAULT_LATENCY_CVAR_PERCENTILE,
+            MIN_LATENCY_CVAR_PERCENTILE,
+            MAX_LATENCY_CVAR_PERCENTILE
+        ),
+        latencyCvarMinSamples: clamp(
+            Number.isFinite(Number(value.latencyCvarMinSamples))
+                ? parsePositiveInt(value.latencyCvarMinSamples, DEFAULT_LATENCY_CVAR_MIN_SAMPLES)
+                : DEFAULT_LATENCY_CVAR_MIN_SAMPLES,
+            1,
+            MAX_LATENCY_CVAR_MIN_SAMPLES
+        ),
         failureBurstPenaltyWeight: clamp(
             Number.isFinite(Number(value.failureBurstPenaltyWeight))
                 ? Number(value.failureBurstPenaltyWeight)
@@ -1493,6 +1521,40 @@ function computeLatencyTailPenalty(stat, selectionPolicyConfig = null) {
     if (!Number.isFinite(tailDurationMs) || tailDurationMs <= latencyTargetMs) return 0;
 
     const overrunRatio = clamp((tailDurationMs - latencyTargetMs) / latencyTargetMs, 0, 1);
+    return clamp(penaltyWeight * overrunRatio, 0, 1);
+}
+
+function computeLatencyCvarPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const penaltyWeight = clamp(policy.latencyCvarPenaltyWeight, 0, MAX_LATENCY_CVAR_PENALTY_WEIGHT);
+    if (penaltyWeight <= 0) return 0;
+
+    const attempts = clamp(parseNonNegativeInt(stat?.attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    const minSamples = clamp(
+        parsePositiveInt(policy.latencyCvarMinSamples, DEFAULT_LATENCY_CVAR_MIN_SAMPLES),
+        1,
+        MAX_LATENCY_CVAR_MIN_SAMPLES
+    );
+    if (attempts < minSamples) return 0;
+
+    const recentOutcomes = normalizeRecentOutcomes(stat?.recentOutcomes);
+    if (recentOutcomes.length <= 0) return 0;
+    const terminalRecentOutcomes = recentOutcomes.slice(-attempts);
+    const durations = terminalRecentOutcomes
+        .map((entry) => Number(entry.durationMs))
+        .filter((value) => Number.isFinite(value) && value > 0);
+    if (durations.length < minSamples) return 0;
+
+    const latencyTargetMs = resolveLatencyTargetMs(policy, terminalRecentOutcomes);
+    const tailThresholdMs = computePercentile(durations, policy.latencyCvarPercentile);
+    if (!Number.isFinite(tailThresholdMs)) return 0;
+
+    const tailDurations = durations.filter((durationMs) => durationMs >= tailThresholdMs);
+    if (tailDurations.length <= 0) return 0;
+    const cvarTailMs = tailDurations.reduce((sum, value) => sum + value, 0) / tailDurations.length;
+    if (!Number.isFinite(cvarTailMs) || cvarTailMs <= latencyTargetMs) return 0;
+
+    const overrunRatio = clamp((cvarTailMs - latencyTargetMs) / latencyTargetMs, 0, 1);
     return clamp(penaltyWeight * overrunRatio, 0, 1);
 }
 
@@ -4368,6 +4430,7 @@ function selectCatalogSlice({
         score -= computeReliabilityFloorPenalty(scoreStats, scoringPolicy);
         score -= computeLatencySlaPenalty(scoreStats, scoringPolicy);
         score -= computeLatencyTailPenalty(scoreStats, scoringPolicy);
+        score -= computeLatencyCvarPenalty(scoreStats, scoringPolicy);
         score -= computeFailureBurstPenalty(scoreStats, scoringPolicy);
         score -= computeLatencyBurstPenalty(scoreStats, scoringPolicy);
 
