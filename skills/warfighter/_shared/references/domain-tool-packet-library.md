@@ -11657,3 +11657,115 @@ validation_gates:
 - output_schema: soil-bearing classification board, breach-route release matrix, engineer support priority ladder
 - protocol_profile: OGC + CoT + VMF + API/JSON + USMTF
 - validation_gates: soil-confidence pass, route confirmation, heavy-vehicle approval
+
+## Packet Addendum XXXVI (2026-03-14, Expansion Wave XLVII Fires, Access, and Sustainment Integrity Packets)
+
+### packet_id: DPL-LASER-DESIGNATOR-FRATRICIDE-001
+- domain: joint laser designator code and sensor fratricide prevention
+- objective: stop laser-code conflicts and cross-cueing errors before they create target or sensor fratricide.
+- primary_tools: laser-code registry, JTAC fires coordination board, sensor cueing conflict engine
+- alternate_tools: manual code card and designation worksheet
+- degraded_mode: single-designator control with voice readback and UTC acknowledgment log
+- input_requirements: assigned codes, target geometry, participating sensors, fires timing, release authority
+- output_schema: laser-code deconfliction matrix, sensor-safe fires window board, designation approval ladder
+- protocol_profile: VMF + Link 16 J-series + USMTF + API/JSON
+- validation_gates: code integrity pass, target confirmation, release authority acknowledgment
+
+### packet_id: DPL-CLOUD-CREDENTIAL-BURN-001
+- domain: theater cloud credential burn and access reconstitution
+- objective: revoke compromised identity fast enough to contain spread without collapsing mission-essential access.
+- primary_tools: identity emergency control plane, token revocation orchestrator, workload access recovery board
+- alternate_tools: manual privileged-access roster and revocation worksheet
+- degraded_mode: commander-approved break-glass access only with dual-control logging
+- input_requirements: affected identities, federation scope, workload dependencies, privileged roles, mission priorities
+- output_schema: credential burn ladder, privileged-access reconstitution matrix, mission-service exception ledger
+- protocol_profile: SCIM + OIDC/SAML + STIX/TAXII + API/JSON + USMTF
+- validation_gates: revocation completeness, privileged-role review, commander approval
+
+### packet_id: DPL-BATTLE-DAMAGED-AIRCRAFT-RECOVERY-001
+- domain: expeditionary battle-damaged aircraft recovery and controlled cannibalization
+- objective: recover damaged airframes and release parts without breaking airworthiness or custody control.
+- primary_tools: aircraft damage assessment board, maintenance release tracker, cannibalization control ledger
+- alternate_tools: manual battle-damage worksheet and parts-release board
+- degraded_mode: ground-safe recovery only with no-flight release until full inspection
+- input_requirements: aircraft status, damage findings, part demand, repair capacity, authority thresholds
+- output_schema: aircraft recovery board, cannibalization authorization ladder, sortie regeneration matrix
+- protocol_profile: AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
+- validation_gates: structural assessment, custody verification, airworthiness approval
+
+### packet_id: DPL-BASE-FUEL-HYDRANT-FIRE-SUPPRESSION-001
+- domain: homeland base fuel hydrant and fire-suppression recovery
+- objective: restore safe fueling and fire control after hydrant-loop disruption, pressure loss, or suppression failure.
+- primary_tools: hydrant pressure telemetry board, foam concentrate inventory tracker, emergency isolation controller
+- alternate_tools: manual hydrant worksheet and fire-watch board
+- degraded_mode: truck fueling only with manual isolation and continuous fire watch
+- input_requirements: loop status, pressure readings, foam inventory, sortie demand, fire authority constraints
+- output_schema: hydrant restoration matrix, foam reserve ladder, sortie fueling risk board
+- protocol_profile: NIMS/ICS + OPC UA + API/JSON + USMTF
+- validation_gates: isolation check, pressure confirmation, fire-chief approval
+
+### packet_id: DPL-SHORE-POWER-BERTHING-001
+- domain: coalition shore power frequency conversion and berthing
+- objective: berth coalition ships and energize shore power without overloading pier infrastructure or breaking compatibility rules.
+- primary_tools: berth power availability board, frequency-converter status tracker, ship compatibility ledger
+- alternate_tools: manual berth board and converter worksheet
+- degraded_mode: generator support only with prioritized military-essential berths
+- input_requirements: ship classes, berth status, converter capacity, power quality rules, coalition caveats
+- output_schema: berth power allocation board, converter compatibility matrix, coalition port-risk ladder
+- protocol_profile: AIS/NMEA + signed power-cert manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: power compatibility pass, berth authority verification, coalition acknowledgment
+
+### packet_id: DPL-GROUND-ROBOTICS-TELEOP-SPECTRUM-001
+- domain: joint ground robotics teleoperation spectrum safety
+- objective: preserve safe teleoperation of ground robots when contested spectrum threatens link control or autonomy fallback.
+- primary_tools: robotic mission controller, teleop link monitor, spectrum conflict adjudication board
+- alternate_tools: manual robot control worksheet and spectrum hold board
+- degraded_mode: line-of-sight teleoperation only with human spotter chain
+- input_requirements: robot classes, control-link health, spectrum assignments, lost-link behavior, mission tasks
+- output_schema: teleop-control matrix, spectrum-safe task windows, lost-link fallback ladder
+- protocol_profile: CoT + VMF + DDS/ROS 2 + API/JSON + USMTF
+- validation_gates: control-link integrity, spectrum clearance, lost-link drill pass
+
+### packet_id: DPL-CARBON-CARBON-NOZZLE-001
+- domain: strategic carbon-carbon nozzle and reentry material priority
+- objective: allocate high-temperature materials across strategic demand without breaking certification or safety release rules.
+- primary_tools: refractory-material pedigree ledger, nozzle layup and autoclave scheduler, reentry demand board
+- alternate_tools: manual material ledger and furnace queue worksheet
+- degraded_mode: mission-essential lots only with conservative release thresholds
+- input_requirements: pedigree status, furnace and layup capacity, demand priorities, certification state, authority thresholds
+- output_schema: material allocation board, nozzle throughput ledger, strategic readiness risk ladder
+- protocol_profile: signed material-cert manifests + API/JSON + USMTF + OPC UA
+- validation_gates: pedigree verification, thermal-cert pass, release authority approval
+
+### packet_id: DPL-RESPIRATORY-PROTECTION-FILTER-ROTATION-001
+- domain: austere respiratory protective equipment fit and filter rotation
+- objective: keep respiratory protection effective under prolonged exposure without exhausting fit confidence or filter stock.
+- primary_tools: fit-test registry, filter burn tracker, exposure review board
+- alternate_tools: manual fit roster and filter worksheet
+- degraded_mode: mission-essential issue only with commander-approved conservation measures
+- input_requirements: exposed force list, fit status, filter inventory, hazard indicators, resupply timing
+- output_schema: fit and issue matrix, filter rotation ladder, exposure-based resupply board
+- protocol_profile: HL7/FHIR + CBRN USMTF + API/JSON + signed inventory manifests
+- validation_gates: fit verification, exposure review, medical approval
+
+### packet_id: DPL-ASSAULT-LZ-DUST-OBSCURATION-001
+- domain: joint assault landing-zone dust signature and sensor obscuration control
+- objective: release assault landing zones only when dust and obscuration risk stay inside crew and mission limits.
+- primary_tools: landing-zone environment monitor, rotorwash dust forecast engine, sensor obscuration board
+- alternate_tools: manual landing-zone worksheet and dust observation board
+- degraded_mode: daylight or marked landing-zone operations only with manual dust observation
+- input_requirements: soil state, weather, aircraft mix, sensor dependencies, sortie timing
+- output_schema: landing-zone viability matrix, brownout risk ladder, sortie and lift sequencing board
+- protocol_profile: OGC + AIXM/FIXM + VMF + API/JSON + USMTF
+- validation_gates: weather freshness, obscuration threshold pass, air-mission approval
+
+### packet_id: DPL-GUIDANCE-SEEKER-IMU-001
+- domain: strategic guidance seeker, IMU, and accelerometer priority
+- objective: allocate scarce precision-guidance components without losing pedigree, screening confidence, or release safety.
+- primary_tools: seeker pedigree ledger, IMU allocation board, environmental screening queue
+- alternate_tools: manual component ledger and screening worksheet
+- degraded_mode: mission-essential lots only with manual pedigree verification
+- input_requirements: component pedigree, screening state, weapon demand, lot status, authority thresholds
+- output_schema: seeker allocation board, inertial-component risk ladder, lot release priorities
+- protocol_profile: signed component manifests + API/JSON + USMTF + OPC UA
+- validation_gates: pedigree verification, screening pass, release authority approval

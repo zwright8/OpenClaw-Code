@@ -550,3 +550,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent ground-truth witness and alternate engineer risk board
 - Protocol binding: OGC + CoT + VMF + API/JSON + USMTF
 - Fallback path: limited-weight route release only with human reconnaissance
+
+## New Toolchain Wave (2026-03-14, Expansion Wave XLVII)
+
+### `TC-LASER-FRAT-064`
+
+- Domain: joint laser designator code and sensor fratricide prevention
+- Primary systems: laser-code registry, JTAC fires coordination board, sensor cueing conflict engine
+- Cross-check systems: independent designation witness and alternate target-validation board
+- Protocol binding: VMF + Link 16 J-series + USMTF + API/JSON
+- Fallback path: single-designator control with voice readback and UTC acknowledgment log
+
+### `TC-CLOUD-BURN-065`
+
+- Domain: theater cloud credential burn and access reconstitution
+- Primary systems: identity emergency control plane, token revocation orchestrator, workload access recovery board
+- Cross-check systems: independent audit ledger and alternate privileged-access control cell
+- Protocol binding: SCIM + OIDC/SAML + STIX/TAXII + API/JSON + USMTF
+- Fallback path: commander-approved break-glass access only with dual-control logging
+
+### `TC-AIRCRAFT-RECOV-066`
+
+- Domain: expeditionary battle-damaged aircraft recovery and controlled cannibalization
+- Primary systems: aircraft damage assessment board, maintenance release tracker, cannibalization control ledger
+- Cross-check systems: independent structural witness and alternate airworthiness board
+- Protocol binding: AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: ground-safe recovery only with no-flight release until full inspection
+
+### `TC-HYDRANT-FIRE-067`
+
+- Domain: homeland base fuel hydrant and fire-suppression recovery
+- Primary systems: hydrant pressure telemetry board, foam concentrate inventory tracker, emergency isolation controller
+- Cross-check systems: independent fire-protection witness and alternate fuel-truck allocation board
+- Protocol binding: NIMS/ICS + OPC UA + API/JSON + USMTF
+- Fallback path: truck fueling only with manual isolation and continuous fire watch
+
+### `TC-SHOREPOWER-068`
+
+- Domain: coalition shore power frequency conversion and berthing
+- Primary systems: berth power availability board, frequency-converter status tracker, ship compatibility ledger
+- Cross-check systems: independent pier-load witness and alternate harbor-master board
+- Protocol binding: AIS/NMEA + signed power-cert manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: generator support only with prioritized military-essential berths
+
+### `TC-ROBOT-TELEOP-069`
+
+- Domain: joint ground robotics teleoperation spectrum safety
+- Primary systems: robotic mission controller, teleop link monitor, spectrum conflict adjudication board
+- Cross-check systems: independent EW monitor and alternate human control cell
+- Protocol binding: CoT + VMF + DDS/ROS 2 + API/JSON + USMTF
+- Fallback path: line-of-sight teleoperation only with human spotter chain
+
+### `TC-CARBONCARB-070`
+
+- Domain: strategic carbon-carbon nozzle and reentry material priority
+- Primary systems: refractory-material pedigree ledger, nozzle layup and autoclave scheduler, reentry demand board
+- Cross-check systems: independent metallurgy witness and alternate strategic release board
+- Protocol binding: signed material-cert manifests + API/JSON + USMTF + OPC UA
+- Fallback path: mission-essential lots only with conservative release thresholds
+
+### `TC-RESP-FILTER-071`
+
+- Domain: austere respiratory protective equipment fit and filter rotation
+- Primary systems: fit-test registry, filter burn tracker, exposure review board
+- Cross-check systems: independent medical witness and alternate supply rotation ledger
+- Protocol binding: HL7/FHIR + CBRN USMTF + API/JSON + signed inventory manifests
+- Fallback path: mission-essential issue only with commander-approved conservation measures
+
+### `TC-LZ-DUST-072`
+
+- Domain: joint assault landing-zone dust signature and sensor obscuration control
+- Primary systems: landing-zone environment monitor, rotorwash dust forecast engine, sensor obscuration board
+- Cross-check systems: independent aviation safety witness and alternate ground-force marking cell
+- Protocol binding: OGC + AIXM/FIXM + VMF + API/JSON + USMTF
+- Fallback path: daylight or marked landing-zone operations only with manual dust observation
+
+### `TC-SEEKER-IMU-073`
+
+- Domain: strategic guidance seeker, IMU, and accelerometer priority
+- Primary systems: seeker pedigree ledger, IMU allocation board, environmental screening queue
+- Cross-check systems: independent lot-authenticity witness and alternate weapon release board
+- Protocol binding: signed component manifests + API/JSON + USMTF + OPC UA
+- Fallback path: mission-essential lots only with manual pedigree verification

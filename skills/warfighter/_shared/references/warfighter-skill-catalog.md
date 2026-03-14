@@ -2409,3 +2409,29 @@ Every skill output should include:
 - Joint emissions window and decoy synchronization + joint spectrum governance and emissions control + deception signature management and decoy employment + joint targeting standards and CDE governance.
 - Coalition denied-environment search and rescue beacon authentication + coalition joint personnel recovery authentication and comms + combat search and rescue coordinator + coalition interoperability coordinator.
 - Autonomous breach microterrain soil-bearing and route classification + contested bridge and gap crossing operations + combat engineering obstacle intelligence + autonomous combat engineer route breach cell.
+
+## New Expansion Wave (2026-03-14, Wave XLVII)
+
+- joint-laser-designator-code-and-sensor-fratricide-prevention-cell
+- theater-cloud-credential-burn-and-access-reconstitution-cell
+- expeditionary-battle-damaged-aircraft-recovery-and-cannibalization-cell
+- homeland-base-fuel-hydrant-and-fire-suppression-recovery-cell
+- coalition-shore-power-frequency-conversion-and-berthing-cell
+- joint-ground-robotics-teleoperation-spectrum-safety-cell
+- strategic-carbon-carbon-nozzle-and-reentry-material-priority-cell
+- austere-respiratory-protective-equipment-fit-and-filter-rotation-cell
+- joint-assault-landing-zone-dust-signature-and-sensor-obscuration-cell
+- strategic-guidance-seeker-imu-and-accelerometer-priority-cell
+
+## Updated Pairings (2026-03-14, Wave XLVII)
+
+- Joint laser designator code and sensor fratricide prevention + joint targeting standards and CDE governance + coalition joint fires AI no-strike boundary assurance + close-air-support digital integration.
+- Theater cloud credential burn and access reconstitution + theater mission network failover + tactical zero-trust network hardening + theater mission data poisoning detection and model quarantine.
+- Expeditionary battle-damaged aircraft recovery and cannibalization + airbase dispersal and rapid reconstitution + expeditionary aircraft arresting gear and crash barrier restoration + air tasking cycle support.
+- Homeland base fuel hydrant and fire suppression recovery + force protection and base defense + homeland base water restart biofilm control + operational energy resilience and microgrid.
+- Coalition shore power frequency conversion and berthing + strategic sealift and prepositioning coordination + coalition interoperability coordinator + naval convoy escort and sea-lane protection.
+- Joint ground robotics teleoperation spectrum safety + combat engineering obstacle intelligence + route clearance and counter-IED fusion + electromagnetic battle management.
+- Strategic carbon-carbon nozzle and reentry material priority + strategic industrial mobilization readiness + strategic solid rocket motor propellant aging and surge + contested space launch and satellite reconstitution.
+- Austere respiratory protective equipment fit and filter rotation + austere surgical support coordinator + preventive medicine and force health protection + autonomous CBRN sensor cueing and isolation.
+- Joint assault landing-zone dust signature and sensor obscuration + expeditionary helicopter brownout and drone deconfliction + combat search and rescue coordinator + tactical UAS traffic management.
+- Strategic guidance seeker IMU and accelerometer priority + munitions stockpile and expenditure manager + strategic industrial mobilization readiness + mission risk decision support.

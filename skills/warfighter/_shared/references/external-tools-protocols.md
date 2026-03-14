@@ -430,3 +430,29 @@ Include these fields in outputs when tool integration is used:
 - Weather-radar spoofing attribution: meteorological data trust engines + EW anomaly analytics + mission weather assurance boards + API/JSON + STIX/TAXII + USMTF
 - Coalition reserve medical license reciprocity: credential federation services + role-privilege validators + surge staffing trackers + HL7/FHIR + NATO APP-11 + USMTF
 - Expeditionary water contamination forecasting: water telemetry + contamination models + force-health surveillance + API/JSON + HL7/FHIR + USMTF
+
+## Domain Toolchain Profiles (2026-03-14 Expansion Wave XLVII)
+
+- Laser designator and sensor-safe fires release: laser-code registries + target-validation boards + VMF + Link 16 J-series + USMTF + API/JSON
+- Cloud credential burn and workload reentry: identity emergency control planes + privileged-access recovery boards + SCIM + OIDC/SAML + STIX/TAXII + API/JSON + USMTF
+- Battle-damaged aircraft recovery and controlled cannibalization: damage assessment boards + maintenance release workflows + AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
+- Base hydrant and fire-suppression restoration: fuel telemetry + fire-protection controls + NIMS/ICS + OPC UA + API/JSON + USMTF
+- Coalition shore-power compatibility and berth release: berth-power boards + converter telemetry + AIS/NMEA + signed power manifests + NATO APP-11/ADatP-3 aligned exchange + USMTF
+- Ground robotics teleoperation safety: robot mission controllers + spectrum adjudication + CoT + VMF + DDS/ROS 2 + API/JSON + USMTF
+- Carbon-carbon and reentry material prioritization: pedigree ledgers + layup and autoclave schedulers + signed material manifests + API/JSON + OPC UA + USMTF
+- Respiratory protective equipment fit and filter rotation: fit-test registries + exposure trackers + HL7/FHIR + CBRN USMTF + API/JSON
+- Assault landing-zone dust and sensor obscuration control: landing-zone environmental monitors + dust forecast models + OGC + AIXM/FIXM + VMF + API/JSON + USMTF
+- Guidance seeker and inertial component allocation: component pedigree ledgers + screening queues + signed component manifests + API/JSON + OPC UA + USMTF
+
+## Protocol Mapping Guidance (2026-03-14 Expansion Wave XLVII)
+
+- Laser-code deconfliction: require code-change acknowledgment, target confirmation, and release-authority validation before synchronized designation.
+- Credential burn and reentry: require revocation completeness checks, privileged-role review, and explicit commander approval before emergency access restoration.
+- Battle-damaged aircraft salvage: require parts custody continuity, structural assessment evidence, and airworthiness release before any flight return or cross-fleet cannibalization.
+- Base hydrant and fire suppression recovery: require isolation confirmation, pressure verification, and fire-chief sign-off before resuming hydrant fueling.
+- Coalition shore power and berthing: require ship-to-pier compatibility confirmation, converter rating validation, and coalition harbor acknowledgment before energizing service.
+- Ground robotics teleoperation: require control-link integrity, lost-link drill pass, and spectrum clearance before entering contested-control lanes.
+- Carbon-carbon and reentry materials: require pedigree verification, certification status, and release-authority approval before reallocating strategic lots.
+- Respiratory protection rotation: require current fit evidence, exposure review, and medical approval before extending filter or mask use beyond normal cycles.
+- Assault landing-zone obscuration control: require fresh weather and soil data, obscuration-threshold review, and air-mission approval before landing-zone release.
+- Guidance seeker and IMU allocation: require pedigree validation, environmental-screening completion, and lot-release approval before assigning scarce precision-guidance components.

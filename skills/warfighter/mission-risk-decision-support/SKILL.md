@@ -372,3 +372,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when risk acceptance depends on trusted machine-generated tasking and semantic fidelity to commander intent.
 - Add `tool_suite_id=ts-strategic-fuel-additive-adulteration-interdiction-v1` + `protocol_stack_id=ps-strategic-fuel-additive-adulteration-interdiction-stack-v1` when sustainment feasibility hinges on trusted fuel-additive pedigree or rapid contamination quarantine.
 - Add `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, `packet_id=DPL-AI-ORDER-INTENT-001`, and `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when commander risk depends on containing identity compromise without losing mission-essential access.
+- Add `tool_suite_id=ts-homeland-base-fuel-hydrant-fire-suppression-recovery-v1` + `protocol_stack_id=ps-homeland-base-fuel-hydrant-fire-suppression-recovery-stack-v1` when sortie generation or base survivability depends on safe fuel and fire-control restoration.
+- Add `tool_suite_id=ts-strategic-guidance-seeker-imu-accelerometer-priority-v1` + `protocol_stack_id=ps-strategic-guidance-seeker-imu-accelerometer-priority-stack-v1` when risk acceptance depends on trusted precision-guidance component pedigree or constrained lot release.
+- Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001`, `packet_id=DPL-BASE-FUEL-HYDRANT-FIRE-SUPPRESSION-001`, and `packet_id=DPL-GUIDANCE-SEEKER-IMU-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

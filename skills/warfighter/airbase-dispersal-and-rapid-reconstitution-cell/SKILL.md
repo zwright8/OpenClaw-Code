@@ -164,3 +164,10 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-stack-v1` when cold-soaked batteries or charging limits threaten lighting, airfield sensors, or dispersed base-support equipment.
 - Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when base survivability depends on tightly timed signature exposure, decoy activation, or EMCON breaks during regeneration.
 - Add `packet_id=DPL-MOBILE-PRECISION-APPROACH-001`, `packet_id=DPL-HIGH-LATITUDE-BATTERY-THERMAL-001`, and `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001` for branches that materially alter sortie regeneration, base survivability, or command-path trust.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-battle-damaged-aircraft-recovery-cannibalization-v1` + `protocol_stack_id=ps-expeditionary-battle-damaged-aircraft-recovery-cannibalization-stack-v1` when base recovery depends on salvaging damaged airframes, controlled cannibalization, or rapid reconstitution of scarce aircraft.
+- Add `tool_suite_id=ts-homeland-base-fuel-hydrant-fire-suppression-recovery-v1` + `protocol_stack_id=ps-homeland-base-fuel-hydrant-fire-suppression-recovery-stack-v1` when sortie regeneration depends on hydrant-loop integrity, foam reserves, or safe base fueling restoration.
+- Add `tool_suite_id=ts-joint-assault-landing-zone-dust-obscuration-control-v1` + `protocol_stack_id=ps-joint-assault-landing-zone-dust-obscuration-control-stack-v1` when dispersed recovery, casualty pickup, or austere arrival lanes depend on managing brownout and sensor obscuration.
+- Add `packet_id=DPL-BATTLE-DAMAGED-AIRCRAFT-RECOVERY-001`, `packet_id=DPL-BASE-FUEL-HYDRANT-FIRE-SUPPRESSION-001`, and `packet_id=DPL-ASSAULT-LZ-DUST-OBSCURATION-001` for branches that materially alter sortie regeneration, base survivability, or austere-airfield release confidence.

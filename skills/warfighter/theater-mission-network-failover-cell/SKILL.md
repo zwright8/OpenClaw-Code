@@ -298,3 +298,9 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when degraded network paths increase the risk of stale, distorted, or machine-generated tasking drifting from commander intent during failover execution.
 - Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when service restoration depends on brief emissions exposure, decoy masking, or tightly sequenced EMCON breaks.
 - Add `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, `packet_id=DPL-AI-ORDER-INTENT-001`, and `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001` for branches that materially change mission-service restoration, command trust, or exposure-risk posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when failover depends on emergency revocation, token burn, and controlled privileged-access restoration.
+- Add `tool_suite_id=ts-joint-ground-robotics-teleoperation-spectrum-safety-v1` + `protocol_stack_id=ps-joint-ground-robotics-teleoperation-spectrum-safety-stack-v1` when degraded networks must still preserve safe robot teleoperation, human override, or lost-link control.
+- Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` and `packet_id=DPL-GROUND-ROBOTICS-TELEOP-SPECTRUM-001` for branches that materially change mission-service restoration, teleoperation safety, or failover authority posture.

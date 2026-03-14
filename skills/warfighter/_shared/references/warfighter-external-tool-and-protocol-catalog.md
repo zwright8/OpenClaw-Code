@@ -12024,3 +12024,107 @@ external_binding:
 ### `ps-autonomous-breach-soil-bearing-route-classification-stack-v1`
 - Protocols: `OGC`, `CoT`, `VMF`, `API/JSON`, `USMTF`.
 - Use for: terrain and soil confidence exchange, route-classification status, and heavy-vehicle release approvals.
+
+## Tool Suite Addendum XLVII (2026-03-14, Fires Integrity, Cloud Access Recovery, Airframe Salvage, and Strategic Component Scarcity)
+
+### `ts-joint-laser-designator-sensor-fratricide-prevention-v1`
+- Use for: preventing laser-code conflicts and sensor fratricide during joint targeting, JTAC support, and cross-cueing.
+- Primary tools: laser-code registry, JTAC fires coordination board, sensor cueing conflict engine.
+- Cross-check tools: independent designation witness and alternate target-validation board.
+- Typical products: laser-code deconfliction matrix, sensor-safe fires window board, designation approval ladder.
+
+### `ts-theater-cloud-credential-burn-access-reconstitution-v1`
+- Use for: burning compromised credentials, revoking workload identity, and restoring mission-safe access across battlefield cloud and edge enclaves.
+- Primary tools: identity emergency control plane, token revocation orchestrator, workload access recovery board.
+- Cross-check tools: independent audit ledger and alternate privileged-access control cell.
+- Typical products: credential burn ladder, privileged-access reconstitution matrix, mission-service exception ledger.
+
+### `ts-expeditionary-battle-damaged-aircraft-recovery-cannibalization-v1`
+- Use for: recovering battle-damaged aircraft, triaging airworthiness, and controlling cannibalization without losing configuration discipline.
+- Primary tools: aircraft damage assessment board, maintenance release tracker, cannibalization control ledger.
+- Cross-check tools: independent structural witness and alternate airworthiness board.
+- Typical products: aircraft recovery board, cannibalization authorization ladder, sortie regeneration matrix.
+
+### `ts-homeland-base-fuel-hydrant-fire-suppression-recovery-v1`
+- Use for: restoring base hydrant loops, foam reserves, and fire-suppression capacity after attack, outage, or cyber-physical disruption.
+- Primary tools: hydrant pressure telemetry board, foam concentrate inventory tracker, emergency isolation controller.
+- Cross-check tools: independent fire-protection witness and alternate fuel-truck allocation board.
+- Typical products: hydrant restoration matrix, foam reserve ladder, sortie fueling risk board.
+
+### `ts-coalition-shore-power-frequency-conversion-berthing-v1`
+- Use for: aligning coalition berth assignment, shore-power compatibility, and frequency-conversion capacity inside constrained ports.
+- Primary tools: berth power availability board, frequency-converter status tracker, ship compatibility ledger.
+- Cross-check tools: independent pier-load witness and alternate harbor-master board.
+- Typical products: berth power allocation board, converter compatibility matrix, coalition port-risk ladder.
+
+### `ts-joint-ground-robotics-teleoperation-spectrum-safety-v1`
+- Use for: preserving safe command paths for teleoperated ground robots under contested spectrum, latency growth, or autonomy fallback.
+- Primary tools: robotic mission controller, teleop link monitor, spectrum conflict adjudication board.
+- Cross-check tools: independent EW monitor and alternate human control cell.
+- Typical products: teleop-control matrix, spectrum-safe task windows, lost-link fallback ladder.
+
+### `ts-strategic-carbon-carbon-nozzle-reentry-material-priority-v1`
+- Use for: allocating carbon-carbon, ablatives, nozzle materials, and high-temperature composites across strategic missile, reentry, and space demand.
+- Primary tools: refractory-material pedigree ledger, nozzle layup and autoclave scheduler, reentry demand board.
+- Cross-check tools: independent metallurgy witness and alternate strategic release board.
+- Typical products: material allocation board, nozzle throughput ledger, strategic readiness risk ladder.
+
+### `ts-austere-respiratory-protection-fit-filter-rotation-v1`
+- Use for: managing respiratory protection fit status, filter consumption, and exposure-driven resupply under CBRN or toxic airborne threat.
+- Primary tools: fit-test registry, filter burn tracker, exposure review board.
+- Cross-check tools: independent medical witness and alternate supply rotation ledger.
+- Typical products: fit and issue matrix, filter rotation ladder, exposure-based resupply board.
+
+### `ts-joint-assault-landing-zone-dust-obscuration-control-v1`
+- Use for: assessing landing-zone brownout, dust signature, and sensor obscuration during assault or resupply operations.
+- Primary tools: landing-zone environment monitor, rotorwash dust forecast engine, sensor obscuration board.
+- Cross-check tools: independent aviation safety witness and alternate ground-force marking cell.
+- Typical products: landing-zone viability matrix, brownout risk ladder, sortie and lift sequencing board.
+
+### `ts-strategic-guidance-seeker-imu-accelerometer-priority-v1`
+- Use for: allocating scarce seekers, inertial measurement units, accelerometers, and screening capacity across precision munitions and strategic weapons.
+- Primary tools: seeker pedigree ledger, IMU allocation board, environmental screening queue.
+- Cross-check tools: independent lot-authenticity witness and alternate weapon release board.
+- Typical products: seeker allocation board, inertial-component risk ladder, lot release priorities.
+
+## Protocol Stack Addendum XLVII (2026-03-14, External Integration Profiles for Expansion Wave XLVII)
+
+### `ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1`
+- Protocols: `VMF`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Use for: code assignment exchange, sensor-safe cueing, and designation release acknowledgments.
+
+### `ps-theater-cloud-credential-burn-access-reconstitution-stack-v1`
+- Protocols: `SCIM`, `OIDC/SAML`, `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Use for: revocation state exchange, privileged-role restoration, and mission-service access approvals.
+
+### `ps-expeditionary-battle-damaged-aircraft-recovery-cannibalization-stack-v1`
+- Protocols: `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: battle-damage findings, parts custody state, and airworthiness release acknowledgments.
+
+### `ps-homeland-base-fuel-hydrant-fire-suppression-recovery-stack-v1`
+- Protocols: `NIMS/ICS`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: hydrant-state exchange, fire-suppression recovery, and sortie fueling release approvals.
+
+### `ps-coalition-shore-power-frequency-conversion-berthing-stack-v1`
+- Protocols: `AIS/NMEA`, signed power-cert manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: berth assignment, power-compatibility status, and coalition harbor acknowledgments.
+
+### `ps-joint-ground-robotics-teleoperation-spectrum-safety-stack-v1`
+- Protocols: `CoT`, `VMF`, `DDS/ROS 2`, `API/JSON`, `USMTF`.
+- Use for: control-link status, spectrum conflict updates, and lost-link fallback acknowledgments.
+
+### `ps-strategic-carbon-carbon-nozzle-reentry-material-priority-stack-v1`
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Use for: refractory material pedigree exchange, autoclave status, and release approvals.
+
+### `ps-austere-respiratory-protection-fit-filter-rotation-stack-v1`
+- Protocols: `HL7/FHIR`, CBRN `USMTF`, `API/JSON`, signed inventory manifests.
+- Use for: fit status, filter consumption, exposure review, and protection-posture approvals.
+
+### `ps-joint-assault-landing-zone-dust-obscuration-control-stack-v1`
+- Protocols: `OGC`, `AIXM/FIXM`, `VMF`, `API/JSON`, `USMTF`.
+- Use for: environmental state exchange, obscuration updates, and landing-zone release acknowledgments.
+
+### `ps-strategic-guidance-seeker-imu-accelerometer-priority-stack-v1`
+- Protocols: signed component manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Use for: component pedigree exchange, screening status, and lot-release approvals.

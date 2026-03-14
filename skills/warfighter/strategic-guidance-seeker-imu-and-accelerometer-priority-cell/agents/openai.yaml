@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Strategic Guidance Seeker IMU and Accelerometer Priority Cell"
+  short_description: "Help allocate seekers and inertial guidance components"

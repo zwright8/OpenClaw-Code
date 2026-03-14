@@ -215,3 +215,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when industrial prioritization must preserve strategic ground-station hardware that supports SATCOM, SDA, or missile-warning continuity.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when mobilization output must shift toward track pads, roadwheels, or final drives to protect armored maneuver readiness.
 - Add `packet_id=DPL-TURBINE-SUPERALLOY-TBC-001`, `packet_id=DPL-SPACE-GROUND-STATION-TWT-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter industrial surge posture, strategic hardware allocation, or land-force readiness.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-strategic-carbon-carbon-nozzle-reentry-material-priority-v1` + `protocol_stack_id=ps-strategic-carbon-carbon-nozzle-reentry-material-priority-stack-v1` when mobilization readiness depends on carbon-carbon, ablatives, or nozzle-material throughput across strategic missile and reentry demand.
+- Add `tool_suite_id=ts-strategic-guidance-seeker-imu-accelerometer-priority-v1` + `protocol_stack_id=ps-strategic-guidance-seeker-imu-accelerometer-priority-stack-v1` when surge output depends on trusted seekers, inertial components, and environmental-screening bottlenecks.
+- Add `packet_id=DPL-CARBON-CARBON-NOZZLE-001` and `packet_id=DPL-GUIDANCE-SEEKER-IMU-001` for recommendations that materially alter industrial surge posture, strategic release confidence, or weapons-component allocation.

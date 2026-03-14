@@ -159,3 +159,9 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 - Add `tool_suite_id=ts-coalition-underway-replenishment-rig-compatibility-v1` + `protocol_stack_id=ps-coalition-underway-replenishment-rig-compatibility-stack-v1` when afloat prepositioning support or dispersed fleet sustainment depends on compatible coalition UNREP rigs and transfer certifications.
 - Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when delayed sealift, port closure, or damaged prepositioning stocks require reserve airlift backfill for critical cargo.
 - Add `packet_id=DPL-UNDERWAY-REPLENISHMENT-RIG-001` and `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001` for recommendations that materially alter afloat sustainment, prepositioning resilience, or multimodal backfill posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-coalition-shore-power-frequency-conversion-berthing-v1` + `protocol_stack_id=ps-coalition-shore-power-frequency-conversion-berthing-stack-v1` when sealift timing depends on coalition berth power, converter availability, or pier-load compatibility during prepositioning recovery.
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when cargo visibility, port scheduling, or berth-release systems lose credential trust and must be restored without stalling strategic flow.
+- Add `packet_id=DPL-SHORE-POWER-BERTHING-001` and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for recommendations that materially alter port-release timing, prepositioning confidence, or strategic sustainment continuity.

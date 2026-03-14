@@ -1988,3 +1988,75 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-denied-terrain-drone-resupply-nav-v1`.
 - Protocols: `OGC`, `CoT`, `VMF`, `API/JSON`, `USMTF`.
 - Degraded fallback: limited-weight route release only with human reconnaissance.
+
+## Profile Addendum R (2026-03-14, Fires Integrity, Cloud Access Recovery, and Strategic Component Scarcity)
+
+### `laser-designator-sensor-fratricide-v1`
+- Use for joint targeting when laser-code collisions or mis-cued sensors threaten fratricide or invalid release.
+- Primary tools: `ts-joint-laser-designator-sensor-fratricide-prevention-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `VMF`, `Link 16 J-series`, `USMTF`, `API/JSON`.
+- Degraded fallback: single-designator control with voice readback and UTC acknowledgment log.
+
+### `cloud-credential-burn-access-reconstitution-v1`
+- Use for battlefield cloud recovery when compromised credentials or workload identity threaten mission software continuity.
+- Primary tools: `ts-theater-cloud-credential-burn-access-reconstitution-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: `SCIM`, `OIDC/SAML`, `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Degraded fallback: commander-approved break-glass access only with dual-control logging.
+
+### `battle-damaged-aircraft-recovery-cannibalization-v1`
+- Use for expeditionary aviation recovery when damaged airframes, scarce parts, and sortie demand compete for the same maintenance capacity.
+- Primary tools: `ts-expeditionary-battle-damaged-aircraft-recovery-cannibalization-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: ground-safe recovery only with no-flight release until full inspection.
+
+### `base-fuel-hydrant-fire-suppression-recovery-v1`
+- Use for base continuity when hydrant loops, foam systems, and sortie fueling capacity are damaged or cyber-physically disrupted.
+- Primary tools: `ts-homeland-base-fuel-hydrant-fire-suppression-recovery-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `OPC UA`, `API/JSON`, `USMTF`.
+- Degraded fallback: truck fueling only with manual isolation and continuous fire watch.
+
+### `coalition-shore-power-frequency-conversion-berthing-v1`
+- Use for coalition maritime sustainment when berth power, voltage and frequency compatibility, or converter scarcity drive port-release timing.
+- Primary tools: `ts-coalition-shore-power-frequency-conversion-berthing-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, signed power-cert manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: generator support only with prioritized military-essential berths.
+
+### `ground-robotics-teleoperation-spectrum-safety-v1`
+- Use for engineer, EOD, or recovery robots when contested spectrum and latency growth threaten safe teleoperation.
+- Primary tools: `ts-joint-ground-robotics-teleoperation-spectrum-safety-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `CoT`, `VMF`, `DDS/ROS 2`, `API/JSON`, `USMTF`.
+- Degraded fallback: line-of-sight teleoperation only with human spotter chain.
+
+### `carbon-carbon-nozzle-reentry-material-priority-v1`
+- Use for strategic production decisions when carbon-carbon, ablatives, or nozzle materials become the pacing constraint for deterrence or space readiness.
+- Primary tools: `ts-strategic-carbon-carbon-nozzle-reentry-material-priority-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential lots only with conservative release thresholds.
+
+### `respiratory-protection-fit-filter-rotation-v1`
+- Use for force-health decisions when respirator fit, filter burn rate, or toxic airborne exposure determines unit endurance.
+- Primary tools: `ts-austere-respiratory-protection-fit-filter-rotation-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, CBRN `USMTF`, `API/JSON`, signed inventory manifests.
+- Degraded fallback: mission-essential issue only with commander-approved conservation measures.
+
+### `assault-lz-dust-obscuration-control-v1`
+- Use for assault or resupply aviation when dust, brownout, or sensor obscuration determines landing-zone release confidence.
+- Primary tools: `ts-joint-assault-landing-zone-dust-obscuration-control-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `OGC`, `AIXM/FIXM`, `VMF`, `API/JSON`, `USMTF`.
+- Degraded fallback: daylight or marked landing-zone operations only with manual dust observation.
+
+### `guidance-seeker-imu-accelerometer-priority-v1`
+- Use for strategic munitions and weapons-production prioritization when seeker, IMU, or accelerometer scarcity constrains release confidence.
+- Primary tools: `ts-strategic-guidance-seeker-imu-accelerometer-priority-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed component manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential lots only with manual pedigree verification.

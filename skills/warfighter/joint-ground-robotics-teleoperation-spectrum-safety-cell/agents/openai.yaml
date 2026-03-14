@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Ground Robotics Teleoperation Spectrum Safety Cell"
+  short_description: "Help with teleoperated ground-robot control in contested spectrum"

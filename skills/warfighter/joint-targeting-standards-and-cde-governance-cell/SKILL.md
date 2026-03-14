@@ -231,3 +231,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when target-release timing depends on synchronized emissions windows, decoy activation, or adversary collection shaping.
 - Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when targeting services, mensuration pipelines, or CDE tools must fail over into alternate cloud enclaves without losing trust.
 - Add `packet_id=DPL-AI-ORDER-INTENT-001`, `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001`, and `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001` for recommendations that materially alter target validity, release timing, or targeting-system trust posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-joint-laser-designator-sensor-fratricide-prevention-v1` + `protocol_stack_id=ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1` when target validity or fires timing depends on trusted laser-code ownership and sensor-safe cueing.
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when targeting identity, federation, or service access compromise threatens CDE or release workflows.
+- Add `packet_id=DPL-LASER-DESIGNATOR-FRATRICIDE-001` and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for recommendations that materially alter target validity, CDE governance, or release-authority confidence.

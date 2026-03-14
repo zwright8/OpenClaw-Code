@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Assault Landing Zone Dust Signature and Sensor Obscuration Cell"
+  short_description: "Help assess LZ dust, brownout, and sensor obscuration risk"

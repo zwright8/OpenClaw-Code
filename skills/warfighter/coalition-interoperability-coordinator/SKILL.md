@@ -287,3 +287,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-underway-replenishment-rig-compatibility-v1` + `protocol_stack_id=ps-coalition-underway-replenishment-rig-compatibility-stack-v1` when coalition sustainment depends on compatible UNREP hoses, spanwires, or transfer certifications.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when releasable orders or shared tasking messages may be stale, spoofed, or version-divergent across coalition distribution paths.
 - Add `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, `packet_id=DPL-UNDERWAY-REPLENISHMENT-RIG-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially change coalition access, afloat sustainment trust, or shared command-path confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
+
+- Add `tool_suite_id=ts-coalition-shore-power-frequency-conversion-berthing-v1` + `protocol_stack_id=ps-coalition-shore-power-frequency-conversion-berthing-stack-v1` when coalition berth timing, pier power compatibility, or converter scarcity shapes port interoperability.
+- Add `tool_suite_id=ts-joint-laser-designator-sensor-fratricide-prevention-v1` + `protocol_stack_id=ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1` when combined fires or coalition JTAC support depends on trusted laser-code and sensor deconfliction.
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when coalition data exchange depends on restoring federated identity trust after credential compromise.
+- Add `packet_id=DPL-SHORE-POWER-BERTHING-001`, `packet_id=DPL-LASER-DESIGNATOR-FRATRICIDE-001`, and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for branches that materially change coalition access, combined-fires trust, or federated-network release posture.
