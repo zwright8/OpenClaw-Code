@@ -1,6 +1,6 @@
 ---
 name: joint-orbital-mission-data-downlink-window-and-ground-priority-cell
-description: Support U.S. warfighter planning for orbital mission-data downlink prioritization and ground-station arbitration. Use when scarce passes or ground time must be reserved for the data that changes commander decisions first.
+description: Support U.S. warfighter planning for orbital mission-data downlink windows and ground-station priority when scarce passes must be allocated to the products that change commander decisions fastest.
 ---
 
 # Joint Orbital Mission Data Downlink Window And Ground Priority Cell
@@ -8,15 +8,15 @@ description: Support U.S. warfighter planning for orbital mission-data downlink 
 ## Mission Scope
 
 - Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm orbital pass schedule, ground-station health, mission priorities, and product latency thresholds before recommending action.
+- Confirm mission priorities, pass schedules, ground-station constraints, and release deadlines before recommending action.
 - Keep outputs unclassified unless handling guidance is provided.
 
 ## Workflow
 
-1. Build the current pass, downlink, and ground-station picture with contention windows.
-2. Identify which payloads, collections, or products have the highest decision urgency.
-3. Build primary, alternate, and degraded downlink plans with explicit queueing, delay, and loss tradeoffs.
-4. Bind recommendations to downlink packets, ground-station acknowledgments, and revalidation triggers.
+1. Establish the current orbital pass schedule, ground-station availability, data volumes, and latency requirements.
+2. Identify which products lose the most operational value when deferred and which passes are genuinely scarce.
+3. Build primary, alternate, and degraded downlink paths with explicit latency, custody, and opportunity-cost tradeoffs.
+4. Bind recommendations to downlink packets, pass acknowledgments, and post-pass redistribution triggers.
 
 ## Required Output Format
 
@@ -24,7 +24,7 @@ description: Support U.S. warfighter planning for orbital mission-data downlink 
 2. Recommended downlink-priority path.
 3. Alternate and degraded paths.
 4. Decision points and authorities.
-5. Staff tasking, pass allocations, and suspense.
+5. Staff tasking, pass actions, and revalidation triggers.
 
 ## Domain Products
 
@@ -39,15 +39,15 @@ Primary products: downlink priority board, ground-pass allocation ladder, delaye
 
 ## Guardrails
 
-- Separate confirmed pass availability, estimated delays, and speculative collection value.
-- Flag any plan that drops warning, targeting, or survivability products below commander thresholds without approval.
-- Keep human approval explicit for reprioritizing scarce ground-station time across theaters or missions.
+- Separate confirmed pass availability, predicted link quality, and unknown latency impacts.
+- Flag any plan that strands time-sensitive warning or targeting products behind low-priority bulk traffic.
+- Keep human approval explicit for pass preemption, ground-station reprioritization, or product-class deferral.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` with `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1`.
 - Alternate: `tool_suite_id=ts-space-satcom-v1` with `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1`.
-- Degraded: one mission-essential product class per pass with delayed bulk download and UTC pass log.
+- Degraded: one mission-essential product class per pass with deferred bulk downloads and manual priority review.
 
 ## Domain Packet Defaults
 

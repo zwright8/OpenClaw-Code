@@ -1,6 +1,6 @@
 ---
 name: joint-aerial-port-battery-hazmat-and-pallet-integrity-cell
-description: Support U.S. warfighter planning for aerial-port battery, hazmat, and pallet-integrity control. Use when sortie flow depends on safe cargo release, load discipline, and fast exception handling for hazardous consignments.
+description: Support U.S. warfighter planning for aerial-port battery, hazmat, and pallet integrity when sortie release depends on safe cargo acceptance, fire-risk control, and pallet-build discipline.
 ---
 
 # Joint Aerial Port Battery Hazmat And Pallet Integrity Cell
@@ -8,15 +8,15 @@ description: Support U.S. warfighter planning for aerial-port battery, hazmat, a
 ## Mission Scope
 
 - Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm cargo urgency, aircraft mix, hazmat rules, and loadmaster or aircrew constraints before recommending action.
+- Confirm airfield authority, aircraft constraints, hazmat rules, and sortie deadlines before recommending cargo release actions.
 - Keep outputs unclassified unless handling guidance is provided.
 
 ## Workflow
 
-1. Build the cargo picture with manifest data, battery classes, hazmat declarations, and pallet geometry.
-2. Identify unsafe loads, missing certifications, and the highest-impact sortie bottlenecks.
-3. Build primary, alternate, and degraded cargo-release plans with explicit fire-risk, delay, and throughput tradeoffs.
-4. Bind recommendations to cargo packets, inspection gates, and release authority.
+1. Establish the cargo manifest, battery classes, hazmat declarations, pallet geometry, and aircraft assignments.
+2. Identify loads that threaten flight safety, ramp safety, or sortie timing if released without correction.
+3. Build primary, alternate, and degraded release paths with explicit throughput, fire-risk, and waiver tradeoffs.
+4. Bind recommendations to cargo packets, loadmaster approvals, and pallet reinspection triggers.
 
 ## Required Output Format
 
@@ -24,7 +24,7 @@ description: Support U.S. warfighter planning for aerial-port battery, hazmat, a
 2. Recommended cargo-release path.
 3. Alternate and degraded paths.
 4. Decision points and authorities.
-5. Staff tasking, inspections, and suspense.
+5. Staff tasking, load actions, and revalidation triggers.
 
 ## Domain Products
 
@@ -39,15 +39,15 @@ Primary products: cargo release matrix, hazmat exception ladder, pallet integrit
 
 ## Guardrails
 
-- Separate confirmed certifications, assumed packaging state, and unresolved hazards.
-- Flag any load that exceeds aircraft safety, ramp-fire response, or pallet stability limits.
-- Keep human approval explicit for hazardous-cargo waivers or last-minute load redistribution.
+- Separate certified cargo data, suspected declaration mismatches, and unknown load-state gaps.
+- Flag any plan that outruns fire-response posture, aircrew safety limits, or host-nation hazmat restrictions.
+- Keep human approval explicit for hazmat waivers, mixed-load acceptance, or single-sortie overload relief.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-joint-aerial-port-battery-hazmat-pallet-integrity-v1` with `protocol_stack_id=ps-joint-aerial-port-battery-hazmat-pallet-integrity-stack-v1`.
 - Alternate: `tool_suite_id=ts-logistics-distribution-v1` with `protocol_stack_id=ps-joint-aerial-port-battery-hazmat-pallet-integrity-stack-v1`.
-- Degraded: mission-essential cargo only with manual pallet inspection, fire watch, and single-sortie release approval.
+- Degraded: mission-essential cargo only with heightened fire-watch and single-sortie load approval.
 
 ## Domain Packet Defaults
 

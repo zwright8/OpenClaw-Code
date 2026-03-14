@@ -1,6 +1,6 @@
 ---
 name: joint-urban-rubble-route-clearance-and-structural-collapse-rescue-cell
-description: Support U.S. warfighter planning for urban rubble clearance, structural-collapse rescue, and lifesaving access restoration. Use when maneuver or rescue depends on rapidly opening routes without triggering secondary collapse.
+description: Support U.S. warfighter planning for urban rubble route clearance and structural-collapse rescue when engineer capacity must be balanced between lifesaving rescue and maneuver access.
 ---
 
 # Joint Urban Rubble Route Clearance And Structural Collapse Rescue Cell
@@ -8,15 +8,15 @@ description: Support U.S. warfighter planning for urban rubble clearance, struct
 ## Mission Scope
 
 - Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm collapse map, trapped-person reports, engineer capacity, and rescue authorities before recommending action.
+- Confirm rescue authority, engineer capacity, civilian-harm constraints, and route priorities before recommending action.
 - Keep outputs unclassified unless handling guidance is provided.
 
 ## Workflow
 
-1. Build the current rubble, collapse, and route-access picture with engineer and rescue assets.
-2. Identify which routes unlock the greatest lifesaving or maneuver advantage.
-3. Build primary, alternate, and degraded clearance plans with explicit collapse-risk, utility-hazard, and rescue-delay tradeoffs.
-4. Bind recommendations to rescue packets, route release gates, and revalidation triggers.
+1. Establish the collapse map, trapped-person reports, blocked routes, utility hazards, and available engineer assets.
+2. Identify lifesaving corridors, secondary-collapse risk, and the routes that unlock the most rescue or maneuver value.
+3. Build primary, alternate, and degraded clearance paths with explicit rescue, safety, and access tradeoffs.
+4. Bind recommendations to rescue packets, route-release authorities, and dual-approval checkpoints.
 
 ## Required Output Format
 
@@ -24,7 +24,7 @@ description: Support U.S. warfighter planning for urban rubble clearance, struct
 2. Recommended clearance and rescue path.
 3. Alternate and degraded paths.
 4. Decision points and authorities.
-5. Staff tasking, rescue actions, and suspense.
+5. Staff tasking, route actions, and revalidation triggers.
 
 ## Domain Products
 
@@ -39,15 +39,15 @@ Primary products: rubble clearance matrix, structural collapse rescue ladder, ur
 
 ## Guardrails
 
-- Separate confirmed structural assessment, assumed survivable voids, and rumor reporting.
-- Flag any route release that may trigger secondary collapse, utility ignition, or rescue fratricide.
-- Keep human approval explicit for explosive breaching, demolition, or forced evacuation decisions.
+- Separate confirmed entrapment data, assessed collapse risk, and unknown void conditions.
+- Flag any plan that outruns structural safety, utility isolation, or civilian deconfliction requirements.
+- Keep human approval explicit for high-risk breaching, rescue-corridor release, or engineer-priority shifts.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-joint-urban-rubble-route-clearance-structural-collapse-rescue-v1` with `protocol_stack_id=ps-joint-urban-rubble-route-clearance-structural-collapse-rescue-stack-v1`.
 - Alternate: `tool_suite_id=ts-civil-support-v1` with `protocol_stack_id=ps-joint-urban-rubble-route-clearance-structural-collapse-rescue-stack-v1`.
-- Degraded: lifesaving rescue corridors only with engineer and rescue dual approval plus manual route board.
+- Degraded: lifesaving rescue corridors only with engineer and rescue dual approval.
 
 ## Domain Packet Defaults
 

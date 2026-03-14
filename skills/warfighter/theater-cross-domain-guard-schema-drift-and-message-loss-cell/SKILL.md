@@ -1,30 +1,30 @@
 ---
 name: theater-cross-domain-guard-schema-drift-and-message-loss-cell
-description: Support U.S. warfighter planning for cross-domain guard schema-drift recovery and message-loss triage. Use when mission tempo depends on restoring trusted exchange across data diodes, guards, or mission-partner fabrics.
+description: Support U.S. warfighter planning for cross-domain guard schema drift and message-loss recovery when mission data exchange silently drops, delays, or reshapes critical messages.
 ---
 
-# Theater Cross Domain Guard Schema Drift And Message Loss Cell
+# Theater Cross-Domain Guard Schema Drift And Message Loss Cell
 
 ## Mission Scope
 
 - Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm affected source and destination enclaves, guard authorities, and mission threads that cannot tolerate message loss before recommending action.
+- Confirm source and destination enclaves, guard authority, message-loss indicators, and mission timing before recommending action.
 - Keep outputs unclassified unless handling guidance is provided.
 
 ## Workflow
 
-1. Build the current guard, schema, and message-flow picture with backlog and drop indicators.
-2. Identify where transforms, version drift, or silent drops are breaking mission decisions.
-3. Build primary, alternate, and degraded recovery paths with explicit replay, fallback, and authority tradeoffs.
-4. Bind recommendations to cross-domain packets, checksum or replay checks, and approval gates.
+1. Establish schema versions, failing messages, backlog state, guard health, and source-destination paths.
+2. Identify silent drops, malformed transforms, replay gaps, and the mission products most affected by message loss.
+3. Build primary, alternate, and degraded recovery paths with explicit releasability, integrity, and timing tradeoffs.
+4. Bind recommendations to schema packets, replay approvals, and UTC checksum validation triggers.
 
 ## Required Output Format
 
 1. Situation snapshot.
-2. Recommended trust-restoration path.
+2. Recommended recovery path.
 3. Alternate and degraded paths.
 4. Decision points and authorities.
-5. Staff tasking, replay actions, and suspense.
+5. Staff tasking, replay actions, and revalidation triggers.
 
 ## Domain Products
 
@@ -39,15 +39,15 @@ Primary products: schema drift exception packet, message-loss recovery board, tr
 
 ## Guardrails
 
-- Separate confirmed drops, suspected transform errors, and incomplete telemetry.
-- Flag any workaround that bypasses releasability, audit, or cross-domain authority controls.
-- Keep human approval explicit for replaying sensitive traffic, schema overrides, or manual message bridging.
+- Separate confirmed drop events, suspected transform failures, and unknown path-state gaps.
+- Flag any plan that bypasses releasability controls, schema validation, or replay accountability.
+- Keep human approval explicit for manual cross-domain relay, schema rollback, or delayed-message release.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-theater-cross-domain-guard-schema-drift-message-loss-v1` with `protocol_stack_id=ps-theater-cross-domain-guard-schema-drift-message-loss-stack-v1`.
 - Alternate: `tool_suite_id=ts-cyber-defense-v1` with `protocol_stack_id=ps-theater-cross-domain-guard-schema-drift-message-loss-stack-v1`.
-- Degraded: critical-message manual relay only with UTC checksum log, dual-control approval, and replay board.
+- Degraded: critical-message manual relay only with UTC checksum logging and guard exception review.
 
 ## Domain Packet Defaults
 

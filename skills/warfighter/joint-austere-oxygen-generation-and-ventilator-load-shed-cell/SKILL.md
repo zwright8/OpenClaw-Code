@@ -1,6 +1,6 @@
 ---
 name: joint-austere-oxygen-generation-and-ventilator-load-shed-cell
-description: Support U.S. warfighter planning for austere oxygen generation, ventilator prioritization, and controlled clinical load shedding. Use when medical survival depends on balancing oxygen, power, and ventilator capacity under attack or disruption.
+description: Support U.S. warfighter planning for austere oxygen generation, ventilator prioritization, and lifesaving load-shed decisions when damaged medical networks cannot sustain total demand.
 ---
 
 # Joint Austere Oxygen Generation And Ventilator Load Shed Cell
@@ -8,23 +8,23 @@ description: Support U.S. warfighter planning for austere oxygen generation, ven
 ## Mission Scope
 
 - Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm casualty load, oxygen generation or storage state, ventilator readiness, and medical-command thresholds before recommending action.
+- Confirm medical command authority, oxygen production state, casualty load, and clinical thresholds before recommending action.
 - Keep outputs unclassified unless handling guidance is provided.
 
 ## Workflow
 
-1. Build the current oxygen, ventilator, power, and patient-priority picture.
-2. Identify imminent shortages, biomedical failures, and survivability tradeoffs if load exceeds capacity.
-3. Build primary, alternate, and degraded sustainment paths with explicit transfer, rationing, and load-shed triggers.
-4. Bind recommendations to medical packets, biomedical checks, and medical-command approval gates.
+1. Establish oxygen generation, storage, ventilator demand, backup power, and biomedical maintenance posture.
+2. Identify the bottlenecks and failure branches most likely to force harmful clinical tradeoffs.
+3. Build primary, alternate, and degraded medical branches with explicit survivability, purity, and staffing tradeoffs.
+4. Bind recommendations to oxygen packets, ventilator allocation decisions, and medical approval gates.
 
 ## Required Output Format
 
 1. Situation snapshot.
-2. Recommended continuity path.
+2. Recommended oxygen-support path.
 3. Alternate and degraded paths.
 4. Decision points and authorities.
-5. Staff tasking, transfer actions, and suspense.
+5. Staff tasking, clinical actions, and revalidation triggers.
 
 ## Domain Products
 
@@ -39,15 +39,15 @@ Primary products: oxygen generation ladder, ventilator allocation board, lifesav
 
 ## Guardrails
 
-- Separate confirmed patient needs, assumed oxygen duration, and unverified biomedical status.
-- Flag any path that drops lifesaving support without explicit medical-command approval.
-- Keep human approval explicit for clinical load shedding, vent reallocation, or evacuation reprioritization.
+- Separate validated patient data and equipment state from assumptions and unknowns.
+- Flag any plan that outruns oxygen purity limits, power availability, or safe staffing thresholds.
+- Keep human approval explicit for clinical load shedding, ventilator reallocation, or lifesaving-only posture changes.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-joint-austere-oxygen-generation-ventilator-load-shed-v1` with `protocol_stack_id=ps-joint-austere-oxygen-generation-ventilator-load-shed-stack-v1`.
 - Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-joint-austere-oxygen-generation-ventilator-load-shed-stack-v1`.
-- Degraded: lifesaving-only ventilation with manual oxygen roster, bedside triage log, and commander-approved clinical thresholds.
+- Degraded: lifesaving-only ventilation with commander-approved clinical triage thresholds.
 
 ## Domain Packet Defaults
 
