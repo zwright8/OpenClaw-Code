@@ -295,3 +295,8 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-coalition-host-nation-water-rights-military-demand-deconfliction-v1` + `protocol_stack_id=ps-coalition-host-nation-water-rights-military-demand-deconfliction-stack-v1` when sustainment feasibility depends on water allocation legitimacy and avoiding host-nation backlash against military demand.
 - Add `tool_suite_id=ts-joint-captured-enemy-materiel-exploitation-safe-redistribution-v1` + `protocol_stack_id=ps-joint-captured-enemy-materiel-exploitation-safe-redistribution-stack-v1` when captured enemy stocks or components can bridge contested shortages if safety and legal gates are met.
 - Add `packet_id=DPL-ELECTRONICS-SALVAGE-RECLAMATION-001`, `packet_id=DPL-WATER-RIGHTS-DECONFLICTION-001`, and `packet_id=DPL-CAPTURED-ENEMY-MATERIEL-001` for branches that materially alter sustainment throughput, legitimacy, or reuse confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
+
+- Use `coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell` when sustainment viability depends on vetted tanker-driver availability, insider-risk controls, or coalition dispatch recovery across bulk-fuel nodes.
+- Use `joint-deployed-pay-entitlement-fraud-and-disconnected-disbursement-cell` when commander sustainment risk depends on trusted pay delivery, entitlement integrity, or disconnected disbursement continuity for forward personnel.

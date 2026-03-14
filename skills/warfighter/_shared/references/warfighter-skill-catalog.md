@@ -2615,3 +2615,25 @@ Every skill output should include:
 - School shelter mass care and family reunification + defense-support-of-civil-authorities-crisis-cell + civil-affairs-stability-ops + joint-civilian-evacuation-biometric-family-reunification-integrity-cell.
 - Coalition host-nation water rights and demand + joint-water-production-and-distribution-security-cell + contested-logistics-sustainment + civil-affairs-stability-ops.
 - Captured materiel exploitation and redistribution + explosive-ordnance-disposal-coordinator + special-reconnaissance-and-sensitive-site-mapping + theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell.
+
+## New Expansion Wave (2026-03-14, Wave LV)
+
+- joint-deployed-pay-entitlement-fraud-and-disconnected-disbursement-cell
+- homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell
+- joint-insulin-cold-chain-and-diabetic-readiness-cell
+- theater-landing-craft-ramp-hydraulics-and-shore-transfer-recovery-cell
+- strategic-radome-seeker-window-and-optical-coating-priority-cell
+- joint-personal-effects-custody-and-mortuary-return-integrity-cell
+- coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell
+- joint-portable-shower-laundry-and-textile-biosecurity-cell
+
+## Updated Pairings (2026-03-14, Wave LV)
+
+- Deployed pay, entitlement fraud defense, and disconnected disbursement + multi-domain reserve mobilization readiness + joint deployed postal ballot and family contact continuity + mission risk decision support.
+- Base childcare evacuation and dual-military family continuity + civil-affairs-stability-ops + defense-support-of-civil-authorities-crisis-cell + homeland-school-shelter-mass-care-and-family-reunification-cell.
+- Insulin cold chain and diabetic readiness + preventive-medicine-and-force-health-protection + medical-logistics-and-blood-supply-coordination + joint-role-3-medical-network-and-aeromedical-evac-cell.
+- Landing-craft ramp hydraulics and shore-transfer recovery + strategic-sealift-and-prepositioning-coordinator + joint-port-opening-and-jlots-synchronization-cell + contested-logistics-sustainment.
+- Radome, seeker-window, and optical-coating priority + strategic-industrial-mobilization-readiness-cell + strategic-photonics-laser-optics-defense-allocation-cell + strategic-guidance-seeker-imu-and-accelerometer-priority-cell.
+- Personal-effects custody and mortuary return integrity + mortuary-affairs-and-personnel-accountability + joint-multi-theater-casualty-information-and-family-notification-integrity-cell + theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell.
+- Coalition fuel-truck driver vetting and bulk-fuel shift restoration + contested-logistics-sustainment + strategic-sealift-and-prepositioning-coordinator + coalition-interoperability-coordinator.
+- Portable shower, laundry, and textile biosecurity + preventive-medicine-and-force-health-protection + expeditionary-water-purification-contamination-attribution-cell + theater-battlefield-waste-and-hazardous-material-control-cell.

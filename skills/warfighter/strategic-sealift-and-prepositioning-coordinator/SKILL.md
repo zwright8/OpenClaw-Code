@@ -175,3 +175,8 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 
 - Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when force-flow confidence depends on crane OT rollback safety, berth recovery, or commercial port automation trust.
 - Add `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001` for recommendations that materially alter berth release, cargo sequencing, or commander sealift confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
+
+- Use `theater-landing-craft-ramp-hydraulics-and-shore-transfer-recovery-cell` when sealift offload confidence depends on lighterage ramp hydraulics, beach-transfer sequencing, or causeway release timing.
+- Use `coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell` when onward fuel distribution from ports depends on trusted coalition tanker dispatch and recovered shift coverage.

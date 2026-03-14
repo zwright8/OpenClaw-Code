@@ -144,3 +144,6 @@ Primary products for this skill: personnel accountability ledger, chain-of-custo
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
+
+- Use `joint-personal-effects-custody-and-mortuary-return-integrity-cell` when mortuary recommendations depend on personal-effects provenance, dual-witness custody, or trusted family return sequencing.

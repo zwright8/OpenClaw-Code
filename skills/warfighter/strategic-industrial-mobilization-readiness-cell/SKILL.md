@@ -242,3 +242,7 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 
 - Add `tool_suite_id=ts-strategic-solid-propellant-casting-cure-assurance-v1` + `protocol_stack_id=ps-strategic-solid-propellant-casting-cure-assurance-stack-v1` when industrial readiness depends on cure capacity, environmental control, or lot-release timing for solid propellant production and recertification.
 - Add `packet_id=DPL-SOLID-PROPELLANT-CASTING-CURE-001` for recommendations that materially alter propellant throughput, lot confidence, or strategic motor readiness.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
+
+- Use `strategic-radome-seeker-window-and-optical-coating-priority-cell` when mobilization readiness depends on radome throughput, seeker-window quality, or specialty optical coatings across missile, ISR, and air-defense production lines.

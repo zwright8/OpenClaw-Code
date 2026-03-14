@@ -144,3 +144,7 @@ Primary products for this skill: force health risk brief, preventive control pla
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
+
+- Use `joint-portable-shower-laundry-and-textile-biosecurity-cell` when force-health recommendations depend on hygiene throughput, textile contamination controls, or vector suppression under austere water constraints.
+- Use `joint-insulin-cold-chain-and-diabetic-readiness-cell` when field health protection must account for insulin refrigeration loss, glycemic-event risk, or diabetic duty restrictions in degraded environments.

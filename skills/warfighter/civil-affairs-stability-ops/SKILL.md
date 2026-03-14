@@ -148,3 +148,7 @@ Primary products for this skill: stability effects plan, stakeholder engagement 
 
 - Add `tool_suite_id=ts-joint-civilian-evacuation-biometric-family-reunification-integrity-v1` + `protocol_stack_id=ps-joint-civilian-evacuation-biometric-family-reunification-integrity-stack-v1` when stability recommendations depend on trusted evacuation identity reconciliation, child or family matching, or fraud-resistant accountability.
 - Add `packet_id=DPL-JOINT-CIVILIAN-EVACUATION-BIOMETRIC-FAMILY-REUNIFICATION-INTEGRITY-001` for branches that materially alter protected movement, civil screening, or reunification governance.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
+
+- Use `homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell` when stability recommendations depend on protected childcare evacuation, guardian release verification, or dual-military caregiver continuity after attack, disaster, or sheltering operations.
