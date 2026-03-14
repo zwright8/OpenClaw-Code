@@ -153,3 +153,8 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 
 - Add `tool_suite_id=ts-homeland-chemical-plume-shelter-installation-access-control-v1` + `protocol_stack_id=ps-homeland-chemical-plume-shelter-installation-access-control-stack-v1` when DSCA support depends on toxic-plume forecasting, community shelter sequencing, or tightening installation access without collapsing mission-essential traffic.
 - Add `packet_id=DPL-CHEMICAL-PLUME-SHELTER-ACCESS-001` for branches that materially alter protective-action timing, access posture, or civil-military coordination.
+
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1` + `protocol_stack_id=ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1` when DSCA recommendations depend on trusted warning release, PSAP continuity, or mass-notification authenticity under telecom stress.
+- Add `packet_id=DPL-HOMELAND-911-CELL-BROADCAST-AUTHENTICATION-MASS-NOTIFICATION-CONTINUITY-001` for branches that materially alter public-warning posture, alert release timing, or 911 mutual-aid requests.

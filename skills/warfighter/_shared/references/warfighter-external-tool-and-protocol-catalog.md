@@ -12588,3 +12588,77 @@ external_binding:
 ### `ps-coalition-harbor-vts-fallback-manual-pilotage-stack-v1`
 - Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
 - Use for: traffic-state exchange, manual pilotage release, and coalition channel-control acknowledgments.
+
+## Tool Suite Addendum LIII (2026-03-14, Human Sustainment, Recovery, and Family Continuity)
+
+### `ts-joint-religious-affairs-moral-injury-support-v1`
+- Use for: chaplain coverage, protected spiritual care routing, and moral-injury risk mitigation during combat, recovery, or prolonged operations.
+- Primary tools: chaplain coverage scheduler, confidential referral ledger, command climate stress monitor.
+- Cross-check tools: independent behavioral health liaison and alternate unit ministry team watchboard.
+- Typical products: religious support posture brief, care-routing matrix, moral-injury risk watchlist.
+
+### `ts-joint-force-veterinary-working-dog-support-v1`
+- Use for: veterinary case management, kennel biosecurity, and military working dog readiness across joint deployments.
+- Primary tools: veterinary medical record system, kennel readiness tracker, vaccination and animal movement ledger.
+- Cross-check tools: independent biosurveillance board and alternate handler-readiness review cell.
+- Typical products: working-dog readiness dashboard, veterinary sustainment plan, quarantine decision matrix.
+
+### `ts-expeditionary-field-nutrition-resilience-v1`
+- Use for: ration quality assurance, hydration management, field feeding, and expeditionary aquaculture fallback under contested sustainment.
+- Primary tools: ration quality ledger, hydration biomonitoring board, aquaculture yield planner.
+- Cross-check tools: independent preventive-medicine lab board and alternate sustainment allocation tracker.
+- Typical products: nutrition resilience scorecard, aquaculture output forecast, ration or water risk matrix.
+
+### `ts-expeditionary-dental-maxillofacial-readiness-v1`
+- Use for: dental backlog reduction, facial-trauma stabilization, and maxillofacial readiness when oral disease or combat injury threatens force availability.
+- Primary tools: dental readiness registry, oral-trauma imaging board, maxillofacial procedure scheduler.
+- Cross-check tools: independent airway-risk review cell and alternate patient-movement board.
+- Typical products: dental backlog board, oral-trauma triage matrix, maxillofacial evacuation ladder.
+
+### `ts-theater-musculoskeletal-load-physical-therapy-v1`
+- Use for: load-management decisions, physical-therapy prioritization, and overuse-injury prevention during sustained operations.
+- Primary tools: load-exposure tracker, movement-screen assessment engine, physical-therapy scheduler.
+- Cross-check tools: independent athletic-trainer review board and alternate readiness-risk monitor.
+- Typical products: load-injury risk board, therapy prioritization ladder, functional return-to-duty matrix.
+
+### `ts-joint-casualty-rehabilitation-prosthetics-return-to-duty-v1`
+- Use for: rehabilitation milestone tracking, prosthetic fitting governance, and return-to-duty or transition planning after combat injury.
+- Primary tools: rehabilitation progress tracker, prosthetic fitting board, functional-assessment ledger.
+- Cross-check tools: independent occupational-therapy review cell and alternate transition-care coordinator board.
+- Typical products: rehabilitation milestones board, prosthetic fitting matrix, return-to-duty decision ledger.
+
+### `ts-joint-deployed-postal-ballot-family-contact-continuity-v1`
+- Use for: deployed postal flow, absentee-ballot custody, and trusted family-contact continuity in contested or disconnected theaters.
+- Primary tools: postal flow board, ballot custody tracker, secure family-contact relay ledger.
+- Cross-check tools: independent custody-chain witness and alternate deception-risk notification monitor.
+- Typical products: mail-flow priority board, ballot custody ledger, family-contact continuity plan.
+
+## Protocol Stack Addendum LIII (2026-03-14, Human Sustainment, Recovery, and Family Continuity)
+
+### `ps-joint-religious-affairs-moral-injury-support-stack-v1`
+- Protocols: `HL7/FHIR`, signed care-referral manifests, `API/JSON`, `USMTF`.
+- Use for: protected care routing, chaplain-support synchronization, and moral-injury risk acknowledgment tracking.
+
+### `ps-joint-force-veterinary-working-dog-support-stack-v1`
+- Protocols: `HL7/FHIR`, signed veterinary transfer manifests, `API/JSON`, `USMTF`.
+- Use for: veterinary case exchange, kennel or quarantine status, and working-dog movement acknowledgments.
+
+### `ps-expeditionary-field-nutrition-resilience-stack-v1`
+- Protocols: `HL7/FHIR`, `OPC UA`, signed sustainment manifests, `API/JSON`, `USMTF`.
+- Use for: ration-quality status, hydration or water telemetry exchange, and field-feeding allocation approvals.
+
+### `ps-expeditionary-dental-maxillofacial-readiness-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed dental-device manifests, `API/JSON`, `USMTF`.
+- Use for: dental readiness updates, imaging exchange, and maxillofacial evacuation acknowledgments.
+
+### `ps-theater-musculoskeletal-load-physical-therapy-stack-v1`
+- Protocols: `HL7/FHIR`, signed sensor manifests, `API/JSON`, `USMTF`.
+- Use for: load-exposure updates, therapy prioritization, and functional no-go or return-to-duty acknowledgments.
+
+### `ps-joint-casualty-rehabilitation-prosthetics-return-to-duty-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed device manifests, `API/JSON`, `USMTF`.
+- Use for: rehabilitation milestone exchange, prosthetic fitting status, and return-to-duty decision routing.
+
+### `ps-joint-deployed-postal-ballot-family-contact-continuity-stack-v1`
+- Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: postal or ballot custody updates, family-contact authenticity, and continuity acknowledgments.

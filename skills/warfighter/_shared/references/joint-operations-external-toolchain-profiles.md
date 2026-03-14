@@ -2378,3 +2378,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-maritime-undersea-v1`.
 - Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
 - Degraded fallback: daylight and essential-vessel-only pilotage with readback-confirmed channel release.
+
+## Profile Addendum X (2026-03-14, Human Sustainment, Recovery, and Family Continuity)
+
+### `religious-affairs-moral-injury-support-v1`
+- Use for command and chaplain decisions when protected spiritual care access, unit moral injury indicators, or accommodation friction threaten readiness.
+- Primary tools: `ts-joint-religious-affairs-moral-injury-support-v1`.
+- Cross-check tools: `ts-force-mental-health-postvention-v1`.
+- Protocols: `HL7/FHIR`, signed care-referral manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: minimum coverage with paper referral controls and UTC acknowledgment log.
+
+### `psychological-health-postvention-v1`
+- Use for command postvention after suicide events when readiness stabilization, contagion-risk reduction, and trusted care coordination are time critical.
+- Primary tools: `ts-force-mental-health-postvention-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`.
+- Degraded fallback: commander-approved manual postvention board with dual-review care handoffs.
+
+### `veterinary-working-dog-support-v1`
+- Use for working-dog and veterinary decisions when kennel capacity, zoonotic risk, or handler-team readiness drive deployment timing.
+- Primary tools: `ts-joint-force-veterinary-working-dog-support-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed veterinary transfer manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: life-saving treatment and mission-essential movement only with paper custody log.
+
+### `field-nutrition-resilience-v1`
+- Use for sustainment and force-health decisions when ration quality, hydration, or local protein supply determine endurance.
+- Primary tools: `ts-expeditionary-field-nutrition-resilience-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `HL7/FHIR`, `OPC UA`, signed sustainment manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential feeding only with daily water and cold-chain checks.
+
+### `dental-maxillofacial-readiness-v1`
+- Use for expeditionary medical planning when dental backlog, oral infection, or facial trauma threaten force availability and airway safety.
+- Primary tools: `ts-expeditionary-dental-maxillofacial-readiness-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed dental-device manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: emergency-only dental treatment with commander-approved evacuation ladder.
+
+### `musculoskeletal-load-physical-therapy-v1`
+- Use for readiness decisions when load exposure and overuse injuries drive therapy demand faster than treatment capacity.
+- Primary tools: `ts-theater-musculoskeletal-load-physical-therapy-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed sensor manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential task-lightening only with daily manual screening.
+
+### `rehabilitation-prosthetics-return-to-duty-v1`
+- Use for long-horizon recovery planning when rehabilitation milestones, prosthetic supply, and functional standards determine return-to-duty timing.
+- Primary tools: `ts-joint-casualty-rehabilitation-prosthetics-return-to-duty-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed device manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: basic mobility milestone tracking only with command-approved reassessment intervals.
+
+### `postal-ballot-family-contact-continuity-v1`
+- Use for personnel-support continuity when postal flow, absentee ballots, or trusted family communication are disrupted by theater conditions.
+- Primary tools: `ts-joint-deployed-postal-ballot-family-contact-continuity-v1`.
+- Cross-check tools: `ts-physical-message-assurance-v1`.
+- Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Degraded fallback: courier-only custody ledger with dual-control ballot witness checks.

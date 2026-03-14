@@ -170,3 +170,8 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 
 - Add `tool_suite_id=ts-coalition-harbor-vts-fallback-manual-pilotage-v1` + `protocol_stack_id=ps-coalition-harbor-vts-fallback-manual-pilotage-stack-v1` when sealift timing depends on manual harbor control, pilotage scarcity, or channel release after cyber or VTS degradation.
 - Add `packet_id=DPL-HARBOR-VTS-MANUAL-PILOTAGE-001` for recommendations that materially alter port-entry timing, berth sequencing, or commander confidence in coalition harbor control.
+
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when force-flow confidence depends on crane OT rollback safety, berth recovery, or commercial port automation trust.
+- Add `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001` for recommendations that materially alter berth release, cargo sequencing, or commander sealift confidence.

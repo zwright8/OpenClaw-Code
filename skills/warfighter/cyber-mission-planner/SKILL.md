@@ -60,6 +60,12 @@ Primary products for this skill: cyber mission plan, dependency/risk register, s
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
 
+## Fail-Closed Authority Gate
+
+- Require `requires_human_approval=true` for recommendations that change cyber effects posture, access persistence, or mission-critical network state.
+- Block release if `authority_tier`, `approval_role`, `legal_basis_ref`, `audit_record_id`, or `ack_chain_status` is missing.
+- If authority, legal basis, tool trust, or attribution confidence is uncertain, downgrade to advisory-only and set `execution_not_authorized`.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
@@ -144,3 +150,7 @@ Primary products for this skill: cyber mission plan, dependency/risk register, s
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when cyber recommendations depend on emergency identity burn, privileged-role containment, or mission workload access recovery.
+- Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for branches that materially alter access persistence, break-glass posture, or mission-software continuity.

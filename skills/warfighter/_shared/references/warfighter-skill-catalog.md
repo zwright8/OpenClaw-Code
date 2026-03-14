@@ -2568,3 +2568,24 @@ Every skill output should include:
 - Strategic solid-propellant casting and cure assurance + strategic industrial mobilization readiness + strategic solid rocket motor supply surge safety assurance + contested space launch and satellite reconstitution.
 - Ordnance magazine humidity and stability monitoring + munitions stockpile and expenditure manager + munitions port safety + force protection and base defense.
 - Coalition harbor VTS fallback and manual pilotage + strategic sealift and prepositioning coordinator + strategic harbor tug pilotage sealift priority + joint denied GNSS maritime pilotage and port entry.
+
+## New Expansion Wave (2026-03-14, Wave LIII)
+
+- joint-religious-affairs-and-moral-injury-support-cell
+- joint-psychological-health-suicide-postvention-command-support-cell
+- joint-force-veterinary-and-working-dog-support-cell
+- expeditionary-aquaculture-and-field-nutrition-resilience-cell
+- expeditionary-dental-and-maxillofacial-readiness-cell
+- theater-musculoskeletal-load-management-and-physical-therapy-cell
+- joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell
+- joint-deployed-postal-ballot-and-family-contact-continuity-cell
+
+## Updated Pairings (2026-03-14, Wave LIII)
+
+- Religious affairs and moral injury support + psychological health postvention + human performance and combat stress risk + theater reservist family readiness and retention.
+- Veterinary and working-dog support + force protection and base defense + preventive medicine and force health protection + expeditionary veterinary and zoonotic risk.
+- Field nutrition resilience + theater food-security and civil-stability support + strategic food cold-storage continuity + preventive medicine and force health protection.
+- Dental and maxillofacial readiness + austere surgical support coordinator + casualty evacuation and medical regulation + theater mass-casualty burn-care austere network.
+- Musculoskeletal load management and physical therapy + human performance and combat stress risk + expeditionary neurocognitive injury screening and return to duty + multi-domain reserve mobilization readiness.
+- Casualty rehabilitation and prosthetics + expeditionary neurocognitive injury screening and return to duty + strategic veteran medical surge transition + theater veteran transition and reserve recall readiness.
+- Postal, ballot, and family-contact continuity + personnel-recovery family authentication and deception denial + multi-theater casualty information and family notification integrity + theater mission network failover.

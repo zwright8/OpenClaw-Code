@@ -12263,3 +12263,93 @@ validation_gates:
 - output_schema: harbor traffic fallback ladder, manual pilotage matrix, coalition channel-risk brief
 - protocol_profile: AIS/NMEA + OGC + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
 - validation_gates: track-confidence threshold, harbor-authority concurrence, coalition acknowledgment integrity
+
+## Packet Addendum XLII (2026-03-14, Human Sustainment, Recovery, and Family Continuity)
+
+### packet_id: DPL-RELIGIOUS-MORAL-INJURY-001
+- domain: joint religious affairs and moral injury support
+- objective: preserve protected spiritual care access and reduce moral-injury risk without breaching confidentiality or command boundaries.
+- primary_tools: chaplain coverage scheduler, confidential referral ledger, command climate stress monitor
+- alternate_tools: manual coverage roster and dual-review referral worksheet
+- degraded_mode: commander-approved minimum coverage with paper referral controls and UTC acknowledgment log
+- input_requirements: unit stress indicators, chaplain coverage, casualty tempo, referral options, accommodation constraints
+- output_schema: religious support posture brief, care-routing matrix, moral-injury risk watchlist
+- protocol_profile: HL7/FHIR + signed care-referral manifests + API/JSON + USMTF
+- validation_gates: confidentiality check, referral verification, command acknowledgment
+
+### packet_id: DPL-PSYCH-POSTVENTION-001
+- domain: joint psychological health suicide postvention command support
+- objective: stabilize the force after suicide loss, prevent contagion risk, and preserve trusted care coordination.
+- primary_tools: command climate analytics, behavioral health coordination system, chaplain support workflow
+- alternate_tools: manual postvention board and care-handoff worksheet
+- degraded_mode: commander-approved manual postvention plan with dual-review care handoffs
+- input_requirements: incident timeline, unit stress indicators, care capacity, chaplain or legal guidance, decision deadlines
+- output_schema: postvention action plan, stabilization timeline, care-escalation tracker
+- protocol_profile: HL7/FHIR + USMTF + API/JSON
+- validation_gates: care capacity confirmation, privacy review, command acknowledgment
+
+### packet_id: DPL-VET-WORKING-DOG-001
+- domain: joint force veterinary and working dog support
+- objective: keep working-dog teams mission-ready while controlling treatment backlog, quarantine risk, and kennel constraints.
+- primary_tools: veterinary medical record system, kennel readiness tracker, vaccination and movement ledger
+- alternate_tools: manual treatment roster and kennel worksheet
+- degraded_mode: life-saving treatment and mission-essential movement only with paper custody log
+- input_requirements: canine readiness status, treatment demand, kennel capacity, vaccination state, mission assignments
+- output_schema: working-dog readiness dashboard, veterinary sustainment plan, quarantine decision matrix
+- protocol_profile: HL7/FHIR + signed veterinary transfer manifests + API/JSON + USMTF
+- validation_gates: treatment review, quarantine confirmation, movement approval
+
+### packet_id: DPL-FIELD-NUTRITION-001
+- domain: expeditionary aquaculture and field nutrition resilience
+- objective: sustain force nutrition and hydration when ration quality, water safety, or local protein supply threaten endurance.
+- primary_tools: ration quality ledger, hydration biomonitoring board, aquaculture yield planner
+- alternate_tools: manual ration board and preventive-medicine worksheet
+- degraded_mode: mission-essential feeding only with daily water and cold-chain checks
+- input_requirements: ration inventory, hydration status, water quality, caloric demand, local production options
+- output_schema: nutrition resilience scorecard, aquaculture output forecast, ration or water risk matrix
+- protocol_profile: HL7/FHIR + OPC UA + signed sustainment manifests + API/JSON + USMTF
+- validation_gates: food-safety review, water-quality confirmation, sustainment approval
+
+### packet_id: DPL-DENTAL-MAXILLOFACIAL-001
+- domain: expeditionary dental and maxillofacial readiness
+- objective: preserve combat power by prioritizing dental readiness, facial-trauma stabilization, and specialist evacuation when needed.
+- primary_tools: dental readiness registry, oral-trauma imaging board, maxillofacial procedure scheduler
+- alternate_tools: manual dental triage sheet and imaging log
+- degraded_mode: emergency-only dental treatment with commander-approved evacuation ladder
+- input_requirements: dental class status, trauma reports, imaging access, procedure capacity, evacuation options
+- output_schema: dental readiness roster, oral-trauma triage board, maxillofacial evacuation matrix
+- protocol_profile: HL7/FHIR + DICOM + signed dental-device manifests + API/JSON + USMTF
+- validation_gates: airway-risk review, imaging confirmation, medical approval
+
+### packet_id: DPL-MSK-PT-001
+- domain: theater musculoskeletal load management and physical therapy
+- objective: reduce preventable overuse injury while preserving mission output through targeted load changes and therapy prioritization.
+- primary_tools: load-exposure tracker, movement-screen assessment engine, physical-therapy scheduler
+- alternate_tools: manual injury watchlist and movement-screen worksheet
+- degraded_mode: mission-essential task-lightening only with daily manual screening
+- input_requirements: injury trends, load exposure, mission tasks, therapy capacity, return-to-duty thresholds
+- output_schema: load-injury risk board, therapy prioritization ladder, functional return-to-duty matrix
+- protocol_profile: HL7/FHIR + signed sensor manifests + API/JSON + USMTF
+- validation_gates: injury review, therapy confirmation, command acknowledgment
+
+### packet_id: DPL-REHAB-PROSTHETICS-001
+- domain: joint casualty rehabilitation prosthetics and return to duty
+- objective: sequence rehabilitation and prosthetic support to maximize long-term function without making premature return-to-duty decisions.
+- primary_tools: rehabilitation progress tracker, prosthetic fitting board, functional-assessment ledger
+- alternate_tools: manual rehab milestone board and prosthetic custody sheet
+- degraded_mode: basic mobility milestone tracking only with command-approved reassessment intervals
+- input_requirements: injury profile, rehab milestones, prosthetic demand, occupational tasks, family-transition needs
+- output_schema: rehabilitation milestones board, prosthetic fitting matrix, return-to-duty decision ledger
+- protocol_profile: HL7/FHIR + DICOM + signed device manifests + API/JSON + USMTF
+- validation_gates: device pedigree review, functional assessment, medical and command approval
+
+### packet_id: DPL-POSTAL-BALLOT-FAMILY-001
+- domain: joint deployed postal ballot and family contact continuity
+- objective: preserve morale, legal voting access, and trusted family communications without breaking custody or OPSEC.
+- primary_tools: postal flow board, ballot custody tracker, secure family-contact relay ledger
+- alternate_tools: courier ledger and manual family-contact release board
+- degraded_mode: mission-essential mail and ballot transport only with dual-control custody witness
+- input_requirements: backlog size, ballot deadlines, courier routes, deception indicators, casualty-notification posture
+- output_schema: mail-flow priority board, ballot custody ledger, family-contact continuity plan
+- protocol_profile: NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
+- validation_gates: custody verification, identity check, command acknowledgment

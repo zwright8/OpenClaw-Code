@@ -994,3 +994,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent harbor master witness and alternate sealift control board
 - Protocol binding: AIS/NMEA + OGC + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
 - Fallback path: daylight and essential-vessel-only pilotage with readback-confirmed channel release
+
+## New Toolchain Wave (2026-03-14, Expansion Wave LIII)
+
+### `TC-RELIGIOUS-118`
+
+- Domain: joint religious affairs and moral injury support
+- Primary systems: chaplain coverage scheduler, confidential referral ledger, command climate stress monitor
+- Cross-check systems: independent behavioral health liaison and alternate unit ministry team watchboard
+- Protocol binding: HL7/FHIR + signed care-referral manifests + API/JSON + USMTF
+- Fallback path: minimum coverage with paper referral controls and UTC acknowledgment log
+
+### `TC-PSYCH-119`
+
+- Domain: joint psychological health suicide postvention command support
+- Primary systems: command climate analytics, behavioral health coordination system, chaplain support workflow
+- Cross-check systems: independent care-follow-up audit board and alternate readiness stress monitor
+- Protocol binding: HL7/FHIR + USMTF + API/JSON
+- Fallback path: commander-approved manual postvention board with dual-review care handoffs
+
+### `TC-VETDOG-120`
+
+- Domain: joint force veterinary and working dog support
+- Primary systems: veterinary medical record system, kennel readiness tracker, vaccination and animal movement ledger
+- Cross-check systems: independent biosurveillance board and alternate handler-readiness review cell
+- Protocol binding: HL7/FHIR + signed veterinary transfer manifests + API/JSON + USMTF
+- Fallback path: life-saving treatment and mission-essential movement only with paper custody log
+
+### `TC-NUTRITION-121`
+
+- Domain: expeditionary aquaculture and field nutrition resilience
+- Primary systems: ration quality ledger, hydration biomonitoring board, aquaculture yield planner
+- Cross-check systems: independent preventive-medicine lab board and alternate sustainment allocation tracker
+- Protocol binding: HL7/FHIR + OPC UA + signed sustainment manifests + API/JSON + USMTF
+- Fallback path: mission-essential feeding only with daily water and cold-chain checks
+
+### `TC-DENTAL-122`
+
+- Domain: expeditionary dental and maxillofacial readiness
+- Primary systems: dental readiness registry, oral-trauma imaging board, maxillofacial procedure scheduler
+- Cross-check systems: independent airway-risk review cell and alternate patient-movement board
+- Protocol binding: HL7/FHIR + DICOM + signed dental-device manifests + API/JSON + USMTF
+- Fallback path: emergency-only dental treatment with commander-approved evacuation ladder
+
+### `TC-MSK-123`
+
+- Domain: theater musculoskeletal load management and physical therapy
+- Primary systems: load-exposure tracker, movement-screen assessment engine, physical-therapy scheduler
+- Cross-check systems: independent athletic-trainer review board and alternate readiness-risk monitor
+- Protocol binding: HL7/FHIR + signed sensor manifests + API/JSON + USMTF
+- Fallback path: mission-essential task-lightening only with daily manual screening
+
+### `TC-REHAB-124`
+
+- Domain: joint casualty rehabilitation prosthetics and return to duty
+- Primary systems: rehabilitation progress tracker, prosthetic fitting board, functional-assessment ledger
+- Cross-check systems: independent occupational-therapy review cell and alternate transition-care coordinator board
+- Protocol binding: HL7/FHIR + DICOM + signed device manifests + API/JSON + USMTF
+- Fallback path: basic mobility milestone tracking only with command-approved reassessment intervals
+
+### `TC-POSTAL-125`
+
+- Domain: joint deployed postal ballot and family contact continuity
+- Primary systems: postal flow board, ballot custody tracker, secure family-contact relay ledger
+- Cross-check systems: independent custody-chain witness and alternate deception-risk notification monitor
+- Protocol binding: NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
+- Fallback path: courier-only custody ledger with dual-control ballot witness checks

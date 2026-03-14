@@ -144,3 +144,7 @@ Primary products for this skill: critical infrastructure risk map, monitoring po
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-joint-undersea-cable-sabotage-forensics-restoration-v1` + `protocol_stack_id=ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1` when infrastructure defense recommendations depend on sabotage attribution, custody integrity, or restoration sequencing for mission networks.
+- Add `packet_id=DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-001` for branches that materially alter maritime collection posture, repair sequencing, or coalition disclosure timing.

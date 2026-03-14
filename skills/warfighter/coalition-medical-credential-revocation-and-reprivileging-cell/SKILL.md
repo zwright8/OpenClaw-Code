@@ -1,63 +1,73 @@
 ---
 name: coalition-medical-credential-revocation-and-reprivileging-cell
-description: Restore coalition care capacity after cyber or trust failures disrupt medical credentials and privileging.
+description: Coordinate coalition clinician trust recovery, revocation response, and emergency reprivileging for U.S. warfighter supported care networks. Use when credential compromise, insider risk, or emergency staffing gaps threaten coalition treatment continuity.
 ---
 
 # Coalition Medical Credential Revocation And Reprivileging Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter coalition medical governance, care continuity, and clinical workforce assurance operations in this domain.
-- Confirm authority, classification and releasability, patient-safety rules, and commander decision points before producing recommendations.
-- Keep outputs advisory unless explicit command approval is documented.
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in this domain.
+- Confirm coalition medical authorities, host-nation licensing constraints, patient-safety thresholds, and decision deadlines before recommending action.
+- Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Build the mission picture with revocation events, clinician roles, privileging status, bed demand, and coalition caveats.
-2. Compare primary, alternate, and degraded branches with explicit trigger thresholds, patient-safety risks, and care-capacity tradeoffs.
-3. Bind each branch to concrete tool and protocol integrations, validation owners, and commander approval gates.
-4. Publish commander decision points, staff tasking, and revalidation windows for emergency privileging, revocation containment, and cross-border care actions.
+1. Frame the mission problem with clinician roster status, revocation notices, patient-load pressure, and credential trust gaps.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in care continuity, legal exposure, coalition trust, and clinical risk.
+3. Identify branch/sequel triggers, emergency privileging thresholds, and command approval gates.
+4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
+5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
 ## Required Output Format
 
-1. Situation snapshot.
-2. Recommended branch and rationale.
-3. Alternate and degraded branches with trigger thresholds.
-4. Decision authorities, timing gates, and escalation criteria.
-5. Staff actions with owner, suspense, and verification method.
+1. Situation snapshot and key changes.
+2. Recommended COA and rationale.
+3. Alternative COAs with trigger conditions.
+4. Decision points and escalation gates.
+5. Staff tasks by owner and suspense.
+6. Tool invocation packets with protocol bindings.
 
 ## Domain Products
 
-Primary products: credential trust board, emergency privileging ladder, care continuity packet.
-
-## External Tools and Protocol Integration
-
-- Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Prioritize these tool families: clinician credential registries, revocation ledgers, emergency privileging workflows, and bed-load balancing boards.
-- Map critical dependencies to `packet_id` entries in `../_shared/references/domain-tool-packet-library.md`; if missing, define provisional packets with validation owners.
-- Bind each recommendation to concrete suite and stack entries in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
-- Select or derive a matching toolchain profile from `../_shared/references/joint-operations-external-toolchain-profiles.md` when credential trust, coalition caveats, and patient-load branches interact.
+Primary products: clinician trust board, emergency privileging ladder, and care continuity packet.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-coalition-medical-credential-revocation-reprivileging-v1` with `protocol_stack_id=ps-coalition-medical-credential-revocation-reprivileging-stack-v1`.
-- Alternate: manual credential witness board with emergency privileging committee and theater-by-theater license reconciliation.
-- Degraded: life-, limb-, or eyesight-saving care only with commander-approved emergency privileges and explicit risk acknowledgment.
-
-## Guardrails
-
-- Separate observed facts, assessed confidence, and unknowns.
-- Keep outputs at credential-governance, patient-safety, and care-continuity level; do not provide identity fraud, access abuse, or privacy-bypass instructions.
-- If credential trust, legal basis, or clinical-load evidence is stale or incomplete, mark outputs `provisional` and provide a constrained branch.
-- Escalate high-consequence recommendations using `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
+- Alternate: select a mission-adjacent coalition medical, aeromedical, or hospital-network suite/stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: manual credential witness board with emergency privileging committee worksheet and dual-signature treatment exception log.
 
 ## Domain Packet Defaults
 
 - Default packet ID: `DPL-COALITION-MEDICAL-CREDENTIAL-REPRIVILEGING-001`.
-- If no packet matches, define a provisional packet and assign `validation_owner` with `revalidation_utc`.
+- If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
-## Operational Execution Hardening
+## External Tool Stack and Protocols
 
-- Require `ack_chain_status=verified` for mission-critical exchanges.
-- Require `trust_score >= 0.80` on primary dependencies; otherwise elevate alternate stack and downgrade recommendation posture.
-- End every deliverable with `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` tied to authority and protocol checks.
+- Preferred external toolsets for this domain: clinician credential registry, revocation ledger, emergency privileging workflow, and bed-load balancing board.
+- Preferred protocol profiles for coordination and machine exchange: `HL7/FHIR`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, signed credential manifests, and `API/JSON`.
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
+
+## Tool Invocation Contract
+
+For each critical tool recommendation include objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+
+## Mission Tool Authority Gates
+
+- Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
+- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
+- If authority, legal basis, credential trust, or patient-safety evidence is uncertain, downgrade to advisory-only and request command decision.
+
+## Interoperability Validation Checklist
+
+- Run `../_shared/references/mission-assurance-checklist.md` and `../_shared/references/us-joint-protocol-assurance-drill.md` before release.
+- Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
+- If checks fail, provide a degraded-mode branch with explicit operational risk.
+
+## Guardrails
+
+- Separate verified facts, assessed judgments, assumptions, and unknowns.
+- Flag host-nation licensure, privacy, patient-safety, and coalition caveat constraints before recommending action.
+- Do not fabricate classified sources, authorities, or approvals.
