@@ -5042,6 +5042,9 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
         `- followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
+        `- botRetriesAttempted: ${report.totals?.botRetriesAttempted || 0}`,
+        `- botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
+        `- botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         '',
         '## Coverage',
         '',
@@ -5104,6 +5107,10 @@ export async function runAutonomousOpenClaw({
     skillHardeningMinScore = 82,
     skillDeployabilityIndexPath = null,
     skillHardeningProfilePath = null,
+    botMaxAttempts = 2,
+    botRetryBaseDelayMs = 200,
+    botRetryMaxDelayMs = 5_000,
+    botRetryJitter = 0.2,
     enqueueFollowupTasks = true,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
@@ -5154,7 +5161,10 @@ export async function runAutonomousOpenClaw({
         followupTasksSaved: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
-        botSkillHardeningBlocked: 0
+        botSkillHardeningBlocked: 0,
+        botRetriesAttempted: 0,
+        botRetriesRecovered: 0,
+        botRetriesExhausted: 0
     };
 
     const waveReports = [];
@@ -5210,6 +5220,10 @@ export async function runAutonomousOpenClaw({
             skillHardeningMinScore,
             skillDeployabilityIndexPath: effectiveDeployabilityIndexPath,
             skillHardeningProfilePath: effectiveHardeningProfilePath,
+            botMaxAttempts,
+            botRetryBaseDelayMs,
+            botRetryMaxDelayMs,
+            botRetryJitter,
             enqueueFollowupTasks,
             nowFactory
         });
@@ -5265,6 +5279,9 @@ export async function runAutonomousOpenClaw({
                 botTasksExecuted: workerReport.totals.botTasksExecuted,
                 botTasksFailed: workerReport.totals.botTasksFailed,
                 botSkillHardeningBlocked: workerReport.totals.botSkillHardeningBlocked,
+                botRetriesAttempted: workerReport.totals.botRetriesAttempted,
+                botRetriesRecovered: workerReport.totals.botRetriesRecovered,
+                botRetriesExhausted: workerReport.totals.botRetriesExhausted,
                 finalQueueOpen: workerReport.finalQueue.open
             }
         };
@@ -5281,6 +5298,9 @@ export async function runAutonomousOpenClaw({
         totals.botTasksExecuted += waveReport.worker.botTasksExecuted;
         totals.botTasksFailed += waveReport.worker.botTasksFailed;
         totals.botSkillHardeningBlocked += waveReport.worker.botSkillHardeningBlocked;
+        totals.botRetriesAttempted += waveReport.worker.botRetriesAttempted;
+        totals.botRetriesRecovered += waveReport.worker.botRetriesRecovered;
+        totals.botRetriesExhausted += waveReport.worker.botRetriesExhausted;
 
         const coverageReport = createCoverageReport({
             skillCatalog,
@@ -5329,6 +5349,10 @@ export async function runAutonomousOpenClaw({
             skillHardeningMinScore,
             skillDeployabilityIndexPath: effectiveDeployabilityIndexPath,
             skillHardeningProfilePath: effectiveHardeningProfilePath,
+            botMaxAttempts: parsePositiveInt(botMaxAttempts, 2),
+            botRetryBaseDelayMs: parseNonNegativeInt(botRetryBaseDelayMs, 200),
+            botRetryMaxDelayMs: parseNonNegativeInt(botRetryMaxDelayMs, 5_000),
+            botRetryJitter: clamp(parseNonNegativeNumber(botRetryJitter, 0.2), 0, 1),
             enqueueFollowupTasks
         },
         coverage,

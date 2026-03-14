@@ -116,6 +116,9 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.dispatched: ${report.totals?.dispatched || 0}`,
         `- totals.resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
         `- totals.followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
+        `- totals.botRetriesAttempted: ${report.totals?.botRetriesAttempted || 0}`,
+        `- totals.botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
+        `- totals.botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
         '',
@@ -159,6 +162,10 @@ export async function runBotWorkerLoop({
     skillDeployabilityIndexPath = null,
     skillHardeningProfilePath = null,
     enqueueFollowupTasks = true,
+    botMaxAttempts = 2,
+    botRetryBaseDelayMs = 200,
+    botRetryMaxDelayMs = 5_000,
+    botRetryJitter = 0.2,
     nowFactory = Date.now
 } = {}) {
     if (!storePath || typeof storePath !== 'string') {
@@ -185,6 +192,9 @@ export async function runBotWorkerLoop({
         botTasksExecuted: 0,
         botTasksFailed: 0,
         botSkillHardeningBlocked: 0,
+        botRetriesAttempted: 0,
+        botRetriesRecovered: 0,
+        botRetriesExhausted: 0,
         followupTasksGenerated: 0,
         followupTasksSaved: 0,
         followupTasksSkipped: 0,
@@ -229,6 +239,10 @@ export async function runBotWorkerLoop({
             skillDeployabilityIndexPath,
             skillHardeningProfilePath,
             enqueueFollowupTasks,
+            botMaxAttempts,
+            botRetryBaseDelayMs,
+            botRetryMaxDelayMs,
+            botRetryJitter,
             nowFactory: now
         });
 
@@ -271,6 +285,9 @@ export async function runBotWorkerLoop({
             botTasksExecuted: processResult.botTasksExecuted,
             botTasksFailed: processResult.botTasksFailed,
             botSkillHardeningBlocked: processResult.botSkillHardeningBlocked,
+            botRetriesAttempted: processResult.botRetriesAttempted,
+            botRetriesRecovered: processResult.botRetriesRecovered,
+            botRetriesExhausted: processResult.botRetriesExhausted,
             followupTasksGenerated: processResult.followupTasksGenerated,
             followupTasksSaved: processResult.followupTasksSaved,
             followupTasksSkipped: processResult.followupTasksSkipped,
@@ -284,6 +301,9 @@ export async function runBotWorkerLoop({
         totals.botTasksExecuted += processResult.botTasksExecuted;
         totals.botTasksFailed += processResult.botTasksFailed;
         totals.botSkillHardeningBlocked += processResult.botSkillHardeningBlocked;
+        totals.botRetriesAttempted += processResult.botRetriesAttempted;
+        totals.botRetriesRecovered += processResult.botRetriesRecovered;
+        totals.botRetriesExhausted += processResult.botRetriesExhausted;
         totals.followupTasksGenerated += processResult.followupTasksGenerated;
         totals.followupTasksSaved += processResult.followupTasksSaved;
         totals.followupTasksSkipped += processResult.followupTasksSkipped;

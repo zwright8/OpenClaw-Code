@@ -31,6 +31,10 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
+  --bot-max-attempts <n>       Max bot execution attempts for transient failures (default: 2)
+  --bot-retry-base-ms <n>      Base backoff delay in milliseconds for retries (default: 200)
+  --bot-retry-max-ms <n>       Max backoff delay in milliseconds for retries (default: 5000)
+  --bot-retry-jitter <0-1>     Retry delay jitter ratio (default: 0.2)
   --no-enqueue-followups       Disable enqueueing bot-generated follow-up tasks
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
@@ -71,6 +75,14 @@ function parseHardeningScore(raw) {
     return value;
 }
 
+function parseRatio(raw, flag) {
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value < 0 || value > 1) {
+        throw new Error(`${flag} must be between 0 and 1`);
+    }
+    return value;
+}
+
 function parseArgs(argv) {
     const defaultOutbox = path.resolve(process.cwd(), '../swarm-protocol/state/outbox');
     const options = {
@@ -94,6 +106,10 @@ function parseArgs(argv) {
         skillHardeningMinScore: 82,
         skillDeployabilityIndexPath: null,
         skillHardeningProfilePath: null,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 200,
+        botRetryMaxDelayMs: 5_000,
+        botRetryJitter: 0.2,
         enqueueFollowupTasks: true,
         jsonPath: null,
         markdownPath: null,
@@ -214,6 +230,26 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-max-attempts') {
+            options.botMaxAttempts = parsePositiveInt(value, '--bot-max-attempts');
+            i++;
+            continue;
+        }
+        if (token === '--bot-retry-base-ms') {
+            options.botRetryBaseDelayMs = parsePositiveInt(value, '--bot-retry-base-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-retry-max-ms') {
+            options.botRetryMaxDelayMs = parsePositiveInt(value, '--bot-retry-max-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-retry-jitter') {
+            options.botRetryJitter = parseRatio(value, '--bot-retry-jitter');
+            i++;
+            continue;
+        }
         if (token === '--json') {
             options.jsonPath = path.resolve(process.cwd(), value);
             i++;
@@ -243,6 +279,9 @@ function printSummary(report) {
     console.log(`Bot tasks executed: ${report.totals.botTasksExecuted}`);
     console.log(`Bot task failures: ${report.totals.botTasksFailed}`);
     console.log(`Bot skill hardening blocked: ${report.totals.botSkillHardeningBlocked}`);
+    console.log(`Bot retries attempted: ${report.totals.botRetriesAttempted}`);
+    console.log(`Bot retries recovered: ${report.totals.botRetriesRecovered}`);
+    console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted}`);
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Final queue open: ${report.finalQueue.open}`);
     console.log(`Final queue awaiting approval: ${report.finalQueue.awaitingApproval}`);
@@ -277,6 +316,10 @@ function printSummary(report) {
             skillHardeningMinScore: options.skillHardeningMinScore,
             skillDeployabilityIndexPath: options.skillDeployabilityIndexPath,
             skillHardeningProfilePath: options.skillHardeningProfilePath,
+            botMaxAttempts: options.botMaxAttempts,
+            botRetryBaseDelayMs: options.botRetryBaseDelayMs,
+            botRetryMaxDelayMs: options.botRetryMaxDelayMs,
+            botRetryJitter: options.botRetryJitter,
             enqueueFollowupTasks: options.enqueueFollowupTasks
         });
 

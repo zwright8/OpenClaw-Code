@@ -36,6 +36,62 @@ function chooseResultStatus(failureRate, rng = Math.random) {
     return rng() < normalizeFailureRate(failureRate) ? 'failure' : 'success';
 }
 
+function parsePositiveInt(value, fallback) {
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric <= 0) return fallback;
+    return numeric;
+}
+
+function parseNonNegativeInt(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric < 0) return fallback;
+    return numeric;
+}
+
+function normalizeRetryJitter(value, fallback = 0.2) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0, 1);
+}
+
+function isTransientBotFailure(execution) {
+    if (!execution || typeof execution !== 'object') return false;
+    if (execution.status !== 'failure') return false;
+    if (Number(execution.metrics?.retryable) >= 1 || Number(execution.metrics?.transientFailure) >= 1) {
+        return true;
+    }
+    const output = typeof execution.output === 'string' ? execution.output.toLowerCase() : '';
+    if (!output) return false;
+    return /timed?\s*out|timeout|transport|rate\s*limit|too many requests|throttl|econn|eai_again|enotfound|temporar|unavailable|502|503|504/.test(output);
+}
+
+function computeRetryDelayMs({
+    baseDelayMs,
+    maxDelayMs,
+    attempt,
+    jitter,
+    rng = Math.random
+}) {
+    const normalizedBase = Math.max(0, parseNonNegativeInt(baseDelayMs, 200));
+    const normalizedMax = Math.max(normalizedBase, parseNonNegativeInt(maxDelayMs, 5_000));
+    const exponent = Math.max(0, parseNonNegativeInt(attempt, 1) - 1);
+    const uncapped = normalizedBase * Math.pow(2, exponent);
+    const capped = Math.min(normalizedMax, uncapped);
+    const jitterRatio = normalizeRetryJitter(jitter, 0.2);
+    if (capped <= 0 || jitterRatio <= 0) return capped;
+    const random = typeof rng === 'function' ? clamp(Number(rng()) || 0, 0, 1) : 0.5;
+    const offset = ((random * 2) - 1) * jitterRatio;
+    return Math.max(0, Math.round(capped * (1 + offset)));
+}
+
+async function sleep(ms) {
+    const duration = parseNonNegativeInt(ms, 0);
+    if (duration <= 0) return;
+    await new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+
 function isTaskDispatchEnvelope(payload) {
     return payload
         && typeof payload === 'object'
@@ -158,6 +214,11 @@ export async function processOutboxEnvelopes({
     skillDeployabilityIndexPath = null,
     skillHardeningProfilePath = null,
     enqueueFollowupTasks = true,
+    botMaxAttempts = 2,
+    botRetryBaseDelayMs = 200,
+    botRetryMaxDelayMs = 5_000,
+    botRetryJitter = 0.2,
+    botExecute = null,
     dryRun = false,
     nowFactory = Date.now,
     rng = Math.random
@@ -170,6 +231,16 @@ export async function processOutboxEnvelopes({
     }
 
     const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const normalizedBotMaxAttempts = parsePositiveInt(botMaxAttempts, 2);
+    const normalizedBotRetryBaseDelayMs = parseNonNegativeInt(botRetryBaseDelayMs, 200);
+    const normalizedBotRetryMaxDelayMs = Math.max(
+        normalizedBotRetryBaseDelayMs,
+        parseNonNegativeInt(botRetryMaxDelayMs, 5_000)
+    );
+    const normalizedBotRetryJitter = normalizeRetryJitter(botRetryJitter, 0.2);
+    const executeBotTask = typeof botExecute === 'function'
+        ? botExecute
+        : async (request, runtimeBot) => runtimeBot.executeTask(request);
     const store = new FileTaskStore({ filePath: storePath, now });
     const orchestrator = new TaskOrchestrator({
         localAgentId,
@@ -216,6 +287,9 @@ export async function processOutboxEnvelopes({
         botCapabilityTasks: 0,
         botCapabilityActionTasks: 0,
         botGenericTasks: 0,
+        botRetriesAttempted: 0,
+        botRetriesRecovered: 0,
+        botRetriesExhausted: 0,
         followupTasksGenerated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
@@ -263,10 +337,43 @@ export async function processOutboxEnvelopes({
             let resultMetrics;
 
             if (bot) {
-                // eslint-disable-next-line no-await-in-loop
-                const execution = await bot.executeTask(request);
+                let execution = null;
+                let attempts = 0;
+                let transientFailureRetried = false;
+                while (attempts < normalizedBotMaxAttempts) {
+                    attempts++;
+                    // eslint-disable-next-line no-await-in-loop
+                    execution = await executeBotTask(request, bot, attempts);
+                    const shouldRetry = isTransientBotFailure(execution) && attempts < normalizedBotMaxAttempts;
+                    if (!shouldRetry) break;
+                    transientFailureRetried = true;
+                    stats.botRetriesAttempted++;
+                    // eslint-disable-next-line no-await-in-loop
+                    await sleep(computeRetryDelayMs({
+                        baseDelayMs: normalizedBotRetryBaseDelayMs,
+                        maxDelayMs: normalizedBotRetryMaxDelayMs,
+                        attempt: attempts,
+                        jitter: normalizedBotRetryJitter,
+                        rng
+                    }));
+                }
+                if (!execution) {
+                    execution = {
+                        mode: 'generic',
+                        status: 'failure',
+                        output: 'Task execution failed: empty execution response.',
+                        metrics: {},
+                        artifacts: [],
+                        followupTasks: []
+                    };
+                }
                 stats.botTasksExecuted++;
                 stats[botModeToStatField(execution.mode)]++;
+                if (attempts > 1 && execution.status !== 'failure') {
+                    stats.botRetriesRecovered++;
+                } else if (execution.status === 'failure' && transientFailureRetried) {
+                    stats.botRetriesExhausted++;
+                }
                 if (
                     execution.mode === 'skill'
                     && execution.status === 'partial'

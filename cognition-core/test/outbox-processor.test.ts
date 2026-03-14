@@ -239,3 +239,76 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
     assert.ok(followups.length >= 3);
     assert.ok(followups.every((entry) => entry.status === 'created'));
 });
+
+test('processOutboxEnvelopes retries transient bot failures and recovers', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000701', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 3,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botExecute: async () => {
+            attempts++;
+            if (attempts === 1) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient transport timeout contacting runtime.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered after retry.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 2);
+    assert.equal(stats.botTasksExecuted, 1);
+    assert.equal(stats.botTasksFailed, 0);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesRecovered, 1);
+    assert.equal(stats.botRetriesExhausted, 0);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.match(completedParent?.result?.output || '', /Recovered after retry/);
+});
