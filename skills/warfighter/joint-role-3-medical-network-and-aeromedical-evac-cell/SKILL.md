@@ -155,4 +155,5 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 ## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
 
 - Add `tool_suite_id=ts-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-v1` + `protocol_stack_id=ps-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-stack-v1` when Role 3 continuity depends on casualty warming, warmed-blood availability, or prolonged cold-weather evacuation survival.
-- Add `packet_id=DPL-HYPOTHERMIA-BLOOD-WARMER-001` for branches that materially alter casualty warming posture, transfusion sequencing, or evacuation timing.
+- Add `tool_suite_id=ts-theater-austere-blood-plasma-donor-screening-and-cold-chain-cell-v1` + `protocol_stack_id=ps-theater-austere-blood-plasma-donor-screening-and-cold-chain-cell-stack-v1` when Role 3 continuity depends on donor-screening confidence, plasma cold-chain integrity, or austere transfusion support.
+- Add `packet_id=DPL-HYPOTHERMIA-BLOOD-WARMER-001` and `packet_id=DPL-AUSTERE-BLOOD-PLASMA-SCREENING-001` for branches that materially alter casualty warming posture, transfusion sequencing, donor-screening confidence, or austere blood distribution plans.

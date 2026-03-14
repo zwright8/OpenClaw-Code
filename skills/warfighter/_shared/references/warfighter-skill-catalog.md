@@ -2519,6 +2519,14 @@ Every skill output should include:
 - theater-mobile-hardened-shelter-nc3-relay-and-antenna-reconstitution-cell
 - theater-mission-device-credential-revocation-and-key-reissue-cell
 - coalition-port-wreck-clearance-heavy-lift-and-berth-reopening-cell
+- theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell
+- coalition-maritime-insurance-sanctions-and-convoy-underwriting-cell
+- joint-additive-warhead-liner-quality-assurance-cell
+- theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell
+- coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell
+- strategic-quantum-network-key-custody-and-compromise-response-cell
+- joint-gray-zone-commercial-fleet-shadowing-attribution-cell
+- theater-austere-blood-plasma-donor-screening-and-cold-chain-cell
 
 ## Updated Pairings (2026-03-14, Wave LI)
 
@@ -2530,3 +2538,11 @@ Every skill output should include:
 - Mobile hardened shelter NC3 relay and antenna reconstitution + joint NC3 continuity and emergency action message assurance + strategic hardened fiber NC3 failover assurance + strategic deterrence messaging and escalation control.
 - Mission-device credential revocation and key reissue + deployed digital identity wallet and credential revocation + tactical zero-trust network hardening + theater mission network failover cell.
 - Coalition port wreck clearance and berth reopening + expeditionary salvage and harbor clearance + joint port opening and JLOTS synchronization + strategic sealift and prepositioning coordination.
+- Hydrogen fuel-cell microgrid safety and emissions control + operational energy resilience and microgrid + theater mission network failover + force protection and base defense.
+- Coalition maritime insurance sanctions and convoy underwriting + contested logistics sustainment + coalition interoperability coordinator + maritime insurance and commercial shipping risk.
+- Joint additive warhead-liner quality assurance + theater additive munitions microfactory control + strategic industrial mobilization readiness + munitions stockpile and expenditure manager.
+- Theater rapid runway-lighting and approach-aid reconstitution + airbase dispersal and rapid reconstitution + joint expeditionary portable ATC tower TACAN and runway services reconstitution + air tasking cycle support.
+- Coalition cross-border battery recycling and critical-mineral recovery + joint expeditionary critical mineral recovery and recycling + coalition interoperability coordinator + strategic industrial mobilization readiness.
+- Strategic quantum network key custody and compromise response + joint battle network zero trust key material continuity + theater mission network failover + strategic cyber reserve mobilization assurance.
+- Joint gray-zone commercial fleet shadowing attribution + gray-zone maritime militia attribution + strategic competition gray-zone response cell + maritime insurance and commercial shipping risk.
+- Theater austere blood plasma donor screening and cold-chain + joint forward blood-bank crossmatch and massive transfusion continuity + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator.

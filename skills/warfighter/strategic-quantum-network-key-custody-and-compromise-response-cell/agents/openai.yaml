@@ -1,0 +1,3 @@
+interface:
+  display_name: "Strategic Quantum Network Key Custody And Compromise Response Cell"
+  short_description: "Plan strategic key-custody recovery and rollback-safe trust continuity."
