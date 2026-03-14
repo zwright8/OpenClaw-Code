@@ -133,6 +133,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `f5fce1f8eb..7c2fb2c68a`: added README command-map workflows for horizon-calibrated adversarial auto-gamma runs (`--selection-policy exp3_ix|tsallis_inf`, `--exp3-auto-gamma`, `--exp3-auto-eta`, `--tsallis-eta-scale`, `--tsallis-auto-eta`) and aligned autonomous runtime + regression coverage for effective-horizon gamma calibration; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `1404b69d59..d6b2dfd1a9`: no new README command-map additions were found (range updates EXP3-IX implicit exploration defaults in autonomy runtime/tests only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `2465819dfe..43674b0723`: no new README command-map additions were found (range adds AGENTS verification bookkeeping plus warfighter expansion wave XLII skill-set content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `36b6102333..0af00cfa99`: no new README command-map additions were found (range adds AGENTS verification bookkeeping/hash-range correction plus warfighter expansion wave XLI continuity/trust-cell skill-set content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
