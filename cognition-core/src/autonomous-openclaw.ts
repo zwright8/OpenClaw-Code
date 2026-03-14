@@ -159,6 +159,12 @@ const DEFAULT_RELIABILITY_FLOOR = 0;
 const MAX_RELIABILITY_FLOOR = 1;
 const DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS = 8;
 const MAX_RELIABILITY_FLOOR_MIN_ATTEMPTS = 256;
+const DEFAULT_LATENCY_SLA_MS = 120_000;
+const MAX_LATENCY_SLA_MS = 3_600_000;
+const DEFAULT_LATENCY_SLA_FLOOR = 0;
+const MAX_LATENCY_SLA_FLOOR = 1;
+const DEFAULT_LATENCY_SLA_MIN_ATTEMPTS = 8;
+const MAX_LATENCY_SLA_MIN_ATTEMPTS = 256;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -989,6 +995,27 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS,
             1,
             MAX_RELIABILITY_FLOOR_MIN_ATTEMPTS
+        ),
+        latencySlaMs: clamp(
+            Number.isFinite(Number(value.latencySlaMs))
+                ? Number(value.latencySlaMs)
+                : DEFAULT_LATENCY_SLA_MS,
+            1,
+            MAX_LATENCY_SLA_MS
+        ),
+        latencySlaFloor: clamp(
+            Number.isFinite(Number(value.latencySlaFloor))
+                ? Number(value.latencySlaFloor)
+                : DEFAULT_LATENCY_SLA_FLOOR,
+            0,
+            MAX_LATENCY_SLA_FLOOR
+        ),
+        latencySlaMinAttempts: clamp(
+            Number.isFinite(Number(value.latencySlaMinAttempts))
+                ? parsePositiveInt(value.latencySlaMinAttempts, DEFAULT_LATENCY_SLA_MIN_ATTEMPTS)
+                : DEFAULT_LATENCY_SLA_MIN_ATTEMPTS,
+            1,
+            MAX_LATENCY_SLA_MIN_ATTEMPTS
         )
     };
 }
@@ -1285,6 +1312,40 @@ function computeReliabilityFloorPenalty(stat, selectionPolicyConfig = null) {
 
     const successes = clamp(parseNonNegativeInt(stat?.successes, 0), 0, attempts);
     const lowerBound = computeWilsonLowerBound(successes, attempts);
+    return clamp(floor - lowerBound, 0, 1);
+}
+
+function computeLatencySlaPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const floor = clamp(policy.latencySlaFloor, 0, MAX_LATENCY_SLA_FLOOR);
+    if (floor <= 0) return 0;
+
+    const attempts = clamp(parseNonNegativeInt(stat?.attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    const minAttempts = clamp(
+        parsePositiveInt(policy.latencySlaMinAttempts, DEFAULT_LATENCY_SLA_MIN_ATTEMPTS),
+        1,
+        MAX_LATENCY_SLA_MIN_ATTEMPTS
+    );
+    if (attempts < minAttempts) return 0;
+
+    const latencySlaMs = clamp(policy.latencySlaMs, 1, MAX_LATENCY_SLA_MS);
+    const recentOutcomes = normalizeRecentOutcomes(stat?.recentOutcomes);
+    if (recentOutcomes.length <= 0) return 0;
+
+    const terminalRecentOutcomes = recentOutcomes.slice(-attempts);
+    const measuredAttemptCount = clamp(
+        terminalRecentOutcomes.filter((entry) => Number.isFinite(entry.durationMs) && entry.durationMs > 0).length,
+        0,
+        attempts
+    );
+    if (measuredAttemptCount < minAttempts) return 0;
+
+    const deadlineHits = clamp(
+        terminalRecentOutcomes.filter((entry) => Number.isFinite(entry.durationMs) && entry.durationMs > 0 && entry.durationMs <= latencySlaMs).length,
+        0,
+        measuredAttemptCount
+    );
+    const lowerBound = computeWilsonLowerBound(deadlineHits, measuredAttemptCount);
     return clamp(floor - lowerBound, 0, 1);
 }
 
@@ -4043,6 +4104,7 @@ function selectCatalogSlice({
             );
         }
         score -= computeReliabilityFloorPenalty(scoreStats, scoringPolicy);
+        score -= computeLatencySlaPenalty(scoreStats, scoringPolicy);
 
         const item = {
             candidate,

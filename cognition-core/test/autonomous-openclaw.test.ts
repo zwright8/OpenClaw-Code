@@ -687,6 +687,132 @@ test('buildAutonomousBatchPlan ignores reliability floor until minimum attempts 
     assert.deepEqual(plan.selection.skillIds, [451]);
 });
 
+test('buildAutonomousBatchPlan applies latency SLA floor penalties to poor deadline hit-rates', () => {
+    const slowRecentOutcomes = Array.from({ length: 10 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 4_000
+    }));
+    const fastRecentOutcomes = Array.from({ length: 30 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 1_000
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 461, code: 'SK-00461', title: 'Skill 461' },
+            { id: 462, code: 'SK-00462', title: 'Skill 462' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 44,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '461': {
+                    attempts: 10,
+                    successes: 10,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 43,
+                    lastStatus: 'completed',
+                    recentOutcomes: slowRecentOutcomes
+                },
+                '462': {
+                    attempts: 30,
+                    successes: 18,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 43,
+                    lastStatus: 'completed',
+                    recentOutcomes: fastRecentOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 45,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            latencySlaMs: 2_000,
+            latencySlaFloor: 0.9,
+            latencySlaMinAttempts: 8
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [462]);
+});
+
+test('buildAutonomousBatchPlan ignores latency SLA floor penalties until minimum measured attempts are reached', () => {
+    const slowRecentOutcomes = Array.from({ length: 10 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 4_000
+    }));
+    const fastRecentOutcomes = Array.from({ length: 30 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 1_000
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 471, code: 'SK-00471', title: 'Skill 471' },
+            { id: 472, code: 'SK-00472', title: 'Skill 472' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 46,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '471': {
+                    attempts: 10,
+                    successes: 10,
+                    failures: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 45,
+                    lastStatus: 'completed',
+                    recentOutcomes: slowRecentOutcomes
+                },
+                '472': {
+                    attempts: 30,
+                    successes: 18,
+                    failures: 12,
+                    consecutiveFailures: 0,
+                    lastWave: 45,
+                    lastStatus: 'completed',
+                    recentOutcomes: fastRecentOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 47,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            latencySlaMs: 2_000,
+            latencySlaFloor: 0.9,
+            latencySlaMinAttempts: 12
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [471]);
+});
+
 test('buildAutonomousBatchPlan supports bayesian-bootstrap thompson ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

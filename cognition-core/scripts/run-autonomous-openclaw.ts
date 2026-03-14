@@ -55,6 +55,9 @@ Options:
   --latency-auto-target-blend <n> Blend adaptive and static latency targets (0-1, default: 1)
   --reliability-floor <n>      Reliability guardrail floor (Wilson LCB) subtracted from ranking gap (0-1, default: 0)
   --reliability-floor-min-attempts <n> Min attempts before reliability floor penalties activate (default: 8)
+  --latency-sla-ms <n>         Latency SLA deadline in milliseconds for conservative on-time guardrail (1-3600000, default: 120000)
+  --latency-sla-floor <n>      On-time SLA floor (Wilson LCB) subtracted from ranking gap when missed (0-1, default: 0)
+  --latency-sla-min-attempts <n> Min measured attempts before latency SLA penalties activate (default: 8)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -220,6 +223,9 @@ function parseArgs(argv) {
             latencyAutoTargetBlend: 1,
             reliabilityFloor: 0,
             reliabilityFloorMinAttempts: 8,
+            latencySlaMs: 120_000,
+            latencySlaFloor: 0,
+            latencySlaMinAttempts: 8,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -504,6 +510,21 @@ function parseArgs(argv) {
         }
         if (token === '--reliability-floor-min-attempts') {
             options.selectionPolicyConfig.reliabilityFloorMinAttempts = parsePositiveInt(value, '--reliability-floor-min-attempts');
+            i++;
+            continue;
+        }
+        if (token === '--latency-sla-ms') {
+            options.selectionPolicyConfig.latencySlaMs = parsePositiveInt(value, '--latency-sla-ms');
+            i++;
+            continue;
+        }
+        if (token === '--latency-sla-floor') {
+            options.selectionPolicyConfig.latencySlaFloor = parseFloatInRange(value, '--latency-sla-floor', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--latency-sla-min-attempts') {
+            options.selectionPolicyConfig.latencySlaMinAttempts = parsePositiveInt(value, '--latency-sla-min-attempts');
             i++;
             continue;
         }

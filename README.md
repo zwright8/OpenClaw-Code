@@ -257,6 +257,7 @@ npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-penalty-weight 0.4 --latency-target-ms 120000
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-penalty-weight 0.4 --latency-target-ms 120000 --latency-auto-target --latency-auto-target-percentile 0.9 --latency-auto-target-min-samples 8 --latency-auto-target-window-size 32 --latency-auto-target-blend 0.5
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --reliability-floor 0.7 --reliability-floor-min-attempts 8
+npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-sla-ms 120000 --latency-sla-floor 0.85 --latency-sla-min-attempts 8
 npm run autonomous:run -- --selection-policy d_ucb_v --discount-factor 0.97 --ucb-v-exploration 1
 npm run autonomous:run -- --selection-policy mw_ucb --multi-window-sizes 4,8,16,32
 npm run autonomous:run -- --selection-policy bob_sw_ucb --multi-window-sizes 4,8,16,32 --bob-gamma 0.12
