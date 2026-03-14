@@ -2899,6 +2899,118 @@ test('buildAutonomousBatchPlan uses effective-horizon auto-eta for corral_exp3 v
     assert.ok(Number(discountedRuntime?.eta) > Number(baselineRuntime?.eta));
 });
 
+test('buildAutonomousBatchPlan uses effective-horizon auto-gamma for corral_exp3 variants', () => {
+    const baseInput = {
+        skillCatalog: [
+            { id: 2793, code: 'SK-02793', title: 'Skill 2793' },
+            { id: 2794, code: 'SK-02794', title: 'Skill 2794' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 58,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '2793': { attempts: 20, successes: 14, failures: 6, consecutiveFailures: 0, lastWave: 57, lastStatus: 'completed' },
+                '2794': { attempts: 20, successes: 12, failures: 8, consecutiveFailures: 0, lastWave: 57, lastStatus: 'completed' }
+            },
+            policyExecutionStats: {
+                skills: {
+                    ucb: {
+                        attempts: 500,
+                        successes: 275,
+                        failures: 225,
+                        cumulativeReward: 275,
+                        recentOutcomes: [
+                            { wave: 53, status: 'completed', propensity: 0.2 },
+                            { wave: 54, status: 'failed', propensity: 0.2 },
+                            { wave: 55, status: 'completed', propensity: 0.2 },
+                            { wave: 56, status: 'failed', propensity: 0.2 },
+                            { wave: 57, status: 'completed', propensity: 0.2 }
+                        ]
+                    },
+                    epsilon_ts: {
+                        attempts: 500,
+                        successes: 260,
+                        failures: 240,
+                        cumulativeReward: 260,
+                        recentOutcomes: [
+                            { wave: 53, status: 'failed', propensity: 0.2 },
+                            { wave: 54, status: 'failed', propensity: 0.2 },
+                            { wave: 55, status: 'completed', propensity: 0.2 },
+                            { wave: 56, status: 'completed', propensity: 0.2 },
+                            { wave: 57, status: 'completed', propensity: 0.2 }
+                        ]
+                    },
+                    kl_ucb: {
+                        attempts: 500,
+                        successes: 250,
+                        failures: 250,
+                        cumulativeReward: 250,
+                        recentOutcomes: [
+                            { wave: 53, status: 'failed', propensity: 0.2 },
+                            { wave: 54, status: 'failed', propensity: 0.2 },
+                            { wave: 55, status: 'failed', propensity: 0.2 },
+                            { wave: 56, status: 'completed', propensity: 0.2 },
+                            { wave: 57, status: 'completed', propensity: 0.2 }
+                        ]
+                    },
+                    cd_ucb: {
+                        attempts: 500,
+                        successes: 230,
+                        failures: 270,
+                        cumulativeReward: 230,
+                        recentOutcomes: [
+                            { wave: 53, status: 'failed', propensity: 0.2 },
+                            { wave: 54, status: 'failed', propensity: 0.2 },
+                            { wave: 55, status: 'failed', propensity: 0.2 },
+                            { wave: 56, status: 'failed', propensity: 0.2 },
+                            { wave: 57, status: 'completed', propensity: 0.2 }
+                        ]
+                    }
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 58,
+        nowFactory: () => 100_000
+    };
+
+    const baselinePlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'corral_exp3',
+            corralAutoGamma: true,
+            corralEta: 0.8,
+            corralUncertaintyWeight: 0
+        }
+    });
+    const discountedPlan = buildAutonomousBatchPlan({
+        ...baseInput,
+        selectionPolicyConfig: {
+            mode: 'd_corral_exp3',
+            corralAutoGamma: true,
+            corralEta: 0.8,
+            corralUncertaintyWeight: 0,
+            discountFactor: 0.8
+        }
+    });
+
+    const baselineRuntime = baselinePlan.selection.policyProbabilities.skills?._runtime;
+    const discountedRuntime = discountedPlan.selection.policyProbabilities.skills?._runtime;
+    assert.equal(baselineRuntime?.mode, 'corral_exp3');
+    assert.equal(discountedRuntime?.mode, 'd_corral_exp3');
+    assert.equal(baselineRuntime?.autoGamma, true);
+    assert.equal(discountedRuntime?.autoGamma, true);
+    assert.ok(Number(baselineRuntime?.gamma) > 0);
+    assert.ok(Number(discountedRuntime?.gamma) > 0);
+    assert.ok(Number(discountedRuntime?.effectiveAttempts) < Number(baselineRuntime?.effectiveAttempts));
+    assert.ok(Number(discountedRuntime?.gamma) > Number(baselineRuntime?.gamma));
+});
+
 test('buildAutonomousBatchPlan lets corral_exp3 force exploration toward under-sampled experts', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

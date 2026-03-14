@@ -76,6 +76,7 @@ Options:
   --cusum-threshold <n>        Drift threshold for cusum_* and sw_cusum_* modes (default: 1.2)
   --cusum-baseline-weight <n>  EWMA baseline weight for cusum_* and sw_cusum_* modes (0-1, default: 0.15)
   --corral-gamma <n>           Exploration mix for corral_exp3* (0-0.8, default: 0.12)
+  --corral-auto-gamma          Auto-tune corral_exp3* gamma via sqrt((K*log(K+1))/((e-1)*N)) using effective expert horizon
   --corral-eta <n>             Exponential implicit-loss scaling for corral_exp3* (>0 to 5, default: 0.8)
   --corral-auto-eta            Auto-tune corral_exp3* eta via sqrt((2*log(K+1))/(N*K)) using effective expert horizon
   --corral-min-attempts <n>    Minimum expert attempts before corral_exp3* fully exploits (>=0, default: 0)
@@ -233,6 +234,7 @@ function parseArgs(argv) {
             cusumBaselineWeight: 0.15,
             corralGamma: 0.12,
             corralEta: 0.8,
+            corralAutoGamma: false,
             corralAutoEta: false,
             corralMinPolicyAttempts: 0,
             corralForcedExploration: 0.25,
@@ -276,6 +278,10 @@ function parseArgs(argv) {
         }
         if (token === '--corral-auto-eta') {
             options.selectionPolicyConfig.corralAutoEta = true;
+            continue;
+        }
+        if (token === '--corral-auto-gamma') {
+            options.selectionPolicyConfig.corralAutoGamma = true;
             continue;
         }
 

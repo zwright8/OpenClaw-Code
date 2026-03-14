@@ -107,6 +107,7 @@ const DEFAULT_CORRAL_GAMMA = 0.12;
 const MAX_CORRAL_GAMMA = 0.8;
 const DEFAULT_CORRAL_ETA = 0.8;
 const MAX_CORRAL_ETA = 5;
+const DEFAULT_CORRAL_AUTO_GAMMA = false;
 const DEFAULT_CORRAL_AUTO_ETA = false;
 const DEFAULT_CORRAL_MIN_POLICY_ATTEMPTS = 0;
 const MAX_CORRAL_MIN_POLICY_ATTEMPTS = 200;
@@ -807,6 +808,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             Number.EPSILON,
             MAX_CORRAL_ETA
         ),
+        corralAutoGamma: Boolean(value.corralAutoGamma ?? DEFAULT_CORRAL_AUTO_GAMMA),
         corralAutoEta: Boolean(value.corralAutoEta ?? DEFAULT_CORRAL_AUTO_ETA),
         corralMinPolicyAttempts: clamp(
             Number.isFinite(Number(value.corralMinPolicyAttempts))
@@ -2948,6 +2950,18 @@ function computeAdversarialAutoExplorationGamma(armCount, totalAttempts) {
 }
 
 function resolveCorralRuntimeParameters(policy, policyCount, effectiveAttempts) {
+    let gamma = clamp(
+        Number(policy.corralGamma),
+        Number.EPSILON,
+        MAX_CORRAL_GAMMA
+    );
+    if (policy.corralAutoGamma) {
+        gamma = clamp(
+            computeAdversarialAutoExplorationGamma(policyCount, effectiveAttempts),
+            Number.EPSILON,
+            MAX_CORRAL_GAMMA
+        );
+    }
     let eta = clamp(
         Number(policy.corralEta),
         Number.EPSILON,
@@ -2961,8 +2975,10 @@ function resolveCorralRuntimeParameters(policy, policyCount, effectiveAttempts) 
         );
     }
     return {
+        gamma,
         eta,
         effectiveAttempts: Math.max(1, Number(effectiveAttempts) || 1),
+        autoGamma: Boolean(policy.corralAutoGamma),
         autoEta: Boolean(policy.corralAutoEta)
     };
 }
@@ -2994,9 +3010,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
     const corralPolicies = CORRAL_PLUS_POLICY_MODES.has(policy.mode)
         ? CORRAL_EXP3_PLUS_BASE_POLICIES
         : CORRAL_EXP3_BASE_POLICIES;
-    const gamma = policy.corralGamma;
     const uniform = 1 / corralPolicies.length;
-    const implicitGamma = Math.max(Number.EPSILON, gamma);
     const corralScoreConfig = SLIDING_WINDOW_CORRAL_POLICY_MODES.has(policy.mode)
         ? {
             mode: 'sw_ucb',
@@ -3008,7 +3022,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
                 discountFactor: policy.discountFactor
             }
             : null);
-    const scoredPolicies = corralPolicies.map((name) => {
+    const scoredPolicySignals = corralPolicies.map((name) => {
         const rawStat = normalizePolicyPerformanceStat(laneStats[name]);
         const stat = corralScoreConfig
             ? resolveScoreStats(rawStat, corralScoreConfig, currentWave)
@@ -3016,18 +3030,29 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         const attempts = Math.max(0, Number(stat.attempts) || 0);
         const successes = clamp(Number(stat.successes) || 0, 0, attempts);
         const outcomes = resolveCorralRecentOutcomes(rawStat, policy);
-        const cumulativeEstimatedLoss = outcomes.length > 0
-            ? computeExp3ImplicitEstimatedLoss(outcomes, policy, uniform, implicitGamma)
-            : ((attempts - successes) / (uniform + implicitGamma));
         return {
             name,
             attempts,
+            successes,
             outcomeCount: outcomes.length,
+            outcomes
+        };
+    });
+    const effectiveAttempts = resolveCorralEffectiveAttempts(scoredPolicySignals, policy);
+    const corralRuntime = resolveCorralRuntimeParameters(policy, corralPolicies.length, effectiveAttempts);
+    const gamma = corralRuntime.gamma;
+    const implicitGamma = Math.max(Number.EPSILON, gamma);
+    const scoredPolicies = scoredPolicySignals.map((entry) => {
+        const cumulativeEstimatedLoss = entry.outcomes.length > 0
+            ? computeExp3ImplicitEstimatedLoss(entry.outcomes, policy, uniform, implicitGamma)
+            : ((entry.attempts - entry.successes) / (uniform + implicitGamma));
+        return {
+            name: entry.name,
+            attempts: entry.attempts,
+            outcomeCount: entry.outcomeCount,
             loss: cumulativeEstimatedLoss
         };
     });
-    const effectiveAttempts = resolveCorralEffectiveAttempts(scoredPolicies, policy);
-    const corralRuntime = resolveCorralRuntimeParameters(policy, corralPolicies.length, effectiveAttempts);
     const totalCorralAttempts = scoredPolicies.reduce((sum, entry) => sum + entry.attempts, 0);
     const minimumLoss = scoredPolicies.reduce(
         (minimum, entry) => Math.min(minimum, entry.loss),
@@ -3056,7 +3081,7 @@ function resolveCorralPolicyDistribution(policyExecutionStats, selectionPolicyCo
         const exploitation = entry.weight / safeSum;
         return {
             name: entry.name,
-            probability: ((1 - gamma) * exploitation) + (gamma * uniform)
+            probability: ((1 - corralRuntime.gamma) * exploitation) + (corralRuntime.gamma * uniform)
         };
     });
     const minPolicyAttempts = clamp(
@@ -3614,9 +3639,10 @@ function selectCatalogSlice({
         ]));
         policyProbabilities._runtime = {
             mode: normalizedPolicy.mode,
-            gamma: Number(normalizedPolicy.corralGamma.toFixed(6)),
+            gamma: Number(runtime.gamma.toFixed(6)),
             eta: Number(runtime.eta.toFixed(6)),
             effectiveAttempts: Number(runtime.effectiveAttempts.toFixed(6)),
+            autoGamma: Boolean(runtime.autoGamma),
             autoEta: Boolean(runtime.autoEta)
         };
     } else if (BOB_WINDOW_UCB_POLICY_MODES.has(normalizedPolicy.mode)) {
