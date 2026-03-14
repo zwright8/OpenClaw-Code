@@ -1628,3 +1628,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent facility-safety witness + alternate mission-node status monitor.
 - Protocols: `BACnet/IP`, `NIMS/ICS`, `CoT`, `USMTF`, `API/JSON`.
 - Degraded fallback: essential C2 nodes only with partial relocation and manual environmental watches.
+
+## Profile Addendum M (2026-03-14, Legal Attribution, Trusted Command, Protected Boundaries, and Strategic Logistics Warning)
+
+### `tactical-legal-attribution-synthesis-v1`
+- Use for rapid legal attribution support when cyber, EW, information, and physical evidence must be fused before commander action.
+- Primary tools: `ts-joint-tactical-legal-attribution-synthesis-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: `STIX/TAXII`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: advisory-only attribution posture with manual legal review.
+
+### `allied-depot-sabotage-recovery-v1`
+- Use for coalition depot sabotage wargaming, stock reallocation, and protected recovery planning.
+- Primary tools: `ts-coalition-allied-depot-sabotage-wargame-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3`, signed logistics manifests.
+- Degraded fallback: highest-priority stocks only with manual branch control.
+
+### `mission-ai-confidence-governance-v1`
+- Use for early warning and governance when mission AI trust is degrading across high-impact workflows.
+- Primary tools: `ts-theater-mission-ai-confidence-early-warning-v1`.
+- Cross-check tools: `ts-adversarial-ai-model-poisoning-detection-v1`.
+- Protocols: signed model attestations, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: approved-baseline-only model operations with human release authority.
+
+### `sovereign-edge-cloud-migration-v1`
+- Use for governed cloud-to-edge cutovers when sovereignty, survivability, or latency requires mission workload migration.
+- Primary tools: `ts-joint-sovereign-edge-cloud-migration-v1`.
+- Cross-check tools: `ts-hyperscale-cloud-failover-command-continuity-v1`.
+- Protocols: signed continuity manifests, `API/JSON`, mTLS, `USMTF`.
+- Degraded fallback: trusted snapshot mode plus staged mission-essential edge services only.
+
+### `launch-counterfeit-microelectronics-v1`
+- Use for strategic launch electronics pedigree assurance and counterfeit interdiction before release or launch.
+- Primary tools: `ts-strategic-launch-counterfeit-microelectronics-v1`.
+- Cross-check tools: `ts-rapid-materiel-authentication-counterfeit-shield-v1`.
+- Protocols: signed supply manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: quarantine-first release posture with dual-control review.
+
+### `maritime-minefield-humanitarian-corridor-v1`
+- Use for humanitarian sea-corridor integrity when mine threats, escort constraints, and coalition caveats interact.
+- Primary tools: `ts-coalition-minefield-humanitarian-corridor-integrity-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: high-confidence convoys only with fixed escort windows.
+
+### `homeland-dam-levee-engineer-surge-v1`
+- Use for DSCA engineer-force prioritization across failing dams, levees, and flood-control nodes.
+- Primary tools: `ts-homeland-dam-levee-engineer-surge-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: life-safety-first engineer allocation with hourly authority confirmation.
+
+### `command-voice-spoof-defense-v1`
+- Use for restoring trusted command-path authentication after suspected synthetic voice or media spoofing.
+- Primary tools: `ts-joint-command-voice-spoof-defense-v1`.
+- Cross-check tools: `ts-deepfake-media-auth-v1`.
+- Protocols: signed voice-auth manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: manual countersign and dual-channel human verification only.
+
+### `no-strike-geofence-integrity-v1`
+- Use for dynamic no-strike and restricted-target boundary integrity assurance across targeting and fires systems.
+- Primary tools: `ts-theater-no-strike-geofence-integrity-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `VMF`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: hold-fire posture pending manual protected-boundary confirmation.
+
+### `expeditionary-pediatric-casualty-surge-v1`
+- Use for balancing pediatric casualties across austere medical networks and contested transport lanes.
+- Primary tools: `ts-expeditionary-pediatric-casualty-surge-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `NATO APP-11/ADatP-3`, `API/JSON`.
+- Degraded fallback: life-saving redistribution only with conservative transfer rules.
+
+### `ephemeris-spoof-timing-confidence-v1`
+- Use for preserving trusted orbital and timing data when ephemeris or time-transfer inputs may be spoofed.
+- Primary tools: `ts-satellite-ephemeris-spoof-timing-confidence-v1`.
+- Cross-check tools: `ts-space-weather-gnss-fusion-v1`.
+- Protocols: `CCSDS`, signed timing manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential timing windows only with strict drift limits.
+
+### `economic-coercion-logistics-warning-v1`
+- Use for early warning on adversary economic coercion against routes, suppliers, insurers, ports, and carriers.
+- Primary tools: `ts-strategic-economic-coercion-logistics-warning-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: `STIX/TAXII`, `USMTF`, signed logistics manifests, `API/JSON`.
+- Degraded fallback: mission-essential route monitoring with daily commander updates only.

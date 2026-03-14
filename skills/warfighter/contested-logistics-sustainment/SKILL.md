@@ -228,3 +228,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-strategic-shipyard-drydock-power-water-cyber-restoration-v1` + `protocol_stack_id=ps-strategic-shipyard-drydock-power-water-cyber-restoration-stack-v1` when fleet repair throughput and maritime sustainment depend on drydock utilities and OT recovery.
 - Add `tool_suite_id=ts-theater-river-port-dredge-barge-roro-sustainment-v1` + `protocol_stack_id=ps-theater-river-port-dredge-barge-roro-sustainment-stack-v1` when inland-waterway cargo flow, channel depth, or transload timing drives sustainment feasibility.
 - Add `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, `packet_id=DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001`, `packet_id=DPL-STRATEGIC-SHIPYARD-DRYDOCK-RESTORATION-001`, and `packet_id=DPL-THEATER-RIVER-PORT-DREDGE-BARGE-RORO-001` for sustainment branches that materially alter throughput confidence or mission feasibility.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-coalition-allied-depot-sabotage-wargame-v1` + `protocol_stack_id=ps-coalition-allied-depot-sabotage-wargame-stack-v1` when sustainment viability depends on depot survivability, stock relocation, or host-nation recovery branches.
+- Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when route, carrier, supplier, or insurer coercion indicators can fracture distribution plans before physical disruption is visible.
+- Add `tool_suite_id=ts-strategic-launch-counterfeit-microelectronics-v1` + `protocol_stack_id=ps-strategic-launch-counterfeit-microelectronics-stack-v1` when logistics confidence depends on trusted electronics pedigree for critical launch, C2, or sustainment systems.
+- Add `packet_id=DPL-DEPOT-SABOTAGE-WARGAME-001`, `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, and `packet_id=DPL-LAUNCH-COUNTERFEIT-MICRO-001` for branches that materially alter throughput, reconstitution timing, or commander risk acceptance.

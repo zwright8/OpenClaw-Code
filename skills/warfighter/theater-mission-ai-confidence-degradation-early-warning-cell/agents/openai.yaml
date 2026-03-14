@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Mission AI Confidence Degradation Early Warning Cell"
+  short_description: "Detect and contain degrading trust in mission AI systems"

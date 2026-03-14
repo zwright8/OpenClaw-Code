@@ -270,3 +270,10 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-theater-austere-command-post-flooding-hvac-smoke-control-v1` + `protocol_stack_id=ps-theater-austere-command-post-flooding-hvac-smoke-control-stack-v1` when mission-network survivability depends on command-post environmental controls, relocation timing, or smoke-isolation actions.
 - Add `tool_suite_id=ts-expeditionary-autonomous-sustainment-routing-drift-governance-v1` + `protocol_stack_id=ps-expeditionary-autonomous-sustainment-routing-drift-governance-stack-v1` when failover networks must sustain autonomous route replanning, convoy telemetry, or degraded machine-to-machine trust.
 - Add `packet_id=DPL-JOINT-CELLULAR-TIMING-HOLDOVER-FIRST-RESPONDER-001`, `packet_id=DPL-THEATER-AUSTERE-COMMAND-POST-FLOOD-SMOKE-001`, and `packet_id=DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001` for branches that materially alter failover timing, network survivability, or command-node continuity.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-ai-confidence-early-warning-v1` + `protocol_stack_id=ps-theater-mission-ai-confidence-early-warning-stack-v1` when failover sequencing depends on trusted AI-assisted routing, workload arbitration, or anomaly triage.
+- Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when mission continuity requires governed cloud-to-edge cutovers or sovereign compute fallback.
+- Add `tool_suite_id=ts-joint-command-voice-spoof-defense-v1` + `protocol_stack_id=ps-joint-command-voice-spoof-defense-stack-v1` when degraded communications increase the risk of synthetic command injection during failover execution.
+- Add `packet_id=DPL-MISSION-AI-CONFIDENCE-001`, `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001`, and `packet_id=DPL-COMMAND-VOICE-SPOOF-001` for branches that materially change mission-service restoration, command trust, or fallback authority posture.

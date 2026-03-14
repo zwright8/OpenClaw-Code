@@ -11097,3 +11097,137 @@ validation_gates:
 - output_schema: command-post survivability board, flood-smoke control ladder, mission continuity packet
 - protocol_profile: BACnet/IP + NIMS/ICS + CoT + USMTF + API/JSON
 - validation_gates: facility-safety pass, relocation-readiness threshold, C2-continuity acknowledgment
+
+## Packet Addendum XXXI (2026-03-14, Expansion Wave XLII Tool Invocation Packets)
+
+### packet_id: DPL-TACTICAL-LEGAL-ATTRIB-001
+- domain: tactical legal attribution rapid synthesis
+- objective: compress multi-source evidence into an attribution posture that is legally reviewable and commander-usable.
+- primary_tools: evidence fusion workspace, legal sufficiency rule engine, custody-chain ledger
+- alternate_tools: manual legal review board and phased evidence worksheet
+- degraded_mode: advisory-only attribution note with constrained release options
+- input_requirements: incident timeline, indicator set, custody records, authority map, releasability constraints
+- output_schema: attribution confidence ledger, legal sufficiency matrix, release-authority prompt
+- protocol_profile: STIX/TAXII + USMTF + NIEM + API/JSON
+- validation_gates: provenance pass, legal sufficiency review, acknowledgment integrity
+
+### packet_id: DPL-DEPOT-SABOTAGE-WARGAME-001
+- domain: coalition allied depot sabotage and recovery
+- objective: wargame depot sabotage branches and preserve coalition sustainment continuity under attack.
+- primary_tools: depot readiness board, stock-risk simulator, host-nation coordination tracker
+- alternate_tools: manual depot branch matrix and liaison synchronization board
+- degraded_mode: highest-priority stocks only with fixed refresh and manual release gates
+- input_requirements: depot inventory, sabotage indicators, route availability, host-nation caveats, repair capacity
+- output_schema: sabotage branch matrix, protected-stock relocation board, recovery trigger ladder
+- protocol_profile: USMTF + NATO APP-11/ADatP-3 aligned + signed logistics manifests + API/JSON
+- validation_gates: stock-accountability pass, coalition caveat review, acknowledgment integrity
+
+### packet_id: DPL-MISSION-AI-CONFIDENCE-001
+- domain: theater mission AI confidence early warning
+- objective: detect degrading model trust before commanders rely on compromised or stale mission AI outputs.
+- primary_tools: model trust dashboard, drift detector, rollback policy orchestrator
+- alternate_tools: baseline-model comparison board and manual review queue
+- degraded_mode: approved-baseline-only model operations with human release decisions
+- input_requirements: model telemetry, validation deltas, drift indicators, affected mission threads, authority thresholds
+- output_schema: trust watchlist, degradation trigger table, rollback-or-retain decision board
+- protocol_profile: signed model attestations + API/JSON + STIX/TAXII + USMTF
+- validation_gates: provenance pass, confidence-threshold review, command approval
+
+### packet_id: DPL-SOVEREIGN-EDGE-CLOUD-001
+- domain: cloud-to-edge sovereign compute migration governance
+- objective: cut over joint mission workloads to trusted sovereign or edge environments without losing mission continuity.
+- primary_tools: workload dependency mapper, cutover orchestrator, data-trust verifier
+- alternate_tools: trusted snapshot board and staged migration worksheet
+- degraded_mode: mission-essential edge services only with delayed reconciliation
+- input_requirements: workload map, data dependencies, sovereignty constraints, rollback paths, authority matrix
+- output_schema: cutover matrix, dependency ledger, rollback trigger ladder
+- protocol_profile: signed continuity manifests + API/JSON + mTLS + USMTF
+- validation_gates: cutover safety pass, rollback readiness, approval-chain integrity
+
+### packet_id: DPL-LAUNCH-COUNTERFEIT-MICRO-001
+- domain: strategic launch counterfeit microelectronics interdiction
+- objective: quarantine suspect microcontrollers and preserve trusted release decisions for launch-critical systems.
+- primary_tools: component pedigree ledger, electronics test evidence board, supplier-risk adjudicator
+- alternate_tools: manual pedigree worksheet and lot isolation board
+- degraded_mode: quarantine-first release posture with dual-control review
+- input_requirements: component pedigree, lot IDs, test evidence, launch schedule, authority constraints
+- output_schema: trusted-component release matrix, counterfeit disposition board, launch impact ledger
+- protocol_profile: signed supply manifests + NIEM + API/JSON + USMTF
+- validation_gates: pedigree verification, test-evidence integrity, command release approval
+
+### packet_id: DPL-MINEFIELD-HUMCOR-001
+- domain: coalition maritime minefield humanitarian corridor integrity
+- objective: keep humanitarian sea corridors open without losing route safety, escort control, or coalition accountability.
+- primary_tools: maritime corridor board, mine-risk planner, convoy release controller
+- alternate_tools: liaison-cleared sailing windows and manual route-risk worksheet
+- degraded_mode: high-confidence convoys only with fixed escort windows
+- input_requirements: route geometry, mine-threat picture, escort availability, civilian movement demand, coalition caveats
+- output_schema: corridor integrity board, convoy release matrix, civilian-risk annotation packet
+- protocol_profile: AIS/NMEA + OGC + USMTF + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: route-safety pass, coalition release review, acknowledgment integrity
+
+### packet_id: DPL-DAM-LEVEE-ENGINEER-SURGE-001
+- domain: homeland dam and levee military engineering surge
+- objective: prioritize scarce engineer support against cascading flood, transport, and life-safety consequences.
+- primary_tools: hydrology consequence modeler, engineer force allocator, civil support coordination board
+- alternate_tools: manual engineer priority board and flood response worksheet
+- degraded_mode: life-safety-first engineer allocation with hourly command sync
+- input_requirements: infrastructure status, flood forecasts, engineer availability, civil authority requests, transport dependencies
+- output_schema: engineer prioritization matrix, flood consequence ladder, support allocation board
+- protocol_profile: NIMS/ICS + USMTF + OGC + API/JSON
+- validation_gates: life-safety prioritization pass, authority verification, dual-source status confirmation
+
+### packet_id: DPL-COMMAND-VOICE-SPOOF-001
+- domain: joint synthetic media command voice spoof defense
+- objective: verify command-path authenticity and contain false orders triggered by synthetic media or voice spoofing.
+- primary_tools: command-path authentication broker, media-forensics engine, countersign workflow manager
+- alternate_tools: manual challenge-response board and dual-channel confirmation worksheet
+- degraded_mode: human-only order validation with advisory threat notes
+- input_requirements: suspect media event, path metadata, countersign policy, authority roster, mission impact
+- output_schema: trust matrix, spoof-indicator ledger, countersign release sequence
+- protocol_profile: signed voice-auth manifests + USMTF + STIX/TAXII + API/JSON
+- validation_gates: authenticity threshold pass, countersign verification, acknowledgment integrity
+
+### packet_id: DPL-NO-STRIKE-GEOFENCE-001
+- domain: theater no-strike geofence drift and integrity
+- objective: prevent protected-boundary drift from causing unlawful or unsafe target-release decisions.
+- primary_tools: protected-boundary validator, geospatial replication auditor, release-hold controller
+- alternate_tools: manual protected-target overlay and commander-approved hold-fire board
+- degraded_mode: no dynamic protected-boundary updates without human release
+- input_requirements: protected-site list, boundary updates, datum metadata, consuming systems, authority matrix
+- output_schema: geofence integrity board, protected-boundary drift ledger, release-hold recommendation matrix
+- protocol_profile: VMF + USMTF + OGC + API/JSON
+- validation_gates: provenance pass, geospatial consistency check, command approval
+
+### packet_id: DPL-PEDS-CASUALTY-SURGE-001
+- domain: expeditionary austere pediatric casualty surge balancing
+- objective: distribute pediatric casualty load without collapsing austere care capacity or transport safety.
+- primary_tools: pediatric regulation board, specialty-capability matcher, evacuation balancing planner
+- alternate_tools: coalition specialty matching board and manual transport triage queue
+- degraded_mode: life-saving-only redistribution with conservative transfer thresholds
+- input_requirements: casualty demand, pediatric specialties, transport lanes, blood availability, host-nation constraints
+- output_schema: pediatric surge board, specialty-capability gap ledger, evacuation prioritization ladder
+- protocol_profile: HL7/FHIR + USMTF + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: clinical safety pass, receiving-facility confirmation, acknowledgment integrity
+
+### packet_id: DPL-EPHEMERIS-SPOOF-001
+- domain: satellite ephemeris spoofing and timing confidence
+- objective: preserve trusted orbital and timing data when ephemeris or time-transfer inputs may be manipulated.
+- primary_tools: ephemeris integrity analyzer, timing confidence monitor, fallback synchronization planner
+- alternate_tools: independent ephemeris board and terrestrial timing worksheet
+- degraded_mode: mission-essential timing windows only with conservative drift thresholds
+- input_requirements: orbital-data feed, timing deltas, affected mission threads, fallback paths, authority thresholds
+- output_schema: ephemeris integrity ledger, timing-confidence ladder, fallback synchronization matrix
+- protocol_profile: CCSDS + signed timing manifests + API/JSON + USMTF
+- validation_gates: cross-source timing confirmation, spoof-detection threshold, command review
+
+### packet_id: DPL-ECON-COERCION-LOGISTICS-001
+- domain: strategic adversary economic coercion logistics early warning
+- objective: expose coercion signals early enough to hedge routes, suppliers, and transport capacity before operational fracture.
+- primary_tools: coercion indicator board, route fragility mapper, supplier pressure monitor
+- alternate_tools: manual strategic route watchboard and supplier risk rollup
+- degraded_mode: mission-essential route monitoring only with daily commander updates
+- input_requirements: carrier status, insurance signals, customs friction, labor unrest, supplier health, route dependencies
+- output_schema: coercion watchlist, logistics fragility map, hedge-or-reroute recommendation packet
+- protocol_profile: STIX/TAXII + USMTF + signed logistics manifests + API/JSON
+- validation_gates: multi-source indicator confirmation, mission-impact threshold, approval-chain integrity

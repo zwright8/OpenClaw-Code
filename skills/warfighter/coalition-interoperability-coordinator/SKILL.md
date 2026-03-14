@@ -259,3 +259,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-strategic-domestic-transport-chokepoint-reroute-v1` + `protocol_stack_id=ps-strategic-domestic-transport-chokepoint-reroute-stack-v1` when coalition reception, staging, onward movement, or sealift handoff depends on U.S. domestic infrastructure reroutes.
 - Add `tool_suite_id=ts-joint-cislunar-timing-trust-collision-mitigation-v1` + `protocol_stack_id=ps-joint-cislunar-timing-trust-collision-mitigation-stack-v1` when allied space-support interoperability depends on shared timing trust, custody confidence, or conjunction release timing.
 - Add `packet_id=DPL-COALITION-MEDICAL-CREDENTIAL-REPRIVILEGING-001`, `packet_id=DPL-MULTI-THEATER-MARITIME-INTERDICTION-EVIDENCE-SANCTIONS-001`, `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, and `packet_id=DPL-JOINT-CISLUNAR-TIMING-COLLISION-MITIGATION-001` for branches that materially alter coalition authority gates or release timelines.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-joint-tactical-legal-attribution-synthesis-v1` + `protocol_stack_id=ps-joint-tactical-legal-attribution-synthesis-stack-v1` when coalition interoperability decisions depend on shared evidentiary confidence and releasable attribution language.
+- Add `tool_suite_id=ts-coalition-minefield-humanitarian-corridor-integrity-v1` + `protocol_stack_id=ps-coalition-minefield-humanitarian-corridor-integrity-stack-v1` when coalition coordination must preserve humanitarian maritime access under mine threat and route caveats.
+- Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when interoperable data exchange depends on trusted sovereign or edge compute cutovers.
+- Add `packet_id=DPL-TACTICAL-LEGAL-ATTRIB-001`, `packet_id=DPL-MINEFIELD-HUMCOR-001`, and `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001` for branches that materially change coalition release, access, or continuity decisions.

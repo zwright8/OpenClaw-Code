@@ -65,3 +65,9 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 
 - Add `tool_suite_id=ts-joint-cislunar-timing-trust-collision-mitigation-v1` + `protocol_stack_id=ps-joint-cislunar-timing-trust-collision-mitigation-stack-v1` when space-domain awareness branches depend on degraded timing trust, custody reconciliation, or conjunction-safe maneuver release in cislunar space.
 - Add `packet_id=DPL-JOINT-CISLUNAR-TIMING-COLLISION-MITIGATION-001` for recommendations that alter maneuver timing, custody confidence, or escalation posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-satellite-ephemeris-spoof-timing-confidence-v1` + `protocol_stack_id=ps-satellite-ephemeris-spoof-timing-confidence-stack-v1` when rendezvous denial or custody confidence depends on trusted orbital-data and timing baselines.
+- Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when contested space-awareness workflows require sovereign or edge compute cutover to preserve low-latency custody decisions.
+- Add `packet_id=DPL-EPHEMERIS-SPOOF-001` and `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001` for recommendations that materially alter orbital custody confidence, maneuver timing, or escalation posture.

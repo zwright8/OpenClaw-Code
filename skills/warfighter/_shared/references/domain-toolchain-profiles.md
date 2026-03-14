@@ -188,3 +188,53 @@ For every critical recommendation, include:
 - Cross-check systems: casualty severity adjudication cell and federated bed-status mirror
 - Protocol binding: HL7/FHIR + USMTF + API/JSON
 - Fallback path: category-1 and category-2 evacuation prioritization only with risk acceptance log
+
+## New Toolchain Wave (2026-03-14, Expansion Wave XLII)
+
+### `TC-LEGAL-ATTRIB-020`
+
+- Domain: tactical legal attribution and evidentiary fusion
+- Primary systems: evidence fusion workspace, legal sufficiency engine, custody-chain ledger
+- Cross-check systems: independent forensic review queue and alternate attribution confidence board
+- Protocol binding: STIX/TAXII + USMTF + NIEM + API/JSON
+- Fallback path: advisory-only attribution worksheet with manual legal review
+
+### `TC-TRUSTED-C2-VOICE-021`
+
+- Domain: trusted command-path authentication and synthetic media spoof defense
+- Primary systems: command-path authentication broker, media forensics engine, countersign workflow manager
+- Cross-check systems: independent trust witness and alternate acknowledgment integrity ledger
+- Protocol binding: signed voice-auth manifests + USMTF + STIX/TAXII + API/JSON
+- Fallback path: manual countersign and dual-channel human confirmation only
+
+### `TC-SOVEREIGN-CLOUD-022`
+
+- Domain: sovereign compute migration and edge continuity governance
+- Primary systems: workload dependency mapper, cutover orchestrator, data-trust verifier
+- Cross-check systems: trusted snapshot ledger and independent rollback witness
+- Protocol binding: signed continuity manifests + API/JSON + mTLS + USMTF
+- Fallback path: mission-essential edge services only with delayed reconciliation
+
+### `TC-PEDS-SURGE-023`
+
+- Domain: expeditionary pediatric casualty balancing and austere care redistribution
+- Primary systems: pediatric regulation board, specialty-capability matcher, evacuation balancing planner
+- Cross-check systems: independent bed-status witness and alternate blood-stress monitor
+- Protocol binding: HL7/FHIR + USMTF + NATO APP-11/ADatP-3 aligned + API/JSON
+- Fallback path: life-saving redistribution only with conservative transfer thresholds
+
+### `TC-SPACE-TIMING-024`
+
+- Domain: ephemeris integrity and timing-confidence preservation for space-enabled operations
+- Primary systems: ephemeris integrity analyzer, timing confidence monitor, fallback synchronization planner
+- Cross-check systems: independent orbital-data witness and alternate terrestrial timing board
+- Protocol binding: CCSDS + signed timing manifests + API/JSON + USMTF
+- Fallback path: mission-essential timing windows only with strict drift thresholds
+
+### `TC-COERCION-LOG-025`
+
+- Domain: strategic economic coercion early warning and logistics fragility analysis
+- Primary systems: coercion indicator board, route fragility mapper, supplier pressure monitor
+- Cross-check systems: independent market-shock witness and alternate carrier availability tracker
+- Protocol binding: STIX/TAXII + USMTF + signed logistics manifests + API/JSON
+- Fallback path: mission-essential route watchboard with daily commander update

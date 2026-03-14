@@ -205,3 +205,10 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 
 - Add tool_suite_id=ts-theater-contested-pnt-time-mesh-recovery-v1 + protocol_stack_id=ps-theater-contested-pnt-time-mesh-recovery-stack-v1 when targeting confidence depends on denied-PNT time-transfer recovery and fires synchronization integrity.
 - Add packet_id=DPL-PNT-TIME-MESH-RECOVERY-001 for branches that alter target-release timing or collateral-risk assumptions.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-theater-no-strike-geofence-integrity-v1` + `protocol_stack_id=ps-theater-no-strike-geofence-integrity-stack-v1` when dynamic protected-boundary drift could invalidate CDE, no-strike, or restricted-target logic.
+- Add `tool_suite_id=ts-joint-tactical-legal-attribution-synthesis-v1` + `protocol_stack_id=ps-joint-tactical-legal-attribution-synthesis-stack-v1` when high-consequence release decisions depend on fast, legally reviewable attribution or evidentiary sufficiency.
+- Add `tool_suite_id=ts-joint-command-voice-spoof-defense-v1` + `protocol_stack_id=ps-joint-command-voice-spoof-defense-stack-v1` when target-release authority depends on authenticated voice or media command paths.
+- Add `packet_id=DPL-NO-STRIKE-GEOFENCE-001`, `packet_id=DPL-TACTICAL-LEGAL-ATTRIB-001`, and `packet_id=DPL-COMMAND-VOICE-SPOOF-001` for recommendations that materially alter target validity, CDE confidence, or release authority.

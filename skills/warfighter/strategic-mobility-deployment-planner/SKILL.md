@@ -156,3 +156,10 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-joint-volcanic-ash-airbridge-engine-sortie-recovery-v1` + `protocol_stack_id=ps-joint-volcanic-ash-airbridge-engine-sortie-recovery-stack-v1` when strategic airlift and airbridge continuity depend on ash-safe routing and engine inspection surge.
 - Add `tool_suite_id=ts-strategic-shipyard-drydock-power-water-cyber-restoration-v1` + `protocol_stack_id=ps-strategic-shipyard-drydock-power-water-cyber-restoration-stack-v1` when sealift or naval repair throughput constrains deployment readiness.
 - Add `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, `packet_id=DPL-THEATER-RIVER-PORT-DREDGE-BARGE-RORO-001`, `packet_id=DPL-JOINT-VOLCANIC-ASH-AIRBRIDGE-ENGINE-RECOVERY-001`, and `packet_id=DPL-STRATEGIC-SHIPYARD-DRYDOCK-RESTORATION-001` for recommendations that alter strategic deployment timing, modal allocation, or clearance sequencing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when deployment feasibility depends on coercion-driven carrier loss, insurance shock, customs friction, or strategic route pressure.
+- Add `tool_suite_id=ts-coalition-allied-depot-sabotage-wargame-v1` + `protocol_stack_id=ps-coalition-allied-depot-sabotage-wargame-stack-v1` when strategic mobility branches depend on depot survivability, protected stock release, or allied rail or port reconstitution timing.
+- Add `tool_suite_id=ts-homeland-dam-levee-engineer-surge-v1` + `protocol_stack_id=ps-homeland-dam-levee-engineer-surge-stack-v1` when flood-control failures or engineer-force reallocation could constrict deployment corridors.
+- Add `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, `packet_id=DPL-DEPOT-SABOTAGE-WARGAME-001`, and `packet_id=DPL-DAM-LEVEE-ENGINEER-SURGE-001` for recommendations that materially alter strategic lift timing, corridor confidence, or mobilization posture.

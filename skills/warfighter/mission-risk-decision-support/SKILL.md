@@ -337,3 +337,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-theater-digital-terrain-fabric-spoof-route-approval-v1` + `protocol_stack_id=ps-theater-digital-terrain-fabric-spoof-route-approval-stack-v1` when maneuver options depend on trusted terrain provenance and rapid route re-approval.
 - Add `tool_suite_id=ts-joint-contested-cellular-timing-holdover-first-responder-priority-v1` + `protocol_stack_id=ps-joint-contested-cellular-timing-holdover-first-responder-priority-stack-v1` when homeland-support branches depend on telecom timing holdover, public-safety traffic priority, or civil-military comms continuity.
 - Add `packet_id=DPL-JOINT-CISLUNAR-TIMING-COLLISION-MITIGATION-001`, `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, `packet_id=DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001`, `packet_id=DPL-THEATER-DIGITAL-TERRAIN-SPOOF-ROUTE-APPROVAL-001`, and `packet_id=DPL-JOINT-CELLULAR-TIMING-HOLDOVER-FIRST-RESPONDER-001` for branches that materially alter commander GO/NO-GO posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-ai-confidence-early-warning-v1` + `protocol_stack_id=ps-theater-mission-ai-confidence-early-warning-stack-v1` when commander risk acceptance depends on trust in mission-AI outputs, drift warnings, or rollback timing.
+- Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when risk posture depends on fragile routes, carrier pressure, or adversary coercion against sustainment.
+- Add `tool_suite_id=ts-theater-no-strike-geofence-integrity-v1` + `protocol_stack_id=ps-theater-no-strike-geofence-integrity-stack-v1` when protected-boundary drift could invalidate fires, maneuver, or civilian-risk assumptions.
+- Add `packet_id=DPL-MISSION-AI-CONFIDENCE-001`, `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, and `packet_id=DPL-NO-STRIKE-GEOFENCE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS decisions.

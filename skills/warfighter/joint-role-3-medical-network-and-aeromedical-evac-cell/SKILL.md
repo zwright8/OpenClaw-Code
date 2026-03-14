@@ -113,3 +113,9 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-joint-volcanic-ash-airbridge-engine-sortie-recovery-v1` + `protocol_stack_id=ps-joint-volcanic-ash-airbridge-engine-sortie-recovery-stack-v1` when aeromedical or critical-care airlift branches depend on ash-safe routing and engine inspection capacity.
 - Add `tool_suite_id=ts-joint-contested-cellular-timing-holdover-first-responder-priority-v1` + `protocol_stack_id=ps-joint-contested-cellular-timing-holdover-first-responder-priority-stack-v1` when emergency medical coordination depends on resilient public-safety telecom timing and priority-service continuity.
 - Add `packet_id=DPL-COALITION-MEDICAL-CREDENTIAL-REPRIVILEGING-001`, `packet_id=DPL-JOINT-VOLCANIC-ASH-AIRBRIDGE-ENGINE-RECOVERY-001`, and `packet_id=DPL-JOINT-CELLULAR-TIMING-HOLDOVER-FIRST-RESPONDER-001` for medical branches that materially alter survival posture, evacuation timing, or clinical continuity.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-pediatric-casualty-surge-v1` + `protocol_stack_id=ps-expeditionary-pediatric-casualty-surge-stack-v1` when Role 3 routing decisions depend on pediatric specialty balancing, child-capable bed availability, or contested transport sequencing.
+- Add `tool_suite_id=ts-joint-command-voice-spoof-defense-v1` + `protocol_stack_id=ps-joint-command-voice-spoof-defense-stack-v1` when medevac, patient diversion, or casualty-notification decisions depend on trusted voice or media command paths.
+- Add `packet_id=DPL-PEDS-CASUALTY-SURGE-001` and `packet_id=DPL-COMMAND-VOICE-SPOOF-001` for recommendations that materially change patient movement, bed allocation, or clinical command trust.

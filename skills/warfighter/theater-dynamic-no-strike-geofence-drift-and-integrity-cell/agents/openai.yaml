@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Dynamic No-Strike Geofence Drift And Integrity Cell"
+  short_description: "Guard protected-target geofences against drift and stale updates"
