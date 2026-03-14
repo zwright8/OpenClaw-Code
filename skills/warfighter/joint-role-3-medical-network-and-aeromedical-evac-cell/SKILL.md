@@ -146,3 +146,8 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when Role 3 continuity depends on whether fuel, power, or water anomalies at treatment nodes are temporary faults or broader infrastructure cascades.
 - Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when patient movement, bed reporting, or coalition clinical coordination depends on controlled release of medical or movement data across caveat boundaries.
 - Add `packet_id=DPL-OXYGEN-VENTILATOR-LOADSHED-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter patient movement, clinical survivability, or coalition medical-access posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
+
+- Add `tool_suite_id=ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1` + `protocol_stack_id=ps-joint-forward-blood-bank-crossmatch-massive-transfusion-stack-v1` when Role 3 continuity depends on blood availability, crossmatch throughput, or massive transfusion readiness.
+- Add `packet_id=DPL-FORWARD-BLOOD-BANK-CROSSMATCH-001` for branches that materially alter blood resupply confidence, triage posture, or aeromedical evacuation timing.

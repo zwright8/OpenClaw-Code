@@ -2204,3 +2204,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-c2-fusion-v1`.
 - Protocols: `CoT`, `VMF`, signed autonomy attestations, `API/JSON`, `USMTF`.
 - Degraded fallback: manual breach certification only with explicit commander acceptance of reduced tempo.
+
+## Profile Addendum U (2026-03-14, Airfield Services, Blood Continuity, Launch Cryogenics, Port Fuel, ASW Endurance, Sanitation Defense, Coalition JADC2, and Naval Signature Control)
+
+### `portable-atc-tacan-runway-services-v1`
+- Use for airfield recovery decisions when portable tower control, TACAN restoration, and runway services determine sortie release timing.
+- Primary tools: `ts-joint-expeditionary-portable-atc-tower-tacan-runway-services-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `AIXM/FIXM`, `VMF`, `USMTF`, `API/JSON`, signed airfield equipment manifests.
+- Degraded fallback: daylight or mission-essential one-runway operations only with positive-control readbacks.
+
+### `forward-blood-bank-crossmatch-v1`
+- Use for medical sustainment when blood typing, crossmatch, and massive transfusion continuity are the pacing constraint for survival.
+- Primary tools: `ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, signed cold-chain manifests.
+- Degraded fallback: life-saving transfusion only with dual clinical approval and manual cold-chain logging.
+
+### `cryogenic-propellant-transfer-priority-v1`
+- Use for launch and deterrence support when cryogenic transfer windows, ground-support assets, and boiloff loss determine readiness.
+- Primary tools: `ts-strategic-cryogenic-propellant-transfer-boiloff-priority-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `CCSDS`, signed transfer manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential cryogenic transfer only with manual valve-state confirmation and conservative boiloff assumptions.
+
+### `fuel-pier-bypass-restoration-v1`
+- Use for theater sustainment when fuel piers, hose farms, or transfer manifolds are damaged and bypass restoration controls throughput.
+- Primary tools: `ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, signed fuel-quality manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: reduced-throughput fuel transfer only with contamination hold points every shift.
+
+### `sonobuoy-battery-endurance-v1`
+- Use for ASW planning when sonobuoy inventory, acoustic battery life, and pattern persistence shape contact survival odds.
+- Primary tools: `ts-joint-sonobuoy-allocation-acoustic-battery-endurance-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `Link 16 J-series`, `USMTF`, `OGC`, `API/JSON`, signed mission-load manifests.
+- Degraded fallback: mission-essential buoy patterns only with tighter battery reserve and manual contact handoff.
+
+### `wastewater-lift-station-defense-v1`
+- Use for installation resilience when wastewater lift-station failure, sewer bypass routing, or OT compromise threatens force health and mission continuity.
+- Primary tools: `ts-homeland-installation-wastewater-lift-station-sewer-bypass-defense-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OPC UA`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-health sewer bypass only with manual pump status checks every hour.
+
+### `coalition-jadc2-priority-bridge-v1`
+- Use for coalition command-and-control when message priority, releasability, and acknowledgment fidelity determine JADC2 timing trust.
+- Primary tools: `ts-coalition-jadc2-message-priority-releasability-bridge-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `Link 16 J-series`, `USMTF`, `NATO APP-11/ADatP-3` aligned exchange, `API/JSON`, `NIEM`.
+- Degraded fallback: mission-essential summaries only with explicit coalition caveat annotations and readback acknowledgment.
+
+### `degaussing-port-exit-certification-v1`
+- Use for naval force-generation when degaussing health, magnetic signature limits, and port-exit certification determine sortie release.
+- Primary tools: `ts-joint-degaussing-signature-restoration-port-exit-certification-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: restricted-port-exit certification only with manual signature checks and mine-risk downgrades.

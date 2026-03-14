@@ -796,3 +796,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent explosive-hazard witness and alternate override drill log
 - Protocol binding: CoT + VMF + signed autonomy attestations + API/JSON + USMTF
 - Fallback path: manual breach certification only with explicit commander acceptance of reduced tempo
+
+## New Toolchain Wave (2026-03-14, Expansion Wave L)
+
+### `TC-ATC-094`
+
+- Domain: joint expeditionary portable ATC tower TACAN and runway services reconstitution
+- Primary systems: portable tower readiness board, TACAN calibration queue, runway services status tracker
+- Cross-check systems: independent airfield survey team and alternate airspace control cell
+- Protocol binding: AIXM/FIXM + VMF + USMTF + API/JSON + signed airfield equipment manifests
+- Fallback path: daylight or mission-essential one-runway operations only with positive-control readbacks
+
+### `TC-BLOOD-095`
+
+- Domain: joint forward blood-bank crossmatch and massive transfusion continuity
+- Primary systems: blood product inventory ledger, crossmatch queue manager, transfusion trigger dashboard
+- Cross-check systems: independent blood-bank witness and alternate trauma-regulation board
+- Protocol binding: HL7/FHIR + USMTF + API/JSON + signed cold-chain manifests
+- Fallback path: life-saving transfusion only with dual clinical approval and manual cold-chain logging
+
+### `TC-CRYO-096`
+
+- Domain: strategic cryogenic propellant transfer ground support and boiloff priority
+- Primary systems: cryogenic storage health board, transfer sequence scheduler, boiloff loss tracker
+- Cross-check systems: independent safety observer and alternate launch-support review cell
+- Protocol binding: CCSDS + signed transfer manifests + API/JSON + USMTF + OPC UA
+- Fallback path: mission-essential cryogenic transfer only with manual valve-state confirmation and conservative boiloff assumptions
+
+### `TC-FUELPIER-097`
+
+- Domain: theater fuel pier hose farm and bulk transfer bypass restoration
+- Primary systems: pier transfer status board, hose-farm integrity ledger, bulk transfer bypass planner
+- Cross-check systems: independent fuel-quality witness and alternate port-operations board
+- Protocol binding: AIS/NMEA + OGC + signed fuel-quality manifests + API/JSON + USMTF
+- Fallback path: reduced-throughput fuel transfer only with contamination hold points every shift
+
+### `TC-SONO-098`
+
+- Domain: joint sonobuoy allocation and acoustic battery endurance
+- Primary systems: sonobuoy load planner, acoustic battery endurance board, pattern coverage analyzer
+- Cross-check systems: independent ASW tactics cell and alternate sortie-allocation board
+- Protocol binding: Link 16 J-series + USMTF + OGC + API/JSON + signed mission-load manifests
+- Fallback path: mission-essential buoy patterns only with tighter battery reserve and manual contact handoff
+
+### `TC-WASTEWATER-099`
+
+- Domain: homeland installation wastewater lift station and sewer bypass defense
+- Primary systems: lift-station OT status board, sewer bypass route planner, base sanitation risk tracker
+- Cross-check systems: independent environmental-health witness and alternate civil works board
+- Protocol binding: NIMS/ICS + EDXL-DE/CAP + OPC UA + API/JSON + USMTF
+- Fallback path: life-health sewer bypass only with manual pump status checks every hour
+
+### `TC-JADC2-100`
+
+- Domain: coalition JADC2 message priority and releasability bridge
+- Primary systems: message priority router, releasability rules ledger, coalition acknowledgment tracker
+- Cross-check systems: independent releasability officer and alternate coalition data-fabric board
+- Protocol binding: Link 16 J-series + USMTF + NATO APP-11/ADatP-3 aligned exchange + API/JSON + NIEM
+- Fallback path: mission-essential summaries only with explicit coalition caveat annotations and readback acknowledgment
+
+### `TC-DEGAUSS-101`
+
+- Domain: joint degaussing signature restoration and port exit certification
+- Primary systems: degaussing coil health board, magnetic signature range tracker, port-exit certification queue
+- Cross-check systems: independent harbor-range witness and alternate naval maintenance board
+- Protocol binding: AIS/NMEA + OGC + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: restricted-port-exit certification only with manual signature checks and mine-risk downgrades

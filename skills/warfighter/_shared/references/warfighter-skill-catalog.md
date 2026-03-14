@@ -2486,3 +2486,25 @@ Every skill output should include:
 - Undersea cable repair ship escort priority + cable landing blackstart defense + theater mission network failover + maritime undersea control.
 - Offshore energy platform blackstart defense + coalition offshore energy platform defense integration + operational energy resilience + strategic fuel and grid continuity.
 - Robotic breach-lane certification + autonomous bridge/tunnel breach synchronization + human-machine breaching safety assurance + combat engineering obstacle intelligence.
+
+## New Expansion Wave (2026-03-14, Wave L)
+
+- joint-expeditionary-portable-atc-tower-tacan-and-runway-services-reconstitution-cell
+- joint-forward-blood-bank-crossmatch-and-massive-transfusion-continuity-cell
+- strategic-cryogenic-propellant-transfer-ground-support-and-boiloff-priority-cell
+- theater-fuel-pier-hose-farm-and-bulk-transfer-bypass-restoration-cell
+- joint-sonobuoy-allocation-and-acoustic-battery-endurance-cell
+- homeland-installation-wastewater-lift-station-and-sewer-bypass-defense-cell
+- coalition-jadc2-message-priority-and-releasability-bridge-cell
+- joint-degaussing-signature-restoration-and-port-exit-certification-cell
+
+## Updated Pairings (2026-03-14, Wave L)
+
+- Portable ATC/TACAN/runway-services reconstitution + airbase dispersal and rapid reconstitution + air tasking cycle support + joint austere portable air-traffic surveillance.
+- Forward blood-bank crossmatch and massive transfusion continuity + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator + casualty evacuation and medical regulation.
+- Cryogenic propellant transfer and boiloff priority + contested space launch and satellite reconstitution + joint space launch window conflict deconfliction + strategic industrial mobilization readiness.
+- Fuel-pier hose-farm bypass restoration + joint port opening and JLOTS synchronization + contested logistics sustainment + strategic sealift and prepositioning coordination.
+- Sonobuoy allocation and acoustic battery endurance + anti-submarine warfare support + maritime operations planner + naval surface warfare coordinator.
+- Installation wastewater lift-station and sewer-bypass defense + defense support of civil authorities crisis cell + force protection and base defense + joint urban underground water-grid contamination response.
+- Coalition JADC2 message priority and releasability bridge + coalition interoperability coordinator + coalition JADC2 data priority routing + coalition data fabric interoperability cell.
+- Degaussing signature restoration and port-exit certification + electromagnetic signature lifecycle management + naval surface warfare coordinator + expeditionary salvage and harbor clearance.

@@ -307,3 +307,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-detainee-appeals-custody-transparency-v1` + `protocol_stack_id=ps-coalition-detainee-appeals-custody-transparency-stack-v1` when interoperability depends on common detainee appeals handling, translation quality, or custody-transparency trust.
 - Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when coalition recovery coordination depends on trusted family messaging, survivor authentication, or spoof denial.
 - Add `packet_id=DPL-DETAINEE-APPEALS-CUSTODY-001` and `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially change coalition legitimacy, detainee compliance, or shared recovery confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
+
+- Add `tool_suite_id=ts-coalition-jadc2-message-priority-releasability-bridge-v1` + `protocol_stack_id=ps-coalition-jadc2-message-priority-releasability-bridge-stack-v1` when coalition interoperability depends on priority-message routing, releasability translation, or acknowledgment-chain fidelity.
+- Add `tool_suite_id=ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1` + `protocol_stack_id=ps-joint-forward-blood-bank-crossmatch-massive-transfusion-stack-v1` when coalition medical support depends on transfusion continuity, blood-type confidence, or cross-border clinical handoff.
+- Add `packet_id=DPL-COALITION-JADC2-PRIORITY-BRIDGE-001` and `packet_id=DPL-FORWARD-BLOOD-BANK-CROSSMATCH-001` for branches that materially alter coalition authority gates, medical release confidence, or message-timing trust.

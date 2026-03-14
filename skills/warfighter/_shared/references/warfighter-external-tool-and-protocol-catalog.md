@@ -12336,3 +12336,87 @@ external_binding:
 ### `ps-joint-robotic-breach-lane-certification-human-override-stack-v1`
 - Protocols: `CoT`, `VMF`, signed autonomy attestations, `API/JSON`, `USMTF`.
 - Use for: robotic breach status, lane-certification evidence, and human-override control acknowledgments.
+
+## Tool Suite Addendum L (2026-03-14, Airfield Services, Blood Continuity, Launch Cryogenics, Port Fuel, ASW Endurance, Sanitation Defense, Coalition JADC2, and Naval Signature Control)
+
+### `ts-joint-expeditionary-portable-atc-tower-tacan-runway-services-v1`
+- Use for: restoring portable air-traffic control, TACAN navigation support, and runway services at austere or battle-damaged airfields.
+- Primary tools: portable tower readiness board, TACAN calibration queue, runway services status tracker.
+- Cross-check tools: independent airfield survey team and alternate airspace control cell.
+- Typical products: airfield services restoration ladder, portable tower emplacement plan, sortie release constraint board.
+
+### `ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1`
+- Use for: managing forward blood inventory, crossmatch continuity, and massive transfusion support under casualty surge and constrained resupply.
+- Primary tools: blood product inventory ledger, crossmatch queue manager, transfusion trigger dashboard.
+- Cross-check tools: independent blood-bank witness and alternate trauma-regulation board.
+- Typical products: blood availability ladder, crossmatch branch plan, transfusion risk matrix.
+
+### `ts-strategic-cryogenic-propellant-transfer-boiloff-priority-v1`
+- Use for: allocating cryogenic transfer assets, sequencing ground support, and limiting boiloff when launch or missile readiness depends on scarce throughput.
+- Primary tools: cryogenic storage health board, transfer sequence scheduler, boiloff loss tracker.
+- Cross-check tools: independent safety observer and alternate launch-support review cell.
+- Typical products: cryogenic transfer sequence, boiloff priority board, launch-support constraint matrix.
+
+### `ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1`
+- Use for: restoring bulk fuel movement when fuel piers, hose farms, or manifolds are damaged, contaminated, or under threat.
+- Primary tools: pier transfer status board, hose-farm integrity ledger, bulk transfer bypass planner.
+- Cross-check tools: independent fuel-quality witness and alternate port-operations board.
+- Typical products: fuel bypass ladder, hose-farm restoration sequence, port throughput board.
+
+### `ts-joint-sonobuoy-allocation-acoustic-battery-endurance-v1`
+- Use for: prioritizing sonobuoy loads, acoustic battery life, and search-pattern endurance when ASW contact persistence is limited by stores.
+- Primary tools: sonobuoy load planner, acoustic battery endurance board, pattern coverage analyzer.
+- Cross-check tools: independent ASW tactics cell and alternate sortie-allocation board.
+- Typical products: buoy expenditure ladder, endurance forecast, contact-persistence plan.
+
+### `ts-homeland-installation-wastewater-lift-station-sewer-bypass-defense-v1`
+- Use for: defending installation wastewater lift stations, planning sewer bypass continuity, and protecting base sanitation under cyber, sabotage, or flood pressure.
+- Primary tools: lift-station OT status board, sewer bypass route planner, base sanitation risk tracker.
+- Cross-check tools: independent environmental-health witness and alternate civil works board.
+- Typical products: wastewater continuity ladder, sewer bypass plan, sanitation risk board.
+
+### `ts-coalition-jadc2-message-priority-releasability-bridge-v1`
+- Use for: routing high-priority coalition JADC2 traffic while enforcing releasability, schema translation, and acknowledgment integrity.
+- Primary tools: message priority router, releasability rules ledger, coalition acknowledgment tracker.
+- Cross-check tools: independent releasability officer and alternate coalition data-fabric board.
+- Typical products: coalition message priority ladder, releasability bridge matrix, acknowledgment integrity board.
+
+### `ts-joint-degaussing-signature-restoration-port-exit-certification-v1`
+- Use for: restoring naval degaussing health, validating magnetic signature control, and certifying port exits under mine and signature threat.
+- Primary tools: degaussing coil health board, magnetic signature range tracker, port-exit certification queue.
+- Cross-check tools: independent harbor-range witness and alternate naval maintenance board.
+- Typical products: signature restoration ladder, degaussing test plan, port-exit certification matrix.
+
+## Protocol Stack Addendum L (2026-03-14, External Integration Profiles for Expansion Wave L)
+
+### `ps-joint-expeditionary-portable-atc-tower-tacan-runway-services-stack-v1`
+- Protocols: signed airfield equipment manifests, `AIXM/FIXM`, `VMF`, `USMTF`, `API/JSON`.
+- Use for: airfield service-state exchange, TACAN calibration updates, and sortie release acknowledgments.
+
+### `ps-joint-forward-blood-bank-crossmatch-massive-transfusion-stack-v1`
+- Protocols: `HL7/FHIR`, signed cold-chain manifests, `USMTF`, `API/JSON`.
+- Use for: blood inventory state, crossmatch status, and transfusion release or diversion acknowledgments.
+
+### `ps-strategic-cryogenic-propellant-transfer-boiloff-priority-stack-v1`
+- Protocols: `CCSDS`, signed transfer manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Use for: cryogenic transfer sequencing, boiloff state exchange, and launch-support approvals.
+
+### `ps-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, signed fuel-quality manifests, `API/JSON`, `USMTF`.
+- Use for: pier-transfer status, contamination exception routing, and bypass restoration acknowledgments.
+
+### `ps-joint-sonobuoy-allocation-acoustic-battery-endurance-stack-v1`
+- Protocols: `Link 16 J-series`, signed mission-load manifests, `USMTF`, `OGC`, `API/JSON`.
+- Use for: sonobuoy allocation updates, acoustic endurance state, and ASW coverage release acknowledgments.
+
+### `ps-homeland-installation-wastewater-lift-station-sewer-bypass-defense-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: wastewater OT alerts, sewer bypass routing, and installation support approvals.
+
+### `ps-coalition-jadc2-message-priority-releasability-bridge-stack-v1`
+- Protocols: `Link 16 J-series`, `USMTF`, `NATO APP-11/ADatP-3` aligned exchange, `API/JSON`, `NIEM`.
+- Use for: coalition message-priority routing, releasability translation, and acknowledgment-chain verification.
+
+### `ps-joint-degaussing-signature-restoration-port-exit-certification-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: degaussing health exchange, signature-range reporting, and port-exit certification acknowledgments.

@@ -269,3 +269,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-strategic-undersea-cable-repair-ship-escort-priority-v1` + `protocol_stack_id=ps-strategic-undersea-cable-repair-ship-escort-priority-stack-v1` when sustainment C2, reroute authority, or distribution continuity depends on restoring contested cable infrastructure.
 - Add `tool_suite_id=ts-theater-offshore-energy-platform-blackstart-defense-v1` + `protocol_stack_id=ps-theater-offshore-energy-platform-blackstart-defense-stack-v1` when sustainment viability depends on offshore power, fuel, or maritime energy-node restart sequencing.
 - Add `packet_id=DPL-CABLE-REPAIR-SHIP-ESCORT-001` and `packet_id=DPL-OFFSHORE-ENERGY-BLACKSTART-001` for branches that materially alter distribution confidence, energy continuity, or commander sustainment risk acceptance.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
+
+- Add `tool_suite_id=ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1` + `protocol_stack_id=ps-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-stack-v1` when sustainment viability depends on contested maritime fuel throughput, pier restoration timing, or hose-farm contamination control.
+- Add `tool_suite_id=ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1` + `protocol_stack_id=ps-joint-forward-blood-bank-crossmatch-massive-transfusion-stack-v1` when logistics branches depend on blood cold-chain endurance, crossmatch throughput, or casualty-surge survival support.
+- Add `packet_id=DPL-FUEL-PIER-BYPASS-001` and `packet_id=DPL-FORWARD-BLOOD-BANK-CROSSMATCH-001` for branches that materially alter fuel flow, medical sustainment, or contested distribution confidence.

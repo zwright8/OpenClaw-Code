@@ -386,3 +386,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when risk posture depends on whether utility anomalies across bases, ports, or hospitals are sabotage, cascade, or shortfall.
 - Add `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` + `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1` when commander timing and confidence depend on scarce downlink windows or delayed mission products from orbit.
 - Add `packet_id=DPL-KILLWEB-DISRUPTION-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-ORBITAL-DOWNLINK-PRIORITY-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
+
+- Add `tool_suite_id=ts-joint-expeditionary-portable-atc-tower-tacan-runway-services-v1` + `protocol_stack_id=ps-joint-expeditionary-portable-atc-tower-tacan-runway-services-stack-v1` when commander risk depends on austere airfield control, TACAN restoration, or runway services timing.
+- Add `tool_suite_id=ts-strategic-cryogenic-propellant-transfer-boiloff-priority-v1` + `protocol_stack_id=ps-strategic-cryogenic-propellant-transfer-boiloff-priority-stack-v1` when risk posture depends on launch support, propellant allocation, or boiloff loss control.
+- Add `tool_suite_id=ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1` + `protocol_stack_id=ps-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-stack-v1` when commander risk acceptance hinges on contested maritime fuel throughput and bypass feasibility.
+- Add `packet_id=DPL-PORTABLE-ATC-TACAN-001`, `packet_id=DPL-CRYOGENIC-PROPELLANT-TRANSFER-001`, `packet_id=DPL-FUEL-PIER-BYPASS-001`, and `packet_id=DPL-COALITION-JADC2-PRIORITY-BRIDGE-001` for branches that materially change GO/NO-GO posture, launch timing, or coalition C2 confidence.
