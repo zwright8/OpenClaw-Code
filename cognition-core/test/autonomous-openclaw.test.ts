@@ -813,6 +813,132 @@ test('buildAutonomousBatchPlan ignores latency SLA floor penalties until minimum
     assert.deepEqual(plan.selection.skillIds, [471]);
 });
 
+test('buildAutonomousBatchPlan applies tail-latency penalties to high-tail-duration candidates', () => {
+    const highTailOutcomes = [
+        ...Array.from({ length: 16 }, () => ({ status: 'completed', reward: 1, durationMs: 1_000 })),
+        ...Array.from({ length: 4 }, () => ({ status: 'completed', reward: 1, durationMs: 4_000 }))
+    ];
+    const stableOutcomes = Array.from({ length: 20 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 1_000
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 481, code: 'SK-00481', title: 'Skill 481' },
+            { id: 482, code: 'SK-00482', title: 'Skill 482' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 48,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '481': {
+                    attempts: 20,
+                    successes: 19,
+                    failures: 1,
+                    consecutiveFailures: 0,
+                    lastWave: 47,
+                    lastStatus: 'completed',
+                    recentOutcomes: highTailOutcomes
+                },
+                '482': {
+                    attempts: 20,
+                    successes: 15,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 47,
+                    lastStatus: 'completed',
+                    recentOutcomes: stableOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 49,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            latencyTargetMs: 1_000,
+            latencyTailPenaltyWeight: 0.3,
+            latencyTailPercentile: 0.9,
+            latencyTailMinSamples: 8
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [482]);
+});
+
+test('buildAutonomousBatchPlan ignores tail-latency penalties until minimum measured samples are reached', () => {
+    const highTailOutcomes = [
+        ...Array.from({ length: 16 }, () => ({ status: 'completed', reward: 1, durationMs: 1_000 })),
+        ...Array.from({ length: 4 }, () => ({ status: 'completed', reward: 1, durationMs: 4_000 }))
+    ];
+    const stableOutcomes = Array.from({ length: 20 }, () => ({
+        status: 'completed',
+        reward: 1,
+        durationMs: 1_000
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 491, code: 'SK-00491', title: 'Skill 491' },
+            { id: 492, code: 'SK-00492', title: 'Skill 492' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 50,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '491': {
+                    attempts: 20,
+                    successes: 19,
+                    failures: 1,
+                    consecutiveFailures: 0,
+                    lastWave: 49,
+                    lastStatus: 'completed',
+                    recentOutcomes: highTailOutcomes
+                },
+                '492': {
+                    attempts: 20,
+                    successes: 15,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 49,
+                    lastStatus: 'completed',
+                    recentOutcomes: stableOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 51,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            latencyTargetMs: 1_000,
+            latencyTailPenaltyWeight: 0.3,
+            latencyTailPercentile: 0.9,
+            latencyTailMinSamples: 25
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [491]);
+});
+
 test('buildAutonomousBatchPlan supports bayesian-bootstrap thompson ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

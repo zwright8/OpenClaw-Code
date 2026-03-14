@@ -165,6 +165,13 @@ const DEFAULT_LATENCY_SLA_FLOOR = 0;
 const MAX_LATENCY_SLA_FLOOR = 1;
 const DEFAULT_LATENCY_SLA_MIN_ATTEMPTS = 8;
 const MAX_LATENCY_SLA_MIN_ATTEMPTS = 256;
+const DEFAULT_LATENCY_TAIL_PENALTY_WEIGHT = 0;
+const MAX_LATENCY_TAIL_PENALTY_WEIGHT = 1;
+const DEFAULT_LATENCY_TAIL_PERCENTILE = 0.95;
+const MIN_LATENCY_TAIL_PERCENTILE = 0.5;
+const MAX_LATENCY_TAIL_PERCENTILE = 0.999;
+const DEFAULT_LATENCY_TAIL_MIN_SAMPLES = 8;
+const MAX_LATENCY_TAIL_MIN_SAMPLES = 256;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -1016,6 +1023,27 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_LATENCY_SLA_MIN_ATTEMPTS,
             1,
             MAX_LATENCY_SLA_MIN_ATTEMPTS
+        ),
+        latencyTailPenaltyWeight: clamp(
+            Number.isFinite(Number(value.latencyTailPenaltyWeight))
+                ? Number(value.latencyTailPenaltyWeight)
+                : DEFAULT_LATENCY_TAIL_PENALTY_WEIGHT,
+            0,
+            MAX_LATENCY_TAIL_PENALTY_WEIGHT
+        ),
+        latencyTailPercentile: clamp(
+            Number.isFinite(Number(value.latencyTailPercentile))
+                ? Number(value.latencyTailPercentile)
+                : DEFAULT_LATENCY_TAIL_PERCENTILE,
+            MIN_LATENCY_TAIL_PERCENTILE,
+            MAX_LATENCY_TAIL_PERCENTILE
+        ),
+        latencyTailMinSamples: clamp(
+            Number.isFinite(Number(value.latencyTailMinSamples))
+                ? parsePositiveInt(value.latencyTailMinSamples, DEFAULT_LATENCY_TAIL_MIN_SAMPLES)
+                : DEFAULT_LATENCY_TAIL_MIN_SAMPLES,
+            1,
+            MAX_LATENCY_TAIL_MIN_SAMPLES
         )
     };
 }
@@ -1347,6 +1375,35 @@ function computeLatencySlaPenalty(stat, selectionPolicyConfig = null) {
     );
     const lowerBound = computeWilsonLowerBound(deadlineHits, measuredAttemptCount);
     return clamp(floor - lowerBound, 0, 1);
+}
+
+function computeLatencyTailPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const penaltyWeight = clamp(policy.latencyTailPenaltyWeight, 0, MAX_LATENCY_TAIL_PENALTY_WEIGHT);
+    if (penaltyWeight <= 0) return 0;
+
+    const attempts = clamp(parseNonNegativeInt(stat?.attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    const minSamples = clamp(
+        parsePositiveInt(policy.latencyTailMinSamples, DEFAULT_LATENCY_TAIL_MIN_SAMPLES),
+        1,
+        MAX_LATENCY_TAIL_MIN_SAMPLES
+    );
+    if (attempts < minSamples) return 0;
+
+    const recentOutcomes = normalizeRecentOutcomes(stat?.recentOutcomes);
+    if (recentOutcomes.length <= 0) return 0;
+    const terminalRecentOutcomes = recentOutcomes.slice(-attempts);
+    const durations = terminalRecentOutcomes
+        .map((entry) => Number(entry.durationMs))
+        .filter((value) => Number.isFinite(value) && value > 0);
+    if (durations.length < minSamples) return 0;
+
+    const latencyTargetMs = resolveLatencyTargetMs(policy, terminalRecentOutcomes);
+    const tailDurationMs = computePercentile(durations, policy.latencyTailPercentile);
+    if (!Number.isFinite(tailDurationMs) || tailDurationMs <= latencyTargetMs) return 0;
+
+    const overrunRatio = clamp((tailDurationMs - latencyTargetMs) / latencyTargetMs, 0, 1);
+    return clamp(penaltyWeight * overrunRatio, 0, 1);
 }
 
 function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = []) {
@@ -4105,6 +4162,7 @@ function selectCatalogSlice({
         }
         score -= computeReliabilityFloorPenalty(scoreStats, scoringPolicy);
         score -= computeLatencySlaPenalty(scoreStats, scoringPolicy);
+        score -= computeLatencyTailPenalty(scoreStats, scoringPolicy);
 
         const item = {
             candidate,
