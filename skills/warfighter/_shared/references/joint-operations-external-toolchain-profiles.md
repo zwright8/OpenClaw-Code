@@ -2436,3 +2436,75 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-physical-message-assurance-v1`.
 - Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Degraded fallback: courier-only custody ledger with dual-control ballot witness checks.
+
+## Profile Addendum Y (2026-03-14, Rescue, Trust Restoration, and Strategic Recovery)
+
+### `submarine-escape-rescue-integration-v1`
+- Use for maritime rescue decisions when trapped submariners, rescue-system compatibility, or decompression-capacity limits drive time-critical COAs.
+- Primary tools: `ts-joint-submarine-escape-rescue-system-integration-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `USMTF`, signed rescue manifests, `AIS/NMEA`, `HL7/FHIR`, `API/JSON`.
+- Degraded fallback: voice-coordinated rescue branch with paper chamber ledger and conservative compatibility assumptions.
+
+### `aircrew-fatigue-circadian-countermeasure-v1`
+- Use for air-tasking and force-health decisions when sortie demand is constrained by fatigue, circadian inversion, or alertness-countermeasure governance.
+- Primary tools: `ts-theater-aircrew-fatigue-circadian-countermeasure-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed crew-status manifests, `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Degraded fallback: minimum-risk sortie schedule only with manual waiver log and commander-approved cut lines.
+
+### `emissions-decoy-robotic-spectrum-safety-v1`
+- Use for CEMA and deception decisions when robotic decoys, unmanned emitters, or kill-switch control must stay inside blue-force spectrum-safety limits.
+- Primary tools: `ts-theater-emissions-decoy-robotic-control-spectrum-safety-v1`.
+- Cross-check tools: `ts-cema-spectrum-operations-v1`.
+- Protocols: `CoT`, `VMF`, signed emitter-control manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: reduced emissions plan with preplanned kill-switch and voice-confirmed decoy control.
+
+### `orbital-custody-loss-commercial-ssa-retask-v1`
+- Use for space-domain-awareness decisions when track custody is lost and military or commercial retask options must restore conjunction confidence before maneuver release.
+- Primary tools: `ts-joint-orbital-custody-loss-commercial-ssa-retask-v1`.
+- Cross-check tools: `ts-space-domain-awareness-satcom-v1`.
+- Protocols: `CCSDS`, signed ephemeris manifests, `API/JSON`, `USMTF`, `STIX/TAXII`.
+- Degraded fallback: conservative keep-out buffers with maneuver hold until custody confidence recovers.
+
+### `air-gapped-credential-reissue-pki-recovery-v1`
+- Use for cyber continuity decisions when disconnected enclaves need offline credential reissue, certificate trust restoration, or emergency PKI burn-and-recover actions.
+- Primary tools: `ts-theater-air-gapped-credential-reissue-pki-recovery-v1`.
+- Cross-check tools: `ts-mission-trust-credentialing-v1`.
+- Protocols: `X.509/PKI`, signed certificate manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Degraded fallback: emergency access roster with dual-control issuance and paper key-custody log only.
+
+### `electronics-salvage-component-reclamation-v1`
+- Use for strategic sustainment decisions when reclaimed electronics can relieve component shortages faster than new procurement without outrunning trust and safety checks.
+- Primary tools: `ts-strategic-electronics-salvage-critical-component-reclamation-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed component manifests, `OPC UA`, `API/JSON`, `NIEM`, `USMTF`.
+- Degraded fallback: non-flight-critical release only with command-approved use restrictions and UTC custody log.
+
+### `obstetric-neonatal-emergency-support-v1`
+- Use for expeditionary medical decisions when maternal-fetal distress, neonatal warming, or specialized evacuation timing determines survival.
+- Primary tools: `ts-expeditionary-obstetric-neonatal-emergency-support-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed maternal-neonatal transfer manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: emergency-only care branch with paper triage and constrained transfer ladder.
+
+### `school-shelter-mass-care-family-reunification-v1`
+- Use for DSCA and civil-support decisions when school-based shelters require mass-care support, child accountability, and trusted family reunification.
+- Primary tools: `ts-homeland-school-shelter-mass-care-family-reunification-v1`.
+- Cross-check tools: `ts-dsca-emergency-operations-v1`.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, signed custody manifests, `API/JSON`.
+- Degraded fallback: paper custody controls with badge or wristband verification and commander-approved release criteria only.
+
+### `host-nation-water-rights-military-demand-deconfliction-v1`
+- Use for coalition sustainment decisions when military water demand collides with host-nation rights, civilian access, or emergency rationing limits.
+- Primary tools: `ts-coalition-host-nation-water-rights-military-demand-deconfliction-v1`.
+- Cross-check tools: `ts-joint-water-production-distribution-security-v1`.
+- Protocols: `OGC`, signed water-allocation manifests, `NIEM`, `API/JSON`, `USMTF`, `EDXL-DE/CAP`.
+- Degraded fallback: emergency rationing only with dual-signature releases and UTC allocation log.
+
+### `captured-enemy-materiel-exploitation-redistribution-v1`
+- Use for joint exploitation and sustainment decisions when captured enemy materiel may provide intelligence value, partner utility, or rapid battlefield reuse under strict safety controls.
+- Primary tools: `ts-joint-captured-enemy-materiel-exploitation-safe-redistribution-v1`.
+- Cross-check tools: `ts-special-reconnaissance-sensitive-site-exploitation-v1`.
+- Protocols: signed capture manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `NIEM`.
+- Degraded fallback: quarantine-only branch with dual-control custody and no transfer until safety review completes.

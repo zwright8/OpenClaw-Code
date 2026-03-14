@@ -158,3 +158,9 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 
 - Add `tool_suite_id=ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1` + `protocol_stack_id=ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1` when DSCA recommendations depend on trusted warning release, PSAP continuity, or mass-notification authenticity under telecom stress.
 - Add `packet_id=DPL-HOMELAND-911-CELL-BROADCAST-AUTHENTICATION-MASS-NOTIFICATION-CONTINUITY-001` for branches that materially alter public-warning posture, alert release timing, or 911 mutual-aid requests.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-homeland-school-shelter-mass-care-family-reunification-v1` + `protocol_stack_id=ps-homeland-school-shelter-mass-care-family-reunification-stack-v1` when DSCA recommendations depend on school-shelter accountability, child release trust, or mass-care support sequencing.
+- Add `tool_suite_id=ts-expeditionary-obstetric-neonatal-emergency-support-v1` + `protocol_stack_id=ps-expeditionary-obstetric-neonatal-emergency-support-stack-v1` when domestic support branches depend on maternal-neonatal stabilization, pediatric transfer timing, or protected clinical handoffs.
+- Add `packet_id=DPL-SCHOOL-SHELTER-FAMILY-REUNIFICATION-001` and `packet_id=DPL-OBSTETRIC-NEONATAL-EMERGENCY-001` for branches that materially alter DSCA shelter posture, family accountability, or maternal-child survival support.

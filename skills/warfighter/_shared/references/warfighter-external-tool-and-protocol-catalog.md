@@ -12662,3 +12662,107 @@ external_binding:
 ### `ps-joint-deployed-postal-ballot-family-contact-continuity-stack-v1`
 - Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Use for: postal or ballot custody updates, family-contact authenticity, and continuity acknowledgments.
+
+## Tool Suite Addendum LIV (2026-03-14, Rescue, Trust Restoration, and Strategic Recovery)
+
+### `ts-joint-submarine-escape-rescue-system-integration-v1`
+- Use for: submarine rescue-system compatibility checks, decompression-capacity allocation, and survivor transfer planning under contested or austere conditions.
+- Primary tools: rescue-vessel readiness board, mating-interface compatibility matrix, decompression chamber status tracker.
+- Cross-check tools: independent undersea rescue coordinator and alternate survivor medical transfer board.
+- Typical products: rescue compatibility matrix, chamber allocation board, rescue-window risk brief.
+
+### `ts-theater-aircrew-fatigue-circadian-countermeasure-v1`
+- Use for: fatigue-risk balancing, crew-rest compliance, circadian inversion management, and alertness-countermeasure governance during sortie surges.
+- Primary tools: crew-rest ledger, circadian risk model, alertness-countermeasure tracker.
+- Cross-check tools: independent flight-surgeon review and alternate sortie-priority board.
+- Typical products: crew-rest compliance board, circadian risk ladder, waiver decision matrix.
+
+### `ts-theater-emissions-decoy-robotic-control-spectrum-safety-v1`
+- Use for: robotic decoy release, emitter-control governance, and blue-force spectrum-safety deconfliction.
+- Primary tools: spectrum-control board, robotic-decoy command console, blue-force sensor conflict checker.
+- Cross-check tools: independent spectrum manager and alternate emissions-window planner.
+- Typical products: emissions-window matrix, robotic-decoy control ladder, interference-risk brief.
+
+### `ts-joint-orbital-custody-loss-commercial-ssa-retask-v1`
+- Use for: restoring orbital custody by retasking commercial and military space-domain-awareness sensors after track loss or conjunction ambiguity.
+- Primary tools: commercial SSA broker feeds, military SDA catalog, observation retask planner.
+- Cross-check tools: independent custody anomaly board and alternate conjunction confidence monitor.
+- Typical products: custody recovery timeline, SSA retask matrix, maneuver-release brief.
+
+### `ts-theater-air-gapped-credential-reissue-pki-recovery-v1`
+- Use for: disconnected credential burn, offline certificate reissue, and emergency PKI trust restoration inside air-gapped theaters.
+- Primary tools: offline certificate ledger, credential issuance board, key-material custody tracker.
+- Cross-check tools: independent enclave admission reviewer and alternate trust-chain reconciliation board.
+- Typical products: credential burn matrix, offline PKI recovery plan, enclave admission ladder.
+
+### `ts-strategic-electronics-salvage-critical-component-reclamation-v1`
+- Use for: component reclamation from damaged systems, electronics salvage triage, and trusted release of recovered parts into defense sustainment.
+- Primary tools: teardown triage ledger, component test bench scheduler, counterfeit screening board.
+- Cross-check tools: independent quality-assurance witness and alternate reclaimed inventory allocator.
+- Typical products: salvage triage board, component release ladder, recovered-yield forecast.
+
+### `ts-expeditionary-obstetric-neonatal-emergency-support-v1`
+- Use for: maternal-fetal triage, neonatal stabilization, incubator and warmer prioritization, and obstetric evacuation planning in austere operations.
+- Primary tools: maternal-fetal triage board, neonatal warming and incubator tracker, obstetric surgical roster.
+- Cross-check tools: independent maternal-fetal medicine reviewer and alternate aeromedical handoff board.
+- Typical products: maternal-neonatal triage board, neonatal support ladder, evacuation decision brief.
+
+### `ts-homeland-school-shelter-mass-care-family-reunification-v1`
+- Use for: school-based shelter operations, child-accountability control, and trusted family reunification during domestic crises.
+- Primary tools: shelter occupancy board, child-accountability ledger, reunification verification system.
+- Cross-check tools: independent emergency-operations review and alternate feeding and transport support board.
+- Typical products: shelter occupancy board, reunification matrix, mass-care support brief.
+
+### `ts-coalition-host-nation-water-rights-military-demand-deconfliction-v1`
+- Use for: reconciling coalition military water demand with host-nation rights, civilian access, and emergency abstraction limits.
+- Primary tools: water allocation ledger, aquifer and reservoir status board, legal rights tracker.
+- Cross-check tools: independent civil-engineering reviewer and alternate tanker or pipeline demand planner.
+- Typical products: water allocation ledger, rights conflict matrix, civil-legitimacy risk brief.
+
+### `ts-joint-captured-enemy-materiel-exploitation-safe-redistribution-v1`
+- Use for: captured-materiel inventory control, safe exploitation prioritization, redistribution approval, and quarantine or destruction branches.
+- Primary tools: captured-materiel inventory ledger, explosive safety inspection board, exploitation lab queue.
+- Cross-check tools: independent EOD reviewer and alternate redistribution or disposal authority matrix.
+- Typical products: exploitation priority matrix, redistribution authority ladder, destruction or quarantine brief.
+
+## Protocol Stack Addendum LIV (2026-03-14, Rescue, Trust Restoration, and Strategic Recovery)
+
+### `ps-joint-submarine-escape-rescue-system-integration-stack-v1`
+- Protocols: `USMTF`, signed rescue manifests, `AIS/NMEA`, `HL7/FHIR`, `API/JSON`.
+- Use for: rescue-asset status exchange, chamber allocation, and survivor medical handoff acknowledgments.
+
+### `ps-theater-aircrew-fatigue-circadian-countermeasure-stack-v1`
+- Protocols: `HL7/FHIR`, signed crew-status manifests, `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Use for: crew-rest status exchange, waiver approvals, and sortie-priority acknowledgment tracking.
+
+### `ps-theater-emissions-decoy-robotic-control-spectrum-safety-stack-v1`
+- Protocols: `CoT`, `VMF`, signed emitter-control manifests, `API/JSON`, `USMTF`.
+- Use for: decoy release, emissions-window control, and blue-force interference acknowledgments.
+
+### `ps-joint-orbital-custody-loss-commercial-ssa-retask-stack-v1`
+- Protocols: `CCSDS`, signed ephemeris manifests, `API/JSON`, `USMTF`, `STIX/TAXII`.
+- Use for: custody-loss reporting, sensor retask exchange, and conjunction confidence routing.
+
+### `ps-theater-air-gapped-credential-reissue-pki-recovery-stack-v1`
+- Protocols: `X.509/PKI`, signed certificate manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: credential burn acknowledgment, offline certificate issuance, and enclave trust restoration.
+
+### `ps-strategic-electronics-salvage-critical-component-reclamation-stack-v1`
+- Protocols: signed component manifests, `OPC UA`, `API/JSON`, `NIEM`, `USMTF`.
+- Use for: component pedigree exchange, test-bench status, and reclaimed-part release acknowledgments.
+
+### `ps-expeditionary-obstetric-neonatal-emergency-support-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed maternal-neonatal transfer manifests, `API/JSON`, `USMTF`.
+- Use for: obstetric triage exchange, neonatal support status, and evacuation acknowledgments.
+
+### `ps-homeland-school-shelter-mass-care-family-reunification-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, signed custody manifests, `API/JSON`.
+- Use for: shelter status exchange, accountability updates, and reunification release acknowledgments.
+
+### `ps-coalition-host-nation-water-rights-military-demand-deconfliction-stack-v1`
+- Protocols: `OGC`, signed water-allocation manifests, `NIEM`, `API/JSON`, `USMTF`, `EDXL-DE/CAP`.
+- Use for: water-rights coordination, allocation approval, and emergency rationing acknowledgments.
+
+### `ps-joint-captured-enemy-materiel-exploitation-safe-redistribution-stack-v1`
+- Protocols: signed capture manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `NIEM`.
+- Use for: inventory custody exchange, exploitation-task routing, and redistribution or destruction acknowledgments.

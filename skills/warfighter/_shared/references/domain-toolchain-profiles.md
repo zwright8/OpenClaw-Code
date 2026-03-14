@@ -1060,3 +1060,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent custody-chain witness and alternate deception-risk notification monitor
 - Protocol binding: NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - Fallback path: courier-only custody ledger with dual-control ballot witness checks
+
+## New Toolchain Wave (2026-03-14, Expansion Wave LIV)
+
+### `TC-SUBRESCUE-126`
+
+- Domain: joint submarine escape and rescue system integration
+- Primary systems: rescue-vessel readiness board, mating-interface compatibility matrix, decompression chamber status tracker
+- Cross-check systems: independent undersea rescue coordinator and alternate survivor medical transfer board
+- Protocol binding: USMTF + signed rescue manifests + AIS/NMEA + HL7/FHIR + API/JSON
+- Fallback path: voice-coordinated rescue branch with paper chamber ledger and conservative compatibility assumptions
+
+### `TC-AIRCREW-127`
+
+- Domain: theater aircrew fatigue and circadian countermeasure
+- Primary systems: crew-rest ledger, circadian risk model, alertness-countermeasure tracker
+- Cross-check systems: independent flight-surgeon review board and alternate sortie-priority planner
+- Protocol binding: HL7/FHIR + signed crew-status manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: minimum-risk sortie schedule only with manual waiver log and commander-approved cut lines
+
+### `TC-EMDECOY-128`
+
+- Domain: theater emissions decoy robotic control and spectrum safety
+- Primary systems: spectrum-control board, robotic-decoy command console, blue-force sensor conflict checker
+- Cross-check systems: independent spectrum manager and alternate emissions-window planner
+- Protocol binding: CoT + VMF + signed emitter-control manifests + API/JSON + USMTF
+- Fallback path: reduced emissions plan with preplanned kill-switch and voice-confirmed decoy control
+
+### `TC-ORBITAL-129`
+
+- Domain: joint orbital custody loss and commercial SSA retask
+- Primary systems: commercial SSA broker feeds, military SDA catalog, observation retask planner
+- Cross-check systems: independent custody anomaly board and alternate conjunction confidence monitor
+- Protocol binding: CCSDS + signed ephemeris manifests + API/JSON + USMTF + STIX/TAXII
+- Fallback path: conservative keep-out buffers with maneuver hold until custody confidence recovers
+
+### `TC-AIRGAPID-130`
+
+- Domain: theater air-gapped credential reissue and PKI recovery
+- Primary systems: offline certificate ledger, credential issuance board, key-material custody tracker
+- Cross-check systems: independent enclave admission reviewer and alternate trust-chain reconciliation board
+- Protocol binding: X.509/PKI + signed certificate manifests + S/MIME + API/JSON + USMTF
+- Fallback path: emergency access roster with dual-control issuance and paper key-custody log only
+
+### `TC-ELECTRONICS-131`
+
+- Domain: strategic electronics salvage and critical component reclamation
+- Primary systems: teardown triage ledger, component test bench scheduler, counterfeit screening board
+- Cross-check systems: independent quality-assurance witness and alternate reclaimed inventory allocator
+- Protocol binding: signed component manifests + OPC UA + API/JSON + NIEM + USMTF
+- Fallback path: non-flight-critical release only with command-approved use restrictions and UTC custody log
+
+### `TC-OBNEO-132`
+
+- Domain: expeditionary obstetric and neonatal emergency support
+- Primary systems: maternal-fetal triage board, neonatal warming and incubator tracker, obstetric surgical roster
+- Cross-check systems: independent maternal-fetal medicine reviewer and alternate aeromedical handoff board
+- Protocol binding: HL7/FHIR + DICOM + signed maternal-neonatal transfer manifests + API/JSON + USMTF
+- Fallback path: emergency-only care branch with paper triage and constrained transfer ladder
+
+### `TC-SHELTER-133`
+
+- Domain: homeland school shelter mass care and family reunification
+- Primary systems: shelter occupancy board, child-accountability ledger, reunification verification system
+- Cross-check systems: independent emergency-operations review and alternate feeding and transport support board
+- Protocol binding: NIMS/ICS + EDXL-DE/CAP + NIEM + signed custody manifests + API/JSON
+- Fallback path: paper custody controls with badge or wristband verification and commander-approved release criteria only
+
+### `TC-WATERRIGHTS-134`
+
+- Domain: coalition host-nation water rights and military demand deconfliction
+- Primary systems: water allocation ledger, aquifer and reservoir status board, legal rights tracker
+- Cross-check systems: independent civil-engineering reviewer and alternate tanker or pipeline demand planner
+- Protocol binding: OGC + signed water-allocation manifests + NIEM + API/JSON + USMTF + EDXL-DE/CAP
+- Fallback path: emergency rationing only with dual-signature releases and UTC allocation log
+
+### `TC-CEMEX-135`
+
+- Domain: joint captured enemy materiel exploitation and safe redistribution
+- Primary systems: captured-materiel inventory ledger, explosive safety inspection board, exploitation lab queue
+- Cross-check systems: independent EOD reviewer and alternate redistribution or disposal authority matrix
+- Protocol binding: signed capture manifests + USMTF + STIX/TAXII + API/JSON + NIEM
+- Fallback path: quarantine-only branch with dual-control custody and no transfer until safety review completes

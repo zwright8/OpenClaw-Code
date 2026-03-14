@@ -288,3 +288,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-theater-petroleum-quality-lab-fuel-spec-waiver-v1` + `protocol_stack_id=ps-theater-petroleum-quality-lab-fuel-spec-waiver-stack-v1` when sustainment viability depends on assay confidence, platform tolerance, or commander-approved use of marginal fuel lots.
 - Add `tool_suite_id=ts-joint-fuel-bladder-grounding-bonding-lightning-safety-v1` + `protocol_stack_id=ps-joint-fuel-bladder-grounding-bonding-lightning-safety-stack-v1` when fuel flow depends on weather hold decisions, grounding discipline, or expeditionary transfer safety at forward fuel points.
 - Add `packet_id=DPL-PETROLEUM-LAB-SPEC-WAIVER-001` and `packet_id=DPL-FUEL-BLADDER-LIGHTNING-001` for branches that materially alter fuel-release confidence, throughput timing, or sustainment safety posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-strategic-electronics-salvage-critical-component-reclamation-v1` + `protocol_stack_id=ps-strategic-electronics-salvage-critical-component-reclamation-stack-v1` when sustainment throughput depends on reclaiming trusted electronics faster than new procurement can restore inventories.
+- Add `tool_suite_id=ts-coalition-host-nation-water-rights-military-demand-deconfliction-v1` + `protocol_stack_id=ps-coalition-host-nation-water-rights-military-demand-deconfliction-stack-v1` when sustainment feasibility depends on water allocation legitimacy and avoiding host-nation backlash against military demand.
+- Add `tool_suite_id=ts-joint-captured-enemy-materiel-exploitation-safe-redistribution-v1` + `protocol_stack_id=ps-joint-captured-enemy-materiel-exploitation-safe-redistribution-stack-v1` when captured enemy stocks or components can bridge contested shortages if safety and legal gates are met.
+- Add `packet_id=DPL-ELECTRONICS-SALVAGE-RECLAMATION-001`, `packet_id=DPL-WATER-RIGHTS-DECONFLICTION-001`, and `packet_id=DPL-CAPTURED-ENEMY-MATERIEL-001` for branches that materially alter sustainment throughput, legitimacy, or reuse confidence.

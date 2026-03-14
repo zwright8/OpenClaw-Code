@@ -84,3 +84,8 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 - Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when custody analytics or SDA services must fail over into alternate cloud enclaves without losing trust.
 - Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when maneuver or denial instructions include AI-generated recommendations that require commander-intent fidelity checks before release.
 - Add `packet_id=DPL-ON-ORBIT-SOLAR-BATTERY-001`, `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, and `packet_id=DPL-AI-ORDER-INTENT-001` for recommendations that materially alter orbital custody confidence, maneuver timing, or escalation posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-joint-orbital-custody-loss-commercial-ssa-retask-v1` + `protocol_stack_id=ps-joint-orbital-custody-loss-commercial-ssa-retask-stack-v1` when rendezvous denial recommendations depend on regaining trusted orbital custody after track loss or commercial retask lag.
+- Add `packet_id=DPL-ORBITAL-CUSTODY-LOSS-SSA-RETASK-001` for recommendations that materially alter orbital custody confidence, conjunction trust, or maneuver-release timing.

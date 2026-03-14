@@ -12353,3 +12353,115 @@ validation_gates:
 - output_schema: mail-flow priority board, ballot custody ledger, family-contact continuity plan
 - protocol_profile: NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - validation_gates: custody verification, identity check, command acknowledgment
+
+## Packet Addendum XLIII (2026-03-14, Rescue, Trust Restoration, and Strategic Recovery)
+
+### packet_id: DPL-SUBMARINE-ESCAPE-RESCUE-001
+- domain: joint submarine escape and rescue system integration
+- objective: recover trapped submariners by matching rescue-system compatibility, decompression capacity, and transfer sequencing to the fastest safe rescue branch.
+- primary_tools: rescue-vessel readiness board, mating-interface compatibility matrix, decompression chamber status tracker
+- alternate_tools: manual rescue compatibility worksheet and chamber watchboard
+- degraded_mode: commander-approved rescue branch with voice readbacks, paper chamber ledger, and reduced interoperability assumptions
+- input_requirements: submarine class, rescue depth, probable survivor count, chamber capacity, weather and sea-state window
+- output_schema: rescue compatibility matrix, chamber allocation board, rescue-window risk brief
+- protocol_profile: USMTF + signed rescue manifests + AIS/NMEA + HL7/FHIR + API/JSON
+- validation_gates: compatibility check, chamber availability confirmation, rescue authority acknowledgment
+
+### packet_id: DPL-AIRCREW-FATIGUE-CIRCADIAN-001
+- domain: theater aircrew fatigue and circadian countermeasure
+- objective: preserve sortie generation without crossing unsafe fatigue, circadian, or stimulant-risk thresholds.
+- primary_tools: crew-rest ledger, circadian risk model, alertness-countermeasure tracker
+- alternate_tools: manual crew-rest worksheet and flight-surgeon review board
+- degraded_mode: minimum-risk sortie schedule only with manual waiver log and commander-approved cut lines
+- input_requirements: crew-rest status, time-zone displacement, sortie demand, stimulant policy, mishap indicators
+- output_schema: crew-rest compliance board, circadian risk ladder, waiver decision matrix
+- protocol_profile: HL7/FHIR + signed crew-status manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: crew-rest check, medical review, approval acknowledgment
+
+### packet_id: DPL-EMISSIONS-DECOY-ROBOTIC-001
+- domain: theater emissions decoy robotic control and spectrum safety
+- objective: shape electromagnetic deception with robotic decoys without causing blue-force spectrum fratricide or losing human override.
+- primary_tools: spectrum-control board, robotic-decoy command console, blue-force sensor conflict checker
+- alternate_tools: manual emissions-window worksheet and decoy release roster
+- degraded_mode: reduced emissions plan with preplanned kill-switch and voice-confirmed decoy control
+- input_requirements: emissions plan, blue-force sensor dependencies, decoy inventory, timing window, adversary collection risk
+- output_schema: emissions-window matrix, robotic-decoy control ladder, interference-risk brief
+- protocol_profile: CoT + VMF + signed emitter-control manifests + API/JSON + USMTF
+- validation_gates: conflict check, human-override readiness, release acknowledgment
+
+### packet_id: DPL-ORBITAL-CUSTODY-LOSS-SSA-RETASK-001
+- domain: joint orbital custody loss and commercial SSA retask
+- objective: regain trusted orbital custody fast enough to preserve conjunction safety and defensive maneuver decision quality.
+- primary_tools: commercial SSA broker feeds, military SDA catalog, observation retask planner
+- alternate_tools: manual custody board and sensor-retask worksheet
+- degraded_mode: conservative keep-out buffers with maneuver hold until custody confidence recovers
+- input_requirements: last trusted track, sensor divergence, conjunction timeline, available sensors, downstream mission impact
+- output_schema: custody recovery timeline, SSA retask matrix, maneuver-release brief
+- protocol_profile: CCSDS + signed ephemeris manifests + API/JSON + USMTF + STIX/TAXII
+- validation_gates: custody confidence check, sensor-tasking confirmation, release acknowledgment
+
+### packet_id: DPL-AIR-GAPPED-CREDENTIAL-REISSUE-001
+- domain: theater air-gapped credential reissue and PKI recovery
+- objective: restore minimum trusted access inside disconnected enclaves after identity compromise or enterprise reachback loss.
+- primary_tools: offline certificate ledger, credential issuance board, key-material custody tracker
+- alternate_tools: manual certificate worksheet and enclave admission review board
+- degraded_mode: emergency access roster with dual-control issuance and paper key-custody log only
+- input_requirements: compromised identities, surviving CA assets, enclave list, key custody, minimum mission access requirements
+- output_schema: credential burn matrix, offline PKI recovery plan, enclave admission ladder
+- protocol_profile: X.509/PKI + signed certificate manifests + S/MIME + API/JSON + USMTF
+- validation_gates: key-custody verification, issuance approval, enclave admission acknowledgment
+
+### packet_id: DPL-ELECTRONICS-SALVAGE-RECLAMATION-001
+- domain: strategic electronics salvage and critical component reclamation
+- objective: recover trusted components from damaged electronics fast enough to relieve strategic sustainment shortages without releasing unsafe or counterfeit parts.
+- primary_tools: teardown triage ledger, component test bench scheduler, counterfeit screening board
+- alternate_tools: manual teardown worksheet and quality witness board
+- degraded_mode: non-flight-critical release only with command-approved use restrictions and UTC custody log
+- input_requirements: salvage source, target component families, test capacity, counterfeit indicators, priority demand
+- output_schema: salvage triage board, component release ladder, recovered-yield forecast
+- protocol_profile: signed component manifests + OPC UA + API/JSON + NIEM + USMTF
+- validation_gates: pedigree review, test confirmation, release acknowledgment
+
+### packet_id: DPL-OBSTETRIC-NEONATAL-EMERGENCY-001
+- domain: expeditionary obstetric and neonatal emergency support
+- objective: protect maternal and neonatal survival by sequencing obstetric intervention, warming and oxygen support, and movement decisions under austere constraints.
+- primary_tools: maternal-fetal triage board, neonatal warming and incubator tracker, obstetric surgical roster
+- alternate_tools: manual maternal-neonatal worksheet and aeromedical handoff board
+- degraded_mode: emergency-only care branch with paper triage, voice readbacks, and constrained transfer ladder
+- input_requirements: maternal acuity, fetal or neonatal distress, blood availability, warming and oxygen support, transport options
+- output_schema: maternal-neonatal triage board, neonatal support ladder, evacuation decision brief
+- protocol_profile: HL7/FHIR + DICOM + signed maternal-neonatal transfer manifests + API/JSON + USMTF
+- validation_gates: clinical review, equipment readiness, movement approval
+
+### packet_id: DPL-SCHOOL-SHELTER-FAMILY-REUNIFICATION-001
+- domain: homeland school shelter mass care and family reunification
+- objective: stabilize school-based shelters while preserving child accountability, safe release, and trusted family reunification.
+- primary_tools: shelter occupancy board, child-accountability ledger, reunification verification system
+- alternate_tools: manual accountability roster and shelter logistics worksheet
+- degraded_mode: paper custody controls with badge or wristband verification and commander-approved release criteria only
+- input_requirements: shelter load, child roster status, reunification requests, feeding and transport support, security posture
+- output_schema: shelter occupancy board, reunification matrix, mass-care support brief
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + NIEM + signed custody manifests + API/JSON
+- validation_gates: identity verification, release approval, shelter acknowledgment
+
+### packet_id: DPL-WATER-RIGHTS-DECONFLICTION-001
+- domain: coalition host nation water rights and military demand deconfliction
+- objective: meet critical military water demand without triggering illegal diversion, civilian deprivation, or coalition legitimacy failure.
+- primary_tools: water allocation ledger, aquifer and reservoir status board, legal rights tracker
+- alternate_tools: manual allocation worksheet and civil-engineering review board
+- degraded_mode: emergency rationing only with dual-signature releases and UTC allocation log
+- input_requirements: current demand, water-source status, host-nation rights limits, civilian needs, distribution constraints
+- output_schema: water allocation ledger, rights conflict matrix, civil-legitimacy risk brief
+- protocol_profile: OGC + signed water-allocation manifests + NIEM + API/JSON + USMTF + EDXL-DE/CAP
+- validation_gates: legal review, source-capacity confirmation, allocation acknowledgment
+
+### packet_id: DPL-CAPTURED-ENEMY-MATERIEL-001
+- domain: joint captured enemy materiel exploitation and safe redistribution
+- objective: exploit captured enemy materiel for intelligence and reuse options without breaking safety, evidence, or transfer controls.
+- primary_tools: captured-materiel inventory ledger, explosive safety inspection board, exploitation lab queue
+- alternate_tools: manual inventory roster and redistribution authority worksheet
+- degraded_mode: quarantine-only branch with dual-control custody and no transfer until safety review completes
+- input_requirements: materiel class, explosive or contamination risk, intelligence value, transfer demand, legal restrictions
+- output_schema: exploitation priority matrix, redistribution authority ladder, destruction or quarantine brief
+- protocol_profile: signed capture manifests + USMTF + STIX/TAXII + API/JSON + NIEM
+- validation_gates: safety review, custody verification, transfer or destruction acknowledgment

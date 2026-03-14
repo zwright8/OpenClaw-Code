@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Submarine Escape and Rescue System Integration Cell"
+  short_description: "Coordinate submarine rescue and decompression support"
+  default_prompt: "Use this skill to produce decision-ready outputs for submarine escape and rescue integration with tool and protocol bindings, authority gates, and degraded-mode contingencies."

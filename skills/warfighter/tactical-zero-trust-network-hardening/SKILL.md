@@ -247,3 +247,8 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 
 - Add `tool_suite_id=ts-theater-mission-device-credential-revocation-key-reissue-v1` + `protocol_stack_id=ps-theater-mission-device-credential-revocation-key-reissue-stack-v1` when zero-trust recommendations depend on burning compromised mission-device credentials and restoring only the minimum trusted access set.
 - Add `packet_id=DPL-MISSION-DEVICE-CREDENTIAL-REISSUE-001` for branches that materially alter trust boundaries, credential posture, or mission-device access continuity.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-theater-air-gapped-credential-reissue-pki-recovery-v1` + `protocol_stack_id=ps-theater-air-gapped-credential-reissue-pki-recovery-stack-v1` when zero-trust recommendations depend on offline certificate reissue, enclave trust restoration, or disconnected credential governance after network isolation.
+- Add `packet_id=DPL-AIR-GAPPED-CREDENTIAL-REISSUE-001` for branches that materially alter trust boundaries, enclave admission, or credential-restoration posture.

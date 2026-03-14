@@ -2589,3 +2589,29 @@ Every skill output should include:
 - Musculoskeletal load management and physical therapy + human performance and combat stress risk + expeditionary neurocognitive injury screening and return to duty + multi-domain reserve mobilization readiness.
 - Casualty rehabilitation and prosthetics + expeditionary neurocognitive injury screening and return to duty + strategic veteran medical surge transition + theater veteran transition and reserve recall readiness.
 - Postal, ballot, and family-contact continuity + personnel-recovery family authentication and deception denial + multi-theater casualty information and family notification integrity + theater mission network failover.
+
+## New Expansion Wave (2026-03-14, Wave LIV)
+
+- joint-submarine-escape-and-rescue-system-integration-cell
+- theater-aircrew-fatigue-circadian-countermeasure-cell
+- theater-emissions-decoy-robotic-control-and-spectrum-safety-cell
+- joint-orbital-custody-loss-and-commercial-ssa-retask-cell
+- theater-air-gapped-credential-reissue-and-pki-recovery-cell
+- strategic-electronics-salvage-and-component-reclamation-cell
+- expeditionary-obstetric-and-neonatal-emergency-support-cell
+- homeland-school-shelter-mass-care-and-family-reunification-cell
+- coalition-host-nation-water-rights-and-demand-cell
+- joint-captured-materiel-exploitation-and-redistribution-cell
+
+## Updated Pairings (2026-03-14, Wave LIV)
+
+- Submarine escape and rescue integration + naval surface warfare coordinator + joint role 3 medical network and aeromedical evac + coalition interoperability coordinator.
+- Aircrew fatigue and circadian countermeasure + air-tasking-cycle-support + human performance and combat stress risk + airbase dispersal and rapid reconstitution cell.
+- Emissions decoy robotic control and spectrum safety + cema-integration-cell + electromagnetic-spectrum-operations + deception-signature-management-and-decoy-employment-cell.
+- Orbital custody loss and commercial SSA retask + contested-space-domain-awareness-and-rendezvous-denial-cell + joint-satellite-ephemeris-spoofing-and-timing-confidence-cell + joint-commercial-satellite-imagery-denial-and-retask-governance-cell.
+- Air-gapped credential reissue and PKI recovery + tactical-zero-trust-network-hardening + theater-mission-network-failover-cell + joint-battle-network-zero-trust-key-material-continuity-cell.
+- Electronics salvage and component reclamation + strategic-industrial-mobilization-readiness-cell + supply-chain-risk-and-industrial-base-monitor + rapid-prototyping-and-fielding-accelerator.
+- Obstetric and neonatal emergency support + joint-role-3-medical-network-and-aeromedical-evac-cell + austere-surgical-support-coordinator + expeditionary-austere-pediatric-casualty-surge-balancing-cell.
+- School shelter mass care and family reunification + defense-support-of-civil-authorities-crisis-cell + civil-affairs-stability-ops + joint-civilian-evacuation-biometric-family-reunification-integrity-cell.
+- Coalition host-nation water rights and demand + joint-water-production-and-distribution-security-cell + contested-logistics-sustainment + civil-affairs-stability-ops.
+- Captured materiel exploitation and redistribution + explosive-ordnance-disposal-coordinator + special-reconnaissance-and-sensitive-site-mapping + theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell.

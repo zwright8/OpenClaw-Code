@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theater Air Gapped Credential Reissue and PKI Recovery Cell"
+  short_description: "Recover mission identity and PKI in disconnected theaters"
+  default_prompt: "Use this skill to produce decision-ready outputs for air-gapped credential reissue and PKI recovery with tool and protocol bindings, authority gates, and degraded-mode contingencies."

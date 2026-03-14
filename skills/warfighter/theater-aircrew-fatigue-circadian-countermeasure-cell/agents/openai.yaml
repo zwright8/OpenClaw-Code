@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theater Aircrew Fatigue Circadian Countermeasure Cell"
+  short_description: "Balance sortie generation against fatigue and circadian risk"
+  default_prompt: "Use this skill to produce decision-ready outputs for aircrew fatigue and circadian countermeasure planning with tool and protocol bindings, authority gates, and degraded-mode contingencies."

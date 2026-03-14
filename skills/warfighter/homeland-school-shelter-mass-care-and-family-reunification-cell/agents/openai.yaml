@@ -1,0 +1,4 @@
+interface:
+  display_name: "Homeland School Shelter Mass Care and Family Reunification Cell"
+  short_description: "Support school shelters and trusted family reunification"
+  default_prompt: "Use this skill to produce decision-ready outputs for school shelter mass-care and family-reunification support with tool and protocol bindings, authority gates, and degraded-mode contingencies."

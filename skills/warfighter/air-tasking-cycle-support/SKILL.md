@@ -167,3 +167,8 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when ATO fragos, tanker retasks, or divert instructions may be stale, spoofed, or version-divergent.
 - Prioritize `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when air-tasking workflows depend on emergency remediation of mission software without breaking execution trust.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for ATO branches that alter sortie cadence, tasking authenticity, or execution-system trust.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
+
+- Prioritize `tool_suite_id=ts-theater-aircrew-fatigue-circadian-countermeasure-v1` + `protocol_stack_id=ps-theater-aircrew-fatigue-circadian-countermeasure-stack-v1` when the ATO depends on balancing sortie output against fatigue, circadian inversion, or crew-rest waiver risk.
+- Add `packet_id=DPL-AIRCREW-FATIGUE-CIRCADIAN-001` for ATO branches that materially alter sortie cadence, alert posture, or flight-safety confidence.

@@ -171,3 +171,8 @@ Use this default binding unless mission constraints require an alternate path:
 - Add `tool_suite_id=ts-arctic-subsea-cable-ice-keel-repair-v1` + `protocol_stack_id=ps-arctic-subsea-cable-ice-keel-repair-stack-v1` when sea-control recommendations depend on arctic cable continuity, under-ice repair windows, or chokepoint comms resilience.
 - Add `tool_suite_id=ts-theater-undersea-autonomous-glider-acoustic-resilience-v1` + `protocol_stack_id=ps-theater-undersea-autonomous-glider-acoustic-resilience-stack-v1` when maritime cueing confidence is degraded by acoustic deception against autonomous undersea sensors.
 - Add `packet_id=DPL-ARCTIC-SUBSEA-CABLE-ICE-KEEL-REPAIR-001` and `packet_id=DPL-THEATER-UNDERSEA-AUTONOMOUS-GLIDER-ACOUSTIC-RESILIENCE-001` for branches that materially alter fleet risk posture or undersea ISR confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-joint-submarine-escape-rescue-system-integration-v1` + `protocol_stack_id=ps-joint-submarine-escape-rescue-system-integration-stack-v1` when naval-surface recommendations depend on trapped-submariner rescue compatibility, chamber allocation, or escort posture for rescue assets.
+- Add `packet_id=DPL-SUBMARINE-ESCAPE-RESCUE-001` for branches that materially alter surface escort allocation, rescue timing, or maritime risk posture.
