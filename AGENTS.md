@@ -131,6 +131,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `1404b69d59..d6b2dfd1a9`: no new README command-map additions were found (range updates EXP3-IX implicit exploration defaults in autonomy runtime/tests only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `2465819dfe..43674b0723`: no new README command-map additions were found (range adds AGENTS verification bookkeeping plus warfighter expansion wave XLII skill-set content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `36b6102333..0af00cfa99`: no new README command-map additions were found (range adds AGENTS verification bookkeeping/hash-range correction plus warfighter expansion wave XLI continuity/trust-cell skill-set content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `0af00cfa99..2465819dfe`: added README command-map workflow for corral EXP3 effective-horizon auto-eta calibration (`--selection-policy d_corral_exp3`, `--discount-factor`, `--corral-gamma`, `--corral-auto-eta`, `--corral-uncertainty-weight`) and aligned autonomous runtime + regression coverage for discounted recency-aware corral eta tuning; `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
