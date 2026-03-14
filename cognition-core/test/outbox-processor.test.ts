@@ -913,3 +913,147 @@ test('processOutboxEnvelopes keeps failure-rate breaker closed below min sample 
     assert.equal(stats.botCircuitBreakerOpened, 0);
     assert.equal(stats.botCircuitBreakerOpenSkips, 0);
 });
+
+test('processOutboxEnvelopes opens circuit breaker on rolling slow-call rate threshold', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000761', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000762', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000763', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000764', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000765', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000766', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 98_000 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 98_001
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const durations = [150, 80, 150, 80, 150];
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 0,
+        botCircuitBreakerSlowCallRateThreshold: 0.6,
+        botCircuitBreakerSlowCallDurationMs: 100,
+        botCircuitBreakerSlowCallWindow: 5,
+        botCircuitBreakerSlowCallMinSamples: 5,
+        botCircuitBreakerCooldownMs: 10_000,
+        nowFactory: () => 7_000,
+        botExecute: async () => {
+            const durationMs = durations[attempts];
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: `Completed in ${durationMs}ms.`,
+                metrics: { durationMs },
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 5);
+    assert.equal(stats.botCircuitBreakerOpened, 1);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 1);
+
+    const records = await store.loadRecords();
+    const fifth = records.find((entry) => entry.taskId === requests[4].id);
+    const sixth = records.find((entry) => entry.taskId === requests[5].id);
+    assert.equal(fifth?.status, 'completed');
+    assert.match(fifth?.result?.output || '', /slow-call rate threshold/);
+    assert.equal(sixth?.status, 'failed');
+    assert.match(sixth?.result?.output || '', /circuit breaker is open/);
+});
+
+test('processOutboxEnvelopes keeps slow-call breaker closed below min sample gate', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000771', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000772', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000773', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000774', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 99_000 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 99_001
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 0,
+        botCircuitBreakerSlowCallRateThreshold: 0.5,
+        botCircuitBreakerSlowCallDurationMs: 100,
+        botCircuitBreakerSlowCallWindow: 5,
+        botCircuitBreakerSlowCallMinSamples: 5,
+        botCircuitBreakerCooldownMs: 10_000,
+        nowFactory: () => 8_000,
+        botExecute: async () => {
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Completed slowly.',
+                metrics: { durationMs: 130 },
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 4);
+    assert.equal(stats.botCircuitBreakerOpened, 0);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 0);
+});

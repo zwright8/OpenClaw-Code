@@ -183,6 +183,10 @@ export async function runBotWorkerLoop({
     botCircuitBreakerFailureRateThreshold = 0,
     botCircuitBreakerFailureRateWindow = 20,
     botCircuitBreakerFailureRateMinSamples = 8,
+    botCircuitBreakerSlowCallRateThreshold = 0,
+    botCircuitBreakerSlowCallDurationMs = 120_000,
+    botCircuitBreakerSlowCallWindow = 20,
+    botCircuitBreakerSlowCallMinSamples = 8,
     nowFactory = Date.now
 } = {}) {
     if (!storePath || typeof storePath !== 'string') {
@@ -277,6 +281,10 @@ export async function runBotWorkerLoop({
             botCircuitBreakerFailureRateThreshold,
             botCircuitBreakerFailureRateWindow,
             botCircuitBreakerFailureRateMinSamples,
+            botCircuitBreakerSlowCallRateThreshold,
+            botCircuitBreakerSlowCallDurationMs,
+            botCircuitBreakerSlowCallWindow,
+            botCircuitBreakerSlowCallMinSamples,
             nowFactory: now
         });
 

@@ -41,6 +41,10 @@ Options:
   --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-window <n> Rolling sample window used for failure-rate thresholding (default: 20)
   --bot-circuit-breaker-failure-rate-min-samples <n> Min rolling samples before failure-rate threshold can open breaker (default: 8)
+  --bot-circuit-breaker-slow-call-rate-threshold <0-1> Open breaker when rolling slow-call rate crosses threshold (default: 0; disabled)
+  --bot-circuit-breaker-slow-call-duration-ms <n> Duration threshold in ms for classifying slow calls (default: 120000)
+  --bot-circuit-breaker-slow-call-window <n> Rolling sample window used for slow-call thresholding (default: 20)
+  --bot-circuit-breaker-slow-call-min-samples <n> Min rolling samples before slow-call threshold can open breaker (default: 8)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
   --bot-circuit-breaker-cooldown-backoff-multiplier <n> Circuit-breaker cooldown growth multiplier per consecutive reopen (1-10, default: 1)
   --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
@@ -135,6 +139,10 @@ function parseArgs(argv) {
         botCircuitBreakerFailureRateThreshold: 0,
         botCircuitBreakerFailureRateWindow: 20,
         botCircuitBreakerFailureRateMinSamples: 8,
+        botCircuitBreakerSlowCallRateThreshold: 0,
+        botCircuitBreakerSlowCallDurationMs: 120_000,
+        botCircuitBreakerSlowCallWindow: 20,
+        botCircuitBreakerSlowCallMinSamples: 8,
         botCircuitBreakerCooldownMs: 30_000,
         botCircuitBreakerCooldownBackoffMultiplier: 1,
         botCircuitBreakerMaxCooldownMs: 180_000,
@@ -310,6 +318,26 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-circuit-breaker-slow-call-rate-threshold') {
+            options.botCircuitBreakerSlowCallRateThreshold = parseRatio(value, '--bot-circuit-breaker-slow-call-rate-threshold');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-slow-call-duration-ms') {
+            options.botCircuitBreakerSlowCallDurationMs = parsePositiveInt(value, '--bot-circuit-breaker-slow-call-duration-ms');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-slow-call-window') {
+            options.botCircuitBreakerSlowCallWindow = parsePositiveInt(value, '--bot-circuit-breaker-slow-call-window');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-slow-call-min-samples') {
+            options.botCircuitBreakerSlowCallMinSamples = parsePositiveInt(value, '--bot-circuit-breaker-slow-call-min-samples');
+            i++;
+            continue;
+        }
         if (token === '--bot-circuit-breaker-cooldown-ms') {
             options.botCircuitBreakerCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-cooldown-ms', true);
             i++;
@@ -422,6 +450,10 @@ function printSummary(report) {
             botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,
             botCircuitBreakerFailureRateWindow: options.botCircuitBreakerFailureRateWindow,
             botCircuitBreakerFailureRateMinSamples: options.botCircuitBreakerFailureRateMinSamples,
+            botCircuitBreakerSlowCallRateThreshold: options.botCircuitBreakerSlowCallRateThreshold,
+            botCircuitBreakerSlowCallDurationMs: options.botCircuitBreakerSlowCallDurationMs,
+            botCircuitBreakerSlowCallWindow: options.botCircuitBreakerSlowCallWindow,
+            botCircuitBreakerSlowCallMinSamples: options.botCircuitBreakerSlowCallMinSamples,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
             botCircuitBreakerCooldownBackoffMultiplier: options.botCircuitBreakerCooldownBackoffMultiplier,
             botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,

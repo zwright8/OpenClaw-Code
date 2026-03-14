@@ -5128,6 +5128,10 @@ export async function runAutonomousOpenClaw({
     botCircuitBreakerFailureRateThreshold = 0,
     botCircuitBreakerFailureRateWindow = 20,
     botCircuitBreakerFailureRateMinSamples = 8,
+    botCircuitBreakerSlowCallRateThreshold = 0,
+    botCircuitBreakerSlowCallDurationMs = 120_000,
+    botCircuitBreakerSlowCallWindow = 20,
+    botCircuitBreakerSlowCallMinSamples = 8,
     enqueueFollowupTasks = true,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
@@ -5258,6 +5262,10 @@ export async function runAutonomousOpenClaw({
             botCircuitBreakerFailureRateThreshold,
             botCircuitBreakerFailureRateWindow,
             botCircuitBreakerFailureRateMinSamples,
+            botCircuitBreakerSlowCallRateThreshold,
+            botCircuitBreakerSlowCallDurationMs,
+            botCircuitBreakerSlowCallWindow,
+            botCircuitBreakerSlowCallMinSamples,
             enqueueFollowupTasks,
             nowFactory
         });
@@ -5414,6 +5422,10 @@ export async function runAutonomousOpenClaw({
             botCircuitBreakerFailureRateThreshold: clamp(parseNonNegativeNumber(botCircuitBreakerFailureRateThreshold, 0), 0, 1),
             botCircuitBreakerFailureRateWindow: parsePositiveInt(botCircuitBreakerFailureRateWindow, 20),
             botCircuitBreakerFailureRateMinSamples: parsePositiveInt(botCircuitBreakerFailureRateMinSamples, 8),
+            botCircuitBreakerSlowCallRateThreshold: clamp(parseNonNegativeNumber(botCircuitBreakerSlowCallRateThreshold, 0), 0, 1),
+            botCircuitBreakerSlowCallDurationMs: parsePositiveInt(botCircuitBreakerSlowCallDurationMs, 120_000),
+            botCircuitBreakerSlowCallWindow: parsePositiveInt(botCircuitBreakerSlowCallWindow, 20),
+            botCircuitBreakerSlowCallMinSamples: parsePositiveInt(botCircuitBreakerSlowCallMinSamples, 8),
             enqueueFollowupTasks
         },
         coverage,
