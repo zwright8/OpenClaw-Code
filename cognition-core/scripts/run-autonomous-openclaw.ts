@@ -63,6 +63,7 @@ Options:
   --thompson-uncertainty-weight <n>  Uncertainty bonus scaling for auto_epsilon_ts* (0-2, default: 0.5)
   --thompson-hazard-rate <n>   Base changepoint hazard for cp_epsilon_ts* (0-0.5, default: 0.08)
   --thompson-surprise-sensitivity <n>  Surprise-to-hazard scaling for cp_epsilon_ts* (0-5, default: 1)
+  --thompson-top-two-probability <n>  Leader probability for tt_epsilon_ts (0-1, challenger gets 1-p, default: 0.8)
   --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_* hybrid policies: min|mean|max|adaptive (default: mean)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --latency-penalty-weight <n> Latency penalty weight for reward shaping (0-1, default: 0)
@@ -266,6 +267,7 @@ function parseArgs(argv) {
             thompsonUncertaintyWeight: 0.5,
             thompsonHazardRate: 0.08,
             thompsonSurpriseSensitivity: 1,
+            thompsonTopTwoProbability: 0.8,
             hybridTsAggregation: 'mean',
             discountFactor: 0.97,
             latencyPenaltyWeight: 0,
@@ -626,6 +628,11 @@ function parseArgs(argv) {
         }
         if (token === '--thompson-surprise-sensitivity') {
             options.selectionPolicyConfig.thompsonSurpriseSensitivity = parseFloatInRange(value, '--thompson-surprise-sensitivity', 0, 5);
+            i++;
+            continue;
+        }
+        if (token === '--thompson-top-two-probability') {
+            options.selectionPolicyConfig.thompsonTopTwoProbability = parseFloatInRange(value, '--thompson-top-two-probability', 0, 1);
             i++;
             continue;
         }

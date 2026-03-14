@@ -62,6 +62,7 @@ const DEFAULT_THOMPSON_HAZARD_RATE = 0.08;
 const MAX_THOMPSON_HAZARD_RATE = 0.5;
 const DEFAULT_THOMPSON_SURPRISE_SENSITIVITY = 1;
 const MAX_THOMPSON_SURPRISE_SENSITIVITY = 5;
+const DEFAULT_THOMPSON_TOP_TWO_PROBABILITY = 0.8;
 const DEFAULT_HYBRID_TS_AGGREGATION = 'mean';
 const HYBRID_TS_AGGREGATION_MODES = new Set([
     'min',
@@ -222,6 +223,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'd_lints',
     'adwin_lints',
     'epsilon_ts',
+    'tt_epsilon_ts',
     'bb_ts',
     'auto_epsilon_ts',
     'cp_epsilon_ts',
@@ -298,6 +300,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
 const SUPPORTED_SELECTION_POLICY_MODE_SET = new Set(SUPPORTED_SELECTION_POLICY_MODES);
 const THOMPSON_POLICY_MODES = new Set([
     'epsilon_ts',
+    'tt_epsilon_ts',
     'auto_epsilon_ts',
     'adwin_epsilon_ts',
     'cp_epsilon_ts',
@@ -321,6 +324,9 @@ const BAYESIAN_BOOTSTRAP_POLICY_MODES = new Set([
 const CHANGEPOINT_THOMPSON_POLICY_MODES = new Set([
     'cp_epsilon_ts',
     'sw_cp_epsilon_ts'
+]);
+const TOP_TWO_THOMPSON_POLICY_MODES = new Set([
+    'tt_epsilon_ts'
 ]);
 const ADAPTIVE_THOMPSON_POLICY_MODES = new Set([
     'auto_epsilon_ts',
@@ -754,6 +760,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_THOMPSON_SURPRISE_SENSITIVITY,
             0,
             MAX_THOMPSON_SURPRISE_SENSITIVITY
+        ),
+        thompsonTopTwoProbability: clamp(
+            Number.isFinite(Number(value.thompsonTopTwoProbability))
+                ? Number(value.thompsonTopTwoProbability)
+                : DEFAULT_THOMPSON_TOP_TWO_PROBABILITY,
+            0,
+            1
         ),
         hybridTsAggregation: (() => {
             const candidate = typeof value.hybridTsAggregation === 'string'
@@ -3682,6 +3695,40 @@ function pickPolicyFromDistribution(distribution, seedText) {
     return distribution[distribution.length - 1]?.name || DEFAULT_SELECTION_POLICY_MODE;
 }
 
+function applyTopTwoThompsonOrdering(rankedItems, selectionPolicyConfig, seedText) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    if (!TOP_TWO_THOMPSON_POLICY_MODES.has(policy.mode) || rankedItems.length < 2) {
+        return {
+            ranked: rankedItems,
+            selectedTopTwoRole: 'leader',
+            challengerProbability: Number((1 - policy.thompsonTopTwoProbability).toFixed(6))
+        };
+    }
+    const challengerProbability = clamp(
+        1 - policy.thompsonTopTwoProbability,
+        0,
+        1
+    );
+    const rng = createDeterministicRng(seedText);
+    const chooseChallenger = rng() < challengerProbability;
+    if (!chooseChallenger) {
+        return {
+            ranked: rankedItems,
+            selectedTopTwoRole: 'leader',
+            challengerProbability: Number(challengerProbability.toFixed(6))
+        };
+    }
+    return {
+        ranked: [
+            rankedItems[1],
+            rankedItems[0],
+            ...rankedItems.slice(2)
+        ],
+        selectedTopTwoRole: 'challenger',
+        challengerProbability: Number(challengerProbability.toFixed(6))
+    };
+}
+
 function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
     let explorationGamma = clamp(
         Number(policy.exp3ExplorationGamma),
@@ -4456,6 +4503,21 @@ function selectCatalogSlice({
         return left.distance - right.distance;
     });
     cooled.sort((left, right) => left.distance - right.distance);
+    if (TOP_TWO_THOMPSON_POLICY_MODES.has(scoringPolicy.mode) && ranked.length > 0) {
+        const reordered = applyTopTwoThompsonOrdering(
+            ranked,
+            scoringPolicy,
+            `${selectionScope}:${scoringPolicy.mode}:top2:${normalizedCurrentWave}:${pointer}:${total}:${ranked[0].key}`
+        );
+        ranked.splice(0, ranked.length, ...reordered.ranked);
+        policyProbabilities = {
+            ...(policyProbabilities && typeof policyProbabilities === 'object' ? policyProbabilities : {}),
+            mode: scoringPolicy.mode,
+            topTwoLeaderProbability: Number(scoringPolicy.thompsonTopTwoProbability.toFixed(6)),
+            topTwoChallengerProbability: reordered.challengerProbability,
+            topTwoSelectedRole: selectedTopTwoRole
+        };
+    }
 
     for (const item of [...ranked, ...cooled]) {
         if (selected.length >= limit) break;

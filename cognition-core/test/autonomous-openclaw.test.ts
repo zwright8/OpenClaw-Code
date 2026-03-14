@@ -617,6 +617,44 @@ test('buildAutonomousBatchPlan supports epsilon-thompson policy with determinist
     assert.deepEqual(plan.selection.skillIds, [41]);
 });
 
+test('buildAutonomousBatchPlan supports top-two thompson challenger routing', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 51, code: 'SK-00051', title: 'Skill 51' },
+            { id: 52, code: 'SK-00052', title: 'Skill 52' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 14,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '51': { attempts: 12, successes: 10, failures: 2, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' },
+                '52': { attempts: 12, successes: 4, failures: 8, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 15,
+        selectionPolicyConfig: {
+            mode: 'tt_epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            thompsonTopTwoProbability: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [52]);
+    assert.equal(plan.selection.policy.skills, 'tt_epsilon_ts');
+    assert.equal(plan.selection.policyProbabilities.skills?.topTwoSelectedRole, 'challenger');
+    assert.equal(plan.selection.policyProbabilities.skills?.topTwoLeaderProbability, 0);
+    assert.equal(plan.selection.policyProbabilities.skills?.topTwoChallengerProbability, 1);
+});
+
 test('buildAutonomousBatchPlan applies reliability floor penalties to low-confidence streaks', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

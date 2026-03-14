@@ -238,6 +238,7 @@ npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --li
 npm run autonomous:run -- --selection-policy adwin_lints --cd-min-samples 8 --adwin-delta 0.002 --lints-alpha 0.5
 npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.25 --thompson-prior-alpha 1 --thompson-prior-beta 1 --thompson-meta-prior-strength 24
+npm run autonomous:run -- --selection-policy tt_epsilon_ts --thompson-exploration 0.25 --thompson-top-two-probability 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25
 npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1
 npm run autonomous:run -- --selection-policy cp_epsilon_ts --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2
