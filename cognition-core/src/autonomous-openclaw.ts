@@ -5049,6 +5049,8 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
         `- botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
+        `- botCircuitBreakerHalfOpenProbes: ${report.totals?.botCircuitBreakerHalfOpenProbes || 0}`,
+        `- botCircuitBreakerClosed: ${report.totals?.botCircuitBreakerClosed || 0}`,
         '',
         '## Coverage',
         '',
@@ -5119,6 +5121,8 @@ export async function runAutonomousOpenClaw({
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
+    botCircuitBreakerHalfOpenMaxProbes = 1,
+    botCircuitBreakerHalfOpenSuccessThreshold = 1,
     enqueueFollowupTasks = true,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
@@ -5176,7 +5180,9 @@ export async function runAutonomousOpenClaw({
         botRetriesBudgetExhausted: 0,
         botAttemptTimeouts: 0,
         botCircuitBreakerOpened: 0,
-        botCircuitBreakerOpenSkips: 0
+        botCircuitBreakerOpenSkips: 0,
+        botCircuitBreakerHalfOpenProbes: 0,
+        botCircuitBreakerClosed: 0
     };
 
     const waveReports = [];
@@ -5240,6 +5246,8 @@ export async function runAutonomousOpenClaw({
             botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold,
             botCircuitBreakerCooldownMs,
+            botCircuitBreakerHalfOpenMaxProbes,
+            botCircuitBreakerHalfOpenSuccessThreshold,
             enqueueFollowupTasks,
             nowFactory
         });
@@ -5302,6 +5310,8 @@ export async function runAutonomousOpenClaw({
                 botAttemptTimeouts: workerReport.totals.botAttemptTimeouts,
                 botCircuitBreakerOpened: workerReport.totals.botCircuitBreakerOpened,
                 botCircuitBreakerOpenSkips: workerReport.totals.botCircuitBreakerOpenSkips,
+                botCircuitBreakerHalfOpenProbes: workerReport.totals.botCircuitBreakerHalfOpenProbes,
+                botCircuitBreakerClosed: workerReport.totals.botCircuitBreakerClosed,
                 finalQueueOpen: workerReport.finalQueue.open
             }
         };
@@ -5325,6 +5335,8 @@ export async function runAutonomousOpenClaw({
         totals.botAttemptTimeouts += waveReport.worker.botAttemptTimeouts;
         totals.botCircuitBreakerOpened += waveReport.worker.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += waveReport.worker.botCircuitBreakerOpenSkips;
+        totals.botCircuitBreakerHalfOpenProbes += waveReport.worker.botCircuitBreakerHalfOpenProbes;
+        totals.botCircuitBreakerClosed += waveReport.worker.botCircuitBreakerClosed;
 
         const coverageReport = createCoverageReport({
             skillCatalog,
@@ -5381,6 +5393,8 @@ export async function runAutonomousOpenClaw({
             botRetryBudgetRatio: clamp(parseNonNegativeNumber(botRetryBudgetRatio, 0), 0, 1),
             botCircuitBreakerFailureThreshold: parseNonNegativeInt(botCircuitBreakerFailureThreshold, 0),
             botCircuitBreakerCooldownMs: parseNonNegativeInt(botCircuitBreakerCooldownMs, 30_000),
+            botCircuitBreakerHalfOpenMaxProbes: parsePositiveInt(botCircuitBreakerHalfOpenMaxProbes, 1),
+            botCircuitBreakerHalfOpenSuccessThreshold: parsePositiveInt(botCircuitBreakerHalfOpenSuccessThreshold, 1),
             enqueueFollowupTasks
         },
         coverage,

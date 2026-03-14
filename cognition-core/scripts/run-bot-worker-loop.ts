@@ -39,6 +39,8 @@ Options:
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
+  --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
+  --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
   --no-enqueue-followups       Disable enqueueing bot-generated follow-up tasks
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
@@ -118,6 +120,8 @@ function parseArgs(argv) {
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
         botCircuitBreakerCooldownMs: 30_000,
+        botCircuitBreakerHalfOpenMaxProbes: 1,
+        botCircuitBreakerHalfOpenSuccessThreshold: 1,
         enqueueFollowupTasks: true,
         jsonPath: null,
         markdownPath: null,
@@ -278,6 +282,16 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-circuit-breaker-half-open-max-probes') {
+            options.botCircuitBreakerHalfOpenMaxProbes = parsePositiveInt(value, '--bot-circuit-breaker-half-open-max-probes');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-half-open-successes') {
+            options.botCircuitBreakerHalfOpenSuccessThreshold = parsePositiveInt(value, '--bot-circuit-breaker-half-open-successes');
+            i++;
+            continue;
+        }
         if (token === '--json') {
             options.jsonPath = path.resolve(process.cwd(), value);
             i++;
@@ -314,6 +328,8 @@ function printSummary(report) {
     console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts}`);
     console.log(`Bot circuit-breaker opened: ${report.totals.botCircuitBreakerOpened}`);
     console.log(`Bot circuit-breaker open skips: ${report.totals.botCircuitBreakerOpenSkips}`);
+    console.log(`Bot circuit-breaker half-open probes: ${report.totals.botCircuitBreakerHalfOpenProbes}`);
+    console.log(`Bot circuit-breaker closed: ${report.totals.botCircuitBreakerClosed}`);
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Final queue open: ${report.finalQueue.open}`);
     console.log(`Final queue awaiting approval: ${report.finalQueue.awaitingApproval}`);
@@ -356,6 +372,8 @@ function printSummary(report) {
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
+            botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
+            botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
             enqueueFollowupTasks: options.enqueueFollowupTasks
         });
 

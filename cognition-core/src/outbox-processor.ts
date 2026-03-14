@@ -70,6 +70,14 @@ function normalizeCircuitBreakerCooldownMs(value, fallback = 30_000) {
     return parseNonNegativeInt(value, fallback);
 }
 
+function normalizeCircuitBreakerHalfOpenMaxProbes(value, fallback = 1) {
+    return parsePositiveInt(value, fallback);
+}
+
+function normalizeCircuitBreakerHalfOpenSuccessThreshold(value, fallback = 1) {
+    return parsePositiveInt(value, fallback);
+}
+
 function isTransientBotFailure(execution) {
     if (!execution || typeof execution !== 'object') return false;
     if (execution.status !== 'failure') return false;
@@ -327,6 +335,8 @@ export async function processOutboxEnvelopes({
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
+    botCircuitBreakerHalfOpenMaxProbes = 1,
+    botCircuitBreakerHalfOpenSuccessThreshold = 1,
     botExecute = null,
     dryRun = false,
     nowFactory = Date.now,
@@ -357,11 +367,24 @@ export async function processOutboxEnvelopes({
         botCircuitBreakerCooldownMs,
         30_000
     );
+    const normalizedBotCircuitBreakerHalfOpenMaxProbes = normalizeCircuitBreakerHalfOpenMaxProbes(
+        botCircuitBreakerHalfOpenMaxProbes,
+        1
+    );
+    const normalizedBotCircuitBreakerHalfOpenSuccessThreshold = Math.min(
+        normalizedBotCircuitBreakerHalfOpenMaxProbes,
+        normalizeCircuitBreakerHalfOpenSuccessThreshold(
+            botCircuitBreakerHalfOpenSuccessThreshold,
+            1
+        )
+    );
     const retryBudgetEnabled = normalizedBotRetryBudgetRatio > 0;
     const circuitBreakerEnabled = normalizedBotCircuitBreakerFailureThreshold > 0;
     let retryBudgetTokens = 0;
     let consecutiveTransientBotFailures = 0;
     let circuitBreakerOpenUntilMs = 0;
+    let circuitBreakerHalfOpenProbeCount = 0;
+    let circuitBreakerHalfOpenSuccessCount = 0;
     const executeBotTask = typeof botExecute === 'function'
         ? botExecute
         : async (request, runtimeBot) => runtimeBot.executeTask(request);
@@ -418,6 +441,8 @@ export async function processOutboxEnvelopes({
         botAttemptTimeouts: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
+        botCircuitBreakerHalfOpenProbes: 0,
+        botCircuitBreakerClosed: 0,
         followupTasksGenerated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
@@ -482,6 +507,26 @@ export async function processOutboxEnvelopes({
                             retryable: 1
                         }
                     });
+                    stats.botCircuitBreakerOpenSkips++;
+                }
+                if (
+                    !execution
+                    && startedInCircuitHalfOpen
+                    && circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes
+                ) {
+                    execution = createBotFailureExecution({
+                        output: 'Task execution skipped: half-open probe limit reached before circuit could close; reopening cooldown window.',
+                        metrics: {
+                            circuitBreakerOpen: 1,
+                            circuitBreakerHalfOpenProbeLimitReached: 1,
+                            retryable: 1
+                        }
+                    });
+                    circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
+                    circuitBreakerHalfOpenProbeCount = 0;
+                    circuitBreakerHalfOpenSuccessCount = 0;
+                    consecutiveTransientBotFailures = 0;
+                    stats.botCircuitBreakerOpened++;
                     stats.botCircuitBreakerOpenSkips++;
                 }
                 if (retryBudgetEnabled) {
@@ -567,9 +612,12 @@ export async function processOutboxEnvelopes({
                         circuitBreakerOpenUntilMs = 0;
                     }
                 } else if (startedInCircuitHalfOpen) {
-                    if (execution.status === 'failure' && transientBotFailure) {
+                    stats.botCircuitBreakerHalfOpenProbes++;
+                    if (execution.status === 'failure') {
                         consecutiveTransientBotFailures = normalizedBotCircuitBreakerFailureThreshold;
                         circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
+                        circuitBreakerHalfOpenProbeCount = 0;
+                        circuitBreakerHalfOpenSuccessCount = 0;
                         stats.botCircuitBreakerOpened++;
                         execution = {
                             ...execution,
@@ -580,14 +628,38 @@ export async function processOutboxEnvelopes({
                             }
                         };
                     } else {
-                        consecutiveTransientBotFailures = 0;
-                        circuitBreakerOpenUntilMs = 0;
+                        circuitBreakerHalfOpenProbeCount += 1;
+                        circuitBreakerHalfOpenSuccessCount += 1;
+                        if (circuitBreakerHalfOpenSuccessCount >= normalizedBotCircuitBreakerHalfOpenSuccessThreshold) {
+                            consecutiveTransientBotFailures = 0;
+                            circuitBreakerOpenUntilMs = 0;
+                            circuitBreakerHalfOpenProbeCount = 0;
+                            circuitBreakerHalfOpenSuccessCount = 0;
+                            stats.botCircuitBreakerClosed++;
+                        } else if (circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes) {
+                            consecutiveTransientBotFailures = 0;
+                            circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
+                            circuitBreakerHalfOpenProbeCount = 0;
+                            circuitBreakerHalfOpenSuccessCount = 0;
+                            stats.botCircuitBreakerOpened++;
+                            execution = {
+                                ...execution,
+                                output: `${execution.output} Circuit breaker reopened after half-open probe limit without meeting success threshold.`,
+                                metrics: {
+                                    ...(execution.metrics || {}),
+                                    circuitBreakerOpened: 1,
+                                    circuitBreakerHalfOpenProbeLimitReached: 1
+                                }
+                            };
+                        }
                     }
                 } else if (execution.status === 'failure' && transientBotFailure) {
                     consecutiveTransientBotFailures += 1;
                     if (consecutiveTransientBotFailures >= normalizedBotCircuitBreakerFailureThreshold) {
                         circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
                         consecutiveTransientBotFailures = 0;
+                        circuitBreakerHalfOpenProbeCount = 0;
+                        circuitBreakerHalfOpenSuccessCount = 0;
                         stats.botCircuitBreakerOpened++;
                         execution = {
                             ...execution,
@@ -601,6 +673,8 @@ export async function processOutboxEnvelopes({
                 } else {
                     consecutiveTransientBotFailures = 0;
                     circuitBreakerOpenUntilMs = 0;
+                    circuitBreakerHalfOpenProbeCount = 0;
+                    circuitBreakerHalfOpenSuccessCount = 0;
                 }
 
                 resultStatus = normalizeBotResultStatus(execution.status);

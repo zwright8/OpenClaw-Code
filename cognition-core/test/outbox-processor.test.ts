@@ -556,6 +556,8 @@ test('processOutboxEnvelopes closes circuit breaker after cooldown and successfu
         botMaxAttempts: 1,
         botCircuitBreakerFailureThreshold: 1,
         botCircuitBreakerCooldownMs: 20,
+        botCircuitBreakerHalfOpenMaxProbes: 1,
+        botCircuitBreakerHalfOpenSuccessThreshold: 1,
         nowFactory: () => logicalNow,
         botExecute: async () => {
             attempts++;
@@ -584,10 +586,96 @@ test('processOutboxEnvelopes closes circuit breaker after cooldown and successfu
     assert.equal(attempts, 2);
     assert.equal(stats.botCircuitBreakerOpened, 1);
     assert.equal(stats.botCircuitBreakerOpenSkips, 0);
+    assert.equal(stats.botCircuitBreakerHalfOpenProbes, 1);
+    assert.equal(stats.botCircuitBreakerClosed, 1);
     assert.equal(stats.botTasksFailed, 1);
 
     const records = await store.loadRecords();
     const second = records.find((entry) => entry.taskId === requests[1].id);
     assert.equal(second?.status, 'completed');
     assert.match(second?.result?.output || '', /Probe recovered backend dependency/);
+});
+
+test('processOutboxEnvelopes requires configured half-open success probes before closing breaker', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000731', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000732', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000733', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 95_000 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 95_001
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let logicalNow = 2_000;
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 1,
+        botCircuitBreakerCooldownMs: 20,
+        botCircuitBreakerHalfOpenMaxProbes: 2,
+        botCircuitBreakerHalfOpenSuccessThreshold: 2,
+        nowFactory: () => logicalNow,
+        botExecute: async () => {
+            attempts++;
+            if (attempts === 1) {
+                logicalNow = 2_100;
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient transport timeout contacting runtime.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: `Half-open probe ${attempts - 1} succeeded.`,
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 3);
+    assert.equal(stats.botCircuitBreakerOpened, 1);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 0);
+    assert.equal(stats.botCircuitBreakerHalfOpenProbes, 2);
+    assert.equal(stats.botCircuitBreakerClosed, 1);
+
+    const records = await store.loadRecords();
+    const second = records.find((entry) => entry.taskId === requests[1].id);
+    const third = records.find((entry) => entry.taskId === requests[2].id);
+    assert.equal(second?.status, 'completed');
+    assert.equal(third?.status, 'completed');
+    assert.match(third?.result?.output || '', /Half-open probe 2 succeeded/);
 });

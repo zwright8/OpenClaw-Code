@@ -42,6 +42,8 @@ Options:
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
+  --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
+  --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
   --selection-policy <mode>    Selection policy: ${policyModes} (default: ucb)
   --linucb-alpha <n>           Exploration multiplier for linucb (0-5, default: 0.6)
   --lints-alpha <n>            Posterior covariance scale for lints (0-5, default: 0.5)
@@ -232,6 +234,8 @@ function parseArgs(argv) {
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
         botCircuitBreakerCooldownMs: 30_000,
+        botCircuitBreakerHalfOpenMaxProbes: 1,
+        botCircuitBreakerHalfOpenSuccessThreshold: 1,
         enqueueFollowupTasks: true,
         selectionPolicyConfig: {
             mode: 'ucb',
@@ -494,6 +498,16 @@ function parseArgs(argv) {
         }
         if (token === '--bot-circuit-breaker-cooldown-ms') {
             options.botCircuitBreakerCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-cooldown-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-half-open-max-probes') {
+            options.botCircuitBreakerHalfOpenMaxProbes = parsePositiveInt(value, '--bot-circuit-breaker-half-open-max-probes');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-half-open-successes') {
+            options.botCircuitBreakerHalfOpenSuccessThreshold = parsePositiveInt(value, '--bot-circuit-breaker-half-open-successes');
             i++;
             continue;
         }
@@ -896,6 +910,8 @@ function printSummary(report) {
     console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts || 0}`);
     console.log(`Bot circuit-breaker opened: ${report.totals.botCircuitBreakerOpened || 0}`);
     console.log(`Bot circuit-breaker open skips: ${report.totals.botCircuitBreakerOpenSkips || 0}`);
+    console.log(`Bot circuit-breaker half-open probes: ${report.totals.botCircuitBreakerHalfOpenProbes || 0}`);
+    console.log(`Bot circuit-breaker closed: ${report.totals.botCircuitBreakerClosed || 0}`);
 }
 
 (async () => {
@@ -936,6 +952,8 @@ function printSummary(report) {
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
+            botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
+            botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
             enqueueFollowupTasks: options.enqueueFollowupTasks,
             selectionPolicyConfig: options.selectionPolicyConfig
         });

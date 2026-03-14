@@ -123,6 +123,8 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
         `- totals.botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- totals.botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
+        `- totals.botCircuitBreakerHalfOpenProbes: ${report.totals?.botCircuitBreakerHalfOpenProbes || 0}`,
+        `- totals.botCircuitBreakerClosed: ${report.totals?.botCircuitBreakerClosed || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
         '',
@@ -174,6 +176,8 @@ export async function runBotWorkerLoop({
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
+    botCircuitBreakerHalfOpenMaxProbes = 1,
+    botCircuitBreakerHalfOpenSuccessThreshold = 1,
     nowFactory = Date.now
 } = {}) {
     if (!storePath || typeof storePath !== 'string') {
@@ -207,6 +211,8 @@ export async function runBotWorkerLoop({
         botAttemptTimeouts: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
+        botCircuitBreakerHalfOpenProbes: 0,
+        botCircuitBreakerClosed: 0,
         followupTasksGenerated: 0,
         followupTasksSaved: 0,
         followupTasksSkipped: 0,
@@ -259,6 +265,8 @@ export async function runBotWorkerLoop({
             botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold,
             botCircuitBreakerCooldownMs,
+            botCircuitBreakerHalfOpenMaxProbes,
+            botCircuitBreakerHalfOpenSuccessThreshold,
             nowFactory: now
         });
 
@@ -308,6 +316,8 @@ export async function runBotWorkerLoop({
             botAttemptTimeouts: processResult.botAttemptTimeouts,
             botCircuitBreakerOpened: processResult.botCircuitBreakerOpened,
             botCircuitBreakerOpenSkips: processResult.botCircuitBreakerOpenSkips,
+            botCircuitBreakerHalfOpenProbes: processResult.botCircuitBreakerHalfOpenProbes,
+            botCircuitBreakerClosed: processResult.botCircuitBreakerClosed,
             followupTasksGenerated: processResult.followupTasksGenerated,
             followupTasksSaved: processResult.followupTasksSaved,
             followupTasksSkipped: processResult.followupTasksSkipped,
@@ -328,6 +338,8 @@ export async function runBotWorkerLoop({
         totals.botAttemptTimeouts += processResult.botAttemptTimeouts;
         totals.botCircuitBreakerOpened += processResult.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += processResult.botCircuitBreakerOpenSkips;
+        totals.botCircuitBreakerHalfOpenProbes += processResult.botCircuitBreakerHalfOpenProbes;
+        totals.botCircuitBreakerClosed += processResult.botCircuitBreakerClosed;
         totals.followupTasksGenerated += processResult.followupTasksGenerated;
         totals.followupTasksSaved += processResult.followupTasksSaved;
         totals.followupTasksSkipped += processResult.followupTasksSkipped;
