@@ -64,3 +64,8 @@ Primary products for this skill: water security plan, production-distribution ba
 - Flag gaps where assumptions exceed evidence.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-theater-forward-water-quality-lab-potability-release-v1` + `protocol_stack_id=ps-theater-forward-water-quality-lab-potability-release-stack-v1` when water-production decisions depend on trusted field-lab release, sample-chain integrity, or point-of-use potability confidence.
+- Add `packet_id=DPL-WATER-LAB-POTABILITY-001` for recommendations that materially alter water distribution, force-health posture, or commander confidence in local release decisions.

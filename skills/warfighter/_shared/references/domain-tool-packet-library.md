@@ -12173,3 +12173,93 @@ validation_gates:
 - output_schema: clearance ladder, heavy-lift assignment matrix, coalition release packet
 - protocol_profile: AIS/NMEA + OGC + signed salvage manifests + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
 - validation_gates: hydro-survey pass, salvage authority concurrence, berth-certification acknowledgment
+
+## Packet Addendum XLI (2026-03-14, Expansion Wave LII Dental Trauma, Water and Fuel Release, Ordnance Stability, and Harbor Control)
+
+### packet_id: DPL-DENTAL-MAXILLOFACIAL-001
+- domain: joint forward dental and maxillofacial triage
+- objective: preserve combat power and airway safety by sorting dental and facial casualties into return-to-duty, urgent stabilization, or evacuation paths.
+- primary_tools: dental imaging queue, oral-surgery supply board, patient movement regulator
+- alternate_tools: manual dental triage worksheet and evacuation hold board
+- degraded_mode: damage-control dental triage only with paper casualty cards and UTC readbacks
+- input_requirements: casualty findings, airway risk, imaging status, dental-supply state, evacuation capacity
+- output_schema: facial-trauma triage ladder, stabilization plan, RTD versus evac matrix
+- protocol_profile: HL7/FHIR + USMTF + signed clinical-image manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: airway-risk confirmation, clinical authority check, evacuation acknowledgment integrity
+
+### packet_id: DPL-OCULAR-TRAUMA-VISION-001
+- domain: joint ocular trauma vision and evacuation priority
+- objective: protect sight by prioritizing eye-injury interventions and evacuation without losing contamination or custody integrity.
+- primary_tools: ocular imaging queue, trauma-regulation board, chemical-exposure decon tracker
+- alternate_tools: manual visual-acuity worksheet and protected-movement board
+- degraded_mode: eye-shield and darken posture only with manual acuity tracking and readback-confirmed evacuation
+- input_requirements: mechanism of injury, visual-acuity findings, contamination status, imaging, transport options
+- output_schema: sight-preservation ladder, contamination matrix, evac-priority brief
+- protocol_profile: HL7/FHIR + USMTF + signed clinical-image manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: globe-risk confirmation, contamination-control pass, medical-authority acknowledgment
+
+### packet_id: DPL-WATER-LAB-POTABILITY-001
+- domain: theater forward water-quality lab and potability release
+- objective: release water only when sample custody, test confidence, and commander risk thresholds support safe distribution.
+- primary_tools: field water lab chain, purification telemetry board, preventive-medicine release tracker
+- alternate_tools: manual sample ledger and paper release worksheet
+- degraded_mode: mission-essential rationing only with manual test strips and hourly command review
+- input_requirements: sample-chain status, assay results, purification output, demand, release thresholds
+- output_schema: water-release ladder, contamination hold matrix, distribution confidence brief
+- protocol_profile: signed sample manifests + EDXL-DE/CAP + API/JSON + USMTF + HL7/FHIR
+- validation_gates: sample-custody verification, potability threshold pass, release authority acknowledgment
+
+### packet_id: DPL-PETROLEUM-LAB-SPEC-WAIVER-001
+- domain: theater petroleum quality lab and fuel-spec waiver
+- objective: keep fuel flowing only when assay confidence, fleet tolerance, and waiver governance remain inside commander-approved risk bands.
+- primary_tools: petroleum assay board, additive and blending ledger, fleet fuel-risk planner
+- alternate_tools: manual fuel worksheet and quarantine watchboard
+- degraded_mode: mission-essential fuel issue only with dual approval and reduced-platform compatibility
+- input_requirements: assay results, storage conditions, fleet demand, additive status, waiver thresholds
+- output_schema: fuel release ladder, spec-waiver matrix, contamination containment brief
+- protocol_profile: signed sample manifests + API/JSON + USMTF + OPC UA + NIEM
+- validation_gates: assay pass, lot pedigree check, release authority acknowledgment
+
+### packet_id: DPL-FUEL-BLADDER-LIGHTNING-001
+- domain: joint fuel-bladder grounding bonding and lightning safety
+- objective: prevent static discharge, lightning ignition, and unsafe bulk-fuel transfer while sustaining mission-essential fuel flow.
+- primary_tools: lightning-warning board, fuel-point grounding audit tracker, transfer operations planner
+- alternate_tools: manual bonding checklist and weather-stand-down board
+- degraded_mode: fuel issue windows only under tightened weather criteria and voice readbacks
+- input_requirements: lightning proximity, grounding status, hose layout, transfer demand, spill response posture
+- output_schema: transfer go or no-go ladder, grounding discrepancy board, lightning safety branch brief
+- protocol_profile: EDXL-DE/CAP + signed maintenance manifests + CoT + API/JSON + USMTF
+- validation_gates: grounding verification, weather-threshold pass, authority acknowledgment
+
+### packet_id: DPL-SOLID-PROPELLANT-CASTING-CURE-001
+- domain: strategic solid-propellant casting and cure assurance
+- objective: preserve strategic motor output by matching casting and cure capacity to the highest-value lots without unsafe release shortcuts.
+- primary_tools: batch and cure ledger, environmental-control monitor, lot-release governance board
+- alternate_tools: manual batch worksheet and environmental hold board
+- degraded_mode: deterrence-critical lots only with dual approval and conservative cure windows
+- input_requirements: batch status, cure capacity, environmental-control state, precursor supply, demand priority
+- output_schema: casting queue ladder, cure-capacity matrix, lot-release confidence brief
+- protocol_profile: signed lot manifests + OPC UA + API/JSON + USMTF + NIEM
+- validation_gates: lot pedigree verification, environmental-control pass, release authority acknowledgment
+
+### packet_id: DPL-MAGAZINE-HUMIDITY-STABILITY-001
+- domain: theater ordnance magazine humidity and stability monitoring
+- objective: preserve safe munitions issue by detecting environmental drift before lot instability or unsafe storage thresholds are crossed.
+- primary_tools: magazine telemetry board, explosive-stability watchboard, issue-priority planner
+- alternate_tools: manual environmental log and quarantine worksheet
+- degraded_mode: reduced issue velocity only with manual checks every shift and commander-approved quarantine bands
+- input_requirements: magazine telemetry, lot sensitivity, HVAC status, issue demand, dispersal options
+- output_schema: environmental risk ladder, issue or quarantine matrix, stability-monitoring brief
+- protocol_profile: signed environmental logs + OPC UA + API/JSON + USMTF + EDXL-DE/CAP
+- validation_gates: telemetry pass, explosive-safety review, authority acknowledgment
+
+### packet_id: DPL-HARBOR-VTS-MANUAL-PILOTAGE-001
+- domain: coalition harbor VTS fallback and manual pilotage
+- objective: preserve harbor safety and sealift throughput by shifting to manual control and pilotage when digital traffic services degrade.
+- primary_tools: harbor traffic board, pilot allocation tracker, channel-risk estimator
+- alternate_tools: paper movement board and voice-net readback log
+- degraded_mode: daylight and essential-vessel-only pilotage with readback-confirmed channel release
+- input_requirements: traffic density, VTS outage status, pilot availability, channel restrictions, berth demand
+- output_schema: harbor traffic fallback ladder, manual pilotage matrix, coalition channel-risk brief
+- protocol_profile: AIS/NMEA + OGC + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: track-confidence threshold, harbor-authority concurrence, coalition acknowledgment integrity

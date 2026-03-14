@@ -282,3 +282,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-stack-v1` when logistics endurance depends on mineral reclamation throughput, coalition recovery capacity, or battery feedstock custody.
 - Add `tool_suite_id=ts-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-v1` + `protocol_stack_id=ps-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-stack-v1` when forward sustainment nodes depend on hydrogen microgrid safety, leak containment, or emissions-aware power continuity.
 - Add `packet_id=DPL-MARITIME-INSURANCE-UNDERWRITE-001`, `packet_id=DPL-BATTERY-RECYCLING-MINERAL-RECOVERY-001`, and `packet_id=DPL-HYDROGEN-MICROGRID-SAFETY-001` for branches that materially alter throughput confidence, industrial endurance, or energy continuity.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-theater-petroleum-quality-lab-fuel-spec-waiver-v1` + `protocol_stack_id=ps-theater-petroleum-quality-lab-fuel-spec-waiver-stack-v1` when sustainment viability depends on assay confidence, platform tolerance, or commander-approved use of marginal fuel lots.
+- Add `tool_suite_id=ts-joint-fuel-bladder-grounding-bonding-lightning-safety-v1` + `protocol_stack_id=ps-joint-fuel-bladder-grounding-bonding-lightning-safety-stack-v1` when fuel flow depends on weather hold decisions, grounding discipline, or expeditionary transfer safety at forward fuel points.
+- Add `packet_id=DPL-PETROLEUM-LAB-SPEC-WAIVER-001` and `packet_id=DPL-FUEL-BLADDER-LIGHTNING-001` for branches that materially alter fuel-release confidence, throughput timing, or sustainment safety posture.

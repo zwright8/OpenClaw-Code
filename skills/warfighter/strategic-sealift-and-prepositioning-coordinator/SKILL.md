@@ -165,3 +165,8 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 - Add `tool_suite_id=ts-coalition-shore-power-frequency-conversion-berthing-v1` + `protocol_stack_id=ps-coalition-shore-power-frequency-conversion-berthing-stack-v1` when sealift timing depends on coalition berth power, converter availability, or pier-load compatibility during prepositioning recovery.
 - Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when cargo visibility, port scheduling, or berth-release systems lose credential trust and must be restored without stalling strategic flow.
 - Add `packet_id=DPL-SHORE-POWER-BERTHING-001` and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for recommendations that materially alter port-release timing, prepositioning confidence, or strategic sustainment continuity.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-coalition-harbor-vts-fallback-manual-pilotage-v1` + `protocol_stack_id=ps-coalition-harbor-vts-fallback-manual-pilotage-stack-v1` when sealift timing depends on manual harbor control, pilotage scarcity, or channel release after cyber or VTS degradation.
+- Add `packet_id=DPL-HARBOR-VTS-MANUAL-PILOTAGE-001` for recommendations that materially alter port-entry timing, berth sequencing, or commander confidence in coalition harbor control.

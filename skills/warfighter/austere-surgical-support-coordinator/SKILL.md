@@ -154,3 +154,9 @@ Use these tool categories as the default stack for this skill: patient regulatio
 - Add `tool_suite_id=ts-austere-respiratory-protection-fit-filter-rotation-v1` + `protocol_stack_id=ps-austere-respiratory-protection-fit-filter-rotation-stack-v1` when surgical or resuscitation teams must sustain respiratory protection under smoke, dust, CBRN, or toxic-industrial exposure.
 - Add `tool_suite_id=ts-joint-assault-landing-zone-dust-obscuration-control-v1` + `protocol_stack_id=ps-joint-assault-landing-zone-dust-obscuration-control-stack-v1` when casualty pickup or surgical throughput depends on trusted landing-zone release under brownout or sensor obscuration.
 - Add `packet_id=DPL-RESPIRATORY-PROTECTION-FILTER-ROTATION-001` and `packet_id=DPL-ASSAULT-LZ-DUST-OBSCURATION-001` for recommendations that materially alter clinical-team survivability, medevac timing, or austere patient-flow confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-joint-forward-dental-maxillofacial-triage-v1` + `protocol_stack_id=ps-joint-forward-dental-maxillofacial-triage-stack-v1` when surgical plans depend on facial-trauma stabilization, airway-adjacent dental injury triage, or return-to-duty versus evacuation decisions.
+- Add `tool_suite_id=ts-joint-ocular-trauma-vision-evac-priority-v1` + `protocol_stack_id=ps-joint-ocular-trauma-vision-evac-priority-stack-v1` when sight preservation, contamination control, or ophthalmic evacuation priority materially alters casualty flow.
+- Add `packet_id=DPL-DENTAL-MAXILLOFACIAL-001` and `packet_id=DPL-OCULAR-TRAUMA-VISION-001` for recommendations that materially alter surgical workload, airway risk, or casualty-movement confidence.

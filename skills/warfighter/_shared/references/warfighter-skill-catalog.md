@@ -2546,3 +2546,25 @@ Every skill output should include:
 - Strategic quantum network key custody and compromise response + joint battle network zero trust key material continuity + theater mission network failover + strategic cyber reserve mobilization assurance.
 - Joint gray-zone commercial fleet shadowing attribution + gray-zone maritime militia attribution + strategic competition gray-zone response cell + maritime insurance and commercial shipping risk.
 - Theater austere blood plasma donor screening and cold-chain + joint forward blood-bank crossmatch and massive transfusion continuity + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator.
+
+## New Expansion Wave (2026-03-14, Wave LII)
+
+- joint-forward-dental-and-maxillofacial-triage-cell
+- joint-ocular-trauma-vision-evac-priority-cell
+- theater-forward-water-quality-lab-and-potability-release-cell
+- theater-petroleum-quality-lab-and-fuel-spec-waiver-cell
+- joint-fuel-bladder-grounding-bonding-and-lightning-safety-cell
+- strategic-solid-propellant-casting-and-cure-assurance-cell
+- theater-ordnance-magazine-humidity-and-stability-monitoring-cell
+- coalition-harbor-vts-fallback-and-manual-pilotage-cell
+
+## Updated Pairings (2026-03-14, Wave LII)
+
+- Forward dental and maxillofacial triage + austere surgical support coordinator + joint role 3 medical network and aeromedical evacuation + casualty evacuation and medical regulation.
+- Ocular trauma vision and evac priority + austere surgical support coordinator + preventive medicine and force health protection + casualty evacuation and medical regulation.
+- Forward water-quality lab and potability release + joint water production and distribution security + preventive medicine and force health protection + expeditionary water purification contamination attribution.
+- Petroleum quality lab and fuel-spec waiver + contested logistics sustainment + expeditionary fuel pipeline and bulk water terminal support + airbase dispersal and rapid reconstitution.
+- Fuel-bladder grounding bonding and lightning safety + contested logistics sustainment + operational energy resilience and microgrid + force protection and base defense.
+- Strategic solid-propellant casting and cure assurance + strategic industrial mobilization readiness + strategic solid rocket motor supply surge safety assurance + contested space launch and satellite reconstitution.
+- Ordnance magazine humidity and stability monitoring + munitions stockpile and expenditure manager + munitions port safety + force protection and base defense.
+- Coalition harbor VTS fallback and manual pilotage + strategic sealift and prepositioning coordinator + strategic harbor tug pilotage sealift priority + joint denied GNSS maritime pilotage and port entry.

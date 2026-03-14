@@ -2320,3 +2320,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-logistics-distribution-v1`.
 - Protocols: `AIS/NMEA`, `OGC`, signed salvage manifests, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
 - Degraded fallback: one mission-essential berth only with restricted vessel classes.
+
+## Profile Addendum W (2026-03-14, Dental and Ocular Trauma, Water and Fuel Release, Propellant Casting, Ordnance Stability, and Harbor Control)
+
+### `dental-maxillofacial-triage-v1`
+- Use for forward casualty management when dental and facial trauma decisions determine airway safety, return-to-duty timing, or protected evacuation priority.
+- Primary tools: `ts-joint-forward-dental-maxillofacial-triage-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, signed clinical-image manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Degraded fallback: damage-control dental triage only with paper casualty cards and UTC readbacks.
+
+### `ocular-trauma-vision-evac-v1`
+- Use for austere medical branches when eye injuries, contamination risk, and protected movement timing decide whether sight can be preserved.
+- Primary tools: `ts-joint-ocular-trauma-vision-evac-priority-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, signed clinical-image manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Degraded fallback: eye-shield and darken posture only with manual acuity tracking and readback-confirmed evacuation.
+
+### `water-lab-potability-release-v1`
+- Use for forward sustainment and force-health decisions when lab confidence and sample custody determine whether water can be distributed safely.
+- Primary tools: `ts-theater-forward-water-quality-lab-potability-release-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: signed sample manifests, `EDXL-DE/CAP`, `API/JSON`, `USMTF`, `HL7/FHIR`.
+- Degraded fallback: mission-essential rationing only with manual test strips and hourly command review.
+
+### `petroleum-lab-spec-waiver-v1`
+- Use for theater sustainment when assay results, platform tolerance, and waiver authority determine whether degraded fuel can still support operations.
+- Primary tools: `ts-theater-petroleum-quality-lab-fuel-spec-waiver-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed sample manifests, `API/JSON`, `USMTF`, `OPC UA`, `NIEM`.
+- Degraded fallback: mission-essential fuel issue only with dual approval and reduced-platform compatibility.
+
+### `fuel-bladder-lightning-safety-v1`
+- Use for expeditionary fuel operations when lightning, static-discharge risk, and grounding quality determine whether transfer can continue safely.
+- Primary tools: `ts-joint-fuel-bladder-grounding-bonding-lightning-safety-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `EDXL-DE/CAP`, signed maintenance manifests, `CoT`, `API/JSON`, `USMTF`.
+- Degraded fallback: fuel issue windows only under tightened weather criteria and voice readbacks.
+
+### `solid-propellant-casting-cure-v1`
+- Use for strategic industrial readiness when casting slots, cure capacity, and environmental-control stability govern solid-propellant output.
+- Primary tools: `ts-strategic-solid-propellant-casting-cure-assurance-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed lot manifests, `OPC UA`, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: deterrence-critical lots only with dual approval and conservative cure windows.
+
+### `ordnance-magazine-humidity-stability-v1`
+- Use for munitions safety and issue sequencing when environmental drift across magazines changes explosive stability and safe-release confidence.
+- Primary tools: `ts-theater-ordnance-magazine-humidity-stability-monitoring-v1`.
+- Cross-check tools: `ts-munitions-port-safety-v1`.
+- Protocols: signed environmental logs, `OPC UA`, `API/JSON`, `USMTF`, `EDXL-DE/CAP`.
+- Degraded fallback: reduced issue velocity only with manual checks every shift and commander-approved quarantine bands.
+
+### `harbor-vts-manual-pilotage-v1`
+- Use for coalition maritime control when harbor traffic services degrade and commanders must fall back to manual pilotage without collapsing sealift throughput.
+- Primary tools: `ts-coalition-harbor-vts-fallback-manual-pilotage-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Degraded fallback: daylight and essential-vessel-only pilotage with readback-confirmed channel release.

@@ -12504,3 +12504,87 @@ external_binding:
 ### `ps-coalition-port-wreck-clearance-heavy-lift-berth-reopening-stack-v1`
 - Protocols: `AIS/NMEA`, `OGC`, signed salvage manifests, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
 - Use for: obstruction status, heavy-lift tasking, berth certification updates, and coalition port-release acknowledgments.
+
+## Tool Suite Addendum LII (2026-03-14, Dental and Ocular Trauma, Water and Fuel Release, Propellant Casting, Ordnance Stability, and Harbor Control)
+
+### `ts-joint-forward-dental-maxillofacial-triage-v1`
+- Use for: forward dental triage, maxillofacial stabilization, and return-to-duty versus evacuation decisions when facial trauma threatens combat power.
+- Primary tools: dental imaging queue, oral-surgery supply board, patient movement regulator.
+- Cross-check tools: independent maxillofacial consult cell and alternate medevac controller.
+- Typical products: facial-trauma triage ladder, stabilization plan, RTD versus evac matrix.
+
+### `ts-joint-ocular-trauma-vision-evac-priority-v1`
+- Use for: ocular trauma triage, contamination control, and sight-preservation evacuation prioritization.
+- Primary tools: ocular imaging queue, trauma-regulation board, chemical-exposure decon tracker.
+- Cross-check tools: independent ophthalmic witness and alternate casualty-movement board.
+- Typical products: sight-preservation ladder, ocular contamination matrix, evac-priority brief.
+
+### `ts-theater-forward-water-quality-lab-potability-release-v1`
+- Use for: field water-quality lab workflows, potability release decisions, and contamination hold governance for forward distribution.
+- Primary tools: field water lab chain, purification telemetry board, preventive-medicine release tracker.
+- Cross-check tools: independent sample witness and alternate water-distribution board.
+- Typical products: water-release ladder, contamination hold matrix, distribution confidence brief.
+
+### `ts-theater-petroleum-quality-lab-fuel-spec-waiver-v1`
+- Use for: petroleum assay, fuel-spec waiver adjudication, and contamination containment when degraded fuel threatens sorties, convoys, or generators.
+- Primary tools: petroleum assay board, additive and blending ledger, fleet fuel-risk planner.
+- Cross-check tools: independent fuel-lab witness and alternate maintenance risk board.
+- Typical products: fuel release ladder, spec-waiver matrix, contamination containment brief.
+
+### `ts-joint-fuel-bladder-grounding-bonding-lightning-safety-v1`
+- Use for: grounding, bonding, lightning stand-down, and transfer-governance decisions at expeditionary fuel sites.
+- Primary tools: lightning-warning board, fuel-point grounding audit tracker, transfer operations planner.
+- Cross-check tools: independent safety observer and alternate fuel-point control cell.
+- Typical products: transfer go or no-go ladder, grounding discrepancy board, lightning safety branch brief.
+
+### `ts-strategic-solid-propellant-casting-cure-assurance-v1`
+- Use for: strategic solid-propellant casting, cure scheduling, and lot-release assurance when motor production is capacity-constrained or disrupted.
+- Primary tools: batch and cure ledger, environmental-control monitor, lot-release governance board.
+- Cross-check tools: independent propellant safety witness and alternate industrial priority board.
+- Typical products: casting queue ladder, cure-capacity matrix, lot-release confidence brief.
+
+### `ts-theater-ordnance-magazine-humidity-stability-monitoring-v1`
+- Use for: monitoring humidity, temperature drift, and explosive-stability risk across dispersed ordnance magazines.
+- Primary tools: magazine telemetry board, explosive-stability watchboard, issue-priority planner.
+- Cross-check tools: independent explosives safety witness and alternate storage control cell.
+- Typical products: magazine environmental risk ladder, issue or quarantine matrix, stability-monitoring brief.
+
+### `ts-coalition-harbor-vts-fallback-manual-pilotage-v1`
+- Use for: coalition harbor VTS fallback, manual pilotage release, and safe channel management when cyber or navigation outages disrupt port control.
+- Primary tools: harbor traffic board, pilot allocation tracker, channel-risk estimator.
+- Cross-check tools: independent harbor master witness and alternate sealift control board.
+- Typical products: harbor traffic fallback ladder, manual pilotage matrix, coalition channel-risk brief.
+
+## Protocol Stack Addendum LII (2026-03-14, External Integration Profiles for Expansion Wave LII)
+
+### `ps-joint-forward-dental-maxillofacial-triage-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, signed clinical-image manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Use for: clinical imaging exchange, triage status, and evacuation or return-to-duty acknowledgments.
+
+### `ps-joint-ocular-trauma-vision-evac-priority-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, signed clinical-image manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Use for: visual-acuity updates, contamination status exchange, and protected evacuation acknowledgments.
+
+### `ps-theater-forward-water-quality-lab-potability-release-stack-v1`
+- Protocols: signed sample manifests, `EDXL-DE/CAP`, `API/JSON`, `USMTF`, `HL7/FHIR`.
+- Use for: sample-chain exchange, potability release routing, and distribution-hold acknowledgments.
+
+### `ps-theater-petroleum-quality-lab-fuel-spec-waiver-stack-v1`
+- Protocols: signed sample manifests, `API/JSON`, `USMTF`, `OPC UA`, `NIEM`.
+- Use for: assay results, waiver approvals, and fuel-release acknowledgments.
+
+### `ps-joint-fuel-bladder-grounding-bonding-lightning-safety-stack-v1`
+- Protocols: `EDXL-DE/CAP`, signed maintenance manifests, `CoT`, `API/JSON`, `USMTF`.
+- Use for: lightning alerts, grounding-status exchange, and transfer-governance acknowledgments.
+
+### `ps-strategic-solid-propellant-casting-cure-assurance-stack-v1`
+- Protocols: signed lot manifests, `OPC UA`, `API/JSON`, `USMTF`, `NIEM`.
+- Use for: batch-state exchange, cure-timeline updates, and lot-release approvals.
+
+### `ps-theater-ordnance-magazine-humidity-stability-monitoring-stack-v1`
+- Protocols: signed environmental logs, `OPC UA`, `API/JSON`, `USMTF`, `EDXL-DE/CAP`.
+- Use for: magazine telemetry, stability alerts, and issue or quarantine acknowledgments.
+
+### `ps-coalition-harbor-vts-fallback-manual-pilotage-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Use for: traffic-state exchange, manual pilotage release, and coalition channel-control acknowledgments.

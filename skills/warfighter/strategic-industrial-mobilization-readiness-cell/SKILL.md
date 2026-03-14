@@ -237,3 +237,8 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-stack-v1` when industrial recovery depends on mineral reclamation throughput, allied processing capacity, or cross-border quality assurance.
 - Add `tool_suite_id=ts-strategic-quantum-network-key-custody-and-compromise-response-cell-v1` + `protocol_stack_id=ps-strategic-quantum-network-key-custody-and-compromise-response-cell-stack-v1` when defense-industrial command and release networks depend on trusted strategic cryptographic custody and compromise containment.
 - Add `packet_id=DPL-TRITIUM-RESERVOIR-MAINTENANCE-001`, `packet_id=DPL-EUV-PHOTOMASK-RADHARD-001`, `packet_id=DPL-ADDITIVE-WARHEAD-LINER-QA-001`, `packet_id=DPL-BATTERY-RECYCLING-MINERAL-RECOVERY-001`, and `packet_id=DPL-QUANTUM-NETWORK-KEY-CUSTODY-001` for recommendations that materially alter strategic sustainment posture, industrial surge confidence, quality assurance, mineral recovery throughput, or deterrence-program readiness.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-strategic-solid-propellant-casting-cure-assurance-v1` + `protocol_stack_id=ps-strategic-solid-propellant-casting-cure-assurance-stack-v1` when industrial readiness depends on cure capacity, environmental control, or lot-release timing for solid propellant production and recertification.
+- Add `packet_id=DPL-SOLID-PROPELLANT-CASTING-CURE-001` for recommendations that materially alter propellant throughput, lot confidence, or strategic motor readiness.

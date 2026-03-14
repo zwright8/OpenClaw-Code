@@ -928,3 +928,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent harbor master witness and alternate sealift throughput board
 - Protocol binding: AIS/NMEA + OGC + signed salvage manifests + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
 - Fallback path: one mission-essential berth only with restricted vessel classes
+
+## New Toolchain Wave (2026-03-14, Expansion Wave LII)
+
+### `TC-DENTAL-110`
+
+- Domain: joint forward dental and maxillofacial triage
+- Primary systems: dental imaging queue, oral-surgery supply board, patient movement regulator
+- Cross-check systems: independent maxillofacial consult cell and alternate medevac controller
+- Protocol binding: HL7/FHIR + USMTF + signed clinical-image manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: damage-control dental triage only with paper casualty cards and UTC readbacks
+
+### `TC-OCULAR-111`
+
+- Domain: joint ocular trauma vision and evacuation priority
+- Primary systems: ocular imaging queue, trauma-regulation board, chemical-exposure decon tracker
+- Cross-check systems: independent ophthalmic witness and alternate casualty-movement board
+- Protocol binding: HL7/FHIR + USMTF + signed clinical-image manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: eye-shield and darken posture only with manual acuity tracking and readback-confirmed evacuation
+
+### `TC-WATERLAB-112`
+
+- Domain: theater forward water-quality lab and potability release
+- Primary systems: field water lab chain, purification telemetry board, preventive-medicine release tracker
+- Cross-check systems: independent sample witness and alternate water-distribution board
+- Protocol binding: signed sample manifests + EDXL-DE/CAP + API/JSON + USMTF + HL7/FHIR
+- Fallback path: mission-essential rationing only with manual test strips and hourly command review
+
+### `TC-PETROLAB-113`
+
+- Domain: theater petroleum quality lab and fuel-spec waiver
+- Primary systems: petroleum assay board, additive and blending ledger, fleet fuel-risk planner
+- Cross-check systems: independent fuel-lab witness and alternate maintenance risk board
+- Protocol binding: signed sample manifests + API/JSON + USMTF + OPC UA + NIEM
+- Fallback path: mission-essential fuel issue only with dual approval and reduced-platform compatibility
+
+### `TC-FUELBLADDER-114`
+
+- Domain: joint fuel-bladder grounding bonding and lightning safety
+- Primary systems: lightning-warning board, fuel-point grounding audit tracker, transfer operations planner
+- Cross-check systems: independent safety observer and alternate fuel-point control cell
+- Protocol binding: EDXL-DE/CAP + signed maintenance manifests + CoT + API/JSON + USMTF
+- Fallback path: fuel issue windows only under tightened weather criteria and voice readbacks
+
+### `TC-PROPELLANT-115`
+
+- Domain: strategic solid-propellant casting and cure assurance
+- Primary systems: batch and cure ledger, environmental-control monitor, lot-release governance board
+- Cross-check systems: independent propellant safety witness and alternate industrial priority board
+- Protocol binding: signed lot manifests + OPC UA + API/JSON + USMTF + NIEM
+- Fallback path: deterrence-critical lots only with dual approval and conservative cure windows
+
+### `TC-MAGAZINE-116`
+
+- Domain: theater ordnance magazine humidity and stability monitoring
+- Primary systems: magazine telemetry board, explosive-stability watchboard, issue-priority planner
+- Cross-check systems: independent explosives safety witness and alternate storage control cell
+- Protocol binding: signed environmental logs + OPC UA + API/JSON + USMTF + EDXL-DE/CAP
+- Fallback path: reduced issue velocity only with manual checks every shift and commander-approved quarantine bands
+
+### `TC-HARBORVTS-117`
+
+- Domain: coalition harbor VTS fallback and manual pilotage
+- Primary systems: harbor traffic board, pilot allocation tracker, channel-risk estimator
+- Cross-check systems: independent harbor master witness and alternate sealift control board
+- Protocol binding: AIS/NMEA + OGC + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: daylight and essential-vessel-only pilotage with readback-confirmed channel release
