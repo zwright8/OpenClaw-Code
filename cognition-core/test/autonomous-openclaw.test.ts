@@ -4132,6 +4132,81 @@ test('buildAutonomousBatchPlan supports exp3_ix auto-eta with decoupled implicit
     );
 });
 
+test('buildAutonomousBatchPlan defaults exp3_ix implicit gamma to eta/2 when not explicitly provided', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 802, code: 'SK-00802', title: 'Skill 802' },
+            { id: 803, code: 'SK-00803', title: 'Skill 803' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 8,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '802': { attempts: 10, successes: 6, failures: 4, consecutiveFailures: 0, lastWave: 7, lastStatus: 'completed' },
+                '803': { attempts: 10, successes: 5, failures: 5, consecutiveFailures: 0, lastWave: 7, lastStatus: 'failed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 9,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3IxEta: 0.8
+        },
+        nowFactory: () => 100_000
+    });
+
+    const runtimePolicy = plan.selection.policyProbabilities.skills;
+    assert.equal(runtimePolicy?.mode, 'exp3_ix');
+    assert.equal(runtimePolicy?.autoEta, false);
+    assert.equal(Number(runtimePolicy?.eta), 0.8);
+    assert.equal(
+        Number(runtimePolicy?.implicitGamma),
+        0.4
+    );
+});
+
+test('buildAutonomousBatchPlan keeps explicit exp3 implicit gamma override', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 804, code: 'SK-00804', title: 'Skill 804' },
+            { id: 805, code: 'SK-00805', title: 'Skill 805' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 8,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '804': { attempts: 10, successes: 3, failures: 7, consecutiveFailures: 0, lastWave: 7, lastStatus: 'failed' },
+                '805': { attempts: 10, successes: 8, failures: 2, consecutiveFailures: 0, lastWave: 7, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 9,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3IxEta: 0.8,
+            exp3ImplicitGamma: 0.2
+        },
+        nowFactory: () => 100_000
+    });
+
+    const runtimePolicy = plan.selection.policyProbabilities.skills;
+    assert.equal(runtimePolicy?.mode, 'exp3_ix');
+    assert.equal(Number(runtimePolicy?.eta), 0.8);
+    assert.equal(Number(runtimePolicy?.implicitGamma), 0.2);
+});
+
 test('buildAutonomousBatchPlan supports tsallis_inf auto-eta calibration', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

@@ -49,7 +49,7 @@ Options:
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
-  --exp3-implicit-gamma <n>    Implicit-exploration denominator gamma for exp3_ix* (0-0.5, default: exp3-ix-gamma, or eta/2 with --exp3-auto-eta)
+  --exp3-implicit-gamma <n>    Implicit-exploration denominator gamma for exp3_ix* (0-0.5, default: eta/2 unless overridden)
   --exp3-iw-cap <n>            Max implicit importance weight for exp3_ix*/corral_exp3* loss estimates (1-1000, default: 50)
   --exp3-ix-eta <n>            Exponential weight scale for exp3_ix* (>0 to 10, default: 1)
   --exp3-auto-eta              Auto-tune exp3_ix eta via sqrt((2*log(K+1))/(N*K)); defaults implicit gamma to eta/2 unless overridden

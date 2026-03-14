@@ -3073,13 +3073,10 @@ function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
         const suggestedEta = computeAdversarialAutoEta(armCount, totalAttempts);
         eta = clamp(suggestedEta, Number.EPSILON, MAX_EXP3_IX_ETA);
     }
+    const implicitGammaFromEta = clamp(eta / 2, Number.EPSILON, MAX_EXP3_IX_GAMMA);
     const implicitGamma = Number.isFinite(Number(policy.exp3ImplicitGamma))
         ? clamp(Number(policy.exp3ImplicitGamma), Number.EPSILON, MAX_EXP3_IX_GAMMA)
-        : (
-            policy.exp3AutoEta
-                ? clamp(eta / 2, Number.EPSILON, MAX_EXP3_IX_GAMMA)
-                : explorationGamma
-        );
+        : implicitGammaFromEta;
     return {
         eta,
         explorationGamma,
