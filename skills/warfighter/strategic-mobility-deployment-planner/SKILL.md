@@ -148,3 +148,11 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 
 - Add `tool_suite_id=ts-strategic-civil-reserve-air-fleet-aeromedical-surge-v1` with `protocol_stack_id=ps-strategic-civil-reserve-air-fleet-aeromedical-surge-stack-v1` when deployment flow depends on commercial-carrier activation, patient movement surge, or diplomatic airbridge sequencing.
 - Add `packet_id=DPL-CRAF-AEROMED-SURGE-001` for recommendations that alter strategic airlift allocation, patient movement priority, or clearance timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLI Addendum)
+
+- Add `tool_suite_id=ts-strategic-domestic-transport-chokepoint-reroute-v1` + `protocol_stack_id=ps-strategic-domestic-transport-chokepoint-reroute-stack-v1` when strategic deployment flow depends on rerouting around rail, bridge, port, or highway chokepoint failures.
+- Add `tool_suite_id=ts-theater-river-port-dredge-barge-roro-sustainment-v1` + `protocol_stack_id=ps-theater-river-port-dredge-barge-roro-sustainment-stack-v1` when inland-waterway and roll-on roll-off capacity materially affect deployment timing or cargo throughput.
+- Add `tool_suite_id=ts-joint-volcanic-ash-airbridge-engine-sortie-recovery-v1` + `protocol_stack_id=ps-joint-volcanic-ash-airbridge-engine-sortie-recovery-stack-v1` when strategic airlift and airbridge continuity depend on ash-safe routing and engine inspection surge.
+- Add `tool_suite_id=ts-strategic-shipyard-drydock-power-water-cyber-restoration-v1` + `protocol_stack_id=ps-strategic-shipyard-drydock-power-water-cyber-restoration-stack-v1` when sealift or naval repair throughput constrains deployment readiness.
+- Add `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, `packet_id=DPL-THEATER-RIVER-PORT-DREDGE-BARGE-RORO-001`, `packet_id=DPL-JOINT-VOLCANIC-ASH-AIRBRIDGE-ENGINE-RECOVERY-001`, and `packet_id=DPL-STRATEGIC-SHIPYARD-DRYDOCK-RESTORATION-001` for recommendations that alter strategic deployment timing, modal allocation, or clearance sequencing.

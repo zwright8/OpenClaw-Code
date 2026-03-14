@@ -263,3 +263,10 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add tool_suite_id=ts-joint-undersea-cable-sabotage-forensics-restoration-v1 + protocol_stack_id=ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1 when failover assumptions depend on subsea trunk restoration and verified forensic attribution.
 - Add packet_id=DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-002 for branches that materially alter failover timing or coalition releasability.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLI Addendum)
+
+- Add `tool_suite_id=ts-joint-contested-cellular-timing-holdover-first-responder-priority-v1` + `protocol_stack_id=ps-joint-contested-cellular-timing-holdover-first-responder-priority-stack-v1` when failover assumptions depend on timing holdover, backhaul resilience, or priority-service continuity across public-safety telecom nodes.
+- Add `tool_suite_id=ts-theater-austere-command-post-flooding-hvac-smoke-control-v1` + `protocol_stack_id=ps-theater-austere-command-post-flooding-hvac-smoke-control-stack-v1` when mission-network survivability depends on command-post environmental controls, relocation timing, or smoke-isolation actions.
+- Add `tool_suite_id=ts-expeditionary-autonomous-sustainment-routing-drift-governance-v1` + `protocol_stack_id=ps-expeditionary-autonomous-sustainment-routing-drift-governance-stack-v1` when failover networks must sustain autonomous route replanning, convoy telemetry, or degraded machine-to-machine trust.
+- Add `packet_id=DPL-JOINT-CELLULAR-TIMING-HOLDOVER-FIRST-RESPONDER-001`, `packet_id=DPL-THEATER-AUSTERE-COMMAND-POST-FLOOD-SMOKE-001`, and `packet_id=DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001` for branches that materially alter failover timing, network survivability, or command-node continuity.

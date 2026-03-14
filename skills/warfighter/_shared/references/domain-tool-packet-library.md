@@ -10963,3 +10963,137 @@ validation_gates:
 - output_schema: crane rollback board, pier recovery ladder, sealift recovery packet
 - protocol_profile: STIX/TAXII + AIS/NMEA + NIMS/ICS + USMTF + API/JSON
 - validation_gates: OT-integrity pass, crane-safety threshold, berth-release acknowledgment
+
+## Packet Addendum XXX (2026-03-14, Expansion Wave XLI)
+
+### packet_id: DPL-JOINT-CISLUNAR-TIMING-COLLISION-MITIGATION-001
+- domain: joint cislunar timing trust and collision risk mitigation
+- objective: preserve custody-safe cislunar maneuver decisions when degraded timing trust increases conjunction risk.
+- primary_tools: cislunar ephemeris ledger, timing-integrity board, conjunction assessment workflow, maneuver approval tracker
+- alternate_tools: manual ephemeris reconciliation cell and conservative keep-out worksheet
+- degraded_mode: essential custody maneuvers only with expanded separation and dual approval
+- input_requirements: ephemeris data, timing confidence, conjunction alerts, planned maneuvers, custody status
+- output_schema: timing-trust board, conjunction ladder, maneuver approval packet
+- protocol_profile: CCSDS + signed ephemeris manifests + USMTF + STIX/TAXII + API/JSON
+- validation_gates: timing-confidence pass, custody-agreement threshold, maneuver-acknowledgment integrity
+
+### packet_id: DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001
+- domain: strategic domestic transport chokepoint reroute
+- objective: preserve deployment and sustainment flow by rerouting military movement around domestic chokepoint failures.
+- primary_tools: national freight-flow board, military shipment priority tracker, bridge and port status dashboard, convoy reroute workflow
+- alternate_tools: manual movement-control board and regional liaison reroute worksheet
+- degraded_mode: defense-critical movements only with modal rationing and commander-approved delay acceptance
+- input_requirements: outage reports, cargo priorities, modal capacity, route security, deployment timelines
+- output_schema: chokepoint reroute board, modal transfer ladder, movement authority packet
+- protocol_profile: NIEM + OGC WMS/WFS/WMTS + NIMS/ICS + USMTF + API/JSON
+- validation_gates: infrastructure-status pass, modal-capacity threshold, movement-release acknowledgment
+
+### packet_id: DPL-COALITION-MEDICAL-CREDENTIAL-REPRIVILEGING-001
+- domain: coalition medical credential revocation and reprivileging
+- objective: restore safe coalition care delivery after credential compromise or revocation events disrupt clinical staffing.
+- primary_tools: clinician credential registry, revocation ledger, emergency privileging workflow, bed-load balancing board
+- alternate_tools: manual credential witness board and emergency privileging committee worksheet
+- degraded_mode: life-, limb-, or eyesight-saving care only with emergency privileges and explicit risk acknowledgment
+- input_requirements: revocation notices, clinician roster, privileging status, patient-load data, coalition caveats
+- output_schema: credential trust board, emergency privileging ladder, care continuity packet
+- protocol_profile: HL7/FHIR + NIEM + NATO APP-11/ADatP-3 aligned + signed credential manifests + API/JSON
+- validation_gates: credential-trust pass, legal-concurrence threshold, patient-safety acknowledgment
+
+### packet_id: DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001
+- domain: expeditionary autonomous sustainment routing drift governance
+- objective: govern autonomous sustainment routing when model drift or sensor bias undermines route-confidence decisions.
+- primary_tools: route-optimization model board, drift monitor, convoy telemetry tracker, threat-change workflow
+- alternate_tools: human-led route board and reduced-autonomy checkpoint worksheet
+- degraded_mode: manned convoy planning only on pre-cleared routes with reduced tempo
+- input_requirements: route-model outputs, drift indicators, telemetry status, threat reports, sustainment demand
+- output_schema: routing trust board, drift escalation ladder, convoy release packet
+- protocol_profile: CoT + VMF + STIX/TAXII + USMTF + API/JSON
+- validation_gates: drift-threshold pass, waypoint-confidence threshold, convoy-release acknowledgment
+
+### packet_id: DPL-MULTI-THEATER-MARITIME-INTERDICTION-EVIDENCE-SANCTIONS-001
+- domain: multi-theater maritime interdiction evidence and sanctions
+- objective: align legal evidence and sanctions sufficiency across theaters before interdiction or diversion release.
+- primary_tools: vessel-custody ledger, sanctions case board, evidence schema translator, boarding action workflow
+- alternate_tools: manual legal review board and theater caveat reconciliation worksheet
+- degraded_mode: advisory-only interdiction recommendations until legal sufficiency is confirmed
+- input_requirements: vessel history, sanctions triggers, custody evidence, theater caveats, interception windows
+- output_schema: evidence harmonization board, sanctions decision ladder, interdiction release packet
+- protocol_profile: AIS/NMEA + NIEM + STIX/TAXII + NATO APP-11/ADatP-3 aligned + USMTF + API/JSON
+- validation_gates: legal-sufficiency pass, sanctions-confidence threshold, custody-acknowledgment integrity
+
+### packet_id: DPL-THEATER-DIGITAL-TERRAIN-SPOOF-ROUTE-APPROVAL-001
+- domain: theater digital terrain fabric spoof detection and route approval
+- objective: re-approve maneuver routes only after terrain provenance and geospatial integrity checks pass.
+- primary_tools: terrain provenance ledger, geospatial anomaly detector, route-clearance workflow, engineer mobility tracker
+- alternate_tools: manual map and survey reconciliation board and engineer approval worksheet
+- degraded_mode: mission-essential movement only with visual navigation cross-checks and conservative movement limits
+- input_requirements: terrain sources, provenance metadata, route nominations, engineer reports, threat indicators
+- output_schema: terrain integrity board, route approval ladder, maneuver release packet
+- protocol_profile: OGC WMS/WFS/WMTS + CoT + VMF + USMTF + API/JSON
+- validation_gates: provenance pass, engineer-acknowledgment threshold, route-risk confidence
+
+### packet_id: DPL-EXPEDITIONARY-AIRCRAFT-ARRESTING-GEAR-CRASH-BARRIER-001
+- domain: expeditionary aircraft arresting gear and crash barrier restoration
+- objective: recover runway release safely by restoring arresting gear and crash barriers under sortie pressure.
+- primary_tools: arresting-gear status dashboard, barrier repair workflow, runway inspection board, sortie sequencing planner
+- alternate_tools: manual airfield safety board and single-runway release worksheet
+- degraded_mode: emergency recoveries only with aircraft-type restrictions and explicit commander risk acceptance
+- input_requirements: arresting-gear status, barrier damage, runway inspections, aircraft demand, repair capacity
+- output_schema: barrier restoration board, runway release ladder, sortie recovery packet
+- protocol_profile: AIXM/FIXM/IWXXM + CoT + USMTF + NIEM + API/JSON
+- validation_gates: runway-integrity pass, barrier-safety threshold, sortie-release acknowledgment
+
+### packet_id: DPL-JOINT-VOLCANIC-ASH-AIRBRIDGE-ENGINE-RECOVERY-001
+- domain: joint volcanic ash airbridge engine inspection and sortie recovery
+- objective: maintain airbridge throughput while ash hazards, engine inspection capacity, and route restrictions remain contested.
+- primary_tools: ash-cloud forecast board, engine-health tracker, inspection scheduling workflow, airbridge priority planner
+- alternate_tools: manual ash-avoidance board and fixed inspection interval worksheet
+- degraded_mode: life-saving or strategic airlift only with conservative ash avoidance and universal post-flight inspections
+- input_requirements: ash forecasts, route status, engine data, inspection backlog, cargo priorities
+- output_schema: ash exposure board, engine inspection ladder, sortie recovery packet
+- protocol_profile: IWXXM + AIXM/FIXM + OGC WMS/WFS/WMTS + USMTF + API/JSON
+- validation_gates: ash-exposure threshold, engine-inspection pass, airbridge-release acknowledgment
+
+### packet_id: DPL-STRATEGIC-SHIPYARD-DRYDOCK-RESTORATION-001
+- domain: strategic shipyard drydock power water and cyber restoration
+- objective: restore drydock throughput after utility outages or OT compromise without compromising safety.
+- primary_tools: shipyard utility dashboard, drydock availability board, OT incident workflow, repair priority planner
+- alternate_tools: manual shipyard control board and dock-by-dock release worksheet
+- degraded_mode: combat-critical repairs only with reduced dock tempo and manual safety watches
+- input_requirements: utility status, drydock readiness, OT alerts, repair priorities, workforce constraints
+- output_schema: drydock restoration board, utility recovery ladder, repair release packet
+- protocol_profile: NIMS/ICS + STIX/TAXII + NIEM + USMTF + API/JSON
+- validation_gates: utility-integrity pass, dock-safety threshold, repair-release acknowledgment
+
+### packet_id: DPL-THEATER-RIVER-PORT-DREDGE-BARGE-RORO-001
+- domain: theater river port dredge barge and roll-on roll-off sustainment
+- objective: keep inland-waterway sustainment flowing by synchronizing channel dredging, barge queues, and ramp release.
+- primary_tools: hydrographic survey board, dredge scheduling workflow, barge queue tracker, roll-on roll-off release planner
+- alternate_tools: manual harbormaster board and daylight-only transload worksheet
+- degraded_mode: mission-essential cargo only with draft limits and reduced transload tempo
+- input_requirements: channel depth, dredge status, barge queues, ramp condition, cargo priorities
+- output_schema: channel clearance board, barge flow ladder, river-port sustainment packet
+- protocol_profile: AIS/NMEA + OGC WMS/WFS/WMTS + NIEM + USMTF + API/JSON
+- validation_gates: channel-depth pass, ramp-release threshold, cargo-flow acknowledgment
+
+### packet_id: DPL-JOINT-CELLULAR-TIMING-HOLDOVER-FIRST-RESPONDER-001
+- domain: joint contested cellular timing holdover and first responder priority
+- objective: preserve public-safety and military life-safety communications when timing or backhaul disruption degrades service.
+- primary_tools: cellular timing status board, backhaul failover workflow, priority-service registry, PSAP or EMS route planner
+- alternate_tools: manual telecom incident board and regional holdover reconciliation worksheet
+- degraded_mode: first-responder and military life-safety traffic only with reduced subscriber access and manual timing witness
+- input_requirements: timing status, backhaul health, priority-service demand, first-responder posture, outage forecasts
+- output_schema: timing holdover board, priority-service ladder, telecom restoration packet
+- protocol_profile: NIEM + NIMS/ICS + EDXL-DE/CAP + signed timing exports + USMTF + API/JSON
+- validation_gates: holdover-confidence pass, priority-routing threshold, public-safety acknowledgment
+
+### packet_id: DPL-THEATER-AUSTERE-COMMAND-POST-FLOOD-SMOKE-001
+- domain: theater austere command post flooding and HVAC smoke control
+- objective: preserve battle-rhythm continuity by isolating flood or smoke hazards and relocating mission nodes before C2 degrades.
+- primary_tools: facility sensor dashboard, water-ingress workflow, HVAC isolation board, mission-node relocation planner
+- alternate_tools: manual facilities watch board and fragmentation recovery worksheet
+- degraded_mode: essential C2 nodes only with partial relocation and manual environmental watches
+- input_requirements: water-ingress alerts, smoke status, HVAC health, node criticality, relocation options
+- output_schema: command-post survivability board, flood-smoke control ladder, mission continuity packet
+- protocol_profile: BACnet/IP + NIMS/ICS + CoT + USMTF + API/JSON
+- validation_gates: facility-safety pass, relocation-readiness threshold, C2-continuity acknowledgment

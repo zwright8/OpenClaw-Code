@@ -2349,3 +2349,33 @@ Every skill output should include:
 - Joint disconnected mission AI model update attestation + tactical edge AI model assurance + theater mission data poisoning detection and model quarantine + mission-assured software factory support.
 - Homeland reservist employer protection and mobilization assurance + multi-domain reserve mobilization readiness + reserve and guard mobilization planner + strategic industrial mobilization readiness.
 - Strategic commercial port crane firmware rollback and sealift recovery + port-opening JRSOI integration + homeland port ransomware manifest recovery and customs triage + coalition contested port crane cyber-physical recovery.
+
+## New Expansion Wave (2026-03-14, Wave XLI)
+
+- joint-cislunar-timing-trust-and-collision-risk-mitigation-cell
+- strategic-domestic-transport-chokepoint-reroute-cell
+- coalition-medical-credential-revocation-and-reprivileging-cell
+- expeditionary-autonomous-sustainment-routing-drift-governance-cell
+- multi-theater-maritime-interdiction-evidence-and-sanctions-cell
+- theater-digital-terrain-fabric-spoof-detection-and-route-approval-cell
+- expeditionary-aircraft-arresting-gear-and-crash-barrier-restoration-cell
+- joint-volcanic-ash-airbridge-engine-inspection-and-sortie-recovery-cell
+- strategic-shipyard-drydock-power-water-and-cyber-restoration-cell
+- theater-river-port-dredge-barge-and-roll-on-roll-off-sustainment-cell
+- joint-contested-cellular-timing-holdover-and-first-responder-priority-cell
+- theater-austere-command-post-flooding-and-hvac-smoke-control-cell
+
+## Updated Pairings (2026-03-14, Wave XLI)
+
+- Joint cislunar timing trust and collision risk mitigation + contested space domain awareness and rendezvous denial + cislunar logistics custody and conjunction assurance + mission risk decision support.
+- Strategic domestic transport chokepoint reroute + strategic mobility deployment planning + contested logistics sustainment + port-opening JRSOI integration.
+- Coalition medical credential revocation and emergency reprivileging + joint role 3 medical network and aeromedical evacuation + coalition legal interoperability and status of forces + civilian hospital overflow military triage synchronization.
+- Expeditionary autonomous sustainment routing drift governance + autonomous ground resupply convoy control + contested logistics sustainment + operational AI agent authority and escalation.
+- Multi-theater maritime interdiction evidence and sanctions + coalition maritime insurance sanctions and convoy underwriting + battlefield forensics site exploitation + coalition battlefield evidence translation and tribunal handoff.
+- Theater digital terrain fabric spoof detection and route approval + contested geospatial datum and coordinate integrity + engineer mobility countermobility survivability + denied environment map production and geodesy.
+- Expeditionary aircraft arresting gear and crash barrier restoration + theater airfield damage assessment and rapid repair + expeditionary air defense counter rocket mortar + airbase dispersal and rapid reconstitution.
+- Joint volcanic ash airbridge engine inspection and sortie recovery + strategic mobility deployment planning + air tasking cycle support + combat search and rescue coordination.
+- Strategic shipyard drydock power water and cyber restoration + coalition shipyard repair and battle damage surge + strategic industrial mobilization readiness + contested maritime logistics protection.
+- Theater river port dredge barge and roll-on roll-off sustainment + expeditionary waterway bridge denial gap crossing + joint port opening and JLOTS synchronization + strategic waterway lock and dam cyber physical resilience.
+- Joint contested cellular timing holdover and first responder priority + theater mission network failover + homeland defense critical 911 PSAP military support + joint civilian telecom military priority routing.
+- Theater austere command post flooding and HVAC smoke control + joint denied environment C2 node mobility and displacement + mission risk decision support + theater mission network failover.

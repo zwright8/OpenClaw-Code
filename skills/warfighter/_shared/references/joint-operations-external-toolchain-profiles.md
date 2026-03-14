@@ -1542,3 +1542,89 @@ For each critical recommendation, include:
 - Cross-check tools: independent OT integrity witness + alternate cargo-flow monitor.
 - Protocols: `STIX/TAXII`, `AIS/NMEA`, `NIMS/ICS`, `USMTF`, `API/JSON`.
 - Degraded fallback: defense-critical cargo only with crane-by-crane manual release and reduced pier tempo.
+
+## Profile Set (2026-03-14 Expansion Wave XLI - Cislunar Timing Collision Mitigation, Domestic Transport Reroute, Coalition Medical Reprivileging, Autonomous Sustainment Routing Drift, Maritime Interdiction Evidence, Terrain Spoof Route Approval, Arresting Gear Restoration, Volcanic Ash Airbridge Recovery, Shipyard Drydock Restoration, River Port Sustainment, Cellular Timing Holdover, and Command Post Flood/Smoke Control)
+
+### `joint-cislunar-timing-trust-collision-mitigation-v1`
+- Use for: cislunar maneuver branches where degraded timing trust and conjunction risk determine custody-safe release.
+- Primary tools: cislunar ephemeris ledger + timing-integrity board + conjunction assessment workflow.
+- Cross-check tools: independent orbital-timing witness + alternate custody-confidence monitor.
+- Protocols: `CCSDS`, signed ephemeris manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: essential custody maneuvers only with expanded separation and dual approval.
+
+### `strategic-domestic-transport-chokepoint-reroute-v1`
+- Use for: domestic force-flow branches where modal chokepoints threaten deployment or sustainment continuity.
+- Primary tools: national freight-flow board + military shipment priority tracker + bridge and port status dashboard.
+- Cross-check tools: independent movement-control witness + alternate modal-capacity monitor.
+- Protocols: `NIEM`, `OGC WMS/WFS/WMTS`, `NIMS/ICS`, `USMTF`, `API/JSON`.
+- Degraded fallback: defense-critical movements only with modal rationing and commander-approved delays.
+
+### `coalition-medical-credential-revocation-reprivileging-v1`
+- Use for: coalition care branches where clinician trust, revocation events, and emergency privileging determine treatment continuity.
+- Primary tools: clinician credential registry + revocation ledger + emergency privileging workflow.
+- Cross-check tools: independent credential witness + alternate care-capacity monitor.
+- Protocols: `HL7/FHIR`, `NIEM`, `NATO APP-11/ADatP-3 aligned`, signed credential manifests, `API/JSON`.
+- Degraded fallback: life-, limb-, or eyesight-saving care only with emergency privileges and explicit risk acceptance.
+
+### `expeditionary-autonomous-sustainment-routing-drift-governance-v1`
+- Use for: expeditionary sustainment branches where route-model drift and threat changes undermine autonomy confidence.
+- Primary tools: route-optimization model board + drift monitor + convoy telemetry tracker.
+- Cross-check tools: independent route-trust witness + alternate waypoint-validation monitor.
+- Protocols: `CoT`, `VMF`, `STIX/TAXII`, `USMTF`, `API/JSON`.
+- Degraded fallback: manned convoy planning only on pre-cleared routes with reduced tempo.
+
+### `multi-theater-maritime-interdiction-evidence-sanctions-v1`
+- Use for: multi-theater interdiction branches where sanctions sufficiency and evidence harmonization determine release authority.
+- Primary tools: vessel-custody ledger + sanctions case board + evidence schema translator.
+- Cross-check tools: independent legal sufficiency witness + alternate vessel-history monitor.
+- Protocols: `AIS/NMEA`, `NIEM`, `STIX/TAXII`, `NATO APP-11/ADatP-3 aligned`, `USMTF`, `API/JSON`.
+- Degraded fallback: advisory-only interdiction recommendations until legal sufficiency is verified.
+
+### `theater-digital-terrain-fabric-spoof-route-approval-v1`
+- Use for: maneuver branches where terrain-data tampering or provenance gaps threaten route release confidence.
+- Primary tools: terrain provenance ledger + geospatial anomaly detector + route-clearance workflow.
+- Cross-check tools: independent survey witness + alternate route-risk monitor.
+- Protocols: `OGC WMS/WFS/WMTS`, `CoT`, `VMF`, `USMTF`, `API/JSON`.
+- Degraded fallback: mission-essential movement only with visual navigation cross-checks and route-by-route engineer approval.
+
+### `expeditionary-aircraft-arresting-gear-crash-barrier-restoration-v1`
+- Use for: airbase recovery branches where arresting-gear damage and barrier repairs govern aircraft release.
+- Primary tools: arresting-gear status dashboard + barrier repair workflow + runway inspection board.
+- Cross-check tools: independent airfield safety witness + alternate runway-availability monitor.
+- Protocols: `AIXM/FIXM/IWXXM`, `CoT`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: emergency recoveries only with aircraft-type restrictions and explicit commander risk acceptance.
+
+### `joint-volcanic-ash-airbridge-engine-sortie-recovery-v1`
+- Use for: airbridge branches where volcanic ash, engine inspections, and diversion windows govern sortie recovery.
+- Primary tools: ash-cloud forecast board + engine-health tracker + inspection scheduling workflow.
+- Cross-check tools: independent ash-hazard witness + alternate engine-readiness monitor.
+- Protocols: `IWXXM`, `AIXM/FIXM`, `OGC WMS/WFS/WMTS`, `USMTF`, `API/JSON`.
+- Degraded fallback: life-saving or strategic airlift only with conservative ash avoidance and universal post-flight inspections.
+
+### `strategic-shipyard-drydock-power-water-cyber-restoration-v1`
+- Use for: shipyard branches where utility outages and OT compromise threaten fleet repair throughput.
+- Primary tools: shipyard utility dashboard + drydock availability board + OT incident workflow.
+- Cross-check tools: independent utility-integrity witness + alternate dock-safety monitor.
+- Protocols: `NIMS/ICS`, `STIX/TAXII`, `NIEM`, `USMTF`, `API/JSON`.
+- Degraded fallback: combat-critical repairs only with dock-by-dock manual release and reduced tempo.
+
+### `theater-river-port-dredge-barge-roro-sustainment-v1`
+- Use for: inland-waterway branches where dredging, barge flow, and roll-on roll-off release determine throughput.
+- Primary tools: hydrographic survey board + dredge scheduling workflow + barge queue tracker.
+- Cross-check tools: independent channel-depth witness + alternate cargo-flow monitor.
+- Protocols: `AIS/NMEA`, `OGC WMS/WFS/WMTS`, `NIEM`, `USMTF`, `API/JSON`.
+- Degraded fallback: mission-essential cargo only with draft limits, reduced transload tempo, and daylight-only windows.
+
+### `joint-contested-cellular-timing-holdover-first-responder-priority-v1`
+- Use for: homeland telecom branches where timing holdover and priority-service governance determine public-safety continuity.
+- Primary tools: cellular timing status board + backhaul failover workflow + priority-service registry.
+- Cross-check tools: independent timing witness + alternate priority-service monitor.
+- Protocols: `NIEM`, `NIMS/ICS`, `EDXL-DE/CAP`, signed timing exports, `USMTF`, `API/JSON`.
+- Degraded fallback: first-responder and military life-safety traffic only with reduced subscriber access.
+
+### `theater-austere-command-post-flooding-hvac-smoke-control-v1`
+- Use for: command-post branches where flooding, smoke, or HVAC failure threaten mission-node continuity.
+- Primary tools: facility sensor dashboard + water-ingress workflow + HVAC isolation board.
+- Cross-check tools: independent facility-safety witness + alternate mission-node status monitor.
+- Protocols: `BACnet/IP`, `NIMS/ICS`, `CoT`, `USMTF`, `API/JSON`.
+- Degraded fallback: essential C2 nodes only with partial relocation and manual environmental watches.
