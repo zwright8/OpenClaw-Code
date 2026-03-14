@@ -6897,8 +6897,94 @@ test('collectAutonomousCoverage applies optional latency-aware reward shaping', 
     const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 200_500 });
 
     assert.equal(coverage.skillExecutionStats['211'].recentOutcomes[0].reward, 1);
+    assert.equal(coverage.skillExecutionStats['211'].recentOutcomes[0].durationMs, 900);
     assert.equal(coverage.skillExecutionStats['212'].recentOutcomes[0].reward, 0.5);
+    assert.equal(coverage.skillExecutionStats['212'].recentOutcomes[0].durationMs, 2_000);
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.ucb.cumulativeReward - 1.5) < 1e-9);
+});
+
+test('collectAutonomousCoverage supports adaptive percentile latency targets', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 300_000 });
+
+    const baseContext = {
+        lane: 'skills',
+        wave: 4,
+        selectionPolicyApplied: 'd_ucb',
+        selectionPolicyConfig: {
+            mode: 'd_ucb',
+            latencyPenaltyWeight: 0.5,
+            latencyTargetMs: 1_000,
+            latencyAutoTarget: true,
+            latencyAutoTargetPercentile: 0.9,
+            latencyAutoTargetMinSamples: 2
+        }
+    };
+
+    const firstRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000009001',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00901] Adaptive latency warmup',
+        context: {
+            skillId: 901,
+            autonomy: baseContext
+        },
+        createdAt: 290_000
+    });
+    const secondRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000009002',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00901] Adaptive latency penalty',
+        context: {
+            skillId: 901,
+            autonomy: baseContext
+        },
+        createdAt: 291_000
+    });
+    const thirdRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000009003',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00901] Adaptive latency recovery',
+        context: {
+            skillId: 901,
+            autonomy: baseContext
+        },
+        createdAt: 292_000
+    });
+
+    const firstRecord = buildQueueRecordFromTaskRequest(firstRequest, { nowFactory: () => 294_000 });
+    firstRecord.status = 'completed';
+    firstRecord.updatedAt = 291_000; // duration: 1,000 ms
+    await store.saveRecord(firstRecord);
+
+    const secondRecord = buildQueueRecordFromTaskRequest(secondRequest, { nowFactory: () => 295_000 });
+    secondRecord.status = 'completed';
+    secondRecord.updatedAt = 295_000; // duration: 4,000 ms
+    await store.saveRecord(secondRecord);
+
+    const thirdRecord = buildQueueRecordFromTaskRequest(thirdRequest, { nowFactory: () => 296_000 });
+    thirdRecord.status = 'completed';
+    thirdRecord.updatedAt = 296_000; // duration: 4,000 ms
+    await store.saveRecord(thirdRecord);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 301_000 });
+    const rewards = coverage.skillExecutionStats['901'].recentOutcomes.map((entry) => entry.reward);
+    const durations = coverage.skillExecutionStats['901'].recentOutcomes.map((entry) => entry.durationMs);
+
+    assert.deepEqual(durations, [1_000, 4_000, 4_000]);
+    assert.equal(rewards[0], 1);
+    assert.equal(rewards[1], 0.5);
+    assert.equal(rewards[2], 1);
+    assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_ucb.cumulativeReward - 2.5) < 1e-9);
 });
 
 test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints contextual updates', async (t) => {

@@ -145,6 +145,12 @@ const DEFAULT_LATENCY_PENALTY_WEIGHT = 0;
 const MAX_LATENCY_PENALTY_WEIGHT = 1;
 const DEFAULT_LATENCY_TARGET_MS = 120_000;
 const MAX_LATENCY_TARGET_MS = 3_600_000;
+const DEFAULT_LATENCY_AUTO_TARGET = false;
+const DEFAULT_LATENCY_AUTO_TARGET_PERCENTILE = 0.9;
+const MIN_LATENCY_AUTO_TARGET_PERCENTILE = 0.5;
+const MAX_LATENCY_AUTO_TARGET_PERCENTILE = 0.999;
+const DEFAULT_LATENCY_AUTO_TARGET_MIN_SAMPLES = 8;
+const MAX_LATENCY_AUTO_TARGET_MIN_SAMPLES = 128;
 const LINUCB_FEATURE_NAMES = [
     'bias',
     'successRate',
@@ -931,6 +937,21 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_LATENCY_TARGET_MS,
             1,
             MAX_LATENCY_TARGET_MS
+        ),
+        latencyAutoTarget: Boolean(value.latencyAutoTarget ?? DEFAULT_LATENCY_AUTO_TARGET),
+        latencyAutoTargetPercentile: clamp(
+            Number.isFinite(Number(value.latencyAutoTargetPercentile))
+                ? Number(value.latencyAutoTargetPercentile)
+                : DEFAULT_LATENCY_AUTO_TARGET_PERCENTILE,
+            MIN_LATENCY_AUTO_TARGET_PERCENTILE,
+            MAX_LATENCY_AUTO_TARGET_PERCENTILE
+        ),
+        latencyAutoTargetMinSamples: clamp(
+            Number.isFinite(Number(value.latencyAutoTargetMinSamples))
+                ? parsePositiveInt(value.latencyAutoTargetMinSamples, DEFAULT_LATENCY_AUTO_TARGET_MIN_SAMPLES)
+                : DEFAULT_LATENCY_AUTO_TARGET_MIN_SAMPLES,
+            1,
+            MAX_LATENCY_AUTO_TARGET_MIN_SAMPLES
         )
     };
 }
@@ -1143,12 +1164,17 @@ function normalizeRecentOutcomeEntry(rawEntry = {}) {
     const propensity = Number.isFinite(explicitPropensity)
         ? clamp(explicitPropensity, Number.EPSILON, 1)
         : null;
+    const explicitDurationMs = Number(entry.durationMs);
+    const durationMs = Number.isFinite(explicitDurationMs) && explicitDurationMs > 0
+        ? clamp(explicitDurationMs, 1, MAX_LATENCY_TARGET_MS)
+        : null;
     return {
         wave: Number.isFinite(Number(entry.wave))
             ? parseNonNegativeInt(entry.wave, 0)
             : 0,
         status,
         reward,
+        durationMs,
         propensity,
         didSucceed: SUCCESS_STATUSES.has(status)
     };
@@ -1174,7 +1200,48 @@ function resolveOutcomeDurationMs(record) {
     return elapsedMs > 0 ? elapsedMs : null;
 }
 
-function getOutcomeReward(status, record = null, selectionPolicyConfig = null) {
+function computePercentile(values = [], percentile = DEFAULT_LATENCY_AUTO_TARGET_PERCENTILE) {
+    const sorted = values
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value))
+        .sort((left, right) => left - right);
+    if (sorted.length <= 0) return null;
+    const boundedPercentile = clamp(
+        Number.isFinite(Number(percentile)) ? Number(percentile) : DEFAULT_LATENCY_AUTO_TARGET_PERCENTILE,
+        MIN_LATENCY_AUTO_TARGET_PERCENTILE,
+        MAX_LATENCY_AUTO_TARGET_PERCENTILE
+    );
+    const index = clamp(
+        Math.ceil(sorted.length * boundedPercentile) - 1,
+        0,
+        sorted.length - 1
+    );
+    const value = sorted[index];
+    return Number.isFinite(value) ? value : null;
+}
+
+function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = []) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const configuredTargetMs = clamp(policy.latencyTargetMs, 1, MAX_LATENCY_TARGET_MS);
+    if (!policy.latencyAutoTarget) {
+        return configuredTargetMs;
+    }
+    const durations = Array.isArray(historyOutcomes)
+        ? historyOutcomes
+            .map((entry) => normalizeRecentOutcomeEntry(entry).durationMs)
+            .filter((value) => Number.isFinite(value) && value > 0)
+        : [];
+    if (durations.length < policy.latencyAutoTargetMinSamples) {
+        return configuredTargetMs;
+    }
+    const adaptiveTargetMs = computePercentile(durations, policy.latencyAutoTargetPercentile);
+    if (!Number.isFinite(adaptiveTargetMs) || adaptiveTargetMs <= 0) {
+        return configuredTargetMs;
+    }
+    return clamp(adaptiveTargetMs, 1, MAX_LATENCY_TARGET_MS);
+}
+
+function getOutcomeReward(status, record = null, selectionPolicyConfig = null, historyOutcomes = []) {
     const baseReward = getStatusReward(status);
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const latencyPenaltyWeight = clamp(policy.latencyPenaltyWeight, 0, MAX_LATENCY_PENALTY_WEIGHT);
@@ -1185,7 +1252,7 @@ function getOutcomeReward(status, record = null, selectionPolicyConfig = null) {
     if (!Number.isFinite(durationMs) || durationMs <= 0) {
         return baseReward;
     }
-    const latencyTargetMs = clamp(policy.latencyTargetMs, 1, MAX_LATENCY_TARGET_MS);
+    const latencyTargetMs = resolveLatencyTargetMs(policy, historyOutcomes);
     if (durationMs <= latencyTargetMs) {
         return baseReward;
     }
@@ -4100,7 +4167,7 @@ export function buildAutonomousBatchPlan({
     };
 }
 
-function recordRecentOutcome(stat, { status, wave, propensity = null, reward = null }) {
+function recordRecentOutcome(stat, { status, wave, propensity = null, reward = null, durationMs = null }) {
     const normalized = normalizeExecutionStat(stat);
     const normalizedStatus = normalizeStatus(status);
     const explicitPropensity = Number(propensity);
@@ -4108,12 +4175,16 @@ function recordRecentOutcome(stat, { status, wave, propensity = null, reward = n
         ? clamp(explicitPropensity, Number.EPSILON, 1)
         : null;
     const explicitReward = Number(reward);
+    const explicitDurationMs = Number(durationMs);
     normalized.recentOutcomes.push({
         wave: parseNonNegativeInt(wave, 0),
         status: normalizedStatus,
         reward: Number.isFinite(explicitReward)
             ? clamp(explicitReward, 0, 1)
             : getStatusReward(normalizedStatus),
+        durationMs: Number.isFinite(explicitDurationMs) && explicitDurationMs > 0
+            ? clamp(explicitDurationMs, 1, MAX_LATENCY_TARGET_MS)
+            : null,
         propensity: normalizedPropensity,
         didSucceed: SUCCESS_STATUSES.has(normalizedStatus)
     });
@@ -4208,13 +4279,31 @@ export async function collectAutonomousCoverage({
             0
         );
         const didSucceed = SUCCESS_STATUSES.has(status);
-        const reward = getOutcomeReward(status, record, selectedPolicyConfig);
+        const recordDurationMs = resolveOutcomeDurationMs(record);
         const selectionProbability = Number.isFinite(Number(context.autonomy?.selectionProbability))
             ? clamp(Number(context.autonomy.selectionProbability), Number.EPSILON, 1)
             : null;
         const selectionPolicyProbability = Number.isFinite(Number(context.autonomy?.selectionPolicyProbability))
             ? clamp(Number(context.autonomy.selectionPolicyProbability), Number.EPSILON, 1)
             : null;
+        const skillHistoryOutcomes = skillId !== null
+            ? normalizeExecutionStat(skillExecutionStats[String(skillId)]).recentOutcomes
+            : [];
+        const capabilityHistoryOutcomes = capabilityId
+            ? normalizeExecutionStat(capabilityExecutionStats[capabilityId]).recentOutcomes
+            : [];
+        const policyHistoryOutcomes = lane && SUPPORTED_SELECTION_POLICY_MODE_SET.has(selectedPolicy)
+            ? normalizePolicyPerformanceStat(policyExecutionStats[lane][selectedPolicy]).recentOutcomes
+            : [];
+        const latencyHistoryOutcomes = policyHistoryOutcomes.length > 0
+            ? policyHistoryOutcomes
+            : (skillHistoryOutcomes.length > 0 ? skillHistoryOutcomes : capabilityHistoryOutcomes);
+        const reward = getOutcomeReward(
+            status,
+            record,
+            selectedPolicyConfig,
+            latencyHistoryOutcomes
+        );
 
         if (skillId !== null) {
             const key = String(skillId);
@@ -4236,7 +4325,8 @@ export async function collectAutonomousCoverage({
                 status,
                 wave: attemptWave,
                 propensity: selectionProbability,
-                reward
+                reward,
+                durationMs: recordDurationMs
             });
             skillExecutionStats[key] = current;
         }
@@ -4260,7 +4350,8 @@ export async function collectAutonomousCoverage({
                 status,
                 wave: attemptWave,
                 propensity: selectionProbability,
-                reward
+                reward,
+                durationMs: recordDurationMs
             });
             capabilityExecutionStats[capabilityId] = current;
         }
@@ -4282,7 +4373,8 @@ export async function collectAutonomousCoverage({
                 status,
                 wave: attemptWave,
                 propensity: selectionPolicyProbability ?? selectionProbability,
-                reward
+                reward,
+                durationMs: recordDurationMs
             });
             policyWithOutcome.cumulativeReward = currentPolicy.cumulativeReward;
             policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
@@ -4311,7 +4403,8 @@ export async function collectAutonomousCoverage({
                     status,
                     wave: attemptWave,
                     propensity: selectionPolicyProbability ?? selectionProbability,
-                    reward
+                    reward,
+                    durationMs: recordDurationMs
                 });
                 metaWithOutcome.cumulativeReward = currentMeta.cumulativeReward;
                 windowPolicyExecutionStats[lane][key] = metaWithOutcome;

@@ -48,6 +48,9 @@ Options:
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
   --latency-penalty-weight <n> Latency penalty weight for reward shaping (0-1, default: 0)
   --latency-target-ms <n>      Reward-shaping latency target in milliseconds (1-3600000, default: 120000)
+  --latency-auto-target        Auto-tune latency target from recent completion durations
+  --latency-auto-target-percentile <n> Percentile for auto target (0.5-0.999, default: 0.9)
+  --latency-auto-target-min-samples <n> Min recent samples before auto target activates (1-128, default: 8)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -206,6 +209,9 @@ function parseArgs(argv) {
             discountFactor: 0.97,
             latencyPenaltyWeight: 0,
             latencyTargetMs: 120_000,
+            latencyAutoTarget: false,
+            latencyAutoTargetPercentile: 0.9,
+            latencyAutoTargetMinSamples: 8,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -282,6 +288,10 @@ function parseArgs(argv) {
         }
         if (token === '--corral-auto-gamma') {
             options.selectionPolicyConfig.corralAutoGamma = true;
+            continue;
+        }
+        if (token === '--latency-auto-target') {
+            options.selectionPolicyConfig.latencyAutoTarget = true;
             continue;
         }
 
@@ -456,6 +466,16 @@ function parseArgs(argv) {
         }
         if (token === '--latency-target-ms') {
             options.selectionPolicyConfig.latencyTargetMs = parsePositiveInt(value, '--latency-target-ms');
+            i++;
+            continue;
+        }
+        if (token === '--latency-auto-target-percentile') {
+            options.selectionPolicyConfig.latencyAutoTargetPercentile = parseFloatInRange(value, '--latency-auto-target-percentile', 0.5, 0.999);
+            i++;
+            continue;
+        }
+        if (token === '--latency-auto-target-min-samples') {
+            options.selectionPolicyConfig.latencyAutoTargetMinSamples = parsePositiveInt(value, '--latency-auto-target-min-samples');
             i++;
             continue;
         }
