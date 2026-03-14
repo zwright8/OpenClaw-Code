@@ -2060,3 +2060,89 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-strategic-supply-shock-v1`.
 - Protocols: signed component manifests, `API/JSON`, `USMTF`, `OPC UA`.
 - Degraded fallback: mission-essential lots only with manual pedigree verification.
+
+## Profile Addendum S (2026-03-14, Kill-Web Disruption, Coalition Release, FEW Adjudication, and Space-to-Street Continuity)
+
+### `kill-web-disruption-assessment-v1`
+- Use for campaign and fires decisions when adversary sensor-to-shooter chains must be broken at the highest-payoff seam.
+- Primary tools: `ts-joint-adversary-kill-web-disruption-assessment-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `USMTF`, `Link 16 J-series`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: advisory-only disruption ladder with commander approval at every release point.
+
+### `autonomous-decoy-economy-governance-v1`
+- Use for theater deception when decoy expenditure, regeneration, and emissions timing determine campaign endurance.
+- Primary tools: `ts-theater-autonomous-decoy-economy-inventory-governance-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: signed inventory manifests, `CoT`, `Link 16 J-series`, `API/JSON`, `USMTF`.
+- Degraded fallback: commander-approved decoy use only for mission-essential phases.
+
+### `mission-data-releasability-waiver-v1`
+- Use for coalition operations when mission data must be released with caveats, waivers, or schema reduction under tight timelines.
+- Primary tools: `ts-coalition-mission-data-releasability-waiver-adjudication-v1`.
+- Cross-check tools: `ts-coalition-data-fabric-interoperability-v1`.
+- Protocols: signed releasability manifests, `NATO APP-11/ADatP-3` aligned exchange, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: mission-essential summary only with explicit coalition caveat annotations.
+
+### `undersea-chokepoint-barrier-orchestration-v1`
+- Use for maritime and subsea defense when autonomous chokepoint barriers drive detection, deterrence, and release timing.
+- Primary tools: `ts-strategic-undersea-chokepoint-autonomous-barrier-orchestration-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `Link 16 J-series`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: periodic barrier updates only with conservative coverage assumptions.
+
+### `multilingual-mission-brief-assurance-v1`
+- Use for joint and coalition command when mission briefs must retain commander intent across multiple languages and disconnected paths.
+- Primary tools: `ts-joint-distributed-mission-brief-multilingual-assurance-v1`.
+- Cross-check tools: `ts-joint-digital-order-watermark-recall-v1`.
+- Protocols: signed document manifests, `USMTF`, `NATO APP-11/ADatP-3` aligned exchange, `API/JSON`.
+- Degraded fallback: one authoritative language plus human readback confirmation for partner translations.
+
+### `fuel-energy-water-nexus-adjudication-v1`
+- Use for coalition sustainment and civil-support decisions when fuel, power, and water anomalies may cascade across critical nodes.
+- Primary tools: `ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `OGC`, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: life-safety utilities only with manual status confirmation every 4 hours.
+
+### `aerial-port-hazmat-pallet-integrity-v1`
+- Use for aerial-port and deployment decisions when battery cargo, hazmat rules, or pallet-build risk constrain sortie release.
+- Primary tools: `ts-joint-aerial-port-battery-hazmat-pallet-integrity-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed cargo manifests, `AIXM/FIXM`, `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3` aligned exchange.
+- Degraded fallback: mission-essential cargo only with heightened fire-watch and single-sortie load approval.
+
+### `austere-oxygen-ventilator-loadshed-v1`
+- Use for medical operations when oxygen generation and ventilator demand cannot both be sustained at current casualty load.
+- Primary tools: `ts-joint-austere-oxygen-generation-ventilator-load-shed-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, signed biomedical maintenance manifests.
+- Degraded fallback: lifesaving-only ventilation with commander-approved clinical triage thresholds.
+
+### `cross-domain-guard-schema-drift-v1`
+- Use for cyber and mission-data recovery when cross-domain guards distort, delay, or silently drop mission messages.
+- Primary tools: `ts-theater-cross-domain-guard-schema-drift-message-loss-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: signed schema manifests, `XML/JSON`, `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Degraded fallback: critical-message manual relay only with UTC checksum logging.
+
+### `orbital-downlink-ground-priority-v1`
+- Use for space operations when scarce downlink windows and ground-station time require mission-priority arbitration.
+- Primary tools: `ts-joint-orbital-mission-data-downlink-window-ground-priority-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `CCSDS`, signed telemetry manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: one mission-essential product class per pass with deferred bulk downloads.
+
+### `urban-rubble-rescue-clearance-v1`
+- Use for urban maneuver and civil-support response when rubble, collapse risk, and trapped personnel compete for engineer capacity.
+- Primary tools: `ts-joint-urban-rubble-route-clearance-structural-collapse-rescue-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `OGC`, `CoT`, `USMTF`, `API/JSON`.
+- Degraded fallback: lifesaving rescue corridors only with engineer and rescue dual approval.
+
+### `semiconductor-burnin-priority-v1`
+- Use for strategic industrial decisions when semiconductor burn-in, screening, and pedigree control become the pacing constraint.
+- Primary tools: `ts-strategic-semiconductor-test-burn-in-mission-priority-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed lot manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential lots only with manual pedigree confirmation and narrowed environmental screening.

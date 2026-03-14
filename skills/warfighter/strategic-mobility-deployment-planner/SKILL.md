@@ -183,3 +183,10 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1` + `protocol_stack_id=ps-joint-dispersed-airbase-mobile-precision-approach-lighting-stack-v1` when reception, staging, or onward movement depends on restoring low-visibility aircraft recovery at alternate airfields.
 - Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when onward movement corridors for heavy equipment depend on trusted soil-bearing classifications before release.
 - Add `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001`, `packet_id=DPL-MOBILE-PRECISION-APPROACH-001`, and `packet_id=DPL-BREACH-SOIL-BEARING-001` for recommendations that materially alter strategic lift timing, reception confidence, or onward-movement posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-aerial-port-battery-hazmat-pallet-integrity-v1` + `protocol_stack_id=ps-joint-aerial-port-battery-hazmat-pallet-integrity-stack-v1` when deployment tempo depends on hazardous cargo release, pallet integrity, or battery-transport safety at aerial ports.
+- Add `tool_suite_id=ts-joint-urban-rubble-route-clearance-structural-collapse-rescue-v1` + `protocol_stack_id=ps-joint-urban-rubble-route-clearance-structural-collapse-rescue-stack-v1` when port, railhead, or airhead access depends on rapidly clearing rubble-choked urban corridors.
+- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when mobility planning depends on releasable manifests, partner routing data, or coalition movement approvals under caveat pressure.
+- Add `packet_id=DPL-AERIAL-PORT-HAZMAT-PALLET-001`, `packet_id=DPL-URBAN-RUBBLE-RESCUE-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter deployment timing, corridor access, or coalition movement confidence.

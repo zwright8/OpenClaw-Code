@@ -304,3 +304,10 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when failover depends on emergency revocation, token burn, and controlled privileged-access restoration.
 - Add `tool_suite_id=ts-joint-ground-robotics-teleoperation-spectrum-safety-v1` + `protocol_stack_id=ps-joint-ground-robotics-teleoperation-spectrum-safety-stack-v1` when degraded networks must still preserve safe robot teleoperation, human override, or lost-link control.
 - Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` and `packet_id=DPL-GROUND-ROBOTICS-TELEOP-SPECTRUM-001` for branches that materially change mission-service restoration, teleoperation safety, or failover authority posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-cross-domain-guard-schema-drift-message-loss-v1` + `protocol_stack_id=ps-theater-cross-domain-guard-schema-drift-message-loss-stack-v1` when failover depends on restoring trusted message flow across guards, data diodes, or mission-partner exchange boundaries.
+- Add `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` + `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1` when alternate network paths depend on scarce orbital downlinks or delayed reachback products.
+- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when failover depends on releasing degraded but lawful data subsets across coalition or cross-domain boundaries.
+- Add `packet_id=DPL-CROSS-DOMAIN-SCHEMA-DRIFT-001`, `packet_id=DPL-ORBITAL-DOWNLINK-PRIORITY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for branches that materially change mission-service restoration, data trust, or cross-boundary continuity posture.

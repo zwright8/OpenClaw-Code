@@ -256,3 +256,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-stack-v1` when cold-soaked batteries, charging windows, or low-insolation power limits threaten logistics nodes and autonomous sustainment.
 - Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when engineer or heavy-vehicle throughput depends on trusted soil-bearing classifications before route release.
 - Add `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001`, `packet_id=DPL-HIGH-LATITUDE-BATTERY-THERMAL-001`, and `packet_id=DPL-BREACH-SOIL-BEARING-001` for branches that materially alter sustainment throughput, energy continuity, or route-release confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-decoy-economy-inventory-governance-v1` + `protocol_stack_id=ps-theater-autonomous-decoy-economy-inventory-governance-stack-v1` when sustainment survivability depends on pacing decoy expenditure, regeneration, or deception coverage across logistics nodes.
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when contested sustainment depends on distinguishing sabotage, utility cascade, or distribution failure across fuel, power, and water systems.
+- Add `tool_suite_id=ts-joint-aerial-port-battery-hazmat-pallet-integrity-v1` + `protocol_stack_id=ps-joint-aerial-port-battery-hazmat-pallet-integrity-stack-v1` when throughput depends on safe release of battery cargo, hazmat consignments, or palletized sustainment loads.
+- Add `packet_id=DPL-AUTONOMOUS-DECOY-ECONOMY-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-AERIAL-PORT-HAZMAT-PALLET-001` for branches that materially alter sustainment survivability, utility continuity, or air-logistics throughput.

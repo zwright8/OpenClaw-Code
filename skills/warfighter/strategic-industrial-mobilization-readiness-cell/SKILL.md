@@ -221,3 +221,10 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-strategic-carbon-carbon-nozzle-reentry-material-priority-v1` + `protocol_stack_id=ps-strategic-carbon-carbon-nozzle-reentry-material-priority-stack-v1` when mobilization readiness depends on carbon-carbon, ablatives, or nozzle-material throughput across strategic missile and reentry demand.
 - Add `tool_suite_id=ts-strategic-guidance-seeker-imu-accelerometer-priority-v1` + `protocol_stack_id=ps-strategic-guidance-seeker-imu-accelerometer-priority-stack-v1` when surge output depends on trusted seekers, inertial components, and environmental-screening bottlenecks.
 - Add `packet_id=DPL-CARBON-CARBON-NOZZLE-001` and `packet_id=DPL-GUIDANCE-SEEKER-IMU-001` for recommendations that materially alter industrial surge posture, strategic release confidence, or weapons-component allocation.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-semiconductor-test-burn-in-mission-priority-v1` + `protocol_stack_id=ps-strategic-semiconductor-test-burn-in-mission-priority-stack-v1` when mobilization readiness depends on burn-in chamber capacity, environmental screening queues, or mission-priority semiconductor release.
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when industrial throughput depends on whether plant utility anomalies are local outages, sabotage, or theater-wide FEW cascades.
+- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when allied fabs, test houses, or shared production lines require controlled release of mission data, caveat-bound specs, or validation results.
+- Add `packet_id=DPL-SEMICONDUCTOR-BURNIN-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter industrial surge posture, utility survivability, or allied production trust.

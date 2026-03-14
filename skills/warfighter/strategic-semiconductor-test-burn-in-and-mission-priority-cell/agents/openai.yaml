@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Strategic Semiconductor Test Burn In and Mission Priority Cell"
+  short_description: "Help prioritize semiconductor burn-in and release"

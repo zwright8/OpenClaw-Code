@@ -64,3 +64,10 @@ Primary products for this skill: port opening plan, JLOTS sequence board, throug
 - Flag gaps where assumptions exceed evidence.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when port opening or JLOTS timing depends on power, fuel, or water anomalies across piers, pumps, causeways, and shore support nodes.
+- Add `tool_suite_id=ts-joint-urban-rubble-route-clearance-structural-collapse-rescue-v1` + `protocol_stack_id=ps-joint-urban-rubble-route-clearance-structural-collapse-rescue-stack-v1` when onward movement from port, causeway, or beachhead depends on rapidly clearing rubble-choked urban access routes.
+- Add `tool_suite_id=ts-strategic-undersea-chokepoint-autonomous-barrier-orchestration-v1` + `protocol_stack_id=ps-strategic-undersea-chokepoint-autonomous-barrier-orchestration-stack-v1` when sea approaches, repair zones, or logistics lanes need autonomous undersea barrier coverage before port or JLOTS release.
+- Add `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, `packet_id=DPL-URBAN-RUBBLE-RESCUE-001`, and `packet_id=DPL-UNDERSEA-BARRIER-ORCH-001` for recommendations that materially alter port opening, causeway release, or sea-approach confidence.

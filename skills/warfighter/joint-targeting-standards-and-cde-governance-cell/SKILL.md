@@ -237,3 +237,10 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-joint-laser-designator-sensor-fratricide-prevention-v1` + `protocol_stack_id=ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1` when target validity or fires timing depends on trusted laser-code ownership and sensor-safe cueing.
 - Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when targeting identity, federation, or service access compromise threatens CDE or release workflows.
 - Add `packet_id=DPL-LASER-DESIGNATOR-FRATRICIDE-001` and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for recommendations that materially alter target validity, CDE governance, or release-authority confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-adversary-kill-web-disruption-assessment-v1` + `protocol_stack_id=ps-joint-adversary-kill-web-disruption-assessment-stack-v1` when target governance depends on understanding which adversary kill-web seam can be disrupted without invalidating effects assessment or escalation controls.
+- Add `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` + `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1` when target validity, mensuration refresh, or no-strike updates depend on scarce downlink windows from orbital collections.
+- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when coalition target review, CDE evidence exchange, or restricted-target synchronization depends on controlled data release under caveat pressure.
+- Add `packet_id=DPL-KILLWEB-DISRUPTION-001`, `packet_id=DPL-ORBITAL-DOWNLINK-PRIORITY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter target validity, release timing, or coalition targeting trust posture.

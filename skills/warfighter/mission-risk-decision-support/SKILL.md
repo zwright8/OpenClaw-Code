@@ -379,3 +379,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-homeland-base-fuel-hydrant-fire-suppression-recovery-v1` + `protocol_stack_id=ps-homeland-base-fuel-hydrant-fire-suppression-recovery-stack-v1` when sortie generation or base survivability depends on safe fuel and fire-control restoration.
 - Add `tool_suite_id=ts-strategic-guidance-seeker-imu-accelerometer-priority-v1` + `protocol_stack_id=ps-strategic-guidance-seeker-imu-accelerometer-priority-stack-v1` when risk acceptance depends on trusted precision-guidance component pedigree or constrained lot release.
 - Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001`, `packet_id=DPL-BASE-FUEL-HYDRANT-FIRE-SUPPRESSION-001`, and `packet_id=DPL-GUIDANCE-SEEKER-IMU-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-adversary-kill-web-disruption-assessment-v1` + `protocol_stack_id=ps-joint-adversary-kill-web-disruption-assessment-stack-v1` when commander risk acceptance depends on breaking adversary sensor-to-shooter seams without outrunning attribution or escalation controls.
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when risk posture depends on whether utility anomalies across bases, ports, or hospitals are sabotage, cascade, or shortfall.
+- Add `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` + `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1` when commander timing and confidence depend on scarce downlink windows or delayed mission products from orbit.
+- Add `packet_id=DPL-KILLWEB-DISRUPTION-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-ORBITAL-DOWNLINK-PRIORITY-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

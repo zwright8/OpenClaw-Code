@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Theater Cross Domain Guard Schema Drift and Message Loss Cell"
+  short_description: "Help restore trust in cross-domain message flow"

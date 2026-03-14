@@ -11769,3 +11769,137 @@ validation_gates:
 - output_schema: seeker allocation board, inertial-component risk ladder, lot release priorities
 - protocol_profile: signed component manifests + API/JSON + USMTF + OPC UA
 - validation_gates: pedigree verification, screening pass, release authority approval
+
+## Packet Addendum XXXVII (2026-03-14, Expansion Wave XLVIII Kill-Web, Coalition Release, and Critical Continuity Packets)
+
+### packet_id: DPL-KILLWEB-DISRUPTION-001
+- domain: joint adversary kill-web disruption assessment
+- objective: break sensor-to-shooter chains at the most mission-relevant seam without outrunning command authorities or escalation controls.
+- primary_tools: kill-web graph engine, sensor-to-shooter timeline board, campaign disruption planner
+- alternate_tools: manual chain map and effects sequencing worksheet
+- degraded_mode: advisory-only disruption ladder with commander approval at every release point
+- input_requirements: adversary architecture, available effects, timing windows, escalation limits, legal constraints
+- output_schema: kill-web disruption matrix, severance timing ladder, commander branch trigger board
+- protocol_profile: USMTF + Link 16 J-series + STIX/TAXII + API/JSON
+- validation_gates: source confidence pass, legal-policy review, commander release acknowledgment
+
+### packet_id: DPL-AUTONOMOUS-DECOY-ECONOMY-001
+- domain: theater autonomous decoy economy and inventory governance
+- objective: spend decoys, emitters, and autonomous deception payloads at a rate that preserves campaign endurance.
+- primary_tools: decoy inventory ledger, emissions synchronization board, deception fabrication scheduler
+- alternate_tools: manual decoy stock ledger and EMCON worksheet
+- degraded_mode: commander-approved decoy use only for mission-essential phases
+- input_requirements: decoy inventory, mission phases, emissions windows, fabrication capacity, threat sensors
+- output_schema: decoy expenditure ladder, autonomous deception allocation board, regeneration forecast
+- protocol_profile: signed inventory manifests + CoT + Link 16 J-series + API/JSON + USMTF
+- validation_gates: inventory confirmation, emissions approval, deception authority check
+
+### packet_id: DPL-RELEASABILITY-WAIVER-001
+- domain: coalition mission-data releasability waiver adjudication
+- objective: release only the minimum mission data needed to maintain tempo while preserving caveats, sovereign rules, and auditability.
+- primary_tools: releasability rule engine, mission-data caveat ledger, waiver workflow board
+- alternate_tools: manual foreign-disclosure worksheet and schema redaction checklist
+- degraded_mode: mission-essential summary only with explicit coalition caveat annotations
+- input_requirements: dataset scope, classification tags, coalition caveats, operational deadline, waiver authorities
+- output_schema: waiver decision packet, releasability exception ledger, coalition release timeline
+- protocol_profile: signed releasability manifests + NATO APP-11/ADatP-3 aligned exchange + API/JSON + USMTF + NIEM
+- validation_gates: foreign-disclosure review, caveat consistency check, approving authority acknowledgment
+
+### packet_id: DPL-UNDERSEA-BARRIER-ORCH-001
+- domain: strategic undersea chokepoint autonomous barrier orchestration
+- objective: sustain autonomous barrier posture in chokepoints without creating unobserved gaps or unsafe release conditions.
+- primary_tools: undersea barrier mission manager, autonomous patrol controller, acoustic contact fusion board
+- alternate_tools: manual patrol board and hydrographic contact log
+- degraded_mode: periodic barrier updates only with conservative coverage assumptions
+- input_requirements: chokepoint geometry, autonomous asset health, patrol windows, contact confidence, authority limits
+- output_schema: barrier orchestration matrix, autonomous patrol timing board, chokepoint coverage gap ladder
+- protocol_profile: AIS/NMEA + Link 16 J-series + USMTF + OGC + API/JSON
+- validation_gates: asset health pass, contact confidence floor, release authority approval
+
+### packet_id: DPL-MULTILINGUAL-MISSION-BRIEF-001
+- domain: joint distributed mission brief multilingual assurance
+- objective: keep commander intent, constraints, and timing consistent across multilingual brief products and disconnected distribution paths.
+- primary_tools: mission-brief source binder, multilingual terminology memory, order version-control board
+- alternate_tools: manual translation worksheet and version reconciliation board
+- degraded_mode: one authoritative language plus human readback confirmation for partner translations
+- input_requirements: source order set, target languages, caveats, distribution list, suspense time
+- output_schema: multilingual mission brief packet, terminology risk ledger, distribution integrity ladder
+- protocol_profile: signed document manifests + USMTF + NATO APP-11/ADatP-3 aligned exchange + API/JSON
+- validation_gates: source-to-translation fidelity check, version match, acknowledgment-chain verification
+
+### packet_id: DPL-FEW-NEXUS-ANOMALY-001
+- domain: coalition fuel-energy-water nexus anomaly adjudication
+- objective: decide whether fuel, energy, and water anomalies are local faults, cyber-physical attacks, or cascading logistics failures.
+- primary_tools: utility telemetry fusion board, fuel movement tracker, water-quality anomaly engine
+- alternate_tools: manual outage board and sustainment worksheet
+- degraded_mode: life-safety utilities only with manual status confirmation every 4 hours
+- input_requirements: fuel status, power state, water telemetry, anomaly timeline, coalition node map
+- output_schema: FEW anomaly adjudication packet, coalition utility restoration ladder, cascading-risk map
+- protocol_profile: NIMS/ICS + OGC + API/JSON + USMTF + NIEM
+- validation_gates: telemetry freshness, dual-source anomaly confirmation, coalition authority acknowledgment
+
+### packet_id: DPL-AERIAL-PORT-HAZMAT-PALLET-001
+- domain: joint aerial port battery hazmat and pallet integrity
+- objective: release cargo loads only when battery, hazmat, and pallet integrity rules stay inside aircraft and ramp safety thresholds.
+- primary_tools: aerial-port cargo planner, hazmat compliance ledger, pallet integrity board
+- alternate_tools: manual cargo worksheet and loadmaster inspection queue
+- degraded_mode: mission-essential cargo only with heightened fire-watch and single-sortie load approval
+- input_requirements: cargo manifest, battery classes, hazmat declarations, pallet geometry, aircraft assignments
+- output_schema: cargo release matrix, hazmat exception ladder, pallet integrity risk board
+- protocol_profile: signed cargo manifests + AIXM/FIXM + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: hazmat pass, pallet inspection confirmation, aircrew or loadmaster approval
+
+### packet_id: DPL-OXYGEN-VENTILATOR-LOADSHED-001
+- domain: joint austere oxygen generation and ventilator load shed
+- objective: preserve lifesaving oxygen and ventilator support when generation, storage, or power cannot meet total demand.
+- primary_tools: oxygen plant controller, ventilator fleet tracker, clinical load-shed board
+- alternate_tools: manual oxygen roster and bedside triage worksheet
+- degraded_mode: lifesaving-only ventilation with commander-approved clinical triage thresholds
+- input_requirements: oxygen output, ventilator status, patient categories, backup power, maintenance constraints
+- output_schema: oxygen generation ladder, ventilator allocation board, lifesaving load-shed packet
+- protocol_profile: HL7/FHIR + USMTF + API/JSON + signed biomedical maintenance manifests
+- validation_gates: biomedical readiness check, oxygen purity pass, medical-command approval
+
+### packet_id: DPL-CROSS-DOMAIN-SCHEMA-DRIFT-001
+- domain: theater cross-domain guard schema drift and message loss
+- objective: restore trusted cross-domain exchange when guards or transforms silently drop, reshape, or delay mission messages.
+- primary_tools: cross-domain guard telemetry board, schema diff validator, message replay ledger
+- alternate_tools: manual message comparison board and guard exception worksheet
+- degraded_mode: critical-message manual relay only with UTC checksum logging
+- input_requirements: schema versions, message samples, guard health, source and destination paths, message backlog
+- output_schema: schema drift exception packet, message-loss recovery board, trust-restoration timeline
+- protocol_profile: signed schema manifests + XML/JSON + STIX/TAXII + API/JSON + USMTF
+- validation_gates: schema parity check, replay confirmation, cross-domain authority approval
+
+### packet_id: DPL-ORBITAL-DOWNLINK-PRIORITY-001
+- domain: joint orbital mission data downlink window and ground priority
+- objective: allocate scarce passes and ground-station time to the mission data that changes commander decisions fastest.
+- primary_tools: downlink scheduler, ground-station availability board, mission-priority queue manager
+- alternate_tools: manual pass board and delayed-download priority card
+- degraded_mode: one mission-essential product class per pass with deferred bulk downloads
+- input_requirements: orbital pass schedule, ground-station health, mission priorities, data volumes, latency limits
+- output_schema: downlink priority board, ground-pass allocation ladder, delayed-product risk matrix
+- protocol_profile: CCSDS + signed telemetry manifests + API/JSON + USMTF
+- validation_gates: pass feasibility check, ground-station confirmation, mission-priority approval
+
+### packet_id: DPL-URBAN-RUBBLE-RESCUE-001
+- domain: joint urban rubble route clearance and structural collapse rescue
+- objective: clear the routes that unlock rescue and maneuver fastest without triggering secondary collapse or rescue-gridlock.
+- primary_tools: collapse mapping board, engineer route-clearance planner, rescue triage queue
+- alternate_tools: manual debris board and structural risk worksheet
+- degraded_mode: lifesaving rescue corridors only with engineer and rescue dual approval
+- input_requirements: collapse map, trapped-person reports, route blockages, engineer assets, utility hazards
+- output_schema: rubble clearance matrix, structural collapse rescue ladder, urban access priority board
+- protocol_profile: NIMS/ICS + OGC + CoT + USMTF + API/JSON
+- validation_gates: structural safety pass, route confirmation, rescue authority acknowledgment
+
+### packet_id: DPL-SEMICONDUCTOR-BURNIN-001
+- domain: strategic semiconductor test burn-in and mission priority
+- objective: release scarce semiconductor lots to the highest-priority missions without bypassing screening or pedigree controls.
+- primary_tools: burn-in chamber scheduler, radiation and thermal screening queue, component pedigree ledger
+- alternate_tools: manual lot worksheet and chamber utilization board
+- degraded_mode: mission-essential lots only with manual pedigree confirmation and narrowed environmental screening
+- input_requirements: lot pedigree, chamber capacity, screening results, mission demand, release thresholds
+- output_schema: semiconductor release ladder, burn-in capacity board, mission-priority lot queue
+- protocol_profile: signed lot manifests + API/JSON + USMTF + OPC UA
+- validation_gates: pedigree verification, screening completion, release authority approval

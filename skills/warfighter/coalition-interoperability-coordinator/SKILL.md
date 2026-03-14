@@ -294,3 +294,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-joint-laser-designator-sensor-fratricide-prevention-v1` + `protocol_stack_id=ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1` when combined fires or coalition JTAC support depends on trusted laser-code and sensor deconfliction.
 - Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when coalition data exchange depends on restoring federated identity trust after credential compromise.
 - Add `packet_id=DPL-SHORE-POWER-BERTHING-001`, `packet_id=DPL-LASER-DESIGNATOR-FRATRICIDE-001`, and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for branches that materially change coalition access, combined-fires trust, or federated-network release posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when coalition tempo depends on auditable caveat waivers, schema reduction, or foreign-disclosure decisions.
+- Add `tool_suite_id=ts-joint-distributed-mission-brief-multilingual-assurance-v1` + `protocol_stack_id=ps-joint-distributed-mission-brief-multilingual-assurance-stack-v1` when interoperability depends on preserving commander intent across multilingual briefs and disconnected partner distribution paths.
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when coalition support decisions depend on reconciling utility anomalies across shared bases, ports, or treatment nodes.
+- Add `packet_id=DPL-RELEASABILITY-WAIVER-001`, `packet_id=DPL-MULTILINGUAL-MISSION-BRIEF-001`, and `packet_id=DPL-FEW-NEXUS-ANOMALY-001` for branches that materially change coalition release, translation trust, or shared-support posture.

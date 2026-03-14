@@ -2435,3 +2435,32 @@ Every skill output should include:
 - Austere respiratory protective equipment fit and filter rotation + austere surgical support coordinator + preventive medicine and force health protection + autonomous CBRN sensor cueing and isolation.
 - Joint assault landing-zone dust signature and sensor obscuration + expeditionary helicopter brownout and drone deconfliction + combat search and rescue coordinator + tactical UAS traffic management.
 - Strategic guidance seeker IMU and accelerometer priority + munitions stockpile and expenditure manager + strategic industrial mobilization readiness + mission risk decision support.
+
+## New Expansion Wave (2026-03-14, Expansion Wave XLVIII)
+
+- joint-adversary-kill-web-disruption-assessment-cell
+- theater-autonomous-decoy-economy-and-inventory-governance-cell
+- coalition-mission-data-releasability-waiver-adjudication-cell
+- strategic-undersea-chokepoint-autonomous-barrier-orchestration-cell
+- joint-distributed-mission-brief-multilingual-assurance-cell
+- coalition-fuel-energy-water-nexus-anomaly-adjudication-cell
+- joint-aerial-port-battery-hazmat-and-pallet-integrity-cell
+- joint-austere-oxygen-generation-and-ventilator-load-shed-cell
+- theater-cross-domain-guard-schema-drift-and-message-loss-cell
+- joint-orbital-mission-data-downlink-window-and-ground-priority-cell
+- joint-urban-rubble-route-clearance-and-structural-collapse-rescue-cell
+- strategic-semiconductor-test-burn-in-and-mission-priority-cell
+
+## Updated Pairings (2026-03-14, Wave XLVIII)
+
+- Joint adversary kill-web disruption assessment + joint targeting standards and CDE governance + offensive counter-air mission planner + mission risk decision support.
+- Theater autonomous decoy economy and inventory governance + electromagnetic decoy network coordination + contested logistics sustainment + theater mission network failover.
+- Coalition mission-data releasability waiver adjudication + coalition interoperability coordinator + joint special access and compartmented integration + joint distributed mission brief multilingual assurance.
+- Strategic undersea chokepoint autonomous barrier orchestration + naval undersea cable protection and restoration + anti-submarine warfare support + maritime operations planner.
+- Coalition fuel-energy-water nexus anomaly adjudication + defense support of civil authorities crisis cell + operational energy resilience and microgrid + expeditionary water purification contamination attribution.
+- Joint aerial-port battery hazmat and pallet integrity + strategic mobility deployment planner + joint deployment and distribution ops center optimizer + air tasking cycle support.
+- Joint austere oxygen generation and ventilator load shed + joint role 3 medical network and aeromedical evac cell + austere surgical support coordinator + coalition contested medical oxygen and anesthetic surge cell.
+- Theater cross-domain guard schema drift and message loss + coalition cross-domain data diode operations + theater mission network failover + coalition expeditionary cloud denied data-fabric healing cell.
+- Joint orbital mission data downlink window and ground priority + space domain awareness and satcom defense + joint space launch window conflict deconfliction + contested space launch and satellite reconstitution.
+- Joint urban rubble route clearance and structural collapse rescue + route clearance and counter-IED fusion + defense support of civil authorities crisis cell + joint civil dam failure and floodplain operations cell.
+- Strategic semiconductor test burn-in and mission priority + strategic industrial mobilization readiness + supply chain risk and industrial base monitor + strategic guidance seeker IMU and accelerometer priority cell.
