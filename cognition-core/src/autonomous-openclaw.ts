@@ -151,6 +151,11 @@ const MIN_LATENCY_AUTO_TARGET_PERCENTILE = 0.5;
 const MAX_LATENCY_AUTO_TARGET_PERCENTILE = 0.999;
 const DEFAULT_LATENCY_AUTO_TARGET_MIN_SAMPLES = 8;
 const MAX_LATENCY_AUTO_TARGET_MIN_SAMPLES = 128;
+const DEFAULT_RELIABILITY_FLOOR = 0;
+const MAX_RELIABILITY_FLOOR = 1;
+const DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS = 8;
+const MAX_RELIABILITY_FLOOR_MIN_ATTEMPTS = 256;
+const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
     'successRate',
@@ -952,6 +957,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_LATENCY_AUTO_TARGET_MIN_SAMPLES,
             1,
             MAX_LATENCY_AUTO_TARGET_MIN_SAMPLES
+        ),
+        reliabilityFloor: clamp(
+            Number.isFinite(Number(value.reliabilityFloor))
+                ? Number(value.reliabilityFloor)
+                : DEFAULT_RELIABILITY_FLOOR,
+            0,
+            MAX_RELIABILITY_FLOOR
+        ),
+        reliabilityFloorMinAttempts: clamp(
+            Number.isFinite(Number(value.reliabilityFloorMinAttempts))
+                ? parsePositiveInt(value.reliabilityFloorMinAttempts, DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS)
+                : DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS,
+            1,
+            MAX_RELIABILITY_FLOOR_MIN_ATTEMPTS
         )
     };
 }
@@ -1218,6 +1237,37 @@ function computePercentile(values = [], percentile = DEFAULT_LATENCY_AUTO_TARGET
     );
     const value = sorted[index];
     return Number.isFinite(value) ? value : null;
+}
+
+function computeWilsonLowerBound(successes = 0, attempts = 0, z = RELIABILITY_FLOOR_Z_SCORE) {
+    const n = Number(attempts);
+    if (!Number.isFinite(n) || n <= 0) return 0;
+    const boundedSuccesses = clamp(Number(successes), 0, n);
+    const pHat = boundedSuccesses / n;
+    const zSquared = z * z;
+    const denominator = 1 + (zSquared / n);
+    const center = pHat + (zSquared / (2 * n));
+    const marginBase = (pHat * (1 - pHat) / n) + (zSquared / (4 * n * n));
+    const margin = z * Math.sqrt(Math.max(0, marginBase));
+    return clamp((center - margin) / denominator, 0, 1);
+}
+
+function computeReliabilityFloorPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const floor = clamp(policy.reliabilityFloor, 0, MAX_RELIABILITY_FLOOR);
+    if (floor <= 0) return 0;
+
+    const attempts = clamp(parseNonNegativeInt(stat?.attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    const minAttempts = clamp(
+        parsePositiveInt(policy.reliabilityFloorMinAttempts, DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS),
+        1,
+        MAX_RELIABILITY_FLOOR_MIN_ATTEMPTS
+    );
+    if (attempts < minAttempts) return 0;
+
+    const successes = clamp(parseNonNegativeInt(stat?.successes, 0), 0, attempts);
+    const lowerBound = computeWilsonLowerBound(successes, attempts);
+    return clamp(floor - lowerBound, 0, 1);
 }
 
 function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = []) {
@@ -3958,6 +4008,7 @@ function selectCatalogSlice({
                 scoringPolicy
             );
         }
+        score -= computeReliabilityFloorPenalty(scoreStats, scoringPolicy);
 
         const item = {
             candidate,

@@ -617,6 +617,76 @@ test('buildAutonomousBatchPlan supports epsilon-thompson policy with determinist
     assert.deepEqual(plan.selection.skillIds, [41]);
 });
 
+test('buildAutonomousBatchPlan applies reliability floor penalties to low-confidence streaks', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 441, code: 'SK-00441', title: 'Skill 441' },
+            { id: 442, code: 'SK-00442', title: 'Skill 442' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 40,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '441': { attempts: 4, successes: 4, failures: 0, consecutiveFailures: 0, lastWave: 39, lastStatus: 'completed' },
+                '442': { attempts: 50, successes: 39, failures: 11, consecutiveFailures: 0, lastWave: 39, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 41,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            reliabilityFloor: 0.8,
+            reliabilityFloorMinAttempts: 1
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [442]);
+});
+
+test('buildAutonomousBatchPlan ignores reliability floor until minimum attempts are reached', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 451, code: 'SK-00451', title: 'Skill 451' },
+            { id: 452, code: 'SK-00452', title: 'Skill 452' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 42,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '451': { attempts: 4, successes: 4, failures: 0, consecutiveFailures: 0, lastWave: 41, lastStatus: 'completed' },
+                '452': { attempts: 50, successes: 39, failures: 11, consecutiveFailures: 0, lastWave: 41, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 43,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            reliabilityFloor: 0.8,
+            reliabilityFloorMinAttempts: 8
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [451]);
+});
+
 test('buildAutonomousBatchPlan supports bayesian-bootstrap thompson ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

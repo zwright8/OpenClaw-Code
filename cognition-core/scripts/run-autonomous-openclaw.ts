@@ -51,6 +51,8 @@ Options:
   --latency-auto-target        Auto-tune latency target from recent completion durations
   --latency-auto-target-percentile <n> Percentile for auto target (0.5-0.999, default: 0.9)
   --latency-auto-target-min-samples <n> Min recent samples before auto target activates (1-128, default: 8)
+  --reliability-floor <n>      Reliability guardrail floor (Wilson LCB) subtracted from ranking gap (0-1, default: 0)
+  --reliability-floor-min-attempts <n> Min attempts before reliability floor penalties activate (default: 8)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -212,6 +214,8 @@ function parseArgs(argv) {
             latencyAutoTarget: false,
             latencyAutoTargetPercentile: 0.9,
             latencyAutoTargetMinSamples: 8,
+            reliabilityFloor: 0,
+            reliabilityFloorMinAttempts: 8,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -476,6 +480,16 @@ function parseArgs(argv) {
         }
         if (token === '--latency-auto-target-min-samples') {
             options.selectionPolicyConfig.latencyAutoTargetMinSamples = parsePositiveInt(value, '--latency-auto-target-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--reliability-floor') {
+            options.selectionPolicyConfig.reliabilityFloor = parseFloatInRange(value, '--reliability-floor', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--reliability-floor-min-attempts') {
+            options.selectionPolicyConfig.reliabilityFloorMinAttempts = parsePositiveInt(value, '--reliability-floor-min-attempts');
             i++;
             continue;
         }
