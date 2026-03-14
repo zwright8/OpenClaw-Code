@@ -144,3 +144,16 @@ Primary products for this skill: industrial base risk dashboard, critical shorta
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-machine-tool-forging-capacity-priority-v1` + `protocol_stack_id=ps-strategic-machine-tool-forging-capacity-priority-stack-v1` when supply-chain monitoring shows heavy-manufacturing bottlenecks as the decisive readiness constraint.
+- Add `tool_suite_id=ts-strategic-composite-prepreg-resin-defense-allocation-v1` + `protocol_stack_id=ps-strategic-composite-prepreg-resin-defense-allocation-stack-v1` when freezer inventory, resin pedigree, or autoclave capacity creates strategic fragility.
+- Add `tool_suite_id=ts-strategic-bearing-gearbox-surge-assurance-v1` + `protocol_stack_id=ps-strategic-bearing-gearbox-surge-assurance-stack-v1` when trusted rotating-component flow becomes a multi-platform readiness driver.
+- Add `tool_suite_id=ts-strategic-harbor-tug-pilotage-sealift-priority-v1` + `protocol_stack_id=ps-strategic-harbor-tug-pilotage-sealift-priority-stack-v1` when sealift risk is driven by tug, pilotage, or berth-movement scarcity rather than vessel availability.
+- Add `packet_id=DPL-MACHINE-TOOL-FORGING-001`, `packet_id=DPL-COMPOSITE-PREPREG-RESIN-001`, `packet_id=DPL-BEARING-GEARBOX-SURGE-001`, and `packet_id=DPL-HARBOR-TUG-PILOTAGE-SEALIFT-001` for recommendations that materially change industrial or maritime-risk posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-strategic-photonics-laser-optics-allocation-v1` + `protocol_stack_id=ps-strategic-photonics-laser-optics-allocation-stack-v1` when EO materials, coatings, or photonics components become the strategic bottleneck across multiple defense programs.
+- Add `tool_suite_id=ts-coalition-munitions-end-use-serial-trace-v1` + `protocol_stack_id=ps-coalition-munitions-end-use-serial-trace-stack-v1` when transfer risk, diversion indicators, or serial-integrity gaps threaten coalition replenishment confidence.
+- Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001` and `packet_id=DPL-MUNITIONS-END-USE-SERIAL-TRACE-001` for recommendations that materially change industrial prioritization or coalition transfer risk posture.

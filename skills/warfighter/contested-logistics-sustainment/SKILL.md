@@ -235,3 +235,17 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when route, carrier, supplier, or insurer coercion indicators can fracture distribution plans before physical disruption is visible.
 - Add `tool_suite_id=ts-strategic-launch-counterfeit-microelectronics-v1` + `protocol_stack_id=ps-strategic-launch-counterfeit-microelectronics-stack-v1` when logistics confidence depends on trusted electronics pedigree for critical launch, C2, or sustainment systems.
 - Add `packet_id=DPL-DEPOT-SABOTAGE-WARGAME-001`, `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, and `packet_id=DPL-LAUNCH-COUNTERFEIT-MICRO-001` for branches that materially alter throughput, reconstitution timing, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-theater-bulk-industrial-gas-oxygen-priority-v1` + `protocol_stack_id=ps-theater-bulk-industrial-gas-oxygen-priority-stack-v1` when sustainment viability depends on bulk gas purity, refill capacity, or contested transport to medical and maintenance nodes.
+- Add `tool_suite_id=ts-strategic-harbor-tug-pilotage-sealift-priority-v1` + `protocol_stack_id=ps-strategic-harbor-tug-pilotage-sealift-priority-stack-v1` when tug and pilotage scarcity becomes the limiting factor for sealift throughput.
+- Add `tool_suite_id=ts-homeland-defense-specialty-lubricant-hydraulic-fluid-allocation-v1` + `protocol_stack_id=ps-homeland-defense-specialty-lubricant-hydraulic-fluid-allocation-stack-v1` when specialty-fluid shortages or contamination directly constrain mission-capable rates and depot output.
+- Add `packet_id=DPL-INDUSTRIAL-GAS-OXYGEN-PRIORITY-001`, `packet_id=DPL-HARBOR-TUG-PILOTAGE-SEALIFT-001`, and `packet_id=DPL-LUBRICANT-HYDRAULIC-ALLOCATION-001` for branches that materially alter sustainment throughput, life-support posture, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-strategic-photonics-laser-optics-allocation-v1` + `protocol_stack_id=ps-strategic-photonics-laser-optics-allocation-stack-v1` when sustainment feasibility depends on scarce EO materials for sensors, laser systems, or electro-optical repair.
+- Add `tool_suite_id=ts-homeland-rail-hazmat-military-priority-deconfliction-v1` + `protocol_stack_id=ps-homeland-rail-hazmat-military-priority-deconfliction-stack-v1` when rail dispatch must reconcile military throughput with hazardous-material controls and civil emergency constraints.
+- Add `tool_suite_id=ts-joint-airbase-arresting-gear-runway-cable-reconstitution-v1` + `protocol_stack_id=ps-joint-airbase-arresting-gear-runway-cable-reconstitution-stack-v1` when airbase sustainment, sortie recovery, or runway-end cable integrity becomes the bottleneck for operational tempo.
+- Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001`, `packet_id=DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001`, and `packet_id=DPL-ARRESTING-GEAR-RUNWAY-CABLE-001` for branches that materially alter sustainment throughput, sortie regeneration, or commander risk acceptance.

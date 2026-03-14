@@ -71,3 +71,13 @@ Preferred protocol families for this skill: X.509/PKI, API/JSON, USMTF.
 - Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
 - Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
 - Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-joint-munition-dataload-crypto-fill-reconstitution-v1` + `protocol_stack_id=ps-joint-munition-dataload-crypto-fill-reconstitution-stack-v1` when trust continuity depends on verified mission-data reconstitution, checksum integrity, or release-authority preservation for weapon and EW systems.
+- Add `packet_id=DPL-MUNITION-DATALOAD-CRYPTO-001` for recommendations that materially alter key continuity, dataload release timing, or commander trust posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when zero-trust continuity depends on validating edge dataset provenance, attestation integrity, or rollback authority after corruption indicators.
+- Add `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter trust-anchor confidence, edge release posture, or rollback sequencing.

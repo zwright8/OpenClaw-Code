@@ -160,3 +160,10 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Add `tool_suite_id=ts-additive-airworthiness-certification-v1` + `protocol_stack_id=ps-additive-airworthiness-certification-stack-v1` when sortie generation depends on additive-manufactured part release decisions.
 - Add `tool_suite_id=ts-autonomous-swarm-corridor-priority-v1` + `protocol_stack_id=ps-autonomous-swarm-corridor-priority-stack-v1` when ATO sequencing requires autonomous corridor deconfliction.
 - Add `packet_id=DPL-ADDITIVE-AIRWORTHINESS-CERTIFICATION-001` and `packet_id=DPL-AUTONOMOUS-SWARM-CORRIDOR-PRIORITY-001` for branch decisions that alter launch windows or mission timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-aerial-refueling-boom-drogue-reconstitution-v1` + `protocol_stack_id=ps-joint-aerial-refueling-boom-drogue-reconstitution-stack-v1` when the ATO depends on restoring tanker hardware, hose-drum capacity, or receiver-priority fuel flow.
+- Prioritize `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when ATO fragos, tanker retasks, or divert instructions may be stale, spoofed, or version-divergent.
+- Prioritize `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when air-tasking workflows depend on emergency remediation of mission software without breaking execution trust.
+- Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for ATO branches that alter sortie cadence, tasking authenticity, or execution-system trust.

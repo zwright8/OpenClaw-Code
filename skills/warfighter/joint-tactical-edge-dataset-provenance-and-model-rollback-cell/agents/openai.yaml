@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Tactical Edge Dataset Provenance and Model Rollback Cell"
+  short_description: "Rollback untrusted edge datasets and model updates"

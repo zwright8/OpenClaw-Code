@@ -144,3 +144,18 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-harbor-tug-pilotage-sealift-priority-v1` + `protocol_stack_id=ps-strategic-harbor-tug-pilotage-sealift-priority-stack-v1` when strategic sealift timing depends more on tug crews, pilots, and berth-release windows than on vessel availability alone.
+- Add `packet_id=DPL-HARBOR-TUG-PILOTAGE-SEALIFT-001` for recommendations that materially alter port-release timing, prepositioning reliability, or commander sealift confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-homeland-rail-hazmat-military-priority-deconfliction-v1` + `protocol_stack_id=ps-homeland-rail-hazmat-military-priority-deconfliction-stack-v1` when prepositioning or onward movement depends on reconciling military rail dispatch with hazardous-material constraints and civil emergency routing.
+- Add `packet_id=DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001` for recommendations that materially alter sealift offload sequencing, inland distribution timing, or force-flow confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-coalition-underway-replenishment-rig-compatibility-v1` + `protocol_stack_id=ps-coalition-underway-replenishment-rig-compatibility-stack-v1` when afloat prepositioning support or dispersed fleet sustainment depends on compatible coalition UNREP rigs and transfer certifications.
+- Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when delayed sealift, port closure, or damaged prepositioning stocks require reserve airlift backfill for critical cargo.
+- Add `packet_id=DPL-UNDERWAY-REPLENISHMENT-RIG-001` and `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001` for recommendations that materially alter afloat sustainment, prepositioning resilience, or multimodal backfill posture.

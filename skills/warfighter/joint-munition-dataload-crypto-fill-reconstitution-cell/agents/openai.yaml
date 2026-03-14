@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Munition Dataload Crypto Fill Reconstitution Cell"
+  short_description: "Restore trusted munition data and crypto continuity"

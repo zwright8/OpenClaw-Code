@@ -195,3 +195,23 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-strategic-solid-rocket-motor-supply-surge-safety-assurance-v1` with `protocol_stack_id=ps-strategic-solid-rocket-motor-supply-surge-safety-assurance-stack-v1` when mobilization recommendations depend on rocket-motor lot integrity, hazardous transport windows, or deterrence-critical surge allocations.
 - Add `tool_suite_id=ts-homeland-defense-industrial-copper-transformer-theft-grid-priority-v1` with `protocol_stack_id=ps-homeland-defense-industrial-copper-transformer-theft-grid-priority-stack-v1` when industrial readiness depends on theft-driven grid degradation, transformer replacement timelines, or defense-load priority.
 - Add `packet_id=DPL-STRATEGIC-SOLID-ROCKET-MOTOR-SURGE-001` and `packet_id=DPL-HOMELAND-COPPER-TRANSFORMER-THEFT-001` for recommendations that materially change industrial surge posture, utility restoration priority, or strategic sustainment confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-machine-tool-forging-capacity-priority-v1` + `protocol_stack_id=ps-strategic-machine-tool-forging-capacity-priority-stack-v1` when mobilization readiness depends on constrained heavy-manufacturing capacity, die life, or forge throughput.
+- Add `tool_suite_id=ts-strategic-composite-prepreg-resin-defense-allocation-v1` + `protocol_stack_id=ps-strategic-composite-prepreg-resin-defense-allocation-stack-v1` when surge production is limited by prepreg shelf life, resin pedigree, or autoclave availability.
+- Add `tool_suite_id=ts-strategic-bearing-gearbox-surge-assurance-v1` + `protocol_stack_id=ps-strategic-bearing-gearbox-surge-assurance-stack-v1` when aviation, maritime, or ground readiness depends on trusted rotating-component flow.
+- Add `tool_suite_id=ts-homeland-defense-specialty-lubricant-hydraulic-fluid-allocation-v1` + `protocol_stack_id=ps-homeland-defense-specialty-lubricant-hydraulic-fluid-allocation-stack-v1` when shortages or contamination in specialty fluids constrain depots, bases, or industrial support nodes.
+- Add `packet_id=DPL-MACHINE-TOOL-FORGING-001`, `packet_id=DPL-COMPOSITE-PREPREG-RESIN-001`, `packet_id=DPL-BEARING-GEARBOX-SURGE-001`, and `packet_id=DPL-LUBRICANT-HYDRAULIC-ALLOCATION-001` for recommendations that materially alter industrial surge posture, repair throughput, or commander confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-strategic-photonics-laser-optics-allocation-v1` + `protocol_stack_id=ps-strategic-photonics-laser-optics-allocation-stack-v1` when mobilization readiness depends on laser optics, EO coatings, or specialty photonics lots for sensors, guidance, or directed-energy systems.
+- Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001` for recommendations that materially alter industrial surge posture, electro-optical throughput, or release confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-strategic-turbine-superalloy-tbc-priority-v1` + `protocol_stack_id=ps-strategic-turbine-superalloy-tbc-priority-stack-v1` when mobilization readiness depends on turbine hot-section materials, casting slots, or coating throughput across aviation and power fleets.
+- Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when industrial prioritization must preserve strategic ground-station hardware that supports SATCOM, SDA, or missile-warning continuity.
+- Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when mobilization output must shift toward track pads, roadwheels, or final drives to protect armored maneuver readiness.
+- Add `packet_id=DPL-TURBINE-SUPERALLOY-TBC-001`, `packet_id=DPL-SPACE-GROUND-STATION-TWT-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter industrial surge posture, strategic hardware allocation, or land-force readiness.

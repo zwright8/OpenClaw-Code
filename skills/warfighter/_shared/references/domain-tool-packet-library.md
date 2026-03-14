@@ -11231,3 +11231,295 @@ validation_gates:
 - output_schema: coercion watchlist, logistics fragility map, hedge-or-reroute recommendation packet
 - protocol_profile: STIX/TAXII + USMTF + signed logistics manifests + API/JSON
 - validation_gates: multi-source indicator confirmation, mission-impact threshold, approval-chain integrity
+
+## Packet Addendum XXXII (2026-03-14, Expansion Wave XLIII Industrial Bottleneck and Recovery Packets)
+
+### packet_id: DPL-MACHINE-TOOL-FORGING-001
+- domain: strategic machine-tool and forging capacity prioritization
+- objective: preserve defense output by prioritizing scarce machine tools, dies, presses, and heat-treatment slots against warfighter-critical demand.
+- primary_tools: machine-tool capacity board, die and forge readiness ledger, heat-treatment queue manager
+- alternate_tools: manual bottleneck board and depot demand worksheet
+- degraded_mode: mission-essential workorders only with daily release review
+- input_requirements: constrained assets, queued orders, repair demand, workforce and power limits, authority thresholds
+- output_schema: machine-tool priority matrix, forging bottleneck watchlist, surge-capacity reallocation board
+- protocol_profile: signed production manifests + API/JSON + USMTF + OPC UA
+- validation_gates: quality-release pass, capacity confirmation, command approval
+
+### packet_id: DPL-COMPOSITE-PREPREG-RESIN-001
+- domain: strategic composite prepreg and resin defense allocation
+- objective: allocate scarce composite materials and cure capacity without breaking readiness, certification, or safety thresholds.
+- primary_tools: material pedigree ledger, freezer inventory dashboard, autoclave capacity scheduler
+- alternate_tools: manual freezer board and cure-slot worksheet
+- degraded_mode: mission-essential composite lots only with conservative release thresholds
+- input_requirements: lot pedigree, shelf-life exposure, cure capacity, defense demand, substitution rules
+- output_schema: composite allocation board, shelf-life and cure-capacity ledger, substitution risk ladder
+- protocol_profile: signed material-cert manifests + API/JSON + USMTF + OPC UA
+- validation_gates: pedigree verification, shelf-life confirmation, release authority approval
+
+### packet_id: DPL-BEARING-GEARBOX-SURGE-001
+- domain: strategic bearing and gearbox surge assurance
+- objective: protect rotating-component availability by prioritizing trusted lots, repair capacity, and substitution decisions across critical platforms.
+- primary_tools: bearing pedigree ledger, drivetrain health board, depot repair queue manager
+- alternate_tools: manual rotating-component board and substitution worksheet
+- degraded_mode: mission-essential platform components only with strict release gates
+- input_requirements: platform demand, lot pedigree, repair queues, contamination indicators, authority thresholds
+- output_schema: drivetrain bottleneck board, lot-release assurance matrix, repair-or-substitute decision ladder
+- protocol_profile: signed supply manifests + API/JSON + USMTF + NIEM
+- validation_gates: pedigree verification, condition-evidence check, command approval
+
+### packet_id: DPL-INDUSTRIAL-GAS-OXYGEN-PRIORITY-001
+- domain: theater bulk industrial gas and oxygen priority
+- objective: allocate oxygen and specialty gases across medical, aviation, fabrication, and maintenance demand without collapsing life support or mission sustainment.
+- primary_tools: cryogenic tank telemetry board, refill scheduler, demand adjudication tracker
+- alternate_tools: manual refill board and cylinder-priority worksheet
+- degraded_mode: medical and mission-essential gas distribution only with command-approved rationing
+- input_requirements: production status, purity evidence, refill capacity, transport availability, supported demand
+- output_schema: gas priority allocation board, refill and transport ladder, cross-demand conflict matrix
+- protocol_profile: HL7/FHIR + signed logistics manifests + API/JSON + USMTF
+- validation_gates: purity verification, refill confirmation, authority review
+
+### packet_id: DPL-MUNITION-DATALOAD-CRYPTO-001
+- domain: joint munition dataload and crypto-fill reconstitution
+- objective: restore trusted mission-data and crypto-fill continuity after compromise or loss without bypassing release safeguards.
+- primary_tools: secure dataload repository, KMI broker, mission-data validation harness
+- alternate_tools: manual checksum board and key-custody worksheet
+- degraded_mode: human-verified limited release only with commander-approved fallback loads
+- input_requirements: affected families, compromise scope, trust anchors, checksum evidence, authority matrix
+- output_schema: dataload recovery branch matrix, fill-status trust ledger, release-authority sequence
+- protocol_profile: X.509/PKI + signed mission-data manifests + API/JSON + USMTF
+- validation_gates: checksum pass, custody verification, command release approval
+
+### packet_id: DPL-NEO-IDENTITY-FRAUD-001
+- domain: coalition noncombatant evacuation identity-fraud suppression
+- objective: contain fraudulent or synthetic identities during evacuation without stalling legitimate movement or family reunification.
+- primary_tools: document-authentication workbench, watchlist deconfliction service, family-link adjudication board
+- alternate_tools: manual screening exception board and coalition liaison worksheet
+- degraded_mode: life-safety-first screening with protected hold-and-review lanes
+- input_requirements: evac manifests, document scans, watchlist responses, family claims, coalition caveats
+- output_schema: evacuation screening exception board, fraud-indicator ladder, safe-to-move decision matrix
+- protocol_profile: NIEM + CJIS + API/JSON + USMTF + ICAO Doc 9303 aligned exchange
+- validation_gates: identity-evidence pass, legal authority check, acknowledgment integrity
+
+### packet_id: DPL-HARBOR-TUG-PILOTAGE-SEALIFT-001
+- domain: strategic harbor tug and pilotage sealift priority
+- objective: keep military sealift moving when tug, pilotage, or harbor-control resources become the decisive bottleneck.
+- primary_tools: harbor movement board, tug availability tracker, pilot roster ledger
+- alternate_tools: manual berth board and harbor-master adjudication worksheet
+- degraded_mode: military-essential sailings only with fixed tug and pilot release windows
+- input_requirements: vessel queue, berth status, tug readiness, pilot qualifications, movement restrictions
+- output_schema: berth-movement priority board, tug and pilotage assignment matrix, sealift slip-risk ladder
+- protocol_profile: AIS/NMEA + OGC + signed port manifests + API/JSON + USMTF
+- validation_gates: movement-safety pass, harbor authority confirmation, acknowledgment integrity
+
+### packet_id: DPL-LUBRICANT-HYDRAULIC-ALLOCATION-001
+- domain: homeland defense specialty lubricant and hydraulic-fluid allocation
+- objective: preserve mission-capable rates by allocating scarce fluids and containing contamination across bases, depots, and industrial support nodes.
+- primary_tools: fluid pedigree ledger, contamination test board, defense-load priority tracker
+- alternate_tools: manual compatibility board and contamination worksheet
+- degraded_mode: mission-essential systems only with conservative substitution and refill approval
+- input_requirements: fluid inventories, compatibility rules, contamination evidence, supported systems, authority thresholds
+- output_schema: fluid allocation board, contamination and compatibility risk ledger, mission-capable restoration ladder
+- protocol_profile: signed material-cert manifests + API/JSON + USMTF + NIEM
+- validation_gates: compatibility verification, contamination check, command approval
+
+## Packet Addendum XXXIII (2026-03-14, Expansion Wave XLIV Airbase Recovery, Data Trust, and Priority Deconfliction Packets)
+
+### packet_id: DPL-ARRESTING-GEAR-RUNWAY-CABLE-001
+- domain: joint airbase arresting gear and runway-end cable reconstitution
+- objective: restore arresting gear and runway-end cable integrity to recover sorties under expeditionary damage or attrition.
+- primary_tools: runway arresting-system health monitor, expeditionary engineer scheduler, sortie regeneration board
+- alternate_tools: manual cable inspection log and arresting-gear reset worksheet
+- degraded_mode: precleared aircraft profiles only with commander-approved runway limits
+- input_requirements: runway status, cable-set inventory, arresting-gear faults, sortie demand, airworthiness approvals
+- output_schema: arresting-gear restoration matrix, sortie profile release ladder, engineer tasking board
+- protocol_profile: USMTF + AIXM/FIXM + API/JSON + signed maintenance manifests
+- validation_gates: airworthiness pass, cable-set confirmation, approval-chain integrity
+
+### packet_id: DPL-MUNITIONS-END-USE-SERIAL-TRACE-001
+- domain: coalition munitions end-use diversion and serial trace governance
+- objective: preserve munitions accountability across coalition transfer and prevent diversion without stalling approved support.
+- primary_tools: serial-trace ledger, transfer authorization board, end-use anomaly detector
+- alternate_tools: manual serial ledger and coalition transfer worksheet
+- degraded_mode: highest-priority munitions only with dual-control receipt confirmation
+- input_requirements: serial registry, transfer authorities, receiving-unit data, anomaly indicators, coalition caveats
+- output_schema: serial-trace exception board, end-use confidence ladder, release-or-hold recommendation packet
+- protocol_profile: NIEM + USMTF + signed custody manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: serial integrity pass, transfer authority verification, receiving-unit confirmation
+
+### packet_id: DPL-SPECTRUM-AUTONOMY-CONVOY-INTEGRITY-001
+- domain: theater spectrum-dependent autonomy convoy integrity
+- objective: maintain convoy autonomy safety and throughput when jamming, spoofing, or degraded control links threaten navigation confidence.
+- primary_tools: autonomy telemetry broker, spectrum monitor grid, convoy mission manager
+- alternate_tools: manual convoy control board and route-integrity worksheet
+- degraded_mode: human-led convoy operations with restricted autonomy assist functions only
+- input_requirements: autonomy telemetry, spectrum status, route plan, threat emitters, authority thresholds
+- output_schema: autonomy integrity board, fallback-control ladder, convoy risk-control matrix
+- protocol_profile: CoT + VMF + signed autonomy attestations + API/JSON + USMTF
+- validation_gates: navigation-confidence pass, human-override verification, command approval
+
+### packet_id: DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001
+- domain: joint commercial satellite imagery denial and priority retask governance
+- objective: preserve ISR continuity when commercial imagery is denied, degraded, or politically constrained.
+- primary_tools: collection broker, commercial imagery tasking manager, priority adjudication board
+- alternate_tools: manual retask queue and national-ISR crosswalk worksheet
+- degraded_mode: critical named areas only with commander-approved reprioritization
+- input_requirements: named areas, imagery contract status, collection priority, alternate sensors, releasability rules
+- output_schema: imagery retask matrix, denial-impact ledger, collection-priority release board
+- protocol_profile: STANAG 4559 + OGC + API/JSON + USMTF
+- validation_gates: collection authority pass, releasability check, alternate-coverage confirmation
+
+### packet_id: DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001
+- domain: strategic photonics, laser optics, and specialty electro-optical allocation
+- objective: prioritize scarce photonics, laser diodes, optics coatings, and EO materials across defense production and repair.
+- primary_tools: optical-material pedigree ledger, coating-line scheduler, sensor-build priority tracker
+- alternate_tools: manual optics allocation board and specialty-material worksheet
+- degraded_mode: mission-essential sensor and laser lots only with conservative release thresholds
+- input_requirements: material pedigree, coating capacity, EO demand, contamination indicators, authority thresholds
+- output_schema: photonics allocation board, specialty-material risk ledger, release-priority ladder
+- protocol_profile: signed material-cert manifests + API/JSON + USMTF + OPC UA
+- validation_gates: pedigree verification, quality-release pass, command approval
+
+### packet_id: DPL-BURN-BED-ESCHAROTOMY-TRANSFER-001
+- domain: expeditionary burn-bed escharotomy transfer and blood rotation assurance
+- objective: protect burn survival by matching escharotomy capacity, burn-bed availability, and transfusion flow under contested transport.
+- primary_tools: burn-bed regulation board, transfusion stress tracker, aeromedical routing broker
+- alternate_tools: manual burn board and blood-rotation worksheet
+- degraded_mode: life-saving burn transfers only with conservative transfusion thresholds
+- input_requirements: burn severity, bed availability, surgical capability, blood inventory, movement constraints
+- output_schema: burn transfer matrix, escharotomy-capacity ledger, blood-rotation priority board
+- protocol_profile: HL7/FHIR + USMTF + NATO APP-11/ADatP-3 aligned + API/JSON
+- validation_gates: clinical safety pass, receiving-facility confirmation, blood-availability verification
+
+### packet_id: DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001
+- domain: homeland defense rail hazmat and military-priority deconfliction
+- objective: deconflict military force flow with hazardous-material rail movements and civil emergency demand under constrained dispatch windows.
+- primary_tools: rail movement board, hazmat compliance ledger, military force-flow scheduler
+- alternate_tools: manual dispatch board and hazmat hold-point worksheet
+- degraded_mode: military-essential moves only with hazmat hold points and manual dispatch approval
+- input_requirements: train schedules, hazmat classes, military priorities, civil restrictions, emergency-management directives
+- output_schema: rail deconfliction matrix, hazmat hold ledger, military-priority dispatch board
+- protocol_profile: NIMS/ICS + EDI X12 + API/JSON + USMTF
+- validation_gates: hazmat compliance pass, dispatch authority verification, civil-emergency coordination check
+
+### packet_id: DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001
+- domain: joint tactical-edge dataset provenance and model rollback
+- objective: restore trusted edge datasets and models when corruption, drift, or tampering is suspected in tactical systems.
+- primary_tools: edge dataset registry, model rollback orchestrator, integrity attestation service
+- alternate_tools: manual checksum board and baseline snapshot ledger
+- degraded_mode: approved-baseline snapshots only with human release for edge updates
+- input_requirements: dataset versions, integrity signals, affected mission threads, baseline snapshots, authority thresholds
+- output_schema: dataset provenance ledger, rollback trigger table, trusted-edge release board
+- protocol_profile: signed dataset manifests + API/JSON + STIX/TAXII + USMTF
+- validation_gates: checksum verification, baseline availability, command approval
+
+## Packet Addendum XXXIV (2026-03-14, Expansion Wave XLV Reserve Airlift, Patch Governance, and Strategic Sustainment Packets)
+
+### packet_id: DPL-CIVIL-RESERVE-AIR-FLEET-001
+- domain: joint civil reserve air fleet activation and cargo priority
+- objective: activate reserve and commercial airlift fast enough to close lift gaps without breaking diplomatic, safety, or cargo-priority constraints.
+- primary_tools: airlift activation board, cargo visibility dashboard, civil-carrier commitment tracker
+- alternate_tools: manual cargo-priority worksheet and carrier-availability board
+- degraded_mode: mission-essential lift only with daily commander review
+- input_requirements: cargo backlog, passenger demand, carrier commitments, ramp slots, diplomatic clearances
+- output_schema: airlift activation matrix, cargo-priority ladder, carrier-commitment risk board
+- protocol_profile: AIXM/FIXM + IATA Cargo-IMP + API/JSON + USMTF
+- validation_gates: authority confirmation, carrier acceptance, ramp-slot verification
+
+### packet_id: DPL-AERIAL-REFUELING-BOOM-DROGUE-001
+- domain: joint aerial refueling boom and drogue surge reconstitution
+- objective: restore tanker fuel-delivery capacity without bypassing airworthiness, receiver priority, or maintenance release safeguards.
+- primary_tools: tanker health monitor, maintenance scheduler, receiver-priority board
+- alternate_tools: manual tanker recovery board and receiver-rationing worksheet
+- degraded_mode: highest-priority receivers only with commander-approved fuel rationing
+- input_requirements: tanker status, boom and drogue faults, receiver demand, crew limits, repair capacity
+- output_schema: tanker restoration matrix, boom-drogue bottleneck board, receiver-fuel-risk ladder
+- protocol_profile: USMTF + Link 16 J-series + AIXM/FIXM + signed maintenance manifests + API/JSON
+- validation_gates: airworthiness release, maintenance confirmation, command approval
+
+### packet_id: DPL-MISSION-SBOM-EMERGENCY-PATCH-001
+- domain: theater mission software bill of materials and emergency patch governance
+- objective: remediate urgent software exposure without losing mission assurance, artifact trust, or rollback control.
+- primary_tools: SBOM registry, vulnerability prioritization board, deployment orchestrator
+- alternate_tools: manual exploit triage board and rollback worksheet
+- degraded_mode: isolate-and-monitor only with rollback-ready baseline
+- input_requirements: affected components, exploit evidence, test results, rollback authority, mission windows
+- output_schema: emergency patch decision board, component-exposure ledger, rollback authorization ladder
+- protocol_profile: CycloneDX/SPDX + STIX/TAXII + signed deployment manifests + API/JSON + USMTF
+- validation_gates: artifact provenance, test pass, release authority approval
+
+### packet_id: DPL-TURBINE-SUPERALLOY-TBC-001
+- domain: strategic turbine blade superalloy and thermal barrier coating priority
+- objective: allocate scarce hot-section materials and coating throughput across engines and power systems without unsafe release decisions.
+- primary_tools: superalloy pedigree ledger, casting and coating scheduler, engine repair board
+- alternate_tools: manual hot-section allocation board and depot demand worksheet
+- degraded_mode: mission-essential engine lots only with conservative release thresholds
+- input_requirements: engine demand, pedigree evidence, foundry capacity, coating throughput, authority thresholds
+- output_schema: hot-section allocation board, superalloy pedigree ledger, coating-capacity risk ladder
+- protocol_profile: signed material-cert manifests + API/JSON + USMTF + OPC UA
+- validation_gates: pedigree verification, certification pass, command approval
+
+### packet_id: DPL-DIGITAL-ORDER-WATERMARK-001
+- domain: joint digital order watermark recall and authenticity
+- objective: contain spoofed or stale digital orders and restore trusted release paths without stalling essential command tempo.
+- primary_tools: order-routing gateway, signature verifier, acknowledgment ledger
+- alternate_tools: manual countersign board and order-recall worksheet
+- degraded_mode: hold and reissue only with dual-channel human confirmation
+- input_requirements: affected orders, signature or watermark anomalies, recipient lists, acknowledgment status, authority matrix
+- output_schema: order-integrity board, recall-and-reissue ladder, acknowledgment exception ledger
+- protocol_profile: signed order manifests + USMTF + STIX/TAXII + API/JSON
+- validation_gates: provenance confirmation, acknowledgment integrity, command approval
+
+### packet_id: DPL-WATER-RESTART-BIOFILM-001
+- domain: homeland base potable water restart biofilm and Legionella control
+- objective: restart potable-water systems while controlling contamination, health surveillance, and facility-release risk.
+- primary_tools: water-quality dashboard, facility isolation board, preventive-medicine tracker
+- alternate_tools: manual sampling board and facility-release worksheet
+- degraded_mode: restricted-potable-use posture with mission-essential facility release only
+- input_requirements: outage duration, sampling results, affected facilities, treatment status, medical-surveillance indicators
+- output_schema: facility restart matrix, water-quality risk board, sampling-and-release ladder
+- protocol_profile: HL7/FHIR + NIMS/ICS + API/JSON + USMTF
+- validation_gates: sampling confirmation, facility-release approval, health-protection review
+
+### packet_id: DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001
+- domain: coalition host-nation civil airlift ramp and diplomatic clearance
+- objective: synchronize coalition civil-airlift access without losing diplomatic clearance fidelity, slot discipline, or alliance trust.
+- primary_tools: coalition slot board, diplomatic-clearance tracker, ramp-ops dashboard
+- alternate_tools: liaison clearance worksheet and manual slot-allocation board
+- degraded_mode: protected or mission-essential sorties only with liaison-confirmed clearances
+- input_requirements: sortie demand, carrier mix, ramp slots, diplomatic status, coalition caveats
+- output_schema: coalition ramp-priority matrix, diplomatic-clearance ledger, alliance airlift-risk ladder
+- protocol_profile: AIXM/FIXM + NIEM + API/JSON + USMTF + ICAO diplomatic-clearance exchange
+- validation_gates: host-nation confirmation, slot verification, coalition approval
+
+### packet_id: DPL-SPACE-GROUND-STATION-TWT-001
+- domain: strategic space ground station traveling-wave tube and cryogenic receiver surge
+- objective: preserve mission-critical ground-station coverage when RF-chain components are scarce or failing.
+- primary_tools: ground-node health monitor, RF spare ledger, mission-coverage board
+- alternate_tools: manual ground-node worksheet and component-allocation board
+- degraded_mode: mission-essential nodes only with constrained coverage windows
+- input_requirements: ground-node status, component pedigree, coverage demand, reroute options, authority thresholds
+- output_schema: RF-chain allocation board, ground-station coverage matrix, spare-pedigree risk ladder
+- protocol_profile: CCSDS + signed maintenance manifests + API/JSON + USMTF
+- validation_gates: component pedigree, coverage confirmation, command approval
+
+### packet_id: DPL-ARMORED-RUNNING-GEAR-001
+- domain: joint armored vehicle track pad, roadwheel, and final drive priority
+- objective: preserve armored maneuver readiness by allocating running gear and repair capacity before mobility collapses.
+- primary_tools: fleet readiness dashboard, running-gear failure ledger, depot spares queue
+- alternate_tools: manual running-gear board and convoy-delivery worksheet
+- degraded_mode: mission-essential tracked fleets only with commander-approved training reductions
+- input_requirements: fleet demand, failure rates, spare pedigree, repair queues, route status
+- output_schema: running-gear priority matrix, repair-versus-cannibalization board, maneuver-readiness risk ladder
+- protocol_profile: signed supply manifests + API/JSON + USMTF + NIEM
+- validation_gates: spare verification, readiness confirmation, command approval
+
+### packet_id: DPL-UNDERWAY-REPLENISHMENT-RIG-001
+- domain: coalition underway replenishment hose, spanwire, and rig compatibility
+- objective: keep coalition fuel and stores flowing at sea without unsafe rig mismatches or avoidable transfer failures.
+- primary_tools: UNREP compatibility board, fleet logistics tracker, sea-state and seamanship risk monitor
+- alternate_tools: manual rig worksheet and coalition transfer-rate board
+- degraded_mode: fuel and life-support stores only with manual compatibility verification
+- input_requirements: ship classes, rig compatibility status, transfer demand, sea state, coalition caveats
+- output_schema: rig-compatibility board, transfer-priority ladder, coalition replenishment risk matrix
+- protocol_profile: AIS/NMEA + NATO APP-11/ADatP-3 + signed logistics manifests + API/JSON + USMTF
+- validation_gates: compatibility confirmation, seamanship risk review, coalition approval
