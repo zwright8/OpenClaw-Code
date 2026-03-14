@@ -452,3 +452,101 @@ For every critical recommendation, include:
 - Cross-check systems: independent ship-class compatibility witness and alternate transfer-rate board
 - Protocol binding: AIS/NMEA + NATO APP-11/ADatP-3 + signed logistics manifests + API/JSON + USMTF
 - Fallback path: fuel and life-support stores only with manual compatibility verification
+
+## New Toolchain Wave (2026-03-14, Expansion Wave XLVI)
+
+### `TC-CLOUD-ADMISSION-052`
+
+- Domain: theater battlefield cloud federation admission control
+- Primary systems: workload trust admission controller, sovereign edge scheduler, mission dependency graph engine
+- Cross-check systems: independent artifact attestation witness and alternate service-health board
+- Protocol binding: signed workload manifests + API/JSON + STIX/TAXII + USMTF
+- Fallback path: mission-essential workloads only with commander-approved manual admission
+
+### `TC-AUTON-EVAC-053`
+
+- Domain: homeland military and civil autonomous evacuation convoy arbitration
+- Primary systems: autonomy convoy dispatcher, emergency traffic board, identity checkpoint ledger
+- Cross-check systems: independent public-safety route witness and alternate manual convoy control cell
+- Protocol binding: NIMS/ICS + CoT + NIEM + API/JSON + USMTF
+- Fallback path: human-driven convoys only with checkpoint-based release
+
+### `TC-AI-ORDER-054`
+
+- Domain: joint AI-generated order integrity and commander-intent deviation
+- Primary systems: order semantics comparator, signature verifier, acknowledgment exception ledger
+- Cross-check systems: independent countersign witness and alternate distribution control board
+- Protocol binding: signed order manifests + USMTF + STIX/TAXII + API/JSON
+- Fallback path: dual-channel human countersign before any release
+
+### `TC-FUEL-ADDITIVE-055`
+
+- Domain: strategic reserve fuel additive adulteration interdiction
+- Primary systems: additive pedigree ledger, contamination anomaly detector, fuel release board
+- Cross-check systems: independent lab witness and alternate supplier custody board
+- Protocol binding: signed material-cert manifests + API/JSON + USMTF + NIEM
+- Fallback path: mission-essential fuel lots only with dual-sample confirmation
+
+### `TC-HIGHLAT-BATT-056`
+
+- Domain: expeditionary high-latitude battery thermal survivability
+- Primary systems: battery health telemetry broker, cold-weather forecast fusion board, charging-window scheduler
+- Cross-check systems: independent thermal witness and alternate manual battery rotation ledger
+- Protocol binding: signed battery-health manifests + CoT + API/JSON + USMTF
+- Fallback path: mission-essential battery loads only with manual thermal checks
+
+### `TC-RENAL-SURGE-057`
+
+- Domain: joint austere renal support and dialysis surge
+- Primary systems: renal triage board, dialysis consumable tracker, patient movement broker
+- Cross-check systems: independent lab witness and alternate clinical capacity mirror
+- Protocol binding: HL7/FHIR + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: life-saving renal support only with commander-approved triage thresholds
+
+### `TC-MOBILE-APPROACH-058`
+
+- Domain: joint dispersed airbase mobile precision approach and lighting
+- Primary systems: mobile approach set tracker, runway lighting controller, recovery certification board
+- Cross-check systems: independent airfield survey witness and alternate flight-safety board
+- Protocol binding: AIXM/FIXM + USMTF + Link 16 J-series + signed maintenance manifests + API/JSON
+- Fallback path: day-VMC or restricted-minima operations only
+
+### `TC-SURF-BREACH-059`
+
+- Domain: joint littoral surf-zone obstacle breaching and beach gradient verification
+- Primary systems: hydrographic survey fusion board, obstacle classification engine, lane release controller
+- Cross-check systems: independent diver or UAS witness and alternate amphibious engineer board
+- Protocol binding: OGC + VMF + USMTF + API/JSON + CoT
+- Fallback path: daylight or limited-craft lane release only
+
+### `TC-ORBIT-POWER-060`
+
+- Domain: strategic on-orbit solar-array shadowing and battery load shed
+- Primary systems: spacecraft power-health monitor, eclipse prediction engine, mission-coverage priority board
+- Cross-check systems: independent telemetry witness and alternate maneuver approval board
+- Protocol binding: CCSDS + signed telemetry manifests + API/JSON + USMTF
+- Fallback path: mission-essential payloads only with conservative battery margins
+
+### `TC-EMDECOY-061`
+
+- Domain: joint emissions window and decoy synchronization
+- Primary systems: emissions scheduler, decoy status board, adversary collection-risk model
+- Cross-check systems: independent spectrum monitor and alternate manual EMCON cell
+- Protocol binding: Link 16 J-series + VMF + CoT + USMTF + API/JSON
+- Fallback path: brief commander-approved emissions bursts only with manual decoy confirmation
+
+### `TC-SAR-BEACON-062`
+
+- Domain: coalition denied-environment search-and-rescue beacon authentication
+- Primary systems: beacon integrity broker, coalition identity challenge board, recovery routing manager
+- Cross-check systems: independent geolocation witness and alternate personnel-recovery auth cell
+- Protocol binding: Cospas-Sarsat + USMTF + NIEM + CoT + API/JSON
+- Fallback path: life-saving recovery only with dual-source location confirmation
+
+### `TC-BREACH-SOIL-063`
+
+- Domain: autonomous breach microterrain soil-bearing and route classification
+- Primary systems: terrain sensing fusion board, soil classification engine, route release controller
+- Cross-check systems: independent ground-truth witness and alternate engineer risk board
+- Protocol binding: OGC + CoT + VMF + API/JSON + USMTF
+- Fallback path: limited-weight route release only with human reconnaissance

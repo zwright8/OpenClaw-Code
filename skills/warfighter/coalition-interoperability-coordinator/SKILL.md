@@ -265,6 +265,13 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-joint-tactical-legal-attribution-synthesis-v1` + `protocol_stack_id=ps-joint-tactical-legal-attribution-synthesis-stack-v1` when coalition interoperability decisions depend on shared evidentiary confidence and releasable attribution language.
 - Add `tool_suite_id=ts-coalition-minefield-humanitarian-corridor-integrity-v1` + `protocol_stack_id=ps-coalition-minefield-humanitarian-corridor-integrity-stack-v1` when coalition coordination must preserve humanitarian maritime access under mine threat and route caveats.
 - Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when interoperable data exchange depends on trusted sovereign or edge compute cutovers.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when coalition data exchange depends on controlled workload admission, enclave isolation, or releasability boundaries across federated clouds.
+- Add `tool_suite_id=ts-coalition-denied-sar-beacon-authentication-v1` + `protocol_stack_id=ps-coalition-denied-sar-beacon-authentication-stack-v1` when partner-force recovery timing depends on trusted distress-beacon authentication and coalition identity challenge paths.
+- Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when machine-generated combined orders, translations, or delegated tasking require commander-intent fidelity checks before coalition release.
+- Add `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, `packet_id=DPL-COALITION-SAR-BEACON-AUTH-001`, and `packet_id=DPL-AI-ORDER-INTENT-001` for branches that materially alter coalition release confidence, partner trust, or combined-force tempo.
 - Add `packet_id=DPL-TACTICAL-LEGAL-ATTRIB-001`, `packet_id=DPL-MINEFIELD-HUMCOR-001`, and `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001` for branches that materially change coalition release, access, or continuity decisions.
 
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)

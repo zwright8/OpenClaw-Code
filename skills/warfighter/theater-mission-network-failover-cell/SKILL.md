@@ -291,3 +291,10 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when degraded network paths increase the risk of stale or spoofed digital tasking during failover execution.
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when mission continuity depends on rerouting through strategic SATCOM or SDA ground nodes with scarce RF-chain components.
 - Add `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-SPACE-GROUND-STATION-TWT-001` for branches that materially change mission-service restoration, command trust, or strategic-network reachback posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when failover depends on controlled admission of workloads into alternate cloud or edge enclaves without spreading compromise.
+- Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when degraded network paths increase the risk of stale, distorted, or machine-generated tasking drifting from commander intent during failover execution.
+- Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when service restoration depends on brief emissions exposure, decoy masking, or tightly sequenced EMCON breaks.
+- Add `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, `packet_id=DPL-AI-ORDER-INTENT-001`, and `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001` for branches that materially change mission-service restoration, command trust, or exposure-risk posture.

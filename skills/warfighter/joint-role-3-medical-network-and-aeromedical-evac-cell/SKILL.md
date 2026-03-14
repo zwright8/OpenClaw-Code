@@ -132,3 +132,10 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when staging hospitals, aeromedical hubs, or treatment wards depend on safe potable-water restart before patient intake expansion.
 - Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when coalition patient movement depends on diplomatic clearances, mixed-crew civil aircraft, or host-nation ramp access.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001` for recommendations that materially change patient movement, facility release, or coalition aeromedical access posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-joint-austere-renal-support-dialysis-surge-v1` + `protocol_stack_id=ps-joint-austere-renal-support-dialysis-surge-stack-v1` when patient survival, bed balancing, or critical-care routing depends on dialysis capacity, renal consumables, or water purity.
+- Add `tool_suite_id=ts-coalition-denied-sar-beacon-authentication-v1` + `protocol_stack_id=ps-coalition-denied-sar-beacon-authentication-stack-v1` when isolated casualty recovery or pickup-site validation depends on trusted coalition beacon authentication.
+- Add `tool_suite_id=ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1` + `protocol_stack_id=ps-joint-dispersed-airbase-mobile-precision-approach-lighting-stack-v1` when night or low-visibility aeromedical recoveries depend on mobile precision-approach and lighting capability at dispersed airbases.
+- Add `packet_id=DPL-AUSTERE-RENAL-DIALYSIS-001`, `packet_id=DPL-COALITION-SAR-BEACON-AUTH-001`, and `packet_id=DPL-MOBILE-PRECISION-APPROACH-001` for recommendations that materially alter patient movement, clinical survivability, or recovery-trust posture.

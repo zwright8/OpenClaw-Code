@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Emissions Window and Decoy Synchronization Cell"
+  short_description: "Synchronize EMCON windows and decoys"

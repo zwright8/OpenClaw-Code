@@ -1902,3 +1902,89 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-maritime-undersea-v1`.
 - Protocols: `AIS/NMEA`, `NATO APP-11/ADatP-3`, signed logistics manifests, `API/JSON`, `USMTF`.
 - Degraded fallback: fuel and life-support stores only with manual compatibility verification.
+
+## Profile Addendum Q (2026-03-14, Cloud Admission, AI Order Integrity, and Mobility Survivability)
+
+### `battlefield-cloud-admission-control-v1`
+- Use for battlefield cloud and edge federations when contested transport, workload trust, or enclave isolation determines mission continuity.
+- Primary tools: `ts-theater-battlefield-cloud-federation-admission-control-v1`.
+- Cross-check tools: `ts-joint-sovereign-edge-cloud-migration-v1`.
+- Protocols: signed workload manifests, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: mission-essential workloads only with commander-approved manual admission.
+
+### `autonomous-evacuation-convoy-arbitration-v1`
+- Use for homeland military-civil evacuation when autonomous convoys, civil life-safety traffic, and checkpoint identity control compete for the same roads.
+- Primary tools: `ts-homeland-autonomous-evacuation-convoy-arbitration-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `CoT`, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: human-driven convoys only with checkpoint-based release.
+
+### `ai-order-intent-integrity-v1`
+- Use for order release when AI-generated products need semantic drift checks against authenticated commander intent.
+- Primary tools: `ts-joint-ai-order-intent-integrity-v1`.
+- Cross-check tools: `ts-joint-digital-order-watermark-recall-v1`.
+- Protocols: signed order manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: dual-channel human countersign before any release.
+
+### `fuel-additive-adulteration-interdiction-v1`
+- Use for strategic or expeditionary fuel decisions when additive pedigree or contamination indicators threaten safe release.
+- Primary tools: `ts-strategic-fuel-additive-adulteration-interdiction-v1`.
+- Cross-check tools: `ts-defense-industrial-base-sabotage-risk-v1`.
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: mission-essential fuel lots only with dual-sample confirmation.
+
+### `high-latitude-battery-thermal-survivability-v1`
+- Use for arctic and alpine operations when batteries, charging windows, or cold-soak risk constrain autonomous or expeditionary power.
+- Primary tools: `ts-expeditionary-high-latitude-battery-thermal-survivability-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed battery-health manifests, `CoT`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential battery loads only with manual thermal checks.
+
+### `austere-renal-support-dialysis-surge-v1`
+- Use for austere clinical operations when dialysis capacity, water purity, or renal consumables determine survival and diversion timing.
+- Primary tools: `ts-joint-austere-renal-support-dialysis-surge-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: life-saving renal support only with commander-approved triage thresholds.
+
+### `mobile-precision-approach-lighting-v1`
+- Use for dispersed or damaged airbases when mobile approach aids and lighting are the pacing constraint on recovery operations.
+- Primary tools: `ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `AIXM/FIXM`, `USMTF`, `Link 16 J-series`, signed maintenance manifests, `API/JSON`.
+- Degraded fallback: day-VMC or restricted-minima operations only.
+
+### `surf-zone-breach-gradient-verification-v1`
+- Use for amphibious or logistics shore entry when breach-lane release depends on trusted gradients, surf conditions, and obstacle reduction.
+- Primary tools: `ts-joint-littoral-surf-zone-breach-gradient-verification-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `OGC`, `VMF`, `USMTF`, `API/JSON`, `CoT`.
+- Degraded fallback: daylight or limited-craft lane release only.
+
+### `on-orbit-solar-battery-load-shed-v1`
+- Use for strategic space assets when power margins, eclipse geometry, or mission-coverage priorities require controlled load shedding.
+- Primary tools: `ts-strategic-on-orbit-solar-array-battery-load-shed-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `CCSDS`, signed telemetry manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential payloads only with conservative battery margins.
+
+### `emissions-window-decoy-synchronization-v1`
+- Use for joint EMCON and deception execution when brief emissions windows must align with decoys and effects timing.
+- Primary tools: `ts-joint-emissions-window-decoy-synchronization-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, `USMTF`, `API/JSON`.
+- Degraded fallback: brief commander-approved emissions bursts only with manual decoy confirmation.
+
+### `coalition-sar-beacon-authentication-v1`
+- Use for coalition personnel recovery when distress beacons, survivor identity, and spoofing pressure complicate release decisions.
+- Primary tools: `ts-coalition-denied-sar-beacon-authentication-v1`.
+- Cross-check tools: `ts-contested-personnel-recovery-v1`.
+- Protocols: `Cospas-Sarsat`, `USMTF`, `NIEM`, `CoT`, `API/JSON`.
+- Degraded fallback: life-saving recovery only with dual-source location confirmation.
+
+### `autonomous-breach-soil-bearing-route-v1`
+- Use for engineer or heavy-vehicle route release when soil-bearing uncertainty and autonomous sensing drive breach timing.
+- Primary tools: `ts-autonomous-breach-soil-bearing-route-classification-v1`.
+- Cross-check tools: `ts-denied-terrain-drone-resupply-nav-v1`.
+- Protocols: `OGC`, `CoT`, `VMF`, `API/JSON`, `USMTF`.
+- Degraded fallback: limited-weight route release only with human reconnaissance.

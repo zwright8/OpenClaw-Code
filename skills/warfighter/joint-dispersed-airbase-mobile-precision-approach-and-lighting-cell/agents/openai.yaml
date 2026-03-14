@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Dispersed Airbase Mobile Precision Approach and Lighting Cell"
+  short_description: "Restore mobile approach and lighting at airbases"

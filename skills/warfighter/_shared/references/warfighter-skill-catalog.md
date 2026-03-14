@@ -2379,3 +2379,33 @@ Every skill output should include:
 - Theater river port dredge barge and roll-on roll-off sustainment + expeditionary waterway bridge denial gap crossing + joint port opening and JLOTS synchronization + strategic waterway lock and dam cyber physical resilience.
 - Joint contested cellular timing holdover and first responder priority + theater mission network failover + homeland defense critical 911 PSAP military support + joint civilian telecom military priority routing.
 - Theater austere command post flooding and HVAC smoke control + joint denied environment C2 node mobility and displacement + mission risk decision support + theater mission network failover.
+
+## New Expansion Wave (2026-03-14, Wave XLVI)
+
+- theater-resilient-battlefield-cloud-federation-admission-control-cell
+- homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell
+- joint-ai-generated-order-integrity-and-commander-intent-deviation-cell
+- strategic-reserve-fuel-additive-adulteration-interdiction-cell
+- expeditionary-high-latitude-battery-thermal-survivability-cell
+- joint-austere-renal-support-and-dialysis-surge-cell
+- joint-dispersed-airbase-mobile-precision-approach-and-lighting-cell
+- joint-littoral-surf-zone-obstacle-breaching-and-beach-gradient-verification-cell
+- strategic-on-orbit-solar-array-shadowing-and-battery-load-shed-cell
+- joint-emissions-window-and-decoy-synchronization-cell
+- coalition-denied-environment-search-and-rescue-beacon-authentication-cell
+- autonomous-breach-microterrain-soil-bearing-and-route-classification-cell
+
+## Updated Pairings (2026-03-14, Wave XLVI)
+
+- Theater battlefield cloud federation admission control + theater mission network failover + mission-assured software factory support + joint sovereign edge cloud migration governance.
+- Homeland military-civil autonomous evacuation convoy arbitration + civil defense mass evacuation shelter + defense support of civil authorities crisis response + autonomous ground resupply convoy control.
+- Joint AI-generated order integrity and commander-intent deviation + mission risk decision support + digital-order watermark recall + joint targeting standards and CDE governance.
+- Strategic reserve fuel additive adulteration interdiction + contested logistics sustainment + expeditionary fuel pipeline and bulk water terminal support + strategic industrial mobilization readiness.
+- Expeditionary high-latitude battery thermal survivability + arctic and extreme environment operations + tactical battery repair and recertification + autonomous sustainment routing drift governance.
+- Joint austere renal support and dialysis surge + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator + preventive medicine and force health protection.
+- Joint dispersed airbase mobile precision approach and lighting + airbase dispersal and rapid reconstitution + expeditionary aircraft arresting gear and crash barrier restoration + air tasking cycle support.
+- Joint littoral surf-zone obstacle breaching and beach gradient verification + amphibious assault coordinator + joint port opening and JLOTS synchronization + autonomous littoral reconnaissance buoy network.
+- Strategic on-orbit solar-array shadowing and battery load shed + contested space domain awareness and rendezvous denial + joint satellite ephemeris spoofing and timing confidence + space domain awareness and SATCOM defense.
+- Joint emissions window and decoy synchronization + joint spectrum governance and emissions control + deception signature management and decoy employment + joint targeting standards and CDE governance.
+- Coalition denied-environment search and rescue beacon authentication + coalition joint personnel recovery authentication and comms + combat search and rescue coordinator + coalition interoperability coordinator.
+- Autonomous breach microterrain soil-bearing and route classification + contested bridge and gap crossing operations + combat engineering obstacle intelligence + autonomous combat engineer route breach cell.

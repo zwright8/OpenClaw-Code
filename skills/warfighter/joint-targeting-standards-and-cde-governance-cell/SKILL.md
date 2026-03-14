@@ -224,3 +224,10 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when target-release authority, no-strike updates, or restricted-target lists depend on trusted digital order versioning and recall.
 - Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when CDE or targeting systems require emergency remediation without losing auditability, rollback control, or mensuration trust.
 - Add `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for recommendations that materially alter target validity, release authority, or targeting-system trust posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when AI-generated target tasking, no-strike updates, or restricted-target guidance require intent-fidelity checks before release.
+- Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when target-release timing depends on synchronized emissions windows, decoy activation, or adversary collection shaping.
+- Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when targeting services, mensuration pipelines, or CDE tools must fail over into alternate cloud enclaves without losing trust.
+- Add `packet_id=DPL-AI-ORDER-INTENT-001`, `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001`, and `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001` for recommendations that materially alter target validity, release timing, or targeting-system trust posture.

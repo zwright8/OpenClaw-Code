@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint AI Generated Order Integrity and Commander Intent Deviation Cell"
+  short_description: "Detect AI order drift and intent deviation"

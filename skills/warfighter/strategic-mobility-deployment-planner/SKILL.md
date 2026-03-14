@@ -176,3 +176,10 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when strategic mobility depends on allied civil tails, host-nation ramp slots, or diplomatic-clearance speed.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when armored deployment posture depends on track-pad, roadwheel, or final-drive readiness before onward movement.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter strategic lift timing, access confidence, or deployment posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-strategic-fuel-additive-adulteration-interdiction-v1` + `protocol_stack_id=ps-strategic-fuel-additive-adulteration-interdiction-stack-v1` when strategic lift timing, sortie generation, or convoy movement depends on trusted fuel-additive pedigree and contamination isolation.
+- Add `tool_suite_id=ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1` + `protocol_stack_id=ps-joint-dispersed-airbase-mobile-precision-approach-lighting-stack-v1` when reception, staging, or onward movement depends on restoring low-visibility aircraft recovery at alternate airfields.
+- Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when onward movement corridors for heavy equipment depend on trusted soil-bearing classifications before release.
+- Add `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001`, `packet_id=DPL-MOBILE-PRECISION-APPROACH-001`, and `packet_id=DPL-BREACH-SOIL-BEARING-001` for recommendations that materially alter strategic lift timing, reception confidence, or onward-movement posture.

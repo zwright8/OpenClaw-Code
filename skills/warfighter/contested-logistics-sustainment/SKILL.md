@@ -249,3 +249,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-homeland-rail-hazmat-military-priority-deconfliction-v1` + `protocol_stack_id=ps-homeland-rail-hazmat-military-priority-deconfliction-stack-v1` when rail dispatch must reconcile military throughput with hazardous-material controls and civil emergency constraints.
 - Add `tool_suite_id=ts-joint-airbase-arresting-gear-runway-cable-reconstitution-v1` + `protocol_stack_id=ps-joint-airbase-arresting-gear-runway-cable-reconstitution-stack-v1` when airbase sustainment, sortie recovery, or runway-end cable integrity becomes the bottleneck for operational tempo.
 - Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001`, `packet_id=DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001`, and `packet_id=DPL-ARRESTING-GEAR-RUNWAY-CABLE-001` for branches that materially alter sustainment throughput, sortie regeneration, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-strategic-fuel-additive-adulteration-interdiction-v1` + `protocol_stack_id=ps-strategic-fuel-additive-adulteration-interdiction-stack-v1` when sustainment viability depends on trusted fuel-additive pedigree, contamination quarantine, or substitute blending decisions.
+- Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-stack-v1` when cold-soaked batteries, charging windows, or low-insolation power limits threaten logistics nodes and autonomous sustainment.
+- Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when engineer or heavy-vehicle throughput depends on trusted soil-bearing classifications before route release.
+- Add `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001`, `packet_id=DPL-HIGH-LATITUDE-BATTERY-THERMAL-001`, and `packet_id=DPL-BREACH-SOIL-BEARING-001` for branches that materially alter sustainment throughput, energy continuity, or route-release confidence.

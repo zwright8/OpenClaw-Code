@@ -77,3 +77,10 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 - Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when space-domain awareness depends on commercial imagery access, retask priority, or rapid fallback from denied collection windows.
 - Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when custody models or edge-fused track datasets require provenance rollback before maneuver or denial recommendations.
 - Add `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001` and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter orbital custody confidence, track trust, or maneuver-release timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-strategic-on-orbit-solar-array-battery-load-shed-v1` + `protocol_stack_id=ps-strategic-on-orbit-solar-array-battery-load-shed-stack-v1` when rendezvous denial or custody branches depend on spacecraft power margin, eclipse exposure, or controlled load shedding.
+- Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when custody analytics or SDA services must fail over into alternate cloud enclaves without losing trust.
+- Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when maneuver or denial instructions include AI-generated recommendations that require commander-intent fidelity checks before release.
+- Add `packet_id=DPL-ON-ORBIT-SOLAR-BATTERY-001`, `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, and `packet_id=DPL-AI-ORDER-INTENT-001` for recommendations that materially alter orbital custody confidence, maneuver timing, or escalation posture.

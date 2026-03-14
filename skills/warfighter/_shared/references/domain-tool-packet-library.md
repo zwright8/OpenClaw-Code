@@ -11523,3 +11523,137 @@ validation_gates:
 - output_schema: rig-compatibility board, transfer-priority ladder, coalition replenishment risk matrix
 - protocol_profile: AIS/NMEA + NATO APP-11/ADatP-3 + signed logistics manifests + API/JSON + USMTF
 - validation_gates: compatibility confirmation, seamanship risk review, coalition approval
+
+## Packet Addendum XXXV (2026-03-14, Expansion Wave XLVI Cloud, Mobility, and Survivability Packets)
+
+### packet_id: DPL-BATTLEFIELD-CLOUD-ADMISSION-001
+- domain: theater resilient battlefield cloud federation admission control
+- objective: preserve mission services by admitting only trusted workloads into contested cloud and edge enclaves.
+- primary_tools: workload trust admission controller, sovereign edge scheduler, mission dependency graph engine
+- alternate_tools: manual workload release board and signed artifact worksheet
+- degraded_mode: mission-essential workloads only with commander-approved manual admission
+- input_requirements: workload manifests, trust scores, enclave health, dependency graph, mission priorities
+- output_schema: workload admission ladder, mission-service dependency cut list, contested compute restoration board
+- protocol_profile: signed workload manifests + API/JSON + STIX/TAXII + USMTF
+- validation_gates: artifact provenance pass, enclave authority confirmation, acknowledgment integrity
+
+### packet_id: DPL-AUTON-EVAC-CONVOY-001
+- domain: homeland military and civil autonomous evacuation convoy arbitration
+- objective: move life-safety traffic without losing custody control, route discipline, or autonomy override safety.
+- primary_tools: autonomy convoy dispatcher, emergency traffic board, identity checkpoint ledger
+- alternate_tools: manual convoy control board and checkpoint worksheet
+- degraded_mode: human-driven convoys only with checkpoint-based release
+- input_requirements: route status, convoy manifests, civil life-safety demand, autonomy confidence, checkpoint identity status
+- output_schema: convoy release ladder, life-safety route-priority matrix, autonomy fallback control board
+- protocol_profile: NIMS/ICS + CoT + NIEM + API/JSON + USMTF
+- validation_gates: route authority verification, identity confirmation, autonomy override test
+
+### packet_id: DPL-AI-ORDER-INTENT-001
+- domain: joint AI-generated order integrity and commander-intent deviation
+- objective: stop machine-generated tasking from drifting beyond authenticated commander intent.
+- primary_tools: order semantics comparator, signature verifier, acknowledgment exception ledger
+- alternate_tools: manual countersign board and intent comparison worksheet
+- degraded_mode: dual-channel human countersign before any release
+- input_requirements: source orders, commander intent, model outputs, signature status, acknowledgment chain
+- output_schema: intent-deviation matrix, order hold-or-release ladder, acknowledgment exception ledger
+- protocol_profile: signed order manifests + USMTF + STIX/TAXII + API/JSON
+- validation_gates: provenance confirmation, semantic review pass, command approval
+
+### packet_id: DPL-FUEL-ADDITIVE-ADULTERATION-001
+- domain: strategic reserve fuel additive adulteration interdiction
+- objective: quarantine adulterated fuel additives before they undermine readiness or engine safety.
+- primary_tools: additive pedigree ledger, contamination anomaly detector, fuel release board
+- alternate_tools: manual sample-trace worksheet and supplier custody board
+- degraded_mode: mission-essential fuel lots only with dual-sample confirmation
+- input_requirements: lot pedigree, lab indicators, supplier custody, blend demand, release authorities
+- output_schema: additive pedigree ledger, contamination branch matrix, fuel-release decision ladder
+- protocol_profile: signed material-cert manifests + API/JSON + USMTF + NIEM
+- validation_gates: lab evidence pass, custody verification, release authority approval
+
+### packet_id: DPL-HIGH-LATITUDE-BATTERY-THERMAL-001
+- domain: expeditionary high-latitude battery thermal survivability
+- objective: preserve battery endurance and charging reliability in extreme cold without uncontrolled load loss.
+- primary_tools: battery health telemetry broker, cold-weather forecast fusion board, charging-window scheduler
+- alternate_tools: manual battery rotation board and thermal inspection worksheet
+- degraded_mode: mission-essential battery loads only with manual thermal checks
+- input_requirements: battery health, ambient exposure, platform demand, charging assets, replacement stock
+- output_schema: battery thermal-risk board, charging rotation ladder, cold-weather power preservation matrix
+- protocol_profile: signed battery-health manifests + CoT + API/JSON + USMTF
+- validation_gates: telemetry verification, thermal threshold pass, command approval
+
+### packet_id: DPL-AUSTERE-RENAL-DIALYSIS-001
+- domain: joint austere renal support and dialysis surge
+- objective: match dialysis capacity, consumables, and evacuation timing to renal casualty demand.
+- primary_tools: renal triage board, dialysis consumable tracker, patient movement broker
+- alternate_tools: manual dialysis worksheet and clinical capacity board
+- degraded_mode: life-saving renal support only with commander-approved triage thresholds
+- input_requirements: patient load, lab status, dialysis equipment, water purity, movement constraints
+- output_schema: dialysis triage matrix, renal consumables burn-rate board, patient-diversion ladder
+- protocol_profile: HL7/FHIR + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: patient identity confirmation, water-purity pass, clinical approval
+
+### packet_id: DPL-MOBILE-PRECISION-APPROACH-001
+- domain: joint dispersed airbase mobile precision approach and lighting
+- objective: recover aircraft safely when runway availability exists but mobile navigation or lighting is the pacing constraint.
+- primary_tools: mobile approach set tracker, runway lighting controller, recovery certification board
+- alternate_tools: manual lighting survey and runway recovery worksheet
+- degraded_mode: day-VMC or restricted-minima operations only
+- input_requirements: runway status, weather minima, mobile approach assets, lighting power, crew release
+- output_schema: mobile approach certification board, lighting restoration ladder, low-visibility recovery matrix
+- protocol_profile: AIXM/FIXM + USMTF + Link 16 J-series + signed maintenance manifests + API/JSON
+- validation_gates: runway survey pass, lighting integrity confirmation, airfield authority approval
+
+### packet_id: DPL-SURF-ZONE-BREACH-GRADIENT-001
+- domain: joint littoral surf-zone obstacle breaching and beach gradient verification
+- objective: release trustworthy breach lanes for amphibious or logistics shore entry without overrunning beach or surf limits.
+- primary_tools: hydrographic survey fusion board, obstacle classification engine, lane release controller
+- alternate_tools: manual hydrographic worksheet and amphibious engineer board
+- degraded_mode: daylight or limited-craft lane release only
+- input_requirements: shoreline geometry, tide and surf data, obstacle detections, breach assets, landing-craft tolerances
+- output_schema: surf-lane release matrix, beach-gradient confidence board, obstacle reduction task ladder
+- protocol_profile: OGC + VMF + USMTF + API/JSON + CoT
+- validation_gates: gradient confidence pass, obstacle discrimination verification, release authority approval
+
+### packet_id: DPL-ON-ORBIT-SOLAR-BATTERY-001
+- domain: strategic on-orbit solar-array shadowing and battery load shed
+- objective: preserve mission continuity by shedding or rephasing spacecraft loads before battery reserves collapse.
+- primary_tools: spacecraft power-health monitor, eclipse prediction engine, mission-coverage priority board
+- alternate_tools: manual power-budget worksheet and maneuver approval board
+- degraded_mode: mission-essential payloads only with conservative battery margins
+- input_requirements: spacecraft telemetry, eclipse timing, power draw, coverage demand, maneuver constraints
+- output_schema: spacecraft power-priority ladder, eclipse exposure matrix, battery reserve decision board
+- protocol_profile: CCSDS + signed telemetry manifests + API/JSON + USMTF
+- validation_gates: telemetry verification, reserve-threshold pass, command approval
+
+### packet_id: DPL-EMISSIONS-DECOY-WINDOW-001
+- domain: joint emissions window and decoy synchronization
+- objective: time brief emissions and decoy activity to achieve mission effects without avoidable sensing exposure.
+- primary_tools: emissions scheduler, decoy status board, adversary collection-risk model
+- alternate_tools: manual EMCON worksheet and decoy release board
+- degraded_mode: brief commander-approved emissions bursts only with manual decoy confirmation
+- input_requirements: emissions plan, decoy inventory, adversary collection threat, fires timing, approval thresholds
+- output_schema: emissions timing ladder, decoy release matrix, adversary collection-risk board
+- protocol_profile: Link 16 J-series + VMF + CoT + USMTF + API/JSON
+- validation_gates: spectrum clearance pass, decoy-control confirmation, command approval
+
+### packet_id: DPL-COALITION-SAR-BEACON-AUTH-001
+- domain: coalition denied-environment search-and-rescue beacon authentication
+- objective: verify coalition distress signals fast enough to recover survivors without chasing spoofed or hostile lures.
+- primary_tools: beacon integrity broker, coalition identity challenge board, recovery routing manager
+- alternate_tools: manual challenge worksheet and geolocation board
+- degraded_mode: life-saving recovery only with dual-source location confirmation
+- input_requirements: beacon detections, identity challenges, coalition caveats, jammer status, rescue asset posture
+- output_schema: survivor-authentication ladder, beacon-confidence board, coalition recovery release matrix
+- protocol_profile: Cospas-Sarsat + USMTF + NIEM + CoT + API/JSON
+- validation_gates: beacon provenance check, identity confirmation, coalition approval
+
+### packet_id: DPL-BREACH-SOIL-BEARING-001
+- domain: autonomous breach microterrain soil-bearing and route classification
+- objective: release engineer or heavy-vehicle breach routes only when soil and microterrain confidence is sufficient.
+- primary_tools: terrain sensing fusion board, soil classification engine, route release controller
+- alternate_tools: manual ground-truth worksheet and engineer risk board
+- degraded_mode: limited-weight route release only with human reconnaissance
+- input_requirements: terrain model, soil readings, vehicle classes, obstacle status, route telemetry
+- output_schema: soil-bearing classification board, breach-route release matrix, engineer support priority ladder
+- protocol_profile: OGC + CoT + VMF + API/JSON + USMTF
+- validation_gates: soil-confidence pass, route confirmation, heavy-vehicle approval

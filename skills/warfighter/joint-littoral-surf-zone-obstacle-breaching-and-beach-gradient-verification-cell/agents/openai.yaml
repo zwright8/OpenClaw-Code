@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Littoral Surf Zone Obstacle Breaching and Beach Gradient Verification Cell"
+  short_description: "Verify surf-zone breach lanes and beach gradients"

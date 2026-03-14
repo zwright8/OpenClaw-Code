@@ -11900,3 +11900,127 @@ external_binding:
 ### `ps-coalition-underway-replenishment-rig-compatibility-stack-v1`
 - Protocols: `AIS/NMEA`, `NATO APP-11/ADatP-3`, signed logistics manifests, `API/JSON`, `USMTF`.
 - Use for: compatibility status, transfer-window coordination, and coalition release acknowledgments.
+
+## Tool Suite Addendum XLVI (2026-03-14, Cloud Admission, Order Trust, Cold-Weather Survivability, and Rescue Authentication)
+
+### `ts-theater-battlefield-cloud-federation-admission-control-v1`
+- Use for: governing workload admission, isolation, and mission priority across contested battlefield clouds and edge clusters.
+- Primary tools: workload trust admission controller, sovereign edge scheduler, mission dependency graph engine.
+- Cross-check tools: independent artifact attestation witness and alternate service-health board.
+- Typical products: workload admission ladder, mission-service dependency cut list, contested compute restoration board.
+
+### `ts-homeland-autonomous-evacuation-convoy-arbitration-v1`
+- Use for: reconciling mixed military and civil autonomous evacuation convoys under damaged-road and life-safety conditions.
+- Primary tools: autonomy convoy dispatcher, emergency traffic board, identity checkpoint ledger.
+- Cross-check tools: independent public-safety route witness and alternate manual convoy control cell.
+- Typical products: convoy release ladder, life-safety route-priority matrix, autonomy fallback control board.
+
+### `ts-joint-ai-order-intent-integrity-v1`
+- Use for: detecting semantic drift between AI-generated orders and authenticated commander intent before tasking is released.
+- Primary tools: order semantics comparator, signature verifier, acknowledgment exception ledger.
+- Cross-check tools: independent countersign witness and alternate distribution control board.
+- Typical products: intent-deviation matrix, order hold-or-release ladder, acknowledgment exception ledger.
+
+### `ts-strategic-fuel-additive-adulteration-interdiction-v1`
+- Use for: identifying contaminated or adulterated fuel additives before release into strategic or expeditionary distribution.
+- Primary tools: additive pedigree ledger, contamination anomaly detector, fuel release board.
+- Cross-check tools: independent lab witness and alternate supplier custody board.
+- Typical products: additive pedigree ledger, contamination branch matrix, fuel-release decision ladder.
+
+### `ts-expeditionary-high-latitude-battery-thermal-survivability-v1`
+- Use for: preserving battery health and charging reliability in arctic, alpine, or low-insolation operations.
+- Primary tools: battery health telemetry broker, cold-weather forecast fusion board, charging-window scheduler.
+- Cross-check tools: independent thermal witness and alternate manual battery rotation ledger.
+- Typical products: battery thermal-risk board, charging rotation ladder, cold-weather power preservation matrix.
+
+### `ts-joint-austere-renal-support-dialysis-surge-v1`
+- Use for: coordinating austere renal support, dialysis triage, and consumable continuity under contested medical conditions.
+- Primary tools: renal triage board, dialysis consumable tracker, patient movement broker.
+- Cross-check tools: independent lab witness and alternate clinical capacity mirror.
+- Typical products: dialysis triage matrix, renal consumables burn-rate board, patient-diversion ladder.
+
+### `ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1`
+- Use for: restoring mobile precision-approach and landing-lighting capability at dispersed or damaged airbases.
+- Primary tools: mobile approach set tracker, runway lighting controller, recovery certification board.
+- Cross-check tools: independent airfield survey witness and alternate flight-safety board.
+- Typical products: mobile approach certification board, lighting restoration ladder, low-visibility recovery matrix.
+
+### `ts-joint-littoral-surf-zone-breach-gradient-verification-v1`
+- Use for: verifying surf-zone breach lanes, beach gradients, and obstacle reduction before amphibious or logistics shore entry.
+- Primary tools: hydrographic survey fusion board, obstacle classification engine, lane release controller.
+- Cross-check tools: independent diver or UAS witness and alternate amphibious engineer board.
+- Typical products: surf-lane release matrix, beach-gradient confidence board, obstacle reduction task ladder.
+
+### `ts-strategic-on-orbit-solar-array-battery-load-shed-v1`
+- Use for: preserving strategic satellite power continuity during eclipses, shadowing, degradation, or maneuver-driven load spikes.
+- Primary tools: spacecraft power-health monitor, eclipse prediction engine, mission-coverage priority board.
+- Cross-check tools: independent telemetry witness and alternate maneuver approval board.
+- Typical products: spacecraft power-priority ladder, eclipse exposure matrix, battery reserve decision board.
+
+### `ts-joint-emissions-window-decoy-synchronization-v1`
+- Use for: timing emissions and decoy release across joint operations to shape adversary sensing while preserving survivability.
+- Primary tools: emissions scheduler, decoy status board, adversary collection-risk model.
+- Cross-check tools: independent spectrum monitor and alternate manual EMCON cell.
+- Typical products: emissions timing ladder, decoy release matrix, adversary collection-risk board.
+
+### `ts-coalition-denied-sar-beacon-authentication-v1`
+- Use for: authenticating coalition distress beacons and survivor signals under spoofing, jamming, or identity ambiguity.
+- Primary tools: beacon integrity broker, coalition identity challenge board, recovery routing manager.
+- Cross-check tools: independent geolocation witness and alternate personnel-recovery auth cell.
+- Typical products: survivor-authentication ladder, beacon-confidence board, coalition recovery release matrix.
+
+### `ts-autonomous-breach-soil-bearing-route-classification-v1`
+- Use for: classifying breach routes by soil-bearing strength, microterrain, and machine mobility constraints.
+- Primary tools: terrain sensing fusion board, soil classification engine, route release controller.
+- Cross-check tools: independent ground-truth witness and alternate engineer risk board.
+- Typical products: soil-bearing classification board, breach-route release matrix, engineer support priority ladder.
+
+## Protocol Stack Addendum XLVI (2026-03-14, External Integration Profiles for Expansion Wave XLVI)
+
+### `ps-theater-battlefield-cloud-federation-admission-control-stack-v1`
+- Protocols: signed workload manifests, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: workload admission decisions, artifact trust exchange, and mission-service restoration approvals.
+
+### `ps-homeland-autonomous-evacuation-convoy-arbitration-stack-v1`
+- Protocols: `NIMS/ICS`, `CoT`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: convoy release status, life-safety lane priority, and autonomy override acknowledgments.
+
+### `ps-joint-ai-order-intent-integrity-stack-v1`
+- Protocols: signed order manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: intent-drift findings, order hold or release decisions, and acknowledgment exception exchange.
+
+### `ps-strategic-fuel-additive-adulteration-interdiction-stack-v1`
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Use for: additive pedigree exchange, contamination alerts, and release or quarantine approvals.
+
+### `ps-expeditionary-high-latitude-battery-thermal-survivability-stack-v1`
+- Protocols: signed battery-health manifests, `CoT`, `API/JSON`, `USMTF`.
+- Use for: thermal telemetry exchange, charging-window coordination, and load-shed acknowledgments.
+
+### `ps-joint-austere-renal-support-dialysis-surge-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: dialysis triage updates, consumable status, and patient-diversion acknowledgments.
+
+### `ps-joint-dispersed-airbase-mobile-precision-approach-lighting-stack-v1`
+- Protocols: `AIXM/FIXM`, `USMTF`, `Link 16 J-series`, signed maintenance manifests, `API/JSON`.
+- Use for: mobile approach status, lighting restoration updates, and runway release approvals.
+
+### `ps-joint-littoral-surf-zone-breach-gradient-verification-stack-v1`
+- Protocols: `OGC`, `VMF`, `USMTF`, `API/JSON`, `CoT`.
+- Use for: surf-lane geometry exchange, breach progress updates, and landing-lane release acknowledgments.
+
+### `ps-strategic-on-orbit-solar-array-battery-load-shed-stack-v1`
+- Protocols: `CCSDS`, signed telemetry manifests, `API/JSON`, `USMTF`.
+- Use for: spacecraft power-state exchange, load-shed control, and mission-coverage approvals.
+
+### `ps-joint-emissions-window-decoy-synchronization-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, `USMTF`, `API/JSON`.
+- Use for: emissions-window timing, decoy state exchange, and synchronized release acknowledgments.
+
+### `ps-coalition-denied-sar-beacon-authentication-stack-v1`
+- Protocols: `Cospas-Sarsat`, `USMTF`, `NIEM`, `CoT`, `API/JSON`.
+- Use for: distress-beacon validation, survivor challenge-response exchange, and coalition recovery approvals.
+
+### `ps-autonomous-breach-soil-bearing-route-classification-stack-v1`
+- Protocols: `OGC`, `CoT`, `VMF`, `API/JSON`, `USMTF`.
+- Use for: terrain and soil confidence exchange, route-classification status, and heavy-vehicle release approvals.
