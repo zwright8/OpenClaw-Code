@@ -99,3 +99,22 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-pediatric-casualty-surge-v1` + `protocol_stack_id=ps-expeditionary-pediatric-casualty-surge-stack-v1` when Role 3 routing decisions depend on pediatric specialty balancing, child-capable bed availability, or contested transport sequencing.
+- Add `tool_suite_id=ts-joint-command-voice-spoof-defense-v1` + `protocol_stack_id=ps-joint-command-voice-spoof-defense-stack-v1` when medevac, patient diversion, or casualty-notification decisions depend on trusted voice or media command paths.
+- Add `packet_id=DPL-PEDS-CASUALTY-SURGE-001` and `packet_id=DPL-COMMAND-VOICE-SPOOF-001` for recommendations that materially change patient movement, bed allocation, or clinical command trust.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-burn-bed-transfer-blood-rotation-v1` + `protocol_stack_id=ps-expeditionary-burn-bed-transfer-blood-rotation-stack-v1` when survival depends on burn-bed availability, escharotomy capability, or blood-rotation timing across austere facilities.
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when casualty-routing models, patient-priority datasets, or edge triage tools require provenance validation before movement decisions.
+- Add `packet_id=DPL-BURN-BED-ESCHAROTOMY-TRANSFER-001` and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially change burn transfer posture, transfusion prioritization, or trusted clinical data release.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when Role 3 continuity or casualty evacuation depends on reserve or commercial lift for patient movement, blood, or medical-supply surge.
+- Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when staging hospitals, aeromedical hubs, or treatment wards depend on safe potable-water restart before patient intake expansion.
+- Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when coalition patient movement depends on diplomatic clearances, mixed-crew civil aircraft, or host-nation ramp access.
+- Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001` for recommendations that materially change patient movement, facility release, or coalition aeromedical access posture.

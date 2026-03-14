@@ -60,3 +60,15 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 - Add tool_suite_id=ts-space-rendezvous-anomaly-vetting-v1 + protocol_stack_id=ps-space-rendezvous-anomaly-vetting-stack-v1 when defensive maneuver branches depend on validated hostile proximity intent assessments.
 - Add tool_suite_id=ts-orbital-custody-sensor-divergence-reconcile-v1 + protocol_stack_id=ps-orbital-custody-sensor-divergence-reconcile-stack-v1 when commander confidence depends on resolving conflicting commercial, coalition, and military track custody.
 - Add packet_id=DPL-SPACE-RPO-DENIAL-001 and packet_id=DPL-ORBITAL-CUSTODY-RECONCILE-001 for recommendations that alter maneuver timing, attribution posture, or escalation risk.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-satellite-ephemeris-spoof-timing-confidence-v1` + `protocol_stack_id=ps-satellite-ephemeris-spoof-timing-confidence-stack-v1` when rendezvous denial or custody confidence depends on trusted orbital-data and timing baselines.
+- Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when contested space-awareness workflows require sovereign or edge compute cutover to preserve low-latency custody decisions.
+- Add `packet_id=DPL-EPHEMERIS-SPOOF-001` and `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001` for recommendations that materially alter orbital custody confidence, maneuver timing, or escalation posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when space-domain awareness depends on commercial imagery access, retask priority, or rapid fallback from denied collection windows.
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when custody models or edge-fused track datasets require provenance rollback before maneuver or denial recommendations.
+- Add `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001` and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter orbital custody confidence, track trust, or maneuver-release timing.

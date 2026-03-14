@@ -1,0 +1,3 @@
+interface:
+  display_name: "Coalition Munitions End Use Diversion and Serial Trace Cell"
+  short_description: "Trace coalition munitions and suppress diversion"

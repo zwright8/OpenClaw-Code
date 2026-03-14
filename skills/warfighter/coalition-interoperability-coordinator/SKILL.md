@@ -172,3 +172,24 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-joint-tactical-legal-attribution-synthesis-v1` + `protocol_stack_id=ps-joint-tactical-legal-attribution-synthesis-stack-v1` when coalition interoperability decisions depend on shared evidentiary confidence and releasable attribution language.
+- Add `tool_suite_id=ts-coalition-minefield-humanitarian-corridor-integrity-v1` + `protocol_stack_id=ps-coalition-minefield-humanitarian-corridor-integrity-stack-v1` when coalition coordination must preserve humanitarian maritime access under mine threat and route caveats.
+- Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when interoperable data exchange depends on trusted sovereign or edge compute cutovers.
+- Add `packet_id=DPL-TACTICAL-LEGAL-ATTRIB-001`, `packet_id=DPL-MINEFIELD-HUMCOR-001`, and `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001` for branches that materially change coalition release, access, or continuity decisions.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-munitions-end-use-serial-trace-v1` + `protocol_stack_id=ps-coalition-munitions-end-use-serial-trace-stack-v1` when coalition interoperability depends on serial-level transfer accountability, diversion suppression, or releasable munitions auditability.
+- Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when coalition awareness depends on negotiated access to commercial imagery under denial, contractual friction, or sovereignty caveats.
+- Add `tool_suite_id=ts-theater-spectrum-autonomy-convoy-integrity-v1` + `protocol_stack_id=ps-theater-spectrum-autonomy-convoy-integrity-stack-v1` when coalition convoy interoperability depends on trusted autonomy fallback, human override, and spectrum-aware movement control.
+- Add `packet_id=DPL-MUNITIONS-END-USE-SERIAL-TRACE-001`, `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001`, and `packet_id=DPL-SPECTRUM-AUTONOMY-CONVOY-INTEGRITY-001` for branches that materially change coalition transfer trust, shared awareness, or convoy-release posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when interoperability depends on coalition civil-airlift access, diplomatic clearances, or mixed-crew ramp sequencing.
+- Add `tool_suite_id=ts-coalition-underway-replenishment-rig-compatibility-v1` + `protocol_stack_id=ps-coalition-underway-replenishment-rig-compatibility-stack-v1` when coalition sustainment depends on compatible UNREP hoses, spanwires, or transfer certifications.
+- Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when releasable orders or shared tasking messages may be stale, spoofed, or version-divergent across coalition distribution paths.
+- Add `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, `packet_id=DPL-UNDERWAY-REPLENISHMENT-RIG-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially change coalition access, afloat sustainment trust, or shared command-path confidence.

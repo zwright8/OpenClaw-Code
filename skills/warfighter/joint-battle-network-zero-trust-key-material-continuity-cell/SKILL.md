@@ -64,3 +64,13 @@ Preferred protocol families for this skill: X.509/PKI, API/JSON, USMTF.
 - Flag assumptions that exceed available evidence.
 - Identify legal, policy, ROE, coalition, and safety constraints early.
 - Do not fabricate sources, authorities, approvals, or system access.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-joint-munition-dataload-crypto-fill-reconstitution-v1` + `protocol_stack_id=ps-joint-munition-dataload-crypto-fill-reconstitution-stack-v1` when trust continuity depends on verified mission-data reconstitution, checksum integrity, or release-authority preservation for weapon and EW systems.
+- Add `packet_id=DPL-MUNITION-DATALOAD-CRYPTO-001` for recommendations that materially alter key continuity, dataload release timing, or commander trust posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when zero-trust continuity depends on validating edge dataset provenance, attestation integrity, or rollback authority after corruption indicators.
+- Add `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter trust-anchor confidence, edge release posture, or rollback sequencing.

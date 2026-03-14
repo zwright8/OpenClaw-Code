@@ -157,3 +157,10 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-theater-rapid-runway-crater-repair-autonomy-governance-cell-v1` + `protocol_stack_id=ps-theater-rapid-runway-crater-repair-autonomy-governance-cell-stack-v1` when reconstitution depends on autonomous crater-repair release controls and sortie-priority sequencing.
 - Add `tool_suite_id=ts-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-v1` + `protocol_stack_id=ps-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-stack-v1` when dispersal and recovery timelines depend on denied-weather forecast trust restoration.
 - Add `packet_id=DPL-RUNWAY-CRATER-AUTONOMY-001` and `packet_id=DPL-DENIED-WEATHER-SENSOR-RESEED-001` for branches that materially alter runway recovery sequence, sortie regeneration confidence, or release authority timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-joint-aerial-refueling-boom-drogue-reconstitution-v1` + `protocol_stack_id=ps-joint-aerial-refueling-boom-drogue-reconstitution-stack-v1` when dispersed-base survivability or sortie regeneration depends on restored tanker support and refueling hardware capacity.
+- Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when base reconstitution includes potable-water restart for flightline support, casualty reception, or shelter occupancy.
+- Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when dispersal, recovery, or divert instructions may be stale, spoofed, or misrouted across digital order paths.
+- Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially alter sortie regeneration, base habitability, or command-path trust.

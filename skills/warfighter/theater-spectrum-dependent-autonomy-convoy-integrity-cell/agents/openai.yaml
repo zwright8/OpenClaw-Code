@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Spectrum Dependent Autonomy Convoy Integrity Cell"
+  short_description: "Keep autonomous convoys safe under spectrum loss"

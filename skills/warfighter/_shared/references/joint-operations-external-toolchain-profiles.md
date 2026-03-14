@@ -733,3 +733,277 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-cyber-defense-v1`.
 - Protocols: `STIX/TAXII`, signed custody manifests, `USMTF` legal escalation summaries.
 - Degraded fallback: provisional attribution posture with conservative legal confidence bands.
+
+## Profile Addendum M (2026-03-14, Legal Attribution, Trusted Command, Protected Boundaries, and Strategic Logistics Warning)
+
+### `tactical-legal-attribution-synthesis-v1`
+- Use for rapid legal attribution support when cyber, EW, information, and physical evidence must be fused before commander action.
+- Primary tools: `ts-joint-tactical-legal-attribution-synthesis-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: `STIX/TAXII`, `USMTF`, `NIEM`, `API/JSON`.
+- Degraded fallback: advisory-only attribution posture with manual legal review.
+
+### `allied-depot-sabotage-recovery-v1`
+- Use for coalition depot sabotage wargaming, stock reallocation, and protected recovery planning.
+- Primary tools: `ts-coalition-allied-depot-sabotage-wargame-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `USMTF`, `NATO APP-11/ADatP-3`, signed logistics manifests.
+- Degraded fallback: highest-priority stocks only with manual branch control.
+
+### `mission-ai-confidence-governance-v1`
+- Use for early warning and governance when mission AI trust is degrading across high-impact workflows.
+- Primary tools: `ts-theater-mission-ai-confidence-early-warning-v1`.
+- Cross-check tools: `ts-adversarial-ai-model-poisoning-detection-v1`.
+- Protocols: signed model attestations, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: approved-baseline-only model operations with human release authority.
+
+### `sovereign-edge-cloud-migration-v1`
+- Use for governed cloud-to-edge cutovers when sovereignty, survivability, or latency requires mission workload migration.
+- Primary tools: `ts-joint-sovereign-edge-cloud-migration-v1`.
+- Cross-check tools: `ts-hyperscale-cloud-failover-command-continuity-v1`.
+- Protocols: signed continuity manifests, `API/JSON`, mTLS, `USMTF`.
+- Degraded fallback: trusted snapshot mode plus staged mission-essential edge services only.
+
+### `launch-counterfeit-microelectronics-v1`
+- Use for strategic launch electronics pedigree assurance and counterfeit interdiction before release or launch.
+- Primary tools: `ts-strategic-launch-counterfeit-microelectronics-v1`.
+- Cross-check tools: `ts-rapid-materiel-authentication-counterfeit-shield-v1`.
+- Protocols: signed supply manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: quarantine-first release posture with dual-control review.
+
+### `maritime-minefield-humanitarian-corridor-v1`
+- Use for humanitarian sea-corridor integrity when mine threats, escort constraints, and coalition caveats interact.
+- Primary tools: `ts-coalition-minefield-humanitarian-corridor-integrity-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `NATO APP-11/ADatP-3`.
+- Degraded fallback: high-confidence convoys only with fixed escort windows.
+
+### `homeland-dam-levee-engineer-surge-v1`
+- Use for DSCA engineer-force prioritization across failing dams, levees, and flood-control nodes.
+- Primary tools: `ts-homeland-dam-levee-engineer-surge-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: life-safety-first engineer allocation with hourly authority confirmation.
+
+### `command-voice-spoof-defense-v1`
+- Use for restoring trusted command-path authentication after suspected synthetic voice or media spoofing.
+- Primary tools: `ts-joint-command-voice-spoof-defense-v1`.
+- Cross-check tools: `ts-deepfake-media-auth-v1`.
+- Protocols: signed voice-auth manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: manual countersign and dual-channel human verification only.
+
+### `no-strike-geofence-integrity-v1`
+- Use for dynamic no-strike and restricted-target boundary integrity assurance across targeting and fires systems.
+- Primary tools: `ts-theater-no-strike-geofence-integrity-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `VMF`, `USMTF`, `OGC`, `API/JSON`.
+- Degraded fallback: hold-fire posture pending manual protected-boundary confirmation.
+
+### `expeditionary-pediatric-casualty-surge-v1`
+- Use for balancing pediatric casualties across austere medical networks and contested transport lanes.
+- Primary tools: `ts-expeditionary-pediatric-casualty-surge-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `NATO APP-11/ADatP-3`, `API/JSON`.
+- Degraded fallback: life-saving redistribution only with conservative transfer rules.
+
+### `ephemeris-spoof-timing-confidence-v1`
+- Use for preserving trusted orbital and timing data when ephemeris or time-transfer inputs may be spoofed.
+- Primary tools: `ts-satellite-ephemeris-spoof-timing-confidence-v1`.
+- Cross-check tools: `ts-space-weather-gnss-fusion-v1`.
+- Protocols: `CCSDS`, signed timing manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential timing windows only with strict drift limits.
+
+### `economic-coercion-logistics-warning-v1`
+- Use for early warning on adversary economic coercion against routes, suppliers, insurers, ports, and carriers.
+- Primary tools: `ts-strategic-economic-coercion-logistics-warning-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: `STIX/TAXII`, `USMTF`, signed logistics manifests, `API/JSON`.
+- Degraded fallback: mission-essential route monitoring with daily commander updates only.
+
+## Profile Addendum N (2026-03-14, Industrial Bottlenecks, Trust Reconstitution, and Sealift Support)
+
+### `machine-tool-forging-priority-v1`
+- Use for strategic machine-tool, forging, and heat-treatment prioritization when heavy-manufacturing capacity constrains warfighter output.
+- Primary tools: `ts-strategic-machine-tool-forging-capacity-priority-v1`.
+- Cross-check tools: `ts-defense-industrial-base-sabotage-risk-v1`.
+- Protocols: signed production manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential workorders only with daily release review.
+
+### `composite-prepreg-resin-allocation-v1`
+- Use for defense allocation of prepreg, resin, freezer inventory, and autoclave slots when composite materials become the bottleneck.
+- Primary tools: `ts-strategic-composite-prepreg-resin-defense-allocation-v1`.
+- Cross-check tools: `ts-defense-industrial-base-sabotage-risk-v1`.
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential composite lots only with conservative release thresholds.
+
+### `bearing-gearbox-surge-assurance-v1`
+- Use for trusted bearing and gearbox availability when rotating-component shortages threaten aviation, maritime, or ground readiness.
+- Primary tools: `ts-strategic-bearing-gearbox-surge-assurance-v1`.
+- Cross-check tools: `ts-rapid-materiel-authentication-counterfeit-shield-v1`.
+- Protocols: signed supply manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: mission-essential platform components only with strict release gates.
+
+### `industrial-gas-oxygen-priority-v1`
+- Use for theater oxygen and specialty-gas prioritization when refill capacity and transport limits threaten medical care and sustainment.
+- Primary tools: `ts-theater-bulk-industrial-gas-oxygen-priority-v1`.
+- Cross-check tools: `ts-forward-medical-oxygen-assurance-v1`.
+- Protocols: `HL7/FHIR`, signed logistics manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: medical and mission-essential gas distribution only with command-approved rationing.
+
+### `munition-dataload-crypto-reconstitution-v1`
+- Use for reconstituting trusted munition dataloads and crypto fills after compromise or relocation.
+- Primary tools: `ts-joint-munition-dataload-crypto-fill-reconstitution-v1`.
+- Cross-check tools: `ts-zero-trust-key-continuity-v1`.
+- Protocols: `X.509/PKI`, signed mission-data manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: human-verified limited release only with commander-approved fallback loads.
+
+### `neo-identity-fraud-suppression-v1`
+- Use for coalition noncombatant evacuation screening when document fraud, synthetic identities, or family-link disputes threaten movement integrity.
+- Primary tools: `ts-coalition-neo-identity-fraud-suppression-v1`.
+- Cross-check tools: `ts-coalition-border-refugee-biometric-deconfliction-insider-risk-screening-v1`.
+- Protocols: `NIEM`, `CJIS`, `API/JSON`, `USMTF`, ICAO Doc 9303 aligned exchange.
+- Degraded fallback: life-safety-first screening with protected hold-and-review lanes.
+
+### `harbor-tug-pilotage-sealift-priority-v1`
+- Use for military sealift flow when tug crews, pilots, or berth-movement windows become the decisive port bottleneck.
+- Primary tools: `ts-strategic-harbor-tug-pilotage-sealift-priority-v1`.
+- Cross-check tools: `ts-strategic-sealift-port-survivability-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, signed port manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: military-essential sailings only with fixed tug and pilot release windows.
+
+### `lubricant-hydraulic-allocation-v1`
+- Use for specialty lubricant and hydraulic-fluid allocation when shortages or contamination threaten homeland defense mission-capable rates.
+- Primary tools: `ts-homeland-defense-specialty-lubricant-hydraulic-fluid-allocation-v1`.
+- Cross-check tools: `ts-defense-industrial-base-sabotage-risk-v1`.
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: mission-essential systems only with conservative substitution and refill approval.
+
+## Profile Addendum O (2026-03-14, Airbase Recovery, Convoy Autonomy, and Tactical Data Trust)
+
+### `airbase-arresting-gear-reconstitution-v1`
+- Use for recovering arresting gear and runway-end cable capacity when expeditionary airbases need safe sortie regeneration.
+- Primary tools: `ts-joint-airbase-arresting-gear-runway-cable-reconstitution-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `USMTF`, `AIXM/FIXM`, signed maintenance manifests, `API/JSON`.
+- Degraded fallback: precleared aircraft profiles only with commander-approved runway limits.
+
+### `munitions-end-use-serial-trace-v1`
+- Use for coalition transfer assurance when munitions serial integrity, diversion risk, or end-use accountability becomes decisive.
+- Primary tools: `ts-coalition-munitions-end-use-serial-trace-v1`.
+- Cross-check tools: `ts-detainee-accountability-v1`.
+- Protocols: `NIEM`, `USMTF`, signed custody manifests, `API/JSON`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: highest-priority munitions only with dual-control receipt confirmation.
+
+### `autonomy-convoy-spectrum-integrity-v1`
+- Use for convoy continuity when jamming, spoofing, or degraded control links threaten spectrum-dependent autonomy.
+- Primary tools: `ts-theater-spectrum-autonomy-convoy-integrity-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `CoT`, `VMF`, signed autonomy attestations, `API/JSON`, `USMTF`.
+- Degraded fallback: human-led convoy operations with restricted autonomy assist functions only.
+
+### `commercial-sat-imagery-retask-v1`
+- Use for priority retask governance when commercial imagery access is denied, degraded, or politically constrained.
+- Primary tools: `ts-joint-commercial-sat-imagery-retask-governance-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `STANAG 4559`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: critical-named-area-only retask queue with explicit commander reprioritization.
+
+### `photonics-laser-optics-allocation-v1`
+- Use for strategic allocation of photonics, laser optics, and specialty electro-optical materials across defense demand.
+- Primary tools: `ts-strategic-photonics-laser-optics-allocation-v1`.
+- Cross-check tools: `ts-defense-industrial-base-sabotage-risk-v1`.
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential sensor and laser lots only with conservative release thresholds.
+
+### `expeditionary-burn-transfer-blood-rotation-v1`
+- Use for austere burn-care redistribution when burn-bed capacity, escharotomy capability, and blood rotation determine survival.
+- Primary tools: `ts-expeditionary-burn-bed-transfer-blood-rotation-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, `NATO APP-11/ADatP-3`, `API/JSON`.
+- Degraded fallback: life-saving burn transfers only with conservative transfusion thresholds.
+
+### `rail-hazmat-military-priority-v1`
+- Use for homeland rail deconfliction when hazardous-material movements and military force flow compete for constrained dispatch windows.
+- Primary tools: `ts-homeland-rail-hazmat-military-priority-deconfliction-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `EDI X12`, `API/JSON`, `USMTF`.
+- Degraded fallback: military-essential moves only with hazmat hold points and manual dispatch approval.
+
+### `tactical-edge-dataset-rollback-v1`
+- Use for edge dataset provenance and rollback when corrupted or stale models threaten tactical decisions.
+- Primary tools: `ts-joint-tactical-edge-dataset-provenance-rollback-v1`.
+- Cross-check tools: `ts-ai-model-governance-assurance-v1`.
+- Protocols: signed dataset manifests, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: approved-baseline snapshots only with human release for edge updates.
+
+## Profile Addendum P (2026-03-14, Reserve Airlift, Hot-Section Materials, Order Trust, and Coalition Access)
+
+### `civil-reserve-air-fleet-activation-v1`
+- Use for reserve and commercial airlift activation when military lift is insufficient or cargo backlogs exceed organic capacity.
+- Primary tools: `ts-joint-civil-reserve-air-fleet-activation-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIXM/FIXM`, `IATA Cargo-IMP`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential lift only with daily commander review.
+
+### `aerial-refueling-boom-drogue-reconstitution-v1`
+- Use for tanker boom, drogue, and hose-drum recovery when refueling hardware constrains air campaign tempo.
+- Primary tools: `ts-joint-aerial-refueling-boom-drogue-reconstitution-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `USMTF`, `Link 16 J-series`, `AIXM/FIXM`, signed maintenance manifests.
+- Degraded fallback: highest-priority receivers only with commander-approved fuel rationing.
+
+### `mission-sbom-emergency-patch-v1`
+- Use for emergency mission-software patch governance when exploit urgency and mission assurance must be balanced.
+- Primary tools: `ts-theater-mission-sbom-emergency-patch-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: `CycloneDX/SPDX`, `STIX/TAXII`, signed deployment manifests, `API/JSON`.
+- Degraded fallback: isolate-and-monitor only with rollback-ready baseline.
+
+### `turbine-superalloy-tbc-priority-v1`
+- Use for turbine hot-section allocation when superalloy pedigree, casting slots, or coating throughput constrain readiness.
+- Primary tools: `ts-strategic-turbine-superalloy-tbc-priority-v1`.
+- Cross-check tools: `ts-strategic-machine-tool-forging-capacity-priority-v1`.
+- Protocols: signed material-cert manifests, `API/JSON`, `USMTF`, `OPC UA`.
+- Degraded fallback: mission-essential engine lots only with conservative release thresholds.
+
+### `digital-order-watermark-recall-v1`
+- Use for digital order recall and reissue when signing, watermark, or distribution integrity is suspect.
+- Primary tools: `ts-joint-digital-order-watermark-recall-v1`.
+- Cross-check tools: `ts-joint-command-voice-spoof-defense-v1`.
+- Protocols: signed order manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Degraded fallback: hold and reissue only with dual-channel human confirmation.
+
+### `potable-water-restart-biofilm-control-v1`
+- Use for base potable-water restart and health protection after outages, contamination, or long stagnation periods.
+- Primary tools: `ts-homeland-base-water-restart-biofilm-control-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `HL7/FHIR`, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Degraded fallback: restricted-potable-use posture with mission-essential facility release only.
+
+### `coalition-civil-airlift-clearance-v1`
+- Use for coalition civil-airlift movements when host-nation diplomatic clearances and ramp throughput are the pacing constraint.
+- Primary tools: `ts-coalition-host-nation-civil-airlift-clearance-v1`.
+- Cross-check tools: `ts-joint-civil-reserve-air-fleet-activation-v1`.
+- Protocols: `AIXM/FIXM`, `NIEM`, `API/JSON`, `USMTF`, ICAO diplomatic-clearance exchange.
+- Degraded fallback: protected or mission-essential sorties only with liaison-confirmed clearances.
+
+### `space-ground-station-rf-surge-v1`
+- Use for strategic ground-station continuity when traveling-wave tubes, cryogenic receivers, or RF spares become scarce.
+- Primary tools: `ts-space-ground-station-twt-cryogenic-surge-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `CCSDS`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential nodes only with constrained coverage windows.
+
+### `armored-running-gear-priority-v1`
+- Use for armored readiness prioritization when track pads, roadwheels, or final drives become the limiting repair item.
+- Primary tools: `ts-joint-armored-vehicle-running-gear-priority-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed supply manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: mission-essential tracked fleets only with commander-approved training reductions.
+
+### `underway-replenishment-rig-compatibility-v1`
+- Use for coalition underway replenishment when hose, spanwire, or rig incompatibility threatens fuel and stores transfer at sea.
+- Primary tools: `ts-coalition-underway-replenishment-rig-compatibility-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `NATO APP-11/ADatP-3`, signed logistics manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: fuel and life-support stores only with manual compatibility verification.

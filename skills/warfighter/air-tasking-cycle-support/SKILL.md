@@ -203,3 +203,10 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-coalition-aerial-water-drop-deconfliction-v1` + `protocol_stack_id=ps-coalition-aerial-water-drop-deconfliction-stack-v1` when ATO cycles must deconflict coalition disaster-response water drops with military sorties.
 - Prioritize `tool_suite_id=ts-quantum-timing-holdover-fires-iamd-v1` + `protocol_stack_id=ps-quantum-timing-holdover-fires-iamd-stack-v1` when denied-PNT timing integrity threatens launch windows, fires synchronization, or defensive engagement sequencing.
 - Add `packet_id=DPL-COALITION-AERIAL-WATER-DROP-DECONFLICTION-001` and `packet_id=DPL-QUANTUM-TIMING-HOLDOVER-FIRES-IAMD-001` for ATO branches that alter corridor release, sortie cadence, or timing authority gates.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-aerial-refueling-boom-drogue-reconstitution-v1` + `protocol_stack_id=ps-joint-aerial-refueling-boom-drogue-reconstitution-stack-v1` when the ATO depends on restoring tanker hardware, hose-drum capacity, or receiver-priority fuel flow.
+- Prioritize `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when ATO fragos, tanker retasks, or divert instructions may be stale, spoofed, or version-divergent.
+- Prioritize `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when air-tasking workflows depend on emergency remediation of mission software without breaking execution trust.
+- Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for ATO branches that alter sortie cadence, tasking authenticity, or execution-system trust.

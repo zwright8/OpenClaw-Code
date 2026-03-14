@@ -257,3 +257,24 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-ai-confidence-early-warning-v1` + `protocol_stack_id=ps-theater-mission-ai-confidence-early-warning-stack-v1` when failover sequencing depends on trusted AI-assisted routing, workload arbitration, or anomaly triage.
+- Add `tool_suite_id=ts-joint-sovereign-edge-cloud-migration-v1` + `protocol_stack_id=ps-joint-sovereign-edge-cloud-migration-stack-v1` when mission continuity requires governed cloud-to-edge cutovers or sovereign compute fallback.
+- Add `tool_suite_id=ts-joint-command-voice-spoof-defense-v1` + `protocol_stack_id=ps-joint-command-voice-spoof-defense-stack-v1` when degraded communications increase the risk of synthetic command injection during failover execution.
+- Add `packet_id=DPL-MISSION-AI-CONFIDENCE-001`, `packet_id=DPL-SOVEREIGN-EDGE-CLOUD-001`, and `packet_id=DPL-COMMAND-VOICE-SPOOF-001` for branches that materially change mission-service restoration, command trust, or fallback authority posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when network failover depends on validating edge datasets, restoring trusted baselines, or rolling back corrupted field updates.
+- Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when failover planning must preserve imagery-fed mission threads after commercial collection denial or latency spikes.
+- Add `tool_suite_id=ts-theater-spectrum-autonomy-convoy-integrity-v1` + `protocol_stack_id=ps-theater-spectrum-autonomy-convoy-integrity-stack-v1` when degraded network paths threaten spectrum-dependent convoy autonomy and require coordinated fallback-control paths.
+- Add `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001`, `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001`, and `packet_id=DPL-SPECTRUM-AUTONOMY-CONVOY-INTEGRITY-001` for branches that materially change mission-service restoration, convoy control integrity, or trusted data posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when failover sequencing depends on emergency remediation, trusted artifact provenance, or rollback-safe restoration of mission software.
+- Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when degraded network paths increase the risk of stale or spoofed digital tasking during failover execution.
+- Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when mission continuity depends on rerouting through strategic SATCOM or SDA ground nodes with scarce RF-chain components.
+- Add `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-SPACE-GROUND-STATION-TWT-001` for branches that materially change mission-service restoration, command trust, or strategic-network reachback posture.

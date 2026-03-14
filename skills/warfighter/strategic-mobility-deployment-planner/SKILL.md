@@ -144,3 +144,22 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when deployment feasibility depends on coercion-driven carrier loss, insurance shock, customs friction, or strategic route pressure.
+- Add `tool_suite_id=ts-coalition-allied-depot-sabotage-wargame-v1` + `protocol_stack_id=ps-coalition-allied-depot-sabotage-wargame-stack-v1` when strategic mobility branches depend on depot survivability, protected stock release, or allied rail/port reconstitution timing.
+- Add `tool_suite_id=ts-homeland-dam-levee-engineer-surge-v1` + `protocol_stack_id=ps-homeland-dam-levee-engineer-surge-stack-v1` when flood-control failures or engineer-force reallocation could constrict deployment corridors.
+- Add `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, `packet_id=DPL-DEPOT-SABOTAGE-WARGAME-001`, and `packet_id=DPL-DAM-LEVEE-ENGINEER-SURGE-001` for recommendations that materially alter strategic lift timing, corridor confidence, or mobilization posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-homeland-rail-hazmat-military-priority-deconfliction-v1` + `protocol_stack_id=ps-homeland-rail-hazmat-military-priority-deconfliction-stack-v1` when strategic mobility depends on reconciling military dispatch with hazardous-material rail restrictions and civil emergency traffic.
+- Add `tool_suite_id=ts-joint-airbase-arresting-gear-runway-cable-reconstitution-v1` + `protocol_stack_id=ps-joint-airbase-arresting-gear-runway-cable-reconstitution-stack-v1` when deployment tempo depends on rapid airbase recovery, arresting-gear readiness, or runway-end cable availability for sortie regeneration.
+- Add `packet_id=DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001` and `packet_id=DPL-ARRESTING-GEAR-RUNWAY-CABLE-001` for recommendations that materially alter lift timing, corridor confidence, or deployment posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when deployment timelines depend on reserve or commercial airlift closing lift gaps or backfilling delayed sealift.
+- Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when strategic mobility depends on allied civil tails, host-nation ramp slots, or diplomatic-clearance speed.
+- Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when armored deployment posture depends on track-pad, roadwheel, or final-drive readiness before onward movement.
+- Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter strategic lift timing, access confidence, or deployment posture.

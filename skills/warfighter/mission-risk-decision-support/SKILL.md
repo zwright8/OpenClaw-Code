@@ -255,3 +255,31 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-ai-confidence-early-warning-v1` + `protocol_stack_id=ps-theater-mission-ai-confidence-early-warning-stack-v1` when commander risk acceptance depends on trust in mission-AI outputs, drift warnings, or rollback timing.
+- Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when risk posture depends on fragile routes, carrier pressure, or adversary coercion against sustainment.
+- Add `tool_suite_id=ts-theater-no-strike-geofence-integrity-v1` + `protocol_stack_id=ps-theater-no-strike-geofence-integrity-stack-v1` when protected-boundary drift could invalidate fires, maneuver, or civilian-risk assumptions.
+- Add `packet_id=DPL-MISSION-AI-CONFIDENCE-001`, `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, and `packet_id=DPL-NO-STRIKE-GEOFENCE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS decisions.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-joint-munition-dataload-crypto-fill-reconstitution-v1` + `protocol_stack_id=ps-joint-munition-dataload-crypto-fill-reconstitution-stack-v1` when commander risk posture depends on trusted weapon or EW mission-data reconstitution after compromise or relocation.
+- Add `tool_suite_id=ts-coalition-neo-identity-fraud-suppression-v1` + `protocol_stack_id=ps-coalition-neo-identity-fraud-suppression-stack-v1` when evacuation legitimacy, family reunification, or coalition screening confidence materially affects risk acceptance.
+- Add `tool_suite_id=ts-strategic-harbor-tug-pilotage-sealift-priority-v1` + `protocol_stack_id=ps-strategic-harbor-tug-pilotage-sealift-priority-stack-v1` when sealift timing, berth windows, or harbor-control scarcity becomes a decisive mission-risk driver.
+- Add `packet_id=DPL-MUNITION-DATALOAD-CRYPTO-001`, `packet_id=DPL-NEO-IDENTITY-FRAUD-001`, and `packet_id=DPL-HARBOR-TUG-PILOTAGE-SEALIFT-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-joint-airbase-arresting-gear-runway-cable-reconstitution-v1` + `protocol_stack_id=ps-joint-airbase-arresting-gear-runway-cable-reconstitution-stack-v1` when commander risk depends on sortie regeneration, arresting-gear integrity, or runway-end cable recovery at damaged airbases.
+- Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when risk decisions depend on trusted fallback ISR coverage after commercial imagery denial or political restrictions.
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when commander risk acceptance depends on restoring trusted edge datasets or rolling back suspect model updates.
+- Add `packet_id=DPL-ARRESTING-GEAR-RUNWAY-CABLE-001`, `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001`, and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when commander risk acceptance depends on reserve or commercial airlift closing deployment, evacuation, or sustainment gaps.
+- Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when risk posture depends on urgent software remediation, rollback assurance, or artifact trust across mission systems.
+- Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when commander confidence depends on authentic order distribution and rapid containment of spoofed or stale digital tasking.
+- Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

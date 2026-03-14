@@ -149,3 +149,15 @@ Use these tool categories as the default stack for this skill: digital engineeri
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-machine-tool-forging-capacity-priority-v1` + `protocol_stack_id=ps-strategic-machine-tool-forging-capacity-priority-stack-v1` when prototype or fielding speed is limited by heavy-manufacturing bottlenecks, die availability, or heat-treatment queues.
+- Add `tool_suite_id=ts-strategic-composite-prepreg-resin-defense-allocation-v1` + `protocol_stack_id=ps-strategic-composite-prepreg-resin-defense-allocation-stack-v1` when rapid fielding depends on scarce composite lots, freezer inventory, or cure capacity.
+- Add `tool_suite_id=ts-strategic-bearing-gearbox-surge-assurance-v1` + `protocol_stack_id=ps-strategic-bearing-gearbox-surge-assurance-stack-v1` when drivetrain components or trusted rotating parts constrain accelerated delivery.
+- Add `packet_id=DPL-MACHINE-TOOL-FORGING-001`, `packet_id=DPL-COMPOSITE-PREPREG-RESIN-001`, and `packet_id=DPL-BEARING-GEARBOX-SURGE-001` for recommendations that materially alter prototype release, fielding tempo, or trusted materiel availability.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-strategic-photonics-laser-optics-allocation-v1` + `protocol_stack_id=ps-strategic-photonics-laser-optics-allocation-stack-v1` when accelerated fielding depends on scarce EO materials, laser optics, or specialty coatings.
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when rapid fielding includes edge datasets or models that may require provenance validation and rollback before release.
+- Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001` and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter fielding tempo, trusted model release, or EO-material availability.

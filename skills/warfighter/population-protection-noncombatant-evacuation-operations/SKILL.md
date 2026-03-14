@@ -149,3 +149,12 @@ Use these tool categories as the default stack for this skill: consular status s
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-neo-identity-fraud-suppression-v1` + `protocol_stack_id=ps-coalition-neo-identity-fraud-suppression-stack-v1` when evacuation legitimacy, family-link assurance, or coalition screening confidence materially affects protected movement timing.
+- Add `packet_id=DPL-NEO-IDENTITY-FRAUD-001` for recommendations that materially change screening posture, protected-hold decisions, or safe-to-move release timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-homeland-rail-hazmat-military-priority-deconfliction-v1` + `protocol_stack_id=ps-homeland-rail-hazmat-military-priority-deconfliction-stack-v1` when evacuation safety and protected movement timing depend on dual-use rail deconfliction under hazardous-material restrictions.
+- Add `packet_id=DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001` for recommendations that materially change evacuation corridor timing, rail staging posture, or protected-movement confidence.

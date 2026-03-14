@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Satellite Ephemeris Spoofing And Timing Confidence Cell"
+  short_description: "Preserve trusted orbital and timing data under spoof pressure"

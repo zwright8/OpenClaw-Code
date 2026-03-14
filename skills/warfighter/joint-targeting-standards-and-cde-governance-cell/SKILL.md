@@ -199,3 +199,22 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
+
+- Add `tool_suite_id=ts-theater-no-strike-geofence-integrity-v1` + `protocol_stack_id=ps-theater-no-strike-geofence-integrity-stack-v1` when dynamic protected-boundary drift could invalidate CDE, no-strike, or restricted-target logic.
+- Add `tool_suite_id=ts-joint-tactical-legal-attribution-synthesis-v1` + `protocol_stack_id=ps-joint-tactical-legal-attribution-synthesis-stack-v1` when high-consequence release decisions depend on fast, legally reviewable attribution or evidentiary sufficiency.
+- Add `tool_suite_id=ts-joint-command-voice-spoof-defense-v1` + `protocol_stack_id=ps-joint-command-voice-spoof-defense-stack-v1` when target-release authority depends on authenticated voice or media command paths.
+- Add `packet_id=DPL-NO-STRIKE-GEOFENCE-001`, `packet_id=DPL-TACTICAL-LEGAL-ATTRIB-001`, and `packet_id=DPL-COMMAND-VOICE-SPOOF-001` for recommendations that materially alter target validity, CDE confidence, or release authority.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIV Addendum)
+
+- Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when targeting confidence depends on governed fallback imagery collection after commercial access denial or sudden reprioritization.
+- Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when CDE, target validation, or machine-assisted mensuration relies on edge datasets that may require trusted rollback.
+- Add `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001` and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter target confidence, CDE governance, or release timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
+
+- Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when target-release authority, no-strike updates, or restricted-target lists depend on trusted digital order versioning and recall.
+- Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when CDE or targeting systems require emergency remediation without losing auditability, rollback control, or mensuration trust.
+- Add `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for recommendations that materially alter target validity, release authority, or targeting-system trust posture.
