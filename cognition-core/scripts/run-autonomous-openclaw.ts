@@ -66,6 +66,11 @@ Options:
   --failure-burst-long-window <n> Long recency window baseline for failure bursts (2-256, default: 32)
   --failure-burst-min-attempts <n> Min recent attempts before failure-burst penalties activate (default: 8)
   --failure-burst-threshold <n> Short/long failure-rate ratio threshold before penalties (1-5, default: 1.5)
+  --latency-burst-penalty-weight <n> Short-vs-long window latency-SLA miss burst penalty weight (0-1, default: 0)
+  --latency-burst-short-window <n> Short recency window used to estimate latency-SLA miss bursts (2-64, default: 8)
+  --latency-burst-long-window <n> Long recency window baseline for latency-SLA miss bursts (2-256, default: 32)
+  --latency-burst-min-attempts <n> Min measured attempts before latency-burst penalties activate (default: 8)
+  --latency-burst-threshold <n> Short/long latency-SLA miss-rate ratio threshold before penalties (1-5, default: 1.5)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -242,6 +247,11 @@ function parseArgs(argv) {
             failureBurstLongWindow: 32,
             failureBurstMinAttempts: 8,
             failureBurstThreshold: 1.5,
+            latencyBurstPenaltyWeight: 0,
+            latencyBurstShortWindow: 8,
+            latencyBurstLongWindow: 32,
+            latencyBurstMinAttempts: 8,
+            latencyBurstThreshold: 1.5,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -587,6 +597,37 @@ function parseArgs(argv) {
         }
         if (token === '--failure-burst-threshold') {
             options.selectionPolicyConfig.failureBurstThreshold = parseFloatInRange(value, '--failure-burst-threshold', 1, 5);
+            i++;
+            continue;
+        }
+        if (token === '--latency-burst-penalty-weight') {
+            options.selectionPolicyConfig.latencyBurstPenaltyWeight = parseFloatInRange(value, '--latency-burst-penalty-weight', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--latency-burst-short-window') {
+            options.selectionPolicyConfig.latencyBurstShortWindow = parsePositiveInt(value, '--latency-burst-short-window');
+            if (options.selectionPolicyConfig.latencyBurstShortWindow < 2 || options.selectionPolicyConfig.latencyBurstShortWindow > 64) {
+                throw new Error('--latency-burst-short-window must be an integer between 2 and 64');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--latency-burst-long-window') {
+            options.selectionPolicyConfig.latencyBurstLongWindow = parsePositiveInt(value, '--latency-burst-long-window');
+            if (options.selectionPolicyConfig.latencyBurstLongWindow < 2 || options.selectionPolicyConfig.latencyBurstLongWindow > 256) {
+                throw new Error('--latency-burst-long-window must be an integer between 2 and 256');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--latency-burst-min-attempts') {
+            options.selectionPolicyConfig.latencyBurstMinAttempts = parsePositiveInt(value, '--latency-burst-min-attempts');
+            i++;
+            continue;
+        }
+        if (token === '--latency-burst-threshold') {
+            options.selectionPolicyConfig.latencyBurstThreshold = parseFloatInRange(value, '--latency-burst-threshold', 1, 5);
             i++;
             continue;
         }

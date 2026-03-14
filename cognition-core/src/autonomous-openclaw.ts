@@ -182,6 +182,16 @@ const DEFAULT_FAILURE_BURST_MIN_ATTEMPTS = 8;
 const MAX_FAILURE_BURST_MIN_ATTEMPTS = 256;
 const DEFAULT_FAILURE_BURST_THRESHOLD = 1.5;
 const MAX_FAILURE_BURST_THRESHOLD = 5;
+const DEFAULT_LATENCY_BURST_PENALTY_WEIGHT = 0;
+const MAX_LATENCY_BURST_PENALTY_WEIGHT = 1;
+const DEFAULT_LATENCY_BURST_SHORT_WINDOW = 8;
+const MAX_LATENCY_BURST_SHORT_WINDOW = 64;
+const DEFAULT_LATENCY_BURST_LONG_WINDOW = 32;
+const MAX_LATENCY_BURST_LONG_WINDOW = 256;
+const DEFAULT_LATENCY_BURST_MIN_ATTEMPTS = 8;
+const MAX_LATENCY_BURST_MIN_ATTEMPTS = 256;
+const DEFAULT_LATENCY_BURST_THRESHOLD = 1.5;
+const MAX_LATENCY_BURST_THRESHOLD = 5;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -1089,6 +1099,41 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_FAILURE_BURST_THRESHOLD,
             1,
             MAX_FAILURE_BURST_THRESHOLD
+        ),
+        latencyBurstPenaltyWeight: clamp(
+            Number.isFinite(Number(value.latencyBurstPenaltyWeight))
+                ? Number(value.latencyBurstPenaltyWeight)
+                : DEFAULT_LATENCY_BURST_PENALTY_WEIGHT,
+            0,
+            MAX_LATENCY_BURST_PENALTY_WEIGHT
+        ),
+        latencyBurstShortWindow: clamp(
+            Number.isFinite(Number(value.latencyBurstShortWindow))
+                ? parsePositiveInt(value.latencyBurstShortWindow, DEFAULT_LATENCY_BURST_SHORT_WINDOW)
+                : DEFAULT_LATENCY_BURST_SHORT_WINDOW,
+            2,
+            MAX_LATENCY_BURST_SHORT_WINDOW
+        ),
+        latencyBurstLongWindow: clamp(
+            Number.isFinite(Number(value.latencyBurstLongWindow))
+                ? parsePositiveInt(value.latencyBurstLongWindow, DEFAULT_LATENCY_BURST_LONG_WINDOW)
+                : DEFAULT_LATENCY_BURST_LONG_WINDOW,
+            2,
+            MAX_LATENCY_BURST_LONG_WINDOW
+        ),
+        latencyBurstMinAttempts: clamp(
+            Number.isFinite(Number(value.latencyBurstMinAttempts))
+                ? parsePositiveInt(value.latencyBurstMinAttempts, DEFAULT_LATENCY_BURST_MIN_ATTEMPTS)
+                : DEFAULT_LATENCY_BURST_MIN_ATTEMPTS,
+            1,
+            MAX_LATENCY_BURST_MIN_ATTEMPTS
+        ),
+        latencyBurstThreshold: clamp(
+            Number.isFinite(Number(value.latencyBurstThreshold))
+                ? Number(value.latencyBurstThreshold)
+                : DEFAULT_LATENCY_BURST_THRESHOLD,
+            1,
+            MAX_LATENCY_BURST_THRESHOLD
         )
     };
 }
@@ -1451,6 +1496,49 @@ function computeLatencyTailPenalty(stat, selectionPolicyConfig = null) {
     return clamp(penaltyWeight * overrunRatio, 0, 1);
 }
 
+function computeWindowedBurstPenalty({
+    attempts = 0,
+    recentOutcomes = [],
+    minAttempts = 1,
+    shortWindow = 8,
+    longWindow = 32,
+    threshold = 1.5,
+    penaltyWeight = 0,
+    isFailure = () => false
+} = {}) {
+    const normalizedAttempts = clamp(parseNonNegativeInt(attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    if (normalizedAttempts <= 0) return 0;
+
+    const normalizedMinAttempts = clamp(parsePositiveInt(minAttempts, 1), 1, Number.MAX_SAFE_INTEGER);
+    if (normalizedAttempts < normalizedMinAttempts) return 0;
+    if (!Array.isArray(recentOutcomes) || recentOutcomes.length < normalizedMinAttempts) return 0;
+
+    const normalizedShortWindow = clamp(parsePositiveInt(shortWindow, DEFAULT_FAILURE_BURST_SHORT_WINDOW), 2, Number.MAX_SAFE_INTEGER);
+    const normalizedLongWindow = clamp(parsePositiveInt(longWindow, DEFAULT_FAILURE_BURST_LONG_WINDOW), normalizedShortWindow, Number.MAX_SAFE_INTEGER);
+    const normalizedThreshold = clamp(Number(threshold), 1, Number.MAX_SAFE_INTEGER);
+    const normalizedPenaltyWeight = clamp(Number(penaltyWeight), 0, 1);
+    if (normalizedPenaltyWeight <= 0) return 0;
+
+    const terminalRecentOutcomes = recentOutcomes.slice(-normalizedAttempts);
+    const longOutcomes = terminalRecentOutcomes.slice(-normalizedLongWindow);
+    const shortOutcomes = longOutcomes.slice(-normalizedShortWindow);
+    if (shortOutcomes.length < Math.min(normalizedMinAttempts, normalizedShortWindow)) return 0;
+    if (longOutcomes.length < Math.min(normalizedMinAttempts, normalizedLongWindow)) return 0;
+
+    const shortFailures = shortOutcomes.filter((entry) => isFailure(entry)).length;
+    const longFailures = longOutcomes.filter((entry) => isFailure(entry)).length;
+    if (shortFailures <= 0) return 0;
+
+    const shortFailureRate = shortFailures / shortOutcomes.length;
+    const longFailureRate = longFailures / longOutcomes.length;
+    const stabilizedLongRate = Math.max(longFailureRate, 1 / longOutcomes.length);
+    const burstRatio = shortFailureRate / stabilizedLongRate;
+    if (burstRatio <= normalizedThreshold) return 0;
+
+    const normalizedBurst = clamp((burstRatio - normalizedThreshold) / normalizedThreshold, 0, 1);
+    return clamp(normalizedPenaltyWeight * normalizedBurst, 0, 1);
+}
+
 function computeFailureBurstPenalty(stat, selectionPolicyConfig = null) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const penaltyWeight = clamp(policy.failureBurstPenaltyWeight, 0, MAX_FAILURE_BURST_PENALTY_WEIGHT);
@@ -1465,38 +1553,62 @@ function computeFailureBurstPenalty(stat, selectionPolicyConfig = null) {
     if (attempts < minAttempts) return 0;
 
     const recentOutcomes = normalizeRecentOutcomes(stat?.recentOutcomes);
-    if (recentOutcomes.length < minAttempts) return 0;
+    return computeWindowedBurstPenalty({
+        attempts,
+        recentOutcomes,
+        minAttempts,
+        shortWindow: clamp(
+            parsePositiveInt(policy.failureBurstShortWindow, DEFAULT_FAILURE_BURST_SHORT_WINDOW),
+            2,
+            MAX_FAILURE_BURST_SHORT_WINDOW
+        ),
+        longWindow: clamp(
+            parsePositiveInt(policy.failureBurstLongWindow, DEFAULT_FAILURE_BURST_LONG_WINDOW),
+            2,
+            MAX_FAILURE_BURST_LONG_WINDOW
+        ),
+        threshold: clamp(policy.failureBurstThreshold, 1, MAX_FAILURE_BURST_THRESHOLD),
+        penaltyWeight,
+        isFailure: (entry) => !SUCCESS_STATUSES.has(entry?.status)
+    });
+}
 
-    const shortWindow = clamp(
-        parsePositiveInt(policy.failureBurstShortWindow, DEFAULT_FAILURE_BURST_SHORT_WINDOW),
-        2,
-        MAX_FAILURE_BURST_SHORT_WINDOW
+function computeLatencyBurstPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const penaltyWeight = clamp(policy.latencyBurstPenaltyWeight, 0, MAX_LATENCY_BURST_PENALTY_WEIGHT);
+    if (penaltyWeight <= 0) return 0;
+
+    const attempts = clamp(parseNonNegativeInt(stat?.attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    const minAttempts = clamp(
+        parsePositiveInt(policy.latencyBurstMinAttempts, DEFAULT_LATENCY_BURST_MIN_ATTEMPTS),
+        1,
+        MAX_LATENCY_BURST_MIN_ATTEMPTS
     );
-    const longWindow = clamp(
-        parsePositiveInt(policy.failureBurstLongWindow, DEFAULT_FAILURE_BURST_LONG_WINDOW),
-        shortWindow,
-        MAX_FAILURE_BURST_LONG_WINDOW
-    );
-    const threshold = clamp(policy.failureBurstThreshold, 1, MAX_FAILURE_BURST_THRESHOLD);
+    if (attempts < minAttempts) return 0;
 
-    const terminalRecentOutcomes = recentOutcomes.slice(-attempts);
-    const longOutcomes = terminalRecentOutcomes.slice(-longWindow);
-    const shortOutcomes = longOutcomes.slice(-shortWindow);
-    if (shortOutcomes.length < Math.min(minAttempts, shortWindow)) return 0;
-    if (longOutcomes.length < Math.min(minAttempts, longWindow)) return 0;
-
-    const shortFailures = shortOutcomes.filter((entry) => !SUCCESS_STATUSES.has(entry.status)).length;
-    const longFailures = longOutcomes.filter((entry) => !SUCCESS_STATUSES.has(entry.status)).length;
-    if (shortFailures <= 0) return 0;
-
-    const shortFailureRate = shortFailures / shortOutcomes.length;
-    const longFailureRate = longFailures / longOutcomes.length;
-    const stabilizedLongRate = Math.max(longFailureRate, 1 / longOutcomes.length);
-    const burstRatio = shortFailureRate / stabilizedLongRate;
-    if (burstRatio <= threshold) return 0;
-
-    const normalizedBurst = clamp((burstRatio - threshold) / threshold, 0, 1);
-    return clamp(penaltyWeight * normalizedBurst, 0, 1);
+    const recentOutcomes = normalizeRecentOutcomes(stat?.recentOutcomes);
+    const latencySlaMs = clamp(policy.latencySlaMs, 1, MAX_LATENCY_SLA_MS);
+    return computeWindowedBurstPenalty({
+        attempts,
+        recentOutcomes,
+        minAttempts,
+        shortWindow: clamp(
+            parsePositiveInt(policy.latencyBurstShortWindow, DEFAULT_LATENCY_BURST_SHORT_WINDOW),
+            2,
+            MAX_LATENCY_BURST_SHORT_WINDOW
+        ),
+        longWindow: clamp(
+            parsePositiveInt(policy.latencyBurstLongWindow, DEFAULT_LATENCY_BURST_LONG_WINDOW),
+            2,
+            MAX_LATENCY_BURST_LONG_WINDOW
+        ),
+        threshold: clamp(policy.latencyBurstThreshold, 1, MAX_LATENCY_BURST_THRESHOLD),
+        penaltyWeight,
+        isFailure: (entry) => {
+            const durationMs = Number(entry?.durationMs);
+            return !Number.isFinite(durationMs) || durationMs <= 0 || durationMs > latencySlaMs;
+        }
+    });
 }
 
 function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = []) {
@@ -4257,6 +4369,7 @@ function selectCatalogSlice({
         score -= computeLatencySlaPenalty(scoreStats, scoringPolicy);
         score -= computeLatencyTailPenalty(scoreStats, scoringPolicy);
         score -= computeFailureBurstPenalty(scoreStats, scoringPolicy);
+        score -= computeLatencyBurstPenalty(scoreStats, scoringPolicy);
 
         const item = {
             candidate,
