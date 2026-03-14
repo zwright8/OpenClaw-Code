@@ -38,6 +38,8 @@ Options:
   --bot-retry-base-ms <n>      Base backoff delay in milliseconds for retries (default: 200)
   --bot-retry-max-ms <n>       Max backoff delay in milliseconds for retries (default: 5000)
   --bot-retry-jitter <0-1>     Retry delay jitter ratio (default: 0.2)
+  --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
+  --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --selection-policy <mode>    Selection policy: ${policyModes} (default: ucb)
   --linucb-alpha <n>           Exploration multiplier for linucb (0-5, default: 0.6)
   --lints-alpha <n>            Posterior covariance scale for lints (0-5, default: 0.5)
@@ -224,6 +226,8 @@ function parseArgs(argv) {
         botRetryBaseDelayMs: 200,
         botRetryMaxDelayMs: 5_000,
         botRetryJitter: 0.2,
+        botAttemptTimeoutMs: 120_000,
+        botRetryBudgetRatio: 0,
         enqueueFollowupTasks: true,
         selectionPolicyConfig: {
             mode: 'ucb',
@@ -466,6 +470,16 @@ function parseArgs(argv) {
         }
         if (token === '--bot-retry-jitter') {
             options.botRetryJitter = parseFloatInRange(value, '--bot-retry-jitter', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--bot-attempt-timeout-ms') {
+            options.botAttemptTimeoutMs = parsePositiveInt(value, '--bot-attempt-timeout-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-retry-budget-ratio') {
+            options.botRetryBudgetRatio = parseFloatInRange(value, '--bot-retry-budget-ratio', 0, 1);
             i++;
             continue;
         }
@@ -864,6 +878,8 @@ function printSummary(report) {
     console.log(`Bot retries attempted: ${report.totals.botRetriesAttempted || 0}`);
     console.log(`Bot retries recovered: ${report.totals.botRetriesRecovered || 0}`);
     console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted || 0}`);
+    console.log(`Bot retries budget exhausted: ${report.totals.botRetriesBudgetExhausted || 0}`);
+    console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts || 0}`);
 }
 
 (async () => {
@@ -900,6 +916,8 @@ function printSummary(report) {
             botRetryBaseDelayMs: options.botRetryBaseDelayMs,
             botRetryMaxDelayMs: options.botRetryMaxDelayMs,
             botRetryJitter: options.botRetryJitter,
+            botAttemptTimeoutMs: options.botAttemptTimeoutMs,
+            botRetryBudgetRatio: options.botRetryBudgetRatio,
             enqueueFollowupTasks: options.enqueueFollowupTasks,
             selectionPolicyConfig: options.selectionPolicyConfig
         });

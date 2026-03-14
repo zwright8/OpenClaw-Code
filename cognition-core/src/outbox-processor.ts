@@ -54,6 +54,12 @@ function normalizeRetryJitter(value, fallback = 0.2) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeRetryBudgetRatio(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0, 1);
+}
+
 function isTransientBotFailure(execution) {
     if (!execution || typeof execution !== 'object') return false;
     if (execution.status !== 'failure') return false;
@@ -90,6 +96,95 @@ async function sleep(ms) {
     await new Promise((resolve) => {
         setTimeout(resolve, duration);
     });
+}
+
+function createBotFailureExecution({
+    output,
+    metrics = {}
+}) {
+    return {
+        mode: 'generic',
+        status: 'failure',
+        output,
+        metrics,
+        artifacts: [],
+        followupTasks: []
+    };
+}
+
+async function executeBotTaskWithTimeout({
+    request,
+    bot,
+    attempt,
+    executeBotTask,
+    timeoutMs,
+    nowFactory = Date.now
+}) {
+    const startedAt = safeNow(nowFactory);
+    const invoke = async () => {
+        try {
+            return await executeBotTask(request, bot, attempt);
+        } catch (error) {
+            return createBotFailureExecution({
+                output: `Task execution failed: ${error?.message || 'bot execution error'}`,
+                metrics: {
+                    executionError: 1
+                }
+            });
+        }
+    };
+
+    if (parseNonNegativeInt(timeoutMs, 0) <= 0) {
+        const execution = await invoke();
+        if (execution && typeof execution === 'object') {
+            return execution;
+        }
+        return createBotFailureExecution({
+            output: 'Task execution failed: invalid execution response.',
+            metrics: {
+                executionError: 1
+            }
+        });
+    }
+
+    let timeoutHandle;
+    const timeoutResult = new Promise((resolve) => {
+        timeoutHandle = setTimeout(() => {
+            resolve(createBotFailureExecution({
+                output: `Task execution failed: bot attempt timed out after ${timeoutMs}ms.`,
+                metrics: {
+                    timedOut: 1,
+                    transientFailure: 1,
+                    retryable: 1,
+                    durationMs: timeoutMs
+                }
+            }));
+        }, parseNonNegativeInt(timeoutMs, 0));
+    });
+
+    const execution = await Promise.race([invoke(), timeoutResult]);
+    if (timeoutHandle) {
+        clearTimeout(timeoutHandle);
+    }
+
+    const resolvedExecution = execution && typeof execution === 'object'
+        ? execution
+        : createBotFailureExecution({
+            output: 'Task execution failed: invalid execution response.',
+            metrics: {
+                executionError: 1
+            }
+        });
+
+    if (resolvedExecution?.metrics?.durationMs === undefined) {
+        const durationMs = clamp(safeNow(nowFactory) - startedAt, 0, Number.MAX_SAFE_INTEGER);
+        resolvedExecution.metrics = {
+            ...(resolvedExecution.metrics || {}),
+            durationMs
+        };
+    }
+
+    return resolvedExecution;
 }
 
 function isTaskDispatchEnvelope(payload) {
@@ -218,6 +313,8 @@ export async function processOutboxEnvelopes({
     botRetryBaseDelayMs = 200,
     botRetryMaxDelayMs = 5_000,
     botRetryJitter = 0.2,
+    botAttemptTimeoutMs = 120_000,
+    botRetryBudgetRatio = 0,
     botExecute = null,
     dryRun = false,
     nowFactory = Date.now,
@@ -238,6 +335,10 @@ export async function processOutboxEnvelopes({
         parseNonNegativeInt(botRetryMaxDelayMs, 5_000)
     );
     const normalizedBotRetryJitter = normalizeRetryJitter(botRetryJitter, 0.2);
+    const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
+    const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
+    const retryBudgetEnabled = normalizedBotRetryBudgetRatio > 0;
+    let retryBudgetTokens = 0;
     const executeBotTask = typeof botExecute === 'function'
         ? botExecute
         : async (request, runtimeBot) => runtimeBot.executeTask(request);
@@ -290,6 +391,8 @@ export async function processOutboxEnvelopes({
         botRetriesAttempted: 0,
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
+        botRetriesBudgetExhausted: 0,
+        botAttemptTimeouts: 0,
         followupTasksGenerated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
@@ -340,14 +443,44 @@ export async function processOutboxEnvelopes({
                 let execution = null;
                 let attempts = 0;
                 let transientFailureRetried = false;
+                let retryBudgetBlocked = false;
+                if (retryBudgetEnabled) {
+                    retryBudgetTokens += normalizedBotRetryBudgetRatio;
+                }
                 while (attempts < normalizedBotMaxAttempts) {
                     attempts++;
                     // eslint-disable-next-line no-await-in-loop
-                    execution = await executeBotTask(request, bot, attempts);
+                    execution = await executeBotTaskWithTimeout({
+                        request,
+                        bot,
+                        attempt: attempts,
+                        executeBotTask,
+                        timeoutMs: normalizedBotAttemptTimeoutMs,
+                        nowFactory: now
+                    });
+                    if (Number(execution?.metrics?.timedOut) >= 1) {
+                        stats.botAttemptTimeouts++;
+                    }
                     const shouldRetry = isTransientBotFailure(execution) && attempts < normalizedBotMaxAttempts;
                     if (!shouldRetry) break;
+                    if (retryBudgetEnabled && retryBudgetTokens < 1) {
+                        retryBudgetBlocked = true;
+                        stats.botRetriesBudgetExhausted++;
+                        execution = {
+                            ...execution,
+                            output: `${execution.output} Retry budget exhausted; skipping additional retries.`,
+                            metrics: {
+                                ...(execution.metrics || {}),
+                                retryBudgetExhausted: 1
+                            }
+                        };
+                        break;
+                    }
                     transientFailureRetried = true;
                     stats.botRetriesAttempted++;
+                    if (retryBudgetEnabled) {
+                        retryBudgetTokens = Math.max(0, retryBudgetTokens - 1);
+                    }
                     // eslint-disable-next-line no-await-in-loop
                     await sleep(computeRetryDelayMs({
                         baseDelayMs: normalizedBotRetryBaseDelayMs,
@@ -371,7 +504,7 @@ export async function processOutboxEnvelopes({
                 stats[botModeToStatField(execution.mode)]++;
                 if (attempts > 1 && execution.status !== 'failure') {
                     stats.botRetriesRecovered++;
-                } else if (execution.status === 'failure' && transientFailureRetried) {
+                } else if (execution.status === 'failure' && (transientFailureRetried || retryBudgetBlocked)) {
                     stats.botRetriesExhausted++;
                 }
                 if (

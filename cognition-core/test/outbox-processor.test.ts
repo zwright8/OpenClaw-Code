@@ -312,3 +312,139 @@ test('processOutboxEnvelopes retries transient bot failures and recovers', async
     assert.equal(completedParent?.status, 'completed');
     assert.match(completedParent?.result?.output || '', /Recovered after retry/);
 });
+
+test('processOutboxEnvelopes retries timed out bot attempts and recovers', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000702', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botAttemptTimeoutMs: 1,
+        botExecute: async () => {
+            attempts++;
+            if (attempts === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 10));
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Unexpected late success.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered after timeout retry.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 2);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesRecovered, 1);
+    assert.equal(stats.botRetriesExhausted, 0);
+    assert.equal(stats.botAttemptTimeouts, 1);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.match(completedParent?.result?.output || '', /Recovered after timeout retry/);
+});
+
+test('processOutboxEnvelopes enforces retry budget and skips extra retries', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000703', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 92_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 92_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 3,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botRetryBudgetRatio: 0.4,
+        botExecute: async () => {
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'Transient transport timeout contacting runtime.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 1);
+    assert.equal(stats.botRetriesAttempted, 0);
+    assert.equal(stats.botRetriesBudgetExhausted, 1);
+    assert.equal(stats.botRetriesExhausted, 1);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'failed');
+    assert.match(completedParent?.result?.output || '', /Retry budget exhausted/);
+});
