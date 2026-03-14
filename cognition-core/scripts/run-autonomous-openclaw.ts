@@ -51,6 +51,8 @@ Options:
   --latency-auto-target        Auto-tune latency target from recent completion durations
   --latency-auto-target-percentile <n> Percentile for auto target (0.5-0.999, default: 0.9)
   --latency-auto-target-min-samples <n> Min recent samples before auto target activates (1-128, default: 8)
+  --latency-auto-target-window-size <n> Recency window for latency auto target (1-128, default: 32)
+  --latency-auto-target-blend <n> Blend adaptive and static latency targets (0-1, default: 1)
   --reliability-floor <n>      Reliability guardrail floor (Wilson LCB) subtracted from ranking gap (0-1, default: 0)
   --reliability-floor-min-attempts <n> Min attempts before reliability floor penalties activate (default: 8)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
@@ -214,6 +216,8 @@ function parseArgs(argv) {
             latencyAutoTarget: false,
             latencyAutoTargetPercentile: 0.9,
             latencyAutoTargetMinSamples: 8,
+            latencyAutoTargetWindowSize: 32,
+            latencyAutoTargetBlend: 1,
             reliabilityFloor: 0,
             reliabilityFloorMinAttempts: 8,
             klUcbConfidence: 3,
@@ -480,6 +484,16 @@ function parseArgs(argv) {
         }
         if (token === '--latency-auto-target-min-samples') {
             options.selectionPolicyConfig.latencyAutoTargetMinSamples = parsePositiveInt(value, '--latency-auto-target-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--latency-auto-target-window-size') {
+            options.selectionPolicyConfig.latencyAutoTargetWindowSize = parsePositiveInt(value, '--latency-auto-target-window-size');
+            i++;
+            continue;
+        }
+        if (token === '--latency-auto-target-blend') {
+            options.selectionPolicyConfig.latencyAutoTargetBlend = parseFloatInRange(value, '--latency-auto-target-blend', 0, 1);
             i++;
             continue;
         }

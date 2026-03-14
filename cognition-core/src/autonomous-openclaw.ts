@@ -151,6 +151,10 @@ const MIN_LATENCY_AUTO_TARGET_PERCENTILE = 0.5;
 const MAX_LATENCY_AUTO_TARGET_PERCENTILE = 0.999;
 const DEFAULT_LATENCY_AUTO_TARGET_MIN_SAMPLES = 8;
 const MAX_LATENCY_AUTO_TARGET_MIN_SAMPLES = 128;
+const DEFAULT_LATENCY_AUTO_TARGET_WINDOW_SIZE = 32;
+const MAX_LATENCY_AUTO_TARGET_WINDOW_SIZE = 128;
+const DEFAULT_LATENCY_AUTO_TARGET_BLEND = 1;
+const MAX_LATENCY_AUTO_TARGET_BLEND = 1;
 const DEFAULT_RELIABILITY_FLOOR = 0;
 const MAX_RELIABILITY_FLOOR = 1;
 const DEFAULT_RELIABILITY_FLOOR_MIN_ATTEMPTS = 8;
@@ -958,6 +962,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             1,
             MAX_LATENCY_AUTO_TARGET_MIN_SAMPLES
         ),
+        latencyAutoTargetWindowSize: clamp(
+            Number.isFinite(Number(value.latencyAutoTargetWindowSize))
+                ? parsePositiveInt(value.latencyAutoTargetWindowSize, DEFAULT_LATENCY_AUTO_TARGET_WINDOW_SIZE)
+                : DEFAULT_LATENCY_AUTO_TARGET_WINDOW_SIZE,
+            1,
+            MAX_LATENCY_AUTO_TARGET_WINDOW_SIZE
+        ),
+        latencyAutoTargetBlend: clamp(
+            Number.isFinite(Number(value.latencyAutoTargetBlend))
+                ? Number(value.latencyAutoTargetBlend)
+                : DEFAULT_LATENCY_AUTO_TARGET_BLEND,
+            0,
+            MAX_LATENCY_AUTO_TARGET_BLEND
+        ),
         reliabilityFloor: clamp(
             Number.isFinite(Number(value.reliabilityFloor))
                 ? Number(value.reliabilityFloor)
@@ -1281,14 +1299,30 @@ function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = 
             .map((entry) => normalizeRecentOutcomeEntry(entry).durationMs)
             .filter((value) => Number.isFinite(value) && value > 0)
         : [];
-    if (durations.length < policy.latencyAutoTargetMinSamples) {
+    const windowedDurations = durations.slice(
+        -clamp(
+            parsePositiveInt(policy.latencyAutoTargetWindowSize, DEFAULT_LATENCY_AUTO_TARGET_WINDOW_SIZE),
+            1,
+            MAX_LATENCY_AUTO_TARGET_WINDOW_SIZE
+        )
+    );
+    if (windowedDurations.length < policy.latencyAutoTargetMinSamples) {
         return configuredTargetMs;
     }
-    const adaptiveTargetMs = computePercentile(durations, policy.latencyAutoTargetPercentile);
+    const adaptiveTargetMs = computePercentile(windowedDurations, policy.latencyAutoTargetPercentile);
     if (!Number.isFinite(adaptiveTargetMs) || adaptiveTargetMs <= 0) {
         return configuredTargetMs;
     }
-    return clamp(adaptiveTargetMs, 1, MAX_LATENCY_TARGET_MS);
+    const blend = clamp(
+        Number(policy.latencyAutoTargetBlend),
+        0,
+        MAX_LATENCY_AUTO_TARGET_BLEND
+    );
+    return clamp(
+        (blend * adaptiveTargetMs) + ((1 - blend) * configuredTargetMs),
+        1,
+        MAX_LATENCY_TARGET_MS
+    );
 }
 
 function getOutcomeReward(status, record = null, selectionPolicyConfig = null, historyOutcomes = []) {

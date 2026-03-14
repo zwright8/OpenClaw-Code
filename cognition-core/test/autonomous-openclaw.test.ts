@@ -7057,6 +7057,66 @@ test('collectAutonomousCoverage supports adaptive percentile latency targets', a
     assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_ucb.cumulativeReward - 2.5) < 1e-9);
 });
 
+test('collectAutonomousCoverage supports recency-windowed and blended adaptive latency targets', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 400_000 });
+
+    const baseContext = {
+        lane: 'skills',
+        wave: 6,
+        selectionPolicyApplied: 'd_ucb',
+        selectionPolicyConfig: {
+            mode: 'd_ucb',
+            latencyPenaltyWeight: 0.5,
+            latencyTargetMs: 1_000,
+            latencyAutoTarget: true,
+            latencyAutoTargetPercentile: 0.9,
+            latencyAutoTargetMinSamples: 2,
+            latencyAutoTargetWindowSize: 2,
+            latencyAutoTargetBlend: 0.5
+        }
+    };
+
+    const scenarios = [
+        { id: '9101', durationMs: 4_000 },
+        { id: '9102', durationMs: 4_000 },
+        { id: '9103', durationMs: 3_000 },
+        { id: '9104', durationMs: 1_000 },
+        { id: '9105', durationMs: 1_000 },
+        { id: '9106', durationMs: 2_000 }
+    ];
+
+    for (let index = 0; index < scenarios.length; index++) {
+        const scenario = scenarios[index];
+        const createdAt = 390_000 + (index * 1_000);
+        const request = buildTaskRequest({
+            id: `00000000-0000-4000-8000-00000000${scenario.id}`,
+            from: 'agent:test',
+            target: 'agent:skills-runtime',
+            priority: 'high',
+            task: `[AUTO][SK-00911] Adaptive latency scenario ${index + 1}`,
+            context: {
+                skillId: 911,
+                autonomy: baseContext
+            },
+            createdAt
+        });
+        const record = buildQueueRecordFromTaskRequest(request, { nowFactory: () => createdAt + scenario.durationMs });
+        record.status = 'completed';
+        record.updatedAt = createdAt + scenario.durationMs;
+        await store.saveRecord(record);
+    }
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 500_000 });
+    const rewards = coverage.skillExecutionStats['911'].recentOutcomes.map((entry) => Number(entry.reward.toFixed(3)));
+
+    assert.deepEqual(rewards, [0.5, 0.5, 0.9, 1, 1, 0.5]);
+    assert.ok(Math.abs(coverage.policyExecutionStats.skills.d_ucb.cumulativeReward - 4.4) < 1e-9);
+});
+
 test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints contextual updates', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
