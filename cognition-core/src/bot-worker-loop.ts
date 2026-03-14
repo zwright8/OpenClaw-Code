@@ -121,6 +121,8 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- totals.botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
         `- totals.botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
+        `- totals.botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
+        `- totals.botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
         '',
@@ -170,6 +172,8 @@ export async function runBotWorkerLoop({
     botRetryJitter = 0.2,
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
+    botCircuitBreakerFailureThreshold = 0,
+    botCircuitBreakerCooldownMs = 30_000,
     nowFactory = Date.now
 } = {}) {
     if (!storePath || typeof storePath !== 'string') {
@@ -201,6 +205,8 @@ export async function runBotWorkerLoop({
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
         botAttemptTimeouts: 0,
+        botCircuitBreakerOpened: 0,
+        botCircuitBreakerOpenSkips: 0,
         followupTasksGenerated: 0,
         followupTasksSaved: 0,
         followupTasksSkipped: 0,
@@ -251,6 +257,8 @@ export async function runBotWorkerLoop({
             botRetryJitter,
             botAttemptTimeoutMs,
             botRetryBudgetRatio,
+            botCircuitBreakerFailureThreshold,
+            botCircuitBreakerCooldownMs,
             nowFactory: now
         });
 
@@ -298,6 +306,8 @@ export async function runBotWorkerLoop({
             botRetriesExhausted: processResult.botRetriesExhausted,
             botRetriesBudgetExhausted: processResult.botRetriesBudgetExhausted,
             botAttemptTimeouts: processResult.botAttemptTimeouts,
+            botCircuitBreakerOpened: processResult.botCircuitBreakerOpened,
+            botCircuitBreakerOpenSkips: processResult.botCircuitBreakerOpenSkips,
             followupTasksGenerated: processResult.followupTasksGenerated,
             followupTasksSaved: processResult.followupTasksSaved,
             followupTasksSkipped: processResult.followupTasksSkipped,
@@ -316,6 +326,8 @@ export async function runBotWorkerLoop({
         totals.botRetriesExhausted += processResult.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += processResult.botRetriesBudgetExhausted;
         totals.botAttemptTimeouts += processResult.botAttemptTimeouts;
+        totals.botCircuitBreakerOpened += processResult.botCircuitBreakerOpened;
+        totals.botCircuitBreakerOpenSkips += processResult.botCircuitBreakerOpenSkips;
         totals.followupTasksGenerated += processResult.followupTasksGenerated;
         totals.followupTasksSaved += processResult.followupTasksSaved;
         totals.followupTasksSkipped += processResult.followupTasksSkipped;

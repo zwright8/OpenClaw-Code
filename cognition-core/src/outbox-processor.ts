@@ -60,6 +60,16 @@ function normalizeRetryBudgetRatio(value, fallback = 0) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeCircuitBreakerFailureThreshold(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric < 0) return fallback;
+    return numeric;
+}
+
+function normalizeCircuitBreakerCooldownMs(value, fallback = 30_000) {
+    return parseNonNegativeInt(value, fallback);
+}
+
 function isTransientBotFailure(execution) {
     if (!execution || typeof execution !== 'object') return false;
     if (execution.status !== 'failure') return false;
@@ -315,6 +325,8 @@ export async function processOutboxEnvelopes({
     botRetryJitter = 0.2,
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
+    botCircuitBreakerFailureThreshold = 0,
+    botCircuitBreakerCooldownMs = 30_000,
     botExecute = null,
     dryRun = false,
     nowFactory = Date.now,
@@ -337,8 +349,19 @@ export async function processOutboxEnvelopes({
     const normalizedBotRetryJitter = normalizeRetryJitter(botRetryJitter, 0.2);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
+    const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
+        botCircuitBreakerFailureThreshold,
+        0
+    );
+    const normalizedBotCircuitBreakerCooldownMs = normalizeCircuitBreakerCooldownMs(
+        botCircuitBreakerCooldownMs,
+        30_000
+    );
     const retryBudgetEnabled = normalizedBotRetryBudgetRatio > 0;
+    const circuitBreakerEnabled = normalizedBotCircuitBreakerFailureThreshold > 0;
     let retryBudgetTokens = 0;
+    let consecutiveTransientBotFailures = 0;
+    let circuitBreakerOpenUntilMs = 0;
     const executeBotTask = typeof botExecute === 'function'
         ? botExecute
         : async (request, runtimeBot) => runtimeBot.executeTask(request);
@@ -393,6 +416,8 @@ export async function processOutboxEnvelopes({
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
         botAttemptTimeouts: 0,
+        botCircuitBreakerOpened: 0,
+        botCircuitBreakerOpenSkips: 0,
         followupTasksGenerated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
@@ -444,10 +469,25 @@ export async function processOutboxEnvelopes({
                 let attempts = 0;
                 let transientFailureRetried = false;
                 let retryBudgetBlocked = false;
+                const startedInCircuitHalfOpen = circuitBreakerEnabled
+                    && circuitBreakerOpenUntilMs > 0
+                    && safeNow(now) >= circuitBreakerOpenUntilMs;
+                if (circuitBreakerEnabled && circuitBreakerOpenUntilMs > 0 && !startedInCircuitHalfOpen) {
+                    const remainingMs = Math.max(0, circuitBreakerOpenUntilMs - safeNow(now));
+                    execution = createBotFailureExecution({
+                        output: `Task execution skipped: circuit breaker is open for another ${remainingMs}ms after consecutive transient failures.`,
+                        metrics: {
+                            circuitBreakerOpen: 1,
+                            circuitBreakerRemainingMs: remainingMs,
+                            retryable: 1
+                        }
+                    });
+                    stats.botCircuitBreakerOpenSkips++;
+                }
                 if (retryBudgetEnabled) {
                     retryBudgetTokens += normalizedBotRetryBudgetRatio;
                 }
-                while (attempts < normalizedBotMaxAttempts) {
+                while (!execution && attempts < normalizedBotMaxAttempts) {
                     attempts++;
                     // eslint-disable-next-line no-await-in-loop
                     execution = await executeBotTaskWithTimeout({
@@ -517,6 +557,50 @@ export async function processOutboxEnvelopes({
 
                 if (execution.status === 'failure') {
                     stats.botTasksFailed++;
+                }
+
+                const transientBotFailure = isTransientBotFailure(execution);
+                const skippedByCircuitBreaker = Number(execution?.metrics?.circuitBreakerOpen) >= 1;
+                if (!circuitBreakerEnabled || skippedByCircuitBreaker) {
+                    consecutiveTransientBotFailures = 0;
+                    if (!circuitBreakerEnabled) {
+                        circuitBreakerOpenUntilMs = 0;
+                    }
+                } else if (startedInCircuitHalfOpen) {
+                    if (execution.status === 'failure' && transientBotFailure) {
+                        consecutiveTransientBotFailures = normalizedBotCircuitBreakerFailureThreshold;
+                        circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
+                        stats.botCircuitBreakerOpened++;
+                        execution = {
+                            ...execution,
+                            output: `${execution.output} Circuit breaker reopened after failed half-open probe.`,
+                            metrics: {
+                                ...(execution.metrics || {}),
+                                circuitBreakerOpened: 1
+                            }
+                        };
+                    } else {
+                        consecutiveTransientBotFailures = 0;
+                        circuitBreakerOpenUntilMs = 0;
+                    }
+                } else if (execution.status === 'failure' && transientBotFailure) {
+                    consecutiveTransientBotFailures += 1;
+                    if (consecutiveTransientBotFailures >= normalizedBotCircuitBreakerFailureThreshold) {
+                        circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
+                        consecutiveTransientBotFailures = 0;
+                        stats.botCircuitBreakerOpened++;
+                        execution = {
+                            ...execution,
+                            output: `${execution.output} Circuit breaker opened for ${normalizedBotCircuitBreakerCooldownMs}ms after transient-failure threshold.`,
+                            metrics: {
+                                ...(execution.metrics || {}),
+                                circuitBreakerOpened: 1
+                            }
+                        };
+                    }
+                } else {
+                    consecutiveTransientBotFailures = 0;
+                    circuitBreakerOpenUntilMs = 0;
                 }
 
                 resultStatus = normalizeBotResultStatus(execution.status);

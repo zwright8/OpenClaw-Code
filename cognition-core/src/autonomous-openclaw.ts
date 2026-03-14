@@ -5047,6 +5047,8 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
         `- botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
+        `- botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
+        `- botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
         '',
         '## Coverage',
         '',
@@ -5115,6 +5117,8 @@ export async function runAutonomousOpenClaw({
     botRetryJitter = 0.2,
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
+    botCircuitBreakerFailureThreshold = 0,
+    botCircuitBreakerCooldownMs = 30_000,
     enqueueFollowupTasks = true,
     failureCooldownWaves = DEFAULT_FAILURE_COOLDOWN_WAVES,
     adaptiveScoreConfig = null,
@@ -5170,7 +5174,9 @@ export async function runAutonomousOpenClaw({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
-        botAttemptTimeouts: 0
+        botAttemptTimeouts: 0,
+        botCircuitBreakerOpened: 0,
+        botCircuitBreakerOpenSkips: 0
     };
 
     const waveReports = [];
@@ -5232,6 +5238,8 @@ export async function runAutonomousOpenClaw({
             botRetryJitter,
             botAttemptTimeoutMs,
             botRetryBudgetRatio,
+            botCircuitBreakerFailureThreshold,
+            botCircuitBreakerCooldownMs,
             enqueueFollowupTasks,
             nowFactory
         });
@@ -5292,6 +5300,8 @@ export async function runAutonomousOpenClaw({
                 botRetriesExhausted: workerReport.totals.botRetriesExhausted,
                 botRetriesBudgetExhausted: workerReport.totals.botRetriesBudgetExhausted,
                 botAttemptTimeouts: workerReport.totals.botAttemptTimeouts,
+                botCircuitBreakerOpened: workerReport.totals.botCircuitBreakerOpened,
+                botCircuitBreakerOpenSkips: workerReport.totals.botCircuitBreakerOpenSkips,
                 finalQueueOpen: workerReport.finalQueue.open
             }
         };
@@ -5313,6 +5323,8 @@ export async function runAutonomousOpenClaw({
         totals.botRetriesExhausted += waveReport.worker.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += waveReport.worker.botRetriesBudgetExhausted;
         totals.botAttemptTimeouts += waveReport.worker.botAttemptTimeouts;
+        totals.botCircuitBreakerOpened += waveReport.worker.botCircuitBreakerOpened;
+        totals.botCircuitBreakerOpenSkips += waveReport.worker.botCircuitBreakerOpenSkips;
 
         const coverageReport = createCoverageReport({
             skillCatalog,
@@ -5367,6 +5379,8 @@ export async function runAutonomousOpenClaw({
             botRetryJitter: clamp(parseNonNegativeNumber(botRetryJitter, 0.2), 0, 1),
             botAttemptTimeoutMs: parseNonNegativeInt(botAttemptTimeoutMs, 120_000),
             botRetryBudgetRatio: clamp(parseNonNegativeNumber(botRetryBudgetRatio, 0), 0, 1),
+            botCircuitBreakerFailureThreshold: parseNonNegativeInt(botCircuitBreakerFailureThreshold, 0),
+            botCircuitBreakerCooldownMs: parseNonNegativeInt(botCircuitBreakerCooldownMs, 30_000),
             enqueueFollowupTasks
         },
         coverage,

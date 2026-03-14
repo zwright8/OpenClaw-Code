@@ -37,6 +37,8 @@ Options:
   --bot-retry-jitter <0-1>     Retry delay jitter ratio (default: 0.2)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
+  --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
+  --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
   --no-enqueue-followups       Disable enqueueing bot-generated follow-up tasks
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
@@ -114,6 +116,8 @@ function parseArgs(argv) {
         botRetryJitter: 0.2,
         botAttemptTimeoutMs: 120_000,
         botRetryBudgetRatio: 0,
+        botCircuitBreakerFailureThreshold: 0,
+        botCircuitBreakerCooldownMs: 30_000,
         enqueueFollowupTasks: true,
         jsonPath: null,
         markdownPath: null,
@@ -264,6 +268,16 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-circuit-breaker-failures') {
+            options.botCircuitBreakerFailureThreshold = parsePositiveInt(value, '--bot-circuit-breaker-failures', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-cooldown-ms') {
+            options.botCircuitBreakerCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-cooldown-ms', true);
+            i++;
+            continue;
+        }
         if (token === '--json') {
             options.jsonPath = path.resolve(process.cwd(), value);
             i++;
@@ -298,6 +312,8 @@ function printSummary(report) {
     console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted}`);
     console.log(`Bot retries budget exhausted: ${report.totals.botRetriesBudgetExhausted}`);
     console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts}`);
+    console.log(`Bot circuit-breaker opened: ${report.totals.botCircuitBreakerOpened}`);
+    console.log(`Bot circuit-breaker open skips: ${report.totals.botCircuitBreakerOpenSkips}`);
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Final queue open: ${report.finalQueue.open}`);
     console.log(`Final queue awaiting approval: ${report.finalQueue.awaitingApproval}`);
@@ -338,6 +354,8 @@ function printSummary(report) {
             botRetryJitter: options.botRetryJitter,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
+            botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
+            botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
             enqueueFollowupTasks: options.enqueueFollowupTasks
         });
 
