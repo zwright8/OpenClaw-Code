@@ -46,6 +46,8 @@ Options:
   --thompson-surprise-sensitivity <n>  Surprise-to-hazard scaling for cp_epsilon_ts* (0-5, default: 1)
   --hybrid-ts-aggregation <m>  Aggregation mode for fdsw_* hybrid policies: min|mean|max|adaptive (default: mean)
   --discount-factor <n>        Exponential forgetting factor for d_* policies (0.5-1, default: 0.97)
+  --latency-penalty-weight <n> Latency penalty weight for reward shaping (0-1, default: 0)
+  --latency-target-ms <n>      Reward-shaping latency target in milliseconds (1-3600000, default: 120000)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -201,6 +203,8 @@ function parseArgs(argv) {
             thompsonSurpriseSensitivity: 1,
             hybridTsAggregation: 'mean',
             discountFactor: 0.97,
+            latencyPenaltyWeight: 0,
+            latencyTargetMs: 120_000,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -436,6 +440,16 @@ function parseArgs(argv) {
         }
         if (token === '--discount-factor') {
             options.selectionPolicyConfig.discountFactor = parseFloatInRange(value, '--discount-factor', 0.5, 1);
+            i++;
+            continue;
+        }
+        if (token === '--latency-penalty-weight') {
+            options.selectionPolicyConfig.latencyPenaltyWeight = parseFloatInRange(value, '--latency-penalty-weight', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--latency-target-ms') {
+            options.selectionPolicyConfig.latencyTargetMs = parsePositiveInt(value, '--latency-target-ms');
             i++;
             continue;
         }

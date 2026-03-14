@@ -140,6 +140,10 @@ const DEFAULT_BOLTZMANN_GUMBEL_C = 0.5;
 const MAX_BOLTZMANN_GUMBEL_C = 5;
 const DEFAULT_PHE_PERTURBATION_SCALE = 2;
 const MAX_PHE_PERTURBATION_SCALE = 10;
+const DEFAULT_LATENCY_PENALTY_WEIGHT = 0;
+const MAX_LATENCY_PENALTY_WEIGHT = 1;
+const DEFAULT_LATENCY_TARGET_MS = 120_000;
+const MAX_LATENCY_TARGET_MS = 3_600_000;
 const LINUCB_FEATURE_NAMES = [
     'bias',
     'successRate',
@@ -911,6 +915,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_PHE_PERTURBATION_SCALE,
             Number.EPSILON,
             MAX_PHE_PERTURBATION_SCALE
+        ),
+        latencyPenaltyWeight: clamp(
+            Number.isFinite(Number(value.latencyPenaltyWeight))
+                ? Number(value.latencyPenaltyWeight)
+                : DEFAULT_LATENCY_PENALTY_WEIGHT,
+            0,
+            MAX_LATENCY_PENALTY_WEIGHT
+        ),
+        latencyTargetMs: clamp(
+            Number.isFinite(Number(value.latencyTargetMs))
+                ? Number(value.latencyTargetMs)
+                : DEFAULT_LATENCY_TARGET_MS,
+            1,
+            MAX_LATENCY_TARGET_MS
         )
     };
 }
@@ -1138,6 +1156,40 @@ function getStatusReward(status) {
     const normalizedStatus = normalizeStatus(status);
     const reward = STATUS_REWARD[normalizedStatus];
     return Number.isFinite(reward) ? reward : 0;
+}
+
+function resolveOutcomeDurationMs(record) {
+    const startedAt = Number.isFinite(Number(record?.request?.createdAt))
+        ? Number(record.request.createdAt)
+        : null;
+    const completedAt = Number.isFinite(Number(record?.closedAt))
+        ? Number(record.closedAt)
+        : (Number.isFinite(Number(record?.updatedAt))
+            ? Number(record.updatedAt)
+            : null);
+    if (!Number.isFinite(startedAt) || !Number.isFinite(completedAt)) return null;
+    const elapsedMs = completedAt - startedAt;
+    return elapsedMs > 0 ? elapsedMs : null;
+}
+
+function getOutcomeReward(status, record = null, selectionPolicyConfig = null) {
+    const baseReward = getStatusReward(status);
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const latencyPenaltyWeight = clamp(policy.latencyPenaltyWeight, 0, MAX_LATENCY_PENALTY_WEIGHT);
+    if (latencyPenaltyWeight <= 0) {
+        return baseReward;
+    }
+    const durationMs = resolveOutcomeDurationMs(record);
+    if (!Number.isFinite(durationMs) || durationMs <= 0) {
+        return baseReward;
+    }
+    const latencyTargetMs = clamp(policy.latencyTargetMs, 1, MAX_LATENCY_TARGET_MS);
+    if (durationMs <= latencyTargetMs) {
+        return baseReward;
+    }
+    const overrunRatio = clamp((durationMs - latencyTargetMs) / latencyTargetMs, 0, 1);
+    const penalty = latencyPenaltyWeight * overrunRatio;
+    return clamp(baseReward * (1 - penalty), 0, 1);
 }
 
 function normalizeRecentOutcomes(rawOutcomes = []) {
@@ -4022,17 +4074,20 @@ export function buildAutonomousBatchPlan({
     };
 }
 
-function recordRecentOutcome(stat, { status, wave, propensity = null }) {
+function recordRecentOutcome(stat, { status, wave, propensity = null, reward = null }) {
     const normalized = normalizeExecutionStat(stat);
     const normalizedStatus = normalizeStatus(status);
     const explicitPropensity = Number(propensity);
     const normalizedPropensity = Number.isFinite(explicitPropensity)
         ? clamp(explicitPropensity, Number.EPSILON, 1)
         : null;
+    const explicitReward = Number(reward);
     normalized.recentOutcomes.push({
         wave: parseNonNegativeInt(wave, 0),
         status: normalizedStatus,
-        reward: getStatusReward(normalizedStatus),
+        reward: Number.isFinite(explicitReward)
+            ? clamp(explicitReward, 0, 1)
+            : getStatusReward(normalizedStatus),
         propensity: normalizedPropensity,
         didSucceed: SUCCESS_STATUSES.has(normalizedStatus)
     });
@@ -4127,7 +4182,7 @@ export async function collectAutonomousCoverage({
             0
         );
         const didSucceed = SUCCESS_STATUSES.has(status);
-        const reward = getStatusReward(status);
+        const reward = getOutcomeReward(status, record, selectedPolicyConfig);
         const selectionProbability = Number.isFinite(Number(context.autonomy?.selectionProbability))
             ? clamp(Number(context.autonomy.selectionProbability), Number.EPSILON, 1)
             : null;
@@ -4154,7 +4209,8 @@ export async function collectAutonomousCoverage({
             current = recordRecentOutcome(current, {
                 status,
                 wave: attemptWave,
-                propensity: selectionProbability
+                propensity: selectionProbability,
+                reward
             });
             skillExecutionStats[key] = current;
         }
@@ -4177,7 +4233,8 @@ export async function collectAutonomousCoverage({
             current = recordRecentOutcome(current, {
                 status,
                 wave: attemptWave,
-                propensity: selectionProbability
+                propensity: selectionProbability,
+                reward
             });
             capabilityExecutionStats[capabilityId] = current;
         }
@@ -4198,7 +4255,8 @@ export async function collectAutonomousCoverage({
             const policyWithOutcome = recordRecentOutcome(currentPolicy, {
                 status,
                 wave: attemptWave,
-                propensity: selectionPolicyProbability ?? selectionProbability
+                propensity: selectionPolicyProbability ?? selectionProbability,
+                reward
             });
             policyWithOutcome.cumulativeReward = currentPolicy.cumulativeReward;
             policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
@@ -4226,7 +4284,8 @@ export async function collectAutonomousCoverage({
                 const metaWithOutcome = recordRecentOutcome(currentMeta, {
                     status,
                     wave: attemptWave,
-                    propensity: selectionPolicyProbability ?? selectionProbability
+                    propensity: selectionPolicyProbability ?? selectionProbability,
+                    reward
                 });
                 metaWithOutcome.cumulativeReward = currentMeta.cumulativeReward;
                 windowPolicyExecutionStats[lane][key] = metaWithOutcome;

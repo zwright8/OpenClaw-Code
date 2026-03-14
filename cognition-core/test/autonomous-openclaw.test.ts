@@ -6721,6 +6721,74 @@ test('collectAutonomousCoverage uses graded partial rewards for policy and conte
     assert.ok(Math.abs(coverage.contextualBanditModels.skills.vectorB[0] - 0.6) < 1e-9);
 });
 
+test('collectAutonomousCoverage applies optional latency-aware reward shaping', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 200_000 });
+
+    const fastRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001211',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00211] Fast completion',
+        context: {
+            skillId: 211,
+            autonomy: {
+                lane: 'skills',
+                wave: 9,
+                selectionPolicyApplied: 'ucb',
+                selectionPolicyConfig: {
+                    mode: 'ucb',
+                    latencyPenaltyWeight: 0.5,
+                    latencyTargetMs: 1_000
+                }
+            }
+        },
+        createdAt: 190_000
+    });
+
+    const slowRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000001212',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00212] Slow completion',
+        context: {
+            skillId: 212,
+            autonomy: {
+                lane: 'skills',
+                wave: 9,
+                selectionPolicyApplied: 'ucb',
+                selectionPolicyConfig: {
+                    mode: 'ucb',
+                    latencyPenaltyWeight: 0.5,
+                    latencyTargetMs: 1_000
+                }
+            }
+        },
+        createdAt: 191_000
+    });
+
+    const fastRecord = buildQueueRecordFromTaskRequest(fastRequest, { nowFactory: () => 195_000 });
+    fastRecord.status = 'completed';
+    fastRecord.updatedAt = 190_900;
+    await store.saveRecord(fastRecord);
+
+    const slowRecord = buildQueueRecordFromTaskRequest(slowRequest, { nowFactory: () => 195_500 });
+    slowRecord.status = 'completed';
+    slowRecord.updatedAt = 193_000;
+    await store.saveRecord(slowRecord);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 200_500 });
+
+    assert.equal(coverage.skillExecutionStats['211'].recentOutcomes[0].reward, 1);
+    assert.equal(coverage.skillExecutionStats['212'].recentOutcomes[0].reward, 0.5);
+    assert.ok(Math.abs(coverage.policyExecutionStats.skills.ucb.cumulativeReward - 1.5) < 1e-9);
+});
+
 test('collectAutonomousCoverage tracks non-corral policy lanes and adwin_lints contextual updates', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
