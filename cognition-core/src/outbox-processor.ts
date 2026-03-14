@@ -70,6 +70,16 @@ function normalizeCircuitBreakerCooldownMs(value, fallback = 30_000) {
     return parseNonNegativeInt(value, fallback);
 }
 
+function normalizeCircuitBreakerCooldownBackoffMultiplier(value, fallback = 1) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 1, 10);
+}
+
+function normalizeCircuitBreakerMaxCooldownMs(value, fallback = 180_000) {
+    return parsePositiveInt(value, fallback);
+}
+
 function normalizeCircuitBreakerHalfOpenMaxProbes(value, fallback = 1) {
     return parsePositiveInt(value, fallback);
 }
@@ -106,6 +116,22 @@ function computeFailureRate(observations) {
     if (!Array.isArray(observations) || observations.length === 0) return 0;
     const failures = observations.reduce((sum, sample) => sum + (Number(sample) >= 1 ? 1 : 0), 0);
     return failures / observations.length;
+}
+
+function resolveCircuitBreakerCooldownMs({
+    baseCooldownMs,
+    maxCooldownMs,
+    backoffMultiplier,
+    openStreak
+}) {
+    const normalizedBase = Math.max(0, parseNonNegativeInt(baseCooldownMs, 30_000));
+    const normalizedMax = Math.max(normalizedBase, normalizeCircuitBreakerMaxCooldownMs(maxCooldownMs, 180_000));
+    const normalizedMultiplier = normalizeCircuitBreakerCooldownBackoffMultiplier(backoffMultiplier, 1);
+    const normalizedOpenStreak = Math.max(1, parsePositiveInt(openStreak, 1));
+    if (normalizedBase <= 0) return 0;
+    if (normalizedMultiplier <= 1 || normalizedOpenStreak <= 1) return normalizedBase;
+    const scaled = normalizedBase * Math.pow(normalizedMultiplier, normalizedOpenStreak - 1);
+    return clamp(Math.round(scaled), normalizedBase, normalizedMax);
 }
 
 function isTransientBotFailure(execution) {
@@ -365,6 +391,8 @@ export async function processOutboxEnvelopes({
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
+    botCircuitBreakerCooldownBackoffMultiplier = 1,
+    botCircuitBreakerMaxCooldownMs = 180_000,
     botCircuitBreakerHalfOpenMaxProbes = 1,
     botCircuitBreakerHalfOpenSuccessThreshold = 1,
     botCircuitBreakerFailureRateThreshold = 0,
@@ -399,6 +427,14 @@ export async function processOutboxEnvelopes({
     const normalizedBotCircuitBreakerCooldownMs = normalizeCircuitBreakerCooldownMs(
         botCircuitBreakerCooldownMs,
         30_000
+    );
+    const normalizedBotCircuitBreakerCooldownBackoffMultiplier = normalizeCircuitBreakerCooldownBackoffMultiplier(
+        botCircuitBreakerCooldownBackoffMultiplier,
+        1
+    );
+    const normalizedBotCircuitBreakerMaxCooldownMs = Math.max(
+        normalizedBotCircuitBreakerCooldownMs,
+        normalizeCircuitBreakerMaxCooldownMs(botCircuitBreakerMaxCooldownMs, 180_000)
     );
     const normalizedBotCircuitBreakerHalfOpenMaxProbes = normalizeCircuitBreakerHalfOpenMaxProbes(
         botCircuitBreakerHalfOpenMaxProbes,
@@ -435,6 +471,36 @@ export async function processOutboxEnvelopes({
     let circuitBreakerOpenUntilMs = 0;
     let circuitBreakerHalfOpenProbeCount = 0;
     let circuitBreakerHalfOpenSuccessCount = 0;
+    let circuitBreakerOpenStreak = 0;
+
+    const openCircuitBreaker = () => {
+        const nextOpenStreak = circuitBreakerOpenStreak + 1;
+        const cooldownMs = resolveCircuitBreakerCooldownMs({
+            baseCooldownMs: normalizedBotCircuitBreakerCooldownMs,
+            maxCooldownMs: normalizedBotCircuitBreakerMaxCooldownMs,
+            backoffMultiplier: normalizedBotCircuitBreakerCooldownBackoffMultiplier,
+            openStreak: nextOpenStreak
+        });
+        circuitBreakerOpenUntilMs = safeNow(now) + cooldownMs;
+        circuitBreakerOpenStreak = nextOpenStreak;
+        circuitBreakerHalfOpenProbeCount = 0;
+        circuitBreakerHalfOpenSuccessCount = 0;
+        consecutiveTransientBotFailures = 0;
+        transientFailureRateObservations = [];
+        return {
+            cooldownMs,
+            openStreak: nextOpenStreak
+        };
+    };
+
+    const closeCircuitBreaker = () => {
+        consecutiveTransientBotFailures = 0;
+        circuitBreakerOpenUntilMs = 0;
+        circuitBreakerHalfOpenProbeCount = 0;
+        circuitBreakerHalfOpenSuccessCount = 0;
+        transientFailureRateObservations = [];
+        circuitBreakerOpenStreak = 0;
+    };
     const executeBotTask = typeof botExecute === 'function'
         ? botExecute
         : async (request, runtimeBot) => runtimeBot.executeTask(request);
@@ -572,13 +638,19 @@ export async function processOutboxEnvelopes({
                             retryable: 1
                         }
                     });
-                    circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
-                    circuitBreakerHalfOpenProbeCount = 0;
-                    circuitBreakerHalfOpenSuccessCount = 0;
-                    consecutiveTransientBotFailures = 0;
-                    transientFailureRateObservations = [];
+                    const reopened = openCircuitBreaker();
                     stats.botCircuitBreakerOpened++;
                     stats.botCircuitBreakerOpenSkips++;
+                    execution = {
+                        ...execution,
+                        output: `${execution.output} Circuit breaker reopened for ${reopened.cooldownMs}ms after half-open probe limit.`,
+                        metrics: {
+                            ...(execution.metrics || {}),
+                            circuitBreakerOpened: 1,
+                            circuitBreakerCooldownMs: reopened.cooldownMs,
+                            circuitBreakerOpenStreak: reopened.openStreak
+                        }
+                    };
                 }
                 if (retryBudgetEnabled) {
                     retryBudgetTokens += normalizedBotRetryBudgetRatio;
@@ -658,52 +730,42 @@ export async function processOutboxEnvelopes({
                 const transientBotFailure = isTransientBotFailure(execution);
                 const skippedByCircuitBreaker = Number(execution?.metrics?.circuitBreakerOpen) >= 1;
                 if (!circuitBreakerEnabled || skippedByCircuitBreaker) {
-                    consecutiveTransientBotFailures = 0;
                     if (!circuitBreakerEnabled) {
-                        circuitBreakerOpenUntilMs = 0;
-                        transientFailureRateObservations = [];
+                        closeCircuitBreaker();
                     }
                 } else if (startedInCircuitHalfOpen) {
                     stats.botCircuitBreakerHalfOpenProbes++;
                     if (execution.status === 'failure') {
-                        consecutiveTransientBotFailures = normalizedBotCircuitBreakerFailureThreshold;
-                        circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
-                        circuitBreakerHalfOpenProbeCount = 0;
-                        circuitBreakerHalfOpenSuccessCount = 0;
-                        transientFailureRateObservations = [];
+                        const reopened = openCircuitBreaker();
                         stats.botCircuitBreakerOpened++;
                         execution = {
                             ...execution,
-                            output: `${execution.output} Circuit breaker reopened after failed half-open probe.`,
+                            output: `${execution.output} Circuit breaker reopened for ${reopened.cooldownMs}ms after failed half-open probe.`,
                             metrics: {
                                 ...(execution.metrics || {}),
-                                circuitBreakerOpened: 1
+                                circuitBreakerOpened: 1,
+                                circuitBreakerCooldownMs: reopened.cooldownMs,
+                                circuitBreakerOpenStreak: reopened.openStreak
                             }
                         };
                     } else {
                         circuitBreakerHalfOpenProbeCount += 1;
                         circuitBreakerHalfOpenSuccessCount += 1;
                         if (circuitBreakerHalfOpenSuccessCount >= normalizedBotCircuitBreakerHalfOpenSuccessThreshold) {
-                            consecutiveTransientBotFailures = 0;
-                            circuitBreakerOpenUntilMs = 0;
-                            circuitBreakerHalfOpenProbeCount = 0;
-                            circuitBreakerHalfOpenSuccessCount = 0;
-                            transientFailureRateObservations = [];
+                            closeCircuitBreaker();
                             stats.botCircuitBreakerClosed++;
                         } else if (circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes) {
-                            consecutiveTransientBotFailures = 0;
-                            circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
-                            circuitBreakerHalfOpenProbeCount = 0;
-                            circuitBreakerHalfOpenSuccessCount = 0;
-                            transientFailureRateObservations = [];
+                            const reopened = openCircuitBreaker();
                             stats.botCircuitBreakerOpened++;
                             execution = {
                                 ...execution,
-                                output: `${execution.output} Circuit breaker reopened after half-open probe limit without meeting success threshold.`,
+                                output: `${execution.output} Circuit breaker reopened for ${reopened.cooldownMs}ms after half-open probe limit without meeting success threshold.`,
                                 metrics: {
                                     ...(execution.metrics || {}),
                                     circuitBreakerOpened: 1,
-                                    circuitBreakerHalfOpenProbeLimitReached: 1
+                                    circuitBreakerHalfOpenProbeLimitReached: 1,
+                                    circuitBreakerCooldownMs: reopened.cooldownMs,
+                                    circuitBreakerOpenStreak: reopened.openStreak
                                 }
                             };
                         }
@@ -737,18 +799,16 @@ export async function processOutboxEnvelopes({
                         const reason = shouldOpenByConsecutiveFailures
                             ? `transient-failure threshold`
                             : `transient failure-rate threshold (${failureRate.toFixed(3)} >= ${normalizedBotCircuitBreakerFailureRateThreshold.toFixed(3)} over ${failureRateSampleCount} samples)`;
-                        circuitBreakerOpenUntilMs = safeNow(now) + normalizedBotCircuitBreakerCooldownMs;
-                        consecutiveTransientBotFailures = 0;
-                        circuitBreakerHalfOpenProbeCount = 0;
-                        circuitBreakerHalfOpenSuccessCount = 0;
-                        transientFailureRateObservations = [];
+                        const reopened = openCircuitBreaker();
                         stats.botCircuitBreakerOpened++;
                         execution = {
                             ...execution,
-                            output: `${execution.output} Circuit breaker opened for ${normalizedBotCircuitBreakerCooldownMs}ms after ${reason}.`,
+                            output: `${execution.output} Circuit breaker opened for ${reopened.cooldownMs}ms after ${reason}.`,
                             metrics: {
                                 ...(execution.metrics || {}),
                                 circuitBreakerOpened: 1,
+                                circuitBreakerCooldownMs: reopened.cooldownMs,
+                                circuitBreakerOpenStreak: reopened.openStreak,
                                 ...(shouldOpenByFailureRate
                                     ? {
                                         circuitBreakerFailureRate: failureRate,

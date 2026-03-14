@@ -45,6 +45,8 @@ Options:
   --bot-circuit-breaker-failure-rate-window <n> Rolling sample window used for failure-rate thresholding (default: 20)
   --bot-circuit-breaker-failure-rate-min-samples <n> Min rolling samples before failure-rate threshold can open breaker (default: 8)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
+  --bot-circuit-breaker-cooldown-backoff-multiplier <n> Circuit-breaker cooldown growth multiplier per consecutive reopen (1-10, default: 1)
+  --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
   --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
   --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
   --selection-policy <mode>    Selection policy: ${policyModes} (default: ucb)
@@ -240,6 +242,8 @@ function parseArgs(argv) {
         botCircuitBreakerFailureRateWindow: 20,
         botCircuitBreakerFailureRateMinSamples: 8,
         botCircuitBreakerCooldownMs: 30_000,
+        botCircuitBreakerCooldownBackoffMultiplier: 1,
+        botCircuitBreakerMaxCooldownMs: 180_000,
         botCircuitBreakerHalfOpenMaxProbes: 1,
         botCircuitBreakerHalfOpenSuccessThreshold: 1,
         enqueueFollowupTasks: true,
@@ -519,6 +523,21 @@ function parseArgs(argv) {
         }
         if (token === '--bot-circuit-breaker-cooldown-ms') {
             options.botCircuitBreakerCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-cooldown-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-cooldown-backoff-multiplier') {
+            options.botCircuitBreakerCooldownBackoffMultiplier = parseFloatInRange(
+                value,
+                '--bot-circuit-breaker-cooldown-backoff-multiplier',
+                1,
+                10
+            );
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-max-cooldown-ms') {
+            options.botCircuitBreakerMaxCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-max-cooldown-ms');
             i++;
             continue;
         }
@@ -976,6 +995,8 @@ function printSummary(report) {
             botCircuitBreakerFailureRateWindow: options.botCircuitBreakerFailureRateWindow,
             botCircuitBreakerFailureRateMinSamples: options.botCircuitBreakerFailureRateMinSamples,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
+            botCircuitBreakerCooldownBackoffMultiplier: options.botCircuitBreakerCooldownBackoffMultiplier,
+            botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
             enqueueFollowupTasks: options.enqueueFollowupTasks,
