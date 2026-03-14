@@ -242,3 +242,8 @@ Primary products for this skill: tactical zero-trust implementation plan, segmen
 - Add `tool_suite_id=ts-theater-deepfake-command-auth-assurance-v1` + `protocol_stack_id=ps-theater-deepfake-command-auth-assurance-stack-v1` when network hardening recommendations must neutralize spoofed command traffic and preserve authenticated command release continuity.
 - Add `tool_suite_id=ts-strategic-military-cloud-break-glass-continuity-v1` + `protocol_stack_id=ps-strategic-military-cloud-break-glass-continuity-stack-v1` when trust-boundary decisions depend on sovereign cloud break-glass migration and mission-data custody controls.
 - Add `packet_id=DPL-THEATER-DEEPFAKE-COMMAND-AUTH-ASSURANCE-001` and `packet_id=DPL-STRATEGIC-MILITARY-CLOUD-BREAK-GLASS-CONTINUITY-001` for branches that shift trust boundaries, command-release controls, or continuity authority posture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-device-credential-revocation-key-reissue-v1` + `protocol_stack_id=ps-theater-mission-device-credential-revocation-key-reissue-stack-v1` when zero-trust recommendations depend on burning compromised mission-device credentials and restoring only the minimum trusted access set.
+- Add `packet_id=DPL-MISSION-DEVICE-CREDENTIAL-REISSUE-001` for branches that materially alter trust boundaries, credential posture, or mission-device access continuity.

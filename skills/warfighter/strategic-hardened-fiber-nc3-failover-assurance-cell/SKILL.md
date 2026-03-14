@@ -61,3 +61,8 @@ Primary products: mission option matrix, protocol-bound tool invocation packet, 
 - Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
 - Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
 - Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-v1` + `protocol_stack_id=ps-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-stack-v1` when failover assurance depends on mobile shelter survivability, relay restoration timing, or rapid antenna reconstitution after node displacement.
+- Add `packet_id=DPL-MOBILE-NC3-RELAY-SHELTER-001` for branches that materially alter hardened failover timing, shelter allocation, or authenticated continuity posture.

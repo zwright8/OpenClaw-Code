@@ -63,3 +63,8 @@ For each critical tool recommendation, include objective, required inputs, query
 - Separate facts, assessed judgments, and unknowns.
 - Identify legal, policy, ROE, safety, and coalition constraints early.
 - Do not provide weapon-employment procedures or bypasses to safeguards.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-device-credential-revocation-key-reissue-v1` + `protocol_stack_id=ps-theater-mission-device-credential-revocation-key-reissue-stack-v1` when identity decisions depend on burning compromised mission-device credentials and reissuing keys under disconnected or contested conditions.
+- Add `packet_id=DPL-MISSION-DEVICE-CREDENTIAL-REISSUE-001` for branches that materially alter device trust, offline access continuity, or mission-system authorization posture.

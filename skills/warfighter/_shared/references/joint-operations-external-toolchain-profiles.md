@@ -2262,3 +2262,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-spectrum-governance-v1`.
 - Protocols: `AIS/NMEA`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
 - Degraded fallback: restricted-port-exit certification only with manual signature checks and mine-risk downgrades.
+
+## Profile Addendum V (2026-03-14, Strategic Nuclear Sustainment, Industrial Microelectronics, Cold-Shock Medicine, Crossing Obscuration, Chemical Protection, Mobile NC3, Device Rekey, and Port Reopening)
+
+### `strategic-tritium-maintenance-priority-v1`
+- Use for strategic readiness decisions when tritium surveillance findings, transport windows, or isotope handling capacity become the pacing constraint.
+- Primary tools: `ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed component custody manifests, `USMTF`, `NIEM`, `API/JSON`, `OPC UA`.
+- Degraded fallback: deterrence-critical maintenance only with dual-command approval.
+
+### `euv-photomask-rad-hard-priority-v1`
+- Use for strategic industrial decisions when EUV mask access, specialty gases, or rad-hard yields determine the release of critical semiconductor lots.
+- Primary tools: `ts-strategic-euv-photomask-rad-hard-semiconductor-priority-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed lot manifests, `USMTF`, `API/JSON`, `OPC UA`, `NIEM`.
+- Degraded fallback: deterrence- and NC3-critical lots only with executive adjudication.
+
+### `forward-hypothermia-blood-warmer-v1`
+- Use for medical branches when casualty warming, blood warming, and cold-shock treatment determine survival during delayed evacuation.
+- Primary tools: `ts-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `USMTF`, signed cold-chain manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Degraded fallback: lifesaving warming only with stricter casualty triage thresholds.
+
+### `gap-crossing-smoke-thermal-screen-v1`
+- Use for assault crossing decisions when smoke, obscurants, and thermal screens must be synchronized with lane release and blue-force sensor discipline.
+- Primary tools: `ts-joint-gap-crossing-smoke-obscurant-thermal-screen-integration-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `VMF`, `CoT`, `Link 16 J-series`, `USMTF`, `OGC`.
+- Degraded fallback: one crossing lane only with shorter obscuration windows and explicit readbacks.
+
+### `chemical-plume-shelter-installation-access-v1`
+- Use for homeland defense and DSCA branches when toxic plumes drive community sheltering, traffic control, and installation access restrictions.
+- Primary tools: `ts-homeland-chemical-plume-shelter-installation-access-control-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety and mission-essential access only with hourly command review.
+
+### `mobile-nc3-relay-antenna-reconstitution-v1`
+- Use for theater command continuity when hardened shelters, mobile relays, and deployable antennas must be displaced and restored after strike or sabotage.
+- Primary tools: `ts-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-v1`.
+- Cross-check tools: `ts-hardened-fiber-nc3-failover-v1`.
+- Protocols: `USMTF`, `MIL-STD-188`, signed key manifests, `API/JSON`, `NIEM`.
+- Degraded fallback: essential continuity paths only with manual acknowledgment chain.
+
+### `mission-device-credential-key-reissue-v1`
+- Use for cyber and identity recovery when mission devices must be burned, rekeyed, and returned to trusted service under disconnected conditions.
+- Primary tools: `ts-theater-mission-device-credential-revocation-key-reissue-v1`.
+- Cross-check tools: `ts-identity-access-recovery-v1`.
+- Protocols: `SCIM`, `OIDC/SAML`, KMIP-compatible key exchange, signed credential manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential devices only with manual identity verification.
+
+### `coalition-port-wreck-berth-reopening-v1`
+- Use for coalition maritime recovery when wreck clearance, heavy-lift assignments, and berth certification determine when combined-use ports can reopen.
+- Primary tools: `ts-coalition-port-wreck-clearance-heavy-lift-berth-reopening-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, signed salvage manifests, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Degraded fallback: one mission-essential berth only with restricted vessel classes.

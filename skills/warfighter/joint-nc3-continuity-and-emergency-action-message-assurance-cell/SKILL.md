@@ -64,3 +64,9 @@ Preferred protocol families for this skill: USMTF, MIL-STD-188 variants, API/JSO
 - Flag assumptions that exceed available evidence.
 - Identify legal, policy, ROE, coalition, and safety constraints early.
 - Do not fabricate sources, authorities, approvals, or system access.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1` + `protocol_stack_id=ps-strategic-tritium-reservoir-surveillance-maintenance-priority-stack-v1` when NC3 continuity recommendations depend on surveillance backlogs, secure isotope transport, or maintenance capacity across deterrence-critical systems.
+- Add `tool_suite_id=ts-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-v1` + `protocol_stack_id=ps-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-stack-v1` when relay restoration, shelter displacement, or antenna reconstitution drives emergency-action-message assurance.
+- Add `packet_id=DPL-TRITIUM-RESERVOIR-MAINTENANCE-001` and `packet_id=DPL-MOBILE-NC3-RELAY-SHELTER-001` for branches that materially alter continuity posture, relay timing, or emergency-action-message trust.

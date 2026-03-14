@@ -76,3 +76,8 @@ Primary products for this skill: port opening plan, JLOTS sequence board, throug
 
 - Add `tool_suite_id=ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1` + `protocol_stack_id=ps-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-stack-v1` when port-opening branches depend on fuel-pier restoration, hose-farm bypass routing, or contamination-safe bulk transfer sequencing.
 - Add `packet_id=DPL-FUEL-PIER-BYPASS-001` for branches that materially alter JLOTS fuel throughput, berth activation timing, or commander acceptance of degraded transfer architecture.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-coalition-port-wreck-clearance-heavy-lift-berth-reopening-v1` + `protocol_stack_id=ps-coalition-port-wreck-clearance-heavy-lift-berth-reopening-stack-v1` when port-opening or JLOTS timing depends on wreck clearance, heavy-lift salvage assignment, or berth certification after attack or sabotage.
+- Add `packet_id=DPL-PORT-WRECK-BERTH-REOPENING-001` for branches that materially alter berth release, sealift sequencing, or causeway activation confidence.

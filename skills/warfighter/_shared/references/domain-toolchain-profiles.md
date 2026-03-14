@@ -862,3 +862,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent harbor-range witness and alternate naval maintenance board
 - Protocol binding: AIS/NMEA + OGC + signed maintenance manifests + API/JSON + USMTF
 - Fallback path: restricted-port-exit certification only with manual signature checks and mine-risk downgrades
+
+## New Toolchain Wave (2026-03-14, Expansion Wave LI)
+
+### `TC-TRITIUM-102`
+
+- Domain: strategic tritium reservoir surveillance and nuclear maintenance priority
+- Primary systems: isotope accountability ledger, reservoir surveillance scheduler, secure convoy window board
+- Cross-check systems: independent surety witness and alternate strategic readiness board
+- Protocol binding: signed component custody manifests + USMTF + NIEM + API/JSON + OPC UA
+- Fallback path: deterrence-critical maintenance only with dual-command approval
+
+### `TC-EUV-103`
+
+- Domain: strategic EUV photomask and rad-hard semiconductor priority
+- Primary systems: photomask library queue, EUV gas purity ledger, rad-hard yield tracker
+- Cross-check systems: independent fab witness and alternate industrial demand board
+- Protocol binding: signed lot manifests + USMTF + API/JSON + OPC UA + NIEM
+- Fallback path: deterrence- and NC3-critical lots only with executive adjudication
+
+### `TC-HYPOTHERMIA-104`
+
+- Domain: joint forward hypothermia blood-warmer and cold-shock resuscitation
+- Primary systems: patient-temperature tracker, warmer device status board, warmed-blood queue
+- Cross-check systems: independent trauma witness and alternate medical command review board
+- Protocol binding: HL7/FHIR + USMTF + signed cold-chain manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: lifesaving warming only with stricter casualty triage thresholds
+
+### `TC-GAPSCREEN-105`
+
+- Domain: joint assault gap crossing smoke obscurant and thermal screen integration
+- Primary systems: smoke munition ledger, wind and drift model, thermal screen controller
+- Cross-check systems: independent fires observer and alternate engineer control board
+- Protocol binding: VMF + CoT + Link 16 J-series + USMTF + OGC
+- Fallback path: one crossing lane only with shorter obscuration windows and explicit readbacks
+
+### `TC-CHEMPLUME-106`
+
+- Domain: homeland chemical plume community shelter and installation access control
+- Primary systems: plume forecast board, shelter capacity tracker, gate and access status matrix
+- Cross-check systems: independent public-health witness and alternate emergency-operations board
+- Protocol binding: NIMS/ICS + EDXL-DE/CAP + NIEM + API/JSON + USMTF
+- Fallback path: life-safety and mission-essential access only with hourly command review
+
+### `TC-MOBILENC3-107`
+
+- Domain: theater mobile hardened shelter NC3 relay and antenna reconstitution
+- Primary systems: relay node status board, antenna repair queue, hardened shelter availability matrix
+- Cross-check systems: independent signal-survivability witness and alternate NC3 continuity board
+- Protocol binding: USMTF + MIL-STD-188 + signed key manifests + API/JSON + NIEM
+- Fallback path: essential continuity paths only with manual acknowledgment chain
+
+### `TC-DEVICEKEY-108`
+
+- Domain: theater mission device credential revocation and key reissue
+- Primary systems: device credential revocation plane, offline key reissue queue, hardware attestation board
+- Cross-check systems: independent trust-anchor witness and alternate identity conflict board
+- Protocol binding: SCIM + OIDC/SAML + KMIP-compatible key exchange + signed credential manifests + API/JSON + USMTF
+- Fallback path: mission-essential devices only with manual identity verification
+
+### `TC-PORTWRECK-109`
+
+- Domain: coalition port wreck clearance heavy-lift and berth reopening
+- Primary systems: side-scan and hydro survey board, heavy-lift asset scheduler, obstruction legality and ownership ledger
+- Cross-check systems: independent harbor master witness and alternate sealift throughput board
+- Protocol binding: AIS/NMEA + OGC + signed salvage manifests + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: one mission-essential berth only with restricted vessel classes

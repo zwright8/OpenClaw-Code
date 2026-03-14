@@ -144,3 +144,7 @@ Primary products for this skill: harbor clearance sequence, salvage task board, 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-coalition-port-wreck-clearance-heavy-lift-berth-reopening-v1` + `protocol_stack_id=ps-coalition-port-wreck-clearance-heavy-lift-berth-reopening-stack-v1` when salvage priorities depend on heavy-lift sequencing, berth certification, or coalition port-release timing after attack or grounding.
+- Add `packet_id=DPL-PORT-WRECK-BERTH-REOPENING-001` for branches that materially alter harbor clearance tempo, berth reopening confidence, or maritime throughput.

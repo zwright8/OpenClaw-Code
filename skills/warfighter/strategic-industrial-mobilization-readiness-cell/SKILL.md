@@ -228,3 +228,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when industrial throughput depends on whether plant utility anomalies are local outages, sabotage, or theater-wide FEW cascades.
 - Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when allied fabs, test houses, or shared production lines require controlled release of mission data, caveat-bound specs, or validation results.
 - Add `packet_id=DPL-SEMICONDUCTOR-BURNIN-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter industrial surge posture, utility survivability, or allied production trust.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1` + `protocol_stack_id=ps-strategic-tritium-reservoir-surveillance-maintenance-priority-stack-v1` when mobilization readiness depends on secure isotope handling throughput, reservoir surveillance cadence, or maintenance release timing across strategic systems.
+- Add `tool_suite_id=ts-strategic-euv-photomask-rad-hard-semiconductor-priority-v1` + `protocol_stack_id=ps-strategic-euv-photomask-rad-hard-semiconductor-priority-stack-v1` when mobilization output is constrained by photomask access, specialty gas purity, or rad-hard lot release.
+- Add `packet_id=DPL-TRITIUM-RESERVOIR-MAINTENANCE-001` and `packet_id=DPL-EUV-PHOTOMASK-RADHARD-001` for recommendations that materially alter strategic sustainment posture, lot allocation, or deterrence-program readiness.

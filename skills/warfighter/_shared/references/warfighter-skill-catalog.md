@@ -2508,3 +2508,25 @@ Every skill output should include:
 - Installation wastewater lift-station and sewer-bypass defense + defense support of civil authorities crisis cell + force protection and base defense + joint urban underground water-grid contamination response.
 - Coalition JADC2 message priority and releasability bridge + coalition interoperability coordinator + coalition JADC2 data priority routing + coalition data fabric interoperability cell.
 - Degaussing signature restoration and port-exit certification + electromagnetic signature lifecycle management + naval surface warfare coordinator + expeditionary salvage and harbor clearance.
+
+## New Expansion Wave (2026-03-14, Wave LI)
+
+- strategic-tritium-reservoir-surveillance-and-nuclear-maintenance-priority-cell
+- strategic-euv-photomask-and-rad-hard-semiconductor-priority-cell
+- joint-forward-hypothermia-blood-warmer-and-cold-shock-resuscitation-cell
+- joint-assault-gap-crossing-smoke-obscurant-and-thermal-screen-integration-cell
+- homeland-chemical-plume-community-shelter-and-installation-access-control-cell
+- theater-mobile-hardened-shelter-nc3-relay-and-antenna-reconstitution-cell
+- theater-mission-device-credential-revocation-and-key-reissue-cell
+- coalition-port-wreck-clearance-heavy-lift-and-berth-reopening-cell
+
+## Updated Pairings (2026-03-14, Wave LI)
+
+- Tritium reservoir surveillance and nuclear maintenance priority + joint NC3 continuity and emergency action message assurance + strategic deterrence signaling support + strategic industrial mobilization readiness.
+- EUV photomask and rad-hard semiconductor priority + semiconductor burn-in mission prioritization + strategic industrial mobilization readiness + contested space launch and satellite reconstitution.
+- Forward hypothermia and blood-warmer resuscitation + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator + arctic and extreme environment operations.
+- Assault gap-crossing smoke and thermal-screen integration + joint river crossing under fire synchronization + contested bridge and gap crossing operations + battlefield electromagnetic fratricide prevention.
+- Chemical plume community shelter and installation access control + defense support of civil authorities crisis cell + civil defense mass evacuation shelter + force protection and base defense.
+- Mobile hardened shelter NC3 relay and antenna reconstitution + joint NC3 continuity and emergency action message assurance + strategic hardened fiber NC3 failover assurance + strategic deterrence messaging and escalation control.
+- Mission-device credential revocation and key reissue + deployed digital identity wallet and credential revocation + tactical zero-trust network hardening + theater mission network failover cell.
+- Coalition port wreck clearance and berth reopening + expeditionary salvage and harbor clearance + joint port opening and JLOTS synchronization + strategic sealift and prepositioning coordination.

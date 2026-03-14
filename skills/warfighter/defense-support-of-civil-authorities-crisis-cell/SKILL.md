@@ -148,3 +148,8 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 
 - Add `tool_suite_id=ts-homeland-installation-wastewater-lift-station-sewer-bypass-defense-v1` + `protocol_stack_id=ps-homeland-installation-wastewater-lift-station-sewer-bypass-defense-stack-v1` when DSCA support depends on wastewater continuity, installation sanitation, or civil-works bypass routing.
 - Add `packet_id=DPL-WASTEWATER-LIFT-STATION-001` for branches that materially alter civil-support timing, force-health protection, or emergency engineering allocation.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-homeland-chemical-plume-shelter-installation-access-control-v1` + `protocol_stack_id=ps-homeland-chemical-plume-shelter-installation-access-control-stack-v1` when DSCA support depends on toxic-plume forecasting, community shelter sequencing, or tightening installation access without collapsing mission-essential traffic.
+- Add `packet_id=DPL-CHEMICAL-PLUME-SHELTER-ACCESS-001` for branches that materially alter protective-action timing, access posture, or civil-military coordination.

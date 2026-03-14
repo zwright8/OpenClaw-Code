@@ -151,3 +151,8 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 
 - Add `tool_suite_id=ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1` + `protocol_stack_id=ps-joint-forward-blood-bank-crossmatch-massive-transfusion-stack-v1` when Role 3 continuity depends on blood availability, crossmatch throughput, or massive transfusion readiness.
 - Add `packet_id=DPL-FORWARD-BLOOD-BANK-CROSSMATCH-001` for branches that materially alter blood resupply confidence, triage posture, or aeromedical evacuation timing.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-v1` + `protocol_stack_id=ps-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-stack-v1` when Role 3 continuity depends on casualty warming, warmed-blood availability, or prolonged cold-weather evacuation survival.
+- Add `packet_id=DPL-HYPOTHERMIA-BLOOD-WARMER-001` for branches that materially alter casualty warming posture, transfusion sequencing, or evacuation timing.

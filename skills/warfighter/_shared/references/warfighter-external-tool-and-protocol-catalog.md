@@ -12420,3 +12420,87 @@ external_binding:
 ### `ps-joint-degaussing-signature-restoration-port-exit-certification-stack-v1`
 - Protocols: `AIS/NMEA`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
 - Use for: degaussing health exchange, signature-range reporting, and port-exit certification acknowledgments.
+
+## Tool Suite Addendum LI (2026-03-14, Strategic Nuclear Sustainment, Industrial Microelectronics, Cold-Shock Medicine, Crossing Obscuration, Homeland Chemical Protection, Mobile NC3, Device Rekey, and Port Reopening)
+
+### `ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1`
+- Use for: prioritizing tritium reservoir surveillance, secure transport, and maintenance sequencing when isotope handling capacity constrains strategic readiness.
+- Primary tools: isotope accountability ledger, reservoir surveillance scheduler, secure convoy window board, maintenance release adjudicator.
+- Cross-check tools: independent surety witness and alternate strategic readiness board.
+- Typical products: surveillance ladder, maintenance priority board, transport window matrix.
+
+### `ts-strategic-euv-photomask-rad-hard-semiconductor-priority-v1`
+- Use for: allocating EUV photomasks, specialty gases, and rad-hard semiconductor lots when strategic programs are constrained by scarce fabrication steps or secure lot release.
+- Primary tools: photomask library queue, EUV gas purity ledger, rad-hard yield tracker, secure lot release board.
+- Cross-check tools: independent fab witness and alternate industrial demand board.
+- Typical products: fab bottleneck ladder, rad-hard lot priority board, photomask and gas constraint matrix.
+
+### `ts-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-v1`
+- Use for: planning casualty warming, blood-warming capacity, and cold-shock resuscitation during prolonged evacuation in extreme or wet-cold environments.
+- Primary tools: patient-temperature tracker, warmer device status board, warmed-blood queue, evacuation thermal-protection board.
+- Cross-check tools: independent trauma witness and alternate medical command review board.
+- Typical products: casualty warming ladder, blood-warmer allocation board, cold-shock triage matrix.
+
+### `ts-joint-gap-crossing-smoke-obscurant-thermal-screen-integration-v1`
+- Use for: synchronizing smoke, obscurants, and thermal screens during assault crossings when sensor denial and blue-force safety must be balanced in real time.
+- Primary tools: smoke munition ledger, wind and drift model, thermal screen controller, crossing lane release board.
+- Cross-check tools: independent fires observer and alternate engineer control board.
+- Typical products: obscuration timing ladder, thermal screen control matrix, crossing exposure board.
+
+### `ts-homeland-chemical-plume-shelter-installation-access-control-v1`
+- Use for: forecasting toxic plumes, sequencing community sheltering, and controlling installation access when chemical releases threaten bases and nearby U.S. communities.
+- Primary tools: plume forecast board, shelter capacity tracker, gate and access status matrix, public warning router.
+- Cross-check tools: independent public-health witness and alternate emergency-operations board.
+- Typical products: plume and shelter posture map, installation access-control ladder, protective-action timing board.
+
+### `ts-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-v1`
+- Use for: restoring mobile hardened shelters, relay links, and deployable antennas when theater command continuity depends on rapid NC3 node displacement under attack.
+- Primary tools: relay node status board, antenna repair queue, hardened shelter availability matrix, key-material custody log.
+- Cross-check tools: independent signal-survivability witness and alternate NC3 continuity board.
+- Typical products: relay restoration ladder, shelter occupancy board, antenna reconstitution sequence.
+
+### `ts-theater-mission-device-credential-revocation-key-reissue-v1`
+- Use for: burning compromised mission-device credentials and reissuing trusted keys when handhelds, vehicle tablets, UAS controllers, or SATCOM terminals may be captured or cloned.
+- Primary tools: device credential revocation plane, offline key reissue queue, hardware attestation board, checkpoint validation ledger.
+- Cross-check tools: independent trust-anchor witness and alternate identity conflict board.
+- Typical products: credential burn and reissue ladder, device trust board, key-reissue branch matrix.
+
+### `ts-coalition-port-wreck-clearance-heavy-lift-berth-reopening-v1`
+- Use for: coordinating wreck survey, heavy-lift salvage, and berth reopening when combined-use ports are blocked by attack, grounding, or sabotage.
+- Primary tools: side-scan and hydro survey board, heavy-lift asset scheduler, obstruction legality and ownership ledger, berth certification queue.
+- Cross-check tools: independent harbor master witness and alternate sealift throughput board.
+- Typical products: obstruction clearance ladder, heavy-lift assignment board, berth reopening priority matrix.
+
+## Protocol Stack Addendum LI (2026-03-14, External Integration Profiles for Expansion Wave LI)
+
+### `ps-strategic-tritium-reservoir-surveillance-maintenance-priority-stack-v1`
+- Protocols: signed component custody manifests, `USMTF`, `NIEM`, `API/JSON`, `OPC UA`.
+- Use for: surveillance state exchange, transport approvals, and maintenance release acknowledgments.
+
+### `ps-strategic-euv-photomask-rad-hard-semiconductor-priority-stack-v1`
+- Protocols: signed lot manifests, `USMTF`, `API/JSON`, `OPC UA`, `NIEM`.
+- Use for: fabrication-status exchange, lot-release approvals, and constrained-material routing.
+
+### `ps-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-stack-v1`
+- Protocols: `HL7/FHIR`, `USMTF`, signed cold-chain manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Use for: casualty temperature state, blood-warmer allocation updates, and evacuation-support acknowledgments.
+
+### `ps-joint-gap-crossing-smoke-obscurant-thermal-screen-integration-stack-v1`
+- Protocols: `VMF`, `CoT`, `Link 16 J-series`, `USMTF`, `OGC`.
+- Use for: obscuration timing, lane-release synchronization, and fires-safe acknowledgment chains.
+
+### `ps-homeland-chemical-plume-shelter-installation-access-control-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: plume alerts, shelter directives, installation access-control approvals, and DSCA coordination.
+
+### `ps-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-stack-v1`
+- Protocols: `USMTF`, `MIL-STD-188`, signed key manifests, `API/JSON`, `NIEM`.
+- Use for: relay-state exchange, shelter relocation approvals, antenna restoration status, and authenticated continuity reporting.
+
+### `ps-theater-mission-device-credential-revocation-key-reissue-stack-v1`
+- Protocols: `SCIM`, `OIDC/SAML`, KMIP-compatible key exchange, signed credential manifests, `API/JSON`, `USMTF`.
+- Use for: credential burn directives, offline key reissue status, and trust-restoration acknowledgments.
+
+### `ps-coalition-port-wreck-clearance-heavy-lift-berth-reopening-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, signed salvage manifests, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
+- Use for: obstruction status, heavy-lift tasking, berth certification updates, and coalition port-release acknowledgments.

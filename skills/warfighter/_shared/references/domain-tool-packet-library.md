@@ -12083,3 +12083,93 @@ validation_gates:
 - output_schema: signature restoration ladder, degaussing test plan, port-exit certification matrix
 - protocol_profile: AIS/NMEA + OGC + signed maintenance manifests + API/JSON + USMTF
 - validation_gates: degaussing health pass, signature-range confirmation, naval authority approval
+
+## Packet Addendum XL (2026-03-14, Expansion Wave LI Tool Invocation Packets)
+
+### packet_id: DPL-TRITIUM-RESERVOIR-MAINTENANCE-001
+- domain: strategic tritium reservoir surveillance and nuclear maintenance priority
+- objective: sequence surveillance, secure transport, and maintenance release to preserve strategic readiness without outrunning surety or handling capacity.
+- primary_tools: isotope accountability ledger, reservoir surveillance scheduler, secure convoy window board
+- alternate_tools: manual reservoir age ledger and maintenance adjudication board
+- degraded_mode: deterrence-critical maintenance only with dual-command approval
+- input_requirements: reservoir age bands, surveillance findings, convoy windows, handling capacity
+- output_schema: surveillance ladder, maintenance priority matrix, authority packet
+- protocol_profile: signed component custody manifests + USMTF + NIEM + API/JSON + OPC UA
+- validation_gates: surety pass, custody acknowledgment, maintenance authority concurrence
+
+### packet_id: DPL-EUV-PHOTOMASK-RADHARD-001
+- domain: strategic EUV photomask and rad-hard semiconductor priority
+- objective: arbitrate scarce fabrication steps and lot release so strategic programs keep the highest-value semiconductor output flowing.
+- primary_tools: photomask library queue, EUV gas purity ledger, rad-hard yield tracker
+- alternate_tools: manual fab bottleneck worksheet and secure lot-release board
+- degraded_mode: deterrence- and NC3-critical lots only with executive adjudication
+- input_requirements: mask inventory, gas purity state, yield data, program demand
+- output_schema: fab bottleneck ladder, lot priority board, release packet
+- protocol_profile: signed lot manifests + USMTF + API/JSON + OPC UA + NIEM
+- validation_gates: pedigree pass, yield-confidence threshold, release authority acknowledgment
+
+### packet_id: DPL-HYPOTHERMIA-BLOOD-WARMER-001
+- domain: joint forward hypothermia blood-warmer and cold-shock resuscitation
+- objective: preserve casualty survival by prioritizing warming devices, blood warming, and cold-shock treatment during delayed evacuation.
+- primary_tools: patient-temperature tracker, warmer device status board, warmed-blood queue
+- alternate_tools: manual warming worksheet and transfusion triage board
+- degraded_mode: lifesaving warming only with stricter casualty triage thresholds
+- input_requirements: casualty temperatures, blood inventory, device status, evacuation delays
+- output_schema: warming ladder, device allocation matrix, resuscitation packet
+- protocol_profile: HL7/FHIR + USMTF + signed cold-chain manifests + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: medical-oversight pass, cold-chain integrity, casualty-priority acknowledgment
+
+### packet_id: DPL-GAP-CROSSING-SMOKE-THERMAL-001
+- domain: joint assault gap crossing smoke obscurant and thermal screen integration
+- objective: synchronize obscuration effects with lane release so maneuver gains concealment without blue-force confusion or fires conflict.
+- primary_tools: smoke munition ledger, wind and drift model, thermal screen controller
+- alternate_tools: manual timing board and engineer lane-control worksheet
+- degraded_mode: one crossing lane only with shorter obscuration windows and explicit readbacks
+- input_requirements: crossing geometry, obscurant inventory, wind data, blue-force sensor dependencies
+- output_schema: obscuration timing ladder, lane-release matrix, authority packet
+- protocol_profile: VMF + CoT + Link 16 J-series + USMTF + OGC
+- validation_gates: drift threshold pass, deconfliction acknowledgment, fires authority concurrence
+
+### packet_id: DPL-CHEMICAL-PLUME-SHELTER-ACCESS-001
+- domain: homeland chemical plume community shelter and installation access control
+- objective: align plume forecasts, sheltering, and installation access controls to protect life while preserving mission-critical base operations.
+- primary_tools: plume forecast board, shelter capacity tracker, gate and access status matrix
+- alternate_tools: manual shelter worksheet and gate-control roster
+- degraded_mode: life-safety and mission-essential access only with hourly command review
+- input_requirements: plume model, shelter capacity, installation mission list, traffic-control limits
+- output_schema: protective-action ladder, access-control matrix, coordination packet
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + NIEM + API/JSON + USMTF
+- validation_gates: civil-lead concurrence, plume-confidence threshold, public-warning acknowledgment
+
+### packet_id: DPL-MOBILE-NC3-RELAY-SHELTER-001
+- domain: theater mobile hardened shelter NC3 relay and antenna reconstitution
+- objective: restore survivable relay and antenna capacity after displacement or damage while preserving authenticated command continuity.
+- primary_tools: relay node status board, antenna repair queue, hardened shelter availability matrix
+- alternate_tools: manual relay restoration worksheet and authenticated message hold board
+- degraded_mode: essential continuity paths only with manual acknowledgment chain
+- input_requirements: node damage status, shelter availability, antenna spares, key-material custody
+- output_schema: relay restoration ladder, shelter assignment board, authority packet
+- protocol_profile: USMTF + MIL-STD-188 + signed key manifests + API/JSON + NIEM
+- validation_gates: continuity path pass, custody acknowledgment, command authority concurrence
+
+### packet_id: DPL-MISSION-DEVICE-CREDENTIAL-REISSUE-001
+- domain: theater mission device credential revocation and key reissue
+- objective: contain compromised mission devices and restore trusted access through rapid credential burn and offline key reissue.
+- primary_tools: device credential revocation plane, offline key reissue queue, hardware attestation board
+- alternate_tools: manual rekey worksheet and trust-anchor verification board
+- degraded_mode: mission-essential devices only with manual identity verification
+- input_requirements: compromised device list, credential scope, key inventory, mission dependencies
+- output_schema: credential burn ladder, reissue matrix, trust-restoration packet
+- protocol_profile: SCIM + OIDC/SAML + KMIP-compatible key exchange + signed credential manifests + API/JSON + USMTF
+- validation_gates: revocation propagation pass, attestation threshold, approval-role acknowledgment
+
+### packet_id: DPL-PORT-WRECK-BERTH-REOPENING-001
+- domain: coalition port wreck clearance heavy-lift and berth reopening
+- objective: clear obstructed berths and sequence heavy-lift salvage so coalition maritime throughput resumes under legal and security constraints.
+- primary_tools: side-scan and hydro survey board, heavy-lift asset scheduler, berth certification queue
+- alternate_tools: manual obstruction board and harbor throughput adjudication cell
+- degraded_mode: one mission-essential berth only with restricted vessel classes
+- input_requirements: obstruction picture, lift asset status, berth demand, legal ownership status
+- output_schema: clearance ladder, heavy-lift assignment matrix, coalition release packet
+- protocol_profile: AIS/NMEA + OGC + signed salvage manifests + USMTF + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: hydro-survey pass, salvage authority concurrence, berth-certification acknowledgment
