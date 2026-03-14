@@ -4132,6 +4132,50 @@ test('buildAutonomousBatchPlan supports exp3_ix auto-eta with decoupled implicit
     );
 });
 
+test('buildAutonomousBatchPlan supports exp3_ix auto-gamma calibration from effective horizon', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 806, code: 'SK-00806', title: 'Skill 806' },
+            { id: 807, code: 'SK-00807', title: 'Skill 807' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '806': { attempts: 80, successes: 30, failures: 50, consecutiveFailures: 0, lastWave: 11, lastStatus: 'failed' },
+                '807': { attempts: 20, successes: 14, failures: 6, consecutiveFailures: 0, lastWave: 11, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        selectionPolicyConfig: {
+            mode: 'exp3_ix',
+            exp3ExplorationGamma: 0.07,
+            exp3IxEta: 1,
+            exp3AutoGamma: true
+        },
+        nowFactory: () => 100_000
+    });
+
+    const runtimePolicy = plan.selection.policyProbabilities.skills;
+    assert.equal(runtimePolicy?.mode, 'exp3_ix');
+    assert.equal(runtimePolicy?.autoGamma, true);
+    const effectiveAttempts = Number(runtimePolicy?.effectiveAttempts);
+    const expectedGamma = Math.max(
+        Number.EPSILON,
+        Math.min(
+            0.5,
+            Math.sqrt((2 * Math.log(3)) / ((Math.E - 1) * effectiveAttempts))
+        )
+    );
+    assert.equal(Number(runtimePolicy?.explorationGamma), Number(expectedGamma.toFixed(6)));
+});
+
 test('buildAutonomousBatchPlan defaults exp3_ix implicit gamma to eta/2 when not explicitly provided', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -4242,6 +4286,50 @@ test('buildAutonomousBatchPlan supports tsallis_inf auto-eta calibration', () =>
     assert.equal(runtimePolicy?.autoEta, true);
     assert.ok(Number(runtimePolicy?.eta) > 0);
     assert.ok(Number(runtimePolicy?.eta) < 1);
+});
+
+test('buildAutonomousBatchPlan supports tsallis_inf auto-gamma calibration from effective horizon', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 808, code: 'SK-00808', title: 'Skill 808' },
+            { id: 809, code: 'SK-00809', title: 'Skill 809' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '808': { attempts: 60, successes: 21, failures: 39, consecutiveFailures: 0, lastWave: 11, lastStatus: 'failed' },
+                '809': { attempts: 40, successes: 28, failures: 12, consecutiveFailures: 0, lastWave: 11, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        selectionPolicyConfig: {
+            mode: 'tsallis_inf',
+            exp3ExplorationGamma: 0.07,
+            tsallisEtaScale: 1,
+            exp3AutoGamma: true
+        },
+        nowFactory: () => 100_000
+    });
+
+    const runtimePolicy = plan.selection.policyProbabilities.skills;
+    assert.equal(runtimePolicy?.mode, 'tsallis_inf');
+    assert.equal(runtimePolicy?.autoGamma, true);
+    const effectiveAttempts = Number(runtimePolicy?.effectiveAttempts);
+    const expectedGamma = Math.max(
+        Number.EPSILON,
+        Math.min(
+            0.5,
+            Math.sqrt((2 * Math.log(3)) / ((Math.E - 1) * effectiveAttempts))
+        )
+    );
+    assert.equal(Number(runtimePolicy?.explorationGamma), Number(expectedGamma.toFixed(6)));
 });
 
 test('buildAutonomousBatchPlan uses recency-effective attempts for d_exp3_ix auto-eta', () => {

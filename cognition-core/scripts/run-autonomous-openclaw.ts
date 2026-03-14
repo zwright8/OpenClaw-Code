@@ -52,6 +52,7 @@ Options:
   --exp3-implicit-gamma <n>    Implicit-exploration denominator gamma for exp3_ix* (0-0.5, default: eta/2 unless overridden)
   --exp3-iw-cap <n>            Max implicit importance weight for exp3_ix*/corral_exp3* loss estimates (1-1000, default: 50)
   --exp3-ix-eta <n>            Exponential weight scale for exp3_ix* (>0 to 10, default: 1)
+  --exp3-auto-gamma            Auto-tune adversarial exploration gamma via sqrt((K*log(K+1))/((e-1)*N))
   --exp3-auto-eta              Auto-tune exp3_ix eta via sqrt((2*log(K+1))/(N*K)); defaults implicit gamma to eta/2 unless overridden
   --exp3-share-alpha <n>       Share-mixing strength for exp3_s* (0-1, default: 0.08)
   --exp3-restart-interval <n>  Epoch length for rexp3_ix periodic restarts (default: 12)
@@ -205,6 +206,7 @@ function parseArgs(argv) {
             exp3ExplorationGamma: 0.07,
             exp3ImplicitGamma: null,
             exp3IxEta: 1,
+            exp3AutoGamma: false,
             exp3AutoEta: false,
             exp3ShareAlpha: 0.08,
             exp3RestartInterval: 12,
@@ -258,6 +260,10 @@ function parseArgs(argv) {
         }
         if (token === '--exp3-auto-eta') {
             options.selectionPolicyConfig.exp3AutoEta = true;
+            continue;
+        }
+        if (token === '--exp3-auto-gamma') {
+            options.selectionPolicyConfig.exp3AutoGamma = true;
             continue;
         }
         if (token === '--tsallis-auto-eta') {

@@ -121,6 +121,7 @@ const MAX_EXP3_IX_GAMMA = 0.5;
 const DEFAULT_EXP3_IX_ETA = 1;
 const MAX_EXP3_IX_ETA = 10;
 const MAX_EXP3_IMPORTANCE_WEIGHT_CAP = 1_000;
+const DEFAULT_EXP3_AUTO_GAMMA = false;
 const DEFAULT_EXP3_SHARE_ALPHA = 0.08;
 const MAX_EXP3_SHARE_ALPHA = 1;
 const DEFAULT_EXP3_RESTART_INTERVAL = 12;
@@ -852,6 +853,7 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
             Number.EPSILON,
             MAX_EXP3_IX_ETA
         ),
+        exp3AutoGamma: Boolean(value.exp3AutoGamma ?? DEFAULT_EXP3_AUTO_GAMMA),
         exp3AutoEta: Boolean(value.exp3AutoEta ?? DEFAULT_EXP3_AUTO_ETA),
         exp3ShareAlpha: clamp(
             Number.isFinite(Number(value.exp3ShareAlpha))
@@ -2882,6 +2884,17 @@ function computeAdversarialAutoEta(armCount, totalAttempts) {
     );
 }
 
+function computeAdversarialAutoExplorationGamma(armCount, totalAttempts) {
+    const safeArmCount = Math.max(1, parsePositiveInt(armCount, 1));
+    const safeAttempts = Math.max(1, Number(totalAttempts) || 1);
+    // Horizon-aware EXP3 exploration schedule (Auer et al.):
+    // gamma ~= sqrt((K * log(K + 1)) / ((e - 1) * N)).
+    return Math.sqrt(
+        (safeArmCount * Math.log(safeArmCount + 1))
+        / ((Math.E - 1) * safeAttempts)
+    );
+}
+
 function resolveCorralRuntimeParameters(policy, policyCount, effectiveAttempts) {
     let eta = clamp(
         Number(policy.corralEta),
@@ -3057,7 +3070,7 @@ function pickPolicyFromDistribution(distribution, seedText) {
 }
 
 function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
-    const explorationGamma = clamp(
+    let explorationGamma = clamp(
         Number(policy.exp3ExplorationGamma),
         Number.EPSILON,
         MAX_EXP3_IX_GAMMA
@@ -3072,6 +3085,13 @@ function resolveExp3RuntimeParameters(policy, armCount, totalAttempts) {
         // eta = sqrt((2 * log(k + 1)) / (n * k)), gamma_implicit = eta / 2.
         const suggestedEta = computeAdversarialAutoEta(armCount, totalAttempts);
         eta = clamp(suggestedEta, Number.EPSILON, MAX_EXP3_IX_ETA);
+    }
+    if (policy.exp3AutoGamma) {
+        explorationGamma = clamp(
+            computeAdversarialAutoExplorationGamma(armCount, totalAttempts),
+            Number.EPSILON,
+            MAX_EXP3_IX_GAMMA
+        );
     }
     const implicitGammaFromEta = clamp(eta / 2, Number.EPSILON, MAX_EXP3_IX_GAMMA);
     const implicitGamma = Number.isFinite(Number(policy.exp3ImplicitGamma))
@@ -3251,13 +3271,20 @@ function computeTsallisReducedVarianceEstimatedLoss(outcomes, policy, uniformPro
     return cumulativeEstimatedLoss;
 }
 
-function resolveTsallisRuntimeParameters(policy, _armCount, effectiveAttempts) {
+function resolveTsallisRuntimeParameters(policy, armCount, effectiveAttempts) {
     const safeAttempts = Math.max(1, Number(effectiveAttempts) || 1);
-    const explorationGamma = clamp(
+    let explorationGamma = clamp(
         Number(policy.exp3ExplorationGamma),
         Number.EPSILON,
         MAX_EXP3_IX_GAMMA
     );
+    if (policy.exp3AutoGamma) {
+        explorationGamma = clamp(
+            computeAdversarialAutoExplorationGamma(armCount, safeAttempts),
+            Number.EPSILON,
+            MAX_EXP3_IX_GAMMA
+        );
+    }
     const etaScale = clamp(
         Number(policy.tsallisEtaScale),
         Number.EPSILON,
@@ -3594,6 +3621,7 @@ function selectCatalogSlice({
                 implicitGamma: Number(exp3Runtime.implicitGamma.toFixed(6)),
                 eta: Number(exp3Runtime.eta.toFixed(6)),
                 effectiveAttempts: Number(effectiveAttempts.toFixed(6)),
+                autoGamma: Boolean(scoringPolicy.exp3AutoGamma),
                 autoEta: Boolean(scoringPolicy.exp3AutoEta),
                 ...(EXP3_SHARE_POLICY_MODES.has(scoringPolicy.mode)
                     ? {
@@ -3625,6 +3653,7 @@ function selectCatalogSlice({
                 eta: Number(tsallisRuntime.eta.toFixed(6)),
                 etaScale: Number(tsallisRuntime.etaScale.toFixed(6)),
                 effectiveAttempts: Number(effectiveAttempts.toFixed(6)),
+                autoGamma: Boolean(scoringPolicy.exp3AutoGamma),
                 autoEta: Boolean(scoringPolicy.tsallisAutoEta)
             };
         }
