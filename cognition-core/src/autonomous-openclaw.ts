@@ -34,6 +34,9 @@ const STATUS_REWARD = Object.freeze({
 const DEFAULT_FAILURE_COOLDOWN_WAVES = 2;
 const MAX_FAILURE_COOLDOWN_WAVES = 20;
 const FAILURE_COOLDOWN_MIN_STREAK = 2;
+const FAILURE_COOLDOWN_BACKOFF_MULTIPLIER = 2;
+const MAX_FAILURE_COOLDOWN_BACKOFF_STEPS = 4;
+const MAX_EFFECTIVE_FAILURE_COOLDOWN_WAVES = 80;
 const DEFAULT_RECENT_OUTCOME_WEIGHT = 0.2;
 const MAX_RECENT_OUTCOME_WEIGHT = 0.6;
 const DEFAULT_RECENT_OUTCOME_HALF_LIFE_WAVES = 3;
@@ -1449,13 +1452,38 @@ function buildCapabilityInput(capabilityId, waveIndex, nowMs) {
     };
 }
 
-function isInFailureCooldown(stat, currentWave, cooldownWaves) {
+function computeFailureCooldownWindow(stat, baseCooldownWaves, scopeKey = '') {
+    const normalized = normalizeExecutionStat(stat);
+    const baseCooldown = normalizeFailureCooldownWaves(baseCooldownWaves, 0);
+    if (baseCooldown <= 0) return 0;
+    const streak = parseNonNegativeInt(normalized.consecutiveFailures, 0);
+    if (streak < FAILURE_COOLDOWN_MIN_STREAK) return 0;
+
+    const backoffSteps = Math.min(
+        MAX_FAILURE_COOLDOWN_BACKOFF_STEPS,
+        Math.max(0, streak - FAILURE_COOLDOWN_MIN_STREAK)
+    );
+    const rawCooldown = baseCooldown * Math.pow(FAILURE_COOLDOWN_BACKOFF_MULTIPLIER, backoffSteps);
+    // Jitter spreads retries for similarly failing candidates without random drift.
+    const jitterSeed = makeDeterministicSeed(`${scopeKey}:${normalized.lastWave || 0}:${streak}`);
+    const jitter = 0.85 + (0.3 * pseudoRatio(jitterSeed, 0));
+    const jitteredCooldown = Math.max(baseCooldown, Math.ceil(rawCooldown * jitter));
+
+    return clamp(
+        jitteredCooldown,
+        baseCooldown,
+        MAX_EFFECTIVE_FAILURE_COOLDOWN_WAVES
+    );
+}
+
+function isInFailureCooldown(stat, currentWave, cooldownWaves, scopeKey = '') {
     if (!stat || typeof stat !== 'object') return false;
-    if (cooldownWaves <= 0) return false;
-    if (parseNonNegativeInt(stat.consecutiveFailures, 0) < FAILURE_COOLDOWN_MIN_STREAK) return false;
-    const lastWave = parseNonNegativeInt(stat.lastWave, 0);
+    const normalized = normalizeExecutionStat(stat);
+    const cooldownWindow = computeFailureCooldownWindow(normalized, cooldownWaves, scopeKey);
+    if (cooldownWindow <= 0) return false;
+    const lastWave = parseNonNegativeInt(normalized.lastWave, 0);
     if (lastWave <= 0) return false;
-    return (currentWave - lastWave) < cooldownWaves;
+    return (currentWave - lastWave) < cooldownWindow;
 }
 
 function computeRecencyDecay(wavesAgo, halfLifeWaves) {
@@ -3697,7 +3725,12 @@ function selectCatalogSlice({
             score,
             featureVector,
             distance: cursorDistance(index, pointer, total),
-            cooled: isInFailureCooldown(stat, currentWave, failureCooldownWaves)
+            cooled: isInFailureCooldown(
+                stat,
+                normalizedCurrentWave,
+                failureCooldownWaves,
+                `${selectionScope}:${key}`
+            )
         };
         if (item.cooled) cooled.push(item);
         else ranked.push(item);

@@ -135,6 +135,35 @@ test('buildAutonomousBatchPlan temporarily cools repeated failures', () => {
     assert.ok(!plan.selection.skillIds.includes(11));
 });
 
+test('buildAutonomousBatchPlan exponentially extends cooldown for deep failure streaks', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 41, code: 'SK-00041', title: 'Skill 41' },
+            { id: 42, code: 'SK-00042', title: 'Skill 42' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 13,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '41': { attempts: 12, successes: 11, failures: 1, consecutiveFailures: 5, lastWave: 11 },
+                '42': { attempts: 12, successes: 6, failures: 6, consecutiveFailures: 2, lastWave: 11 }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 14,
+        failureCooldownWaves: 2,
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [42]);
+    assert.ok(!plan.selection.skillIds.includes(41));
+});
+
 test('buildAutonomousBatchPlan prefers recent successful outcomes over recent failures', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
