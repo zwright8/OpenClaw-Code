@@ -939,6 +939,132 @@ test('buildAutonomousBatchPlan ignores tail-latency penalties until minimum meas
     assert.deepEqual(plan.selection.skillIds, [491]);
 });
 
+test('buildAutonomousBatchPlan applies failure-burst penalties to abrupt reliability regressions', () => {
+    const burstyOutcomes = [
+        ...Array.from({ length: 16 }, () => ({ status: 'completed', reward: 1 })),
+        ...Array.from({ length: 4 }, () => ({ status: 'failed', reward: 0 }))
+    ];
+    const stableMixedOutcomes = Array.from({ length: 20 }, (_, index) => ({
+        status: index % 4 === 0 ? 'failed' : 'completed',
+        reward: index % 4 === 0 ? 0 : 1
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 501, code: 'SK-00501', title: 'Skill 501' },
+            { id: 502, code: 'SK-00502', title: 'Skill 502' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 52,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '501': {
+                    attempts: 20,
+                    successes: 16,
+                    failures: 4,
+                    consecutiveFailures: 4,
+                    lastWave: 51,
+                    lastStatus: 'failed',
+                    recentOutcomes: burstyOutcomes
+                },
+                '502': {
+                    attempts: 20,
+                    successes: 14,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 51,
+                    lastStatus: 'completed',
+                    recentOutcomes: stableMixedOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 53,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            failureBurstPenaltyWeight: 0.5,
+            failureBurstShortWindow: 4,
+            failureBurstLongWindow: 20,
+            failureBurstMinAttempts: 8,
+            failureBurstThreshold: 1.5
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [502]);
+});
+
+test('buildAutonomousBatchPlan ignores failure-burst penalties until minimum attempts are reached', () => {
+    const burstyOutcomes = [
+        ...Array.from({ length: 16 }, () => ({ status: 'completed', reward: 1 })),
+        ...Array.from({ length: 4 }, () => ({ status: 'failed', reward: 0 }))
+    ];
+    const stableMixedOutcomes = Array.from({ length: 20 }, (_, index) => ({
+        status: index % 4 === 0 ? 'failed' : 'completed',
+        reward: index % 4 === 0 ? 0 : 1
+    }));
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 511, code: 'SK-00511', title: 'Skill 511' },
+            { id: 512, code: 'SK-00512', title: 'Skill 512' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 54,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '511': {
+                    attempts: 20,
+                    successes: 16,
+                    failures: 4,
+                    consecutiveFailures: 4,
+                    lastWave: 53,
+                    lastStatus: 'failed',
+                    recentOutcomes: burstyOutcomes
+                },
+                '512': {
+                    attempts: 20,
+                    successes: 14,
+                    failures: 6,
+                    consecutiveFailures: 0,
+                    lastWave: 53,
+                    lastStatus: 'completed',
+                    recentOutcomes: stableMixedOutcomes
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 55,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            failureBurstPenaltyWeight: 0.5,
+            failureBurstShortWindow: 4,
+            failureBurstLongWindow: 20,
+            failureBurstMinAttempts: 24,
+            failureBurstThreshold: 1.5
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [511]);
+});
+
 test('buildAutonomousBatchPlan supports bayesian-bootstrap thompson ranking', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

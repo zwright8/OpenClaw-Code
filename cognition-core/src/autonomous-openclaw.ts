@@ -172,6 +172,16 @@ const MIN_LATENCY_TAIL_PERCENTILE = 0.5;
 const MAX_LATENCY_TAIL_PERCENTILE = 0.999;
 const DEFAULT_LATENCY_TAIL_MIN_SAMPLES = 8;
 const MAX_LATENCY_TAIL_MIN_SAMPLES = 256;
+const DEFAULT_FAILURE_BURST_PENALTY_WEIGHT = 0;
+const MAX_FAILURE_BURST_PENALTY_WEIGHT = 1;
+const DEFAULT_FAILURE_BURST_SHORT_WINDOW = 8;
+const MAX_FAILURE_BURST_SHORT_WINDOW = 64;
+const DEFAULT_FAILURE_BURST_LONG_WINDOW = 32;
+const MAX_FAILURE_BURST_LONG_WINDOW = 256;
+const DEFAULT_FAILURE_BURST_MIN_ATTEMPTS = 8;
+const MAX_FAILURE_BURST_MIN_ATTEMPTS = 256;
+const DEFAULT_FAILURE_BURST_THRESHOLD = 1.5;
+const MAX_FAILURE_BURST_THRESHOLD = 5;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -1044,6 +1054,41 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_LATENCY_TAIL_MIN_SAMPLES,
             1,
             MAX_LATENCY_TAIL_MIN_SAMPLES
+        ),
+        failureBurstPenaltyWeight: clamp(
+            Number.isFinite(Number(value.failureBurstPenaltyWeight))
+                ? Number(value.failureBurstPenaltyWeight)
+                : DEFAULT_FAILURE_BURST_PENALTY_WEIGHT,
+            0,
+            MAX_FAILURE_BURST_PENALTY_WEIGHT
+        ),
+        failureBurstShortWindow: clamp(
+            Number.isFinite(Number(value.failureBurstShortWindow))
+                ? parsePositiveInt(value.failureBurstShortWindow, DEFAULT_FAILURE_BURST_SHORT_WINDOW)
+                : DEFAULT_FAILURE_BURST_SHORT_WINDOW,
+            2,
+            MAX_FAILURE_BURST_SHORT_WINDOW
+        ),
+        failureBurstLongWindow: clamp(
+            Number.isFinite(Number(value.failureBurstLongWindow))
+                ? parsePositiveInt(value.failureBurstLongWindow, DEFAULT_FAILURE_BURST_LONG_WINDOW)
+                : DEFAULT_FAILURE_BURST_LONG_WINDOW,
+            2,
+            MAX_FAILURE_BURST_LONG_WINDOW
+        ),
+        failureBurstMinAttempts: clamp(
+            Number.isFinite(Number(value.failureBurstMinAttempts))
+                ? parsePositiveInt(value.failureBurstMinAttempts, DEFAULT_FAILURE_BURST_MIN_ATTEMPTS)
+                : DEFAULT_FAILURE_BURST_MIN_ATTEMPTS,
+            1,
+            MAX_FAILURE_BURST_MIN_ATTEMPTS
+        ),
+        failureBurstThreshold: clamp(
+            Number.isFinite(Number(value.failureBurstThreshold))
+                ? Number(value.failureBurstThreshold)
+                : DEFAULT_FAILURE_BURST_THRESHOLD,
+            1,
+            MAX_FAILURE_BURST_THRESHOLD
         )
     };
 }
@@ -1404,6 +1449,54 @@ function computeLatencyTailPenalty(stat, selectionPolicyConfig = null) {
 
     const overrunRatio = clamp((tailDurationMs - latencyTargetMs) / latencyTargetMs, 0, 1);
     return clamp(penaltyWeight * overrunRatio, 0, 1);
+}
+
+function computeFailureBurstPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const penaltyWeight = clamp(policy.failureBurstPenaltyWeight, 0, MAX_FAILURE_BURST_PENALTY_WEIGHT);
+    if (penaltyWeight <= 0) return 0;
+
+    const attempts = clamp(parseNonNegativeInt(stat?.attempts, 0), 0, Number.MAX_SAFE_INTEGER);
+    const minAttempts = clamp(
+        parsePositiveInt(policy.failureBurstMinAttempts, DEFAULT_FAILURE_BURST_MIN_ATTEMPTS),
+        1,
+        MAX_FAILURE_BURST_MIN_ATTEMPTS
+    );
+    if (attempts < minAttempts) return 0;
+
+    const recentOutcomes = normalizeRecentOutcomes(stat?.recentOutcomes);
+    if (recentOutcomes.length < minAttempts) return 0;
+
+    const shortWindow = clamp(
+        parsePositiveInt(policy.failureBurstShortWindow, DEFAULT_FAILURE_BURST_SHORT_WINDOW),
+        2,
+        MAX_FAILURE_BURST_SHORT_WINDOW
+    );
+    const longWindow = clamp(
+        parsePositiveInt(policy.failureBurstLongWindow, DEFAULT_FAILURE_BURST_LONG_WINDOW),
+        shortWindow,
+        MAX_FAILURE_BURST_LONG_WINDOW
+    );
+    const threshold = clamp(policy.failureBurstThreshold, 1, MAX_FAILURE_BURST_THRESHOLD);
+
+    const terminalRecentOutcomes = recentOutcomes.slice(-attempts);
+    const longOutcomes = terminalRecentOutcomes.slice(-longWindow);
+    const shortOutcomes = longOutcomes.slice(-shortWindow);
+    if (shortOutcomes.length < Math.min(minAttempts, shortWindow)) return 0;
+    if (longOutcomes.length < Math.min(minAttempts, longWindow)) return 0;
+
+    const shortFailures = shortOutcomes.filter((entry) => !SUCCESS_STATUSES.has(entry.status)).length;
+    const longFailures = longOutcomes.filter((entry) => !SUCCESS_STATUSES.has(entry.status)).length;
+    if (shortFailures <= 0) return 0;
+
+    const shortFailureRate = shortFailures / shortOutcomes.length;
+    const longFailureRate = longFailures / longOutcomes.length;
+    const stabilizedLongRate = Math.max(longFailureRate, 1 / longOutcomes.length);
+    const burstRatio = shortFailureRate / stabilizedLongRate;
+    if (burstRatio <= threshold) return 0;
+
+    const normalizedBurst = clamp((burstRatio - threshold) / threshold, 0, 1);
+    return clamp(penaltyWeight * normalizedBurst, 0, 1);
 }
 
 function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = []) {
@@ -4163,6 +4256,7 @@ function selectCatalogSlice({
         score -= computeReliabilityFloorPenalty(scoreStats, scoringPolicy);
         score -= computeLatencySlaPenalty(scoreStats, scoringPolicy);
         score -= computeLatencyTailPenalty(scoreStats, scoringPolicy);
+        score -= computeFailureBurstPenalty(scoreStats, scoringPolicy);
 
         const item = {
             candidate,

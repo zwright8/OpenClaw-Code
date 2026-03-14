@@ -61,6 +61,11 @@ Options:
   --latency-tail-penalty-weight <n> Tail-latency ranking penalty weight against latency target overruns (0-1, default: 0)
   --latency-tail-percentile <n> Tail percentile used for risk penalty (0.5-0.999, default: 0.95)
   --latency-tail-min-samples <n> Min measured durations before tail-latency penalties activate (default: 8)
+  --failure-burst-penalty-weight <n> Short-vs-long window failure-burst penalty weight (0-1, default: 0)
+  --failure-burst-short-window <n> Short recency window used to estimate burst failures (2-64, default: 8)
+  --failure-burst-long-window <n> Long recency window baseline for failure bursts (2-256, default: 32)
+  --failure-burst-min-attempts <n> Min recent attempts before failure-burst penalties activate (default: 8)
+  --failure-burst-threshold <n> Short/long failure-rate ratio threshold before penalties (1-5, default: 1.5)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -232,6 +237,11 @@ function parseArgs(argv) {
             latencyTailPenaltyWeight: 0,
             latencyTailPercentile: 0.95,
             latencyTailMinSamples: 8,
+            failureBurstPenaltyWeight: 0,
+            failureBurstShortWindow: 8,
+            failureBurstLongWindow: 32,
+            failureBurstMinAttempts: 8,
+            failureBurstThreshold: 1.5,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -546,6 +556,37 @@ function parseArgs(argv) {
         }
         if (token === '--latency-tail-min-samples') {
             options.selectionPolicyConfig.latencyTailMinSamples = parsePositiveInt(value, '--latency-tail-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--failure-burst-penalty-weight') {
+            options.selectionPolicyConfig.failureBurstPenaltyWeight = parseFloatInRange(value, '--failure-burst-penalty-weight', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--failure-burst-short-window') {
+            options.selectionPolicyConfig.failureBurstShortWindow = parsePositiveInt(value, '--failure-burst-short-window');
+            if (options.selectionPolicyConfig.failureBurstShortWindow < 2 || options.selectionPolicyConfig.failureBurstShortWindow > 64) {
+                throw new Error('--failure-burst-short-window must be an integer between 2 and 64');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--failure-burst-long-window') {
+            options.selectionPolicyConfig.failureBurstLongWindow = parsePositiveInt(value, '--failure-burst-long-window');
+            if (options.selectionPolicyConfig.failureBurstLongWindow < 2 || options.selectionPolicyConfig.failureBurstLongWindow > 256) {
+                throw new Error('--failure-burst-long-window must be an integer between 2 and 256');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--failure-burst-min-attempts') {
+            options.selectionPolicyConfig.failureBurstMinAttempts = parsePositiveInt(value, '--failure-burst-min-attempts');
+            i++;
+            continue;
+        }
+        if (token === '--failure-burst-threshold') {
+            options.selectionPolicyConfig.failureBurstThreshold = parseFloatInRange(value, '--failure-burst-threshold', 1, 5);
             i++;
             continue;
         }
