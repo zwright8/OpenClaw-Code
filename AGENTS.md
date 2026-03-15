@@ -139,14 +139,22 @@
 - `npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2` - run autonomous loop with sliding-window anytime-MOSS adaptation focused on recent outcomes under drift.
 - `npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2` - run autonomous loop with discounted anytime-MOSS adaptation to emphasize recency in non-stationary conditions.
 - `npm run analyze` - generate cognition analysis report.
+- `npm run analyze:quick` - run a 1-day fast analysis pass.
 - `tsx scripts/analyze-history.ts --days 7 --json reports/cognition-report.json --markdown reports/cognition-report.md` - produce historical analysis report outputs.
+- `npm run graph` - render cognition graph outputs from current analysis state.
 - `npm run plan:tasks` - emit remediation task requests.
+- `npm run enqueue:tasks` - enqueue generated task bundles for execution.
+- `npm run dispatch:created` - dispatch newly created queued tasks.
 - `npm run learn:loop` - run learning-loop replay outputs.
 - `npm run plan:skills` - emit skill-growth task planning outputs.
+- `npm run review:approvals` - process approval-review automation for queued work.
+- `npm run process:outbox` - process outbox task execution and retries.
+- `npm run autopilot:loop` - run the autonomous task processing loop.
 - `npm run build:full` - run the full cognition build pipeline.
 - `npm run memory:guardrails` - generate memory guardrail reports.
 - `npm run memory:backfill` - backfill memory guardrail reports.
 - `npm run iterate:plan` - generate cognition iteration plan + task bundle artifacts.
+- `npm run typecheck` - run TypeScript no-emit type checks.
 - `npm test` - run swarm-protocol tests (unit + legacy).
 - `npm run demo:orchestrator` - run orchestrator demo flow.
 - `npm run approval:queue` - export approval queue reports.
