@@ -13692,3 +13692,107 @@ external_binding:
 ### `ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1`
 - Protocols: `AIS/NMEA`, `OPC UA`, signed fuel manifests, `API/JSON`, `USMTF`.
 - Use for: blend-status exchange, freeze-point validation, and coalition fuel-release coordination.
+
+## Tool Suite Addendum LXIII (2026-03-15, External Integration Profiles for Expansion Wave LXIII)
+
+### `ts-joint-tactical-optical-boresight-zero-retention-v1`
+- Use for: optic zero validation, post-shock boresight confirmation, and weapons-release confidence when transport, maintenance, or battle damage may invalidate fires trust.
+- Primary tools: weapon boresight ledger, collimator alignment board, laser boresight tracker, ballistic confidence worksheet.
+- Cross-check tools: independent range safety witness and alternate maintenance release board.
+- Typical products: optic confidence board, zero-retention ladder, boresight release matrix.
+
+### `ts-expeditionary-airbase-wildlife-fod-suppression-v1`
+- Use for: bird or wildlife hazard suppression, carcass-attractor control, and runway FOD reduction to preserve sortie generation.
+- Primary tools: bird-radar display, wildlife-control log, runway sweep tracker, FOD camera or sensor board.
+- Cross-check tools: independent flight-safety cell and alternate airfield operations board.
+- Typical products: wildlife hazard board, FOD suppression ladder, sortie risk matrix.
+
+### `ts-coalition-harbor-salvage-diving-uxo-dock-clearance-v1`
+- Use for: coalition harbor dive planning, submerged-UXO clearance, and berth reopening after sabotage, strike damage, or sinking events.
+- Primary tools: dive-plan ledger, side-scan sonar or ROV board, berth status tracker, UXO site exploitation log.
+- Cross-check tools: independent salvage authority desk and alternate EOD review board.
+- Typical products: harbor clearance board, diver or UXO risk ladder, berth reopening matrix.
+
+### `ts-joint-space-launch-range-upper-air-gap-v1`
+- Use for: upper-air sounding validation, launch-range weather-balloon timing, and safety-gap protection before committing launch windows.
+- Primary tools: upper-air sounding board, launch weather console, hazard-area tracker, range scheduling board.
+- Cross-check tools: independent range safety weather desk and alternate launch-governance board.
+- Typical products: upper-air confidence board, launch safety gap ladder, weather-driven go or scrub matrix.
+
+### `ts-theater-offline-mission-planning-malware-quarantine-v1`
+- Use for: mission-planning workstation isolation, removable-media quarantine, and trusted data-package rebuild after malware suspicion or checksum failure.
+- Primary tools: workstation quarantine console, removable-media custody ledger, hash allowlist board, mission-data checksum tracker.
+- Cross-check tools: independent cyber response cell and alternate software-factory rollback board.
+- Typical products: malware quarantine board, trusted rebuild ladder, mission-data release matrix.
+
+### `ts-theater-electronic-attack-iff-track-confidence-recovery-v1`
+- Use for: IFF trust restoration, jamming-aware track confidence scoring, and release-veto controls when electronic attack disrupts air-defense or fires deconfliction.
+- Primary tools: IFF interrogator status board, track-confidence fusion console, electronic-attack monitor, air-defense control ledger.
+- Cross-check tools: independent battle-management review cell and alternate CEMA watchfloor.
+- Typical products: track-confidence board, IFF recovery ladder, release-restriction matrix.
+
+### `ts-strategic-solid-rocket-motor-aging-inspection-priority-v1`
+- Use for: solid-rocket motor aging assessment, inspection backlog prioritization, and strategic allocation when storage conditions threaten propulsion confidence.
+- Primary tools: propellant-aging ledger, radiographic inspection queue, storage telemetry board, mission demand allocator.
+- Cross-check tools: independent propulsion engineering desk and alternate industrial mobilization board.
+- Typical products: motor-aging board, inspection priority ladder, strategic allocation matrix.
+
+### `ts-expeditionary-blood-warming-hypothermia-resuscitation-v1`
+- Use for: blood warming, casualty rewarming, and hypothermia-resuscitation sequencing during austere prolonged care or cold-weather casualty surges.
+- Primary tools: casualty temperature tracker, blood warmer inventory board, med-log temperature ledger, evacuation regulation queue.
+- Cross-check tools: independent critical-care review cell and alternate preventive-medicine cold-exposure board.
+- Typical products: hypothermia resuscitation board, blood-warming ladder, casualty transfer priority matrix.
+
+### `ts-homeland-lock-dam-barge-priority-manual-override-v1`
+- Use for: lock or dam manual overrides, barge-priority sequencing, and inland-waterway throughput recovery under cyber or power disruption.
+- Primary tools: lock-control status board, tow and barge queue tracker, water-level telemetry, civil-emergency movement board.
+- Cross-check tools: independent waterway safety desk and alternate strategic mobility board.
+- Typical products: lock-state board, barge-priority ladder, manual-override decision matrix.
+
+### `ts-coalition-cross-border-casualty-credentialing-blood-compatibility-v1`
+- Use for: coalition casualty transfer credentialing, emergency privileging, and blood-compatibility assurance across borders and mixed medical systems.
+- Primary tools: clinician credential registry, blood compatibility ledger, patient movement tracker, cross-border clearance board.
+- Cross-check tools: independent coalition medical legal desk and alternate role-3 routing board.
+- Typical products: casualty transfer board, credentialing and blood-compatibility ladder, coalition route-release matrix.
+
+## Protocol Stack Addendum LXIII (2026-03-15, External Integration Profiles for Expansion Wave LXIII)
+
+### `ps-joint-tactical-optical-boresight-zero-retention-stack-v1`
+- Protocols: signed range manifests, `API/JSON`, `CoT`, `VMF`, `USMTF`.
+- Use for: boresight status exchange, optic confidence updates, range-control acknowledgments, and reduced-confidence release routing.
+
+### `ps-expeditionary-airbase-wildlife-fod-suppression-stack-v1`
+- Protocols: `AIXM/FIXM`, `OGC`, `CoT`, signed inspection manifests, `API/JSON`, `USMTF`.
+- Use for: bird-hazard alerts, runway sweep updates, wildlife-control actions, and sortie-release coordination.
+
+### `ps-coalition-harbor-salvage-diving-uxo-dock-clearance-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `NIEM`, signed dive manifests, `API/JSON`, `USMTF`.
+- Use for: dive-plan exchange, harbor restriction updates, UXO-clearance routing, and berth-release coordination.
+
+### `ps-joint-space-launch-range-upper-air-gap-stack-v1`
+- Protocols: `CCSDS`, `AIXM/FIXM`, `OGC`, `CAP`, `API/JSON`, `USMTF`.
+- Use for: upper-air updates, hazard-area notifications, launch-weather decisions, and range-release acknowledgments.
+
+### `ps-theater-offline-mission-planning-malware-quarantine-stack-v1`
+- Protocols: signed removable-media manifests, `STIX/TAXII`, `X.509`, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: malware alerts, media-custody exchange, trusted rebuild approvals, and data-release notifications.
+
+### `ps-theater-electronic-attack-iff-track-confidence-recovery-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, signed sensor manifests, `API/JSON`, `USMTF`.
+- Use for: IFF-status exchange, jamming reports, track-confidence updates, and release-veto coordination.
+
+### `ps-strategic-solid-rocket-motor-aging-inspection-priority-stack-v1`
+- Protocols: `OPC UA`, signed maintenance manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Use for: storage telemetry exchange, inspection status routing, lot-risk notifications, and strategic allocation approvals.
+
+### `ps-expeditionary-blood-warming-hypothermia-resuscitation-stack-v1`
+- Protocols: `HL7/FHIR`, signed med-log manifests, `DICOM`, `API/JSON`, `USMTF`.
+- Use for: casualty-temperature updates, warming-device status exchange, blood-release coordination, and transfer approvals.
+
+### `ps-homeland-lock-dam-barge-priority-manual-override-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `NIEM`, `CAP`, `API/JSON`, `USMTF`.
+- Use for: lock-state exchange, tow priority routing, waterway emergency alerts, and manual-override acknowledgments.
+
+### `ps-coalition-cross-border-casualty-credentialing-blood-compatibility-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed blood manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: patient movement updates, credential reciprocity exchange, blood-compatibility routing, and coalition transfer approvals.

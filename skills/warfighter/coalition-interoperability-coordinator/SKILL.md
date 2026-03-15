@@ -341,3 +341,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when interoperability depends on common utility restoration, humanitarian data handling, or cyber-containment rules across displaced-person sites.
 - Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when coalition sustainment trust depends on common fuel blending, freeze-point validation, or cold-weather release criteria.
 - Add `packet_id=DPL-WATER-BIOSEC-CORRIDOR-001`, `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially change coalition release posture, humanitarian interoperability, or Arctic sustainment confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-harbor-salvage-diving-uxo-dock-clearance-v1` + `protocol_stack_id=ps-coalition-harbor-salvage-diving-uxo-dock-clearance-stack-v1` when coalition port reopening depends on diver-certification reciprocity, UXO confidence, or berth-authority alignment.
+- Add `tool_suite_id=ts-coalition-cross-border-casualty-credentialing-blood-compatibility-v1` + `protocol_stack_id=ps-coalition-cross-border-casualty-credentialing-blood-compatibility-stack-v1` when coalition casualty routing depends on clinician credential reciprocity, blood-standard interoperability, or emergency border clearance.
+- Add `packet_id=DPL-HARBOR-SALVAGE-UXO-001` and `packet_id=DPL-CROSS-BORDER-CASUALTY-CREDENTIALING-001` for branches that materially change coalition access, medical-routing legitimacy, or combined-force survivability confidence.

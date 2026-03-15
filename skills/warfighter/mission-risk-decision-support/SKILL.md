@@ -332,3 +332,11 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-homeland-rail-evacuation-signaling-restoration-v1` + `protocol_stack_id=ps-homeland-rail-evacuation-signaling-restoration-stack-v1` when mission risk depends on protected homeland evacuation or force-flow continuity across damaged rail-control networks.
 - Add `tool_suite_id=ts-strategic-rare-gas-cryogenic-supply-priority-v1` + `protocol_stack_id=ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1` when readiness or industrial continuity depends on scarce cryogenic-gas allocation, purity confidence, or boil-off risk.
 - Add `packet_id=DPL-NUCLEAR-WARN-DELEGATION-001`, `packet_id=DPL-MISSILE-WARNING-GT-CORR-001`, `packet_id=DPL-RAIL-EVAC-SIGNAL-001`, and `packet_id=DPL-RAREGAS-CRYO-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIII Addendum)
+
+- Add `tool_suite_id=ts-joint-tactical-optical-boresight-zero-retention-v1` + `protocol_stack_id=ps-joint-tactical-optical-boresight-zero-retention-stack-v1` when commander risk acceptance depends on optic-zero confidence, post-shock alignment, or reduced-confidence fires release.
+- Add `tool_suite_id=ts-joint-space-launch-range-upper-air-gap-v1` + `protocol_stack_id=ps-joint-space-launch-range-upper-air-gap-stack-v1` when launch timing, hazard separation, or upper-air sensing freshness materially alters commander GO or scrub posture.
+- Add `tool_suite_id=ts-strategic-solid-rocket-motor-aging-inspection-priority-v1` + `protocol_stack_id=ps-strategic-solid-rocket-motor-aging-inspection-priority-stack-v1` when readiness, inspection backlog, or propulsion-lot confidence materially changes strategic risk posture.
+- Add `tool_suite_id=ts-homeland-lock-dam-barge-priority-manual-override-v1` + `protocol_stack_id=ps-homeland-lock-dam-barge-priority-manual-override-stack-v1` when inland-waterway throughput, manual-control authority, or cargo-priority tradeoffs materially affect mission risk.
+- Add `packet_id=DPL-TACTICAL-BORESIGHT-ZERO-001`, `packet_id=DPL-LAUNCH-UPPER-AIR-GAP-001`, `packet_id=DPL-SRM-AGING-PRIORITY-001`, and `packet_id=DPL-LOCK-DAM-BARGE-OVERRIDE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

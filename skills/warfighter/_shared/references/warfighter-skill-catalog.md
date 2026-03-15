@@ -2766,3 +2766,29 @@ Every skill output should include:
 - Expeditionary burn intensive care oxygen arbitration + austere surgical support coordinator + joint role 3 medical network and aeromedical evacuation cell + coalition contested medical oxygen generation and distribution cell.
 - Strategic cable landing station sanctions-bypass hunt + strategic undersea cable repair ship escort and priority + coalition cable landing data sovereignty cell + cyber mission planner.
 - Coalition Arctic bulk-fuel blending and freeze-point assurance + coalition Arctic convoy ice-drone threat deconfliction + contested logistics sustainment + operational energy resilience and microgrid cell.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LXIII)
+
+- joint-tactical-optical-sighting-zero-retention-and-boresight-assurance-cell
+- expeditionary-airbase-bird-wildlife-strike-and-fod-suppression-cell
+- coalition-harbor-salvage-diving-and-uxo-dock-clearance-cell
+- joint-space-launch-range-weather-balloon-and-upper-air-gap-cell
+- theater-offline-mission-planning-workstation-malware-quarantine-cell
+- theater-electronic-attack-iff-recovery-and-track-confidence-cell
+- strategic-solid-rocket-motor-aging-and-inspection-priority-cell
+- expeditionary-blood-warming-and-hypothermia-resuscitation-cell
+- homeland-lock-dam-barge-priority-and-manual-override-cell
+- coalition-cross-border-casualty-credentialing-and-blood-compatibility-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LXIII)
+
+- Tactical optical sighting zero retention and boresight assurance + joint targeting standards and CDE governance cell + joint laser designator code and sensor fratricide prevention cell + mission risk decision support.
+- Expeditionary airbase bird wildlife strike and FOD suppression + airbase dispersal and rapid reconstitution cell + expeditionary airfield operations + air tasking cycle support.
+- Coalition harbor salvage diving and UXO dock clearance + expeditionary salvage and harbor clearance + joint port opening and JLOTS synchronization cell + coalition interoperability coordinator.
+- Joint space launch range weather balloon and upper-air gap + joint space launch window conflict deconfliction cell + contested space launch and satellite reconstitution + weather space-weather effects forecast cell.
+- Theater offline mission planning workstation malware quarantine + theater mission network failover cell + mission-assured software factory support + tactical zero trust network hardening.
+- Theater electronic attack IFF recovery and track confidence + CEMA integration cell + joint spectrum interference resolution cell + integrated air and missile defense cell.
+- Strategic solid rocket motor aging and inspection priority + strategic industrial mobilization readiness cell + contested space launch and satellite reconstitution + supply-chain risk and industrial base monitor.
+- Expeditionary blood warming and hypothermia resuscitation + austere surgical support coordinator + joint role 3 medical network and aeromedical evac cell + joint cold injury frostbite and rewarming operations cell.
+- Homeland lock dam barge priority and manual override + defense support of civil authorities crisis cell + strategic mobility deployment planner + riverine and inland waterways operations.
+- Coalition cross-border casualty credentialing and blood compatibility + coalition medevac cross-border clearance and legal routing cell + joint role 3 medical network and aeromedical evac cell + coalition interoperability coordinator.

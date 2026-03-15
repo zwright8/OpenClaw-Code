@@ -13451,3 +13451,115 @@ validation_gates:
 - output_schema: freeze-point assurance matrix, blend-release ladder, Arctic fuel movement board
 - protocol_profile: AIS/NMEA + OPC UA + signed fuel manifests + API/JSON + USMTF
 - validation_gates: freeze-point confirmation, contamination review, coalition fuel-officer approval
+
+## Packet Addendum LII (2026-03-15, Expansion Wave LXIII)
+
+### packet_id: DPL-TACTICAL-BORESIGHT-ZERO-001
+- domain: joint tactical optical sighting zero retention and boresight assurance
+- objective: restore confidence in optic zero and alignment before units fire after transport, maintenance, or blast exposure.
+- primary_tools: weapon boresight ledger, collimator alignment board, laser boresight tracker, ballistic confidence worksheet
+- alternate_tools: manual zero-retention worksheet and range safety review board
+- degraded_mode: commander-approved reduced-confidence fires only with manual boresight checks and limited engagement windows
+- input_requirements: weapon or optic list, shock or maintenance history, mount condition, firing timelines, authority thresholds
+- output_schema: optic confidence board, zero-retention ladder, boresight release matrix
+- protocol_profile: signed range manifests + API/JSON + CoT + VMF + USMTF
+- validation_gates: mount-integrity review, range-safety pass, release approval
+
+### packet_id: DPL-AIRBASE-WILDLIFE-FOD-001
+- domain: expeditionary airbase bird wildlife strike and FOD suppression
+- objective: preserve sortie generation by reducing strike or debris risk before aircraft launch and recovery windows compress.
+- primary_tools: bird-radar display, wildlife-control log, runway sweep tracker, FOD camera or sensor board
+- alternate_tools: manual bird activity board and runway inspection worksheet
+- degraded_mode: daylight or essential sorties only with frequent manual sweeps and conservative spacing
+- input_requirements: strike reports, wildlife trend data, runway status, sortie demand, control assets, authority thresholds
+- output_schema: wildlife hazard board, FOD suppression ladder, sortie risk matrix
+- protocol_profile: AIXM/FIXM + OGC + CoT + signed inspection manifests + API/JSON + USMTF
+- validation_gates: runway inspection, flight-safety review, airfield approval
+
+### packet_id: DPL-HARBOR-SALVAGE-UXO-001
+- domain: coalition harbor salvage diving and UXO dock clearance
+- objective: reopen damaged or blocked berths by aligning dive safety, harbor restrictions, and UXO render-safe priorities.
+- primary_tools: dive-plan ledger, side-scan sonar or ROV board, berth status tracker, UXO site exploitation log
+- alternate_tools: manual harbor sketch board and diver task worksheet
+- degraded_mode: exclusion-zone harbor operations only with daylight dive windows and manual berth rationing
+- input_requirements: berth status, hazard locations, diver readiness, port demand, coalition caveats, authority thresholds
+- output_schema: harbor clearance board, diver or UXO risk ladder, berth reopening matrix
+- protocol_profile: AIS/NMEA + OGC + NIEM + signed dive manifests + API/JSON + USMTF
+- validation_gates: dive-risk review, UXO-confidence check, harbor-authority approval
+
+### packet_id: DPL-LAUNCH-UPPER-AIR-GAP-001
+- domain: joint space launch range weather balloon and upper air gap
+- objective: preserve safe and credible launch timing by validating upper-air data freshness and hazard-area separation before commit.
+- primary_tools: upper-air sounding board, launch weather console, hazard-area tracker, range scheduling board
+- alternate_tools: manual wind-aloft worksheet and range safety weather board
+- degraded_mode: scrub-biased launch posture with extended hazard windows and conservative upper-air assumptions
+- input_requirements: launch window, sounding data, hazard-area timeline, range status, upper-level winds, authority thresholds
+- output_schema: upper-air confidence board, launch safety gap ladder, weather-driven go or scrub matrix
+- protocol_profile: CCSDS + AIXM/FIXM + OGC + CAP + API/JSON + USMTF
+- validation_gates: sounding freshness, range-safety review, launch authority acknowledgment
+
+### packet_id: DPL-OFFLINE-MISSION-PLANNING-MALWARE-001
+- domain: theater offline mission planning workstation malware quarantine
+- objective: restore trusted mission-planning capability by isolating compromised workstations and validating clean data packages.
+- primary_tools: workstation quarantine console, removable-media custody ledger, hash allowlist board, mission-data checksum tracker
+- alternate_tools: manual media-custody log and clean-room transfer worksheet
+- degraded_mode: manual planning packages only with immutable media control and command-approved limited release
+- input_requirements: affected workstations, media history, hash anomalies, mission deadlines, rollback options, authority thresholds
+- output_schema: malware quarantine board, trusted rebuild ladder, mission-data release matrix
+- protocol_profile: signed removable-media manifests + STIX/TAXII + X.509 + S/MIME + API/JSON + USMTF
+- validation_gates: custody verification, malware review, trusted-release approval
+
+### packet_id: DPL-EA-IFF-TRACK-CONFIDENCE-001
+- domain: theater electronic attack IFF recovery and track confidence
+- objective: recover track trust and avoid blue-on-blue engagement or missed intercepts under jamming or spoofing pressure.
+- primary_tools: IFF interrogator status board, track-confidence fusion console, electronic-attack monitor, air-defense control ledger
+- alternate_tools: manual track annotation board and weapons-hold worksheet
+- degraded_mode: weapons hold or positive-visual-ID posture only with manual track review and commander approval
+- input_requirements: track set, IFF status, jammer effects, defended assets, engagement zones, authority thresholds
+- output_schema: track-confidence board, IFF recovery ladder, release-restriction matrix
+- protocol_profile: Link 16 J-series + VMF + CoT + signed sensor manifests + API/JSON + USMTF
+- validation_gates: blue-force deconfliction, track-review pass, engagement authority approval
+
+### packet_id: DPL-SRM-AGING-PRIORITY-001
+- domain: strategic solid rocket motor aging and inspection priority
+- objective: preserve strategic readiness by sequencing inspection, quarantine, and allocation for suspect motor lots.
+- primary_tools: propellant-aging ledger, radiographic inspection queue, storage telemetry board, mission demand allocator
+- alternate_tools: manual lot-aging worksheet and propulsion engineering review board
+- degraded_mode: no-new-release on suspect lots with manual thermal monitoring and senior sustainment review
+- input_requirements: lot identifiers, storage exposure, inspection backlog, mission demand, transport options, authority thresholds
+- output_schema: motor-aging board, inspection priority ladder, strategic allocation matrix
+- protocol_profile: OPC UA + signed maintenance manifests + API/JSON + USMTF + NIEM
+- validation_gates: lot-trace verification, engineering review, allocation authority
+
+### packet_id: DPL-BLOOD-WARMING-HYPOTHERMIA-001
+- domain: expeditionary blood warming and hypothermia resuscitation
+- objective: reduce preventable cold-shock mortality by aligning warming assets, blood temperature control, and transfer timing.
+- primary_tools: casualty temperature tracker, blood warmer inventory board, med-log temperature ledger, evacuation regulation queue
+- alternate_tools: manual warming worksheet and triage transfer board
+- degraded_mode: manual warming and lifesaving resuscitation only with constrained blood issue and senior clinician approval
+- input_requirements: casualty acuity, temperature trends, blood stock, warmer status, transfer routes, authority thresholds
+- output_schema: hypothermia resuscitation board, blood-warming ladder, casualty transfer priority matrix
+- protocol_profile: HL7/FHIR + signed med-log manifests + DICOM + API/JSON + USMTF
+- validation_gates: clinician review, blood integrity confirmation, transfer approval
+
+### packet_id: DPL-LOCK-DAM-BARGE-OVERRIDE-001
+- domain: homeland lock dam barge priority and manual override
+- objective: restore protected inland-waterway throughput by sequencing manual overrides, cargo priorities, and lock-state recovery.
+- primary_tools: lock-control status board, tow and barge queue tracker, water-level telemetry, civil-emergency movement board
+- alternate_tools: manual lock board and cargo-priority worksheet
+- degraded_mode: daylight convoy batches only with manual lock boards and command-approved cargo rationing
+- input_requirements: lock or dam status, tow queue, cargo classes, water levels, control-system outage, authority thresholds
+- output_schema: lock-state board, barge-priority ladder, manual-override decision matrix
+- protocol_profile: AIS/NMEA + OGC + NIEM + CAP + API/JSON + USMTF
+- validation_gates: waterway safety review, manual-control verification, movement approval
+
+### packet_id: DPL-CROSS-BORDER-CASUALTY-CREDENTIALING-001
+- domain: coalition cross border casualty credentialing and blood compatibility
+- objective: preserve survivability and legal confidence by aligning coalition clinician credentials, blood standards, and border-clearance timing.
+- primary_tools: clinician credential registry, blood compatibility ledger, patient movement tracker, cross-border clearance board
+- alternate_tools: paper credential packet and manual blood-compatibility worksheet
+- degraded_mode: lifesaving transfers only with manual blood checks and command-approved exception routing
+- input_requirements: casualty status, receiving facility, clinician credentials, blood type or product rules, coalition caveats, authority thresholds
+- output_schema: casualty transfer board, credentialing and blood-compatibility ladder, coalition route-release matrix
+- protocol_profile: HL7/FHIR + NIEM + signed blood manifests + S/MIME + API/JSON + USMTF
+- validation_gates: credential reciprocity review, compatibility confirmation, border-clearance approval

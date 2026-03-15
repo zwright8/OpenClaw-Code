@@ -170,3 +170,9 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-joint-loitering-munition-fratricide-envelope-assurance-v1` + `protocol_stack_id=ps-joint-loitering-munition-fratricide-envelope-assurance-stack-v1` when CEMA release timing affects loitering-munition deconfliction, blue-force position confidence, or jamming-driven fratricide risk.
 - Add `tool_suite_id=ts-theater-disconnected-additive-repair-intent-validation-v1` + `protocol_stack_id=ps-theater-disconnected-additive-repair-intent-validation-stack-v1` when contested repair networks require digital-pedigree assurance before fielded cyber or EW equipment returns to service.
 - Add `packet_id=DPL-CABLE-LANDING-SANCTIONS-001`, `packet_id=DPL-MISSILE-WARNING-GT-CORR-001`, `packet_id=DPL-LM-FRATRICIDE-ENVELOPE-001`, and `packet_id=DPL-ADDITIVE-INTENT-VALIDATION-001` for branches that materially change mission timing, telecom resilience, force protection, or trusted reconstitution posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIII Addendum)
+
+- Add `tool_suite_id=ts-theater-offline-mission-planning-malware-quarantine-v1` + `protocol_stack_id=ps-theater-offline-mission-planning-malware-quarantine-stack-v1` when CEMA synchronization depends on trusted offline planning nodes, removable-media custody, or clean rebuild timing after malware suspicion.
+- Add `tool_suite_id=ts-theater-electronic-attack-iff-track-confidence-recovery-v1` + `protocol_stack_id=ps-theater-electronic-attack-iff-track-confidence-recovery-stack-v1` when cyber-electromagnetic branches depend on jamming-aware track trust, IFF restoration, or release-veto timing.
+- Add `packet_id=DPL-OFFLINE-MISSION-PLANNING-MALWARE-001` and `packet_id=DPL-EA-IFF-TRACK-CONFIDENCE-001` for branches that materially change command-path trust, air-defense deconfliction, or cross-domain timing integrity.
