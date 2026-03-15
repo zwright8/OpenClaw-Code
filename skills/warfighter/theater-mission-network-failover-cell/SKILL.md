@@ -283,3 +283,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-coalition-mission-digital-twin-baseline-reconciliation-v1` + `protocol_stack_id=ps-coalition-mission-digital-twin-baseline-reconciliation-stack-v1` when failover confidence depends on reconciling model state, rollback baselines, or release-safe shared technical pictures after disruption.
 - Add `packet_id=DPL-DIGITAL-TWIN-BASELINE-001` for branches that materially alter rollback authority, coalition release confidence, or mission-service restoration sequencing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-theater-software-signing-key-loss-emergency-reconstitution-v1` + `protocol_stack_id=ps-theater-software-signing-key-loss-emergency-reconstitution-stack-v1` when failover viability depends on revocation propagation, emergency resigning, or fallback allowlists for mission software.
+- Add `packet_id=DPL-SIGNING-KEY-LOSS-RECONSTITUTION-001` for branches that materially alter trusted restoration order, rollback posture, or software release authority.

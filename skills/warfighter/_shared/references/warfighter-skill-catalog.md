@@ -2688,3 +2688,29 @@ Every skill output should include:
 - Bridge erection boat powertrain and gap crossing recovery + theater multi-corps water bridging and bulk fuel crossing cell + coalition forward waterway bridge denial and gap crossing cell + force protection and base defense.
 - Flightline ground support equipment readiness + airbase dispersal and rapid reconstitution cell + air tasking cycle support + contested logistics sustainment.
 - Aircraft hydraulic contamination and servicing + airbase dispersal and rapid reconstitution cell + air tasking cycle support + expeditionary aircraft crash fire rescue and foam transition cell.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LIX)
+
+- coalition-partner-force-insider-threat-and-advisor-protection-cell
+- joint-civilian-sensor-report-veracity-and-rumor-control-cell
+- expeditionary-cold-weather-aircraft-deicing-and-sortie-recovery-cell
+- coalition-harbor-mine-countermeasure-and-merchant-reroute-cell
+- joint-space-launch-abort-recovery-and-range-evacuation-cell
+- theater-software-signing-key-loss-and-emergency-reconstitution-cell
+- joint-friendly-emitter-impostor-and-rebroadcast-detection-cell
+- strategic-small-craft-outboard-and-riverine-mobility-surge-cell
+- joint-toxic-industrial-chemical-exposure-and-decon-triage-cell
+- coalition-host-nation-force-protection-claims-and-liability-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LIX)
+
+- Coalition partner-force insider threat and advisor protection + advisor mission force assistance + counterintelligence and insider threat + coalition interoperability coordinator.
+- Civilian sensor report veracity and rumor control + civil affairs stability ops + public affairs operational communications + defense support of civil authorities crisis cell.
+- Cold-weather aircraft deicing and sortie recovery + airbase dispersal and rapid reconstitution cell + air tasking cycle support + homeland wildfire smoke force health air operations cell.
+- Harbor mine countermeasure and merchant reroute + naval surface warfare coordinator + joint port opening and JLOTS synchronization cell + strategic sealift and prepositioning coordinator.
+- Space launch abort recovery and range evacuation + joint space launch window conflict deconfliction cell + contested space launch and satellite reconstitution + missile warning and attack assessment cell.
+- Software signing key loss and emergency reconstitution + theater mission network failover cell + tactical zero trust network hardening + joint digital order watermark recall and authenticity cell.
+- Friendly emitter impostor and rebroadcast detection + electronic order of battle management cell + joint spectrum interference resolution cell + anti-ship missile defense coordinator.
+- Small craft outboard and riverine mobility surge + strategic industrial mobilization readiness cell + riverine and inland waterways operations + contested logistics sustainment.
+- Toxic industrial chemical exposure and decon triage + austere surgical support coordinator + preventive medicine and force health protection + defense support of civil authorities crisis cell.
+- Host-nation force protection claims and liability + coalition interoperability coordinator + civil affairs stability ops + force protection and base defense.

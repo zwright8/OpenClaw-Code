@@ -154,3 +154,9 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 - Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when DSCA support must coordinate port shutdown, harbor safety, or alternate sealift throughput after tsunami warning or surge damage.
 - Add `tool_suite_id=ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1` + `protocol_stack_id=ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1` when DSCA decisions depend on shelter survivability, radiological dose tracking, or life-support resupply timing.
 - Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001` for branches that materially alter public-protection posture, convoy release timing, or civil-support prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-joint-civilian-sensor-report-veracity-rumor-control-v1` + `protocol_stack_id=ps-joint-civilian-sensor-report-veracity-rumor-control-stack-v1` when DSCA support depends on validating crowdsourced damage reports, rumor spikes, or public-warning credibility.
+- Add `tool_suite_id=ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1` + `protocol_stack_id=ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1` when DSCA priorities depend on industrial-chemical release triage, decon throughput, or sheltering decisions.
+- Add `packet_id=DPL-CIVILIAN-SENSOR-RUMOR-CONTROL-001` and `packet_id=DPL-TIC-EXPOSURE-DECON-TRIAGE-001` for branches that materially alter warning release, civil movement control, or contaminated-population support posture.

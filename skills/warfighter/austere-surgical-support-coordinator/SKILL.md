@@ -161,3 +161,8 @@ Use these tool categories as the default stack for this skill: patient regulatio
 - Add `tool_suite_id=ts-joint-austere-pediatric-behavioral-health-guardian-reunification-v1` + `protocol_stack_id=ps-joint-austere-pediatric-behavioral-health-guardian-reunification-stack-v1` when pediatric trauma, behavioral distress, or guardian verification materially changes surgical triage and transport release.
 - Add `tool_suite_id=ts-joint-robotic-casualty-extraction-human-override-safety-v1` + `protocol_stack_id=ps-joint-robotic-casualty-extraction-human-override-safety-stack-v1` when austere surgical timelines depend on autonomous casualty movement, override timing, or protected medic handoff.
 - Add `packet_id=DPL-PEDIATRIC-BEHAVIORAL-GUARDIAN-001` and `packet_id=DPL-ROBOTIC-CASUALTY-EXTRACTION-001` for recommendations that materially alter pediatric triage, extraction release, or protected-care prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1` + `protocol_stack_id=ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1` when surgical triage depends on industrial contamination, decon throughput, or contaminated patient movement.
+- Add `packet_id=DPL-TIC-EXPOSURE-DECON-TRIAGE-001` for branches that materially alter contaminated casualty routing, protected-care sequencing, or no-go medical posture.

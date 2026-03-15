@@ -1332,3 +1332,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent quality-assurance witness and alternate flight-control maintenance board
 - Protocol binding: signed maintenance manifests + AIXM/FIXM + OPC UA + API/JSON + USMTF
 - Fallback path: no-fly or reduced-maneuver posture only with manual sampling and component isolation
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LIX)
+
+### `TC-ADVISOR-154`
+
+- Domain: coalition partner force insider threat and advisor protection
+- Primary systems: partner vetting ledger, advisor movement protection board, behavioral indicator monitor
+- Cross-check systems: independent counterintelligence review cell and alternate liaison watchboard
+- Protocol binding: NIEM + USMTF + STIX/TAXII + S/MIME + API/JSON + CoT
+- Fallback path: essential engagements only with dual-review screening and hardened escort posture
+
+### `TC-RUMOR-155`
+
+- Domain: joint civilian sensor report veracity and rumor control
+- Primary systems: crowdsourced incident fusion board, media authenticity verifier, civil warning rumor tracker
+- Cross-check systems: independent public-affairs review cell and alternate civil affairs reporting board
+- Protocol binding: CAP + NIEM + OGC + STIX/TAXII + API/JSON + S/MIME
+- Fallback path: command-approved warnings only after manual corroboration and delayed release
+
+### `TC-DEICING-156`
+
+- Domain: expeditionary cold weather aircraft deicing and sortie recovery
+- Primary systems: deicing fluid inventory ledger, holdover-time calculator, sortie recovery board
+- Cross-check systems: independent weather shop and alternate maintenance control desk
+- Protocol binding: METAR/TAF + AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: mission-essential sorties only with manual holdover tracking and widened safety margins
+
+### `TC-HARBOR-157`
+
+- Domain: coalition harbor mine countermeasure and merchant reroute
+- Primary systems: harbor MCM board, merchant traffic planner, port status ledger
+- Cross-check systems: independent hydrographic survey cell and alternate pilotage risk board
+- Protocol binding: AIS/NMEA + OGC + API/JSON + USMTF + NATO APP-11/ADatP-3
+- Fallback path: channel closed by default with mission-essential movement only and manual survey correlation
+
+### `TC-LAUNCH-158`
+
+- Domain: joint space launch abort recovery and range evacuation
+- Primary systems: range safety board, debris footprint predictor, search-and-rescue dispatch planner
+- Cross-check systems: independent telemetry integrity monitor and alternate civil warning desk
+- Protocol binding: CCSDS + AIXM/FIXM + CAP + OGC + API/JSON + USMTF
+- Fallback path: life-safety-first evacuation and recovery only with conservative danger footprints
+
+### `TC-SIGNKEY-159`
+
+- Domain: theater software signing key loss and emergency reconstitution
+- Primary systems: HSM or PKI status ledger, revocation propagation tracker, trusted build release board
+- Cross-check systems: independent cyber response cell and alternate mission-software rollback board
+- Protocol binding: X.509 + OCSP/CRL + signed artifact manifests + API/JSON + STIX/TAXII + USMTF
+- Fallback path: freeze non-essential releases and allow only preapproved binaries under dual control
+
+### `TC-EMITTER-160`
+
+- Domain: joint friendly emitter impostor and rebroadcast detection
+- Primary systems: emitter fingerprint fusion service, RF geolocation board, blue-force emission library
+- Cross-check systems: independent SIGINT review cell and alternate air-defense correlation board
+- Protocol binding: Link 16 J-series + VMF + CoT + API/JSON + SIGINT metadata manifests + USMTF
+- Fallback path: authenticated challenge-and-response only with human confirmation before posture changes
+
+### `TC-RIVERINE-161`
+
+- Domain: strategic small craft outboard and riverine mobility surge
+- Primary systems: small-craft inventory ledger, boatyard capacity tracker, outboard spare-parts board
+- Cross-check systems: independent transportation command readiness desk and alternate depot audit board
+- Protocol binding: NIEM + signed serial manifests + API/JSON + USMTF + AIS/NMEA
+- Fallback path: mission-essential craft allocation only with manual serial tracking and repair triage
+
+### `TC-TIC-162`
+
+- Domain: joint toxic industrial chemical exposure and decon triage
+- Primary systems: toxicology triage board, plume model, decon throughput tracker
+- Cross-check systems: independent preventive-medicine cell and alternate CBRN hazard board
+- Protocol binding: HL7/FHIR + OGC + CAP + NIEM + API/JSON + USMTF
+- Fallback path: life-safety-first triage only with manual zoning and delayed return-to-duty decisions
+
+### `TC-LIABILITY-163`
+
+- Domain: coalition host nation force protection claims and liability
+- Primary systems: force-protection incident ledger, host-nation claims tracker, status-of-forces legal board
+- Cross-check systems: independent judge-advocate review cell and alternate civil-affairs restitution board
+- Protocol binding: NIEM + NATO APP-11/ADatP-3 + signed claims manifests + API/JSON + USMTF + S/MIME
+- Fallback path: advisory-only legal framing with no concession language and manual senior review

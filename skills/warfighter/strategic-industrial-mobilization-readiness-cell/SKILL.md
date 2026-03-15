@@ -214,3 +214,8 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 
 - Add `tool_suite_id=ts-strategic-eo-sensor-focal-plane-cryocooler-priority-v1` + `protocol_stack_id=ps-strategic-eo-sensor-focal-plane-cryocooler-priority-stack-v1` when mobilization readiness depends on detector-array pedigree, cryocooler throughput, or EO sensor release timing across ISR and targeting portfolios.
 - Add `packet_id=DPL-EO-SENSOR-FOCAL-PLANE-CRYOCOOLER-001` for recommendations that materially alter electro-optical production priorities, ISR regeneration timing, or industrial release confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-small-craft-outboard-riverine-mobility-surge-v1` + `protocol_stack_id=ps-strategic-small-craft-outboard-riverine-mobility-surge-stack-v1` when mobilization readiness depends on riverine craft, outboard engines, or repair-part throughput for littoral and inland-waterway operations.
+- Add `packet_id=DPL-SMALL-CRAFT-RIVERINE-SURGE-001` for recommendations that materially alter riverine mobility generation, depot conversion timing, or strategic sustainment posture.

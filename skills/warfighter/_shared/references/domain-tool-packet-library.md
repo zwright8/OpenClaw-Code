@@ -13025,3 +13025,115 @@ validation_gates:
 - output_schema: hydraulic contamination isolation board, servicing release matrix, component quarantine ladder
 - protocol_profile: signed maintenance manifests + AIXM/FIXM + OPC UA + API/JSON + USMTF
 - validation_gates: contamination evidence check, isolation review, maintenance approval
+
+## Packet Addendum XLVIII (2026-03-15, Advisor Protection, Rumor Control, Cold-Weather Sortie Recovery, Harbor Reopening, Launch Abort Recovery, Signing-Key Reconstitution, Emitter Trust, Riverine Mobility, TIC Triage, and Host-Nation Liability)
+
+### packet_id: DPL-PARTNER-FORCE-INSIDER-ADVISOR-001
+- domain: coalition partner force insider threat and advisor protection
+- objective: preserve advisor access while reducing green-on-blue risk through vetted engagement, movement security, and guardian-angel adjustments.
+- primary_tools: partner vetting ledger, advisor movement protection board, behavioral indicator monitor
+- alternate_tools: manual counterpart roster and guardian-angel worksheet
+- degraded_mode: essential engagements only with dual-review screening and hardened escort posture
+- input_requirements: counterpart roster, insider indicators, movement plan, host-nation caveats, authority thresholds
+- output_schema: advisor protection matrix, counterpart reliability watchboard, green-on-blue prevention branch plan
+- protocol_profile: NIEM + USMTF + STIX/TAXII + S/MIME + API/JSON + CoT
+- validation_gates: vetting confidence check, movement approval, command acknowledgment
+
+### packet_id: DPL-CIVILIAN-SENSOR-RUMOR-CONTROL-001
+- domain: joint civilian sensor report veracity and rumor control
+- objective: corroborate civilian reporting quickly enough to support trusted warnings and rumor suppression without overreacting to manipulation.
+- primary_tools: crowdsourced incident fusion board, media authenticity verifier, civil warning rumor tracker
+- alternate_tools: manual rumor log and corroboration worksheet
+- degraded_mode: command-approved warnings only after manual corroboration and delayed release
+- input_requirements: incident tips, source reliability indicators, sensor overlays, population impact, release authority
+- output_schema: rumor risk board, civilian report corroboration ladder, counter-message task tracker
+- protocol_profile: CAP + NIEM + OGC + STIX/TAXII + API/JSON + S/MIME
+- validation_gates: corroboration threshold pass, public-warning review, command approval
+
+### packet_id: DPL-COLD-WEATHER-DEICING-SORTIE-001
+- domain: expeditionary cold weather aircraft deicing and sortie recovery
+- objective: allocate deicing resources and holdover windows to recover safe sortie tempo under icing conditions.
+- primary_tools: deicing fluid inventory ledger, holdover-time calculator, sortie recovery board
+- alternate_tools: manual deicing schedule and weather board
+- degraded_mode: mission-essential sorties only with manual holdover tracking and widened safety margins
+- input_requirements: aircraft queue, fluid inventory, weather trend, runway state, sortie priorities, authority thresholds
+- output_schema: deicing allocation board, holdover window matrix, sortie reflow plan
+- protocol_profile: METAR/TAF + AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
+- validation_gates: holdover check, runway-state review, airfield approval
+
+### packet_id: DPL-HARBOR-MCM-MERCHANT-REROUTE-001
+- domain: coalition harbor mine countermeasure and merchant reroute
+- objective: reopen ports safely by sequencing clearance actions and rerouting merchant or humanitarian traffic around uncertain channels.
+- primary_tools: harbor MCM board, merchant traffic planner, port status ledger
+- alternate_tools: manual harbor status board and merchant reroute log
+- degraded_mode: channel closed by default with mission-essential movement only and manual survey correlation
+- input_requirements: suspected hazard areas, survey confidence, vessel queue, berth limits, coalition caveats, authority thresholds
+- output_schema: harbor reopening sequence, merchant reroute board, pilotage risk matrix
+- protocol_profile: AIS/NMEA + OGC + API/JSON + USMTF + NATO APP-11/ADatP-3
+- validation_gates: clearance confidence check, port-safety review, coalition acknowledgment
+
+### packet_id: DPL-LAUNCH-ABORT-RANGE-EVAC-001
+- domain: joint space launch abort recovery and range evacuation
+- objective: protect crews and the public by synchronizing abort recovery, debris prediction, rescue, and evacuation decisions.
+- primary_tools: range safety board, debris footprint predictor, search-and-rescue dispatch planner
+- alternate_tools: manual hazard board and rescue launch worksheet
+- degraded_mode: life-safety-first evacuation and recovery only with conservative danger footprints
+- input_requirements: launch phase, telemetry status, debris estimate, rescue assets, range occupancy, authority thresholds
+- output_schema: abort recovery decision ladder, range evacuation timeline, debris hazard overlay
+- protocol_profile: CCSDS + AIXM/FIXM + CAP + OGC + API/JSON + USMTF
+- validation_gates: telemetry integrity check, debris-model review, range approval
+
+### packet_id: DPL-SIGNING-KEY-LOSS-RECONSTITUTION-001
+- domain: theater software signing key loss and emergency reconstitution
+- objective: contain trust loss, propagate revocation, and restore a minimal trusted release path for mission software.
+- primary_tools: HSM or PKI status ledger, revocation propagation tracker, trusted build release board
+- alternate_tools: manual key-custody worksheet and software allowlist board
+- degraded_mode: freeze non-essential releases and allow only preapproved binaries under dual control
+- input_requirements: key status, impacted platforms, release backlog, rollback options, disconnected nodes, authority thresholds
+- output_schema: key-compromise containment matrix, signing reconstitution sequence, fallback software allowlist
+- protocol_profile: X.509 + OCSP/CRL + signed artifact manifests + API/JSON + STIX/TAXII + USMTF
+- validation_gates: compromise-scope review, revocation confirmation, release authority approval
+
+### packet_id: DPL-EMITTER-IMPOSTOR-REBROADCAST-001
+- domain: joint friendly emitter impostor and rebroadcast detection
+- objective: distinguish authentic blue-force emissions from spoofed or replayed signals before they trigger fratricide or mission drift.
+- primary_tools: emitter fingerprint fusion service, RF geolocation board, blue-force emission library
+- alternate_tools: manual correlation sheet and alternate IFF challenge board
+- degraded_mode: authenticated challenge-and-response only with human confirmation before posture changes
+- input_requirements: suspicious emitters, signal captures, friendly baseline library, mission phase, authority thresholds
+- output_schema: emitter confidence ladder, spoof-or-rebroadcast map, release-hold recommendation matrix
+- protocol_profile: Link 16 J-series + VMF + CoT + API/JSON + SIGINT metadata manifests + USMTF
+- validation_gates: identity-confidence floor, fratricide review, command approval
+
+### packet_id: DPL-SMALL-CRAFT-RIVERINE-SURGE-001
+- domain: strategic small craft outboard and riverine mobility surge
+- objective: source, repair, and allocate small-craft mobility capacity to support riverine, littoral, and disaster-response operations.
+- primary_tools: small-craft inventory ledger, boatyard capacity tracker, outboard spare-parts board
+- alternate_tools: manual boat inventory and repair queue board
+- degraded_mode: mission-essential craft allocation only with manual serial tracking and repair triage
+- input_requirements: craft demand, engine mix, depot stock, repair bottlenecks, transport limits, authority thresholds
+- output_schema: riverine mobility surge board, outboard allocation ladder, repair turnaround plan
+- protocol_profile: NIEM + signed serial manifests + API/JSON + USMTF + AIS/NMEA
+- validation_gates: serial-accountability check, maintenance-safety review, stock-release approval
+
+### packet_id: DPL-TIC-EXPOSURE-DECON-TRIAGE-001
+- domain: joint toxic industrial chemical exposure and decon triage
+- objective: route exposed personnel safely through hazard isolation, decontamination, and triage without amplifying contamination.
+- primary_tools: toxicology triage board, plume model, decon throughput tracker
+- alternate_tools: manual casualty board and contamination-zone worksheet
+- degraded_mode: life-safety-first triage only with manual zoning and delayed return-to-duty decisions
+- input_requirements: hazard source, exposed population, symptom data, decon capacity, movement options, authority thresholds
+- output_schema: exposure triage matrix, decon routing board, return-to-duty threshold table
+- protocol_profile: HL7/FHIR + OGC + CAP + NIEM + API/JSON + USMTF
+- validation_gates: hazard-confirmation check, medical review, movement approval
+
+### packet_id: DPL-HOST-NATION-FP-CLAIMS-LIABILITY-001
+- domain: coalition host nation force protection claims and liability
+- objective: frame claims, liability, and force-protection responses after incidents that affect host-nation trust and coalition access.
+- primary_tools: force-protection incident ledger, host-nation claims tracker, status-of-forces legal board
+- alternate_tools: manual incident ledger and claims-routing worksheet
+- degraded_mode: advisory-only legal framing with no concession language and manual senior review
+- input_requirements: incident summary, damage estimate, host-nation posture, access implications, governing instrument, authority thresholds
+- output_schema: liability decision matrix, claims routing board, force-protection exception log
+- protocol_profile: NIEM + NATO APP-11/ADatP-3 + signed claims manifests + API/JSON + USMTF + S/MIME
+- validation_gates: incident verification, legal review, command approval

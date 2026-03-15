@@ -177,3 +177,8 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-expeditionary-flightline-ground-support-equipment-readiness-v1` + `protocol_stack_id=ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1` when reconstitution tempo depends on AGE dispatch, cart availability, or cross-servicing across dispersed ramps.
 - Add `tool_suite_id=ts-joint-aircraft-hydraulic-contamination-servicing-v1` + `protocol_stack_id=ps-joint-aircraft-hydraulic-contamination-servicing-stack-v1` when sortie recovery depends on hydraulic contamination isolation, servicing release, or component quarantine.
 - Add `packet_id=DPL-AIRFIELD-WEATHER-OBS-SENSOR-001`, `packet_id=DPL-FLIGHTLINE-GSE-READINESS-001`, and `packet_id=DPL-AIRCRAFT-HYDRAULIC-CONTAMINATION-001` for branches that materially alter launch or recovery weather confidence, ramp throughput, or aircraft return-to-service posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-v1` + `protocol_stack_id=ps-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-stack-v1` when reconstitution tempo depends on freezing weather, deicing fluid allocation, or anti-icing holdover validity.
+- Add `packet_id=DPL-COLD-WEATHER-DEICING-SORTIE-001` for branches that materially alter sortie release, divert timing, or cold-weather recovery posture.

@@ -161,3 +161,9 @@ Primary products for this skill: stability effects plan, stakeholder engagement 
 - Add `tool_suite_id=ts-joint-austere-pediatric-behavioral-health-guardian-reunification-v1` + `protocol_stack_id=ps-joint-austere-pediatric-behavioral-health-guardian-reunification-stack-v1` when civilian stabilization depends on child-safe custody, pediatric distress triage, or guardian reunification in disrupted environments.
 - Add `tool_suite_id=ts-theater-battle-damage-contracting-vendor-vetting-payment-v1` + `protocol_stack_id=ps-theater-battle-damage-contracting-vendor-vetting-payment-stack-v1` when stability operations depend on trusted local vendors, emergency repair labor, or payment integrity after infrastructure damage.
 - Add `packet_id=DPL-CEASEFIRE-HOTLINE-ESCALATION-001`, `packet_id=DPL-PEDIATRIC-BEHAVIORAL-GUARDIAN-001`, and `packet_id=DPL-BATTLE-DAMAGE-CONTRACTING-VENDOR-001` for branches that materially alter local legitimacy, protected-custody confidence, or civil-restoration tempo.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-joint-civilian-sensor-report-veracity-rumor-control-v1` + `protocol_stack_id=ps-joint-civilian-sensor-report-veracity-rumor-control-stack-v1` when stability recommendations depend on corroborating civilian reports, suppressing harmful rumors, or preserving warning credibility.
+- Add `tool_suite_id=ts-coalition-host-nation-force-protection-claims-liability-v1` + `protocol_stack_id=ps-coalition-host-nation-force-protection-claims-liability-stack-v1` when local trust, restitution, or access depends on transparent claims and liability framing after incidents.
+- Add `packet_id=DPL-CIVILIAN-SENSOR-RUMOR-CONTROL-001` and `packet_id=DPL-HOST-NATION-FP-CLAIMS-LIABILITY-001` for branches that materially alter population trust, force-protection legitimacy, or host-nation access.

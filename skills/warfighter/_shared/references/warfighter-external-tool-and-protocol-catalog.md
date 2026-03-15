@@ -13296,3 +13296,107 @@ external_binding:
 ### `ps-joint-aircraft-hydraulic-contamination-servicing-stack-v1`
 - Protocols: signed maintenance manifests, `AIXM/FIXM`, `OPC UA`, `API/JSON`, `USMTF`.
 - Use for: contamination evidence exchange, servicing release routing, and no-fly or return-to-service acknowledgments.
+
+## Tool Suite Addendum LIX (2026-03-15, Advisor Protection, Rumor Control, Cold-Weather Sortie Recovery, Harbor Reopening, Launch Abort Recovery, Signing-Key Reconstitution, Emitter Trust, Riverine Mobility, TIC Triage, and Host-Nation Liability)
+
+### `ts-coalition-partner-force-insider-threat-advisor-protection-v1`
+- Use for: counterpart vetting, insider-risk monitoring, advisor movement protection, and guardian-angel posture decisions.
+- Primary tools: partner vetting ledger, advisor movement protection board, behavioral indicator monitor.
+- Cross-check tools: independent counterintelligence review cell and alternate liaison watchboard.
+- Typical products: advisor protection matrix, counterpart reliability watchboard, green-on-blue prevention branch plan.
+
+### `ts-joint-civilian-sensor-report-veracity-rumor-control-v1`
+- Use for: corroborating civilian reporting, identifying manipulated rumor cascades, and protecting warning credibility.
+- Primary tools: crowdsourced incident fusion board, media authenticity verifier, civil warning rumor tracker.
+- Cross-check tools: independent public-affairs review cell and alternate civil affairs reporting board.
+- Typical products: rumor risk board, civilian report corroboration ladder, counter-message task tracker.
+
+### `ts-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-v1`
+- Use for: aircraft deicing allocation, anti-icing holdover governance, and sortie reflow in freezing weather.
+- Primary tools: deicing fluid inventory ledger, holdover-time calculator, sortie recovery board.
+- Cross-check tools: independent weather shop and alternate maintenance control desk.
+- Typical products: deicing allocation board, holdover window matrix, sortie reflow plan.
+
+### `ts-coalition-harbor-mcm-merchant-reroute-v1`
+- Use for: harbor mine-countermeasure sequencing, merchant rerouting, and phased port reopening across coalition actors.
+- Primary tools: harbor MCM board, merchant traffic planner, port status ledger.
+- Cross-check tools: independent hydrographic survey cell and alternate pilotage risk board.
+- Typical products: harbor reopening sequence, merchant reroute board, pilotage risk matrix.
+
+### `ts-joint-space-launch-abort-recovery-range-evacuation-v1`
+- Use for: launch-abort recovery, debris hazard prediction, range evacuation, and rescue dispatch coordination.
+- Primary tools: range safety board, debris footprint predictor, search-and-rescue dispatch planner.
+- Cross-check tools: independent telemetry integrity monitor and alternate civil warning desk.
+- Typical products: abort recovery decision ladder, range evacuation timeline, debris hazard overlay.
+
+### `ts-theater-software-signing-key-loss-emergency-reconstitution-v1`
+- Use for: software-signing key compromise containment, revocation propagation, and trusted release reconstitution.
+- Primary tools: HSM or PKI status ledger, revocation propagation tracker, trusted build release board.
+- Cross-check tools: independent cyber response cell and alternate mission-software rollback board.
+- Typical products: key-compromise containment matrix, signing reconstitution sequence, fallback software allowlist.
+
+### `ts-joint-friendly-emitter-impostor-rebroadcast-detection-v1`
+- Use for: spotting spoofed, replayed, or impostor friendly emitters before they distort blue-force decisions.
+- Primary tools: emitter fingerprint fusion service, RF geolocation board, blue-force emission library.
+- Cross-check tools: independent SIGINT review cell and alternate air-defense correlation board.
+- Typical products: emitter confidence ladder, spoof-or-rebroadcast map, release-hold recommendation matrix.
+
+### `ts-strategic-small-craft-outboard-riverine-mobility-surge-v1`
+- Use for: strategic sourcing, repair, and reallocation of boats, outboards, and riverine mobility spares.
+- Primary tools: small-craft inventory ledger, boatyard capacity tracker, outboard spare-parts board.
+- Cross-check tools: independent transportation command readiness desk and alternate depot audit board.
+- Typical products: riverine mobility surge board, outboard allocation ladder, repair turnaround plan.
+
+### `ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1`
+- Use for: toxic industrial chemical exposure assessment, decontamination routing, and casualty triage.
+- Primary tools: toxicology triage board, plume model, decon throughput tracker.
+- Cross-check tools: independent preventive-medicine cell and alternate CBRN hazard board.
+- Typical products: exposure triage matrix, decon routing board, return-to-duty threshold table.
+
+### `ts-coalition-host-nation-force-protection-claims-liability-v1`
+- Use for: host-nation incident reconciliation, claims routing, and liability decisions tied to coalition force protection.
+- Primary tools: force-protection incident ledger, host-nation claims tracker, status-of-forces legal board.
+- Cross-check tools: independent judge-advocate review cell and alternate civil-affairs restitution board.
+- Typical products: liability decision matrix, claims routing board, force-protection exception log.
+
+## Protocol Stack Addendum LIX (2026-03-15, External Integration Profiles for Expansion Wave LIX)
+
+### `ps-coalition-partner-force-insider-threat-advisor-protection-stack-v1`
+- Protocols: `NIEM`, `USMTF`, `STIX/TAXII`, `S/MIME`, `API/JSON`, `CoT`.
+- Use for: insider-risk reporting, advisor movement protection updates, and counterpart trust acknowledgments.
+
+### `ps-joint-civilian-sensor-report-veracity-rumor-control-stack-v1`
+- Protocols: `CAP`, `NIEM`, `OGC`, `STIX/TAXII`, `API/JSON`, `S/MIME`.
+- Use for: civilian incident corroboration, warning-message validation, and rumor-response synchronization.
+
+### `ps-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-stack-v1`
+- Protocols: `METAR/TAF`, `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: holdover-time exchange, deicing resource status, and sortie release acknowledgments.
+
+### `ps-coalition-harbor-mcm-merchant-reroute-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: channel-status updates, merchant reroute coordination, and port reopening acknowledgments.
+
+### `ps-joint-space-launch-abort-recovery-range-evacuation-stack-v1`
+- Protocols: `CCSDS`, `AIXM/FIXM`, `CAP`, `OGC`, `API/JSON`, `USMTF`.
+- Use for: abort telemetry exchange, debris-footprint dissemination, evacuation messaging, and rescue tasking.
+
+### `ps-theater-software-signing-key-loss-emergency-reconstitution-stack-v1`
+- Protocols: `X.509`, `OCSP/CRL`, signed artifact manifests, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: revocation propagation, trust-state exchange, emergency resigning coordination, and rollback-safe release routing.
+
+### `ps-joint-friendly-emitter-impostor-rebroadcast-detection-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`, SIGINT metadata manifests, `USMTF`.
+- Use for: emitter-identity correlation, spoof or replay warnings, and positive-control acknowledgments.
+
+### `ps-strategic-small-craft-outboard-riverine-mobility-surge-stack-v1`
+- Protocols: `NIEM`, signed serial manifests, `API/JSON`, `USMTF`, `AIS/NMEA`.
+- Use for: serial-accountability exchange, repair routing, stock release, and theater reallocation decisions.
+
+### `ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1`
+- Protocols: `HL7/FHIR`, `OGC`, `CAP`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: hazard dissemination, casualty triage exchange, decon routing, and movement-control coordination.
+
+### `ps-coalition-host-nation-force-protection-claims-liability-stack-v1`
+- Protocols: `NIEM`, NATO APP-11/ADatP-3 aligned exchange, signed claims manifests, `API/JSON`, `USMTF`, `S/MIME`.
+- Use for: incident reporting, claims routing, liability coordination, and access-control acknowledgments.

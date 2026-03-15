@@ -2710,3 +2710,75 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-logistics-distribution-v1`.
 - Protocols: signed maintenance manifests, `AIXM/FIXM`, `OPC UA`, `API/JSON`, `USMTF`.
 - Degraded fallback: no-fly or reduced-maneuver posture only with manual sampling and component isolation.
+
+## Profile Addendum AC (2026-03-15, Advisor Protection, Rumor Control, Cold-Weather Sortie Recovery, Harbor Reopening, Launch Abort Recovery, Signing-Key Reconstitution, Emitter Trust, Riverine Mobility, TIC Triage, and Host-Nation Liability)
+
+### `coalition-partner-force-insider-advisor-protection-v1`
+- Use for: advisor-mission decisions when partner-force access depends on insider-risk screening, movement security, and counterpart trust.
+- Primary tools: `ts-coalition-partner-force-insider-threat-advisor-protection-v1`.
+- Cross-check tools: `ts-intel-fusion-v1`.
+- Protocols: `NIEM`, `USMTF`, `STIX/TAXII`, `S/MIME`, `API/JSON`, `CoT`.
+- Degraded fallback: essential engagements only with dual-review screening and hardened escort posture.
+
+### `civilian-sensor-rumor-control-v1`
+- Use for: civil-protection and legitimacy decisions when crowdsourced reports, public warnings, or rumor spikes could distort operations.
+- Primary tools: `ts-joint-civilian-sensor-report-veracity-rumor-control-v1`.
+- Cross-check tools: `ts-disinformation-counter-v1`.
+- Protocols: `CAP`, `NIEM`, `OGC`, `STIX/TAXII`, `API/JSON`, `S/MIME`.
+- Degraded fallback: command-approved warnings only after manual corroboration and delayed release.
+
+### `cold-weather-deicing-sortie-recovery-v1`
+- Use for: airbase launch and recovery decisions when freezing weather, fluid scarcity, or holdover limits threaten sortie generation.
+- Primary tools: `ts-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `METAR/TAF`, `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential sorties only with manual holdover tracking and widened safety margins.
+
+### `harbor-mcm-merchant-reroute-v1`
+- Use for: maritime access decisions when ports face mine threat, uncertain channels, or urgent merchant rerouting.
+- Primary tools: `ts-coalition-harbor-mcm-merchant-reroute-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: channel closed by default with mission-essential movement only and manual survey correlation.
+
+### `launch-abort-range-evacuation-v1`
+- Use for: launch and range-safety decisions when abort modes, debris hazards, or rescue timelines could shift life-safety posture.
+- Primary tools: `ts-joint-space-launch-abort-recovery-range-evacuation-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `CCSDS`, `AIXM/FIXM`, `CAP`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety-first evacuation and recovery only with conservative danger footprints.
+
+### `signing-key-loss-emergency-reconstitution-v1`
+- Use for: mission-software continuity decisions when signing-key compromise or loss threatens trusted updates and rollback-safe recovery.
+- Primary tools: `ts-theater-software-signing-key-loss-emergency-reconstitution-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: `X.509`, `OCSP/CRL`, signed artifact manifests, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: freeze non-essential releases and allow only preapproved binaries under dual control.
+
+### `emitter-impostor-rebroadcast-detection-v1`
+- Use for: air-defense and EW decisions when spoofed or replayed friendly emitters could trigger fratricide or route-control errors.
+- Primary tools: `ts-joint-friendly-emitter-impostor-rebroadcast-detection-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`, SIGINT metadata manifests, `USMTF`.
+- Degraded fallback: authenticated challenge-and-response only with human confirmation before posture changes.
+
+### `small-craft-riverine-mobility-surge-v1`
+- Use for: sustainment and riverine-mobility decisions when boats, outboards, and repair flow become strategic bottlenecks.
+- Primary tools: `ts-strategic-small-craft-outboard-riverine-mobility-surge-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `NIEM`, signed serial manifests, `API/JSON`, `USMTF`, `AIS/NMEA`.
+- Degraded fallback: mission-essential craft allocation only with manual serial tracking and repair triage.
+
+### `toxic-industrial-chemical-decon-triage-v1`
+- Use for: force-health and movement decisions when toxic industrial releases create combined medical, decon, and operational hazards.
+- Primary tools: `ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `OGC`, `CAP`, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety-first triage only with manual zoning and delayed return-to-duty decisions.
+
+### `host-nation-force-protection-claims-liability-v1`
+- Use for: coalition access and legitimacy decisions when incidents drive claims, liability, or force-protection renegotiation with host nations.
+- Primary tools: `ts-coalition-host-nation-force-protection-claims-liability-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIEM`, NATO APP-11/ADatP-3 aligned exchange, signed claims manifests, `API/JSON`, `USMTF`, `S/MIME`.
+- Degraded fallback: advisory-only legal framing with no concession language and manual senior review.

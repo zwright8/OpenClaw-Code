@@ -322,3 +322,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-joint-orbital-warfare-effects-deconfliction-v1` + `protocol_stack_id=ps-joint-orbital-warfare-effects-deconfliction-stack-v1` when partner interoperability depends on shared protected-service continuity, conjunction confidence, or escalation-safe orbital coordination.
 - Add `tool_suite_id=ts-joint-expeditionary-advanced-base-signature-management-v1` + `protocol_stack_id=ps-joint-expeditionary-advanced-base-signature-management-stack-v1` when coalition littoral posture depends on releasable signature budgets, displacement timing, or austere support choreography.
 - Add `packet_id=DPL-JUDGE-ADVOCATE-OPLAW-001`, `packet_id=DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001`, `packet_id=DPL-ORBITAL-WARFARE-DECONFLICTION-001`, and `packet_id=DPL-EABO-SIGNATURE-MANAGEMENT-001` for branches that materially change coalition access, releasability, or combined-force continuity decisions.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-coalition-partner-force-insider-threat-advisor-protection-v1` + `protocol_stack_id=ps-coalition-partner-force-insider-threat-advisor-protection-stack-v1` when coalition interoperability depends on trusted counterpart vetting, advisor movement protection, or shared insider-risk acknowledgment.
+- Add `tool_suite_id=ts-coalition-host-nation-force-protection-claims-liability-v1` + `protocol_stack_id=ps-coalition-host-nation-force-protection-claims-liability-stack-v1` when coalition access, burden-sharing, or host-nation legitimacy depends on claims and liability transparency after incidents.
+- Add `packet_id=DPL-PARTNER-FORCE-INSIDER-ADVISOR-001` and `packet_id=DPL-HOST-NATION-FP-CLAIMS-LIABILITY-001` for branches that materially alter coalition release confidence, host-nation trust, or advisor mission continuity.
