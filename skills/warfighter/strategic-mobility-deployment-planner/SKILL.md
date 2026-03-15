@@ -163,3 +163,9 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when strategic mobility depends on allied civil tails, host-nation ramp slots, or diplomatic-clearance speed.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when armored deployment posture depends on track-pad, roadwheel, or final-drive readiness before onward movement.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter strategic lift timing, access confidence, or deployment posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when strategic mobility depends on rapid port shutdown, alternate offload planning, or phased sealift regeneration after tsunami damage.
+- Add `tool_suite_id=ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1` + `protocol_stack_id=ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1` when onward movement depends on safe coalition rail dispatch after signaling failure or manual-block reversion.
+- Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-RAIL-SIGNALING-MANUAL-BLOCK-001` for recommendations that materially alter port selection, inland routing, or deployment timing.

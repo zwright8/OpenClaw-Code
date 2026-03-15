@@ -2528,3 +2528,25 @@ Every skill output should include:
 - Airbase dispersal and rapid reconstitution + aircraft crash fire rescue and foam transition + base fuel hydrant recovery + runway crater repair orchestration.
 - Training and rehearsal designer + live-fire range safety and autonomous target control + tactical airspace control and deconfliction + mission risk decision support.
 - Psychological health postvention + religious affairs and moral injury support + SAPR restricted reporting and unit safety + deployed postal ballot and family contact continuity.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LII)
+
+- joint-directed-energy-engagement-airspace-and-reflection-safety-cell
+- joint-aerial-refueling-fuel-contamination-isolation-and-reconstitution-cell
+- homeland-tsunami-port-closure-and-sealift-regeneration-cell
+- coalition-host-nation-rail-signaling-manual-block-reversion-cell
+- joint-austere-hemodialysis-water-and-power-assurance-cell
+- strategic-electro-optical-sensor-focal-plane-and-cryocooler-priority-cell
+- homeland-civilian-shelter-radiation-dosimetry-and-resupply-cell
+- theater-software-defined-radio-waveform-key-and-hopset-emergency-reconstitution-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LII)
+
+- Joint directed-energy engagement airspace and reflection safety + air-tasking cycle support + electromagnetic battle management + joint directed-energy blue-force exposure governance.
+- Joint aerial refueling fuel contamination isolation and reconstitution + joint aerial refueling boom drogue surge reconstitution + air-tasking cycle support + strategic mobility deployment planner.
+- Homeland tsunami port closure and sealift regeneration + strategic sealift and prepositioning coordinator + defense support of civil authorities crisis cell + contested logistics sustainment.
+- Coalition host-nation rail signaling manual-block reversion + movement control convoy rail planner + strategic mobility deployment planner + coalition interoperability coordinator.
+- Joint austere hemodialysis water and power assurance + joint role 3 medical network and aeromedical evac cell + austere surgical support coordinator + preventive medicine and force health protection.
+- Strategic electro-optical sensor focal-plane and cryocooler priority + strategic industrial mobilization readiness cell + supply chain risk and industrial base monitor + space domain awareness and satcom defense.
+- Homeland civilian shelter radiation dosimetry and resupply + defense support of civil authorities crisis cell + civil defense mass evacuation shelter cell + CBRN response planner.
+- Theater software-defined radio waveform key and hopset emergency reconstitution + CEMA integration cell + theater mission network failover cell + tactical zero-trust network hardening.

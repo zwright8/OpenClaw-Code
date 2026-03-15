@@ -144,3 +144,8 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-theater-sdr-waveform-key-hopset-emergency-reconstitution-v1` + `protocol_stack_id=ps-theater-sdr-waveform-key-hopset-emergency-reconstitution-stack-v1` when CEMA synchronization depends on rapid rekey, hopset regeneration, or trusted waveform restoration after compromise.
+- Add `tool_suite_id=ts-joint-directed-energy-airspace-reflection-safety-v1` + `protocol_stack_id=ps-joint-directed-energy-airspace-reflection-safety-stack-v1` when electromagnetic or directed-energy branches depend on beam safety, airspace release, or reflective-surface hazard control.
+- Add `packet_id=DPL-SDR-WAVEFORM-KEY-HOPSET-001` and `packet_id=DPL-DIRECTED-ENERGY-AIRSPACE-REFLECTION-SAFETY-001` for branches that materially alter spectrum posture, beam release, or tactical-network trust.

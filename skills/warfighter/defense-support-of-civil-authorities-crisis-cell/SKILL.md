@@ -148,3 +148,9 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 
 - Add `tool_suite_id=ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1` + `protocol_stack_id=ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1` when DSCA recommendations depend on trusted warning release, PSAP continuity, or mass-notification authenticity under telecom stress.
 - Add `packet_id=DPL-HOMELAND-911-CELL-BROADCAST-AUTHENTICATION-MASS-NOTIFICATION-CONTINUITY-001` for branches that materially alter public-warning posture, alert release timing, or 911 mutual-aid requests.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when DSCA support must coordinate port shutdown, harbor safety, or alternate sealift throughput after tsunami warning or surge damage.
+- Add `tool_suite_id=ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1` + `protocol_stack_id=ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1` when DSCA decisions depend on shelter survivability, radiological dose tracking, or life-support resupply timing.
+- Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001` for branches that materially alter public-protection posture, convoy release timing, or civil-support prioritization.

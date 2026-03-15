@@ -12362,3 +12362,93 @@ validation_gates:
 - output_schema: dignified-transfer timeline, family escort support matrix, funeral honors execution board
 - protocol_profile: HL7/FHIR + NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - validation_gates: casualty-accountability confirmation, custody verification, command approval
+
+## Packet Addendum XLI (2026-03-15, Directed-Energy Safety, Sealift Recovery, Rail Reversion, Austere Renal Support, EO Sensor Allocation, Shelter Survival, and Waveform Reconstitution)
+
+### packet_id: DPL-DIRECTED-ENERGY-AIRSPACE-REFLECTION-SAFETY-001
+- domain: joint directed-energy engagement airspace and reflection safety
+- objective: prevent unsafe beam release by verifying airspace, reflection geometry, and blue-force exposure before directed-energy employment.
+- primary_tools: beam-control safety board, reflection-hazard modeler, airspace deconfliction workbench
+- alternate_tools: manual beam-clearance board and range-safety worksheet
+- degraded_mode: observe-only or no-fire posture until beam path and exposure checks are manually confirmed
+- input_requirements: beam geometry, target track, reflective-surface map, airspace status, blue-force positions, authority thresholds
+- output_schema: beam-release matrix, reflection-risk map, safety hold list
+- protocol_profile: AIXM/FIXM + Link 16 J-series + VMF + CoT + API/JSON + USMTF
+- validation_gates: beam-clear pass, airspace deconfliction, command approval
+
+### packet_id: DPL-AERIAL-REFUEL-FUEL-CONTAMINATION-001
+- domain: joint aerial refueling fuel contamination isolation and reconstitution
+- objective: isolate contaminated fuel, recover tanker hardware, and restore safe receiver-priority refuel capacity fast enough to preserve sortie timing.
+- primary_tools: fuel-quality ledger, tanker boom or drogue maintenance tracker, receiver-priority refuel scheduler
+- alternate_tools: manual fuel-sample log and tanker-release worksheet
+- degraded_mode: mission-essential refuel only with dual-source fuel confirmation and narrowed receiver release
+- input_requirements: fuel sample status, tanker availability, boom or drogue health, receiver demand, sortie deadlines, authority thresholds
+- output_schema: fuel-isolation ladder, reconstitution timeline, receiver-priority queue
+- protocol_profile: signed fuel manifests + AIXM/FIXM + API/JSON + USMTF
+- validation_gates: contamination confirmation, tanker release check, command approval
+
+### packet_id: DPL-TSUNAMI-PORT-SEALIFT-REGEN-001
+- domain: homeland tsunami port closure and sealift regeneration
+- objective: shut down unsafe port functions, preserve surviving throughput, and regenerate sealift flow without losing accountability or exposing crews to surge hazard.
+- primary_tools: port-surge digital twin, berth-damage and channel survey board, sealift regeneration scheduler
+- alternate_tools: manual harbor closure board and inland transload worksheet
+- degraded_mode: one protected berth or cargo flow at a time with manual harbor-master and command approval
+- input_requirements: tsunami warning timeline, berth status, channel surveys, vessel queue, cargo priorities, safety thresholds
+- output_schema: port-closure timeline, sealift regeneration ladder, alternate-throughput branch plan
+- protocol_profile: AIS/NMEA + OGC + EDXL-DE/CAP + API/JSON + USMTF
+- validation_gates: surge warning confirmation, berth safety verification, command approval
+
+### packet_id: DPL-RAIL-SIGNALING-MANUAL-BLOCK-001
+- domain: coalition host-nation rail signaling manual-block reversion
+- objective: preserve safe military-priority rail movement when automated signaling is degraded and block authority must revert to manual control.
+- primary_tools: signaling integrity board, dispatch reversion planner, coalition force-flow priority ledger
+- alternate_tools: manual train sheet and block-station readback log
+- degraded_mode: low-tempo manual dispatch only with dual readback and coalition command concurrence
+- input_requirements: signaling outage map, train positions, cargo priorities, crew availability, host-nation authorities, coalition caveats
+- output_schema: manual-block release matrix, rail-priority ladder, restoration branch plan
+- protocol_profile: EDI + NIEM + OPC UA + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: block authority confirmation, collision-separation check, coalition approval
+
+### packet_id: DPL-AUSTERE-HEMODIALYSIS-WATER-POWER-001
+- domain: joint austere hemodialysis water and power assurance
+- objective: sustain renal-support capacity by keeping dialysate water quality, machine readiness, and electrical load inside safe margins.
+- primary_tools: dialysis machine readiness board, water-purity monitor, renal-triage and transfer queue
+- alternate_tools: manual machine log and paper renal triage board
+- degraded_mode: emergency dialysis only with medical-command review and shortened reassessment cycle
+- input_requirements: patient renal demand, machine status, water-quality readings, generator load, evacuation options, authority thresholds
+- output_schema: dialysis continuity matrix, water or power risk ledger, renal-transfer priority plan
+- protocol_profile: HL7/FHIR + signed water-quality manifests + OPC UA + API/JSON + USMTF
+- validation_gates: water-quality pass, machine readiness check, medical approval
+
+### packet_id: DPL-EO-SENSOR-FOCAL-PLANE-CRYOCOOLER-001
+- domain: strategic electro-optical sensor focal-plane and cryocooler priority
+- objective: allocate scarce detector and cryocooler capacity to the missions that restore the most ISR and targeting value fastest.
+- primary_tools: focal-plane inventory ledger, cryocooler test scheduler, sensor mission-allocation board
+- alternate_tools: manual lot-allocation board and detector-yield worksheet
+- degraded_mode: mission-essential sensor lines only with narrowed release authority and manual pedigree confirmation
+- input_requirements: detector inventory, cryocooler throughput, repair backlog, mission demand, pedigree status, authority thresholds
+- output_schema: sensor-allocation ladder, cryocooler bottleneck board, release-priority queue
+- protocol_profile: signed lot manifests + CCSDS + API/JSON + USMTF
+- validation_gates: pedigree confirmation, throughput check, industrial release approval
+
+### packet_id: DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001
+- domain: homeland civilian shelter radiation dosimetry and resupply
+- objective: track shelter dose accumulation and route life-support resupply before survivability margins collapse.
+- primary_tools: shelter occupancy board, dosimetry ledger, resupply priority queue
+- alternate_tools: manual dose log and convoy resupply worksheet
+- degraded_mode: life-safety-first sheltering with manual dose logs and convoy-by-convoy resupply approval
+- input_requirements: shelter population, dosimetry readings, supply burn rates, route status, medical concerns, authority thresholds
+- output_schema: shelter-dose dashboard, resupply ladder, relocation trigger matrix
+- protocol_profile: NIMS/ICS + EDXL-DE/CAP + NIEM + API/JSON + USMTF
+- validation_gates: dose-threshold confirmation, route verification, command approval
+
+### packet_id: DPL-SDR-WAVEFORM-KEY-HOPSET-001
+- domain: theater software-defined radio waveform key and hopset emergency reconstitution
+- objective: restore trusted tactical-radio networking after compromise, loss, or expiration of waveform keys and hopsets.
+- primary_tools: waveform-key custody board, hopset generation and distribution service, spectrum trust monitor
+- alternate_tools: manual COMSEC ledger and network-control rekey worksheet
+- degraded_mode: narrowband authenticated voice only with manual COMSEC accounting and shortened rekey cycle
+- input_requirements: compromised fills, radio fleet status, hopset validity windows, spectrum threat cues, authority thresholds
+- output_schema: waveform rekey plan, hopset restoration ledger, degraded-network branch package
+- protocol_profile: signed key manifests + Link 16 J-series + VMF + STIX/TAXII + API/JSON + USMTF
+- validation_gates: key-accountability check, hopset-distribution confirmation, command approval

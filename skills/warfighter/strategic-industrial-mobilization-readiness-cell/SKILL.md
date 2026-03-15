@@ -209,3 +209,8 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when industrial prioritization must preserve strategic ground-station hardware that supports SATCOM, SDA, or missile-warning continuity.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when mobilization output must shift toward track pads, roadwheels, or final drives to protect armored maneuver readiness.
 - Add `packet_id=DPL-TURBINE-SUPERALLOY-TBC-001`, `packet_id=DPL-SPACE-GROUND-STATION-TWT-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter industrial surge posture, strategic hardware allocation, or land-force readiness.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-strategic-eo-sensor-focal-plane-cryocooler-priority-v1` + `protocol_stack_id=ps-strategic-eo-sensor-focal-plane-cryocooler-priority-stack-v1` when mobilization readiness depends on detector-array pedigree, cryocooler throughput, or EO sensor release timing across ISR and targeting portfolios.
+- Add `packet_id=DPL-EO-SENSOR-FOCAL-PLANE-CRYOCOOLER-001` for recommendations that materially alter electro-optical production priorities, ISR regeneration timing, or industrial release confidence.

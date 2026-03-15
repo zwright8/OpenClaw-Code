@@ -928,3 +928,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent casualty assistance officer queue and alternate mortuary affairs coordination cell
 - Protocol binding: HL7/FHIR + NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - Fallback path: essential custody and family-contact continuity only with manual honors coordination and protected identity handling
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LII)
+
+### `TC-DE-SAFE-110`
+
+- Domain: joint directed-energy engagement airspace and reflection safety
+- Primary systems: beam-control safety board, reflection-hazard modeler, airspace deconfliction workbench
+- Cross-check systems: independent blue-force exposure board and alternate atmospheric attenuation monitor
+- Protocol binding: AIXM/FIXM + Link 16 J-series + VMF + CoT + API/JSON + USMTF
+- Fallback path: observe-only or no-fire posture until beam path and exposure checks are manually confirmed
+
+### `TC-REFUEL-CONTAM-111`
+
+- Domain: joint aerial refueling fuel contamination isolation and reconstitution
+- Primary systems: fuel-quality ledger, tanker boom or drogue maintenance tracker, receiver-priority refuel scheduler
+- Cross-check systems: independent sample-chain witness and alternate tanker configuration board
+- Protocol binding: signed fuel manifests + AIXM/FIXM + API/JSON + USMTF
+- Fallback path: mission-essential refuel only with dual-source fuel confirmation and narrowed receiver release
+
+### `TC-TSUNAMI-PORT-112`
+
+- Domain: homeland tsunami port closure and sealift regeneration
+- Primary systems: port-surge digital twin, berth-damage and channel survey board, sealift regeneration scheduler
+- Cross-check systems: independent tide or hydrographic witness and alternate inland transload board
+- Protocol binding: AIS/NMEA + OGC + EDXL-DE/CAP + API/JSON + USMTF
+- Fallback path: one protected berth or cargo flow at a time with manual harbor-master and command approval
+
+### `TC-RAIL-BLOCK-113`
+
+- Domain: coalition host-nation rail signaling manual-block reversion
+- Primary systems: signaling integrity board, dispatch reversion planner, coalition force-flow priority ledger
+- Cross-check systems: independent block-station readback log and alternate wayside inspection board
+- Protocol binding: EDI + NIEM + OPC UA + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: low-tempo manual dispatch only with dual readback and coalition command concurrence
+
+### `TC-HEMO-114`
+
+- Domain: joint austere hemodialysis water and power assurance
+- Primary systems: dialysis machine readiness board, water-purity monitor, renal-triage and transfer queue
+- Cross-check systems: independent sample-chain lab witness and alternate generator-load board
+- Protocol binding: HL7/FHIR + signed water-quality manifests + OPC UA + API/JSON + USMTF
+- Fallback path: emergency dialysis only with medical-command review and shortened reassessment cycle
+
+### `TC-EO-CRYO-115`
+
+- Domain: strategic electro-optical sensor focal-plane and cryocooler priority
+- Primary systems: focal-plane inventory ledger, cryocooler test scheduler, sensor mission-allocation board
+- Cross-check systems: independent detector-yield witness and alternate ISR repair queue
+- Protocol binding: signed lot manifests + CCSDS + API/JSON + USMTF
+- Fallback path: mission-essential sensor lines only with manual pedigree confirmation and narrowed release authority
+
+### `TC-SHELTER-RAD-116`
+
+- Domain: homeland civilian shelter radiation dosimetry and resupply
+- Primary systems: shelter occupancy board, dosimetry ledger, resupply priority queue
+- Cross-check systems: independent public-health witness and alternate route-clearance board
+- Protocol binding: NIMS/ICS + EDXL-DE/CAP + NIEM + API/JSON + USMTF
+- Fallback path: life-safety-first sheltering with manual dose logs and convoy-by-convoy resupply approval
+
+### `TC-SDR-117`
+
+- Domain: theater software-defined radio waveform key and hopset emergency reconstitution
+- Primary systems: waveform-key custody board, hopset generation and distribution service, spectrum trust monitor
+- Cross-check systems: independent crypto-fill audit log and alternate network-control station board
+- Protocol binding: signed key manifests + Link 16 J-series + VMF + STIX/TAXII + API/JSON + USMTF
+- Fallback path: narrowband authenticated voice only with manual COMSEC accounting and shortened rekey cycle

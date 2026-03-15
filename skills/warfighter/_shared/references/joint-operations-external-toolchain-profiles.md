@@ -2320,3 +2320,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-multi-theater-casualty-family-notification-integrity-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Degraded fallback: essential custody and family-contact continuity only with manual honors coordination and protected identity handling.
+
+## Profile Addendum W (2026-03-15, Directed Energy, Refueling Integrity, Mobility Reversion, Renal Continuity, EO Sensor Allocation, Shelter Survival, and Waveform Recovery)
+
+### `directed-energy-airspace-reflection-safety-v1`
+- Use for: engagement decisions when directed-energy beam geometry, reflective surfaces, or aviation deconfliction can invalidate release confidence.
+- Primary tools: `ts-joint-directed-energy-airspace-reflection-safety-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `AIXM/FIXM`, `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`, `USMTF`.
+- Degraded fallback: no-fire or observe-only posture until beam path, exposure, and airspace conflicts are manually cleared.
+
+### `aerial-refueling-fuel-contamination-reconstitution-v1`
+- Use for: tanker recovery and receiver-priority decisions when contaminated fuel, filter uncertainty, or hose or boom outages threaten refuel continuity.
+- Primary tools: `ts-joint-aerial-refueling-fuel-contamination-reconstitution-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed fuel manifests, `AIXM/FIXM`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential refuel only with manual fuel-chain verification and narrowed receiver release.
+
+### `tsunami-port-sealift-regeneration-v1`
+- Use for: homeland sealift and DSCA decisions when tsunami warning, berth damage, or channel closure require rapid port shutdown and regeneration sequencing.
+- Primary tools: `ts-homeland-tsunami-port-closure-sealift-regeneration-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, `EDXL-DE/CAP`, `API/JSON`, `USMTF`.
+- Degraded fallback: one protected berth or cargo flow at a time with manual harbor-master and command approval.
+
+### `coalition-rail-signaling-manual-block-reversion-v1`
+- Use for: coalition force-flow decisions when automated signaling is degraded and host-nation rail movement must revert to manual-block control under military priority.
+- Primary tools: `ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `EDI`, `NIEM`, `OPC UA`, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: low-tempo manual dispatch only with block-station readback and coalition command concurrence.
+
+### `austere-hemodialysis-water-power-v1`
+- Use for: medical continuity decisions when renal-support demand, water purity, and generator load all compete under austere conditions.
+- Primary tools: `ts-joint-austere-hemodialysis-water-power-assurance-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed water-quality manifests, `OPC UA`, `API/JSON`, `USMTF`.
+- Degraded fallback: emergency dialysis only with medical-command review and shortened reassessment cycle.
+
+### `eo-sensor-focal-plane-cryocooler-priority-v1`
+- Use for: strategic allocation decisions when electro-optical sensor recovery is paced by focal-plane arrays, detector yield, or cryocooler availability.
+- Primary tools: `ts-strategic-eo-sensor-focal-plane-cryocooler-priority-v1`.
+- Cross-check tools: `ts-strategic-supply-shock-v1`.
+- Protocols: signed lot manifests, `CCSDS`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential sensor lines only with manual pedigree confirmation and narrowed release authority.
+
+### `civilian-shelter-radiation-dosimetry-resupply-v1`
+- Use for: homeland protection decisions when shelter occupancy, accumulated dose, and life-support resupply determine population survival and military-support timing.
+- Primary tools: `ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety-first sheltering with manual dose logs and convoy-by-convoy resupply approval.
+
+### `sdr-waveform-key-hopset-reconstitution-v1`
+- Use for: C2 and tactical-network recovery when lost keys, invalid hopsets, or compromise indicators threaten resilient radio operations.
+- Primary tools: `ts-theater-sdr-waveform-key-hopset-emergency-reconstitution-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: signed key manifests, `Link 16 J-series`, `VMF`, `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Degraded fallback: narrowband authenticated voice only with manual COMSEC accounting and shortened rekey cycle.

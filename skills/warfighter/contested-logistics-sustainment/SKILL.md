@@ -274,3 +274,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 
 - Add `tool_suite_id=ts-theater-property-book-sensitive-item-recapture-v1` + `protocol_stack_id=ps-theater-property-book-sensitive-item-recapture-stack-v1` when sustainment feasibility depends on recovering or denying compromised vehicles, weapons, optics, crypto, or other accountable materiel.
 - Add `packet_id=DPL-PROPERTY-BOOK-SENSITIVE-ITEM-RECAPTURE-001` for branches that materially alter accountability confidence, reissue timing, or commander acceptance of compromise risk.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when sustainment feasibility depends on regenerating sealift throughput after tsunami-driven berth or channel loss.
+- Add `tool_suite_id=ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1` + `protocol_stack_id=ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1` when rail dispatch degradation, host-nation signaling loss, or manual-block reversion drive force-flow risk.
+- Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-RAIL-SIGNALING-MANUAL-BLOCK-001` for branches that materially alter throughput confidence, inland transload posture, or coalition movement timing.

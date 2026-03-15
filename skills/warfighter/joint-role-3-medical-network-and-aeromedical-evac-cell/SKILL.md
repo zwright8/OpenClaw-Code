@@ -118,3 +118,9 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when staging hospitals, aeromedical hubs, or treatment wards depend on safe potable-water restart before patient intake expansion.
 - Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when coalition patient movement depends on diplomatic clearances, mixed-crew civil aircraft, or host-nation ramp access.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001` for recommendations that materially change patient movement, facility release, or coalition aeromedical access posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-joint-austere-hemodialysis-water-power-assurance-v1` + `protocol_stack_id=ps-joint-austere-hemodialysis-water-power-assurance-stack-v1` when patient movement, bed release, or casualty survival depends on austere dialysis continuity under water or generator stress.
+- Add `tool_suite_id=ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1` + `protocol_stack_id=ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1` when aeromedical prioritization depends on shelter dose accumulation, vulnerable-population extraction timing, or radiological shelter collapse risk.
+- Add `packet_id=DPL-AUSTERE-HEMODIALYSIS-WATER-POWER-001` and `packet_id=DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001` for recommendations that materially change renal-support posture, casualty extraction timing, or radiological patient-flow prioritization.

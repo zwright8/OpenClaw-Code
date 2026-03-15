@@ -210,3 +210,9 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when ATO fragos, tanker retasks, or divert instructions may be stale, spoofed, or version-divergent.
 - Prioritize `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when air-tasking workflows depend on emergency remediation of mission software without breaking execution trust.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for ATO branches that alter sortie cadence, tasking authenticity, or execution-system trust.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-directed-energy-airspace-reflection-safety-v1` + `protocol_stack_id=ps-joint-directed-energy-airspace-reflection-safety-stack-v1` when beam release, air corridor safety, or specular reflections can invalidate directed-energy tasking in the ATO.
+- Prioritize `tool_suite_id=ts-joint-aerial-refueling-fuel-contamination-reconstitution-v1` + `protocol_stack_id=ps-joint-aerial-refueling-fuel-contamination-reconstitution-stack-v1` when tanker frag updates depend on fuel-chain integrity, contaminated loads, or reconstituted receiver priority.
+- Add `packet_id=DPL-DIRECTED-ENERGY-AIRSPACE-REFLECTION-SAFETY-001` and `packet_id=DPL-AERIAL-REFUEL-FUEL-CONTAMINATION-001` for ATO branches that materially alter beam release timing, tanker availability, or sortie sequencing.

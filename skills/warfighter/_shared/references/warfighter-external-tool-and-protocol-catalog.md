@@ -12678,3 +12678,87 @@ external_binding:
 ### `ps-joint-dignified-transfer-funeral-honors-family-escort-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Use for: dignified-transfer status, escort coordination, and family-support acknowledgment tracking.
+
+## Tool Suite Addendum LII (2026-03-15, Directed-Energy Safety, Fuel Integrity, Tsunami Sealift Recovery, Rail Reversion, Austere Renal Support, EO Sensor Bottlenecks, Shelter Dosimetry, and Waveform Reconstitution)
+
+### `ts-joint-directed-energy-airspace-reflection-safety-v1`
+- Use for: directed-energy engagement planning when beam paths, reflective surfaces, airspace, or blue-force exposure risk can invalidate release.
+- Primary tools: beam-control safety board, reflection-hazard modeler, airspace deconfliction workbench.
+- Cross-check tools: independent blue-force exposure board and alternate atmospheric attenuation monitor.
+- Typical products: beam-release matrix, reflection-risk map, and engagement safety hold list.
+
+### `ts-joint-aerial-refueling-fuel-contamination-reconstitution-v1`
+- Use for: tanker and receiver planning when fuel contamination, filter integrity, or boom or drogue downtime constrains aerial-refueling recovery.
+- Primary tools: fuel-quality ledger, tanker boom or drogue maintenance tracker, receiver-priority refuel scheduler.
+- Cross-check tools: independent sample-chain witness and alternate tanker configuration board.
+- Typical products: fuel-isolation ladder, refuel-capacity recovery plan, and receiver-priority queue.
+
+### `ts-homeland-tsunami-port-closure-sealift-regeneration-v1`
+- Use for: homeland port and sealift decisions when tsunami warnings, berth damage, or channel closure threaten military throughput and onward movement.
+- Primary tools: port-surge digital twin, berth-damage and channel survey board, sealift regeneration scheduler.
+- Cross-check tools: independent tide or hydrographic witness and alternate inland transload board.
+- Typical products: port-closure timeline, sealift regeneration ladder, and alternate-throughput branch plan.
+
+### `ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1`
+- Use for: coalition force-flow decisions when host-nation rail signaling degrades and dispatchers must revert to manual-block control without losing military priority.
+- Primary tools: signaling integrity board, dispatch reversion planner, coalition force-flow priority ledger.
+- Cross-check tools: independent block-station readback log and alternate wayside inspection board.
+- Typical products: manual-block release matrix, rail-priority ladder, and signaling-restoration branch plan.
+
+### `ts-joint-austere-hemodialysis-water-power-assurance-v1`
+- Use for: austere medical operations when renal-support demand, dialysate-water purity, or generator load threatens dialysis continuity.
+- Primary tools: dialysis machine readiness board, water-purity monitor, renal-triage and transfer queue.
+- Cross-check tools: independent sample-chain lab witness and alternate generator-load board.
+- Typical products: dialysis continuity matrix, water or power risk ledger, and renal-transfer priority plan.
+
+### `ts-strategic-eo-sensor-focal-plane-cryocooler-priority-v1`
+- Use for: strategic industrial and ISR allocation decisions when focal-plane arrays, detector yield, or cryocooler throughput constrain sensor regeneration.
+- Primary tools: focal-plane inventory ledger, cryocooler test scheduler, sensor mission-allocation board.
+- Cross-check tools: independent detector-yield witness and alternate ISR repair queue.
+- Typical products: sensor-allocation ladder, cryocooler bottleneck board, and release-priority queue.
+
+### `ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1`
+- Use for: civil-support and homeland defense decisions when shelter occupancy, radiation dose tracking, and life-support resupply determine population survivability.
+- Primary tools: shelter occupancy board, dosimetry ledger, resupply priority queue.
+- Cross-check tools: independent public-health witness and alternate route-clearance board.
+- Typical products: shelter-dose dashboard, resupply ladder, and relocation trigger matrix.
+
+### `ts-theater-sdr-waveform-key-hopset-emergency-reconstitution-v1`
+- Use for: theater communications recovery when compromised crypto, expired hopsets, or waveform-key loss threatens resilient tactical radio operations.
+- Primary tools: waveform-key custody board, hopset generation and distribution service, spectrum trust monitor.
+- Cross-check tools: independent crypto-fill audit log and alternate network-control station board.
+- Typical products: waveform rekey plan, hopset restoration ledger, and degraded-comms branch package.
+
+## Protocol Stack Addendum LII (2026-03-15, External Integration Profiles for Expansion Wave LII)
+
+### `ps-joint-directed-energy-airspace-reflection-safety-stack-v1`
+- Protocols: `AIXM/FIXM`, `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`, `USMTF`.
+- Use for: beam-release coordination, airspace safety updates, and reflection-hazard acknowledgments.
+
+### `ps-joint-aerial-refueling-fuel-contamination-reconstitution-stack-v1`
+- Protocols: signed fuel manifests, `AIXM/FIXM`, `API/JSON`, `USMTF`.
+- Use for: fuel-sample status, tanker hardware recovery, and receiver-priority refuel approvals.
+
+### `ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `EDXL-DE/CAP`, `API/JSON`, `USMTF`.
+- Use for: port-status exchange, berth or channel closure updates, and sealift-regeneration acknowledgments.
+
+### `ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1`
+- Protocols: `EDI`, `NIEM`, `OPC UA`, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: signaling-state exchange, manual-block authority routing, and coalition priority-release coordination.
+
+### `ps-joint-austere-hemodialysis-water-power-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, signed water-quality manifests, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: dialysis readiness exchange, water-purity alerts, and renal-transfer approvals.
+
+### `ps-strategic-eo-sensor-focal-plane-cryocooler-priority-stack-v1`
+- Protocols: signed lot manifests, `CCSDS`, `API/JSON`, `USMTF`.
+- Use for: detector-yield status, cryocooler test progression, and sensor-allocation approvals.
+
+### `ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1`
+- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: shelter-dose updates, life-support resupply routing, and relocation-threshold acknowledgments.
+
+### `ps-theater-sdr-waveform-key-hopset-emergency-reconstitution-stack-v1`
+- Protocols: signed key manifests, `Link 16 J-series`, `VMF`, `STIX/TAXII`, `API/JSON`, `USMTF`.
+- Use for: rekey tasking, hopset-distribution status, and degraded-network recovery acknowledgments.

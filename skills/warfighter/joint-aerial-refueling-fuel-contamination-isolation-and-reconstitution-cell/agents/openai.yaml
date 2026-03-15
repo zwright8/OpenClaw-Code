@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Aerial Refueling Fuel Contamination Isolation And Reconstitution Cell"
+  short_description: "Recover safe tanker refueling after fuel-quality failures"
+
+---
