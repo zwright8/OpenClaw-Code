@@ -750,6 +750,60 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     return Math.max(...candidateHints);
 }
 
+function parseRetryPushbackValue(value) {
+    if (value === null || value === undefined) return null;
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return null;
+    return Math.round(numeric);
+}
+
+export function extractRetryPushbackHint(execution) {
+    if (!execution || typeof execution !== 'object') {
+        return {
+            disableRetry: false,
+            delayMs: null
+        };
+    }
+    const metrics = execution.metrics && typeof execution.metrics === 'object'
+        ? execution.metrics
+        : {};
+    const candidates = [];
+    const metricKeys = [
+        'grpcRetryPushbackMs',
+        'grpc_retry_pushback_ms',
+        'grpc-retry-pushback-ms'
+    ];
+    for (const key of metricKeys) {
+        const parsed = parseRetryPushbackValue(metrics[key]);
+        if (parsed !== null) candidates.push(parsed);
+    }
+    const output = typeof execution.output === 'string' ? execution.output : '';
+    if (output) {
+        const lineMatch = output.match(/grpc-retry-pushback-ms\s*[:=]\s*([^\r\n;,\s]+)/i);
+        if (lineMatch) {
+            const parsed = parseRetryPushbackValue(lineMatch[1]);
+            if (parsed !== null) candidates.push(parsed);
+        }
+        const jsonMatch = output.match(/["']grpc-retry-pushback-ms["']\s*:\s*["']?([^"',\]\}\s]+)["']?/i);
+        if (jsonMatch) {
+            const parsed = parseRetryPushbackValue(jsonMatch[1]);
+            if (parsed !== null) candidates.push(parsed);
+        }
+    }
+    if (candidates.length === 0) {
+        return {
+            disableRetry: false,
+            delayMs: null
+        };
+    }
+    const disableRetry = candidates.some((value) => value < 0);
+    const positiveCandidates = candidates.filter((value) => value >= 0);
+    return {
+        disableRetry,
+        delayMs: positiveCandidates.length > 0 ? Math.max(...positiveCandidates) : null
+    };
+}
+
 async function sleep(ms) {
     const duration = parseNonNegativeInt(ms, 0);
     if (duration <= 0) return;
@@ -1455,6 +1509,7 @@ export async function processOutboxEnvelopes({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetriesPushbackBlocked: 0,
         botRetryHintQueueCooldownActivated: 0,
         botRetryHintQueueCooldownSkips: 0,
         botHedgesBudgetLimited: 0,
@@ -1755,6 +1810,19 @@ export async function processOutboxEnvelopes({
                     }
                     const shouldRetry = isTransientBotFailure(execution) && attempts < normalizedBotMaxAttempts;
                     if (!shouldRetry) break;
+                    const retryPushbackHint = extractRetryPushbackHint(execution);
+                    if (retryPushbackHint.disableRetry) {
+                        stats.botRetriesPushbackBlocked++;
+                        execution = {
+                            ...execution,
+                            output: `${execution.output} Retry blocked by grpc-retry-pushback-ms hint.`,
+                            metrics: {
+                                ...(execution.metrics || {}),
+                                retryPushbackBlocked: 1
+                            }
+                        };
+                        break;
+                    }
                     if (normalizedBotRetryMaxElapsedMs > 0) {
                         const elapsedMs = Math.max(0, safeNow(now) - retryStartedAtMs);
                         if (elapsedMs >= normalizedBotRetryMaxElapsedMs) {
@@ -1801,7 +1869,21 @@ export async function processOutboxEnvelopes({
                         rng
                     });
                     let effectiveRetryDelayMs = retryDelayMs;
-                    if (normalizedBotRetryHintMaxDelayMs > 0) {
+                    if (normalizedBotRetryHintMaxDelayMs > 0 && retryPushbackHint.delayMs !== null) {
+                        const boundedPushbackMs = clamp(
+                            retryPushbackHint.delayMs,
+                            0,
+                            normalizedBotRetryHintMaxDelayMs
+                        );
+                        effectiveRetryDelayMs = boundedPushbackMs;
+                        execution = {
+                            ...execution,
+                            metrics: {
+                                ...(execution.metrics || {}),
+                                retryPushbackMsApplied: boundedPushbackMs
+                            }
+                        };
+                    } else if (normalizedBotRetryHintMaxDelayMs > 0) {
                         const retryAfterHintMs = extractRetryAfterHintMs(execution, { nowFactory: now });
                         if (retryAfterHintMs !== null) {
                             const jitteredRetryAfterHintMs = applyRetryHintJitterMs({
@@ -1868,13 +1950,18 @@ export async function processOutboxEnvelopes({
                 }
 
                 const transientBotFailure = isTransientBotFailure(execution);
+                const retryPushbackHint = extractRetryPushbackHint(execution);
                 const skippedByCircuitBreaker = Number(execution?.metrics?.circuitBreakerOpen) >= 1;
                 const skippedByRetryHintCooldown = Number(execution?.metrics?.retryHintQueueCooldownActive) >= 1;
                 if (!skippedByCircuitBreaker && !skippedByRetryHintCooldown && normalizedBotRetryHintQueueCooldown) {
                     const retryAfterHintMs = extractRetryAfterHintMs(execution, { nowFactory: now });
-                    if (retryAfterHintMs !== null && retryAfterHintMs > 0) {
+                    const queueCooldownHintMs = Math.max(
+                        retryAfterHintMs !== null ? retryAfterHintMs : 0,
+                        retryPushbackHint.delayMs !== null ? retryPushbackHint.delayMs : 0
+                    );
+                    if (queueCooldownHintMs > 0) {
                         const jitteredRetryAfterHintMs = applyRetryHintJitterMs({
-                            delayMs: clamp(retryAfterHintMs, 0, normalizedBotRetryHintMaxDelayMs),
+                            delayMs: clamp(queueCooldownHintMs, 0, normalizedBotRetryHintMaxDelayMs),
                             jitter: normalizedBotRetryHintJitter,
                             rng
                         });
@@ -1888,7 +1975,12 @@ export async function processOutboxEnvelopes({
                             metrics: {
                                 ...(execution.metrics || {}),
                                 retryHintQueueCooldownMs: jitteredRetryAfterHintMs,
-                                retryHintQueueCooldownUntilMs: targetResilienceState.retryHintQueueCooldownUntilMs
+                                retryHintQueueCooldownUntilMs: targetResilienceState.retryHintQueueCooldownUntilMs,
+                                ...(retryPushbackHint.delayMs !== null
+                                    ? {
+                                        retryPushbackQueueCooldownMs: jitteredRetryAfterHintMs
+                                    }
+                                    : {})
                             }
                         };
                     }

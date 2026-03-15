@@ -120,6 +120,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
         `- totals.botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- totals.botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
+        `- totals.botRetriesPushbackBlocked: ${report.totals?.botRetriesPushbackBlocked || 0}`,
         `- totals.botRetryHintQueueCooldownActivated: ${report.totals?.botRetryHintQueueCooldownActivated || 0}`,
         `- totals.botRetryHintQueueCooldownSkips: ${report.totals?.botRetryHintQueueCooldownSkips || 0}`,
         `- totals.botHedgesBudgetLimited: ${report.totals?.botHedgesBudgetLimited || 0}`,
@@ -248,6 +249,7 @@ export async function runBotWorkerLoop({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetriesPushbackBlocked: 0,
         botRetryHintQueueCooldownActivated: 0,
         botRetryHintQueueCooldownSkips: 0,
         botHedgesBudgetLimited: 0,
@@ -393,6 +395,7 @@ export async function runBotWorkerLoop({
             botRetriesRecovered: processResult.botRetriesRecovered,
             botRetriesExhausted: processResult.botRetriesExhausted,
             botRetriesBudgetExhausted: processResult.botRetriesBudgetExhausted,
+            botRetriesPushbackBlocked: processResult.botRetriesPushbackBlocked,
             botRetryHintQueueCooldownActivated: processResult.botRetryHintQueueCooldownActivated,
             botRetryHintQueueCooldownSkips: processResult.botRetryHintQueueCooldownSkips,
             botHedgesBudgetLimited: processResult.botHedgesBudgetLimited,
@@ -423,6 +426,7 @@ export async function runBotWorkerLoop({
         totals.botRetriesRecovered += processResult.botRetriesRecovered;
         totals.botRetriesExhausted += processResult.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += processResult.botRetriesBudgetExhausted;
+        totals.botRetriesPushbackBlocked += processResult.botRetriesPushbackBlocked;
         totals.botRetryHintQueueCooldownActivated += processResult.botRetryHintQueueCooldownActivated;
         totals.botRetryHintQueueCooldownSkips += processResult.botRetryHintQueueCooldownSkips;
         totals.botHedgesBudgetLimited += processResult.botHedgesBudgetLimited;

@@ -1208,6 +1208,7 @@ function printSummary(report) {
     console.log(`Bot retries recovered: ${report.totals.botRetriesRecovered || 0}`);
     console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted || 0}`);
     console.log(`Bot retries budget exhausted: ${report.totals.botRetriesBudgetExhausted || 0}`);
+    console.log(`Bot retries blocked by pushback: ${report.totals.botRetriesPushbackBlocked || 0}`);
     console.log(`Bot Retry-After queue cooldown activations: ${report.totals.botRetryHintQueueCooldownActivated || 0}`);
     console.log(`Bot Retry-After queue cooldown skips: ${report.totals.botRetryHintQueueCooldownSkips || 0}`);
     console.log(`Bot hedges budget limited: ${report.totals.botHedgesBudgetLimited || 0}`);

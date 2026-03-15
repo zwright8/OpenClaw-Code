@@ -5275,6 +5275,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
         `- botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
+        `- botRetriesPushbackBlocked: ${report.totals?.botRetriesPushbackBlocked || 0}`,
         `- botRetryHintQueueCooldownActivated: ${report.totals?.botRetryHintQueueCooldownActivated || 0}`,
         `- botRetryHintQueueCooldownSkips: ${report.totals?.botRetryHintQueueCooldownSkips || 0}`,
         `- botHedgesBudgetLimited: ${report.totals?.botHedgesBudgetLimited || 0}`,
@@ -5446,6 +5447,7 @@ export async function runAutonomousOpenClaw({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetriesPushbackBlocked: 0,
         botRetryHintQueueCooldownActivated: 0,
         botRetryHintQueueCooldownSkips: 0,
         botHedgesBudgetLimited: 0,
@@ -5615,6 +5617,7 @@ export async function runAutonomousOpenClaw({
                 botRetriesRecovered: workerReport.totals.botRetriesRecovered,
                 botRetriesExhausted: workerReport.totals.botRetriesExhausted,
                 botRetriesBudgetExhausted: workerReport.totals.botRetriesBudgetExhausted,
+                botRetriesPushbackBlocked: workerReport.totals.botRetriesPushbackBlocked,
                 botRetryHintQueueCooldownActivated: workerReport.totals.botRetryHintQueueCooldownActivated,
                 botRetryHintQueueCooldownSkips: workerReport.totals.botRetryHintQueueCooldownSkips,
                 botHedgesBudgetLimited: workerReport.totals.botHedgesBudgetLimited,
@@ -5648,6 +5651,7 @@ export async function runAutonomousOpenClaw({
         totals.botRetriesRecovered += waveReport.worker.botRetriesRecovered;
         totals.botRetriesExhausted += waveReport.worker.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += waveReport.worker.botRetriesBudgetExhausted;
+        totals.botRetriesPushbackBlocked += waveReport.worker.botRetriesPushbackBlocked;
         totals.botRetryHintQueueCooldownActivated += waveReport.worker.botRetryHintQueueCooldownActivated;
         totals.botRetryHintQueueCooldownSkips += waveReport.worker.botRetryHintQueueCooldownSkips;
         totals.botHedgesBudgetLimited += waveReport.worker.botHedgesBudgetLimited;

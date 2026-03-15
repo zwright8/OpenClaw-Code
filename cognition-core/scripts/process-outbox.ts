@@ -529,6 +529,7 @@ function printSummary(stats) {
         console.log(`Bot retries recovered: ${stats.botRetriesRecovered}`);
         console.log(`Bot retries exhausted: ${stats.botRetriesExhausted}`);
         console.log(`Bot retries budget exhausted: ${stats.botRetriesBudgetExhausted}`);
+        console.log(`Bot retries blocked by pushback: ${stats.botRetriesPushbackBlocked}`);
         console.log(`Bot Retry-After queue cooldown activations: ${stats.botRetryHintQueueCooldownActivated}`);
         console.log(`Bot Retry-After queue cooldown skips: ${stats.botRetryHintQueueCooldownSkips}`);
         console.log(`Bot hedges budget limited: ${stats.botHedgesBudgetLimited}`);

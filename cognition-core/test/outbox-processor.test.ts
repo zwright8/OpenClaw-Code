@@ -12,6 +12,7 @@ import {
     applyRetryHintJitterMs,
     computeRetryDelayMs,
     extractRetryAfterHintMs,
+    extractRetryPushbackHint,
     processOutboxEnvelopes
 } from '../src/outbox-processor.js';
 
@@ -182,6 +183,22 @@ test('extractRetryAfterHintMs prefers the most conservative hint when multiple a
         { nowFactory: () => nowMs }
     );
     assert.equal(hint, 3_000);
+});
+
+test('extractRetryPushbackHint parses delay and disable-retry semantics', () => {
+    const positive = extractRetryPushbackHint({
+        metrics: {
+            grpcRetryPushbackMs: '125'
+        }
+    });
+    assert.equal(positive.disableRetry, false);
+    assert.equal(positive.delayMs, 125);
+
+    const disabled = extractRetryPushbackHint({
+        output: 'grpc-retry-pushback-ms: -1'
+    });
+    assert.equal(disabled.disableRetry, true);
+    assert.equal(disabled.delayMs, null);
 });
 
 test('applyRetryHintJitterMs only adds delay above minimum retry hint', () => {
@@ -533,6 +550,141 @@ test('processOutboxEnvelopes honors retry-after hints on transient retries', asy
     assert.equal(stats.botRetriesAttempted, 1);
     assert.equal(stats.botRetriesRecovered, 1);
     assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 20);
+});
+
+test('processOutboxEnvelopes honors grpc-retry-pushback-ms delays on transient retries', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000745', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_550 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_551
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const attemptStartedAt = [];
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botRetryHintMaxDelayMs: 200,
+        botExecute: async () => {
+            attempts++;
+            attemptStartedAt.push(Date.now());
+            if (attempts === 1) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'upstream overloaded',
+                    metrics: {
+                        retryable: 1,
+                        grpcRetryPushbackMs: 70
+                    },
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered after pushback delay.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 2);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesRecovered, 1);
+    assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 55);
+});
+
+test('processOutboxEnvelopes blocks retries on negative grpc-retry-pushback-ms', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000746', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_560 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_561
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 3,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botExecute: async () => {
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'grpc-retry-pushback-ms: -1',
+                metrics: {
+                    retryable: 1
+                },
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 1);
+    assert.equal(stats.botRetriesAttempted, 0);
+    assert.equal(stats.botRetriesPushbackBlocked, 1);
+    assert.equal(stats.botRetriesExhausted, 1);
+
+    const records = await store.loadRecords();
+    const failedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(failedParent?.status, 'failed');
+    assert.match(failedParent?.result?.output || '', /Retry blocked by grpc-retry-pushback-ms/);
 });
 
 test('processOutboxEnvelopes honors ratelimit-reset hints with jittered delay', async (t) => {
