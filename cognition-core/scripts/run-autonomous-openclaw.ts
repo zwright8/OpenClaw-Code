@@ -56,6 +56,7 @@ Options:
   --bot-attempt-timeout-auto-blend <0-1> Blend static timeout with adaptive percentile target (default: 0.5)
   --bot-retry-max-elapsed-ms <n> Max elapsed milliseconds across retry attempts for a task (default: 0; disabled)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
+  --bot-hedge-budget-ratio <0-1> Hedge budget tokens earned per task to limit duplicate follower load (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-window <n> Rolling sample window used for failure-rate thresholding (default: 20)
@@ -288,6 +289,7 @@ function parseArgs(argv) {
         botAttemptTimeoutAutoBlend: 0.5,
         botRetryMaxElapsedMs: 0,
         botRetryBudgetRatio: 0,
+        botHedgeBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
         botCircuitBreakerFailureRateThreshold: 0,
         botCircuitBreakerFailureRateWindow: 20,
@@ -641,6 +643,11 @@ function parseArgs(argv) {
         }
         if (token === '--bot-retry-budget-ratio') {
             options.botRetryBudgetRatio = parseFloatInRange(value, '--bot-retry-budget-ratio', 0, 1);
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedge-budget-ratio') {
+            options.botHedgeBudgetRatio = parseFloatInRange(value, '--bot-hedge-budget-ratio', 0, 1);
             i++;
             continue;
         }
@@ -1175,6 +1182,7 @@ function printSummary(report) {
     console.log(`Bot retries recovered: ${report.totals.botRetriesRecovered || 0}`);
     console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted || 0}`);
     console.log(`Bot retries budget exhausted: ${report.totals.botRetriesBudgetExhausted || 0}`);
+    console.log(`Bot hedges budget limited: ${report.totals.botHedgesBudgetLimited || 0}`);
     console.log(`Bot retries deadline exceeded: ${report.totals.botRetriesDeadlineExceeded || 0}`);
     console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts || 0}`);
     console.log(`Bot hedged attempts launched: ${report.totals.botHedgedAttemptsLaunched || 0}`);
@@ -1238,6 +1246,7 @@ function printSummary(report) {
             botAttemptTimeoutAutoBlend: options.botAttemptTimeoutAutoBlend,
             botRetryMaxElapsedMs: options.botRetryMaxElapsedMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
+            botHedgeBudgetRatio: options.botHedgeBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
             botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,
             botCircuitBreakerFailureRateWindow: options.botCircuitBreakerFailureRateWindow,

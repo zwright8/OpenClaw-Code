@@ -68,6 +68,12 @@ function normalizeRetryBudgetRatio(value, fallback = 0) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeHedgeBudgetRatio(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0, 1);
+}
+
 function normalizeAttemptTimeoutAutoPercentile(value, fallback = 0.95) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
@@ -1034,6 +1040,7 @@ export async function processOutboxEnvelopes({
     botAttemptTimeoutAutoBlend = 0.5,
     botRetryMaxElapsedMs = 0,
     botRetryBudgetRatio = 0,
+    botHedgeBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
     botCircuitBreakerCooldownBackoffMultiplier = 1,
@@ -1115,6 +1122,7 @@ export async function processOutboxEnvelopes({
     );
     const normalizedBotRetryMaxElapsedMs = normalizeRetryMaxElapsedMs(botRetryMaxElapsedMs, 0);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
+    const normalizedBotHedgeBudgetRatio = normalizeHedgeBudgetRatio(botHedgeBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
         botCircuitBreakerFailureThreshold,
         0
@@ -1187,6 +1195,7 @@ export async function processOutboxEnvelopes({
     const circuitBreakerFailureRateEnabled = normalizedBotCircuitBreakerFailureRateThreshold > 0;
     const circuitBreakerSlowCallRateEnabled = normalizedBotCircuitBreakerSlowCallRateThreshold > 0;
     const retryBudgetEnabled = normalizedBotRetryBudgetRatio > 0;
+    const hedgeBudgetEnabled = normalizedBotHedgeBudgetRatio > 0 && normalizedBotHedgedAttemptCount > 1;
     const circuitBreakerEnabled =
         normalizedBotCircuitBreakerFailureThreshold > 0
         || circuitBreakerFailureRateEnabled
@@ -1199,6 +1208,7 @@ export async function processOutboxEnvelopes({
         }
         const state = {
             retryBudgetTokens: 0,
+            hedgeBudgetTokens: 0,
             consecutiveTransientBotFailures: 0,
             botAttemptDurationObservations: [],
             transientFailureRateObservations: [],
@@ -1321,6 +1331,7 @@ export async function processOutboxEnvelopes({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botHedgesBudgetLimited: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
         botHedgedAttemptsLaunched: 0,
@@ -1463,8 +1474,28 @@ export async function processOutboxEnvelopes({
                 if (retryBudgetEnabled) {
                     targetResilienceState.retryBudgetTokens += normalizedBotRetryBudgetRatio;
                 }
+                if (hedgeBudgetEnabled) {
+                    targetResilienceState.hedgeBudgetTokens += normalizedBotHedgeBudgetRatio;
+                }
                 while (!execution && attempts < normalizedBotMaxAttempts) {
                     attempts++;
+                    let effectiveHedgedAttemptCount = normalizedBotHedgedAttemptCount;
+                    let hedgeBudgetLimited = false;
+                    if (hedgeBudgetEnabled) {
+                        const desiredFollowers = Math.max(0, normalizedBotHedgedAttemptCount - 1);
+                        const availableFollowers = Math.max(
+                            0,
+                            Math.min(
+                                desiredFollowers,
+                                Math.floor(targetResilienceState.hedgeBudgetTokens)
+                            )
+                        );
+                        effectiveHedgedAttemptCount = 1 + availableFollowers;
+                        hedgeBudgetLimited = availableFollowers < desiredFollowers;
+                        if (hedgeBudgetLimited) {
+                            stats.botHedgesBudgetLimited++;
+                        }
+                    }
                     const timeoutResolution = resolveAdaptiveAttemptTimeoutMs({
                         staticTimeoutMs: normalizedBotAttemptTimeoutMs,
                         autoEnabled: attemptTimeoutAutoEnabled,
@@ -1491,11 +1522,17 @@ export async function processOutboxEnvelopes({
                         attempt: attempts,
                         executeBotTask,
                         timeoutMs: timeoutResolution.timeoutMs,
-                        hedgedAttemptCount: normalizedBotHedgedAttemptCount,
+                        hedgedAttemptCount: effectiveHedgedAttemptCount,
                         hedgedDelayMs: hedgedDelayResolution.delayMs,
                         nowFactory: now
                     });
                     const hedgedAttemptsLaunched = parseNonNegativeInt(execution?.metrics?.hedgeAttemptsLaunched, 0);
+                    if (hedgeBudgetEnabled && hedgedAttemptsLaunched > 1) {
+                        targetResilienceState.hedgeBudgetTokens = Math.max(
+                            0,
+                            targetResilienceState.hedgeBudgetTokens - (hedgedAttemptsLaunched - 1)
+                        );
+                    }
                     if (hedgedAttemptsLaunched > 1) {
                         stats.botHedgedAttemptsLaunched += hedgedAttemptsLaunched - 1;
                     }
@@ -1527,6 +1564,18 @@ export async function processOutboxEnvelopes({
                             ...(hedgedDelayResolution.autoTargetMs !== null
                                 ? {
                                     hedgeDelayAutoTargetMs: hedgedDelayResolution.autoTargetMs
+                                }
+                                : {}),
+                            ...(hedgeBudgetLimited
+                                ? {
+                                    hedgeBudgetLimited: 1
+                                }
+                                : {}),
+                            ...(hedgeBudgetEnabled
+                                ? {
+                                    hedgeBudgetTokensRemaining: Number(
+                                        targetResilienceState.hedgeBudgetTokens.toFixed(4)
+                                    )
                                 }
                                 : {})
                         }

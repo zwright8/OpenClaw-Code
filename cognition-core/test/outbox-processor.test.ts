@@ -973,6 +973,107 @@ test('processOutboxEnvelopes keeps static hedged delay until adaptive sample flo
     assert.equal(completedParent?.result?.metrics?.hedgeSelectedAttempt, 2);
 });
 
+test('processOutboxEnvelopes enforces hedge budget and limits follower launches', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000707', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000708', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000709', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_160 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 91_161
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        // eslint-disable-next-line no-await-in-loop
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n') + '\n',
+        'utf8'
+    );
+
+    const launchesByTaskId = new Map();
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 10,
+        botHedgeBudgetRatio: 0.4,
+        botExecute: async (request) => {
+            const taskId = String(request?.id || '');
+            const launches = (launchesByTaskId.get(taskId) || 0) + 1;
+            launchesByTaskId.set(taskId, launches);
+            if (taskId === requests[2].id && launches === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 80));
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Slow primary response.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            if (taskId === requests[2].id && launches === 2) {
+                await new Promise((resolve) => setTimeout(resolve, 5));
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Fast hedge response.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Primary completed immediately.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(stats.botHedgesBudgetLimited, 2);
+    assert.equal(stats.botHedgedAttemptsLaunched, 1);
+    assert.equal(stats.botHedgedWins, 1);
+
+    const records = await store.loadRecords();
+    const first = records.find((entry) => entry.taskId === requests[0].id);
+    const second = records.find((entry) => entry.taskId === requests[1].id);
+    const third = records.find((entry) => entry.taskId === requests[2].id);
+    assert.equal(first?.status, 'completed');
+    assert.equal(second?.status, 'completed');
+    assert.equal(third?.status, 'completed');
+    assert.equal(first?.result?.metrics?.hedgeAttemptsConfigured, 1);
+    assert.equal(first?.result?.metrics?.hedgeBudgetLimited, 1);
+    assert.equal(second?.result?.metrics?.hedgeAttemptsConfigured, 1);
+    assert.equal(second?.result?.metrics?.hedgeBudgetLimited, 1);
+    assert.equal(third?.result?.metrics?.hedgeAttemptsConfigured, 2);
+    assert.equal(third?.result?.metrics?.hedgeSelectedAttempt, 2);
+});
+
 test('processOutboxEnvelopes adapts attempt timeout from recent durations when enabled', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
