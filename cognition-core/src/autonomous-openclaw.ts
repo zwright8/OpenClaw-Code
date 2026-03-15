@@ -5357,6 +5357,7 @@ export async function runAutonomousOpenClaw({
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
+    botHedgingAllowNonIdempotent = false,
     botHedgedDelayAutoTarget = false,
     botHedgedDelayAutoPercentile = 0.95,
     botHedgedDelayAutoMinSamples = 8,
@@ -5446,6 +5447,7 @@ export async function runAutonomousOpenClaw({
         botHedgedAttemptsLaunched: 0,
         botHedgedSuccesses: 0,
         botHedgedWins: 0,
+        botHedgesSafetyBlocked: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
         botCircuitBreakerHalfOpenProbes: 0,
@@ -5515,6 +5517,7 @@ export async function runAutonomousOpenClaw({
             botAttemptTimeoutMs,
             botHedgedAttemptCount,
             botHedgedDelayMs,
+            botHedgingAllowNonIdempotent,
             botHedgedDelayAutoTarget,
             botHedgedDelayAutoPercentile,
             botHedgedDelayAutoMinSamples,
@@ -5608,6 +5611,7 @@ export async function runAutonomousOpenClaw({
                 botHedgedAttemptsLaunched: workerReport.totals.botHedgedAttemptsLaunched,
                 botHedgedSuccesses: workerReport.totals.botHedgedSuccesses,
                 botHedgedWins: workerReport.totals.botHedgedWins,
+                botHedgesSafetyBlocked: workerReport.totals.botHedgesSafetyBlocked,
                 botCircuitBreakerOpened: workerReport.totals.botCircuitBreakerOpened,
                 botCircuitBreakerOpenSkips: workerReport.totals.botCircuitBreakerOpenSkips,
                 botCircuitBreakerHalfOpenProbes: workerReport.totals.botCircuitBreakerHalfOpenProbes,
@@ -5638,6 +5642,7 @@ export async function runAutonomousOpenClaw({
         totals.botHedgedAttemptsLaunched += waveReport.worker.botHedgedAttemptsLaunched;
         totals.botHedgedSuccesses += waveReport.worker.botHedgedSuccesses;
         totals.botHedgedWins += waveReport.worker.botHedgedWins;
+        totals.botHedgesSafetyBlocked += waveReport.worker.botHedgesSafetyBlocked;
         totals.botCircuitBreakerOpened += waveReport.worker.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += waveReport.worker.botCircuitBreakerOpenSkips;
         totals.botCircuitBreakerHalfOpenProbes += waveReport.worker.botCircuitBreakerHalfOpenProbes;
@@ -5700,6 +5705,7 @@ export async function runAutonomousOpenClaw({
             botAttemptTimeoutMs: parseNonNegativeInt(botAttemptTimeoutMs, 120_000),
             botHedgedAttemptCount: clamp(parsePositiveInt(botHedgedAttemptCount, 1), 1, 5),
             botHedgedDelayMs: parseNonNegativeInt(botHedgedDelayMs, 0),
+            botHedgingAllowNonIdempotent: Boolean(botHedgingAllowNonIdempotent),
             botHedgedDelayAutoTarget: Boolean(botHedgedDelayAutoTarget),
             botHedgedDelayAutoPercentile: clamp(parseNonNegativeNumber(botHedgedDelayAutoPercentile, 0.95), 0.5, 0.999),
             botHedgedDelayAutoMinSamples: parsePositiveInt(botHedgedDelayAutoMinSamples, 8),

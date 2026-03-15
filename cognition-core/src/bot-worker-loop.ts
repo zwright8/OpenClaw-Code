@@ -126,6 +126,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botHedgedAttemptsLaunched: ${report.totals?.botHedgedAttemptsLaunched || 0}`,
         `- totals.botHedgedSuccesses: ${report.totals?.botHedgedSuccesses || 0}`,
         `- totals.botHedgedWins: ${report.totals?.botHedgedWins || 0}`,
+        `- totals.botHedgesSafetyBlocked: ${report.totals?.botHedgesSafetyBlocked || 0}`,
         `- totals.botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- totals.botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
         `- totals.botCircuitBreakerHalfOpenProbes: ${report.totals?.botCircuitBreakerHalfOpenProbes || 0}`,
@@ -183,6 +184,7 @@ export async function runBotWorkerLoop({
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
+    botHedgingAllowNonIdempotent = false,
     botHedgedDelayAutoTarget = false,
     botHedgedDelayAutoPercentile = 0.95,
     botHedgedDelayAutoMinSamples = 8,
@@ -247,6 +249,7 @@ export async function runBotWorkerLoop({
         botHedgedAttemptsLaunched: 0,
         botHedgedSuccesses: 0,
         botHedgedWins: 0,
+        botHedgesSafetyBlocked: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
         botCircuitBreakerHalfOpenProbes: 0,
@@ -305,6 +308,7 @@ export async function runBotWorkerLoop({
             botAttemptTimeoutMs,
             botHedgedAttemptCount,
             botHedgedDelayMs,
+            botHedgingAllowNonIdempotent,
             botHedgedDelayAutoTarget,
             botHedgedDelayAutoPercentile,
             botHedgedDelayAutoMinSamples,
@@ -385,6 +389,7 @@ export async function runBotWorkerLoop({
             botHedgedAttemptsLaunched: processResult.botHedgedAttemptsLaunched,
             botHedgedSuccesses: processResult.botHedgedSuccesses,
             botHedgedWins: processResult.botHedgedWins,
+            botHedgesSafetyBlocked: processResult.botHedgesSafetyBlocked,
             botCircuitBreakerOpened: processResult.botCircuitBreakerOpened,
             botCircuitBreakerOpenSkips: processResult.botCircuitBreakerOpenSkips,
             botCircuitBreakerHalfOpenProbes: processResult.botCircuitBreakerHalfOpenProbes,
@@ -412,6 +417,7 @@ export async function runBotWorkerLoop({
         totals.botHedgedAttemptsLaunched += processResult.botHedgedAttemptsLaunched;
         totals.botHedgedSuccesses += processResult.botHedgedSuccesses;
         totals.botHedgedWins += processResult.botHedgedWins;
+        totals.botHedgesSafetyBlocked += processResult.botHedgesSafetyBlocked;
         totals.botCircuitBreakerOpened += processResult.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += processResult.botCircuitBreakerOpenSkips;
         totals.botCircuitBreakerHalfOpenProbes += processResult.botCircuitBreakerHalfOpenProbes;

@@ -691,7 +691,10 @@ test('processOutboxEnvelopes hedged attempts recover from slow primaries', async
     const outboxDir = path.join(dir, 'outbox');
     const archiveDir = path.join(outboxDir, 'processed');
     const target = 'agent:ops';
-    const request = makeRequest('00000000-0000-4000-8000-000000000703', target, 'high');
+    const request = makeRequest('00000000-0000-4000-8000-000000000703', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        idempotent: true
+    });
 
     const store = new FileTaskStore({ filePath: queuePath, now: () => 91_050 });
     const record = buildQueueRecordFromTaskRequest(request, {
@@ -765,7 +768,10 @@ test('processOutboxEnvelopes hedging skips follower launches after fast primary 
     const outboxDir = path.join(dir, 'outbox');
     const archiveDir = path.join(outboxDir, 'processed');
     const target = 'agent:ops';
-    const request = makeRequest('00000000-0000-4000-8000-000000000704', target, 'high');
+    const request = makeRequest('00000000-0000-4000-8000-000000000704', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        idempotent: true
+    });
 
     const store = new FileTaskStore({ filePath: queuePath, now: () => 91_100 });
     const record = buildQueueRecordFromTaskRequest(request, {
@@ -819,6 +825,138 @@ test('processOutboxEnvelopes hedging skips follower launches after fast primary 
     assert.equal(completedParent?.result?.metrics?.hedgeSelectedAttempt, 1);
 });
 
+test('processOutboxEnvelopes blocks hedging for non-idempotent tasks by default', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-00000000070a', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner'
+    });
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_110 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_111
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let launched = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 10,
+        botExecute: async () => {
+            launched++;
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Primary completed immediately.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(launched, 1);
+    assert.equal(stats.botHedgedAttemptsLaunched, 0);
+    assert.equal(stats.botHedgesSafetyBlocked, 1);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.equal(completedParent?.result?.metrics?.hedgeSafetyBlocked, 1);
+    assert.equal(completedParent?.result?.metrics?.hedgeAttemptsConfigured, 1);
+});
+
+test('processOutboxEnvelopes can override idempotency hedge safety gate', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-00000000070b', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner'
+    });
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_115 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_116
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let launched = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 10,
+        botHedgingAllowNonIdempotent: true,
+        botExecute: async () => {
+            launched++;
+            if (launched === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 80));
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Slow primary response.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5));
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Fast hedge response.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(stats.botHedgesSafetyBlocked, 0);
+    assert.equal(stats.botHedgedAttemptsLaunched, 1);
+});
+
 test('processOutboxEnvelopes adapts hedged delay from recent durations when enabled', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -827,7 +965,10 @@ test('processOutboxEnvelopes adapts hedged delay from recent durations when enab
     const outboxDir = path.join(dir, 'outbox');
     const archiveDir = path.join(outboxDir, 'processed');
     const target = 'agent:ops';
-    const request = makeRequest('00000000-0000-4000-8000-000000000705', target, 'high');
+    const request = makeRequest('00000000-0000-4000-8000-000000000705', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        idempotent: true
+    });
 
     const store = new FileTaskStore({ filePath: queuePath, now: () => 91_120 });
     const record = buildQueueRecordFromTaskRequest(request, {
@@ -906,7 +1047,10 @@ test('processOutboxEnvelopes keeps static hedged delay until adaptive sample flo
     const outboxDir = path.join(dir, 'outbox');
     const archiveDir = path.join(outboxDir, 'processed');
     const target = 'agent:ops';
-    const request = makeRequest('00000000-0000-4000-8000-000000000706', target, 'high');
+    const request = makeRequest('00000000-0000-4000-8000-000000000706', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        idempotent: true
+    });
 
     const store = new FileTaskStore({ filePath: queuePath, now: () => 91_140 });
     const record = buildQueueRecordFromTaskRequest(request, {
@@ -982,9 +1126,18 @@ test('processOutboxEnvelopes enforces hedge budget and limits follower launches'
     const archiveDir = path.join(outboxDir, 'processed');
     const target = 'agent:ops';
     const requests = [
-        makeRequest('00000000-0000-4000-8000-000000000707', target, 'high'),
-        makeRequest('00000000-0000-4000-8000-000000000708', target, 'high'),
-        makeRequest('00000000-0000-4000-8000-000000000709', target, 'high')
+        makeRequest('00000000-0000-4000-8000-000000000707', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        }),
+        makeRequest('00000000-0000-4000-8000-000000000708', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        }),
+        makeRequest('00000000-0000-4000-8000-000000000709', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        })
     ];
 
     const store = new FileTaskStore({ filePath: queuePath, now: () => 91_160 });

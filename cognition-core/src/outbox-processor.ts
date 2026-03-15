@@ -62,6 +62,97 @@ function normalizeRetryJitterStrategy(value, fallback = 'symmetric') {
     return fallback;
 }
 
+function normalizeHedgingAllowNonIdempotent(value, fallback = false) {
+    if (value === undefined || value === null) return fallback;
+    if (typeof value === 'boolean') return value;
+    if (typeof value === 'number') return value > 0;
+    const normalized = String(value).trim().toLowerCase();
+    if (!normalized) return fallback;
+    if (normalized === '1' || normalized === 'true' || normalized === 'yes' || normalized === 'on') {
+        return true;
+    }
+    if (normalized === '0' || normalized === 'false' || normalized === 'no' || normalized === 'off') {
+        return false;
+    }
+    return fallback;
+}
+
+function coerceBooleanFlag(value) {
+    if (value === true || value === false) return value;
+    if (typeof value === 'number') return value > 0;
+    if (typeof value === 'string') {
+        const normalized = value.trim().toLowerCase();
+        if (!normalized) return null;
+        if (normalized === '1' || normalized === 'true' || normalized === 'yes' || normalized === 'on') {
+            return true;
+        }
+        if (normalized === '0' || normalized === 'false' || normalized === 'no' || normalized === 'off') {
+            return false;
+        }
+    }
+    return null;
+}
+
+function resolveNestedValue(source, segments) {
+    let cursor = source;
+    for (const segment of segments) {
+        if (!cursor || typeof cursor !== 'object') return undefined;
+        cursor = cursor[segment];
+    }
+    return cursor;
+}
+
+function hasIdempotencyMarker(source) {
+    if (!source || typeof source !== 'object') return false;
+    const markers = [
+        [
+            'idempotent'
+        ],
+        [
+            'hedgeSafe'
+        ],
+        [
+            'retrySafe'
+        ],
+        [
+            'sideEffectFree'
+        ],
+        [
+            'execution',
+            'idempotent'
+        ],
+        [
+            'execution',
+            'hedgeSafe'
+        ],
+        [
+            'safety',
+            'idempotent'
+        ]
+    ];
+    for (const marker of markers) {
+        const coerced = coerceBooleanFlag(resolveNestedValue(source, marker));
+        if (coerced === true) {
+            return true;
+        }
+    }
+    const idempotencyKey = resolveNestedValue(source, [
+        'idempotencyKey'
+    ]);
+    if (typeof idempotencyKey === 'string' && idempotencyKey.trim()) {
+        return true;
+    }
+    return false;
+}
+
+function isRequestHedgeIdempotent(request) {
+    if (!request || typeof request !== 'object') return false;
+    if (hasIdempotencyMarker(request)) return true;
+    if (hasIdempotencyMarker(request.context)) return true;
+    if (hasIdempotencyMarker(request.constraints)) return true;
+    return false;
+}
+
 function normalizeRetryBudgetRatio(value, fallback = 0) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
@@ -1028,6 +1119,7 @@ export async function processOutboxEnvelopes({
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
+    botHedgingAllowNonIdempotent = false,
     botHedgedDelayAutoTarget = false,
     botHedgedDelayAutoPercentile = 0.95,
     botHedgedDelayAutoMinSamples = 8,
@@ -1082,6 +1174,10 @@ export async function processOutboxEnvelopes({
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotHedgedAttemptCount = normalizeHedgedAttemptCount(botHedgedAttemptCount, 1);
     const normalizedBotHedgedDelayMs = normalizeHedgedDelayMs(botHedgedDelayMs, 0);
+    const normalizedBotHedgingAllowNonIdempotent = normalizeHedgingAllowNonIdempotent(
+        botHedgingAllowNonIdempotent,
+        false
+    );
     const normalizedBotHedgedDelayAutoPercentile = normalizeAttemptTimeoutAutoPercentile(
         botHedgedDelayAutoPercentile,
         0.95
@@ -1337,6 +1433,7 @@ export async function processOutboxEnvelopes({
         botHedgedAttemptsLaunched: 0,
         botHedgedSuccesses: 0,
         botHedgedWins: 0,
+        botHedgesSafetyBlocked: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
         botCircuitBreakerHalfOpenProbes: 0,
@@ -1479,9 +1576,18 @@ export async function processOutboxEnvelopes({
                 }
                 while (!execution && attempts < normalizedBotMaxAttempts) {
                     attempts++;
-                    let effectiveHedgedAttemptCount = normalizedBotHedgedAttemptCount;
+                    const hedgingConfigured = normalizedBotHedgedAttemptCount > 1 && normalizedBotHedgedDelayMs > 0;
+                    const hedgingSafetyBlocked = hedgingConfigured
+                        && !normalizedBotHedgingAllowNonIdempotent
+                        && !isRequestHedgeIdempotent(request);
+                    if (attempts === 1 && hedgingSafetyBlocked) {
+                        stats.botHedgesSafetyBlocked++;
+                    }
+                    let effectiveHedgedAttemptCount = hedgingSafetyBlocked
+                        ? 1
+                        : normalizedBotHedgedAttemptCount;
                     let hedgeBudgetLimited = false;
-                    if (hedgeBudgetEnabled) {
+                    if (hedgeBudgetEnabled && !hedgingSafetyBlocked) {
                         const desiredFollowers = Math.max(0, normalizedBotHedgedAttemptCount - 1);
                         const availableFollowers = Math.max(
                             0,
@@ -1569,6 +1675,11 @@ export async function processOutboxEnvelopes({
                             ...(hedgeBudgetLimited
                                 ? {
                                     hedgeBudgetLimited: 1
+                                }
+                                : {}),
+                            ...(hedgingSafetyBlocked
+                                ? {
+                                    hedgeSafetyBlocked: 1
                                 }
                                 : {}),
                             ...(hedgeBudgetEnabled

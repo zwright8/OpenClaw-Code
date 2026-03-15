@@ -44,6 +44,7 @@ Options:
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-hedged-attempts <n>    Hedged attempts per bot try to reduce tail latency (1-5, default: 1 disabled)
   --bot-hedged-delay-ms <n>    Delay before launching each hedged follower attempt (default: 0; disabled)
+  --bot-hedging-allow-non-idempotent Allow hedged duplicates for tasks without idempotent safety markers (default: off)
   --bot-hedged-delay-auto      Auto-tune hedged follower launch delay from recent bot durations
   --bot-hedged-delay-auto-percentile <0.5-0.999> Percentile used for adaptive hedge-delay target (default: 0.95)
   --bot-hedged-delay-auto-min-samples <n> Min observed attempt durations before adaptive hedge-delay activates (default: 8)
@@ -277,6 +278,7 @@ function parseArgs(argv) {
         botAttemptTimeoutMs: 120_000,
         botHedgedAttemptCount: 1,
         botHedgedDelayMs: 0,
+        botHedgingAllowNonIdempotent: false,
         botHedgedDelayAutoTarget: false,
         botHedgedDelayAutoPercentile: 0.95,
         botHedgedDelayAutoMinSamples: 8,
@@ -594,6 +596,10 @@ function parseArgs(argv) {
         if (token === '--bot-hedged-delay-ms') {
             options.botHedgedDelayMs = parsePositiveInt(value, '--bot-hedged-delay-ms', true);
             i++;
+            continue;
+        }
+        if (token === '--bot-hedging-allow-non-idempotent') {
+            options.botHedgingAllowNonIdempotent = true;
             continue;
         }
         if (token === '--bot-hedged-delay-auto-percentile') {
@@ -1234,6 +1240,7 @@ function printSummary(report) {
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botHedgedAttemptCount: options.botHedgedAttemptCount,
             botHedgedDelayMs: options.botHedgedDelayMs,
+            botHedgingAllowNonIdempotent: options.botHedgingAllowNonIdempotent,
             botHedgedDelayAutoTarget: options.botHedgedDelayAutoTarget,
             botHedgedDelayAutoPercentile: options.botHedgedDelayAutoPercentile,
             botHedgedDelayAutoMinSamples: options.botHedgedDelayAutoMinSamples,
