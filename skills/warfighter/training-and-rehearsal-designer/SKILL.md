@@ -149,3 +149,8 @@ Primary products for this skill: training progression plan, rehearsal script, ev
 - Default packet IDs: `DPL-C2-DISP-002`, `DPL-FIRES-LINEAGE-001`, `DPL-COALITION-TRAINREADY-001`.
 - For communications-denied or crypto-transition rehearsal events, include `DPL-CYBER-ICAM-001` and explicit key-rollover rehearsal injects.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-combined-arms-digital-twin-v1` + `protocol_stack_id=ps-simulation-rehearsal-stack-v1` when rehearsal design depends on branch-testing combined-arms dependencies, machine-ingestible injects, or confidence-banded failure maps before execution.
+- Add `packet_id=DPL-COMBINED-ARMS-DIGITAL-TWIN-001` for rehearsal products that materially change commander decision sequencing, branch plans, or readiness certification evidence.

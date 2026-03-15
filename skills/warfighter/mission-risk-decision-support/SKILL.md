@@ -420,3 +420,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-polar-orbit-handover-v1` + `protocol_stack_id=ps-polar-orbit-handover-stack-v1` when risk posture depends on high-latitude mission comm continuity, timing trust, or orbital handover confidence.
 - Add `tool_suite_id=ts-battlefield-additive-repair-validation-v1` + `protocol_stack_id=ps-battlefield-additive-repair-validation-stack-v1` when commander readiness assumptions depend on trusted forward repair release rather than deferred depot replacement.
 - Add `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001`, `packet_id=DPL-POLAR-HANDOVER-001`, and `packet_id=DPL-ADDITIVE-REPAIR-VALIDATION-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-cislunar-rescue-assurance-v1` + `protocol_stack_id=ps-cislunar-rescue-assurance-stack-v1` when commander risk posture depends on cislunar logistics windows, rescue timing, or orbital handover confidence under contested space conditions.
+- Add `tool_suite_id=ts-long-range-fires-magazine-v1` + `protocol_stack_id=ps-long-range-fires-magazine-stack-v1` when GO/NO-GO judgments depend on magazine depth, reconstitution timing, or campaign munitions burn-rate confidence.
+- Add `tool_suite_id=ts-eob-decay-forecast-v1` + `protocol_stack_id=ps-eob-decay-forecast-stack-v1` when decision quality depends on how fast adversary or friendly EOB confidence is decaying across electromagnetic competition.
+- Add `packet_id=DPL-CISLUNAR-RESCUE-001`, `packet_id=DPL-LONG-RANGE-FIRES-MAG-001`, and `packet_id=DPL-EOB-DECAY-FORECAST-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

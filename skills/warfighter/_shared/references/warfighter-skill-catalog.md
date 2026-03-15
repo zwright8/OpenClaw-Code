@@ -2669,3 +2669,39 @@ Every skill output should include:
 - Dignified transfer escort and family liaison + joint-personal-effects-custody-and-mortuary-return-integrity-cell + mortuary-affairs-and-personnel-accountability + joint-expeditionary-mortuary-affairs-surge-cell.
 - Coalition interpreter vetting and linguist fatigue governance + coalition-interoperability-coordinator + tactical-language-enabled-civil-engagement-cell + coalition-cross-border-casualty-identity-and-family-notification-cell.
 - Prosthetic component and socket liner surge + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-additive-prosthetics-rehabilitation-surge-cell + theater-musculoskeletal-load-management-and-physical-therapy-cell.
+
+## New Expansion Wave (2026-03-15, Wave LVIII)
+
+- coalition-integrated-air-and-missile-defense-data-latency-cell
+- contested-subterranean-operations-support-cell
+- expeditionary-arctic-aerostat-and-over-the-horizon-radar-cell
+- homeland-civil-grid-islanding-and-mission-priority-power-cell
+- joint-cislunar-logistics-and-space-rescue-cell
+- joint-hypersonic-launch-detection-and-cueing-cell
+- joint-long-range-fires-magazine-depth-and-reconstitution-cell
+- joint-rapid-harbor-mine-countermeasure-autonomy-cell
+- joint-space-weather-effects-on-precision-strike-cell
+- operational-electronic-order-of-battle-decay-forecast-cell
+- strategic-bioindustrial-supply-assurance-and-counter-sabotage-cell
+- strategic-under-ice-cable-sabotage-attribution-cell
+- tactical-counter-targeting-pattern-of-life-obfuscation-cell
+- tactical-digital-twin-combined-arms-rehearsal-cell
+- theater-contested-identity-and-access-recovery-cell
+
+## Updated Pairings (2026-03-15, Wave LVIII)
+
+- Coalition IAMD latency + integrated-air-and-missile-defense-cell + coalition-interoperability-coordinator + missile-warning-and-attack-assessment-cell.
+- Contested subterranean operations + subterranean-operations-support + route-clearance-and-counter-ied-fusion + combat-engineering-obstacle-intelligence-cell.
+- Arctic aerostat and over-the-horizon radar + missile-warning-and-attack-assessment-cell + weather-space-weather-effects-forecast-cell + space-domain-awareness-and-satcom-defense.
+- Homeland grid islanding and mission-priority power + defense-support-of-civil-authorities-crisis-cell + operational-energy-resilience-and-microgrid-cell + homeland-grid-blackstart-fuel-convoy-security-fusion-cell.
+- Cislunar logistics and space rescue + contested-space-launch-and-satellite-reconstitution + defensive-space-control-counterspace-cell + joint-space-weather-solar-storm-mission-assurance-cell.
+- Hypersonic launch detection and cueing + integrated-air-and-missile-defense-cell + missile-warning-and-attack-assessment-cell + hypersonic-threat-defense-integration-cell.
+- Long-range fires magazine depth and reconstitution + fires-and-effects-synchronizer + munitions-stockpile-and-expenditure-manager + contested-logistics-sustainment.
+- Rapid harbor mine-countermeasure autonomy + expeditionary-salvage-and-harbor-clearance + naval-surface-warfare-coordinator + maritime-operations-planner.
+- Space-weather effects on precision strike + offensive-counter-air-mission-planner + joint-targeting-standards-and-cde-governance-cell + space-domain-awareness-and-satcom-defense.
+- Electronic order of battle decay forecast + joint-spectrum-interference-resolution-cell + cema-integration-cell + electronic-order-of-battle-management-cell.
+- Bioindustrial supply assurance and counter-sabotage + strategic-industrial-mobilization-readiness-cell + supply-chain-risk-and-industrial-base-monitor + preventive-medicine-and-force-health-protection.
+- Under-ice cable sabotage attribution + subsea-infrastructure-protection-planner + naval-undersea-cable-protection-and-restoration + coalition-interoperability-coordinator.
+- Tactical counter-targeting pattern-of-life obfuscation + force-protection-and-base-defense + special-operations-signature-management-and-exfiltration-cell + deception-signature-management-and-decoy-employment-cell.
+- Tactical digital-twin combined-arms rehearsal + training-and-rehearsal-designer + mission-risk-decision-support + integrated-campaign-assessment-cell.
+- Theater contested identity and access recovery + cyber-mission-planner + tactical-zero-trust-network-hardening + theater-mission-network-failover-cell.
