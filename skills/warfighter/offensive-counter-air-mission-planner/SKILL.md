@@ -170,32 +170,34 @@ Primary products for this skill: OCA sortie plan, threat suppression phasing, es
 - For austere airfield sortie risk from wildlife surges, include `ts-forward-airstrip-bird-strike-suppression-v1` with `ps-forward-airstrip-bird-strike-suppression-stack-v1`.
 - For severe bandwidth limits impacting ISR video feeds, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.
 - For cellular priority-service restoration that affects civil-military airbase coordination, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
+- For strategic engine scarcity that constrains sortie generation, include `ts-aviation-engine-allocation-sanctions-v1` with `ps-aviation-engine-allocation-sanctions-stack-v1`.
+- For expeditionary microgrid restart options using ammonia conversion at airbases, include `ts-microgrid-ammonia-blackstart-v1` with `ps-microgrid-ammonia-blackstart-stack-v1`.
 - For disrupted national-security launch cadence affecting air-space integration windows, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
 - For contested polar communications recovery paths supporting long-range OCA coordination, include `ts-under-ice-cable-break-repair-priority-v1` with `ps-under-ice-cable-break-repair-priority-stack-v1`.
+- For Arctic SAR support demands competing for OCA support sorties, include `ts-arctic-sar-satcom-degraded-v1` with `ps-arctic-sar-satcom-degraded-stack-v1`.
+- For electromagnetic launch-system power deconfliction impacts in theater fires planning, include `ts-railgun-power-budget-v1` with `ps-railgun-power-budget-stack-v1`.
+- For civil air traffic conflict when adversaries spoof navigation signals, include `ts-civil-air-gps-spoof-deconfliction-v1` with `ps-civil-air-gps-spoof-deconfliction-stack-v1`.
+- For additive-manufactured UAS component release decisions affecting escort and ISR packages, include `ts-additive-drone-airworthiness-inspection-v1` with `ps-additive-drone-airworthiness-inspection-stack-v1`.
+- For homeland SATCOM ground-station blackout impacts on long-range command-and-control links, include `ts-satcom-ground-blackout-restoration-v1` with `ps-satcom-ground-blackout-restoration-stack-v1`.
+- For austere runway sortie recovery after FOD and drone-debris events, include `ts-austere-runway-fod-drone-debris-v1` with `ps-austere-runway-fod-drone-debris-stack-v1`.
+- For rapid runway recertification under sustained sortie pressure, include `ts-expeditionary-runway-rapid-certification-v1` with `ps-expeditionary-runway-rapid-certification-stack-v1`.
+- For denied weather-radar conditions affecting launch and recovery risk, include `ts-denied-weather-radar-gap-fusion-v1` with `ps-denied-weather-radar-gap-fusion-stack-v1`.
+- For multi-sensor nowcast fallback when primary weather coverage is degraded, include `ts-multi-sensor-nowcast-fallback-v1` with `ps-multi-sensor-nowcast-fallback-stack-v1`.
 - For military GPS ground-segment disruption impacts on OCA mission timing, include `ts-gps-ground-segment-restoration-v1` with `ps-gps-ground-segment-restoration-stack-v1`.
 - For rail-air-defense crossing prioritization that protects munitions and sortie support corridors, include `ts-rail-air-defense-crossing-priority-v1` with `ps-rail-air-defense-crossing-priority-stack-v1`.
 - For cislunar launch support dependencies affecting global strike posture, include `ts-cislunar-logistics-spaceport-defense-v1` with `ps-cislunar-logistics-spaceport-defense-stack-v1`.
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add `tool_suite_id=ts-joint-hypersonic-warning-fusion-and-response-v1` + `protocol_stack_id=ps-joint-hypersonic-warning-fusion-and-response-stack-v1` when OCA options must branch against compressed warning timelines from hypersonic threats.
-- Add `tool_suite_id=ts-coalition-arctic-austere-airdrop-corridor-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-austere-airdrop-corridor-assurance-stack-v1` when OCA support sorties are coupled with Arctic sustainment and airdrop corridors.
-- Add `packet_id=DPL-JOINT-HYPERSONIC-WARNING-FUSION-RESPONSE-001` and `packet_id=DPL-COALITION-ARCTIC-AIRDROP-CORRIDOR-ASSURANCE-001` for OCA recommendations that can alter escalation posture or sortie-risk acceptance.
+## Domain Toolchain Override (2026-03-12, Expansion Wave XVI Addendum)
 
+- Add tool_suite_id=ts-joint-cislunar-logistics-and-space-lane-contestation-cell-v1 + protocol_stack_id=ps-joint-cislunar-logistics-and-space-lane-contestation-cell-stack-v1 when OCA branch viability depends on contested launch-resupply lanes and orbital sustainment confidence.
+- Add tool_suite_id=ts-joint-gray-zone-commercial-fleet-shadowing-attribution-cell-v1 + protocol_stack_id=ps-joint-gray-zone-commercial-fleet-shadowing-attribution-cell-stack-v1 when maritime gray-zone coercion affects carrier support routing, escalation control, or legal attribution timelines.
+- Add packet_id=DPL-CISLUNAR-LOGISTICS-CONTEST-001 and packet_id=DPL-GRAYZONE-FLEET-SHADOWING-001 for branches that materially change sortie persistence, escalation posture, or command release assumptions.
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
 
-- Add tool_suite_id=ts-joint-hypersonic-strike-civil-warning-deconfliction-v1 + protocol_stack_id=ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1 when strike-window recommendations require synchronized civil warning and escalation-safe release timing.
-- Add packet_id=DPL-HYPERSONIC-CIVWARN-DECONF-001 for branches that materially change launch-window sequencing or strategic warning posture.
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVII Addendum)
-
-- Add `tool_suite_id=ts-theater-hypersonic-strike-bda-corroboration-v1` + `protocol_stack_id=ps-theater-hypersonic-strike-bda-corroboration-stack-v1` when compressed strike timelines require multi-source battle-damage corroboration before escalation-sensitive branch selection.
-- Add `tool_suite_id=ts-joint-quantum-pnt-fallback-assurance-v1` + `protocol_stack_id=ps-joint-quantum-pnt-fallback-assurance-stack-v1` when OCA timing, rendezvous sequencing, or release authorities depend on contested PNT fallback confidence.
-- Add `packet_id=DPL-HYPERSONIC-BDA-CORROBORATION-001` and `packet_id=DPL-QUANTUM-PNT-FALLBACK-001` for branches that can alter commander go/no-go posture.
-
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXVIII Addendum)
-
-- Add `tool_suite_id=ts-iamd-decoy-discrimination-and-interceptor-priority-v1` + `protocol_stack_id=ps-iamd-decoy-discrimination-and-interceptor-priority-stack-v1` when OCA recommendations depend on separating decoy saturation from high-confidence missile or aircraft threats.
-- Add `tool_suite_id=ts-joint-munition-energy-coupled-targeting-deconfliction-v1` + `protocol_stack_id=ps-joint-munition-energy-coupled-targeting-deconfliction-stack-v1` when OCA support requires cross-theater kinetic and directed-energy allocation tradeoffs.
-- Add `packet_id=DPL-IAMD-DECOY-DISCRIMINATION-001` and `packet_id=DPL-MUNITION-ENERGY-DECONFLICTION-001` for branches that materially alter sortie-risk acceptance or interceptor release posture.
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.

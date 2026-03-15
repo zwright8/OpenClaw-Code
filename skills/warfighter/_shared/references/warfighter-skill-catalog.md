@@ -13,13 +13,13 @@ This catalog maps warfighter skill coverage across major military action domains
 - Mission command/decision support: mission-risk-decision-support, joint-mission-brief-builder, integrated-campaign-assessment-cell, training-and-rehearsal-designer, joint-operations-center-battle-rhythm-manager
 - Intelligence/ISR/targeting: battlespace-intel-fusion, isr-collection-and-sensor-tasking, targeting-cycle-manager, battle-damage-assessment-fusion-cell, strategic-intelligence-indications-warning-cell, all-source-collection-management-board, special-reconnaissance-and-sensitive-site-mapping, electronic-order-of-battle-management-cell
 - Land operations: land-maneuver-course-of-action, mountain-warfare-planner, subterranean-operations-support, urban-operations-civil-network-mapper, route-clearance-and-counter-ied-fusion, contested-bridge-and-gap-crossing-operations
-- Air operations: air-tasking-cycle-support, tactical-airspace-control-and-deconfliction, close-air-support-digital-integration-cell, expeditionary-airfield-operations, forward-arming-refueling-point-manager, tactical-uas-traffic-management-cell, arctic-maritime-air-corridor-deconfliction
+- Air operations: air-tasking-cycle-support, tactical-airspace-control-and-deconfliction, close-air-support-digital-integration-cell, expeditionary-airfield-operations, forward-arming-refueling-point-manager, tactical-uas-traffic-management-cell, arctic-maritime-air-corridor-deconfliction, expeditionary-aircraft-crash-fire-rescue-and-foam-transition-cell
 - Maritime/littoral/riverine/subsea: maritime-operations-planner, naval-surface-warfare-coordinator, naval-mine-warfare-planner, anti-submarine-warfare-support, riverine-and-inland-waterways-operations, subsea-infrastructure-protection-planner, naval-undersea-cable-protection-and-restoration
 - Space/cyber/electromagnetic: cyber-mission-planner, tactical-zero-trust-network-hardening, cema-integration-cell, electromagnetic-spectrum-operations, joint-spectrum-interference-resolution-cell, space-domain-awareness-and-satcom-defense, contested-space-launch-and-satellite-reconstitution, defensive-cyber-hunt-forward-coordination
-- Fires/effects and protection: fires-and-effects-synchronizer, integrated-air-and-missile-defense-cell, missile-warning-and-attack-assessment-cell, counter-uas-defense-planner, counter-uas-kill-chain-integration, force-protection-and-base-defense, hypersonic-threat-defense-integration-cell
-- Sustainment and mobility: contested-logistics-sustainment, strategic-mobility-deployment-planner, strategic-sealift-and-prepositioning-coordinator, movement-control-convoy-rail-planner, munitions-stockpile-and-expenditure-manager, autonomous-ground-resupply-convoy-control, expeditionary-fabrication-and-battle-damage-repair, mega-city-operations-sustainment-coordinator
-- Medical/personnel support: casualty-evac-and-medical-regulation, austere-surgical-support-coordinator, preventive-medicine-and-force-health-protection, medical-logistics-and-blood-supply-coordination, mortuary-affairs-and-personnel-accountability
-- Civil-military/legal/coalition/competition: civil-affairs-stability-ops, legal-roe-compliance-checker, theater-security-cooperation-planner, host-nation-access-basing-overflight-support, strategic-competition-gray-zone-response-cell, arms-control-treaty-compliance-monitor, tactical-psychological-operations-and-miso-cell, security-assistance-and-partner-capability-integration
+- Fires/effects and protection: fires-and-effects-synchronizer, integrated-air-and-missile-defense-cell, missile-warning-and-attack-assessment-cell, counter-uas-defense-planner, counter-uas-kill-chain-integration, force-protection-and-base-defense, hypersonic-threat-defense-integration-cell, joint-live-fire-range-safety-and-autonomous-target-control-cell
+- Sustainment and mobility: contested-logistics-sustainment, strategic-mobility-deployment-planner, strategic-sealift-and-prepositioning-coordinator, movement-control-convoy-rail-planner, munitions-stockpile-and-expenditure-manager, autonomous-ground-resupply-convoy-control, expeditionary-fabrication-and-battle-damage-repair, mega-city-operations-sustainment-coordinator, theater-property-book-loss-accountability-and-sensitive-item-recapture-cell
+- Medical/personnel support: casualty-evac-and-medical-regulation, austere-surgical-support-coordinator, preventive-medicine-and-force-health-protection, medical-logistics-and-blood-supply-coordination, mortuary-affairs-and-personnel-accountability, joint-sexual-assault-response-restricted-reporting-and-unit-safety-cell, joint-dignified-transfer-funeral-honors-and-family-escort-cell
+- Civil-military/legal/coalition/competition: civil-affairs-stability-ops, legal-roe-compliance-checker, theater-security-cooperation-planner, host-nation-access-basing-overflight-support, strategic-competition-gray-zone-response-cell, arms-control-treaty-compliance-monitor, tactical-psychological-operations-and-miso-cell, security-assistance-and-partner-capability-integration, theater-cultural-property-protection-and-no-strike-governance-cell, joint-civilian-harm-condolence-payment-and-claims-cell, joint-combat-camera-public-affairs-release-authenticity-cell
 - Enterprise adaptation and fielding: digital-engineering-mission-thread-analyst, mission-assured-software-factory-support, rapid-prototyping-and-fielding-accelerator, acquisition-and-contracting-support, supply-chain-risk-and-industrial-base-monitor
 - Cross-domain resilience and governance: theater-mission-network-failover-cell, operational-energy-resilience-and-microgrid-cell, joint-targeting-standards-and-cde-governance-cell, information-integrity-and-attribution-cell, joint-allied-data-link-interoperability-cell, joint-special-access-and-compartmented-integration-cell
 
@@ -2489,88 +2489,6 @@ Every skill output should include:
 
 ## New Expansion Wave (2026-03-14, Wave L)
 
-- joint-expeditionary-portable-atc-tower-tacan-and-runway-services-reconstitution-cell
-- joint-forward-blood-bank-crossmatch-and-massive-transfusion-continuity-cell
-- strategic-cryogenic-propellant-transfer-ground-support-and-boiloff-priority-cell
-- theater-fuel-pier-hose-farm-and-bulk-transfer-bypass-restoration-cell
-- joint-sonobuoy-allocation-and-acoustic-battery-endurance-cell
-- homeland-installation-wastewater-lift-station-and-sewer-bypass-defense-cell
-- coalition-jadc2-message-priority-and-releasability-bridge-cell
-- joint-degaussing-signature-restoration-and-port-exit-certification-cell
-
-## Updated Pairings (2026-03-14, Wave L)
-
-- Portable ATC/TACAN/runway-services reconstitution + airbase dispersal and rapid reconstitution + air tasking cycle support + joint austere portable air-traffic surveillance.
-- Forward blood-bank crossmatch and massive transfusion continuity + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator + casualty evacuation and medical regulation.
-- Cryogenic propellant transfer and boiloff priority + contested space launch and satellite reconstitution + joint space launch window conflict deconfliction + strategic industrial mobilization readiness.
-- Fuel-pier hose-farm bypass restoration + joint port opening and JLOTS synchronization + contested logistics sustainment + strategic sealift and prepositioning coordination.
-- Sonobuoy allocation and acoustic battery endurance + anti-submarine warfare support + maritime operations planner + naval surface warfare coordinator.
-- Installation wastewater lift-station and sewer-bypass defense + defense support of civil authorities crisis cell + force protection and base defense + joint urban underground water-grid contamination response.
-- Coalition JADC2 message priority and releasability bridge + coalition interoperability coordinator + coalition JADC2 data priority routing + coalition data fabric interoperability cell.
-- Degaussing signature restoration and port-exit certification + electromagnetic signature lifecycle management + naval surface warfare coordinator + expeditionary salvage and harbor clearance.
-
-## New Expansion Wave (2026-03-14, Wave LI)
-
-- strategic-tritium-reservoir-surveillance-and-nuclear-maintenance-priority-cell
-- strategic-euv-photomask-and-rad-hard-semiconductor-priority-cell
-- joint-forward-hypothermia-blood-warmer-and-cold-shock-resuscitation-cell
-- joint-assault-gap-crossing-smoke-obscurant-and-thermal-screen-integration-cell
-- homeland-chemical-plume-community-shelter-and-installation-access-control-cell
-- theater-mobile-hardened-shelter-nc3-relay-and-antenna-reconstitution-cell
-- theater-mission-device-credential-revocation-and-key-reissue-cell
-- coalition-port-wreck-clearance-heavy-lift-and-berth-reopening-cell
-- theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell
-- coalition-maritime-insurance-sanctions-and-convoy-underwriting-cell
-- joint-additive-warhead-liner-quality-assurance-cell
-- theater-rapid-runway-lighting-and-approach-aid-reconstitution-cell
-- coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell
-- strategic-quantum-network-key-custody-and-compromise-response-cell
-- joint-gray-zone-commercial-fleet-shadowing-attribution-cell
-- theater-austere-blood-plasma-donor-screening-and-cold-chain-cell
-
-## Updated Pairings (2026-03-14, Wave LI)
-
-- Tritium reservoir surveillance and nuclear maintenance priority + joint NC3 continuity and emergency action message assurance + strategic deterrence signaling support + strategic industrial mobilization readiness.
-- EUV photomask and rad-hard semiconductor priority + semiconductor burn-in mission prioritization + strategic industrial mobilization readiness + contested space launch and satellite reconstitution.
-- Forward hypothermia and blood-warmer resuscitation + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator + arctic and extreme environment operations.
-- Assault gap-crossing smoke and thermal-screen integration + joint river crossing under fire synchronization + contested bridge and gap crossing operations + battlefield electromagnetic fratricide prevention.
-- Chemical plume community shelter and installation access control + defense support of civil authorities crisis cell + civil defense mass evacuation shelter + force protection and base defense.
-- Mobile hardened shelter NC3 relay and antenna reconstitution + joint NC3 continuity and emergency action message assurance + strategic hardened fiber NC3 failover assurance + strategic deterrence messaging and escalation control.
-- Mission-device credential revocation and key reissue + deployed digital identity wallet and credential revocation + tactical zero-trust network hardening + theater mission network failover cell.
-- Coalition port wreck clearance and berth reopening + expeditionary salvage and harbor clearance + joint port opening and JLOTS synchronization + strategic sealift and prepositioning coordination.
-- Hydrogen fuel-cell microgrid safety and emissions control + operational energy resilience and microgrid + theater mission network failover + force protection and base defense.
-- Coalition maritime insurance sanctions and convoy underwriting + contested logistics sustainment + coalition interoperability coordinator + maritime insurance and commercial shipping risk.
-- Joint additive warhead-liner quality assurance + theater additive munitions microfactory control + strategic industrial mobilization readiness + munitions stockpile and expenditure manager.
-- Theater rapid runway-lighting and approach-aid reconstitution + airbase dispersal and rapid reconstitution + joint expeditionary portable ATC tower TACAN and runway services reconstitution + air tasking cycle support.
-- Coalition cross-border battery recycling and critical-mineral recovery + joint expeditionary critical mineral recovery and recycling + coalition interoperability coordinator + strategic industrial mobilization readiness.
-- Strategic quantum network key custody and compromise response + joint battle network zero trust key material continuity + theater mission network failover + strategic cyber reserve mobilization assurance.
-- Joint gray-zone commercial fleet shadowing attribution + gray-zone maritime militia attribution + strategic competition gray-zone response cell + maritime insurance and commercial shipping risk.
-- Theater austere blood plasma donor screening and cold-chain + joint forward blood-bank crossmatch and massive transfusion continuity + joint role 3 medical network and aeromedical evacuation + austere surgical support coordinator.
-
-## New Expansion Wave (2026-03-14, Wave LII)
-
-- joint-forward-dental-and-maxillofacial-triage-cell
-- joint-ocular-trauma-vision-evac-priority-cell
-- theater-forward-water-quality-lab-and-potability-release-cell
-- theater-petroleum-quality-lab-and-fuel-spec-waiver-cell
-- joint-fuel-bladder-grounding-bonding-and-lightning-safety-cell
-- strategic-solid-propellant-casting-and-cure-assurance-cell
-- theater-ordnance-magazine-humidity-and-stability-monitoring-cell
-- coalition-harbor-vts-fallback-and-manual-pilotage-cell
-
-## Updated Pairings (2026-03-14, Wave LII)
-
-- Forward dental and maxillofacial triage + austere surgical support coordinator + joint role 3 medical network and aeromedical evacuation + casualty evacuation and medical regulation.
-- Ocular trauma vision and evac priority + austere surgical support coordinator + preventive medicine and force health protection + casualty evacuation and medical regulation.
-- Forward water-quality lab and potability release + joint water production and distribution security + preventive medicine and force health protection + expeditionary water purification contamination attribution.
-- Petroleum quality lab and fuel-spec waiver + contested logistics sustainment + expeditionary fuel pipeline and bulk water terminal support + airbase dispersal and rapid reconstitution.
-- Fuel-bladder grounding bonding and lightning safety + contested logistics sustainment + operational energy resilience and microgrid + force protection and base defense.
-- Strategic solid-propellant casting and cure assurance + strategic industrial mobilization readiness + strategic solid rocket motor supply surge safety assurance + contested space launch and satellite reconstitution.
-- Ordnance magazine humidity and stability monitoring + munitions stockpile and expenditure manager + munitions port safety + force protection and base defense.
-- Coalition harbor VTS fallback and manual pilotage + strategic sealift and prepositioning coordinator + strategic harbor tug pilotage sealift priority + joint denied GNSS maritime pilotage and port entry.
-
-## New Expansion Wave (2026-03-14, Wave LIII)
-
 - joint-religious-affairs-and-moral-injury-support-cell
 - joint-psychological-health-suicide-postvention-command-support-cell
 - joint-force-veterinary-and-working-dog-support-cell
@@ -2580,128 +2498,33 @@ Every skill output should include:
 - joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell
 - joint-deployed-postal-ballot-and-family-contact-continuity-cell
 
-## Updated Pairings (2026-03-14, Wave LIII)
+## Updated Pairings (2026-03-14, Wave L)
 
-- Religious affairs and moral injury support + psychological health postvention + human performance and combat stress risk + theater reservist family readiness and retention.
+- Religious affairs and moral injury support + psychological health postvention + human performance and combat stress risk + reservist family readiness and retention.
 - Veterinary and working-dog support + force protection and base defense + preventive medicine and force health protection + expeditionary veterinary and zoonotic risk.
 - Field nutrition resilience + theater food-security and civil-stability support + strategic food cold-storage continuity + preventive medicine and force health protection.
 - Dental and maxillofacial readiness + austere surgical support coordinator + casualty evacuation and medical regulation + theater mass-casualty burn-care austere network.
-- Musculoskeletal load management and physical therapy + human performance and combat stress risk + expeditionary neurocognitive injury screening and return to duty + multi-domain reserve mobilization readiness.
+- Musculoskeletal load management and physical therapy + human performance and combat stress risk + expeditionary neurocognitive injury screening and return to duty + reserve-component readiness management.
 - Casualty rehabilitation and prosthetics + expeditionary neurocognitive injury screening and return to duty + strategic veteran medical surge transition + theater veteran transition and reserve recall readiness.
 - Postal, ballot, and family-contact continuity + personnel-recovery family authentication and deception denial + multi-theater casualty information and family notification integrity + theater mission network failover.
 
-## New Expansion Wave (2026-03-14, Wave LIV)
+## New Expansion Wave (2026-03-15, Legitimacy, Safety, and Accountability)
 
-- joint-submarine-escape-and-rescue-system-integration-cell
-- theater-aircrew-fatigue-circadian-countermeasure-cell
-- theater-emissions-decoy-robotic-control-and-spectrum-safety-cell
-- joint-orbital-custody-loss-and-commercial-ssa-retask-cell
-- theater-air-gapped-credential-reissue-and-pki-recovery-cell
-- strategic-electronics-salvage-and-component-reclamation-cell
-- expeditionary-obstetric-and-neonatal-emergency-support-cell
-- homeland-school-shelter-mass-care-and-family-reunification-cell
-- coalition-host-nation-water-rights-and-demand-cell
-- joint-captured-materiel-exploitation-and-redistribution-cell
+- joint-sexual-assault-response-restricted-reporting-and-unit-safety-cell
+- theater-cultural-property-protection-and-no-strike-governance-cell
+- joint-civilian-harm-condolence-payment-and-claims-cell
+- expeditionary-aircraft-crash-fire-rescue-and-foam-transition-cell
+- joint-combat-camera-public-affairs-release-authenticity-cell
+- theater-property-book-loss-accountability-and-sensitive-item-recapture-cell
+- joint-live-fire-range-safety-and-autonomous-target-control-cell
+- joint-dignified-transfer-funeral-honors-and-family-escort-cell
 
-## Updated Pairings (2026-03-14, Wave LIV)
+## Updated Pairings (2026-03-15, Legitimacy, Safety, and Accountability)
 
-- Submarine escape and rescue integration + naval surface warfare coordinator + joint role 3 medical network and aeromedical evac + coalition interoperability coordinator.
-- Aircrew fatigue and circadian countermeasure + air-tasking-cycle-support + human performance and combat stress risk + airbase dispersal and rapid reconstitution cell.
-- Emissions decoy robotic control and spectrum safety + cema-integration-cell + electromagnetic-spectrum-operations + deception-signature-management-and-decoy-employment-cell.
-- Orbital custody loss and commercial SSA retask + contested-space-domain-awareness-and-rendezvous-denial-cell + joint-satellite-ephemeris-spoofing-and-timing-confidence-cell + joint-commercial-satellite-imagery-denial-and-retask-governance-cell.
-- Air-gapped credential reissue and PKI recovery + tactical-zero-trust-network-hardening + theater-mission-network-failover-cell + joint-battle-network-zero-trust-key-material-continuity-cell.
-- Electronics salvage and component reclamation + strategic-industrial-mobilization-readiness-cell + supply-chain-risk-and-industrial-base-monitor + rapid-prototyping-and-fielding-accelerator.
-- Obstetric and neonatal emergency support + joint-role-3-medical-network-and-aeromedical-evac-cell + austere-surgical-support-coordinator + expeditionary-austere-pediatric-casualty-surge-balancing-cell.
-- School shelter mass care and family reunification + defense-support-of-civil-authorities-crisis-cell + civil-affairs-stability-ops + joint-civilian-evacuation-biometric-family-reunification-integrity-cell.
-- Coalition host-nation water rights and demand + joint-water-production-and-distribution-security-cell + contested-logistics-sustainment + civil-affairs-stability-ops.
-- Captured materiel exploitation and redistribution + explosive-ordnance-disposal-coordinator + special-reconnaissance-and-sensitive-site-mapping + theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell.
-
-## New Expansion Wave (2026-03-14, Wave LV)
-
-- joint-deployed-pay-entitlement-fraud-and-disconnected-disbursement-cell
-- homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell
-- joint-insulin-cold-chain-and-diabetic-readiness-cell
-- theater-landing-craft-ramp-hydraulics-and-shore-transfer-recovery-cell
-- strategic-radome-seeker-window-and-optical-coating-priority-cell
-- joint-personal-effects-custody-and-mortuary-return-integrity-cell
-- coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell
-- joint-portable-shower-laundry-and-textile-biosecurity-cell
-
-## Updated Pairings (2026-03-14, Wave LV)
-
-- Deployed pay, entitlement fraud defense, and disconnected disbursement + multi-domain reserve mobilization readiness + joint deployed postal ballot and family contact continuity + mission risk decision support.
-- Base childcare evacuation and dual-military family continuity + civil-affairs-stability-ops + defense-support-of-civil-authorities-crisis-cell + homeland-school-shelter-mass-care-and-family-reunification-cell.
-- Insulin cold chain and diabetic readiness + preventive-medicine-and-force-health-protection + medical-logistics-and-blood-supply-coordination + joint-role-3-medical-network-and-aeromedical-evac-cell.
-- Landing-craft ramp hydraulics and shore-transfer recovery + strategic-sealift-and-prepositioning-coordinator + joint-port-opening-and-jlots-synchronization-cell + contested-logistics-sustainment.
-- Radome, seeker-window, and optical-coating priority + strategic-industrial-mobilization-readiness-cell + strategic-photonics-laser-optics-defense-allocation-cell + strategic-guidance-seeker-imu-and-accelerometer-priority-cell.
-- Personal-effects custody and mortuary return integrity + mortuary-affairs-and-personnel-accountability + joint-multi-theater-casualty-information-and-family-notification-integrity-cell + theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell.
-- Coalition fuel-truck driver vetting and bulk-fuel shift restoration + contested-logistics-sustainment + strategic-sealift-and-prepositioning-coordinator + coalition-interoperability-coordinator.
-- Portable shower, laundry, and textile biosecurity + preventive-medicine-and-force-health-protection + expeditionary-water-purification-contamination-attribution-cell + theater-battlefield-waste-and-hazardous-material-control-cell.
-
-## New Expansion Wave (2026-03-15, Wave LVI)
-
-- coalition-critical-infrastructure-cyber-kinetic-cascade-cell
-- arctic-denied-comms-polar-orbit-handover-cell
-- battlefield-additive-manufacturing-forward-repair-validation-cell
-- coalition-civil-telecom-priority-service-restoration-cell
-- cbrn-mass-casualty-triage-and-decon-coordination-cell
-- ai-assisted-maintenance-predictive-failure-cell
-
-## Updated Pairings (2026-03-15, Wave LVI)
-
-- Coalition critical-infrastructure cyber-kinetic cascade + coalition-interoperability-coordinator + cyber-physical-infrastructure-defense-cell + defense-support-of-civil-authorities-crisis-cell.
-- Arctic denied comms polar-orbit handover + space-domain-awareness-and-satcom-defense + expeditionary-communications-package-deployment + weather-space-weather-effects-forecast-cell.
-- Battlefield additive forward-repair validation + contested-logistics-sustainment + expeditionary-fabrication-and-battle-damage-repair + ai-assisted-maintenance-predictive-failure-cell.
-- Coalition civil telecom priority restoration + coalition-interoperability-coordinator + theater-mission-network-failover-cell + defense-support-of-civil-authorities-crisis-cell.
-- CBRN mass-casualty triage and decon coordination + casualty-evac-and-medical-regulation + preventive-medicine-and-force-health-protection + defense-support-of-civil-authorities-crisis-cell.
-- AI-assisted maintenance predictive failure + contested-logistics-sustainment + supply-chain-risk-and-industrial-base-monitor + rapid-prototyping-and-fielding-accelerator.
-
-## New Expansion Wave (2026-03-15, Wave LVII)
-
-- joint-casualty-assistance-center-and-family-support-synchronization-cell
-- joint-dignified-transfer-escort-and-family-liaison-cell
-- coalition-interpreter-vetting-and-linguist-fatigue-governance-cell
-- theater-prosthetic-component-and-socket-liner-surge-cell
-
-## Updated Pairings (2026-03-15, Wave LVII)
-
-- Casualty assistance center and family support synchronization + joint-multi-theater-casualty-information-and-family-notification-integrity-cell + joint-deployed-postal-ballot-and-family-contact-continuity-cell + reserve-component-family-readiness-surge-cell.
-- Dignified transfer escort and family liaison + joint-personal-effects-custody-and-mortuary-return-integrity-cell + mortuary-affairs-and-personnel-accountability + joint-expeditionary-mortuary-affairs-surge-cell.
-- Coalition interpreter vetting and linguist fatigue governance + coalition-interoperability-coordinator + tactical-language-enabled-civil-engagement-cell + coalition-cross-border-casualty-identity-and-family-notification-cell.
-- Prosthetic component and socket liner surge + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-additive-prosthetics-rehabilitation-surge-cell + theater-musculoskeletal-load-management-and-physical-therapy-cell.
-
-## New Expansion Wave (2026-03-15, Wave LVIII)
-
-- coalition-integrated-air-and-missile-defense-data-latency-cell
-- contested-subterranean-operations-support-cell
-- expeditionary-arctic-aerostat-and-over-the-horizon-radar-cell
-- homeland-civil-grid-islanding-and-mission-priority-power-cell
-- joint-cislunar-logistics-and-space-rescue-cell
-- joint-hypersonic-launch-detection-and-cueing-cell
-- joint-long-range-fires-magazine-depth-and-reconstitution-cell
-- joint-rapid-harbor-mine-countermeasure-autonomy-cell
-- joint-space-weather-effects-on-precision-strike-cell
-- operational-electronic-order-of-battle-decay-forecast-cell
-- strategic-bioindustrial-supply-assurance-and-counter-sabotage-cell
-- strategic-under-ice-cable-sabotage-attribution-cell
-- tactical-counter-targeting-pattern-of-life-obfuscation-cell
-- tactical-digital-twin-combined-arms-rehearsal-cell
-- theater-contested-identity-and-access-recovery-cell
-
-## Updated Pairings (2026-03-15, Wave LVIII)
-
-- Coalition IAMD latency + integrated-air-and-missile-defense-cell + coalition-interoperability-coordinator + missile-warning-and-attack-assessment-cell.
-- Contested subterranean operations + subterranean-operations-support + route-clearance-and-counter-ied-fusion + combat-engineering-obstacle-intelligence-cell.
-- Arctic aerostat and over-the-horizon radar + missile-warning-and-attack-assessment-cell + weather-space-weather-effects-forecast-cell + space-domain-awareness-and-satcom-defense.
-- Homeland grid islanding and mission-priority power + defense-support-of-civil-authorities-crisis-cell + operational-energy-resilience-and-microgrid-cell + homeland-grid-blackstart-fuel-convoy-security-fusion-cell.
-- Cislunar logistics and space rescue + contested-space-launch-and-satellite-reconstitution + defensive-space-control-counterspace-cell + joint-space-weather-solar-storm-mission-assurance-cell.
-- Hypersonic launch detection and cueing + integrated-air-and-missile-defense-cell + missile-warning-and-attack-assessment-cell + hypersonic-threat-defense-integration-cell.
-- Long-range fires magazine depth and reconstitution + fires-and-effects-synchronizer + munitions-stockpile-and-expenditure-manager + contested-logistics-sustainment.
-- Rapid harbor mine-countermeasure autonomy + expeditionary-salvage-and-harbor-clearance + naval-surface-warfare-coordinator + maritime-operations-planner.
-- Space-weather effects on precision strike + offensive-counter-air-mission-planner + joint-targeting-standards-and-cde-governance-cell + space-domain-awareness-and-satcom-defense.
-- Electronic order of battle decay forecast + joint-spectrum-interference-resolution-cell + cema-integration-cell + electronic-order-of-battle-management-cell.
-- Bioindustrial supply assurance and counter-sabotage + strategic-industrial-mobilization-readiness-cell + supply-chain-risk-and-industrial-base-monitor + preventive-medicine-and-force-health-protection.
-- Under-ice cable sabotage attribution + subsea-infrastructure-protection-planner + naval-undersea-cable-protection-and-restoration + coalition-interoperability-coordinator.
-- Tactical counter-targeting pattern-of-life obfuscation + force-protection-and-base-defense + special-operations-signature-management-and-exfiltration-cell + deception-signature-management-and-decoy-employment-cell.
-- Tactical digital-twin combined-arms rehearsal + training-and-rehearsal-designer + mission-risk-decision-support + integrated-campaign-assessment-cell.
-- Theater contested identity and access recovery + cyber-mission-planner + tactical-zero-trust-network-hardening + theater-mission-network-failover-cell.
+- Civil affairs stability ops + civilian-harm condolence and claims + cultural-property no-strike governance + targeting standards and CDE governance.
+- Public affairs operational communications + combat camera evidence documentation + combat-camera release authenticity + information integrity and attribution.
+- Mortuary affairs and personnel accountability + dignified transfer and funeral honors + casualty rehabilitation and prosthetics + family notification integrity.
+- Contested logistics sustainment + property-book sensitive-item recapture + military police site security + zero-trust key-material continuity.
+- Airbase dispersal and rapid reconstitution + aircraft crash fire rescue and foam transition + base fuel hydrant recovery + runway crater repair orchestration.
+- Training and rehearsal designer + live-fire range safety and autonomous target control + tactical airspace control and deconfliction + mission risk decision support.
+- Psychological health postvention + religious affairs and moral injury support + SAPR restricted reporting and unit safety + deployed postal ballot and family contact continuity.

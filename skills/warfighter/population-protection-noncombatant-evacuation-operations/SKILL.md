@@ -149,12 +149,6 @@ Use these tool categories as the default stack for this skill: consular status s
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-joint-ballistic-missile-raid-shelter-population-protection-v1` with `protocol_stack_id=ps-joint-ballistic-missile-raid-shelter-population-protection-stack-v1` when population-protection branches depend on shelter occupancy, raid warning synchronization, or protected movement timing.
-- Add `tool_suite_id=ts-coalition-portable-bridge-raft-refugee-crossing-safety-v1` with `protocol_stack_id=ps-coalition-portable-bridge-raft-refugee-crossing-safety-stack-v1` when evacuation or displacement branches require river-crossing safety, humanitarian throughput control, or coalition legal handoffs.
-- Add `packet_id=DPL-JOINT-BALLISTIC-MISSILE-RAID-SHELTER-001` and `packet_id=DPL-COALITION-BRIDGE-RAFT-REFUGEE-CROSSING-001` for recommendations that materially change life-safety routing or shelter-release timing.
-
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
 
 - Add `tool_suite_id=ts-coalition-neo-identity-fraud-suppression-v1` + `protocol_stack_id=ps-coalition-neo-identity-fraud-suppression-stack-v1` when evacuation legitimacy, family-link assurance, or coalition screening confidence materially affects protected movement timing.

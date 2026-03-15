@@ -57,4 +57,6 @@ Preferred protocol families for this skill: OGC SensorThings, NIEM, STANAG, CBRN
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-expeditionary-water-contamination-cause-fusion-v1 + protocol_stack_id=ps-expeditionary-water-contamination-cause-fusion-stack-v1 when commanders need rapid attribution between sabotage, industrial leak, and natural-source failures.\n- Add tool_suite_id=ts-water-purification-throughput-and-distribution-priority-v1 + protocol_stack_id=ps-water-purification-throughput-and-distribution-priority-stack-v1 when branch viability depends on constrained purification assets and casualty-prevention demand.\n- Add packet_id=DPL-EXPEDITIONARY-WATER-CONTAM-ATTRIBUTION-001 and packet_id=DPL-WATER-THROUGHPUT-PRIORITY-001 for recommendations that alter potable water release or rationing posture.
+- Add tool_suite_id=ts-expeditionary-water-contamination-cause-fusion-v1 + protocol_stack_id=ps-expeditionary-water-contamination-cause-fusion-stack-v1 when commanders need rapid attribution between sabotage, industrial leak, and natural-source failures.
+- Add tool_suite_id=ts-water-purification-throughput-and-distribution-priority-v1 + protocol_stack_id=ps-water-purification-throughput-and-distribution-priority-stack-v1 when branch viability depends on constrained purification assets and casualty-prevention demand.
+- Add packet_id=DPL-EXPEDITIONARY-WATER-CONTAM-ATTRIBUTION-001 and packet_id=DPL-WATER-THROUGHPUT-PRIORITY-001 for recommendations that alter potable water release or rationing posture.

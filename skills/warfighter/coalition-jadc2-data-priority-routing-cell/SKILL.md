@@ -144,7 +144,3 @@ Primary products for this skill: jadc2 routing priority plan, cross-domain flow 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
-
-- Add `tool_suite_id=ts-coalition-jadc2-message-priority-releasability-bridge-v1` + `protocol_stack_id=ps-coalition-jadc2-message-priority-releasability-bridge-stack-v1` when coalition routing depends on priority-message translation, releasability enforcement, or acknowledgment-chain fidelity.
-- Add `packet_id=DPL-COALITION-JADC2-PRIORITY-BRIDGE-001` for branches that materially alter coalition message release timing, schema translation confidence, or caveat handling.

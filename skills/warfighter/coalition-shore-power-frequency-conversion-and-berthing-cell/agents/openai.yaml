@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Coalition Shore Power Frequency Conversion and Berthing Cell"
-  short_description: "Help coordinate coalition berthing and shore-power compatibility"
+  display_name: "Coalition Shore Power Frequency Conversion And Berthing Cell"
+  short_description: "Help with Coalition Shore Power Frequency Conversion And Berthing Cell tasks"

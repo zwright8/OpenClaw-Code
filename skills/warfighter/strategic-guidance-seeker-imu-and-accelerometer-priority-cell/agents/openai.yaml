@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Strategic Guidance Seeker IMU and Accelerometer Priority Cell"
-  short_description: "Help allocate seekers and inertial guidance components"
+  display_name: "Strategic Guidance Seeker IMU And Accelerometer Priority Cell"
+  short_description: "Help with Strategic Guidance Seeker IMU And Accelerometer Priority Cell tasks"

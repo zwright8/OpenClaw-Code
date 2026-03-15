@@ -148,8 +148,3 @@ Primary products for this skill: critical infrastructure risk map, monitoring po
 
 - Add `tool_suite_id=ts-joint-undersea-cable-sabotage-forensics-restoration-v1` + `protocol_stack_id=ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1` when infrastructure defense recommendations depend on sabotage attribution, custody integrity, or restoration sequencing for mission networks.
 - Add `packet_id=DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-001` for branches that materially alter maritime collection posture, repair sequencing, or coalition disclosure timing.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
-
-- Add `tool_suite_id=ts-underice-forensics-v1` + `protocol_stack_id=ps-cop-event-sharing-stack-v1` when infrastructure-defense recommendations depend on under-ice sabotage attribution, confidence-banded restoration sequencing, or interagency continuity coordination.
-- Add `packet_id=DPL-UNDERICE-ATTR-001` for branches that materially alter attribution posture, repair prioritization, or disclosure timing.

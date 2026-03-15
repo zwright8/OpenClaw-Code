@@ -144,3 +144,44 @@ Primary products for this skill: sead and dead synchronization board, emitter co
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-08, Runway Magnetic Clearance Expansion)
+
+- Prioritize `tool_suite_id=ts-runway-magnetic-anomaly-clearance-v1` with `protocol_stack_id=ps-runway-magnetic-anomaly-stack-v1` when SEAD/DEAD follow-on sorties are constrained by runway hazard uncertainty.
+- Use packet `DPL-RUNWAY-MAG-ANOMALY-001` to bind anomaly confidence, EOD sequencing, and sortie reattack window synchronization.
+- If anomaly confidence remains below threshold, downgrade to conservative sortie generation guidance and require air boss and commander concurrence.
+
+## Domain Toolchain Override (2026-03-08, EW Order-Of-Battle Drift Expansion)
+
+- Prioritize `tool_suite_id=ts-ew-order-of-battle-drift-v1` with `protocol_stack_id=ps-ew-ob-drift-stack-v1` when adversary emitter behavior diverges from mission-data baselines.
+- Use packet `DPL-EW-OB-DRIFT-001` to bind drift confidence, mission-data retune actions, and reattack timing decisions.
+- If mission-data retune cannot be verified in time, publish an advisory-only branch with explicit risk-to-package survivability annotations.
+
+## Domain Toolchain Override (2026-03-08, EOB Decay Forecast Integration)
+
+- Prioritize `tool_suite_id=ts-eob-decay-forecast-v1` with `protocol_stack_id=ps-eob-decay-forecast-stack-v1` when adversary emitter behaviors drift beyond mission-data confidence thresholds.
+- Use packet `DPL-EOB-DECAY-FORECAST-001` to connect drift confidence, retune sequencing, and reattack timing decisions.
+- If independent RF cross-check data is stale, downgrade to advisory-only and require explicit command review before execution.
+
+## Domain Toolchain Override (2026-03-09, Obscurant Navigation and Sensor Confidence)
+
+- Prioritize `tool_suite_id=ts-lidar-obscurant-navigation-assurance-v1` with `protocol_stack_id=ps-lidar-obscurant-navigation-assurance-stack-v1` when SEAD ingress/egress timing is sensitive to dust, smoke, or obscurant-driven sensor degradation.
+- Use packet `DPL-LIDAR-OBSCURANT-NAV-001` to bind sensor confidence gates, timing windows, and fallback navigation branches for strike packages.
+- If cross-sensor confidence cannot be sustained, downgrade to constrained-tempo options and require explicit package commander concurrence.
+
+## Domain Toolchain Override (2026-03-09, Spectrum Sensor Deception Attribution)
+
+- Prioritize `tool_suite_id=ts-spectrum-sensor-deception-attribution-v1` with `protocol_stack_id=ps-spectrum-sensor-deception-attribution-stack-v1` when adversary sensor-deception activity degrades emitter confidence for SEAD/DEAD targeting.
+- Use packet `DPL-SPECTRUM-SENSOR-DECEPTION-ATTRIBUTION-001` to bind attribution confidence, retask timing, and commander decision checkpoints.
+- If independent corroboration or command authority validation fails, downgrade to advisory-only recommendations and require explicit package commander review.
+
+## Domain Toolchain Override (2026-03-09, Precision Navigation Spoofing Adjudication)
+
+- Prioritize `tool_suite_id=ts-precision-navigation-spoofing-adjudication-v1` with `protocol_stack_id=ps-precision-navigation-spoofing-adjudication-stack-v1` when spoofing or timing drift threatens SEAD ingress/egress geometry.
+- Use packet `DPL-PRECISION-NAVIGATION-SPOOFING-ADJUDICATION-001` to bind navigation-confidence bands, fallback path timing, and package commander release checkpoints.
+- If timing integrity or cross-sensor confidence is incomplete, downgrade to constrained-tempo recommendations and require explicit commander concurrence.
+
+## Domain Toolchain Override (2026-03-09, Chokepoint Interdiction and Repeater Route Protection)
+
+- Prioritize tool_suite_id=ts-subsea-repeater-tamper-restoration-v1 and tool_suite_id=ts-maritime-chokepoint-contraband-interdiction-v1 when kill-web support depends on contested maritime and undersea relay pathways.
+- Use packets DPL-SUBSEA-REPEATER-TAMPER-RESTORATION-001 and DPL-MARITIME-CHOKEPOINT-CONTRABAND-INTERDICTION-001 to bind routing continuity, interdiction priorities, and command-approved retask gates.
+- If route-custody evidence or legal acknowledgment integrity is incomplete, downgrade to advisory-only retask recommendations until command review is complete.

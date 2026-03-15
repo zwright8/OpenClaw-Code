@@ -160,23 +160,7 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 - Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when delayed sealift, port closure, or damaged prepositioning stocks require reserve airlift backfill for critical cargo.
 - Add `packet_id=DPL-UNDERWAY-REPLENISHMENT-RIG-001` and `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001` for recommendations that materially alter afloat sustainment, prepositioning resilience, or multimodal backfill posture.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
-
-- Add `tool_suite_id=ts-coalition-shore-power-frequency-conversion-berthing-v1` + `protocol_stack_id=ps-coalition-shore-power-frequency-conversion-berthing-stack-v1` when sealift timing depends on coalition berth power, converter availability, or pier-load compatibility during prepositioning recovery.
-- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when cargo visibility, port scheduling, or berth-release systems lose credential trust and must be restored without stalling strategic flow.
-- Add `packet_id=DPL-SHORE-POWER-BERTHING-001` and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for recommendations that materially alter port-release timing, prepositioning confidence, or strategic sustainment continuity.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
-
-- Add `tool_suite_id=ts-coalition-harbor-vts-fallback-manual-pilotage-v1` + `protocol_stack_id=ps-coalition-harbor-vts-fallback-manual-pilotage-stack-v1` when sealift timing depends on manual harbor control, pilotage scarcity, or channel release after cyber or VTS degradation.
-- Add `packet_id=DPL-HARBOR-VTS-MANUAL-PILOTAGE-001` for recommendations that materially alter port-entry timing, berth sequencing, or commander confidence in coalition harbor control.
-
 ## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
 
 - Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when force-flow confidence depends on crane OT rollback safety, berth recovery, or commercial port automation trust.
 - Add `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001` for recommendations that materially alter berth release, cargo sequencing, or commander sealift confidence.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
-
-- Use `theater-landing-craft-ramp-hydraulics-and-shore-transfer-recovery-cell` when sealift offload confidence depends on lighterage ramp hydraulics, beach-transfer sequencing, or causeway release timing.
-- Use `coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell` when onward fuel distribution from ports depends on trusted coalition tanker dispatch and recovered shift coverage.

@@ -145,8 +145,39 @@ Primary products for this skill: data link execution plan, network load manageme
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
 
-## Domain Toolchain Override (2026-03-09, Black-Sky Link Resilience Addendum)
+## Domain Toolchain Override (2026-03-09, Coalition EW and Seabed Continuity Addendum)
 
-- Prioritize `tool_suite_id=ts-black-sky-c2-bridge-v1` + `protocol_stack_id=ps-black-sky-c2-bridge-stack-v1` when terrestrial transport and primary SATCOM pathways are degraded.
-- Prioritize `tool_suite_id=ts-space-isr-priority-arbitration-v1` + `protocol_stack_id=ps-space-isr-priority-arbitration-stack-v1` when data-link bandwidth must be rebalanced against ISR collection priorities.
-- Add `packet_id=DPL-BLACK-SKY-C2-BRIDGE-001` and `packet_id=DPL-SPACE-ISR-PRIORITY-ARB-001` for message-priority, bandwidth-allocation, and acknowledgment integrity decisions.
+- Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when coalition data-link behavior depends on urgent emitter-library or waveform profile updates.
+- Prioritize `tool_suite_id=ts-seabed-node-tamper-repair-v1` + `protocol_stack_id=ps-seabed-node-tamper-repair-stack-v1` when undersea node disruptions degrade long-haul data-link continuity.
+- Add `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` and `packet_id=DPL-SEABED-NODE-TAMPER-REPAIR-001` for recommendations that modify coalition link plans or SATCOM/terrestrial failover posture.
+
+## Domain Toolchain Override (2026-03-09, Maritime Autonomy Liability and Decoy Telemetry Addendum)
+
+- Prioritize `tool_suite_id=ts-autonomous-maritime-traffic-liability-v1` + `protocol_stack_id=ps-autonomous-maritime-traffic-liability-stack-v1` when maritime tactical links must deconflict autonomous and crewed traffic with legally defensible event logging.
+- Prioritize `tool_suite_id=ts-electro-optical-decoy-audit-v1` + `protocol_stack_id=ps-electro-optical-decoy-audit-stack-v1` when data-link distribution affects decoy posture, sensor deception timing, or emissions control in contested targeting cycles.
+- Add `packet_id=DPL-AUTONOMOUS-MARITIME-TRAFFIC-LIABILITY-001` and `packet_id=DPL-ELECTRO-OPTICAL-DECOY-AUDIT-001` for recommendations that adjust coalition link lanes, sensor release authorities, or attribution data retention rules.
+
+## Domain Toolchain Override (2026-03-10, Swarm Exploitation and SATCOM Denial Addendum)
+
+- Add `tool_suite_id=ts-joint-drone-swarm-capture-exploitation-v1` + `protocol_stack_id=ps-joint-drone-swarm-capture-exploitation-stack-v1` when recovered swarm payloads must be converted into mission-data-link updates.
+- Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when data-link quality depends on LEO SATCOM path restoration and anti-jam fallback sequencing.
+
+## Domain Toolchain Override (2026-03-10, Denied Relay and Voice Authenticity Expansion)
+
+- Add `tool_suite_id=ts-denied-underwater-comms-autonomy-control-v1` + `protocol_stack_id=ps-denied-underwater-comms-autonomy-control-stack-v1` when data-link recommendations include submerged relays or autonomous maritime control loops.
+- Add `tool_suite_id=ts-theater-deepfake-voice-command-authentication-v1` + `protocol_stack_id=ps-theater-deepfake-voice-command-authentication-stack-v1` when command-link trust and voice-origin verification become mission-critical.
+
+## Domain Toolchain Override (2026-03-10, Navigation Reversion and Urban Rescue Expansion)
+
+- Add `tool_suite_id=ts-precision-navigation-terrain-referenced-reversion-v1` + `protocol_stack_id=ps-precision-navigation-terrain-referenced-reversion-stack-v1` when data-link management must support synchronized non-GNSS navigation fallback.
+- Add `tool_suite_id=ts-hostage-recovery-urban-sensor-fusion-v1` + `protocol_stack_id=ps-hostage-recovery-urban-sensor-fusion-stack-v1` when mission links carry time-critical urban sensor confidence updates for sensitive rescue operations.
+
+## Domain Toolchain Override (2026-03-10, JTAC Deconfliction and Solar Storm Resilience Expansion)
+
+- Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when mission-data-link actions must reconcile contested JTAC voice and digital fires-control state.
+- Add `tool_suite_id=ts-solar-storm-radiation-force-posture-v1` + `protocol_stack_id=ps-solar-storm-radiation-force-posture-stack-v1` when data-link timing and releasability are constrained by severe solar storm radiation posture changes.
+
+## Domain Toolchain Override (2026-03-10, Translation Risk and Model Trust Expansion)
+
+- Add `tool_suite_id=ts-battlefield-dialect-translation-risk-adjudication-v1` + `protocol_stack_id=ps-battlefield-dialect-translation-risk-adjudication-stack-v1` when data-link recommendations depend on multilingual command fidelity and translation-confidence controls.
+- Add `tool_suite_id=ts-kill-chain-model-integrity-assurance-v1` + `protocol_stack_id=ps-kill-chain-model-integrity-assurance-stack-v1` when mission data links are used to publish simulation-backed kill-chain model updates.

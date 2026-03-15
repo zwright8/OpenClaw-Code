@@ -149,11 +149,6 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Space Resupply and Commercial SATCOM Continuity Addendum (2026-03-11)
-
-- Add `tool_suite_id=ts-cislunar-resupply-node-protection-v1` + `protocol_stack_id=ps-cislunar-resupply-assurance-stack-v1` when launch-window deconfliction intersects cislunar sustainment, relay risk, or delayed orbital replenishment.
-- Add `tool_suite_id=ts-commercial-satcom-requisition-routing-v1` + `protocol_stack_id=ps-commercial-satcom-requisition-routing-stack-v1` when deconfliction outcomes depend on rapid bandwidth leasing and mission-priority rerouting.
-- Add `packet_id=SPACE-CISLUNAR-RESUPPLY-001` and `packet_id=SPACE-COMS-LEASE-REROUTE-001` for decisions that alter launch timing, relay assignment, or continuity comms posture.
 
 ## Space Deconfliction Expansion Addendum (2026-03-11, Reentry Warning and Coalition Port Coupling)
 
@@ -161,8 +156,34 @@ Use these tool categories as the default stack for this skill: space domain awar
 - Add `tool_suite_id=ts-contested-port-humanitarian-inspection-v1` + `protocol_stack_id=ps-contested-port-humanitarian-inspection-stack-v1` when launch or reconstitution windows are coupled to contested-port throughput and humanitarian lane governance.
 - Add `packet_id=DPL-ORBITAL-REENTRY-PROTECT-001` and `packet_id=DPL-PORT-HUMANITARIAN-DECONF-001` for recommendations that change launch timing, base exposure posture, or coalition movement priorities.
 
+## Space Deconfliction Expansion Addendum (2026-03-11, Ground-Station Ransomware and Timing Resilience Coupling)
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+- Add `tool_suite_id=ts-satellite-ground-station-ransomware-continuity-v1` + `protocol_stack_id=ps-satellite-ground-station-ransomware-continuity-stack-v1` when launch-window recommendations depend on cyber continuity and command-path integrity across ground stations.
+- Add `tool_suite_id=ts-tactical-quantum-pnt-time-distribution-v1` + `protocol_stack_id=ps-tactical-quantum-pnt-time-distribution-stack-v1` when launch deconfliction branches depend on resilient timing holdover and denied-PNT compensation planning.
+- Add `packet_id=DPL-SAT-GROUND-RANSOMWARE-CONTINUITY-001` and `packet_id=DPL-TACTICAL-QUANTUM-PNT-TIME-001` for recommendations that alter launch timelines, warning windows, or force protection postures.
 
-- Add tool_suite_id=ts-joint-hypersonic-strike-civil-warning-deconfliction-v1 + protocol_stack_id=ps-joint-hypersonic-strike-civil-warning-deconfliction-stack-v1 when launch-window deconfliction must integrate strategic warning timelines and civil-risk dissemination latency.
-- Add packet_id=DPL-HYPERSONIC-CIVWARN-DECONF-001 for branches that shift launch-window release authority or escalation posture.
+## Domain Toolchain Override (2026-03-11, Cislunar Custody and Strategic NC3 Coupling)
+
+- Add `tool_suite_id=ts-cislunar-sensor-custody-attribution-v1` + `protocol_stack_id=ps-cislunar-sensor-custody-attribution-stack-v1` when launch-window deconfliction recommendations depend on cislunar track custody and anomaly attribution confidence.
+- Add `tool_suite_id=ts-strategic-nc3-relocation-emcon-v1` + `protocol_stack_id=ps-strategic-nc3-relocation-emcon-stack-v1` when launch conflict branches affect strategic command-post relocation, EMCON posture, or emergency-message continuity.
+- Add `packet_id=DPL-CISLUNAR-CUSTODY-ATTRIB-001` and `packet_id=DPL-NC3-RELOC-EMCON-001` for branches that materially change launch risk acceptance, strategic warning pathways, or authority-gated escalation timing.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave X Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-commercial-space-ssa-data-fusion-and-tasking-cell-v1` + `protocol_stack_id=ps-joint-commercial-space-ssa-data-fusion-and-tasking-cell-stack-v1` when conjunction risk and launch-window deconfliction require blended commercial-military SSA confidence.
+- Add packet bindings `packet_id=DPL-JOINT_SPACE_LAUNCH_WINDOW_CONFLICT_DECONFLICTION_CELL-009` (primary) and `packet_id=DPL-JOINT_SPACE_LAUNCH_WINDOW_CONFLICT_DECONFLICTION_CELL-010` (degraded), with explicit warning-confidence thresholds.
+- Require `validation_owner`, `revalidation_utc`, and `ack_chain_status` before releasing any time-critical deconfliction recommendation to operational authorities.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XII Addendum)
+
+- Add `tool_suite_id=ts-joint-orbital-servicing-inspection-and-counter-tamper-custody-cell-v1` + `protocol_stack_id=ps-joint-orbital-servicing-inspection-and-counter-tamper-custody-cell-stack-v1` when launch-window recommendations depend on servicing timeline integrity and anti-tamper custody evidence.
+- Add `tool_suite_id=ts-strategic-deterrence-signaling-and-messaging-integrity-cell-v1` + `protocol_stack_id=ps-strategic-deterrence-signaling-and-messaging-integrity-cell-stack-v1` when launch conflict deconfliction alters strategic signaling options, warning posture, or escalation messaging.
+- Add `packet_id=DPL-ORBITAL-SERVICING-TAMPER-CUSTODY-001` and `packet_id=DPL-DETERRENCE-MESSAGING-INTEGRITY-001` for branches that alter launch timing authority, warning confidence, or strategic communication release controls.
+
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXIII Addendum)
+
+- Add `tool_suite_id=ts-orbital-servicing-refuel-assurance-v1` + `protocol_stack_id=ps-orbital-servicing-refuel-assurance-stack-v1` when recommendations depend on contested space-logistics servicing continuity, custody confidence, or maneuver-safe refuel timing.
+- Add `tool_suite_id=ts-denied-terrain-drone-resupply-nav-v1` + `protocol_stack_id=ps-denied-terrain-drone-resupply-nav-stack-v1` when branch viability depends on autonomous resupply route confidence through denied terrain.
+- Add `tool_suite_id=ts-coalition-cable-landing-data-sovereignty-v1` + `protocol_stack_id=ps-coalition-cable-landing-data-sovereignty-stack-v1` when recommendations depend on sovereign data routing, coalition caveats, or cable-landing continuity.
+- Add `tool_suite_id=ts-runway-ice-fog-autoland-assurance-v1` + `protocol_stack_id=ps-runway-ice-fog-autoland-assurance-stack-v1` when mission tempo is constrained by low-visibility runway conditions and autoland safety confidence.
+- Add `packet_id=DPL-ORBITAL-SERVICING-REFUEL-001`, `packet_id=DPL-DENIED-TERRAIN-DRONE-RESUPPLY-001`, `packet_id=DPL-COALITION-CABLE-LANDING-SOVEREIGNTY-001`, and `packet_id=DPL-RUNWAY-ICE-FOG-AUTOLAND-001` for branches that materially alter commander GO/NO-GO posture.

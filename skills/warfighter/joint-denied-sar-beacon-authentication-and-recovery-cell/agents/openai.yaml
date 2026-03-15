@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Denied SAR Beacon Authentication and Recovery Cell"
+  short_description: "Authenticate denied-environment SAR beacons and recovery"

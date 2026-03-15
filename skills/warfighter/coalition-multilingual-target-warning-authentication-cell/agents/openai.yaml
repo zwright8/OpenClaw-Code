@@ -1,0 +1,3 @@
+interface:
+  display_name: "Coalition Multilingual Target Warning Authentication Cell"
+  short_description: "Authenticate and translate time-sensitive coalition warnings to reduce mistranslation, spoofing, and targeting-delay risk."

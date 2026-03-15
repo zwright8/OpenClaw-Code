@@ -145,13 +145,62 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
 
-## Domain Toolchain Override (2026-03-10, Civil-Military Throughput and Mission Assurance Expansion)
+## Domain Toolchain Override (2026-03-10, Denied Sustainment and SATCOM Recovery Addendum)
 
-- Add `tool_suite_id=ts-civilian-maritime-traffic-deconfliction-v1` + `protocol_stack_id=ps-civilian-maritime-traffic-deconfliction-stack-v1` when battle rhythm decisions depend on military-civil maritime corridor adjudication and convoy release timing.
-- Add `tool_suite_id=ts-mission-assurance-digital-twin-red-v1` + `protocol_stack_id=ps-mission-assurance-digital-twin-red-stack-v1` when commander decision support requires adversarial validation of mission-thread models before force posture changes.
+- Add `tool_suite_id=ts-denied-logistics-payment-cash-continuity-v1` + `protocol_stack_id=ps-denied-logistics-payment-cash-continuity-stack-v1` when battle rhythm updates require force-flow sustainment decisions under disrupted payment rails.
+- Add `tool_suite_id=ts-leo-mesh-satcom-denial-recovery-v1` + `protocol_stack_id=ps-leo-mesh-satcom-denial-recovery-stack-v1` when command cadence is constrained by SATCOM mesh denial and dynamic comms restoration sequencing.
 
-## Domain Toolchain Override (2026-03-10, Warfighter Domain Coverage Surge)
+## Domain Toolchain Override (2026-03-10, Cislunar Continuity and Trusted Command Expansion)
 
-- Add `tool_suite_id=ts-theater-food-water-fuel-denial-v1` + `protocol_stack_id=ps-theater-food-water-fuel-denial-stack-v1` when battle-rhythm decisions require sustainment-denial resilience governance.
-- Add `tool_suite_id=ts-fiber-backbone-traffic-triage-v1` + `protocol_stack_id=ps-fiber-backbone-traffic-triage-stack-v1` when command-cycle continuity is constrained by theater backbone outages.
-- Add `packet_id=DPL-THEATER-FOOD-WATER-FUEL-DENIAL-001` and `packet_id=DPL-THEATER-FIBER-BACKBONE-TRAFFIC-TRIAGE-001` for high-consequence decision support packets.
+- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when battle rhythm synchronization depends on denied-spectrum coalition command continuity.
+- Add `tool_suite_id=ts-homeland-hyperscale-cloud-mission-failover-v1` + `protocol_stack_id=ps-homeland-hyperscale-cloud-mission-failover-stack-v1` when mission-system outage conditions require cross-region failover governance.
+
+## Domain Toolchain Override (2026-03-10, Underground Denial and Strategic Continuity Expansion)
+
+- Add `tool_suite_id=ts-quantum-resistant-key-rollover-disconnected-trust-v1` + `protocol_stack_id=ps-quantum-resistant-key-rollover-disconnected-trust-stack-v1` when battle rhythm decisions require cryptographic rollover and disconnected trust continuity.
+- Add `tool_suite_id=ts-electromagnetic-pulse-grid-c2-recovery-v1` + `protocol_stack_id=ps-electromagnetic-pulse-grid-c2-recovery-stack-v1` when command cadence depends on EMP-affected grid and C2 restoration sequencing.
+
+## Domain Toolchain Override (2026-03-10, Human Terrain Assurance and Resilient C2 Expansion)
+
+- Add `tool_suite_id=ts-contested-jtac-voice-data-deconfliction-v1` + `protocol_stack_id=ps-contested-jtac-voice-data-deconfliction-stack-v1` when battle rhythm synchronization must reconcile contested JTAC voice and digital terminal-control timelines.
+- Add `tool_suite_id=ts-nc3-courier-eam-bridge-assurance-v1` + `protocol_stack_id=ps-nc3-courier-eam-bridge-assurance-stack-v1` when command cadence must preserve emergency-action message continuity across digital and physical courier pathways.
+
+## Domain Toolchain Override (2026-03-10, Seabed Resilience and Cascade Containment Expansion)
+
+- Add `tool_suite_id=ts-maritime-seabed-infrastructure-sabotage-response-v1` + `protocol_stack_id=ps-maritime-seabed-infrastructure-sabotage-response-stack-v1` when battle rhythm priorities depend on seabed cable/pipeline disruptions and restoration sequencing.
+- Add `tool_suite_id=ts-joint-cyber-kinetic-infrastructure-cascade-containment-v1` + `protocol_stack_id=ps-joint-cyber-kinetic-infrastructure-cascade-containment-stack-v1` when command cadence requires synchronized cyber-physical cascade containment actions.
+
+## Domain Toolchain Override (2026-03-10, Model Integrity and Casualty Sync Expansion)
+
+- Add `tool_suite_id=ts-kill-chain-model-integrity-assurance-v1` + `protocol_stack_id=ps-kill-chain-model-integrity-assurance-stack-v1` when battle-rhythm decisions depend on simulation-backed model trust and mission-thread drift adjudication.
+- Add `tool_suite_id=ts-denied-casualty-data-synchronization-v1` + `protocol_stack_id=ps-denied-casualty-data-synchronization-stack-v1` when JOC synchronization cycles include disconnected casualty reporting and patient movement confidence updates.
+
+## Domain Toolchain Override (2026-03-10, Mobility-Energy Synchronization and Cloud Cutover Addendum)
+
+- Add `tool_suite_id=ts-rail-energy-mobility-priority-fusion-v1` + `protocol_stack_id=ps-rail-energy-mobility-priority-fusion-stack-v1` when battle rhythm synchronization depends on contested deployment rail flow and grid load restoration priorities.
+- Add `tool_suite_id=ts-sat-ground-cloud-cutover-defense-v1` + `protocol_stack_id=ps-sat-ground-cloud-cutover-defense-stack-v1` when command cadence must survive satellite-ground-cloud service cutovers.
+- Add `packet_id=DPL-RAIL-ENERGY-MOBILITY-PRIORITY-FUSION-001` and `packet_id=DPL-SAT-GROUND-CLOUD-CUTOVER-DEFENSE-001` for JOC decision branches that reprioritize force flow, service availability, or command timing.
+
+## Domain Toolchain Override (2026-03-10, Grid Escalation and Alert Trust Addendum)
+
+- Add `tool_suite_id=ts-grid-transformer-escort-install-v1` + `protocol_stack_id=ps-grid-transformer-escort-install-stack-v1` when battle rhythm decisions involve transformer convoy security, emplacement sequencing, and mission-priority load restoration.
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when command updates depend on trusted civil warning dissemination under disinformation pressure.
+- Add `packet_id=DPL-GRID-TRANSFORMER-ESCORT-INSTALL-001` and `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` for branches that alter command cadence, restoration sequencing, or public-warning governance.
+
+## Domain Toolchain Override (2026-03-11, Alert Trust and Water-Sabotage Continuity Addendum)
+
+- Add `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when command cadence depends on trusted civil warning dissemination and adversary narrative disruption control.
+- Add `tool_suite_id=ts-forward-water-sabotage-attribution-v1` + `protocol_stack_id=ps-forward-water-sabotage-attribution-stack-v1` when battle rhythm decisions must synchronize water-network isolation and mission-priority sustainment continuity.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-FORWARD-WATER-SABOTAGE-ATTRIBUTION-001` for branches that alter command timing, restoration governance, or risk-communication authorities.
+
+## Domain Toolchain Override (2026-03-11, Reserve Continuity and Battery-Supply Sabotage Addendum)
+
+- Add `tool_suite_id=ts-reservist-family-readiness-continuity-v1` + `protocol_stack_id=ps-reservist-family-readiness-continuity-stack-v1` when battle rhythm synchronization requires balancing mobilization tempo with family-support and civic continuity constraints.
+- Add `tool_suite_id=ts-strategic-battery-supply-sabotage-response-v1` + `protocol_stack_id=ps-strategic-battery-supply-sabotage-response-stack-v1` when command cadence depends on strategic battery-material disruption recovery and mission-energy allocation governance.
+- Add `packet_id=DPL-RESERVIST-FAMILY-READINESS-CONTINUITY-001` and `packet_id=DPL-STRATEGIC-BATTERY-SUPPLY-SABOTAGE-RESPONSE-001` for JOC branches that alter force availability posture, industrial recovery sequencing, or mission-energy priorities.
+
+## Domain Toolchain Override (2026-03-11, Grid Cyber Mutual Aid and Port Cargo Recovery Addendum)
+
+- Add `tool_suite_id=ts-coalition-civil-grid-cyber-mutual-aid-v1` + `protocol_stack_id=ps-coalition-civil-grid-cyber-mutual-aid-stack-v1` when JOC cadence depends on coalition OT cyber mutual aid and mission-priority load restoration sequencing.
+- Add `tool_suite_id=ts-maritime-prepositioning-port-strike-cargo-recovery-v1` + `protocol_stack_id=ps-maritime-prepositioning-port-strike-cargo-recovery-stack-v1` when battle rhythm updates must govern post-strike cargo recovery and sustainment force-flow continuity.
+- Add `packet_id=DPL-COALITION-CIVIL-GRID-CYBER-MUTUAL-AID-001` and `packet_id=DPL-MARITIME-PREPOSITIONING-PORT-STRIKE-CARGO-RECOVERY-001` for branches that alter restoration governance, sustainment sequencing, or command timing.

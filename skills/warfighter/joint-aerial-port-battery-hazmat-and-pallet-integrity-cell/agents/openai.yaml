@@ -1,4 +1,3 @@
----
 interface:
   display_name: "Joint Aerial Port Battery Hazmat And Pallet Integrity Cell"
-  short_description: "Help with aerial-port hazmat and pallet integrity decisions"
+  short_description: "Help with Joint Aerial Port Battery Hazmat And Pallet Integrity Cell tasks"

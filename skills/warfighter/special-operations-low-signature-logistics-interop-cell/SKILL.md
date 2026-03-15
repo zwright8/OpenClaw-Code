@@ -57,11 +57,6 @@ Preferred protocol families for this skill: USMTF, VMF, CoT, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add `tool_suite_id=ts-low-signature-logistics-cross-domain-sync-v1` with `protocol_stack_id=ps-low-signature-logistics-cross-domain-sync-stack-v1` when SOF sustainment requires tightly synchronized handoffs across denied air, ground, and maritime nodes.
-- Add `tool_suite_id=ts-denied-terrain-cache-exposure-risk-audit-v1` with `protocol_stack_id=ps-denied-terrain-cache-exposure-risk-audit-stack-v1` when branch options depend on cache survivability and adversary pattern-of-life detection risk.
-- Add `packet_id=DPL-LOW-SIGNATURE-LOG-INTEROP-001` and `packet_id=DPL-CACHE-EXPOSURE-RISK-001` for recommendations that alter resupply cadence, route discipline, or exposure posture.
-
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-joint-sof-clandestine-maritime-resupply-signature-control-v1` with `protocol_stack_id=ps-joint-sof-clandestine-maritime-resupply-signature-control-stack-v1` when low-signature logistics planning depends on littoral route exposure, maritime custody handoffs, or comms-window timing discipline.
-- Add `packet_id=DPL-JOINT-SOF-CLANDESTINE-MARITIME-RESUPPLY-001` for recommendations that materially change low-signature resupply timing, maritime route confidence, or custody-assurance posture.
+- Add tool_suite_id=ts-low-signature-logistics-cross-domain-sync-v1 + protocol_stack_id=ps-low-signature-logistics-cross-domain-sync-stack-v1 when SOF sustainment requires tightly synchronized handoffs across denied air, ground, and maritime nodes.
+- Add tool_suite_id=ts-denied-terrain-cache-exposure-risk-audit-v1 + protocol_stack_id=ps-denied-terrain-cache-exposure-risk-audit-stack-v1 when branch options depend on cache survivability and adversary pattern-of-life detection risk.
+- Add packet_id=DPL-LOW-SIGNATURE-LOG-INTEROP-001 and packet_id=DPL-CACHE-EXPOSURE-RISK-001 for recommendations that alter resupply cadence, route discipline, or exposure posture.

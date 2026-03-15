@@ -65,9 +65,8 @@ Primary products for this skill: chokepoint inspection priority board, quarantin
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate authorities, approvals, or source evidence.
 
-## Domain Toolchain Override (2026-03-12, Warfighter Expansion Wave XXIV)
+## Domain Toolchain Override (2026-03-12, Expansion Wave XXII Addendum)
 
-- Add `tool_suite_id=ts-joint-mission-command-assurance-and-branch-synchronization-v1` + `protocol_stack_id=ps-joint-mission-command-assurance-and-branch-synchronization-stack-v1` when rapid branch synchronization and command-approval integrity are mission-limiting.
-- Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
-- Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
-- Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.
+- Add tool_suite_id=ts-waterborne-drone-port-security-v1 + protocol_stack_id=ps-waterborne-drone-port-security-stack-v1 when chokepoint inspection branches require synchronized defensive controls against waterborne drone threats.
+- Add tool_suite_id=ts-coalition-missile-warning-shelter-sync-v1 + protocol_stack_id=ps-coalition-missile-warning-shelter-sync-stack-v1 when maritime civil traffic controls must align with ballistic warning and shelter directives.
+- Add packet_id=DPL-WATERBORNE-DRONE-PORT-SECURITY-001 and packet_id=DPL-COALITION-MISSILE-WARNING-SHELTER-001 for recommendations that alter inspection tempo, harbor access posture, or quarantine release authority.

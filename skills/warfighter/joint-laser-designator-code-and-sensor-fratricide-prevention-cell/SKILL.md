@@ -1,55 +1,73 @@
 ---
 name: joint-laser-designator-code-and-sensor-fratricide-prevention-cell
-description: Prevent laser-code conflicts and sensor fratricide during joint targeting. Use when JTACs, fires cells, UAS operators, or ISR teams need synchronized designation and release-safe cueing.
+description: Coordinate laser-code deconfliction and sensor-safe designation governance for U.S. joint fires. Use when JTACs, airborne sensors, or multiple designators risk fratricide, mistargeting, or wrong-target engagement.
 ---
 
-# Joint Laser Designator Code and Sensor Fratricide Prevention Cell
+# Joint Laser Designator Code And Sensor Fratricide Prevention Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm authority, ROE, sensor mix, laser-code ownership, and release timeline before recommending action.
-- Keep outputs unclassified unless handling guidance is provided.
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in this domain.
+- Confirm fires authorities, participating sensors and shooters, designator ownership, and decision deadlines before recommending action.
+- Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Define the target-support problem, participating units, sensors, and timing windows.
-2. Pull code assignments, designation geometry, and sensor cueing paths from the selected toolchain.
-3. Build primary, alternate, and degraded deconfliction paths with explicit fratricide and no-strike triggers.
-4. Bind recommendations to command approval, acknowledgment checks, and staff ownership.
+1. Frame the mission problem with assigned laser codes, sensor participation, target geometry, and timing windows.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in fratricide risk, target fidelity, fires tempo, and coordination burden.
+3. Identify branch or sequel triggers, designation hold points, and release-approval gates.
+4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
+5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
 ## Required Output Format
 
-1. Situation snapshot.
-2. Recommended primary action path.
-3. Alternate and degraded paths.
-4. Decision points and authorities.
-5. Staff tasking and suspense.
+1. Situation snapshot and key changes.
+2. Recommended COA and rationale.
+3. Alternative COAs with trigger conditions.
+4. Decision points and escalation gates.
+5. Staff tasks by owner and suspense.
+6. Tool invocation packets with protocol bindings.
 
 ## Domain Products
 
-Primary products: laser-code deconfliction matrix, sensor-safe fires window board, designation approval ladder.
-
-## External Tools and Protocol Integration
-
-- Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Use packet template `DPL-LASER-DESIGNATOR-FRATRICIDE-001` from `../_shared/references/domain-tool-packet-library.md`.
-- Bind tool and protocol choices to `ts-joint-laser-designator-sensor-fratricide-prevention-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
-- Prefer `VMF`, `Link 16 J-series`, `USMTF`, and `API/JSON` for machine-to-machine exchanges.
-
-## Guardrails
-
-- Separate observed code assignments, assessed conflict risk, and unknowns.
-- Flag stale sensor geometry, unacknowledged code changes, and single-source target confirmation.
-- Keep human release authority explicit for any recommendation that changes fires timing or target validity.
+Primary products: laser-code deconfliction matrix, sensor-safe fires window board, and designation approval ladder.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-joint-laser-designator-sensor-fratricide-prevention-v1` with `protocol_stack_id=ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1`.
-- Alternate: `tool_suite_id=ts-fires-airspace-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
-- Degraded: authenticated voice readback, paper code card, and UTC acknowledgment log.
+- Alternate: select a mission-adjacent fires, targeting, or JTAC control suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: single-designator control with voice readback and UTC acknowledgment logging.
 
 ## Domain Packet Defaults
 
 - Default packet ID: `DPL-LASER-DESIGNATOR-FRATRICIDE-001`.
-- If packet scope mismatches mission constraints, define a provisional packet and assign validation owner and suspense.
+- If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
+
+## External Tool Stack and Protocols
+
+- Preferred external toolsets for this domain: laser-code registry, JTAC fires coordination board, and sensor cueing conflict engine.
+- Preferred protocol profiles for coordination and machine exchange: `VMF`, `Link 16 J-series`, `USMTF`, and `API/JSON`.
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
+
+## Tool Invocation Contract
+
+For each critical tool recommendation include objective, required inputs, query or action template, expected output schema, protocol or transport, and fallback path.
+
+## Mission Tool Authority Gates
+
+- Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
+- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
+- If authority, legal basis, code integrity, target confirmation, or release confidence is uncertain, downgrade to advisory-only and request command decision.
+
+## Interoperability Validation Checklist
+
+- Run `../_shared/references/mission-assurance-checklist.md` and `../_shared/references/us-joint-protocol-assurance-drill.md` before release.
+- Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
+- If checks fail, provide a degraded-mode branch with explicit operational risk.
+
+## Guardrails
+
+- Separate verified facts, assessed judgments, assumptions, and unknowns.
+- Flag fires deconfliction, collateral-damage, coalition, and sensor-spoofing risks before recommending action.
+- Do not fabricate classified sources, authorities, or approvals.

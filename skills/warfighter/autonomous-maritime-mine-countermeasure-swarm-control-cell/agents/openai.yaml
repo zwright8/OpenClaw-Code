@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Autonomous Maritime Mine Countermeasure Swarm Control Cell"
+  short_description: "Support Autonomous Maritime Mine Countermeasure Swarm Control Cell planning and decision workflows"

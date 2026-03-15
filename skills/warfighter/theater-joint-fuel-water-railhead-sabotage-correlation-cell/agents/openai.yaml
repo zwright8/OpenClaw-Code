@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Joint Fuel Water Railhead Sabotage Correlation Cell"
+  short_description: "Correlate sabotage indicators across railheads, fuel farms, and water nodes to protect sustainment continuity under hybrid attack."

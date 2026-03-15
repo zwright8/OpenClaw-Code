@@ -57,4 +57,6 @@ Preferred protocol families for this skill: IHO S-100, AIS, Link 16 J-series, ST
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-littoral-port-mining-drone-clearance-fusion-v1 + protocol_stack_id=ps-littoral-port-mining-drone-clearance-fusion-stack-v1 when port reopening depends on synchronized mine and drone threat suppression.\n- Add tool_suite_id=ts-convoy-berth-priority-risk-arbitration-v1 + protocol_stack_id=ps-convoy-berth-priority-risk-arbitration-stack-v1 when branching requires balancing throughput, escort scarcity, and strike risk.\n- Add packet_id=DPL-LITTORAL-PORT-REOPENING-001 and packet_id=DPL-CONVOY-BERTH-RISK-ARBITRATION-001 for recommendations that alter channel opening sequence or convoy release authority.
+- Add tool_suite_id=ts-littoral-port-mining-drone-clearance-fusion-v1 + protocol_stack_id=ps-littoral-port-mining-drone-clearance-fusion-stack-v1 when port reopening depends on synchronized mine and drone threat suppression.
+- Add tool_suite_id=ts-convoy-berth-priority-risk-arbitration-v1 + protocol_stack_id=ps-convoy-berth-priority-risk-arbitration-stack-v1 when branching requires balancing throughput, escort scarcity, and strike risk.
+- Add packet_id=DPL-LITTORAL-PORT-REOPENING-001 and packet_id=DPL-CONVOY-BERTH-RISK-ARBITRATION-001 for recommendations that alter channel opening sequence or convoy release authority.

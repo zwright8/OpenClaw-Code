@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Theater Cross-Domain Guard Schema Drift And Message Loss Cell"
-  short_description: "Help with cross-domain guard schema drift and message-loss recovery"
+  display_name: "Theater Cross Domain Guard Schema Drift And Message Loss Cell"
+  short_description: "Help with Theater Cross Domain Guard Schema Drift And Message Loss Cell tasks"

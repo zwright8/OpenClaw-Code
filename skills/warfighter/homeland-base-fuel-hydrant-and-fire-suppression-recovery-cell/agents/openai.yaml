@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Homeland Base Fuel Hydrant and Fire Suppression Recovery Cell"
-  short_description: "Help restore hydrant fueling and base fire-suppression capacity"
+  display_name: "Homeland Base Fuel Hydrant And Fire Suppression Recovery Cell"
+  short_description: "Help with Homeland Base Fuel Hydrant And Fire Suppression Recovery Cell tasks"

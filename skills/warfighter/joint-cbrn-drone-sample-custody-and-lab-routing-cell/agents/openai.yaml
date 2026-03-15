@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint CBRN Drone Sample Custody And Lab Routing Cell"
+  short_description: "Coordinate contested-environment CBRN sample collection by uncrewed systems with chain-of-custody and lab-routing assurance."

@@ -1,9 +1,9 @@
 ---
 name: coalition-under-ice-autonomous-resupply-corridor-cell
-description: Manage coalition under-ice autonomous resupply corridors with casualty and sustainment prioritization under Arctic denial threats.
+description: Plan coalition under-ice autonomous resupply corridors for Arctic and sub-Arctic sustainment. Use when surface movement is denied and under-ice autonomy risk must be managed.
 ---
 
-# Coalition Under-Ice Autonomous Resupply Corridor Cell
+# Coalition Under Ice Autonomous Resupply Corridor Cell
 
 ## Mission Scope
 
@@ -13,146 +13,51 @@ description: Manage coalition under-ice autonomous resupply corridors with casua
 
 ## Workflow
 
-1. Frame the mission problem using current intent, threat pressures, operational constraints, and known assumptions.
-2. Define measurable objectives, risk thresholds, branch conditions, and indicators that would invalidate the preferred plan.
-3. Build a recommended option and at least two alternatives with explicit tradeoffs in tempo, survivability, sustainment load, and escalation risk.
-4. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
-5. Convert the decision into execution-ready products with owners, suspense dates, coordination links, and required reports.
+1. Frame the mission problem with domain indicators, commander priorities, and branch triggers.
+2. Identify assumptions, decision thresholds, and invalidation signals.
+3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
+4. Integrate dependencies across C2, intelligence, fires/effects, sustainment, protection, legal constraints, and coalition interoperability.
+5. Produce commander-facing outputs and a staff-action plan with owners, suspense dates, and triggers.
 
 ## Required Output Format
 
-Deliver results in this order:
-
-1. Situation snapshot: current conditions and key changes since the last update.
-2. Recommended option: one clearly stated recommendation and rationale.
-3. Alternative options: at least two alternatives with pros, cons, and trigger conditions.
-4. Decision points: what must be decided now, later, or pre-delegated.
-5. Staff tasking: who does what by when.
+1. Situation snapshot.
+2. Recommended option.
+3. Alternative options.
+4. Decision points now/next/pre-delegated.
+5. Staff tasking by owner and suspense.
 
 ## Domain Products
 
-Primary products for this skill: under-ice resupply corridor confidence map, autonomous convoy release ladder, coalition sustainment-priority matrix.
+Primary products for this skill: under-ice corridor viability map, autonomous convoy timing matrix, coalition rescue/recovery trigger ladder.
 
-## Domain Tool Stack
+## Domain Toolchain Defaults
 
-Use these tool categories as the default stack for this skill: polar route and ice telemetry systems, autonomous under-ice convoy controllers, coalition logistics synchronization boards, casualty corridor planners.
+- Primary: `tool_suite_id=ts-under-ice-resupply-v1` with `protocol_stack_id=ps-under-ice-resupply-stack-v1`.
+- Alternate: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
+- Degraded: use authenticated voice/readback + UTC acknowledgment ledger + manual fallback board.
 
-## External Tools and Protocol Integration
+## External Tool Stack and Protocols
 
-- Use the integration baseline in ../_shared/references/external-tools-protocols.md and select specific systems-of-record aligned to this mission.
-- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
-- Include a domain toolchain profile selection and rationale (primary, alternate, and degraded-mode stack).
-- Use at least one primary source and one cross-check source before final recommendations.
-- Prefer these protocol families for this skill: AIS/NMEA, NATO APP-11/ADatP-3 aligned, USMTF, API/JSON.
-- Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
+- Preferred tools: mission-domain planners, operational dashboards, independent cross-check analytics, and command-approved audit ledgers.
+- Preferred protocol families: USMTF, API/JSON, Link 16 J-series, NATO APP-11/ADatP-3 where coalition exchange is required.
+- Bind recommendations to concrete suite/stack entries in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
+- Use protocol packets in `../_shared/references/tool-protocol-playbooks.md` and `../_shared/references/domain-tool-packet-library.md`.
+- Include provenance fields: source system, refresh UTC, confidence, and key gaps.
 
-## Interoperability Validation Checklist
+## Domain Packet Defaults
 
-- Run the mission assurance workflow in ../_shared/references/mission-assurance-checklist.md before final release.
-- Validate that each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
-- If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
+- Default packet IDs: DPL-UNDERICE-RESUPPLY-001.
+- If no packet fully matches, define a provisional packet using the shared schema and assign a validation owner.
 
 ## Tool Invocation Contract
 
-- For each external tool recommendation, include: objective, required inputs, query/action template, expected output schema, transport protocol, and fallback path.
-- Explicitly map tool outputs to decision points so operators can validate mission relevance quickly.
-- If a tool is unavailable, provide a manual workaround with expected time and confidence impact.
+- For each critical dependency include: objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+- Map each tool output to a commander decision point and a staff task with suspense.
+- If confidence drops below mission threshold, mark recommendations `provisional` and issue a degraded-mode branch.
 
-## Guardrails
+## Authority and Assurance Gates
 
-- Flag gaps where assumptions exceed evidence.
-- Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
-- Separate facts, assessed judgments, and unknowns.
-- Do not fabricate classified sources, authorities, or approvals.
-
-## Tool Protocol Playbooks
-
-- Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
-- Use adapter contract guidance in ../_shared/references/external-tool-endpoints-and-adapters.md to define endpoint schemas, transport, and fallback behavior.
-- Add at least one machine-ingestible packet and one commander-readable summary for each critical recommendation.
-
-## Domain Tool Packet Library
-
-- Use scenario packets in ../_shared/references/domain-tool-packet-library.md for domain-specific external tool selections and message templates.
-- Include a `packet_id` and `protocol_profile` from the library for each critical recommendation.
-- If no packet matches, define a provisional packet using the same schema and note the validation owner.
-
-## Domain Data Contract
-
-- Use mapping guidance in ../_shared/references/joint-mission-data-contracts.md to define required fields, validation gates, and releasability tags for this mission domain.
-- Ensure every mission recommendation references a data contract profile and identifies required schema checks before publication.
-
-## Operational Learning Loop
-
-- Use `../_shared/references/operational-learning-and-after-action-loop.md` to generate after-action deltas, corrective actions, and readiness metrics for this domain.
-- Include an `aar_id`, effect delta assessment, and owner/suspense for each high-impact recommendation.
-- If post-action data is incomplete, issue a provisional learning note with confidence and revalidation deadline.
-
-## Readiness Certification Evidence Pack
-
-- Use `../_shared/references/readiness-certification-evidence-pack.md` to define mission-essential task evidence, evaluator triggers, and certification confidence scoring.
-- Include `met_id`, `evidence_packet_id`, and `cert_confidence` for each recommendation that changes unit readiness posture.
-- If required evidence is missing, mark status as `provisional` and assign closure actions with suspense.
-
-## Protocol Execution Sequence
-
-- Execute the Core Integration Protocol from `../_shared/references/external-tools-protocols.md` as an explicit step sequence, not as guidance only.
-- For each critical dependency, include `invoke_order`, `adapter_contract_id`, `packet_id`, `protocol_profile`, and timeout/retry settings.
-- Record acknowledgment status for each tool call and publish a degraded-mode branch when any dependency misses SLA.
-- Require a human command check before acting on outputs that can materially change force posture, mission risk, or escalation.
-
-## Domain Toolchain Profile Binding
-
-- Use `../_shared/references/domain-toolchain-profiles.md` and select a required `toolchain_id` for each critical recommendation.
-- Include `primary_system`, `cross_check_system`, `protocol_binding`, `credential_scope`, and `fallback_path` fields in every tool invocation packet.
-- Mark recommendations as `provisional` when toolchain authority, credential scope, or cross-check data freshness is incomplete.
-
-## Tool Health and Trust Monitoring
-
-- Use `../_shared/references/tool-health-and-trust-monitoring.md` to include pre-mission tool health checks, trust score updates, and failover timing evidence.
-- Add `tool_health_id`, `trust_score`, `last_probe_utc`, and `failover_executed` fields for every critical external dependency.
-- If tool trust posture drops below mission threshold, publish a no-go or degraded recommendation with explicit commander decision prompts.
-
-## U.S. Joint Protocol Assurance Drill
-
-- Use `../_shared/references/us-joint-protocol-assurance-drill.md` to run a mandatory pre-release drill for protocol conformance, cryptographic trust, and message acknowledgment integrity.
-- Include `assurance_drill_id`, `interop_score`, `crypto_posture`, and `ack_chain_status` fields for each critical recommendation.
-- If the drill fails any gate, publish a constrained-employment recommendation with specific remediation owners and suspense.
-
-## Joint Operations External Toolchain Profiles
-
-- Use `../_shared/references/joint-operations-external-toolchain-profiles.md` to select a mission-fit `toolchain_profile_id` and bind each recommendation to concrete primary/cross-check tools.
-- Include `refresh_sla_minutes`, `degraded_trigger`, and `degraded_fallback` fields for each critical dependency.
-- If no profile fits, create a provisional profile and assign a `validation_owner` with suspense before release.
-
-## Human-Agent Command Escalation Matrix
-
-- Use `../_shared/references/human-agent-command-escalation-matrix.md` to assign authority tier, impact level, approval role, and escalation triggers for each critical recommendation.
-- Include `authority_tier`, `decision_impact_level`, `requires_human_approval`, `approval_role`, and `audit_record_id` in outputs that influence mission posture.
-- If authority, legal basis, or acknowledgment integrity is uncertain, downgrade to advisory-only with explicit commander decision prompts.
-
-## Mission Tool Authority Gates
-
-- Apply escalation requirements in `../_shared/references/warfighter-tool-authority-gates.md` for high-consequence recommendations.
-- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for recommendations that can alter mission posture.
-- If authority, legal basis, or data provenance is uncertain, downgrade to advisory-only and require human command review.
-
-## Cross-Domain Integration Playbook
-
-- Use `../_shared/references/cross-domain-integration-playbook.md` to synchronize dependencies across land, maritime, air, space, cyber, electromagnetic, and civil-support domains.
-- Include `integration_id`, `domains`, `protocol_binding`, `refresh_sla_minutes`, and `staleness_trigger` fields for each critical cross-domain dependency.
-- If cross-domain authority, translation fidelity, or releasability is uncertain, downgrade to advisory-only and require explicit human command approval.
-
-## Mission Tool and Protocol Catalog Binding
-
-- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
-- Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
-- If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
-## Default Mission Tool Binding
-
-Use this default binding unless mission constraints require an alternate path:
-
-- Primary: `tool_suite_id=ts-coalition-arctic-under-ice-logistics-casualty-corridor-v1` with `protocol_stack_id=ps-coalition-arctic-under-ice-logistics-casualty-corridor-stack-v1`.
-- Alternate: `tool_suite_id=ts-polar-routing-v1` with `protocol_stack_id=ps-polar-comms-resilience-stack-v1`.
-- Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+- Apply approval and escalation requirements from `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
+- Run protocol conformance checks from `../_shared/references/us-joint-protocol-assurance-drill.md` before high-impact recommendations.
+- If authority, legal basis, or acknowledgment integrity is uncertain, downgrade to advisory-only with explicit commander prompts.

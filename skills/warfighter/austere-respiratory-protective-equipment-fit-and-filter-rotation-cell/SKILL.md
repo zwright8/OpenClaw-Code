@@ -1,55 +1,73 @@
 ---
 name: austere-respiratory-protective-equipment-fit-and-filter-rotation-cell
-description: Manage respiratory PPE fit status, filter burn rates, and exposure-based resupply. Use when CBRN, wildfire, dust, smoke, or toxic-industrial threats make respirator readiness a pacing constraint.
+description: Coordinate respiratory protection fit status, filter consumption, and exposure-driven resupply in austere conditions. Use when CBRN or toxic airborne threats make respirator confidence and filter burn rate operationally decisive.
 ---
 
-# Austere Respiratory Protective Equipment Fit and Filter Rotation Cell
+# Austere Respiratory Protective Equipment Fit And Filter Rotation Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm threat type, protection standard, force exposure, and medical authority before recommending action.
-- Keep outputs unclassified unless handling guidance is provided.
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in this domain.
+- Confirm CBRN authority, occupational-health thresholds, issue policy, and decision deadlines before recommending action.
+- Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Define the respiratory-protection problem, exposed force elements, and duration of risk.
-2. Pull fit-test status, filter inventory, exposure indicators, and resupply constraints from the selected toolchain.
-3. Build primary, alternate, and degraded issue or rotation paths with explicit protection and contamination triggers.
-4. Bind recommendations to medical authority, commander risk acceptance, and staff ownership.
+1. Frame the mission problem with exposed force list, fit status, filter inventory, and hazard indicators.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in exposure risk, mission endurance, supply burn, and operational tempo.
+3. Identify branch or sequel triggers, issue hold points, and release-approval gates.
+4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
+5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
 ## Required Output Format
 
-1. Situation snapshot.
-2. Recommended primary action path.
-3. Alternate and degraded paths.
-4. Decision points and authorities.
-5. Staff tasking and suspense.
+1. Situation snapshot and key changes.
+2. Recommended COA and rationale.
+3. Alternative COAs with trigger conditions.
+4. Decision points and escalation gates.
+5. Staff tasks by owner and suspense.
+6. Tool invocation packets with protocol bindings.
 
 ## Domain Products
 
-Primary products: fit and issue matrix, filter rotation ladder, exposure-based resupply board.
-
-## External Tools and Protocol Integration
-
-- Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Use packet template `DPL-RESPIRATORY-PROTECTION-FILTER-ROTATION-001` from `../_shared/references/domain-tool-packet-library.md`.
-- Bind tool and protocol choices to `ts-austere-respiratory-protection-fit-filter-rotation-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
-- Prefer `HL7/FHIR`, CBRN `USMTF`, `API/JSON`, and signed inventory manifests for machine-to-machine exchanges.
-
-## Guardrails
-
-- Separate observed fit status and exposure data, assessed protection confidence, and unknowns.
-- Flag expired fit tests, unverified exposure assumptions, and any recommendation that reduces protection without commander and medical approval.
-- Keep human approval explicit before reusing filters outside approved limits or downgrading respiratory posture.
+Primary products: fit and issue matrix, filter rotation ladder, and exposure-based resupply board.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-austere-respiratory-protection-fit-filter-rotation-v1` with `protocol_stack_id=ps-austere-respiratory-protection-fit-filter-rotation-stack-v1`.
-- Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-medical-readiness-stack-v1`.
-- Degraded: mission-essential mask issue only with manual fit roster, exposure log, and commander-approved conservation measures.
+- Alternate: select a mission-adjacent force-health, CBRN, or medical logistics suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: mission-essential issue only with commander-approved conservation measures.
 
 ## Domain Packet Defaults
 
 - Default packet ID: `DPL-RESPIRATORY-PROTECTION-FILTER-ROTATION-001`.
-- If packet scope mismatches mission constraints, define a provisional packet and assign validation owner and suspense.
+- If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
+
+## External Tool Stack and Protocols
+
+- Preferred external toolsets for this domain: fit-test registry, filter burn tracker, and exposure review board.
+- Preferred protocol profiles for coordination and machine exchange: `HL7/FHIR`, CBRN `USMTF`, `API/JSON`, and signed inventory manifests.
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
+
+## Tool Invocation Contract
+
+For each critical tool recommendation include objective, required inputs, query or action template, expected output schema, protocol or transport, and fallback path.
+
+## Mission Tool Authority Gates
+
+- Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
+- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
+- If authority, legal basis, fit verification, hazard review, or filter-stock confidence is uncertain, downgrade to advisory-only and request command decision.
+
+## Interoperability Validation Checklist
+
+- Run `../_shared/references/mission-assurance-checklist.md` and `../_shared/references/us-joint-protocol-assurance-drill.md` before release.
+- Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
+- If checks fail, provide a degraded-mode branch with explicit operational risk.
+
+## Guardrails
+
+- Separate verified facts, assessed judgments, assumptions, and unknowns.
+- Flag exposure-dose, user-fit, stockpile, and medical-waiver risks before recommending action.
+- Do not fabricate classified sources, authorities, or approvals.

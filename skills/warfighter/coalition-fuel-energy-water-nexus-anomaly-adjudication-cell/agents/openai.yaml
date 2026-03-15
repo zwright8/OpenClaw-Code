@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Coalition Fuel Energy Water Nexus Anomaly Adjudication Cell"
-  short_description: "Help adjudicate coalition FEW utility anomalies"
+  display_name: "Coalition Fuel-Energy-Water Nexus Anomaly Adjudication Cell"
+  short_description: "Support Coalition Fuel-Energy-Water Nexus Anomaly Adjudication Cell tasks"

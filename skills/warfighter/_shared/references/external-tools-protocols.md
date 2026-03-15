@@ -405,54 +405,58 @@ Include these fields in outputs when tool integration is used:
 - Disconnected time synchronization and PNT holdover: timing distribution systems + oscillator health analytics + alternate navigation confidence fusion + API/JSON + time-transfer standards + USMTF
 - Additive feedstock counterfeit detection: material fingerprinting + provenance ledgers + quality release systems + API/JSON + signed provenance artifacts + USMTF
 
-## Domain Toolchain Profiles (2026-03-10 Expansion)
+## Domain Toolchain Profiles (2026-03-11 Mobilization Assurance and Cross-Domain Recovery Expansion)
 
-- Autonomous swarm corridor priority: autonomous corridor orchestrator + mission priority scheduler + CoT/Link 16/USMTF/API
-- Theater food-water-fuel denial resilience: sustainment demand forecasting + contamination telemetry + USMTF/NIMS/API/HL7
-- Contested additive airworthiness certification: additive QA and provenance + airworthiness release workflows + USMTF/AIXM/FIXM/API
-- Urban subsurface raid safety and utility protection: subsurface map fusion + utility telemetry + OGC/VMF/USMTF/API
-- Coalition sanctions-evasion maritime disruption: vessel network analytics + evidence chain tooling + AIS/STIX/NATO/USMTF/API
-- Homeland satellite ground station defense: site SOC telemetry + perimeter fusion + STIX/USMTF/OGC/API
-- Civil alert authentication and rumor control: message authenticity validators + civic risk telemetry + EDXL/NIMS/USMTF/API
-- Battlefield identity credential recovery: credential lifecycle and revocation systems + USMTF/STIX/API
-- Theater fiber backbone traffic triage: backbone telemetry + traffic reroute orchestration + USMTF/STIX/API
-- Reserve mobilization training surge: mobilization readiness + training throughput planners + USMTF/API/NATO formats
+- CBRN drone sample custody and lab routing: sample custody platforms + contamination scoring + lab queue systems + CBRN USMTF + HL7/FHIR + signed manifests
+- Fuel-water-railhead sabotage correlation: sustainment telemetry fusion + incident graph analytics + rail movement systems + STIX/TAXII + API/JSON + USMTF
+- Coalition civil maritime autonomy jamming response: maritime autonomy controllers + jamming analytics + convoy reroute planners + AIS/NMEA + Link 16 + USMTF
+- Strategic launch industrial robotics cyber resilience: industrial robotics SOC tools + launch continuity boards + containment orchestrators + IEC 62443 + API/JSON + USMTF
+- Denied-cloud mission software patch attestation: attestation ledgers + deployment ring managers + rollback governance tools + signed SBOM manifests + API/JSON + USMTF
+- Cross-border river flood bridging and evacuation: flood geospatial systems + engineer crossing planners + evacuation routing boards + OGC + NIMS/ICS + USMTF
+- Expeditionary field data-center relocation: dependency maps + relocation cutover schedulers + key custody trackers + API/JSON + signed custody manifests + USMTF
+- Space-ground emission window and RF fratricide prevention: emission planning tools + spectrum fratricide analytics + timing monitors + Link 16 + VMF + USMTF
+- Coalition multilingual target warning authentication: translation assurance services + authenticity engines + coalition release trackers + NATO APP-11/ADatP-3 + signed manifests + USMTF
+- Wearable biosurveillance anomaly triage: wearable telemetry fusion + clinical threshold engines + readiness dashboards + HL7/FHIR + API/JSON + USMTF
+- Homeland airport mass-casualty runway defense/recovery: airport incident systems + runway restoration planners + casualty routing tools + AIXM/FIXM + NIMS/ICS + USMTF
+- Orbital debris reentry force protection: orbital event feeds + risk projection tools + warning dissemination boards + CCSDS event exchange + API/JSON + USMTF
 
-## Domain Toolchain Profiles (2026-03-11 Expansion B, Cislunar Safety and Homeland Continuity)
+## Protocol Mapping Guidance (2026-03-11 Mobilization Assurance and Cross-Domain Recovery)
 
-- Cislunar rendezvous and deorbit safety: SDA catalogs + conjunction-risk analytics + timing integrity monitors + API/JSON + CCSDS + USMTF
-- SOF low-probability communications discipline: waveform governance tools + signature analytics + mission comms posture boards + VMF + CoT + USMTF
-- Homeland undersea cable insurance/restoration: subsea telemetry fusion + restoration planners + insurance continuity workflows + AIS/NMEA + OGC + USMTF
-- Coalition cloud-denied data-fabric healing: schema translation validators + cross-domain replication brokers + trust-policy engines + API/JSON + USMTF + coalition formats
-- Strategic transformer convoy protection: heavy-lift route analytics + convoy security planners + grid restoration dependency boards + USMTF + VMF + OGC
-- Urban bridge collapse mass-casualty routing: casualty movement regulators + transport reroute tools + civil-support dashboards + HL7/FHIR + NIMS/ICS + USMTF
-- Portable radar emission governance for C-UAS: spectrum assignment tools + radar duty-cycle managers + fratricide-risk checkers + Link 16 + VMF + USMTF
-- Weather-radar spoofing attribution: meteorological data trust engines + EW anomaly analytics + mission weather assurance boards + API/JSON + STIX/TAXII + USMTF
-- Coalition reserve medical license reciprocity: credential federation services + role-privilege validators + surge staffing trackers + HL7/FHIR + NATO APP-11 + USMTF
-- Expeditionary water contamination forecasting: water telemetry + contamination models + force-health surveillance + API/JSON + HL7/FHIR + USMTF
+- CBRN sample custody workflows: require signed custody manifests, contamination confidence tags, and lab release acknowledgments.
+- Rail/fuel/water sabotage triage: require dual-source threat corroboration before major throughput reroutes.
+- Maritime autonomy under jamming: pair autonomous corridor instructions with manual convoy fallback and coalition acknowledgment check-ins.
+- Strategic industrial robotics protection: separate cyber containment decisions from production release decisions with explicit authority gates.
+- Disconnected patch deployment: enforce attestation-before-deployment with immediate rollback branch and command sign-off fields.
+- Flood bridging/evacuation operations: include life-safety priority tiers and cross-border authority reconciliation checkpoints.
+- Data-center relocation cutovers: include mission-service dependency order, key-custody continuity fields, and post-cutover validation windows.
+- RF emission-window governance: include fratricide-risk thresholds and mission timing confidence tags for each release window.
+- Multilingual coalition warnings: include authenticity score, translation confidence score, and acknowledgment completion status.
+- Wearable force-health triage: include privacy-handling tag, medical authority reviewer, and readiness effect estimate.
+- Airport mass-casualty runway recovery: include runway viability confidence, casualty throughput threshold, and airlift release status.
+- Orbital reentry protection messaging: include projected footprint uncertainty, alert-zone priority, and force-protection acknowledgment chain.
 
-## Domain Toolchain Profiles (2026-03-14 Expansion Wave XLVII)
+## Domain Toolchain Profiles (2026-03-11 Cross-Theater Continuity and Authentication Expansion)
 
-- Laser designator and sensor-safe fires release: laser-code registries + target-validation boards + VMF + Link 16 J-series + USMTF + API/JSON
-- Cloud credential burn and workload reentry: identity emergency control planes + privileged-access recovery boards + SCIM + OIDC/SAML + STIX/TAXII + API/JSON + USMTF
-- Battle-damaged aircraft recovery and controlled cannibalization: damage assessment boards + maintenance release workflows + AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
-- Base hydrant and fire-suppression restoration: fuel telemetry + fire-protection controls + NIMS/ICS + OPC UA + API/JSON + USMTF
-- Coalition shore-power compatibility and berth release: berth-power boards + converter telemetry + AIS/NMEA + signed power manifests + NATO APP-11/ADatP-3 aligned exchange + USMTF
-- Ground robotics teleoperation safety: robot mission controllers + spectrum adjudication + CoT + VMF + DDS/ROS 2 + API/JSON + USMTF
-- Carbon-carbon and reentry material prioritization: pedigree ledgers + layup and autoclave schedulers + signed material manifests + API/JSON + OPC UA + USMTF
-- Respiratory protective equipment fit and filter rotation: fit-test registries + exposure trackers + HL7/FHIR + CBRN USMTF + API/JSON
-- Assault landing-zone dust and sensor obscuration control: landing-zone environmental monitors + dust forecast models + OGC + AIXM/FIXM + VMF + API/JSON + USMTF
-- Guidance seeker and inertial component allocation: component pedigree ledgers + screening queues + signed component manifests + API/JSON + OPC UA + USMTF
+- Multi-orbit SATCOM denial reconstitution: SATCOM orchestration suites + link-health telemetry + mission-priority comm routing + API/JSON + USMTF + Link 16 fallback narratives
+- Seabed energy-pipeline protection and repair: undersea infrastructure telemetry + ROV mission planners + maritime risk fusion + AIS/NMEA + OGC + USMTF
+- Denied additive feedstock provenance/substitution: material fingerprinting services + quality release systems + provenance ledgers + API/JSON + signed manifest attestations + USMTF
+- Mass-casualty biometric identity reconciliation: biometric repositories + forensic lab workflow systems + casualty accountability boards + API/JSON + HL7/FHIR + USMTF
+- Synthetic-media watermark evidence assurance: watermark verification engines + media-forensics analytics + legal evidence workflows + STIX/TAXII + API/JSON + signed evidence manifests
+- LVC spectrum rehearsal safety and deconfliction: spectrum planning boards + rehearsal telemetry replay + emissions conflict analytics + Link 16 + VMF + USMTF
+- Coalition civil telecom priority restoration: telecom OSS/BSS + outage adjudication boards + civil emergency dashboards + NIMS/ICS + EDXL-DE/CAP + USMTF
+- Tactical radiation evacuation route optimization: radiological sensor fusion + evacuation route optimizers + casualty flow command boards + CBRN USMTF + OGC + HL7/FHIR
+- Uncrewed under-ice resupply corridors: under-ice navigation telemetry + autonomous logistics controllers + ice-threat models + API/JSON + AIS/NMEA derivatives + USMTF
+- Sanctioned supply substitution and denial: sanctions intelligence analytics + supply-chain substitution planners + trade-route risk monitors + STIX/TAXII + API/JSON + USMTF
 
-## Protocol Mapping Guidance (2026-03-14 Expansion Wave XLVII)
+## Protocol Mapping Guidance (2026-03-11 Cross-Theater Continuity and Authentication)
 
-- Laser-code deconfliction: require code-change acknowledgment, target confirmation, and release-authority validation before synchronized designation.
-- Credential burn and reentry: require revocation completeness checks, privileged-role review, and explicit commander approval before emergency access restoration.
-- Battle-damaged aircraft salvage: require parts custody continuity, structural assessment evidence, and airworthiness release before any flight return or cross-fleet cannibalization.
-- Base hydrant and fire suppression recovery: require isolation confirmation, pressure verification, and fire-chief sign-off before resuming hydrant fueling.
-- Coalition shore power and berthing: require ship-to-pier compatibility confirmation, converter rating validation, and coalition harbor acknowledgment before energizing service.
-- Ground robotics teleoperation: require control-link integrity, lost-link drill pass, and spectrum clearance before entering contested-control lanes.
-- Carbon-carbon and reentry materials: require pedigree verification, certification status, and release-authority approval before reallocating strategic lots.
-- Respiratory protection rotation: require current fit evidence, exposure review, and medical approval before extending filter or mask use beyond normal cycles.
-- Assault landing-zone obscuration control: require fresh weather and soil data, obscuration-threshold review, and air-mission approval before landing-zone release.
-- Guidance seeker and IMU allocation: require pedigree validation, environmental-screening completion, and lot-release approval before assigning scarce precision-guidance components.
+- Multi-orbit SATCOM continuity: require per-path acknowledgment status, comm-priority queue tags, and fallback trigger thresholds.
+- Seabed pipeline repair sequencing: include repair window confidence, maritime hazard gate checks, and mission energy impact deltas.
+- Additive feedstock substitutions: include provenance score, substitution authority signature, and quality-release evidence bundle.
+- Biometric reconciliation in mass-casualty events: include confidence ladder, duplicate-identity resolution status, and legal/notification reviewer fields.
+- Watermark evidence assurance: include cryptographic verification method, custody ledger ID, and releasability constraint tags.
+- LVC spectrum rehearsal controls: include fratricide-risk score, emit/hold gates, and post-rehearsal incident replay references.
+- Civil telecom restoration priorities: include life-safety tier, mission-priority service class, and civil-military coordination acknowledgment.
+- Radiation evacuation routing: include projected dose envelope, reroute invalidation trigger, and medic/regulation coordination checkpoints.
+- Under-ice uncrewed logistics: include vehicle trust posture, ice-route uncertainty bounds, and recovery/beacon contingency branch.
+- Sanctioned supply denial campaigns: include enforcement authority, substitution lead time, and adversary adaptation indicators.

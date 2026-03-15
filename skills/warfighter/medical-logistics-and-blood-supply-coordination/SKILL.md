@@ -144,6 +144,3 @@ Primary products for this skill: medical sustainment plan, blood chain risk matr
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
-
-- Use `joint-insulin-cold-chain-and-diabetic-readiness-cell` when medical sustainment recommendations depend on insulin refrigeration loss, diabetic duty restrictions, or prioritizing limited cold-chain capacity across affected personnel.

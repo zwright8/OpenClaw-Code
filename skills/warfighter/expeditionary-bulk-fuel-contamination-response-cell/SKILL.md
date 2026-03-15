@@ -70,3 +70,45 @@ Primary products for this skill: fuel contamination isolation plan, replacement 
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-08, Arctic Bladder Integrity Expansion)
+
+- Prioritize `tool_suite_id=ts-arctic-fuel-bladder-spill-containment-v1` with `protocol_stack_id=ps-arctic-fuel-bladder-stack-v1` for cold-weather operations where container integrity and spill containment drive sustainment risk.
+- Use packet `DPL-ARCTIC-FUEL-BLADDER-001` to bind leak confirmation, containment sequencing, and sustainment impact fields.
+- If containment readiness cannot be validated, publish restricted-transfer guidance and require commander/environmental authority approval before execution.
+
+## Domain Toolchain Override (2026-03-08, Energetics Feedstock Denial Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-energetics-supply-denial-countermeasure-v1` with `protocol_stack_id=ps-energetics-supply-stack-v1` when fuel contamination events coincide with disrupted energetic precursor supply chains.
+- Use packet `DPL-ENERGETICS-SUPPLY-001` to connect refinery feedstock risk, munition line priority, and fuel reroute decisions in one decision cycle.
+- If cross-domain production confidence drops below threshold, issue a constrained-tempo sustainment recommendation and require commander concurrence.
+
+## Domain Toolchain Override (2026-03-08, Bioindustrial Supply Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-bioindustrial-assurance-v1` with `protocol_stack_id=ps-bioindustrial-assurance-stack-v1` when fuel contamination overlaps with strategic bioindustrial supply disruption.
+- Use packet `DPL-BIOINDUSTRIAL-ASSURANCE-001` to synchronize lot integrity, cold-chain continuity, and operational sustainment risk controls.
+- If quality evidence completeness falls below threshold, issue constrained-tempo recommendations and escalate for commander decision.
+
+## Domain Toolchain Override (2026-03-09, Port Throughput and Sabotage Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-port-digital-twin-sabotage-v1` with `protocol_stack_id=ps-port-digital-twin-sabotage-stack-v1` when bulk-fuel contamination events coincide with port throughput disruption or suspected sabotage.
+- Use packet `DPL-PORT-DIGITAL-TWIN-SABOTAGE-001` to connect berth/cargo constraints, contamination isolation actions, and sustainment reroute decisions in one decision cycle.
+- If sabotage attribution confidence remains low, issue advisory-only reroute recommendations and require commander plus movement-control approval before execution.
+
+## Domain Toolchain Override (2026-03-09, Air-Bridge Customs Fraud Cross-Impact)
+
+- Prioritize `tool_suite_id=ts-air-bridge-customs-fraud-disruption-v1` with `protocol_stack_id=ps-air-bridge-customs-fraud-disruption-stack-v1` when contaminated fuel replacement or additives move through contested coalition air bridges.
+- Use packet `DPL-AIR-BRIDGE-CUSTOMS-FRAUD-DISRUPTION-001` to synchronize fraud-risk screening, release controls, and fuel continuity actions.
+- If fraud evidence confidence or coalition caveat validation is incomplete, downgrade to constrained-throughput recommendations and require movement-control plus commander approval.
+
+## Domain Toolchain Override (2026-03-09, Littoral Desal and Cold-Chain Sustainment Coupling)
+
+- Prioritize `tool_suite_id=ts-littoral-desal-cyber-physical-defense-v1` with `protocol_stack_id=ps-littoral-desal-cyber-physical-defense-stack-v1` when fuel contamination coincides with contested expeditionary water production risk.
+- Use packet `DPL-LITTORAL-DESAL-CYBER-PHYSICAL-DEFENSE-001` to synchronize contamination isolation, throughput preservation, and sustainment reroute decisions.
+- If plant telemetry trust, sample custody, or coalition acknowledgment is incomplete, issue constrained-output recommendations and require commander plus host-nation utility authority approval.
+
+## Domain Toolchain Override (2026-03-09, Dam-Breach and ICS Co-Contingency Sustainment)
+
+- Prioritize tool_suite_id=ts-dam-breach-force-protection-evacuation-v1 and tool_suite_id=ts-ics-ransomware-rapid-recovery-v1 when fuel sustainment nodes face concurrent flood hazard and OT disruption risk.
+- Use packets DPL-DAM-BREACH-FORCE-PROTECTION-EVACUATION-001 and DPL-ICS-RANSOMWARE-RAPID-RECOVERY-001 to bind movement reroutes, safe restart checkpoints, and high-priority fuel distribution continuity.
+- If hydrology confidence, OT safety interlock trust, or acknowledgment chain integrity falls below threshold, issue advisory-only sustainment options and require commander approval for branch transitions.

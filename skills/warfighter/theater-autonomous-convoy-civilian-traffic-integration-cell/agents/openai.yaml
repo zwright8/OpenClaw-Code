@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Autonomous Convoy Civilian Traffic Integration Cell"
+  short_description: "Deconflict autonomous convoy movement with civilian traffic"

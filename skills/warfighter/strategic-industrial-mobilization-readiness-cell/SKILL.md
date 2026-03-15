@@ -190,12 +190,6 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-strategic-solid-rocket-motor-supply-surge-safety-assurance-v1` with `protocol_stack_id=ps-strategic-solid-rocket-motor-supply-surge-safety-assurance-stack-v1` when mobilization recommendations depend on rocket-motor lot integrity, hazardous transport windows, or deterrence-critical surge allocations.
-- Add `tool_suite_id=ts-homeland-defense-industrial-copper-transformer-theft-grid-priority-v1` with `protocol_stack_id=ps-homeland-defense-industrial-copper-transformer-theft-grid-priority-stack-v1` when industrial readiness depends on theft-driven grid degradation, transformer replacement timelines, or defense-load priority.
-- Add `packet_id=DPL-STRATEGIC-SOLID-ROCKET-MOTOR-SURGE-001` and `packet_id=DPL-HOMELAND-COPPER-TRANSFORMER-THEFT-001` for recommendations that materially change industrial surge posture, utility restoration priority, or strategic sustainment confidence.
-
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLIII Addendum)
 
 - Add `tool_suite_id=ts-strategic-machine-tool-forging-capacity-priority-v1` + `protocol_stack_id=ps-strategic-machine-tool-forging-capacity-priority-stack-v1` when mobilization readiness depends on constrained heavy-manufacturing capacity, die life, or forge throughput.
@@ -215,34 +209,3 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when industrial prioritization must preserve strategic ground-station hardware that supports SATCOM, SDA, or missile-warning continuity.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when mobilization output must shift toward track pads, roadwheels, or final drives to protect armored maneuver readiness.
 - Add `packet_id=DPL-TURBINE-SUPERALLOY-TBC-001`, `packet_id=DPL-SPACE-GROUND-STATION-TWT-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter industrial surge posture, strategic hardware allocation, or land-force readiness.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
-
-- Add `tool_suite_id=ts-strategic-carbon-carbon-nozzle-reentry-material-priority-v1` + `protocol_stack_id=ps-strategic-carbon-carbon-nozzle-reentry-material-priority-stack-v1` when mobilization readiness depends on carbon-carbon, ablatives, or nozzle-material throughput across strategic missile and reentry demand.
-- Add `tool_suite_id=ts-strategic-guidance-seeker-imu-accelerometer-priority-v1` + `protocol_stack_id=ps-strategic-guidance-seeker-imu-accelerometer-priority-stack-v1` when surge output depends on trusted seekers, inertial components, and environmental-screening bottlenecks.
-- Add `packet_id=DPL-CARBON-CARBON-NOZZLE-001` and `packet_id=DPL-GUIDANCE-SEEKER-IMU-001` for recommendations that materially alter industrial surge posture, strategic release confidence, or weapons-component allocation.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
-
-- Add `tool_suite_id=ts-strategic-semiconductor-test-burn-in-mission-priority-v1` + `protocol_stack_id=ps-strategic-semiconductor-test-burn-in-mission-priority-stack-v1` when mobilization readiness depends on burn-in chamber capacity, environmental screening queues, or mission-priority semiconductor release.
-- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when industrial throughput depends on whether plant utility anomalies are local outages, sabotage, or theater-wide FEW cascades.
-- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when allied fabs, test houses, or shared production lines require controlled release of mission data, caveat-bound specs, or validation results.
-- Add `packet_id=DPL-SEMICONDUCTOR-BURNIN-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter industrial surge posture, utility survivability, or allied production trust.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
-
-- Add `tool_suite_id=ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1` + `protocol_stack_id=ps-strategic-tritium-reservoir-surveillance-maintenance-priority-stack-v1` when mobilization readiness depends on secure isotope handling throughput, reservoir surveillance cadence, or maintenance release timing across strategic systems.
-- Add `tool_suite_id=ts-strategic-euv-photomask-rad-hard-semiconductor-priority-v1` + `protocol_stack_id=ps-strategic-euv-photomask-rad-hard-semiconductor-priority-stack-v1` when mobilization output is constrained by photomask access, specialty gas purity, or rad-hard lot release.
-- Add `tool_suite_id=ts-joint-additive-warhead-liner-quality-assurance-cell-v1` + `protocol_stack_id=ps-joint-additive-warhead-liner-quality-assurance-cell-stack-v1` when mobilization readiness depends on additive warhead-liner quality, lot traceability, or release-governance confidence for munitions output.
-- Add `tool_suite_id=ts-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-stack-v1` when industrial recovery depends on mineral reclamation throughput, allied processing capacity, or cross-border quality assurance.
-- Add `tool_suite_id=ts-strategic-quantum-network-key-custody-and-compromise-response-cell-v1` + `protocol_stack_id=ps-strategic-quantum-network-key-custody-and-compromise-response-cell-stack-v1` when defense-industrial command and release networks depend on trusted strategic cryptographic custody and compromise containment.
-- Add `packet_id=DPL-TRITIUM-RESERVOIR-MAINTENANCE-001`, `packet_id=DPL-EUV-PHOTOMASK-RADHARD-001`, `packet_id=DPL-ADDITIVE-WARHEAD-LINER-QA-001`, `packet_id=DPL-BATTERY-RECYCLING-MINERAL-RECOVERY-001`, and `packet_id=DPL-QUANTUM-NETWORK-KEY-CUSTODY-001` for recommendations that materially alter strategic sustainment posture, industrial surge confidence, quality assurance, mineral recovery throughput, or deterrence-program readiness.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
-
-- Add `tool_suite_id=ts-strategic-solid-propellant-casting-cure-assurance-v1` + `protocol_stack_id=ps-strategic-solid-propellant-casting-cure-assurance-stack-v1` when industrial readiness depends on cure capacity, environmental control, or lot-release timing for solid propellant production and recertification.
-- Add `packet_id=DPL-SOLID-PROPELLANT-CASTING-CURE-001` for recommendations that materially alter propellant throughput, lot confidence, or strategic motor readiness.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
-
-- Use `strategic-radome-seeker-window-and-optical-coating-priority-cell` when mobilization readiness depends on radome throughput, seeker-window quality, or specialty optical coatings across missile, ISR, and air-defense production lines.

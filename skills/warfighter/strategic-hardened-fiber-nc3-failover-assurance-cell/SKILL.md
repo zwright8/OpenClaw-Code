@@ -33,8 +33,8 @@ Primary products: mission option matrix, protocol-bound tool invocation packet, 
 ## External Tools and Protocol Integration
 
 - Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Use packet template `DPL-NC3-FIBER-001` from `../_shared/references/domain-tool-packet-library.md`.
-- Bind tool and protocol choices to `ts-hardened-fiber-nc3-failover-v1` and `ps-hardened-fiber-nc3-failover-stack-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
+- Use packet templates `DPL-NC3-HARDENED-FIBER-FAILOVER-001` and `DPL-NC3-ACK-INTEGRITY-CHAIN-001` from `../_shared/references/domain-tool-packet-library.md`.
+- Bind tool and protocol choices to `ts-nc3-hardened-fiber-failover-assurance-v1` and `ps-nc3-hardened-fiber-failover-assurance-stack-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
 - Align execution profile with `nc3-continuity-resilience-v1` from `../_shared/references/joint-operations-external-toolchain-profiles.md`.
 - Include source freshness UTC, confidence, and degraded transition triggers.
 
@@ -46,23 +46,17 @@ Primary products: mission option matrix, protocol-bound tool invocation packet, 
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-hardened-fiber-nc3-failover-v1` with `protocol_stack_id=ps-hardened-fiber-nc3-failover-stack-v1`.
+- Primary: `tool_suite_id=ts-nc3-hardened-fiber-failover-assurance-v1` with `protocol_stack_id=ps-nc3-hardened-fiber-failover-assurance-stack-v1`.
 - Alternate: choose one profile-aligned suite from the shared catalog and document tradeoffs.
 - Degraded: manual reporting and acknowledgment chain with explicit timing and confidence penalties.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-NC3-FIBER-001`.
+- Default packet IDs: `DPL-NC3-HARDENED-FIBER-FAILOVER-001`, `DPL-NC3-ACK-INTEGRITY-CHAIN-001`.
 - If scope mismatch exists, define a provisional packet and assign validation owner with suspense.
 
-## Domain Toolchain Override (2026-03-12, Warfighter Expansion Wave XXIV)
+## Domain Assurance Overrides (2026-03-10, NC3 Failover Tightening)
 
-- Add `tool_suite_id=ts-joint-mission-command-assurance-and-branch-synchronization-v1` + `protocol_stack_id=ps-joint-mission-command-assurance-and-branch-synchronization-stack-v1` when rapid branch synchronization and command-approval integrity are mission-limiting.
-- Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
-- Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
-- Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
-
-- Add `tool_suite_id=ts-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-v1` + `protocol_stack_id=ps-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-stack-v1` when failover assurance depends on mobile shelter survivability, relay restoration timing, or rapid antenna reconstitution after node displacement.
-- Add `packet_id=DPL-MOBILE-NC3-RELAY-SHELTER-001` for branches that materially alter hardened failover timing, shelter allocation, or authenticated continuity posture.
+- Require dual independent acknowledgment paths before recommending a failover execution branch.
+- Add `ack_path_primary_status`, `ack_path_secondary_status`, and `timing_integrity_delta_ms` fields to every critical recommendation.
+- If either path is stale or uncertain, downgrade output to advisory-only and elevate to command decision gate.

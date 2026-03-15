@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Multi-Orbit SATCOM Denial Reconstitution Cell"
+  short_description: "Support multi-orbit SATCOM denial reconstitution decisions"

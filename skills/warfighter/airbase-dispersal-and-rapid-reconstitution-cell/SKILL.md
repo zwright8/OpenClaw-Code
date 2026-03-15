@@ -145,11 +145,18 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Airbase Reconstitution Expansion Wave XV Addendum (2026-03-11)
 
-- Add `tool_suite_id=ts-expeditionary-counter-drone-airfield-ground-crew-safety-cell-v1` + `protocol_stack_id=ps-expeditionary-counter-drone-airfield-ground-crew-safety-cell-stack-v1` when dispersal and reconstitution planning depends on flightline C-UAS safety gates.
-- Add `tool_suite_id=ts-joint-denied-gnss-maritime-pilotage-and-port-entry-cell-v1` + `protocol_stack_id=ps-joint-denied-gnss-maritime-pilotage-and-port-entry-cell-stack-v1` when port-entry and maritime sustainment timing affect sortie regeneration at dispersed bases.
-- Add `packet_id=DPL-EXPEDITIONARY-CUAS-GROUND-CREW-SAFETY-001` and `packet_id=DPL-DENIED-GNSS-MARITIME-PILOTAGE-PORT-ENTRY-001` for branches that alter crew protection posture, sortie pacing, or sustainment arrival confidence.
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIII Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-decoy-economy-and-inventory-governance-cell-v1` + `protocol_stack_id=ps-theater-autonomous-decoy-economy-and-inventory-governance-cell-stack-v1` when airbase survivability branches depend on decoy allocation and replenishment governance.
+- Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-cell-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-cell-stack-v1` when reconstitution timelines depend on cold-weather energy reliability.
+- Add `packet_id=DPL-DECOY-ECON-001` and `packet_id=DPL-POLAR-BATTERY-SURVIVE-001` for branches that alter dispersal survivability assumptions or sortie regeneration timing.
+
+## Domain Toolchain Override (2026-03-11, Expansion Wave XIV Addendum)
+
+- Add `tool_suite_id=ts-theater-rapid-runway-crater-repair-autonomy-governance-cell-v1` + `protocol_stack_id=ps-theater-rapid-runway-crater-repair-autonomy-governance-cell-stack-v1` when reconstitution depends on autonomous crater-repair release controls and sortie-priority sequencing.
+- Add `tool_suite_id=ts-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-v1` + `protocol_stack_id=ps-joint-denied-weather-sensor-reseeding-and-forecast-assurance-cell-stack-v1` when dispersal and recovery timelines depend on denied-weather forecast trust restoration.
+- Add `packet_id=DPL-RUNWAY-CRATER-AUTONOMY-001` and `packet_id=DPL-DENIED-WEATHER-SENSOR-RESEED-001` for branches that materially alter runway recovery sequence, sortie regeneration confidence, or release authority timing.
 
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
 
@@ -157,22 +164,3 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when base reconstitution includes potable-water restart for flightline support, casualty reception, or shelter occupancy.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when dispersal, recovery, or divert instructions may be stale, spoofed, or misrouted across digital order paths.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially alter sortie regeneration, base habitability, or command-path trust.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
-
-- Add `tool_suite_id=ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1` + `protocol_stack_id=ps-joint-dispersed-airbase-mobile-precision-approach-lighting-stack-v1` when base reconstitution depends on restoring low-visibility recovery, alternate-runway certification, or mobile lighting.
-- Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-stack-v1` when cold-soaked batteries or charging limits threaten lighting, airfield sensors, or dispersed base-support equipment.
-- Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when base survivability depends on tightly timed signature exposure, decoy activation, or EMCON breaks during regeneration.
-- Add `packet_id=DPL-MOBILE-PRECISION-APPROACH-001`, `packet_id=DPL-HIGH-LATITUDE-BATTERY-THERMAL-001`, and `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001` for branches that materially alter sortie regeneration, base survivability, or command-path trust.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
-
-- Add `tool_suite_id=ts-expeditionary-battle-damaged-aircraft-recovery-cannibalization-v1` + `protocol_stack_id=ps-expeditionary-battle-damaged-aircraft-recovery-cannibalization-stack-v1` when base recovery depends on salvaging damaged airframes, controlled cannibalization, or rapid reconstitution of scarce aircraft.
-- Add `tool_suite_id=ts-homeland-base-fuel-hydrant-fire-suppression-recovery-v1` + `protocol_stack_id=ps-homeland-base-fuel-hydrant-fire-suppression-recovery-stack-v1` when sortie regeneration depends on hydrant-loop integrity, foam reserves, or safe base fueling restoration.
-- Add `tool_suite_id=ts-joint-assault-landing-zone-dust-obscuration-control-v1` + `protocol_stack_id=ps-joint-assault-landing-zone-dust-obscuration-control-stack-v1` when dispersed recovery, casualty pickup, or austere arrival lanes depend on managing brownout and sensor obscuration.
-- Add `packet_id=DPL-BATTLE-DAMAGED-AIRCRAFT-RECOVERY-001`, `packet_id=DPL-BASE-FUEL-HYDRANT-FIRE-SUPPRESSION-001`, and `packet_id=DPL-ASSAULT-LZ-DUST-OBSCURATION-001` for branches that materially alter sortie regeneration, base survivability, or austere-airfield release confidence.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
-
-- Add `tool_suite_id=ts-joint-expeditionary-portable-atc-tower-tacan-runway-services-v1` + `protocol_stack_id=ps-joint-expeditionary-portable-atc-tower-tacan-runway-services-stack-v1` when airbase reconstitution depends on portable tower control, TACAN alignment, or runway services recovery.
-- Add `packet_id=DPL-PORTABLE-ATC-TACAN-001` for branches that materially alter sortie release timing, alternate-airfield activation, or commander acceptance of degraded airfield control.

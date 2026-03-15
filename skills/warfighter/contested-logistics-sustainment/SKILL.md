@@ -270,39 +270,7 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-theater-offshore-energy-platform-blackstart-defense-v1` + `protocol_stack_id=ps-theater-offshore-energy-platform-blackstart-defense-stack-v1` when sustainment viability depends on offshore power, fuel, or maritime energy-node restart sequencing.
 - Add `packet_id=DPL-CABLE-REPAIR-SHIP-ESCORT-001` and `packet_id=DPL-OFFSHORE-ENERGY-BLACKSTART-001` for branches that materially alter distribution confidence, energy continuity, or commander sustainment risk acceptance.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
 
-- Add `tool_suite_id=ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1` + `protocol_stack_id=ps-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-stack-v1` when sustainment viability depends on contested maritime fuel throughput, pier restoration timing, or hose-farm contamination control.
-- Add `tool_suite_id=ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1` + `protocol_stack_id=ps-joint-forward-blood-bank-crossmatch-massive-transfusion-stack-v1` when logistics branches depend on blood cold-chain endurance, crossmatch throughput, or casualty-surge survival support.
-- Add `packet_id=DPL-FUEL-PIER-BYPASS-001` and `packet_id=DPL-FORWARD-BLOOD-BANK-CROSSMATCH-001` for branches that materially alter fuel flow, medical sustainment, or contested distribution confidence.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
-
-- Add `tool_suite_id=ts-coalition-maritime-insurance-sanctions-and-convoy-underwriting-cell-v1` + `protocol_stack_id=ps-coalition-maritime-insurance-sanctions-and-convoy-underwriting-cell-stack-v1` when sustainment viability depends on convoy underwriting, sanctions compliance, or commercial carrier confidence.
-- Add `tool_suite_id=ts-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-v1` + `protocol_stack_id=ps-coalition-cross-border-battery-recycling-and-critical-mineral-recovery-cell-stack-v1` when logistics endurance depends on mineral reclamation throughput, coalition recovery capacity, or battery feedstock custody.
-- Add `tool_suite_id=ts-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-v1` + `protocol_stack_id=ps-theater-hydrogen-fuel-cell-microgrid-safety-and-emissions-control-cell-stack-v1` when forward sustainment nodes depend on hydrogen microgrid safety, leak containment, or emissions-aware power continuity.
-- Add `packet_id=DPL-MARITIME-INSURANCE-UNDERWRITE-001`, `packet_id=DPL-BATTERY-RECYCLING-MINERAL-RECOVERY-001`, and `packet_id=DPL-HYDROGEN-MICROGRID-SAFETY-001` for branches that materially alter throughput confidence, industrial endurance, or energy continuity.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
-
-- Add `tool_suite_id=ts-theater-petroleum-quality-lab-fuel-spec-waiver-v1` + `protocol_stack_id=ps-theater-petroleum-quality-lab-fuel-spec-waiver-stack-v1` when sustainment viability depends on assay confidence, platform tolerance, or commander-approved use of marginal fuel lots.
-- Add `tool_suite_id=ts-joint-fuel-bladder-grounding-bonding-lightning-safety-v1` + `protocol_stack_id=ps-joint-fuel-bladder-grounding-bonding-lightning-safety-stack-v1` when fuel flow depends on weather hold decisions, grounding discipline, or expeditionary transfer safety at forward fuel points.
-- Add `packet_id=DPL-PETROLEUM-LAB-SPEC-WAIVER-001` and `packet_id=DPL-FUEL-BLADDER-LIGHTNING-001` for branches that materially alter fuel-release confidence, throughput timing, or sustainment safety posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
-
-- Add `tool_suite_id=ts-strategic-electronics-salvage-critical-component-reclamation-v1` + `protocol_stack_id=ps-strategic-electronics-salvage-critical-component-reclamation-stack-v1` when sustainment throughput depends on reclaiming trusted electronics faster than new procurement can restore inventories.
-- Add `tool_suite_id=ts-coalition-host-nation-water-rights-military-demand-deconfliction-v1` + `protocol_stack_id=ps-coalition-host-nation-water-rights-military-demand-deconfliction-stack-v1` when sustainment feasibility depends on water allocation legitimacy and avoiding host-nation backlash against military demand.
-- Add `tool_suite_id=ts-joint-captured-enemy-materiel-exploitation-safe-redistribution-v1` + `protocol_stack_id=ps-joint-captured-enemy-materiel-exploitation-safe-redistribution-stack-v1` when captured enemy stocks or components can bridge contested shortages if safety and legal gates are met.
-- Add `packet_id=DPL-ELECTRONICS-SALVAGE-RECLAMATION-001`, `packet_id=DPL-WATER-RIGHTS-DECONFLICTION-001`, and `packet_id=DPL-CAPTURED-ENEMY-MATERIEL-001` for branches that materially alter sustainment throughput, legitimacy, or reuse confidence.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
-
-- Use `coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell` when sustainment viability depends on vetted tanker-driver availability, insider-risk controls, or coalition dispatch recovery across bulk-fuel nodes.
-- Use `joint-deployed-pay-entitlement-fraud-and-disconnected-disbursement-cell` when commander sustainment risk depends on trusted pay delivery, entitlement integrity, or disconnected disbursement continuity for forward personnel.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Addendum)
-
-- Add `tool_suite_id=ts-shipboard-ai-maintenance-prognostics-v1` + `protocol_stack_id=ps-aviation-maintenance-forensics-stack-v1` when sustainment viability depends on predicting mission-critical failures before parts, labor, or access windows collapse readiness.
-- Add `tool_suite_id=ts-battlefield-additive-repair-validation-v1` + `protocol_stack_id=ps-battlefield-additive-repair-validation-stack-v1` when sustainment throughput depends on trusted forward repair release rather than depot replacement or delayed cannibalization.
-- Add `packet_id=DPL-SHIPBOARD-AI-PROGNOSTICS-001`, `packet_id=DPL-MAINTENANCE-KNOWLEDGE-SYNC-001`, and `packet_id=DPL-ADDITIVE-REPAIR-VALIDATION-001` for branches that materially alter readiness recovery, part-release confidence, or maintenance debt.
+- Add `tool_suite_id=ts-theater-property-book-sensitive-item-recapture-v1` + `protocol_stack_id=ps-theater-property-book-sensitive-item-recapture-stack-v1` when sustainment feasibility depends on recovering or denying compromised vehicles, weapons, optics, crypto, or other accountable materiel.
+- Add `packet_id=DPL-PROPERTY-BOOK-SENSITIVE-ITEM-RECAPTURE-001` for branches that materially alter accountability confidence, reissue timing, or commander acceptance of compromise risk.

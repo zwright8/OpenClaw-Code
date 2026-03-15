@@ -144,3 +144,51 @@ Primary products for this skill: warning dissemination plan, attack assessment r
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-08, Hypersonic Cueing Expansion)
+
+- Prioritize `tool_suite_id=ts-hypersonic-cueing-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1` when warning timelines compress below established threshold.
+- Use packet `DPL-HYP-CUE-001` and require dual-sensor confirmation before commander-ready cue recommendations.
+- If track custody confidence is degraded, pivot to advisory-only warning posture with explicit revalidation suspense.
+
+## Domain Toolchain Override (2026-03-08, Counter-Loitering Saturation Expansion)
+
+- Prioritize `tool_suite_id=ts-counter-loitering-swarm-v1` when defended assets face mixed ballistic plus loitering saturation conditions.
+- Use packet `DPL-CLM-ATTRITION-001` to bind defensive allocation, interceptor burn-rate, and commander release checkpoints.
+- If friend-or-foe confidence cannot be sustained, downgrade to protective maneuver and sheltering advisory-only recommendations.
+
+## Domain Toolchain Override (2026-03-08, Hypersonic S2S Compression Expansion)
+
+- Prioritize `tool_suite_id=ts-hypersonic-s2s-compression-v1` with `protocol_stack_id=ps-hypersonic-s2s-stack-v1` when warning-to-engagement windows drop below baseline timelines.
+- Use packet `DPL-HYPERSONIC-S2S-001` to enforce track custody confidence, cue prioritization, and shooter assignment gating.
+- If dual-source track confirmation fails, issue warning-only recommendations and require command approval before any posture escalation.
+
+## Domain Toolchain Override (2026-03-08, Coalition IAMD Latency Recovery)
+
+- Prioritize `tool_suite_id=ts-coalition-iamd-latency-v1` with `protocol_stack_id=ps-coalition-iamd-latency-stack-v1` when coalition track handoff delays exceed warning timeline tolerance.
+- Use packet `DPL-COAL-IAMD-LATENCY-001` to bind timestamp integrity checks, handoff remediation actions, and release-authority timing records.
+- If timestamp or acknowledgment integrity fails, publish warning-only recommendations with explicit commander risk prompts.
+
+## Domain Toolchain Override (2026-03-09, Emitter Relocation and Decoy Continuity)
+
+- Prioritize `tool_suite_id=ts-air-defense-emitter-relocation-v1` with `protocol_stack_id=ps-air-defense-emitter-relocation-stack-v1` when warning fidelity is degraded by adversary anti-radiation targeting pressure.
+- Use packet `DPL-ADA-EMITTER-RELOCATION-001` to bind relocation timing, decoy activation windows, and defended-asset coverage continuity checks.
+- If relocation acknowledgment integrity or coverage confidence falls below threshold, downgrade to warning-only recommendations and require explicit commander approval.
+
+## Domain Toolchain Override (2026-03-09, Spaceport Range Safety Warning Linkage)
+
+- Prioritize `tool_suite_id=ts-homeland-spaceport-range-safety-continuity-v1` with `protocol_stack_id=ps-homeland-spaceport-range-safety-continuity-stack-v1` when missile warning timelines intersect homeland military launch windows or range-safety constraints.
+- Use packet `DPL-HOMELAND-SPACEPORT-RANGE-SAFETY-CONTINUITY-001` to couple warning dissemination timing, hold/release decision gates, and escalation prompts.
+- If range-safety chain integrity or acknowledgment completeness degrades, downgrade to advisory-only warning products and require explicit commander approval.
+
+## Domain Toolchain Override (2026-03-09, Orbital Debris Reentry Warning Coupling)
+
+- Prioritize `tool_suite_id=ts-orbital-reentry-consequence-v1` with `protocol_stack_id=ps-orbital-reentry-consequence-stack-v1` when missile warning timelines overlap hazardous orbital debris reentry uncertainty.
+- Use packet `DPL-ORBITAL-REENTRY-CONSEQUENCE-001` to bind warning dissemination, shelter/hold sequencing, and command authority checkpoints.
+- If track-custody confidence or acknowledgment integrity degrades, publish warning-only advisories and require explicit commander approval before posture changes.
+
+## Domain Toolchain Override (2026-03-09, Geomagnetic and Keyfill Coupled Warning Integrity)
+
+- Prioritize tool_suite_id=ts-geomagnetic-storm-grid-satcom-posture-v1 with protocol_stack_id=ps-geomagnetic-storm-grid-satcom-posture-stack-v1 when warning latency risk coincides with geomagnetic disturbance indicators.
+- Use packet DPL-GEOMAGNETIC-STORM-GRID-SATCOM-POSTURE-001 to couple warning dissemination timing, SATCOM fallback actions, and authority-gated posture decisions.
+- If timing integrity or acknowledgment chain confidence degrades, publish warning-only advisories and require explicit commander approval before mission posture changes.

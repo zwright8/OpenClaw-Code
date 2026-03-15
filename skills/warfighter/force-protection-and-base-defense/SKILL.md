@@ -285,9 +285,3 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
-
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
-
-- Add tool_suite_id=ts-expeditionary-forward-power-microreactor-safeguards-v1 + protocol_stack_id=ps-expeditionary-forward-power-microreactor-safeguards-stack-v1 when base defense options depend on expeditionary microreactor safety posture and power-priority continuity.
-- Add packet_id=DPL-EXPEDITIONARY-MICROREACTOR-SAFEGUARDS-001 for branches that alter force-protection risk thresholds or emergency action sequencing.

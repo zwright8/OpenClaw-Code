@@ -57,4 +57,6 @@ Preferred protocol families for this skill: IEC 61850, DNP3, NERC CIP, NIEM, API
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-coalition-grid-islanding-priority-broker-v1 + protocol_stack_id=ps-coalition-grid-islanding-priority-broker-stack-v1 when coalition and military loads must be partitioned under active disruption.\n- Add tool_suite_id=ts-substation-cyber-physical-rollback-and-verification-v1 + protocol_stack_id=ps-substation-cyber-physical-rollback-and-verification-stack-v1 when restoration choices depend on trusted state rollback and protection relay validation.\n- Add packet_id=DPL-COALITION-GRID-ISLANDING-PRIORITY-001 and packet_id=DPL-SUBSTATION-ROLLBACK-VERIFY-001 for recommendations that change power-sharing posture or critical-load continuity.
+- Add tool_suite_id=ts-coalition-grid-islanding-priority-broker-v1 + protocol_stack_id=ps-coalition-grid-islanding-priority-broker-stack-v1 when coalition and military loads must be partitioned under active disruption.
+- Add tool_suite_id=ts-substation-cyber-physical-rollback-and-verification-v1 + protocol_stack_id=ps-substation-cyber-physical-rollback-and-verification-stack-v1 when restoration choices depend on trusted state rollback and protection relay validation.
+- Add packet_id=DPL-COALITION-GRID-ISLANDING-PRIORITY-001 and packet_id=DPL-SUBSTATION-ROLLBACK-VERIFY-001 for recommendations that change power-sharing posture or critical-load continuity.

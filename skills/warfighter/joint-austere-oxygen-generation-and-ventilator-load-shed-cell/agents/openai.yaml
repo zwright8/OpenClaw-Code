@@ -1,4 +1,3 @@
----
 interface:
   display_name: "Joint Austere Oxygen Generation And Ventilator Load Shed Cell"
-  short_description: "Help with austere oxygen and ventilator load-shed decisions"
+  short_description: "Help with Joint Austere Oxygen Generation And Ventilator Load Shed Cell tasks"

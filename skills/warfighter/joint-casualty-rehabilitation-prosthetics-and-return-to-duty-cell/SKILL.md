@@ -71,8 +71,3 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag prosthetic-device safety, long-term overuse risk, chronic-pain concerns, family-transition needs, and classification or privacy constraints before recommending action.
 - Do not fabricate authorities, approvals, or source evidence.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
-
-- Add `tool_suite_id=ts-theater-prosthetic-component-socket-liner-surge-v1` + `protocol_stack_id=ps-theater-prosthetic-component-socket-liner-surge-stack-v1` when return-to-duty or transition decisions are constrained by prosthetic component shortages, socket-liner burn rates, or device-substitution risk.
-- Add `packet_id=DPL-PROSTHETIC-COMPONENT-SOCKET-LINER-SURGE-001` for branches that materially change fitting continuity, component allocation, or commander risk acceptance for delayed rehabilitation.

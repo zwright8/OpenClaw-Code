@@ -154,9 +154,3 @@ Primary products for this skill: cyber mission plan, dependency/risk register, s
 
 - Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when cyber recommendations depend on emergency identity burn, privileged-role containment, or mission workload access recovery.
 - Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for branches that materially alter access persistence, break-glass posture, or mission-software continuity.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
-
-- Add `tool_suite_id=ts-identity-access-recovery-v1` + `protocol_stack_id=ps-identity-access-recovery-stack-v1` when cyber recommendations depend on revocation, re-issuance, and audit continuity for mission-critical accounts during contested operations.
-- Add `tool_suite_id=ts-eob-decay-forecast-v1` + `protocol_stack_id=ps-eob-decay-forecast-stack-v1` when cyber or EMS recommendations depend on forecasting adversary or friendly emitter decay before retasking or survivability changes.
-- Add `packet_id=DPL-IDENTITY-ACCESS-RECOVERY-001` and `packet_id=DPL-EOB-DECAY-FORECAST-001` for branches that materially change access trust, privileged-role containment, or cyber-electromagnetic risk posture.

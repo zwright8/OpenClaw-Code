@@ -200,12 +200,6 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
 
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
-
-- Add tool_suite_id=ts-theater-contested-pnt-time-mesh-recovery-v1 + protocol_stack_id=ps-theater-contested-pnt-time-mesh-recovery-stack-v1 when targeting confidence depends on denied-PNT time-transfer recovery and fires synchronization integrity.
-- Add packet_id=DPL-PNT-TIME-MESH-RECOVERY-001 for branches that alter target-release timing or collateral-risk assumptions.
-
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
 
 - Add `tool_suite_id=ts-theater-no-strike-geofence-integrity-v1` + `protocol_stack_id=ps-theater-no-strike-geofence-integrity-stack-v1` when dynamic protected-boundary drift could invalidate CDE, no-strike, or restricted-target logic.
@@ -225,22 +219,8 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when CDE or targeting systems require emergency remediation without losing auditability, rollback control, or mensuration trust.
 - Add `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for recommendations that materially alter target validity, release authority, or targeting-system trust posture.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
 
-- Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when AI-generated target tasking, no-strike updates, or restricted-target guidance require intent-fidelity checks before release.
-- Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when target-release timing depends on synchronized emissions windows, decoy activation, or adversary collection shaping.
-- Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when targeting services, mensuration pipelines, or CDE tools must fail over into alternate cloud enclaves without losing trust.
-- Add `packet_id=DPL-AI-ORDER-INTENT-001`, `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001`, and `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001` for recommendations that materially alter target validity, release timing, or targeting-system trust posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
-
-- Add `tool_suite_id=ts-joint-laser-designator-sensor-fratricide-prevention-v1` + `protocol_stack_id=ps-joint-laser-designator-sensor-fratricide-prevention-stack-v1` when target validity or fires timing depends on trusted laser-code ownership and sensor-safe cueing.
-- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when targeting identity, federation, or service access compromise threatens CDE or release workflows.
-- Add `packet_id=DPL-LASER-DESIGNATOR-FRATRICIDE-001` and `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for recommendations that materially alter target validity, CDE governance, or release-authority confidence.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
-
-- Add `tool_suite_id=ts-joint-adversary-kill-web-disruption-assessment-v1` + `protocol_stack_id=ps-joint-adversary-kill-web-disruption-assessment-stack-v1` when target governance depends on understanding which adversary kill-web seam can be disrupted without invalidating effects assessment or escalation controls.
-- Add `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` + `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1` when target validity, mensuration refresh, or no-strike updates depend on scarce downlink windows from orbital collections.
-- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when coalition target review, CDE evidence exchange, or restricted-target synchronization depends on controlled data release under caveat pressure.
-- Add `packet_id=DPL-KILLWEB-DISRUPTION-001`, `packet_id=DPL-ORBITAL-DOWNLINK-PRIORITY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter target validity, release timing, or coalition targeting trust posture.
+- Add `tool_suite_id=ts-theater-cultural-property-no-strike-governance-v1` + `protocol_stack_id=ps-theater-cultural-property-no-strike-governance-stack-v1` when target validity depends on protected-site geofences, heritage preservation, or no-strike fidelity across dynamic operating areas.
+- Add `tool_suite_id=ts-joint-civilian-harm-condolence-claims-v1` + `protocol_stack_id=ps-joint-civilian-harm-condolence-claims-stack-v1` when release decisions, post-strike review, or commander acceptance thresholds depend on credible restorative-action or civilian-harm accountability posture.
+- Add `packet_id=DPL-CULTURAL-PROPERTY-NO-STRIKE-001` and `packet_id=DPL-CIVILIAN-HARM-CONDOLENCE-CLAIMS-001` for recommendations that materially alter target validity, CDE confidence, or protected-population risk acceptance.

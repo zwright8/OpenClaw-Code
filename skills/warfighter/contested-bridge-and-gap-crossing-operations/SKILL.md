@@ -144,14 +144,3 @@ Primary products for this skill: crossing operation execution matrix, site selec
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-coalition-portable-bridge-raft-refugee-crossing-safety-v1` with `protocol_stack_id=ps-coalition-portable-bridge-raft-refugee-crossing-safety-stack-v1` when crossing recommendations depend on refugee throughput, portable-bridge or raft safety, or coalition legal-handoff timing.
-- Add `packet_id=DPL-COALITION-BRIDGE-RAFT-REFUGEE-CROSSING-001` for recommendations that materially change crossing-site release, life-safety throughput, or coalition engineer support posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
-
-- Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when bridge, raft, or heavy-vehicle crossing release depends on trusted soil-bearing classifications at approaches and exits.
-- Add `tool_suite_id=ts-homeland-autonomous-evacuation-convoy-arbitration-v1` + `protocol_stack_id=ps-homeland-autonomous-evacuation-convoy-arbitration-stack-v1` when gap crossings must reconcile military movement with civil life-safety evacuation demand and autonomy overrides.
-- Add `tool_suite_id=ts-joint-littoral-surf-zone-breach-gradient-verification-v1` + `protocol_stack_id=ps-joint-littoral-surf-zone-breach-gradient-verification-stack-v1` when crossing branches extend into ferry, shore-entry, or surf-zone transitions that need beach-gradient confidence before release.
-- Add `packet_id=DPL-BREACH-SOIL-BEARING-001`, `packet_id=DPL-AUTON-EVAC-CONVOY-001`, and `packet_id=DPL-SURF-ZONE-BREACH-GRADIENT-001` for recommendations that materially alter crossing-site release, life-safety throughput, or engineer confidence.

@@ -2205,181 +2205,7 @@ For each critical recommendation, include:
 - Protocols: `CoT`, `VMF`, signed autonomy attestations, `API/JSON`, `USMTF`.
 - Degraded fallback: manual breach certification only with explicit commander acceptance of reduced tempo.
 
-## Profile Addendum U (2026-03-14, Airfield Services, Blood Continuity, Launch Cryogenics, Port Fuel, ASW Endurance, Sanitation Defense, Coalition JADC2, and Naval Signature Control)
-
-### `portable-atc-tacan-runway-services-v1`
-- Use for airfield recovery decisions when portable tower control, TACAN restoration, and runway services determine sortie release timing.
-- Primary tools: `ts-joint-expeditionary-portable-atc-tower-tacan-runway-services-v1`.
-- Cross-check tools: `ts-airfield-recovery-v1`.
-- Protocols: `AIXM/FIXM`, `VMF`, `USMTF`, `API/JSON`, signed airfield equipment manifests.
-- Degraded fallback: daylight or mission-essential one-runway operations only with positive-control readbacks.
-
-### `forward-blood-bank-crossmatch-v1`
-- Use for medical sustainment when blood typing, crossmatch, and massive transfusion continuity are the pacing constraint for survival.
-- Primary tools: `ts-joint-forward-blood-bank-crossmatch-massive-transfusion-v1`.
-- Cross-check tools: `ts-medical-force-health-v1`.
-- Protocols: `HL7/FHIR`, `USMTF`, `API/JSON`, signed cold-chain manifests.
-- Degraded fallback: life-saving transfusion only with dual clinical approval and manual cold-chain logging.
-
-### `cryogenic-propellant-transfer-priority-v1`
-- Use for launch and deterrence support when cryogenic transfer windows, ground-support assets, and boiloff loss determine readiness.
-- Primary tools: `ts-strategic-cryogenic-propellant-transfer-boiloff-priority-v1`.
-- Cross-check tools: `ts-space-satcom-v1`.
-- Protocols: `CCSDS`, signed transfer manifests, `API/JSON`, `USMTF`, `OPC UA`.
-- Degraded fallback: mission-essential cryogenic transfer only with manual valve-state confirmation and conservative boiloff assumptions.
-
-### `fuel-pier-bypass-restoration-v1`
-- Use for theater sustainment when fuel piers, hose farms, or transfer manifolds are damaged and bypass restoration controls throughput.
-- Primary tools: `ts-theater-fuel-pier-hose-farm-bulk-transfer-bypass-restoration-v1`.
-- Cross-check tools: `ts-logistics-distribution-v1`.
-- Protocols: `AIS/NMEA`, `OGC`, signed fuel-quality manifests, `API/JSON`, `USMTF`.
-- Degraded fallback: reduced-throughput fuel transfer only with contamination hold points every shift.
-
-### `sonobuoy-battery-endurance-v1`
-- Use for ASW planning when sonobuoy inventory, acoustic battery life, and pattern persistence shape contact survival odds.
-- Primary tools: `ts-joint-sonobuoy-allocation-acoustic-battery-endurance-v1`.
-- Cross-check tools: `ts-maritime-undersea-v1`.
-- Protocols: `Link 16 J-series`, `USMTF`, `OGC`, `API/JSON`, signed mission-load manifests.
-- Degraded fallback: mission-essential buoy patterns only with tighter battery reserve and manual contact handoff.
-
-### `wastewater-lift-station-defense-v1`
-- Use for installation resilience when wastewater lift-station failure, sewer bypass routing, or OT compromise threatens force health and mission continuity.
-- Primary tools: `ts-homeland-installation-wastewater-lift-station-sewer-bypass-defense-v1`.
-- Cross-check tools: `ts-civil-support-v1`.
-- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `OPC UA`, `API/JSON`, `USMTF`.
-- Degraded fallback: life-health sewer bypass only with manual pump status checks every hour.
-
-### `coalition-jadc2-priority-bridge-v1`
-- Use for coalition command-and-control when message priority, releasability, and acknowledgment fidelity determine JADC2 timing trust.
-- Primary tools: `ts-coalition-jadc2-message-priority-releasability-bridge-v1`.
-- Cross-check tools: `ts-joint-c2-fusion-v1`.
-- Protocols: `Link 16 J-series`, `USMTF`, `NATO APP-11/ADatP-3` aligned exchange, `API/JSON`, `NIEM`.
-- Degraded fallback: mission-essential summaries only with explicit coalition caveat annotations and readback acknowledgment.
-
-### `degaussing-port-exit-certification-v1`
-- Use for naval force-generation when degaussing health, magnetic signature limits, and port-exit certification determine sortie release.
-- Primary tools: `ts-joint-degaussing-signature-restoration-port-exit-certification-v1`.
-- Cross-check tools: `ts-spectrum-governance-v1`.
-- Protocols: `AIS/NMEA`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
-- Degraded fallback: restricted-port-exit certification only with manual signature checks and mine-risk downgrades.
-
-## Profile Addendum V (2026-03-14, Strategic Nuclear Sustainment, Industrial Microelectronics, Cold-Shock Medicine, Crossing Obscuration, Chemical Protection, Mobile NC3, Device Rekey, and Port Reopening)
-
-### `strategic-tritium-maintenance-priority-v1`
-- Use for strategic readiness decisions when tritium surveillance findings, transport windows, or isotope handling capacity become the pacing constraint.
-- Primary tools: `ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1`.
-- Cross-check tools: `ts-strategic-supply-shock-v1`.
-- Protocols: signed component custody manifests, `USMTF`, `NIEM`, `API/JSON`, `OPC UA`.
-- Degraded fallback: deterrence-critical maintenance only with dual-command approval.
-
-### `euv-photomask-rad-hard-priority-v1`
-- Use for strategic industrial decisions when EUV mask access, specialty gases, or rad-hard yields determine the release of critical semiconductor lots.
-- Primary tools: `ts-strategic-euv-photomask-rad-hard-semiconductor-priority-v1`.
-- Cross-check tools: `ts-strategic-supply-shock-v1`.
-- Protocols: signed lot manifests, `USMTF`, `API/JSON`, `OPC UA`, `NIEM`.
-- Degraded fallback: deterrence- and NC3-critical lots only with executive adjudication.
-
-### `forward-hypothermia-blood-warmer-v1`
-- Use for medical branches when casualty warming, blood warming, and cold-shock treatment determine survival during delayed evacuation.
-- Primary tools: `ts-joint-forward-hypothermia-blood-warmer-cold-shock-resuscitation-v1`.
-- Cross-check tools: `ts-medical-force-health-v1`.
-- Protocols: `HL7/FHIR`, `USMTF`, signed cold-chain manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
-- Degraded fallback: lifesaving warming only with stricter casualty triage thresholds.
-
-### `gap-crossing-smoke-thermal-screen-v1`
-- Use for assault crossing decisions when smoke, obscurants, and thermal screens must be synchronized with lane release and blue-force sensor discipline.
-- Primary tools: `ts-joint-gap-crossing-smoke-obscurant-thermal-screen-integration-v1`.
-- Cross-check tools: `ts-fires-airspace-v1`.
-- Protocols: `VMF`, `CoT`, `Link 16 J-series`, `USMTF`, `OGC`.
-- Degraded fallback: one crossing lane only with shorter obscuration windows and explicit readbacks.
-
-### `chemical-plume-shelter-installation-access-v1`
-- Use for homeland defense and DSCA branches when toxic plumes drive community sheltering, traffic control, and installation access restrictions.
-- Primary tools: `ts-homeland-chemical-plume-shelter-installation-access-control-v1`.
-- Cross-check tools: `ts-civil-support-v1`.
-- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, `API/JSON`, `USMTF`.
-- Degraded fallback: life-safety and mission-essential access only with hourly command review.
-
-### `mobile-nc3-relay-antenna-reconstitution-v1`
-- Use for theater command continuity when hardened shelters, mobile relays, and deployable antennas must be displaced and restored after strike or sabotage.
-- Primary tools: `ts-theater-mobile-hardened-shelter-nc3-relay-antenna-reconstitution-v1`.
-- Cross-check tools: `ts-hardened-fiber-nc3-failover-v1`.
-- Protocols: `USMTF`, `MIL-STD-188`, signed key manifests, `API/JSON`, `NIEM`.
-- Degraded fallback: essential continuity paths only with manual acknowledgment chain.
-
-### `mission-device-credential-key-reissue-v1`
-- Use for cyber and identity recovery when mission devices must be burned, rekeyed, and returned to trusted service under disconnected conditions.
-- Primary tools: `ts-theater-mission-device-credential-revocation-key-reissue-v1`.
-- Cross-check tools: `ts-identity-access-recovery-v1`.
-- Protocols: `SCIM`, `OIDC/SAML`, KMIP-compatible key exchange, signed credential manifests, `API/JSON`, `USMTF`.
-- Degraded fallback: mission-essential devices only with manual identity verification.
-
-### `coalition-port-wreck-berth-reopening-v1`
-- Use for coalition maritime recovery when wreck clearance, heavy-lift assignments, and berth certification determine when combined-use ports can reopen.
-- Primary tools: `ts-coalition-port-wreck-clearance-heavy-lift-berth-reopening-v1`.
-- Cross-check tools: `ts-logistics-distribution-v1`.
-- Protocols: `AIS/NMEA`, `OGC`, signed salvage manifests, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
-- Degraded fallback: one mission-essential berth only with restricted vessel classes.
-
-## Profile Addendum W (2026-03-14, Dental and Ocular Trauma, Water and Fuel Release, Propellant Casting, Ordnance Stability, and Harbor Control)
-
-### `dental-maxillofacial-triage-v1`
-- Use for forward casualty management when dental and facial trauma decisions determine airway safety, return-to-duty timing, or protected evacuation priority.
-- Primary tools: `ts-joint-forward-dental-maxillofacial-triage-v1`.
-- Cross-check tools: `ts-medical-force-health-v1`.
-- Protocols: `HL7/FHIR`, `USMTF`, signed clinical-image manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
-- Degraded fallback: damage-control dental triage only with paper casualty cards and UTC readbacks.
-
-### `ocular-trauma-vision-evac-v1`
-- Use for austere medical branches when eye injuries, contamination risk, and protected movement timing decide whether sight can be preserved.
-- Primary tools: `ts-joint-ocular-trauma-vision-evac-priority-v1`.
-- Cross-check tools: `ts-medical-force-health-v1`.
-- Protocols: `HL7/FHIR`, `USMTF`, signed clinical-image manifests, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
-- Degraded fallback: eye-shield and darken posture only with manual acuity tracking and readback-confirmed evacuation.
-
-### `water-lab-potability-release-v1`
-- Use for forward sustainment and force-health decisions when lab confidence and sample custody determine whether water can be distributed safely.
-- Primary tools: `ts-theater-forward-water-quality-lab-potability-release-v1`.
-- Cross-check tools: `ts-civil-support-v1`.
-- Protocols: signed sample manifests, `EDXL-DE/CAP`, `API/JSON`, `USMTF`, `HL7/FHIR`.
-- Degraded fallback: mission-essential rationing only with manual test strips and hourly command review.
-
-### `petroleum-lab-spec-waiver-v1`
-- Use for theater sustainment when assay results, platform tolerance, and waiver authority determine whether degraded fuel can still support operations.
-- Primary tools: `ts-theater-petroleum-quality-lab-fuel-spec-waiver-v1`.
-- Cross-check tools: `ts-logistics-distribution-v1`.
-- Protocols: signed sample manifests, `API/JSON`, `USMTF`, `OPC UA`, `NIEM`.
-- Degraded fallback: mission-essential fuel issue only with dual approval and reduced-platform compatibility.
-
-### `fuel-bladder-lightning-safety-v1`
-- Use for expeditionary fuel operations when lightning, static-discharge risk, and grounding quality determine whether transfer can continue safely.
-- Primary tools: `ts-joint-fuel-bladder-grounding-bonding-lightning-safety-v1`.
-- Cross-check tools: `ts-logistics-distribution-v1`.
-- Protocols: `EDXL-DE/CAP`, signed maintenance manifests, `CoT`, `API/JSON`, `USMTF`.
-- Degraded fallback: fuel issue windows only under tightened weather criteria and voice readbacks.
-
-### `solid-propellant-casting-cure-v1`
-- Use for strategic industrial readiness when casting slots, cure capacity, and environmental-control stability govern solid-propellant output.
-- Primary tools: `ts-strategic-solid-propellant-casting-cure-assurance-v1`.
-- Cross-check tools: `ts-strategic-supply-shock-v1`.
-- Protocols: signed lot manifests, `OPC UA`, `API/JSON`, `USMTF`, `NIEM`.
-- Degraded fallback: deterrence-critical lots only with dual approval and conservative cure windows.
-
-### `ordnance-magazine-humidity-stability-v1`
-- Use for munitions safety and issue sequencing when environmental drift across magazines changes explosive stability and safe-release confidence.
-- Primary tools: `ts-theater-ordnance-magazine-humidity-stability-monitoring-v1`.
-- Cross-check tools: `ts-munitions-port-safety-v1`.
-- Protocols: signed environmental logs, `OPC UA`, `API/JSON`, `USMTF`, `EDXL-DE/CAP`.
-- Degraded fallback: reduced issue velocity only with manual checks every shift and commander-approved quarantine bands.
-
-### `harbor-vts-manual-pilotage-v1`
-- Use for coalition maritime control when harbor traffic services degrade and commanders must fall back to manual pilotage without collapsing sealift throughput.
-- Primary tools: `ts-coalition-harbor-vts-fallback-manual-pilotage-v1`.
-- Cross-check tools: `ts-maritime-undersea-v1`.
-- Protocols: `AIS/NMEA`, `OGC`, `USMTF`, `API/JSON`, `NATO APP-11/ADatP-3 aligned exchange`.
-- Degraded fallback: daylight and essential-vessel-only pilotage with readback-confirmed channel release.
-
-## Profile Addendum X (2026-03-14, Human Sustainment, Recovery, and Family Continuity)
+## Profile Addendum U (2026-03-14, Human Sustainment, Recovery, and Family Continuity)
 
 ### `religious-affairs-moral-injury-support-v1`
 - Use for command and chaplain decisions when protected spiritual care access, unit moral injury indicators, or accommodation friction threaten readiness.
@@ -2437,104 +2263,60 @@ For each critical recommendation, include:
 - Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Degraded fallback: courier-only custody ledger with dual-control ballot witness checks.
 
-## Profile Addendum Y (2026-03-14, Rescue, Trust Restoration, and Strategic Recovery)
+## Profile Addendum V (2026-03-15, Legitimacy, Safety, and Accountability)
 
-### `submarine-escape-rescue-integration-v1`
-- Use for maritime rescue decisions when trapped submariners, rescue-system compatibility, or decompression-capacity limits drive time-critical COAs.
-- Primary tools: `ts-joint-submarine-escape-rescue-system-integration-v1`.
-- Cross-check tools: `ts-maritime-undersea-v1`.
-- Protocols: `USMTF`, signed rescue manifests, `AIS/NMEA`, `HL7/FHIR`, `API/JSON`.
-- Degraded fallback: voice-coordinated rescue branch with paper chamber ledger and conservative compatibility assumptions.
+### `sapr-restricted-reporting-unit-safety-v1`
+- Use for: survivor-support and command-safety decisions when restricted-reporting boundaries, retaliation risk, and immediate care routing all matter.
+- Primary tools: `ts-joint-sexual-assault-restricted-reporting-unit-safety-v1`.
+- Cross-check tools: `ts-force-mental-health-postvention-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed case manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Degraded fallback: survivor-safety-first manual routing only with dual-review confidentiality checks.
 
-### `aircrew-fatigue-circadian-countermeasure-v1`
-- Use for air-tasking and force-health decisions when sortie demand is constrained by fatigue, circadian inversion, or alertness-countermeasure governance.
-- Primary tools: `ts-theater-aircrew-fatigue-circadian-countermeasure-v1`.
-- Cross-check tools: `ts-medical-force-health-v1`.
-- Protocols: `HL7/FHIR`, signed crew-status manifests, `API/JSON`, `USMTF`, `NATO APP-11/ADatP-3 aligned exchange`.
-- Degraded fallback: minimum-risk sortie schedule only with manual waiver log and commander-approved cut lines.
+### `cultural-property-no-strike-governance-v1`
+- Use for: theater targeting and civil-legitimacy decisions when protected-site boundaries or cultural-property risk may constrain maneuver or fires.
+- Primary tools: `ts-theater-cultural-property-no-strike-governance-v1`.
+- Cross-check tools: `ts-joint-targeting-standards-cde-assurance-v1`.
+- Protocols: `OGC`, `NIEM`, `USMTF`, `API/JSON`, signed geofence manifests.
+- Degraded fallback: no-strike-by-default with manual geofence confirmation and legal review for any exception.
 
-### `emissions-decoy-robotic-spectrum-safety-v1`
-- Use for CEMA and deception decisions when robotic decoys, unmanned emitters, or kill-switch control must stay inside blue-force spectrum-safety limits.
-- Primary tools: `ts-theater-emissions-decoy-robotic-control-spectrum-safety-v1`.
-- Cross-check tools: `ts-cema-spectrum-operations-v1`.
-- Protocols: `CoT`, `VMF`, signed emitter-control manifests, `API/JSON`, `USMTF`.
-- Degraded fallback: reduced emissions plan with preplanned kill-switch and voice-confirmed decoy control.
+### `civilian-harm-condolence-claims-v1`
+- Use for: restorative-action and legitimacy decisions when reported civilian harm may require acknowledgment, condolence payment, or formal claims review.
+- Primary tools: `ts-joint-civilian-harm-condolence-claims-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIEM`, signed claims manifests, `API/JSON`, `USMTF`, `S/MIME`.
+- Degraded fallback: evidence-preservation and advisory-only recommendations until harm verification and legal review complete.
 
-### `orbital-custody-loss-commercial-ssa-retask-v1`
-- Use for space-domain-awareness decisions when track custody is lost and military or commercial retask options must restore conjunction confidence before maneuver release.
-- Primary tools: `ts-joint-orbital-custody-loss-commercial-ssa-retask-v1`.
-- Cross-check tools: `ts-space-domain-awareness-satcom-v1`.
-- Protocols: `CCSDS`, signed ephemeris manifests, `API/JSON`, `USMTF`, `STIX/TAXII`.
-- Degraded fallback: conservative keep-out buffers with maneuver hold until custody confidence recovers.
+### `aircraft-crash-fire-rescue-foam-transition-v1`
+- Use for: airbase emergency response when aircraft fires, foam-agent compatibility, and runway regeneration compete for commander attention.
+- Primary tools: `ts-expeditionary-aircraft-crash-fire-rescue-foam-transition-v1`.
+- Cross-check tools: `ts-airfield-recovery-v1`.
+- Protocols: `NIMS/ICS`, `AIXM/FIXM`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: crew-rescue and exposure-control only with single-runway emergency hold and manual foam accounting.
 
-### `air-gapped-credential-reissue-pki-recovery-v1`
-- Use for cyber continuity decisions when disconnected enclaves need offline credential reissue, certificate trust restoration, or emergency PKI burn-and-recover actions.
-- Primary tools: `ts-theater-air-gapped-credential-reissue-pki-recovery-v1`.
-- Cross-check tools: `ts-mission-trust-credentialing-v1`.
-- Protocols: `X.509/PKI`, signed certificate manifests, `S/MIME`, `API/JSON`, `USMTF`.
-- Degraded fallback: emergency access roster with dual-control issuance and paper key-custody log only.
+### `combat-camera-pa-release-authenticity-v1`
+- Use for: public-release and information-integrity decisions when source media may be manipulated, miscaptioned, or operationally sensitive.
+- Primary tools: `ts-joint-combat-camera-public-affairs-release-authenticity-v1`.
+- Cross-check tools: `ts-synthetic-media-watermark-assurance-v1`.
+- Protocols: signed media manifests, `STANAG 4609` aligned exchange, `S/MIME`, `API/JSON`, `USMTF`, `STIX/TAXII`.
+- Degraded fallback: commander-readable summary only with delayed media release until provenance and OPSEC checks pass.
 
-### `electronics-salvage-component-reclamation-v1`
-- Use for strategic sustainment decisions when reclaimed electronics can relieve component shortages faster than new procurement without outrunning trust and safety checks.
-- Primary tools: `ts-strategic-electronics-salvage-critical-component-reclamation-v1`.
-- Cross-check tools: `ts-strategic-supply-shock-v1`.
-- Protocols: signed component manifests, `OPC UA`, `API/JSON`, `NIEM`, `USMTF`.
-- Degraded fallback: non-flight-critical release only with command-approved use restrictions and UTC custody log.
+### `property-book-sensitive-item-recapture-v1`
+- Use for: logistics and force-protection decisions when missing weapons, crypto, optics, or other sensitive materiel may require rapid recovery or denial.
+- Primary tools: `ts-theater-property-book-sensitive-item-recapture-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed serial manifests, `NIEM`, `API/JSON`, `USMTF`, `S/MIME`, `STIX/TAXII`.
+- Degraded fallback: dual-control manual accountability only with immediate compromise notification and restricted reissue.
 
-### `obstetric-neonatal-emergency-support-v1`
-- Use for expeditionary medical decisions when maternal-fetal distress, neonatal warming, or specialized evacuation timing determines survival.
-- Primary tools: `ts-expeditionary-obstetric-neonatal-emergency-support-v1`.
-- Cross-check tools: `ts-medical-force-health-v1`.
-- Protocols: `HL7/FHIR`, `DICOM`, signed maternal-neonatal transfer manifests, `API/JSON`, `USMTF`.
-- Degraded fallback: emergency-only care branch with paper triage and constrained transfer ladder.
+### `live-fire-range-safety-autonomous-target-control-v1`
+- Use for: live-fire training and test decisions when autonomous target motion or reduced-manning range controls could erode positive control.
+- Primary tools: `ts-joint-live-fire-range-safety-autonomous-target-control-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `AIXM/FIXM`, `VMF`, `CoT`, `API/JSON`, `USMTF`, signed target-control manifests.
+- Degraded fallback: static targets only with manual positive control and no autonomous motion.
 
-### `school-shelter-mass-care-family-reunification-v1`
-- Use for DSCA and civil-support decisions when school-based shelters require mass-care support, child accountability, and trusted family reunification.
-- Primary tools: `ts-homeland-school-shelter-mass-care-family-reunification-v1`.
-- Cross-check tools: `ts-dsca-emergency-operations-v1`.
-- Protocols: `NIMS/ICS`, `EDXL-DE/CAP`, `NIEM`, signed custody manifests, `API/JSON`.
-- Degraded fallback: paper custody controls with badge or wristband verification and commander-approved release criteria only.
-
-### `host-nation-water-rights-military-demand-deconfliction-v1`
-- Use for coalition sustainment decisions when military water demand collides with host-nation rights, civilian access, or emergency rationing limits.
-- Primary tools: `ts-coalition-host-nation-water-rights-military-demand-deconfliction-v1`.
-- Cross-check tools: `ts-joint-water-production-distribution-security-v1`.
-- Protocols: `OGC`, signed water-allocation manifests, `NIEM`, `API/JSON`, `USMTF`, `EDXL-DE/CAP`.
-- Degraded fallback: emergency rationing only with dual-signature releases and UTC allocation log.
-
-### `captured-enemy-materiel-exploitation-redistribution-v1`
-- Use for joint exploitation and sustainment decisions when captured enemy materiel may provide intelligence value, partner utility, or rapid battlefield reuse under strict safety controls.
-- Primary tools: `ts-joint-captured-enemy-materiel-exploitation-safe-redistribution-v1`.
-- Cross-check tools: `ts-special-reconnaissance-sensitive-site-exploitation-v1`.
-- Protocols: signed capture manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `NIEM`.
-- Degraded fallback: quarantine-only branch with dual-control custody and no transfer until safety review completes.
-
-## Profile Addendum Z (2026-03-15, Family Support, Transfer Dignity, Coalition Language Trust, and Prosthetic Sustainment)
-
-### `casualty-assistance-family-support-sync-v1`
-- Use for casualty-support decisions when survivor-benefits action timing, casualty-assistance center load, and trusted family support coordination determine downstream readiness and legitimacy.
-- Primary tools: `ts-joint-casualty-assistance-center-family-support-sync-v1`.
+### `dignified-transfer-funeral-honors-family-escort-v1`
+- Use for: casualty-honor and family-support decisions when transfer timing, escort availability, and honors resources must remain synchronized.
+- Primary tools: `ts-joint-dignified-transfer-funeral-honors-family-escort-v1`.
 - Cross-check tools: `ts-joint-multi-theater-casualty-family-notification-integrity-v1`.
-- Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
-- Degraded fallback: paper case board with dual-review release log and daily commander reconciliation.
-
-### `dignified-transfer-escort-family-liaison-v1`
-- Use for casualty and mortuary decisions when dignified transfer movement, escort continuity, or family-liaison timing becomes the pacing factor for trusted release.
-- Primary tools: `ts-joint-dignified-transfer-escort-family-liaison-v1`.
-- Cross-check tools: `ts-joint-personal-effects-custody-mortuary-return-integrity-v1`.
-- Protocols: signed custody manifests, `USMTF`, `NIEM`, `S/MIME`, `API/JSON`.
-- Degraded fallback: voice-confirmed escort chain with paper custody log and commander-approved ceremonial minimums.
-
-### `coalition-interpreter-vetting-linguist-fatigue-v1`
-- Use for coalition planning and engagement decisions when interpreter trust, mistranslation risk, or linguist fatigue can alter releasability and mission effectiveness.
-- Primary tools: `ts-coalition-interpreter-vetting-linguist-fatigue-governance-v1`.
-- Cross-check tools: `ts-civil-engagement-language-support-v1`.
-- Protocols: `NIEM`, `NATO APP-11/ADatP-3 aligned exchange`, signed credential manifests, `S/MIME`, `API/JSON`.
-- Degraded fallback: mission-essential linguist roster only with dual-review vetting and manual fatigue log.
-
-### `prosthetic-component-socket-liner-surge-v1`
-- Use for rehabilitation sustainment decisions when prosthetic components, socket liners, and fitting capacity determine safe recovery tempo or return-to-duty timing.
-- Primary tools: `ts-theater-prosthetic-component-socket-liner-surge-v1`.
-- Cross-check tools: `ts-joint-casualty-rehabilitation-prosthetics-return-to-duty-v1`.
-- Protocols: `HL7/FHIR`, `DICOM`, signed device manifests, `API/JSON`, `USMTF`.
-- Degraded fallback: mission-essential replacement only with manual fitting roster and daily pressure-injury watch.
+- Protocols: `HL7/FHIR`, `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Degraded fallback: essential custody and family-contact continuity only with manual honors coordination and protected identity handling.

@@ -144,7 +144,3 @@ Primary products for this skill: evacuation routing plan, treatment load-balanci
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Addendum)
-
-- Add `tool_suite_id=ts-cbrn-urban-plume-evac-v1` + `protocol_stack_id=ps-cbrn-urban-plume-evac-stack-v1` when casualty regulation depends on contamination-control corridors, decon throughput, or mass-casualty routing under CBRN conditions.
-- Add `packet_id=DPL-CBRN-URBAN-001` for branches that materially alter casualty flow, protected movement, or medical-release confidence.

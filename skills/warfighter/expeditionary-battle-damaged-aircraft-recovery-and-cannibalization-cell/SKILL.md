@@ -1,55 +1,73 @@
 ---
 name: expeditionary-battle-damaged-aircraft-recovery-and-cannibalization-cell
-description: Orchestrate recovery, airworthiness triage, and controlled cannibalization of battle-damaged aircraft. Use when sortie generation depends on salvaging damaged airframes without breaking safety or configuration control.
+description: Coordinate battle-damaged aircraft recovery and controlled cannibalization for expeditionary aviation forces. Use when damaged airframes, parts scarcity, or airworthiness constraints determine sortie regeneration speed.
 ---
 
-# Expeditionary Battle-Damaged Aircraft Recovery and Cannibalization Cell
+# Expeditionary Battle Damaged Aircraft Recovery And Cannibalization Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter operations.
-- Confirm aircraft types, damage state, recovery windows, and maintenance authority before recommending action.
-- Keep outputs unclassified unless handling guidance is provided.
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in this domain.
+- Confirm maintenance authority, engineering release criteria, recovery assets, and sortie-generation deadlines before recommending action.
+- Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Define the aircraft recovery problem, damage categories, and sortie regeneration priorities.
-2. Pull battle-damage assessments, parts availability, and airworthiness constraints from the selected toolchain.
-3. Build primary, alternate, and degraded recovery or cannibalization paths with explicit safety and configuration triggers.
-4. Bind recommendations to maintenance release authority, custody controls, and staff ownership.
+1. Frame the mission problem with aircraft status, damage findings, repair capacity, and part demand.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in airworthiness risk, sortie tempo, fleet readiness, and cannibalization debt.
+3. Identify branch or sequel triggers, no-fly hold points, and release-approval gates.
+4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
+5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
 ## Required Output Format
 
-1. Situation snapshot.
-2. Recommended primary action path.
-3. Alternate and degraded paths.
-4. Decision points and authorities.
-5. Staff tasking and suspense.
+1. Situation snapshot and key changes.
+2. Recommended COA and rationale.
+3. Alternative COAs with trigger conditions.
+4. Decision points and escalation gates.
+5. Staff tasks by owner and suspense.
+6. Tool invocation packets with protocol bindings.
 
 ## Domain Products
 
-Primary products: aircraft recovery board, cannibalization authorization ladder, sortie regeneration matrix.
-
-## External Tools and Protocol Integration
-
-- Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Use packet template `DPL-BATTLE-DAMAGED-AIRCRAFT-RECOVERY-001` from `../_shared/references/domain-tool-packet-library.md`.
-- Bind tool and protocol choices to `ts-expeditionary-battle-damaged-aircraft-recovery-cannibalization-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
-- Prefer `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, and `USMTF` for machine-to-machine exchanges.
-
-## Guardrails
-
-- Separate observed damage, assessed repairability, and unknowns.
-- Flag missing custody records, unverified structural assumptions, and any cannibalization plan that outruns maintenance release authority.
-- Keep human airworthiness approval explicit before flight or cross-fleet parts release.
+Primary products: aircraft recovery board, cannibalization authorization ladder, and sortie regeneration matrix.
 
 ## Domain Toolchain Defaults
 
 - Primary: `tool_suite_id=ts-expeditionary-battle-damaged-aircraft-recovery-cannibalization-v1` with `protocol_stack_id=ps-expeditionary-battle-damaged-aircraft-recovery-cannibalization-stack-v1`.
-- Alternate: `tool_suite_id=ts-airfield-recovery-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
-- Degraded: local maintenance board, paper forms, and authenticated voice release chain.
+- Alternate: select a mission-adjacent aviation maintenance, airfield recovery, or logistics suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: ground-safe recovery only with no-flight release until full inspection.
 
 ## Domain Packet Defaults
 
 - Default packet ID: `DPL-BATTLE-DAMAGED-AIRCRAFT-RECOVERY-001`.
-- If packet scope mismatches mission constraints, define a provisional packet and assign validation owner and suspense.
+- If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
+
+## External Tool Stack and Protocols
+
+- Preferred external toolsets for this domain: aircraft damage assessment board, maintenance release tracker, and cannibalization control ledger.
+- Preferred protocol profiles for coordination and machine exchange: `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, and `USMTF`.
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
+
+## Tool Invocation Contract
+
+For each critical tool recommendation include objective, required inputs, query or action template, expected output schema, protocol or transport, and fallback path.
+
+## Mission Tool Authority Gates
+
+- Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
+- Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
+- If authority, legal basis, structural assessment, custody verification, or airworthiness approval is uncertain, downgrade to advisory-only and request command decision.
+
+## Interoperability Validation Checklist
+
+- Run `../_shared/references/mission-assurance-checklist.md` and `../_shared/references/us-joint-protocol-assurance-drill.md` before release.
+- Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
+- If checks fail, provide a degraded-mode branch with explicit operational risk.
+
+## Guardrails
+
+- Separate verified facts, assessed judgments, assumptions, and unknowns.
+- Flag airworthiness, flight-safety, supply-custody, and cannibalization debt risks before recommending action.
+- Do not fabricate classified sources, authorities, or approvals.

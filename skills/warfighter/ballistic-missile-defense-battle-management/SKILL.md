@@ -144,7 +144,3 @@ Primary products for this skill: BMD engagement sequence, defended-area posture 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-joint-ballistic-missile-raid-shelter-population-protection-v1` with `protocol_stack_id=ps-joint-ballistic-missile-raid-shelter-population-protection-stack-v1` when battle-management recommendations depend on shelter capacity, warning dissemination, or protected population movement timing.
-- Add `packet_id=DPL-JOINT-BALLISTIC-MISSILE-RAID-SHELTER-001` for recommendations that materially change raid-warning posture, shelter release timing, or life-safety actions.

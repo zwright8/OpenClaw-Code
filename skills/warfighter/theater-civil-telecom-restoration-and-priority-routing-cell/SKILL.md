@@ -145,8 +145,3 @@ Primary products for this skill: critical node restoration queue, telecom surviv
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-coalition-host-nation-5g-backhaul-restoration-v1` with `protocol_stack_id=ps-coalition-host-nation-5g-backhaul-restoration-stack-v1` when telecom restoration recommendations depend on host-nation 5G outages, coalition caveats, or tactical backhaul reroutes.
-- Add `tool_suite_id=ts-homeland-civil-telecom-priority-cyber-reserve-activation-v1` with `protocol_stack_id=ps-homeland-civil-telecom-priority-cyber-reserve-activation-stack-v1` when priority-service activation, reserve mobilization, or emergency-routing posture materially affects continuity.
-- Add `packet_id=DPL-COALITION-HOST-NATION-5G-BACKHAUL-RESTORATION-001` and `packet_id=DPL-HOMELAND-CIVIL-TELECOM-PRIORITY-CYBER-RESERVE-001` for branches that alter routing priority, provider coordination, or reserve activation timing.

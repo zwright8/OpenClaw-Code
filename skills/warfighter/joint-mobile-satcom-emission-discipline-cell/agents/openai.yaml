@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Mobile SATCOM Emission Discipline Cell"
+  short_description: "Support Joint Mobile SATCOM Emission Discipline Cell mission decisions"

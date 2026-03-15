@@ -1,0 +1,5 @@
+---
+interface:
+  display_name: "Coalition Joint Fire Mission Data Translation Cell"
+  short_description: "Support Coalition Joint Fire Mission Data Translation Cell mission decisions"
+---

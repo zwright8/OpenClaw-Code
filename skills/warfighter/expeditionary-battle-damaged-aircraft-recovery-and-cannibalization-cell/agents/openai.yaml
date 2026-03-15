@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Expeditionary Battle-Damaged Aircraft Recovery and Cannibalization Cell"
-  short_description: "Help with damaged-aircraft recovery and controlled cannibalization"
+  display_name: "Expeditionary Battle Damaged Aircraft Recovery And Cannibalization Cell"
+  short_description: "Help with Expeditionary Battle Damaged Aircraft Recovery And Cannibalization Cell tasks"

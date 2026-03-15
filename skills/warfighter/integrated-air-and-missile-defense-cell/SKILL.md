@@ -144,15 +144,3 @@ Primary products for this skill: IAMD concept of support, defended asset priorit
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXIX Addendum)
-
-- Add `tool_suite_id=ts-theater-iamd-magazine-redistribution-v1` with `protocol_stack_id=ps-theater-iamd-magazine-redistribution-stack-v1` when defended-asset priority, missile depletion risk, or reload routing governs IAMD recommendation viability.
-- Add `tool_suite_id=ts-joint-ballistic-missile-raid-shelter-population-protection-v1` with `protocol_stack_id=ps-joint-ballistic-missile-raid-shelter-population-protection-stack-v1` when protected-population actions, shelter occupancy, or warning timing shape defended-asset release posture.
-- Add `packet_id=DPL-THEATER-IAMD-MAGAZINE-REDISTRIBUTION-001` and `packet_id=DPL-JOINT-BALLISTIC-MISSILE-RAID-SHELTER-001` for recommendations that materially change depletion assumptions, release governance, or protected-population timelines.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
-
-- Add `tool_suite_id=ts-coalition-iamd-latency-v1` + `protocol_stack_id=ps-coalition-iamd-latency-stack-v1` when defended-asset viability depends on track handoff delay, mixed-system cue latency, or coalition release timing.
-- Add `tool_suite_id=ts-hypersonic-cueing-v1` + `protocol_stack_id=ps-joint-tactical-link-stack-v1` when IAMD recommendations depend on compressed launch warning, multi-sensor cue fusion, or auditable cue dissemination.
-- Add `tool_suite_id=ts-space-weather-strike-assurance-v1` + `protocol_stack_id=ps-joint-tactical-link-stack-v1` when solar or geomagnetic effects could distort timing, navigation, or sensor confidence for cueing and engagement support.
-- Add `packet_id=DPL-COAL-IAMD-LATENCY-001`, `packet_id=DPL-HYP-CUE-001`, and `packet_id=DPL-SPACE-WX-STRIKE-001` for branches that materially change defended-asset release posture, intercept timing, or coalition acknowledgment chains.

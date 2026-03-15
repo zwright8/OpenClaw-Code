@@ -144,6 +144,7 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-09, Beacon and FOD Assurance Addendum)
 
 - Prioritize `tool_suite_id=ts-personnel-recovery-beacon-deception-counter-v1` + `protocol_stack_id=ps-personnel-recovery-beacon-deception-counter-stack-v1` when CSAR tasking depends on contested survivor authentication.
 - Prioritize `tool_suite_id=ts-expeditionary-runway-fod-autonomy-v1` + `protocol_stack_id=ps-expeditionary-runway-fod-autonomy-stack-v1` when sortie generation risk is constrained by runway foreign object debris volatility.
@@ -155,11 +156,53 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-spaceport-gnss-emergency-v1` + `protocol_stack_id=ps-spaceport-gnss-emergency-stack-v1` when ATO timing, launch windows, or range safety are sensitive to GNSS degradation.
 - Add `packet_id=DPL-VTOL-LZ-001` and `packet_id=DPL-SPACEPORT-GNSS-001` for ATO branches that re-sequence air mobility, personnel recovery, or strategic launch support.
 
-## Domain Toolchain Override (2026-03-10, Warfighter Domain Coverage Surge)
+## Domain Toolchain Override (2026-03-09, GPS-Denied Refueling and EW Reprogram Addendum)
 
-- Add `tool_suite_id=ts-additive-airworthiness-certification-v1` + `protocol_stack_id=ps-additive-airworthiness-certification-stack-v1` when sortie generation depends on additive-manufactured part release decisions.
-- Add `tool_suite_id=ts-autonomous-swarm-corridor-priority-v1` + `protocol_stack_id=ps-autonomous-swarm-corridor-priority-stack-v1` when ATO sequencing requires autonomous corridor deconfliction.
-- Add `packet_id=DPL-ADDITIVE-AIRWORTHINESS-CERTIFICATION-001` and `packet_id=DPL-AUTONOMOUS-SWARM-CORRIDOR-PRIORITY-001` for branch decisions that alter launch windows or mission timing.
+- Prioritize `tool_suite_id=ts-aerial-refuel-gps-denied-v1` + `protocol_stack_id=ps-aerial-refuel-gps-denied-stack-v1` when ATO frag updates include tanker-receiver rendezvous under PNT degradation.
+- Prioritize `tool_suite_id=ts-ew-mission-data-reprogram-v1` + `protocol_stack_id=ps-ew-mission-data-reprogram-stack-v1` when sortie survivability depends on rapid EW mission-data release.
+- Add `packet_id=DPL-AERIAL-REFUEL-GPS-DENIED-001` and `packet_id=DPL-EW-MISSION-DATA-REPROGRAM-001` for ATO branches that alter launch windows, escort plans, or strike timing.
+
+## Domain Toolchain Override (2026-03-09, Balloon ISR and Avalanche Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-stratospheric-balloon-isr-reconstitution-v1` + `protocol_stack_id=ps-stratospheric-balloon-isr-reconstitution-stack-v1` when ATO updates depend on restoring ISR relay persistence for strike timing, tanker routing, or personnel recovery windows.
+- Prioritize `tool_suite_id=ts-denied-terrain-avalanche-route-rescue-v1` + `protocol_stack_id=ps-denied-terrain-avalanche-route-rescue-stack-v1` when air mobility, CASEVAC, or rescue launch windows depend on mountain avalanche corridor viability.
+- Add `packet_id=DPL-STRATOSPHERIC-BALLOON-ISR-RECONSTITUTION-001` and `packet_id=DPL-DENIED-TERRAIN-AVALANCHE-ROUTE-RESCUE-001` for ATO branches that change route profiles, on-station persistence, or rescue sequencing.
+
+## Domain Toolchain Override (2026-03-10, Imagery Provenance and Launch Deconfliction Addendum)
+
+- Prioritize `tool_suite_id=ts-bda-imagery-provenance-assurance-v1` + `protocol_stack_id=ps-bda-imagery-provenance-assurance-stack-v1` when strike validation or reattack decisions depend on contested imagery authenticity.
+- Prioritize `tool_suite_id=ts-space-cyber-em-launch-deconfliction-v1` + `protocol_stack_id=ps-space-cyber-em-launch-deconfliction-stack-v1` when ATO timelines are coupled to coalition launch windows, spectrum conflicts, or cyber hold conditions.
+- Add `packet_id=DPL-BDA-IMAGERY-PROVENANCE-TAMPER-001` and `packet_id=DPL-SPACE-CYBER-EM-LAUNCH-DECONF-001` for ATO branches that alter targeting confidence, launch timing, or escalation posture.
+
+## Domain Toolchain Override (2026-03-10, Disconnected JTAC Voice Trust and Evacuation Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-disconnected-jtac-voice-auth-v1` + `protocol_stack_id=ps-disconnected-jtac-voice-auth-stack-v1` when ATO execution depends on authenticated terminal-control voice traffic in degraded communications.
+- Prioritize `tool_suite_id=ts-spectrum-evacuation-corridor-control-v1` + `protocol_stack_id=ps-spectrum-evacuation-corridor-control-stack-v1` when air tasking includes NEO/MEDEVAC corridors under coalition spectrum contestation.
+- Add `packet_id=DPL-DISCONNECTED-JTAC-VOICE-AUTH-001` and `packet_id=DPL-SPECTRUM-EVACUATION-CORRIDOR-CONTROL-001` for branches that alter release authority, corridor timing, or deconfliction windows.
+
+## Domain Toolchain Override (2026-03-10, Alert Integrity and Reentry Continuity Addendum)
+
+- Prioritize `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when ATO updates require trusted civil warning broadcasts around airbase launch, recovery, or NEO windows.
+- Prioritize `tool_suite_id=ts-orbital-debris-reentry-base-hardening-v1` + `protocol_stack_id=ps-orbital-debris-reentry-base-hardening-stack-v1` when sortie generation or divert planning is constrained by reentry hazard windows.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-ORBITAL-DEBRIS-REENTRY-BASE-HARDENING-001` for ATO branches that alter launch timing, divert posture, public-warning sequencing, or shelter timelines.
+
+## Domain Toolchain Override (2026-03-11, Civil Alert and Hazmat Air Corridor Addendum)
+
+- Prioritize `tool_suite_id=ts-civil-alert-authenticity-v1` + `protocol_stack_id=ps-civil-alert-authenticity-stack-v1` when ATO updates require synchronized trusted civil warning and launch/recovery windows.
+- Prioritize `tool_suite_id=ts-battlefield-hazmat-control-v1` + `protocol_stack_id=ps-battlefield-hazmat-control-stack-v1` when sortie flow, divert fields, or evacuation corridors are constrained by hazardous-material events.
+- Add `packet_id=DPL-CIVIL-ALERT-AUTHENTICITY-001` and `packet_id=DPL-BATTLEFIELD-HAZMAT-CONTROL-001` for ATO branches that reprioritize air corridors, warning cadence, or launch sequencing.
+
+## Domain Toolchain Override (2026-03-11, Arctic Sortie Recovery and Swarm Corridor Governance Addendum)
+
+- Prioritize `tool_suite_id=ts-arctic-ice-airstrip-thaw-salvage-v1` + `protocol_stack_id=ps-arctic-ice-airstrip-thaw-salvage-stack-v1` when ATO execution depends on thaw-threatened runway integrity, salvage timing, and divert sequencing.
+- Prioritize `tool_suite_id=ts-drone-swarm-civil-air-corridor-grounding-v1` + `protocol_stack_id=ps-drone-swarm-civil-air-corridor-grounding-stack-v1` when ATO cycles include emergency grounding and reroute control for contested civil-military air corridors.
+- Add `packet_id=DPL-ARCTIC-ICE-AIRSTRIP-THAW-SALVAGE-001` and `packet_id=DPL-DRONE-SWARM-CIVIL-AIR-CORRIDOR-GROUNDING-001` for branches that change launch cadence, divert posture, corridor release, or flight-safety gates.
+
+## Domain Toolchain Override (2026-03-11, Aerial Relief Deconfliction and Timing Holdover Addendum)
+
+- Prioritize `tool_suite_id=ts-coalition-aerial-water-drop-deconfliction-v1` + `protocol_stack_id=ps-coalition-aerial-water-drop-deconfliction-stack-v1` when ATO cycles must deconflict coalition disaster-response water drops with military sorties.
+- Prioritize `tool_suite_id=ts-quantum-timing-holdover-fires-iamd-v1` + `protocol_stack_id=ps-quantum-timing-holdover-fires-iamd-stack-v1` when denied-PNT timing integrity threatens launch windows, fires synchronization, or defensive engagement sequencing.
+- Add `packet_id=DPL-COALITION-AERIAL-WATER-DROP-DECONFLICTION-001` and `packet_id=DPL-QUANTUM-TIMING-HOLDOVER-FIRES-IAMD-001` for ATO branches that alter corridor release, sortie cadence, or timing authority gates.
 
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLV Addendum)
 
@@ -167,8 +210,3 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when ATO fragos, tanker retasks, or divert instructions may be stale, spoofed, or version-divergent.
 - Prioritize `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when air-tasking workflows depend on emergency remediation of mission software without breaking execution trust.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for ATO branches that alter sortie cadence, tasking authenticity, or execution-system trust.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
-
-- Prioritize `tool_suite_id=ts-theater-aircrew-fatigue-circadian-countermeasure-v1` + `protocol_stack_id=ps-theater-aircrew-fatigue-circadian-countermeasure-stack-v1` when the ATO depends on balancing sortie output against fatigue, circadian inversion, or crew-rest waiver risk.
-- Add `packet_id=DPL-AIRCREW-FATIGUE-CIRCADIAN-001` for ATO branches that materially alter sortie cadence, alert posture, or flight-safety confidence.

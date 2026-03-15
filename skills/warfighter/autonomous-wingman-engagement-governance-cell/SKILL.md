@@ -60,6 +60,15 @@ Primary products for this skill: human-machine authority matrix, engagement gove
 - Identify legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
+- Restrict output to governance, assurance, and supervisory control recommendations; do not produce autonomous lethal execution logic or engagement sequencing instructions.
+- Require positive human authorization checkpoints for autonomy mode transitions, effects release, and contingency overrides.
+- If confidence, comms integrity, or identification certainty drops below threshold, direct fallback to advisory-only posture with human-on-the-loop control.
+
+## Human Authorization Floor
+
+- For any recommendation that changes autonomy mode, engagement permissions, or mission escalation posture, require explicit fields: `authority_tier`, `approval_role`, `approval_timestamp_utc`, and `audit_record_id`.
+- If any required authorization field is missing, invalid, or stale, fail closed to `advisory_only: true` and emit only risk/mitigation reporting.
+- When sensor-ID confidence, communications assurance, or legal authority is disputed across sources, hold recommendations in `pending_human_review` and provide no execution-path language.
 
 ## Tool Protocol Playbooks
 
@@ -145,3 +154,8 @@ Primary products for this skill: human-machine authority matrix, engagement gove
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-11, Deception and Timing Integrity Hardening)
+
+- Add `tool_suite_id=ts-joint-deception-red-indicator-fusion-v1` with `protocol_stack_id=ps-joint-deception-red-indicator-fusion-stack-v1` when adversary deception indicators or comms spoofing could influence autonomy mode decisions.
+- Require `packet_id=DPL-PNT-TIME-TRANSFER-001` and `protocol_stack_id=ps-contested-pnt-time-transfer-stack-v1` for any recommendation where autonomy behavior depends on contested timing confidence.
+- If either deception-confidence adjudication or mission-time integrity remains below threshold, force `advisory_only: true` and block autonomy mode changes until explicit human re-authorization.

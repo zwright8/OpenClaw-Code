@@ -145,15 +145,3 @@ Primary products for this skill: reserve mobilization heatmap, billet fill-risk 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XL Addendum)
-
-- Add `tool_suite_id=ts-homeland-reservist-employer-protection-mobilization-assurance-v1` + `protocol_stack_id=ps-homeland-reservist-employer-protection-mobilization-assurance-stack-v1` when readiness recommendations depend on employer-protection posture, statutory authority, or reserve call-up continuity.
-- Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when reserve mobilization timing depends on trusted sealift terminal recovery and berth release.
-- Add `tool_suite_id=ts-strategic-contested-lng-bunker-fleet-fuel-allocation-v1` + `protocol_stack_id=ps-strategic-contested-lng-bunker-fleet-fuel-allocation-stack-v1` when call-up feasibility depends on maritime fuel access and bunkering confidence.
-- Add `tool_suite_id=ts-theater-rapid-temporary-bridge-uas-inspection-release-v1` + `protocol_stack_id=ps-theater-rapid-temporary-bridge-uas-inspection-release-stack-v1` when reserve force-flow depends on rapid route or bridge release confidence.
-- Add `packet_id=DPL-HOMELAND-RESERVIST-EMPLOYER-PROTECTION-MOBILIZATION-001`, `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001`, `packet_id=DPL-STRATEGIC-LNG-BUNKER-FLEET-FUEL-ALLOCATION-001`, and `packet_id=DPL-THEATER-TEMPORARY-BRIDGE-UAS-RELEASE-001` for branches that materially alter mobilization timing, force-flow confidence, or reserve readiness posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LV Addendum)
-
-- Use `joint-deployed-pay-entitlement-fraud-and-disconnected-disbursement-cell` when reserve activation confidence depends on pay delivery, entitlement integrity, or disconnected disbursement continuity for mobilizing personnel.
-- Use `homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell` when reserve readiness depends on trusted childcare evacuation, guardian verification, or dual-military caregiver continuity after homeland attack or disaster.

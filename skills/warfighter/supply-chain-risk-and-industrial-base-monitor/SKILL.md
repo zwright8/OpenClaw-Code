@@ -157,9 +157,3 @@ Primary products for this skill: industrial base risk dashboard, critical shorta
 - Add `tool_suite_id=ts-strategic-photonics-laser-optics-allocation-v1` + `protocol_stack_id=ps-strategic-photonics-laser-optics-allocation-stack-v1` when EO materials, coatings, or photonics components become the strategic bottleneck across multiple defense programs.
 - Add `tool_suite_id=ts-coalition-munitions-end-use-serial-trace-v1` + `protocol_stack_id=ps-coalition-munitions-end-use-serial-trace-stack-v1` when transfer risk, diversion indicators, or serial-integrity gaps threaten coalition replenishment confidence.
 - Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001` and `packet_id=DPL-MUNITIONS-END-USE-SERIAL-TRACE-001` for recommendations that materially change industrial prioritization or coalition transfer risk posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
-
-- Add `tool_suite_id=ts-strategic-tritium-reservoir-surveillance-maintenance-priority-v1` + `protocol_stack_id=ps-strategic-tritium-reservoir-surveillance-maintenance-priority-stack-v1` when supply-chain monitoring shows secure isotope transport, reservoir surveillance, or maintenance handling as the decisive risk driver.
-- Add `tool_suite_id=ts-strategic-euv-photomask-rad-hard-semiconductor-priority-v1` + `protocol_stack_id=ps-strategic-euv-photomask-rad-hard-semiconductor-priority-stack-v1` when supply-chain fragility is concentrated in mask libraries, specialty gases, or rad-hard fab steps rather than commodity inventory.
-- Add `packet_id=DPL-TRITIUM-RESERVOIR-MAINTENANCE-001` and `packet_id=DPL-EUV-PHOTOMASK-RADHARD-001` for recommendations that materially change industrial early warning, strategic sourcing posture, or lot-release confidence.

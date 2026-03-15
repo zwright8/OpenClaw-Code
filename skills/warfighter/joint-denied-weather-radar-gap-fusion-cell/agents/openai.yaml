@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Denied Weather Radar Gap Fusion Cell"
+  short_description: "Support Joint Denied Weather Radar Gap Fusion Cell mission decisions"

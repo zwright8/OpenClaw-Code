@@ -1,55 +1,52 @@
 ---
 name: coalition-denied-environment-digital-map-rights-and-provenance-cell
-description: Support coalition warfighter planning for denied-environment digital map rights and provenance assurance. Use when map-layer trust, coalition release rights, or stale geospatial updates could distort movement, fires, or partner coordination.
+description: Manage map-data rights, provenance, and update trust for coalition forces in denied environments. Use when navigation and fires safety depend on trusted geospatial lineage.
 ---
 
 # Coalition Denied-Environment Digital Map Rights And Provenance Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for coalition warfighter operations.
-- Confirm coalition geospatial rights, update latency, releasability constraints, and safety-critical map layers before recommending action.
-- Keep outputs unclassified unless handling guidance is provided.
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in its domain.
+- Confirm echelon, authorities, coalition constraints, and decision timelines before producing recommendations.
+- Keep outputs advisory-only by default and require explicit human command approval for high-consequence branches.
 
 ## Workflow
 
-1. Establish the current map-layer set, rights metadata, provenance evidence, and denied-update gaps.
-2. Identify which stale or untrusted layers could mislead maneuver, fires, targeting, or partner coordination.
-3. Build primary, alternate, and degraded update-release paths with explicit rights, confidence, and timing tradeoffs.
-4. Bind recommendations to geospatial packets, coalition release acknowledgments, and revalidation deadlines.
+1. Frame the mission problem, dependencies, and failure modes.
+2. Build primary and alternate branches with explicit tradeoffs in survivability, tempo, sustainment burden, and escalation risk.
+3. Bind each recommendation to concrete external tools, protocol transports, and packetized outputs.
+4. Run authority/assurance checks and publish degraded-mode branches when trust, timeliness, or releasability thresholds are missed.
 
 ## Required Output Format
 
 1. Situation snapshot.
-2. Recommended map-release path.
-3. Alternate and degraded paths.
-4. Decision points and authorities.
-5. Staff tasking, release actions, and revalidation triggers.
+2. Recommended branch and rationale.
+3. Alternate branches with trigger conditions.
+4. Decision points now/next/pre-delegated.
+5. Staff tasking by owner and suspense.
+6. Tool invocation packets, protocol bindings, and confidence annotations.
 
 ## Domain Products
 
-Primary products: rights adjudication matrix, provenance confidence board, update release plan.
+Primary products for this skill: map rights adjudication matrix, provenance confidence ledger, and denied-update synchronization plan.
 
 ## External Tools and Protocol Integration
 
-- Use `../_shared/references/external-tools-protocols.md` and `../_shared/references/tool-protocol-playbooks.md`.
-- Use packet template `DPL-MAP-PROVENANCE-001` from `../_shared/references/domain-tool-packet-library.md`.
-- Bind tool and protocol choices to `ts-coalition-denied-environment-digital-map-rights-and-provenance-cell-v1` from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`.
-- Prefer `OGC WMS/WFS/WMTS`, `NIEM`, `NATO APP-11/ADatP-3` aligned exchange, and `API/JSON`.
+- Use integration and adapter guidance in ../_shared/references/external-tools-protocols.md and ../_shared/references/external-tool-endpoints-and-adapters.md.
+- Bind recommendations to tool_suite_id=ts-coalition-denied-environment-digital-map-rights-and-provenance-cell-v1 and protocol_stack_id=ps-coalition-denied-environment-digital-map-rights-and-provenance-cell-stack-v1.
+- Use packet templates in ../_shared/references/domain-tool-packet-library.md and include packet_id=DPL-MAP-PROVENANCE-001 for critical recommendations.
+- Prioritize these protocol families for this domain: OGC WMS/WFS/WMTS, NIEM, APP-11/ADatP-3 aligned, API/JSON.
+- Include source system, UTC refresh time, confidence, and known gaps in each recommendation.
+
+## Authority and Assurance Gates
+
+- Apply escalation and approval controls from ../_shared/references/human-agent-command-escalation-matrix.md and ../_shared/references/warfighter-tool-authority-gates.md.
+- Run interoperability checks from ../_shared/references/mission-assurance-checklist.md.
+- If authority, legal basis, acknowledgment integrity, or data provenance is uncertain, downgrade to advisory-only and assign remediation owners/suspense.
 
 ## Guardrails
 
-- Separate confirmed rights and provenance evidence from inferred lineage and unknowns.
-- Flag any layer release that affects navigation, fires safety, or coalition trust without explicit confidence caveats.
-- Keep human approval explicit for coalition layer release, rollback, or rights-waiver decisions.
-
-## Domain Toolchain Defaults
-
-- Primary: `tool_suite_id=ts-coalition-denied-environment-digital-map-rights-and-provenance-cell-v1` with `protocol_stack_id=ps-coalition-denied-environment-digital-map-rights-and-provenance-cell-stack-v1`.
-- Alternate: `tool_suite_id=ts-geospatial-datum-integrity-v1` with `protocol_stack_id=ps-coalition-denied-environment-digital-map-rights-and-provenance-cell-stack-v1`.
-- Degraded: safety-critical map layers only with explicit provenance caveats and manual coalition readback.
-
-## Domain Packet Defaults
-
-- Default packet ID: `DPL-MAP-PROVENANCE-001`.
-- If packet scope mismatches mission constraints, define a provisional packet and assign validation owner and suspense.
+- Separate facts, assessed judgments, assumptions, and unknowns.
+- Flag legal, policy, ROE, coalition, and safety constraints early.
+- Do not fabricate approvals, classified data access, or source provenance.

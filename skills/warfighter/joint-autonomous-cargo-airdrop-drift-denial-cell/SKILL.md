@@ -58,8 +58,3 @@ Primary products: airdrop drift risk matrix, release-go/no-go worksheet, recover
 - Require `ack_chain_status=verified` for mission-critical exchanges.
 - Require `trust_score >= 0.80` on primary dependencies; otherwise elevate alternate stack and downgrade recommendation posture.
 - End every deliverable with `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` tied to authority and protocol checks.
-
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXVIII Addendum)
-
-- Add `tool_suite_id=ts-joint-airborne-drop-zone-integrity-parachute-recovery-v1` with `protocol_stack_id=ps-joint-airborne-drop-zone-integrity-parachute-recovery-stack-v1` when branch viability depends on drop-zone recertification, ground-observer confirmation, or parachute and bundle recovery continuity.
-- Add `packet_id=DPL-AIRBORNE-DROPZONE-INTEGRITY-001` for recommendations that alter release timing, drop-zone selection, or follow-on recovery sequencing.

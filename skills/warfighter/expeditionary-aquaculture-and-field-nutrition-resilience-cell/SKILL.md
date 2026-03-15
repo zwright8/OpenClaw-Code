@@ -159,5 +159,5 @@ Primary products for this skill: field nutrition resilience scorecard, aquacultu
 ## Default Mission Binding
 
 - Primary: `tool_suite_id=ts-expeditionary-field-nutrition-resilience-v1` with `protocol_stack_id=ps-expeditionary-field-nutrition-resilience-stack-v1`.
-- Preferred `packet_id=DPL-FIELD-NUTRITION-001`, `toolchain_id=TC-NUTRITION-121`, and `toolchain_profile_id=field-nutrition-resilience-v1`.
+- Preferred `packet_id=DPL-FIELD-NUTRITION-001`, `toolchain_id=TC-NUTRITION-097`, and `toolchain_profile_id=field-nutrition-resilience-v1`.
 - If tool trust, food-safety evidence, or water-quality provenance is incomplete, downgrade to advisory-only and assign a validation owner before release.

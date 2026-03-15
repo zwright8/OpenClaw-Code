@@ -149,7 +149,3 @@ Use these tool categories as the default stack for this skill: enterprise logist
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave LII Addendum)
-
-- Add `tool_suite_id=ts-theater-ordnance-magazine-humidity-stability-monitoring-v1` + `protocol_stack_id=ps-theater-ordnance-magazine-humidity-stability-monitoring-stack-v1` when expenditure plans depend on environment-driven lot confidence, quarantine decisions, or reduced issue velocity across dispersed magazines.
-- Add `packet_id=DPL-MAGAZINE-HUMIDITY-STABILITY-001` for recommendations that materially alter stockpile availability, safety posture, or commander confidence in issue priorities.

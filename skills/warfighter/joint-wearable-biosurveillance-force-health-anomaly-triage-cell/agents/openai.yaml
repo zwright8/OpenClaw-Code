@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Wearable Biosurveillance Force Health Anomaly Triage Cell"
+  short_description: "Fuse wearable biosurveillance anomalies with mission context to triage force-health risks before operational degradation."

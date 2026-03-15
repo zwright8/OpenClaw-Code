@@ -174,3 +174,33 @@ Tool Invocation Packet
 - Fallback Procedure: issue minimal critical report and schedule full sync at next approved window
 - Confidence Impact if Degraded: medium
 ```
+
+## Playbook: Nuclear Surety Incident Command
+
+```text
+Tool Invocation Packet
+- Tool/System: radiological consequence board + surety incident command tracker
+- Objective: coordinate protective actions and command decisions during nuclear surety incidents
+- Inputs: incident location, contamination confidence, wind model, force/civil exposure map
+- Query or Action Template: generate consequence branch options and rank by life-safety + mission continuity
+- Expected Output Schema: incident_id, consequence_zone, protective_action, authority_gate, confidence
+- Protocol/Transport: USMTF + NIMS/ICS + signed protective-action manifests
+- Primary/Alternate/Degraded: integrated incident stack / manual consequence board / hourly conservative bulletins
+- Fallback Procedure: publish protective-action minimum set and explicit revalidation timeline
+- Confidence Impact if Degraded: high
+```
+
+## Playbook: Contested PNT and Time Transfer Assurance
+
+```text
+Tool Invocation Packet
+- Tool/System: resilient timing fusion board + spoofing anomaly detector + holdover monitor
+- Objective: preserve mission timing coherence and PNT confidence during denial/spoofing events
+- Inputs: platform timing tolerances, anomaly alerts, oscillator confidence, mission criticality map
+- Query or Action Template: issue time-transfer order, detect drift risk, and assign degraded navigation branches
+- Expected Output Schema: unit_id, timing_state, drift_risk, transfer_action, authority_gate, confidence
+- Protocol/Transport: USMTF + signed mission-time transfer manifests + API/JSON integrity events
+- Primary/Alternate/Degraded: automated timing stack / manual witness ledger / mission-time cell reports
+- Fallback Procedure: force conservative timing windows and downgrade precision-dependent effects
+- Confidence Impact if Degraded: high
+```

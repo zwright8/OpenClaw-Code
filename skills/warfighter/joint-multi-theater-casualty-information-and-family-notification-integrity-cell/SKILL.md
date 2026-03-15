@@ -84,9 +84,3 @@ For each critical external dependency include:
 
 - Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when casualty or recovery notifications may be distorted by spoofed reporting, impersonation, or adversary influence pressure.
 - Add `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially change notification confidence, next-of-kin timing, or commander release authority.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
-
-- Add `tool_suite_id=ts-joint-casualty-assistance-center-family-support-sync-v1` + `protocol_stack_id=ps-joint-casualty-assistance-center-family-support-sync-stack-v1` when casualty notification branches must stay synchronized with survivor-benefits actions, casualty-assistance center workload, or family-support case status.
-- Add `tool_suite_id=ts-joint-dignified-transfer-escort-family-liaison-v1` + `protocol_stack_id=ps-joint-dignified-transfer-escort-family-liaison-stack-v1` when commander decisions depend on dignified transfer timing, escort continuity, or family-liaison access windows.
-- Add `packet_id=DPL-CASUALTY-ASSISTANCE-FAMILY-SUPPORT-001` and `packet_id=DPL-DIGNIFIED-TRANSFER-ESCORT-FAMILY-LIAISON-001` for branches that materially alter next-of-kin support posture, ceremonial timing, or release authority.

@@ -1,4 +1,3 @@
----
 interface:
-  display_name: "Theater Autonomous Decoy Economy and Inventory Governance Cell"
-  short_description: "Help govern decoy inventory and deception endurance"
+  display_name: "Theater Autonomous Decoy Economy And Inventory Governance Cell"
+  short_description: "Support Theater Autonomous Decoy Economy And Inventory Governance Cell tasks"

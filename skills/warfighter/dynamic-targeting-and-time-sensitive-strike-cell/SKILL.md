@@ -60,6 +60,12 @@ Primary products for this skill: dynamic target prosecution board, delegated aut
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate classified sources, authorities, or approvals.
 
+## Fail-Closed Authority Gate
+
+- Set `requires_human_approval=true` for every recommendation that affects target prosecution timing, shooter assignment, or collateral risk posture.
+- Block release if any of the following fields are missing: `authority_tier`, `approval_role`, `audit_record_id`, `target_confirmation_status`, `cde_status`.
+- If acknowledgment integrity, authority lineage, or data freshness is uncertain, publish advisory-only branches and explicitly mark `execution_not_authorized`.
+
 ## Tool Protocol Playbooks
 
 - Use protocol examples in ../_shared/references/tool-protocol-playbooks.md to produce operator-ready tool invocation packets.
@@ -143,11 +149,3 @@ Primary products for this skill: dynamic target prosecution board, delegated aut
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
-
-
-## Domain Toolchain Override (2026-03-12, Warfighter Expansion Wave XXIV)
-
-- Add `tool_suite_id=ts-joint-mission-command-assurance-and-branch-synchronization-v1` + `protocol_stack_id=ps-joint-mission-command-assurance-and-branch-synchronization-stack-v1` when rapid branch synchronization and command-approval integrity are mission-limiting.
-- Add `tool_suite_id=ts-joint-cross-domain-resilient-targeting-cde-governance-v1` + `protocol_stack_id=ps-joint-cross-domain-resilient-targeting-cde-governance-stack-v1` when targeting, CDE governance, or no-strike fidelity must be revalidated under degraded sensing.
-- Add `tool_suite_id=ts-maritime-homeland-critical-infrastructure-cyber-physical-guard-v1` + `protocol_stack_id=ps-maritime-homeland-critical-infrastructure-cyber-physical-guard-stack-v1` when infrastructure protection and maritime-homeland continuity dependencies become critical.
-- Add `packet_id=DPL-JOINT-MISSION-COMMAND-ASSURANCE-BRANCH-SYNCHRONIZATION-001`, `packet_id=DPL-JOINT-CROSS-DOMAIN-RESILIENT-TARGETING-CDE-GOVERNANCE-001`, and `packet_id=DPL-MARITIME-HOMELAND-CRITICAL-INFRASTRUCTURE-CYBER-PHYSICAL-GUARD-001` for high-consequence branches.

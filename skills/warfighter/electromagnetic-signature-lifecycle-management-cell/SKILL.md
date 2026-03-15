@@ -145,7 +145,3 @@ Primary products for this skill: mission decision brief, protocol-validated tool
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
-
-- Add `tool_suite_id=ts-joint-degaussing-signature-restoration-port-exit-certification-v1` + `protocol_stack_id=ps-joint-degaussing-signature-restoration-port-exit-certification-stack-v1` when signature management depends on naval magnetic-signature recovery, degaussing health, or port-exit certification under mine threat.
-- Add `packet_id=DPL-DEGAUSSING-PORT-EXIT-001` for branches that materially alter naval sortie timing, signature-restoration confidence, or commander acceptance of mine-risk exposure.

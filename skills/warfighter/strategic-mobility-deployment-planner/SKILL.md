@@ -144,23 +144,10 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXXVIII Addendum)
-
-- Add `tool_suite_id=ts-strategic-civil-reserve-air-fleet-aeromedical-surge-v1` with `protocol_stack_id=ps-strategic-civil-reserve-air-fleet-aeromedical-surge-stack-v1` when deployment flow depends on commercial-carrier activation, patient movement surge, or diplomatic airbridge sequencing.
-- Add `packet_id=DPL-CRAF-AEROMED-SURGE-001` for recommendations that alter strategic airlift allocation, patient movement priority, or clearance timing.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLI Addendum)
-
-- Add `tool_suite_id=ts-strategic-domestic-transport-chokepoint-reroute-v1` + `protocol_stack_id=ps-strategic-domestic-transport-chokepoint-reroute-stack-v1` when strategic deployment flow depends on rerouting around rail, bridge, port, or highway chokepoint failures.
-- Add `tool_suite_id=ts-theater-river-port-dredge-barge-roro-sustainment-v1` + `protocol_stack_id=ps-theater-river-port-dredge-barge-roro-sustainment-stack-v1` when inland-waterway and roll-on roll-off capacity materially affect deployment timing or cargo throughput.
-- Add `tool_suite_id=ts-joint-volcanic-ash-airbridge-engine-sortie-recovery-v1` + `protocol_stack_id=ps-joint-volcanic-ash-airbridge-engine-sortie-recovery-stack-v1` when strategic airlift and airbridge continuity depend on ash-safe routing and engine inspection surge.
-- Add `tool_suite_id=ts-strategic-shipyard-drydock-power-water-cyber-restoration-v1` + `protocol_stack_id=ps-strategic-shipyard-drydock-power-water-cyber-restoration-stack-v1` when sealift or naval repair throughput constrains deployment readiness.
-- Add `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, `packet_id=DPL-THEATER-RIVER-PORT-DREDGE-BARGE-RORO-001`, `packet_id=DPL-JOINT-VOLCANIC-ASH-AIRBRIDGE-ENGINE-RECOVERY-001`, and `packet_id=DPL-STRATEGIC-SHIPYARD-DRYDOCK-RESTORATION-001` for recommendations that alter strategic deployment timing, modal allocation, or clearance sequencing.
-
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
 
 - Add `tool_suite_id=ts-strategic-economic-coercion-logistics-warning-v1` + `protocol_stack_id=ps-strategic-economic-coercion-logistics-warning-stack-v1` when deployment feasibility depends on coercion-driven carrier loss, insurance shock, customs friction, or strategic route pressure.
-- Add `tool_suite_id=ts-coalition-allied-depot-sabotage-wargame-v1` + `protocol_stack_id=ps-coalition-allied-depot-sabotage-wargame-stack-v1` when strategic mobility branches depend on depot survivability, protected stock release, or allied rail or port reconstitution timing.
+- Add `tool_suite_id=ts-coalition-allied-depot-sabotage-wargame-v1` + `protocol_stack_id=ps-coalition-allied-depot-sabotage-wargame-stack-v1` when strategic mobility branches depend on depot survivability, protected stock release, or allied rail/port reconstitution timing.
 - Add `tool_suite_id=ts-homeland-dam-levee-engineer-surge-v1` + `protocol_stack_id=ps-homeland-dam-levee-engineer-surge-stack-v1` when flood-control failures or engineer-force reallocation could constrict deployment corridors.
 - Add `packet_id=DPL-ECON-COERCION-LOGISTICS-001`, `packet_id=DPL-DEPOT-SABOTAGE-WARGAME-001`, and `packet_id=DPL-DAM-LEVEE-ENGINEER-SURGE-001` for recommendations that materially alter strategic lift timing, corridor confidence, or mobilization posture.
 
@@ -176,17 +163,3 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when strategic mobility depends on allied civil tails, host-nation ramp slots, or diplomatic-clearance speed.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when armored deployment posture depends on track-pad, roadwheel, or final-drive readiness before onward movement.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter strategic lift timing, access confidence, or deployment posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
-
-- Add `tool_suite_id=ts-strategic-fuel-additive-adulteration-interdiction-v1` + `protocol_stack_id=ps-strategic-fuel-additive-adulteration-interdiction-stack-v1` when strategic lift timing, sortie generation, or convoy movement depends on trusted fuel-additive pedigree and contamination isolation.
-- Add `tool_suite_id=ts-joint-dispersed-airbase-mobile-precision-approach-lighting-v1` + `protocol_stack_id=ps-joint-dispersed-airbase-mobile-precision-approach-lighting-stack-v1` when reception, staging, or onward movement depends on restoring low-visibility aircraft recovery at alternate airfields.
-- Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when onward movement corridors for heavy equipment depend on trusted soil-bearing classifications before release.
-- Add `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001`, `packet_id=DPL-MOBILE-PRECISION-APPROACH-001`, and `packet_id=DPL-BREACH-SOIL-BEARING-001` for recommendations that materially alter strategic lift timing, reception confidence, or onward-movement posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
-
-- Add `tool_suite_id=ts-joint-aerial-port-battery-hazmat-pallet-integrity-v1` + `protocol_stack_id=ps-joint-aerial-port-battery-hazmat-pallet-integrity-stack-v1` when deployment tempo depends on hazardous cargo release, pallet integrity, or battery-transport safety at aerial ports.
-- Add `tool_suite_id=ts-joint-urban-rubble-route-clearance-structural-collapse-rescue-v1` + `protocol_stack_id=ps-joint-urban-rubble-route-clearance-structural-collapse-rescue-stack-v1` when port, railhead, or airhead access depends on rapidly clearing rubble-choked urban corridors.
-- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when mobility planning depends on releasable manifests, partner routing data, or coalition movement approvals under caveat pressure.
-- Add `packet_id=DPL-AERIAL-PORT-HAZMAT-PALLET-001`, `packet_id=DPL-URBAN-RUBBLE-RESCUE-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for recommendations that materially alter deployment timing, corridor access, or coalition movement confidence.

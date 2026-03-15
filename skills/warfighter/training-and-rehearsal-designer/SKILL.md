@@ -33,6 +33,12 @@ Deliver results in this order:
 
 Primary products for this skill: training progression plan, rehearsal script, evaluation rubric.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
+- Alternate: `tool_suite_id=ts-fires-airspace-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
+- Degraded: run paper-based inject sequence + authenticated radio net check-ins with UTC event logging.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in `../_shared/references/external-tools-protocols.md` and name the exact tools selected for this mission set.
@@ -147,10 +153,12 @@ Primary products for this skill: training progression plan, rehearsal script, ev
 ## Domain Packet Defaults
 
 - Default packet IDs: `DPL-C2-DISP-002`, `DPL-FIRES-LINEAGE-001`, `DPL-COALITION-TRAINREADY-001`.
-- For communications-denied or crypto-transition rehearsal events, include `DPL-CYBER-ICAM-001` and explicit key-rollover rehearsal injects.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+## Operational Execution Hardening
 
-- Add `tool_suite_id=ts-combined-arms-digital-twin-v1` + `protocol_stack_id=ps-simulation-rehearsal-stack-v1` when rehearsal design depends on branch-testing combined-arms dependencies, machine-ingestible injects, or confidence-banded failure maps before execution.
-- Add `packet_id=DPL-COMBINED-ARMS-DIGITAL-TWIN-001` for rehearsal products that materially change commander decision sequencing, branch plans, or readiness certification evidence.
+- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
+- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Require rehearsal-release products to include `authority_tier`, `requires_human_approval`, and `audit_record_id`.
+- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.

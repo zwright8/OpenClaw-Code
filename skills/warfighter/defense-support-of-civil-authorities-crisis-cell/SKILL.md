@@ -144,28 +144,7 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave L Addendum)
-
-- Add `tool_suite_id=ts-homeland-installation-wastewater-lift-station-sewer-bypass-defense-v1` + `protocol_stack_id=ps-homeland-installation-wastewater-lift-station-sewer-bypass-defense-stack-v1` when DSCA support depends on wastewater continuity, installation sanitation, or civil-works bypass routing.
-- Add `packet_id=DPL-WASTEWATER-LIFT-STATION-001` for branches that materially alter civil-support timing, force-health protection, or emergency engineering allocation.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LI Addendum)
-
-- Add `tool_suite_id=ts-homeland-chemical-plume-shelter-installation-access-control-v1` + `protocol_stack_id=ps-homeland-chemical-plume-shelter-installation-access-control-stack-v1` when DSCA support depends on toxic-plume forecasting, community shelter sequencing, or tightening installation access without collapsing mission-essential traffic.
-- Add `packet_id=DPL-CHEMICAL-PLUME-SHELTER-ACCESS-001` for branches that materially alter protective-action timing, access posture, or civil-military coordination.
-
 ## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
 
 - Add `tool_suite_id=ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1` + `protocol_stack_id=ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1` when DSCA recommendations depend on trusted warning release, PSAP continuity, or mass-notification authenticity under telecom stress.
 - Add `packet_id=DPL-HOMELAND-911-CELL-BROADCAST-AUTHENTICATION-MASS-NOTIFICATION-CONTINUITY-001` for branches that materially alter public-warning posture, alert release timing, or 911 mutual-aid requests.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
-
-- Add `tool_suite_id=ts-homeland-school-shelter-mass-care-family-reunification-v1` + `protocol_stack_id=ps-homeland-school-shelter-mass-care-family-reunification-stack-v1` when DSCA recommendations depend on school-shelter accountability, child release trust, or mass-care support sequencing.
-- Add `tool_suite_id=ts-expeditionary-obstetric-neonatal-emergency-support-v1` + `protocol_stack_id=ps-expeditionary-obstetric-neonatal-emergency-support-stack-v1` when domestic support branches depend on maternal-neonatal stabilization, pediatric transfer timing, or protected clinical handoffs.
-- Add `packet_id=DPL-SCHOOL-SHELTER-FAMILY-REUNIFICATION-001` and `packet_id=DPL-OBSTETRIC-NEONATAL-EMERGENCY-001` for branches that materially alter DSCA shelter posture, family accountability, or maternal-child survival support.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
-
-- Add `tool_suite_id=ts-grid-islanding-priority-power-v1` + `protocol_stack_id=ps-grid-islanding-priority-power-stack-v1` when DSCA support depends on civilian grid islanding, protected-load prioritization, or mission-critical power restoration under cascading failures.
-- Add `packet_id=DPL-HOMELAND-GRID-ISLANDING-001` for branches that materially alter life-safety service continuity, installation support timing, or emergency generation allocation.

@@ -166,8 +166,32 @@ Use these tool categories as the default stack for this skill: edge cluster orch
 - For command trust disruption from synthetic voice spoofing, include `ts-deepfake-voice-command-detection-v1` with `ps-deepfake-voice-command-detection-stack-v1`.
 - For lifecycle safety controls on forward battery storage and transport, include `ts-battery-thermal-runaway-containment-v1` with `ps-battery-thermal-runaway-containment-stack-v1`.
 - For civil emergency comms dependency restoration in contested cities, include `ts-cellular-priority-service-restoration-v1` with `ps-cellular-priority-service-restoration-stack-v1`.
+- For low-bandwidth ISR clip triage feeding edge analytics workflows, include `ts-spectrum-frugal-video-prioritization-v1` with `ps-spectrum-frugal-video-prioritization-stack-v1`.
 - For launch-operations telemetry and schedule resilience data feeds, include `ts-contested-space-launch-reconstitution-v1` with `ps-contested-space-launch-reconstitution-stack-v1`.
 - For expeditionary manufacturing data assurance when recycled feedstock is used, include `ts-additive-feedstock-recycling-certification-v1` with `ps-additive-feedstock-recycling-certification-stack-v1`.
+- For coalition hospital cyber outage synchronization and protected patient-routing data exchange, include `ts-coalition-hospital-cyber-evac-v1` with `ps-coalition-hospital-cyber-evac-stack-v1`.
+- For strategic cold-storage sustainment telemetry under long-duration grid denial, include `ts-food-cold-storage-grid-denial-v1` with `ps-food-cold-storage-grid-denial-stack-v1`.
+- For mission edge translation confidence services in multilingual partnered operations, include `ts-battlefield-dialect-translation-risk-v1` with `ps-battlefield-dialect-translation-risk-stack-v1`.
+- For telemetry hardware and firmware provenance assurance in distributed edge nodes, include `ts-telemetry-supply-chain-anti-tamper-v1` with `ps-telemetry-supply-chain-anti-tamper-stack-v1`.
+- For reserve-component support analytics that drive mobilization readiness decisions, include `ts-reservist-family-retention-readiness-v1` with `ps-reservist-family-retention-readiness-stack-v1`.
+- For undersea cable interception detection impacting theater edge backhaul trust, include `ts-undersea-fiber-tap-attribution-v1` with `ps-undersea-fiber-tap-attribution-stack-v1`.
+- For compromised cable segment isolation and controlled mission-path reroute, include `ts-subsea-cable-segment-isolation-v1` with `ps-subsea-cable-segment-isolation-stack-v1`.
+- For laboratory custody-chain continuity of edge-ingested bioforensics data, include `ts-lab-chain-custody-continuity-v1` with `ps-lab-chain-custody-continuity-stack-v1`.
+- For mission-priority compute readiness decisions driven by high-value part cannibalization constraints, include `ts-component-cannibalization-readiness-v1` with `ps-component-cannibalization-readiness-stack-v1`.
 - For denied-environment agent trust calibration of autonomous C2 assistants, include `ts-denied-c2-agent-trust-v1` with `ps-denied-c2-agent-trust-stack-v1`.
 - For battlefield medical telemetry continuity under electromagnetic disruption, include `ts-em-battlefield-med-telemetry-v1` with `ps-em-battlefield-med-telemetry-stack-v1`.
 - For coalition legal attribution of contested electromagnetic events, include `ts-spectrum-legal-attribution-v1` with `ps-spectrum-legal-attribution-stack-v1`.
+
+## Tactical Edge Expansion Wave XIX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-jadc2-datalink-bridging-priority-v1` + `protocol_stack_id=ps-jadc2-datalink-bridging-priority-stack-v1` when edge nodes broker heterogeneous tactical links with strict command-message precedence.
+- Add `tool_suite_id=ts-information-advantage-psyops-assessment-v1` + `protocol_stack_id=ps-information-advantage-psyops-assessment-stack-v1` when edge compute supports influence telemetry, release governance, and narrative response timing.
+- Add `tool_suite_id=ts-bdr-manufacturing-certification-v1` + `protocol_stack_id=ps-bdr-manufacturing-certification-stack-v1` when forward compute supports repair-certification digital threads and release authority workflows.
+- Add `packet_id=DPL-JADC2-BRIDGE-001`, `packet_id=DPL-INFOADV-PSYOPS-001`, and `packet_id=DPL-BDR-MANUFACTURING-001` for recommendations that materially affect mission continuity, command trust, or safety release posture.
+
+## Tactical Edge Expansion Wave XX Addendum (2026-03-12)
+
+- Add `tool_suite_id=ts-space-rpo-denial-awareness-v1` + `protocol_stack_id=ps-space-rpo-denial-awareness-stack-v1` when edge orchestration depends on contested orbital custody, relay survivability, and hostile rendezvous disruption signals.
+- Add `tool_suite_id=ts-sof-lowsig-logistics-interop-v1` + `protocol_stack_id=ps-sof-lowsig-logistics-interop-stack-v1` when distributed edge nodes support denied-area low-signature sustainment coordination.
+- Add `tool_suite_id=ts-legal-targeting-civharm-evidence-v1` + `protocol_stack_id=ps-legal-targeting-civharm-evidence-stack-v1` when tactical edge products influence strike legality evidence, civilian-harm adjudication, or auditable release workflows.
+- Add `packet_id=DPL-SPACE-RPO-DENIAL-001`, `packet_id=DPL-SOF-LOWSIG-LOGISTICS-INTEROP-001`, and `packet_id=DPL-LEGAL-TARGETING-CIVHARM-EVIDENCE-001` for branches that materially affect command trust, compliance posture, or mission continuity.

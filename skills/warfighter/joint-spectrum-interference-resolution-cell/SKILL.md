@@ -37,6 +37,12 @@ Primary products for this skill: interference incident log, frequency reallocati
 
 Use these tool categories as the default stack for this skill: spectrum management platforms, EW sensor feeds, SATCOM monitoring dashboards, signal analysis consoles.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-spectrum-governance-v1` with `protocol_stack_id=ps-ew-spectrum-priority-stack-v1`.
+- Alternate: `tool_suite_id=ts-ew-spectrum-priority-leasing-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
+- Degraded: fixed mission-priority frequency windows with authenticated USMTF interference reports.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in ../_shared/references/external-tools-protocols.md and select specific systems-of-record aligned to this mission.
@@ -149,9 +155,21 @@ Use these tool categories as the default stack for this skill: spectrum manageme
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Operational Execution Hardening
 
+- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
+- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
+## Domain Toolchain Override (2026-03-08, Spectrum Integrity and Deception Control)
 
-- Add tool_suite_id=ts-theater-contested-pnt-time-mesh-recovery-v1 + protocol_stack_id=ps-theater-contested-pnt-time-mesh-recovery-stack-v1 when RF interference adjudication must preserve mission timing integrity and denied-PNT synchronization.
-- Add packet_id=DPL-PNT-TIME-MESH-RECOVERY-002 for branches that materially change spectrum control windows or timing-confidence thresholds.
+- Prioritize `tool_suite_id=ts-ai-camouflage-discipline-audit-v1` with `protocol_stack_id=ps-ai-camouflage-discipline-stack-v1` when emitter survivability depends on deception discipline and signature-control compliance.
+- Elevate `tool_suite_id=ts-vertical-datum-reconciliation-v1` with `protocol_stack_id=ps-vertical-datum-reconciliation-stack-v1` when targeting or fires timing uncertainty originates from terrain/datum mismatch across systems.
+- If coalition frequency access is constrained by legal clearance delays, add `tool_suite_id=ts-spectrum-licensing-clearance-v1` with `protocol_stack_id=ps-spectrum-licensing-clearance-stack-v1` as a mandatory adjudication branch.
+
+## Domain Toolchain Override (2026-03-11, Electronic Protection and Spectrum Maneuver Upgrade)
+
+- Prioritize `tool_suite_id=ts-joint-electronic-protection-spectrum-maneuver-v1` with `protocol_stack_id=ps-joint-electronic-protection-spectrum-maneuver-stack-v1` when interference incidents include active adversary EW maneuver.
+- Promote `packet_id=DPL-ELECTRONIC-PROTECTION-MANEUVER-001` as the default recommendation packet when comms survivability or fratricide-spectrum risk is mission critical.
+- If timing integrity uncertainty propagates into fires or IAMD kill chains, require a synchronized branch using `tool_suite_id=ts-contested-pnt-time-transfer-assurance-v1` and `protocol_stack_id=ps-contested-pnt-time-transfer-stack-v1` before recommending release.

@@ -258,19 +258,6 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
 
-
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVI Addendum)
-
-- Add tool_suite_id=ts-joint-undersea-cable-sabotage-forensics-restoration-v1 + protocol_stack_id=ps-joint-undersea-cable-sabotage-forensics-restoration-stack-v1 when failover assumptions depend on subsea trunk restoration and verified forensic attribution.
-- Add packet_id=DPL-UNDERSEA-CABLE-SABOTAGE-FORENSICS-002 for branches that materially alter failover timing or coalition releasability.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLI Addendum)
-
-- Add `tool_suite_id=ts-joint-contested-cellular-timing-holdover-first-responder-priority-v1` + `protocol_stack_id=ps-joint-contested-cellular-timing-holdover-first-responder-priority-stack-v1` when failover assumptions depend on timing holdover, backhaul resilience, or priority-service continuity across public-safety telecom nodes.
-- Add `tool_suite_id=ts-theater-austere-command-post-flooding-hvac-smoke-control-v1` + `protocol_stack_id=ps-theater-austere-command-post-flooding-hvac-smoke-control-stack-v1` when mission-network survivability depends on command-post environmental controls, relocation timing, or smoke-isolation actions.
-- Add `tool_suite_id=ts-expeditionary-autonomous-sustainment-routing-drift-governance-v1` + `protocol_stack_id=ps-expeditionary-autonomous-sustainment-routing-drift-governance-stack-v1` when failover networks must sustain autonomous route replanning, convoy telemetry, or degraded machine-to-machine trust.
-- Add `packet_id=DPL-JOINT-CELLULAR-TIMING-HOLDOVER-FIRST-RESPONDER-001`, `packet_id=DPL-THEATER-AUSTERE-COMMAND-POST-FLOOD-SMOKE-001`, and `packet_id=DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001` for branches that materially alter failover timing, network survivability, or command-node continuity.
-
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
 
 - Add `tool_suite_id=ts-theater-mission-ai-confidence-early-warning-v1` + `protocol_stack_id=ps-theater-mission-ai-confidence-early-warning-stack-v1` when failover sequencing depends on trusted AI-assisted routing, workload arbitration, or anomaly triage.
@@ -291,23 +278,3 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when degraded network paths increase the risk of stale or spoofed digital tasking during failover execution.
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when mission continuity depends on rerouting through strategic SATCOM or SDA ground nodes with scarce RF-chain components.
 - Add `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-SPACE-GROUND-STATION-TWT-001` for branches that materially change mission-service restoration, command trust, or strategic-network reachback posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
-
-- Add `tool_suite_id=ts-theater-battlefield-cloud-federation-admission-control-v1` + `protocol_stack_id=ps-theater-battlefield-cloud-federation-admission-control-stack-v1` when failover depends on controlled admission of workloads into alternate cloud or edge enclaves without spreading compromise.
-- Add `tool_suite_id=ts-joint-ai-order-intent-integrity-v1` + `protocol_stack_id=ps-joint-ai-order-intent-integrity-stack-v1` when degraded network paths increase the risk of stale, distorted, or machine-generated tasking drifting from commander intent during failover execution.
-- Add `tool_suite_id=ts-joint-emissions-window-decoy-synchronization-v1` + `protocol_stack_id=ps-joint-emissions-window-decoy-synchronization-stack-v1` when service restoration depends on brief emissions exposure, decoy masking, or tightly sequenced EMCON breaks.
-- Add `packet_id=DPL-BATTLEFIELD-CLOUD-ADMISSION-001`, `packet_id=DPL-AI-ORDER-INTENT-001`, and `packet_id=DPL-EMISSIONS-DECOY-WINDOW-001` for branches that materially change mission-service restoration, command trust, or exposure-risk posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVII Addendum)
-
-- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when failover depends on emergency revocation, token burn, and controlled privileged-access restoration.
-- Add `tool_suite_id=ts-joint-ground-robotics-teleoperation-spectrum-safety-v1` + `protocol_stack_id=ps-joint-ground-robotics-teleoperation-spectrum-safety-stack-v1` when degraded networks must still preserve safe robot teleoperation, human override, or lost-link control.
-- Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` and `packet_id=DPL-GROUND-ROBOTICS-TELEOP-SPECTRUM-001` for branches that materially change mission-service restoration, teleoperation safety, or failover authority posture.
-
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
-
-- Add `tool_suite_id=ts-theater-cross-domain-guard-schema-drift-message-loss-v1` + `protocol_stack_id=ps-theater-cross-domain-guard-schema-drift-message-loss-stack-v1` when failover depends on restoring trusted message flow across guards, data diodes, or mission-partner exchange boundaries.
-- Add `tool_suite_id=ts-joint-orbital-mission-data-downlink-window-ground-priority-v1` + `protocol_stack_id=ps-joint-orbital-mission-data-downlink-window-ground-priority-stack-v1` when alternate network paths depend on scarce orbital downlinks or delayed reachback products.
-- Add `tool_suite_id=ts-coalition-mission-data-releasability-waiver-adjudication-v1` + `protocol_stack_id=ps-coalition-mission-data-releasability-waiver-adjudication-stack-v1` when failover depends on releasing degraded but lawful data subsets across coalition or cross-domain boundaries.
-- Add `packet_id=DPL-CROSS-DOMAIN-SCHEMA-DRIFT-001`, `packet_id=DPL-ORBITAL-DOWNLINK-PRIORITY-001`, and `packet_id=DPL-RELEASABILITY-WAIVER-001` for branches that materially change mission-service restoration, data trust, or cross-boundary continuity posture.

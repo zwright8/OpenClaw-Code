@@ -149,30 +149,26 @@ Use these tool categories as the default stack for this skill: maritime C2 syste
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Default Mission Tool Binding
+## Domain Toolchain Defaults
 
-Use this default binding unless mission constraints require an alternate path:
+- Primary: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-maritime-chokepoint-closure-stack-v1`.
+- Alternate: `tool_suite_id=ts-joint-c2-fusion-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
+- Degraded: use authenticated voice/readback + UTC acknowledgment ledger + manual fallback board.
 
-- Primary: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-joint-tactical-link-stack-v1`.
-- Alternate: `tool_suite_id=ts-coalition-maritime-chokepoint-autonomous-escort-mine-risk-v1` with `protocol_stack_id=ps-coalition-maritime-chokepoint-autonomous-escort-mine-risk-stack-v1`.
-- Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+## Domain Packet Defaults
 
-## Domain Toolchain Override (2026-03-12, Expansion Wave XXVII Addendum)
+- Default packet IDs: `DPL-MARITIME-MCM-001`, `DPL-MARITIME-CHOKE-001`.
+- If no packet fully matches, define a provisional packet and assign a validation owner before release.
 
-- Add `tool_suite_id=ts-coalition-sanctions-maritime-insurance-evasion-disruption-v1` + `protocol_stack_id=ps-coalition-sanctions-maritime-insurance-evasion-disruption-stack-v1` for sea-control recommendations that depend on sanctions-evasion interdiction and legal-evidence continuity.
-- Add `tool_suite_id=ts-coalition-under-ice-autonomous-resupply-corridor-v1` + `protocol_stack_id=ps-coalition-under-ice-autonomous-resupply-corridor-stack-v1` when Arctic under-ice logistics corridors influence maritime posture, escort allocation, or casualty-flow branches.
-- Add `packet_id=DPL-MARITIME-INSURANCE-EVASION-DISRUPTION-001` and `packet_id=DPL-UNDER-ICE-AUTONOMOUS-RESUPPLY-001` for branches that materially change force protection or coalition routing posture.
+## Operational Execution Hardening
 
-## Domain Toolchain Override (2026-03-13, Expansion Wave XXVIII Addendum)
+- Enforce `ack_chain_status=verified` for all mission-critical tool exchanges before recommending posture changes.
+- Require `trust_score >= 0.80` on each primary external dependency; if lower, elevate alternate stack and mark outputs `provisional`.
+- Add explicit degraded-mode triggers: stale data beyond `refresh_sla_minutes`, missing cryptographic validation, or failed human approval gate.
+- Include a final command-ready line: `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` with rationale tied to authority and protocol checks.
 
-- Add `tool_suite_id=ts-undersea-cable-tap-attribution-and-rapid-reroute-v1` + `protocol_stack_id=ps-undersea-cable-tap-attribution-and-rapid-reroute-stack-v1` when maritime recommendations depend on subsea cable compromise attribution and rapid C2 reroute.
-- Add `tool_suite_id=ts-homeland-port-radiological-screening-surge-v1` + `protocol_stack_id=ps-homeland-port-radiological-screening-surge-stack-v1` when naval support posture intersects U.S. port radiological screening and continuity-of-commerce risk.
-- Add `packet_id=DPL-UNDERSEA-CABLE-TAP-REROUTE-001` and `packet_id=DPL-HOMELAND-PORT-RAD-SURGE-001` for branches that materially alter maritime force protection or logistics routing.
-- Add `tool_suite_id=ts-arctic-subsea-cable-ice-keel-repair-v1` + `protocol_stack_id=ps-arctic-subsea-cable-ice-keel-repair-stack-v1` when sea-control recommendations depend on arctic cable continuity, under-ice repair windows, or chokepoint comms resilience.
-- Add `tool_suite_id=ts-theater-undersea-autonomous-glider-acoustic-resilience-v1` + `protocol_stack_id=ps-theater-undersea-autonomous-glider-acoustic-resilience-stack-v1` when maritime cueing confidence is degraded by acoustic deception against autonomous undersea sensors.
-- Add `packet_id=DPL-ARCTIC-SUBSEA-CABLE-ICE-KEEL-REPAIR-001` and `packet_id=DPL-THEATER-UNDERSEA-AUTONOMOUS-GLIDER-ACOUSTIC-RESILIENCE-001` for branches that materially alter fleet risk posture or undersea ISR confidence.
+## Domain Toolchain Override (2026-03-08, Maritime Water and Orbital Risk Coupling)
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave LIV Addendum)
-
-- Add `tool_suite_id=ts-joint-submarine-escape-rescue-system-integration-v1` + `protocol_stack_id=ps-joint-submarine-escape-rescue-system-integration-stack-v1` when naval-surface recommendations depend on trapped-submariner rescue compatibility, chamber allocation, or escort posture for rescue assets.
-- Add `packet_id=DPL-SUBMARINE-ESCAPE-RESCUE-001` for branches that materially alter surface escort allocation, rescue timing, or maritime risk posture.
+- Prioritize `tool_suite_id=ts-maritime-desal-water-continuity-v1` with `protocol_stack_id=ps-maritime-desal-water-stack-v1` when sea-control options are constrained by afloat freshwater sustainment and contamination risk.
+- Elevate `tool_suite_id=ts-orbital-debris-hostile-screening-v1` with `protocol_stack_id=ps-orbital-debris-hostile-screening-stack-v1` when SATCOM and maritime COP continuity depend on credible conjunction attribution.
+- If convoy endurance or fuel integrity is uncertain, add `tool_suite_id=ts-convoy-fuel-fraud-detection-v1` with `protocol_stack_id=ps-convoy-fuel-fraud-stack-v1` as a required logistics and deception cross-check branch.

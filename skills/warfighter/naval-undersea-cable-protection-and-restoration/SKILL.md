@@ -144,9 +144,3 @@ Primary products for this skill: undersea cable risk map, restoration prioritiza
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
-## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
-
-- Add `tool_suite_id=ts-strategic-undersea-chokepoint-autonomous-barrier-orchestration-v1` + `protocol_stack_id=ps-strategic-undersea-chokepoint-autonomous-barrier-orchestration-stack-v1` when cable restoration or repair-rights sequencing depends on autonomous barrier coverage, chokepoint surveillance, or protected repair lanes.
-- Add `tool_suite_id=ts-theater-cross-domain-guard-schema-drift-message-loss-v1` + `protocol_stack_id=ps-theater-cross-domain-guard-schema-drift-message-loss-stack-v1` when cable incidents corrupt, delay, or reshape telemetry and custody messages across cross-domain paths.
-- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when landing-site power, cooling, or water anomalies materially change cable restoration timing or shore-node survivability.
-- Add `packet_id=DPL-UNDERSEA-BARRIER-ORCH-001`, `packet_id=DPL-CROSS-DOMAIN-SCHEMA-DRIFT-001`, and `packet_id=DPL-FEW-NEXUS-ANOMALY-001` for recommendations that materially alter undersea restoration timing, message trust, or landing-site survivability.

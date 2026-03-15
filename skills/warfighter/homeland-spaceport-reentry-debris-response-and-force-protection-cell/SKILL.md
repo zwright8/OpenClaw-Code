@@ -57,4 +57,6 @@ Preferred protocol families for this skill: CCSDS, NIMS/ICS, USMTF, CAP, API/JSO
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-spaceport-reentry-debris-footprint-governance-v1 + protocol_stack_id=ps-spaceport-reentry-debris-footprint-governance-stack-v1 when force posture shifts depend on probabilistic debris impact windows.\n- Add tool_suite_id=ts-civil-military-range-warning-auth-sync-v1 + protocol_stack_id=ps-civil-military-range-warning-auth-sync-stack-v1 when protective action depends on synchronized public warning and installation lockdown paths.\n- Add packet_id=DPL-SPACEPORT-REENTRY-DEBRIS-RESPONSE-001 and packet_id=DPL-RANGE-WARNING-AUTH-SYNC-001 for recommendations that alter sheltering, closure, or launch delay decisions.
+- Add tool_suite_id=ts-spaceport-reentry-debris-footprint-governance-v1 + protocol_stack_id=ps-spaceport-reentry-debris-footprint-governance-stack-v1 when force posture shifts depend on probabilistic debris impact windows.
+- Add tool_suite_id=ts-civil-military-range-warning-auth-sync-v1 + protocol_stack_id=ps-civil-military-range-warning-auth-sync-stack-v1 when protective action depends on synchronized public warning and installation lockdown paths.
+- Add packet_id=DPL-SPACEPORT-REENTRY-DEBRIS-RESPONSE-001 and packet_id=DPL-RANGE-WARNING-AUTH-SYNC-001 for recommendations that alter sheltering, closure, or launch delay decisions.

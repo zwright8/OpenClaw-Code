@@ -57,4 +57,6 @@ Preferred protocol families for this skill: HL7/FHIR, USMTF, NIEM, API/JSON.
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-blood-biologics-cold-chain-breakpoint-analytics-v1 + protocol_stack_id=ps-blood-biologics-cold-chain-breakpoint-analytics-stack-v1 when casualty-survival branches depend on rapid detection of cold-chain degradation.\n- Add tool_suite_id=ts-transfusion-compatibility-surge-priority-router-v1 + protocol_stack_id=ps-transfusion-compatibility-surge-priority-router-stack-v1 when theater-wide blood allocation must balance urgency, compatibility, and transport threat.\n- Add packet_id=DPL-BLOOD-BIOLOGICS-ASSURANCE-001 and packet_id=DPL-TRANSFUSION-SURGE-PRIORITY-001 for recommendations that alter med-log routing or blood-release authority.
+- Add tool_suite_id=ts-blood-biologics-cold-chain-breakpoint-analytics-v1 + protocol_stack_id=ps-blood-biologics-cold-chain-breakpoint-analytics-stack-v1 when casualty-survival branches depend on rapid detection of cold-chain degradation.
+- Add tool_suite_id=ts-transfusion-compatibility-surge-priority-router-v1 + protocol_stack_id=ps-transfusion-compatibility-surge-priority-router-stack-v1 when theater-wide blood allocation must balance urgency, compatibility, and transport threat.
+- Add packet_id=DPL-BLOOD-BIOLOGICS-ASSURANCE-001 and packet_id=DPL-TRANSFUSION-SURGE-PRIORITY-001 for recommendations that alter med-log routing or blood-release authority.

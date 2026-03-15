@@ -57,4 +57,6 @@ Preferred protocol families for this skill: CCSDS, USMTF, C2RPC, STANAG, API/JSO
 
 ## Domain Toolchain Override (2026-03-12, Expansion Wave XVIII Addendum)
 
-- Add tool_suite_id=ts-polar-orbit-sar-retrieval-window-fusion-v1 + protocol_stack_id=ps-polar-orbit-sar-retrieval-window-fusion-stack-v1 when personnel recovery depends on narrow polar overpass windows and jamming-aware beacon custody.\n- Add tool_suite_id=ts-contested-retrieval-corridor-thermal-survivability-v1 + protocol_stack_id=ps-contested-retrieval-corridor-thermal-survivability-stack-v1 when branch viability depends on crew survivability and route weather inversion risks.\n- Add packet_id=DPL-POLAR-ORBIT-SAR-RETRIEVAL-001 and packet_id=DPL-CONTESTED-RETRIEVAL-THERMAL-001 for recommendations that alter extraction timing or rescue-force risk posture.
+- Add tool_suite_id=ts-polar-orbit-sar-retrieval-window-fusion-v1 + protocol_stack_id=ps-polar-orbit-sar-retrieval-window-fusion-stack-v1 when personnel recovery depends on narrow polar overpass windows and jamming-aware beacon custody.
+- Add tool_suite_id=ts-contested-retrieval-corridor-thermal-survivability-v1 + protocol_stack_id=ps-contested-retrieval-corridor-thermal-survivability-stack-v1 when branch viability depends on crew survivability and route weather inversion risks.
+- Add packet_id=DPL-POLAR-ORBIT-SAR-RETRIEVAL-001 and packet_id=DPL-CONTESTED-RETRIEVAL-THERMAL-001 for recommendations that alter extraction timing or rescue-force risk posture.

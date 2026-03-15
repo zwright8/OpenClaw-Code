@@ -144,3 +144,33 @@ Primary products for this skill: coalition data-sharing architecture brief, rele
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+
+## Domain Toolchain Override (2026-03-10, Coalition ROE and Grid Stress Addendum)
+
+- Add `tool_suite_id=ts-coalition-human-machine-roe-assurance-v1` + `protocol_stack_id=ps-coalition-human-machine-roe-assurance-stack-v1` when coalition autonomy operations require auditable ROE compliance and approval traceability.
+- Add `tool_suite_id=ts-joint-civil-grid-rotating-blackout-force-posture-v1` + `protocol_stack_id=ps-joint-civil-grid-rotating-blackout-force-posture-stack-v1` when coalition data fabric priorities shift due to rotating civil-grid outages.
+
+## Domain Toolchain Override (2026-03-10, Coalition Fires Boundary and HF Mesh Expansion)
+
+- Add `tool_suite_id=ts-coalition-ai-fires-no-strike-assurance-v1` + `protocol_stack_id=ps-coalition-ai-fires-no-strike-assurance-stack-v1` when coalition data-fabric exchanges drive AI-enabled fires recommendations requiring no-strike compliance.
+- Add `tool_suite_id=ts-coalition-contested-hf-radio-mesh-sync-v1` + `protocol_stack_id=ps-coalition-contested-hf-radio-mesh-sync-stack-v1` when interoperable data dissemination must survive SATCOM and terrestrial-link denial.
+
+## Domain Toolchain Override (2026-03-10, Coalition Corridor and Chokepoint Expansion)
+
+- Add `tool_suite_id=ts-humanitarian-corridor-ai-convoy-deconfliction-v1` + `protocol_stack_id=ps-humanitarian-corridor-ai-convoy-deconfliction-stack-v1` when coalition data fabric workflows must prioritize humanitarian convoy deconfliction.
+- Add `tool_suite_id=ts-maritime-chokepoint-commercial-traffic-shielding-v1` + `protocol_stack_id=ps-maritime-chokepoint-commercial-traffic-shielding-stack-v1` when coalition interoperability depends on contested chokepoint civilian shipping continuity.
+
+## Domain Toolchain Override (2026-03-10, Evacuation Twin and Private-5G Expansion)
+
+- Add `tool_suite_id=ts-civilian-evacuation-digital-twin-traffic-assurance-v1` + `protocol_stack_id=ps-civilian-evacuation-digital-twin-traffic-assurance-stack-v1` when coalition data exchange must synchronize high-volume civilian evacuation throughput and route release controls.
+- Add `tool_suite_id=ts-contested-private-5g-mission-priority-v1` + `protocol_stack_id=ps-contested-private-5g-mission-priority-stack-v1` when coalition data-fabric recommendations depend on contested private-5G service-priority orchestration.
+
+## Domain Toolchain Override (2026-03-10, Coalition Medevac and Port Security Expansion)
+
+- Add `tool_suite_id=ts-coalition-medevac-cross-border-clearance-routing-v1` + `protocol_stack_id=ps-coalition-medevac-cross-border-clearance-routing-stack-v1` when coalition data exchanges must synchronize legal medevac routing and transfer approvals.
+- Add `tool_suite_id=ts-coalition-disaster-relief-dual-use-port-screening-v1` + `protocol_stack_id=ps-coalition-disaster-relief-dual-use-port-screening-stack-v1` when coalition interoperability workflows must balance humanitarian throughput and force-protection screening.
+
+## Domain Toolchain Override (2026-03-10, Port Surge and Stock Custody Expansion)
+
+- Add `tool_suite_id=ts-dual-use-port-cyber-physical-surge-protection-v1` + `protocol_stack_id=ps-dual-use-port-cyber-physical-surge-protection-stack-v1` when coalition data-fabric interoperability must include dual-use port throughput and cyber-physical incident coordination.
+- Add `tool_suite_id=ts-prepositioned-stock-cyber-custody-assurance-v1` + `protocol_stack_id=ps-prepositioned-stock-cyber-custody-assurance-stack-v1` when coalition data exchanges govern trusted release and tamper verification of prepositioned stocks.
