@@ -454,11 +454,160 @@ function resolveCircuitBreakerCooldownMs({
     return clamp(Math.round(jittered), effectiveBase, normalizedMax);
 }
 
+function pickFirstFiniteMetric(metrics, keys) {
+    if (!metrics || typeof metrics !== 'object' || !Array.isArray(keys)) return null;
+    for (const key of keys) {
+        const numeric = Number(metrics[key]);
+        if (Number.isFinite(numeric)) return numeric;
+    }
+    return null;
+}
+
+function pickFirstStringMetric(metrics, keys) {
+    if (!metrics || typeof metrics !== 'object' || !Array.isArray(keys)) return '';
+    for (const key of keys) {
+        const value = metrics[key];
+        if (typeof value === 'string' && value.trim()) {
+            return value.trim();
+        }
+    }
+    return '';
+}
+
+function parseHttpStatusFromExecution(execution) {
+    if (!execution || typeof execution !== 'object') return null;
+    const metrics = execution.metrics && typeof execution.metrics === 'object'
+        ? execution.metrics
+        : {};
+    const metricStatus = pickFirstFiniteMetric(metrics, [
+        'httpStatus',
+        'http_status',
+        'statusCode',
+        'status_code',
+        'responseStatus',
+        'response_status'
+    ]);
+    if (Number.isFinite(metricStatus)) {
+        const rounded = Math.round(metricStatus);
+        if (rounded >= 100 && rounded <= 599) return rounded;
+    }
+    const output = typeof execution.output === 'string' ? execution.output : '';
+    if (!output) return null;
+    const patterns = [
+        /\bhttp(?:\/\d+(?:\.\d+)?)?\s+(\d{3})\b/i,
+        /\bstatus(?:\s+code)?\s*[:=]\s*(\d{3})\b/i,
+        /\bcode\s*[:=]\s*(\d{3})\b/i
+    ];
+    for (const pattern of patterns) {
+        const match = output.match(pattern);
+        if (!match) continue;
+        const parsed = Number(match[1]);
+        if (Number.isFinite(parsed) && parsed >= 100 && parsed <= 599) {
+            return Math.round(parsed);
+        }
+    }
+    return null;
+}
+
+function parseGrpcRetryableSignal(execution) {
+    if (!execution || typeof execution !== 'object') return null;
+    const metrics = execution.metrics && typeof execution.metrics === 'object'
+        ? execution.metrics
+        : {};
+
+    const retryableGrpcStatusNames = new Set([
+        'aborted',
+        'deadline_exceeded',
+        'resource_exhausted',
+        'unavailable'
+    ]);
+    const retryableGrpcStatusCodes = new Set([
+        4, // DEADLINE_EXCEEDED
+        8, // RESOURCE_EXHAUSTED
+        10, // ABORTED
+        14 // UNAVAILABLE
+    ]);
+
+    const numericStatus = pickFirstFiniteMetric(metrics, [
+        'grpcStatusCode',
+        'grpc_status_code',
+        'grpcCode',
+        'grpc_code'
+    ]);
+    if (Number.isFinite(numericStatus)) {
+        return retryableGrpcStatusCodes.has(Math.round(numericStatus));
+    }
+
+    const namedStatus = pickFirstStringMetric(metrics, [
+        'grpcStatus',
+        'grpc_status'
+    ]);
+    if (namedStatus) {
+        const normalized = namedStatus
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '_')
+            .replace(/^_+|_+$/g, '');
+        return retryableGrpcStatusNames.has(normalized);
+    }
+
+    const output = typeof execution.output === 'string' ? execution.output : '';
+    if (!output) return null;
+    const namedMatch = output.match(/grpc[\s_-]*status(?:\s*[:=]|\s+is\s+)\s*([A-Z_]+)/i);
+    if (namedMatch) {
+        const normalized = namedMatch[1]
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '_')
+            .replace(/^_+|_+$/g, '');
+        return retryableGrpcStatusNames.has(normalized);
+    }
+    const codeMatch = output.match(/grpc[\s_-]*(?:status\s*)?code\s*[:=]\s*(\d{1,2})/i);
+    if (codeMatch) {
+        const parsed = Number(codeMatch[1]);
+        if (Number.isFinite(parsed)) return retryableGrpcStatusCodes.has(Math.round(parsed));
+    }
+
+    return null;
+}
+
 function isTransientBotFailure(execution) {
     if (!execution || typeof execution !== 'object') return false;
     if (execution.status !== 'failure') return false;
-    if (Number(execution.metrics?.retryable) >= 1 || Number(execution.metrics?.transientFailure) >= 1) {
+    const metrics = execution.metrics && typeof execution.metrics === 'object'
+        ? execution.metrics
+        : {};
+    if (
+        Number(metrics.nonRetryable) >= 1
+        || Number(metrics.non_retryable) >= 1
+        || Number(metrics.doNotRetry) >= 1
+        || Number(metrics.do_not_retry) >= 1
+        || Number(metrics.permanentFailure) >= 1
+        || Number(metrics.permanent_failure) >= 1
+    ) {
+        return false;
+    }
+    const explicitRetryable = pickFirstFiniteMetric(metrics, [
+        'retryable'
+    ]);
+    if (Number.isFinite(explicitRetryable)) {
+        return explicitRetryable >= 1;
+    }
+    if (Number(metrics.transientFailure) >= 1) {
         return true;
+    }
+
+    const grpcRetryable = parseGrpcRetryableSignal(execution);
+    if (grpcRetryable !== null) return grpcRetryable;
+
+    const httpStatus = parseHttpStatusFromExecution(execution);
+    if (httpStatus !== null) {
+        return httpStatus === 408
+            || httpStatus === 425
+            || httpStatus === 429
+            || httpStatus === 500
+            || httpStatus === 502
+            || httpStatus === 503
+            || httpStatus === 504;
     }
     const output = typeof execution.output === 'string' ? execution.output.toLowerCase() : '';
     if (!output) return false;

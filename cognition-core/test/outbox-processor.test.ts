@@ -624,6 +624,132 @@ test('processOutboxEnvelopes honors grpc-retry-pushback-ms delays on transient r
     assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 55);
 });
 
+test('processOutboxEnvelopes retries retryable HTTP status failures without explicit retryable metric', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000747', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_570 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_571
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botExecute: async () => {
+            attempts++;
+            if (attempts === 1) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'status=503 upstream unavailable',
+                    metrics: {
+                        httpStatus: 503
+                    },
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered after status-aware retry.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 2);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesRecovered, 1);
+});
+
+test('processOutboxEnvelopes skips retries when retryable is explicitly false', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000748', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_580 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_581
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 3,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botExecute: async () => {
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'temporary timeout upstream',
+                metrics: {
+                    retryable: 0,
+                    httpStatus: 503
+                },
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 1);
+    assert.equal(stats.botRetriesAttempted, 0);
+    assert.equal(stats.botRetriesRecovered, 0);
+    assert.equal(stats.botRetriesExhausted, 0);
+});
+
 test('processOutboxEnvelopes blocks retries on negative grpc-retry-pushback-ms', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
