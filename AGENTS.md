@@ -174,6 +174,8 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `72a5dd0f32..c777d0969b`: no new README command-map additions were found (range adds warfighter LXV reintegration-cell skill/reference content only); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
+- Verified `d16cb4c6b8..72a5dd0f32`: no new README command-map additions were found (range hardens bot retry classification with status/signal-aware runtime handling and README narrative updates without introducing new workflow commands); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `f4395f6c3f..b09120cf05`: no new README command-map additions were found (range adds warfighter LXII support-cell skill/reference content only); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `7fabab2387..f4395f6c3f`: no new README command-map additions were found (range adds gRPC retry-pushback hint handling and README narrative updates without introducing new workflow commands); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `5c0d18664c..7fabab2387`: no new README command-map additions were found (range adds AGENTS verification bookkeeping only); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
