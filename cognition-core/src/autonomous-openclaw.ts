@@ -232,6 +232,7 @@ export const SUPPORTED_SELECTION_POLICY_MODES = Object.freeze([
     'adwin_lints',
     'epsilon_ts',
     'tt_epsilon_ts',
+    'tt_bb_ts',
     'bb_ts',
     'auto_epsilon_ts',
     'cp_epsilon_ts',
@@ -324,6 +325,7 @@ const THOMPSON_POLICY_MODES = new Set([
     'd_auto_epsilon_ts'
 ]);
 const BAYESIAN_BOOTSTRAP_POLICY_MODES = new Set([
+    'tt_bb_ts',
     'bb_ts',
     'adwin_bb_ts',
     'sw_bb_ts',
@@ -334,7 +336,8 @@ const CHANGEPOINT_THOMPSON_POLICY_MODES = new Set([
     'sw_cp_epsilon_ts'
 ]);
 const TOP_TWO_THOMPSON_POLICY_MODES = new Set([
-    'tt_epsilon_ts'
+    'tt_epsilon_ts',
+    'tt_bb_ts'
 ]);
 const ADAPTIVE_THOMPSON_POLICY_MODES = new Set([
     'auto_epsilon_ts',
@@ -4634,7 +4637,7 @@ function selectCatalogSlice({
             mode: scoringPolicy.mode,
             topTwoLeaderProbability: Number(scoringPolicy.thompsonTopTwoProbability.toFixed(6)),
             topTwoChallengerProbability: reordered.challengerProbability,
-            topTwoSelectedRole: selectedTopTwoRole
+            topTwoSelectedRole: reordered.selectedTopTwoRole
         };
     }
 

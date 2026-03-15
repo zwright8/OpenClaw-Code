@@ -1633,6 +1633,43 @@ test('buildAutonomousBatchPlan supports bayesian-bootstrap thompson ranking', ()
     assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'bb_ts');
 });
 
+test('buildAutonomousBatchPlan supports top-two bayesian-bootstrap thompson challenger routing', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 617, code: 'SK-00617', title: 'Skill 617' },
+            { id: 618, code: 'SK-00618', title: 'Skill 618' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 14,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '617': { attempts: 12, successes: 9, failures: 3, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' },
+                '618': { attempts: 12, successes: 4, failures: 8, consecutiveFailures: 0, lastWave: 13, lastStatus: 'completed' }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 15,
+        selectionPolicyConfig: {
+            mode: 'tt_bb_ts',
+            thompsonExploration: 0,
+            thompsonTopTwoProbability: 0
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [618]);
+    assert.equal(plan.selection.policy.skills, 'tt_bb_ts');
+    assert.equal(plan.tasks[0].context?.autonomy?.selectionPolicyApplied, 'tt_bb_ts');
+    assert.equal(plan.selection.policyProbabilities.skills?.topTwoSelectedRole, 'challenger');
+    assert.equal(plan.selection.policyProbabilities.skills?.topTwoLeaderProbability, 0);
+    assert.equal(plan.selection.policyProbabilities.skills?.topTwoChallengerProbability, 1);
+});
+
 test('buildAutonomousBatchPlan supports adaptive auto_epsilon_ts exploration under uncertainty', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
