@@ -155,3 +155,9 @@ Use these tool categories as the default stack for this skill: patient regulatio
 - Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when emergency obstetric surgery, hemorrhage control, or privacy-hardened women's health routing changes austere surgical posture.
 - Add `tool_suite_id=ts-joint-blast-overpressure-breacher-readiness-v1` + `protocol_stack_id=ps-joint-blast-overpressure-breacher-readiness-stack-v1` when concussive exposure, breacher injury load, or neurocognitive follow-up changes damage-control and return-to-duty sequencing.
 - Add `packet_id=DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001`, `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001`, and `packet_id=DPL-BLAST-OVERPRESSURE-BREACHER-001` for recommendations that materially change surgical triage, transport release, or protected-care prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-joint-austere-pediatric-behavioral-health-guardian-reunification-v1` + `protocol_stack_id=ps-joint-austere-pediatric-behavioral-health-guardian-reunification-stack-v1` when pediatric trauma, behavioral distress, or guardian verification materially changes surgical triage and transport release.
+- Add `tool_suite_id=ts-joint-robotic-casualty-extraction-human-override-safety-v1` + `protocol_stack_id=ps-joint-robotic-casualty-extraction-human-override-safety-stack-v1` when austere surgical timelines depend on autonomous casualty movement, override timing, or protected medic handoff.
+- Add `packet_id=DPL-PEDIATRIC-BEHAVIORAL-GUARDIAN-001` and `packet_id=DPL-ROBOTIC-CASUALTY-EXTRACTION-001` for recommendations that materially alter pediatric triage, extraction release, or protected-care prioritization.

@@ -2494,3 +2494,75 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-theater-aircrew-fatigue-circadian-countermeasure-v1`.
 - Protocols: `HL7/FHIR`, signed schedule manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
 - Degraded fallback: short-duration protected-rest windows only with paper rosters and voice-confirmed staffing handoffs.
+
+## Profile Addendum Z (2026-03-15, Escalation Control, Regulatory Continuity, Sealift Crewing Risk, Hydrogen Safety, Finance Continuity, Launch Warning Integration, Coalition Digital Twins, Pediatric Reunification, Battle-Damage Contracting, and Robotic Casualty Extraction)
+
+### `ceasefire-hotline-escalation-control-v1`
+- Use for: joint deconfliction decisions when hotline identity, incident acknowledgment, and escalation restraint determine whether tactical friction widens into strategic confrontation.
+- Primary tools: `ts-joint-contested-ceasefire-hotline-escalation-control-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `USMTF`, `S/MIME`, `NIEM`, `API/JSON`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: advisory-only incident relay until dual acknowledgment and authority checks are complete.
+
+### `spectrum-license-regulatory-emissions-continuity-v1`
+- Use for: EMSO and network decisions when host-nation regulation, waiver timing, or emergency emissions control determine legal and interoperable employment.
+- Primary tools: `ts-theater-spectrum-license-host-nation-regulatory-emissions-continuity-v1`.
+- Cross-check tools: `ts-spectrum-governance-v1`.
+- Protocols: `NIEM`, `S/MIME`, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: mission-essential emissions only with hourly legal and spectrum-manager review.
+
+### `merchant-mariner-flag-sanctions-risk-v1`
+- Use for: strategic mobility decisions when crew scarcity, registry friction, or sanctions exposure can strand chartered lift before embarkation.
+- Primary tools: `ts-strategic-merchant-mariner-crewing-flag-sanctions-risk-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIS/NMEA`, `EDI`, signed crewing manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential hulls only with manual registry review and daily crew readiness confirmation.
+
+### `battlefield-hydrogen-blast-safety-v1`
+- Use for: expeditionary energy decisions when hydrogen generation, storage density, or ignition hazards determine whether fuel-cell power is worth the risk.
+- Primary tools: `ts-expeditionary-hydrogen-production-storage-blast-safety-v1`.
+- Cross-check tools: `ts-energy-physical-cyber-convergence-v1`.
+- Protocols: `OPC UA`, signed safety manifests, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Degraded fallback: minimum-safe production only with dual safety officer review and reduced storage density.
+
+### `deployed-finance-disbursing-continuity-v1`
+- Use for: theater support decisions when payroll, disbursing, and local cash access affect force endurance, trust, and discipline.
+- Primary tools: `ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `ISO 20022`, signed disbursing manifests, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: mission-essential pay and cash advances only with daily dual-control reconciliation.
+
+### `space-launch-hazard-civil-warning-integration-v1`
+- Use for: launch and reentry decisions when hazard footprints, civil alerts, and marine or air corridor closures must stay synchronized.
+- Primary tools: `ts-joint-space-launch-hazard-area-civil-warning-integration-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `AIXM/FIXM`, `AIS/NMEA`, `CCSDS`, `EDXL-DE/CAP`, `API/JSON`, `USMTF`.
+- Degraded fallback: launch hold or restricted corridor release only with manual maritime, aviation, and civil readback.
+
+### `coalition-digital-twin-baseline-reconciliation-v1`
+- Use for: coalition planning and systems decisions when model drift or configuration mismatch threatens a common release-safe technical picture.
+- Primary tools: `ts-coalition-mission-digital-twin-baseline-reconciliation-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: signed configuration manifests, `API/JSON`, `OGC`, `NIEM`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: frozen release with advisory-only delta reporting until authoritative baseline confirmation.
+
+### `pediatric-behavioral-health-guardian-reunification-v1`
+- Use for: medical and civil-support decisions when child safety depends on rapid behavioral stabilization, verified custody, and protected evacuation.
+- Primary tools: `ts-joint-austere-pediatric-behavioral-health-guardian-reunification-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed guardian manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: life-safety and child-protection routing only with manual identity checks and protected voice handoff.
+
+### `battle-damage-contracting-vendor-vetting-v1`
+- Use for: recovery decisions when emergency local contracting is required but vendor trust, corruption risk, and payment integrity are unresolved.
+- Primary tools: `ts-theater-battle-damage-contracting-vendor-vetting-payment-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed vendor manifests, `STIX/TAXII`, `NIEM`, `API/JSON`, `USMTF`, `S/MIME`.
+- Degraded fallback: mission-essential awards only with dual-control payment release and daily fraud review.
+
+### `robotic-casualty-extraction-human-override-v1`
+- Use for: casualty movement decisions when robotic extraction can reduce exposure only if human override, route safety, and medic handoff remain trustworthy.
+- Primary tools: `ts-joint-robotic-casualty-extraction-human-override-safety-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `CoT`, `VMF`, `HL7/FHIR`, signed autonomy manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: human-only extraction or hold-in-place stabilization until override and route risks are cleared.

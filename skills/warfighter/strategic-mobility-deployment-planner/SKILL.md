@@ -169,3 +169,10 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when strategic mobility depends on rapid port shutdown, alternate offload planning, or phased sealift regeneration after tsunami damage.
 - Add `tool_suite_id=ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1` + `protocol_stack_id=ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1` when onward movement depends on safe coalition rail dispatch after signaling failure or manual-block reversion.
 - Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-RAIL-SIGNALING-MANUAL-BLOCK-001` for recommendations that materially alter port selection, inland routing, or deployment timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-strategic-merchant-mariner-crewing-flag-sanctions-risk-v1` + `protocol_stack_id=ps-strategic-merchant-mariner-crewing-flag-sanctions-risk-stack-v1` when deployment timing depends on chartered lift, crew availability, or flag-state and sanctions friction.
+- Add `tool_suite_id=ts-joint-space-launch-hazard-area-civil-warning-integration-v1` + `protocol_stack_id=ps-joint-space-launch-hazard-area-civil-warning-integration-stack-v1` when strategic mobility options must account for launch hazard corridors, reentry warnings, or civil air and maritime closures.
+- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when force-flow confidence depends on payroll, disbursing, or local-currency continuity at staging and reception nodes.
+- Add `packet_id=DPL-MERCHANT-MARINER-FLAG-SANCTIONS-001`, `packet_id=DPL-SPACE-LAUNCH-HAZARD-CIVIL-WARNING-001`, and `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001` for recommendations that materially alter route selection, launch window deconfliction, or deployment timing.

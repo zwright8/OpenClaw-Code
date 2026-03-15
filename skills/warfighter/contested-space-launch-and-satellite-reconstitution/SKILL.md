@@ -144,3 +144,7 @@ Primary products for this skill: space reconstitution options brief, launch-read
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-joint-space-launch-hazard-area-civil-warning-integration-v1` + `protocol_stack_id=ps-joint-space-launch-hazard-area-civil-warning-integration-stack-v1` when launch reconstitution depends on hazard-area synchronization, civil alert integrity, or corridor closure acknowledgments.
+- Add `packet_id=DPL-SPACE-LAUNCH-HAZARD-CIVIL-WARNING-001` for branches that materially alter launch-window release, public-warning posture, or civil-military deconfliction confidence.

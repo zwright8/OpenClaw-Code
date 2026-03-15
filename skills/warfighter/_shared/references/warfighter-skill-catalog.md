@@ -2594,3 +2594,29 @@ Every skill output should include:
 - Theater hazardous waste burn pit and ash exposure + expeditionary battlefield waste and hazardous material cell + expeditionary industrial hygiene and occupational exposure control cell + defense support of civil authorities crisis cell.
 - Joint substance use overdose and impaired duty command support + joint psychological health suicide postvention command support cell + joint religious affairs and moral injury support cell + mission risk decision support.
 - Theater sleep recovery shift work and fatigue restoration + joint cognitive load and watchfloor fatigue management cell + theater aircrew fatigue circadian countermeasure cell + mission risk decision support.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LV)
+
+- joint-contested-ceasefire-hotline-and-escalation-control-cell
+- theater-spectrum-license-host-nation-regulatory-and-emissions-continuity-cell
+- strategic-merchant-mariner-crewing-flag-state-and-sanctions-risk-cell
+- expeditionary-battlefield-hydrogen-production-storage-and-blast-safety-cell
+- joint-deployed-finance-cash-payroll-and-disbursing-continuity-cell
+- joint-space-launch-hazard-area-and-civil-warning-integration-cell
+- coalition-mission-digital-twin-configuration-baseline-reconciliation-cell
+- joint-austere-pediatric-behavioral-health-and-guardian-reunification-cell
+- theater-battle-damage-contracting-local-vendor-vetting-and-payment-cell
+- joint-robotic-casualty-extraction-human-override-and-safety-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LV)
+
+- Contested ceasefire hotline and escalation control + coalition interoperability coordinator + mission risk decision support + civil affairs stability ops.
+- Spectrum license host-nation regulatory and emissions continuity + electromagnetic spectrum operations + coalition interoperability coordinator + tactical zero trust network hardening.
+- Merchant mariner crewing flag-state and sanctions risk + strategic sealift and prepositioning coordinator + strategic mobility deployment planner + contested logistics sustainment.
+- Expeditionary battlefield hydrogen production storage and blast safety + operational energy resilience and microgrid cell + contested logistics sustainment + force protection and base defense.
+- Deployed finance cash payroll and disbursing continuity + acquisition and contracting support + strategic mobility deployment planner + mission risk decision support.
+- Space launch hazard area and civil warning integration + contested space launch and satellite reconstitution + defense support of civil authorities crisis cell + strategic mobility deployment planner.
+- Coalition mission digital-twin configuration baseline reconciliation + theater mission network failover cell + coalition interoperability coordinator + digital engineering mission thread analyst.
+- Austere pediatric behavioral health and guardian reunification + austere surgical support coordinator + joint role 3 medical network and aeromedical evac cell + civil affairs stability ops.
+- Theater battle-damage contracting local vendor vetting and payment + acquisition and contracting support + contested logistics sustainment + cyber mission planner.
+- Joint robotic casualty extraction human override and safety + austere surgical support coordinator + combat search and rescue coordinator + mission risk decision support.

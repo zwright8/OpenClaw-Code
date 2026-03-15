@@ -307,3 +307,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-detainee-appeals-custody-transparency-v1` + `protocol_stack_id=ps-coalition-detainee-appeals-custody-transparency-stack-v1` when interoperability depends on common detainee appeals handling, translation quality, or custody-transparency trust.
 - Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when coalition recovery coordination depends on trusted family messaging, survivor authentication, or spoof denial.
 - Add `packet_id=DPL-DETAINEE-APPEALS-CUSTODY-001` and `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially change coalition legitimacy, detainee compliance, or shared recovery confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-theater-spectrum-license-host-nation-regulatory-emissions-continuity-v1` + `protocol_stack_id=ps-theater-spectrum-license-host-nation-regulatory-emissions-continuity-stack-v1` when coalition interoperability depends on host-nation regulatory waivers, spectrum legality, or emergency emissions continuity.
+- Add `tool_suite_id=ts-joint-contested-ceasefire-hotline-escalation-control-v1` + `protocol_stack_id=ps-joint-contested-ceasefire-hotline-escalation-control-stack-v1` when combined-force confidence depends on authenticated ceasefire incident routing and escalation-control acknowledgment chains.
+- Add `tool_suite_id=ts-coalition-mission-digital-twin-baseline-reconciliation-v1` + `protocol_stack_id=ps-coalition-mission-digital-twin-baseline-reconciliation-stack-v1` when coalition technical interoperability depends on release-safe digital-twin baselines and configuration drift reconciliation.
+- Add `packet_id=DPL-SPECTRUM-LICENSE-REGULATORY-001`, `packet_id=DPL-CEASEFIRE-HOTLINE-ESCALATION-001`, and `packet_id=DPL-DIGITAL-TWIN-BASELINE-001` for branches that materially change coalition release confidence, cross-domain legality, or combined-force tempo.

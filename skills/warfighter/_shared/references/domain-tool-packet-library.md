@@ -12632,3 +12632,115 @@ validation_gates:
 - output_schema: sleep recovery matrix, shift redesign ladder, fatigue risk heatmap
 - protocol_profile: HL7/FHIR + signed schedule manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
 - validation_gates: staffing confirmation, protected-rest approval, commander acknowledgment
+
+## Packet Addendum XLIV (2026-03-15, Escalation Control, Regulatory Continuity, Sealift Crewing Risk, Hydrogen Safety, Finance Continuity, Launch Warning Integration, Coalition Digital Twins, Pediatric Reunification, Battle-Damage Contracting, and Robotic Casualty Extraction)
+
+### packet_id: DPL-CEASEFIRE-HOTLINE-ESCALATION-001
+- domain: joint contested ceasefire hotline and escalation control
+- objective: preserve incident traceability and escalation restraint by verifying hotline identity, acknowledgment status, and response branches before action.
+- primary_tools: hotline authentication board, incident-trace ledger, escalation decision workbench
+- alternate_tools: manual call log and readback worksheet
+- degraded_mode: advisory-only incident relay until dual acknowledgment and authority checks are complete
+- input_requirements: incident summary, hotline endpoints, authority matrix, coalition caveats, timing thresholds
+- output_schema: ceasefire incident ladder, acknowledgment-trace ledger, escalation-control branch matrix
+- protocol_profile: USMTF + S/MIME + NIEM + API/JSON + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: endpoint identity confirmation, acknowledgment receipt, command approval
+
+### packet_id: DPL-SPECTRUM-LICENSE-REGULATORY-001
+- domain: theater spectrum license host-nation regulatory and emissions continuity
+- objective: preserve mission emissions without breaking licensing, waiver, or host-nation regulator constraints.
+- primary_tools: spectrum assignment board, waiver-routing tracker, regulator acknowledgment ledger
+- alternate_tools: manual frequency-control board and waiver worksheet
+- degraded_mode: mission-essential emissions only with hourly legal and spectrum-manager review
+- input_requirements: frequency plan, waiver status, host-nation rules, coalition dependencies, mission priorities
+- output_schema: spectrum waiver ladder, emissions continuity matrix, regulator coordination log
+- protocol_profile: NIEM + S/MIME + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: waiver confirmation, regulator acknowledgment, spectrum-manager approval
+
+### packet_id: DPL-MERCHANT-MARINER-FLAG-SANCTIONS-001
+- domain: strategic merchant mariner crewing flag-state and sanctions risk
+- objective: identify when crew scarcity, registry friction, or sanctions exposure will collapse sealift options before cargo release.
+- primary_tools: crewing status board, registry and sanctions monitor, sealift charter priority planner
+- alternate_tools: manual vessel board and compliance worksheet
+- degraded_mode: mission-essential hulls only with manual registry review and daily crew readiness confirmation
+- input_requirements: vessel roster, crewing status, flag registry, sanctions screens, cargo priorities, authority thresholds
+- output_schema: crew and flag risk watchlist, charter fragility map, reroute or reflag branch board
+- protocol_profile: AIS/NMEA + EDI + signed crewing manifests + API/JSON + USMTF
+- validation_gates: crew confirmation, compliance review, mobility approval
+
+### packet_id: DPL-HYDROGEN-PRODUCTION-BLAST-SAFETY-001
+- domain: expeditionary battlefield hydrogen production storage and blast safety
+- objective: keep hydrogen-enabled power available without exceeding ignition, standoff, or ventilation safety limits.
+- primary_tools: hydrogen plant telemetry board, storage standoff planner, ignition-risk monitor
+- alternate_tools: manual hazmat board and ventilation worksheet
+- degraded_mode: minimum-safe production only with dual safety officer review and reduced storage density
+- input_requirements: production status, storage geometry, ventilation state, ignition sources, mission demand, authority thresholds
+- output_schema: hydrogen safety release matrix, refuel-node blast map, production or storage shutdown ladder
+- protocol_profile: OPC UA + signed safety manifests + NIMS/ICS + API/JSON + USMTF
+- validation_gates: safety check, ventilation verification, explosive-safety approval
+
+### packet_id: DPL-DEPLOYED-FINANCE-DISBURSING-001
+- domain: joint deployed finance cash payroll and disbursing continuity
+- objective: sustain pay and cash support without losing custody, reconciliation, or anti-fraud discipline.
+- primary_tools: disbursing ledger, payroll exception tracker, cash custody board
+- alternate_tools: manual ledger and courier reconciliation sheet
+- degraded_mode: mission-essential pay and cash advances only with daily dual-control reconciliation
+- input_requirements: payroll roster, cash position, banking status, courier routes, fraud indicators, authority thresholds
+- output_schema: disbursing continuity plan, cash and payroll risk ledger, local-currency prioritization board
+- protocol_profile: ISO 20022 + signed disbursing manifests + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: custody check, reconciliation confirmation, comptroller approval
+
+### packet_id: DPL-SPACE-LAUNCH-HAZARD-CIVIL-WARNING-001
+- domain: joint space launch hazard area and civil warning integration
+- objective: synchronize launch or reentry hazards with marine, air, and public warning channels before exposure windows open.
+- primary_tools: launch hazard geometry board, civil warning router, corridor closure workbench
+- alternate_tools: manual hazard board and warning call-tree worksheet
+- degraded_mode: launch hold or restricted corridor release only with manual maritime, aviation, and civil readback
+- input_requirements: hazard footprint, launch timeline, corridor status, warning authorities, public-alert channels, authority thresholds
+- output_schema: hazard-area synchronization plan, civil warning acknowledgment ledger, launch-window branch matrix
+- protocol_profile: AIXM/FIXM + AIS/NMEA + CCSDS + EDXL-DE/CAP + API/JSON + USMTF
+- validation_gates: footprint confirmation, warning acknowledgment, launch authority approval
+
+### packet_id: DPL-DIGITAL-TWIN-BASELINE-001
+- domain: coalition mission digital twin configuration baseline reconciliation
+- objective: restore a release-safe common technical picture before divergent coalition models or baselines drive unsafe decisions.
+- primary_tools: digital-twin delta board, configuration baseline ledger, coalition release workbench
+- alternate_tools: manual baseline board and change-control worksheet
+- degraded_mode: frozen release with advisory-only delta reporting until authoritative baseline confirmation
+- input_requirements: baseline manifests, model deltas, coalition release rules, system-of-record ownership, mission timelines
+- output_schema: configuration drift adjudication board, coalition digital-twin delta ledger, release-safe baseline package
+- protocol_profile: signed configuration manifests + API/JSON + OGC + NIEM + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: baseline authority confirmation, coalition concurrence, release approval
+
+### packet_id: DPL-PEDIATRIC-BEHAVIORAL-GUARDIAN-001
+- domain: joint austere pediatric behavioral health and guardian reunification
+- objective: stabilize pediatric distress and preserve child-safe custody until verified guardian reunification or protected transfer is complete.
+- primary_tools: pediatric care-routing board, guardian identity ledger, protected safehaven tracker
+- alternate_tools: manual protected-custody log and pediatric triage worksheet
+- degraded_mode: life-safety and child-protection routing only with manual identity checks and protected voice handoff
+- input_requirements: pediatric case status, guardian leads, identity confidence, care capacity, transport options, authority thresholds
+- output_schema: pediatric behavioral-health triage board, guardian-reunification matrix, protected evacuation ladder
+- protocol_profile: HL7/FHIR + NIEM + signed guardian manifests + API/JSON + S/MIME + USMTF
+- validation_gates: child-safety check, guardian verification, medical or command approval
+
+### packet_id: DPL-BATTLE-DAMAGE-CONTRACTING-VENDOR-001
+- domain: theater battle-damage contracting local vendor vetting and payment
+- objective: accelerate local recovery contracting while controlling fraud, coercion, insider risk, and payment leakage.
+- primary_tools: vendor-risk board, emergency award tracker, payment-integrity ledger
+- alternate_tools: manual vendor board and repair-priority worksheet
+- degraded_mode: mission-essential awards only with dual-control payment release and daily fraud review
+- input_requirements: repair demand, vendor candidates, vetting results, payment channels, corruption indicators, authority thresholds
+- output_schema: emergency local-vendor release board, payment-integrity ledger, battle-damage contracting branch plan
+- protocol_profile: signed vendor manifests + STIX/TAXII + NIEM + API/JSON + USMTF + S/MIME
+- validation_gates: vendor vetting confirmation, payment-control check, contracting approval
+
+### packet_id: DPL-ROBOTIC-CASUALTY-EXTRACTION-001
+- domain: joint robotic casualty extraction human override and safety
+- objective: preserve casualty survival and human control by verifying override timing, route safety, and medic handoff before robotic extraction proceeds.
+- primary_tools: robotic extraction controller, override timing board, casualty handoff tracker
+- alternate_tools: manual litter board and override worksheet
+- degraded_mode: human-only extraction or hold-in-place stabilization until override and route risks are cleared
+- input_requirements: casualty acuity, route status, autonomy confidence, override links, medic capacity, authority thresholds
+- output_schema: robotic extraction safety matrix, override and medic handoff ledger, casualty extraction route board
+- protocol_profile: CoT + VMF + HL7/FHIR + signed autonomy manifests + API/JSON + USMTF
+- validation_gates: override-link check, casualty-stability confirmation, command approval

@@ -164,3 +164,9 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 
 - Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when force-flow confidence depends on crane OT rollback safety, berth recovery, or commercial port automation trust.
 - Add `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001` for recommendations that materially alter berth release, cargo sequencing, or commander sealift confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-strategic-merchant-mariner-crewing-flag-sanctions-risk-v1` + `protocol_stack_id=ps-strategic-merchant-mariner-crewing-flag-sanctions-risk-stack-v1` when afloat sustainment confidence depends on merchant crew availability, registry stability, or sanctions-safe charter release.
+- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when sealift backfill or prepositioning options depend on disbursing continuity, local payment channels, or cash-custody resilience.
+- Add `packet_id=DPL-MERCHANT-MARINER-FLAG-SANCTIONS-001` and `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001` for recommendations that materially alter sealift release, prepositioning confidence, or multimodal sustainment posture.

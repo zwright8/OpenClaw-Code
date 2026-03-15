@@ -12930,3 +12930,107 @@ external_binding:
 ### `ps-theater-sleep-recovery-shift-work-fatigue-restoration-stack-v1`
 - Protocols: `HL7/FHIR`, signed schedule manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
 - Use for: shift-change synchronization, protected-rest updates, fatigue alerts, and staffing-restoration acknowledgments.
+
+## Tool Suite Addendum LV (2026-03-15, Escalation Control, Regulatory Continuity, Sealift Crewing Risk, Hydrogen Safety, Finance Continuity, Launch Warning Integration, Coalition Digital-Twin Reconciliation, Pediatric Reunification, Battle-Damage Contracting, and Robotic Casualty Extraction)
+
+### `ts-joint-contested-ceasefire-hotline-escalation-control-v1`
+- Use for: ceasefire hotline routing, incident acknowledgment, and escalation-control branches when tactical friction risks strategic spillover.
+- Primary tools: hotline authentication board, incident-trace ledger, escalation decision workbench.
+- Cross-check tools: independent readback witness and alternate diplomatic or coalition liaison log.
+- Typical products: ceasefire incident ladder, acknowledgment-trace ledger, and escalation-control branch matrix.
+
+### `ts-theater-spectrum-license-host-nation-regulatory-emissions-continuity-v1`
+- Use for: emergency spectrum waivers, host-nation regulatory coordination, and emissions continuity when licensing and waiver processes lag operations.
+- Primary tools: spectrum assignment board, waiver-routing tracker, regulator acknowledgment ledger.
+- Cross-check tools: independent frequency manager witness and alternate civil-aviation deconfliction log.
+- Typical products: spectrum waiver ladder, emissions continuity matrix, and regulator coordination log.
+
+### `ts-strategic-merchant-mariner-crewing-flag-sanctions-risk-v1`
+- Use for: crew availability, flag-state exposure, and sanctions risk before strategic sealift or charter capacity is lost.
+- Primary tools: crewing status board, registry and sanctions monitor, sealift charter priority planner.
+- Cross-check tools: independent insurer or owner-status witness and alternate port-state control log.
+- Typical products: crew and flag risk watchlist, charter fragility map, and reroute or reflag branch board.
+
+### `ts-expeditionary-hydrogen-production-storage-blast-safety-v1`
+- Use for: hydrogen generation, storage, and explosive-safety governance at forward bases using fuel cells or electrolysis.
+- Primary tools: hydrogen plant telemetry board, storage standoff planner, ignition-risk monitor.
+- Cross-check tools: independent explosive-safety witness and alternate engineer ventilation board.
+- Typical products: hydrogen safety release matrix, refuel-node blast map, and production or storage shutdown ladder.
+
+### `ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1`
+- Use for: disbursing, payroll continuity, and cash accountability when banking rails or local-currency access fail in theater.
+- Primary tools: disbursing ledger, payroll exception tracker, cash custody board.
+- Cross-check tools: independent comptroller witness and alternate courier reconciliation log.
+- Typical products: disbursing continuity plan, cash and payroll risk ledger, and local-currency prioritization board.
+
+### `ts-joint-space-launch-hazard-area-civil-warning-integration-v1`
+- Use for: launch or reentry hazard synchronization with civil marine, aviation, and public-warning channels.
+- Primary tools: launch hazard geometry board, civil warning router, corridor closure workbench.
+- Cross-check tools: independent range-safety witness and alternate harbor or FAA coordination log.
+- Typical products: hazard-area synchronization plan, civil warning acknowledgment ledger, and launch-window branch matrix.
+
+### `ts-coalition-mission-digital-twin-baseline-reconciliation-v1`
+- Use for: coalition model drift, baseline reconciliation, and release-safe common technical picture restoration.
+- Primary tools: digital-twin delta board, configuration baseline ledger, coalition release workbench.
+- Cross-check tools: independent system-of-record witness and alternate change-control audit log.
+- Typical products: configuration drift adjudication board, coalition digital-twin delta ledger, and release-safe baseline package.
+
+### `ts-joint-austere-pediatric-behavioral-health-guardian-reunification-v1`
+- Use for: pediatric behavioral-health triage, guardian identification, and protected reunification during austere operations or evacuation.
+- Primary tools: pediatric care-routing board, guardian identity ledger, protected safehaven tracker.
+- Cross-check tools: independent child-protection witness and alternate casualty-assistance coordination log.
+- Typical products: pediatric behavioral-health triage board, guardian-reunification matrix, and protected evacuation ladder.
+
+### `ts-theater-battle-damage-contracting-vendor-vetting-payment-v1`
+- Use for: emergency local contracting, vendor vetting, and payment integrity during battle-damage recovery.
+- Primary tools: vendor-risk board, emergency award tracker, payment-integrity ledger.
+- Cross-check tools: independent counterintelligence or anti-corruption witness and alternate repair-priority log.
+- Typical products: emergency local-vendor release board, payment-integrity ledger, and battle-damage contracting branch plan.
+
+### `ts-joint-robotic-casualty-extraction-human-override-safety-v1`
+- Use for: robotic casualty extraction, human override governance, and medic handoff safety under fire, collapse, or contamination conditions.
+- Primary tools: robotic extraction controller, override timing board, casualty handoff tracker.
+- Cross-check tools: independent medic or safety observer witness and alternate route-clearance log.
+- Typical products: robotic extraction safety matrix, override and medic handoff ledger, and casualty extraction route board.
+
+## Protocol Stack Addendum LV (2026-03-15, External Integration Profiles for Expansion Wave LV)
+
+### `ps-joint-contested-ceasefire-hotline-escalation-control-stack-v1`
+- Protocols: `USMTF`, `S/MIME`, `NIEM`, `API/JSON`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: incident notifications, hotline acknowledgment routing, and escalation-control decision traceability.
+
+### `ps-theater-spectrum-license-host-nation-regulatory-emissions-continuity-stack-v1`
+- Protocols: `NIEM`, `S/MIME`, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: waiver exchange, regulator acknowledgment, and emergency emissions-control routing.
+
+### `ps-strategic-merchant-mariner-crewing-flag-sanctions-risk-stack-v1`
+- Protocols: `AIS/NMEA`, `EDI`, signed crewing manifests, `API/JSON`, `USMTF`.
+- Use for: crew-status updates, registry or sanctions alerts, and sealift-priority acknowledgments.
+
+### `ps-expeditionary-hydrogen-production-storage-blast-safety-stack-v1`
+- Protocols: `OPC UA`, signed safety manifests, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Use for: production telemetry, ignition-hazard alerts, and shutdown or restart approvals.
+
+### `ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1`
+- Protocols: `ISO 20022`, signed disbursing manifests, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: payroll status exchange, cash-custody routing, and emergency disbursing approvals.
+
+### `ps-joint-space-launch-hazard-area-civil-warning-integration-stack-v1`
+- Protocols: `AIXM/FIXM`, `AIS/NMEA`, `CCSDS`, `EDXL-DE/CAP`, `API/JSON`, `USMTF`.
+- Use for: launch-hazard exchange, marine and air corridor closures, and public-warning acknowledgments.
+
+### `ps-coalition-mission-digital-twin-baseline-reconciliation-stack-v1`
+- Protocols: signed configuration manifests, `API/JSON`, `OGC`, `NIEM`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: baseline delta exchange, coalition change-control acknowledgments, and rollback or release decisions.
+
+### `ps-joint-austere-pediatric-behavioral-health-guardian-reunification-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed guardian manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: pediatric triage exchange, guardian-status updates, and protected transport acknowledgments.
+
+### `ps-theater-battle-damage-contracting-vendor-vetting-payment-stack-v1`
+- Protocols: signed vendor manifests, `STIX/TAXII`, `NIEM`, `API/JSON`, `USMTF`, `S/MIME`.
+- Use for: vendor-risk updates, emergency award routing, and payment-release acknowledgments.
+
+### `ps-joint-robotic-casualty-extraction-human-override-safety-stack-v1`
+- Protocols: `CoT`, `VMF`, `HL7/FHIR`, signed autonomy manifests, `API/JSON`, `USMTF`.
+- Use for: extraction status, override-control exchange, and medic-handoff acknowledgments.

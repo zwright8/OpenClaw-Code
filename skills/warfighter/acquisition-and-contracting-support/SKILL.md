@@ -144,3 +144,8 @@ Primary products for this skill: acquisition action plan, requirement package ou
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-theater-battle-damage-contracting-vendor-vetting-payment-v1` + `protocol_stack_id=ps-theater-battle-damage-contracting-vendor-vetting-payment-stack-v1` when acquisition posture depends on rapid local vendor vetting, insider-risk suppression, or payment-integrity control during battle-damage recovery.
+- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when contracting feasibility depends on disbursing continuity, local-currency access, or auditable emergency payments.
+- Add `packet_id=DPL-BATTLE-DAMAGE-CONTRACTING-VENDOR-001` and `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001` for branches that materially alter vendor release, payment timing, or commander confidence in emergency acquisition.

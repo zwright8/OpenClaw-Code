@@ -287,3 +287,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1` + `protocol_stack_id=ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1` when housing habitability, barracks relocation, or respiratory-risk controls materially affect force availability and throughput.
 - Add `tool_suite_id=ts-joint-foot-health-trench-foot-load-bearing-readiness-v1` + `protocol_stack_id=ps-joint-foot-health-trench-foot-load-bearing-readiness-stack-v1` when boot or sock resupply, march endurance, or immersion-foot risk directly changes force-flow confidence.
 - Add `packet_id=DPL-REPRODUCTIVE-HEALTH-STI-READINESS-001`, `packet_id=DPL-BARRACKS-HVAC-MOLD-IAQ-001`, and `packet_id=DPL-FOOT-HEALTH-TRENCH-FOOT-001` for branches that materially alter protected-medical sustainment, housing posture, or movement endurance.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-hydrogen-production-storage-blast-safety-v1` + `protocol_stack_id=ps-expeditionary-hydrogen-production-storage-blast-safety-stack-v1` when sustainment posture depends on hydrogen-enabled power continuity, standoff controls, or explosive-safety limits at forward nodes.
+- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when cash handling, payroll continuity, or disbursing resilience directly affects sustainment labor and contractor throughput.
+- Add `tool_suite_id=ts-theater-battle-damage-contracting-vendor-vetting-payment-v1` + `protocol_stack_id=ps-theater-battle-damage-contracting-vendor-vetting-payment-stack-v1` when sustainment recovery depends on rapid local contracting, fraud-resistant payment, or vendor trust under battle damage.
+- Add `packet_id=DPL-HYDROGEN-PRODUCTION-BLAST-SAFETY-001`, `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001`, and `packet_id=DPL-BATTLE-DAMAGE-CONTRACTING-VENDOR-001` for branches that materially alter energy continuity, sustainment labor confidence, or recovery throughput.
