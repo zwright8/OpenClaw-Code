@@ -278,3 +278,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when degraded network paths increase the risk of stale or spoofed digital tasking during failover execution.
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when mission continuity depends on rerouting through strategic SATCOM or SDA ground nodes with scarce RF-chain components.
 - Add `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-SPACE-GROUND-STATION-TWT-001` for branches that materially change mission-service restoration, command trust, or strategic-network reachback posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-license-offline-activation-v1` + `protocol_stack_id=ps-theater-mission-license-offline-activation-stack-v1` when failover viability depends on offline activation, cached entitlements, or vendor-license denial.
+- Add `packet_id=DPL-MISSION-LICENSE-OFFLINE-ACTIVATION-001` for branches that materially alter trusted restoration order, service uptime, or mission-software release posture.

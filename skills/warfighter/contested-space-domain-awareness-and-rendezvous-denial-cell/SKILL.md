@@ -72,3 +72,8 @@ Preferred protocol families for this skill: CCSDS, USMTF, STIX/TAXII, API/JSON.
 - Add `tool_suite_id=ts-joint-commercial-sat-imagery-retask-governance-v1` + `protocol_stack_id=ps-joint-commercial-sat-imagery-retask-governance-stack-v1` when space-domain awareness depends on commercial imagery access, retask priority, or rapid fallback from denied collection windows.
 - Add `tool_suite_id=ts-joint-tactical-edge-dataset-provenance-rollback-v1` + `protocol_stack_id=ps-joint-tactical-edge-dataset-provenance-rollback-stack-v1` when custody models or edge-fused track datasets require provenance rollback before maneuver or denial recommendations.
 - Add `packet_id=DPL-COMMERCIAL-SAT-IMAGERY-RETASK-001` and `packet_id=DPL-TACTICAL-EDGE-DATASET-ROLLBACK-001` for recommendations that materially alter orbital custody confidence, track trust, or maneuver-release timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-space-electrostatic-charging-safe-mode-recovery-v1` + `protocol_stack_id=ps-space-electrostatic-charging-safe-mode-recovery-stack-v1` when contested-space awareness depends on charging risk, safe-mode exit confidence, or service-restoration timing.
+- Add `packet_id=DPL-SPACE-CHARGING-SAFE-MODE-001` for branches that materially alter recovery posture, custody confidence, or mission-service prioritization.

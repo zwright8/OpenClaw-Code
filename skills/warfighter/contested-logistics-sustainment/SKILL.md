@@ -274,3 +274,8 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 
 - Add `tool_suite_id=ts-theater-property-book-sensitive-item-recapture-v1` + `protocol_stack_id=ps-theater-property-book-sensitive-item-recapture-stack-v1` when sustainment feasibility depends on recovering or denying compromised vehicles, weapons, optics, crypto, or other accountable materiel.
 - Add `packet_id=DPL-PROPERTY-BOOK-SENSITIVE-ITEM-RECAPTURE-001` for branches that materially alter accountability confidence, reissue timing, or commander acceptance of compromise risk.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-theater-ammunition-yard-fire-compatibility-v1` + `protocol_stack_id=ps-theater-ammunition-yard-fire-compatibility-stack-v1` when sustainment feasibility depends on ammunition-yard survivability, emergency separation, or alternate issue-point activation.
+- Add `packet_id=DPL-AMMUNITION-YARD-FIRE-COMPATIBILITY-001` for branches that materially alter munitions availability, force-protection posture, or depot throughput.

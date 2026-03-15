@@ -12362,3 +12362,93 @@ validation_gates:
 - output_schema: dignified-transfer timeline, family escort support matrix, funeral honors execution board
 - protocol_profile: HL7/FHIR + NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - validation_gates: casualty-accountability confirmation, custody verification, command approval
+
+## Packet Addendum XLIX (2026-03-15, Renal Continuity, Fatigue Governance, Wildland Airspace, Mission Licensing, Littoral Trafficability, Space Safe-Mode Recovery, Ammunition Yard Fire, and Captured Media Escalation)
+
+### packet_id: DPL-RENAL-CRUSH-SURGE-001
+- domain: expeditionary renal replacement and crush injury surge
+- objective: preserve life by aligning crush-syndrome triage, renal support, consumables, and transfer timing under austere conditions.
+- primary_tools: critical-care flowsheet, chemistry and urine-output board, dialysis-device status ledger, med-log consumables tracker
+- alternate_tools: manual electrolyte board and casualty transfer worksheet
+- degraded_mode: lifesaving triage and manual electrolyte-control board only with command-approved transfer prioritization
+- input_requirements: casualty count, crush duration, renal indicators, device status, consumable inventory, transport options
+- output_schema: renal replacement triage ladder, consumables burn-down board, transfer priority matrix
+- protocol_profile: HL7/FHIR + signed device manifests + API/JSON + USMTF + NIEM
+- validation_gates: clinical review, device readiness check, transfer approval
+
+### packet_id: DPL-CIRCADIAN-WATCHBILL-001
+- domain: theater circadian fatigue and watchbill optimization
+- objective: maintain decision quality and safety by reshaping duty cycles before fatigue debt turns into mission error.
+- primary_tools: fatigue analytics board, watchbill scheduler, sleep-debt tracker, incident-risk monitor
+- alternate_tools: manual watchbill board and crew-rest worksheet
+- degraded_mode: manual watchbill board with conservative crew-rest windows and command-approved risk acceptance
+- input_requirements: roster, duty cycle, sleep opportunity, mission-critical billets, incident history, authority thresholds
+- output_schema: fatigue risk board, watchbill redesign matrix, countermeasure approval ladder
+- protocol_profile: HL7/FHIR + signed sensor manifests + API/JSON + USMTF + NIEM
+- validation_gates: fatigue-threshold review, staffing approval, command acknowledgment
+
+### packet_id: DPL-WILDLAND-FIRE-AIRSPACE-RETARDANT-001
+- domain: homeland wildland fire airspace and retardant priority
+- objective: protect lives and critical sites by aligning DSCA aviation, smoke-driven airspace management, and retardant allocation under fire growth.
+- primary_tools: incident-command dashboard, air tanker dispatch board, smoke and plume model, retardant stock ledger
+- alternate_tools: manual airspace board and retardant allocation worksheet
+- degraded_mode: life-safety-first airspace board with manual retardant accounting and command-approved sortie holds
+- input_requirements: incident map, airspace restrictions, aircraft availability, retardant stock, smoke forecast, protected-site priorities
+- output_schema: airspace priority matrix, retardant allocation ladder, smoke impact mission board
+- protocol_profile: NIMS/ICS + AIXM/FIXM + CAP + OGC + API/JSON + USMTF
+- validation_gates: airspace review, civil-agency concurrence, aviation approval
+
+### packet_id: DPL-MISSION-LICENSE-OFFLINE-ACTIVATION-001
+- domain: theater mission software license and offline activation continuity
+- objective: sustain mission-system uptime by routing entitlements, offline activations, and trusted fallbacks before software denial cascades.
+- primary_tools: license-server health board, entitlement vault, offline activation ledger, trusted build release board
+- alternate_tools: manual entitlement worksheet and software allowlist board
+- degraded_mode: mission-essential services only with manual entitlement ledger and preapproved binary allowlist
+- input_requirements: affected platforms, entitlement state, offline options, release backlog, disconnected nodes, authority thresholds
+- output_schema: activation continuity ledger, entitlement decision matrix, fallback allowlist
+- protocol_profile: signed entitlement manifests + X.509 + API/JSON + STIX/TAXII + USMTF
+- validation_gates: entitlement confirmation, rollback review, release approval
+
+### packet_id: DPL-SURF-ZONE-BREACH-TRAFFICABILITY-001
+- domain: joint amphibious surf-zone breach and beach trafficability
+- objective: accelerate littoral entry by synchronizing hydrography, obstacle reduction, and shore throughput without overcommitting to a failing beach.
+- primary_tools: hydrographic surf model, obstacle breach board, beach trafficability assessor, shore-party flow tracker
+- alternate_tools: manual surf board and breach-status worksheet
+- degraded_mode: beach-by-beach manual release board with conservative surf windows and reduced throughput assumptions
+- input_requirements: surf state, hydrographic data, obstacle belts, landing wave plan, shore capacity, authority thresholds
+- output_schema: surf-zone breach matrix, beach trafficability board, landing-wave timing ladder
+- protocol_profile: OGC + AIS/NMEA + VMF + CoT + signed hydrographic manifests + USMTF
+- validation_gates: hydrographic confidence check, breach review, landing approval
+
+### packet_id: DPL-SPACE-CHARGING-SAFE-MODE-001
+- domain: space electrostatic charging and satellite safe-mode recovery
+- objective: restore critical space services by routing safe-mode recovery around charging hazards, limited contacts, and downstream mission priorities.
+- primary_tools: spacecraft health board, charging-environment predictor, ground-station scheduler, service-priority ledger
+- alternate_tools: manual telemetry board and contact-window worksheet
+- degraded_mode: conservative safe-mode hold with manually prioritized service restoration and longer contact spacing
+- input_requirements: affected payloads, charging indicators, telemetry state, contact windows, service priorities, authority thresholds
+- output_schema: charging risk board, safe-mode recovery timeline, service restoration priority matrix
+- protocol_profile: CCSDS + signed telemetry manifests + API/JSON + OGC + USMTF
+- validation_gates: telemetry integrity check, engineering review, recovery approval
+
+### packet_id: DPL-AMMUNITION-YARD-FIRE-COMPATIBILITY-001
+- domain: theater ammunition yard fire and compatibility
+- objective: suppress sympathetic detonation risk by aligning isolation, compatibility separation, and relocation sequencing under fire.
+- primary_tools: quantity-distance calculator, storage-site planner, fire spread board, lot-serviceability ledger
+- alternate_tools: manual blast-arc worksheet and relocation board
+- degraded_mode: yard closure with manual blast-arc board, restricted firefighting exposure, and command-approved emergency issue routing
+- input_requirements: storage layout, compatibility groups, NEW values, fire status, relocation assets, authority thresholds
+- output_schema: yard fire isolation sequence, compatibility separation board, munitions relocation matrix
+- protocol_profile: OGC + signed storage manifests + NIEM + API/JSON + USMTF + CoT
+- validation_gates: explosive-safety review, fire-access check, command approval
+
+### packet_id: DPL-CAPTURED-MEDIA-VIRAL-ESCALATION-001
+- domain: joint captured media exploitation and viral escalation
+- objective: exploit operationally useful media while preventing manipulated or emotionally catalytic content from triggering avoidable escalation.
+- primary_tools: media provenance verifier, translation and transcription board, adversary narrative monitor, evidence-custody ledger
+- alternate_tools: manual provenance worksheet and release review board
+- degraded_mode: hold media by default with manual provenance review and commander-approved text-only summaries
+- input_requirements: media source, custody chain, language context, exploitation value, release authority, audience effects
+- output_schema: captured-media exploitation board, viral escalation ladder, release-or-withhold matrix
+- protocol_profile: signed media manifests + STANAG 4609 aligned exchange + S/MIME + API/JSON + STIX/TAXII + USMTF
+- validation_gates: provenance verification, legal review, release approval

@@ -149,3 +149,7 @@ Use these tool categories as the default stack for this skill: patient regulatio
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-renal-replacement-crush-surge-v1` + `protocol_stack_id=ps-expeditionary-renal-replacement-crush-surge-stack-v1` when austere surgical recommendations depend on crush-syndrome triage, dialysis-device continuity, or electrolyte-control timing.
+- Add `packet_id=DPL-RENAL-CRUSH-SURGE-001` for branches that materially alter surgical triage, transfer release, or prolonged-field-care posture.

@@ -12678,3 +12678,87 @@ external_binding:
 ### `ps-joint-dignified-transfer-funeral-honors-family-escort-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Use for: dignified-transfer status, escort coordination, and family-support acknowledgment tracking.
+
+## Tool Suite Addendum LX (2026-03-15, Renal Continuity, Fatigue Governance, Wildland Airspace, Mission Licensing, Littoral Trafficability, Space Safe-Mode Recovery, Ammunition Yard Fire, and Captured Media Escalation)
+
+### `ts-expeditionary-renal-replacement-crush-surge-v1`
+- Use for: crush-syndrome triage, austere renal replacement, consumable burn-down, and casualty transfer sequencing.
+- Primary tools: critical-care flowsheet, chemistry and urine-output board, dialysis-device status ledger, med-log consumables tracker.
+- Cross-check tools: independent nephrology reachback cell and alternate evacuation regulation board.
+- Typical products: renal replacement triage ladder, consumables burn-down board, transfer priority matrix.
+
+### `ts-theater-circadian-fatigue-watchbill-v1`
+- Use for: fatigue-risk scoring, watchbill redesign, stimulant-governance controls, and sustained-operations safety decisions.
+- Primary tools: fatigue analytics board, watchbill scheduler, sleep-debt tracker, incident-risk monitor.
+- Cross-check tools: independent flight-medicine or force-health review cell and alternate unit readiness board.
+- Typical products: watchbill redesign matrix, fatigue risk board, countermeasure approval ladder.
+
+### `ts-homeland-wildland-fire-airspace-retardant-priority-v1`
+- Use for: DSCA wildland-fire airspace deconfliction, retardant allocation, smoke-driven sortie tradeoffs, and protected-site support.
+- Primary tools: incident-command dashboard, air tanker dispatch board, smoke and plume model, retardant stock ledger.
+- Cross-check tools: independent airspace control board and alternate state emergency operations cell.
+- Typical products: airspace priority matrix, retardant allocation ladder, smoke impact board.
+
+### `ts-theater-mission-license-offline-activation-v1`
+- Use for: mission-software licensing continuity, offline activation, entitlement escrow, and fallback trusted-release decisions.
+- Primary tools: license-server health board, entitlement vault, offline activation ledger, trusted build release board.
+- Cross-check tools: independent cyber response cell and alternate mission-software rollback board.
+- Typical products: activation continuity ledger, entitlement decision matrix, fallback allowlist.
+
+### `ts-joint-amphibious-surf-zone-breach-trafficability-v1`
+- Use for: surf-zone breach progress, beach trafficability, landing-wave timing, and shore-party throughput.
+- Primary tools: hydrographic surf model, obstacle breach board, beach trafficability assessor, shore-party flow tracker.
+- Cross-check tools: independent beachmaster cell and alternate engineer mobility board.
+- Typical products: surf-zone breach matrix, beach trafficability board, landing-wave timing ladder.
+
+### `ts-space-electrostatic-charging-safe-mode-recovery-v1`
+- Use for: electrostatic-charging assessment, safe-mode recovery, contact-window reprioritization, and service restoration.
+- Primary tools: spacecraft health board, charging-environment predictor, ground-station scheduler, service-priority ledger.
+- Cross-check tools: independent spacecraft bus engineering desk and alternate SDA timing monitor.
+- Typical products: charging risk board, safe-mode recovery timeline, service restoration matrix.
+
+### `ts-theater-ammunition-yard-fire-compatibility-v1`
+- Use for: ammunition-yard fire isolation, explosive compatibility separation, relocation sequencing, and emergency issue-point replan.
+- Primary tools: quantity-distance calculator, storage-site planner, fire spread board, lot-serviceability ledger.
+- Cross-check tools: independent explosive-safety witness and alternate force-protection standoff board.
+- Typical products: yard fire isolation sequence, compatibility separation board, munitions relocation matrix.
+
+### `ts-joint-captured-media-exploitation-viral-escalation-v1`
+- Use for: captured-media authenticity, exploitation prioritization, viral-escalation risk scoring, and release-or-hold decisions.
+- Primary tools: media provenance verifier, translation and transcription board, adversary narrative monitor, evidence-custody ledger.
+- Cross-check tools: independent legal review cell and alternate public-affairs authenticity board.
+- Typical products: captured-media exploitation board, viral-escalation ladder, release-or-withhold matrix.
+
+## Protocol Stack Addendum LX (2026-03-15, External Integration Profiles for Expansion Wave LX)
+
+### `ps-expeditionary-renal-replacement-crush-surge-stack-v1`
+- Protocols: `HL7/FHIR`, signed device manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Use for: renal-device status exchange, lab-result routing, consumables resupply, and casualty transfer acknowledgments.
+
+### `ps-theater-circadian-fatigue-watchbill-stack-v1`
+- Protocols: `HL7/FHIR`, signed sensor manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Use for: duty-cycle updates, fatigue alerts, countermeasure approvals, and cross-unit watchbill synchronization.
+
+### `ps-homeland-wildland-fire-airspace-retardant-priority-stack-v1`
+- Protocols: `NIMS/ICS`, `AIXM/FIXM`, `CAP`, `OGC`, `API/JSON`, `USMTF`.
+- Use for: airspace status exchange, retardant-priority routing, smoke-impact updates, and DSCA aviation tasking.
+
+### `ps-theater-mission-license-offline-activation-stack-v1`
+- Protocols: signed entitlement manifests, `X.509`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: entitlement-state exchange, offline activation approval, license failure alerts, and trusted-release coordination.
+
+### `ps-joint-amphibious-surf-zone-breach-trafficability-stack-v1`
+- Protocols: `OGC`, `AIS/NMEA`, `VMF`, `CoT`, signed hydrographic manifests, `USMTF`.
+- Use for: surf and hydrographic updates, breach-status exchange, beach-release timing, and shore-traffic control.
+
+### `ps-space-electrostatic-charging-safe-mode-recovery-stack-v1`
+- Protocols: `CCSDS`, signed telemetry manifests, `API/JSON`, `OGC`, `USMTF`.
+- Use for: charging-environment updates, safe-mode telemetry exchange, ground-contact replan, and service-restoration acknowledgments.
+
+### `ps-theater-ammunition-yard-fire-compatibility-stack-v1`
+- Protocols: `OGC`, signed storage manifests, `NIEM`, `API/JSON`, `USMTF`, `CoT`.
+- Use for: blast-arc overlays, compatibility updates, fire-isolation routing, and emergency issue-point notifications.
+
+### `ps-joint-captured-media-exploitation-viral-escalation-stack-v1`
+- Protocols: signed media manifests, `STANAG 4609` aligned exchange, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: media-provenance verification, exploitation routing, viral-risk dissemination, and release-or-hold acknowledgments.

@@ -2320,3 +2320,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-multi-theater-casualty-family-notification-integrity-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Degraded fallback: essential custody and family-contact continuity only with manual honors coordination and protected identity handling.
+
+## Profile Addendum AD (2026-03-15, Renal Continuity, Fatigue Governance, Wildland Airspace, Mission Licensing, Littoral Trafficability, Space Safe-Mode Recovery, Ammunition Yard Fire, and Captured Media Escalation)
+
+### `renal-replacement-crush-surge-v1`
+- Use for: medical and prolonged-field-care decisions when crush injuries, renal failure, or dialysis consumables determine survivability and evacuation order.
+- Primary tools: `ts-expeditionary-renal-replacement-crush-surge-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed device manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: lifesaving triage and manual electrolyte-control board only with command-approved transfer prioritization.
+
+### `circadian-fatigue-watchbill-v1`
+- Use for: command and readiness decisions when fatigue debt, crew-rest erosion, or watchbill fragility threaten safe mission tempo.
+- Primary tools: `ts-theater-circadian-fatigue-watchbill-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed sensor manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Degraded fallback: manual watchbill board with conservative crew-rest windows and command-approved risk acceptance.
+
+### `wildland-fire-airspace-retardant-v1`
+- Use for: DSCA aviation and base-protection decisions when wildland fire, smoke, and retardant scarcity compete with military airspace priorities.
+- Primary tools: `ts-homeland-wildland-fire-airspace-retardant-priority-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `NIMS/ICS`, `AIXM/FIXM`, `CAP`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety-first airspace board with manual retardant accounting and command-approved sortie holds.
+
+### `mission-license-offline-activation-v1`
+- Use for: mission-system continuity decisions when license failure, disconnected operation, or vendor dependence threatens operational uptime.
+- Primary tools: `ts-theater-mission-license-offline-activation-v1`.
+- Cross-check tools: `ts-cyber-defense-v1`.
+- Protocols: signed entitlement manifests, `X.509`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: mission-essential services only with manual entitlement ledger and preapproved binary allowlist.
+
+### `surf-zone-breach-trafficability-v1`
+- Use for: littoral-entry decisions when hydrography, obstacle reduction, and beach trafficability determine landing-wave release timing.
+- Primary tools: `ts-joint-amphibious-surf-zone-breach-trafficability-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `OGC`, `AIS/NMEA`, `VMF`, `CoT`, signed hydrographic manifests, `USMTF`.
+- Degraded fallback: beach-by-beach manual release board with conservative surf windows and reduced throughput assumptions.
+
+### `space-charging-safe-mode-recovery-v1`
+- Use for: space-operations decisions when electrostatic charging, safe-mode entry, or limited contact windows threaten service restoration tempo.
+- Primary tools: `ts-space-electrostatic-charging-safe-mode-recovery-v1`.
+- Cross-check tools: `ts-space-satcom-v1`.
+- Protocols: `CCSDS`, signed telemetry manifests, `API/JSON`, `OGC`, `USMTF`.
+- Degraded fallback: conservative safe-mode hold with manually prioritized service restoration and longer contact spacing.
+
+### `ammunition-yard-fire-compatibility-v1`
+- Use for: sustainment and force-protection decisions when burning or threatened munitions demand compatibility separation and emergency relocation.
+- Primary tools: `ts-theater-ammunition-yard-fire-compatibility-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `OGC`, signed storage manifests, `NIEM`, `API/JSON`, `USMTF`, `CoT`.
+- Degraded fallback: yard closure with manual blast-arc board, restricted firefighting exposure, and command-approved emergency issue routing.
+
+### `captured-media-viral-escalation-v1`
+- Use for: information, legal, and release-governance decisions when seized or battlefield media could trigger viral escalation or compromise operations.
+- Primary tools: `ts-joint-captured-media-exploitation-viral-escalation-v1`.
+- Cross-check tools: `ts-disinformation-counter-v1`.
+- Protocols: signed media manifests, `STANAG 4609` aligned exchange, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Degraded fallback: hold media by default with manual provenance review and commander-approved text-only summaries.

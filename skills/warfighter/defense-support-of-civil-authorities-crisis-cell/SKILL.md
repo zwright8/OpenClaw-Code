@@ -148,3 +148,8 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 
 - Add `tool_suite_id=ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1` + `protocol_stack_id=ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1` when DSCA recommendations depend on trusted warning release, PSAP continuity, or mass-notification authenticity under telecom stress.
 - Add `packet_id=DPL-HOMELAND-911-CELL-BROADCAST-AUTHENTICATION-MASS-NOTIFICATION-CONTINUITY-001` for branches that materially alter public-warning posture, alert release timing, or 911 mutual-aid requests.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-homeland-wildland-fire-airspace-retardant-priority-v1` + `protocol_stack_id=ps-homeland-wildland-fire-airspace-retardant-priority-stack-v1` when DSCA support depends on military airspace reprioritization, retardant scarcity, or smoke-driven sortie tradeoffs.
+- Add `packet_id=DPL-WILDLAND-FIRE-AIRSPACE-RETARDANT-001` for branches that materially alter aviation support posture, airspace release timing, or protected-site prioritization.

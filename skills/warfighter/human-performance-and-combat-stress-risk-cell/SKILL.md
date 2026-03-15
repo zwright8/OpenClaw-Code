@@ -145,3 +145,7 @@ Primary products for this skill: unit stress-risk heatmap, performance preservat
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-theater-circadian-fatigue-watchbill-v1` + `protocol_stack_id=ps-theater-circadian-fatigue-watchbill-stack-v1` when readiness recommendations depend on shift redesign, fatigue debt, or countermeasure policy.
+- Add `packet_id=DPL-CIRCADIAN-WATCHBILL-001` for branches that materially alter crew-rest posture, watchbill sequencing, or commander risk acceptance.

@@ -148,3 +148,8 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 
 - Add `tool_suite_id=ts-joint-combat-camera-public-affairs-release-authenticity-v1` + `protocol_stack_id=ps-joint-combat-camera-public-affairs-release-authenticity-stack-v1` when public-release decisions depend on trusted media provenance, deepfake rebuttal, or synchronized combat-camera custody.
 - Add `packet_id=DPL-COMBAT-CAMERA-PA-RELEASE-AUTH-001` for branches that materially alter release timing, attribution confidence, or public narrative credibility.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-joint-captured-media-exploitation-viral-escalation-v1` + `protocol_stack_id=ps-joint-captured-media-exploitation-viral-escalation-stack-v1` when operational-communications decisions depend on exploiting seized media, controlling viral spread, or sequencing rebuttal releases.
+- Add `packet_id=DPL-CAPTURED-MEDIA-VIRAL-ESCALATION-001` for branches that materially alter release posture, narrative risk, or commander approval timing.
