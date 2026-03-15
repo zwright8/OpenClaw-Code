@@ -1,0 +1,4 @@
+interface:
+  display_name: "Launch Toxic Plume Protection"
+  short_description: "Manage toxic launch plumes and public protection."
+  default_prompt: "Use $joint-launch-toxic-propellant-cloud-public-protection-cell to assess toxic propellant release hazards, shelter or evacuation branches, and launch protection decisions."

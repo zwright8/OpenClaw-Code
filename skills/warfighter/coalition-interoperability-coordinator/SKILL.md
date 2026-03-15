@@ -353,3 +353,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-human-remains-dna-custody-cross-border-release-v1` + `protocol_stack_id=ps-coalition-human-remains-dna-custody-cross-border-release-stack-v1` when coalition interoperability depends on shared mortuary custody standards, DNA confidence, or cross-border release legitimacy.
 - Add `tool_suite_id=ts-coalition-ration-dietary-compliance-allergen-assurance-v1` + `protocol_stack_id=ps-coalition-ration-dietary-compliance-allergen-assurance-stack-v1` when combined sustainment depends on harmonized allergen controls, medical diets, or religious-feeding caveats.
 - Add `packet_id=DPL-HUMAN-REMAINS-DNA-001` and `packet_id=DPL-RATION-ALLERGEN-001` for branches that materially change coalition release confidence, legal sufficiency, or combined-force sustainment legitimacy.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-coalition-civil-port-labor-strike-sealift-continuity-v1` + `protocol_stack_id=ps-coalition-civil-port-labor-strike-sealift-continuity-stack-v1` when coalition interoperability depends on aligned berth priorities, host-nation labor coordination, or sealift reroute legitimacy.
+- Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when shared mission-AI access depends on releasability discipline, model provenance, or partner guardrail enforcement.
+- Add `tool_suite_id=ts-battlefield-grave-registration-interment-site-integrity-v1` + `protocol_stack_id=ps-battlefield-grave-registration-interment-site-integrity-stack-v1` when combined-force accountability depends on temporary interment-site documentation, protection, or later recovery confidence.
+- Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-COALITION-AI-GUARDRAILS-001`, and `packet_id=DPL-BATTLEFIELD-GRAVE-REGISTRATION-001` for branches that materially change coalition release posture, partner-access trust, or multinational remains-accountability legitimacy.

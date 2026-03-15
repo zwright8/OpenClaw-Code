@@ -1,0 +1,4 @@
+interface:
+  display_name: "Weather Denial Cross-Check"
+  short_description: "Cross-check weather denial against baro risk."
+  default_prompt: "Use $tactical-weather-denial-and-baro-altimetry-cross-check-cell to assess weather-sensor denial, barometric cross-checks, and release-risk implications."

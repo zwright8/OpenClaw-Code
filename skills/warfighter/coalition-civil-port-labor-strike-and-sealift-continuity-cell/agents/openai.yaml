@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coalition Port Labor Continuity"
+  short_description: "Keep sealift moving through port labor shocks."
+  default_prompt: "Use $coalition-civil-port-labor-strike-and-sealift-continuity-cell to assess labor disruption impacts, cargo priority, reroute options, and coalition sealift continuity."

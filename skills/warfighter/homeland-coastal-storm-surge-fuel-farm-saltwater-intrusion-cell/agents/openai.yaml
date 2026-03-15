@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coastal Fuel-Farm Intrusion Response"
+  short_description: "Protect fuel farms from surge and saltwater."
+  default_prompt: "Use $homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-cell to assess surge exposure, saltwater contamination, tank isolation, and military fuel continuity."

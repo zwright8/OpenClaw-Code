@@ -2839,3 +2839,29 @@ Every skill output should include:
 - Theater technical-order digital delta and waiver control + maintenance readiness manager + mission-assured software factory support + air-tasking-cycle-support.
 - Joint public-affairs embargo and sensitive-loss disclosure + public-affairs-operational-communications + joint combat camera public-affairs release authenticity + information integrity and attribution cell.
 - Joint sensitive imagery next-of-kin hold and release + combat-camera-evidence-documentation + joint dignified transfer funeral honors and family escort cell + joint casualty assistance center and family support synchronization cell.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LXVI)
+
+- joint-captured-materiel-exploitation-and-safe-turn-in-cell
+- theater-denied-firmware-attestation-and-loader-sanitization-cell
+- coalition-civil-port-labor-strike-and-sealift-continuity-cell
+- expeditionary-wastewater-graywater-and-vector-control-cell
+- homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-cell
+- strategic-aviation-spares-airworthiness-trust-cell
+- joint-launch-toxic-propellant-cloud-public-protection-cell
+- coalition-ai-foreign-disclosure-and-guardrail-cell
+- battlefield-grave-registration-and-interment-site-integrity-cell
+- tactical-weather-denial-and-baro-altimetry-cross-check-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LXVI)
+
+- Joint captured materiel exploitation and safe turn-in + explosive ordnance disposal coordinator + joint battlefield forensics war-crimes evidence-chain cell + mission risk decision support.
+- Theater denied firmware attestation and loader sanitization + CEMA integration cell + maintenance readiness manager + tactical zero trust network hardening.
+- Coalition civil port labor strike and sealift continuity + contested logistics sustainment + strategic sealift and prepositioning coordinator + coalition interoperability coordinator.
+- Expeditionary wastewater graywater and vector control + preventive medicine and force health protection + expeditionary water purification contamination attribution + defense support of civil authorities crisis cell.
+- Homeland coastal storm surge fuel-farm saltwater intrusion + contested logistics sustainment + operational energy resilience and microgrid cell + defense support of civil authorities crisis cell.
+- Strategic aviation spares airworthiness trust + maintenance readiness manager + strategic industrial mobilization readiness cell + airbase dispersal and rapid reconstitution cell.
+- Joint launch toxic propellant cloud public protection + contested space launch and satellite reconstitution + defense support of civil authorities crisis cell + mission risk decision support.
+- Coalition AI foreign disclosure and guardrail + coalition interoperability coordinator + joint multi-domain AI model assurance and drift response cell + joint special access and compartmented integration cell.
+- Battlefield grave registration and interment site integrity + mortuary affairs and personnel accountability + joint battlefield forensics war-crimes evidence-chain cell + joint dignified transfer funeral honors and family escort cell.
+- Tactical weather denial and baro altimetry cross-check + expeditionary airfield operations + multi-domain degraded weather and fires recalibration cell + air-tasking-cycle-support.

@@ -148,3 +148,8 @@ Primary products for this skill: space reconstitution options brief, launch-read
 
 - Add `tool_suite_id=ts-joint-space-launch-hazard-area-civil-warning-integration-v1` + `protocol_stack_id=ps-joint-space-launch-hazard-area-civil-warning-integration-stack-v1` when launch reconstitution depends on hazard-area synchronization, civil alert integrity, or corridor closure acknowledgments.
 - Add `packet_id=DPL-SPACE-LAUNCH-HAZARD-CIVIL-WARNING-001` for branches that materially alter launch-window release, public-warning posture, or civil-military deconfliction confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-joint-launch-toxic-propellant-cloud-public-protection-v1` + `protocol_stack_id=ps-joint-launch-toxic-propellant-cloud-public-protection-stack-v1` when launch reconstitution depends on toxic-plume confidence, protective-action timing, or downwind public-warning discipline after aborts, fires, or reentry mishaps.
+- Add `packet_id=DPL-LAUNCH-TOXIC-PROPELLANT-CLOUD-001` for branches that materially alter launch resumption, shelter posture, or civil-military deconfliction confidence.

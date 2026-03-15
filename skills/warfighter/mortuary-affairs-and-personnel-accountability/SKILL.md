@@ -148,3 +148,8 @@ Primary products for this skill: personnel accountability ledger, chain-of-custo
 
 - Add `tool_suite_id=ts-joint-dignified-transfer-funeral-honors-family-escort-v1` + `protocol_stack_id=ps-joint-dignified-transfer-funeral-honors-family-escort-stack-v1` when casualty-accountability decisions depend on dignified transfer timing, honors availability, or trusted family-escort continuity.
 - Add `packet_id=DPL-DIGNIFIED-TRANSFER-FUNERAL-HONORS-001` for branches that materially alter casualty dignity, family-support posture, or ceremonial execution confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-battlefield-grave-registration-interment-site-integrity-v1` + `protocol_stack_id=ps-battlefield-grave-registration-interment-site-integrity-stack-v1` when remains accountability depends on temporary interment-site documentation, protected grave registration, or future recovery confidence.
+- Add `packet_id=DPL-BATTLEFIELD-GRAVE-REGISTRATION-001` for branches that materially alter temporary interment, site-protection posture, or later recovery confidence.

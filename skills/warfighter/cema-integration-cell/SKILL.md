@@ -176,3 +176,10 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-theater-offline-mission-planning-malware-quarantine-v1` + `protocol_stack_id=ps-theater-offline-mission-planning-malware-quarantine-stack-v1` when CEMA synchronization depends on trusted offline planning nodes, removable-media custody, or clean rebuild timing after malware suspicion.
 - Add `tool_suite_id=ts-theater-electronic-attack-iff-track-confidence-recovery-v1` + `protocol_stack_id=ps-theater-electronic-attack-iff-track-confidence-recovery-stack-v1` when cyber-electromagnetic branches depend on jamming-aware track trust, IFF restoration, or release-veto timing.
 - Add `packet_id=DPL-OFFLINE-MISSION-PLANNING-MALWARE-001` and `packet_id=DPL-EA-IFF-TRACK-CONFIDENCE-001` for branches that materially change command-path trust, air-defense deconfliction, or cross-domain timing integrity.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-theater-denied-firmware-attestation-loader-sanitization-v1` + `protocol_stack_id=ps-theater-denied-firmware-attestation-loader-sanitization-stack-v1` when cyber-electromagnetic synchronization depends on trusted firmware pedigree, sanitized field loaders, or safe return-to-service of EW or network nodes.
+- Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when CEMA branches depend on coalition AI access boundaries, model provenance, or guardrail enforcement across shared decision aids.
+- Add `tool_suite_id=ts-tactical-weather-denial-baro-altimetry-cross-check-v1` + `protocol_stack_id=ps-tactical-weather-denial-baro-altimetry-cross-check-stack-v1` when jamming or spoofing degrades weather confidence and sortie or fires release depends on alternate barometric cross-checks.
+- Add `packet_id=DPL-DENIED-FIRMWARE-ATTESTATION-001`, `packet_id=DPL-COALITION-AI-GUARDRAILS-001`, and `packet_id=DPL-WEATHER-DENIAL-BARO-CROSSCHECK-001` for branches that materially change cyber trust, partner-access posture, or release timing under sensor denial.

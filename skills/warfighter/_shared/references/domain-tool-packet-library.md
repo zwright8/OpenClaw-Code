@@ -13765,3 +13765,115 @@ validation_gates:
 - output_schema: quality escape containment board, quarantine or recall ladder, retest priority matrix
 - protocol_profile: signed quality manifests + OPC UA + NIEM + API/JSON + USMTF
 - validation_gates: failure-evidence review, traceability confirmation, quarantine-authority approval
+
+## Packet Addendum LV (2026-03-15, Expansion Wave LXVI)
+
+### packet_id: DPL-CAPTURED-MATERIEL-SAFE-TURN-IN-001
+- domain: joint captured materiel exploitation and safe turn-in
+- objective: preserve force safety, intelligence value, and evidentiary integrity while triaging captured enemy materiel for exploitation or transfer.
+- primary_tools: captured-materiel registry, hazard screening board, technical exploitation queue, custody or turn-in ledger
+- alternate_tools: manual capture ledger and dual-witness custody worksheet
+- degraded_mode: isolate materiel in place with manual logging and command-approved movement only after hazard review
+- input_requirements: capture context, item classes, hazard indicators, custody status, exploitation demand, transfer authority
+- output_schema: captured-materiel triage board, hazard isolation matrix, safe turn-in custody packet
+- protocol_profile: NIEM + signed custody manifests + STIX/TAXII + API/JSON + S/MIME + USMTF
+- validation_gates: hazard-characterization pass, custody-chain verification, transfer-authority approval
+
+### packet_id: DPL-DENIED-FIRMWARE-ATTESTATION-001
+- domain: theater denied firmware attestation and loader sanitization
+- objective: restore mission-system trust by validating firmware pedigree, sanitizing field loaders, and sequencing safe return-to-service.
+- primary_tools: firmware provenance ledger, hash or SBOM attestation board, loader sanitization queue, return-to-service status board
+- alternate_tools: manual hash ledger and removable-media custody worksheet
+- degraded_mode: no network reconnection and no mission release until manual custody review and command-approved limited function mode
+- input_requirements: platform list, firmware baselines, hash evidence, loader custody, compromise indicators, mission deadlines
+- output_schema: firmware trust matrix, loader sanitization ladder, return-to-service packet
+- protocol_profile: signed firmware manifests + X.509 + STIX/TAXII + API/JSON + S/MIME + USMTF
+- validation_gates: pedigree verification, sanitizer status check, release-authority approval
+
+### packet_id: DPL-PORT-LABOR-SEALIFT-CONTINUITY-001
+- domain: coalition civil port labor strike and sealift continuity
+- objective: preserve sealift throughput by reprioritizing berths, routing cargo, and managing host-nation labor disruption without losing legitimacy.
+- primary_tools: berth scheduler, cargo manifest board, labor-action status tracker, onward movement queue
+- alternate_tools: manual berth board and coalition cargo-priority worksheet
+- degraded_mode: mission-essential cargo only with manual berth control and command-approved host-nation coordination
+- input_requirements: labor status, berth capacity, cargo priorities, onward transport state, coalition caveats, legal constraints
+- output_schema: berth-priority ladder, labor disruption branch matrix, sealift continuity packet
+- protocol_profile: AIS/NMEA + EDI X12 + NIEM + signed port notices + API/JSON + USMTF
+- validation_gates: host-nation legal review, cargo-priority confirmation, berth-release approval
+
+### packet_id: DPL-WASTEWATER-VECTOR-CONTROL-001
+- domain: expeditionary wastewater graywater and vector control
+- objective: contain sanitation breakdown before wastewater overflow, vectors, and disease risk degrade force health or base viability.
+- primary_tools: wastewater telemetry board, lift-station or lagoon status tracker, vector surveillance log, force-health symptom watchlist
+- alternate_tools: manual wastewater log and vector-survey worksheet
+- degraded_mode: restrict occupancy growth, isolate overflow zones, and conduct manual vector checks under command-approved sanitation controls
+- input_requirements: wastewater load, treatment capacity, overflow points, vector indicators, camp footprint, health-surveillance trends
+- output_schema: sanitation risk board, wastewater containment matrix, vector suppression task card
+- protocol_profile: HL7/FHIR + OGC + OPC UA + NIEM + API/JSON + USMTF
+- validation_gates: overflow-risk assessment, potable-water separation review, force-health authority approval
+
+### packet_id: DPL-FUEL-FARM-SALTWATER-INTRUSION-001
+- domain: homeland coastal storm surge fuel farm saltwater intrusion
+- objective: protect bulk-fuel continuity by isolating contaminated tanks, sequencing recertification, and preserving clean distribution under coastal flooding.
+- primary_tools: tank telemetry board, fuel assay and lab queue, flood or surge monitor, distribution-priority ledger
+- alternate_tools: manual tank-gauging sheet and fuel-release worksheet
+- degraded_mode: no fuel issue from suspect tanks with manual sampling, conservative rationing, and command-approved clean-stock release only
+- input_requirements: surge forecast, tank exposure, contamination indicators, lab capacity, dependent demand, restoration priorities
+- output_schema: fuel intrusion risk ladder, tank isolation and recertification matrix, continuity resupply packet
+- protocol_profile: OPC UA + AIS/NMEA + signed fuel manifests + API/JSON + CAP + USMTF
+- validation_gates: contamination evidence review, lab-confirmation pass, fuel-release authority approval
+
+### packet_id: DPL-AVIATION-SPARES-AIRWORTHINESS-001
+- domain: strategic aviation spares airworthiness trust
+- objective: recover readiness while preserving safety by controlling parts pedigree, cannibalization, and release authority for redistributed aviation spares.
+- primary_tools: serialized parts ledger, configuration-control board, airworthiness release queue, counterfeit or anomaly watchlist
+- alternate_tools: manual pedigree ledger and part-release worksheet
+- degraded_mode: no installation on mission-critical aircraft without dual-review pedigree check and certifying-authority approval
+- input_requirements: affected fleets, donor assets, part pedigree, configuration baseline, anomaly indicators, readiness deadlines
+- output_schema: spares pedigree board, cannibalization recovery matrix, airworthiness release ladder
+- protocol_profile: signed maintenance manifests + X.509 + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: serial-trace confirmation, airworthiness review, installation-release approval
+
+### packet_id: DPL-LAUNCH-TOXIC-PROPELLANT-CLOUD-001
+- domain: joint launch toxic propellant cloud public protection
+- objective: protect forces and civilians by sequencing toxic-plume warnings, shelter or evacuation actions, and launch or recovery decisions.
+- primary_tools: plume-model console, range-safety board, public-warning gateway, medical or shelter capacity tracker
+- alternate_tools: manual hazard ring worksheet and public-warning call tree
+- degraded_mode: assume a conservative hazard envelope and hold launch-continuation decisions until human review confirms protective-action feasibility
+- input_requirements: release source, propellant type, meteorology, exposed population, shelter capacity, authority thresholds
+- output_schema: toxic plume hazard map, shelter or evacuation decision matrix, launch or recovery branch card
+- protocol_profile: CAP + OGC + CCSDS + NIEM + API/JSON + USMTF
+- validation_gates: plume-confidence review, protective-action check, civil-warning approval
+
+### packet_id: DPL-COALITION-AI-GUARDRAILS-001
+- domain: coalition AI foreign disclosure and guardrail
+- objective: preserve coalition mission speed while enforcing foreign-disclosure limits, model provenance, and guardrail controls over shared AI outputs.
+- primary_tools: foreign-disclosure review board, model provenance ledger, guardrail policy registry, coalition-access audit queue
+- alternate_tools: manual release worksheet and sanitized-output review board
+- degraded_mode: no model transfer with human-reviewed sanitized outputs only and explicit release approval on every coalition-facing product
+- input_requirements: requested AI scope, coalition participants, releasability limits, model provenance, guardrail requirements, mission urgency
+- output_schema: releasability decision matrix, guardrail enforcement plan, coalition AI release packet
+- protocol_profile: signed model manifests + X.509 + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- validation_gates: release-authority review, provenance verification, guardrail completeness check
+
+### packet_id: DPL-BATTLEFIELD-GRAVE-REGISTRATION-001
+- domain: battlefield grave registration and interment site integrity
+- objective: preserve dignity, accountability, and future recovery confidence while documenting temporary interment or protected grave sites under combat conditions.
+- primary_tools: remains accountability board, site-coordinate ledger, imagery or survey service, custody or revisit scheduler
+- alternate_tools: manual grave ledger and site-sketch worksheet
+- degraded_mode: protect the site in place with manual dual-witness documentation and no disturbance until authority and security conditions improve
+- input_requirements: remains status, site security, identification evidence, environmental exposure, cultural constraints, recovery timeline
+- output_schema: grave registration ledger, site integrity matrix, recovery revisit packet
+- protocol_profile: NIEM + OGC + signed custody manifests + S/MIME + API/JSON + USMTF
+- validation_gates: site-security review, documentation completeness check, mortuary-authority approval
+
+### packet_id: DPL-WEATHER-DENIAL-BARO-CROSSCHECK-001
+- domain: tactical weather denial and baro altimetry cross-check
+- objective: keep release decisions conservative but informed by cross-checking degraded weather sensing against barometric, terrain, and runway or drop-zone evidence.
+- primary_tools: weather model board, barometric cross-check worksheet, runway or drop-zone status feed, terrain-risk overlay
+- alternate_tools: manual altimeter-setting log and weather-minima worksheet
+- degraded_mode: apply conservative minima only, limit precision-dependent release, and require command approval for any mission that cannot wait
+- input_requirements: denied sensors, surviving weather feeds, altimeter data, terrain constraints, release minima, mission urgency
+- output_schema: weather-confidence ladder, altimetry cross-check matrix, sortie or fires restriction card
+- protocol_profile: WMO BUFR/GRIB + AIXM/FIXM + OGC + API/JSON + USMTF
+- validation_gates: cross-check consistency review, terrain-risk pass, release-authority approval

@@ -158,3 +158,9 @@ Primary products for this skill: force health risk brief, preventive control pla
 - Add `tool_suite_id=ts-expeditionary-food-protection-inspection-sanitation-v1` + `protocol_stack_id=ps-expeditionary-food-protection-inspection-sanitation-stack-v1` when food-source pedigree, cold-chain integrity, or sanitation breakdown materially affects force-health posture.
 - Add `tool_suite_id=ts-theater-hazardous-waste-burn-pit-ash-exposure-v1` + `protocol_stack_id=ps-theater-hazardous-waste-burn-pit-ash-exposure-stack-v1` when waste backlog, emissions, or ash exposure changes habitability, compliance, or medical-surveillance decisions.
 - Add `packet_id=DPL-INDUSTRIAL-HYGIENE-OCCUPATIONAL-EXPOSURE-001`, `packet_id=DPL-OCCUPATIONAL-TOXICOLOGY-EXPOSURE-001`, `packet_id=DPL-FOOD-PROTECTION-INSPECTION-SANITATION-001`, and `packet_id=DPL-HAZARDOUS-WASTE-BURN-PIT-ASH-001` for branches that materially alter exposure controls, feeding posture, or environmental-health protection.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-wastewater-graywater-vector-control-v1` + `protocol_stack_id=ps-expeditionary-wastewater-graywater-vector-control-stack-v1` when force-health posture depends on wastewater containment, graywater routing, or vector suppression around dense expeditionary sites.
+- Add `tool_suite_id=ts-joint-launch-toxic-propellant-cloud-public-protection-v1` + `protocol_stack_id=ps-joint-launch-toxic-propellant-cloud-public-protection-stack-v1` when inhalation exposure, contaminated downwind corridors, or shelter-capacity limits materially affect medical-risk decisions.
+- Add `packet_id=DPL-WASTEWATER-VECTOR-CONTROL-001` and `packet_id=DPL-LAUNCH-TOXIC-PROPELLANT-CLOUD-001` for branches that materially alter sanitation posture, exposure protection, or evacuation-health support.

@@ -337,3 +337,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-strategic-rare-gas-cryogenic-supply-priority-v1` + `protocol_stack_id=ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1` when industrial or missile-support sustainment depends on cryogenic gas purity, boil-off control, or allocation authority.
 - Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when cold-weather sustainment depends on verified blend integrity, additive compatibility, or freeze-point release confidence.
 - Add `packet_id=DPL-ADDITIVE-INTENT-VALIDATION-001`, `packet_id=DPL-RAREGAS-CRYO-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially alter repair release, industrial sustainment confidence, or Arctic distribution feasibility.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-coalition-civil-port-labor-strike-sealift-continuity-v1` + `protocol_stack_id=ps-coalition-civil-port-labor-strike-sealift-continuity-stack-v1` when sustainment viability depends on commercial-port labor posture, berth throughput, or coalition reroute timing.
+- Add `tool_suite_id=ts-homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-v1` + `protocol_stack_id=ps-homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-stack-v1` when fuel continuity depends on storm-surge contamination control, verified clean stock, or coastal distribution recovery.
+- Add `tool_suite_id=ts-strategic-aviation-spares-airworthiness-trust-v1` + `protocol_stack_id=ps-strategic-aviation-spares-airworthiness-trust-stack-v1` when sustainment recovery depends on trusted aviation-spares pedigree, cannibalization discipline, or safe release of reclaimed parts.
+- Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-FUEL-FARM-SALTWATER-INTRUSION-001`, and `packet_id=DPL-AVIATION-SPARES-AIRWORTHINESS-001` for branches that materially alter sealift throughput, fuel confidence, or fleet-sustainment viability.

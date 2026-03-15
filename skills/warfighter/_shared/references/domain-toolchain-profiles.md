@@ -1874,3 +1874,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent product-quality review cell and alternate fleet-safety board
 - Protocol binding: signed quality manifests + OPC UA + NIEM + API/JSON + USMTF
 - Fallback path: manual quarantine ledger with conservative fleet-use restrictions and command-approved release holds
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LXVI)
+
+### `TC-CAPMAT-220`
+
+- Domain: joint captured materiel exploitation and safe turn-in
+- Primary systems: captured-materiel registry, hazard screening board, technical exploitation queue, custody or turn-in ledger
+- Cross-check systems: independent EOD or CBRN review cell and alternate battlefield-forensics desk
+- Protocol binding: NIEM + signed custody manifests + STIX/TAXII + API/JSON + S/MIME + USMTF
+- Fallback path: isolate materiel with manual dual-witness custody and no movement until hazard review completes
+
+### `TC-FIRMWARE-221`
+
+- Domain: theater denied firmware attestation and loader sanitization
+- Primary systems: firmware provenance ledger, hash or SBOM attestation board, loader sanitization queue, return-to-service status board
+- Cross-check systems: independent cyber protection team and alternate software-factory rollback board
+- Protocol binding: signed firmware manifests + X.509 + STIX/TAXII + API/JSON + S/MIME + USMTF
+- Fallback path: keep nodes isolated with manual loader custody and limited-function operation only by command exception
+
+### `TC-PORTLABOR-222`
+
+- Domain: coalition civil port labor strike and sealift continuity
+- Primary systems: berth scheduler, cargo manifest board, labor-action status tracker, onward movement queue
+- Cross-check systems: independent host-nation legal liaison and alternate sealift routing board
+- Protocol binding: AIS/NMEA + EDI X12 + NIEM + signed port notices + API/JSON + USMTF
+- Fallback path: manual berth board with essential-cargo prioritization and command-approved host-nation coordination
+
+### `TC-WASTEWATER-223`
+
+- Domain: expeditionary wastewater graywater and vector control
+- Primary systems: wastewater telemetry board, lift-station or lagoon status tracker, vector surveillance log, force-health symptom watchlist
+- Cross-check systems: independent preventive-medicine review cell and alternate engineer sanitation board
+- Protocol binding: HL7/FHIR + OGC + OPC UA + NIEM + API/JSON + USMTF
+- Fallback path: manual wastewater logging with restricted occupancy and command-approved vector-control windows
+
+### `TC-SALTWATER-224`
+
+- Domain: homeland coastal storm surge fuel farm saltwater intrusion
+- Primary systems: tank telemetry board, fuel assay and lab queue, flood or surge monitor, distribution-priority ledger
+- Cross-check systems: independent fuel-quality witness and alternate operational-energy recovery board
+- Protocol binding: OPC UA + AIS/NMEA + signed fuel manifests + API/JSON + CAP + USMTF
+- Fallback path: no issue from suspect tanks with manual sampling and command-approved clean-stock rationing
+
+### `TC-AIRSPARES-225`
+
+- Domain: strategic aviation spares airworthiness trust
+- Primary systems: serialized parts ledger, configuration-control board, airworthiness release queue, counterfeit or anomaly watchlist
+- Cross-check systems: independent quality-assurance airworthiness cell and alternate depot engineering board
+- Protocol binding: signed maintenance manifests + X.509 + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: manual pedigree review and certifying-authority release on every returned part
+
+### `TC-TOXICPLUME-226`
+
+- Domain: joint launch toxic propellant cloud public protection
+- Primary systems: plume-model console, range-safety board, public-warning gateway, medical or shelter capacity tracker
+- Cross-check systems: independent civil-warning desk and alternate launch-recovery board
+- Protocol binding: CAP + OGC + CCSDS + NIEM + API/JSON + USMTF
+- Fallback path: conservative hazard envelope with no launch continuation until human review confirms protective-action feasibility
+
+### `TC-COALAI-227`
+
+- Domain: coalition AI foreign disclosure and guardrail
+- Primary systems: foreign-disclosure review board, model provenance ledger, guardrail policy registry, coalition-access audit queue
+- Cross-check systems: independent security and release-authority cell and alternate mission-AI assurance board
+- Protocol binding: signed model manifests + X.509 + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- Fallback path: sanitized human-reviewed outputs only with no model transfer and explicit release approval
+
+### `TC-GRAVEREG-228`
+
+- Domain: battlefield grave registration and interment site integrity
+- Primary systems: remains accountability board, site-coordinate ledger, imagery or survey service, custody or revisit scheduler
+- Cross-check systems: independent mortuary-affairs review cell and alternate battlefield-forensics desk
+- Protocol binding: NIEM + OGC + signed custody manifests + S/MIME + API/JSON + USMTF
+- Fallback path: protect site in place with manual dual-witness records and no disturbance until authority confirms
+
+### `TC-BAROXCHECK-229`
+
+- Domain: tactical weather denial and baro altimetry cross-check
+- Primary systems: weather model board, barometric cross-check worksheet, runway or drop-zone status feed, terrain-risk overlay
+- Cross-check systems: independent weather detachment and alternate airfield-operations board
+- Protocol binding: WMO BUFR/GRIB + AIXM/FIXM + OGC + API/JSON + USMTF
+- Fallback path: conservative minima only with manual altimeter cross-check and command-approved release exceptions
