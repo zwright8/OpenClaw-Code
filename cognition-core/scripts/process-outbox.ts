@@ -32,6 +32,11 @@ Options:
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-hedged-attempts <n>    Hedged attempts per bot try to reduce tail latency (1-5, default: 1 disabled)
   --bot-hedged-delay-ms <n>    Delay before launching each hedged follower attempt (default: 0; disabled)
+  --bot-hedged-delay-auto      Auto-tune hedged follower launch delay from recent bot durations
+  --bot-hedged-delay-auto-percentile <0.5-0.999> Percentile used for adaptive hedge-delay target (default: 0.95)
+  --bot-hedged-delay-auto-min-samples <n> Min observed attempt durations before adaptive hedge-delay activates (default: 8)
+  --bot-hedged-delay-auto-window-size <n> Rolling window size for adaptive hedge-delay observations (default: 32)
+  --bot-hedged-delay-auto-blend <0-1> Blend static hedge delay with adaptive percentile target (default: 0.5)
   --bot-attempt-timeout-auto   Auto-tune per-attempt timeout from recent bot durations
   --bot-attempt-timeout-auto-percentile <0.5-0.999> Percentile used for adaptive timeout target (default: 0.95)
   --bot-attempt-timeout-auto-min-samples <n> Min observed attempt durations before adaptive timeout activates (default: 8)
@@ -143,6 +148,11 @@ function parseArgs(argv) {
         botAttemptTimeoutMs: 120_000,
         botHedgedAttemptCount: 1,
         botHedgedDelayMs: 0,
+        botHedgedDelayAutoTarget: false,
+        botHedgedDelayAutoPercentile: 0.95,
+        botHedgedDelayAutoMinSamples: 8,
+        botHedgedDelayAutoWindowSize: 32,
+        botHedgedDelayAutoBlend: 0.5,
         botAttemptTimeoutAutoTarget: false,
         botAttemptTimeoutAutoPercentile: 0.95,
         botAttemptTimeoutAutoMinSamples: 8,
@@ -191,6 +201,10 @@ function parseArgs(argv) {
         }
         if (token === '--bot-attempt-timeout-auto') {
             options.botAttemptTimeoutAutoTarget = true;
+            continue;
+        }
+        if (token === '--bot-hedged-delay-auto') {
+            options.botHedgedDelayAutoTarget = true;
             continue;
         }
 
@@ -314,6 +328,26 @@ function parseArgs(argv) {
         }
         if (token === '--bot-hedged-delay-ms') {
             options.botHedgedDelayMs = parsePositiveInt(value, '--bot-hedged-delay-ms');
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedged-delay-auto-percentile') {
+            options.botHedgedDelayAutoPercentile = parseFloatInRange(value, '--bot-hedged-delay-auto-percentile', 0.5, 0.999);
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedged-delay-auto-min-samples') {
+            options.botHedgedDelayAutoMinSamples = parsePositiveInt(value, '--bot-hedged-delay-auto-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedged-delay-auto-window-size') {
+            options.botHedgedDelayAutoWindowSize = parsePositiveInt(value, '--bot-hedged-delay-auto-window-size');
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedged-delay-auto-blend') {
+            options.botHedgedDelayAutoBlend = parseRatio(value, '--bot-hedged-delay-auto-blend');
             i++;
             continue;
         }
@@ -514,6 +548,11 @@ function printSummary(stats) {
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botHedgedAttemptCount: options.botHedgedAttemptCount,
             botHedgedDelayMs: options.botHedgedDelayMs,
+            botHedgedDelayAutoTarget: options.botHedgedDelayAutoTarget,
+            botHedgedDelayAutoPercentile: options.botHedgedDelayAutoPercentile,
+            botHedgedDelayAutoMinSamples: options.botHedgedDelayAutoMinSamples,
+            botHedgedDelayAutoWindowSize: options.botHedgedDelayAutoWindowSize,
+            botHedgedDelayAutoBlend: options.botHedgedDelayAutoBlend,
             botAttemptTimeoutAutoTarget: options.botAttemptTimeoutAutoTarget,
             botAttemptTimeoutAutoPercentile: options.botAttemptTimeoutAutoPercentile,
             botAttemptTimeoutAutoMinSamples: options.botAttemptTimeoutAutoMinSamples,

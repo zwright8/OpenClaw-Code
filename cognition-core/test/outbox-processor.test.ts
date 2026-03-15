@@ -819,6 +819,160 @@ test('processOutboxEnvelopes hedging skips follower launches after fast primary 
     assert.equal(completedParent?.result?.metrics?.hedgeSelectedAttempt, 1);
 });
 
+test('processOutboxEnvelopes adapts hedged delay from recent durations when enabled', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000705', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_120 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_121
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let logicalNow = 10_000;
+    let attempts = 0;
+    await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 0,
+        botHedgedDelayAutoTarget: true,
+        botHedgedDelayAutoPercentile: 0.95,
+        botHedgedDelayAutoMinSamples: 1,
+        botHedgedDelayAutoWindowSize: 8,
+        botHedgedDelayAutoBlend: 1,
+        nowFactory: () => logicalNow,
+        botExecute: async () => {
+            attempts++;
+            if (attempts === 1) {
+                logicalNow += 400;
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient timeout contacting runtime.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            logicalNow += 5;
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered quickly after adaptive hedge delay.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.equal(completedParent?.result?.metrics?.hedgeDelayMs, 400);
+    assert.equal(completedParent?.result?.metrics?.hedgeDelayAutoTargetMs, 400);
+    assert.equal(completedParent?.result?.metrics?.hedgeAttemptsLaunched, 1);
+});
+
+test('processOutboxEnvelopes keeps static hedged delay until adaptive sample floor is met', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000706', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_140 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_141
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let launched = 0;
+    await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 25,
+        botHedgedDelayAutoTarget: true,
+        botHedgedDelayAutoPercentile: 0.95,
+        botHedgedDelayAutoMinSamples: 4,
+        botHedgedDelayAutoWindowSize: 8,
+        botHedgedDelayAutoBlend: 1,
+        botExecute: async () => {
+            launched++;
+            if (launched === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 80));
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Slow primary response.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5));
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Fast hedge response.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.equal(completedParent?.result?.metrics?.hedgeDelayMs, 25);
+    assert.equal(completedParent?.result?.metrics?.hedgeDelayAutoTargetMs, undefined);
+    assert.equal(completedParent?.result?.metrics?.hedgeSelectedAttempt, 2);
+});
+
 test('processOutboxEnvelopes adapts attempt timeout from recent durations when enabled', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

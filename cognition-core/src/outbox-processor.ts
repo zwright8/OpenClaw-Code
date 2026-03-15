@@ -261,6 +261,48 @@ function resolveAdaptiveAttemptTimeoutMs({
     };
 }
 
+function resolveAdaptiveHedgedDelayMs({
+    staticDelayMs,
+    autoEnabled,
+    observations,
+    autoPercentile,
+    autoMinSamples,
+    autoBlend,
+    maxDelayMs = Number.MAX_SAFE_INTEGER
+}) {
+    const normalizedStaticDelayMs = parseNonNegativeInt(staticDelayMs, 0);
+    const normalizedMaxDelayMs = Math.max(0, parseNonNegativeInt(maxDelayMs, Number.MAX_SAFE_INTEGER));
+    if (!autoEnabled) {
+        return {
+            delayMs: clamp(normalizedStaticDelayMs, 0, normalizedMaxDelayMs),
+            autoTargetMs: null
+        };
+    }
+    const sampleCount = Array.isArray(observations) ? observations.length : 0;
+    if (sampleCount < Math.max(1, parsePositiveInt(autoMinSamples, 8))) {
+        return {
+            delayMs: clamp(normalizedStaticDelayMs, 0, normalizedMaxDelayMs),
+            autoTargetMs: null
+        };
+    }
+    const autoTargetMs = computePercentile(observations, autoPercentile);
+    if (!Number.isFinite(autoTargetMs)) {
+        return {
+            delayMs: clamp(normalizedStaticDelayMs, 0, normalizedMaxDelayMs),
+            autoTargetMs: null
+        };
+    }
+    const blend = normalizeAttemptTimeoutAutoBlend(autoBlend, 0.5);
+    const blendedDelayMs = Math.round(
+        (normalizedStaticDelayMs * (1 - blend)) + (autoTargetMs * blend)
+    );
+    const delayMs = clamp(blendedDelayMs, 0, normalizedMaxDelayMs);
+    return {
+        delayMs,
+        autoTargetMs: Math.max(0, Math.round(autoTargetMs))
+    };
+}
+
 function resolveCircuitBreakerCooldownMs({
     baseCooldownMs,
     maxCooldownMs,
@@ -974,6 +1016,11 @@ export async function processOutboxEnvelopes({
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
+    botHedgedDelayAutoTarget = false,
+    botHedgedDelayAutoPercentile = 0.95,
+    botHedgedDelayAutoMinSamples = 8,
+    botHedgedDelayAutoWindowSize = 32,
+    botHedgedDelayAutoBlend = 0.5,
     botAttemptTimeoutAutoTarget = false,
     botAttemptTimeoutAutoPercentile = 0.95,
     botAttemptTimeoutAutoMinSamples = 8,
@@ -1022,6 +1069,23 @@ export async function processOutboxEnvelopes({
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotHedgedAttemptCount = normalizeHedgedAttemptCount(botHedgedAttemptCount, 1);
     const normalizedBotHedgedDelayMs = normalizeHedgedDelayMs(botHedgedDelayMs, 0);
+    const normalizedBotHedgedDelayAutoPercentile = normalizeAttemptTimeoutAutoPercentile(
+        botHedgedDelayAutoPercentile,
+        0.95
+    );
+    const normalizedBotHedgedDelayAutoMinSamples = normalizeAttemptTimeoutAutoMinSamples(
+        botHedgedDelayAutoMinSamples,
+        8
+    );
+    const normalizedBotHedgedDelayAutoWindowSize = normalizeAttemptTimeoutAutoWindowSize(
+        botHedgedDelayAutoWindowSize,
+        32
+    );
+    const normalizedBotHedgedDelayAutoBlend = normalizeAttemptTimeoutAutoBlend(
+        botHedgedDelayAutoBlend,
+        0.5
+    );
+    const hedgedDelayAutoEnabled = normalizedBotHedgedAttemptCount > 1 && Boolean(botHedgedDelayAutoTarget);
     const normalizedBotAttemptTimeoutAutoPercentile = normalizeAttemptTimeoutAutoPercentile(
         botAttemptTimeoutAutoPercentile,
         0.95
@@ -1039,6 +1103,10 @@ export async function processOutboxEnvelopes({
         0.5
     );
     const attemptTimeoutAutoEnabled = normalizedBotAttemptTimeoutMs > 0 && Boolean(botAttemptTimeoutAutoTarget);
+    const adaptiveDurationWindowSize = Math.max(
+        attemptTimeoutAutoEnabled ? normalizedBotAttemptTimeoutAutoWindowSize : 1,
+        hedgedDelayAutoEnabled ? normalizedBotHedgedDelayAutoWindowSize : 1
+    );
     const normalizedBotRetryMaxElapsedMs = normalizeRetryMaxElapsedMs(botRetryMaxElapsedMs, 0);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
@@ -1387,6 +1455,17 @@ export async function processOutboxEnvelopes({
                         autoMinSamples: normalizedBotAttemptTimeoutAutoMinSamples,
                         autoBlend: normalizedBotAttemptTimeoutAutoBlend
                     });
+                    const hedgedDelayResolution = resolveAdaptiveHedgedDelayMs({
+                        staticDelayMs: normalizedBotHedgedDelayMs,
+                        autoEnabled: hedgedDelayAutoEnabled,
+                        observations: botAttemptDurationObservations,
+                        autoPercentile: normalizedBotHedgedDelayAutoPercentile,
+                        autoMinSamples: normalizedBotHedgedDelayAutoMinSamples,
+                        autoBlend: normalizedBotHedgedDelayAutoBlend,
+                        maxDelayMs: timeoutResolution.timeoutMs > 0
+                            ? Math.max(0, timeoutResolution.timeoutMs - 1)
+                            : Number.MAX_SAFE_INTEGER
+                    });
                     // eslint-disable-next-line no-await-in-loop
                     execution = await executeBotTaskWithTimeout({
                         request,
@@ -1395,7 +1474,7 @@ export async function processOutboxEnvelopes({
                         executeBotTask,
                         timeoutMs: timeoutResolution.timeoutMs,
                         hedgedAttemptCount: normalizedBotHedgedAttemptCount,
-                        hedgedDelayMs: normalizedBotHedgedDelayMs,
+                        hedgedDelayMs: hedgedDelayResolution.delayMs,
                         nowFactory: now
                     });
                     const hedgedAttemptsLaunched = parseNonNegativeInt(execution?.metrics?.hedgeAttemptsLaunched, 0);
@@ -1415,7 +1494,7 @@ export async function processOutboxEnvelopes({
                     botAttemptDurationObservations = updateDurationObservations(
                         botAttemptDurationObservations,
                         durationMs,
-                        normalizedBotAttemptTimeoutAutoWindowSize
+                        adaptiveDurationWindowSize
                     );
                     execution = {
                         ...execution,
@@ -1425,6 +1504,11 @@ export async function processOutboxEnvelopes({
                             ...(timeoutResolution.autoTargetMs !== null
                                 ? {
                                     attemptTimeoutAutoTargetMs: timeoutResolution.autoTargetMs
+                                }
+                                : {}),
+                            ...(hedgedDelayResolution.autoTargetMs !== null
+                                ? {
+                                    hedgeDelayAutoTargetMs: hedgedDelayResolution.autoTargetMs
                                 }
                                 : {})
                         }
