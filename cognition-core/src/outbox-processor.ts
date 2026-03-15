@@ -72,6 +72,12 @@ function normalizeRetryHintMaxDelayMs(value, fallback = 120_000) {
     return parseNonNegativeInt(value, fallback);
 }
 
+function normalizeRetryHintJitter(value, fallback = 0.1) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0, 1);
+}
+
 function normalizeCircuitBreakerFailureThreshold(value, fallback = 0) {
     const numeric = Number(value);
     if (!Number.isInteger(numeric) || numeric < 0) return fallback;
@@ -227,6 +233,21 @@ function normalizeRetryAfterDelayMs(value, nowMs) {
     return null;
 }
 
+function normalizeRateLimitResetDelayMs(value, nowMs) {
+    if (value === null || value === undefined) return null;
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric) || numeric < 0) return null;
+
+    // RFC 9331 RateLimit-Reset is a delta in seconds; many x-ratelimit variants use epoch times.
+    if (numeric >= 1_000_000_000_000) {
+        return Math.max(0, Math.round(numeric - nowMs));
+    }
+    if (numeric >= 1_000_000_000) {
+        return Math.max(0, Math.round((numeric * 1000) - nowMs));
+    }
+    return Math.max(0, Math.round(numeric * 1000));
+}
+
 function parseRetryAfterHintFromOutput(output, nowMs) {
     if (typeof output !== 'string' || !output.trim()) return null;
     const lineMatch = output.match(/retry-?after\s*[:=]\s*([^\r\n;]+)/i);
@@ -241,17 +262,52 @@ function parseRetryAfterHintFromOutput(output, nowMs) {
         if (parsedFromJsonHeader !== null) return parsedFromJsonHeader;
     }
 
+    const rateLimitResetLineMatch = output.match(/(?:^|\b)(?:x-)?ratelimit-reset(?:-[a-z_]+)?\s*[:=]\s*([^\r\n;]+)/i);
+    if (rateLimitResetLineMatch) {
+        const parsedRateLimitReset = normalizeRateLimitResetDelayMs(rateLimitResetLineMatch[1], nowMs);
+        if (parsedRateLimitReset !== null) return parsedRateLimitReset;
+    }
+
+    const rateLimitResetJsonMatch = output.match(/["'](?:x-)?ratelimit-reset(?:-[a-z_]+)?["']\s*:\s*["']?([^"',\]\}\s]+)["']?/i);
+    if (rateLimitResetJsonMatch) {
+        const parsedRateLimitReset = normalizeRateLimitResetDelayMs(rateLimitResetJsonMatch[1], nowMs);
+        if (parsedRateLimitReset !== null) return parsedRateLimitReset;
+    }
+
     const phraseMatch = output.match(
         /retry(?:ing)?\s+after\s+(\d+(?:\.\d+)?)\s*(ms|msec|milliseconds?|s|sec|secs|seconds?|m|min|mins|minutes?)?\b/i
     );
-    if (!phraseMatch) return null;
+    if (phraseMatch) {
+        const amount = Number(phraseMatch[1]);
+        if (!Number.isFinite(amount) || amount < 0) return null;
+        const unit = String(phraseMatch[2] || 's').toLowerCase();
+        if (unit.startsWith('ms')) return Math.round(amount);
+        if (unit.startsWith('m')) return Math.round(amount * 60_000);
+        return Math.round(amount * 1000);
+    }
 
-    const amount = Number(phraseMatch[1]);
+    const resetPhraseMatch = output.match(
+        /rate\s*limit(?:ing)?\s*(?:resets?|resetting)\s*(?:in|after)?\s*(\d+(?:\.\d+)?)\s*(s|sec|secs|seconds?|m|min|mins|minutes?)?\b/i
+    );
+    if (!resetPhraseMatch) return null;
+    const amount = Number(resetPhraseMatch[1]);
     if (!Number.isFinite(amount) || amount < 0) return null;
-    const unit = String(phraseMatch[2] || 's').toLowerCase();
-    if (unit.startsWith('ms')) return Math.round(amount);
+    const unit = String(resetPhraseMatch[2] || 's').toLowerCase();
     if (unit.startsWith('m')) return Math.round(amount * 60_000);
     return Math.round(amount * 1000);
+}
+
+export function applyRetryHintJitterMs({
+    delayMs,
+    jitter = 0.1,
+    rng = Math.random
+}) {
+    const normalizedDelay = Math.max(0, parseNonNegativeInt(delayMs, 0));
+    const normalizedJitter = normalizeRetryHintJitter(jitter, 0.1);
+    if (normalizedDelay <= 0 || normalizedJitter <= 0) return normalizedDelay;
+    const random = typeof rng === 'function' ? clamp(Number(rng()) || 0, 0, 1) : 0.5;
+    const offset = ((random * 2) - 1) * normalizedJitter;
+    return Math.max(0, Math.round(normalizedDelay * (1 + offset)));
 }
 
 export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {}) {
@@ -281,6 +337,21 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
         if (Number.isFinite(numeric) && numeric >= 0) {
             return Math.round(numeric * 1000);
         }
+    }
+
+    const rateLimitSecondsMetricKeys = [
+        'rateLimitResetSeconds',
+        'rate_limit_reset_seconds',
+        'ratelimitResetSeconds',
+        'ratelimit_reset_seconds',
+        'rateLimitReset',
+        'rate_limit_reset',
+        'ratelimitReset',
+        'ratelimit_reset'
+    ];
+    for (const key of rateLimitSecondsMetricKeys) {
+        const parsed = normalizeRateLimitResetDelayMs(metrics[key], now);
+        if (parsed !== null) return parsed;
     }
 
     const epochMsMetricKeys = [
@@ -313,6 +384,23 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     ];
     for (const key of headerLikeMetricKeys) {
         const parsed = normalizeRetryAfterDelayMs(metrics[key], now);
+        if (parsed !== null) return parsed;
+    }
+
+    const rateLimitHeaderMetricKeys = [
+        'rateLimitResetHeader',
+        'rate_limit_reset_header',
+        'ratelimitResetHeader',
+        'ratelimit_reset_header',
+        'xRateLimitReset',
+        'x_ratelimit_reset',
+        'xRateLimitResetRequests',
+        'x_ratelimit_reset_requests',
+        'xRateLimitResetTokens',
+        'x_ratelimit_reset_tokens'
+    ];
+    for (const key of rateLimitHeaderMetricKeys) {
+        const parsed = normalizeRateLimitResetDelayMs(metrics[key], now);
         if (parsed !== null) return parsed;
     }
 
@@ -544,6 +632,7 @@ export async function processOutboxEnvelopes({
     botRetryJitter = 0.2,
     botRetryJitterStrategy = 'symmetric',
     botRetryHintMaxDelayMs = 120_000,
+    botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
@@ -581,6 +670,7 @@ export async function processOutboxEnvelopes({
     const normalizedBotRetryJitter = normalizeRetryJitter(botRetryJitter, 0.2);
     const normalizedBotRetryJitterStrategy = normalizeRetryJitterStrategy(botRetryJitterStrategy, 'symmetric');
     const normalizedBotRetryHintMaxDelayMs = normalizeRetryHintMaxDelayMs(botRetryHintMaxDelayMs, 120_000);
+    const normalizedBotRetryHintJitter = normalizeRetryHintJitter(botRetryHintJitter, 0.1);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
@@ -893,9 +983,14 @@ export async function processOutboxEnvelopes({
                     if (normalizedBotRetryHintMaxDelayMs > 0) {
                         const retryAfterHintMs = extractRetryAfterHintMs(execution, { nowFactory: now });
                         if (retryAfterHintMs !== null) {
+                            const jitteredRetryAfterHintMs = applyRetryHintJitterMs({
+                                delayMs: clamp(retryAfterHintMs, 0, normalizedBotRetryHintMaxDelayMs),
+                                jitter: normalizedBotRetryHintJitter,
+                                rng
+                            });
                             effectiveRetryDelayMs = Math.max(
                                 retryDelayMs,
-                                clamp(retryAfterHintMs, 0, normalizedBotRetryHintMaxDelayMs)
+                                jitteredRetryAfterHintMs
                             );
                         }
                     }

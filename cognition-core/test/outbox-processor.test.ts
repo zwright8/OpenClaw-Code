@@ -9,6 +9,7 @@ import {
 } from '../../swarm-protocol/runtime.js';
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
+    applyRetryHintJitterMs,
     computeRetryDelayMs,
     extractRetryAfterHintMs,
     processOutboxEnvelopes
@@ -130,6 +131,44 @@ test('extractRetryAfterHintMs supports numeric seconds and HTTP-date values', ()
         { nowFactory: () => nowMs }
     );
     assert.equal(fromHttpDate, 3_000);
+});
+
+test('extractRetryAfterHintMs supports RateLimit-Reset style hints', () => {
+    const nowMs = Date.parse('2026-03-14T00:00:00.000Z');
+    const fromRateLimitResetSeconds = extractRetryAfterHintMs(
+        {
+            metrics: {
+                rateLimitReset: 5
+            }
+        },
+        { nowFactory: () => nowMs }
+    );
+    assert.equal(fromRateLimitResetSeconds, 5_000);
+
+    const fromXRateLimitResetEpoch = extractRetryAfterHintMs(
+        {
+            metrics: {
+                xRateLimitReset: 1_773_446_410
+            }
+        },
+        { nowFactory: () => nowMs }
+    );
+    assert.equal(fromXRateLimitResetEpoch, 10_000);
+});
+
+test('applyRetryHintJitterMs jitters around hint delay bounds', () => {
+    const low = applyRetryHintJitterMs({
+        delayMs: 1_000,
+        jitter: 0.2,
+        rng: () => 0
+    });
+    const high = applyRetryHintJitterMs({
+        delayMs: 1_000,
+        jitter: 0.2,
+        rng: () => 1
+    });
+    assert.equal(low, 800);
+    assert.equal(high, 1_200);
 });
 
 test('processOutboxEnvelopes ingests receipt/result and archives processed files', async (t) => {
@@ -466,6 +505,80 @@ test('processOutboxEnvelopes honors retry-after hints on transient retries', asy
     assert.equal(stats.botRetriesAttempted, 1);
     assert.equal(stats.botRetriesRecovered, 1);
     assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 20);
+});
+
+test('processOutboxEnvelopes honors ratelimit-reset hints with jittered delay', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000742', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_500 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_501
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const attemptStartedAt = [];
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botRetryHintMaxDelayMs: 100,
+        botRetryHintJitter: 0.5,
+        rng: () => 0,
+        botExecute: async () => {
+            attempts++;
+            attemptStartedAt.push(Date.now());
+            if (attempts === 1) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: '429 too many requests',
+                    metrics: {
+                        retryable: 1,
+                        rateLimitReset: 0.08
+                    },
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered after ratelimit-reset delay.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 2);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesRecovered, 1);
+    assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 35);
 });
 
 test('processOutboxEnvelopes retries timed out bot attempts and recovers', async (t) => {

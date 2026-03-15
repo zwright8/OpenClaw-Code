@@ -40,6 +40,7 @@ Options:
   --bot-retry-jitter <0-1>     Retry delay jitter ratio (default: 0.2)
   --bot-retry-jitter-strategy <mode> Retry jitter strategy: symmetric|full|decorrelated (default: symmetric)
   --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
+  --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
@@ -252,6 +253,7 @@ function parseArgs(argv) {
         botRetryJitter: 0.2,
         botRetryJitterStrategy: 'symmetric',
         botRetryHintMaxDelayMs: 120_000,
+        botRetryHintJitter: 0.1,
         botAttemptTimeoutMs: 120_000,
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
@@ -520,6 +522,11 @@ function parseArgs(argv) {
         }
         if (token === '--bot-retry-hint-max-ms') {
             options.botRetryHintMaxDelayMs = parsePositiveInt(value, '--bot-retry-hint-max-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-retry-hint-jitter') {
+            options.botRetryHintJitter = parseFloatInRange(value, '--bot-retry-hint-jitter', 0, 1);
             i++;
             continue;
         }
@@ -1047,6 +1054,7 @@ function printSummary(report) {
             botRetryJitter: options.botRetryJitter,
             botRetryJitterStrategy: options.botRetryJitterStrategy,
             botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
+            botRetryHintJitter: options.botRetryHintJitter,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
