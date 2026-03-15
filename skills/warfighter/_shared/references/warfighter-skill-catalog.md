@@ -2750,7 +2750,7 @@ Every skill output should include:
 - joint-loitering-munition-fratricide-envelope-assurance-cell
 - expeditionary-burn-intensive-care-oxygen-arbitration-cell
 - strategic-cable-landing-station-sanctions-bypass-hunt-cell
-- coalition-arctic-bulk-fuel-blending-and-freeze-point-assurance-cell
+- coalition-arctic-fuel-freeze-point-assurance-cell
 
 ## Updated Pairings (2026-03-15, Expansion Wave LXII)
 

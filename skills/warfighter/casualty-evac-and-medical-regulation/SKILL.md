@@ -144,3 +144,8 @@ Primary products for this skill: evacuation routing plan, treatment load-balanci
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-burn-intensive-care-oxygen-arbitration-v1` + `protocol_stack_id=ps-expeditionary-burn-intensive-care-oxygen-arbitration-stack-v1` when patient movement, ICU overflow, or transfer priority depends on oxygen availability, ventilator load, or burn-bed scarcity.
+- Add `tool_suite_id=ts-coalition-portable-water-testing-biosecurity-corridor-v1` + `protocol_stack_id=ps-coalition-portable-water-testing-biosecurity-corridor-stack-v1` when evacuation staging, treatment-node release, or cross-border casualty routing depends on water potability and biosecurity screening confidence.
+- Add `packet_id=DPL-BURN-ICU-OXYGEN-001` and `packet_id=DPL-WATER-BIOSEC-CORRIDOR-001` for recommendations that materially alter transfer release, patient distribution, or medical-risk acceptance.

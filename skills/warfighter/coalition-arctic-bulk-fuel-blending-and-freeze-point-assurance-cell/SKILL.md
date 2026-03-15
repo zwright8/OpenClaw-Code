@@ -1,5 +1,5 @@
 ---
-name: coalition-arctic-bulk-fuel-blending-and-freeze-point-assurance-cell
+name: coalition-arctic-fuel-freeze-point-assurance-cell
 description: Coordinate Arctic bulk-fuel blending, additive use, and freeze-point assurance across coalition sustainment nodes. Use when cold-weather fuel handling, sealift, or aviation operations depend on verified blend integrity and low-temperature performance.
 ---
 

@@ -150,3 +150,9 @@ Primary products for this skill: mass-evacuation sequence plan, shelter load bal
 - Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when shelter design, protected transport, or evacuation prioritization depends on maternal-fetal risk and privacy-sensitive women's health support.
 - Add `tool_suite_id=ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1` + `protocol_stack_id=ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1` when shelter occupancy, HVAC degradation, or contamination spread threatens respiratory safety and relocation timing.
 - Add `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001` and `packet_id=DPL-BARRACKS-HVAC-MOLD-IAQ-001` for branches that materially alter shelter layout, evacuation priority, or protected-care access.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-homeland-rail-evacuation-signaling-restoration-v1` + `protocol_stack_id=ps-homeland-rail-evacuation-signaling-restoration-stack-v1` when evacuation throughput, shelter backpressure, or military-priority movement depends on damaged rail dispatch and signaling recovery.
+- Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when shelter viability depends on lifeline restoration, cyber containment, or displaced-person site stability.
+- Add `packet_id=DPL-RAIL-EVAC-SIGNAL-001` and `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001` for recommendations that materially alter evacuation timing, shelter release, or life-safety risk posture.
