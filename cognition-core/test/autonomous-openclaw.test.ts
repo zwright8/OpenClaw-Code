@@ -229,6 +229,122 @@ test('buildAutonomousBatchPlan ignores excessively delayed outcomes when configu
     assert.deepEqual(plan.selection.skillIds, [82]);
 });
 
+test('buildAutonomousBatchPlan down-weights stale delayed outcomes when configured', () => {
+    const staleSuccesses = Array.from({ length: 10 }, () => ({
+        status: 'completed',
+        reward: 1,
+        feedbackDelayMs: 300_000,
+        wave: 11
+    }));
+    const freshFailures = Array.from({ length: 10 }, () => ({
+        status: 'failed',
+        reward: 0,
+        feedbackDelayMs: 1_000,
+        wave: 12
+    }));
+    const freshMixed = [
+        ...Array.from({ length: 9 }, () => ({
+            status: 'completed',
+            reward: 1,
+            feedbackDelayMs: 1_000,
+            wave: 12
+        })),
+        ...Array.from({ length: 11 }, () => ({
+            status: 'failed',
+            reward: 0,
+            feedbackDelayMs: 1_000,
+            wave: 12
+        }))
+    ];
+
+    const baselinePlan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 91, code: 'SK-00091', title: 'Skill 91' },
+            { id: 92, code: 'SK-00092', title: 'Skill 92' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '91': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 12,
+                    lastStatus: 'completed',
+                    recentOutcomes: [...staleSuccesses, ...freshFailures]
+                },
+                '92': {
+                    attempts: 20,
+                    successes: 9,
+                    failures: 11,
+                    consecutiveFailures: 0,
+                    lastWave: 12,
+                    lastStatus: 'completed',
+                    recentOutcomes: freshMixed
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        selectionPolicyConfig: {
+            mode: 'ucb'
+        },
+        nowFactory: () => 100_000
+    });
+    assert.deepEqual(baselinePlan.selection.skillIds, [91]);
+
+    const decayedPlan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 91, code: 'SK-00091', title: 'Skill 91' },
+            { id: 92, code: 'SK-00092', title: 'Skill 92' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '91': {
+                    attempts: 20,
+                    successes: 10,
+                    failures: 10,
+                    consecutiveFailures: 0,
+                    lastWave: 12,
+                    lastStatus: 'completed',
+                    recentOutcomes: [...staleSuccesses, ...freshFailures]
+                },
+                '92': {
+                    attempts: 20,
+                    successes: 9,
+                    failures: 11,
+                    consecutiveFailures: 0,
+                    lastWave: 12,
+                    lastStatus: 'completed',
+                    recentOutcomes: freshMixed
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        selectionPolicyConfig: {
+            mode: 'ucb',
+            feedbackDelayDecayMs: 60_000
+        },
+        nowFactory: () => 100_000
+    });
+    assert.deepEqual(decayedPlan.selection.skillIds, [92]);
+});
+
 test('buildAutonomousBatchPlan temporarily cools repeated failures', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [

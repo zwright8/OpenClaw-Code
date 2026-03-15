@@ -206,6 +206,8 @@ const DEFAULT_PENDING_OBSERVATION_SOFT_CAP = 8;
 const MAX_PENDING_OBSERVATION_SOFT_CAP = 256;
 const DEFAULT_MAX_FEEDBACK_DELAY_MS = 0;
 const MAX_MAX_FEEDBACK_DELAY_MS = 2_592_000_000;
+const DEFAULT_FEEDBACK_DELAY_DECAY_MS = 0;
+const MAX_FEEDBACK_DELAY_DECAY_MS = 2_592_000_000;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -1210,6 +1212,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_MAX_FEEDBACK_DELAY_MS,
             0,
             MAX_MAX_FEEDBACK_DELAY_MS
+        ),
+        feedbackDelayDecayMs: clamp(
+            Number.isFinite(Number(value.feedbackDelayDecayMs))
+                ? parseNonNegativeInt(value.feedbackDelayDecayMs, DEFAULT_FEEDBACK_DELAY_DECAY_MS)
+                : DEFAULT_FEEDBACK_DELAY_DECAY_MS,
+            0,
+            MAX_FEEDBACK_DELAY_DECAY_MS
         )
     };
 }
@@ -2210,6 +2219,11 @@ function summarizeOutcomeStats(outcomes = [], fallbackStat = null, selectionPoli
         0,
         MAX_MAX_FEEDBACK_DELAY_MS
     );
+    const feedbackDelayDecayMs = clamp(
+        parseNonNegativeInt(policy.feedbackDelayDecayMs, DEFAULT_FEEDBACK_DELAY_DECAY_MS),
+        0,
+        MAX_FEEDBACK_DELAY_DECAY_MS
+    );
     const normalizedOutcomes = maxFeedbackDelayMs > 0
         ? rawOutcomes.filter((entry) => {
             const delayMs = Number(entry.feedbackDelayMs);
@@ -2246,7 +2260,12 @@ function summarizeOutcomeStats(outcomes = [], fallbackStat = null, selectionPoli
     for (let index = 0; index < normalizedOutcomes.length; index++) {
         const entry = normalizedOutcomes[index];
         const age = normalizedOutcomes.length - 1 - index;
-        const weight = useDiscounting ? Math.pow(policy.discountFactor, age) : 1;
+        const recencyWeight = useDiscounting ? Math.pow(policy.discountFactor, age) : 1;
+        const delayMs = Number(entry.feedbackDelayMs);
+        const delayWeight = feedbackDelayDecayMs > 0 && Number.isFinite(delayMs) && delayMs > 0
+            ? Math.exp(-delayMs / feedbackDelayDecayMs)
+            : 1;
+        const weight = recencyWeight * delayWeight;
         attempts += weight;
         successes += entry.reward * weight;
     }
@@ -2792,7 +2811,7 @@ function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
             computeCusumDetectedStats(normalized, policy)
         );
     }
-    if (policy.maxFeedbackDelayMs > 0) {
+    if (policy.maxFeedbackDelayMs > 0 || policy.feedbackDelayDecayMs > 0) {
         return mergeResolvedScoreStats(
             normalized,
             summarizeOutcomeStats(normalized.recentOutcomes, normalized, policy)

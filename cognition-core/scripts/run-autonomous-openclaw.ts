@@ -108,6 +108,7 @@ Options:
   --pending-observation-penalty-weight <n> Delayed-feedback pressure penalty from outstanding observations (0-2, default: 0)
   --pending-observation-soft-cap <n> Pending count where delayed-feedback penalty saturates (1-256, default: 8)
   --max-feedback-delay-ms <n> Ignore historical outcomes with feedback delay above this threshold (0-2592000000, default: 0 disabled)
+  --feedback-delay-decay-ms <n> Exponential delay-based down-weighting time constant for delayed outcomes (0-2592000000, default: 0 disabled)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -334,6 +335,7 @@ function parseArgs(argv) {
             pendingObservationPenaltyWeight: 0,
             pendingObservationSoftCap: 8,
             maxFeedbackDelayMs: 0,
+            feedbackDelayDecayMs: 0,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -921,6 +923,18 @@ function parseArgs(argv) {
             );
             if (options.selectionPolicyConfig.maxFeedbackDelayMs < 0 || options.selectionPolicyConfig.maxFeedbackDelayMs > 2_592_000_000) {
                 throw new Error('--max-feedback-delay-ms must be an integer between 0 and 2592000000');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--feedback-delay-decay-ms') {
+            options.selectionPolicyConfig.feedbackDelayDecayMs = parsePositiveInt(
+                value,
+                '--feedback-delay-decay-ms',
+                true
+            );
+            if (options.selectionPolicyConfig.feedbackDelayDecayMs < 0 || options.selectionPolicyConfig.feedbackDelayDecayMs > 2_592_000_000) {
+                throw new Error('--feedback-delay-decay-ms must be an integer between 0 and 2592000000');
             }
             i++;
             continue;

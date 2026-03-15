@@ -256,6 +256,7 @@ npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --
 npm run autonomous:run -- --selection-policy fdsw_ucb --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation adaptive
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --max-feedback-delay-ms 120000
+npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --feedback-delay-decay-ms 120000
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-penalty-weight 0.4 --latency-target-ms 120000
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-penalty-weight 0.4 --latency-target-ms 120000 --latency-auto-target --latency-auto-target-percentile 0.9 --latency-auto-target-min-samples 8 --latency-auto-target-window-size 32 --latency-auto-target-blend 0.5
 npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --reliability-floor 0.7 --reliability-floor-min-attempts 8
