@@ -683,6 +683,142 @@ test('processOutboxEnvelopes retries timed out bot attempts and recovers', async
     assert.match(completedParent?.result?.output || '', /Recovered after timeout retry/);
 });
 
+test('processOutboxEnvelopes hedged attempts recover from slow primaries', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000703', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_050 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_051
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let launched = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 10,
+        botExecute: async () => {
+            launched++;
+            if (launched === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 80));
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Slow primary response.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5));
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Fast hedge response.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(stats.botTasksExecuted, 1);
+    assert.equal(stats.botHedgedAttemptsLaunched, 1);
+    assert.equal(stats.botHedgedSuccesses, 1);
+    assert.equal(stats.botHedgedWins, 1);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.match(completedParent?.result?.output || '', /Fast hedge response/);
+    assert.equal(completedParent?.result?.metrics?.hedgeSelectedAttempt, 2);
+});
+
+test('processOutboxEnvelopes hedging skips follower launches after fast primary success', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000704', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_100 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_101
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let launched = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 3,
+        botHedgedDelayMs: 20,
+        botExecute: async () => {
+            launched++;
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Primary completed immediately.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(launched, 1);
+    assert.equal(stats.botHedgedAttemptsLaunched, 0);
+    assert.equal(stats.botHedgedSuccesses, 0);
+    assert.equal(stats.botHedgedWins, 0);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.match(completedParent?.result?.output || '', /Primary completed immediately/);
+    assert.equal(completedParent?.result?.metrics?.hedgeSelectedAttempt, 1);
+});
+
 test('processOutboxEnvelopes adapts attempt timeout from recent durations when enabled', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

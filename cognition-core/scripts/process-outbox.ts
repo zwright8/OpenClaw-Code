@@ -30,6 +30,8 @@ Options:
   --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
   --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
+  --bot-hedged-attempts <n>    Hedged attempts per bot try to reduce tail latency (1-5, default: 1 disabled)
+  --bot-hedged-delay-ms <n>    Delay before launching each hedged follower attempt (default: 0; disabled)
   --bot-attempt-timeout-auto   Auto-tune per-attempt timeout from recent bot durations
   --bot-attempt-timeout-auto-percentile <0.5-0.999> Percentile used for adaptive timeout target (default: 0.95)
   --bot-attempt-timeout-auto-min-samples <n> Min observed attempt durations before adaptive timeout activates (default: 8)
@@ -139,6 +141,8 @@ function parseArgs(argv) {
         botRetryHintMaxDelayMs: 120_000,
         botRetryHintJitter: 0.1,
         botAttemptTimeoutMs: 120_000,
+        botHedgedAttemptCount: 1,
+        botHedgedDelayMs: 0,
         botAttemptTimeoutAutoTarget: false,
         botAttemptTimeoutAutoPercentile: 0.95,
         botAttemptTimeoutAutoMinSamples: 8,
@@ -300,6 +304,19 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-hedged-attempts') {
+            options.botHedgedAttemptCount = parsePositiveInt(value, '--bot-hedged-attempts');
+            if (options.botHedgedAttemptCount > 5) {
+                throw new Error('--bot-hedged-attempts must be an integer between 1 and 5');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedged-delay-ms') {
+            options.botHedgedDelayMs = parsePositiveInt(value, '--bot-hedged-delay-ms');
+            i++;
+            continue;
+        }
         if (token === '--bot-attempt-timeout-auto-percentile') {
             options.botAttemptTimeoutAutoPercentile = parseFloatInRange(value, '--bot-attempt-timeout-auto-percentile', 0.5, 0.999);
             i++;
@@ -447,6 +464,9 @@ function printSummary(stats) {
         console.log(`Bot retries budget exhausted: ${stats.botRetriesBudgetExhausted}`);
         console.log(`Bot retries deadline exceeded: ${stats.botRetriesDeadlineExceeded}`);
         console.log(`Bot attempt timeouts: ${stats.botAttemptTimeouts}`);
+        console.log(`Bot hedged attempts launched: ${stats.botHedgedAttemptsLaunched}`);
+        console.log(`Bot hedged successful races: ${stats.botHedgedSuccesses}`);
+        console.log(`Bot hedged race wins: ${stats.botHedgedWins}`);
         console.log(`Bot circuit-breaker opened: ${stats.botCircuitBreakerOpened}`);
         console.log(`Bot circuit-breaker open skips: ${stats.botCircuitBreakerOpenSkips}`);
         console.log(`Bot circuit-breaker half-open probes: ${stats.botCircuitBreakerHalfOpenProbes}`);
@@ -492,6 +512,8 @@ function printSummary(stats) {
             botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
             botRetryHintJitter: options.botRetryHintJitter,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
+            botHedgedAttemptCount: options.botHedgedAttemptCount,
+            botHedgedDelayMs: options.botHedgedDelayMs,
             botAttemptTimeoutAutoTarget: options.botAttemptTimeoutAutoTarget,
             botAttemptTimeoutAutoPercentile: options.botAttemptTimeoutAutoPercentile,
             botAttemptTimeoutAutoMinSamples: options.botAttemptTimeoutAutoMinSamples,

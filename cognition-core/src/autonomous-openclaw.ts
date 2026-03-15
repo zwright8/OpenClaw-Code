@@ -5277,6 +5277,9 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
         `- botRetriesDeadlineExceeded: ${report.totals?.botRetriesDeadlineExceeded || 0}`,
         `- botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
+        `- botHedgedAttemptsLaunched: ${report.totals?.botHedgedAttemptsLaunched || 0}`,
+        `- botHedgedSuccesses: ${report.totals?.botHedgedSuccesses || 0}`,
+        `- botHedgedWins: ${report.totals?.botHedgedWins || 0}`,
         `- botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
         `- botCircuitBreakerHalfOpenProbes: ${report.totals?.botCircuitBreakerHalfOpenProbes || 0}`,
@@ -5351,6 +5354,8 @@ export async function runAutonomousOpenClaw({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botHedgedAttemptCount = 1,
+    botHedgedDelayMs = 0,
     botAttemptTimeoutAutoTarget = false,
     botAttemptTimeoutAutoPercentile = 0.95,
     botAttemptTimeoutAutoMinSamples = 8,
@@ -5430,6 +5435,9 @@ export async function runAutonomousOpenClaw({
         botRetriesBudgetExhausted: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
+        botHedgedAttemptsLaunched: 0,
+        botHedgedSuccesses: 0,
+        botHedgedWins: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
         botCircuitBreakerHalfOpenProbes: 0,
@@ -5497,6 +5505,8 @@ export async function runAutonomousOpenClaw({
             botRetryHintMaxDelayMs,
             botRetryHintJitter,
             botAttemptTimeoutMs,
+            botHedgedAttemptCount,
+            botHedgedDelayMs,
             botAttemptTimeoutAutoTarget,
             botAttemptTimeoutAutoPercentile,
             botAttemptTimeoutAutoMinSamples,
@@ -5580,6 +5590,9 @@ export async function runAutonomousOpenClaw({
                 botRetriesBudgetExhausted: workerReport.totals.botRetriesBudgetExhausted,
                 botRetriesDeadlineExceeded: workerReport.totals.botRetriesDeadlineExceeded,
                 botAttemptTimeouts: workerReport.totals.botAttemptTimeouts,
+                botHedgedAttemptsLaunched: workerReport.totals.botHedgedAttemptsLaunched,
+                botHedgedSuccesses: workerReport.totals.botHedgedSuccesses,
+                botHedgedWins: workerReport.totals.botHedgedWins,
                 botCircuitBreakerOpened: workerReport.totals.botCircuitBreakerOpened,
                 botCircuitBreakerOpenSkips: workerReport.totals.botCircuitBreakerOpenSkips,
                 botCircuitBreakerHalfOpenProbes: workerReport.totals.botCircuitBreakerHalfOpenProbes,
@@ -5606,6 +5619,9 @@ export async function runAutonomousOpenClaw({
         totals.botRetriesBudgetExhausted += waveReport.worker.botRetriesBudgetExhausted;
         totals.botRetriesDeadlineExceeded += waveReport.worker.botRetriesDeadlineExceeded;
         totals.botAttemptTimeouts += waveReport.worker.botAttemptTimeouts;
+        totals.botHedgedAttemptsLaunched += waveReport.worker.botHedgedAttemptsLaunched;
+        totals.botHedgedSuccesses += waveReport.worker.botHedgedSuccesses;
+        totals.botHedgedWins += waveReport.worker.botHedgedWins;
         totals.botCircuitBreakerOpened += waveReport.worker.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += waveReport.worker.botCircuitBreakerOpenSkips;
         totals.botCircuitBreakerHalfOpenProbes += waveReport.worker.botCircuitBreakerHalfOpenProbes;
@@ -5666,6 +5682,8 @@ export async function runAutonomousOpenClaw({
             botRetryHintMaxDelayMs: parseNonNegativeInt(botRetryHintMaxDelayMs, 120_000),
             botRetryHintJitter: clamp(parseNonNegativeNumber(botRetryHintJitter, 0.1), 0, 1),
             botAttemptTimeoutMs: parseNonNegativeInt(botAttemptTimeoutMs, 120_000),
+            botHedgedAttemptCount: clamp(parsePositiveInt(botHedgedAttemptCount, 1), 1, 5),
+            botHedgedDelayMs: parseNonNegativeInt(botHedgedDelayMs, 0),
             botAttemptTimeoutAutoTarget: Boolean(botAttemptTimeoutAutoTarget),
             botAttemptTimeoutAutoPercentile: clamp(parseNonNegativeNumber(botAttemptTimeoutAutoPercentile, 0.95), 0.5, 0.999),
             botAttemptTimeoutAutoMinSamples: parsePositiveInt(botAttemptTimeoutAutoMinSamples, 8),

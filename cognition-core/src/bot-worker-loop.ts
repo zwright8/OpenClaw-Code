@@ -122,6 +122,9 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
         `- totals.botRetriesDeadlineExceeded: ${report.totals?.botRetriesDeadlineExceeded || 0}`,
         `- totals.botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
+        `- totals.botHedgedAttemptsLaunched: ${report.totals?.botHedgedAttemptsLaunched || 0}`,
+        `- totals.botHedgedSuccesses: ${report.totals?.botHedgedSuccesses || 0}`,
+        `- totals.botHedgedWins: ${report.totals?.botHedgedWins || 0}`,
         `- totals.botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- totals.botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
         `- totals.botCircuitBreakerHalfOpenProbes: ${report.totals?.botCircuitBreakerHalfOpenProbes || 0}`,
@@ -177,6 +180,8 @@ export async function runBotWorkerLoop({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botHedgedAttemptCount = 1,
+    botHedgedDelayMs = 0,
     botAttemptTimeoutAutoTarget = false,
     botAttemptTimeoutAutoPercentile = 0.95,
     botAttemptTimeoutAutoMinSamples = 8,
@@ -231,6 +236,9 @@ export async function runBotWorkerLoop({
         botRetriesBudgetExhausted: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
+        botHedgedAttemptsLaunched: 0,
+        botHedgedSuccesses: 0,
+        botHedgedWins: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
         botCircuitBreakerHalfOpenProbes: 0,
@@ -287,6 +295,8 @@ export async function runBotWorkerLoop({
             botRetryHintMaxDelayMs,
             botRetryHintJitter,
             botAttemptTimeoutMs,
+            botHedgedAttemptCount,
+            botHedgedDelayMs,
             botAttemptTimeoutAutoTarget,
             botAttemptTimeoutAutoPercentile,
             botAttemptTimeoutAutoMinSamples,
@@ -357,6 +367,9 @@ export async function runBotWorkerLoop({
             botRetriesBudgetExhausted: processResult.botRetriesBudgetExhausted,
             botRetriesDeadlineExceeded: processResult.botRetriesDeadlineExceeded,
             botAttemptTimeouts: processResult.botAttemptTimeouts,
+            botHedgedAttemptsLaunched: processResult.botHedgedAttemptsLaunched,
+            botHedgedSuccesses: processResult.botHedgedSuccesses,
+            botHedgedWins: processResult.botHedgedWins,
             botCircuitBreakerOpened: processResult.botCircuitBreakerOpened,
             botCircuitBreakerOpenSkips: processResult.botCircuitBreakerOpenSkips,
             botCircuitBreakerHalfOpenProbes: processResult.botCircuitBreakerHalfOpenProbes,
@@ -380,6 +393,9 @@ export async function runBotWorkerLoop({
         totals.botRetriesBudgetExhausted += processResult.botRetriesBudgetExhausted;
         totals.botRetriesDeadlineExceeded += processResult.botRetriesDeadlineExceeded;
         totals.botAttemptTimeouts += processResult.botAttemptTimeouts;
+        totals.botHedgedAttemptsLaunched += processResult.botHedgedAttemptsLaunched;
+        totals.botHedgedSuccesses += processResult.botHedgedSuccesses;
+        totals.botHedgedWins += processResult.botHedgedWins;
         totals.botCircuitBreakerOpened += processResult.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += processResult.botCircuitBreakerOpenSkips;
         totals.botCircuitBreakerHalfOpenProbes += processResult.botCircuitBreakerHalfOpenProbes;

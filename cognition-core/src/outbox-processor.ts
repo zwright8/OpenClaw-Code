@@ -88,6 +88,14 @@ function normalizeAttemptTimeoutAutoBlend(value, fallback = 0.5) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeHedgedAttemptCount(value, fallback = 1) {
+    return clamp(parsePositiveInt(value, fallback), 1, 5);
+}
+
+function normalizeHedgedDelayMs(value, fallback = 0) {
+    return parseNonNegativeInt(value, fallback);
+}
+
 function normalizeRetryMaxElapsedMs(value, fallback = 0) {
     return parseNonNegativeInt(value, fallback);
 }
@@ -604,12 +612,28 @@ async function executeBotTaskWithTimeout({
     attempt,
     executeBotTask,
     timeoutMs,
+    hedgedAttemptCount = 1,
+    hedgedDelayMs = 0,
     nowFactory = Date.now
 }) {
     const startedAt = safeNow(nowFactory);
+    const normalizedTimeoutMs = parseNonNegativeInt(timeoutMs, 0);
+    const normalizedHedgedAttemptCount = normalizeHedgedAttemptCount(hedgedAttemptCount, 1);
+    const normalizedHedgedDelayMs = normalizeHedgedDelayMs(hedgedDelayMs, 0);
+    const hedgingEnabled = normalizedHedgedAttemptCount > 1 && normalizedHedgedDelayMs > 0;
+
+    const ensureExecutionShape = (execution) => (execution && typeof execution === 'object'
+        ? execution
+        : createBotFailureExecution({
+            output: 'Task execution failed: invalid execution response.',
+            metrics: {
+                executionError: 1
+            }
+        }));
+
     const invoke = async () => {
         try {
-            return await executeBotTask(request, bot, attempt);
+            return ensureExecutionShape(await executeBotTask(request, bot, attempt));
         } catch (error) {
             return createBotFailureExecution({
                 output: `Task execution failed: ${error?.message || 'bot execution error'}`,
@@ -620,57 +644,202 @@ async function executeBotTaskWithTimeout({
         }
     };
 
-    if (parseNonNegativeInt(timeoutMs, 0) <= 0) {
-        const execution = await invoke();
-        if (execution && typeof execution === 'object') {
-            return execution;
+    if (!hedgingEnabled) {
+        if (normalizedTimeoutMs <= 0) {
+            const execution = await invoke();
+            return ensureExecutionShape(execution);
         }
-        return createBotFailureExecution({
-            output: 'Task execution failed: invalid execution response.',
-            metrics: {
-                executionError: 1
-            }
+
+        let timeoutHandle;
+        const timeoutResult = new Promise((resolve) => {
+            timeoutHandle = setTimeout(() => {
+                resolve(createBotFailureExecution({
+                    output: `Task execution failed: bot attempt timed out after ${normalizedTimeoutMs}ms.`,
+                    metrics: {
+                        timedOut: 1,
+                        transientFailure: 1,
+                        retryable: 1,
+                        durationMs: normalizedTimeoutMs
+                    }
+                }));
+            }, normalizedTimeoutMs);
         });
+
+        const execution = await Promise.race([invoke(), timeoutResult]);
+        if (timeoutHandle) {
+            clearTimeout(timeoutHandle);
+        }
+
+        const resolvedExecution = ensureExecutionShape(execution);
+        if (resolvedExecution?.metrics?.durationMs === undefined) {
+            const durationMs = clamp(safeNow(nowFactory) - startedAt, 0, Number.MAX_SAFE_INTEGER);
+            resolvedExecution.metrics = {
+                ...(resolvedExecution.metrics || {}),
+                durationMs
+            };
+        }
+        return resolvedExecution;
     }
 
-    let timeoutHandle;
-    const timeoutResult = new Promise((resolve) => {
-        timeoutHandle = setTimeout(() => {
-            resolve(createBotFailureExecution({
-                output: `Task execution failed: bot attempt timed out after ${timeoutMs}ms.`,
+    let resolved = false;
+    let launchedAttempts = 0;
+    let completedAttempts = 0;
+
+    const withHedgeMetrics = (execution, {
+        selectedAttempt = null,
+        timedOut = false
+    } = {}) => {
+        const normalizedExecution = ensureExecutionShape(execution);
+        return {
+            ...normalizedExecution,
+            metrics: {
+                ...(normalizedExecution.metrics || {}),
+            hedgeEnabled: 1,
+            hedgeAttemptsConfigured: normalizedHedgedAttemptCount,
+            hedgeDelayMs: normalizedHedgedDelayMs,
+            hedgeAttemptsLaunched: Math.max(0, launchedAttempts),
+            hedgeAttemptsCompleted: Math.max(0, completedAttempts),
+            ...(Number.isInteger(selectedAttempt) && selectedAttempt > 0
+                ? {
+                    hedgeSelectedAttempt: selectedAttempt
+                }
+                : {}),
+            ...(Number.isInteger(selectedAttempt) && selectedAttempt > 1 && normalizedExecution.status !== 'failure'
+                ? {
+                    hedgeWonRace: 1
+                }
+                : {}),
+            ...(timedOut
+                ? {
+                    hedgeTimedOut: 1
+                }
+                : {})
+            }
+        };
+    };
+
+    const invokeAttempt = async (attemptIndex) => {
+        if (attemptIndex > 1) {
+            await sleep(normalizedHedgedDelayMs * (attemptIndex - 1));
+        }
+        if (resolved) {
+            return {
+                skipped: true,
+                attemptIndex
+            };
+        }
+
+        launchedAttempts++;
+        const attemptStartedAt = safeNow(nowFactory);
+        const execution = ensureExecutionShape(await invoke());
+        if (execution.metrics?.durationMs === undefined) {
+            execution.metrics = {
+                ...(execution.metrics || {}),
+                durationMs: clamp(safeNow(nowFactory) - attemptStartedAt, 0, Number.MAX_SAFE_INTEGER)
+            };
+        }
+        return {
+            skipped: false,
+            attemptIndex,
+            execution
+        };
+    };
+
+    const attempts = [];
+    for (let attemptIndex = 1; attemptIndex <= normalizedHedgedAttemptCount; attemptIndex++) {
+        attempts.push(invokeAttempt(attemptIndex));
+    }
+
+    const wrappedAttempts = attempts.map((promise, index) => promise.then((result) => ({
+        index,
+        result
+    })));
+    const pending = new Set(wrappedAttempts.map((_, index) => index));
+    const deadlineAt = normalizedTimeoutMs > 0
+        ? startedAt + normalizedTimeoutMs
+        : null;
+    let firstFailure = null;
+
+    while (pending.size > 0) {
+        const racers = [...pending].map((index) => wrappedAttempts[index]);
+        let timeoutHandle = null;
+        let timeoutRace = null;
+        if (deadlineAt !== null) {
+            const remainingMs = deadlineAt - safeNow(nowFactory);
+            if (remainingMs <= 0) {
+                resolved = true;
+                return withHedgeMetrics(createBotFailureExecution({
+                    output: `Task execution failed: bot attempt timed out after ${normalizedTimeoutMs}ms.`,
+                    metrics: {
+                        timedOut: 1,
+                        transientFailure: 1,
+                        retryable: 1,
+                        durationMs: normalizedTimeoutMs
+                    }
+                }), {
+                    selectedAttempt: null,
+                    timedOut: true
+                });
+            }
+            timeoutRace = new Promise((resolve) => {
+                timeoutHandle = setTimeout(() => {
+                    resolve({
+                        timeout: true
+                    });
+                }, remainingMs);
+            });
+        }
+        const winner = await Promise.race([
+            ...racers,
+            ...(timeoutRace ? [timeoutRace] : [])
+        ]);
+        if (timeoutHandle) clearTimeout(timeoutHandle);
+
+        if (winner && winner.timeout) {
+            resolved = true;
+            return withHedgeMetrics(createBotFailureExecution({
+                output: `Task execution failed: bot attempt timed out after ${normalizedTimeoutMs}ms.`,
                 metrics: {
                     timedOut: 1,
                     transientFailure: 1,
                     retryable: 1,
-                    durationMs: timeoutMs
+                    durationMs: normalizedTimeoutMs
                 }
-            }));
-        }, parseNonNegativeInt(timeoutMs, 0));
-    });
+            }), {
+                selectedAttempt: null,
+                timedOut: true
+            });
+        }
 
-    const execution = await Promise.race([invoke(), timeoutResult]);
-    if (timeoutHandle) {
-        clearTimeout(timeoutHandle);
+        pending.delete(winner.index);
+        if (winner.result?.skipped) {
+            continue;
+        }
+        completedAttempts++;
+
+        if (winner.result?.execution?.status !== 'failure') {
+            resolved = true;
+            return withHedgeMetrics(winner.result.execution, {
+                selectedAttempt: winner.result.attemptIndex
+            });
+        }
+        if (!firstFailure) {
+            firstFailure = winner.result.execution;
+        }
     }
 
-    const resolvedExecution = execution && typeof execution === 'object'
-        ? execution
-        : createBotFailureExecution({
-            output: 'Task execution failed: invalid execution response.',
+    resolved = true;
+    return withHedgeMetrics(
+        firstFailure || createBotFailureExecution({
+            output: 'Task execution failed: empty execution response.',
             metrics: {
                 executionError: 1
             }
-        });
-
-    if (resolvedExecution?.metrics?.durationMs === undefined) {
-        const durationMs = clamp(safeNow(nowFactory) - startedAt, 0, Number.MAX_SAFE_INTEGER);
-        resolvedExecution.metrics = {
-            ...(resolvedExecution.metrics || {}),
-            durationMs
-        };
-    }
-
-    return resolvedExecution;
+        }),
+        {
+            selectedAttempt: null
+        }
+    );
 }
 
 function isTaskDispatchEnvelope(payload) {
@@ -803,6 +972,8 @@ export async function processOutboxEnvelopes({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botHedgedAttemptCount = 1,
+    botHedgedDelayMs = 0,
     botAttemptTimeoutAutoTarget = false,
     botAttemptTimeoutAutoPercentile = 0.95,
     botAttemptTimeoutAutoMinSamples = 8,
@@ -849,6 +1020,8 @@ export async function processOutboxEnvelopes({
     const normalizedBotRetryHintMaxDelayMs = normalizeRetryHintMaxDelayMs(botRetryHintMaxDelayMs, 120_000);
     const normalizedBotRetryHintJitter = normalizeRetryHintJitter(botRetryHintJitter, 0.1);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
+    const normalizedBotHedgedAttemptCount = normalizeHedgedAttemptCount(botHedgedAttemptCount, 1);
+    const normalizedBotHedgedDelayMs = normalizeHedgedDelayMs(botHedgedDelayMs, 0);
     const normalizedBotAttemptTimeoutAutoPercentile = normalizeAttemptTimeoutAutoPercentile(
         botAttemptTimeoutAutoPercentile,
         0.95
@@ -1065,6 +1238,9 @@ export async function processOutboxEnvelopes({
         botRetriesBudgetExhausted: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
+        botHedgedAttemptsLaunched: 0,
+        botHedgedSuccesses: 0,
+        botHedgedWins: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
         botCircuitBreakerHalfOpenProbes: 0,
@@ -1218,8 +1394,23 @@ export async function processOutboxEnvelopes({
                         attempt: attempts,
                         executeBotTask,
                         timeoutMs: timeoutResolution.timeoutMs,
+                        hedgedAttemptCount: normalizedBotHedgedAttemptCount,
+                        hedgedDelayMs: normalizedBotHedgedDelayMs,
                         nowFactory: now
                     });
+                    const hedgedAttemptsLaunched = parseNonNegativeInt(execution?.metrics?.hedgeAttemptsLaunched, 0);
+                    if (hedgedAttemptsLaunched > 1) {
+                        stats.botHedgedAttemptsLaunched += hedgedAttemptsLaunched - 1;
+                    }
+                    if (
+                        parseNonNegativeInt(execution?.metrics?.hedgeSelectedAttempt, 1) > 1
+                        && execution?.status !== 'failure'
+                    ) {
+                        stats.botHedgedSuccesses++;
+                    }
+                    if (parseNonNegativeInt(execution?.metrics?.hedgeWonRace, 0) >= 1) {
+                        stats.botHedgedWins++;
+                    }
                     const durationMs = Number(execution?.metrics?.durationMs);
                     botAttemptDurationObservations = updateDurationObservations(
                         botAttemptDurationObservations,
