@@ -1060,3 +1060,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent preventive-medicine witness and alternate sock-resupply board
 - Protocol binding: HL7/FHIR + signed footwear manifests + API/JSON + USMTF
 - Fallback path: shortened movement windows with manual sock and boot accountability
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LIV)
+
+### `TC-INDHYG-126`
+
+- Domain: expeditionary industrial hygiene and occupational exposure control
+- Primary systems: industrial hygiene sampling ledger, respirator fit-status board, exposure-limit tracker, confined-space permit workflow
+- Cross-check systems: independent preventive-medicine witness and alternate facility engineer hazard board
+- Protocol binding: HL7/FHIR + signed sample manifests + OPC UA + OGC + API/JSON + USMTF
+- Fallback path: short-duration work only with manual sampling log, respirator checks, and daily command review
+
+### `TC-AVPHYS-127`
+
+- Domain: joint aviation physiology hypoxia acceleration and life support
+- Primary systems: physiological incident tracker, life-support equipment status board, altitude-chamber and training ledger, aircraft oxygen-system health monitor
+- Cross-check systems: independent flight-surgeon witness and alternate maintenance discrepancy board
+- Protocol binding: HL7/FHIR + AIXM/FIXM + signed life-support manifests + API/JSON + USMTF
+- Fallback path: minimum-risk sortie posture with manual discrepancy tracking and protected voice release approval
+
+### `TC-DIVE-128`
+
+- Domain: joint dive medicine hyperbaric and undersea casualty routing
+- Primary systems: dive-profile ledger, hyperbaric chamber status board, diver medical triage queue, undersea casualty-routing planner
+- Cross-check systems: independent dive medical officer witness and alternate chamber maintenance board
+- Protocol binding: HL7/FHIR + DICOM + signed dive-profile manifests + OGC + API/JSON + USMTF
+- Fallback path: life-saving routing only with voice-confirmed casualty handoff and manual chamber allocation
+
+### `TC-TOX-129`
+
+- Domain: theater occupational toxicology solvent fuel and heavy metal
+- Primary systems: toxicology sample ledger, exposure symptom board, industrial contaminant map, medical surveillance tracker
+- Cross-check systems: independent lab witness and alternate hazard-communication board
+- Protocol binding: HL7/FHIR + signed lab manifests + OPC UA + OGC + API/JSON + USMTF
+- Fallback path: isolate affected work areas and track symptoms manually until verified samples and reviews complete
+
+### `TC-FOOD-130`
+
+- Domain: expeditionary food protection inspection and sanitation
+- Primary systems: food inspection ledger, cold-chain monitor, field-sanitation checklist board, food-handling violation tracker
+- Cross-check systems: independent preventive-medicine or veterinary witness and alternate ration-quality board
+- Protocol binding: HL7/FHIR + signed inspection manifests + NIEM + API/JSON + USMTF
+- Fallback path: sealed-ration-only posture with manual source approval and daily sanitation review
+
+### `TC-WASTE-131`
+
+- Domain: theater hazardous waste burn pit and ash exposure
+- Primary systems: hazardous-waste manifest ledger, emissions and plume monitor, ash sampling board, disposal routing planner
+- Cross-check systems: independent environmental-compliance witness and alternate base-camp health monitor
+- Protocol binding: signed waste manifests + OPC UA + OGC + NIMS/ICS + API/JSON + USMTF
+- Fallback path: essential disposal only with manual manifests, visual plume controls, and command readback
+
+### `TC-SUD-132`
+
+- Domain: joint substance use overdose and impaired duty command support
+- Primary systems: overdose incident tracker, impairment-risk board, protected referral workflow, unit safety watchlist
+- Cross-check systems: independent behavioral-health witness and alternate law-enforcement or safety office board
+- Protocol binding: HL7/FHIR + NIEM + signed case manifests + S/MIME + API/JSON + USMTF
+- Fallback path: life-safety-first response with manual duty restrictions and protected voice care handoff only
+
+### `TC-SLEEP-133`
+
+- Domain: theater sleep recovery shift work and fatigue restoration
+- Primary systems: sleep-opportunity tracker, shift stability board, fatigue biomarker or survey ledger, relief and recovery scheduler
+- Cross-check systems: independent surgeon or performance-team witness and alternate commander readiness board
+- Protocol binding: HL7/FHIR + signed schedule manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- Fallback path: short-duration protected-rest windows only with paper rosters and voice-confirmed staffing handoffs

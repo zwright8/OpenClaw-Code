@@ -73,3 +73,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Flag stimulant policy limits, physiological risk, mishap trends, and maintenance-driven schedule pressure early.
 - Protect sensitive medical information and avoid implying flight-clearance authority the operator does not hold.
 - Do not fabricate sources, approvals, or waiver authority.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-joint-aviation-physiology-hypoxia-life-support-v1` + `protocol_stack_id=ps-joint-aviation-physiology-hypoxia-life-support-stack-v1` when fatigue branches are materially constrained by hypoxia incidents, decompression stress, or life-support equipment discrepancies.
+- Add `tool_suite_id=ts-theater-sleep-recovery-shift-work-fatigue-restoration-v1` + `protocol_stack_id=ps-theater-sleep-recovery-shift-work-fatigue-restoration-stack-v1` when theater-level sleep-recovery windows, protected rest, or cross-squadron shift redesign change acceptable sortie risk.
+- Add `packet_id=DPL-AVIATION-PHYSIOLOGY-HYPOXIA-LIFE-SUPPORT-001` and `packet_id=DPL-SLEEP-RECOVERY-SHIFT-WORK-FATIGUE-001` for branches that materially change crew release, waiver posture, or protected-rest enforcement.

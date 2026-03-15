@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Expeditionary Food Protection, Inspection, And Sanitation Cell"
+  short_description: "Help with Expeditionary Food Protection, Inspection, And Sanitation Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Expeditionary Food Protection, Inspection, And Sanitation Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

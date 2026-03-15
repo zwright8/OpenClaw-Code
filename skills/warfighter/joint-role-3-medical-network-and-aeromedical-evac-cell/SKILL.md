@@ -131,3 +131,10 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when maternal-fetal transfer, gynecologic emergency capacity, or privacy-safe routing changes bed release and aeromedical priorities.
 - Add `tool_suite_id=ts-joint-cold-injury-frostbite-rewarming-v1` + `protocol_stack_id=ps-joint-cold-injury-frostbite-rewarming-stack-v1` when frostbite severity, warming capacity, or hypothermia-driven routing materially affects Role 3 intake and onward movement.
 - Add `packet_id=DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001`, `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001`, and `packet_id=DPL-COLD-INJURY-REWARMING-001` for recommendations that materially change bed allocation, evacuation timing, or specialty-care prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-joint-aviation-physiology-hypoxia-life-support-v1` + `protocol_stack_id=ps-joint-aviation-physiology-hypoxia-life-support-stack-v1` when hypoxia events, decompression stress, or life-support equipment restrictions materially change patient movement and aeromedical priorities.
+- Add `tool_suite_id=ts-joint-dive-medicine-hyperbaric-routing-v1` + `protocol_stack_id=ps-joint-dive-medicine-hyperbaric-routing-stack-v1` when chamber availability, pressure-injury routing, or diver casualty transfer changes Role 3 intake and onward movement.
+- Add `tool_suite_id=ts-joint-substance-use-overdose-impaired-duty-v1` + `protocol_stack_id=ps-joint-substance-use-overdose-impaired-duty-stack-v1` when overdose stabilization, impaired-duty restrictions, or protected referral routing change bed usage or evacuation sequencing.
+- Add `packet_id=DPL-AVIATION-PHYSIOLOGY-HYPOXIA-LIFE-SUPPORT-001`, `packet_id=DPL-DIVE-MEDICINE-HYPERBARIC-ROUTING-001`, and `packet_id=DPL-SUBSTANCE-USE-OVERDOSE-IMPAIRED-DUTY-001` for recommendations that materially change patient flow, specialty-care allocation, or aeromedical release timing.

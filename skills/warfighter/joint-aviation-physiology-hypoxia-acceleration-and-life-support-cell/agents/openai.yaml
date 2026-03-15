@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Aviation Physiology Hypoxia, Acceleration, And Life Support Cell"
+  short_description: "Help with Joint Aviation Physiology Hypoxia, Acceleration, And Life Support Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Aviation Physiology Hypoxia, Acceleration, And Life Support Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

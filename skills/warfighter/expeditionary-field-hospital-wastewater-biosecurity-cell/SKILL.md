@@ -70,3 +70,10 @@ For each critical tool recommendation include objective, required inputs, query/
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag legal, ROE, LOAC, policy, and coalition caveat constraints before recommending action.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-industrial-hygiene-occupational-exposure-v1` + `protocol_stack_id=ps-expeditionary-industrial-hygiene-occupational-exposure-stack-v1` when wastewater crews, treatment operators, or nearby medical wards depend on occupational sampling and exposure-control confidence.
+- Add `tool_suite_id=ts-theater-occupational-toxicology-solvent-fuel-heavy-metal-v1` + `protocol_stack_id=ps-theater-occupational-toxicology-solvent-fuel-heavy-metal-stack-v1` when contaminated effluent, cleaning agents, fuels, or metals materially change clinical surveillance and worker-protection posture.
+- Add `tool_suite_id=ts-theater-hazardous-waste-burn-pit-ash-exposure-v1` + `protocol_stack_id=ps-theater-hazardous-waste-burn-pit-ash-exposure-stack-v1` when medical-waste backlog, ash drift, or disposal constraints drive hospital continuity risk.
+- Add `packet_id=DPL-INDUSTRIAL-HYGIENE-OCCUPATIONAL-EXPOSURE-001`, `packet_id=DPL-OCCUPATIONAL-TOXICOLOGY-EXPOSURE-001`, and `packet_id=DPL-HAZARDOUS-WASTE-BURN-PIT-ASH-001` for branches that materially change treatment-site safety, waste-disposition posture, or worker-protection controls.

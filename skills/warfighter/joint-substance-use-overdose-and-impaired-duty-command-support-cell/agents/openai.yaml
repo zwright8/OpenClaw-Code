@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Substance Use, Overdose, And Impaired Duty Command Support Cell"
+  short_description: "Help with Joint Substance Use, Overdose, And Impaired Duty Command Support Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Substance Use, Overdose, And Impaired Duty Command Support Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

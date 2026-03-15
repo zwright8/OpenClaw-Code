@@ -12542,3 +12542,93 @@ validation_gates:
 - output_schema: foot-readiness dashboard, immersion-foot risk matrix, boot or sock resupply plan
 - protocol_profile: HL7/FHIR + signed footwear manifests + API/JSON + USMTF
 - validation_gates: injury-severity confirmation, supply-status check, command-approval record
+
+## Packet Addendum XLIII (2026-03-15, Industrial Hygiene, Aviation Physiology, Dive Medicine, Toxicology, Food Protection, Hazardous Waste, Substance-Use Risk, and Sleep Recovery)
+
+### packet_id: DPL-INDUSTRIAL-HYGIENE-OCCUPATIONAL-EXPOSURE-001
+- domain: expeditionary industrial hygiene and occupational exposure control
+- objective: preserve safe work continuity by verifying contaminant exposure, control posture, and stop-work thresholds before personnel overmatch occurs.
+- primary_tools: industrial hygiene sampling ledger, respirator fit-status board, exposure-limit tracker, confined-space permit workflow
+- alternate_tools: manual sample log and stop-work worksheet
+- degraded_mode: short-duration essential work only with manual sampling notes, respirator checks, and daily command review
+- input_requirements: work process, suspected contaminant, sample results, PPE status, ventilation posture, occupancy, authority thresholds
+- output_schema: exposure control matrix, sampling priority board, PPE or work-restriction ladder
+- protocol_profile: HL7/FHIR + signed sample manifests + OPC UA + OGC + API/JSON + USMTF
+- validation_gates: sampler calibration, exposure-threshold check, safety approval
+
+### packet_id: DPL-AVIATION-PHYSIOLOGY-HYPOXIA-LIFE-SUPPORT-001
+- domain: joint aviation physiology hypoxia acceleration and life support
+- objective: keep flight operations safe by routing physiological incidents, equipment restrictions, and sortie-release decisions before aircrew risk cascades.
+- primary_tools: physiological incident tracker, life-support equipment status board, altitude-chamber and training ledger, aircraft oxygen-system health monitor
+- alternate_tools: manual incident log and flight-surgeon worksheet
+- degraded_mode: minimum-risk sortie posture only with manual discrepancy tracking and protected voice release approval
+- input_requirements: aircraft type, incident details, oxygen-system status, life-support inventory, sortie schedule, authority thresholds
+- output_schema: physiological risk dashboard, life-support restriction matrix, sortie-release advisory ladder
+- protocol_profile: HL7/FHIR + AIXM/FIXM + signed life-support manifests + API/JSON + USMTF
+- validation_gates: incident verification, maintenance status check, flight-surgeon approval
+
+### packet_id: DPL-DIVE-MEDICINE-HYPERBARIC-ROUTING-001
+- domain: joint dive medicine hyperbaric and undersea casualty routing
+- objective: route diver casualties and scarce chamber capacity fast enough to preserve survivability without collapsing undersea mission support.
+- primary_tools: dive-profile ledger, hyperbaric chamber status board, diver medical triage queue, undersea casualty-routing planner
+- alternate_tools: manual dive log and chamber-allocation board
+- degraded_mode: life-saving routing only with voice-confirmed casualty handoff and manual chamber-release tracking
+- input_requirements: dive profile, symptoms, chamber status, evacuation options, mission priority, authority thresholds
+- output_schema: chamber allocation ladder, diver casualty-routing plan, no-dive or return-to-dive matrix
+- protocol_profile: HL7/FHIR + DICOM + signed dive-profile manifests + OGC + API/JSON + USMTF
+- validation_gates: symptom-severity confirmation, chamber readiness, medical approval
+
+### packet_id: DPL-OCCUPATIONAL-TOXICOLOGY-EXPOSURE-001
+- domain: theater occupational toxicology solvent fuel and heavy metal
+- objective: isolate toxic exposure and expand medical surveillance before delayed symptoms, contamination spread, or work continuation worsen theater readiness loss.
+- primary_tools: toxicology sample ledger, exposure symptom board, industrial contaminant map, medical surveillance tracker
+- alternate_tools: manual symptom ledger and chain-of-custody form
+- degraded_mode: isolate affected work areas and track symptoms manually until verified samples and reviews complete
+- input_requirements: suspected agent, symptom clusters, sample status, work areas, exposed personnel, authority thresholds
+- output_schema: toxic exposure watchlist, sampling and isolation plan, exposure notification ladder
+- protocol_profile: HL7/FHIR + signed lab manifests + OPC UA + OGC + API/JSON + USMTF
+- validation_gates: sample integrity, lab receipt, command or medical approval
+
+### packet_id: DPL-FOOD-PROTECTION-INSPECTION-SANITATION-001
+- domain: expeditionary food protection inspection and sanitation
+- objective: keep feeding safe and continuous by detecting unsafe food sources, cold-chain failure, or sanitation breakdown before illness disrupts readiness.
+- primary_tools: food inspection ledger, cold-chain monitor, field-sanitation checklist board, food-handling violation tracker
+- alternate_tools: manual temperature log and ration-inspection worksheet
+- degraded_mode: sealed-ration-only posture with manual source approval and daily sanitation review
+- input_requirements: source pedigree, temperature logs, water status, illness trends, pest indicators, authority thresholds
+- output_schema: food protection dashboard, inspection priority matrix, food-source approval ladder
+- protocol_profile: HL7/FHIR + signed inspection manifests + NIEM + API/JSON + USMTF
+- validation_gates: temperature check, source verification, inspection approval
+
+### packet_id: DPL-HAZARDOUS-WASTE-BURN-PIT-ASH-001
+- domain: theater hazardous waste burn pit and ash exposure
+- objective: prevent avoidable ash and emissions exposure while preserving safe waste disposal under theater throughput constraints.
+- primary_tools: hazardous-waste manifest ledger, emissions and plume monitor, ash sampling board, disposal routing planner
+- alternate_tools: manual manifest board and plume-watch worksheet
+- degraded_mode: essential disposal only with manual manifests, visual plume controls, and command readback before burn actions
+- input_requirements: waste streams, burn status, plume forecast, occupancy, disposal routes, authority thresholds
+- output_schema: waste-disposition matrix, exposure risk board, burn-status or shutdown ladder
+- protocol_profile: signed waste manifests + OPC UA + OGC + NIMS/ICS + API/JSON + USMTF
+- validation_gates: manifest verification, plume or sampling check, environmental or command approval
+
+### packet_id: DPL-SUBSTANCE-USE-OVERDOSE-IMPAIRED-DUTY-001
+- domain: joint substance use overdose and impaired duty command support
+- objective: stabilize overdose or impairment risk while protecting life safety, privacy, and mission continuity.
+- primary_tools: overdose incident tracker, impairment-risk board, protected referral workflow, unit safety watchlist
+- alternate_tools: manual incident log and protected referral worksheet
+- degraded_mode: life-safety-first response with manual duty restrictions and protected voice care handoff only
+- input_requirements: incident timeline, symptoms, duty role, access level, referral options, authority thresholds
+- output_schema: impaired-duty risk matrix, overdose response ladder, protected referral or return-to-duty board
+- protocol_profile: HL7/FHIR + NIEM + signed case manifests + S/MIME + API/JSON + USMTF
+- validation_gates: life-safety check, duty-restriction confirmation, medical or command approval
+
+### packet_id: DPL-SLEEP-RECOVERY-SHIFT-WORK-FATIGUE-001
+- domain: theater sleep recovery shift work and fatigue restoration
+- objective: restore alertness before cumulative sleep loss degrades decision quality, safety, and operational output across critical nodes.
+- primary_tools: sleep-opportunity tracker, shift stability board, fatigue biomarker or survey ledger, relief and recovery scheduler
+- alternate_tools: manual shift board and protected-rest worksheet
+- degraded_mode: short-duration protected-rest windows only with paper rosters and voice-confirmed staffing handoffs
+- input_requirements: rosters, sleep opportunity, mission priorities, relief capacity, fatigue indicators, authority thresholds
+- output_schema: sleep recovery matrix, shift redesign ladder, fatigue risk heatmap
+- protocol_profile: HL7/FHIR + signed schedule manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
+- validation_gates: staffing confirmation, protected-rest approval, commander acknowledgment

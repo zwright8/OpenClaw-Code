@@ -2436,3 +2436,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-medical-force-health-v1`.
 - Protocols: `HL7/FHIR`, signed footwear manifests, `API/JSON`, `USMTF`.
 - Degraded fallback: shortened movement windows with manual sock and boot accountability.
+
+## Profile Addendum Y (2026-03-15, Industrial Hygiene, Aviation Physiology, Dive Medicine, Toxicology, Food Protection, Hazardous Waste, Substance-Use Risk, and Sleep Recovery)
+
+### `industrial-hygiene-occupational-exposure-v1`
+- Use for: expeditionary site decisions when sampling, exposure limits, PPE posture, and permit-to-work controls determine safe continuation.
+- Primary tools: `ts-expeditionary-industrial-hygiene-occupational-exposure-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed sample manifests, `OPC UA`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: short-duration work only with manual sampling log, respirator check, and daily command review.
+
+### `aviation-physiology-hypoxia-life-support-v1`
+- Use for: flight-safety decisions when hypoxia, acceleration stress, decompression concerns, or life-support discrepancies threaten crew release.
+- Primary tools: `ts-joint-aviation-physiology-hypoxia-life-support-v1`.
+- Cross-check tools: `ts-theater-aircrew-fatigue-circadian-countermeasure-v1`.
+- Protocols: `HL7/FHIR`, `AIXM/FIXM`, signed life-support manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: minimum-risk sortie posture with manual discrepancy tracking and protected voice release approval.
+
+### `dive-medicine-hyperbaric-routing-v1`
+- Use for: maritime and undersea decisions when pressure injury, chamber capacity, or rescue routing determines diver survivability and mission continuity.
+- Primary tools: `ts-joint-dive-medicine-hyperbaric-routing-v1`.
+- Cross-check tools: `ts-submarine-rescue-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed dive-profile manifests, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-saving routing only with voice-confirmed casualty handoff and manual chamber allocation.
+
+### `occupational-toxicology-solvent-fuel-heavy-metal-v1`
+- Use for: theater force-health decisions when toxic industrial or maintenance exposures must be sampled, isolated, and medically trended.
+- Primary tools: `ts-theater-occupational-toxicology-solvent-fuel-heavy-metal-v1`.
+- Cross-check tools: `ts-expeditionary-industrial-hygiene-occupational-exposure-v1`.
+- Protocols: `HL7/FHIR`, signed lab manifests, `OPC UA`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: isolate affected work areas and track symptoms manually until verified samples and reviews complete.
+
+### `food-protection-inspection-sanitation-v1`
+- Use for: field-feeding decisions when source pedigree, cold-chain status, or sanitation controls determine outbreak risk and ration continuity.
+- Primary tools: `ts-expeditionary-food-protection-inspection-sanitation-v1`.
+- Cross-check tools: `ts-expeditionary-field-nutrition-resilience-v1`.
+- Protocols: `HL7/FHIR`, signed inspection manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: sealed-ration-only posture with manual source approval and daily sanitation review.
+
+### `hazardous-waste-burn-pit-ash-exposure-v1`
+- Use for: base-support and compliance decisions when waste backlog, emissions, or ash exposure can invalidate continued operations.
+- Primary tools: `ts-theater-hazardous-waste-burn-pit-ash-exposure-v1`.
+- Cross-check tools: `ts-expeditionary-industrial-hygiene-occupational-exposure-v1`.
+- Protocols: signed waste manifests, `OPC UA`, `OGC`, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Degraded fallback: essential disposal only with manual manifests, visual plume controls, and command readback.
+
+### `substance-use-overdose-impaired-duty-v1`
+- Use for: command-safety decisions when overdose or impairment may require immediate care, restricted duty, or protected referral.
+- Primary tools: `ts-joint-substance-use-overdose-impaired-duty-v1`.
+- Cross-check tools: `ts-joint-psychological-health-postvention-command-support-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed case manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Degraded fallback: life-safety-first response with manual duty restrictions and protected voice care handoff only.
+
+### `sleep-recovery-shift-work-fatigue-restoration-v1`
+- Use for: theater staffing decisions when chronic sleep loss or unstable shifts threaten mission quality outside specialized watchfloor or aircrew cells.
+- Primary tools: `ts-theater-sleep-recovery-shift-work-fatigue-restoration-v1`.
+- Cross-check tools: `ts-theater-aircrew-fatigue-circadian-countermeasure-v1`.
+- Protocols: `HL7/FHIR`, signed schedule manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Degraded fallback: short-duration protected-rest windows only with paper rosters and voice-confirmed staffing handoffs.

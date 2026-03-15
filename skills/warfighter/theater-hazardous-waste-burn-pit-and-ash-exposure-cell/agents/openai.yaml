@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Theater Hazardous Waste, Burn Pit, And Ash Exposure Cell"
+  short_description: "Help with Theater Hazardous Waste, Burn Pit, And Ash Exposure Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Hazardous Waste, Burn Pit, And Ash Exposure Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

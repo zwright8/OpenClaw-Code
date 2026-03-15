@@ -12846,3 +12846,87 @@ external_binding:
 ### `ps-joint-foot-health-trench-foot-load-bearing-readiness-stack-v1`
 - Protocols: `HL7/FHIR`, signed footwear manifests, `API/JSON`, `USMTF`.
 - Use for: injury-status updates, boot or sock redistribution, and pacing-control acknowledgments.
+
+## Tool Suite Addendum LIV (2026-03-15, Industrial Hygiene, Aviation Physiology, Dive Medicine, Toxicology, Food Protection, Hazardous Waste, Substance-Use Risk, and Sleep Recovery)
+
+### `ts-expeditionary-industrial-hygiene-occupational-exposure-v1`
+- Use for: occupational sampling, exposure-control boards, respirator posture, and confined-space or maintenance hazard decisions at expeditionary sites.
+- Primary tools: industrial hygiene sampling ledger, respirator fit-status board, exposure-limit tracker, confined-space permit workflow.
+- Cross-check tools: independent preventive-medicine witness and alternate facility engineer hazard board.
+- Typical products: exposure control matrix, sampling priority board, and PPE or work-restriction ladder.
+
+### `ts-joint-aviation-physiology-hypoxia-life-support-v1`
+- Use for: hypoxia, decompression, acceleration, and life-support equipment risk during flight operations and sortie recovery.
+- Primary tools: physiological incident tracker, life-support equipment status board, altitude-chamber and training ledger, aircraft oxygen-system health monitor.
+- Cross-check tools: independent flight-surgeon witness and alternate maintenance discrepancy board.
+- Typical products: physiological risk dashboard, life-support restriction matrix, and sortie-release advisory ladder.
+
+### `ts-joint-dive-medicine-hyperbaric-routing-v1`
+- Use for: pressure injury triage, hyperbaric chamber allocation, and undersea casualty routing when dive operations or rescue timelines are constrained.
+- Primary tools: dive-profile ledger, hyperbaric chamber status board, diver medical triage queue, undersea casualty-routing planner.
+- Cross-check tools: independent dive medical officer witness and alternate chamber maintenance board.
+- Typical products: chamber allocation ladder, diver casualty-routing plan, and no-dive or return-to-dive matrix.
+
+### `ts-theater-occupational-toxicology-solvent-fuel-heavy-metal-v1`
+- Use for: toxic exposure assessment and exposure-response decisions for fuels, solvents, metals, propellants, and industrial contaminants.
+- Primary tools: toxicology sample ledger, exposure symptom board, industrial contaminant map, medical surveillance tracker.
+- Cross-check tools: independent lab witness and alternate hazard-communication board.
+- Typical products: toxic exposure watchlist, sampling and isolation plan, and exposure notification ladder.
+
+### `ts-expeditionary-food-protection-inspection-sanitation-v1`
+- Use for: field feeding protection, sanitary inspection, refrigeration control, and foodborne illness prevention.
+- Primary tools: food inspection ledger, cold-chain monitor, field-sanitation checklist board, food-handling violation tracker.
+- Cross-check tools: independent preventive-medicine or veterinary witness and alternate ration-quality board.
+- Typical products: food protection dashboard, inspection priority matrix, and food-source approval ladder.
+
+### `ts-theater-hazardous-waste-burn-pit-ash-exposure-v1`
+- Use for: hazardous-waste segregation, burn-pit governance, emissions monitoring, and ash-exposure mitigation when disposal constraints affect operations.
+- Primary tools: hazardous-waste manifest ledger, emissions and plume monitor, ash sampling board, disposal routing planner.
+- Cross-check tools: independent environmental-compliance witness and alternate base-camp health monitor.
+- Typical products: waste-disposition matrix, exposure risk board, and burn-status or shutdown ladder.
+
+### `ts-joint-substance-use-overdose-impaired-duty-v1`
+- Use for: overdose response, impaired-duty risk adjudication, medication or substance misuse trend tracking, and protected referral support.
+- Primary tools: overdose incident tracker, impairment-risk board, protected referral workflow, unit safety watchlist.
+- Cross-check tools: independent behavioral-health witness and alternate law-enforcement or safety office board.
+- Typical products: impaired-duty risk matrix, overdose response ladder, and protected referral or return-to-duty board.
+
+### `ts-theater-sleep-recovery-shift-work-fatigue-restoration-v1`
+- Use for: theater-wide sleep recovery, shift stabilization, and fatigue restoration when sustained operations degrade decision quality and safety.
+- Primary tools: sleep-opportunity tracker, shift stability board, fatigue biomarker or survey ledger, relief and recovery scheduler.
+- Cross-check tools: independent surgeon or performance-team witness and alternate commander readiness board.
+- Typical products: sleep recovery matrix, shift redesign ladder, and fatigue risk heatmap.
+
+## Protocol Stack Addendum LIV (2026-03-15, External Integration Profiles for Expansion Wave LIV)
+
+### `ps-expeditionary-industrial-hygiene-occupational-exposure-stack-v1`
+- Protocols: `HL7/FHIR`, signed sample manifests, `OPC UA`, `OGC`, `API/JSON`, `USMTF`.
+- Use for: sampling status, exposure-limit updates, confined-space restriction notices, and work-release acknowledgments.
+
+### `ps-joint-aviation-physiology-hypoxia-life-support-stack-v1`
+- Protocols: `HL7/FHIR`, `AIXM/FIXM`, signed life-support manifests, `API/JSON`, `USMTF`.
+- Use for: physiological-incident exchange, equipment-restriction updates, and sortie-release acknowledgments.
+
+### `ps-joint-dive-medicine-hyperbaric-routing-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed dive-profile manifests, `OGC`, `API/JSON`, `USMTF`.
+- Use for: dive-profile exchange, chamber-status routing, casualty-transfer control, and return-to-dive acknowledgment.
+
+### `ps-theater-occupational-toxicology-solvent-fuel-heavy-metal-stack-v1`
+- Protocols: `HL7/FHIR`, signed lab manifests, `OPC UA`, `OGC`, `API/JSON`, `USMTF`.
+- Use for: toxicology-sample status, contaminant-map updates, exposure notifications, and medical-surveillance tasking.
+
+### `ps-expeditionary-food-protection-inspection-sanitation-stack-v1`
+- Protocols: `HL7/FHIR`, signed inspection manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: food inspection status, cold-chain violations, quarantine actions, and source-release acknowledgments.
+
+### `ps-theater-hazardous-waste-burn-pit-ash-exposure-stack-v1`
+- Protocols: signed waste manifests, `OPC UA`, `OGC`, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Use for: waste-status exchange, plume alerts, burn or shutdown decisions, and exposure-control acknowledgments.
+
+### `ps-joint-substance-use-overdose-impaired-duty-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed case manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: overdose-event routing, impaired-duty restrictions, protected referral updates, and return-to-duty acknowledgments.
+
+### `ps-theater-sleep-recovery-shift-work-fatigue-restoration-stack-v1`
+- Protocols: `HL7/FHIR`, signed schedule manifests, `API/JSON`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange.
+- Use for: shift-change synchronization, protected-rest updates, fatigue alerts, and staffing-restoration acknowledgments.

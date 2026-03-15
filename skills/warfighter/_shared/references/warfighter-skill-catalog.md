@@ -2572,3 +2572,25 @@ Every skill output should include:
 - Blast overpressure and breacher readiness + joint live-fire range safety and autonomous target control cell + expeditionary battlefield noise and hearing conservation cell + training and rehearsal designer.
 - Barracks HVAC, mold, and indoor-air-quality control + civil defense mass evacuation shelter cell + force protection and base defense + defense support of civil authorities crisis cell.
 - Foot health, blister, trench foot, and load-bearing readiness + theater musculoskeletal load management and physical therapy cell + expeditionary field laundry and textile decontamination cell + strategic mobility deployment planner.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LIV)
+
+- expeditionary-industrial-hygiene-and-occupational-exposure-control-cell
+- joint-aviation-physiology-hypoxia-acceleration-and-life-support-cell
+- joint-dive-medicine-hyperbaric-and-undersea-casualty-routing-cell
+- theater-occupational-toxicology-solvent-fuel-and-heavy-metal-cell
+- expeditionary-food-protection-inspection-and-sanitation-cell
+- theater-hazardous-waste-burn-pit-and-ash-exposure-cell
+- joint-substance-use-overdose-and-impaired-duty-command-support-cell
+- theater-sleep-recovery-shift-work-and-fatigue-restoration-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LIV)
+
+- Expeditionary industrial hygiene and occupational exposure control + preventive medicine and force health protection + battlefield additive manufacturing forward repair validation + expeditionary field hospital wastewater biosecurity cell.
+- Joint aviation physiology hypoxia acceleration and life support + theater aircrew fatigue circadian countermeasure cell + air tasking cycle support + joint directed-energy engagement airspace and reflection safety cell.
+- Joint dive medicine hyperbaric and undersea casualty routing + joint maritime salvage diver life-support and decompression cell + joint role 3 medical network and aeromedical evac cell + combat search and rescue coordinator.
+- Theater occupational toxicology solvent fuel and heavy metal + preventive medicine and force health protection + mission risk decision support + theater hazardous waste burn pit and ash exposure cell.
+- Expeditionary food protection inspection and sanitation + expeditionary food supply safety and contamination cell + expeditionary aquaculture and field nutrition resilience cell + contested logistics sustainment.
+- Theater hazardous waste burn pit and ash exposure + expeditionary battlefield waste and hazardous material cell + expeditionary industrial hygiene and occupational exposure control cell + defense support of civil authorities crisis cell.
+- Joint substance use overdose and impaired duty command support + joint psychological health suicide postvention command support cell + joint religious affairs and moral injury support cell + mission risk decision support.
+- Theater sleep recovery shift work and fatigue restoration + joint cognitive load and watchfloor fatigue management cell + theater aircrew fatigue circadian countermeasure cell + mission risk decision support.

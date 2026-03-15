@@ -151,3 +151,8 @@ Use this default binding unless mission constraints require an alternate path:
 - Primary: `tool_suite_id=ts-expeditionary-food-safety-v1` with `protocol_stack_id=ps-force-health-logistics-safety-stack-v1`.
 - Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
 - Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-food-protection-inspection-sanitation-v1` + `protocol_stack_id=ps-expeditionary-food-protection-inspection-sanitation-stack-v1` when source pedigree, inspection throughput, or sanitation failure materially changes feeding posture or quarantine decisions.
+- Add `packet_id=DPL-FOOD-PROTECTION-INSPECTION-SANITATION-001` for branches that materially change food release, source rejection, or sealed-ration fallback posture.
