@@ -68,6 +68,10 @@ function normalizeRetryBudgetRatio(value, fallback = 0) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeRetryHintMaxDelayMs(value, fallback = 120_000) {
+    return parseNonNegativeInt(value, fallback);
+}
+
 function normalizeCircuitBreakerFailureThreshold(value, fallback = 0) {
     const numeric = Number(value);
     if (!Number.isInteger(numeric) || numeric < 0) return fallback;
@@ -204,6 +208,115 @@ export function computeRetryDelayMs({
     }
     const offset = ((random * 2) - 1) * jitterRatio;
     return Math.max(0, Math.round(capped * (1 + offset)));
+}
+
+function normalizeRetryAfterDelayMs(value, nowMs) {
+    if (value === null || value === undefined) return null;
+    if (typeof value === 'number' && Number.isFinite(value) && value >= 0) {
+        return Math.round(value);
+    }
+    const raw = String(value || '').trim();
+    if (!raw) return null;
+    if (/^\d+(\.\d+)?$/.test(raw)) {
+        return Math.max(0, Math.round(Number(raw) * 1000));
+    }
+    const parsedDate = Date.parse(raw);
+    if (Number.isFinite(parsedDate)) {
+        return Math.max(0, Math.round(parsedDate - nowMs));
+    }
+    return null;
+}
+
+function parseRetryAfterHintFromOutput(output, nowMs) {
+    if (typeof output !== 'string' || !output.trim()) return null;
+    const lineMatch = output.match(/retry-?after\s*[:=]\s*([^\r\n;]+)/i);
+    if (lineMatch) {
+        const parsedFromLine = normalizeRetryAfterDelayMs(lineMatch[1], nowMs);
+        if (parsedFromLine !== null) return parsedFromLine;
+    }
+
+    const jsonHeaderMatch = output.match(/["']retry-?after["']\s*:\s*["']([^"']+)["']/i);
+    if (jsonHeaderMatch) {
+        const parsedFromJsonHeader = normalizeRetryAfterDelayMs(jsonHeaderMatch[1], nowMs);
+        if (parsedFromJsonHeader !== null) return parsedFromJsonHeader;
+    }
+
+    const phraseMatch = output.match(
+        /retry(?:ing)?\s+after\s+(\d+(?:\.\d+)?)\s*(ms|msec|milliseconds?|s|sec|secs|seconds?|m|min|mins|minutes?)?\b/i
+    );
+    if (!phraseMatch) return null;
+
+    const amount = Number(phraseMatch[1]);
+    if (!Number.isFinite(amount) || amount < 0) return null;
+    const unit = String(phraseMatch[2] || 's').toLowerCase();
+    if (unit.startsWith('ms')) return Math.round(amount);
+    if (unit.startsWith('m')) return Math.round(amount * 60_000);
+    return Math.round(amount * 1000);
+}
+
+export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {}) {
+    if (!execution || typeof execution !== 'object') return null;
+    const now = safeNow(nowFactory);
+    const metrics = execution.metrics && typeof execution.metrics === 'object'
+        ? execution.metrics
+        : {};
+
+    const directMetricKeys = [
+        'retryAfterMs',
+        'retry_after_ms',
+        'retryAfterMilliseconds',
+        'retry_after_milliseconds'
+    ];
+    for (const key of directMetricKeys) {
+        const parsed = normalizeRetryAfterDelayMs(metrics[key], now);
+        if (parsed !== null) return parsed;
+    }
+
+    const secondsMetricKeys = [
+        'retryAfterSeconds',
+        'retry_after_seconds'
+    ];
+    for (const key of secondsMetricKeys) {
+        const numeric = Number(metrics[key]);
+        if (Number.isFinite(numeric) && numeric >= 0) {
+            return Math.round(numeric * 1000);
+        }
+    }
+
+    const epochMsMetricKeys = [
+        'retryAfterEpochMs',
+        'retry_after_epoch_ms'
+    ];
+    for (const key of epochMsMetricKeys) {
+        const epochMs = Number(metrics[key]);
+        if (Number.isFinite(epochMs) && epochMs >= 0) {
+            return Math.max(0, Math.round(epochMs - now));
+        }
+    }
+
+    const epochSecondsMetricKeys = [
+        'retryAfterUnixSeconds',
+        'retry_after_unix_seconds'
+    ];
+    for (const key of epochSecondsMetricKeys) {
+        const epochSeconds = Number(metrics[key]);
+        if (Number.isFinite(epochSeconds) && epochSeconds >= 0) {
+            return Math.max(0, Math.round((epochSeconds * 1000) - now));
+        }
+    }
+
+    const headerLikeMetricKeys = [
+        'retryAfter',
+        'retry_after',
+        'retryAfterHeader',
+        'retry_after_header'
+    ];
+    for (const key of headerLikeMetricKeys) {
+        const parsed = normalizeRetryAfterDelayMs(metrics[key], now);
+        if (parsed !== null) return parsed;
+    }
+
+    return parseRetryAfterHintFromOutput(execution.output, now);
 }
 
 async function sleep(ms) {
@@ -430,6 +543,7 @@ export async function processOutboxEnvelopes({
     botRetryMaxDelayMs = 5_000,
     botRetryJitter = 0.2,
     botRetryJitterStrategy = 'symmetric',
+    botRetryHintMaxDelayMs = 120_000,
     botAttemptTimeoutMs = 120_000,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
@@ -466,6 +580,7 @@ export async function processOutboxEnvelopes({
     );
     const normalizedBotRetryJitter = normalizeRetryJitter(botRetryJitter, 0.2);
     const normalizedBotRetryJitterStrategy = normalizeRetryJitterStrategy(botRetryJitterStrategy, 'symmetric');
+    const normalizedBotRetryHintMaxDelayMs = normalizeRetryHintMaxDelayMs(botRetryHintMaxDelayMs, 120_000);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
@@ -774,9 +889,19 @@ export async function processOutboxEnvelopes({
                         previousDelayMs: previousRetryDelayMs,
                         rng
                     });
-                    previousRetryDelayMs = retryDelayMs;
+                    let effectiveRetryDelayMs = retryDelayMs;
+                    if (normalizedBotRetryHintMaxDelayMs > 0) {
+                        const retryAfterHintMs = extractRetryAfterHintMs(execution, { nowFactory: now });
+                        if (retryAfterHintMs !== null) {
+                            effectiveRetryDelayMs = Math.max(
+                                retryDelayMs,
+                                clamp(retryAfterHintMs, 0, normalizedBotRetryHintMaxDelayMs)
+                            );
+                        }
+                    }
+                    previousRetryDelayMs = effectiveRetryDelayMs;
                     // eslint-disable-next-line no-await-in-loop
-                    await sleep(retryDelayMs);
+                    await sleep(effectiveRetryDelayMs);
                 }
                 if (!execution) {
                     execution = {

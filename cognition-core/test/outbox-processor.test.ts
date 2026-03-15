@@ -10,6 +10,7 @@ import {
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
     computeRetryDelayMs,
+    extractRetryAfterHintMs,
     processOutboxEnvelopes
 } from '../src/outbox-processor.js';
 
@@ -106,6 +107,29 @@ test('computeRetryDelayMs supports decorrelated jitter strategy', () => {
     });
     assert.equal(minDelay, 100);
     assert.equal(maxDelay, 300);
+});
+
+test('extractRetryAfterHintMs supports numeric seconds and HTTP-date values', () => {
+    const nowMs = Date.parse('2026-03-14T00:00:00.000Z');
+    const fromSecondsMetric = extractRetryAfterHintMs(
+        {
+            metrics: {
+                retryAfterSeconds: 2.5
+            }
+        },
+        { nowFactory: () => nowMs }
+    );
+    assert.equal(fromSecondsMetric, 2_500);
+
+    const fromHttpDate = extractRetryAfterHintMs(
+        {
+            metrics: {
+                retryAfter: 'Sat, 14 Mar 2026 00:00:03 GMT'
+            }
+        },
+        { nowFactory: () => nowMs }
+    );
+    assert.equal(fromHttpDate, 3_000);
 });
 
 test('processOutboxEnvelopes ingests receipt/result and archives processed files', async (t) => {
@@ -370,6 +394,78 @@ test('processOutboxEnvelopes retries transient bot failures and recovers', async
     const completedParent = records.find((entry) => entry.taskId === request.id);
     assert.equal(completedParent?.status, 'completed');
     assert.match(completedParent?.result?.output || '', /Recovered after retry/);
+});
+
+test('processOutboxEnvelopes honors retry-after hints on transient retries', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000741', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_500 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_501
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const attemptStartedAt = [];
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botRetryHintMaxDelayMs: 100,
+        botExecute: async () => {
+            attempts++;
+            attemptStartedAt.push(Date.now());
+            if (attempts === 1) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: '429 too many requests',
+                    metrics: {
+                        retryable: 1,
+                        retryAfterSeconds: 0.03
+                    },
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered after retry-after delay.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 2);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesRecovered, 1);
+    assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 20);
 });
 
 test('processOutboxEnvelopes retries timed out bot attempts and recovers', async (t) => {
