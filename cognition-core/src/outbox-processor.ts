@@ -841,9 +841,11 @@ export async function processOutboxEnvelopes({
     let circuitBreakerHalfOpenSinceMs = 0;
     let circuitBreakerOpenStreak = 0;
 
-    const openCircuitBreaker = () => {
+    const openCircuitBreaker = ({
+        retryAfterHintMs = null
+    } = {}) => {
         const nextOpenStreak = circuitBreakerOpenStreak + 1;
-        const cooldownMs = resolveCircuitBreakerCooldownMs({
+        const baseCooldownMs = resolveCircuitBreakerCooldownMs({
             baseCooldownMs: normalizedBotCircuitBreakerCooldownMs,
             maxCooldownMs: normalizedBotCircuitBreakerMaxCooldownMs,
             backoffMultiplier: normalizedBotCircuitBreakerCooldownBackoffMultiplier,
@@ -851,6 +853,24 @@ export async function processOutboxEnvelopes({
             cooldownJitter: normalizedBotCircuitBreakerCooldownJitter,
             rng
         });
+        let cooldownMs = baseCooldownMs;
+        let appliedRetryAfterHintMs = null;
+        if (normalizedBotRetryHintMaxDelayMs > 0) {
+            const numericHint = Number(retryAfterHintMs);
+            if (Number.isFinite(numericHint) && numericHint > 0) {
+                const boundedRetryAfterHintMs = clamp(
+                    Math.round(numericHint),
+                    0,
+                    normalizedBotRetryHintMaxDelayMs
+                );
+                appliedRetryAfterHintMs = applyRetryHintJitterMs({
+                    delayMs: boundedRetryAfterHintMs,
+                    jitter: normalizedBotRetryHintJitter,
+                    rng
+                });
+                cooldownMs = Math.max(cooldownMs, appliedRetryAfterHintMs);
+            }
+        }
         circuitBreakerOpenUntilMs = safeNow(now) + cooldownMs;
         circuitBreakerOpenStreak = nextOpenStreak;
         circuitBreakerHalfOpenProbeCount = 0;
@@ -861,7 +881,8 @@ export async function processOutboxEnvelopes({
         slowCallRateObservations = [];
         return {
             cooldownMs,
-            openStreak: nextOpenStreak
+            openStreak: nextOpenStreak,
+            retryAfterHintMs: appliedRetryAfterHintMs
         };
     };
 
@@ -1164,7 +1185,13 @@ export async function processOutboxEnvelopes({
                 } else if (startedInCircuitHalfOpen) {
                     stats.botCircuitBreakerHalfOpenProbes++;
                     if (execution.status === 'failure') {
-                        const reopened = openCircuitBreaker();
+                        const circuitBreakerRetryAfterHintMs =
+                            normalizedBotRetryHintMaxDelayMs > 0 && transientBotFailure
+                                ? extractRetryAfterHintMs(execution, { nowFactory: now })
+                                : null;
+                        const reopened = openCircuitBreaker({
+                            retryAfterHintMs: circuitBreakerRetryAfterHintMs
+                        });
                         stats.botCircuitBreakerOpened++;
                         execution = {
                             ...execution,
@@ -1173,7 +1200,12 @@ export async function processOutboxEnvelopes({
                                 ...(execution.metrics || {}),
                                 circuitBreakerOpened: 1,
                                 circuitBreakerCooldownMs: reopened.cooldownMs,
-                                circuitBreakerOpenStreak: reopened.openStreak
+                                circuitBreakerOpenStreak: reopened.openStreak,
+                                ...(reopened.retryAfterHintMs !== null
+                                    ? {
+                                        circuitBreakerRetryAfterHintMs: reopened.retryAfterHintMs
+                                    }
+                                    : {})
                             }
                         };
                     } else {
@@ -1245,7 +1277,13 @@ export async function processOutboxEnvelopes({
                             : shouldOpenByFailureRate
                                 ? `transient failure-rate threshold (${failureRate.toFixed(3)} >= ${normalizedBotCircuitBreakerFailureRateThreshold.toFixed(3)} over ${failureRateSampleCount} samples)`
                                 : `slow-call rate threshold (${slowCallRate.toFixed(3)} >= ${normalizedBotCircuitBreakerSlowCallRateThreshold.toFixed(3)} over ${slowCallRateSampleCount} samples with duration >= ${normalizedBotCircuitBreakerSlowCallDurationMs}ms)`;
-                        const reopened = openCircuitBreaker();
+                        const circuitBreakerRetryAfterHintMs =
+                            normalizedBotRetryHintMaxDelayMs > 0 && execution.status === 'failure' && transientBotFailure
+                                ? extractRetryAfterHintMs(execution, { nowFactory: now })
+                                : null;
+                        const reopened = openCircuitBreaker({
+                            retryAfterHintMs: circuitBreakerRetryAfterHintMs
+                        });
                         stats.botCircuitBreakerOpened++;
                         execution = {
                             ...execution,
@@ -1255,6 +1293,11 @@ export async function processOutboxEnvelopes({
                                 circuitBreakerOpened: 1,
                                 circuitBreakerCooldownMs: reopened.cooldownMs,
                                 circuitBreakerOpenStreak: reopened.openStreak,
+                                ...(reopened.retryAfterHintMs !== null
+                                    ? {
+                                        circuitBreakerRetryAfterHintMs: reopened.retryAfterHintMs
+                                    }
+                                    : {}),
                                 ...(shouldOpenByFailureRate
                                     ? {
                                         circuitBreakerFailureRate: failureRate,
