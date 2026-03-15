@@ -39,6 +39,7 @@ Options:
   --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
   --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
+  --bot-retry-max-elapsed-ms <n> Max elapsed milliseconds across retry attempts for a task (default: 0; disabled)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
@@ -150,6 +151,7 @@ function parseArgs(argv) {
         botRetryHintMaxDelayMs: 120_000,
         botRetryHintJitter: 0.1,
         botAttemptTimeoutMs: 120_000,
+        botRetryMaxElapsedMs: 0,
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
         botCircuitBreakerFailureRateThreshold: 0,
@@ -326,6 +328,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-retry-max-elapsed-ms') {
+            options.botRetryMaxElapsedMs = parsePositiveInt(value, '--bot-retry-max-elapsed-ms', true);
+            i++;
+            continue;
+        }
         if (token === '--bot-retry-budget-ratio') {
             options.botRetryBudgetRatio = parseRatio(value, '--bot-retry-budget-ratio');
             i++;
@@ -444,6 +451,7 @@ function printSummary(report) {
     console.log(`Bot retries recovered: ${report.totals.botRetriesRecovered}`);
     console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted}`);
     console.log(`Bot retries budget exhausted: ${report.totals.botRetriesBudgetExhausted}`);
+    console.log(`Bot retries deadline exceeded: ${report.totals.botRetriesDeadlineExceeded}`);
     console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts}`);
     console.log(`Bot circuit-breaker opened: ${report.totals.botCircuitBreakerOpened}`);
     console.log(`Bot circuit-breaker open skips: ${report.totals.botCircuitBreakerOpenSkips}`);
@@ -491,6 +499,7 @@ function printSummary(report) {
             botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
             botRetryHintJitter: options.botRetryHintJitter,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
+            botRetryMaxElapsedMs: options.botRetryMaxElapsedMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
             botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,

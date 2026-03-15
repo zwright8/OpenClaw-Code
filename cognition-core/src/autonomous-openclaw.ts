@@ -5116,6 +5116,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
         `- botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
+        `- botRetriesDeadlineExceeded: ${report.totals?.botRetriesDeadlineExceeded || 0}`,
         `- botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
         `- botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
@@ -5191,6 +5192,7 @@ export async function runAutonomousOpenClaw({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botRetryMaxElapsedMs = 0,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
@@ -5262,6 +5264,7 @@ export async function runAutonomousOpenClaw({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
@@ -5330,6 +5333,7 @@ export async function runAutonomousOpenClaw({
             botRetryHintMaxDelayMs,
             botRetryHintJitter,
             botAttemptTimeoutMs,
+            botRetryMaxElapsedMs,
             botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold,
             botCircuitBreakerCooldownMs,
@@ -5405,6 +5409,7 @@ export async function runAutonomousOpenClaw({
                 botRetriesRecovered: workerReport.totals.botRetriesRecovered,
                 botRetriesExhausted: workerReport.totals.botRetriesExhausted,
                 botRetriesBudgetExhausted: workerReport.totals.botRetriesBudgetExhausted,
+                botRetriesDeadlineExceeded: workerReport.totals.botRetriesDeadlineExceeded,
                 botAttemptTimeouts: workerReport.totals.botAttemptTimeouts,
                 botCircuitBreakerOpened: workerReport.totals.botCircuitBreakerOpened,
                 botCircuitBreakerOpenSkips: workerReport.totals.botCircuitBreakerOpenSkips,
@@ -5430,6 +5435,7 @@ export async function runAutonomousOpenClaw({
         totals.botRetriesRecovered += waveReport.worker.botRetriesRecovered;
         totals.botRetriesExhausted += waveReport.worker.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += waveReport.worker.botRetriesBudgetExhausted;
+        totals.botRetriesDeadlineExceeded += waveReport.worker.botRetriesDeadlineExceeded;
         totals.botAttemptTimeouts += waveReport.worker.botAttemptTimeouts;
         totals.botCircuitBreakerOpened += waveReport.worker.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += waveReport.worker.botCircuitBreakerOpenSkips;
@@ -5491,6 +5497,7 @@ export async function runAutonomousOpenClaw({
             botRetryHintMaxDelayMs: parseNonNegativeInt(botRetryHintMaxDelayMs, 120_000),
             botRetryHintJitter: clamp(parseNonNegativeNumber(botRetryHintJitter, 0.1), 0, 1),
             botAttemptTimeoutMs: parseNonNegativeInt(botAttemptTimeoutMs, 120_000),
+            botRetryMaxElapsedMs: parseNonNegativeInt(botRetryMaxElapsedMs, 0),
             botRetryBudgetRatio: clamp(parseNonNegativeNumber(botRetryBudgetRatio, 0), 0, 1),
             botCircuitBreakerFailureThreshold: parseNonNegativeInt(botCircuitBreakerFailureThreshold, 0),
             botCircuitBreakerCooldownMs: parseNonNegativeInt(botCircuitBreakerCooldownMs, 30_000),

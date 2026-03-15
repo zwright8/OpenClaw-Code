@@ -30,6 +30,7 @@ Options:
   --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
   --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
+  --bot-retry-max-elapsed-ms <n> Max elapsed milliseconds across retry attempts for a task (default: 0; disabled)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
@@ -41,6 +42,7 @@ Options:
   --bot-circuit-breaker-slow-call-min-samples <n> Min rolling samples before slow-call threshold can open breaker (default: 8)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
   --bot-circuit-breaker-cooldown-backoff-multiplier <n> Circuit-breaker cooldown growth multiplier per consecutive reopen (1-10, default: 1)
+  --bot-circuit-breaker-cooldown-jitter <0-1> Positive jitter added to breaker cooldown windows (default: 0; disabled)
   --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
   --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
   --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
@@ -132,6 +134,7 @@ function parseArgs(argv) {
         botRetryHintMaxDelayMs: 120_000,
         botRetryHintJitter: 0.1,
         botAttemptTimeoutMs: 120_000,
+        botRetryMaxElapsedMs: 0,
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
         botCircuitBreakerFailureRateThreshold: 0,
@@ -143,6 +146,7 @@ function parseArgs(argv) {
         botCircuitBreakerSlowCallMinSamples: 8,
         botCircuitBreakerCooldownMs: 30_000,
         botCircuitBreakerCooldownBackoffMultiplier: 1,
+        botCircuitBreakerCooldownJitter: 0,
         botCircuitBreakerMaxCooldownMs: 180_000,
         botCircuitBreakerHalfOpenMaxProbes: 1,
         botCircuitBreakerHalfOpenSuccessThreshold: 1,
@@ -282,6 +286,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-retry-max-elapsed-ms') {
+            options.botRetryMaxElapsedMs = parsePositiveInt(value, '--bot-retry-max-elapsed-ms');
+            i++;
+            continue;
+        }
         if (token === '--bot-retry-budget-ratio') {
             options.botRetryBudgetRatio = parseRatio(value, '--bot-retry-budget-ratio');
             i++;
@@ -342,6 +351,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-circuit-breaker-cooldown-jitter') {
+            options.botCircuitBreakerCooldownJitter = parseRatio(value, '--bot-circuit-breaker-cooldown-jitter');
+            i++;
+            continue;
+        }
         if (token === '--bot-circuit-breaker-max-cooldown-ms') {
             options.botCircuitBreakerMaxCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-max-cooldown-ms');
             i++;
@@ -397,6 +411,7 @@ function printSummary(stats) {
         console.log(`Bot retries recovered: ${stats.botRetriesRecovered}`);
         console.log(`Bot retries exhausted: ${stats.botRetriesExhausted}`);
         console.log(`Bot retries budget exhausted: ${stats.botRetriesBudgetExhausted}`);
+        console.log(`Bot retries deadline exceeded: ${stats.botRetriesDeadlineExceeded}`);
         console.log(`Bot attempt timeouts: ${stats.botAttemptTimeouts}`);
         console.log(`Bot circuit-breaker opened: ${stats.botCircuitBreakerOpened}`);
         console.log(`Bot circuit-breaker open skips: ${stats.botCircuitBreakerOpenSkips}`);
@@ -443,6 +458,7 @@ function printSummary(stats) {
             botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
             botRetryHintJitter: options.botRetryHintJitter,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
+            botRetryMaxElapsedMs: options.botRetryMaxElapsedMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
             botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,
@@ -454,6 +470,7 @@ function printSummary(stats) {
             botCircuitBreakerSlowCallMinSamples: options.botCircuitBreakerSlowCallMinSamples,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
             botCircuitBreakerCooldownBackoffMultiplier: options.botCircuitBreakerCooldownBackoffMultiplier,
+            botCircuitBreakerCooldownJitter: options.botCircuitBreakerCooldownJitter,
             botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,

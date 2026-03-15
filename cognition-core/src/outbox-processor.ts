@@ -68,6 +68,10 @@ function normalizeRetryBudgetRatio(value, fallback = 0) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeRetryMaxElapsedMs(value, fallback = 0) {
+    return parseNonNegativeInt(value, fallback);
+}
+
 function normalizeRetryHintMaxDelayMs(value, fallback = 120_000) {
     return parseNonNegativeInt(value, fallback);
 }
@@ -714,6 +718,7 @@ export async function processOutboxEnvelopes({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botRetryMaxElapsedMs = 0,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
@@ -754,6 +759,7 @@ export async function processOutboxEnvelopes({
     const normalizedBotRetryHintMaxDelayMs = normalizeRetryHintMaxDelayMs(botRetryHintMaxDelayMs, 120_000);
     const normalizedBotRetryHintJitter = normalizeRetryHintJitter(botRetryHintJitter, 0.1);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
+    const normalizedBotRetryMaxElapsedMs = normalizeRetryMaxElapsedMs(botRetryMaxElapsedMs, 0);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
         botCircuitBreakerFailureThreshold,
@@ -949,6 +955,7 @@ export async function processOutboxEnvelopes({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
@@ -1006,6 +1013,8 @@ export async function processOutboxEnvelopes({
                 let previousRetryDelayMs = null;
                 let transientFailureRetried = false;
                 let retryBudgetBlocked = false;
+                let retryDeadlineBlocked = false;
+                const retryStartedAtMs = safeNow(now);
                 const taskNow = safeNow(now);
                 const startedInCircuitHalfOpen = circuitBreakerEnabled
                     && circuitBreakerOpenUntilMs > 0
@@ -1100,6 +1109,23 @@ export async function processOutboxEnvelopes({
                     }
                     const shouldRetry = isTransientBotFailure(execution) && attempts < normalizedBotMaxAttempts;
                     if (!shouldRetry) break;
+                    if (normalizedBotRetryMaxElapsedMs > 0) {
+                        const elapsedMs = Math.max(0, safeNow(now) - retryStartedAtMs);
+                        if (elapsedMs >= normalizedBotRetryMaxElapsedMs) {
+                            retryDeadlineBlocked = true;
+                            stats.botRetriesDeadlineExceeded++;
+                            execution = {
+                                ...execution,
+                                output: `${execution.output} Retry deadline exceeded (${elapsedMs}ms >= ${normalizedBotRetryMaxElapsedMs}ms); skipping additional retries.`,
+                                metrics: {
+                                    ...(execution.metrics || {}),
+                                    retryDeadlineExceeded: 1,
+                                    retryElapsedMs: elapsedMs
+                                }
+                            };
+                            break;
+                        }
+                    }
                     if (retryBudgetEnabled && retryBudgetTokens < 1) {
                         retryBudgetBlocked = true;
                         stats.botRetriesBudgetExhausted++;
@@ -1143,6 +1169,25 @@ export async function processOutboxEnvelopes({
                             );
                         }
                     }
+                    if (normalizedBotRetryMaxElapsedMs > 0) {
+                        const elapsedMs = Math.max(0, safeNow(now) - retryStartedAtMs);
+                        const remainingBudgetMs = normalizedBotRetryMaxElapsedMs - elapsedMs;
+                        if (remainingBudgetMs <= 0 || effectiveRetryDelayMs > remainingBudgetMs) {
+                            retryDeadlineBlocked = true;
+                            stats.botRetriesDeadlineExceeded++;
+                            execution = {
+                                ...execution,
+                                output: `${execution.output} Retry deadline would be exceeded by waiting ${effectiveRetryDelayMs}ms with ${Math.max(0, remainingBudgetMs)}ms remaining; skipping additional retries.`,
+                                metrics: {
+                                    ...(execution.metrics || {}),
+                                    retryDeadlineExceeded: 1,
+                                    retryElapsedMs: elapsedMs,
+                                    retryRemainingBudgetMs: Math.max(0, remainingBudgetMs)
+                                }
+                            };
+                            break;
+                        }
+                    }
                     previousRetryDelayMs = effectiveRetryDelayMs;
                     // eslint-disable-next-line no-await-in-loop
                     await sleep(effectiveRetryDelayMs);
@@ -1161,7 +1206,7 @@ export async function processOutboxEnvelopes({
                 stats[botModeToStatField(execution.mode)]++;
                 if (attempts > 1 && execution.status !== 'failure') {
                     stats.botRetriesRecovered++;
-                } else if (execution.status === 'failure' && (transientFailureRetried || retryBudgetBlocked)) {
+                } else if (execution.status === 'failure' && (transientFailureRetried || retryBudgetBlocked || retryDeadlineBlocked)) {
                     stats.botRetriesExhausted++;
                 }
                 if (

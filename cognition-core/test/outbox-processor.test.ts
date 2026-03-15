@@ -745,6 +745,68 @@ test('processOutboxEnvelopes enforces retry budget and skips extra retries', asy
     assert.match(completedParent?.result?.output || '', /Retry budget exhausted/);
 });
 
+test('processOutboxEnvelopes enforces retry max elapsed budget and skips extra retries', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000704', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 92_500 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 92_501
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 3,
+        botRetryBaseDelayMs: 20,
+        botRetryMaxDelayMs: 20,
+        botRetryJitter: 0,
+        botRetryMaxElapsedMs: 10,
+        botExecute: async () => {
+            attempts++;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'Transient transport timeout contacting runtime.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 1);
+    assert.equal(stats.botRetriesAttempted, 1);
+    assert.equal(stats.botRetriesDeadlineExceeded, 1);
+    assert.equal(stats.botRetriesExhausted, 1);
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'failed');
+    assert.match(completedParent?.result?.output || '', /Retry deadline would be exceeded/i);
+});
+
 test('processOutboxEnvelopes opens circuit breaker and fails fast during cooldown', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

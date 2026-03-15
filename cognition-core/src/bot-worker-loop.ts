@@ -120,6 +120,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
         `- totals.botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- totals.botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
+        `- totals.botRetriesDeadlineExceeded: ${report.totals?.botRetriesDeadlineExceeded || 0}`,
         `- totals.botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
         `- totals.botCircuitBreakerOpened: ${report.totals?.botCircuitBreakerOpened || 0}`,
         `- totals.botCircuitBreakerOpenSkips: ${report.totals?.botCircuitBreakerOpenSkips || 0}`,
@@ -176,6 +177,7 @@ export async function runBotWorkerLoop({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botRetryMaxElapsedMs = 0,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
@@ -222,6 +224,7 @@ export async function runBotWorkerLoop({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
         botCircuitBreakerOpened: 0,
         botCircuitBreakerOpenSkips: 0,
@@ -279,6 +282,7 @@ export async function runBotWorkerLoop({
             botRetryHintMaxDelayMs,
             botRetryHintJitter,
             botAttemptTimeoutMs,
+            botRetryMaxElapsedMs,
             botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold,
             botCircuitBreakerCooldownMs,
@@ -341,6 +345,7 @@ export async function runBotWorkerLoop({
             botRetriesRecovered: processResult.botRetriesRecovered,
             botRetriesExhausted: processResult.botRetriesExhausted,
             botRetriesBudgetExhausted: processResult.botRetriesBudgetExhausted,
+            botRetriesDeadlineExceeded: processResult.botRetriesDeadlineExceeded,
             botAttemptTimeouts: processResult.botAttemptTimeouts,
             botCircuitBreakerOpened: processResult.botCircuitBreakerOpened,
             botCircuitBreakerOpenSkips: processResult.botCircuitBreakerOpenSkips,
@@ -363,6 +368,7 @@ export async function runBotWorkerLoop({
         totals.botRetriesRecovered += processResult.botRetriesRecovered;
         totals.botRetriesExhausted += processResult.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += processResult.botRetriesBudgetExhausted;
+        totals.botRetriesDeadlineExceeded += processResult.botRetriesDeadlineExceeded;
         totals.botAttemptTimeouts += processResult.botAttemptTimeouts;
         totals.botCircuitBreakerOpened += processResult.botCircuitBreakerOpened;
         totals.botCircuitBreakerOpenSkips += processResult.botCircuitBreakerOpenSkips;
