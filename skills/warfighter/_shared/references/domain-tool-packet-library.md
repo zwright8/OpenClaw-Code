@@ -12363,6 +12363,63 @@ validation_gates:
 - protocol_profile: HL7/FHIR + NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - validation_gates: casualty-accountability confirmation, custody verification, command approval
 
+## Packet Addendum XLV (2026-03-15, SIGINT, EABO, Judge Advocate, Orbital Warfare, and Air Mobility)
+
+### packet_id: DPL-SIGINT-EMITTER-GEOLOCATION-001
+- domain: joint signals intelligence and emitter geolocation fusion
+- objective: fuse emitter detections into a confidence-scored geolocation picture that can inform commander options without bypassing human release controls.
+- primary_tools: SIGINT report queue, emitter geolocation board, EW order-of-battle overlay
+- alternate_tools: manual emitter worksheet and collection-manager review board
+- degraded_mode: confidence-banded emitter watchlist only with no release beyond advisory use
+- input_requirements: intercept metadata, sensor confidence, time window, area of interest, cross-cue sources, authority matrix
+- output_schema: emitter-confidence ledger, geolocation uncertainty map, cross-cue branch matrix
+- protocol_profile: signed emitter manifests + CoT + Link 16 J-series + USMTF + STIX/TAXII + API/JSON
+- validation_gates: dual-source confirmation, uncertainty declaration, human-approval record
+
+### packet_id: DPL-EABO-SIGNATURE-MANAGEMENT-001
+- domain: joint expeditionary advanced base operations and signature management
+- objective: balance survivability, displacement timing, and sustainment when recommending expeditionary advanced base posture changes.
+- primary_tools: littoral COP, expeditionary engineering board, signature-budget scheduler
+- alternate_tools: manual EAB sketch and sustainment timing worksheet
+- degraded_mode: hold-position or displace-only advisory with manual signature checks and reduced update cadence
+- input_requirements: base layout, signature budget, sustainment burn rate, threat windows, displacement triggers, host-nation constraints
+- output_schema: EAB posture matrix, signature budget ladder, displacement trigger board
+- protocol_profile: signed emissions-control manifests + CoT + VMF + Link 16 J-series + OGC + USMTF + API/JSON
+- validation_gates: signature review, sustainment check, commander acknowledgment
+
+### packet_id: DPL-JUDGE-ADVOCATE-OPLAW-001
+- domain: joint operational law and judge advocate battlefield advisory
+- objective: route legal-risk issues, authority questions, and compliance constraints into a commander-readable advisory packet without creating execution direction.
+- primary_tools: operational-law issue tracker, authority and claims ledger, coalition caveat board
+- alternate_tools: manual issue log and legal-review worksheet
+- degraded_mode: advisory-only legal note with no recommended action until authority and facts are confirmed
+- input_requirements: issue summary, applicable authorities, factual confidence, coalition caveats, fiscal or detention implications, decision deadline
+- output_schema: legal-risk matrix, authority gate tracker, advisory decision packet
+- protocol_profile: NIEM + CJIS + USMTF + NATO APP-11/ADatP-3 aligned exchange + S/MIME + API/JSON
+- validation_gates: legal reviewer confirmation, authority-basis check, command acknowledgment
+
+### packet_id: DPL-ORBITAL-WARFARE-DECONFLICTION-001
+- domain: joint orbital warfare effects deconfliction and continuity
+- objective: deconflict contested orbital effects, preserve protected services, and surface escalation risk before recommending posture changes.
+- primary_tools: space-effects planner, SDA conjunction board, SATCOM continuity monitor
+- alternate_tools: manual conjunction worksheet and continuity branch board
+- degraded_mode: continuity-only recommendation with no effects shift beyond protected-service preservation
+- input_requirements: orbital events, protected services, ephemeris state, service dependencies, escalation thresholds, authority matrix
+- output_schema: orbital effects deconfliction board, continuity branch ladder, escalation risk ledger
+- protocol_profile: CCSDS + signed ephemeris manifests + USMTF + STIX/TAXII + API/JSON
+- validation_gates: conjunction review, service-impact confirmation, senior-approval record
+
+### packet_id: DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001
+- domain: joint air mobility diplomatic clearance and staging continuity
+- objective: preserve strategic and theater airlift flow by synchronizing clearances, staging capacity, and reroute options across cargo, passenger, and patient demand.
+- primary_tools: air mobility mission scheduler, diplomatic clearance tracker, staging and ramp-flow board
+- alternate_tools: manual slot board and movement-control worksheet
+- degraded_mode: mission-essential lift only with manual clearance confirmation and fixed staging windows
+- input_requirements: lift demand, clearance status, node capacity, ramp slots, patient or cargo priority, threat and weather
+- output_schema: air mobility staging matrix, clearance-risk board, reroute branch plan
+- protocol_profile: AIXM/FIXM + NIEM + signed air-movement manifests + USMTF + EDXL-DE/CAP + API/JSON
+- validation_gates: clearance confirmation, slot allocation pass, movement authority approval
+
 ## Packet Addendum XLI (2026-03-15, Directed-Energy Safety, Sealift Recovery, Rail Reversion, Austere Renal Support, EO Sensor Allocation, Shelter Survival, and Waveform Reconstitution)
 
 ### packet_id: DPL-DIRECTED-ENERGY-AIRSPACE-REFLECTION-SAFETY-001

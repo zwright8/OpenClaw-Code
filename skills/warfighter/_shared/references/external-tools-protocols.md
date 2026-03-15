@@ -460,3 +460,19 @@ Include these fields in outputs when tool integration is used:
 - Radiation evacuation routing: include projected dose envelope, reroute invalidation trigger, and medic/regulation coordination checkpoints.
 - Under-ice uncrewed logistics: include vehicle trust posture, ice-route uncertainty bounds, and recovery/beacon contingency branch.
 - Sanctioned supply denial campaigns: include enforcement authority, substitution lead time, and adversary adaptation indicators.
+
+## Domain Toolchain Profiles (2026-03-15 Gap-Closure Expansion)
+
+- Signals intelligence and emitter geolocation fusion: SIGINT report queues + emitter geolocation boards + EW order-of-battle overlays + `Link 16 J-series` + `CoT` + `USMTF` + signed emitter manifests
+- Expeditionary advanced base operations and signature management: littoral COP tools + expeditionary engineering boards + emissions-control schedulers + `CoT` + `VMF` + `Link 16 J-series` + `OGC` + `USMTF`
+- Operational law and judge advocate battlefield advisory: operational-law issue trackers + claims and detainee status boards + fiscal authority ledgers + `NIEM` + `CJIS` + `USMTF` + `S/MIME`
+- Orbital warfare effects deconfliction and continuity: space-effects planners + SDA conjunction boards + SATCOM continuity monitors + `CCSDS` + `STIX/TAXII` + `USMTF` + `API/JSON`
+- Air mobility diplomatic clearance and staging continuity: air-mobility mission schedulers + diplomatic clearance trackers + staging and ramp-flow boards + `AIXM/FIXM` + `NIEM` + `USMTF` + `API/JSON`
+
+## Protocol Mapping Guidance (2026-03-15 Gap-Closure Expansion)
+
+- SIGINT cross-cue workflows: include emitter-confidence score, geolocation uncertainty ellipse, cross-cue source count, and human release gate before recommendations affect fires or maneuver.
+- Expeditionary advanced base recommendations: include displacement trigger, signature budget, sustainment burn-rate, and host-nation or maritime corridor acknowledgment state.
+- Judge advocate advisory products: include authority basis, legal review ID, fiscal or detention constraint tags, and explicit no-action branch when facts or approvals are incomplete.
+- Orbital warfare continuity packets: include conjunction-risk band, civil or commercial service impact note, escalation-control reviewer, and revalidation deadline for every posture-changing recommendation.
+- Air-mobility staging packets: include diplomatic-clearance status, staging-node capacity, patient or cargo priority, and airfield-slot confirmation before recommending reroutes or surge actions.

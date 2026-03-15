@@ -258,6 +258,12 @@ This reference expands the warfighter skill roadmap across major military action
 - Extended shared references with Tool Suite Addendum XLVII, Protocol Stack Addendum XLVII, Packet Addendum XXXVI, Profile Addendum R, and a new domain-toolchain wave to bind every new skill to concrete tool suites, protocol families, packet IDs, and toolchain profiles.
 - Improved `mission-risk-decision-support`, `coalition-interoperability-coordinator`, `theater-mission-network-failover-cell`, `joint-targeting-standards-and-cde-governance-cell`, `strategic-industrial-mobilization-readiness-cell`, `airbase-dispersal-and-rapid-reconstitution-cell`, `austere-surgical-support-coordinator`, and `strategic-sealift-and-prepositioning-coordinator` with Wave XLVII override bindings for fires-integrity assurance, access burn and reentry control, airframe salvage, base fuel continuity, coalition berth-power interoperability, respiratory protection readiness, and strategic component scarcity.
 
+## Run Update (2026-03-15Txx:xx:xxZ)
+
+- Added a 5-skill gap-closure wave focused on signals-intelligence geolocation fusion, expeditionary advanced base operations, operational-law and judge-advocate advisory support, orbital-warfare effects deconfliction, and air-mobility diplomatic-clearance staging continuity.
+- Extended shared references with Tool Suite Addendum LVI, Protocol Stack Addendum LVI, Packet Addendum XLV, and Toolchain Wave LVI so each new skill binds to concrete external tools, transport families, packet IDs, and degraded-mode fallbacks.
+- Improved `mission-risk-decision-support`, `coalition-interoperability-coordinator`, `cema-integration-cell`, `strategic-mobility-deployment-planner`, and `joint-space-control-and-counterspace-mission-cell` with Wave LVI override bindings for commander risk framing, coalition legal release fidelity, EMSO cross-cue trust, airlift clearance continuity, and orbital-effects governance.
+
 ## Run Update (2026-03-14T23:00:20Z)
 
 - Closed shared-reference gaps for AI-native mission command, littoral port reopening, autonomous target-recognition override assurance, battlefield weather nowcasting, contested blood and biologics assurance, denied-environment telecom restoration, cyber mission assurance and hunt-forward, electromagnetic spectrum superiority, and long-range precision-fires deconfliction.

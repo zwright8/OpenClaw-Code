@@ -81,3 +81,9 @@ Use these tool categories as the default stack for this skill: space-domain awar
 
 - Default packet IDs: DPL-SPACE-COUNTERSPACE-001, DPL-SPACE-C2-RECONSTITUTION-001.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Gap-Closure Addendum)
+
+- Add `tool_suite_id=ts-joint-orbital-warfare-effects-deconfliction-v1` + `protocol_stack_id=ps-joint-orbital-warfare-effects-deconfliction-stack-v1` when recommendations depend on escalation-aware orbital effects timing, protected-service continuity, or conjunction-driven maneuver restraint.
+- Add `tool_suite_id=ts-joint-signals-intelligence-emitter-geolocation-fusion-v1` + `protocol_stack_id=ps-joint-signals-intelligence-emitter-geolocation-fusion-stack-v1` when space-control confidence depends on external emitter geolocation, ground-segment threat attribution, or cross-domain cueing integrity.
+- Add `packet_id=DPL-ORBITAL-WARFARE-DECONFLICTION-001` and `packet_id=DPL-SIGINT-EMITTER-GEOLOCATION-001` for branches that materially alter space posture, protected-service continuity, or commander escalation confidence.

@@ -2529,6 +2529,22 @@ Every skill output should include:
 - Training and rehearsal designer + live-fire range safety and autonomous target control + tactical airspace control and deconfliction + mission risk decision support.
 - Psychological health postvention + religious affairs and moral injury support + SAPR restricted reporting and unit safety + deployed postal ballot and family contact continuity.
 
+## New Expansion Wave (2026-03-15, Wave LVI)
+
+- joint-signals-intelligence-and-emitter-geolocation-fusion-cell
+- joint-expeditionary-advanced-base-operations-and-signature-management-cell
+- joint-operational-law-and-judge-advocate-advisory-cell
+- joint-orbital-warfare-effects-deconfliction-and-continuity-cell
+- joint-air-mobility-diplomatic-clearance-and-staging-continuity-cell
+
+## Updated Pairings (2026-03-15, Wave LVI)
+
+- Signals intelligence and emitter geolocation fusion + electronic order of battle management + CEMA integration + mission risk decision support.
+- Expeditionary advanced base operations and signature management + littoral logistics over the shore coordination + survivability camouflage deception planning + force protection and base defense.
+- Operational law and judge advocate advisory + coalition interoperability coordinator + civilian harm mitigation and response + joint targeting standards and CDE governance.
+- Orbital warfare effects deconfliction and continuity + joint space control and counterspace mission cell + contested space domain awareness and rendezvous denial + strategic deterrence and NC3 resilience.
+- Air mobility diplomatic clearance and staging continuity + strategic mobility deployment planner + air tasking cycle support + joint role 3 medical network and aeromedical evac cell.
+
 ## New Expansion Wave (2026-03-15, Expansion Wave LII)
 
 - joint-directed-energy-engagement-airspace-and-reflection-safety-cell

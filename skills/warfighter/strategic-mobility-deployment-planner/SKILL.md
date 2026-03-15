@@ -176,3 +176,9 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-joint-space-launch-hazard-area-civil-warning-integration-v1` + `protocol_stack_id=ps-joint-space-launch-hazard-area-civil-warning-integration-stack-v1` when strategic mobility options must account for launch hazard corridors, reentry warnings, or civil air and maritime closures.
 - Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when force-flow confidence depends on payroll, disbursing, or local-currency continuity at staging and reception nodes.
 - Add `packet_id=DPL-MERCHANT-MARINER-FLAG-SANCTIONS-001`, `packet_id=DPL-SPACE-LAUNCH-HAZARD-CIVIL-WARNING-001`, and `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001` for recommendations that materially alter route selection, launch window deconfliction, or deployment timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Gap-Closure Addendum)
+
+- Add `tool_suite_id=ts-joint-air-mobility-diplomatic-clearance-staging-v1` + `protocol_stack_id=ps-joint-air-mobility-diplomatic-clearance-staging-stack-v1` when strategic mobility depends on diplomatic-clearance fidelity, staging-node throughput, or contested airlift continuity.
+- Add `tool_suite_id=ts-joint-operational-law-judge-advocate-advisory-v1` + `protocol_stack_id=ps-joint-operational-law-judge-advocate-advisory-stack-v1` when deployment posture depends on legal authorities, host-nation caveats, or protected advisory review of access and movement constraints.
+- Add `packet_id=DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001` and `packet_id=DPL-JUDGE-ADVOCATE-OPLAW-001` for recommendations that materially alter route selection, airlift access, or deployment timing.

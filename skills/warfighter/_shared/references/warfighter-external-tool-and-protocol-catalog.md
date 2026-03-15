@@ -12679,6 +12679,60 @@ external_binding:
 - Protocols: `HL7/FHIR`, `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Use for: dignified-transfer status, escort coordination, and family-support acknowledgment tracking.
 
+## Tool Suite Addendum LVI (2026-03-15, SIGINT, EABO, Judge Advocate, Orbital Warfare, and Air Mobility Gap Closure)
+
+### `ts-joint-signals-intelligence-emitter-geolocation-fusion-v1`
+- Use for: SIGINT fusion, emitter geolocation confidence management, and cross-cueing of cyber, EMSO, and maneuver decisions without bypassing human review.
+- Primary tools: SIGINT report queue, emitter geolocation board, EW order-of-battle overlay.
+- Cross-check tools: independent geolocation replay and alternate collection management cell.
+- Typical products: emitter-confidence ledger, cross-cue branch matrix, geolocation risk overlay.
+
+### `ts-joint-expeditionary-advanced-base-signature-management-v1`
+- Use for: expeditionary advanced base placement, displacement timing, emissions discipline, and austere sustainment tradeoffs in contested littorals.
+- Primary tools: littoral COP, expeditionary engineering board, signature-budget scheduler.
+- Cross-check tools: independent deception-effectiveness review and alternate sustainment timing board.
+- Typical products: EAB posture matrix, signature budget ladder, displacement trigger board.
+
+### `ts-joint-operational-law-judge-advocate-advisory-v1`
+- Use for: operational-law issue framing, fiscal or detention authority checks, and commander advisory support when legal uncertainty constrains action.
+- Primary tools: operational-law issue tracker, authority and claims ledger, coalition caveat board.
+- Cross-check tools: alternate judge advocate audit log and independent command-policy review cell.
+- Typical products: legal-risk matrix, authority gate tracker, advisory decision packet.
+
+### `ts-joint-orbital-warfare-effects-deconfliction-v1`
+- Use for: orbital warfare effects deconfliction, mission continuity planning, and escalation-aware adjudication of contested space operations.
+- Primary tools: space-effects planner, SDA conjunction board, SATCOM continuity monitor.
+- Cross-check tools: independent orbital risk replay and alternate strategic warning review cell.
+- Typical products: orbital effects deconfliction board, continuity branch ladder, escalation risk ledger.
+
+### `ts-joint-air-mobility-diplomatic-clearance-staging-v1`
+- Use for: air mobility flow control, diplomatic-clearance synchronization, and staging-node continuity across cargo, passenger, and aeromedical demand.
+- Primary tools: air mobility mission scheduler, diplomatic clearance tracker, staging and ramp-flow board.
+- Cross-check tools: independent slot-allocation witness and alternate movement control review cell.
+- Typical products: air mobility staging matrix, clearance-risk board, reroute branch plan.
+
+## Protocol Stack Addendum LVI (2026-03-15, External Integration Profiles for Expansion Wave LVI)
+
+### `ps-joint-signals-intelligence-emitter-geolocation-fusion-stack-v1`
+- Protocols: signed emitter manifests, `CoT`, `Link 16 J-series`, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: emitter confidence updates, cross-cue release routing, and geolocation acknowledgment tracking.
+
+### `ps-joint-expeditionary-advanced-base-signature-management-stack-v1`
+- Protocols: signed emissions-control manifests, `CoT`, `VMF`, `Link 16 J-series`, `OGC`, `USMTF`, `API/JSON`.
+- Use for: expeditionary base posture updates, signature-budget exchange, and displacement-trigger acknowledgments.
+
+### `ps-joint-operational-law-judge-advocate-advisory-stack-v1`
+- Protocols: `NIEM`, `CJIS`, `USMTF`, NATO APP-11/ADatP-3 aligned exchange, `S/MIME`, `API/JSON`.
+- Use for: authority review routing, legal-risk annotations, and protected advisory acknowledgment chains.
+
+### `ps-joint-orbital-warfare-effects-deconfliction-stack-v1`
+- Protocols: `CCSDS`, signed ephemeris manifests, `USMTF`, `STIX/TAXII`, `API/JSON`.
+- Use for: orbital effects warnings, conjunction-risk updates, and continuity-branch routing.
+
+### `ps-joint-air-mobility-diplomatic-clearance-staging-stack-v1`
+- Protocols: `AIXM/FIXM`, `NIEM`, signed air-movement manifests, `USMTF`, `EDXL-DE/CAP`, `API/JSON`.
+- Use for: diplomatic-clearance status exchange, staging capacity updates, and reroute approval acknowledgments.
+
 ## Tool Suite Addendum LII (2026-03-15, Directed-Energy Safety, Fuel Integrity, Tsunami Sealift Recovery, Rail Reversion, Austere Renal Support, EO Sensor Bottlenecks, Shelter Dosimetry, and Waveform Reconstitution)
 
 ### `ts-joint-directed-energy-airspace-reflection-safety-v1`

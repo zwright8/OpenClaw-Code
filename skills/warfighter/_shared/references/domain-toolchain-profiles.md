@@ -929,6 +929,48 @@ For every critical recommendation, include:
 - Protocol binding: HL7/FHIR + NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
 - Fallback path: essential custody and family-contact continuity only with manual honors coordination and protected identity handling
 
+## New Toolchain Wave (2026-03-15, Expansion Wave LVI)
+
+### `TC-SIGINT-134`
+
+- Domain: joint signals intelligence and emitter geolocation fusion
+- Primary systems: SIGINT report queue, emitter geolocation board, EW order-of-battle overlay
+- Cross-check systems: independent geolocation replay and alternate collection management cell
+- Protocol binding: signed emitter manifests + CoT + Link 16 J-series + USMTF + STIX/TAXII + API/JSON
+- Fallback path: confidence-banded emitter watchlist only with no release beyond advisory use
+
+### `TC-EABO-135`
+
+- Domain: joint expeditionary advanced base operations and signature management
+- Primary systems: littoral COP, expeditionary engineering board, signature-budget scheduler
+- Cross-check systems: independent deception-effectiveness review and alternate sustainment timing board
+- Protocol binding: signed emissions-control manifests + CoT + VMF + Link 16 J-series + OGC + USMTF + API/JSON
+- Fallback path: hold-position or displace-only advisory with manual signature checks and reduced update cadence
+
+### `TC-JAG-136`
+
+- Domain: joint operational law and judge advocate battlefield advisory
+- Primary systems: operational-law issue tracker, authority and claims ledger, coalition caveat board
+- Cross-check systems: alternate judge advocate audit log and independent command-policy review cell
+- Protocol binding: NIEM + CJIS + USMTF + NATO APP-11/ADatP-3 aligned exchange + S/MIME + API/JSON
+- Fallback path: advisory-only legal note with no recommended action until authority and facts are confirmed
+
+### `TC-ORBWAR-137`
+
+- Domain: joint orbital warfare effects deconfliction and continuity
+- Primary systems: space-effects planner, SDA conjunction board, SATCOM continuity monitor
+- Cross-check systems: independent orbital risk replay and alternate strategic warning review cell
+- Protocol binding: CCSDS + signed ephemeris manifests + USMTF + STIX/TAXII + API/JSON
+- Fallback path: continuity-only recommendation with no effects shift beyond protected-service preservation
+
+### `TC-AIRMOB-138`
+
+- Domain: joint air mobility diplomatic clearance and staging continuity
+- Primary systems: air mobility mission scheduler, diplomatic clearance tracker, staging and ramp-flow board
+- Cross-check systems: independent slot-allocation witness and alternate movement control review cell
+- Protocol binding: AIXM/FIXM + NIEM + signed air-movement manifests + USMTF + EDXL-DE/CAP + API/JSON
+- Fallback path: mission-essential lift only with manual clearance confirmation and fixed staging windows
+
 ## New Toolchain Wave (2026-03-15, Expansion Wave LII)
 
 ### `TC-DE-SAFE-110`

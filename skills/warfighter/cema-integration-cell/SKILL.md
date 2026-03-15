@@ -149,3 +149,10 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-theater-sdr-waveform-key-hopset-emergency-reconstitution-v1` + `protocol_stack_id=ps-theater-sdr-waveform-key-hopset-emergency-reconstitution-stack-v1` when CEMA synchronization depends on rapid rekey, hopset regeneration, or trusted waveform restoration after compromise.
 - Add `tool_suite_id=ts-joint-directed-energy-airspace-reflection-safety-v1` + `protocol_stack_id=ps-joint-directed-energy-airspace-reflection-safety-stack-v1` when electromagnetic or directed-energy branches depend on beam safety, airspace release, or reflective-surface hazard control.
 - Add `packet_id=DPL-SDR-WAVEFORM-KEY-HOPSET-001` and `packet_id=DPL-DIRECTED-ENERGY-AIRSPACE-REFLECTION-SAFETY-001` for branches that materially alter spectrum posture, beam release, or tactical-network trust.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Gap-Closure Addendum)
+
+- Add `tool_suite_id=ts-joint-signals-intelligence-emitter-geolocation-fusion-v1` + `protocol_stack_id=ps-joint-signals-intelligence-emitter-geolocation-fusion-stack-v1` when CEMA synchronization depends on emitter-confidence adjudication, cross-cue speed, or geolocation uncertainty management.
+- Add `tool_suite_id=ts-joint-expeditionary-advanced-base-signature-management-v1` + `protocol_stack_id=ps-joint-expeditionary-advanced-base-signature-management-stack-v1` when electromagnetic survivability depends on expeditionary emissions discipline, decoy timing, or base displacement windows.
+- Add `tool_suite_id=ts-joint-orbital-warfare-effects-deconfliction-v1` + `protocol_stack_id=ps-joint-orbital-warfare-effects-deconfliction-stack-v1` when space-control branches materially affect CEMA timing, SATCOM continuity, or escalation-safe effects integration.
+- Add `packet_id=DPL-SIGINT-EMITTER-GEOLOCATION-001`, `packet_id=DPL-EABO-SIGNATURE-MANAGEMENT-001`, and `packet_id=DPL-ORBITAL-WARFARE-DECONFLICTION-001` for branches that materially alter emitter-control posture, expeditionary emissions discipline, or cross-domain timing trust.
