@@ -200,6 +200,10 @@ const DEFAULT_LATENCY_BURST_MIN_ATTEMPTS = 8;
 const MAX_LATENCY_BURST_MIN_ATTEMPTS = 256;
 const DEFAULT_LATENCY_BURST_THRESHOLD = 1.5;
 const MAX_LATENCY_BURST_THRESHOLD = 5;
+const DEFAULT_PENDING_OBSERVATION_PENALTY_WEIGHT = 0;
+const MAX_PENDING_OBSERVATION_PENALTY_WEIGHT = 2;
+const DEFAULT_PENDING_OBSERVATION_SOFT_CAP = 8;
+const MAX_PENDING_OBSERVATION_SOFT_CAP = 256;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -1183,6 +1187,20 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_LATENCY_BURST_THRESHOLD,
             1,
             MAX_LATENCY_BURST_THRESHOLD
+        ),
+        pendingObservationPenaltyWeight: clamp(
+            Number.isFinite(Number(value.pendingObservationPenaltyWeight))
+                ? Number(value.pendingObservationPenaltyWeight)
+                : DEFAULT_PENDING_OBSERVATION_PENALTY_WEIGHT,
+            0,
+            MAX_PENDING_OBSERVATION_PENALTY_WEIGHT
+        ),
+        pendingObservationSoftCap: clamp(
+            Number.isFinite(Number(value.pendingObservationSoftCap))
+                ? parsePositiveInt(value.pendingObservationSoftCap, DEFAULT_PENDING_OBSERVATION_SOFT_CAP)
+                : DEFAULT_PENDING_OBSERVATION_SOFT_CAP,
+            1,
+            MAX_PENDING_OBSERVATION_SOFT_CAP
         )
     };
 }
@@ -1694,6 +1712,30 @@ function computeLatencyBurstPenalty(stat, selectionPolicyConfig = null) {
     });
 }
 
+function computePendingObservationPenalty(stat, selectionPolicyConfig = null) {
+    const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const penaltyWeight = clamp(
+        policy.pendingObservationPenaltyWeight,
+        0,
+        MAX_PENDING_OBSERVATION_PENALTY_WEIGHT
+    );
+    if (penaltyWeight <= 0) return 0;
+
+    const pendingObservations = Math.max(0, parseNonNegativeInt(stat?.outstandingObservations, 0));
+    if (pendingObservations <= 0) return 0;
+
+    const softCap = clamp(
+        parsePositiveInt(policy.pendingObservationSoftCap, DEFAULT_PENDING_OBSERVATION_SOFT_CAP),
+        1,
+        MAX_PENDING_OBSERVATION_SOFT_CAP
+    );
+    const normalizedPendingPressure = Math.min(
+        1,
+        Math.log1p(pendingObservations) / Math.log1p(softCap)
+    );
+    return penaltyWeight * normalizedPendingPressure;
+}
+
 function resolveLatencyTargetMs(selectionPolicyConfig = null, historyOutcomes = []) {
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
     const configuredTargetMs = clamp(policy.latencyTargetMs, 1, MAX_LATENCY_TARGET_MS);
@@ -1767,6 +1809,10 @@ function normalizeExecutionStat(rawStat = {}) {
     const attempts = parseNonNegativeInt(stat.attempts, 0);
     const successes = clamp(parseNonNegativeInt(stat.successes, 0), 0, attempts);
     const failures = clamp(parseNonNegativeInt(stat.failures, 0), 0, attempts);
+    const outstandingObservations = parseNonNegativeInt(
+        stat.outstandingObservations ?? stat.pendingObservations,
+        0
+    );
     const consecutiveFailures = clamp(parseNonNegativeInt(stat.consecutiveFailures, 0), 0, attempts);
     const lastStatus = typeof stat.lastStatus === 'string' && stat.lastStatus.trim()
         ? normalizeStatus(stat.lastStatus)
@@ -1783,6 +1829,7 @@ function normalizeExecutionStat(rawStat = {}) {
         attempts,
         successes,
         failures,
+        outstandingObservations,
         consecutiveFailures,
         lastStatus,
         lastAttemptAt,
@@ -2151,6 +2198,7 @@ function summarizeOutcomeStats(outcomes = [], fallbackStat = null, selectionPoli
             attempts: normalizedFallback.attempts,
             successes: normalizedFallback.successes,
             failures: normalizedFallback.failures,
+            outstandingObservations: normalizedFallback.outstandingObservations,
             lastStatus: normalizedFallback.lastStatus,
             lastWave: normalizedFallback.lastWave,
             consecutiveFailures: normalizedFallback.consecutiveFailures
@@ -2178,6 +2226,7 @@ function summarizeOutcomeStats(outcomes = [], fallbackStat = null, selectionPoli
         attempts,
         successes,
         failures: Math.max(0, attempts - successes),
+        outstandingObservations: normalizedFallback.outstandingObservations,
         lastStatus: lastEntry.status || normalizedFallback.lastStatus,
         lastWave: lastEntry.wave > 0 ? lastEntry.wave : normalizedFallback.lastWave,
         consecutiveFailures
@@ -4488,6 +4537,7 @@ function selectCatalogSlice({
         score -= computeLatencyCvarPenalty(scoreStats, scoringPolicy);
         score -= computeFailureBurstPenalty(scoreStats, scoringPolicy);
         score -= computeLatencyBurstPenalty(scoreStats, scoringPolicy);
+        score -= computePendingObservationPenalty(scoreStats, scoringPolicy);
 
         const item = {
             candidate,
@@ -4793,27 +4843,41 @@ export async function collectAutonomousCoverage({
     const failedCapabilityIds = new Set();
     const skillExecutionStats = {};
     const capabilityExecutionStats = {};
+    const pendingSkillObservations = new Map();
+    const pendingCapabilityObservations = new Map();
     const policyExecutionStats = normalizePolicyExecutionStats({});
     const windowPolicyExecutionStats = normalizeWindowPolicyExecutionStats({});
     const contextualBanditModels = normalizeContextualBanditModels({});
 
     for (const record of records) {
         const status = normalizeStatus(record?.status);
-        if (!TERMINAL_STATUSES.has(status)) continue;
-
         const context = record?.request?.context && typeof record.request.context === 'object'
             ? record.request.context
             : {};
         const lane = context.autonomy?.lane === 'skills' || context.autonomy?.lane === 'capabilities'
             ? context.autonomy.lane
             : null;
+        const skillId = toSkillId(context.skillId);
+        const capabilityId = normalizeCapabilityId(context.capabilityId);
+
+        if (!TERMINAL_STATUSES.has(status)) {
+            if (lane === 'skills' && skillId !== null) {
+                const key = String(skillId);
+                pendingSkillObservations.set(key, (pendingSkillObservations.get(key) || 0) + 1);
+            }
+            if (lane === 'capabilities' && capabilityId) {
+                pendingCapabilityObservations.set(
+                    capabilityId,
+                    (pendingCapabilityObservations.get(capabilityId) || 0) + 1
+                );
+            }
+            continue;
+        }
+
         const selectedPolicy = typeof context.autonomy?.selectionPolicyApplied === 'string'
             ? context.autonomy.selectionPolicyApplied.trim().toLowerCase()
             : '';
         const selectedPolicyConfig = normalizeSelectionPolicyConfig(context.autonomy?.selectionPolicyConfig);
-
-        const skillId = toSkillId(context.skillId);
-        const capabilityId = normalizeCapabilityId(context.capabilityId);
         const attemptAt = Number.isFinite(Number(record?.updatedAt))
             ? Number(record.updatedAt)
             : (Number.isFinite(Number(record?.request?.createdAt))
@@ -4977,6 +5041,21 @@ export async function collectAutonomousCoverage({
                 );
             }
         }
+    }
+
+    for (const [skillKey, pendingCount] of pendingSkillObservations.entries()) {
+        const current = normalizeExecutionStat(skillExecutionStats[skillKey]);
+        skillExecutionStats[skillKey] = {
+            ...current,
+            outstandingObservations: pendingCount
+        };
+    }
+    for (const [capabilityKey, pendingCount] of pendingCapabilityObservations.entries()) {
+        const current = normalizeExecutionStat(capabilityExecutionStats[capabilityKey]);
+        capabilityExecutionStats[capabilityKey] = {
+            ...current,
+            outstandingObservations: pendingCount
+        };
     }
 
     return {

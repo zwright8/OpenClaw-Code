@@ -105,6 +105,8 @@ Options:
   --latency-burst-long-window <n> Long recency window baseline for latency-SLA miss bursts (2-256, default: 32)
   --latency-burst-min-attempts <n> Min measured attempts before latency-burst penalties activate (default: 8)
   --latency-burst-threshold <n> Short/long latency-SLA miss-rate ratio threshold before penalties (1-5, default: 1.5)
+  --pending-observation-penalty-weight <n> Delayed-feedback pressure penalty from outstanding observations (0-2, default: 0)
+  --pending-observation-soft-cap <n> Pending count where delayed-feedback penalty saturates (1-256, default: 8)
   --kl-ucb-confidence <n>      Confidence multiplier for kl_ucb* policies (default: 3)
   --bayes-ucb-quantile <n>     Bayes-UCB posterior quantile for optimistic index (0.5-0.999, default: 0.9)
   --exp3-ix-gamma <n>          Exploration mixing gamma for exp3_ix* (0-0.5, default: 0.07)
@@ -328,6 +330,8 @@ function parseArgs(argv) {
             latencyBurstLongWindow: 32,
             latencyBurstMinAttempts: 8,
             latencyBurstThreshold: 1.5,
+            pendingObservationPenaltyWeight: 0,
+            pendingObservationSoftCap: 8,
             klUcbConfidence: 3,
             bayesUcbQuantile: 0.9,
             exp3ExplorationGamma: 0.07,
@@ -883,6 +887,27 @@ function parseArgs(argv) {
         }
         if (token === '--latency-burst-threshold') {
             options.selectionPolicyConfig.latencyBurstThreshold = parseFloatInRange(value, '--latency-burst-threshold', 1, 5);
+            i++;
+            continue;
+        }
+        if (token === '--pending-observation-penalty-weight') {
+            options.selectionPolicyConfig.pendingObservationPenaltyWeight = parseFloatInRange(
+                value,
+                '--pending-observation-penalty-weight',
+                0,
+                2
+            );
+            i++;
+            continue;
+        }
+        if (token === '--pending-observation-soft-cap') {
+            options.selectionPolicyConfig.pendingObservationSoftCap = parsePositiveInt(
+                value,
+                '--pending-observation-soft-cap'
+            );
+            if (options.selectionPolicyConfig.pendingObservationSoftCap < 1 || options.selectionPolicyConfig.pendingObservationSoftCap > 256) {
+                throw new Error('--pending-observation-soft-cap must be an integer between 1 and 256');
+            }
             i++;
             continue;
         }

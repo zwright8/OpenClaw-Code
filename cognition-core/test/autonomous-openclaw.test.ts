@@ -104,6 +104,57 @@ test('buildAutonomousBatchPlan uses adaptive ranking after initial coverage', ()
     assert.deepEqual(plan.selection.skillIds, [4, 2]);
 });
 
+test('buildAutonomousBatchPlan penalizes candidates with many outstanding observations when configured', () => {
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 6, code: 'SK-00006', title: 'Skill 6' },
+            { id: 7, code: 'SK-00007', title: 'Skill 7' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '6': {
+                    attempts: 20,
+                    successes: 19,
+                    failures: 1,
+                    outstandingObservations: 8,
+                    consecutiveFailures: 0,
+                    lastWave: 11,
+                    lastStatus: 'completed'
+                },
+                '7': {
+                    attempts: 20,
+                    successes: 16,
+                    failures: 4,
+                    outstandingObservations: 0,
+                    consecutiveFailures: 0,
+                    lastWave: 11,
+                    lastStatus: 'completed'
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        selectionPolicyConfig: {
+            mode: 'epsilon_ts',
+            thompsonExploration: 0,
+            thompsonPriorAlpha: 1,
+            thompsonPriorBeta: 1,
+            pendingObservationPenaltyWeight: 0.4,
+            pendingObservationSoftCap: 8
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [7]);
+});
+
 test('buildAutonomousBatchPlan temporarily cools repeated failures', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -7505,6 +7556,66 @@ test('runAutonomousOpenClaw records sliding-window linear thompson contextual ob
     const saved = loadAutonomousState(statePath);
     assert.ok(saved.contextualBanditModels.skills.samples > 0);
     assert.ok(saved.contextualBanditModels.skills.recentObservations.length > 0);
+});
+
+test('collectAutonomousCoverage tracks outstanding observations from non-terminal records', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 100_000 });
+
+    const terminalRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000004210',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00421] Execute test',
+        context: {
+            skillId: 421,
+            autonomy: {
+                lane: 'skills',
+                wave: 3,
+                selectionPolicyApplied: 'ucb',
+                selectionPolicyConfig: { mode: 'ucb' }
+            }
+        },
+        createdAt: 90_000
+    });
+    const pendingRequest = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000004211',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: '[AUTO][SK-00421] Execute pending test',
+        context: {
+            skillId: 421,
+            autonomy: {
+                lane: 'skills',
+                wave: 4,
+                selectionPolicyApplied: 'ucb',
+                selectionPolicyConfig: { mode: 'ucb' }
+            }
+        },
+        createdAt: 91_000
+    });
+
+    const terminalRecord = buildQueueRecordFromTaskRequest(terminalRequest, { nowFactory: () => 95_000 });
+    terminalRecord.status = 'completed';
+    terminalRecord.updatedAt = 100_100;
+    await store.saveRecord(terminalRecord);
+
+    const pendingRecord = buildQueueRecordFromTaskRequest(pendingRequest, { nowFactory: () => 95_100 });
+    pendingRecord.status = 'dispatched';
+    pendingRecord.updatedAt = 100_200;
+    await store.saveRecord(pendingRecord);
+
+    const coverage = await collectAutonomousCoverage({ storePath: queuePath, nowFactory: () => 100_500 });
+    const stat = coverage.skillExecutionStats['421'];
+    assert.ok(stat);
+    assert.equal(stat.attempts, 1);
+    assert.equal(stat.successes, 1);
+    assert.equal(stat.outstandingObservations, 1);
 });
 
 test('collectAutonomousCoverage uses graded partial rewards for policy and contextual updates', async (t) => {
