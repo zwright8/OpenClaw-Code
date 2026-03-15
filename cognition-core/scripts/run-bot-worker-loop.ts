@@ -39,6 +39,11 @@ Options:
   --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
   --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
+  --bot-attempt-timeout-auto   Auto-tune per-attempt timeout from recent bot durations
+  --bot-attempt-timeout-auto-percentile <0.5-0.999> Percentile used for adaptive timeout target (default: 0.95)
+  --bot-attempt-timeout-auto-min-samples <n> Min observed attempt durations before adaptive timeout activates (default: 8)
+  --bot-attempt-timeout-auto-window-size <n> Rolling window size for adaptive timeout observations (default: 32)
+  --bot-attempt-timeout-auto-blend <0-1> Blend static timeout with adaptive percentile target (default: 0.5)
   --bot-retry-max-elapsed-ms <n> Max elapsed milliseconds across retry attempts for a task (default: 0; disabled)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
@@ -151,6 +156,11 @@ function parseArgs(argv) {
         botRetryHintMaxDelayMs: 120_000,
         botRetryHintJitter: 0.1,
         botAttemptTimeoutMs: 120_000,
+        botAttemptTimeoutAutoTarget: false,
+        botAttemptTimeoutAutoPercentile: 0.95,
+        botAttemptTimeoutAutoMinSamples: 8,
+        botAttemptTimeoutAutoWindowSize: 32,
+        botAttemptTimeoutAutoBlend: 0.5,
         botRetryMaxElapsedMs: 0,
         botRetryBudgetRatio: 0,
         botCircuitBreakerFailureThreshold: 0,
@@ -195,6 +205,10 @@ function parseArgs(argv) {
         }
         if (token === '--no-enqueue-followups') {
             options.enqueueFollowupTasks = false;
+            continue;
+        }
+        if (token === '--bot-attempt-timeout-auto') {
+            options.botAttemptTimeoutAutoTarget = true;
             continue;
         }
 
@@ -325,6 +339,26 @@ function parseArgs(argv) {
         }
         if (token === '--bot-attempt-timeout-ms') {
             options.botAttemptTimeoutMs = parsePositiveInt(value, '--bot-attempt-timeout-ms', true);
+            i++;
+            continue;
+        }
+        if (token === '--bot-attempt-timeout-auto-percentile') {
+            options.botAttemptTimeoutAutoPercentile = parseFloatInRange(value, '--bot-attempt-timeout-auto-percentile', 0.5, 0.999);
+            i++;
+            continue;
+        }
+        if (token === '--bot-attempt-timeout-auto-min-samples') {
+            options.botAttemptTimeoutAutoMinSamples = parsePositiveInt(value, '--bot-attempt-timeout-auto-min-samples');
+            i++;
+            continue;
+        }
+        if (token === '--bot-attempt-timeout-auto-window-size') {
+            options.botAttemptTimeoutAutoWindowSize = parsePositiveInt(value, '--bot-attempt-timeout-auto-window-size');
+            i++;
+            continue;
+        }
+        if (token === '--bot-attempt-timeout-auto-blend') {
+            options.botAttemptTimeoutAutoBlend = parseRatio(value, '--bot-attempt-timeout-auto-blend');
             i++;
             continue;
         }
@@ -499,6 +533,11 @@ function printSummary(report) {
             botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
             botRetryHintJitter: options.botRetryHintJitter,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
+            botAttemptTimeoutAutoTarget: options.botAttemptTimeoutAutoTarget,
+            botAttemptTimeoutAutoPercentile: options.botAttemptTimeoutAutoPercentile,
+            botAttemptTimeoutAutoMinSamples: options.botAttemptTimeoutAutoMinSamples,
+            botAttemptTimeoutAutoWindowSize: options.botAttemptTimeoutAutoWindowSize,
+            botAttemptTimeoutAutoBlend: options.botAttemptTimeoutAutoBlend,
             botRetryMaxElapsedMs: options.botRetryMaxElapsedMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,

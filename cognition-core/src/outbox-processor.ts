@@ -68,6 +68,26 @@ function normalizeRetryBudgetRatio(value, fallback = 0) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeAttemptTimeoutAutoPercentile(value, fallback = 0.95) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0.5, 0.999);
+}
+
+function normalizeAttemptTimeoutAutoMinSamples(value, fallback = 8) {
+    return parsePositiveInt(value, fallback);
+}
+
+function normalizeAttemptTimeoutAutoWindowSize(value, fallback = 32) {
+    return parsePositiveInt(value, fallback);
+}
+
+function normalizeAttemptTimeoutAutoBlend(value, fallback = 0.5) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0, 1);
+}
+
 function normalizeRetryMaxElapsedMs(value, fallback = 0) {
     return parseNonNegativeInt(value, fallback);
 }
@@ -166,6 +186,71 @@ function computeBinaryRate(observations) {
     if (!Array.isArray(observations) || observations.length === 0) return 0;
     const failures = observations.reduce((sum, sample) => sum + (Number(sample) >= 1 ? 1 : 0), 0);
     return failures / observations.length;
+}
+
+function updateDurationObservations(observations, durationMs, windowSize) {
+    const duration = Number(durationMs);
+    if (!Number.isFinite(duration) || duration < 0) {
+        return Array.isArray(observations) ? observations.slice() : [];
+    }
+    const next = Array.isArray(observations) ? observations.slice() : [];
+    next.push(duration);
+    const normalizedWindowSize = Math.max(1, parsePositiveInt(windowSize, 32));
+    if (next.length > normalizedWindowSize) {
+        next.splice(0, next.length - normalizedWindowSize);
+    }
+    return next;
+}
+
+function computePercentile(observations, percentile) {
+    if (!Array.isArray(observations) || observations.length === 0) return null;
+    const sorted = observations
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value) && value >= 0)
+        .sort((a, b) => a - b);
+    if (sorted.length === 0) return null;
+    const normalizedPercentile = clamp(Number(percentile) || 0.95, 0.5, 0.999);
+    const rank = Math.ceil(normalizedPercentile * sorted.length) - 1;
+    return sorted[clamp(rank, 0, sorted.length - 1)];
+}
+
+function resolveAdaptiveAttemptTimeoutMs({
+    staticTimeoutMs,
+    autoEnabled,
+    observations,
+    autoPercentile,
+    autoMinSamples,
+    autoBlend
+}) {
+    const normalizedStaticTimeoutMs = parseNonNegativeInt(staticTimeoutMs, 120_000);
+    if (normalizedStaticTimeoutMs <= 0 || !autoEnabled) {
+        return {
+            timeoutMs: normalizedStaticTimeoutMs,
+            autoTargetMs: null
+        };
+    }
+    const sampleCount = Array.isArray(observations) ? observations.length : 0;
+    if (sampleCount < Math.max(1, parsePositiveInt(autoMinSamples, 8))) {
+        return {
+            timeoutMs: normalizedStaticTimeoutMs,
+            autoTargetMs: null
+        };
+    }
+    const autoTargetMs = computePercentile(observations, autoPercentile);
+    if (!Number.isFinite(autoTargetMs)) {
+        return {
+            timeoutMs: normalizedStaticTimeoutMs,
+            autoTargetMs: null
+        };
+    }
+    const blend = normalizeAttemptTimeoutAutoBlend(autoBlend, 0.5);
+    const blendedTimeoutMs = Math.round(
+        (normalizedStaticTimeoutMs * (1 - blend)) + (autoTargetMs * blend)
+    );
+    return {
+        timeoutMs: Math.max(1, blendedTimeoutMs),
+        autoTargetMs: Math.max(1, Math.round(autoTargetMs))
+    };
 }
 
 function resolveCircuitBreakerCooldownMs({
@@ -718,6 +803,11 @@ export async function processOutboxEnvelopes({
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
     botAttemptTimeoutMs = 120_000,
+    botAttemptTimeoutAutoTarget = false,
+    botAttemptTimeoutAutoPercentile = 0.95,
+    botAttemptTimeoutAutoMinSamples = 8,
+    botAttemptTimeoutAutoWindowSize = 32,
+    botAttemptTimeoutAutoBlend = 0.5,
     botRetryMaxElapsedMs = 0,
     botRetryBudgetRatio = 0,
     botCircuitBreakerFailureThreshold = 0,
@@ -759,6 +849,23 @@ export async function processOutboxEnvelopes({
     const normalizedBotRetryHintMaxDelayMs = normalizeRetryHintMaxDelayMs(botRetryHintMaxDelayMs, 120_000);
     const normalizedBotRetryHintJitter = normalizeRetryHintJitter(botRetryHintJitter, 0.1);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
+    const normalizedBotAttemptTimeoutAutoPercentile = normalizeAttemptTimeoutAutoPercentile(
+        botAttemptTimeoutAutoPercentile,
+        0.95
+    );
+    const normalizedBotAttemptTimeoutAutoMinSamples = normalizeAttemptTimeoutAutoMinSamples(
+        botAttemptTimeoutAutoMinSamples,
+        8
+    );
+    const normalizedBotAttemptTimeoutAutoWindowSize = normalizeAttemptTimeoutAutoWindowSize(
+        botAttemptTimeoutAutoWindowSize,
+        32
+    );
+    const normalizedBotAttemptTimeoutAutoBlend = normalizeAttemptTimeoutAutoBlend(
+        botAttemptTimeoutAutoBlend,
+        0.5
+    );
+    const attemptTimeoutAutoEnabled = normalizedBotAttemptTimeoutMs > 0 && Boolean(botAttemptTimeoutAutoTarget);
     const normalizedBotRetryMaxElapsedMs = normalizeRetryMaxElapsedMs(botRetryMaxElapsedMs, 0);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
@@ -839,6 +946,7 @@ export async function processOutboxEnvelopes({
         || circuitBreakerSlowCallRateEnabled;
     let retryBudgetTokens = 0;
     let consecutiveTransientBotFailures = 0;
+    let botAttemptDurationObservations = [];
     let transientFailureRateObservations = [];
     let slowCallRateObservations = [];
     let circuitBreakerOpenUntilMs = 0;
@@ -1095,15 +1203,41 @@ export async function processOutboxEnvelopes({
                 }
                 while (!execution && attempts < normalizedBotMaxAttempts) {
                     attempts++;
+                    const timeoutResolution = resolveAdaptiveAttemptTimeoutMs({
+                        staticTimeoutMs: normalizedBotAttemptTimeoutMs,
+                        autoEnabled: attemptTimeoutAutoEnabled,
+                        observations: botAttemptDurationObservations,
+                        autoPercentile: normalizedBotAttemptTimeoutAutoPercentile,
+                        autoMinSamples: normalizedBotAttemptTimeoutAutoMinSamples,
+                        autoBlend: normalizedBotAttemptTimeoutAutoBlend
+                    });
                     // eslint-disable-next-line no-await-in-loop
                     execution = await executeBotTaskWithTimeout({
                         request,
                         bot,
                         attempt: attempts,
                         executeBotTask,
-                        timeoutMs: normalizedBotAttemptTimeoutMs,
+                        timeoutMs: timeoutResolution.timeoutMs,
                         nowFactory: now
                     });
+                    const durationMs = Number(execution?.metrics?.durationMs);
+                    botAttemptDurationObservations = updateDurationObservations(
+                        botAttemptDurationObservations,
+                        durationMs,
+                        normalizedBotAttemptTimeoutAutoWindowSize
+                    );
+                    execution = {
+                        ...execution,
+                        metrics: {
+                            ...(execution?.metrics || {}),
+                            attemptTimeoutMs: timeoutResolution.timeoutMs,
+                            ...(timeoutResolution.autoTargetMs !== null
+                                ? {
+                                    attemptTimeoutAutoTargetMs: timeoutResolution.autoTargetMs
+                                }
+                                : {})
+                        }
+                    };
                     if (Number(execution?.metrics?.timedOut) >= 1) {
                         stats.botAttemptTimeouts++;
                     }

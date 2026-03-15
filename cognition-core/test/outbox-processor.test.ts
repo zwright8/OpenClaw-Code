@@ -683,6 +683,83 @@ test('processOutboxEnvelopes retries timed out bot attempts and recovers', async
     assert.match(completedParent?.result?.output || '', /Recovered after timeout retry/);
 });
 
+test('processOutboxEnvelopes adapts attempt timeout from recent durations when enabled', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000702', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 91_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    let logicalNow = 1_000;
+    let attempts = 0;
+    await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botAttemptTimeoutMs: 1_000,
+        botAttemptTimeoutAutoTarget: true,
+        botAttemptTimeoutAutoPercentile: 0.95,
+        botAttemptTimeoutAutoMinSamples: 1,
+        botAttemptTimeoutAutoWindowSize: 8,
+        botAttemptTimeoutAutoBlend: 1,
+        nowFactory: () => logicalNow,
+        botExecute: async () => {
+            attempts++;
+            if (attempts === 1) {
+                logicalNow += 200_000;
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient transport timeout contacting runtime.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            logicalNow += 1_000;
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Recovered with adaptive timeout.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    const records = await store.loadRecords();
+    const completedParent = records.find((entry) => entry.taskId === request.id);
+    assert.equal(completedParent?.status, 'completed');
+    assert.equal(completedParent?.result?.metrics?.attemptTimeoutMs, 200_000);
+    assert.equal(completedParent?.result?.metrics?.attemptTimeoutAutoTargetMs, 200_000);
+});
+
 test('processOutboxEnvelopes enforces retry budget and skips extra retries', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
