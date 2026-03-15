@@ -13900,3 +13900,87 @@ external_binding:
 ### `ps-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-stack-v1`
 - Protocols: `HL7/FHIR`, `OPC UA`, signed sterilization manifests, `API/JSON`, `USMTF`.
 - Use for: instrument-set status exchange, autoclave-cycle routing, and sterile-release approvals.
+
+## Tool Suite Addendum LXV (2026-03-15, Reintegration, Depot Quality, Technical Orders, and Disclosure Control)
+
+### `ts-joint-recovered-personnel-reintegration-debrief-v1`
+- Use for: reintegration case control, compartmented debrief sequencing, medical and legal clearance, and return-to-duty gating after isolation, captivity, or evasion.
+- Primary tools: reintegration case board, medical and behavioral-health clearance tracker, sensitive debrief scheduler, custody or release ledger.
+- Cross-check tools: independent survivor-care review cell and alternate personnel-recovery reintegration board.
+- Typical products: reintegration decision matrix, compartmented debrief queue, return-to-duty risk ladder.
+
+### `ts-joint-post-isolation-evasion-threat-refresh-v1`
+- Use for: extracting threat lessons from debriefs, updating evasion assumptions, and pushing urgent personnel-recovery or SERE threat deltas.
+- Primary tools: debrief insight board, threat TTP library, personnel-recovery lessons tracker, mission-data update queue.
+- Cross-check tools: independent intelligence validation cell and alternate training-standards review board.
+- Typical products: threat refresh packet, evasion tradecraft delta board, training-update task list.
+
+### `ts-theater-depot-maintenance-surge-backlog-arbitration-v1`
+- Use for: depot backlog triage, induction prioritization, and throughput reallocation across fleets and theaters.
+- Primary tools: depot backlog board, induction scheduler, parts-constraint tracker, readiness demand planner.
+- Cross-check tools: independent maintenance-control review cell and alternate distribution-readiness board.
+- Typical products: backlog arbitration board, induction priority matrix, readiness return forecast.
+
+### `ts-strategic-test-equipment-metrology-calibration-priority-v1`
+- Use for: metrology-lab prioritization, certificate recovery, and automated test-equipment capacity management when measurement trust limits production or repair.
+- Primary tools: calibration lab scheduler, metrology asset ledger, acceptance-test bench utilization board, out-of-tolerance incident tracker.
+- Cross-check tools: independent quality-assurance metrology cell and alternate industrial-readiness board.
+- Typical products: calibration priority ladder, test-equipment recovery matrix, out-of-tolerance risk ledger.
+
+### `ts-theater-technical-order-digital-delta-waiver-control-v1`
+- Use for: technical-order delta control, waiver governance, and field-compliance synchronization under rapid maintenance rule changes.
+- Primary tools: technical-order baseline ledger, waiver adjudication queue, e-publishing status board, unit compliance tracker.
+- Cross-check tools: independent airworthiness and configuration-control cell and alternate maintenance-policy board.
+- Typical products: technical-order delta control board, waiver decision matrix, unit compliance forecast.
+
+### `ts-joint-public-affairs-embargo-sensitive-loss-disclosure-v1`
+- Use for: embargo timing, casualty or sensitive-loss disclosure sequencing, commander statements, and adversary exploitation control.
+- Primary tools: public-affairs release board, next-of-kin notification status tracker, media query queue, narrative risk monitor.
+- Cross-check tools: independent legal-review cell and alternate commander-communication board.
+- Typical products: disclosure timing matrix, embargo decision ladder, media response branch card.
+
+### `ts-joint-sensitive-imagery-next-of-kin-hold-release-v1`
+- Use for: hold, redaction, and release of sensitive imagery when next-of-kin notification, evidentiary integrity, or graphic-content risk drives timing.
+- Primary tools: imagery provenance verifier, casualty-notification status board, redaction workflow, release-hold ledger.
+- Cross-check tools: independent evidentiary-review cell and alternate public-affairs authenticity board.
+- Typical products: imagery hold ledger, redaction and release matrix, next-of-kin synchronization tracker.
+
+### `ts-theater-depot-acceptance-test-quality-escape-containment-v1`
+- Use for: acceptance-test failure containment, serial traceability, quarantine or recall governance, and retest prioritization after quality escapes.
+- Primary tools: acceptance-test queue, failure-analysis board, serial traceability ledger, quarantine or recall tracker.
+- Cross-check tools: independent product-quality review cell and alternate fleet-safety board.
+- Typical products: quality escape containment board, quarantine or recall ladder, retest priority matrix.
+
+## Protocol Stack Addendum LXV (2026-03-15, External Integration Profiles for Expansion Wave LXV)
+
+### `ps-joint-recovered-personnel-reintegration-debrief-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed case manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: reintegration-case exchange, protected medical or legal status routing, and compartmented debrief acknowledgments.
+
+### `ps-joint-post-isolation-evasion-threat-refresh-stack-v1`
+- Protocols: signed debrief manifests, `STIX/TAXII`, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: debrief-derived threat updates, training-change routing, and rapid lessons-learned dissemination.
+
+### `ps-theater-depot-maintenance-surge-backlog-arbitration-stack-v1`
+- Protocols: signed work-order manifests, `NIEM`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: depot-induction status exchange, backlog reprioritization, and readiness-return acknowledgments.
+
+### `ps-strategic-test-equipment-metrology-calibration-priority-stack-v1`
+- Protocols: signed calibration certificates, `OPC UA`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: certificate-status exchange, bench or lab reprioritization, and out-of-tolerance recovery routing.
+
+### `ps-theater-technical-order-digital-delta-waiver-control-stack-v1`
+- Protocols: signed technical-order manifests, `X.509`, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: technical-order baseline exchange, waiver approval routing, and field-compliance acknowledgments.
+
+### `ps-joint-public-affairs-embargo-sensitive-loss-disclosure-stack-v1`
+- Protocols: signed release manifests, `NIEM`, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: disclosure-hold routing, approved statement release, and adversary-exploitation warning updates.
+
+### `ps-joint-sensitive-imagery-next-of-kin-hold-release-stack-v1`
+- Protocols: signed media manifests, `STANAG 4609` aligned exchange, `S/MIME`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: imagery provenance exchange, hold or release notifications, and next-of-kin synchronization acknowledgments.
+
+### `ps-theater-depot-acceptance-test-quality-escape-containment-stack-v1`
+- Protocols: signed quality manifests, `OPC UA`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: failure-report exchange, serial quarantine routing, and retest or recall acknowledgments.

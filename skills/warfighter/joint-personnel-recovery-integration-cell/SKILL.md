@@ -149,3 +149,9 @@ Primary products for this skill: personnel recovery synchronization matrix, isol
 
 - Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when recovery viability depends on trusted survivor reporting, authenticated family notifications, or deepfake/spoof denial.
 - Add `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially alter isolated-personnel authentication confidence, family-assurance timing, or commander GO/NO-GO decisions.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXV Addendum)
+
+- Add `tool_suite_id=ts-joint-recovered-personnel-reintegration-debrief-v1` + `protocol_stack_id=ps-joint-recovered-personnel-reintegration-debrief-stack-v1` when personnel-recovery planning must sequence recovered-personnel reintegration, protected debrief, or return-to-duty gating.
+- Add `tool_suite_id=ts-joint-post-isolation-evasion-threat-refresh-v1` + `protocol_stack_id=ps-joint-post-isolation-evasion-threat-refresh-stack-v1` when recovered-personnel reporting should refresh threat libraries, evasion lessons, or rescue TTPs before follow-on missions.
+- Add `packet_id=DPL-RECOVERED-PERSONNEL-REINTEGRATION-001` and `packet_id=DPL-POST-ISOLATION-THREAT-REFRESH-001` for branches that materially alter reintegration timing, debrief handling, or subsequent mission posture.

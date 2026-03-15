@@ -153,3 +153,9 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 
 - Add `tool_suite_id=ts-joint-captured-media-exploitation-viral-escalation-v1` + `protocol_stack_id=ps-joint-captured-media-exploitation-viral-escalation-stack-v1` when operational-communications decisions depend on exploiting seized media, controlling viral spread, or sequencing rebuttal releases.
 - Add `packet_id=DPL-CAPTURED-MEDIA-VIRAL-ESCALATION-001` for branches that materially alter release posture, narrative risk, or commander approval timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXV Addendum)
+
+- Add `tool_suite_id=ts-joint-public-affairs-embargo-sensitive-loss-disclosure-v1` + `protocol_stack_id=ps-joint-public-affairs-embargo-sensitive-loss-disclosure-stack-v1` when messaging decisions depend on casualty or sensitive-loss disclosure timing, media embargo discipline, or adversary narrative exploitation risk.
+- Add `tool_suite_id=ts-joint-sensitive-imagery-next-of-kin-hold-release-v1` + `protocol_stack_id=ps-joint-sensitive-imagery-next-of-kin-hold-release-stack-v1` when imagery release depends on next-of-kin notification, redaction workflow, or evidentiary hold controls.
+- Add `packet_id=DPL-PA-EMBARGO-SENSITIVE-LOSS-001` and `packet_id=DPL-SENSITIVE-IMAGERY-NOK-HOLD-001` for branches that materially alter release timing, family-notification confidence, or narrative-risk posture.

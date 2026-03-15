@@ -1808,3 +1808,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent infection-control review cell and alternate biomedical maintenance board
 - Protocol binding: HL7/FHIR + OPC UA + signed sterilization manifests + API/JSON + USMTF
 - Fallback path: instrument rationing only with command-approved case prioritization and no unvalidated reuse
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LXV)
+
+### `TC-REINTEGRATION-212`
+
+- Domain: joint recovered-personnel reintegration and sensitive debrief
+- Primary systems: reintegration case board, medical and behavioral-health clearance tracker, sensitive debrief scheduler, custody or release ledger
+- Cross-check systems: independent survivor-care review cell and alternate personnel-recovery reintegration board
+- Protocol binding: HL7/FHIR + NIEM + signed case manifests + S/MIME + API/JSON + USMTF
+- Fallback path: manual reintegration board with dual-review debrief notes and paper case custody
+
+### `TC-EVASIONREFRESH-213`
+
+- Domain: joint post-isolation evasion tradecraft threat refresh
+- Primary systems: debrief insight board, threat TTP library, personnel-recovery lessons tracker, mission-data update queue
+- Cross-check systems: independent intelligence validation cell and alternate training-standards review board
+- Protocol binding: signed debrief manifests + STIX/TAXII + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: manual lessons board with commander-approved interim threat notes and delayed training updates
+
+### `TC-DEPOTBACKLOG-214`
+
+- Domain: theater depot-level maintenance surge and backlog arbitration
+- Primary systems: depot backlog board, induction scheduler, parts-constraint tracker, readiness demand planner
+- Cross-check systems: independent maintenance-control review cell and alternate distribution-readiness board
+- Protocol binding: signed work-order manifests + NIEM + OPC UA + API/JSON + USMTF
+- Fallback path: manual backlog board with command-approved induction caps and paper release packets
+
+### `TC-METROLOGY-215`
+
+- Domain: strategic test-equipment metrology and calibration priority
+- Primary systems: calibration lab scheduler, metrology asset ledger, acceptance-test bench utilization board, out-of-tolerance incident tracker
+- Cross-check systems: independent quality-assurance metrology cell and alternate industrial-readiness board
+- Protocol binding: signed calibration certificates + OPC UA + NIEM + API/JSON + USMTF
+- Fallback path: manual certificate ledger with conservative bench rationing and command-approved release thresholds
+
+### `TC-TECHORDER-216`
+
+- Domain: theater technical-order digital delta and waiver control
+- Primary systems: technical-order baseline ledger, waiver adjudication queue, e-publishing status board, unit compliance tracker
+- Cross-check systems: independent airworthiness and configuration-control cell and alternate maintenance-policy board
+- Protocol binding: signed technical-order manifests + X.509 + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: manual publication ledger with commander-approved interim instructions and UTC acknowledgment logging
+
+### `TC-PAEMBARGO-217`
+
+- Domain: joint public-affairs embargo and sensitive-loss disclosure
+- Primary systems: public-affairs release board, next-of-kin notification status tracker, media query queue, narrative risk monitor
+- Cross-check systems: independent legal-review cell and alternate commander-communication board
+- Protocol binding: signed release manifests + NIEM + S/MIME + API/JSON + STIX/TAXII + USMTF
+- Fallback path: manual release-hold board with approved holding statements and command-reviewed disclosure gates
+
+### `TC-IMAGERYHOLD-218`
+
+- Domain: joint sensitive imagery next-of-kin hold and release
+- Primary systems: imagery provenance verifier, casualty-notification status board, redaction workflow, release-hold ledger
+- Cross-check systems: independent evidentiary-review cell and alternate public-affairs authenticity board
+- Protocol binding: signed media manifests + STANAG 4609 aligned exchange + S/MIME + NIEM + API/JSON + USMTF
+- Fallback path: manual hold ledger with dual-review redaction notes and no public release until command confirmation
+
+### `TC-QUALITYESCAPE-219`
+
+- Domain: theater depot acceptance-test and quality-escape containment
+- Primary systems: acceptance-test queue, failure-analysis board, serial traceability ledger, quarantine or recall tracker
+- Cross-check systems: independent product-quality review cell and alternate fleet-safety board
+- Protocol binding: signed quality manifests + OPC UA + NIEM + API/JSON + USMTF
+- Fallback path: manual quarantine ledger with conservative fleet-use restrictions and command-approved release holds

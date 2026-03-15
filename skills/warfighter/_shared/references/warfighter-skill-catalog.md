@@ -2818,3 +2818,24 @@ Every skill output should include:
 - Strategic space cleanroom contamination and component quarantine + contested space launch and satellite reconstitution + strategic industrial mobilization readiness cell + strategic electronics salvage and component reclamation cell.
 - Coalition ration dietary compliance and allergen assurance + joint cold-chain ration and medical cargo assurance cell + preventive medicine and force health protection + coalition interoperability coordinator.
 - Expeditionary sterile processing instrument turnaround and autoclave assurance + austere surgical support coordinator + joint role 3 medical network and aeromedical evacuation cell + mission risk decision support.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LXV)
+
+- joint-recovered-personnel-reintegration-and-sensitive-debrief-cell
+- joint-post-isolation-evasion-tradecraft-threat-refresh-cell
+- theater-depot-level-maintenance-surge-and-backlog-arbitration-cell
+- strategic-test-equipment-metrology-and-calibration-priority-cell
+- theater-technical-order-digital-delta-and-waiver-control-cell
+- joint-public-affairs-embargo-and-sensitive-loss-disclosure-cell
+- joint-sensitive-imagery-next-of-kin-hold-and-release-cell
+- theater-depot-acceptance-test-and-quality-escape-containment-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LXV)
+
+- Joint recovered-personnel reintegration and sensitive debrief + joint personnel recovery integration cell + joint casualty assistance center and family support synchronization cell + preventive medicine and force health protection.
+- Joint post-isolation evasion tradecraft threat refresh + contested personnel recovery planner + training and rehearsal designer + battlespace intel fusion.
+- Theater depot-level maintenance surge and backlog arbitration + maintenance readiness manager + strategic industrial mobilization readiness cell + contested logistics sustainment.
+- Strategic test-equipment metrology and calibration priority + theater depot acceptance test and quality escape containment + rapid prototyping and fielding accelerator + acquisition and contracting support.
+- Theater technical-order digital delta and waiver control + maintenance readiness manager + mission-assured software factory support + air-tasking-cycle-support.
+- Joint public-affairs embargo and sensitive-loss disclosure + public-affairs-operational-communications + joint combat camera public-affairs release authenticity + information integrity and attribution cell.
+- Joint sensitive imagery next-of-kin hold and release + combat-camera-evidence-documentation + joint dignified transfer funeral honors and family escort cell + joint casualty assistance center and family support synchronization cell.

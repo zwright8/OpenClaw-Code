@@ -13675,3 +13675,93 @@ validation_gates:
 - output_schema: sterile-processing throughput board, instrument-turnaround ladder, autoclave assurance matrix
 - protocol_profile: HL7/FHIR + OPC UA + signed sterilization manifests + API/JSON + USMTF
 - validation_gates: indicator-test pass, sterilization proof, case-release approval
+
+## Packet Addendum LIV (2026-03-15, Expansion Wave LXV)
+
+### packet_id: DPL-RECOVERED-PERSONNEL-REINTEGRATION-001
+- domain: joint recovered-personnel reintegration and sensitive debrief
+- objective: sequence reintegration, protected debrief, and return-to-duty gating without losing custody, privacy, or commander awareness.
+- primary_tools: reintegration case board, medical and behavioral-health clearance tracker, sensitive debrief scheduler, custody or release ledger
+- alternate_tools: manual reintegration worksheet and paper case-custody log
+- degraded_mode: manual reintegration board with dual-review debrief notes and command-approved release thresholds
+- input_requirements: identity confidence, recovery circumstances, medical disposition, legal restrictions, debrief demand, return-to-duty deadlines
+- output_schema: reintegration decision matrix, sensitive debrief queue, return-to-duty risk ladder
+- protocol_profile: HL7/FHIR + NIEM + signed case manifests + S/MIME + API/JSON + USMTF
+- validation_gates: identity verification, medical-review pass, reintegration-authority approval
+
+### packet_id: DPL-POST-ISOLATION-THREAT-REFRESH-001
+- domain: joint post-isolation evasion tradecraft threat refresh
+- objective: convert recovered-personnel reporting into trustworthy threat and training deltas before the next mission cycle.
+- primary_tools: debrief insight board, threat TTP library, personnel-recovery lessons tracker, mission-data update queue
+- alternate_tools: manual lessons worksheet and training-update board
+- degraded_mode: interim threat note only with commander-approved dissemination and delayed training changes
+- input_requirements: debrief summaries, observed adversary TTPs, prior threat baselines, releasability limits, training owners, mission timelines
+- output_schema: threat refresh packet, evasion tradecraft delta board, training-update task list
+- protocol_profile: signed debrief manifests + STIX/TAXII + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: provenance review, intelligence-validation pass, dissemination approval
+
+### packet_id: DPL-DEPOT-MAINT-SURGE-BACKLOG-001
+- domain: theater depot-level maintenance surge and backlog arbitration
+- objective: maximize readiness return by prioritizing depot induction, backlog burn-down, and cross-theater repair flow under constrained capacity.
+- primary_tools: depot backlog board, induction scheduler, parts-constraint tracker, readiness demand planner
+- alternate_tools: manual backlog worksheet and depot-priority board
+- degraded_mode: command-approved induction caps with paper release packets and minimum essential lines only
+- input_requirements: backlog roster, depot capacity, parts constraints, labor status, transport timelines, readiness priorities
+- output_schema: depot backlog arbitration board, induction priority matrix, readiness return forecast
+- protocol_profile: signed work-order manifests + NIEM + OPC UA + API/JSON + USMTF
+- validation_gates: backlog verification, capacity-review pass, depot-authority approval
+
+### packet_id: DPL-METROLOGY-CALIBRATION-PRIORITY-001
+- domain: strategic test-equipment metrology and calibration priority
+- objective: protect production and repair trust by routing scarce calibration capacity to the highest-readiness-impact systems first.
+- primary_tools: calibration lab scheduler, metrology asset ledger, acceptance-test bench utilization board, out-of-tolerance incident tracker
+- alternate_tools: manual certificate worksheet and bench-priority board
+- degraded_mode: manual certificate ledger with conservative bench rationing and commander-approved release thresholds
+- input_requirements: certificate status, test-bench demand, out-of-tolerance events, standards availability, affected systems, readiness deadlines
+- output_schema: calibration priority ladder, test-equipment recovery matrix, out-of-tolerance risk ledger
+- protocol_profile: signed calibration certificates + OPC UA + NIEM + API/JSON + USMTF
+- validation_gates: certificate verification, standards-traceability review, calibration-authority approval
+
+### packet_id: DPL-TECHNICAL-ORDER-DELTA-WAIVER-001
+- domain: theater technical-order digital delta and waiver control
+- objective: keep fielded maintenance synchronized with trusted baselines by routing urgent digital deltas and waiver decisions before unsafe drift spreads.
+- primary_tools: technical-order baseline ledger, waiver adjudication queue, e-publishing status board, unit compliance tracker
+- alternate_tools: manual publication ledger and waiver worksheet
+- degraded_mode: commander-approved interim instructions with manual acknowledgment tracking and no automated field push
+- input_requirements: baseline version, pending delta, waiver requests, affected fleets or systems, compliance state, safety deadlines
+- output_schema: technical-order delta control board, waiver decision matrix, unit compliance forecast
+- protocol_profile: signed technical-order manifests + X.509 + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: baseline-integrity review, safety-authority check, waiver approval
+
+### packet_id: DPL-PA-EMBARGO-SENSITIVE-LOSS-001
+- domain: joint public-affairs embargo and sensitive-loss disclosure
+- objective: synchronize family notification, approved commander messaging, and release timing before sensitive-loss information becomes public or adversaries exploit the gap.
+- primary_tools: public-affairs release board, next-of-kin notification status tracker, media query queue, narrative risk monitor
+- alternate_tools: manual embargo worksheet and approved-holding-statement board
+- degraded_mode: no-release posture except commander-approved holding statement with manual notification checks
+- input_requirements: incident facts, casualty or loss status, notification posture, legal review state, media pressure, adversary narrative indicators
+- output_schema: disclosure timing matrix, embargo decision ladder, media response branch card
+- protocol_profile: signed release manifests + NIEM + S/MIME + API/JSON + STIX/TAXII + USMTF
+- validation_gates: fact verification, notification-status check, public-affairs authority approval
+
+### packet_id: DPL-SENSITIVE-IMAGERY-NOK-HOLD-001
+- domain: joint sensitive imagery next-of-kin hold and release
+- objective: preserve dignified next-of-kin notification and evidentiary integrity by controlling imagery hold, redaction, and staged release.
+- primary_tools: imagery provenance verifier, casualty-notification status board, redaction workflow, release-hold ledger
+- alternate_tools: manual imagery-hold worksheet and redaction checklist
+- degraded_mode: no public release until next-of-kin confirmation with manual hold tracking and command review
+- input_requirements: imagery file set, provenance state, notification status, redaction requirements, evidentiary holds, release deadlines
+- output_schema: imagery hold ledger, redaction and release matrix, next-of-kin synchronization tracker
+- protocol_profile: signed media manifests + STANAG 4609 aligned exchange + S/MIME + NIEM + API/JSON + USMTF
+- validation_gates: provenance verification, next-of-kin confirmation, release-authority approval
+
+### packet_id: DPL-DEPOT-QUALITY-ESCAPE-CONTAINMENT-001
+- domain: theater depot acceptance-test and quality-escape containment
+- objective: contain suspect materiel before serial defects spread into fielded forces while preserving the fastest safe retest or recall path.
+- primary_tools: acceptance-test queue, failure-analysis board, serial traceability ledger, quarantine or recall tracker
+- alternate_tools: manual quarantine worksheet and retest-priority board
+- degraded_mode: immediate hold on suspect serials with manual recall tracking and conservative fleet-use restrictions
+- input_requirements: failure reports, serial traceability, lot data, fielded exposure, retest capacity, safety thresholds
+- output_schema: quality escape containment board, quarantine or recall ladder, retest priority matrix
+- protocol_profile: signed quality manifests + OPC UA + NIEM + API/JSON + USMTF
+- validation_gates: failure-evidence review, traceability confirmation, quarantine-authority approval
