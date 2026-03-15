@@ -1250,3 +1250,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent preventive-medicine witness and alternate supply accountability board
 - Protocol binding: HL7/FHIR + signed clothing manifests + OGC + API/JSON + USMTF
 - Fallback path: short-duration exposure only with manual gear checks and timed warming intervals
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LVIII)
+
+### `TC-BMET-144`
+
+- Domain: joint ballistic meteorology and fire support calibration
+- Primary systems: upper-air observation board, ballistic-met message tracker, fire-solution recalculation board, survey alignment ledger
+- Cross-check systems: independent fire-support weather witness and alternate sensor-quality monitor
+- Protocol binding: VMF + USMTF + iwxxm + OGC + API/JSON
+- Fallback path: conservative fire-support posture only with manual corrections and command readback
+
+### `TC-WXOBS-145`
+
+- Domain: expeditionary airfield weather observation and sensor maintenance
+- Primary systems: airfield observing board, sensor health tracker, manual observation log, terminal weather release board
+- Cross-check systems: independent weather-observer witness and alternate diversion-field weather board
+- Protocol binding: AIXM/FIXM/iwxxm + signed observation manifests + API/JSON + OGC + USMTF
+- Fallback path: manual observation and conservative weather minima only with scheduled readback
+
+### `TC-RIG-146`
+
+- Domain: joint aerial delivery rigging and parachute inspection
+- Primary systems: rigging inspection ledger, parachute serviceability board, load derivation worksheet, air-item certification tracker
+- Cross-check systems: independent rigger standards witness and alternate air-movement release board
+- Protocol binding: AIXM/FIXM + VMF + signed rigging manifests + API/JSON + USMTF
+- Fallback path: reduced-load or hold posture with manual certification and voice confirmation only
+
+### `TC-HDROP-147`
+
+- Domain: theater heavy-drop platform rigging and retrograde recovery
+- Primary systems: heavy-drop platform planner, extraction-system ledger, retrograde recovery tracker, DZ recovery board
+- Cross-check systems: independent DZ safety witness and alternate sustainment recovery cell
+- Protocol binding: AIXM/FIXM + VMF + CoT + signed load manifests + API/JSON + USMTF
+- Fallback path: reduced platform set or no-drop posture with manual release readback only
+
+### `TC-AMMO-148`
+
+- Domain: joint ammunition surveillance and lot serviceability
+- Primary systems: lot surveillance ledger, condition-code board, malfunction and defect tracker, storage-drift planner
+- Cross-check systems: independent quality-assurance witness and alternate ammunition issue-control desk
+- Protocol binding: signed surveillance manifests + NIEM + OGC + API/JSON + USMTF
+- Fallback path: restricted issue only with daily surveillance review and dual-control release
+
+### `TC-QD-149`
+
+- Domain: theater net explosive weight and munitions compatibility
+- Primary systems: quantity-distance calculator, compatibility group board, storage-site planner, transload standoff matrix
+- Cross-check systems: independent explosive-safety witness and alternate force-protection standoff board
+- Protocol binding: OGC + signed storage manifests + NIEM + API/JSON + USMTF
+- Fallback path: emergency separation only with manual blast arcs and commander readback
+
+### `TC-RIB-150`
+
+- Domain: expeditionary ribbon bridge maintenance and raft launch
+- Primary systems: bridge-bay serviceability board, anchorage planner, current and load monitor, raft-launch sequence tracker
+- Cross-check systems: independent engineer-mobility witness and alternate gap-crossing control cell
+- Protocol binding: VMF + CoT + OGC + signed maintenance manifests + USMTF
+- Fallback path: reduced-throughput crossing only with manual bay counts and timed launch windows
+
+### `TC-BEB-151`
+
+- Domain: joint bridge erection boat powertrain and gap crossing recovery
+- Primary systems: bridge-erection-boat readiness board, powertrain diagnostic tracker, spare prop or shaft ledger, recovery and tow planner
+- Cross-check systems: independent boat-master witness and alternate engineer rescue board
+- Protocol binding: AIS/NMEA + VMF + OGC + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: essential-span emplacement only with tow escort and manual readiness board
+
+### `TC-GSE-152`
+
+- Domain: expeditionary flightline ground support equipment readiness
+- Primary systems: AGE dispatch board, power and air cart availability ledger, tow asset tracker, sortie support scheduler
+- Cross-check systems: independent production-superintendent witness and alternate maintenance discrepancy board
+- Protocol binding: AIXM/FIXM + signed maintenance manifests + API/JSON + OGC + USMTF
+- Fallback path: mission-essential sorties only with fixed cart windows and manual sign-out
+
+### `TC-HYD-153`
+
+- Domain: joint aircraft hydraulic contamination and servicing
+- Primary systems: hydraulic fluid sampling board, contamination-control ledger, component isolation tracker, servicing release board
+- Cross-check systems: independent quality-assurance witness and alternate flight-control maintenance board
+- Protocol binding: signed maintenance manifests + AIXM/FIXM + OPC UA + API/JSON + USMTF
+- Fallback path: no-fly or reduced-maneuver posture only with manual sampling and component isolation

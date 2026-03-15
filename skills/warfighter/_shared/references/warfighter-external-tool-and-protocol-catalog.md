@@ -13192,3 +13192,107 @@ external_binding:
 ### `ps-joint-cold-weather-clothing-frostbite-discipline-stack-v1`
 - Protocols: `HL7/FHIR`, signed clothing manifests, `OGC`, `API/JSON`, `USMTF`.
 - Use for: issue-status exchange, exposure updates, and warming or no-go acknowledgment routing.
+
+## Tool Suite Addendum LVIII (2026-03-15, Fires Meteorology, Airfield Observation, Aerial Delivery Rigging, Munitions Safety, Wet-Gap Bridging, and Flightline Support)
+
+### `ts-joint-ballistic-meteorology-fire-support-calibration-v1`
+- Use for: ballistic-met collection, met-message validation, and correction updates when fires accuracy depends on fresh atmospheric data.
+- Primary tools: upper-air observation board, ballistic-met message tracker, fire-solution recalculation board, survey alignment ledger.
+- Cross-check tools: independent fire-support weather witness and alternate sensor-quality monitor.
+- Typical products: ballistic-met calibration card, fire-support correction matrix, and met-message confidence ladder.
+
+### `ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1`
+- Use for: airfield weather observation, sensor repair prioritization, and launch or recovery weather release decisions when automated observing gear is degraded.
+- Primary tools: airfield observing board, sensor health tracker, manual observation log, terminal weather release board.
+- Cross-check tools: independent weather-observer witness and alternate diversion-field weather board.
+- Typical products: terminal-weather release board, sensor maintenance branch plan, and manual observation fallback card.
+
+### `ts-joint-aerial-delivery-rigging-parachute-inspection-v1`
+- Use for: parachute inspection, rigging certification, and release decisions for CDS, personnel delivery, and mission-essential bundles.
+- Primary tools: rigging inspection ledger, parachute serviceability board, load derivation worksheet, air-item certification tracker.
+- Cross-check tools: independent rigger standards witness and alternate air-movement release board.
+- Typical products: rigging certification ledger, parachute inspection matrix, and release-to-load board.
+
+### `ts-theater-heavy-drop-platform-rigging-retrograde-recovery-v1`
+- Use for: heavy-drop platform rigging, extraction-system release, and post-drop retrograde recovery when delivered equipment must remain mission-usable.
+- Primary tools: heavy-drop platform planner, extraction-system ledger, retrograde recovery tracker, DZ recovery board.
+- Cross-check tools: independent DZ safety witness and alternate sustainment recovery cell.
+- Typical products: heavy-drop release matrix, extraction-system health board, and retrograde recovery timeline.
+
+### `ts-joint-ammunition-surveillance-lot-serviceability-v1`
+- Use for: ammunition surveillance, defect triage, and lot-serviceability decisions across depots and forward ammunition supply points.
+- Primary tools: lot surveillance ledger, condition-code board, malfunction and defect tracker, storage-drift planner.
+- Cross-check tools: independent quality-assurance witness and alternate ammunition issue-control desk.
+- Typical products: ammunition surveillance watchlist, lot-serviceability matrix, and malfunction-response branch card.
+
+### `ts-theater-net-explosive-weight-munitions-compatibility-v1`
+- Use for: quantity-distance calculations, compatibility-group adjudication, and storage or transit standoff decisions for mixed munitions inventories.
+- Primary tools: quantity-distance calculator, compatibility group board, storage-site planner, transload standoff matrix.
+- Cross-check tools: independent explosive-safety witness and alternate force-protection standoff board.
+- Typical products: explosive quantity-distance board, compatibility storage matrix, and site or transit standoff plan.
+
+### `ts-expeditionary-ribbon-bridge-maintenance-raft-launch-v1`
+- Use for: ribbon-bridge bay maintenance, raft-launch sequencing, and wet-gap throughput recovery when crossing assets degrade under load or current.
+- Primary tools: bridge-bay serviceability board, anchorage planner, current and load monitor, raft-launch sequence tracker.
+- Cross-check tools: independent engineer-mobility witness and alternate gap-crossing control cell.
+- Typical products: ribbon-bridge serviceability board, raft-launch sequence, and crossing maintenance ladder.
+
+### `ts-joint-bridge-erection-boat-gap-crossing-recovery-v1`
+- Use for: bridge-erection-boat readiness, propulsion recovery, and wet-gap rescue or tow decisions when emplacement craft become the pacing risk.
+- Primary tools: bridge-erection-boat readiness board, powertrain diagnostic tracker, spare prop or shaft ledger, recovery and tow planner.
+- Cross-check tools: independent boat-master witness and alternate engineer rescue board.
+- Typical products: bridge-erection-boat readiness board, propulsion recovery ledger, and wet-gap rescue branch plan.
+
+### `ts-expeditionary-flightline-ground-support-equipment-readiness-v1`
+- Use for: flightline AGE allocation, cart dispatch, and cross-servicing decisions when sortie generation depends on scarce support equipment.
+- Primary tools: AGE dispatch board, power and air cart availability ledger, tow asset tracker, sortie support scheduler.
+- Cross-check tools: independent production-superintendent witness and alternate maintenance discrepancy board.
+- Typical products: AGE dispatch matrix, sortie-support equipment ladder, and cart cross-service plan.
+
+### `ts-joint-aircraft-hydraulic-contamination-servicing-v1`
+- Use for: hydraulic-fluid contamination response, servicing release, and component-isolation decisions across aviation fleets.
+- Primary tools: hydraulic fluid sampling board, contamination-control ledger, component isolation tracker, servicing release board.
+- Cross-check tools: independent quality-assurance witness and alternate flight-control maintenance board.
+- Typical products: hydraulic contamination isolation board, servicing release matrix, and component quarantine ladder.
+
+## Protocol Stack Addendum LVIII (2026-03-15, Fires Meteorology, Airfield Observation, Aerial Delivery Rigging, Munitions Safety, Wet-Gap Bridging, and Flightline Support)
+
+### `ps-joint-ballistic-meteorology-fire-support-calibration-stack-v1`
+- Protocols: `VMF`, `USMTF`, `iwxxm`, `OGC`, `API/JSON`.
+- Use for: met-message exchange, fire-support correction routing, and calibration acknowledgments.
+
+### `ps-expeditionary-airfield-weather-observation-sensor-maintenance-stack-v1`
+- Protocols: `AIXM/FIXM/iwxxm`, signed observation manifests, `API/JSON`, `OGC`, `USMTF`.
+- Use for: airfield observation exchange, sensor maintenance routing, and launch or recovery weather acknowledgments.
+
+### `ps-joint-aerial-delivery-rigging-parachute-inspection-stack-v1`
+- Protocols: `AIXM/FIXM`, `VMF`, signed rigging manifests, `API/JSON`, `USMTF`.
+- Use for: rigging-status exchange, parachute inspection routing, and release acknowledgments.
+
+### `ps-theater-heavy-drop-platform-rigging-retrograde-recovery-stack-v1`
+- Protocols: `AIXM/FIXM`, `VMF`, `CoT`, signed load manifests, `API/JSON`, `USMTF`.
+- Use for: platform-status exchange, heavy-drop release routing, and recovery acknowledgments.
+
+### `ps-joint-ammunition-surveillance-lot-serviceability-stack-v1`
+- Protocols: signed surveillance manifests, `NIEM`, `OGC`, `API/JSON`, `USMTF`.
+- Use for: lot-status updates, defect reporting, and quarantine or release acknowledgments.
+
+### `ps-theater-net-explosive-weight-munitions-compatibility-stack-v1`
+- Protocols: `OGC`, signed storage manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: storage-site status exchange, standoff recalculation, and movement release acknowledgments.
+
+### `ps-expeditionary-ribbon-bridge-maintenance-raft-launch-stack-v1`
+- Protocols: `VMF`, `CoT`, `OGC`, signed maintenance manifests, `USMTF`.
+- Use for: bridge-bay status exchange, raft-launch timing, and crossing release acknowledgments.
+
+### `ps-joint-bridge-erection-boat-gap-crossing-recovery-stack-v1`
+- Protocols: `AIS/NMEA`, `VMF`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: boat-readiness updates, tow or rescue routing, and bridge emplacement acknowledgments.
+
+### `ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1`
+- Protocols: `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `OGC`, `USMTF`.
+- Use for: AGE availability exchange, dispatch routing, and sortie-support acknowledgments.
+
+### `ps-joint-aircraft-hydraulic-contamination-servicing-stack-v1`
+- Protocols: signed maintenance manifests, `AIXM/FIXM`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: contamination evidence exchange, servicing release routing, and no-fly or return-to-service acknowledgments.

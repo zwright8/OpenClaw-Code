@@ -223,3 +223,10 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-expeditionary-aircrew-flight-equipment-survival-gear-v1` + `protocol_stack_id=ps-expeditionary-aircrew-flight-equipment-survival-gear-stack-v1` when ATO execution depends on inspected survival gear, beacon integrity, or environment-specific crew protection.
 - Prioritize `tool_suite_id=ts-joint-flightline-weapons-loading-armament-safety-v1` + `protocol_stack_id=ps-joint-flightline-weapons-loading-armament-safety-stack-v1` when armed-sortie sequencing depends on trusted load data, crew certification, or explosive-safety arcs.
 - Add `packet_id=DPL-FLIGHT-SURGEON-AEROMED-WAIVER-001`, `packet_id=DPL-AIRCREW-FLIGHT-EQUIPMENT-SURVIVAL-GEAR-001`, and `packet_id=DPL-FLIGHTLINE-WEAPONS-ARMAMENT-SAFETY-001` for ATO branches that materially alter crew release, armed-aircraft posture, or sortie timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Prioritize `tool_suite_id=ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1` + `protocol_stack_id=ps-expeditionary-airfield-weather-observation-sensor-maintenance-stack-v1` when ATO execution depends on trusted runway weather observations, degraded sensor recovery, or manual observation fallback.
+- Prioritize `tool_suite_id=ts-expeditionary-flightline-ground-support-equipment-readiness-v1` + `protocol_stack_id=ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1` when sortie cadence depends on scarce AGE, cart dispatch, or cross-servicing across dispersed flightlines.
+- Prioritize `tool_suite_id=ts-joint-aircraft-hydraulic-contamination-servicing-v1` + `protocol_stack_id=ps-joint-aircraft-hydraulic-contamination-servicing-stack-v1` when launch or recovery decisions depend on hydraulic sample trust, servicing release, or component isolation.
+- Add `packet_id=DPL-AIRFIELD-WEATHER-OBS-SENSOR-001`, `packet_id=DPL-FLIGHTLINE-GSE-READINESS-001`, and `packet_id=DPL-AIRCRAFT-HYDRAULIC-CONTAMINATION-001` for ATO branches that materially alter launch timing, sortie generation, or airworthiness confidence.

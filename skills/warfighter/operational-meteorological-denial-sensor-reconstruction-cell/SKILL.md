@@ -149,3 +149,8 @@ Use these tool categories as the default stack for this skill: weather data assi
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-ballistic-meteorology-fire-support-calibration-v1` + `protocol_stack_id=ps-joint-ballistic-meteorology-fire-support-calibration-stack-v1` when denied-weather reconstruction must be translated into fire-support correction updates, met-message refresh, or fires-risk gating.
+- Add `tool_suite_id=ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1` + `protocol_stack_id=ps-expeditionary-airfield-weather-observation-sensor-maintenance-stack-v1` when airfield sensor outages, manual observer fallback, or terminal-weather release trust determine operational viability.
+- Add `packet_id=DPL-BALLISTIC-METEOROLOGY-FIRE-CAL-001` and `packet_id=DPL-AIRFIELD-WEATHER-OBS-SENSOR-001` for branches that materially alter reconstructed forecast trust, fires calibration, or airfield weather authority.

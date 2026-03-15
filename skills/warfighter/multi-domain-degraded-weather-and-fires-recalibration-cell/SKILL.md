@@ -59,3 +59,9 @@ For every external dependency include objective, required inputs, query/action t
 - Separate facts, assessed judgments, and unknowns.
 - Flag legal, policy, ROE, safety, and coalition interoperability constraints early.
 - Do not provide weapon-employment procedures or safeguard bypasses.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-ballistic-meteorology-fire-support-calibration-v1` + `protocol_stack_id=ps-joint-ballistic-meteorology-fire-support-calibration-stack-v1` when degraded weather must be translated into refreshed met messages, fire-support correction updates, or fires-hold decisions.
+- Add `tool_suite_id=ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1` + `protocol_stack_id=ps-expeditionary-airfield-weather-observation-sensor-maintenance-stack-v1` when weather-driven mission recalibration depends on damaged airfield sensors, manual observation fallback, or launch and recovery minima trust.
+- Add `packet_id=DPL-BALLISTIC-METEOROLOGY-FIRE-CAL-001` and `packet_id=DPL-AIRFIELD-WEATHER-OBS-SENSOR-001` for branches that materially alter correction confidence, fires timing, or weather-release authority.

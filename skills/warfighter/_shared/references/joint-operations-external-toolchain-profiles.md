@@ -2638,3 +2638,75 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-cold-injury-frostbite-rewarming-v1`.
 - Protocols: `HL7/FHIR`, signed clothing manifests, `OGC`, `API/JSON`, `USMTF`.
 - Degraded fallback: short-duration exposure only with manual gear checks and timed warming intervals.
+
+## Profile Addendum AB (2026-03-15, Fires Meteorology, Airfield Observation, Aerial Delivery Rigging, Munitions Safety, Wet-Gap Bridging, and Flightline Support)
+
+### `ballistic-meteorology-fire-support-calibration-v1`
+- Use for: fires decisions when ballistic-met freshness, correction quality, or survey alignment could shift accuracy enough to alter commander risk.
+- Primary tools: `ts-joint-ballistic-meteorology-fire-support-calibration-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `VMF`, `USMTF`, `iwxxm`, `OGC`, `API/JSON`.
+- Degraded fallback: conservative fire-support posture only with manual corrections and command readback.
+
+### `airfield-weather-observation-sensor-maintenance-v1`
+- Use for: airfield operations decisions when weather-sensor outages or drift can invalidate launch or recovery minima.
+- Primary tools: `ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `AIXM/FIXM/iwxxm`, signed observation manifests, `API/JSON`, `OGC`, `USMTF`.
+- Degraded fallback: manual observation and conservative weather minima only with scheduled readback.
+
+### `aerial-delivery-rigging-parachute-inspection-v1`
+- Use for: air-delivery decisions when parachute serviceability, rigging certification, or load derivation could invalidate safe release.
+- Primary tools: `ts-joint-aerial-delivery-rigging-parachute-inspection-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIXM/FIXM`, `VMF`, signed rigging manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: reduced-load or hold posture with manual certification and voice confirmation only.
+
+### `heavy-drop-platform-rigging-retrograde-v1`
+- Use for: heavy-equipment airdrop decisions when platform rigging, extraction-system confidence, or retrograde recovery will determine usable delivery throughput.
+- Primary tools: `ts-theater-heavy-drop-platform-rigging-retrograde-recovery-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIXM/FIXM`, `VMF`, `CoT`, signed load manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: reduced platform set or no-drop posture with manual release readback only.
+
+### `ammunition-surveillance-lot-serviceability-v1`
+- Use for: sustainment and fires-support decisions when ammunition lot drift, defects, or malfunction evidence could change safe issue posture.
+- Primary tools: `ts-joint-ammunition-surveillance-lot-serviceability-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed surveillance manifests, `NIEM`, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: restricted issue only with daily surveillance review and dual-control release.
+
+### `net-explosive-weight-munitions-compatibility-v1`
+- Use for: storage and movement decisions when mixed munitions density, exposed-site distance, or compatibility rules drive blast risk.
+- Primary tools: `ts-theater-net-explosive-weight-munitions-compatibility-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `OGC`, signed storage manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Degraded fallback: emergency separation only with manual blast arcs and commander readback.
+
+### `ribbon-bridge-maintenance-raft-launch-v1`
+- Use for: wet-gap crossing decisions when ribbon-bridge bay health, launch cadence, or anchorage confidence controls throughput.
+- Primary tools: `ts-expeditionary-ribbon-bridge-maintenance-raft-launch-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `VMF`, `CoT`, `OGC`, signed maintenance manifests, `USMTF`.
+- Degraded fallback: reduced-throughput crossing only with manual bay counts and timed launch windows.
+
+### `bridge-erection-boat-gap-crossing-recovery-v1`
+- Use for: engineer mobility decisions when boat propulsion losses, rescue posture, or tow capacity threaten bridge emplacement and crossing safety.
+- Primary tools: `ts-joint-bridge-erection-boat-gap-crossing-recovery-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIS/NMEA`, `VMF`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: essential-span emplacement only with tow escort and manual readiness board.
+
+### `flightline-ground-support-equipment-readiness-v1`
+- Use for: sortie-generation decisions when AGE dispatch, cart scarcity, or line cross-servicing becomes the pacing constraint.
+- Primary tools: `ts-expeditionary-flightline-ground-support-equipment-readiness-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `OGC`, `USMTF`.
+- Degraded fallback: mission-essential sorties only with fixed cart windows and manual sign-out.
+
+### `aircraft-hydraulic-contamination-servicing-v1`
+- Use for: aviation-maintenance decisions when hydraulic contamination, servicing release, or component isolation could change safe-to-fly posture.
+- Primary tools: `ts-joint-aircraft-hydraulic-contamination-servicing-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: signed maintenance manifests, `AIXM/FIXM`, `OPC UA`, `API/JSON`, `USMTF`.
+- Degraded fallback: no-fly or reduced-maneuver posture only with manual sampling and component isolation.

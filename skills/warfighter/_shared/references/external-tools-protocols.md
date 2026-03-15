@@ -502,3 +502,29 @@ Include these fields in outputs when tool integration is used:
 - Riverine-maintenance packets: include craft readiness class, parts pedigree note, patrol-coverage delta, and controlled-exchange approval when applicable.
 - Flightline armament packets: include load-crew certification state, explosive-safety radius, aircraft compatibility check, and hot-ramp hold trigger.
 - Cold-weather discipline packets: include wet-gear churn estimate, warming-window schedule, clothing availability, and medical no-go threshold before exposing forces.
+
+## Domain Toolchain Profiles (2026-03-15 Specialist Readiness and Sustainment Expansion)
+
+- Ballistic meteorology and fire-support calibration: upper-air observation boards + fire-solution recalculation services + `VMF` + `USMTF` + `iwxxm`
+- Airfield weather observation and sensor maintenance: airfield observing boards + sensor health trackers + `AIXM/FIXM/iwxxm` + `OGC` + `USMTF`
+- Aerial-delivery rigging and parachute inspection: rigging ledgers + parachute inspection trackers + `AIXM/FIXM` + `VMF` + `USMTF`
+- Heavy-drop platform rigging and retrograde recovery: platform planners + DZ recovery boards + `AIXM/FIXM` + `VMF` + `CoT` + `USMTF`
+- Ammunition surveillance and lot serviceability: surveillance ledgers + defect trackers + signed manifests + `NIEM` + `USMTF`
+- Net explosive weight and munitions compatibility: quantity-distance calculators + standoff planners + `OGC` + `NIEM` + `USMTF`
+- Ribbon bridge maintenance and raft launch: bridge-bay serviceability boards + current or load monitors + `VMF` + `CoT` + `OGC` + `USMTF`
+- Bridge-erection-boat gap-crossing recovery: boat diagnostics + tow planners + `AIS/NMEA` + `VMF` + `OGC` + `USMTF`
+- Flightline GSE readiness: AGE dispatch boards + cart availability ledgers + `AIXM/FIXM` + `OGC` + `USMTF`
+- Aircraft hydraulic contamination and servicing: sample ledgers + maintenance release boards + `AIXM/FIXM` + `OPC UA` + `USMTF`
+
+## Protocol Mapping Guidance (2026-03-15 Specialist Readiness and Sustainment Expansion)
+
+- Ballistic-met packets: include met-message age, correction confidence, survey alignment state, and fires-hold threshold before release.
+- Airfield weather packets: include observer certification, sensor drift status, launch or recovery minima, and divert trigger.
+- Rigging packets: include pack-date expiration, rigger certification state, load-geometry confidence, and release authority.
+- Heavy-drop packets: include extraction-system state, platform rigging status, DZ recovery capacity, and no-drop trigger.
+- Ammunition-surveillance packets: include lot pedigree, defect trend confidence, quarantine threshold, and issue-control authority.
+- Net-explosive-weight packets: include NEW total, exposed-site distance, compatibility exception, and evacuation trigger.
+- Ribbon-bridge packets: include bay serviceability state, anchor integrity, current band, and raft-launch window.
+- Bridge-erection-boat packets: include propulsion status, tow or rescue branch, spare-part availability, and crossing-hold trigger.
+- GSE packets: include cart availability by line, dispatch ETA, sortie priority, and manual servicing fallback.
+- Hydraulic packets: include sample-result confidence, affected-system list, component-isolation boundary, and no-fly or restricted-flight trigger.

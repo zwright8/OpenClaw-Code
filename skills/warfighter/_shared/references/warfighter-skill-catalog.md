@@ -2662,3 +2662,29 @@ Every skill output should include:
 - Small-craft riverine maintenance and spares + riverine and inland waterways operations + contested logistics sustainment + joint port opening and JLOTS synchronization cell.
 - Flightline weapons loading and armament safety + airbase dispersal and rapid reconstitution cell + air tasking cycle support + munitions stockpile and expenditure manager.
 - Cold-weather clothing layering and frostbite discipline + joint cold injury frostbite and rewarming operations cell + strategic mobility deployment planner + arctic and extreme environment ops.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LVIII)
+
+- joint-ballistic-meteorology-and-fire-support-calibration-cell
+- expeditionary-airfield-weather-observation-and-sensor-maintenance-cell
+- joint-aerial-delivery-rigging-and-parachute-inspection-cell
+- theater-heavy-drop-platform-rigging-and-retrograde-recovery-cell
+- joint-ammunition-surveillance-and-lot-serviceability-cell
+- theater-net-explosive-weight-and-munitions-compatibility-cell
+- expeditionary-ribbon-bridge-maintenance-and-raft-launch-cell
+- joint-bridge-erection-boat-powertrain-and-gap-crossing-recovery-cell
+- expeditionary-flightline-ground-support-equipment-readiness-cell
+- joint-aircraft-hydraulic-contamination-and-servicing-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LVIII)
+
+- Ballistic meteorology and fire support calibration + multi-domain degraded weather and fires recalibration cell + theater denied PNT artillery survey and fires alignment cell + air tasking cycle support.
+- Airfield weather observation and sensor maintenance + operational meteorological denial sensor reconstruction cell + airbase dispersal and rapid reconstitution cell + air tasking cycle support.
+- Aerial delivery rigging and parachute inspection + joint precision aerial delivery and dropzone assurance cell + joint airborne assault drop zone integrity and parachute recovery cell + strategic mobility deployment planner.
+- Heavy-drop platform rigging and retrograde recovery + joint precision aerial delivery and dropzone assurance cell + contested logistics sustainment + strategic mobility deployment planner.
+- Ammunition surveillance and lot serviceability + munitions stockpile and expenditure manager + joint long-range-fires ammunition lot reliability cell + strategic industrial mobilization readiness.
+- Net explosive weight and munitions compatibility + munitions stockpile and expenditure manager + contested logistics sustainment + force protection and base defense.
+- Ribbon bridge maintenance and raft launch + theater multi-corps water bridging and bulk fuel crossing cell + joint river crossing under fire synchronization cell + contested logistics sustainment.
+- Bridge erection boat powertrain and gap crossing recovery + theater multi-corps water bridging and bulk fuel crossing cell + coalition forward waterway bridge denial and gap crossing cell + force protection and base defense.
+- Flightline ground support equipment readiness + airbase dispersal and rapid reconstitution cell + air tasking cycle support + contested logistics sustainment.
+- Aircraft hydraulic contamination and servicing + airbase dispersal and rapid reconstitution cell + air tasking cycle support + expeditionary aircraft crash fire rescue and foam transition cell.

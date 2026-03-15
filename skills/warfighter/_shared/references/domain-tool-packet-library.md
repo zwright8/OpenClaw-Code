@@ -12913,3 +12913,115 @@ validation_gates:
 - output_schema: cold-weather issue ladder, frostbite-discipline matrix, exposure-risk watchlist
 - protocol_profile: HL7/FHIR + signed clothing manifests + OGC + API/JSON + USMTF
 - validation_gates: inventory check, exposure-threshold review, medical or command approval
+
+## Packet Addendum XLVII (2026-03-15, Fires Meteorology, Airfield Observation, Aerial Delivery Rigging, Munitions Safety, Wet-Gap Bridging, and Flightline Support)
+
+### packet_id: DPL-BALLISTIC-METEOROLOGY-FIRE-CAL-001
+- domain: joint ballistic meteorology and fire support calibration
+- objective: restore fires accuracy by refreshing atmospheric corrections before stale or inconsistent met data creates miss distance or fratricide risk.
+- primary_tools: upper-air observation board, ballistic-met message tracker, fire-solution recalculation board, survey alignment ledger
+- alternate_tools: manual met worksheet and protected fires correction board
+- degraded_mode: conservative fire-support posture only with manual corrections and command readback
+- input_requirements: firing system, target area, latest met data, survey confidence, sensor gaps, authority thresholds
+- output_schema: ballistic-met calibration card, fire-support correction matrix, met-message confidence ladder
+- protocol_profile: VMF + USMTF + iwxxm + OGC + API/JSON
+- validation_gates: met-message freshness check, survey confirmation, fires approval
+
+### packet_id: DPL-AIRFIELD-WEATHER-OBS-SENSOR-001
+- domain: expeditionary airfield weather observation and sensor maintenance
+- objective: preserve safe launch and recovery by restoring trusted airfield weather observations before sensor drift or outages hide no-go conditions.
+- primary_tools: airfield observing board, sensor health tracker, manual observation log, terminal weather release board
+- alternate_tools: manual observation worksheet and voice launch-minima board
+- degraded_mode: manual observation and conservative weather minima only with scheduled readback
+- input_requirements: runway set, observation status, sensor faults, weather minima, divert fields, authority thresholds
+- output_schema: terminal-weather release board, sensor maintenance branch plan, manual observation fallback card
+- protocol_profile: AIXM/FIXM/iwxxm + signed observation manifests + API/JSON + OGC + USMTF
+- validation_gates: observer certification check, sensor-status review, airfield approval
+
+### packet_id: DPL-AERIAL-DELIVERY-RIGGING-001
+- domain: joint aerial delivery rigging and parachute inspection
+- objective: release only loads and parachutes that remain certified enough for safe aerial delivery.
+- primary_tools: rigging inspection ledger, parachute serviceability board, load derivation worksheet, air-item certification tracker
+- alternate_tools: manual rigging worksheet and paper parachute inspection log
+- degraded_mode: reduced-load or hold posture with manual certification and voice confirmation only
+- input_requirements: load data, parachute status, rigger certifications, aircraft type, DZ limits, authority thresholds
+- output_schema: rigging certification ledger, parachute inspection matrix, release-to-load board
+- protocol_profile: AIXM/FIXM + VMF + signed rigging manifests + API/JSON + USMTF
+- validation_gates: inspection check, certification verification, release approval
+
+### packet_id: DPL-HEAVY-DROP-PLATFORM-RIGGING-001
+- domain: theater heavy-drop platform rigging and retrograde recovery
+- objective: move heavy platforms by air without bypassing extraction-system, rigging, or recovery safety gates.
+- primary_tools: heavy-drop platform planner, extraction-system ledger, retrograde recovery tracker, DZ recovery board
+- alternate_tools: manual platform worksheet and recovery call-tree sheet
+- degraded_mode: reduced platform set or no-drop posture with manual release readback only
+- input_requirements: platform geometry, extraction system status, aircraft type, DZ conditions, recovery-force status, authority thresholds
+- output_schema: heavy-drop release matrix, extraction-system health board, retrograde recovery timeline
+- protocol_profile: AIXM/FIXM + VMF + CoT + signed load manifests + API/JSON + USMTF
+- validation_gates: rigging verification, DZ readiness check, air-drop approval
+
+### packet_id: DPL-AMMUNITION-SURVEILLANCE-LOT-001
+- domain: joint ammunition surveillance and lot serviceability
+- objective: prevent unsafe issue or storage by surfacing lot drift, defects, and malfunction patterns before munitions fail in use.
+- primary_tools: lot surveillance ledger, condition-code board, malfunction and defect tracker, storage-drift planner
+- alternate_tools: manual lot log and inspection worksheet
+- degraded_mode: restricted issue only with daily surveillance review and dual-control release
+- input_requirements: lot identifiers, storage history, defect evidence, demand signal, site posture, authority thresholds
+- output_schema: ammunition surveillance watchlist, lot-serviceability matrix, malfunction-response branch card
+- protocol_profile: signed surveillance manifests + NIEM + OGC + API/JSON + USMTF
+- validation_gates: lot pedigree check, defect review, ammunition authority approval
+
+### packet_id: DPL-NET-EXPLOSIVE-WEIGHT-COMPATIBILITY-001
+- domain: theater net explosive weight and munitions compatibility
+- objective: keep storage and movement inside safe blast and compatibility envelopes before density or mixed loads create catastrophic exposure.
+- primary_tools: quantity-distance calculator, compatibility group board, storage-site planner, transload standoff matrix
+- alternate_tools: manual quantity-distance worksheet and standoff board
+- degraded_mode: emergency separation only with manual blast arcs and commander readback
+- input_requirements: munition mix, net explosive weight, site geometry, exposed population, transport plan, authority thresholds
+- output_schema: explosive quantity-distance board, compatibility storage matrix, site or transit standoff plan
+- protocol_profile: OGC + signed storage manifests + NIEM + API/JSON + USMTF
+- validation_gates: quantity-distance check, compatibility review, explosive-safety approval
+
+### packet_id: DPL-RIBBON-BRIDGE-RAFT-LAUNCH-001
+- domain: expeditionary ribbon bridge maintenance and raft launch
+- objective: preserve wet-gap throughput by sequencing bridge maintenance and raft launches before bay failures or current shift break crossing tempo.
+- primary_tools: bridge-bay serviceability board, anchorage planner, current and load monitor, raft-launch sequence tracker
+- alternate_tools: manual bridge board and raft timing worksheet
+- degraded_mode: reduced-throughput crossing only with manual bay counts and timed launch windows
+- input_requirements: bay status, current data, anchorage posture, crossing demand, repair capacity, authority thresholds
+- output_schema: ribbon-bridge serviceability board, raft-launch sequence, crossing maintenance ladder
+- protocol_profile: VMF + CoT + OGC + signed maintenance manifests + USMTF
+- validation_gates: bay-status check, anchorage review, engineer approval
+
+### packet_id: DPL-BRIDGE-ERECTION-BOAT-RECOVERY-001
+- domain: joint bridge erection boat powertrain and gap crossing recovery
+- objective: recover bridge emplacement capability before boat propulsion losses or rescue gaps halt the crossing.
+- primary_tools: bridge-erection-boat readiness board, powertrain diagnostic tracker, spare prop or shaft ledger, recovery and tow planner
+- alternate_tools: manual boat log and tow-plan worksheet
+- degraded_mode: essential-span emplacement only with tow escort and manual readiness board
+- input_requirements: boat status, propulsion faults, spare parts, river state, rescue assets, authority thresholds
+- output_schema: bridge-erection-boat readiness board, propulsion recovery ledger, wet-gap rescue branch plan
+- protocol_profile: AIS/NMEA + VMF + OGC + signed maintenance manifests + API/JSON + USMTF
+- validation_gates: boat-readiness check, rescue confirmation, crossing approval
+
+### packet_id: DPL-FLIGHTLINE-GSE-READINESS-001
+- domain: expeditionary flightline ground support equipment readiness
+- objective: prevent avoidable sortie delays by aligning scarce AGE with launch priorities before carts or tow assets become pacing constraints.
+- primary_tools: AGE dispatch board, power and air cart availability ledger, tow asset tracker, sortie support scheduler
+- alternate_tools: manual dispatch board and line-badge call sheet
+- degraded_mode: mission-essential sorties only with fixed cart windows and manual sign-out
+- input_requirements: aircraft demand, AGE status, line locations, parts posture, sortie priority, authority thresholds
+- output_schema: AGE dispatch matrix, sortie-support equipment ladder, cart cross-service plan
+- protocol_profile: AIXM/FIXM + signed maintenance manifests + API/JSON + OGC + USMTF
+- validation_gates: equipment-status check, dispatch verification, production approval
+
+### packet_id: DPL-AIRCRAFT-HYDRAULIC-CONTAMINATION-001
+- domain: joint aircraft hydraulic contamination and servicing
+- objective: contain contamination and restore safe servicing before compromised hydraulic systems cascade into flight-control or maintenance failures.
+- primary_tools: hydraulic fluid sampling board, contamination-control ledger, component isolation tracker, servicing release board
+- alternate_tools: manual sample log and protected maintenance board
+- degraded_mode: no-fly or reduced-maneuver posture only with manual sampling and component isolation
+- input_requirements: aircraft type, sample results, affected components, servicing history, parts availability, authority thresholds
+- output_schema: hydraulic contamination isolation board, servicing release matrix, component quarantine ladder
+- protocol_profile: signed maintenance manifests + AIXM/FIXM + OPC UA + API/JSON + USMTF
+- validation_gates: contamination evidence check, isolation review, maintenance approval

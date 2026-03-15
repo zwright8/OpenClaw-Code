@@ -149,3 +149,8 @@ Use these tool categories as the default stack for this skill: enterprise logist
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-ammunition-surveillance-lot-serviceability-v1` + `protocol_stack_id=ps-joint-ammunition-surveillance-lot-serviceability-stack-v1` when expenditure planning depends on trusted lot serviceability, defect adjudication, or restricted-issue posture.
+- Add `tool_suite_id=ts-theater-net-explosive-weight-munitions-compatibility-v1` + `protocol_stack_id=ps-theater-net-explosive-weight-munitions-compatibility-stack-v1` when stockpile posture depends on quantity-distance margins, compatibility-group separation, or safe transload density.
+- Add `packet_id=DPL-AMMUNITION-SURVEILLANCE-LOT-001` and `packet_id=DPL-NET-EXPLOSIVE-WEIGHT-COMPATIBILITY-001` for branches that materially alter safe issue rates, storage density, or munitions redistribution confidence.
