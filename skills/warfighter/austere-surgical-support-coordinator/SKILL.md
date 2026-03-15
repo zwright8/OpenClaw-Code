@@ -166,3 +166,8 @@ Use these tool categories as the default stack for this skill: patient regulatio
 
 - Add `tool_suite_id=ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1` + `protocol_stack_id=ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1` when surgical triage depends on industrial contamination, decon throughput, or contaminated patient movement.
 - Add `packet_id=DPL-TIC-EXPOSURE-DECON-TRIAGE-001` for branches that materially alter contaminated casualty routing, protected-care sequencing, or no-go medical posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-renal-replacement-crush-surge-v1` + `protocol_stack_id=ps-expeditionary-renal-replacement-crush-surge-stack-v1` when austere surgical recommendations depend on crush-syndrome triage, dialysis-device continuity, or electrolyte-control timing.
+- Add `packet_id=DPL-RENAL-CRUSH-SURGE-001` for branches that materially alter surgical triage, transfer release, or prolonged-field-care posture.

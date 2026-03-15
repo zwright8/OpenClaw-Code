@@ -160,3 +160,8 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 - Add `tool_suite_id=ts-joint-civilian-sensor-report-veracity-rumor-control-v1` + `protocol_stack_id=ps-joint-civilian-sensor-report-veracity-rumor-control-stack-v1` when DSCA support depends on validating crowdsourced damage reports, rumor spikes, or public-warning credibility.
 - Add `tool_suite_id=ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1` + `protocol_stack_id=ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1` when DSCA priorities depend on industrial-chemical release triage, decon throughput, or sheltering decisions.
 - Add `packet_id=DPL-CIVILIAN-SENSOR-RUMOR-CONTROL-001` and `packet_id=DPL-TIC-EXPOSURE-DECON-TRIAGE-001` for branches that materially alter warning release, civil movement control, or contaminated-population support posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-homeland-wildland-fire-airspace-retardant-priority-v1` + `protocol_stack_id=ps-homeland-wildland-fire-airspace-retardant-priority-stack-v1` when DSCA support depends on military airspace reprioritization, retardant scarcity, or smoke-driven sortie tradeoffs.
+- Add `packet_id=DPL-WILDLAND-FIRE-AIRSPACE-RETARDANT-001` for branches that materially alter aviation support posture, airspace release timing, or protected-site prioritization.

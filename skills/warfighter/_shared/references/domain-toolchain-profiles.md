@@ -1414,3 +1414,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent judge-advocate review cell and alternate civil-affairs restitution board
 - Protocol binding: NIEM + NATO APP-11/ADatP-3 + signed claims manifests + API/JSON + USMTF + S/MIME
 - Fallback path: advisory-only legal framing with no concession language and manual senior review
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LX)
+
+### `TC-RENAL-164`
+
+- Domain: expeditionary renal replacement and crush injury surge
+- Primary systems: critical-care flowsheet, chemistry and urine-output board, dialysis-device status ledger, med-log consumables tracker
+- Cross-check systems: independent nephrology reachback cell and alternate evacuation regulation board
+- Protocol binding: HL7/FHIR + signed device manifests + API/JSON + USMTF + NIEM
+- Fallback path: lifesaving triage and manual electrolyte-control board only with command-approved transfer prioritization
+
+### `TC-CIRCADIAN-165`
+
+- Domain: theater circadian fatigue and watchbill optimization
+- Primary systems: fatigue analytics board, watchbill scheduler, sleep-debt tracker, incident-risk monitor
+- Cross-check systems: independent flight-medicine or force-health review cell and alternate unit readiness board
+- Protocol binding: HL7/FHIR + signed sensor manifests + API/JSON + USMTF + NIEM
+- Fallback path: manual watchbill board with conservative crew-rest windows and command-approved risk acceptance
+
+### `TC-WILDFIRE-166`
+
+- Domain: homeland wildland fire airspace and retardant priority
+- Primary systems: incident-command dashboard, air tanker dispatch board, smoke and plume model, retardant stock ledger
+- Cross-check systems: independent airspace control board and alternate state emergency operations cell
+- Protocol binding: NIMS/ICS + AIXM/FIXM + CAP + OGC + API/JSON + USMTF
+- Fallback path: life-safety-first airspace board with manual retardant accounting and command-approved sortie holds
+
+### `TC-LICENSE-167`
+
+- Domain: theater mission software license and offline activation continuity
+- Primary systems: license-server health board, entitlement vault, offline activation ledger, trusted build release board
+- Cross-check systems: independent cyber response cell and alternate mission-software rollback board
+- Protocol binding: signed entitlement manifests + X.509 + API/JSON + STIX/TAXII + USMTF
+- Fallback path: mission-essential services only with manual entitlement ledger and preapproved binary allowlist
+
+### `TC-SURF-168`
+
+- Domain: joint amphibious surf-zone breach and beach trafficability
+- Primary systems: hydrographic surf model, obstacle breach board, beach trafficability assessor, shore-party flow tracker
+- Cross-check systems: independent beachmaster cell and alternate engineer mobility board
+- Protocol binding: OGC + AIS/NMEA + VMF + CoT + signed hydrographic manifests + USMTF
+- Fallback path: beach-by-beach manual release board with conservative surf windows and reduced throughput assumptions
+
+### `TC-SPACECHARGE-169`
+
+- Domain: space electrostatic charging and satellite safe-mode recovery
+- Primary systems: spacecraft health board, charging-environment predictor, ground-station scheduler, service-priority ledger
+- Cross-check systems: independent spacecraft bus engineering desk and alternate SDA timing monitor
+- Protocol binding: CCSDS + signed telemetry manifests + API/JSON + OGC + USMTF
+- Fallback path: conservative safe-mode hold with manually prioritized service restoration and longer contact spacing
+
+### `TC-AMMOFIRE-170`
+
+- Domain: theater ammunition yard fire and compatibility
+- Primary systems: quantity-distance calculator, storage-site planner, fire spread board, lot-serviceability ledger
+- Cross-check systems: independent explosive-safety witness and alternate force-protection standoff board
+- Protocol binding: OGC + signed storage manifests + NIEM + API/JSON + USMTF + CoT
+- Fallback path: yard closure with manual blast-arc board, restricted firefighting exposure, and command-approved emergency issue routing
+
+### `TC-MEDIA-171`
+
+- Domain: joint captured media exploitation and viral escalation
+- Primary systems: media provenance verifier, translation and transcription board, adversary narrative monitor, evidence-custody ledger
+- Cross-check systems: independent legal review cell and alternate public-affairs authenticity board
+- Protocol binding: signed media manifests + STANAG 4609 aligned exchange + S/MIME + API/JSON + STIX/TAXII + USMTF
+- Fallback path: hold media by default with manual provenance review and commander-approved text-only summaries

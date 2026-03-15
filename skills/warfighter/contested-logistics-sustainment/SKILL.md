@@ -310,3 +310,8 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-expeditionary-ribbon-bridge-maintenance-raft-launch-v1` + `protocol_stack_id=ps-expeditionary-ribbon-bridge-maintenance-raft-launch-stack-v1` when wet-gap sustainment depends on bridge-bay serviceability, raft-launch cadence, or current-sensitive maintenance recovery.
 - Add `tool_suite_id=ts-expeditionary-flightline-ground-support-equipment-readiness-v1` + `protocol_stack_id=ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1` when air sustainment nodes depend on scarce AGE, cart dispatch, or cross-servicing to maintain sortie throughput.
 - Add `packet_id=DPL-HEAVY-DROP-PLATFORM-RIGGING-001`, `packet_id=DPL-AMMUNITION-SURVEILLANCE-LOT-001`, `packet_id=DPL-RIBBON-BRIDGE-RAFT-LAUNCH-001`, and `packet_id=DPL-FLIGHTLINE-GSE-READINESS-001` for branches that materially alter airdrop capacity, ammunition availability, wet-gap throughput, or expeditionary air-node sustainment confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-theater-ammunition-yard-fire-compatibility-v1` + `protocol_stack_id=ps-theater-ammunition-yard-fire-compatibility-stack-v1` when sustainment feasibility depends on ammunition-yard survivability, emergency separation, or alternate issue-point activation.
+- Add `packet_id=DPL-AMMUNITION-YARD-FIRE-COMPATIBILITY-001` for branches that materially alter munitions availability, force-protection posture, or depot throughput.

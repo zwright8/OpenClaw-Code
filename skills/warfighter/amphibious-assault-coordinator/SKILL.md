@@ -144,3 +144,7 @@ Primary products for this skill: amphibious operation concept brief, landing tim
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-joint-amphibious-surf-zone-breach-trafficability-v1` + `protocol_stack_id=ps-joint-amphibious-surf-zone-breach-trafficability-stack-v1` when assault timing depends on surf windows, obstacle reduction progress, or beach trafficability.
+- Add `packet_id=DPL-SURF-ZONE-BREACH-TRAFFICABILITY-001` for branches that materially alter landing-wave release, connector sequencing, or shore-party throughput.

@@ -288,3 +288,8 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-theater-software-signing-key-loss-emergency-reconstitution-v1` + `protocol_stack_id=ps-theater-software-signing-key-loss-emergency-reconstitution-stack-v1` when failover viability depends on revocation propagation, emergency resigning, or fallback allowlists for mission software.
 - Add `packet_id=DPL-SIGNING-KEY-LOSS-RECONSTITUTION-001` for branches that materially alter trusted restoration order, rollback posture, or software release authority.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
+
+- Add `tool_suite_id=ts-theater-mission-license-offline-activation-v1` + `protocol_stack_id=ps-theater-mission-license-offline-activation-stack-v1` when failover viability depends on offline activation, cached entitlements, or vendor-license denial.
+- Add `packet_id=DPL-MISSION-LICENSE-OFFLINE-ACTIVATION-001` for branches that materially alter trusted restoration order, service uptime, or mission-software release posture.
