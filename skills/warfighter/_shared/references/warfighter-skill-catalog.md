@@ -2736,3 +2736,33 @@ Every skill output should include:
 - Small craft outboard and riverine mobility surge + strategic industrial mobilization readiness cell + riverine and inland waterways operations + contested logistics sustainment.
 - Toxic industrial chemical exposure and decon triage + austere surgical support coordinator + preventive medicine and force health protection + defense support of civil authorities crisis cell.
 - Host-nation force protection claims and liability + coalition interoperability coordinator + civil affairs stability ops + force protection and base defense.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LXII)
+
+- joint-nuclear-command-warning-delegation-safeguards-cell
+- coalition-portable-water-testing-and-biosecurity-corridor-cell
+- strategic-rare-gas-cryogenic-supply-priority-cell
+- theater-disconnected-additive-repair-intent-validation-cell
+- homeland-rail-evacuation-signaling-restoration-cell
+- joint-ice-obscuration-runway-visual-cue-certification-cell
+- coalition-refugee-camp-energy-water-cyber-harmonization-cell
+- space-based-missile-warning-ground-truth-correlation-cell
+- joint-loitering-munition-fratricide-envelope-assurance-cell
+- expeditionary-burn-intensive-care-oxygen-arbitration-cell
+- strategic-cable-landing-station-sanctions-bypass-hunt-cell
+- coalition-arctic-bulk-fuel-blending-and-freeze-point-assurance-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LXII)
+
+- Joint nuclear command warning delegation safeguards + mission risk decision support + NC3 resilience and order integrity + joint AI-generated order integrity and commander-intent deviation.
+- Coalition portable water testing and biosecurity corridor + expeditionary water purification contamination attribution + coalition humanitarian corridor assurance and monitoring + preventive medicine and force health protection.
+- Strategic rare-gas cryogenic supply priority + strategic industrial mobilization readiness + contested space launch and satellite reconstitution + strategic semiconductor test burn-in and mission priority.
+- Theater disconnected additive repair intent validation + battlefield additive manufacturing forward repair validation + mission-assured software factory support + tactical zero trust network hardening.
+- Homeland rail evacuation signaling restoration + defense support of civil authorities crisis response + joint mass evacuation flow control + strategic mobility deployment planning.
+- Joint ice-obscuration runway visual-cue certification + airbase dispersal and rapid reconstitution + denied-GPS precision approach and airdrop certification + expeditionary airfield operations.
+- Coalition refugee-camp energy-water-cyber harmonization + coalition humanitarian corridor assurance and monitoring + defense support of civil authorities crisis cell + coalition information operations civil trust stabilization.
+- Space-based missile-warning ground-truth correlation + strategic hypersonic attribution and escalation control + space-ground integration and reentry risk + mission risk decision support.
+- Joint loitering-munition fratricide envelope assurance + coalition joint fires digital clearance and fratricide prevention + air-defense artillery fire control + CEMA integration cell.
+- Expeditionary burn intensive care oxygen arbitration + austere surgical support coordinator + joint role 3 medical network and aeromedical evacuation cell + coalition contested medical oxygen generation and distribution cell.
+- Strategic cable landing station sanctions-bypass hunt + strategic undersea cable repair ship escort and priority + coalition cable landing data sovereignty cell + cyber mission planner.
+- Coalition Arctic bulk-fuel blending and freeze-point assurance + coalition Arctic convoy ice-drone threat deconfliction + contested logistics sustainment + operational energy resilience and microgrid cell.

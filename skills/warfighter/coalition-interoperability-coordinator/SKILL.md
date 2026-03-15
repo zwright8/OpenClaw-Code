@@ -334,3 +334,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-ballast-water-biosecurity-port-clearance-v1` + `protocol_stack_id=ps-coalition-ballast-water-biosecurity-port-clearance-stack-v1` when coalition port access depends on harmonized ballast-water screening, quarantine thresholds, or berth-release sequencing.
 - Add `tool_suite_id=ts-joint-offline-key-material-courier-compromise-v1` + `protocol_stack_id=ps-joint-offline-key-material-courier-compromise-stack-v1` when combined-force interoperability depends on trusted courier-based rekey, COMSEC custody, or compromise notification across disconnected partners.
 - Add `packet_id=DPL-BALLAST-WATER-PORT-CLEARANCE-001` and `packet_id=DPL-OFFLINE-KEY-MATERIAL-COURIER-001` for branches that materially change coalition access, shared command trust, or release timelines.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-coalition-portable-water-testing-biosecurity-corridor-v1` + `protocol_stack_id=ps-coalition-portable-water-testing-biosecurity-corridor-stack-v1` when coalition corridor legitimacy depends on shared water assurance, field sanitation confidence, or biosecurity gating.
+- Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when interoperability depends on common utility restoration, humanitarian data handling, or cyber-containment rules across displaced-person sites.
+- Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when coalition sustainment trust depends on common fuel blending, freeze-point validation, or cold-weather release criteria.
+- Add `packet_id=DPL-WATER-BIOSEC-CORRIDOR-001`, `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially change coalition release posture, humanitarian interoperability, or Arctic sustainment confidence.

@@ -13568,3 +13568,127 @@ external_binding:
 ### `ps-homeland-port-war-risk-insurance-claims-stack-v1`
 - Protocols: `AIS/NMEA`, `NIEM`, signed claims manifests, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: port-closure status, insurer trigger notifications, cargo-claims routing, and throughput-restoration acknowledgments.
+
+## Tool Suite Addendum LXII (2026-03-15, External Integration Profiles for Expansion Wave LXII)
+
+### `ts-joint-nuclear-command-warning-delegation-safeguards-v1`
+- Use for: warning-message credibility review, delegated-response safeguard validation, and acknowledgment-chain integrity under degraded strategic communications.
+- Primary tools: strategic warning board, message-integrity validator, delegated authority ledger, acknowledgment-chain monitor.
+- Cross-check tools: independent radar or ISR corroboration cell and alternate strategic timeline board.
+- Typical products: warning credibility ladder, delegation safeguard matrix, acknowledgment exception board.
+
+### `ts-coalition-portable-water-testing-biosecurity-corridor-v1`
+- Use for: water potability screening, field biosecurity gating, and cross-border movement safety in coalition corridors.
+- Primary tools: field water assay telemetry, biosecurity screening ledger, corridor movement board, preventive-medicine status tracker.
+- Cross-check tools: independent lab witness cell and alternate sanitation or engineering board.
+- Typical products: water safety corridor map, biosecurity screening ladder, resample or release decision board.
+
+### `ts-strategic-rare-gas-cryogenic-supply-priority-v1`
+- Use for: rare-gas allocation, cryogenic logistics prioritization, and industrial continuity when helium, neon, xenon, or oxygen constraints threaten readiness.
+- Primary tools: industrial gas production tracker, cryogenic tank telemetry board, supplier provenance ledger, mission demand allocation board.
+- Cross-check tools: independent supplier verification cell and alternate strategic sustainment monitor.
+- Typical products: gas allocation ladder, boil-off risk board, industrial reprioritization matrix.
+
+### `ts-theater-disconnected-additive-repair-intent-validation-v1`
+- Use for: disconnected additive repair approval, digital work-order pedigree validation, and authorized part substitution governance.
+- Primary tools: additive work-order ledger, CAD or hash verifier, machine health board, parts pedigree tracker.
+- Cross-check tools: independent engineering release cell and alternate material inspection board.
+- Typical products: repair-intent validation packet, approved substitution matrix, print-and-install release board.
+
+### `ts-homeland-rail-evacuation-signaling-restoration-v1`
+- Use for: rail signaling restoration, evacuation flow reprioritization, and military-civil movement continuity across homeland disruptions.
+- Primary tools: rail signal health board, evacuation flow planner, dispatch restoration board, grade-crossing status tracker.
+- Cross-check tools: independent transportation safety cell and alternate emergency-operations movement board.
+- Typical products: signaling restoration ladder, evacuation route release board, rail priority matrix.
+
+### `ts-joint-ice-obscuration-runway-visual-cue-certification-v1`
+- Use for: runway visual-reference certification, cold-weather sortie release, and landing recovery when markings or lighting are obscured.
+- Primary tools: runway friction board, visual-cue certification checklist, airfield weather sensor network, lighting status board.
+- Cross-check tools: independent flight-safety cell and alternate airfield recovery board.
+- Typical products: runway visual-cue certification board, launch and recovery window matrix, lighting recovery checklist.
+
+### `ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1`
+- Use for: refugee-site lifeline stabilization, cyber-resilience, and coalition humanitarian infrastructure synchronization under overload or hostile interference.
+- Primary tools: camp utility telemetry, shelter population board, cyber incident desk, public health status board.
+- Cross-check tools: independent humanitarian coordination cell and alternate civil-engineering restoration board.
+- Typical products: camp lifeline synchronization board, cyber-restoration priority ladder, humanitarian risk matrix.
+
+### `ts-space-based-missile-warning-ground-truth-correlation-v1`
+- Use for: missile-warning corroboration, false-track adjudication, and alert-release confidence when space-based detections are ambiguous or compressed in time.
+- Primary tools: missile-warning fusion board, ground-sensor correlation cell, infrared event timeline, alert adjudication ledger.
+- Cross-check tools: independent early-warning witness cell and alternate IAMD timeline board.
+- Typical products: warning correlation ladder, false-track adjudication board, alert-release recommendation matrix.
+
+### `ts-joint-loitering-munition-fratricide-envelope-assurance-v1`
+- Use for: loitering-munition safety envelopes, human-release governance, and airspace or ground deconfliction in dense maneuver space.
+- Primary tools: engagement geometry calculator, blue-force tracker, munition state board, airspace deconfliction cell.
+- Cross-check tools: independent fires clearance desk and alternate maneuver control board.
+- Typical products: fratricide envelope board, human-release gate matrix, airspace or maneuver deconfliction plan.
+
+### `ts-expeditionary-burn-intensive-care-oxygen-arbitration-v1`
+- Use for: burn ICU oxygen prioritization, ventilator load balancing, and casualty transfer sequencing under austere medical saturation.
+- Primary tools: ICU oxygen ledger, burn score tracker, ventilator allocation board, evacuation regulation board.
+- Cross-check tools: independent critical-care review cell and alternate med-log capacity board.
+- Typical products: oxygen arbitration ladder, burn ICU load board, transfer priority matrix.
+
+### `ts-strategic-cable-landing-station-sanctions-bypass-hunt-v1`
+- Use for: sanctions-evasion detection, cable-landing OT defense, and telecom continuity when maritime or cyber actors threaten landing stations.
+- Primary tools: cable landing OT monitor, shipping and sanctions analytics board, identity or provenance ledger, cyber threat timeline.
+- Cross-check tools: independent legal-review cell and alternate strategic network route board.
+- Typical products: cable landing threat board, bypass network map, countermeasure action matrix.
+
+### `ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1`
+- Use for: Arctic fuel blending, additive governance, and freeze-point validation across coalition storage, sealift, and aviation sustainment nodes.
+- Primary tools: fuel assay analyzer, blend calculator, tank telemetry board, convoy or sealift status tracker.
+- Cross-check tools: independent fuel-lab witness and alternate coalition sustainment board.
+- Typical products: freeze-point assurance matrix, blend-release ladder, Arctic fuel movement board.
+
+## Protocol Stack Addendum LXII (2026-03-15, External Integration Profiles for Expansion Wave LXII)
+
+### `ps-joint-nuclear-command-warning-delegation-safeguards-stack-v1`
+- Protocols: `USMTF`, signed warning manifests, `X.509`, `API/JSON`, `STIX/TAXII`.
+- Use for: warning-message authentication, corroboration routing, and degraded command-continuity acknowledgment.
+
+### `ps-coalition-portable-water-testing-biosecurity-corridor-stack-v1`
+- Protocols: `HL7/FHIR`, signed sample manifests, `NIEM`, `EDXL-DE/CAP`, `API/JSON`, `USMTF`.
+- Use for: water-test exchange, biosecurity status routing, and coalition corridor-release acknowledgments.
+
+### `ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1`
+- Protocols: `OPC UA`, signed sustainment manifests, `API/JSON`, `USMTF`, `NIEM`.
+- Use for: cryogenic telemetry exchange, supplier-status routing, and strategic allocation approvals.
+
+### `ps-theater-disconnected-additive-repair-intent-validation-stack-v1`
+- Protocols: signed build manifests, `API/JSON`, `STIX/TAXII`, `USMTF`, `OPC UA`.
+- Use for: file-pedigree validation, additive release approvals, and disconnected machine-health reporting.
+
+### `ps-homeland-rail-evacuation-signaling-restoration-stack-v1`
+- Protocols: `NIEM`, `CAP`, `OGC`, signed rail-state manifests, `API/JSON`, `USMTF`.
+- Use for: signal-state exchange, evacuation routing updates, and protected-movement release coordination.
+
+### `ps-joint-ice-obscuration-runway-visual-cue-certification-stack-v1`
+- Protocols: `AIXM/FIXM`, `OGC`, signed airfield manifests, `API/JSON`, `USMTF`.
+- Use for: runway-condition exchange, lighting-status updates, and sortie-release acknowledgments.
+
+### `ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1`
+- Protocols: `NIMS/ICS`, `NIEM`, `HL7/FHIR`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: camp utility status exchange, cyber-incident coordination, and coalition humanitarian approvals.
+
+### `ps-space-based-missile-warning-ground-truth-correlation-stack-v1`
+- Protocols: `CCSDS`, `USMTF`, `Link 16 J-series`, `API/JSON`, `OGC`.
+- Use for: warning correlation, alert adjudication, and posture-review acknowledgments.
+
+### `ps-joint-loitering-munition-fratricide-envelope-assurance-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, `API/JSON`, `USMTF`.
+- Use for: blue-force deconfliction, release-veto exchange, and airspace or maneuver gate synchronization.
+
+### `ps-expeditionary-burn-intensive-care-oxygen-arbitration-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed med-log manifests, `API/JSON`, `USMTF`.
+- Use for: oxygen-status exchange, burn-bed coordination, and casualty-transfer approvals.
+
+### `ps-strategic-cable-landing-station-sanctions-bypass-hunt-stack-v1`
+- Protocols: `STIX/TAXII`, `AIS/NMEA`, `NIEM`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: cable-landing threat exchange, sanctions-bypass lead routing, and continuity response acknowledgments.
+
+### `ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1`
+- Protocols: `AIS/NMEA`, `OPC UA`, signed fuel manifests, `API/JSON`, `USMTF`.
+- Use for: blend-status exchange, freeze-point validation, and coalition fuel-release coordination.
