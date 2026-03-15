@@ -94,6 +94,12 @@ function normalizeCircuitBreakerCooldownBackoffMultiplier(value, fallback = 1) {
     return clamp(numeric, 1, 10);
 }
 
+function normalizeCircuitBreakerCooldownJitter(value, fallback = 0) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return clamp(numeric, 0, 1);
+}
+
 function normalizeCircuitBreakerMaxCooldownMs(value, fallback = 180_000) {
     return parsePositiveInt(value, fallback);
 }
@@ -158,16 +164,27 @@ function resolveCircuitBreakerCooldownMs({
     baseCooldownMs,
     maxCooldownMs,
     backoffMultiplier,
-    openStreak
+    openStreak,
+    cooldownJitter = 0,
+    rng = Math.random
 }) {
     const normalizedBase = Math.max(0, parseNonNegativeInt(baseCooldownMs, 30_000));
     const normalizedMax = Math.max(normalizedBase, normalizeCircuitBreakerMaxCooldownMs(maxCooldownMs, 180_000));
     const normalizedMultiplier = normalizeCircuitBreakerCooldownBackoffMultiplier(backoffMultiplier, 1);
     const normalizedOpenStreak = Math.max(1, parsePositiveInt(openStreak, 1));
     if (normalizedBase <= 0) return 0;
-    if (normalizedMultiplier <= 1 || normalizedOpenStreak <= 1) return normalizedBase;
-    const scaled = normalizedBase * Math.pow(normalizedMultiplier, normalizedOpenStreak - 1);
-    return clamp(Math.round(scaled), normalizedBase, normalizedMax);
+    const scaled = (normalizedMultiplier <= 1 || normalizedOpenStreak <= 1)
+        ? normalizedBase
+        : normalizedBase * Math.pow(normalizedMultiplier, normalizedOpenStreak - 1);
+    const effectiveBase = clamp(Math.round(scaled), normalizedBase, normalizedMax);
+    const normalizedJitter = normalizeCircuitBreakerCooldownJitter(cooldownJitter, 0);
+    if (normalizedJitter <= 0) {
+        return effectiveBase;
+    }
+    const random = typeof rng === 'function' ? clamp(Number(rng()) || 0, 0, 1) : 0.5;
+    // Keep the configured cooldown as a floor while adding spread to desynchronize reopen probes.
+    const jittered = effectiveBase * (1 + (random * normalizedJitter));
+    return clamp(Math.round(jittered), effectiveBase, normalizedMax);
 }
 
 function isTransientBotFailure(execution) {
@@ -697,6 +714,7 @@ export async function processOutboxEnvelopes({
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
     botCircuitBreakerCooldownBackoffMultiplier = 1,
+    botCircuitBreakerCooldownJitter = 0,
     botCircuitBreakerMaxCooldownMs = 180_000,
     botCircuitBreakerHalfOpenMaxProbes = 1,
     botCircuitBreakerHalfOpenSuccessThreshold = 1,
@@ -743,6 +761,10 @@ export async function processOutboxEnvelopes({
     const normalizedBotCircuitBreakerCooldownBackoffMultiplier = normalizeCircuitBreakerCooldownBackoffMultiplier(
         botCircuitBreakerCooldownBackoffMultiplier,
         1
+    );
+    const normalizedBotCircuitBreakerCooldownJitter = normalizeCircuitBreakerCooldownJitter(
+        botCircuitBreakerCooldownJitter,
+        0
     );
     const normalizedBotCircuitBreakerMaxCooldownMs = Math.max(
         normalizedBotCircuitBreakerCooldownMs,
@@ -815,7 +837,9 @@ export async function processOutboxEnvelopes({
             baseCooldownMs: normalizedBotCircuitBreakerCooldownMs,
             maxCooldownMs: normalizedBotCircuitBreakerMaxCooldownMs,
             backoffMultiplier: normalizedBotCircuitBreakerCooldownBackoffMultiplier,
-            openStreak: nextOpenStreak
+            openStreak: nextOpenStreak,
+            cooldownJitter: normalizedBotCircuitBreakerCooldownJitter,
+            rng
         });
         circuitBreakerOpenUntilMs = safeNow(now) + cooldownMs;
         circuitBreakerOpenStreak = nextOpenStreak;

@@ -53,6 +53,7 @@ Options:
   --bot-circuit-breaker-slow-call-min-samples <n> Min rolling samples before slow-call threshold can open breaker (default: 8)
   --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
   --bot-circuit-breaker-cooldown-backoff-multiplier <n> Circuit-breaker cooldown growth multiplier per consecutive reopen (1-10, default: 1)
+  --bot-circuit-breaker-cooldown-jitter <0-1> Positive jitter added to breaker cooldown windows (default: 0; disabled)
   --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
   --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
   --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
@@ -266,6 +267,7 @@ function parseArgs(argv) {
         botCircuitBreakerSlowCallMinSamples: 8,
         botCircuitBreakerCooldownMs: 30_000,
         botCircuitBreakerCooldownBackoffMultiplier: 1,
+        botCircuitBreakerCooldownJitter: 0,
         botCircuitBreakerMaxCooldownMs: 180_000,
         botCircuitBreakerHalfOpenMaxProbes: 1,
         botCircuitBreakerHalfOpenSuccessThreshold: 1,
@@ -591,6 +593,16 @@ function parseArgs(argv) {
                 '--bot-circuit-breaker-cooldown-backoff-multiplier',
                 1,
                 10
+            );
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-cooldown-jitter') {
+            options.botCircuitBreakerCooldownJitter = parseFloatInRange(
+                value,
+                '--bot-circuit-breaker-cooldown-jitter',
+                0,
+                1
             );
             i++;
             continue;
@@ -1067,6 +1079,7 @@ function printSummary(report) {
             botCircuitBreakerSlowCallMinSamples: options.botCircuitBreakerSlowCallMinSamples,
             botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
             botCircuitBreakerCooldownBackoffMultiplier: options.botCircuitBreakerCooldownBackoffMultiplier,
+            botCircuitBreakerCooldownJitter: options.botCircuitBreakerCooldownJitter,
             botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,

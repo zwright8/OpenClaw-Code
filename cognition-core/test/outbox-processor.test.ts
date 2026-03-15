@@ -968,6 +968,70 @@ test('processOutboxEnvelopes exponentially backs off breaker cooldown across rep
     assert.match(third?.result?.output || '', /another 30ms/);
 });
 
+test('processOutboxEnvelopes applies minimum-preserving jitter to breaker cooldown windows', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000727', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000728', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 94_600 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 94_601
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    const logicalNow = 5_000;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 1,
+        botCircuitBreakerCooldownMs: 20,
+        botCircuitBreakerCooldownJitter: 0.5,
+        nowFactory: () => logicalNow,
+        rng: () => 1,
+        botExecute: async () => ({
+            mode: 'generic',
+            status: 'failure',
+            output: 'Transient transport timeout contacting runtime.',
+            metrics: {},
+            artifacts: [],
+            followupTasks: []
+        })
+    });
+
+    assert.equal(stats.botCircuitBreakerOpened, 1);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 1);
+
+    const records = await store.loadRecords();
+    const first = records.find((entry) => entry.taskId === requests[0].id);
+    const second = records.find((entry) => entry.taskId === requests[1].id);
+    assert.equal(Number(first?.result?.metrics?.circuitBreakerCooldownMs), 30);
+    assert.match(second?.result?.output || '', /another 30ms/);
+});
+
 test('processOutboxEnvelopes requires configured half-open success probes before closing breaker', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
