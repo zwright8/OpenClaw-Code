@@ -182,3 +182,10 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-joint-air-mobility-diplomatic-clearance-staging-v1` + `protocol_stack_id=ps-joint-air-mobility-diplomatic-clearance-staging-stack-v1` when strategic mobility depends on diplomatic-clearance fidelity, staging-node throughput, or contested airlift continuity.
 - Add `tool_suite_id=ts-joint-operational-law-judge-advocate-advisory-v1` + `protocol_stack_id=ps-joint-operational-law-judge-advocate-advisory-stack-v1` when deployment posture depends on legal authorities, host-nation caveats, or protected advisory review of access and movement constraints.
 - Add `packet_id=DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001` and `packet_id=DPL-JUDGE-ADVOCATE-OPLAW-001` for recommendations that materially alter route selection, airlift access, or deployment timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-coalition-ballast-water-biosecurity-port-clearance-v1` + `protocol_stack_id=ps-coalition-ballast-water-biosecurity-port-clearance-stack-v1` when strategic mobility depends on rapid berth clearance without accepting ballast-driven biosecurity or quarantine delays.
+- Add `tool_suite_id=ts-joint-arctic-ice-pilotage-mariner-fatigue-v1` + `protocol_stack_id=ps-joint-arctic-ice-pilotage-mariner-fatigue-stack-v1` when sealift timing depends on high-latitude route release, pilotage scarcity, or crew-endurance limits.
+- Add `tool_suite_id=ts-homeland-port-war-risk-insurance-claims-v1` + `protocol_stack_id=ps-homeland-port-war-risk-insurance-claims-stack-v1` when deployment confidence depends on restored insurer support, claims handling, or commercial berth participation at strategic ports.
+- Add `packet_id=DPL-BALLAST-WATER-PORT-CLEARANCE-001`, `packet_id=DPL-ARCTIC-ICE-PILOTAGE-FATIGUE-001`, and `packet_id=DPL-PORT-WAR-RISK-CLAIMS-001` for recommendations that materially alter access confidence, sealift timing, or deployment posture.

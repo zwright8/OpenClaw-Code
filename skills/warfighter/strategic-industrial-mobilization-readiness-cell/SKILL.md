@@ -219,3 +219,9 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 
 - Add `tool_suite_id=ts-strategic-small-craft-outboard-riverine-mobility-surge-v1` + `protocol_stack_id=ps-strategic-small-craft-outboard-riverine-mobility-surge-stack-v1` when mobilization readiness depends on riverine craft, outboard engines, or repair-part throughput for littoral and inland-waterway operations.
 - Add `packet_id=DPL-SMALL-CRAFT-RIVERINE-SURGE-001` for recommendations that materially alter riverine mobility generation, depot conversion timing, or strategic sustainment posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-clearance-assignment-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-clearance-assignment-stack-v1` when industrial readiness depends on clearance reciprocity, scarce artisan assignment, or protected workforce cross-leveling.
+- Add `tool_suite_id=ts-joint-recruiting-training-pipeline-capacity-shock-v1` + `protocol_stack_id=ps-joint-recruiting-training-pipeline-capacity-shock-stack-v1` when long-horizon readiness depends on force-generation throughput, schoolhouse capacity, or instructor bottleneck relief.
+- Add `packet_id=DPL-INDUSTRIAL-WORKFORCE-CLEARANCE-001` and `packet_id=DPL-TRAINING-PIPELINE-CAPACITY-001` for branches that materially alter industrial surge posture, workforce confidence, or replacement-flow assumptions.

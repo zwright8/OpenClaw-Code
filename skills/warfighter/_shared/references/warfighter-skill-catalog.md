@@ -258,6 +258,28 @@ Every skill output should include:
 
 ## New Expansion Wave (2026-03-08, Warfighter Domain Completion Surge)
 
+## New Expansion Wave (2026-03-15, Sustainment Trust, Crypto Custody, and Force-Generation Gaps)
+
+- theater-aviation-fuel-lab-contamination-clearance-cell
+- joint-offline-key-material-courier-and-compromise-cell
+- coalition-ballast-water-biosecurity-and-port-clearance-cell
+- joint-arctic-ice-pilotage-and-mariner-fatigue-cell
+- strategic-defense-industrial-workforce-clearance-and-assignment-cell
+- joint-recruiting-and-training-pipeline-capacity-shock-cell
+- theater-electromagnetic-deception-confidence-and-countertargeting-cell
+- homeland-port-war-risk-insurance-and-claims-cell
+
+## Updated Pairings (2026-03-15, Sustainment Trust and Force-Generation Assurance)
+
+- Aviation fuel lab clearance + airbase dispersal and rapid reconstitution + expeditionary battle-damaged aircraft recovery + mission-risk decision support
+- Offline key courier and compromise + theater mission network failover + CEMA integration + coalition interoperability coordinator
+- Ballast-water biosecurity + strategic mobility deployment + coalition interoperability + joint port opening and JLOTS synchronization
+- Arctic ice pilotage and mariner fatigue + contested logistics sustainment + strategic sealift and prepositioning + Arctic maritime corridor deconfliction
+- Industrial workforce clearance and assignment + strategic industrial mobilization readiness + supply-chain risk and industrial-base monitor + rapid prototyping and fielding
+- Recruiting and training pipeline capacity shock + multi-domain reserve mobilization readiness + training and rehearsal design + human performance and combat stress risk
+- Electromagnetic deception confidence + CEMA integration + force protection and base defense + mission-risk decision support
+- Port war-risk insurance and claims + strategic mobility deployment + contested logistics sustainment + homeland port cyber-physical defense coordination
+
 - joint-biosecurity-and-lab-incident-response-cell
 - deployed-digital-identity-wallet-and-credential-revocation-cell
 - joint-quantum-resistant-crypto-transition-cell

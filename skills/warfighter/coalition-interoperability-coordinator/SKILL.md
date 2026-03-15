@@ -328,3 +328,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-partner-force-insider-threat-advisor-protection-v1` + `protocol_stack_id=ps-coalition-partner-force-insider-threat-advisor-protection-stack-v1` when coalition interoperability depends on trusted counterpart vetting, advisor movement protection, or shared insider-risk acknowledgment.
 - Add `tool_suite_id=ts-coalition-host-nation-force-protection-claims-liability-v1` + `protocol_stack_id=ps-coalition-host-nation-force-protection-claims-liability-stack-v1` when coalition access, burden-sharing, or host-nation legitimacy depends on claims and liability transparency after incidents.
 - Add `packet_id=DPL-PARTNER-FORCE-INSIDER-ADVISOR-001` and `packet_id=DPL-HOST-NATION-FP-CLAIMS-LIABILITY-001` for branches that materially alter coalition release confidence, host-nation trust, or advisor mission continuity.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-coalition-ballast-water-biosecurity-port-clearance-v1` + `protocol_stack_id=ps-coalition-ballast-water-biosecurity-port-clearance-stack-v1` when coalition port access depends on harmonized ballast-water screening, quarantine thresholds, or berth-release sequencing.
+- Add `tool_suite_id=ts-joint-offline-key-material-courier-compromise-v1` + `protocol_stack_id=ps-joint-offline-key-material-courier-compromise-stack-v1` when combined-force interoperability depends on trusted courier-based rekey, COMSEC custody, or compromise notification across disconnected partners.
+- Add `packet_id=DPL-BALLAST-WATER-PORT-CLEARANCE-001` and `packet_id=DPL-OFFLINE-KEY-MATERIAL-COURIER-001` for branches that materially change coalition access, shared command trust, or release timelines.

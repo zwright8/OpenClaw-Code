@@ -156,3 +156,9 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-joint-expeditionary-advanced-base-signature-management-v1` + `protocol_stack_id=ps-joint-expeditionary-advanced-base-signature-management-stack-v1` when electromagnetic survivability depends on expeditionary emissions discipline, decoy timing, or base displacement windows.
 - Add `tool_suite_id=ts-joint-orbital-warfare-effects-deconfliction-v1` + `protocol_stack_id=ps-joint-orbital-warfare-effects-deconfliction-stack-v1` when space-control branches materially affect CEMA timing, SATCOM continuity, or escalation-safe effects integration.
 - Add `packet_id=DPL-SIGINT-EMITTER-GEOLOCATION-001`, `packet_id=DPL-EABO-SIGNATURE-MANAGEMENT-001`, and `packet_id=DPL-ORBITAL-WARFARE-DECONFLICTION-001` for branches that materially alter emitter-control posture, expeditionary emissions discipline, or cross-domain timing trust.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-joint-offline-key-material-courier-compromise-v1` + `protocol_stack_id=ps-joint-offline-key-material-courier-compromise-stack-v1` when cyber-electromagnetic branches depend on disconnected cryptographic key delivery, custody integrity, or compromise containment.
+- Add `tool_suite_id=ts-theater-electromagnetic-deception-confidence-countertargeting-v1` + `protocol_stack_id=ps-theater-electromagnetic-deception-confidence-countertargeting-stack-v1` when CEMA synchronization depends on trusted decoy effects, blue-force signature confidence, or adversary countertargeting drift.
+- Add `packet_id=DPL-OFFLINE-KEY-MATERIAL-COURIER-001` and `packet_id=DPL-EM-DECEPTION-CONFIDENCE-001` for branches that materially alter release authority, blue-force survivability, or command-path trust.

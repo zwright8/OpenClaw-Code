@@ -182,3 +182,8 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 
 - Add `tool_suite_id=ts-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-v1` + `protocol_stack_id=ps-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-stack-v1` when reconstitution tempo depends on freezing weather, deicing fluid allocation, or anti-icing holdover validity.
 - Add `packet_id=DPL-COLD-WEATHER-DEICING-SORTIE-001` for branches that materially alter sortie release, divert timing, or cold-weather recovery posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-theater-aviation-fuel-lab-contamination-clearance-v1` + `protocol_stack_id=ps-theater-aviation-fuel-lab-contamination-clearance-stack-v1` when dispersed-airbase recovery depends on trusted fuel purity, contamination isolation, or sortie-release certification after attack or sabotage.
+- Add `packet_id=DPL-AVIATION-FUEL-LAB-CLEARANCE-001` for branches that materially alter sortie regeneration timing, aircraft release confidence, or base reconstitution posture.

@@ -13227,3 +13227,93 @@ validation_gates:
 - output_schema: captured-media exploitation board, viral escalation ladder, release-or-withhold matrix
 - protocol_profile: signed media manifests + STANAG 4609 aligned exchange + S/MIME + API/JSON + STIX/TAXII + USMTF
 - validation_gates: provenance verification, legal review, release approval
+
+## Packet Addendum L (2026-03-15, Fuel Quality, Crypto Custody, Port Biosecurity, Arctic Pilotage, Industrial Workforce, Training Throughput, EMSO Countertargeting, and War-Risk Claims)
+
+### packet_id: DPL-AVIATION-FUEL-LAB-CLEARANCE-001
+- domain: theater aviation fuel lab contamination and clearance
+- objective: restore trusted sortie generation by routing fuel samples, contamination adjudication, and release decisions before aircraft or hydrant systems return to service.
+- primary_tools: fuel lab LIMS, hydrant/truck telemetry board, aircraft maintenance release queue
+- alternate_tools: manual sample custody log and sortie fuel-risk worksheet
+- degraded_mode: mission-essential sorties only with segregated fuel points and commander-approved manual sample tracking
+- input_requirements: sample results, source tank or truck identifiers, contamination indicators, affected aircraft, release authority, sortie deadlines
+- output_schema: contamination adjudication board, fuel-clearance ladder, sortie release matrix
+- protocol_profile: API/JSON + signed lab manifests + OPC UA + AIXM/FIXM + USMTF
+- validation_gates: sample-custody verification, lab-review pass, maintenance-authority approval
+
+### packet_id: DPL-OFFLINE-KEY-MATERIAL-COURIER-001
+- domain: joint offline key material courier and compromise response
+- objective: preserve trusted command-path continuity by routing offline key custody, courier delivery, and compromise isolation before encrypted mission traffic degrades.
+- primary_tools: key-material custody ledger, courier route tracker, compromise incident board
+- alternate_tools: manual COMSEC custody log and rekey worksheet
+- degraded_mode: essential circuits only with dual-control courier custody and commander-approved manual rekey timing
+- input_requirements: affected keymat, custody holders, courier routes, compromise indicators, zeroize status, release authority
+- output_schema: key custody matrix, courier routing ladder, compromise containment plan
+- protocol_profile: signed custody manifests + X.509 + API/JSON + S/MIME + USMTF + STIX/TAXII
+- validation_gates: custody verification, compromise review, COMSEC-account approval
+
+### packet_id: DPL-BALLAST-WATER-PORT-CLEARANCE-001
+- domain: coalition ballast water biosecurity and port clearance
+- objective: preserve port throughput without seeding biosecurity or contamination risk by synchronizing ballast screening, quarantine decisions, and berth release.
+- primary_tools: ballast treatment sensor board, port-state control dashboard, maritime biosurveillance lab queue
+- alternate_tools: manual ballast declaration worksheet and harbor quarantine board
+- degraded_mode: controlled harbor anchorage only with manual sampling and delayed berth release until review completes
+- input_requirements: vessel list, ballast declarations, treatment telemetry, lab results, berth demand, authority thresholds
+- output_schema: ballast risk board, quarantine-or-clearance ladder, berth sequencing matrix
+- protocol_profile: AIS/NMEA + OGC + HL7/FHIR + signed environmental manifests + API/JSON + USMTF
+- validation_gates: declaration verification, biosecurity review, harbor-authority approval
+
+### packet_id: DPL-ARCTIC-ICE-PILOTAGE-FATIGUE-001
+- domain: joint Arctic ice pilotage and mariner fatigue
+- objective: preserve sealift movement in high-latitude waters by aligning ice-route confidence, pilotage availability, and fatigue controls before convoy release.
+- primary_tools: ice-route planner, pilotage scheduler, fatigue analytics watchbill
+- alternate_tools: manual iceboard and crew-rest worksheet
+- degraded_mode: daylight or reduced-speed movement only with conservative crew-rest windows and commander-approved route holds
+- input_requirements: route options, ice forecast, pilot availability, crew rest data, vessel readiness, authority thresholds
+- output_schema: ice pilotage board, fatigue mitigation ladder, convoy timing matrix
+- protocol_profile: AIS/NMEA + OGC + signed crew manifests + API/JSON + USMTF
+- validation_gates: route confidence check, fatigue-threshold review, convoy-release approval
+
+### packet_id: DPL-INDUSTRIAL-WORKFORCE-CLEARANCE-001
+- domain: strategic defense industrial workforce clearance and assignment
+- objective: accelerate defense-industrial output by aligning clearance reciprocity, credential validity, and scarce labor assignment to the highest-value repair and production lines.
+- primary_tools: cleared workforce registry, industrial workload board, reciprocity adjudication tracker
+- alternate_tools: manual billet-priority worksheet and security review board
+- degraded_mode: mission-essential billets only with manual reciprocity checks and time-boxed provisional assignment
+- input_requirements: billet priorities, clearance status, credential data, facility demand, training or cert constraints, authority thresholds
+- output_schema: workforce clearance matrix, billet fill ladder, industrial surge queue
+- protocol_profile: NIEM + signed workforce manifests + API/JSON + S/MIME + USMTF
+- validation_gates: clearance verification, credential review, production-authority approval
+
+### packet_id: DPL-TRAINING-PIPELINE-CAPACITY-001
+- domain: joint recruiting and training pipeline capacity shock
+- objective: stabilize force generation by routing accession demand, training-seat allocation, and instructor bottleneck relief before readiness gaps compound.
+- primary_tools: accession demand board, training seat allocator, instructor manning tracker
+- alternate_tools: manual throughput worksheet and schoolhouse prioritization board
+- degraded_mode: mission-essential pipelines only with command-approved seat rationing and manual backlog tracking
+- input_requirements: accession forecast, schoolhouse capacity, instructor availability, medical or legal screening constraints, authority thresholds
+- output_schema: pipeline throughput forecast, seat reallocation matrix, accession shock ladder
+- protocol_profile: NIEM + signed personnel manifests + API/JSON + USMTF + S/MIME
+- validation_gates: throughput review, seat-allocation approval, readiness-impact acknowledgment
+
+### packet_id: DPL-EM-DECEPTION-CONFIDENCE-001
+- domain: theater electromagnetic deception confidence and countertargeting
+- objective: preserve survivability and timing advantage by scoring deception effectiveness, adversary targeting confidence, and blue-force signature exposure before posture changes.
+- primary_tools: deception effects board, emitter confidence scorer, adversary sensor behavior monitor
+- alternate_tools: manual deception matrix and signature review worksheet
+- degraded_mode: fixed emission windows only with commander-approved decoy usage and manual exposure logging
+- input_requirements: deception plan, emitter inventory, adversary sensor indicators, blue-force posture, authority thresholds
+- output_schema: deception confidence ladder, countertargeting matrix, emission exposure ledger
+- protocol_profile: Link 16 J-series + VMF + CoT + STIX/TAXII + API/JSON + signed emission manifests
+- validation_gates: blue-force deconfliction, deception-review pass, command approval
+
+### packet_id: DPL-PORT-WAR-RISK-CLAIMS-001
+- domain: homeland port war-risk insurance and claims
+- objective: sustain strategic port throughput by sequencing insurer triggers, claims routing, and federal or military support when attacks or cyber shocks halt commercial confidence.
+- primary_tools: port operations dashboard, marine insurer status board, claims adjudication tracker
+- alternate_tools: manual closure ledger and war-risk worksheet
+- degraded_mode: military-essential cargo only with provisional claims tracking and command-approved berth prioritization
+- input_requirements: port incident status, insurer posture, cargo manifests, claims exposure, berth demand, authority thresholds
+- output_schema: war-risk trigger board, claims routing ladder, port recovery finance matrix
+- protocol_profile: AIS/NMEA + NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
+- validation_gates: incident verification, insurer review, port-authority approval

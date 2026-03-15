@@ -157,3 +157,9 @@ Primary products for this skill: industrial base risk dashboard, critical shorta
 - Add `tool_suite_id=ts-strategic-photonics-laser-optics-allocation-v1` + `protocol_stack_id=ps-strategic-photonics-laser-optics-allocation-stack-v1` when EO materials, coatings, or photonics components become the strategic bottleneck across multiple defense programs.
 - Add `tool_suite_id=ts-coalition-munitions-end-use-serial-trace-v1` + `protocol_stack_id=ps-coalition-munitions-end-use-serial-trace-stack-v1` when transfer risk, diversion indicators, or serial-integrity gaps threaten coalition replenishment confidence.
 - Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001` and `packet_id=DPL-MUNITIONS-END-USE-SERIAL-TRACE-001` for recommendations that materially change industrial prioritization or coalition transfer risk posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-clearance-assignment-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-clearance-assignment-stack-v1` when supplier or depot risk is driven by clearance reciprocity friction, skilled-labor scarcity, or billet mismatch.
+- Add `tool_suite_id=ts-homeland-port-war-risk-insurance-claims-v1` + `protocol_stack_id=ps-homeland-port-war-risk-insurance-claims-stack-v1` when supply-chain confidence depends on insurer posture, claims backlog, or commercial berth participation at strategic ports.
+- Add `packet_id=DPL-INDUSTRIAL-WORKFORCE-CLEARANCE-001` and `packet_id=DPL-PORT-WAR-RISK-CLAIMS-001` for branches that materially alter industrial confidence, port throughput, or supply-route resilience.

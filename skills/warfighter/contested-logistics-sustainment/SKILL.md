@@ -315,3 +315,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 
 - Add `tool_suite_id=ts-theater-ammunition-yard-fire-compatibility-v1` + `protocol_stack_id=ps-theater-ammunition-yard-fire-compatibility-stack-v1` when sustainment feasibility depends on ammunition-yard survivability, emergency separation, or alternate issue-point activation.
 - Add `packet_id=DPL-AMMUNITION-YARD-FIRE-COMPATIBILITY-001` for branches that materially alter munitions availability, force-protection posture, or depot throughput.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-theater-aviation-fuel-lab-contamination-clearance-v1` + `protocol_stack_id=ps-theater-aviation-fuel-lab-contamination-clearance-stack-v1` when sustainment viability depends on trusted aviation fuel, contamination quarantine, or sortie-support release timing.
+- Add `tool_suite_id=ts-joint-arctic-ice-pilotage-mariner-fatigue-v1` + `protocol_stack_id=ps-joint-arctic-ice-pilotage-mariner-fatigue-stack-v1` when high-latitude sustainment routes depend on ice pilotage confidence, fatigue controls, or convoy release timing.
+- Add `tool_suite_id=ts-homeland-port-war-risk-insurance-claims-v1` + `protocol_stack_id=ps-homeland-port-war-risk-insurance-claims-stack-v1` when sustainment throughput depends on insurer trigger logic, cargo claims routing, or restored commercial confidence at strategic ports.
+- Add `packet_id=DPL-AVIATION-FUEL-LAB-CLEARANCE-001`, `packet_id=DPL-ARCTIC-ICE-PILOTAGE-FATIGUE-001`, and `packet_id=DPL-PORT-WAR-RISK-CLAIMS-001` for branches that materially alter throughput confidence, convoy timing, or air-logistics availability.

@@ -13484,3 +13484,87 @@ external_binding:
 ### `ps-joint-captured-media-exploitation-viral-escalation-stack-v1`
 - Protocols: signed media manifests, `STANAG 4609` aligned exchange, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
 - Use for: media-provenance verification, exploitation routing, viral-risk dissemination, and release-or-hold acknowledgments.
+
+## Tool Suite Addendum LXI (2026-03-15, Fuel Quality, Crypto Custody, Port Biosecurity, Arctic Pilotage, Industrial Workforce, Training Throughput, EMSO Countertargeting, and War-Risk Claims)
+
+### `ts-theater-aviation-fuel-lab-contamination-clearance-v1`
+- Use for: aviation fuel sampling, contamination adjudication, additive-balance verification, and clearance-to-fly decisions when sortie generation depends on trusted fuel.
+- Primary tools: fuel lab LIMS, hydrant/truck telemetry board, aircraft maintenance release queue.
+- Cross-check tools: independent petroleum quality assurance cell and alternate sortie-risk review board.
+- Typical products: contamination adjudication board, fuel-clearance ladder, sortie release matrix.
+
+### `ts-joint-offline-key-material-courier-compromise-v1`
+- Use for: offline cryptographic key custody, courier route planning, compromise isolation, and reissue prioritization during disconnected operations.
+- Primary tools: key-material custody ledger, courier route tracker, compromise incident board.
+- Cross-check tools: independent COMSEC account audit cell and alternate zeroize-or-rekey review board.
+- Typical products: key custody matrix, courier routing ladder, compromise containment plan.
+
+### `ts-coalition-ballast-water-biosecurity-port-clearance-v1`
+- Use for: ballast-water screening, port biosecurity adjudication, and berth or quarantine release for coalition or military sealift.
+- Primary tools: ballast treatment sensor board, port-state control dashboard, maritime biosurveillance lab queue.
+- Cross-check tools: independent harbor-master biosecurity desk and alternate preventive-medicine review cell.
+- Typical products: ballast risk board, quarantine-or-clearance ladder, berth sequencing matrix.
+
+### `ts-joint-arctic-ice-pilotage-mariner-fatigue-v1`
+- Use for: Arctic ice routing, pilotage assignment, mariner fatigue controls, and convoy timing for military sealift in high-latitude waters.
+- Primary tools: ice-route planner, pilotage scheduler, fatigue analytics watchbill.
+- Cross-check tools: independent weather-ice desk and alternate sealift readiness board.
+- Typical products: ice pilotage board, fatigue mitigation ladder, convoy timing matrix.
+
+### `ts-strategic-defense-industrial-workforce-clearance-assignment-v1`
+- Use for: clearance reciprocity, credentialing, and assignment of scarce industrial workforce across depots, shipyards, missile plants, and repair lines.
+- Primary tools: cleared workforce registry, industrial workload board, reciprocity adjudication tracker.
+- Cross-check tools: independent security manager review cell and alternate production-readiness board.
+- Typical products: workforce clearance matrix, billet fill ladder, industrial surge queue.
+
+### `ts-joint-recruiting-training-pipeline-capacity-shock-v1`
+- Use for: accession shock analysis, training seat reallocation, instructor bottleneck relief, and force-generation throughput recovery.
+- Primary tools: accession demand board, training seat allocator, instructor manning tracker.
+- Cross-check tools: independent force-generation analytics cell and alternate mobilization readiness review board.
+- Typical products: pipeline throughput forecast, seat reallocation matrix, accession shock ladder.
+
+### `ts-theater-electromagnetic-deception-confidence-countertargeting-v1`
+- Use for: friendly decoy effectiveness, adversary countertargeting confidence, and electromagnetic deception branches that affect survivability and fires timing.
+- Primary tools: deception effects board, emitter confidence scorer, adversary sensor behavior monitor.
+- Cross-check tools: independent red-indicator fusion cell and alternate blue-force signature review board.
+- Typical products: deception confidence ladder, countertargeting matrix, emission exposure ledger.
+
+### `ts-homeland-port-war-risk-insurance-claims-v1`
+- Use for: war-risk insurance activation, cargo or hull claims routing, and port-finance continuity when attacks or cyber disruptions freeze throughput.
+- Primary tools: port operations dashboard, marine insurer status board, claims adjudication tracker.
+- Cross-check tools: independent maritime law desk and alternate sealift recovery board.
+- Typical products: war-risk trigger board, claims routing ladder, port recovery finance matrix.
+
+## Protocol Stack Addendum LXI (2026-03-15, External Integration Profiles for Expansion Wave LXI)
+
+### `ps-theater-aviation-fuel-lab-contamination-clearance-stack-v1`
+- Protocols: `API/JSON`, signed lab manifests, `OPC UA`, `AIXM/FIXM`, `USMTF`.
+- Use for: fuel-sample custody, contamination telemetry exchange, hydrant or truck isolation, and aircraft release acknowledgments.
+
+### `ps-joint-offline-key-material-courier-compromise-stack-v1`
+- Protocols: signed custody manifests, `X.509`, `API/JSON`, `S/MIME`, `USMTF`, `STIX/TAXII`.
+- Use for: COMSEC custody exchange, courier handoff verification, compromise alerts, and emergency rekey routing.
+
+### `ps-coalition-ballast-water-biosecurity-port-clearance-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, `HL7/FHIR`, signed environmental manifests, `API/JSON`, `USMTF`.
+- Use for: ballast status updates, harbor biosecurity screening, quarantine routing, and berth-release coordination.
+
+### `ps-joint-arctic-ice-pilotage-mariner-fatigue-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, signed crew manifests, `API/JSON`, `USMTF`.
+- Use for: ice-route updates, pilotage handoff, fatigue-control acknowledgments, and high-latitude convoy release.
+
+### `ps-strategic-defense-industrial-workforce-clearance-assignment-stack-v1`
+- Protocols: `NIEM`, signed workforce manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: clearance reciprocity exchange, billet-assignment routing, credential status updates, and surge workforce approvals.
+
+### `ps-joint-recruiting-training-pipeline-capacity-shock-stack-v1`
+- Protocols: `NIEM`, signed personnel manifests, `API/JSON`, `USMTF`, `S/MIME`.
+- Use for: accession updates, training-seat reallocation, instructor assignment changes, and throughput-recovery acknowledgments.
+
+### `ps-theater-electromagnetic-deception-confidence-countertargeting-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, `CoT`, `STIX/TAXII`, `API/JSON`, signed emission manifests.
+- Use for: deception effects exchange, emitter-confidence updates, countertargeting alerts, and release-or-hold coordination.
+
+### `ps-homeland-port-war-risk-insurance-claims-stack-v1`
+- Protocols: `AIS/NMEA`, `NIEM`, signed claims manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: port-closure status, insurer trigger notifications, cargo-claims routing, and throughput-restoration acknowledgments.

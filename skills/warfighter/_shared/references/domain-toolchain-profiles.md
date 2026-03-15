@@ -1480,3 +1480,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent legal review cell and alternate public-affairs authenticity board
 - Protocol binding: signed media manifests + STANAG 4609 aligned exchange + S/MIME + API/JSON + STIX/TAXII + USMTF
 - Fallback path: hold media by default with manual provenance review and commander-approved text-only summaries
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LXI)
+
+### `TC-AVFUEL-172`
+
+- Domain: theater aviation fuel lab contamination and clearance
+- Primary systems: fuel lab LIMS, hydrant/truck telemetry board, aircraft maintenance release queue
+- Cross-check systems: independent petroleum quality assurance cell and alternate sortie-risk review board
+- Protocol binding: API/JSON + signed lab manifests + OPC UA + AIXM/FIXM + USMTF
+- Fallback path: mission-essential sorties only with segregated fuel points and commander-approved manual sample tracking
+
+### `TC-KEYMAT-173`
+
+- Domain: joint offline key material courier and compromise response
+- Primary systems: key-material custody ledger, courier route tracker, compromise incident board
+- Cross-check systems: independent COMSEC account audit cell and alternate zeroize-or-rekey review board
+- Protocol binding: signed custody manifests + X.509 + API/JSON + S/MIME + USMTF + STIX/TAXII
+- Fallback path: essential circuits only with dual-control courier custody and commander-approved manual rekey timing
+
+### `TC-BALLAST-174`
+
+- Domain: coalition ballast water biosecurity and port clearance
+- Primary systems: ballast treatment sensor board, port-state control dashboard, maritime biosurveillance lab queue
+- Cross-check systems: independent harbor-master biosecurity desk and alternate preventive-medicine review cell
+- Protocol binding: AIS/NMEA + OGC + HL7/FHIR + signed environmental manifests + API/JSON + USMTF
+- Fallback path: controlled harbor anchorage only with manual sampling and delayed berth release until review completes
+
+### `TC-ICEPILOT-175`
+
+- Domain: joint Arctic ice pilotage and mariner fatigue
+- Primary systems: ice-route planner, pilotage scheduler, fatigue analytics watchbill
+- Cross-check systems: independent weather-ice desk and alternate sealift readiness board
+- Protocol binding: AIS/NMEA + OGC + signed crew manifests + API/JSON + USMTF
+- Fallback path: daylight or reduced-speed movement only with conservative crew-rest windows and commander-approved route holds
+
+### `TC-INDWORK-176`
+
+- Domain: strategic defense industrial workforce clearance and assignment
+- Primary systems: cleared workforce registry, industrial workload board, reciprocity adjudication tracker
+- Cross-check systems: independent security manager review cell and alternate production-readiness board
+- Protocol binding: NIEM + signed workforce manifests + API/JSON + S/MIME + USMTF
+- Fallback path: mission-essential billets only with manual reciprocity checks and time-boxed provisional assignment
+
+### `TC-TRAINING-177`
+
+- Domain: joint recruiting and training pipeline capacity shock
+- Primary systems: accession demand board, training seat allocator, instructor manning tracker
+- Cross-check systems: independent force-generation analytics cell and alternate mobilization readiness review board
+- Protocol binding: NIEM + signed personnel manifests + API/JSON + USMTF + S/MIME
+- Fallback path: mission-essential pipelines only with command-approved seat rationing and manual backlog tracking
+
+### `TC-EMDECOY-178`
+
+- Domain: theater electromagnetic deception confidence and countertargeting
+- Primary systems: deception effects board, emitter confidence scorer, adversary sensor behavior monitor
+- Cross-check systems: independent red-indicator fusion cell and alternate blue-force signature review board
+- Protocol binding: Link 16 J-series + VMF + CoT + STIX/TAXII + API/JSON + signed emission manifests
+- Fallback path: fixed emission windows only with commander-approved decoy usage and manual exposure logging
+
+### `TC-WARRISK-179`
+
+- Domain: homeland port war-risk insurance and claims
+- Primary systems: port operations dashboard, marine insurer status board, claims adjudication tracker
+- Cross-check systems: independent maritime law desk and alternate sealift recovery board
+- Protocol binding: AIS/NMEA + NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
+- Fallback path: military-essential cargo only with provisional claims tracking and command-approved berth prioritization
