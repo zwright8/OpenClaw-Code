@@ -235,3 +235,9 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-theater-air-gapped-credential-reissue-pki-recovery-v1` + `protocol_stack_id=ps-theater-air-gapped-credential-reissue-pki-recovery-stack-v1` when cyber-electromagnetic integration depends on restoring trusted identities and certificates inside disconnected battle networks.
 - Add `tool_suite_id=ts-joint-orbital-custody-loss-commercial-ssa-retask-v1` + `protocol_stack_id=ps-joint-orbital-custody-loss-commercial-ssa-retask-stack-v1` when CEMA posture depends on regained orbital custody and trusted commercial SSA retask under contested-spectrum conditions.
 - Add `packet_id=DPL-EMISSIONS-DECOY-ROBOTIC-001`, `packet_id=DPL-AIR-GAPPED-CREDENTIAL-REISSUE-001`, and `packet_id=DPL-ORBITAL-CUSTODY-LOSS-SSA-RETASK-001` for branches that alter CEMA release posture, trust restoration, or cross-domain timing confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Addendum)
+
+- Add `tool_suite_id=ts-polar-orbit-handover-v1` + `protocol_stack_id=ps-polar-orbit-handover-stack-v1` when CEMA posture depends on Arctic orbital handovers, timing integrity, or restoring high-latitude command paths under contested electromagnetic conditions.
+- Add `tool_suite_id=ts-civil-telecom-priority-restoration-v1` + `protocol_stack_id=ps-civil-telecom-priority-restoration-stack-v1` when cyber-electromagnetic recommendations depend on protecting emergency telecom routing, priority-service activation, or provider trust-health.
+- Add `packet_id=DPL-POLAR-HANDOVER-001` and `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` for branches that alter CEMA release posture, telecom continuity, or timing-trust assumptions.

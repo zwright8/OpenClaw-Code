@@ -413,3 +413,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-strategic-electronics-salvage-critical-component-reclamation-v1` + `protocol_stack_id=ps-strategic-electronics-salvage-critical-component-reclamation-stack-v1` when mission feasibility depends on reclaiming trusted electronics under strategic component scarcity.
 - Add `tool_suite_id=ts-homeland-school-shelter-mass-care-family-reunification-v1` + `protocol_stack_id=ps-homeland-school-shelter-mass-care-family-reunification-stack-v1` when DSCA risk posture depends on school-shelter accountability, child release trust, or reunification speed.
 - Add `packet_id=DPL-SUBMARINE-ESCAPE-RESCUE-001`, `packet_id=DPL-ORBITAL-CUSTODY-LOSS-SSA-RETASK-001`, `packet_id=DPL-AIR-GAPPED-CREDENTIAL-REISSUE-001`, `packet_id=DPL-ELECTRONICS-SALVAGE-RECLAMATION-001`, and `packet_id=DPL-SCHOOL-SHELTER-FAMILY-REUNIFICATION-001` for branches that materially change GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Addendum)
+
+- Add `tool_suite_id=ts-coalition-infra-cyber-kinetic-cascade-v1` + `protocol_stack_id=ps-coalition-infra-cyber-kinetic-cascade-stack-v1` when commander risk depends on whether infrastructure disruption is a contained outage, a coalition-wide cascade, or a deliberate escalation path.
+- Add `tool_suite_id=ts-polar-orbit-handover-v1` + `protocol_stack_id=ps-polar-orbit-handover-stack-v1` when risk posture depends on high-latitude mission comm continuity, timing trust, or orbital handover confidence.
+- Add `tool_suite_id=ts-battlefield-additive-repair-validation-v1` + `protocol_stack_id=ps-battlefield-additive-repair-validation-stack-v1` when commander readiness assumptions depend on trusted forward repair release rather than deferred depot replacement.
+- Add `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001`, `packet_id=DPL-POLAR-HANDOVER-001`, and `packet_id=DPL-ADDITIVE-REPAIR-VALIDATION-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

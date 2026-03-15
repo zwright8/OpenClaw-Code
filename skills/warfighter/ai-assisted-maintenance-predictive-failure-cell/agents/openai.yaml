@@ -1,0 +1,3 @@
+interface:
+  display_name: "AI-Assisted Maintenance Predictive Failure Cell"
+  short_description: "Support predictive maintenance triage and readiness-preserving repair scheduling"

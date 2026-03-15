@@ -2637,3 +2637,21 @@ Every skill output should include:
 - Personal-effects custody and mortuary return integrity + mortuary-affairs-and-personnel-accountability + joint-multi-theater-casualty-information-and-family-notification-integrity-cell + theater-battlefield-forensics-and-war-crimes-evidence-preservation-cell.
 - Coalition fuel-truck driver vetting and bulk-fuel shift restoration + contested-logistics-sustainment + strategic-sealift-and-prepositioning-coordinator + coalition-interoperability-coordinator.
 - Portable shower, laundry, and textile biosecurity + preventive-medicine-and-force-health-protection + expeditionary-water-purification-contamination-attribution-cell + theater-battlefield-waste-and-hazardous-material-control-cell.
+
+## New Expansion Wave (2026-03-15, Wave LVI)
+
+- coalition-critical-infrastructure-cyber-kinetic-cascade-cell
+- arctic-denied-comms-polar-orbit-handover-cell
+- battlefield-additive-manufacturing-forward-repair-validation-cell
+- coalition-civil-telecom-priority-service-restoration-cell
+- cbrn-mass-casualty-triage-and-decon-coordination-cell
+- ai-assisted-maintenance-predictive-failure-cell
+
+## Updated Pairings (2026-03-15, Wave LVI)
+
+- Coalition critical-infrastructure cyber-kinetic cascade + coalition-interoperability-coordinator + cyber-physical-infrastructure-defense-cell + defense-support-of-civil-authorities-crisis-cell.
+- Arctic denied comms polar-orbit handover + space-domain-awareness-and-satcom-defense + expeditionary-communications-package-deployment + weather-space-weather-effects-forecast-cell.
+- Battlefield additive forward-repair validation + contested-logistics-sustainment + expeditionary-fabrication-and-battle-damage-repair + ai-assisted-maintenance-predictive-failure-cell.
+- Coalition civil telecom priority restoration + coalition-interoperability-coordinator + theater-mission-network-failover-cell + defense-support-of-civil-authorities-crisis-cell.
+- CBRN mass-casualty triage and decon coordination + casualty-evac-and-medical-regulation + preventive-medicine-and-force-health-protection + defense-support-of-civil-authorities-crisis-cell.
+- AI-assisted maintenance predictive failure + contested-logistics-sustainment + supply-chain-risk-and-industrial-base-monitor + rapid-prototyping-and-fielding-accelerator.

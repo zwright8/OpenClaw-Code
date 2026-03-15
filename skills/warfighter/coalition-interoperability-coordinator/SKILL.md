@@ -327,3 +327,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-joint-submarine-escape-rescue-system-integration-v1` + `protocol_stack_id=ps-joint-submarine-escape-rescue-system-integration-stack-v1` when allied interoperability depends on rescue-system compatibility, chamber access, or survivor-transfer handoff fidelity.
 - Add `tool_suite_id=ts-joint-orbital-custody-loss-commercial-ssa-retask-v1` + `protocol_stack_id=ps-joint-orbital-custody-loss-commercial-ssa-retask-stack-v1` when coalition awareness depends on releasable commercial SSA retask data and shared custody-confidence thresholds.
 - Add `packet_id=DPL-WATER-RIGHTS-DECONFLICTION-001`, `packet_id=DPL-SUBMARINE-ESCAPE-RESCUE-001`, and `packet_id=DPL-ORBITAL-CUSTODY-LOSS-SSA-RETASK-001` for branches that materially alter coalition release posture, caveat handling, or allied interoperability confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Addendum)
+
+- Add `tool_suite_id=ts-coalition-infra-cyber-kinetic-cascade-v1` + `protocol_stack_id=ps-coalition-infra-cyber-kinetic-cascade-stack-v1` when coalition interoperability depends on common restoration sequencing, shared infrastructure telemetry, or trusted cross-border consequence reporting.
+- Add `tool_suite_id=ts-civil-telecom-priority-restoration-v1` + `protocol_stack_id=ps-civil-telecom-priority-restoration-stack-v1` when allied tempo depends on restoring civil telecom priority services without breaking caveats, jurisdiction limits, or acknowledgment fidelity.
+- Add `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001` and `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` for branches that materially alter coalition release posture, telecom continuity confidence, or shared restoration governance.

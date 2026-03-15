@@ -300,3 +300,9 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 
 - Use `coalition-fuel-truck-driver-vetting-and-bulk-fuel-shift-restoration-cell` when sustainment viability depends on vetted tanker-driver availability, insider-risk controls, or coalition dispatch recovery across bulk-fuel nodes.
 - Use `joint-deployed-pay-entitlement-fraud-and-disconnected-disbursement-cell` when commander sustainment risk depends on trusted pay delivery, entitlement integrity, or disconnected disbursement continuity for forward personnel.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Addendum)
+
+- Add `tool_suite_id=ts-shipboard-ai-maintenance-prognostics-v1` + `protocol_stack_id=ps-aviation-maintenance-forensics-stack-v1` when sustainment viability depends on predicting mission-critical failures before parts, labor, or access windows collapse readiness.
+- Add `tool_suite_id=ts-battlefield-additive-repair-validation-v1` + `protocol_stack_id=ps-battlefield-additive-repair-validation-stack-v1` when sustainment throughput depends on trusted forward repair release rather than depot replacement or delayed cannibalization.
+- Add `packet_id=DPL-SHIPBOARD-AI-PROGNOSTICS-001`, `packet_id=DPL-MAINTENANCE-KNOWLEDGE-SYNC-001`, and `packet_id=DPL-ADDITIVE-REPAIR-VALIDATION-001` for branches that materially alter readiness recovery, part-release confidence, or maintenance debt.
