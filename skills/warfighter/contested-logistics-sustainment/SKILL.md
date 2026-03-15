@@ -280,3 +280,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when sustainment feasibility depends on regenerating sealift throughput after tsunami-driven berth or channel loss.
 - Add `tool_suite_id=ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1` + `protocol_stack_id=ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1` when rail dispatch degradation, host-nation signaling loss, or manual-block reversion drive force-flow risk.
 - Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-RAIL-SIGNALING-MANUAL-BLOCK-001` for branches that materially alter throughput confidence, inland transload posture, or coalition movement timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-theater-reproductive-health-contraception-sti-readiness-v1` + `protocol_stack_id=ps-theater-reproductive-health-contraception-sti-readiness-stack-v1` when sustainment feasibility depends on protected pharmacy continuity, diagnostic kit flow, or privacy-safe reproductive-health support.
+- Add `tool_suite_id=ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1` + `protocol_stack_id=ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1` when housing habitability, barracks relocation, or respiratory-risk controls materially affect force availability and throughput.
+- Add `tool_suite_id=ts-joint-foot-health-trench-foot-load-bearing-readiness-v1` + `protocol_stack_id=ps-joint-foot-health-trench-foot-load-bearing-readiness-stack-v1` when boot or sock resupply, march endurance, or immersion-foot risk directly changes force-flow confidence.
+- Add `packet_id=DPL-REPRODUCTIVE-HEALTH-STI-READINESS-001`, `packet_id=DPL-BARRACKS-HVAC-MOLD-IAQ-001`, and `packet_id=DPL-FOOT-HEALTH-TRENCH-FOOT-001` for branches that materially alter protected-medical sustainment, housing posture, or movement endurance.

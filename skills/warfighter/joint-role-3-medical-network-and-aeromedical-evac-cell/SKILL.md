@@ -124,3 +124,10 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-joint-austere-hemodialysis-water-power-assurance-v1` + `protocol_stack_id=ps-joint-austere-hemodialysis-water-power-assurance-stack-v1` when patient movement, bed release, or casualty survival depends on austere dialysis continuity under water or generator stress.
 - Add `tool_suite_id=ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1` + `protocol_stack_id=ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1` when aeromedical prioritization depends on shelter dose accumulation, vulnerable-population extraction timing, or radiological shelter collapse risk.
 - Add `packet_id=DPL-AUSTERE-HEMODIALYSIS-WATER-POWER-001` and `packet_id=DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001` for recommendations that materially change renal-support posture, casualty extraction timing, or radiological patient-flow prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-operational-vision-ocular-trauma-optical-readiness-v1` + `protocol_stack_id=ps-joint-operational-vision-ocular-trauma-optical-readiness-stack-v1` when patient movement, microsurgical timing, or optical-device redistribution depends on preserving vision before evacuation.
+- Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when maternal-fetal transfer, gynecologic emergency capacity, or privacy-safe routing changes bed release and aeromedical priorities.
+- Add `tool_suite_id=ts-joint-cold-injury-frostbite-rewarming-v1` + `protocol_stack_id=ps-joint-cold-injury-frostbite-rewarming-stack-v1` when frostbite severity, warming capacity, or hypothermia-driven routing materially affects Role 3 intake and onward movement.
+- Add `packet_id=DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001`, `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001`, and `packet_id=DPL-COLD-INJURY-REWARMING-001` for recommendations that materially change bed allocation, evacuation timing, or specialty-care prioritization.

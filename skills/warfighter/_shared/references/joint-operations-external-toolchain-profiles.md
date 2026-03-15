@@ -2378,3 +2378,61 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-cyber-defense-v1`.
 - Protocols: signed key manifests, `Link 16 J-series`, `VMF`, `STIX/TAXII`, `API/JSON`, `USMTF`.
 - Degraded fallback: narrowband authenticated voice only with manual COMSEC accounting and shortened rekey cycle.
+
+## Profile Addendum X (2026-03-15, Ocular Readiness, Vector Control, Cold Injury, Women's Health, Reproductive Readiness, Blast Exposure, Barracks Air Quality, and Foot Health)
+
+### `operational-vision-ocular-trauma-optical-readiness-v1`
+- Use for: mission decisions when eye injury, degraded optics, or laser exposure can collapse sortie, patrol, or targeting effectiveness.
+- Primary tools: `ts-joint-operational-vision-ocular-trauma-optical-readiness-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed optical-device manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: protective-eyewear discipline and paper triage with manual evacuation approval.
+
+### `vector-control-field-epidemiology-v1`
+- Use for: force-health decisions when vector density, habitat growth, or suspected arthropod-borne outbreaks require rapid preventive action.
+- Primary tools: `ts-expeditionary-vector-control-field-epidemiology-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, `OGC`, signed trap or sample manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: targeted habitat denial only with daily command review and manual pesticide accountability.
+
+### `cold-injury-frostbite-rewarming-v1`
+- Use for: Arctic and wet-cold decisions when warming capacity, casualty routing, and exposure control determine survival and unit tempo.
+- Primary tools: `ts-joint-cold-injury-frostbite-rewarming-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed cold-exposure manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: essential warming and evacuation only with voice-confirmed casualty handoff.
+
+### `womens-health-contested-obstetric-support-v1`
+- Use for: women's health and obstetric routing decisions when maternal-fetal safety, privacy, and specialty transport all compete under contested conditions.
+- Primary tools: `ts-joint-womens-health-contested-obstetric-support-v1`.
+- Cross-check tools: `ts-role3-medical-aeromedical-network-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed maternal-transfer manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: life-saving obstetric routing only with protected voice handoff and manual consent tracking.
+
+### `reproductive-health-contraception-sti-readiness-v1`
+- Use for: readiness decisions when protected reproductive-health access, pharmacy continuity, or STI diagnostic throughput affect force availability.
+- Primary tools: `ts-theater-reproductive-health-contraception-sti-readiness-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed pharmacy manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: essential medication continuation only with dual-review privacy controls.
+
+### `blast-overpressure-breacher-readiness-v1`
+- Use for: training and mission decisions when cumulative concussive exposure, breacher qualifications, or symptom follow-up affect safe employment.
+- Primary tools: `ts-joint-blast-overpressure-breacher-readiness-v1`.
+- Cross-check tools: `ts-battlefield-hearing-conservation-v1`.
+- Protocols: signed sensor manifests, `HL7/FHIR`, `VMF`, `API/JSON`, `USMTF`.
+- Degraded fallback: no-growth training posture with manual exposure logging and medical review.
+
+### `barracks-hvac-mold-indoor-air-quality-v1`
+- Use for: life-support decisions when HVAC failure, mold spread, or indoor-air contamination threatens unit housing and respiratory readiness.
+- Primary tools: `ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `OPC UA`, `OGC`, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Degraded fallback: occupancy cap and room-by-room quarantine with command readback only.
+
+### `foot-health-trench-foot-load-bearing-readiness-v1`
+- Use for: maneuver and sustainment decisions when boot fit, sock rotation, and immersion-injury risk determine march endurance.
+- Primary tools: `ts-joint-foot-health-trench-foot-load-bearing-readiness-v1`.
+- Cross-check tools: `ts-medical-force-health-v1`.
+- Protocols: `HL7/FHIR`, signed footwear manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: shortened movement windows with manual sock and boot accountability.

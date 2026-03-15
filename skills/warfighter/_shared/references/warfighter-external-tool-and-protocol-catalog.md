@@ -12762,3 +12762,87 @@ external_binding:
 ### `ps-theater-sdr-waveform-key-hopset-emergency-reconstitution-stack-v1`
 - Protocols: signed key manifests, `Link 16 J-series`, `VMF`, `STIX/TAXII`, `API/JSON`, `USMTF`.
 - Use for: rekey tasking, hopset-distribution status, and degraded-network recovery acknowledgments.
+
+## Tool Suite Addendum LIII (2026-03-15, Ocular Readiness, Vector Control, Cold Injury, Women's Health, Reproductive Readiness, Blast Exposure, Barracks Air Quality, and Foot Health)
+
+### `ts-joint-operational-vision-ocular-trauma-optical-readiness-v1`
+- Use for: ocular trauma triage, protective-eyewear enforcement, and optical-device readiness when vision loss or damaged optics threaten mission continuity.
+- Primary tools: ophthalmic exam workflow, optical-device readiness ledger, ocular evacuation board.
+- Cross-check tools: independent laser-safety witness and alternate medical regulation cell.
+- Typical products: ocular readiness dashboard, evacuation ladder, and optical-device allocation board.
+
+### `ts-expeditionary-vector-control-field-epidemiology-v1`
+- Use for: vector surveillance, larvicide or pesticide release, and outbreak investigation when arthropod-borne disease threatens deployed forces.
+- Primary tools: vector surveillance board, trap and assay ledger, geospatial habitat modeler.
+- Cross-check tools: independent preventive-medicine witness and alternate outbreak case tracker.
+- Typical products: vector threat map, spray and trap schedule, and force-health action matrix.
+
+### `ts-joint-cold-injury-frostbite-rewarming-v1`
+- Use for: cold-injury prevention, frostbite triage, and rewarming-site activation when exposure and wet-cold conditions threaten force survivability.
+- Primary tools: cold-exposure tracker, warming shelter board, frostbite triage workflow.
+- Cross-check tools: independent medic witness and alternate casualty transfer queue.
+- Typical products: cold-injury risk board, rewarming plan, and exposure-control work cycle matrix.
+
+### `ts-joint-womens-health-contested-obstetric-support-v1`
+- Use for: women's health care routing, obstetric contingency planning, and privacy-sensitive transport decisions in austere or contested conditions.
+- Primary tools: maternal-fetal risk board, gynecologic care-routing workflow, blood and ultrasound readiness ledger.
+- Cross-check tools: independent obstetric witness and alternate surgical transfer board.
+- Typical products: women's health routing plan, obstetric risk board, and maternal evacuation ladder.
+
+### `ts-theater-reproductive-health-contraception-sti-readiness-v1`
+- Use for: reproductive-health readiness, contraception continuity, and STI screening or treatment support when protected care access drives force availability.
+- Primary tools: protected pharmacy ledger, STI screening workflow, contraception supply tracker.
+- Cross-check tools: independent privacy-compliance witness and alternate protected referral queue.
+- Typical products: reproductive-health readiness board, pharmacy and diagnostics allocation plan, and privacy-safe care-routing matrix.
+
+### `ts-joint-blast-overpressure-breacher-readiness-v1`
+- Use for: cumulative blast-exposure governance, breacher qualification, and return-to-duty decisions when concussive training or combat loads approach unsafe thresholds.
+- Primary tools: blast-gauge telemetry board, breacher readiness ledger, neurocognitive follow-up queue.
+- Cross-check tools: independent range-safety witness and alternate hearing-conservation board.
+- Typical products: blast-exposure ledger, breacher qualification matrix, and exposure reset or no-go ladder.
+
+### `ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1`
+- Use for: barracks HVAC continuity, mold remediation, and indoor-air-quality control when housing habitability threatens readiness at expeditionary sites.
+- Primary tools: HVAC telemetry board, mold remediation ledger, industrial-hygiene sampler.
+- Cross-check tools: independent facility engineer witness and alternate occupancy restriction planner.
+- Typical products: barracks air-quality risk board, relocation and maintenance plan, and occupancy restriction matrix.
+
+### `ts-joint-foot-health-trench-foot-load-bearing-readiness-v1`
+- Use for: foot-health preservation, blister or immersion-foot response, and march-endurance planning when terrain and wet exposure threaten maneuver capacity.
+- Primary tools: march-load tracker, footwear fit ledger, blister and immersion-foot treatment workflow.
+- Cross-check tools: independent preventive-medicine witness and alternate sock-resupply board.
+- Typical products: foot-readiness dashboard, immersion-foot risk matrix, and boot or sock resupply plan.
+
+## Protocol Stack Addendum LIII (2026-03-15, External Integration Profiles for Expansion Wave LIII)
+
+### `ps-joint-operational-vision-ocular-trauma-optical-readiness-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed optical-device manifests, `API/JSON`, `USMTF`.
+- Use for: ocular status exchange, optical-device pedigree updates, and evacuation approvals.
+
+### `ps-expeditionary-vector-control-field-epidemiology-stack-v1`
+- Protocols: `HL7/FHIR`, `OGC`, signed trap or sample manifests, `API/JSON`, `USMTF`.
+- Use for: vector-density reporting, habitat mapping, and pesticide-release acknowledgments.
+
+### `ps-joint-cold-injury-frostbite-rewarming-stack-v1`
+- Protocols: `HL7/FHIR`, signed cold-exposure manifests, `API/JSON`, `USMTF`.
+- Use for: exposure-state exchange, rewarming-site activation, and casualty-transfer approvals.
+
+### `ps-joint-womens-health-contested-obstetric-support-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed maternal-transfer manifests, `API/JSON`, `USMTF`.
+- Use for: maternal-fetal risk exchange, specialty transfer routing, and protected care acknowledgments.
+
+### `ps-theater-reproductive-health-contraception-sti-readiness-stack-v1`
+- Protocols: `HL7/FHIR`, signed pharmacy manifests, `API/JSON`, `USMTF`.
+- Use for: protected pharmacy status, diagnostic throughput updates, and privacy-safe care routing.
+
+### `ps-joint-blast-overpressure-breacher-readiness-stack-v1`
+- Protocols: signed sensor manifests, `HL7/FHIR`, `VMF`, `API/JSON`, `USMTF`.
+- Use for: exposure-state exchange, qualification holds, and return-to-duty acknowledgments.
+
+### `ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1`
+- Protocols: `OPC UA`, `OGC`, `NIMS/ICS`, `API/JSON`, `USMTF`.
+- Use for: HVAC telemetry exchange, contamination alerts, and occupancy-control approvals.
+
+### `ps-joint-foot-health-trench-foot-load-bearing-readiness-stack-v1`
+- Protocols: `HL7/FHIR`, signed footwear manifests, `API/JSON`, `USMTF`.
+- Use for: injury-status updates, boot or sock redistribution, and pacing-control acknowledgments.

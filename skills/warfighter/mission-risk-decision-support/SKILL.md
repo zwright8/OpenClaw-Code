@@ -283,3 +283,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when risk posture depends on urgent software remediation, rollback assurance, or artifact trust across mission systems.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when commander confidence depends on authentic order distribution and rapid containment of spoofed or stale digital tasking.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-vector-control-field-epidemiology-v1` + `protocol_stack_id=ps-expeditionary-vector-control-field-epidemiology-stack-v1` when commander risk posture depends on vector-borne disease pressure, outbreak branching, or pesticide-release timing.
+- Add `tool_suite_id=ts-joint-cold-injury-frostbite-rewarming-v1` + `protocol_stack_id=ps-joint-cold-injury-frostbite-rewarming-stack-v1` when exposure timelines, warming capacity, or cold-weather casualty routing materially alter GO or NO-GO posture.
+- Add `tool_suite_id=ts-joint-blast-overpressure-breacher-readiness-v1` + `protocol_stack_id=ps-joint-blast-overpressure-breacher-readiness-stack-v1` when cumulative concussive exposure, breacher qualification status, or medical follow-up change acceptable risk.
+- Add `packet_id=DPL-VECTOR-CONTROL-FIELD-EPI-001`, `packet_id=DPL-COLD-INJURY-REWARMING-001`, and `packet_id=DPL-BLAST-OVERPRESSURE-BREACHER-001` for branches that materially change commander risk acceptance, force-readiness confidence, or training tempo.

@@ -145,3 +145,8 @@ Primary products for this skill: mass-evacuation sequence plan, shelter load bal
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when shelter design, protected transport, or evacuation prioritization depends on maternal-fetal risk and privacy-sensitive women's health support.
+- Add `tool_suite_id=ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1` + `protocol_stack_id=ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1` when shelter occupancy, HVAC degradation, or contamination spread threatens respiratory safety and relocation timing.
+- Add `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001` and `packet_id=DPL-BARRACKS-HVAC-MOLD-IAQ-001` for branches that materially alter shelter layout, evacuation priority, or protected-care access.

@@ -151,3 +151,8 @@ Use this default binding unless mission constraints require an alternate path:
 - Primary: `tool_suite_id=ts-battlefield-hearing-conservation-v1` with `protocol_stack_id=ps-force-health-hearing-protection-stack-v1`.
 - Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-cop-event-sharing-stack-v1`.
 - Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-blast-overpressure-breacher-readiness-v1` + `protocol_stack_id=ps-joint-blast-overpressure-breacher-readiness-stack-v1` when concussive exposure, breacher cycles, or combined hearing and overpressure risk drive protection controls and return-to-duty decisions.
+- Add `packet_id=DPL-BLAST-OVERPRESSURE-BREACHER-001` for branches that materially alter exposure ceilings, qualification status, or hearing-readiness posture.

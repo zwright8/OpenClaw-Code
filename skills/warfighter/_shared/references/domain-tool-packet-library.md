@@ -12452,3 +12452,93 @@ validation_gates:
 - output_schema: waveform rekey plan, hopset restoration ledger, degraded-network branch package
 - protocol_profile: signed key manifests + Link 16 J-series + VMF + STIX/TAXII + API/JSON + USMTF
 - validation_gates: key-accountability check, hopset-distribution confirmation, command approval
+
+## Packet Addendum XLII (2026-03-15, Ocular Readiness, Vector Control, Cold Injury, Women's Health, Reproductive Readiness, Blast Exposure, Barracks Air Quality, and Foot Health)
+
+### packet_id: DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001
+- domain: joint operational vision, ocular trauma, and optical readiness
+- objective: preserve vision and salvage eye injuries by synchronizing triage, protective optics, and evacuation before irreversible damage or mission loss.
+- primary_tools: ophthalmic exam workflow, optical-device readiness ledger, ocular evacuation board
+- alternate_tools: manual eye-injury log and eyewear allocation worksheet
+- degraded_mode: protective-eyewear discipline with manual triage and hand-carried device custody
+- input_requirements: casualty status, optical inventory, laser or dust exposure data, evacuation routes, authority thresholds
+- output_schema: ocular readiness dashboard, evacuation ladder, optical-device allocation board
+- protocol_profile: HL7/FHIR + DICOM + signed optical-device manifests + API/JSON + USMTF
+- validation_gates: casualty-severity confirmation, device-pedigree check, medical-evac approval
+
+### packet_id: DPL-VECTOR-CONTROL-FIELD-EPI-001
+- domain: expeditionary vector control and field epidemiology
+- objective: suppress vector-borne disease risk by aligning surveillance, habitat control, and pesticide-release timing before readiness degrades.
+- primary_tools: vector surveillance board, trap and assay ledger, geospatial habitat modeler
+- alternate_tools: manual trap log and hand-drawn habitat worksheet
+- degraded_mode: targeted habitat denial only with daily command review and manual pesticide accountability
+- input_requirements: trap counts, symptom reports, habitat locations, weather data, pesticide inventory, authority thresholds
+- output_schema: vector threat map, spray and trap schedule, force-health action matrix
+- protocol_profile: HL7/FHIR + OGC + signed trap or sample manifests + API/JSON + USMTF
+- validation_gates: vector-threat confirmation, release-authority check, outbreak-review approval
+
+### packet_id: DPL-COLD-INJURY-REWARMING-001
+- domain: joint cold injury, frostbite, and rewarming operations
+- objective: keep exposed forces alive and combat-capable by timing warming, evacuation, and relief decisions before cold injuries become irreversible.
+- primary_tools: cold-exposure tracker, warming shelter board, frostbite triage workflow
+- alternate_tools: manual exposure roster and warming-site worksheet
+- degraded_mode: essential warming and evacuation only with voice-confirmed casualty handoff
+- input_requirements: exposure timelines, casualty severity, warming capacity, mobility routes, clothing posture, authority thresholds
+- output_schema: cold-injury risk board, rewarming plan, exposure-control work cycle matrix
+- protocol_profile: HL7/FHIR + signed cold-exposure manifests + API/JSON + USMTF
+- validation_gates: exposure confirmation, warming-site readiness, medical-approval record
+
+### packet_id: DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001
+- domain: joint women's health and contested obstetric support
+- objective: preserve maternal-fetal safety and protected care access by routing patients to the right capability without breaking privacy or transport constraints.
+- primary_tools: maternal-fetal risk board, gynecologic care-routing workflow, blood and ultrasound readiness ledger
+- alternate_tools: manual maternal-risk log and protected transfer worksheet
+- degraded_mode: life-saving obstetric routing only with protected voice handoff and manual consent tracking
+- input_requirements: patient acuity, gestational or gynecologic status, specialty capacity, blood availability, transport routes, authority thresholds
+- output_schema: women's health routing plan, obstetric risk board, maternal evacuation ladder
+- protocol_profile: HL7/FHIR + DICOM + signed maternal-transfer manifests + API/JSON + USMTF
+- validation_gates: acuity confirmation, specialty-capacity check, medical-evac approval
+
+### packet_id: DPL-REPRODUCTIVE-HEALTH-STI-READINESS-001
+- domain: theater reproductive health, contraception, and STI readiness
+- objective: maintain protected diagnostic and pharmacy access so preventable reproductive-health disruptions do not erode force readiness.
+- primary_tools: protected pharmacy ledger, STI screening workflow, contraception supply tracker
+- alternate_tools: manual pharmacy log and protected appointment worksheet
+- degraded_mode: essential medication continuation only with dual-review privacy controls
+- input_requirements: pharmacy status, diagnostic throughput, symptomatic case load, privacy constraints, host-nation caveats, authority thresholds
+- output_schema: reproductive-health readiness board, pharmacy and diagnostics allocation plan, privacy-safe care-routing matrix
+- protocol_profile: HL7/FHIR + signed pharmacy manifests + API/JSON + USMTF
+- validation_gates: medication-pedigree check, diagnostic confirmation, privacy-compliance approval
+
+### packet_id: DPL-BLAST-OVERPRESSURE-BREACHER-001
+- domain: joint blast overpressure and breacher readiness
+- objective: prevent avoidable concussive injury by aligning exposure totals, qualification status, and medical follow-up before live-fire or breaching continues.
+- primary_tools: blast-gauge telemetry board, breacher readiness ledger, neurocognitive follow-up queue
+- alternate_tools: manual exposure sheet and qualification hold worksheet
+- degraded_mode: no-growth training posture with manual exposure logging and medical review
+- input_requirements: exposure telemetry, symptom reports, qualification roster, training schedule, authority matrix
+- output_schema: blast-exposure ledger, breacher qualification matrix, exposure reset or no-go ladder
+- protocol_profile: signed sensor manifests + HL7/FHIR + VMF + API/JSON + USMTF
+- validation_gates: exposure-threshold check, symptom-review confirmation, range-authority approval
+
+### packet_id: DPL-BARRACKS-HVAC-MOLD-IAQ-001
+- domain: expeditionary barracks HVAC, mold, and indoor air quality
+- objective: preserve habitable housing by detecting HVAC failure, contamination spread, and occupancy risk before respiratory effects force uncontrolled relocation.
+- primary_tools: HVAC telemetry board, mold remediation ledger, industrial-hygiene sampler
+- alternate_tools: manual room-status board and portable meter worksheet
+- degraded_mode: occupancy cap and room-by-room quarantine with command readback only
+- input_requirements: occupancy levels, telemetry readings, symptom clusters, mold findings, maintenance status, authority thresholds
+- output_schema: barracks air-quality risk board, relocation and maintenance plan, occupancy restriction matrix
+- protocol_profile: OPC UA + OGC + NIMS/ICS + API/JSON + USMTF
+- validation_gates: contamination verification, engineering review, occupancy-approval record
+
+### packet_id: DPL-FOOT-HEALTH-TRENCH-FOOT-001
+- domain: joint foot health, blister, trench foot, and load-bearing readiness
+- objective: protect maneuver endurance by synchronizing footwear fit, sock rotation, and immersion-injury response before foot casualties cascade into mission delay.
+- primary_tools: march-load tracker, footwear fit ledger, blister and immersion-foot treatment workflow
+- alternate_tools: manual foot-injury roster and pacing worksheet
+- degraded_mode: shortened movement windows with manual sock and boot accountability
+- input_requirements: march distances, weather and ground conditions, injury counts, footwear inventory, drying capacity, authority thresholds
+- output_schema: foot-readiness dashboard, immersion-foot risk matrix, boot or sock resupply plan
+- protocol_profile: HL7/FHIR + signed footwear manifests + API/JSON + USMTF
+- validation_gates: injury-severity confirmation, supply-status check, command-approval record

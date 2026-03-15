@@ -149,3 +149,9 @@ Use these tool categories as the default stack for this skill: patient regulatio
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-operational-vision-ocular-trauma-optical-readiness-v1` + `protocol_stack_id=ps-joint-operational-vision-ocular-trauma-optical-readiness-stack-v1` when globe-injury salvage, ophthalmic microsurgery, or optical-device release timing changes surgical sequencing.
+- Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when emergency obstetric surgery, hemorrhage control, or privacy-hardened women's health routing changes austere surgical posture.
+- Add `tool_suite_id=ts-joint-blast-overpressure-breacher-readiness-v1` + `protocol_stack_id=ps-joint-blast-overpressure-breacher-readiness-stack-v1` when concussive exposure, breacher injury load, or neurocognitive follow-up changes damage-control and return-to-duty sequencing.
+- Add `packet_id=DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001`, `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001`, and `packet_id=DPL-BLAST-OVERPRESSURE-BREACHER-001` for recommendations that materially change surgical triage, transport release, or protected-care prioritization.

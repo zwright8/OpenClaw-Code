@@ -994,3 +994,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent crypto-fill audit log and alternate network-control station board
 - Protocol binding: signed key manifests + Link 16 J-series + VMF + STIX/TAXII + API/JSON + USMTF
 - Fallback path: narrowband authenticated voice only with manual COMSEC accounting and shortened rekey cycle
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LIII)
+
+### `TC-OCULAR-118`
+
+- Domain: joint operational vision, ocular trauma, and optical readiness
+- Primary systems: ophthalmic exam workflow, optical-device readiness ledger, ocular evacuation board
+- Cross-check systems: independent laser-safety witness and alternate medical regulation cell
+- Protocol binding: HL7/FHIR + DICOM + signed optical-device manifests + API/JSON + USMTF
+- Fallback path: protective-eyewear discipline and paper triage with manual evacuation approval
+
+### `TC-VECTOR-119`
+
+- Domain: expeditionary vector control and field epidemiology
+- Primary systems: vector surveillance board, trap and assay ledger, geospatial habitat modeler
+- Cross-check systems: independent preventive-medicine witness and alternate outbreak case tracker
+- Protocol binding: HL7/FHIR + OGC + signed trap or sample manifests + API/JSON + USMTF
+- Fallback path: targeted habitat denial only with daily command review and manual pesticide accountability
+
+### `TC-COLD-120`
+
+- Domain: joint cold injury, frostbite, and rewarming operations
+- Primary systems: cold-exposure tracker, warming shelter board, frostbite triage workflow
+- Cross-check systems: independent medic witness and alternate casualty transfer queue
+- Protocol binding: HL7/FHIR + signed cold-exposure manifests + API/JSON + USMTF
+- Fallback path: essential warming and evacuation only with voice-confirmed casualty handoff
+
+### `TC-WOMENS-121`
+
+- Domain: joint women's health and contested obstetric support
+- Primary systems: maternal-fetal risk board, gynecologic care-routing workflow, blood and ultrasound readiness ledger
+- Cross-check systems: independent obstetric witness and alternate surgical transfer board
+- Protocol binding: HL7/FHIR + DICOM + signed maternal-transfer manifests + API/JSON + USMTF
+- Fallback path: life-saving obstetric routing only with protected voice handoff and manual consent tracking
+
+### `TC-REPRO-122`
+
+- Domain: theater reproductive health, contraception, and STI readiness
+- Primary systems: protected pharmacy ledger, STI screening workflow, contraception supply tracker
+- Cross-check systems: independent privacy-compliance witness and alternate protected referral queue
+- Protocol binding: HL7/FHIR + signed pharmacy manifests + API/JSON + USMTF
+- Fallback path: essential medication continuation only with dual-review privacy controls
+
+### `TC-BLAST-123`
+
+- Domain: joint blast overpressure and breacher readiness
+- Primary systems: blast-gauge telemetry board, breacher readiness ledger, neurocognitive follow-up queue
+- Cross-check systems: independent range-safety witness and alternate hearing-conservation board
+- Protocol binding: signed sensor manifests + HL7/FHIR + VMF + API/JSON + USMTF
+- Fallback path: no-growth training posture with manual exposure logging and medical review
+
+### `TC-IAQ-124`
+
+- Domain: expeditionary barracks HVAC, mold, and indoor air quality
+- Primary systems: HVAC telemetry board, mold remediation ledger, industrial-hygiene sampler
+- Cross-check systems: independent facility engineer witness and alternate occupancy restriction planner
+- Protocol binding: OPC UA + OGC + NIMS/ICS + API/JSON + USMTF
+- Fallback path: occupancy cap and room-by-room quarantine with command readback only
+
+### `TC-FOOT-125`
+
+- Domain: joint foot health, blister, trench foot, and load-bearing readiness
+- Primary systems: march-load tracker, footwear fit ledger, blister and immersion-foot treatment workflow
+- Cross-check systems: independent preventive-medicine witness and alternate sock-resupply board
+- Protocol binding: HL7/FHIR + signed footwear manifests + API/JSON + USMTF
+- Fallback path: shortened movement windows with manual sock and boot accountability

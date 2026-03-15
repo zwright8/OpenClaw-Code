@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Cold Injury, Frostbite, And Rewarming Operations Cell"
+  short_description: "Help with Joint Cold Injury, Frostbite, And Rewarming Operations Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Cold Injury, Frostbite, And Rewarming Operations Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

@@ -2550,3 +2550,25 @@ Every skill output should include:
 - Strategic electro-optical sensor focal-plane and cryocooler priority + strategic industrial mobilization readiness cell + supply chain risk and industrial base monitor + space domain awareness and satcom defense.
 - Homeland civilian shelter radiation dosimetry and resupply + defense support of civil authorities crisis cell + civil defense mass evacuation shelter cell + CBRN response planner.
 - Theater software-defined radio waveform key and hopset emergency reconstitution + CEMA integration cell + theater mission network failover cell + tactical zero-trust network hardening.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LIII)
+
+- joint-operational-vision-ocular-trauma-and-optical-readiness-cell
+- expeditionary-vector-control-and-field-epidemiology-cell
+- joint-cold-injury-frostbite-and-rewarming-operations-cell
+- joint-womens-health-and-contested-obstetric-support-cell
+- theater-reproductive-health-contraception-and-sti-readiness-cell
+- joint-blast-overpressure-and-breacher-readiness-cell
+- expeditionary-barracks-hvac-mold-and-indoor-air-quality-cell
+- joint-foot-health-blister-trench-foot-and-load-bearing-readiness-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LIII)
+
+- Operational vision and ocular trauma readiness + austere surgical support coordinator + joint role 3 medical network and aeromedical evac cell + joint directed-energy engagement airspace and reflection safety cell.
+- Vector control and field epidemiology + preventive medicine and force health protection + expeditionary waterborne disease forecast and force protection cell + contested logistics sustainment.
+- Cold injury, frostbite, and rewarming operations + joint arctic multi-domain SAR and medical authentication cell + strategic mobility deployment planner + mission risk decision support.
+- Women's health and contested obstetric support + joint role 3 medical network and aeromedical evac cell + austere surgical support coordinator + civil defense mass evacuation shelter cell.
+- Reproductive health, contraception, and STI readiness + preventive medicine and force health protection + contested logistics sustainment + joint role 3 medical network and aeromedical evac cell.
+- Blast overpressure and breacher readiness + joint live-fire range safety and autonomous target control cell + expeditionary battlefield noise and hearing conservation cell + training and rehearsal designer.
+- Barracks HVAC, mold, and indoor-air-quality control + civil defense mass evacuation shelter cell + force protection and base defense + defense support of civil authorities crisis cell.
+- Foot health, blister, trench foot, and load-bearing readiness + theater musculoskeletal load management and physical therapy cell + expeditionary field laundry and textile decontamination cell + strategic mobility deployment planner.
