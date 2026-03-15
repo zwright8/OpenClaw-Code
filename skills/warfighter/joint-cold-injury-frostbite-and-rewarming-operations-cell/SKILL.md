@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag nonfreezing cold injury, hypothermia, rewarming delay, immersion exposure, and evacuation overpromising before recommending action.
 - Do not fabricate casualty severity, warming capacity, or medical approvals.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-joint-cold-weather-clothing-frostbite-discipline-v1` + `protocol_stack_id=ps-joint-cold-weather-clothing-frostbite-discipline-stack-v1` when cold-injury prevention depends on disciplined layering, wet-gear turnover, or warming-cycle enforcement before casualties appear.
+- Add `packet_id=DPL-COLD-WEATHER-CLOTHING-FROSTBITE-001` for branches that materially alter warming posture, gear redistribution, or frostbite-risk acceptance.

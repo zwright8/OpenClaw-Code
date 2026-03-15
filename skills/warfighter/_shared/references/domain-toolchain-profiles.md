@@ -1168,3 +1168,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent surgeon or performance-team witness and alternate commander readiness board
 - Protocol binding: HL7/FHIR + signed schedule manifests + API/JSON + USMTF + NATO APP-11/ADatP-3 aligned exchange
 - Fallback path: short-duration protected-rest windows only with paper rosters and voice-confirmed staffing handoffs
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LVII)
+
+### `TC-FSURG-134`
+
+- Domain: joint flight surgeon and aeromedical waiver
+- Primary systems: flight-surgeon waiver board, aircrew medical qualification ledger, life-support discrepancy tracker, sortie risk board
+- Cross-check systems: independent aviation physiology witness and alternate maintenance discrepancy board
+- Protocol binding: HL7/FHIR + AIXM/FIXM + signed waiver manifests + API/JSON + USMTF
+- Fallback path: manual waiver and restriction tracking only with surgeon voice approval and UTC readback
+
+### `TC-DC-135`
+
+- Domain: naval damage control and battle stability
+- Primary systems: ship damage-control board, flooding and fire boundary tracker, stability calculator, casualty-power restoration board
+- Cross-check systems: independent engineering watch witness and alternate combat-systems casualty board
+- Protocol binding: AIS/NMEA + OGC + signed damage-control manifests + API/JSON + USMTF
+- Fallback path: fight-for-survival posture only with manual plot updates and conservative stability assumptions
+
+### `TC-EOD-136`
+
+- Domain: joint EOD render safe and site exploitation
+- Primary systems: render-safe planner, ordnance fingerprint ledger, blast standoff board, site exploitation evidence workbench
+- Cross-check systems: independent tech-intel witness and alternate force-protection cordon cell
+- Protocol binding: USMTF + NIEM + STIX/TAXII + signed evidence manifests + API/JSON + OGC
+- Fallback path: cordon-and-hold posture only with no exploitation handoff until authority is verified
+
+### `TC-POWER-137`
+
+- Domain: expeditionary prime power generator maintenance and load balance
+- Primary systems: generator dispatch board, load-balance monitor, fuel burn tracker, maintenance parts queue
+- Cross-check systems: independent power-quality witness and alternate facility engineer hazard board
+- Protocol binding: OPC UA + signed maintenance manifests + OGC + API/JSON + USMTF
+- Fallback path: mission-essential circuits only with manual meter checks and fixed load caps
+
+### `TC-SLING-138`
+
+- Domain: joint sling load and external lift certification
+- Primary systems: load certification board, hookup inspection ledger, lift-window planner, aircraft configuration validator
+- Cross-check systems: independent air-movement witness and alternate aircraft weight-and-balance board
+- Protocol binding: AIXM/FIXM + VMF + signed load manifests + API/JSON + USMTF
+- Fallback path: reduced-load or no-lift posture with manual voice confirmation only
+
+### `TC-BEACH-139`
+
+- Domain: amphibious beachmaster surf zone and shore party control
+- Primary systems: surf and tide board, beach lane-control workflow, causeway or lighterage scheduler, shore-party movement tracker
+- Cross-check systems: independent hydrographic recon witness and alternate littoral fires deconfliction cell
+- Protocol binding: OGC + CoT + VMF + AIS/NMEA + USMTF
+- Fallback path: single-lane or lifesaving release only with conservative surf thresholds and voice lane-control readback
+
+### `TC-AIRCREW-140`
+
+- Domain: expeditionary aircrew flight equipment and survival gear
+- Primary systems: life-support equipment ledger, survival radio and beacon status board, flight-equipment inspection scheduler, exposure-recovery kit tracker
+- Cross-check systems: independent aviation physiology witness and alternate maintenance discrepancy board
+- Protocol binding: HL7/FHIR + signed life-support manifests + AIXM/FIXM + API/JSON + USMTF
+- Fallback path: mission-essential sorties only with manual inspection attestation and protected voice release
+
+### `TC-RIVER-141`
+
+- Domain: joint small craft riverine maintenance and spares
+- Primary systems: small-craft readiness board, spares or cannibalization ledger, engine diagnostic tracker, watercraft maintenance queue
+- Cross-check systems: independent boat-master witness and alternate river-control board
+- Protocol binding: AIS/NMEA + VMF + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: mission-priority craft only with manual launch restrictions and daily readiness review
+
+### `TC-ARM-142`
+
+- Domain: joint flightline weapons loading and armament safety
+- Primary systems: armament configuration validator, weapons-load checklist board, explosive safety arc planner, sortie release board
+- Cross-check systems: independent load-crew certifier and alternate munitions control desk
+- Protocol binding: AIXM/FIXM + signed load manifests + API/JSON + USMTF + CoT
+- Fallback path: reduced-load posture only with manual certification and restricted ramp operations
+
+### `TC-COLD-143`
+
+- Domain: joint cold weather clothing layering and frostbite discipline
+- Primary systems: cold-weather issue ledger, exposure-risk board, wet-gear rotation tracker, casualty risk watchlist
+- Cross-check systems: independent preventive-medicine witness and alternate supply accountability board
+- Protocol binding: HL7/FHIR + signed clothing manifests + OGC + API/JSON + USMTF
+- Fallback path: short-duration exposure only with manual gear checks and timed warming intervals

@@ -13088,3 +13088,107 @@ external_binding:
 ### `ps-joint-robotic-casualty-extraction-human-override-safety-stack-v1`
 - Protocols: `CoT`, `VMF`, `HL7/FHIR`, signed autonomy manifests, `API/JSON`, `USMTF`.
 - Use for: extraction status, override-control exchange, and medic-handoff acknowledgments.
+
+## Tool Suite Addendum LVII (2026-03-15, Flight Medicine, Ship Survivability, EOD Exploitation, Prime Power, External Lift, Beachmaster Control, Aircrew Gear, Riverine Maintenance, Flightline Armament, and Cold-Weather Discipline)
+
+### `ts-joint-flight-surgeon-aeromedical-waiver-v1`
+- Use for: aeromedical qualification, waiver adjudication, and sortie restriction decisions when crew health, medication limits, or life-support discrepancies threaten safe mission execution.
+- Primary tools: flight-surgeon waiver board, aircrew medical qualification ledger, life-support discrepancy tracker, sortie risk board.
+- Cross-check tools: independent aviation physiology witness and alternate maintenance discrepancy board.
+- Typical products: waiver decision ledger, sortie restriction matrix, and aeromedical risk mitigation ladder.
+
+### `ts-naval-damage-control-battle-stability-v1`
+- Use for: shipboard fire or flooding isolation, battle-stability calculations, and restore-fight decisions under combat damage.
+- Primary tools: ship damage-control board, flooding and fire boundary tracker, stability calculator, casualty-power restoration board.
+- Cross-check tools: independent engineering watch witness and alternate combat-systems casualty board.
+- Typical products: damage-control action board, battle-stability ladder, and restore-fight decision matrix.
+
+### `ts-joint-eod-render-safe-site-exploitation-v1`
+- Use for: ordnance render-safe planning, technical exploitation, and evidence-preserving cordon decisions for conventional or improvised threats.
+- Primary tools: render-safe planner, ordnance fingerprint ledger, blast standoff board, site exploitation evidence workbench.
+- Cross-check tools: independent tech-intel witness and alternate force-protection cordon cell.
+- Typical products: render-safe action ladder, site exploitation evidence matrix, and standoff decision board.
+
+### `ts-expeditionary-prime-power-generator-load-balance-v1`
+- Use for: generator dispatch, maintenance prioritization, and expeditionary load-balance decisions across forward power nodes.
+- Primary tools: generator dispatch board, load-balance monitor, fuel burn tracker, maintenance parts queue.
+- Cross-check tools: independent power-quality witness and alternate facility engineer hazard board.
+- Typical products: generator readiness board, load-balance ladder, and mission-power restoration matrix.
+
+### `ts-joint-sling-load-external-lift-certification-v1`
+- Use for: sling-load release, external-lift certification, and aircraft-load compatibility decisions for assault support and emergency resupply.
+- Primary tools: load certification board, hookup inspection ledger, lift-window planner, aircraft configuration validator.
+- Cross-check tools: independent air-movement witness and alternate aircraft weight-and-balance board.
+- Typical products: sling-load release matrix, hookup certification ledger, and lift-risk mitigation board.
+
+### `ts-amphibious-beachmaster-surf-zone-shore-party-control-v1`
+- Use for: surf-zone lane control, beach throughput sequencing, and shore-party synchronization during amphibious and sea-to-shore operations.
+- Primary tools: surf and tide board, beach lane-control workflow, causeway or lighterage scheduler, shore-party movement tracker.
+- Cross-check tools: independent hydrographic recon witness and alternate littoral fires deconfliction cell.
+- Typical products: surf-zone control board, shore-party throughput ladder, and beach-lane release matrix.
+
+### `ts-expeditionary-aircrew-flight-equipment-survival-gear-v1`
+- Use for: aircrew life-support equipment inspection, survival-gear readiness, and mission-environment gear tailoring decisions.
+- Primary tools: life-support equipment ledger, survival radio and beacon status board, flight-equipment inspection scheduler, exposure-recovery kit tracker.
+- Cross-check tools: independent aviation physiology witness and alternate maintenance discrepancy board.
+- Typical products: aircrew equipment readiness board, survival-gear restriction matrix, and sortie release advisory ladder.
+
+### `ts-joint-small-craft-riverine-maintenance-spares-v1`
+- Use for: riverine craft maintenance, engine or hull recovery, and spare-parts allocation when patrol coverage is constrained.
+- Primary tools: small-craft readiness board, spares or cannibalization ledger, engine diagnostic tracker, watercraft maintenance queue.
+- Cross-check tools: independent boat-master witness and alternate river-control board.
+- Typical products: craft readiness board, spares allocation ladder, and maintenance recovery timeline.
+
+### `ts-joint-flightline-weapons-loading-armament-safety-v1`
+- Use for: armament configuration validation, weapons-loading safety, and armed-aircraft release decisions on congested flightlines.
+- Primary tools: armament configuration validator, weapons-load checklist board, explosive safety arc planner, sortie release board.
+- Cross-check tools: independent load-crew certifier and alternate munitions control desk.
+- Typical products: armament release matrix, load-crew certification board, and explosive-safety risk ladder.
+
+### `ts-joint-cold-weather-clothing-frostbite-discipline-v1`
+- Use for: cold-weather issue posture, layering discipline, and frostbite-prevention decisions before exposure casualties degrade readiness.
+- Primary tools: cold-weather issue ledger, exposure-risk board, wet-gear rotation tracker, casualty risk watchlist.
+- Cross-check tools: independent preventive-medicine witness and alternate supply accountability board.
+- Typical products: cold-weather issue ladder, frostbite-discipline matrix, and exposure-risk watchlist.
+
+## Protocol Stack Addendum LVII (2026-03-15, Flight Medicine, Ship Survivability, EOD Exploitation, Prime Power, External Lift, Beachmaster Control, Aircrew Gear, Riverine Maintenance, Flightline Armament, and Cold-Weather Discipline)
+
+### `ps-joint-flight-surgeon-aeromedical-waiver-stack-v1`
+- Protocols: `HL7/FHIR`, `AIXM/FIXM`, signed waiver manifests, `API/JSON`, `USMTF`.
+- Use for: waiver adjudication, sortie restriction routing, and medical-operations acknowledgment.
+
+### `ps-naval-damage-control-battle-stability-stack-v1`
+- Protocols: `AIS/NMEA`, `OGC`, signed damage-control manifests, `API/JSON`, `USMTF`.
+- Use for: compartment-status exchange, battle-stability updates, and restore-fight or withdraw approvals.
+
+### `ps-joint-eod-render-safe-site-exploitation-stack-v1`
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, signed evidence manifests, `API/JSON`, `OGC`.
+- Use for: ordnance-status updates, evidence-custody routing, and render-safe approval or handoff acknowledgments.
+
+### `ps-expeditionary-prime-power-generator-load-balance-stack-v1`
+- Protocols: `OPC UA`, signed maintenance manifests, `OGC`, `API/JSON`, `USMTF`.
+- Use for: generator telemetry exchange, maintenance release routing, and load-balance approvals.
+
+### `ps-joint-sling-load-external-lift-certification-stack-v1`
+- Protocols: `AIXM/FIXM`, `VMF`, signed load manifests, `API/JSON`, `USMTF`.
+- Use for: load certification exchange, lift-window updates, and aircraft release acknowledgments.
+
+### `ps-amphibious-beachmaster-surf-zone-shore-party-control-stack-v1`
+- Protocols: `OGC`, `CoT`, `VMF`, `AIS/NMEA`, `USMTF`.
+- Use for: lane-state exchange, surf-limit updates, and beach-release or shore-party handoff acknowledgments.
+
+### `ps-expeditionary-aircrew-flight-equipment-survival-gear-stack-v1`
+- Protocols: `HL7/FHIR`, signed life-support manifests, `AIXM/FIXM`, `API/JSON`, `USMTF`.
+- Use for: equipment-status exchange, survival-gear restrictions, and sortie-release acknowledgments.
+
+### `ps-joint-small-craft-riverine-maintenance-spares-stack-v1`
+- Protocols: `AIS/NMEA`, `VMF`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: craft-readiness updates, spares release routing, and patrol restriction acknowledgments.
+
+### `ps-joint-flightline-weapons-loading-armament-safety-stack-v1`
+- Protocols: `AIXM/FIXM`, signed load manifests, `API/JSON`, `USMTF`, `CoT`.
+- Use for: load-state exchange, explosive-safety routing, and armed-aircraft release acknowledgments.
+
+### `ps-joint-cold-weather-clothing-frostbite-discipline-stack-v1`
+- Protocols: `HL7/FHIR`, signed clothing manifests, `OGC`, `API/JSON`, `USMTF`.
+- Use for: issue-status exchange, exposure updates, and warming or no-go acknowledgment routing.

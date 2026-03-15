@@ -164,3 +164,9 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when base reconstitution includes potable-water restart for flightline support, casualty reception, or shelter occupancy.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when dispersal, recovery, or divert instructions may be stale, spoofed, or misrouted across digital order paths.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially alter sortie regeneration, base habitability, or command-path trust.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-aircrew-flight-equipment-survival-gear-v1` + `protocol_stack_id=ps-expeditionary-aircrew-flight-equipment-survival-gear-stack-v1` when airbase regeneration depends on inspected life-support equipment, survival radios, or environment-specific crew gear.
+- Add `tool_suite_id=ts-joint-flightline-weapons-loading-armament-safety-v1` + `protocol_stack_id=ps-joint-flightline-weapons-loading-armament-safety-stack-v1` when reconstitution tempo depends on trusted load plans, qualified armament crews, or explosive-safety separation on dispersed ramps.
+- Add `packet_id=DPL-AIRCREW-FLIGHT-EQUIPMENT-SURVIVAL-GEAR-001` and `packet_id=DPL-FLIGHTLINE-WEAPONS-ARMAMENT-SAFETY-001` for branches that materially alter sortie regeneration, ramp release, or dispersed-aircraft arming posture.

@@ -2566,3 +2566,75 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-medical-force-health-v1`.
 - Protocols: `CoT`, `VMF`, `HL7/FHIR`, signed autonomy manifests, `API/JSON`, `USMTF`.
 - Degraded fallback: human-only extraction or hold-in-place stabilization until override and route risks are cleared.
+
+## Profile Addendum AA (2026-03-15, Flight Medicine, Ship Survivability, EOD Exploitation, Prime Power, External Lift, Beachmaster Control, Aircrew Gear, Riverine Maintenance, Flightline Armament, and Cold-Weather Discipline)
+
+### `flight-surgeon-aeromedical-waiver-v1`
+- Use for: aviation decisions when crew medical status, medications, or unresolved life-support discrepancies could change sortie-release posture.
+- Primary tools: `ts-joint-flight-surgeon-aeromedical-waiver-v1`.
+- Cross-check tools: `ts-joint-aviation-physiology-hypoxia-life-support-v1`.
+- Protocols: `HL7/FHIR`, `AIXM/FIXM`, signed waiver manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: manual waiver and restriction tracking only with surgeon voice approval and UTC readback.
+
+### `naval-damage-control-battle-stability-v1`
+- Use for: naval combat decisions when flooding, fire, or power casualties make survivability and battle-stability the pacing constraint.
+- Primary tools: `ts-naval-damage-control-battle-stability-v1`.
+- Cross-check tools: `ts-maritime-undersea-v1`.
+- Protocols: `AIS/NMEA`, `OGC`, signed damage-control manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: fight-for-survival posture only with manual plot updates and conservative stability assumptions.
+
+### `eod-render-safe-site-exploitation-v1`
+- Use for: EOD and force-protection decisions when render-safe actions must preserve exploitation value and evidence integrity.
+- Primary tools: `ts-joint-eod-render-safe-site-exploitation-v1`.
+- Cross-check tools: `ts-detainee-accountability-v1`.
+- Protocols: `USMTF`, `NIEM`, `STIX/TAXII`, signed evidence manifests, `API/JSON`, `OGC`.
+- Degraded fallback: cordon-and-hold posture only with no exploitation handoff until authority is verified.
+
+### `prime-power-generator-load-balance-v1`
+- Use for: expeditionary infrastructure decisions when generator failures or load spikes threaten mission-essential electrical continuity.
+- Primary tools: `ts-expeditionary-prime-power-generator-load-balance-v1`.
+- Cross-check tools: `ts-civil-support-v1`.
+- Protocols: `OPC UA`, signed maintenance manifests, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential circuits only with manual meter checks and fixed load caps.
+
+### `sling-load-external-lift-certification-v1`
+- Use for: assault-support and resupply decisions when sling-load data, hook-up quality, or lift-window conditions could invalidate external lift.
+- Primary tools: `ts-joint-sling-load-external-lift-certification-v1`.
+- Cross-check tools: `ts-joint-c2-fusion-v1`.
+- Protocols: `AIXM/FIXM`, `VMF`, signed load manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: reduced-load or no-lift posture with manual voice confirmation only.
+
+### `beachmaster-surf-zone-shore-party-control-v1`
+- Use for: amphibious or sea-to-shore decisions when surf limits, lane control, and shore-party timing determine usable throughput.
+- Primary tools: `ts-amphibious-beachmaster-surf-zone-shore-party-control-v1`.
+- Cross-check tools: `ts-joint-littoral-underwater-obstacle-reduction-beach-recon-v1`.
+- Protocols: `OGC`, `CoT`, `VMF`, `AIS/NMEA`, `USMTF`.
+- Degraded fallback: single-lane or lifesaving release only with conservative surf thresholds and voice lane-control readback.
+
+### `aircrew-flight-equipment-survival-gear-v1`
+- Use for: aviation-safety decisions when life-support equipment, survival beacons, or protective ensembles may constrain sortie execution or recovery confidence.
+- Primary tools: `ts-expeditionary-aircrew-flight-equipment-survival-gear-v1`.
+- Cross-check tools: `ts-joint-aviation-physiology-hypoxia-life-support-v1`.
+- Protocols: `HL7/FHIR`, signed life-support manifests, `AIXM/FIXM`, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential sorties only with manual inspection attestation and protected voice release.
+
+### `small-craft-riverine-maintenance-spares-v1`
+- Use for: riverine operations decisions when craft readiness, engine faults, or scarce repair parts drive patrol coverage risk.
+- Primary tools: `ts-joint-small-craft-riverine-maintenance-spares-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `AIS/NMEA`, `VMF`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-priority craft only with manual launch restrictions and daily readiness review.
+
+### `flightline-weapons-loading-armament-safety-v1`
+- Use for: sortie-generation decisions when armed-aircraft loading must stay synchronized with crew certification and explosive-safety control.
+- Primary tools: `ts-joint-flightline-weapons-loading-armament-safety-v1`.
+- Cross-check tools: `ts-fires-airspace-v1`.
+- Protocols: `AIXM/FIXM`, signed load manifests, `API/JSON`, `USMTF`, `CoT`.
+- Degraded fallback: reduced-load posture only with manual certification and restricted ramp operations.
+
+### `cold-weather-clothing-frostbite-discipline-v1`
+- Use for: arctic and cold-weather readiness decisions when issue posture, wet-gear churn, and warming discipline determine exposure risk.
+- Primary tools: `ts-joint-cold-weather-clothing-frostbite-discipline-v1`.
+- Cross-check tools: `ts-joint-cold-injury-frostbite-rewarming-v1`.
+- Protocols: `HL7/FHIR`, signed clothing manifests, `OGC`, `API/JSON`, `USMTF`.
+- Degraded fallback: short-duration exposure only with manual gear checks and timed warming intervals.

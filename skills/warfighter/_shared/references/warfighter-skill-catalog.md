@@ -2636,3 +2636,29 @@ Every skill output should include:
 - Austere pediatric behavioral health and guardian reunification + austere surgical support coordinator + joint role 3 medical network and aeromedical evac cell + civil affairs stability ops.
 - Theater battle-damage contracting local vendor vetting and payment + acquisition and contracting support + contested logistics sustainment + cyber mission planner.
 - Joint robotic casualty extraction human override and safety + austere surgical support coordinator + combat search and rescue coordinator + mission risk decision support.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LVII)
+
+- joint-flight-surgeon-and-aeromedical-waiver-cell
+- naval-damage-control-and-battle-stability-cell
+- joint-explosive-ordnance-disposal-render-safe-and-site-exploitation-cell
+- expeditionary-prime-power-generator-maintenance-and-load-balance-cell
+- joint-sling-load-and-external-lift-certification-cell
+- amphibious-beachmaster-surf-zone-and-shore-party-control-cell
+- expeditionary-aircrew-flight-equipment-and-survival-gear-cell
+- joint-small-craft-riverine-maintenance-and-spares-cell
+- joint-flightline-weapons-loading-and-armament-safety-cell
+- joint-cold-weather-clothing-layering-and-frostbite-discipline-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LVII)
+
+- Flight surgeon and aeromedical waiver + air tasking cycle support + joint role 3 medical network and aeromedical evac cell + expeditionary aircrew flight equipment and survival gear cell.
+- Naval damage control and battle stability + naval surface warfare coordinator + anti-ship missile defense coordinator + strategic sealift and prepositioning coordinator.
+- EOD render-safe and site exploitation + explosive ordnance disposal coordinator + battlefield forensics site exploitation cell + route clearance and counter-IED fusion.
+- Prime-power generator maintenance and load balance + contested logistics sustainment + theater energy microgrid resilience cell + defense support of civil authorities crisis cell.
+- Sling-load and external-lift certification + air tasking cycle support + strategic mobility deployment planner + autonomous ground resupply convoy control.
+- Beachmaster surf-zone and shore-party control + joint port opening and JLOTS synchronization cell + amphibious assault coordinator + littoral underwater obstacle reduction and beach recon cell.
+- Expeditionary aircrew flight equipment and survival gear + airbase dispersal and rapid reconstitution cell + joint aviation physiology hypoxia acceleration and life-support cell + combat search and rescue coordinator.
+- Small-craft riverine maintenance and spares + riverine and inland waterways operations + contested logistics sustainment + joint port opening and JLOTS synchronization cell.
+- Flightline weapons loading and armament safety + airbase dispersal and rapid reconstitution cell + air tasking cycle support + munitions stockpile and expenditure manager.
+- Cold-weather clothing layering and frostbite discipline + joint cold injury frostbite and rewarming operations cell + strategic mobility deployment planner + arctic and extreme environment ops.
