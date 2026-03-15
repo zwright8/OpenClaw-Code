@@ -70,3 +70,9 @@ For each critical tool recommendation include objective, required inputs, query/
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag legal, ROE, LOAC, policy, and coalition caveat constraints before recommending action.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-undersea-cable-repair-ship-escort-priority-v1` + `protocol_stack_id=ps-strategic-undersea-cable-repair-ship-escort-priority-stack-v1` when restoration depends on scarce repair ships, escort protection, or maritime threat windows.
+- Add `tool_suite_id=ts-theater-offshore-energy-platform-blackstart-defense-v1` + `protocol_stack_id=ps-theater-offshore-energy-platform-blackstart-defense-stack-v1` when landing-station recovery depends on offshore power export continuity or shared OT blackstart sequencing.
+- Add `packet_id=DPL-CABLE-REPAIR-SHIP-ESCORT-001` and `packet_id=DPL-OFFSHORE-ENERGY-BLACKSTART-001` for branches that materially alter cable-restoration timing, power continuity, or commander risk posture.

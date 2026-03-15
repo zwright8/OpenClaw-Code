@@ -144,3 +144,7 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-joint-combat-camera-public-affairs-release-authenticity-v1` + `protocol_stack_id=ps-joint-combat-camera-public-affairs-release-authenticity-stack-v1` when public-release decisions depend on trusted media provenance, deepfake rebuttal, or synchronized combat-camera custody.
+- Add `packet_id=DPL-COMBAT-CAMERA-PA-RELEASE-AUTH-001` for branches that materially alter release timing, attribution confidence, or public narrative credibility.

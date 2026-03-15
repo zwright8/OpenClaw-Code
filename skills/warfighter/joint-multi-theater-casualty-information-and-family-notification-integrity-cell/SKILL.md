@@ -79,3 +79,8 @@ For each critical external dependency include:
 - Prioritize `tool_suite_id=ts-joint-multi-theater-casualty-family-notification-integrity-v1` + `protocol_stack_id=ps-joint-multi-theater-casualty-family-notification-integrity-stack-v1` when this mission set is the critical path for commander decision timelines.
 - Add `packet_id=DPL-JOINT-CASUALTY-FAMILY-NOTIFY-001` for the primary course of action and `packet_id=DPL-JOINT-CASUALTY-FAMILY-NOTIFY-002` for degraded-mode fallback actions.
 - Include `validation_owner`, `revalidation_utc`, and `ack_chain_status` for both packet paths before release.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when casualty or recovery notifications may be distorted by spoofed reporting, impersonation, or adversary influence pressure.
+- Add `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially change notification confidence, next-of-kin timing, or commander release authority.

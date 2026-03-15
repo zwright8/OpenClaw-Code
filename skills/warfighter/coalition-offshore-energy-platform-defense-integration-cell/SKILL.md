@@ -52,3 +52,9 @@ Primary products for this skill: platform defense posture map, patrol/deconflict
 - Flag legal, ROE, LOAC, policy, and coalition caveat constraints before recommending action.
 - Do not fabricate classified sources, authorities, or approvals.
 - If data trust or authority is below threshold, downgrade to advisory-only and request human command decision.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-theater-offshore-energy-platform-blackstart-defense-v1` + `protocol_stack_id=ps-theater-offshore-energy-platform-blackstart-defense-stack-v1` when platform viability depends on OT-safe restart, maritime defense, or export-path continuity.
+- Add `tool_suite_id=ts-strategic-undersea-cable-repair-ship-escort-priority-v1` + `protocol_stack_id=ps-strategic-undersea-cable-repair-ship-escort-priority-stack-v1` when offshore platform recovery competes with cable repair ships, escorts, or subsea restoration windows.
+- Add `packet_id=DPL-OFFSHORE-ENERGY-BLACKSTART-001` and `packet_id=DPL-CABLE-REPAIR-SHIP-ESCORT-001` for branches that materially alter offshore energy restoration, coalition patrol posture, or subsea continuity risk.

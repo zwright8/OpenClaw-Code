@@ -213,6 +213,22 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
 
+## Domain Toolchain Override (2026-03-13, Expansion Wave XL Addendum)
+
+- Add `tool_suite_id=ts-coalition-merchant-marine-crew-vetting-sealift-assurance-v1` + `protocol_stack_id=ps-coalition-merchant-marine-crew-vetting-sealift-assurance-stack-v1` when sustainment viability depends on merchant crew trust, sanctions compliance, or coalition sealift release timing.
+- Add `tool_suite_id=ts-strategic-contested-lng-bunker-fleet-fuel-allocation-v1` + `protocol_stack_id=ps-strategic-contested-lng-bunker-fleet-fuel-allocation-stack-v1` when contested maritime fuel access and bunkering confidence determine sustainment feasibility.
+- Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when port OT recovery and berth release directly constrain theater throughput.
+- Add `tool_suite_id=ts-theater-rapid-temporary-bridge-uas-inspection-release-v1` + `protocol_stack_id=ps-theater-rapid-temporary-bridge-uas-inspection-release-stack-v1` when force-flow branches depend on rapid bridge release and structural-confidence restoration.
+- Add `packet_id=DPL-COALITION-MERCHANT-MARINE-CREW-VETTING-SEALIFT-001`, `packet_id=DPL-STRATEGIC-LNG-BUNKER-FLEET-FUEL-ALLOCATION-001`, `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001`, and `packet_id=DPL-THEATER-TEMPORARY-BRIDGE-UAS-RELEASE-001` for sustainment branches that materially alter throughput confidence or mission feasibility.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLI Addendum)
+
+- Add `tool_suite_id=ts-strategic-domestic-transport-chokepoint-reroute-v1` + `protocol_stack_id=ps-strategic-domestic-transport-chokepoint-reroute-stack-v1` when homeland transport failures materially alter theater sustainment timelines or reception and onward movement confidence.
+- Add `tool_suite_id=ts-expeditionary-autonomous-sustainment-routing-drift-governance-v1` + `protocol_stack_id=ps-expeditionary-autonomous-sustainment-routing-drift-governance-stack-v1` when convoy viability depends on autonomy trust, telemetry confidence, or route drift containment.
+- Add `tool_suite_id=ts-strategic-shipyard-drydock-power-water-cyber-restoration-v1` + `protocol_stack_id=ps-strategic-shipyard-drydock-power-water-cyber-restoration-stack-v1` when fleet repair throughput and maritime sustainment depend on drydock utilities and OT recovery.
+- Add `tool_suite_id=ts-theater-river-port-dredge-barge-roro-sustainment-v1` + `protocol_stack_id=ps-theater-river-port-dredge-barge-roro-sustainment-stack-v1` when inland-waterway cargo flow, channel depth, or transload timing drives sustainment feasibility.
+- Add `packet_id=DPL-STRATEGIC-DOMESTIC-TRANSPORT-CHOKEPOINT-REROUTE-001`, `packet_id=DPL-EXPEDITIONARY-AUTONOMOUS-SUSTAINMENT-ROUTING-DRIFT-001`, `packet_id=DPL-STRATEGIC-SHIPYARD-DRYDOCK-RESTORATION-001`, and `packet_id=DPL-THEATER-RIVER-PORT-DREDGE-BARGE-RORO-001` for sustainment branches that materially alter throughput confidence or mission feasibility.
+
 ## Domain Toolchain Override (2026-03-14, Expansion Wave XLII Addendum)
 
 - Add `tool_suite_id=ts-coalition-allied-depot-sabotage-wargame-v1` + `protocol_stack_id=ps-coalition-allied-depot-sabotage-wargame-stack-v1` when sustainment viability depends on depot survivability, stock relocation, or host-nation recovery branches.
@@ -233,3 +249,28 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-homeland-rail-hazmat-military-priority-deconfliction-v1` + `protocol_stack_id=ps-homeland-rail-hazmat-military-priority-deconfliction-stack-v1` when rail dispatch must reconcile military throughput with hazardous-material controls and civil emergency constraints.
 - Add `tool_suite_id=ts-joint-airbase-arresting-gear-runway-cable-reconstitution-v1` + `protocol_stack_id=ps-joint-airbase-arresting-gear-runway-cable-reconstitution-stack-v1` when airbase sustainment, sortie recovery, or runway-end cable integrity becomes the bottleneck for operational tempo.
 - Add `packet_id=DPL-PHOTONICS-LASER-OPTICS-ALLOCATION-001`, `packet_id=DPL-RAIL-HAZMAT-MILPRIORITY-DECONFLICTION-001`, and `packet_id=DPL-ARRESTING-GEAR-RUNWAY-CABLE-001` for branches that materially alter sustainment throughput, sortie regeneration, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVI Addendum)
+
+- Add `tool_suite_id=ts-strategic-fuel-additive-adulteration-interdiction-v1` + `protocol_stack_id=ps-strategic-fuel-additive-adulteration-interdiction-stack-v1` when sustainment viability depends on trusted fuel-additive pedigree, contamination quarantine, or substitute blending decisions.
+- Add `tool_suite_id=ts-expeditionary-high-latitude-battery-thermal-survivability-v1` + `protocol_stack_id=ps-expeditionary-high-latitude-battery-thermal-survivability-stack-v1` when cold-soaked batteries, charging windows, or low-insolation power limits threaten logistics nodes and autonomous sustainment.
+- Add `tool_suite_id=ts-autonomous-breach-soil-bearing-route-classification-v1` + `protocol_stack_id=ps-autonomous-breach-soil-bearing-route-classification-stack-v1` when engineer or heavy-vehicle throughput depends on trusted soil-bearing classifications before route release.
+- Add `packet_id=DPL-FUEL-ADDITIVE-ADULTERATION-001`, `packet_id=DPL-HIGH-LATITUDE-BATTERY-THERMAL-001`, and `packet_id=DPL-BREACH-SOIL-BEARING-001` for branches that materially alter sustainment throughput, energy continuity, or route-release confidence.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-autonomous-decoy-economy-inventory-governance-v1` + `protocol_stack_id=ps-theater-autonomous-decoy-economy-inventory-governance-stack-v1` when sustainment survivability depends on pacing decoy expenditure, regeneration, or deception coverage across logistics nodes.
+- Add `tool_suite_id=ts-coalition-fuel-energy-water-nexus-anomaly-adjudication-v1` + `protocol_stack_id=ps-coalition-fuel-energy-water-nexus-anomaly-adjudication-stack-v1` when contested sustainment depends on distinguishing sabotage, utility cascade, or distribution failure across fuel, power, and water systems.
+- Add `tool_suite_id=ts-joint-aerial-port-battery-hazmat-pallet-integrity-v1` + `protocol_stack_id=ps-joint-aerial-port-battery-hazmat-pallet-integrity-stack-v1` when throughput depends on safe release of battery cargo, hazmat consignments, or palletized sustainment loads.
+- Add `packet_id=DPL-AUTONOMOUS-DECOY-ECONOMY-001`, `packet_id=DPL-FEW-NEXUS-ANOMALY-001`, and `packet_id=DPL-AERIAL-PORT-HAZMAT-PALLET-001` for branches that materially alter sustainment survivability, utility continuity, or air-logistics throughput.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-undersea-cable-repair-ship-escort-priority-v1` + `protocol_stack_id=ps-strategic-undersea-cable-repair-ship-escort-priority-stack-v1` when sustainment C2, reroute authority, or distribution continuity depends on restoring contested cable infrastructure.
+- Add `tool_suite_id=ts-theater-offshore-energy-platform-blackstart-defense-v1` + `protocol_stack_id=ps-theater-offshore-energy-platform-blackstart-defense-stack-v1` when sustainment viability depends on offshore power, fuel, or maritime energy-node restart sequencing.
+- Add `packet_id=DPL-CABLE-REPAIR-SHIP-ESCORT-001` and `packet_id=DPL-OFFSHORE-ENERGY-BLACKSTART-001` for branches that materially alter distribution confidence, energy continuity, or commander sustainment risk acceptance.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-theater-property-book-sensitive-item-recapture-v1` + `protocol_stack_id=ps-theater-property-book-sensitive-item-recapture-stack-v1` when sustainment feasibility depends on recovering or denying compromised vehicles, weapons, optics, crypto, or other accountable materiel.
+- Add `packet_id=DPL-PROPERTY-BOOK-SENSITIVE-ITEM-RECAPTURE-001` for branches that materially alter accountability confidence, reissue timing, or commander acceptance of compromise risk.

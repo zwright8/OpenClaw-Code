@@ -218,3 +218,9 @@ Preferred protocol families for this skill: USMTF, VMF, Link 16 J-series.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when target-release authority, no-strike updates, or restricted-target lists depend on trusted digital order versioning and recall.
 - Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when CDE or targeting systems require emergency remediation without losing auditability, rollback control, or mensuration trust.
 - Add `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for recommendations that materially alter target validity, release authority, or targeting-system trust posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-theater-cultural-property-no-strike-governance-v1` + `protocol_stack_id=ps-theater-cultural-property-no-strike-governance-stack-v1` when target validity depends on protected-site geofences, heritage preservation, or no-strike fidelity across dynamic operating areas.
+- Add `tool_suite_id=ts-joint-civilian-harm-condolence-claims-v1` + `protocol_stack_id=ps-joint-civilian-harm-condolence-claims-stack-v1` when release decisions, post-strike review, or commander acceptance thresholds depend on credible restorative-action or civilian-harm accountability posture.
+- Add `packet_id=DPL-CULTURAL-PROPERTY-NO-STRIKE-001` and `packet_id=DPL-CIVILIAN-HARM-CONDOLENCE-CLAIMS-001` for recommendations that materially alter target validity, CDE confidence, or protected-population risk acceptance.

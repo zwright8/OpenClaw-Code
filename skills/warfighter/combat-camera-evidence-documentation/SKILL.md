@@ -144,3 +144,7 @@ Primary products for this skill: imagery collection plan, evidentiary metadata c
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-joint-combat-camera-public-affairs-release-authenticity-v1` + `protocol_stack_id=ps-joint-combat-camera-public-affairs-release-authenticity-stack-v1` when combat-camera products may inform public release, strategic messaging, or adversary-disinformation rebuttal.
+- Add `packet_id=DPL-COMBAT-CAMERA-PA-RELEASE-AUTH-001` for branches that materially alter media custody confidence, release authority, or evidence-provenance posture.

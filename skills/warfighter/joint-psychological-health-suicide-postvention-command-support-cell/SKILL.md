@@ -33,6 +33,18 @@ Deliver results in this order:
 
 Primary products for this skill: postvention command action plan, unit stabilization timeline, care escalation and follow-up tracker.
 
+## Domain Toolchain Defaults
+
+- Primary: `tool_suite_id=ts-force-mental-health-postvention-v1` with `protocol_stack_id=ps-force-health-postvention-stack-v1`.
+- Alternate: select a mission-adjacent force-health suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: commander-approved manual postvention board with dual-review care handoffs and UTC acknowledgment logging.
+
+## Domain Packet Defaults
+
+- Default packet ID: `DPL-PSYCH-POSTVENTION-001`.
+- Preferred `toolchain_id=TC-PSYCH-095` and `toolchain_profile_id=psychological-health-postvention-v1`.
+- If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
+
 ## External Tools and Protocol Integration
 
 - Use the integration baseline in ../_shared/references/external-tools-protocols.md and name the exact tools selected for this mission set.
@@ -151,4 +163,5 @@ Use this default binding unless mission constraints require an alternate path:
 
 - Primary: `tool_suite_id=ts-force-mental-health-postvention-v1` with `protocol_stack_id=ps-force-health-postvention-stack-v1`.
 - Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-medical-readiness-stack-v1`.
+- Preferred `packet_id=DPL-PSYCH-POSTVENTION-001`, `toolchain_id=TC-PSYCH-095`, and `toolchain_profile_id=psychological-health-postvention-v1`.
 - Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.

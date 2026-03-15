@@ -82,3 +82,8 @@ Use these tool categories as the default stack for this skill: water telemetry a
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-homeland-municipal-water-cyber-chemical-triage-v1` + `protocol_stack_id=ps-homeland-municipal-water-cyber-chemical-triage-stack-v1` when contamination response depends on OT compromise triage, public-safety isolation decisions, or DSCA support prioritization.
+- Add `packet_id=DPL-MUNICIPAL-WATER-CYBER-CHEM-001` for branches that materially alter water-isolation timing, civil-military support posture, or commander risk acceptance.

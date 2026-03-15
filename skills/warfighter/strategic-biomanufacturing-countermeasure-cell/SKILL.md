@@ -145,3 +145,8 @@ Primary products for this skill: countermeasure surge plan, biomanufacturing ris
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-v1` + `protocol_stack_id=ps-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-stack-v1` when countermeasure viability depends on adjuvant pedigree, LNP scarcity, or fill-finish throughput.
+- Add `tool_suite_id=ts-theater-forward-sterility-release-bioprocess-assurance-v1` + `protocol_stack_id=ps-theater-forward-sterility-release-bioprocess-assurance-stack-v1` when release confidence depends on sterility assays, quarantine decisions, or batch-record integrity.
+- Add `packet_id=DPL-VACCINE-ADJUVANT-LNP-SURGE-001` and `packet_id=DPL-STERILITY-RELEASE-BIOPROCESS-001` for branches that materially alter production tempo, release posture, or commander risk acceptance.

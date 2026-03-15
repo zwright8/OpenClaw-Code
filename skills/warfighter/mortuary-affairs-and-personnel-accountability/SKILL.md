@@ -144,3 +144,7 @@ Primary products for this skill: personnel accountability ledger, chain-of-custo
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-joint-dignified-transfer-funeral-honors-family-escort-v1` + `protocol_stack_id=ps-joint-dignified-transfer-funeral-honors-family-escort-stack-v1` when casualty-accountability decisions depend on dignified transfer timing, honors availability, or trusted family-escort continuity.
+- Add `packet_id=DPL-DIGNIFIED-TRANSFER-FUNERAL-HONORS-001` for branches that materially alter casualty dignity, family-support posture, or ceremonial execution confidence.

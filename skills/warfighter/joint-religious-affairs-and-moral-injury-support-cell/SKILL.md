@@ -1,66 +1,74 @@
 ---
 name: joint-religious-affairs-and-moral-injury-support-cell
-description: Support religious affairs integration and moral injury risk mitigation in sustained combat and recovery operations. Use when commanders or staffs need mission-ready options with explicit tool/protocol bindings, authority gates, and degraded-mode branches.
+description: Coordinate religious support, protected spiritual care access, and moral injury risk mitigation for U.S. warfighters during combat, recovery, and prolonged operations. Use when commanders need options that preserve readiness without violating confidentiality, religious accommodation, or care-referral safeguards.
 ---
 
-# joint religious affairs and moral injury support cell
+# Joint Religious Affairs And Moral Injury Support Cell
 
 ## Mission Scope
 
-- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in its domain.
-- Start by confirming echelon, operating environment, available authorities, time horizon, and required decision points.
-- Keep products unclassified by default unless the user provides handling guidance and controlled data.
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in this domain.
+- Confirm echelon, operational tempo, chaplain coverage, confidential-care boundaries, coalition or host-nation religious constraints, and decision deadlines before recommending action.
+- Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Frame the mission problem using the latest operational context and critical dependencies.
-2. Identify assumptions, decision thresholds, and indicators that invalidate the current plan.
-3. Build primary and alternate options with explicit tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
-4. Integrate dependencies across command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
-5. Produce commander-facing outputs plus a staff-action version with owners, suspense dates, and branch triggers.
+1. Frame the mission problem with unit stress indicators, chaplain coverage, casualty tempo, protected-faith requirements, and referral capacity.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in readiness, confidentiality, moral injury risk, and command burden.
+3. Identify branch or sequel triggers, escalation gates, and releasability or privileged-communication constraints.
+4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
+5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
 ## Required Output Format
 
-Deliver results in this order:
-
 1. Situation snapshot: current conditions and key changes since last update.
-2. Recommended option: one clearly stated recommendation and rationale.
-3. Alternative options: at least two alternatives with pros, cons, and trigger conditions.
-4. Decision points: what must be decided now, later, or pre-delegated.
-5. Staff tasking: who does what by when.
+2. Recommended COA and rationale.
+3. Alternative COAs with trigger conditions.
+4. Decision points and escalation gates.
+5. Staff tasks by owner and suspense.
+6. Tool invocation packets with protocol bindings.
 
 ## Domain Products
 
-Primary products for this skill: religious support posture brief, moral injury risk watchlist, care referral synchronization plan.
+Primary products: religious support posture brief, confidential care-routing matrix, and moral-injury risk watchlist.
 
-## External Tools and Protocol Integration
+## Domain Toolchain Defaults
 
-- Use the integration baseline in `../_shared/references/external-tools-protocols.md`.
-- Prioritize these tools for this domain: chaplain scheduling and support tools, behavioral health risk dashboards, force climate reporting tools, confidential referral coordination systems.
-- Prioritize these protocol families for this domain: API/JSON, HL7/FHIR, USMTF.
-- Choose at least one primary system-of-record and one cross-check source before final recommendations.
-- Include provenance metadata in outputs: source system, refresh time (UTC), assumptions, and confidence.
+- Primary: `tool_suite_id=ts-joint-religious-affairs-moral-injury-support-v1` with `protocol_stack_id=ps-joint-religious-affairs-moral-injury-support-stack-v1`.
+- Alternate: `tool_suite_id=ts-force-mental-health-postvention-v1` with `protocol_stack_id=ps-force-health-postvention-stack-v1`.
+- Degraded: manual chaplain coverage roster with dual-review confidential referral log and UTC acknowledgment checks.
 
-## Interoperability Validation Checklist
+## Domain Packet Defaults
 
-- Run the mission assurance workflow in `../_shared/references/mission-assurance-checklist.md` before final release.
-- Validate each product includes source provenance, protocol/message format, UTC refresh time, confidence, and known gaps.
-- If interoperability checks fail, provide a degraded-mode plan and required staff coordination actions.
+- Default packet ID: `DPL-RELIGIOUS-MORAL-INJURY-001`.
+- If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
-## Authority and Human Approval Gates
+## External Tool Stack And Protocols
+
+- Preferred external toolsets for this domain: chaplain coverage scheduler, confidential referral ledger, command climate stress monitor, and protected-faith accommodation tracker.
+- Preferred protocol profiles for coordination and machine exchange: `HL7/FHIR`, signed care-referral manifests, `API/JSON`, and `USMTF`.
+- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
+
+## Tool Invocation Contract
+
+For each critical tool recommendation include objective, required inputs, query or action template, expected output schema, protocol or transport, and fallback path.
+
+## Mission Tool Authority Gates
 
 - Apply escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md` for high-consequence recommendations.
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for recommendations that can alter mission posture.
-- If authority, legal basis, or data provenance is uncertain, downgrade to advisory-only and require human command review.
+- If authority, legal basis, privileged-communication protection, or data provenance is uncertain, downgrade to advisory-only and require human command review.
 
-## Mission Tool and Protocol Catalog Binding
+## Interoperability Validation Checklist
 
-- Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
-- Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
-- If no suite fits, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+- Run `../_shared/references/mission-assurance-checklist.md` and `../_shared/references/us-joint-protocol-assurance-drill.md` before release.
+- Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
+- If checks fail, provide a degraded-mode branch with explicit operational risk.
 
 ## Guardrails
 
-- Flag gaps where assumptions exceed evidence.
-- Separate facts, assessed judgments, and unknowns.
+- Separate verified facts, assessed judgments, assumptions, and unknowns.
+- Protect privileged or confidential spiritual-care information and never require disclosure beyond mission necessity.
+- Flag religious accommodation limits, suicide or self-harm referral thresholds, coalition caveats, and command-climate concerns before recommending action.
 - Do not fabricate authorities, approvals, or source evidence.

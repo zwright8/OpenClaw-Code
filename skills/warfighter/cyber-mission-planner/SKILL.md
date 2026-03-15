@@ -149,3 +149,8 @@ Primary products for this skill: cyber mission plan, dependency/risk register, s
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` to select concrete tool suites and protocol stacks for this domain.
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
+
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-theater-cloud-credential-burn-access-reconstitution-v1` + `protocol_stack_id=ps-theater-cloud-credential-burn-access-reconstitution-stack-v1` when cyber recommendations depend on emergency identity burn, privileged-role containment, or mission workload access recovery.
+- Add `packet_id=DPL-CLOUD-CREDENTIAL-BURN-001` for branches that materially alter access persistence, break-glass posture, or mission-software continuity.

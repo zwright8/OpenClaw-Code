@@ -147,3 +147,9 @@ Primary products for this skill: vaccine-antitoxin surge ladder, bioindustrial b
 ## Domain Toolchain Override (2026-03-10, Maneuver Assurance and Strategic Continuity Expansion)
 
 - Add `tool_suite_id=ts-bioindustrial-vaccine-antitoxin-surge-v1` + `protocol_stack_id=ps-bioindustrial-vaccine-antitoxin-surge-stack-v1` when producing critical recommendations for this mission domain.
+
+## Domain Toolchain Override (2026-03-14, Expansion Wave XLIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-v1` + `protocol_stack_id=ps-strategic-vaccine-adjuvant-lipid-nanoparticle-surge-stack-v1` when vaccine or antitoxin surge options depend on adjuvant lots, LNP inputs, or fill-finish capacity.
+- Add `tool_suite_id=ts-theater-forward-sterility-release-bioprocess-assurance-v1` + `protocol_stack_id=ps-theater-forward-sterility-release-bioprocess-assurance-stack-v1` when emergency countermeasure release depends on trusted sterility, quarantine, or assay-confidence evidence.
+- Add `packet_id=DPL-VACCINE-ADJUVANT-LNP-SURGE-001` and `packet_id=DPL-STERILITY-RELEASE-BIOPROCESS-001` for branches that materially alter antitoxin release timing, strategic medical readiness, or allied distribution posture.

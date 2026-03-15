@@ -159,3 +159,8 @@ Primary products for this skill: sealift movement plan, prepositioning drawdown 
 - Add `tool_suite_id=ts-coalition-underway-replenishment-rig-compatibility-v1` + `protocol_stack_id=ps-coalition-underway-replenishment-rig-compatibility-stack-v1` when afloat prepositioning support or dispersed fleet sustainment depends on compatible coalition UNREP rigs and transfer certifications.
 - Add `tool_suite_id=ts-joint-civil-reserve-air-fleet-activation-v1` + `protocol_stack_id=ps-joint-civil-reserve-air-fleet-activation-stack-v1` when delayed sealift, port closure, or damaged prepositioning stocks require reserve airlift backfill for critical cargo.
 - Add `packet_id=DPL-UNDERWAY-REPLENISHMENT-RIG-001` and `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001` for recommendations that materially alter afloat sustainment, prepositioning resilience, or multimodal backfill posture.
+
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-v1` + `protocol_stack_id=ps-strategic-commercial-port-crane-firmware-rollback-sealift-recovery-stack-v1` when force-flow confidence depends on crane OT rollback safety, berth recovery, or commercial port automation trust.
+- Add `packet_id=DPL-STRATEGIC-PORT-CRANE-FIRMWARE-ROLLBACK-SEALIFT-001` for recommendations that materially alter berth release, cargo sequencing, or commander sealift confidence.

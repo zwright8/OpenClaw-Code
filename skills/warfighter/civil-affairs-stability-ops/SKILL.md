@@ -144,3 +144,13 @@ Primary products for this skill: stability effects plan, stakeholder engagement 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-14, Skill Materialization Repair Wave)
+
+- Add `tool_suite_id=ts-joint-civilian-evacuation-biometric-family-reunification-integrity-v1` + `protocol_stack_id=ps-joint-civilian-evacuation-biometric-family-reunification-integrity-stack-v1` when stability recommendations depend on trusted evacuation identity reconciliation, child or family matching, or fraud-resistant accountability.
+- Add `packet_id=DPL-JOINT-CIVILIAN-EVACUATION-BIOMETRIC-FAMILY-REUNIFICATION-INTEGRITY-001` for branches that materially alter protected movement, civil screening, or reunification governance.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LI Addendum)
+
+- Add `tool_suite_id=ts-theater-cultural-property-no-strike-governance-v1` + `protocol_stack_id=ps-theater-cultural-property-no-strike-governance-stack-v1` when stability recommendations depend on protected-site legitimacy, heritage preservation, or no-strike boundary fidelity.
+- Add `tool_suite_id=ts-joint-civilian-harm-condolence-claims-v1` + `protocol_stack_id=ps-joint-civilian-harm-condolence-claims-stack-v1` when restorative-action timing, condolence payments, or claims posture materially affect local trust and stability.
+- Add `packet_id=DPL-CULTURAL-PROPERTY-NO-STRIKE-001` and `packet_id=DPL-CIVILIAN-HARM-CONDOLENCE-CLAIMS-001` for branches that materially alter civil legitimacy, host-nation confidence, or commander acceptance of operational risk.
