@@ -156,8 +156,36 @@ test('extractRetryAfterHintMs supports RateLimit-Reset style hints', () => {
     assert.equal(fromXRateLimitResetEpoch, 10_000);
 });
 
-test('applyRetryHintJitterMs jitters around hint delay bounds', () => {
-    const low = applyRetryHintJitterMs({
+test('extractRetryAfterHintMs supports hyphenated hint keys and duration literals', () => {
+    const nowMs = Date.parse('2026-03-14T00:00:00.000Z');
+    const hint = extractRetryAfterHintMs(
+        {
+            metrics: {
+                'retry-after-ms': '17ms',
+                'x-ms-retry-after-ms': '6m0s'
+            }
+        },
+        { nowFactory: () => nowMs }
+    );
+    assert.equal(hint, 360_000);
+});
+
+test('extractRetryAfterHintMs prefers the most conservative hint when multiple are present', () => {
+    const nowMs = Date.parse('2026-03-14T00:00:00.000Z');
+    const hint = extractRetryAfterHintMs(
+        {
+            metrics: {
+                retryAfterSeconds: 1
+            },
+            output: 'Retry-After: 3'
+        },
+        { nowFactory: () => nowMs }
+    );
+    assert.equal(hint, 3_000);
+});
+
+test('applyRetryHintJitterMs only adds delay above minimum retry hint', () => {
+    const base = applyRetryHintJitterMs({
         delayMs: 1_000,
         jitter: 0.2,
         rng: () => 0
@@ -167,7 +195,7 @@ test('applyRetryHintJitterMs jitters around hint delay bounds', () => {
         jitter: 0.2,
         rng: () => 1
     });
-    assert.equal(low, 800);
+    assert.equal(base, 1_000);
     assert.equal(high, 1_200);
 });
 

@@ -226,6 +226,10 @@ function normalizeRetryAfterDelayMs(value, nowMs) {
     if (/^\d+(\.\d+)?$/.test(raw)) {
         return Math.max(0, Math.round(Number(raw) * 1000));
     }
+    const durationLiteralMs = parseDurationLiteralMs(raw);
+    if (durationLiteralMs !== null) {
+        return durationLiteralMs;
+    }
     const parsedDate = Date.parse(raw);
     if (Number.isFinite(parsedDate)) {
         return Math.max(0, Math.round(parsedDate - nowMs));
@@ -235,6 +239,12 @@ function normalizeRetryAfterDelayMs(value, nowMs) {
 
 function normalizeRateLimitResetDelayMs(value, nowMs) {
     if (value === null || value === undefined) return null;
+    if (typeof value === 'string') {
+        const durationLiteralMs = parseDurationLiteralMs(value);
+        if (durationLiteralMs !== null) {
+            return durationLiteralMs;
+        }
+    }
     const numeric = Number(value);
     if (!Number.isFinite(numeric) || numeric < 0) return null;
 
@@ -248,30 +258,68 @@ function normalizeRateLimitResetDelayMs(value, nowMs) {
     return Math.max(0, Math.round(numeric * 1000));
 }
 
+function parseDurationLiteralMs(rawValue) {
+    if (typeof rawValue !== 'string') return null;
+    const raw = rawValue.trim().toLowerCase();
+    if (!raw) return null;
+
+    const tokenPattern = /(\d+(?:\.\d+)?)\s*(ms|milliseconds?|s|sec|secs|seconds?|m|min|mins|minutes?|h|hr|hrs|hours?|d|day|days)/g;
+    let match;
+    let consumed = '';
+    let totalMs = 0;
+
+    while ((match = tokenPattern.exec(raw)) !== null) {
+        const amount = Number(match[1]);
+        if (!Number.isFinite(amount) || amount < 0) return null;
+        const unit = match[2];
+        if (unit.startsWith('ms')) {
+            totalMs += amount;
+        } else if (unit.startsWith('s')) {
+            totalMs += amount * 1000;
+        } else if (unit.startsWith('m')) {
+            totalMs += amount * 60_000;
+        } else if (unit.startsWith('h')) {
+            totalMs += amount * 3_600_000;
+        } else if (unit.startsWith('d')) {
+            totalMs += amount * 86_400_000;
+        } else {
+            return null;
+        }
+        consumed += match[0];
+    }
+
+    if (!consumed) return null;
+    const normalizedConsumed = consumed.replace(/\s+/g, '');
+    const normalizedRaw = raw.replace(/\s+/g, '');
+    if (normalizedConsumed !== normalizedRaw) return null;
+    return Math.max(0, Math.round(totalMs));
+}
+
 function parseRetryAfterHintFromOutput(output, nowMs) {
     if (typeof output !== 'string' || !output.trim()) return null;
+    const candidates = [];
     const lineMatch = output.match(/retry-?after\s*[:=]\s*([^\r\n;]+)/i);
     if (lineMatch) {
         const parsedFromLine = normalizeRetryAfterDelayMs(lineMatch[1], nowMs);
-        if (parsedFromLine !== null) return parsedFromLine;
+        if (parsedFromLine !== null) candidates.push(parsedFromLine);
     }
 
     const jsonHeaderMatch = output.match(/["']retry-?after["']\s*:\s*["']([^"']+)["']/i);
     if (jsonHeaderMatch) {
         const parsedFromJsonHeader = normalizeRetryAfterDelayMs(jsonHeaderMatch[1], nowMs);
-        if (parsedFromJsonHeader !== null) return parsedFromJsonHeader;
+        if (parsedFromJsonHeader !== null) candidates.push(parsedFromJsonHeader);
     }
 
     const rateLimitResetLineMatch = output.match(/(?:^|\b)(?:x-)?ratelimit-reset(?:-[a-z_]+)?\s*[:=]\s*([^\r\n;]+)/i);
     if (rateLimitResetLineMatch) {
         const parsedRateLimitReset = normalizeRateLimitResetDelayMs(rateLimitResetLineMatch[1], nowMs);
-        if (parsedRateLimitReset !== null) return parsedRateLimitReset;
+        if (parsedRateLimitReset !== null) candidates.push(parsedRateLimitReset);
     }
 
     const rateLimitResetJsonMatch = output.match(/["'](?:x-)?ratelimit-reset(?:-[a-z_]+)?["']\s*:\s*["']?([^"',\]\}\s]+)["']?/i);
     if (rateLimitResetJsonMatch) {
         const parsedRateLimitReset = normalizeRateLimitResetDelayMs(rateLimitResetJsonMatch[1], nowMs);
-        if (parsedRateLimitReset !== null) return parsedRateLimitReset;
+        if (parsedRateLimitReset !== null) candidates.push(parsedRateLimitReset);
     }
 
     const phraseMatch = output.match(
@@ -279,22 +327,27 @@ function parseRetryAfterHintFromOutput(output, nowMs) {
     );
     if (phraseMatch) {
         const amount = Number(phraseMatch[1]);
-        if (!Number.isFinite(amount) || amount < 0) return null;
-        const unit = String(phraseMatch[2] || 's').toLowerCase();
-        if (unit.startsWith('ms')) return Math.round(amount);
-        if (unit.startsWith('m')) return Math.round(amount * 60_000);
-        return Math.round(amount * 1000);
+        if (Number.isFinite(amount) && amount >= 0) {
+            const unit = String(phraseMatch[2] || 's').toLowerCase();
+            if (unit.startsWith('ms')) candidates.push(Math.round(amount));
+            else if (unit.startsWith('m')) candidates.push(Math.round(amount * 60_000));
+            else candidates.push(Math.round(amount * 1000));
+        }
     }
 
     const resetPhraseMatch = output.match(
         /rate\s*limit(?:ing)?\s*(?:resets?|resetting)\s*(?:in|after)?\s*(\d+(?:\.\d+)?)\s*(s|sec|secs|seconds?|m|min|mins|minutes?)?\b/i
     );
-    if (!resetPhraseMatch) return null;
-    const amount = Number(resetPhraseMatch[1]);
-    if (!Number.isFinite(amount) || amount < 0) return null;
-    const unit = String(resetPhraseMatch[2] || 's').toLowerCase();
-    if (unit.startsWith('m')) return Math.round(amount * 60_000);
-    return Math.round(amount * 1000);
+    if (resetPhraseMatch) {
+        const amount = Number(resetPhraseMatch[1]);
+        if (Number.isFinite(amount) && amount >= 0) {
+            const unit = String(resetPhraseMatch[2] || 's').toLowerCase();
+            if (unit.startsWith('m')) candidates.push(Math.round(amount * 60_000));
+            else candidates.push(Math.round(amount * 1000));
+        }
+    }
+    if (candidates.length === 0) return null;
+    return Math.max(...candidates);
 }
 
 export function applyRetryHintJitterMs({
@@ -306,8 +359,8 @@ export function applyRetryHintJitterMs({
     const normalizedJitter = normalizeRetryHintJitter(jitter, 0.1);
     if (normalizedDelay <= 0 || normalizedJitter <= 0) return normalizedDelay;
     const random = typeof rng === 'function' ? clamp(Number(rng()) || 0, 0, 1) : 0.5;
-    const offset = ((random * 2) - 1) * normalizedJitter;
-    return Math.max(0, Math.round(normalizedDelay * (1 + offset)));
+    // Retry-After / RateLimit-Reset semantics describe a minimum wait; only add positive spread.
+    return Math.max(0, Math.round(normalizedDelay * (1 + (random * normalizedJitter))));
 }
 
 export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {}) {
@@ -317,15 +370,19 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
         ? execution.metrics
         : {};
 
+    const candidateHints = [];
+
     const directMetricKeys = [
         'retryAfterMs',
         'retry_after_ms',
         'retryAfterMilliseconds',
-        'retry_after_milliseconds'
+        'retry_after_milliseconds',
+        'retry-after-ms',
+        'x-ms-retry-after-ms'
     ];
     for (const key of directMetricKeys) {
         const parsed = normalizeRetryAfterDelayMs(metrics[key], now);
-        if (parsed !== null) return parsed;
+        if (parsed !== null) candidateHints.push(parsed);
     }
 
     const secondsMetricKeys = [
@@ -335,7 +392,7 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     for (const key of secondsMetricKeys) {
         const numeric = Number(metrics[key]);
         if (Number.isFinite(numeric) && numeric >= 0) {
-            return Math.round(numeric * 1000);
+            candidateHints.push(Math.round(numeric * 1000));
         }
     }
 
@@ -351,7 +408,7 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     ];
     for (const key of rateLimitSecondsMetricKeys) {
         const parsed = normalizeRateLimitResetDelayMs(metrics[key], now);
-        if (parsed !== null) return parsed;
+        if (parsed !== null) candidateHints.push(parsed);
     }
 
     const epochMsMetricKeys = [
@@ -361,7 +418,7 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     for (const key of epochMsMetricKeys) {
         const epochMs = Number(metrics[key]);
         if (Number.isFinite(epochMs) && epochMs >= 0) {
-            return Math.max(0, Math.round(epochMs - now));
+            candidateHints.push(Math.max(0, Math.round(epochMs - now)));
         }
     }
 
@@ -372,7 +429,7 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     for (const key of epochSecondsMetricKeys) {
         const epochSeconds = Number(metrics[key]);
         if (Number.isFinite(epochSeconds) && epochSeconds >= 0) {
-            return Math.max(0, Math.round((epochSeconds * 1000) - now));
+            candidateHints.push(Math.max(0, Math.round((epochSeconds * 1000) - now)));
         }
     }
 
@@ -384,7 +441,7 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     ];
     for (const key of headerLikeMetricKeys) {
         const parsed = normalizeRetryAfterDelayMs(metrics[key], now);
-        if (parsed !== null) return parsed;
+        if (parsed !== null) candidateHints.push(parsed);
     }
 
     const rateLimitHeaderMetricKeys = [
@@ -401,10 +458,12 @@ export function extractRetryAfterHintMs(execution, { nowFactory = Date.now } = {
     ];
     for (const key of rateLimitHeaderMetricKeys) {
         const parsed = normalizeRateLimitResetDelayMs(metrics[key], now);
-        if (parsed !== null) return parsed;
+        if (parsed !== null) candidateHints.push(parsed);
     }
-
-    return parseRetryAfterHintFromOutput(execution.output, now);
+    const outputHint = parseRetryAfterHintFromOutput(execution.output, now);
+    if (outputHint !== null) candidateHints.push(outputHint);
+    if (candidateHints.length === 0) return null;
+    return Math.max(...candidateHints);
 }
 
 async function sleep(ms) {
