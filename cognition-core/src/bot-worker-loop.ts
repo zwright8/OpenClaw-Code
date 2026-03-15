@@ -120,6 +120,8 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
         `- totals.botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- totals.botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
+        `- totals.botRetryHintQueueCooldownActivated: ${report.totals?.botRetryHintQueueCooldownActivated || 0}`,
+        `- totals.botRetryHintQueueCooldownSkips: ${report.totals?.botRetryHintQueueCooldownSkips || 0}`,
         `- totals.botHedgesBudgetLimited: ${report.totals?.botHedgesBudgetLimited || 0}`,
         `- totals.botRetriesDeadlineExceeded: ${report.totals?.botRetriesDeadlineExceeded || 0}`,
         `- totals.botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
@@ -181,6 +183,7 @@ export async function runBotWorkerLoop({
     botRetryJitterStrategy = 'symmetric',
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
+    botRetryHintQueueCooldown = false,
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
@@ -243,6 +246,8 @@ export async function runBotWorkerLoop({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetryHintQueueCooldownActivated: 0,
+        botRetryHintQueueCooldownSkips: 0,
         botHedgesBudgetLimited: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
@@ -305,6 +310,7 @@ export async function runBotWorkerLoop({
             botRetryJitterStrategy,
             botRetryHintMaxDelayMs,
             botRetryHintJitter,
+            botRetryHintQueueCooldown,
             botAttemptTimeoutMs,
             botHedgedAttemptCount,
             botHedgedDelayMs,
@@ -383,6 +389,8 @@ export async function runBotWorkerLoop({
             botRetriesRecovered: processResult.botRetriesRecovered,
             botRetriesExhausted: processResult.botRetriesExhausted,
             botRetriesBudgetExhausted: processResult.botRetriesBudgetExhausted,
+            botRetryHintQueueCooldownActivated: processResult.botRetryHintQueueCooldownActivated,
+            botRetryHintQueueCooldownSkips: processResult.botRetryHintQueueCooldownSkips,
             botHedgesBudgetLimited: processResult.botHedgesBudgetLimited,
             botRetriesDeadlineExceeded: processResult.botRetriesDeadlineExceeded,
             botAttemptTimeouts: processResult.botAttemptTimeouts,
@@ -411,6 +419,8 @@ export async function runBotWorkerLoop({
         totals.botRetriesRecovered += processResult.botRetriesRecovered;
         totals.botRetriesExhausted += processResult.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += processResult.botRetriesBudgetExhausted;
+        totals.botRetryHintQueueCooldownActivated += processResult.botRetryHintQueueCooldownActivated;
+        totals.botRetryHintQueueCooldownSkips += processResult.botRetryHintQueueCooldownSkips;
         totals.botHedgesBudgetLimited += processResult.botHedgesBudgetLimited;
         totals.botRetriesDeadlineExceeded += processResult.botRetriesDeadlineExceeded;
         totals.botAttemptTimeouts += processResult.botAttemptTimeouts;

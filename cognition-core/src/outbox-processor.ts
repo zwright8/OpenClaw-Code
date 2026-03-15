@@ -77,6 +77,21 @@ function normalizeHedgingAllowNonIdempotent(value, fallback = false) {
     return fallback;
 }
 
+function normalizeBooleanFlag(value, fallback = false) {
+    if (value === undefined || value === null) return fallback;
+    if (typeof value === 'boolean') return value;
+    if (typeof value === 'number') return value > 0;
+    const normalized = String(value).trim().toLowerCase();
+    if (!normalized) return fallback;
+    if (normalized === '1' || normalized === 'true' || normalized === 'yes' || normalized === 'on') {
+        return true;
+    }
+    if (normalized === '0' || normalized === 'false' || normalized === 'no' || normalized === 'off') {
+        return false;
+    }
+    return fallback;
+}
+
 function coerceBooleanFlag(value) {
     if (value === true || value === false) return value;
     if (typeof value === 'number') return value > 0;
@@ -1116,6 +1131,7 @@ export async function processOutboxEnvelopes({
     botRetryJitterStrategy = 'symmetric',
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
+    botRetryHintQueueCooldown = false,
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
@@ -1171,6 +1187,7 @@ export async function processOutboxEnvelopes({
     const normalizedBotRetryJitterStrategy = normalizeRetryJitterStrategy(botRetryJitterStrategy, 'symmetric');
     const normalizedBotRetryHintMaxDelayMs = normalizeRetryHintMaxDelayMs(botRetryHintMaxDelayMs, 120_000);
     const normalizedBotRetryHintJitter = normalizeRetryHintJitter(botRetryHintJitter, 0.1);
+    const normalizedBotRetryHintQueueCooldown = normalizeBooleanFlag(botRetryHintQueueCooldown, false);
     const normalizedBotAttemptTimeoutMs = parseNonNegativeInt(botAttemptTimeoutMs, 120_000);
     const normalizedBotHedgedAttemptCount = normalizeHedgedAttemptCount(botHedgedAttemptCount, 1);
     const normalizedBotHedgedDelayMs = normalizeHedgedDelayMs(botHedgedDelayMs, 0);
@@ -1305,6 +1322,7 @@ export async function processOutboxEnvelopes({
         const state = {
             retryBudgetTokens: 0,
             hedgeBudgetTokens: 0,
+            retryHintQueueCooldownUntilMs: 0,
             consecutiveTransientBotFailures: 0,
             botAttemptDurationObservations: [],
             transientFailureRateObservations: [],
@@ -1427,6 +1445,8 @@ export async function processOutboxEnvelopes({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetryHintQueueCooldownActivated: 0,
+        botRetryHintQueueCooldownSkips: 0,
         botHedgesBudgetLimited: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
@@ -1511,6 +1531,22 @@ export async function processOutboxEnvelopes({
                         }
                     });
                     stats.botCircuitBreakerOpenSkips++;
+                }
+                if (
+                    !execution
+                    && normalizedBotRetryHintQueueCooldown
+                    && targetResilienceState.retryHintQueueCooldownUntilMs > taskNow
+                ) {
+                    const remainingMs = Math.max(0, targetResilienceState.retryHintQueueCooldownUntilMs - taskNow);
+                    execution = createBotFailureExecution({
+                        output: `Task execution skipped: target is in Retry-After cooldown for another ${remainingMs}ms.`,
+                        metrics: {
+                            retryHintQueueCooldownActive: 1,
+                            retryHintQueueCooldownRemainingMs: remainingMs,
+                            retryable: 1
+                        }
+                    });
+                    stats.botRetryHintQueueCooldownSkips++;
                 }
                 if (
                     !execution
@@ -1810,6 +1846,30 @@ export async function processOutboxEnvelopes({
 
                 const transientBotFailure = isTransientBotFailure(execution);
                 const skippedByCircuitBreaker = Number(execution?.metrics?.circuitBreakerOpen) >= 1;
+                const skippedByRetryHintCooldown = Number(execution?.metrics?.retryHintQueueCooldownActive) >= 1;
+                if (!skippedByCircuitBreaker && !skippedByRetryHintCooldown && normalizedBotRetryHintQueueCooldown) {
+                    const retryAfterHintMs = extractRetryAfterHintMs(execution, { nowFactory: now });
+                    if (retryAfterHintMs !== null && retryAfterHintMs > 0) {
+                        const jitteredRetryAfterHintMs = applyRetryHintJitterMs({
+                            delayMs: clamp(retryAfterHintMs, 0, normalizedBotRetryHintMaxDelayMs),
+                            jitter: normalizedBotRetryHintJitter,
+                            rng
+                        });
+                        targetResilienceState.retryHintQueueCooldownUntilMs = Math.max(
+                            targetResilienceState.retryHintQueueCooldownUntilMs,
+                            safeNow(now) + jitteredRetryAfterHintMs
+                        );
+                        stats.botRetryHintQueueCooldownActivated++;
+                        execution = {
+                            ...execution,
+                            metrics: {
+                                ...(execution.metrics || {}),
+                                retryHintQueueCooldownMs: jitteredRetryAfterHintMs,
+                                retryHintQueueCooldownUntilMs: targetResilienceState.retryHintQueueCooldownUntilMs
+                            }
+                        };
+                    }
+                }
                 if (!circuitBreakerEnabled || skippedByCircuitBreaker) {
                     if (!circuitBreakerEnabled) {
                         closeCircuitBreaker(targetResilienceState);

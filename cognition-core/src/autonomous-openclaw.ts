@@ -5275,6 +5275,8 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- botRetriesRecovered: ${report.totals?.botRetriesRecovered || 0}`,
         `- botRetriesExhausted: ${report.totals?.botRetriesExhausted || 0}`,
         `- botRetriesBudgetExhausted: ${report.totals?.botRetriesBudgetExhausted || 0}`,
+        `- botRetryHintQueueCooldownActivated: ${report.totals?.botRetryHintQueueCooldownActivated || 0}`,
+        `- botRetryHintQueueCooldownSkips: ${report.totals?.botRetryHintQueueCooldownSkips || 0}`,
         `- botHedgesBudgetLimited: ${report.totals?.botHedgesBudgetLimited || 0}`,
         `- botRetriesDeadlineExceeded: ${report.totals?.botRetriesDeadlineExceeded || 0}`,
         `- botAttemptTimeouts: ${report.totals?.botAttemptTimeouts || 0}`,
@@ -5354,6 +5356,7 @@ export async function runAutonomousOpenClaw({
     botRetryJitterStrategy = 'symmetric',
     botRetryHintMaxDelayMs = 120_000,
     botRetryHintJitter = 0.1,
+    botRetryHintQueueCooldown = false,
     botAttemptTimeoutMs = 120_000,
     botHedgedAttemptCount = 1,
     botHedgedDelayMs = 0,
@@ -5441,6 +5444,8 @@ export async function runAutonomousOpenClaw({
         botRetriesRecovered: 0,
         botRetriesExhausted: 0,
         botRetriesBudgetExhausted: 0,
+        botRetryHintQueueCooldownActivated: 0,
+        botRetryHintQueueCooldownSkips: 0,
         botHedgesBudgetLimited: 0,
         botRetriesDeadlineExceeded: 0,
         botAttemptTimeouts: 0,
@@ -5514,6 +5519,7 @@ export async function runAutonomousOpenClaw({
             botRetryJitterStrategy,
             botRetryHintMaxDelayMs,
             botRetryHintJitter,
+            botRetryHintQueueCooldown,
             botAttemptTimeoutMs,
             botHedgedAttemptCount,
             botHedgedDelayMs,
@@ -5605,6 +5611,8 @@ export async function runAutonomousOpenClaw({
                 botRetriesRecovered: workerReport.totals.botRetriesRecovered,
                 botRetriesExhausted: workerReport.totals.botRetriesExhausted,
                 botRetriesBudgetExhausted: workerReport.totals.botRetriesBudgetExhausted,
+                botRetryHintQueueCooldownActivated: workerReport.totals.botRetryHintQueueCooldownActivated,
+                botRetryHintQueueCooldownSkips: workerReport.totals.botRetryHintQueueCooldownSkips,
                 botHedgesBudgetLimited: workerReport.totals.botHedgesBudgetLimited,
                 botRetriesDeadlineExceeded: workerReport.totals.botRetriesDeadlineExceeded,
                 botAttemptTimeouts: workerReport.totals.botAttemptTimeouts,
@@ -5636,6 +5644,8 @@ export async function runAutonomousOpenClaw({
         totals.botRetriesRecovered += waveReport.worker.botRetriesRecovered;
         totals.botRetriesExhausted += waveReport.worker.botRetriesExhausted;
         totals.botRetriesBudgetExhausted += waveReport.worker.botRetriesBudgetExhausted;
+        totals.botRetryHintQueueCooldownActivated += waveReport.worker.botRetryHintQueueCooldownActivated;
+        totals.botRetryHintQueueCooldownSkips += waveReport.worker.botRetryHintQueueCooldownSkips;
         totals.botHedgesBudgetLimited += waveReport.worker.botHedgesBudgetLimited;
         totals.botRetriesDeadlineExceeded += waveReport.worker.botRetriesDeadlineExceeded;
         totals.botAttemptTimeouts += waveReport.worker.botAttemptTimeouts;
@@ -5702,6 +5712,7 @@ export async function runAutonomousOpenClaw({
             botRetryJitterStrategy: normalizeRetryJitterStrategy(botRetryJitterStrategy, 'symmetric'),
             botRetryHintMaxDelayMs: parseNonNegativeInt(botRetryHintMaxDelayMs, 120_000),
             botRetryHintJitter: clamp(parseNonNegativeNumber(botRetryHintJitter, 0.1), 0, 1),
+            botRetryHintQueueCooldown: Boolean(botRetryHintQueueCooldown),
             botAttemptTimeoutMs: parseNonNegativeInt(botAttemptTimeoutMs, 120_000),
             botHedgedAttemptCount: clamp(parsePositiveInt(botHedgedAttemptCount, 1), 1, 5),
             botHedgedDelayMs: parseNonNegativeInt(botHedgedDelayMs, 0),

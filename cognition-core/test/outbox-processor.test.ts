@@ -609,6 +609,88 @@ test('processOutboxEnvelopes honors ratelimit-reset hints with jittered delay', 
     assert.ok(attemptStartedAt[1] - attemptStartedAt[0] >= 35);
 });
 
+test('processOutboxEnvelopes applies Retry-After queue cooldown across tasks for same target', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const firstRequest = makeRequest('00000000-0000-4000-8000-000000000743', target, 'high');
+    const secondRequest = makeRequest('00000000-0000-4000-8000-000000000744', target, 'high');
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 90_600 });
+    const firstRecord = buildQueueRecordFromTaskRequest(firstRequest, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_601
+    });
+    firstRecord.status = 'dispatched';
+    firstRecord.attempts = 1;
+    await store.saveRecord(firstRecord);
+
+    const secondRecord = buildQueueRecordFromTaskRequest(secondRequest, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 90_602
+    });
+    secondRecord.status = 'dispatched';
+    secondRecord.attempts = 1;
+    await store.saveRecord(secondRecord);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+    const envelopes = [
+        createEnvelope({ target, request: firstRequest }),
+        createEnvelope({ target, request: secondRequest })
+    ];
+    fs.writeFileSync(
+        outboxFile,
+        `${envelopes.map((entry) => JSON.stringify(entry)).join('\n')}\n`,
+        'utf8'
+    );
+
+    let launches = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botRetryHintMaxDelayMs: 50,
+        botRetryHintJitter: 0,
+        botRetryHintQueueCooldown: true,
+        nowFactory: () => 1_000,
+        botExecute: async () => {
+            launches++;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: '429 too many requests',
+                metrics: {
+                    retryable: 1,
+                    retryAfterSeconds: 0.04
+                },
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(launches, 1);
+    assert.equal(stats.botRetryHintQueueCooldownActivated, 1);
+    assert.equal(stats.botRetryHintQueueCooldownSkips, 1);
+    assert.equal(stats.botTasksExecuted, 2);
+    assert.equal(stats.botTasksFailed, 2);
+
+    const records = await store.loadRecords();
+    const firstCompleted = records.find((entry) => entry.taskId === firstRequest.id);
+    const secondCompleted = records.find((entry) => entry.taskId === secondRequest.id);
+    assert.equal(firstCompleted?.status, 'failed');
+    assert.equal(secondCompleted?.status, 'failed');
+    assert.match(secondCompleted?.result?.output || '', /Retry-After cooldown/);
+});
+
 test('processOutboxEnvelopes retries timed out bot attempts and recovers', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

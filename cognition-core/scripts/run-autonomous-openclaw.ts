@@ -41,6 +41,7 @@ Options:
   --bot-retry-jitter-strategy <mode> Retry jitter strategy: symmetric|full|decorrelated (default: symmetric)
   --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
   --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
+  --bot-retry-hint-queue-cooldown Apply Retry-After cooldown across subsequent queued tasks per target (default: off)
   --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
   --bot-hedged-attempts <n>    Hedged attempts per bot try to reduce tail latency (1-5, default: 1 disabled)
   --bot-hedged-delay-ms <n>    Delay before launching each hedged follower attempt (default: 0; disabled)
@@ -275,6 +276,7 @@ function parseArgs(argv) {
         botRetryJitterStrategy: 'symmetric',
         botRetryHintMaxDelayMs: 120_000,
         botRetryHintJitter: 0.1,
+        botRetryHintQueueCooldown: false,
         botAttemptTimeoutMs: 120_000,
         botHedgedAttemptCount: 1,
         botHedgedDelayMs: 0,
@@ -418,6 +420,10 @@ function parseArgs(argv) {
         }
         if (token === '--bot-hedged-delay-auto') {
             options.botHedgedDelayAutoTarget = true;
+            continue;
+        }
+        if (token === '--bot-retry-hint-queue-cooldown') {
+            options.botRetryHintQueueCooldown = true;
             continue;
         }
         if (token === '--exp3-auto-eta') {
@@ -1188,6 +1194,8 @@ function printSummary(report) {
     console.log(`Bot retries recovered: ${report.totals.botRetriesRecovered || 0}`);
     console.log(`Bot retries exhausted: ${report.totals.botRetriesExhausted || 0}`);
     console.log(`Bot retries budget exhausted: ${report.totals.botRetriesBudgetExhausted || 0}`);
+    console.log(`Bot Retry-After queue cooldown activations: ${report.totals.botRetryHintQueueCooldownActivated || 0}`);
+    console.log(`Bot Retry-After queue cooldown skips: ${report.totals.botRetryHintQueueCooldownSkips || 0}`);
     console.log(`Bot hedges budget limited: ${report.totals.botHedgesBudgetLimited || 0}`);
     console.log(`Bot retries deadline exceeded: ${report.totals.botRetriesDeadlineExceeded || 0}`);
     console.log(`Bot attempt timeouts: ${report.totals.botAttemptTimeouts || 0}`);
@@ -1237,6 +1245,7 @@ function printSummary(report) {
             botRetryJitterStrategy: options.botRetryJitterStrategy,
             botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
             botRetryHintJitter: options.botRetryHintJitter,
+            botRetryHintQueueCooldown: options.botRetryHintQueueCooldown,
             botAttemptTimeoutMs: options.botAttemptTimeoutMs,
             botHedgedAttemptCount: options.botHedgedAttemptCount,
             botHedgedDelayMs: options.botHedgedDelayMs,

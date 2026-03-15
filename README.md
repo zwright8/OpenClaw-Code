@@ -269,6 +269,7 @@ npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --late
 npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-jitter-strategy decorrelated
 npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-hint-max-ms 120000
 npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-hint-max-ms 120000 --bot-retry-hint-jitter 0.1
+npm run autonomous:run -- --bot-max-attempts 2 --bot-retry-hint-max-ms 120000 --bot-retry-hint-jitter 0.1 --bot-retry-hint-queue-cooldown
 npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-hint-max-ms 120000 --bot-retry-hint-jitter 0.1 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000
 npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25
 npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-attempt-timeout-auto --bot-attempt-timeout-auto-percentile 0.95 --bot-attempt-timeout-auto-min-samples 8 --bot-attempt-timeout-auto-window-size 32 --bot-attempt-timeout-auto-blend 0.5
