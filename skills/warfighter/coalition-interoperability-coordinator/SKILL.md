@@ -347,3 +347,9 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-harbor-salvage-diving-uxo-dock-clearance-v1` + `protocol_stack_id=ps-coalition-harbor-salvage-diving-uxo-dock-clearance-stack-v1` when coalition port reopening depends on diver-certification reciprocity, UXO confidence, or berth-authority alignment.
 - Add `tool_suite_id=ts-coalition-cross-border-casualty-credentialing-blood-compatibility-v1` + `protocol_stack_id=ps-coalition-cross-border-casualty-credentialing-blood-compatibility-stack-v1` when coalition casualty routing depends on clinician credential reciprocity, blood-standard interoperability, or emergency border clearance.
 - Add `packet_id=DPL-HARBOR-SALVAGE-UXO-001` and `packet_id=DPL-CROSS-BORDER-CASUALTY-CREDENTIALING-001` for branches that materially change coalition access, medical-routing legitimacy, or combined-force survivability confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-human-remains-dna-custody-cross-border-release-v1` + `protocol_stack_id=ps-coalition-human-remains-dna-custody-cross-border-release-stack-v1` when coalition interoperability depends on shared mortuary custody standards, DNA confidence, or cross-border release legitimacy.
+- Add `tool_suite_id=ts-coalition-ration-dietary-compliance-allergen-assurance-v1` + `protocol_stack_id=ps-coalition-ration-dietary-compliance-allergen-assurance-stack-v1` when combined sustainment depends on harmonized allergen controls, medical diets, or religious-feeding caveats.
+- Add `packet_id=DPL-HUMAN-REMAINS-DNA-001` and `packet_id=DPL-RATION-ALLERGEN-001` for branches that materially change coalition release confidence, legal sufficiency, or combined-force sustainment legitimacy.

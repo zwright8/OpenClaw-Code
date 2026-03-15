@@ -13796,3 +13796,107 @@ external_binding:
 ### `ps-coalition-cross-border-casualty-credentialing-blood-compatibility-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed blood manifests, `S/MIME`, `API/JSON`, `USMTF`.
 - Use for: patient movement updates, credential reciprocity exchange, blood-compatibility routing, and coalition transfer approvals.
+
+## Tool Suite Addendum LXIV (2026-03-15, External Integration Profiles for Expansion Wave LXIV)
+
+### `ts-joint-walking-blood-bank-donor-screening-transfusion-integrity-v1`
+- Use for: walking blood bank donor screening, low-titer whole-blood release, and emergency transfusion integrity under austere conditions.
+- Primary tools: donor registry, blood typing and titer ledger, casualty transfusion board, infectious-screening tracker.
+- Cross-check tools: independent lab witness and alternate resuscitation control desk.
+- Typical products: donor screening ladder, low-titer whole-blood release board, transfusion integrity matrix.
+
+### `ts-expeditionary-medical-waste-sterilization-biohazard-routing-v1`
+- Use for: medical-waste segregation, sterilization assurance, and contaminated-route management around forward treatment nodes.
+- Primary tools: sterilizer telemetry board, red-bag manifest ledger, incineration capacity tracker, contaminated route status board.
+- Cross-check tools: independent preventive-medicine review cell and alternate hazardous-waste control board.
+- Typical products: biohazard throughput board, sterilization release ladder, contaminated route matrix.
+
+### `ts-coalition-human-remains-dna-custody-cross-border-release-v1`
+- Use for: human-remains identification confidence, DNA custody integrity, and coalition cross-border release synchronization.
+- Primary tools: mortuary custody ledger, DNA sample chain tracker, identification confidence board, border-release coordination desk.
+- Cross-check tools: independent mortuary review cell and alternate coalition legal liaison board.
+- Typical products: remains custody ledger, DNA confidence ladder, cross-border release matrix.
+
+### `ts-joint-reefer-container-cold-chain-denied-port-restoration-v1`
+- Use for: reefer-container prioritization, denied-port cold-chain recovery, and shore-power restoration under contested logistics.
+- Primary tools: reefer telemetry board, shore-power dispatch console, berth queue manager, cargo-temperature manifest ledger.
+- Cross-check tools: independent cold-chain quality cell and alternate port-operations status board.
+- Typical products: reefer priority board, cold-chain restoration ladder, denied-port recovery matrix.
+
+### `ts-joint-littoral-hydrographic-survey-beach-lane-recertification-v1`
+- Use for: littoral survey refresh, beach-lane recertification, and landing-lane safety under changing surf and bathymetry.
+- Primary tools: hydrographic survey console, bathymetry raster board, surf and tide model, beach-lane map service.
+- Cross-check tools: independent beachmaster control cell and alternate engineer-recon board.
+- Typical products: hydrographic confidence board, beach-lane recertification packet, connector go/no-go matrix.
+
+### `ts-theater-drone-port-battery-thermal-runaway-ordnance-standoff-v1`
+- Use for: drone-port battery-fire response, pad evacuation, and armed-aircraft standoff control during high-tempo launch and recovery.
+- Primary tools: battery health telemetry board, drone-port pad scheduler, fire-suppression status board, ordnance clear-radius calculator.
+- Cross-check tools: independent explosive-safety desk and alternate air-node recovery board.
+- Typical products: pad-risk board, battery thermal-runaway action ladder, ordnance standoff matrix.
+
+### `ts-strategic-cash-vault-disconnected-pay-agent-anti-diversion-v1`
+- Use for: physical-cash custody, disconnected pay-agent routing, and anti-diversion controls during disrupted payroll operations.
+- Primary tools: cash-vault ledger, biometric or roster verification board, pay-agent route tracker, fraud analytics desk.
+- Cross-check tools: independent finance audit cell and alternate courier custody board.
+- Typical products: cash custody ladder, pay-agent route matrix, anti-diversion control board.
+
+### `ts-strategic-space-cleanroom-contamination-component-quarantine-v1`
+- Use for: cleanroom contamination response, component quarantine, and launch-integration recovery for high-reliability space hardware.
+- Primary tools: cleanroom environmental monitor, component genealogy ledger, contamination assay board, launch-integration schedule tracker.
+- Cross-check tools: independent quality-assurance witness and alternate launch integration review board.
+- Typical products: contamination control board, component quarantine matrix, launch-integration recovery ladder.
+
+### `ts-coalition-ration-dietary-compliance-allergen-assurance-v1`
+- Use for: coalition ration compliance, ingredient traceability, and allergen or religious-diet assurance under constrained distribution.
+- Primary tools: ration inventory board, ingredient and allergen manifest ledger, meal-demand tracker, coalition caveat board.
+- Cross-check tools: independent preventive-medicine review cell and alternate coalition sustainment desk.
+- Typical products: dietary compliance board, allergen risk ladder, coalition ration-release matrix.
+
+### `ts-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-v1`
+- Use for: sterile-processing throughput, instrument-set turnaround, and autoclave assurance that sustains austere surgical tempo.
+- Primary tools: surgical-set tracker, autoclave telemetry board, biologic-indicator status board, operating-room demand queue.
+- Cross-check tools: independent infection-control review cell and alternate biomedical maintenance board.
+- Typical products: sterile-processing throughput board, instrument-turnaround ladder, autoclave assurance matrix.
+
+## Protocol Stack Addendum LXIV (2026-03-15, External Integration Profiles for Expansion Wave LXIV)
+
+### `ps-joint-walking-blood-bank-donor-screening-transfusion-integrity-stack-v1`
+- Protocols: `HL7/FHIR`, `LOINC`, signed blood manifests, `API/JSON`, `USMTF`.
+- Use for: donor eligibility exchange, whole-blood release coordination, and transfusion-status routing.
+
+### `ps-expeditionary-medical-waste-sterilization-biohazard-routing-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `OPC UA`, signed waste manifests, `API/JSON`, `USMTF`.
+- Use for: sterilizer status exchange, biohazard manifest routing, and contaminated-transport coordination.
+
+### `ps-coalition-human-remains-dna-custody-cross-border-release-stack-v1`
+- Protocols: `NIEM`, signed custody manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: identity-confidence exchange, custody-chain routing, and coalition release approvals.
+
+### `ps-joint-reefer-container-cold-chain-denied-port-restoration-stack-v1`
+- Protocols: `AIS/NMEA`, `EDI X12`, `OPC UA`, `API/JSON`, `USMTF`.
+- Use for: reefer telemetry exchange, berth-recovery status updates, and cold-chain release acknowledgments.
+
+### `ps-joint-littoral-hydrographic-survey-beach-lane-recertification-stack-v1`
+- Protocols: `IHO S-100/S-57`, `OGC`, `AIS/NMEA`, `API/JSON`, `USMTF`.
+- Use for: hydrographic data exchange, beach-lane certification routing, and connector go/no-go coordination.
+
+### `ps-theater-drone-port-battery-thermal-runaway-ordnance-standoff-stack-v1`
+- Protocols: `CoT`, `AIXM/FIXM`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: pad-status exchange, thermal-runaway alerts, and explosive-safety release coordination.
+
+### `ps-strategic-cash-vault-disconnected-pay-agent-anti-diversion-stack-v1`
+- Protocols: `NIEM`, signed cash manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: vault-status updates, courier-custody routing, and emergency disbursement approvals.
+
+### `ps-strategic-space-cleanroom-contamination-component-quarantine-stack-v1`
+- Protocols: `CCSDS`, `OPC UA`, signed manufacturing manifests, `API/JSON`, `USMTF`.
+- Use for: contamination-status exchange, genealogy verification, and launch-integration recovery routing.
+
+### `ps-coalition-ration-dietary-compliance-allergen-assurance-stack-v1`
+- Protocols: `GS1 EPCIS`, `NIEM`, signed ration manifests, `API/JSON`, `USMTF`.
+- Use for: ingredient-trace exchange, dietary compliance routing, and coalition ration-release approvals.
+
+### `ps-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-stack-v1`
+- Protocols: `HL7/FHIR`, `OPC UA`, signed sterilization manifests, `API/JSON`, `USMTF`.
+- Use for: instrument-set status exchange, autoclave-cycle routing, and sterile-release approvals.

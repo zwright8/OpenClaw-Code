@@ -2792,3 +2792,29 @@ Every skill output should include:
 - Expeditionary blood warming and hypothermia resuscitation + austere surgical support coordinator + joint role 3 medical network and aeromedical evac cell + joint cold injury frostbite and rewarming operations cell.
 - Homeland lock dam barge priority and manual override + defense support of civil authorities crisis cell + strategic mobility deployment planner + riverine and inland waterways operations.
 - Coalition cross-border casualty credentialing and blood compatibility + coalition medevac cross-border clearance and legal routing cell + joint role 3 medical network and aeromedical evac cell + coalition interoperability coordinator.
+
+## New Expansion Wave (2026-03-15, Expansion Wave LXIV)
+
+- joint-walking-blood-bank-donor-screening-and-transfusion-integrity-cell
+- expeditionary-medical-waste-sterilization-and-biohazard-routing-cell
+- coalition-human-remains-dna-custody-and-cross-border-release-cell
+- joint-reefer-container-cold-chain-and-denied-port-restoration-cell
+- joint-littoral-hydrographic-survey-and-beach-lane-recertification-cell
+- theater-drone-port-battery-thermal-runaway-and-ordnance-standoff-cell
+- strategic-cash-vault-disconnected-pay-agent-and-anti-diversion-cell
+- strategic-space-cleanroom-contamination-and-component-quarantine-cell
+- coalition-ration-dietary-compliance-and-allergen-assurance-cell
+- expeditionary-sterile-processing-instrument-turnaround-and-autoclave-assurance-cell
+
+## Updated Pairings (2026-03-15, Expansion Wave LXIV)
+
+- Joint walking blood bank donor screening and transfusion integrity + austere surgical support coordinator + joint forward blood bank crossmatch and massive transfusion continuity + casualty evacuation and medical regulation.
+- Expeditionary medical waste sterilization and biohazard routing + austere surgical support coordinator + preventive medicine and force health protection + expeditionary field laundry and textile decontamination cell.
+- Coalition human remains DNA custody and cross-border release + mortuary affairs and personnel accountability + coalition joint personnel accounting and repatriation + coalition interoperability coordinator.
+- Joint reefer container cold chain and denied port restoration + contested logistics sustainment + joint cold-chain ration and medical cargo assurance cell + joint port opening and JLOTS synchronization cell.
+- Joint littoral hydrographic survey and beach lane recertification + amphibious beachmaster surf-zone and shore-party control cell + joint littoral surf-zone obstacle breaching and beach-gradient verification cell + contested logistics sustainment.
+- Theater drone-port battery thermal runaway and ordnance standoff + expeditionary droneport airworthiness and traffic cell + expeditionary drone-port and launchpad reconstitution cell + mission risk decision support.
+- Strategic cash vault disconnected pay agent and anti-diversion + joint deployed finance cash payroll and disbursing continuity cell + contested logistics sustainment + acquisition and contracting support.
+- Strategic space cleanroom contamination and component quarantine + contested space launch and satellite reconstitution + strategic industrial mobilization readiness cell + strategic electronics salvage and component reclamation cell.
+- Coalition ration dietary compliance and allergen assurance + joint cold-chain ration and medical cargo assurance cell + preventive medicine and force health protection + coalition interoperability coordinator.
+- Expeditionary sterile processing instrument turnaround and autoclave assurance + austere surgical support coordinator + joint role 3 medical network and aeromedical evacuation cell + mission risk decision support.

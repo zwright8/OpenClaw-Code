@@ -1726,3 +1726,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent coalition medical legal desk and alternate role-3 routing board
 - Protocol binding: HL7/FHIR + NIEM + signed blood manifests + S/MIME + API/JSON + USMTF
 - Fallback path: lifesaving transfers only with manual blood checks and command-approved exception routing
+
+## New Toolchain Wave (2026-03-15, Expansion Wave LXIV)
+
+### `TC-WBB-202`
+
+- Domain: joint walking blood bank donor screening and transfusion integrity
+- Primary systems: donor registry, blood typing and titer ledger, casualty transfusion board, infectious-screening tracker
+- Cross-check systems: independent lab witness and alternate resuscitation control desk
+- Protocol binding: HL7/FHIR + LOINC + signed blood manifests + API/JSON + USMTF
+- Fallback path: lifesaving transfusion only with command-approved donor release and conservative whole-blood thresholds
+
+### `TC-MEDWASTE-203`
+
+- Domain: expeditionary medical waste sterilization and biohazard routing
+- Primary systems: sterilizer telemetry board, red-bag manifest ledger, incineration capacity tracker, contaminated route status board
+- Cross-check systems: independent preventive-medicine review cell and alternate hazardous-waste control board
+- Protocol binding: HL7/FHIR + NIEM + OPC UA + signed waste manifests + API/JSON + USMTF
+- Fallback path: life-safety-only segregation with paper manifests and restricted movement windows
+
+### `TC-REMDNA-204`
+
+- Domain: coalition human remains DNA custody and cross-border release
+- Primary systems: mortuary custody ledger, DNA sample chain tracker, identification confidence board, border-release coordination desk
+- Cross-check systems: independent mortuary review cell and alternate coalition legal liaison board
+- Protocol binding: NIEM + signed custody manifests + API/JSON + S/MIME + USMTF
+- Fallback path: hold under protected custody with manual manifest reconciliation and coalition liaison review
+
+### `TC-REEFER-205`
+
+- Domain: joint reefer container cold chain and denied port restoration
+- Primary systems: reefer telemetry board, shore-power dispatch console, berth queue manager, cargo-temperature manifest ledger
+- Cross-check systems: independent cold-chain quality cell and alternate port-operations status board
+- Protocol binding: AIS/NMEA + EDI X12 + OPC UA + API/JSON + USMTF
+- Fallback path: mission-essential reefers only with manual temperature checks and restricted berth movement
+
+### `TC-HYDRO-206`
+
+- Domain: joint littoral hydrographic survey and beach lane recertification
+- Primary systems: hydrographic survey console, bathymetry raster board, surf and tide model, beach-lane map service
+- Cross-check systems: independent beachmaster control cell and alternate engineer-recon board
+- Protocol binding: IHO S-100/S-57 + OGC + AIS/NMEA + API/JSON + USMTF
+- Fallback path: previously certified lanes only with conservative draft limits and daylight movement
+
+### `TC-DRONEPORT-207`
+
+- Domain: theater drone port battery thermal runaway and ordnance standoff
+- Primary systems: battery health telemetry board, drone-port pad scheduler, fire-suppression status board, ordnance clear-radius calculator
+- Cross-check systems: independent explosive-safety desk and alternate air-node recovery board
+- Protocol binding: CoT + AIXM/FIXM + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: launch-essential-only posture with widened standoff and manual inspection
+
+### `TC-CASHVAULT-208`
+
+- Domain: strategic cash vault disconnected pay agent and anti diversion
+- Primary systems: cash-vault ledger, biometric or roster verification board, pay-agent route tracker, fraud analytics desk
+- Cross-check systems: independent finance audit cell and alternate courier custody board
+- Protocol binding: NIEM + signed cash manifests + API/JSON + S/MIME + USMTF
+- Fallback path: priority disbursements only with dual-custody paper control and manual reconciliation
+
+### `TC-CLEANROOM-209`
+
+- Domain: strategic space cleanroom contamination and component quarantine
+- Primary systems: cleanroom environmental monitor, component genealogy ledger, contamination assay board, launch-integration schedule tracker
+- Cross-check systems: independent quality-assurance witness and alternate launch integration review board
+- Protocol binding: CCSDS + OPC UA + signed manufacturing manifests + API/JSON + USMTF
+- Fallback path: quarantine-first posture with manual particle monitoring and launch-slip acceptance
+
+### `TC-RATION-210`
+
+- Domain: coalition ration dietary compliance and allergen assurance
+- Primary systems: ration inventory board, ingredient and allergen manifest ledger, meal-demand tracker, coalition caveat board
+- Cross-check systems: independent preventive-medicine review cell and alternate coalition sustainment desk
+- Protocol binding: GS1 EPCIS + NIEM + signed ration manifests + API/JSON + USMTF
+- Fallback path: mission-essential feeding only with conservative allergen exclusion and partner concurrence
+
+### `TC-AUTOCLAVE-211`
+
+- Domain: expeditionary sterile processing instrument turnaround and autoclave assurance
+- Primary systems: surgical-set tracker, autoclave telemetry board, biologic-indicator status board, operating-room demand queue
+- Cross-check systems: independent infection-control review cell and alternate biomedical maintenance board
+- Protocol binding: HL7/FHIR + OPC UA + signed sterilization manifests + API/JSON + USMTF
+- Fallback path: instrument rationing only with command-approved case prioritization and no unvalidated reuse

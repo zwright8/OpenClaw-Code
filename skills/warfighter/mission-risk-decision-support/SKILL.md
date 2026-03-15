@@ -340,3 +340,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-strategic-solid-rocket-motor-aging-inspection-priority-v1` + `protocol_stack_id=ps-strategic-solid-rocket-motor-aging-inspection-priority-stack-v1` when readiness, inspection backlog, or propulsion-lot confidence materially changes strategic risk posture.
 - Add `tool_suite_id=ts-homeland-lock-dam-barge-priority-manual-override-v1` + `protocol_stack_id=ps-homeland-lock-dam-barge-priority-manual-override-stack-v1` when inland-waterway throughput, manual-control authority, or cargo-priority tradeoffs materially affect mission risk.
 - Add `packet_id=DPL-TACTICAL-BORESIGHT-ZERO-001`, `packet_id=DPL-LAUNCH-UPPER-AIR-GAP-001`, `packet_id=DPL-SRM-AGING-PRIORITY-001`, and `packet_id=DPL-LOCK-DAM-BARGE-OVERRIDE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
+
+- Add `tool_suite_id=ts-theater-drone-port-battery-thermal-runaway-ordnance-standoff-v1` + `protocol_stack_id=ps-theater-drone-port-battery-thermal-runaway-ordnance-standoff-stack-v1` when commander risk acceptance depends on drone-port fire exposure, pad evacuation timing, or armed-aircraft standoff confidence.
+- Add `tool_suite_id=ts-strategic-space-cleanroom-contamination-component-quarantine-v1` + `protocol_stack_id=ps-strategic-space-cleanroom-contamination-component-quarantine-stack-v1` when strategic launch or satellite readiness depends on contamination containment, hardware pedigree, or quarantine timing.
+- Add `tool_suite_id=ts-strategic-cash-vault-disconnected-pay-agent-anti-diversion-v1` + `protocol_stack_id=ps-strategic-cash-vault-disconnected-pay-agent-anti-diversion-stack-v1` when commander risk posture depends on emergency payroll continuity, cash custody integrity, or anti-diversion controls.
+- Add `packet_id=DPL-DRONEPORT-THERMAL-STANDOFF-001`, `packet_id=DPL-CLEANROOM-QUARANTINE-001`, and `packet_id=DPL-CASH-VAULT-ANTIDIVERSION-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

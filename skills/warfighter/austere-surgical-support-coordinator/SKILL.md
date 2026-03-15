@@ -171,3 +171,10 @@ Use these tool categories as the default stack for this skill: patient regulatio
 
 - Add `tool_suite_id=ts-expeditionary-renal-replacement-crush-surge-v1` + `protocol_stack_id=ps-expeditionary-renal-replacement-crush-surge-stack-v1` when austere surgical recommendations depend on crush-syndrome triage, dialysis-device continuity, or electrolyte-control timing.
 - Add `packet_id=DPL-RENAL-CRUSH-SURGE-001` for branches that materially alter surgical triage, transfer release, or prolonged-field-care posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-walking-blood-bank-donor-screening-transfusion-integrity-v1` + `protocol_stack_id=ps-joint-walking-blood-bank-donor-screening-transfusion-integrity-stack-v1` when damage-control resuscitation depends on donor eligibility, low-titer whole-blood release, or transfusion-chain integrity.
+- Add `tool_suite_id=ts-expeditionary-medical-waste-sterilization-biohazard-routing-v1` + `protocol_stack_id=ps-expeditionary-medical-waste-sterilization-biohazard-routing-stack-v1` when operative continuity depends on sterile waste handling, contaminated transport, or treatment-node infection control.
+- Add `tool_suite_id=ts-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-v1` + `protocol_stack_id=ps-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-stack-v1` when OR cadence depends on autoclave confidence, biologic-indicator proof, or instrument-set turnaround.
+- Add `packet_id=DPL-WALKING-BLOOD-BANK-001`, `packet_id=DPL-MED-WASTE-STERILIZATION-001`, and `packet_id=DPL-AUTOCLAVE-STERILE-PROCESSING-001` for recommendations that materially change surgical triage, case sequencing, or protected-care release.
