@@ -155,6 +155,80 @@ test('buildAutonomousBatchPlan penalizes candidates with many outstanding observ
     assert.deepEqual(plan.selection.skillIds, [7]);
 });
 
+test('buildAutonomousBatchPlan ignores excessively delayed outcomes when configured', () => {
+    const delayedSuccesses = Array.from({ length: 6 }, () => ({
+        status: 'completed',
+        reward: 1,
+        feedbackDelayMs: 300_000,
+        wave: 11
+    }));
+    const freshFailures = Array.from({ length: 4 }, () => ({
+        status: 'failed',
+        reward: 0,
+        feedbackDelayMs: 1_000,
+        wave: 12
+    }));
+    const freshMixed = [
+        ...Array.from({ length: 5 }, () => ({
+            status: 'completed',
+            reward: 1,
+            feedbackDelayMs: 1_000,
+            wave: 12
+        })),
+        ...Array.from({ length: 5 }, () => ({
+            status: 'failed',
+            reward: 0,
+            feedbackDelayMs: 1_000,
+            wave: 12
+        }))
+    ];
+
+    const plan = buildAutonomousBatchPlan({
+        skillCatalog: [
+            { id: 81, code: 'SK-00081', title: 'Skill 81' },
+            { id: 82, code: 'SK-00082', title: 'Skill 82' }
+        ],
+        capabilityCatalog: [],
+        state: {
+            runCount: 12,
+            skillCursor: 0,
+            capabilityCursor: 0,
+            successfulSkillIds: [],
+            successfulCapabilityIds: [],
+            skillExecutionStats: {
+                '81': {
+                    attempts: 10,
+                    successes: 6,
+                    failures: 4,
+                    consecutiveFailures: 0,
+                    lastWave: 12,
+                    lastStatus: 'completed',
+                    recentOutcomes: [...delayedSuccesses, ...freshFailures]
+                },
+                '82': {
+                    attempts: 10,
+                    successes: 5,
+                    failures: 5,
+                    consecutiveFailures: 0,
+                    lastWave: 12,
+                    lastStatus: 'completed',
+                    recentOutcomes: freshMixed
+                }
+            }
+        },
+        skillsPerWave: 1,
+        capabilitiesPerWave: 0,
+        waveIndex: 13,
+        selectionPolicyConfig: {
+            mode: 'ucb',
+            maxFeedbackDelayMs: 60_000
+        },
+        nowFactory: () => 100_000
+    });
+
+    assert.deepEqual(plan.selection.skillIds, [82]);
+});
+
 test('buildAutonomousBatchPlan temporarily cools repeated failures', () => {
     const plan = buildAutonomousBatchPlan({
         skillCatalog: [
@@ -7616,6 +7690,47 @@ test('collectAutonomousCoverage tracks outstanding observations from non-termina
     assert.equal(stat.attempts, 1);
     assert.equal(stat.successes, 1);
     assert.equal(stat.outstandingObservations, 1);
+});
+
+test('collectAutonomousCoverage records feedback delay on terminal outcomes', async (t) => {
+    const tmp = mkTmpDir();
+    t.after(() => fs.rmSync(tmp, { recursive: true, force: true }));
+    const queuePath = path.join(tmp, 'tasks.journal.jsonl');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 10_000 });
+    const task = buildTaskRequest({
+        id: 'task-feedback-delay-1',
+        from: 'agent:test',
+        target: 'agent:skills-runtime',
+        priority: 'high',
+        task: 'Delay test',
+        createdAt: 1_000,
+        context: {
+            lane: 'skills',
+            skillId: 33,
+            autonomy: {
+                wave: 1,
+                selectionPolicyApplied: 'ucb',
+                selectionPolicyConfig: { mode: 'ucb' }
+            }
+        }
+    });
+    await store.saveRecord(task);
+    const record = buildQueueRecordFromTaskRequest(task, {
+        nowFactory: () => 4_250
+    });
+    record.status = 'completed';
+    record.updatedAt = 4_250;
+    record.closedAt = 4_250;
+    await store.saveRecord(record);
+
+    const coverage = await collectAutonomousCoverage({
+        storePath: queuePath,
+        nowFactory: () => 10_000
+    });
+    const stat = coverage.skillExecutionStats['33'];
+    assert.ok(stat);
+    assert.equal(stat.recentOutcomes.length, 1);
+    assert.equal(stat.recentOutcomes[0].feedbackDelayMs, 3_250);
 });
 
 test('collectAutonomousCoverage uses graded partial rewards for policy and contextual updates', async (t) => {

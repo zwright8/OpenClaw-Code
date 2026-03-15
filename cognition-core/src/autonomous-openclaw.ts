@@ -204,6 +204,8 @@ const DEFAULT_PENDING_OBSERVATION_PENALTY_WEIGHT = 0;
 const MAX_PENDING_OBSERVATION_PENALTY_WEIGHT = 2;
 const DEFAULT_PENDING_OBSERVATION_SOFT_CAP = 8;
 const MAX_PENDING_OBSERVATION_SOFT_CAP = 256;
+const DEFAULT_MAX_FEEDBACK_DELAY_MS = 0;
+const MAX_MAX_FEEDBACK_DELAY_MS = 2_592_000_000;
 const RELIABILITY_FLOOR_Z_SCORE = 1.96;
 const LINUCB_FEATURE_NAMES = [
     'bias',
@@ -1201,6 +1203,13 @@ function normalizeSelectionPolicyConfig(rawConfig = null) {
                 : DEFAULT_PENDING_OBSERVATION_SOFT_CAP,
             1,
             MAX_PENDING_OBSERVATION_SOFT_CAP
+        ),
+        maxFeedbackDelayMs: clamp(
+            Number.isFinite(Number(value.maxFeedbackDelayMs))
+                ? parseNonNegativeInt(value.maxFeedbackDelayMs, DEFAULT_MAX_FEEDBACK_DELAY_MS)
+                : DEFAULT_MAX_FEEDBACK_DELAY_MS,
+            0,
+            MAX_MAX_FEEDBACK_DELAY_MS
         )
     };
 }
@@ -1417,6 +1426,10 @@ function normalizeRecentOutcomeEntry(rawEntry = {}) {
     const durationMs = Number.isFinite(explicitDurationMs) && explicitDurationMs > 0
         ? clamp(explicitDurationMs, 1, MAX_LATENCY_TARGET_MS)
         : null;
+    const explicitFeedbackDelayMs = Number(entry.feedbackDelayMs);
+    const feedbackDelayMs = Number.isFinite(explicitFeedbackDelayMs) && explicitFeedbackDelayMs > 0
+        ? clamp(explicitFeedbackDelayMs, 1, MAX_MAX_FEEDBACK_DELAY_MS)
+        : null;
     return {
         wave: Number.isFinite(Number(entry.wave))
             ? parseNonNegativeInt(entry.wave, 0)
@@ -1424,6 +1437,7 @@ function normalizeRecentOutcomeEntry(rawEntry = {}) {
         status,
         reward,
         durationMs,
+        feedbackDelayMs,
         propensity,
         didSucceed: SUCCESS_STATUSES.has(status)
     };
@@ -2187,13 +2201,35 @@ function computeAdaptiveAdjustments(stat, currentWave, adaptiveScoreConfig) {
 
 function summarizeOutcomeStats(outcomes = [], fallbackStat = null, selectionPolicyConfig = null) {
     const normalizedFallback = normalizeExecutionStat(fallbackStat);
-    const normalizedOutcomes = Array.isArray(outcomes)
+    const rawOutcomes = Array.isArray(outcomes)
         ? outcomes.map((entry) => normalizeRecentOutcomeEntry(entry))
         : [];
     const policy = normalizeSelectionPolicyConfig(selectionPolicyConfig);
+    const maxFeedbackDelayMs = clamp(
+        parseNonNegativeInt(policy.maxFeedbackDelayMs, DEFAULT_MAX_FEEDBACK_DELAY_MS),
+        0,
+        MAX_MAX_FEEDBACK_DELAY_MS
+    );
+    const normalizedOutcomes = maxFeedbackDelayMs > 0
+        ? rawOutcomes.filter((entry) => {
+            const delayMs = Number(entry.feedbackDelayMs);
+            return !Number.isFinite(delayMs) || delayMs <= maxFeedbackDelayMs;
+        })
+        : rawOutcomes;
     const useDiscounting = DISCOUNTED_POLICY_MODES.has(policy.mode);
 
     if (normalizedOutcomes.length <= 0) {
+        if (maxFeedbackDelayMs > 0 && rawOutcomes.length > 0) {
+            return {
+                attempts: 0,
+                successes: 0,
+                failures: 0,
+                outstandingObservations: normalizedFallback.outstandingObservations,
+                lastStatus: normalizedFallback.lastStatus,
+                lastWave: normalizedFallback.lastWave,
+                consecutiveFailures: 0
+            };
+        }
         return {
             attempts: normalizedFallback.attempts,
             successes: normalizedFallback.successes,
@@ -2754,6 +2790,12 @@ function resolveScoreStats(stat, selectionPolicyConfig, currentWave = 0) {
         return mergeResolvedScoreStats(
             normalized,
             computeCusumDetectedStats(normalized, policy)
+        );
+    }
+    if (policy.maxFeedbackDelayMs > 0) {
+        return mergeResolvedScoreStats(
+            normalized,
+            summarizeOutcomeStats(normalized.recentOutcomes, normalized, policy)
         );
     }
     return normalized;
@@ -4762,7 +4804,14 @@ export function buildAutonomousBatchPlan({
     };
 }
 
-function recordRecentOutcome(stat, { status, wave, propensity = null, reward = null, durationMs = null }) {
+function recordRecentOutcome(stat, {
+    status,
+    wave,
+    propensity = null,
+    reward = null,
+    durationMs = null,
+    feedbackDelayMs = null
+}) {
     const normalized = normalizeExecutionStat(stat);
     const normalizedStatus = normalizeStatus(status);
     const explicitPropensity = Number(propensity);
@@ -4771,6 +4820,7 @@ function recordRecentOutcome(stat, { status, wave, propensity = null, reward = n
         : null;
     const explicitReward = Number(reward);
     const explicitDurationMs = Number(durationMs);
+    const explicitFeedbackDelayMs = Number(feedbackDelayMs);
     normalized.recentOutcomes.push({
         wave: parseNonNegativeInt(wave, 0),
         status: normalizedStatus,
@@ -4779,6 +4829,9 @@ function recordRecentOutcome(stat, { status, wave, propensity = null, reward = n
             : getStatusReward(normalizedStatus),
         durationMs: Number.isFinite(explicitDurationMs) && explicitDurationMs > 0
             ? clamp(explicitDurationMs, 1, MAX_LATENCY_TARGET_MS)
+            : null,
+        feedbackDelayMs: Number.isFinite(explicitFeedbackDelayMs) && explicitFeedbackDelayMs > 0
+            ? clamp(explicitFeedbackDelayMs, 1, MAX_MAX_FEEDBACK_DELAY_MS)
             : null,
         propensity: normalizedPropensity,
         didSucceed: SUCCESS_STATUSES.has(normalizedStatus)
@@ -4889,6 +4942,7 @@ export async function collectAutonomousCoverage({
         );
         const didSucceed = SUCCESS_STATUSES.has(status);
         const recordDurationMs = resolveOutcomeDurationMs(record);
+        const recordFeedbackDelayMs = recordDurationMs;
         const selectionProbability = Number.isFinite(Number(context.autonomy?.selectionProbability))
             ? clamp(Number(context.autonomy.selectionProbability), Number.EPSILON, 1)
             : null;
@@ -4935,7 +4989,8 @@ export async function collectAutonomousCoverage({
                 wave: attemptWave,
                 propensity: selectionProbability,
                 reward,
-                durationMs: recordDurationMs
+                durationMs: recordDurationMs,
+                feedbackDelayMs: recordFeedbackDelayMs
             });
             skillExecutionStats[key] = current;
         }
@@ -4960,7 +5015,8 @@ export async function collectAutonomousCoverage({
                 wave: attemptWave,
                 propensity: selectionProbability,
                 reward,
-                durationMs: recordDurationMs
+                durationMs: recordDurationMs,
+                feedbackDelayMs: recordFeedbackDelayMs
             });
             capabilityExecutionStats[capabilityId] = current;
         }
@@ -4983,7 +5039,8 @@ export async function collectAutonomousCoverage({
                 wave: attemptWave,
                 propensity: selectionPolicyProbability ?? selectionProbability,
                 reward,
-                durationMs: recordDurationMs
+                durationMs: recordDurationMs,
+                feedbackDelayMs: recordFeedbackDelayMs
             });
             policyWithOutcome.cumulativeReward = currentPolicy.cumulativeReward;
             policyExecutionStats[lane][selectedPolicy] = policyWithOutcome;
@@ -5013,7 +5070,8 @@ export async function collectAutonomousCoverage({
                     wave: attemptWave,
                     propensity: selectionPolicyProbability ?? selectionProbability,
                     reward,
-                    durationMs: recordDurationMs
+                    durationMs: recordDurationMs,
+                    feedbackDelayMs: recordFeedbackDelayMs
                 });
                 metaWithOutcome.cumulativeReward = currentMeta.cumulativeReward;
                 windowPolicyExecutionStats[lane][key] = metaWithOutcome;
