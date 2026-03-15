@@ -54,6 +54,7 @@ Options:
   --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
   --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
   --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
+  --bot-circuit-breaker-half-open-max-wait-ms <n> Max milliseconds to remain half-open before forced reopen (default: 0; disabled)
   --no-enqueue-followups       Disable enqueueing bot-generated follow-up tasks
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
@@ -164,6 +165,7 @@ function parseArgs(argv) {
         botCircuitBreakerMaxCooldownMs: 180_000,
         botCircuitBreakerHalfOpenMaxProbes: 1,
         botCircuitBreakerHalfOpenSuccessThreshold: 1,
+        botCircuitBreakerHalfOpenMaxWaitMs: 0,
         enqueueFollowupTasks: true,
         jsonPath: null,
         markdownPath: null,
@@ -404,6 +406,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-circuit-breaker-half-open-max-wait-ms') {
+            options.botCircuitBreakerHalfOpenMaxWaitMs = parsePositiveInt(value, '--bot-circuit-breaker-half-open-max-wait-ms', true);
+            i++;
+            continue;
+        }
         if (token === '--json') {
             options.jsonPath = path.resolve(process.cwd(), value);
             i++;
@@ -499,6 +506,7 @@ function printSummary(report) {
             botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
+            botCircuitBreakerHalfOpenMaxWaitMs: options.botCircuitBreakerHalfOpenMaxWaitMs,
             enqueueFollowupTasks: options.enqueueFollowupTasks
         });
 

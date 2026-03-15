@@ -57,6 +57,7 @@ Options:
   --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
   --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
   --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
+  --bot-circuit-breaker-half-open-max-wait-ms <n> Max milliseconds to remain half-open before forced reopen (default: 0; disabled)
   --selection-policy <mode>    Selection policy: ${policyModes} (default: ucb)
   --linucb-alpha <n>           Exploration multiplier for linucb (0-5, default: 0.6)
   --lints-alpha <n>            Posterior covariance scale for lints (0-5, default: 0.5)
@@ -271,6 +272,7 @@ function parseArgs(argv) {
         botCircuitBreakerMaxCooldownMs: 180_000,
         botCircuitBreakerHalfOpenMaxProbes: 1,
         botCircuitBreakerHalfOpenSuccessThreshold: 1,
+        botCircuitBreakerHalfOpenMaxWaitMs: 0,
         enqueueFollowupTasks: true,
         selectionPolicyConfig: {
             mode: 'ucb',
@@ -619,6 +621,11 @@ function parseArgs(argv) {
         }
         if (token === '--bot-circuit-breaker-half-open-successes') {
             options.botCircuitBreakerHalfOpenSuccessThreshold = parsePositiveInt(value, '--bot-circuit-breaker-half-open-successes');
+            i++;
+            continue;
+        }
+        if (token === '--bot-circuit-breaker-half-open-max-wait-ms') {
+            options.botCircuitBreakerHalfOpenMaxWaitMs = parsePositiveInt(value, '--bot-circuit-breaker-half-open-max-wait-ms', true);
             i++;
             continue;
         }
@@ -1083,6 +1090,7 @@ function printSummary(report) {
             botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,
             botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
             botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
+            botCircuitBreakerHalfOpenMaxWaitMs: options.botCircuitBreakerHalfOpenMaxWaitMs,
             enqueueFollowupTasks: options.enqueueFollowupTasks,
             selectionPolicyConfig: options.selectionPolicyConfig
         });

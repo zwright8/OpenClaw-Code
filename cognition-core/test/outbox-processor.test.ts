@@ -1116,6 +1116,79 @@ test('processOutboxEnvelopes requires configured half-open success probes before
     assert.match(third?.result?.output || '', /Half-open probe 2 succeeded/);
 });
 
+test('processOutboxEnvelopes reopens breaker when half-open max-wait window is exceeded', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000734', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000735', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000736', target, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 95_200 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 95_201
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let logicalNow = 3_000;
+    let attempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 1,
+        botCircuitBreakerCooldownMs: 20,
+        botCircuitBreakerHalfOpenMaxProbes: 2,
+        botCircuitBreakerHalfOpenSuccessThreshold: 2,
+        botCircuitBreakerHalfOpenMaxWaitMs: 50,
+        nowFactory: () => logicalNow,
+        botExecute: async () => {
+            attempts++;
+            logicalNow = 3_120;
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'Transient transport timeout contacting runtime.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(attempts, 1);
+    assert.equal(stats.botCircuitBreakerOpened, 2);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 2);
+
+    const records = await store.loadRecords();
+    const second = records.find((entry) => entry.taskId === requests[1].id);
+    const third = records.find((entry) => entry.taskId === requests[2].id);
+    assert.match(second?.result?.output || '', /half-open max-wait window exceeded/i);
+    assert.equal(Number(second?.result?.metrics?.circuitBreakerHalfOpenMaxWaitExceeded), 1);
+    assert.match(third?.result?.output || '', /circuit breaker is open/);
+});
+
 test('processOutboxEnvelopes opens circuit breaker on rolling transient failure-rate threshold', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

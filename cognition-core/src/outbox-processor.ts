@@ -112,6 +112,10 @@ function normalizeCircuitBreakerHalfOpenSuccessThreshold(value, fallback = 1) {
     return parsePositiveInt(value, fallback);
 }
 
+function normalizeCircuitBreakerHalfOpenMaxWaitMs(value, fallback = 0) {
+    return parseNonNegativeInt(value, fallback);
+}
+
 function normalizeCircuitBreakerFailureRateThreshold(value, fallback = 0) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
@@ -718,6 +722,7 @@ export async function processOutboxEnvelopes({
     botCircuitBreakerMaxCooldownMs = 180_000,
     botCircuitBreakerHalfOpenMaxProbes = 1,
     botCircuitBreakerHalfOpenSuccessThreshold = 1,
+    botCircuitBreakerHalfOpenMaxWaitMs = 0,
     botCircuitBreakerFailureRateThreshold = 0,
     botCircuitBreakerFailureRateWindow = 20,
     botCircuitBreakerFailureRateMinSamples = 8,
@@ -781,6 +786,10 @@ export async function processOutboxEnvelopes({
             1
         )
     );
+    const normalizedBotCircuitBreakerHalfOpenMaxWaitMs = normalizeCircuitBreakerHalfOpenMaxWaitMs(
+        botCircuitBreakerHalfOpenMaxWaitMs,
+        0
+    );
     const normalizedBotCircuitBreakerFailureRateThreshold = normalizeCircuitBreakerFailureRateThreshold(
         botCircuitBreakerFailureRateThreshold,
         0
@@ -829,6 +838,7 @@ export async function processOutboxEnvelopes({
     let circuitBreakerOpenUntilMs = 0;
     let circuitBreakerHalfOpenProbeCount = 0;
     let circuitBreakerHalfOpenSuccessCount = 0;
+    let circuitBreakerHalfOpenSinceMs = 0;
     let circuitBreakerOpenStreak = 0;
 
     const openCircuitBreaker = () => {
@@ -845,6 +855,7 @@ export async function processOutboxEnvelopes({
         circuitBreakerOpenStreak = nextOpenStreak;
         circuitBreakerHalfOpenProbeCount = 0;
         circuitBreakerHalfOpenSuccessCount = 0;
+        circuitBreakerHalfOpenSinceMs = 0;
         consecutiveTransientBotFailures = 0;
         transientFailureRateObservations = [];
         slowCallRateObservations = [];
@@ -859,6 +870,7 @@ export async function processOutboxEnvelopes({
         circuitBreakerOpenUntilMs = 0;
         circuitBreakerHalfOpenProbeCount = 0;
         circuitBreakerHalfOpenSuccessCount = 0;
+        circuitBreakerHalfOpenSinceMs = 0;
         transientFailureRateObservations = [];
         slowCallRateObservations = [];
         circuitBreakerOpenStreak = 0;
@@ -973,11 +985,15 @@ export async function processOutboxEnvelopes({
                 let previousRetryDelayMs = null;
                 let transientFailureRetried = false;
                 let retryBudgetBlocked = false;
+                const taskNow = safeNow(now);
                 const startedInCircuitHalfOpen = circuitBreakerEnabled
                     && circuitBreakerOpenUntilMs > 0
-                    && safeNow(now) >= circuitBreakerOpenUntilMs;
+                    && taskNow >= circuitBreakerOpenUntilMs;
+                if (startedInCircuitHalfOpen && circuitBreakerHalfOpenSinceMs <= 0) {
+                    circuitBreakerHalfOpenSinceMs = circuitBreakerOpenUntilMs;
+                }
                 if (circuitBreakerEnabled && circuitBreakerOpenUntilMs > 0 && !startedInCircuitHalfOpen) {
-                    const remainingMs = Math.max(0, circuitBreakerOpenUntilMs - safeNow(now));
+                    const remainingMs = Math.max(0, circuitBreakerOpenUntilMs - taskNow);
                     execution = createBotFailureExecution({
                         output: `Task execution skipped: circuit breaker is open for another ${remainingMs}ms after consecutive transient failures.`,
                         metrics: {
@@ -987,6 +1003,35 @@ export async function processOutboxEnvelopes({
                         }
                     });
                     stats.botCircuitBreakerOpenSkips++;
+                }
+                if (
+                    !execution
+                    && startedInCircuitHalfOpen
+                    && normalizedBotCircuitBreakerHalfOpenMaxWaitMs > 0
+                    && taskNow - circuitBreakerHalfOpenSinceMs >= normalizedBotCircuitBreakerHalfOpenMaxWaitMs
+                ) {
+                    execution = createBotFailureExecution({
+                        output: 'Task execution skipped: half-open max-wait window exceeded before breaker could close; reopening cooldown window.',
+                        metrics: {
+                            circuitBreakerOpen: 1,
+                            circuitBreakerHalfOpenMaxWaitExceeded: 1,
+                            circuitBreakerHalfOpenElapsedMs: Math.max(0, taskNow - circuitBreakerHalfOpenSinceMs),
+                            retryable: 1
+                        }
+                    });
+                    const reopened = openCircuitBreaker();
+                    stats.botCircuitBreakerOpened++;
+                    stats.botCircuitBreakerOpenSkips++;
+                    execution = {
+                        ...execution,
+                        output: `${execution.output} Circuit breaker reopened for ${reopened.cooldownMs}ms after half-open max wait.`,
+                        metrics: {
+                            ...(execution.metrics || {}),
+                            circuitBreakerOpened: 1,
+                            circuitBreakerCooldownMs: reopened.cooldownMs,
+                            circuitBreakerOpenStreak: reopened.openStreak
+                        }
+                    };
                 }
                 if (
                     !execution
