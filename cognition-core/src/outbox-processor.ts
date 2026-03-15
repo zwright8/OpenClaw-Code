@@ -180,6 +180,12 @@ function normalizeCircuitBreakerSlowCallMinSamples(value, fallback = 8) {
     return parsePositiveInt(value, fallback);
 }
 
+function normalizeResilienceScopeKey(value) {
+    if (typeof value !== 'string') return '__default__';
+    const normalized = value.trim().toLowerCase();
+    return normalized || '__default__';
+}
+
 function updateBinaryRateObservations(observations, value, windowSize) {
     const next = Array.isArray(observations) ? observations.slice() : [];
     next.push(value ? 1 : 0);
@@ -1185,21 +1191,32 @@ export async function processOutboxEnvelopes({
         normalizedBotCircuitBreakerFailureThreshold > 0
         || circuitBreakerFailureRateEnabled
         || circuitBreakerSlowCallRateEnabled;
-    let retryBudgetTokens = 0;
-    let consecutiveTransientBotFailures = 0;
-    let botAttemptDurationObservations = [];
-    let transientFailureRateObservations = [];
-    let slowCallRateObservations = [];
-    let circuitBreakerOpenUntilMs = 0;
-    let circuitBreakerHalfOpenProbeCount = 0;
-    let circuitBreakerHalfOpenSuccessCount = 0;
-    let circuitBreakerHalfOpenSinceMs = 0;
-    let circuitBreakerOpenStreak = 0;
+    const resilienceStateByScope = new Map();
+    const getResilienceState = (scopeKey) => {
+        const key = normalizeResilienceScopeKey(scopeKey);
+        if (resilienceStateByScope.has(key)) {
+            return resilienceStateByScope.get(key);
+        }
+        const state = {
+            retryBudgetTokens: 0,
+            consecutiveTransientBotFailures: 0,
+            botAttemptDurationObservations: [],
+            transientFailureRateObservations: [],
+            slowCallRateObservations: [],
+            circuitBreakerOpenUntilMs: 0,
+            circuitBreakerHalfOpenProbeCount: 0,
+            circuitBreakerHalfOpenSuccessCount: 0,
+            circuitBreakerHalfOpenSinceMs: 0,
+            circuitBreakerOpenStreak: 0
+        };
+        resilienceStateByScope.set(key, state);
+        return state;
+    };
 
-    const openCircuitBreaker = ({
+    const openCircuitBreaker = (state, {
         retryAfterHintMs = null
     } = {}) => {
-        const nextOpenStreak = circuitBreakerOpenStreak + 1;
+        const nextOpenStreak = state.circuitBreakerOpenStreak + 1;
         const baseCooldownMs = resolveCircuitBreakerCooldownMs({
             baseCooldownMs: normalizedBotCircuitBreakerCooldownMs,
             maxCooldownMs: normalizedBotCircuitBreakerMaxCooldownMs,
@@ -1226,14 +1243,14 @@ export async function processOutboxEnvelopes({
                 cooldownMs = Math.max(cooldownMs, appliedRetryAfterHintMs);
             }
         }
-        circuitBreakerOpenUntilMs = safeNow(now) + cooldownMs;
-        circuitBreakerOpenStreak = nextOpenStreak;
-        circuitBreakerHalfOpenProbeCount = 0;
-        circuitBreakerHalfOpenSuccessCount = 0;
-        circuitBreakerHalfOpenSinceMs = 0;
-        consecutiveTransientBotFailures = 0;
-        transientFailureRateObservations = [];
-        slowCallRateObservations = [];
+        state.circuitBreakerOpenUntilMs = safeNow(now) + cooldownMs;
+        state.circuitBreakerOpenStreak = nextOpenStreak;
+        state.circuitBreakerHalfOpenProbeCount = 0;
+        state.circuitBreakerHalfOpenSuccessCount = 0;
+        state.circuitBreakerHalfOpenSinceMs = 0;
+        state.consecutiveTransientBotFailures = 0;
+        state.transientFailureRateObservations = [];
+        state.slowCallRateObservations = [];
         return {
             cooldownMs,
             openStreak: nextOpenStreak,
@@ -1241,15 +1258,15 @@ export async function processOutboxEnvelopes({
         };
     };
 
-    const closeCircuitBreaker = () => {
-        consecutiveTransientBotFailures = 0;
-        circuitBreakerOpenUntilMs = 0;
-        circuitBreakerHalfOpenProbeCount = 0;
-        circuitBreakerHalfOpenSuccessCount = 0;
-        circuitBreakerHalfOpenSinceMs = 0;
-        transientFailureRateObservations = [];
-        slowCallRateObservations = [];
-        circuitBreakerOpenStreak = 0;
+    const closeCircuitBreaker = (state) => {
+        state.consecutiveTransientBotFailures = 0;
+        state.circuitBreakerOpenUntilMs = 0;
+        state.circuitBreakerHalfOpenProbeCount = 0;
+        state.circuitBreakerHalfOpenSuccessCount = 0;
+        state.circuitBreakerHalfOpenSinceMs = 0;
+        state.transientFailureRateObservations = [];
+        state.slowCallRateObservations = [];
+        state.circuitBreakerOpenStreak = 0;
     };
     const executeBotTask = typeof botExecute === 'function'
         ? botExecute
@@ -1360,6 +1377,7 @@ export async function processOutboxEnvelopes({
             let resultMetrics;
 
             if (bot) {
+                const targetResilienceState = getResilienceState(target);
                 let execution = null;
                 let attempts = 0;
                 let previousRetryDelayMs = null;
@@ -1369,13 +1387,13 @@ export async function processOutboxEnvelopes({
                 const retryStartedAtMs = safeNow(now);
                 const taskNow = safeNow(now);
                 const startedInCircuitHalfOpen = circuitBreakerEnabled
-                    && circuitBreakerOpenUntilMs > 0
-                    && taskNow >= circuitBreakerOpenUntilMs;
-                if (startedInCircuitHalfOpen && circuitBreakerHalfOpenSinceMs <= 0) {
-                    circuitBreakerHalfOpenSinceMs = circuitBreakerOpenUntilMs;
+                    && targetResilienceState.circuitBreakerOpenUntilMs > 0
+                    && taskNow >= targetResilienceState.circuitBreakerOpenUntilMs;
+                if (startedInCircuitHalfOpen && targetResilienceState.circuitBreakerHalfOpenSinceMs <= 0) {
+                    targetResilienceState.circuitBreakerHalfOpenSinceMs = targetResilienceState.circuitBreakerOpenUntilMs;
                 }
-                if (circuitBreakerEnabled && circuitBreakerOpenUntilMs > 0 && !startedInCircuitHalfOpen) {
-                    const remainingMs = Math.max(0, circuitBreakerOpenUntilMs - taskNow);
+                if (circuitBreakerEnabled && targetResilienceState.circuitBreakerOpenUntilMs > 0 && !startedInCircuitHalfOpen) {
+                    const remainingMs = Math.max(0, targetResilienceState.circuitBreakerOpenUntilMs - taskNow);
                     execution = createBotFailureExecution({
                         output: `Task execution skipped: circuit breaker is open for another ${remainingMs}ms after consecutive transient failures.`,
                         metrics: {
@@ -1390,18 +1408,18 @@ export async function processOutboxEnvelopes({
                     !execution
                     && startedInCircuitHalfOpen
                     && normalizedBotCircuitBreakerHalfOpenMaxWaitMs > 0
-                    && taskNow - circuitBreakerHalfOpenSinceMs >= normalizedBotCircuitBreakerHalfOpenMaxWaitMs
+                    && taskNow - targetResilienceState.circuitBreakerHalfOpenSinceMs >= normalizedBotCircuitBreakerHalfOpenMaxWaitMs
                 ) {
                     execution = createBotFailureExecution({
                         output: 'Task execution skipped: half-open max-wait window exceeded before breaker could close; reopening cooldown window.',
                         metrics: {
                             circuitBreakerOpen: 1,
                             circuitBreakerHalfOpenMaxWaitExceeded: 1,
-                            circuitBreakerHalfOpenElapsedMs: Math.max(0, taskNow - circuitBreakerHalfOpenSinceMs),
+                            circuitBreakerHalfOpenElapsedMs: Math.max(0, taskNow - targetResilienceState.circuitBreakerHalfOpenSinceMs),
                             retryable: 1
                         }
                     });
-                    const reopened = openCircuitBreaker();
+                    const reopened = openCircuitBreaker(targetResilienceState);
                     stats.botCircuitBreakerOpened++;
                     stats.botCircuitBreakerOpenSkips++;
                     execution = {
@@ -1418,7 +1436,7 @@ export async function processOutboxEnvelopes({
                 if (
                     !execution
                     && startedInCircuitHalfOpen
-                    && circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes
+                    && targetResilienceState.circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes
                 ) {
                     execution = createBotFailureExecution({
                         output: 'Task execution skipped: half-open probe limit reached before circuit could close; reopening cooldown window.',
@@ -1428,7 +1446,7 @@ export async function processOutboxEnvelopes({
                             retryable: 1
                         }
                     });
-                    const reopened = openCircuitBreaker();
+                    const reopened = openCircuitBreaker(targetResilienceState);
                     stats.botCircuitBreakerOpened++;
                     stats.botCircuitBreakerOpenSkips++;
                     execution = {
@@ -1443,14 +1461,14 @@ export async function processOutboxEnvelopes({
                     };
                 }
                 if (retryBudgetEnabled) {
-                    retryBudgetTokens += normalizedBotRetryBudgetRatio;
+                    targetResilienceState.retryBudgetTokens += normalizedBotRetryBudgetRatio;
                 }
                 while (!execution && attempts < normalizedBotMaxAttempts) {
                     attempts++;
                     const timeoutResolution = resolveAdaptiveAttemptTimeoutMs({
                         staticTimeoutMs: normalizedBotAttemptTimeoutMs,
                         autoEnabled: attemptTimeoutAutoEnabled,
-                        observations: botAttemptDurationObservations,
+                        observations: targetResilienceState.botAttemptDurationObservations,
                         autoPercentile: normalizedBotAttemptTimeoutAutoPercentile,
                         autoMinSamples: normalizedBotAttemptTimeoutAutoMinSamples,
                         autoBlend: normalizedBotAttemptTimeoutAutoBlend
@@ -1458,7 +1476,7 @@ export async function processOutboxEnvelopes({
                     const hedgedDelayResolution = resolveAdaptiveHedgedDelayMs({
                         staticDelayMs: normalizedBotHedgedDelayMs,
                         autoEnabled: hedgedDelayAutoEnabled,
-                        observations: botAttemptDurationObservations,
+                        observations: targetResilienceState.botAttemptDurationObservations,
                         autoPercentile: normalizedBotHedgedDelayAutoPercentile,
                         autoMinSamples: normalizedBotHedgedDelayAutoMinSamples,
                         autoBlend: normalizedBotHedgedDelayAutoBlend,
@@ -1491,8 +1509,8 @@ export async function processOutboxEnvelopes({
                         stats.botHedgedWins++;
                     }
                     const durationMs = Number(execution?.metrics?.durationMs);
-                    botAttemptDurationObservations = updateDurationObservations(
-                        botAttemptDurationObservations,
+                    targetResilienceState.botAttemptDurationObservations = updateDurationObservations(
+                        targetResilienceState.botAttemptDurationObservations,
                         durationMs,
                         adaptiveDurationWindowSize
                     );
@@ -1535,7 +1553,7 @@ export async function processOutboxEnvelopes({
                             break;
                         }
                     }
-                    if (retryBudgetEnabled && retryBudgetTokens < 1) {
+                    if (retryBudgetEnabled && targetResilienceState.retryBudgetTokens < 1) {
                         retryBudgetBlocked = true;
                         stats.botRetriesBudgetExhausted++;
                         execution = {
@@ -1551,7 +1569,7 @@ export async function processOutboxEnvelopes({
                     transientFailureRetried = true;
                     stats.botRetriesAttempted++;
                     if (retryBudgetEnabled) {
-                        retryBudgetTokens = Math.max(0, retryBudgetTokens - 1);
+                        targetResilienceState.retryBudgetTokens = Math.max(0, targetResilienceState.retryBudgetTokens - 1);
                     }
                     // eslint-disable-next-line no-await-in-loop
                     const retryDelayMs = computeRetryDelayMs({
@@ -1634,7 +1652,7 @@ export async function processOutboxEnvelopes({
                 const skippedByCircuitBreaker = Number(execution?.metrics?.circuitBreakerOpen) >= 1;
                 if (!circuitBreakerEnabled || skippedByCircuitBreaker) {
                     if (!circuitBreakerEnabled) {
-                        closeCircuitBreaker();
+                        closeCircuitBreaker(targetResilienceState);
                     }
                 } else if (startedInCircuitHalfOpen) {
                     stats.botCircuitBreakerHalfOpenProbes++;
@@ -1643,7 +1661,7 @@ export async function processOutboxEnvelopes({
                             normalizedBotRetryHintMaxDelayMs > 0 && transientBotFailure
                                 ? extractRetryAfterHintMs(execution, { nowFactory: now })
                                 : null;
-                        const reopened = openCircuitBreaker({
+                        const reopened = openCircuitBreaker(targetResilienceState, {
                             retryAfterHintMs: circuitBreakerRetryAfterHintMs
                         });
                         stats.botCircuitBreakerOpened++;
@@ -1663,13 +1681,13 @@ export async function processOutboxEnvelopes({
                             }
                         };
                     } else {
-                        circuitBreakerHalfOpenProbeCount += 1;
-                        circuitBreakerHalfOpenSuccessCount += 1;
-                        if (circuitBreakerHalfOpenSuccessCount >= normalizedBotCircuitBreakerHalfOpenSuccessThreshold) {
-                            closeCircuitBreaker();
+                        targetResilienceState.circuitBreakerHalfOpenProbeCount += 1;
+                        targetResilienceState.circuitBreakerHalfOpenSuccessCount += 1;
+                        if (targetResilienceState.circuitBreakerHalfOpenSuccessCount >= normalizedBotCircuitBreakerHalfOpenSuccessThreshold) {
+                            closeCircuitBreaker(targetResilienceState);
                             stats.botCircuitBreakerClosed++;
-                        } else if (circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes) {
-                            const reopened = openCircuitBreaker();
+                        } else if (targetResilienceState.circuitBreakerHalfOpenProbeCount >= normalizedBotCircuitBreakerHalfOpenMaxProbes) {
+                            const reopened = openCircuitBreaker(targetResilienceState);
                             stats.botCircuitBreakerOpened++;
                             execution = {
                                 ...execution,
@@ -1685,47 +1703,47 @@ export async function processOutboxEnvelopes({
                         }
                     }
                 } else {
-                    transientFailureRateObservations = updateBinaryRateObservations(
-                        transientFailureRateObservations,
+                    targetResilienceState.transientFailureRateObservations = updateBinaryRateObservations(
+                        targetResilienceState.transientFailureRateObservations,
                         execution.status === 'failure' && transientBotFailure,
                         normalizedBotCircuitBreakerFailureRateWindow
                     );
                     const durationMs = Number(execution?.metrics?.durationMs);
                     if (Number.isFinite(durationMs) && durationMs >= 0) {
-                        slowCallRateObservations = updateBinaryRateObservations(
-                            slowCallRateObservations,
+                        targetResilienceState.slowCallRateObservations = updateBinaryRateObservations(
+                            targetResilienceState.slowCallRateObservations,
                             durationMs >= normalizedBotCircuitBreakerSlowCallDurationMs,
                             normalizedBotCircuitBreakerSlowCallWindow
                         );
                     }
 
                     if (execution.status === 'failure' && transientBotFailure) {
-                        consecutiveTransientBotFailures += 1;
+                        targetResilienceState.consecutiveTransientBotFailures += 1;
                     } else {
-                        consecutiveTransientBotFailures = 0;
+                        targetResilienceState.consecutiveTransientBotFailures = 0;
                     }
 
                     const shouldOpenByConsecutiveFailures =
                         normalizedBotCircuitBreakerFailureThreshold > 0
-                        && consecutiveTransientBotFailures >= normalizedBotCircuitBreakerFailureThreshold;
-                    const failureRate = computeBinaryRate(transientFailureRateObservations);
+                        && targetResilienceState.consecutiveTransientBotFailures >= normalizedBotCircuitBreakerFailureThreshold;
+                    const failureRate = computeBinaryRate(targetResilienceState.transientFailureRateObservations);
                     const hasEnoughFailureRateSamples =
-                        transientFailureRateObservations.length >= normalizedBotCircuitBreakerFailureRateMinSamples;
+                        targetResilienceState.transientFailureRateObservations.length >= normalizedBotCircuitBreakerFailureRateMinSamples;
                     const shouldOpenByFailureRate =
                         circuitBreakerFailureRateEnabled
                         && hasEnoughFailureRateSamples
                         && failureRate >= normalizedBotCircuitBreakerFailureRateThreshold;
-                    const slowCallRate = computeBinaryRate(slowCallRateObservations);
+                    const slowCallRate = computeBinaryRate(targetResilienceState.slowCallRateObservations);
                     const hasEnoughSlowCallSamples =
-                        slowCallRateObservations.length >= normalizedBotCircuitBreakerSlowCallMinSamples;
+                        targetResilienceState.slowCallRateObservations.length >= normalizedBotCircuitBreakerSlowCallMinSamples;
                     const shouldOpenBySlowCallRate =
                         circuitBreakerSlowCallRateEnabled
                         && hasEnoughSlowCallSamples
                         && slowCallRate >= normalizedBotCircuitBreakerSlowCallRateThreshold;
 
                     if (shouldOpenByConsecutiveFailures || shouldOpenByFailureRate || shouldOpenBySlowCallRate) {
-                        const failureRateSampleCount = transientFailureRateObservations.length;
-                        const slowCallRateSampleCount = slowCallRateObservations.length;
+                        const failureRateSampleCount = targetResilienceState.transientFailureRateObservations.length;
+                        const slowCallRateSampleCount = targetResilienceState.slowCallRateObservations.length;
                         const reason = shouldOpenByConsecutiveFailures
                             ? `transient-failure threshold`
                             : shouldOpenByFailureRate
@@ -1735,7 +1753,7 @@ export async function processOutboxEnvelopes({
                             normalizedBotRetryHintMaxDelayMs > 0 && execution.status === 'failure' && transientBotFailure
                                 ? extractRetryAfterHintMs(execution, { nowFactory: now })
                                 : null;
-                        const reopened = openCircuitBreaker({
+                        const reopened = openCircuitBreaker(targetResilienceState, {
                             retryAfterHintMs: circuitBreakerRetryAfterHintMs
                         });
                         stats.botCircuitBreakerOpened++;

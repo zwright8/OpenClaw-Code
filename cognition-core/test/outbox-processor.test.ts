@@ -1239,6 +1239,94 @@ test('processOutboxEnvelopes opens circuit breaker and fails fast during cooldow
     assert.match(third?.result?.output || '', /circuit breaker is open/);
 });
 
+test('processOutboxEnvelopes isolates breaker and retry state per target', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const failingTarget = 'agent:broken';
+    const healthyTarget = 'agent:healthy';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000714', failingTarget, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000715', failingTarget, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000716', healthyTarget, 'high')
+    ];
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 93_500 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 93_501
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(failingTarget)),
+        `${requests
+            .filter((request) => request.target === failingTarget)
+            .map((request) => JSON.stringify(createEnvelope({ target: failingTarget, request })))
+            .join('\n')}\n`,
+        'utf8'
+    );
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(healthyTarget)),
+        `${JSON.stringify(createEnvelope({ target: healthyTarget, request: requests[2] }))}\n`,
+        'utf8'
+    );
+
+    const executedTargets = [];
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 1,
+        botCircuitBreakerFailureThreshold: 1,
+        botCircuitBreakerCooldownMs: 10_000,
+        botRetryBudgetRatio: 0.1,
+        botExecute: async (request) => {
+            executedTargets.push(request.target);
+            if (request.target === failingTarget) {
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient timeout from failing target.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Healthy target succeeded.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.deepEqual(executedTargets, [failingTarget, healthyTarget]);
+    assert.equal(stats.botCircuitBreakerOpened, 1);
+    assert.equal(stats.botCircuitBreakerOpenSkips, 1);
+
+    const records = await store.loadRecords();
+    const failedSecond = records.find((entry) => entry.taskId === requests[1].id);
+    const healthyCompleted = records.find((entry) => entry.taskId === requests[2].id);
+    assert.equal(failedSecond?.status, 'failed');
+    assert.match(failedSecond?.result?.output || '', /circuit breaker is open/i);
+    assert.equal(healthyCompleted?.status, 'completed');
+    assert.match(healthyCompleted?.result?.output || '', /Healthy target succeeded/);
+});
+
 test('processOutboxEnvelopes closes circuit breaker after cooldown and successful probe', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
