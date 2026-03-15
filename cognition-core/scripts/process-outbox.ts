@@ -46,7 +46,9 @@ Options:
   --bot-attempt-timeout-auto-blend <0-1> Blend static timeout with adaptive percentile target (default: 0.5)
   --bot-retry-max-elapsed-ms <n> Max elapsed milliseconds across retry attempts for a task (default: 0; disabled)
   --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
+  --bot-retry-budget-max-tokens <n> Max retry-budget token bucket size per target (default: 10; 0 disables cap)
   --bot-hedge-budget-ratio <0-1> Hedge budget tokens earned per task to limit duplicate follower load (default: 0; disabled)
+  --bot-hedge-budget-max-tokens <n> Max hedge-budget token bucket size per target (default: 10; 0 disables cap)
   --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
   --bot-circuit-breaker-failure-rate-window <n> Rolling sample window used for failure-rate thresholding (default: 20)
@@ -165,7 +167,9 @@ function parseArgs(argv) {
         botAttemptTimeoutAutoBlend: 0.5,
         botRetryMaxElapsedMs: 0,
         botRetryBudgetRatio: 0,
+        botRetryBudgetMaxTokens: 10,
         botHedgeBudgetRatio: 0,
+        botHedgeBudgetMaxTokens: 10,
         botCircuitBreakerFailureThreshold: 0,
         botCircuitBreakerFailureRateThreshold: 0,
         botCircuitBreakerFailureRateWindow: 20,
@@ -395,8 +399,18 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--bot-retry-budget-max-tokens') {
+            options.botRetryBudgetMaxTokens = parsePositiveInt(value, '--bot-retry-budget-max-tokens');
+            i++;
+            continue;
+        }
         if (token === '--bot-hedge-budget-ratio') {
             options.botHedgeBudgetRatio = parseRatio(value, '--bot-hedge-budget-ratio');
+            i++;
+            continue;
+        }
+        if (token === '--bot-hedge-budget-max-tokens') {
+            options.botHedgeBudgetMaxTokens = parsePositiveInt(value, '--bot-hedge-budget-max-tokens');
             i++;
             continue;
         }
@@ -584,7 +598,9 @@ function printSummary(stats) {
             botAttemptTimeoutAutoBlend: options.botAttemptTimeoutAutoBlend,
             botRetryMaxElapsedMs: options.botRetryMaxElapsedMs,
             botRetryBudgetRatio: options.botRetryBudgetRatio,
+            botRetryBudgetMaxTokens: options.botRetryBudgetMaxTokens,
             botHedgeBudgetRatio: options.botHedgeBudgetRatio,
+            botHedgeBudgetMaxTokens: options.botHedgeBudgetMaxTokens,
             botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
             botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,
             botCircuitBreakerFailureRateWindow: options.botCircuitBreakerFailureRateWindow,

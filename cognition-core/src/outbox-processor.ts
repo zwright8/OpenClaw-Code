@@ -180,6 +180,12 @@ function normalizeHedgeBudgetRatio(value, fallback = 0) {
     return clamp(numeric, 0, 1);
 }
 
+function normalizeBudgetMaxTokens(value, fallback = 10) {
+    const normalized = parseNonNegativeInt(value, fallback);
+    if (normalized <= 0) return Number.POSITIVE_INFINITY;
+    return normalized;
+}
+
 function normalizeAttemptTimeoutAutoPercentile(value, fallback = 0.95) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return fallback;
@@ -1148,7 +1154,9 @@ export async function processOutboxEnvelopes({
     botAttemptTimeoutAutoBlend = 0.5,
     botRetryMaxElapsedMs = 0,
     botRetryBudgetRatio = 0,
+    botRetryBudgetMaxTokens = 10,
     botHedgeBudgetRatio = 0,
+    botHedgeBudgetMaxTokens = 10,
     botCircuitBreakerFailureThreshold = 0,
     botCircuitBreakerCooldownMs = 30_000,
     botCircuitBreakerCooldownBackoffMultiplier = 1,
@@ -1235,7 +1243,9 @@ export async function processOutboxEnvelopes({
     );
     const normalizedBotRetryMaxElapsedMs = normalizeRetryMaxElapsedMs(botRetryMaxElapsedMs, 0);
     const normalizedBotRetryBudgetRatio = normalizeRetryBudgetRatio(botRetryBudgetRatio, 0);
+    const normalizedBotRetryBudgetMaxTokens = normalizeBudgetMaxTokens(botRetryBudgetMaxTokens, 10);
     const normalizedBotHedgeBudgetRatio = normalizeHedgeBudgetRatio(botHedgeBudgetRatio, 0);
+    const normalizedBotHedgeBudgetMaxTokens = normalizeBudgetMaxTokens(botHedgeBudgetMaxTokens, 10);
     const normalizedBotCircuitBreakerFailureThreshold = normalizeCircuitBreakerFailureThreshold(
         botCircuitBreakerFailureThreshold,
         0
@@ -1605,10 +1615,16 @@ export async function processOutboxEnvelopes({
                     };
                 }
                 if (retryBudgetEnabled) {
-                    targetResilienceState.retryBudgetTokens += normalizedBotRetryBudgetRatio;
+                    targetResilienceState.retryBudgetTokens = Math.min(
+                        normalizedBotRetryBudgetMaxTokens,
+                        targetResilienceState.retryBudgetTokens + normalizedBotRetryBudgetRatio
+                    );
                 }
                 if (hedgeBudgetEnabled) {
-                    targetResilienceState.hedgeBudgetTokens += normalizedBotHedgeBudgetRatio;
+                    targetResilienceState.hedgeBudgetTokens = Math.min(
+                        normalizedBotHedgeBudgetMaxTokens,
+                        targetResilienceState.hedgeBudgetTokens + normalizedBotHedgeBudgetRatio
+                    );
                 }
                 while (!execution && attempts < normalizedBotMaxAttempts) {
                     attempts++;
@@ -1722,6 +1738,13 @@ export async function processOutboxEnvelopes({
                                 ? {
                                     hedgeBudgetTokensRemaining: Number(
                                         targetResilienceState.hedgeBudgetTokens.toFixed(4)
+                                    )
+                                }
+                                : {}),
+                            ...(retryBudgetEnabled
+                                ? {
+                                    retryBudgetTokensRemaining: Number(
+                                        targetResilienceState.retryBudgetTokens.toFixed(4)
                                     )
                                 }
                                 : {})

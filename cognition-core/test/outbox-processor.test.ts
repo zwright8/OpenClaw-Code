@@ -1309,6 +1309,106 @@ test('processOutboxEnvelopes enforces hedge budget and limits follower launches'
     assert.equal(third?.result?.metrics?.hedgeSelectedAttempt, 2);
 });
 
+test('processOutboxEnvelopes caps hedge budget tokens across retries', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000777', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        }),
+        makeRequest('00000000-0000-4000-8000-000000000778', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        }),
+        makeRequest('00000000-0000-4000-8000-000000000779', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        }),
+        makeRequest('00000000-0000-4000-8000-000000000780', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        }),
+        makeRequest('00000000-0000-4000-8000-000000000781', target, 'high', {
+            planner: 'cognition-core/remediation-task-planner',
+            idempotent: true
+        })
+    ];
+    const failingTaskId = requests[4].id;
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_400 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 91_401
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        // eslint-disable-next-line no-await-in-loop
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let failingLaunches = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 2,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botAttemptTimeoutMs: 1_000,
+        botHedgedAttemptCount: 2,
+        botHedgedDelayMs: 10,
+        botHedgeBudgetRatio: 1,
+        botHedgeBudgetMaxTokens: 1,
+        botExecute: async (request, _bot, attempt) => {
+            if (request?.id !== failingTaskId) {
+                return {
+                    mode: 'generic',
+                    status: 'success',
+                    output: 'Preload hedge budget token bucket.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            failingLaunches++;
+            if (attempt === 1 && failingLaunches === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 40));
+            } else if (attempt === 1) {
+                await new Promise((resolve) => setTimeout(resolve, 5));
+            }
+            return {
+                mode: 'generic',
+                status: 'failure',
+                output: 'Transient transport timeout contacting runtime.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(failingLaunches, 3);
+    assert.equal(stats.botHedgedAttemptsLaunched, 1);
+    assert.equal(stats.botHedgesBudgetLimited, 1);
+});
+
 test('processOutboxEnvelopes adapts attempt timeout from recent durations when enabled', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -1446,6 +1546,89 @@ test('processOutboxEnvelopes enforces retry budget and skips extra retries', asy
     const completedParent = records.find((entry) => entry.taskId === request.id);
     assert.equal(completedParent?.status, 'failed');
     assert.match(completedParent?.result?.output || '', /Retry budget exhausted/);
+});
+
+test('processOutboxEnvelopes caps retry budget token accumulation per target', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const requests = [
+        makeRequest('00000000-0000-4000-8000-000000000771', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000772', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000773', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000774', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000775', target, 'high'),
+        makeRequest('00000000-0000-4000-8000-000000000776', target, 'high')
+    ];
+    const failingTaskId = requests[5].id;
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 92_200 });
+    for (const request of requests) {
+        const record = buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/remediation-tasks.json',
+            nowFactory: () => 92_201
+        });
+        record.status = 'dispatched';
+        record.attempts = 1;
+        // eslint-disable-next-line no-await-in-loop
+        await store.saveRecord(record);
+    }
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${requests.map((request) => JSON.stringify(createEnvelope({ target, request }))).join('\n')}\n`,
+        'utf8'
+    );
+
+    let failingAttempts = 0;
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        botMaxAttempts: 4,
+        botRetryBaseDelayMs: 0,
+        botRetryMaxDelayMs: 0,
+        botRetryJitter: 0,
+        botRetryBudgetRatio: 1,
+        botRetryBudgetMaxTokens: 2,
+        botExecute: async (request) => {
+            if (request?.id === failingTaskId) {
+                failingAttempts++;
+                return {
+                    mode: 'generic',
+                    status: 'failure',
+                    output: 'Transient transport timeout contacting runtime.',
+                    metrics: {},
+                    artifacts: [],
+                    followupTasks: []
+                };
+            }
+            return {
+                mode: 'generic',
+                status: 'success',
+                output: 'Preload retry budget token bucket.',
+                metrics: {},
+                artifacts: [],
+                followupTasks: []
+            };
+        }
+    });
+
+    assert.equal(failingAttempts, 3);
+    assert.equal(stats.botRetriesAttempted, 2);
+    assert.equal(stats.botRetriesBudgetExhausted, 1);
+
+    const records = await store.loadRecords();
+    const failedRecord = records.find((entry) => entry.taskId === failingTaskId);
+    assert.equal(failedRecord?.status, 'failed');
+    assert.match(failedRecord?.result?.output || '', /Retry budget exhausted/i);
 });
 
 test('processOutboxEnvelopes enforces retry max elapsed budget and skips extra retries', async (t) => {
