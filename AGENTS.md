@@ -165,6 +165,7 @@
 - `tsx scripts/auto-refactor.ts` - run repo self-lint checks (syntax, script entrypoints, relative imports).
 
 ## TODO
+- Verified `c079b12420..0633bda8b2`: no new README command-map additions were found (range adds warfighter wave LIV exposure/fatigue skill content only); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `1552563610..fa286846f2`: no new README command-map additions were found (range adds delayed-feedback-aware autonomous selection handling in runtime/tests only); `package.json` script-map diff remains partially blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `5fbbf8b17a..5fe224b9ea`: no new README command-map additions were found (range adds warfighter waves LII-LIII continuity/occupational-health skill content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
 - Verified `5b8d26381b..5270537cee`: no new README command-map additions were found (range adds warfighter replay expansion wave content only); `package.json` script-map diff remains blocked in this checkout because root/`swarm-protocol` package manifests are absent.
