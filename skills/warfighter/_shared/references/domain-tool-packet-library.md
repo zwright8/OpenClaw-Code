@@ -12465,3 +12465,47 @@ validation_gates:
 - output_schema: exploitation priority matrix, redistribution authority ladder, destruction or quarantine brief
 - protocol_profile: signed capture manifests + USMTF + STIX/TAXII + API/JSON + NIEM
 - validation_gates: safety review, custody verification, transfer or destruction acknowledgment
+
+### packet_id: DPL-CASUALTY-ASSISTANCE-FAMILY-SUPPORT-001
+- domain: joint casualty assistance center and family support synchronization
+- objective: synchronize casualty-assistance center actions and survivor support quickly enough to preserve trust, benefits timing, and family continuity.
+- primary_tools: casualty case tracker, survivor-benefits action board, family-support appointment scheduler
+- alternate_tools: manual case board and reserve family-readiness coordination worksheet
+- degraded_mode: paper action packets with dual-review release log and daily commander reconciliation
+- input_requirements: casualty case status, next-of-kin support needs, document release posture, assistance center capacity, legal review status
+- output_schema: casualty-assistance center battle rhythm board, survivor support action ledger, family-case synchronization matrix
+- protocol_profile: NIEM + signed custody manifests + S/MIME + API/JSON + USMTF
+- validation_gates: identity confirmation, legal review, support acknowledgment
+
+### packet_id: DPL-DIGNIFIED-TRANSFER-ESCORT-FAMILY-LIAISON-001
+- domain: joint dignified transfer escort and family liaison
+- objective: preserve dignified transfer timing and family support continuity without breaking custody assurance, escort readiness, or ceremonial requirements.
+- primary_tools: dignified transfer itinerary board, escort qualification tracker, family liaison scheduler
+- alternate_tools: manual escort worksheet and mortuary-affairs handoff ledger
+- degraded_mode: voice-confirmed escort chain with paper custody log and commander-approved ceremonial minimums
+- input_requirements: transfer timeline, escort availability, family travel or access posture, religious accommodation needs, custody status
+- output_schema: transfer movement board, escort continuity matrix, family liaison action ledger
+- protocol_profile: signed custody manifests + USMTF + NIEM + S/MIME + API/JSON
+- validation_gates: custody verification, escort confirmation, family-liaison acknowledgment
+
+### packet_id: DPL-COALITION-INTERPRETER-VETTING-LINGUIST-FATIGUE-001
+- domain: coalition interpreter vetting and linguist fatigue governance
+- objective: preserve mission trust and language accuracy by balancing interpreter vetting, workload, and fatigue before mistranslation or insider risk changes outcomes.
+- primary_tools: interpreter vetting ledger, language assignment scheduler, terminology drift monitor
+- alternate_tools: manual interpreter roster and coalition release control worksheet
+- degraded_mode: mission-essential linguist roster only with dual-review vetting and manual fatigue log
+- input_requirements: mission language demand, interpreter vetting status, fatigue indicators, releasability caveats, insider-risk alerts
+- output_schema: interpreter trust ledger, linguist fatigue management board, translation-assurance escalation matrix
+- protocol_profile: NIEM + NATO APP-11/ADatP-3 aligned exchange + signed credential manifests + S/MIME + API/JSON
+- validation_gates: vetting review, fatigue waiver approval, releasability acknowledgment
+
+### packet_id: DPL-PROSTHETIC-COMPONENT-SOCKET-LINER-SURGE-001
+- domain: theater prosthetic component and socket liner surge
+- objective: preserve rehabilitation throughput by prioritizing components, liners, and fitting capacity before shortages drive unsafe substitutions or delayed recovery.
+- primary_tools: prosthetic component inventory ledger, socket-liner burn-rate tracker, fabrication queue board
+- alternate_tools: manual component worksheet and rehabilitation prioritization ledger
+- degraded_mode: mission-essential replacement only with manual fitting roster and daily pressure-injury watch
+- input_requirements: component demand, liner burn rate, patient fit risk, fabrication capacity, med-log transport status
+- output_schema: component shortage board, socket-liner burn-rate ladder, fitting continuity decision ledger
+- protocol_profile: HL7/FHIR + DICOM + signed device manifests + API/JSON + USMTF
+- validation_gates: device pedigree review, clinical fit approval, release acknowledgment

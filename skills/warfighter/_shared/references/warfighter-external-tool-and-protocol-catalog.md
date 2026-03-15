@@ -12766,3 +12766,47 @@ external_binding:
 ### `ps-joint-captured-enemy-materiel-exploitation-safe-redistribution-stack-v1`
 - Protocols: signed capture manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `NIEM`.
 - Use for: inventory custody exchange, exploitation-task routing, and redistribution or destruction acknowledgments.
+
+## Tool Suite Addendum LV (2026-03-15, Family Support, Transfer Dignity, Coalition Language Trust, and Prosthetic Sustainment)
+
+### `ts-joint-casualty-assistance-center-family-support-sync-v1`
+- Use for: casualty assistance center load balancing, survivor support sequencing, and trusted family-case synchronization after death or severe injury.
+- Primary tools: casualty case tracker, survivor-benefits action board, family-support appointment scheduler.
+- Cross-check tools: independent casualty identity reviewer and alternate family-readiness continuity board.
+- Typical products: casualty-assistance center battle rhythm board, survivor support action ledger, family-case synchronization matrix.
+
+### `ts-joint-dignified-transfer-escort-family-liaison-v1`
+- Use for: dignified transfer itinerary control, escort continuity, and family-liaison synchronization when ceremonial timing and custody assurance matter.
+- Primary tools: dignified transfer itinerary board, escort qualification tracker, family liaison scheduler.
+- Cross-check tools: independent mortuary-affairs reviewer and alternate custody-manifest reconciliation board.
+- Typical products: transfer movement board, escort continuity matrix, family liaison action ledger.
+
+### `ts-coalition-interpreter-vetting-linguist-fatigue-governance-v1`
+- Use for: combined-operations language support when interpreter trust, fatigue management, and translation assurance affect releasability or mission risk.
+- Primary tools: interpreter vetting ledger, language assignment scheduler, terminology drift monitor.
+- Cross-check tools: independent counterintelligence reviewer and alternate fatigue exposure board.
+- Typical products: interpreter trust ledger, linguist fatigue management board, translation-assurance escalation matrix.
+
+### `ts-theater-prosthetic-component-socket-liner-surge-v1`
+- Use for: rehabilitation continuity when prosthetic components, socket liners, and fitting capacity become pacing constraints in theater recovery operations.
+- Primary tools: prosthetic component inventory ledger, socket-liner burn-rate tracker, fabrication queue board.
+- Cross-check tools: independent rehabilitation reviewer and alternate med-log prioritization board.
+- Typical products: component shortage board, socket-liner burn-rate ladder, fitting continuity decision ledger.
+
+## Protocol Stack Addendum LV (2026-03-15, Family Support, Transfer Dignity, Coalition Language Trust, and Prosthetic Sustainment)
+
+### `ps-joint-casualty-assistance-center-family-support-sync-stack-v1`
+- Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Use for: casualty case exchange, survivor support acknowledgments, and trusted family-action routing.
+
+### `ps-joint-dignified-transfer-escort-family-liaison-stack-v1`
+- Protocols: signed custody manifests, `USMTF`, `NIEM`, `S/MIME`, `API/JSON`.
+- Use for: dignified transfer movement updates, escort handoff acknowledgment, and family-liaison synchronization.
+
+### `ps-coalition-interpreter-vetting-linguist-fatigue-governance-stack-v1`
+- Protocols: `NIEM`, `NATO APP-11/ADatP-3 aligned exchange`, signed credential manifests, `S/MIME`, `API/JSON`.
+- Use for: interpreter vetting exchange, fatigue waiver routing, and translation-assurance escalation.
+
+### `ps-theater-prosthetic-component-socket-liner-surge-stack-v1`
+- Protocols: `HL7/FHIR`, `DICOM`, signed device manifests, `API/JSON`, `USMTF`.
+- Use for: prosthetic inventory status exchange, liner allocation, and fitting-release acknowledgment.

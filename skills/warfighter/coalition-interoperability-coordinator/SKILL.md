@@ -333,3 +333,8 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-infra-cyber-kinetic-cascade-v1` + `protocol_stack_id=ps-coalition-infra-cyber-kinetic-cascade-stack-v1` when coalition interoperability depends on common restoration sequencing, shared infrastructure telemetry, or trusted cross-border consequence reporting.
 - Add `tool_suite_id=ts-civil-telecom-priority-restoration-v1` + `protocol_stack_id=ps-civil-telecom-priority-restoration-stack-v1` when allied tempo depends on restoring civil telecom priority services without breaking caveats, jurisdiction limits, or acknowledgment fidelity.
 - Add `packet_id=DPL-COALITION-CYBER-KINETIC-CASCADE-001` and `packet_id=DPL-COALITION-FIBER-BACKHAUL-RESTORE-001` for branches that materially alter coalition release posture, telecom continuity confidence, or shared restoration governance.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-coalition-interpreter-vetting-linguist-fatigue-governance-v1` + `protocol_stack_id=ps-coalition-interpreter-vetting-linguist-fatigue-governance-stack-v1` when coalition planning depends on trusted interpreter access, linguist fatigue control, or translation assurance under caveat and insider-risk constraints.
+- Add `packet_id=DPL-COALITION-INTERPRETER-VETTING-LINGUIST-FATIGUE-001` for branches that materially alter releasability, meeting coverage, civil engagement posture, or partner trust.

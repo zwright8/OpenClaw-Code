@@ -2655,3 +2655,17 @@ Every skill output should include:
 - Coalition civil telecom priority restoration + coalition-interoperability-coordinator + theater-mission-network-failover-cell + defense-support-of-civil-authorities-crisis-cell.
 - CBRN mass-casualty triage and decon coordination + casualty-evac-and-medical-regulation + preventive-medicine-and-force-health-protection + defense-support-of-civil-authorities-crisis-cell.
 - AI-assisted maintenance predictive failure + contested-logistics-sustainment + supply-chain-risk-and-industrial-base-monitor + rapid-prototyping-and-fielding-accelerator.
+
+## New Expansion Wave (2026-03-15, Wave LVII)
+
+- joint-casualty-assistance-center-and-family-support-synchronization-cell
+- joint-dignified-transfer-escort-and-family-liaison-cell
+- coalition-interpreter-vetting-and-linguist-fatigue-governance-cell
+- theater-prosthetic-component-and-socket-liner-surge-cell
+
+## Updated Pairings (2026-03-15, Wave LVII)
+
+- Casualty assistance center and family support synchronization + joint-multi-theater-casualty-information-and-family-notification-integrity-cell + joint-deployed-postal-ballot-and-family-contact-continuity-cell + reserve-component-family-readiness-surge-cell.
+- Dignified transfer escort and family liaison + joint-personal-effects-custody-and-mortuary-return-integrity-cell + mortuary-affairs-and-personnel-accountability + joint-expeditionary-mortuary-affairs-surge-cell.
+- Coalition interpreter vetting and linguist fatigue governance + coalition-interoperability-coordinator + tactical-language-enabled-civil-engagement-cell + coalition-cross-border-casualty-identity-and-family-notification-cell.
+- Prosthetic component and socket liner surge + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-additive-prosthetics-rehabilitation-surge-cell + theater-musculoskeletal-load-management-and-physical-therapy-cell.

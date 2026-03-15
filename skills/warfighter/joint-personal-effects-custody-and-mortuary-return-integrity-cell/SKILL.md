@@ -62,3 +62,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag dignity, fraud, privacy, and misattribution risks before recommending action.
 - Do not fabricate classified sources, authorities, or approvals.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-joint-dignified-transfer-escort-family-liaison-v1` + `protocol_stack_id=ps-joint-dignified-transfer-escort-family-liaison-stack-v1` when personal-effects release timing must stay synchronized with dignified transfer movement, escort handoffs, or family-liaison sequencing.
+- Add `packet_id=DPL-DIGNIFIED-TRANSFER-ESCORT-FAMILY-LIAISON-001` for branches that materially alter custody release timing, family handoff preparation, or ceremonial coordination.

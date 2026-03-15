@@ -2508,3 +2508,33 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-special-reconnaissance-sensitive-site-exploitation-v1`.
 - Protocols: signed capture manifests, `USMTF`, `STIX/TAXII`, `API/JSON`, `NIEM`.
 - Degraded fallback: quarantine-only branch with dual-control custody and no transfer until safety review completes.
+
+## Profile Addendum Z (2026-03-15, Family Support, Transfer Dignity, Coalition Language Trust, and Prosthetic Sustainment)
+
+### `casualty-assistance-family-support-sync-v1`
+- Use for casualty-support decisions when survivor-benefits action timing, casualty-assistance center load, and trusted family support coordination determine downstream readiness and legitimacy.
+- Primary tools: `ts-joint-casualty-assistance-center-family-support-sync-v1`.
+- Cross-check tools: `ts-joint-multi-theater-casualty-family-notification-integrity-v1`.
+- Protocols: `NIEM`, signed custody manifests, `S/MIME`, `API/JSON`, `USMTF`.
+- Degraded fallback: paper case board with dual-review release log and daily commander reconciliation.
+
+### `dignified-transfer-escort-family-liaison-v1`
+- Use for casualty and mortuary decisions when dignified transfer movement, escort continuity, or family-liaison timing becomes the pacing factor for trusted release.
+- Primary tools: `ts-joint-dignified-transfer-escort-family-liaison-v1`.
+- Cross-check tools: `ts-joint-personal-effects-custody-mortuary-return-integrity-v1`.
+- Protocols: signed custody manifests, `USMTF`, `NIEM`, `S/MIME`, `API/JSON`.
+- Degraded fallback: voice-confirmed escort chain with paper custody log and commander-approved ceremonial minimums.
+
+### `coalition-interpreter-vetting-linguist-fatigue-v1`
+- Use for coalition planning and engagement decisions when interpreter trust, mistranslation risk, or linguist fatigue can alter releasability and mission effectiveness.
+- Primary tools: `ts-coalition-interpreter-vetting-linguist-fatigue-governance-v1`.
+- Cross-check tools: `ts-civil-engagement-language-support-v1`.
+- Protocols: `NIEM`, `NATO APP-11/ADatP-3 aligned exchange`, signed credential manifests, `S/MIME`, `API/JSON`.
+- Degraded fallback: mission-essential linguist roster only with dual-review vetting and manual fatigue log.
+
+### `prosthetic-component-socket-liner-surge-v1`
+- Use for rehabilitation sustainment decisions when prosthetic components, socket liners, and fitting capacity determine safe recovery tempo or return-to-duty timing.
+- Primary tools: `ts-theater-prosthetic-component-socket-liner-surge-v1`.
+- Cross-check tools: `ts-joint-casualty-rehabilitation-prosthetics-return-to-duty-v1`.
+- Protocols: `HL7/FHIR`, `DICOM`, signed device manifests, `API/JSON`, `USMTF`.
+- Degraded fallback: mission-essential replacement only with manual fitting roster and daily pressure-injury watch.
