@@ -286,14 +286,9 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
 
-- Add `tool_suite_id=ts-theater-electromagnetic-deception-confidence-countertargeting-v1` + `protocol_stack_id=ps-theater-electromagnetic-deception-confidence-countertargeting-stack-v1` when base survivability depends on trusted decoy effects, emission discipline, or adversary countertargeting confidence shifts.
-- Add `packet_id=DPL-EM-DECEPTION-CONFIDENCE-001` for branches that materially alter base defense posture, decoy release controls, or commander risk acceptance.
-
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
-
-- Add `tool_suite_id=ts-theater-barracks-mold-pest-indoor-air-remediation-v1` + `protocol_stack_id=ps-theater-barracks-mold-pest-indoor-air-remediation-stack-v1` when force-protection posture depends on safe billeting, reoccupation sequencing, or restoring defender habitability after contamination.
-- Add `tool_suite_id=ts-joint-mwd-handler-loss-cross-attachment-continuity-v1` + `protocol_stack_id=ps-joint-mwd-handler-loss-cross-attachment-continuity-stack-v1` when perimeter security, patrol continuity, or explosive-detection coverage depends on rapid MWD cross-attachment.
-- Add `tool_suite_id=ts-joint-blast-audiology-hearing-device-comms-compatibility-v1` + `protocol_stack_id=ps-joint-blast-audiology-hearing-device-comms-compatibility-stack-v1` when guard-force survivability depends on hearing-device fit, earpro compatibility, or comms clarity after blasts.
-- Add `packet_id=DPL-BARRACKS-INDOOR-AIR-REMEDIATION-001`, `packet_id=DPL-MWD-HANDLER-CROSS-ATTACHMENT-001`, and `packet_id=DPL-BLAST-AUDIOLOGY-COMMS-001` for branches that materially alter defender readiness, patrol continuity, or base alert posture.
+- Add `toolchain_id=TC-LEMOVE-263`, `tool_suite_id=ts-homeland-law-enforcement-military-movement-deconfliction-v1`, and `protocol_stack_id=ps-homeland-law-enforcement-military-movement-deconfliction-stack-v1` when base defense depends on lawful convoy movement, checkpoint control, or domestic route release around defended installations.
+- Add `toolchain_id=TC-EOCFUSE-262`, `tool_suite_id=ts-homeland-emergency-manager-cop-fusion-v1`, and `protocol_stack_id=ps-homeland-emergency-manager-cop-fusion-stack-v1` when force-protection posture depends on reconciling fragmented local reporting into a trusted homeland common operating picture.
+- Add `toolchain_id=TC-JIC-265`, `tool_suite_id=ts-homeland-joint-information-center-civil-warning-unity-v1`, and `protocol_stack_id=ps-homeland-joint-information-center-civil-warning-unity-stack-v1` when sheltering, public-warning, or rumor-control actions must stay synchronized with civil authorities near military bases.
+- Add `packet_id=DPL-LE-MIL-MOVEMENT-DECONFLICT-001`, `packet_id=DPL-EMERGENCY-MANAGER-COP-FUSION-001`, and `packet_id=DPL-JIC-CIVIL-WARNING-UNITY-001` for branches that materially alter base readiness, domestic movement controls, or population-protection posture.

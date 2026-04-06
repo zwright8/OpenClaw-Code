@@ -14191,3 +14191,93 @@ validation_gates:
 - output_schema: trauma bed bridge board, rehabilitation transfer ladder, long-tail care capacity tracker
 - protocol_profile: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
 - validation_gates: bed-status review, transfer-authority check, continuity-of-care approval
+
+## Packet Addendum LIX (2026-04-06, Expansion Wave LXX)
+
+### packet_id: DPL-DUAL-STATUS-COMMAND-001
+- domain: homeland dual-status command authority integration
+- objective: preserve lawful and effective domestic command relationships by validating force status, approval paths, and command-handshake integrity before posture changes.
+- primary_tools: mission-assignment tracker, force-status roster, authority-decision matrix, common-operating-picture board
+- alternate_tools: manual authority worksheet and legal-review board
+- degraded_mode: advisory-only command-relationship matrix with no force-status transition beyond confirmed written orders
+- input_requirements: supported mission, force status mix, requesting authority, approval chain, commander deadlines, legal constraints
+- output_schema: authority alignment matrix, command-relationship decision board, force-status transition tracker
+- protocol_profile: NIEM + NIMS/ICS + signed authority memos + API/JSON + S/MIME + USMTF
+- validation_gates: authority confirmation, legal review, acknowledgment-chain verification
+
+### packet_id: DPL-EMAC-FORCE-FLOW-001
+- domain: homeland EMAC interstate force-flow synchronization
+- objective: keep domestic support throughput coherent by aligning EMAC demand, staging capacity, and interstate movement release.
+- primary_tools: EMAC request tracker, staging-capacity board, convoy scheduler, reception-node status dashboard
+- alternate_tools: manual interstate movement worksheet and staging whiteboard
+- degraded_mode: priority-force movement only with manual checkpoint coordination and command-approved staging holds
+- input_requirements: requesting states, EMAC terms, route status, staging capacity, reception constraints, priority missions
+- output_schema: interstate force-flow matrix, staging and reception ladder, EMAC support synchronization board
+- protocol_profile: NIEM + NIMS/ICS + CAP + signed movement orders + API/JSON + USMTF
+- validation_gates: EMAC validity, route clearance, reception confirmation
+
+### packet_id: DPL-GOV-RFF-MISSION-ASSIGNMENT-001
+- domain: homeland governor request for forces and mission assignment
+- objective: translate governor demand into valid mission-assignment and sourcing options without overstating authority or availability.
+- primary_tools: request tracker, capability-sourcing board, authority review matrix, mission-assignment status dashboard
+- alternate_tools: manual request ledger and force-sourcing worksheet
+- degraded_mode: advisory-only sourcing options with no execution recommendation until request and funding status are confirmed
+- input_requirements: requested effects, civil capability gaps, available force packages, mission-assignment status, funding assumptions, decision deadlines
+- output_schema: request-for-forces decision ladder, mission-assignment tracker, sourcing-options board
+- protocol_profile: NIEM + signed request packets + NIMS/ICS + API/JSON + S/MIME + USMTF
+- validation_gates: request legitimacy, authority review, sourcing approval
+
+### packet_id: DPL-TRIBAL-DSCA-SOVEREIGNTY-001
+- domain: homeland tribal sovereignty and defense support coordination
+- objective: support tribal communities lawfully by reconciling life-safety support with consent, sovereignty, and protected-site constraints.
+- primary_tools: liaison tracker, jurisdiction map service, protected-site registry, community-warning coordination board
+- alternate_tools: manual liaison log and sovereignty review worksheet
+- degraded_mode: liaison-only posture with no site-entry recommendation until consent and jurisdiction are confirmed
+- input_requirements: affected tribal nations, requested support, jurisdiction map, consent status, protected-site concerns, timing pressures
+- output_schema: sovereignty coordination matrix, consent and liaison tracker, protected-site support ladder
+- protocol_profile: NIEM + NIMS/ICS + signed coordination notices + API/JSON + CAP + USMTF
+- validation_gates: consent confirmation, sovereignty review, protected-site access approval
+
+### packet_id: DPL-EMERGENCY-MANAGER-COP-FUSION-001
+- domain: homeland emergency manager common operating picture fusion
+- objective: reduce decision error by reconciling fragmented domestic reporting into a coherent, confidence-scored COP.
+- primary_tools: emergency-operations dashboard, incident-status board, geospatial fusion layer, report-validation queue
+- alternate_tools: manual incident board and local-check-in worksheet
+- degraded_mode: manually reconciled COP with no machine-prioritized recommendation beyond confirmed local reporting
+- input_requirements: incident reports, jurisdiction ownership, reporting timestamps, geospatial layers, warning impacts, confidence thresholds
+- output_schema: incident-priority map, data-confidence board, emergency-manager COP synchronization tracker
+- protocol_profile: EDXL-DE/CAP + NIEM + OGC + API/JSON + S/MIME + USMTF
+- validation_gates: data-freshness review, duplicate suppression, local confirmation
+
+### packet_id: DPL-LE-MIL-MOVEMENT-DECONFLICT-001
+- domain: homeland law enforcement and military movement deconfliction
+- objective: move forces lawfully and safely by reconciling convoy routes with road closures, checkpoints, and civil-safety controls.
+- primary_tools: road-closure map, convoy scheduler, law-enforcement liaison board, checkpoint-status tracker
+- alternate_tools: manual route sketch and law-enforcement contact log
+- degraded_mode: daylight or escorted movement only with command-approved chokepoint holds and manual checkpoint coordination
+- input_requirements: movement priority, route options, law-enforcement operations, checkpoint rules, civilian traffic risk, escort availability
+- output_schema: movement deconfliction board, route-clearance ladder, checkpoint-authority matrix
+- protocol_profile: NIEM + NIMS/ICS + signed route orders + API/JSON + CAP + USMTF
+- validation_gates: route clearance, law-enforcement concurrence, command approval
+
+### packet_id: DPL-DSCA-FUNDING-AUTHORITY-001
+- domain: homeland DSCA reimbursement and funding authority
+- objective: sustain domestic support without fiscal-law failure by matching operational actions to valid funding and reimbursement paths.
+- primary_tools: mission-assignment dashboard, cost-capture ledger, reimbursement status tracker, fiscal-authority decision matrix
+- alternate_tools: manual cost ledger and comptroller review worksheet
+- degraded_mode: advisory-only funding assessment with restricted obligations until fiscal review confirms authority
+- input_requirements: mission status, requested support, projected costs, accounting codes, reimbursement path, audit evidence
+- output_schema: funding-authority matrix, reimbursement timeline, cost-capture evidence ledger
+- protocol_profile: NIEM + signed fiscal notices + API/JSON + S/MIME + USMTF + NIMS/ICS
+- validation_gates: fiscal-authority review, cost-capture sufficiency, reimbursement eligibility
+
+### packet_id: DPL-JIC-CIVIL-WARNING-UNITY-001
+- domain: homeland joint information center and civil warning unity
+- objective: preserve trusted domestic warning and public information by synchronizing message release, rumor rebuttal, and approval timing.
+- primary_tools: warning-publisher dashboard, rumor-monitor board, multilingual message tracker, public-affairs approval queue
+- alternate_tools: manual holding statement log and public-affairs review board
+- degraded_mode: single-source holding statement only with no mass-warning amplification until authenticity and authority are confirmed
+- input_requirements: incident timeline, warning channels, approved language, rumor indicators, population segments, approval chain
+- output_schema: unified message board, warning-release ladder, rumor-control synchronization tracker
+- protocol_profile: CAP + NIEM + signed release packages + API/JSON + S/MIME + USMTF
+- validation_gates: warning-authority confirmation, message approval, authenticity verification

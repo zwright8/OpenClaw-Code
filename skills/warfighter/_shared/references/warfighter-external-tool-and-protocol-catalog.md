@@ -14380,3 +14380,87 @@ external_binding:
 ### `ps-strategic-va-dod-trauma-bed-rehabilitation-bridge-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: bed-status exchange, rehabilitation referral routing, transfer-packet acknowledgment, and continuity-of-care handoffs.
+
+## Tool Suite Addendum LXX (2026-04-06, Domestic Command Authorities, EMAC Force Flow, Governor RFF, Tribal Sovereignty, Emergency COP Fusion, Law-Enforcement Movement Deconfliction, DSCA Funding, and JIC Warning Unity)
+
+### `ts-homeland-dual-status-command-authority-integration-v1`
+- Use for: dual-status-command alignment, Title 10 and Title 32 force-status integration, and command-handshake validation during domestic operations.
+- Primary tools: mission-assignment tracker, force-status roster, authority-decision matrix, common-operating-picture board.
+- Cross-check tools: independent legal review cell and alternate National Guard coordination desk.
+- Typical products: authority alignment matrix, command-relationship decision board, force-status transition tracker.
+
+### `ts-homeland-emac-interstate-force-flow-synchronization-v1`
+- Use for: EMAC request synchronization, interstate staging, convoy or airlift sequencing, and reception-node deconfliction during domestic response.
+- Primary tools: EMAC request tracker, staging-capacity board, convoy scheduler, reception-node status dashboard.
+- Cross-check tools: independent emergency-management liaison cell and alternate mobility control board.
+- Typical products: interstate force-flow matrix, staging and reception ladder, EMAC support synchronization board.
+
+### `ts-homeland-governor-request-for-forces-mission-assignment-v1`
+- Use for: governor request triage, mission-assignment tracking, sourcing-option comparison, and unmet-request escalation across domestic support chains.
+- Primary tools: request tracker, capability-sourcing board, authority review matrix, mission-assignment status dashboard.
+- Cross-check tools: independent fiscal-law review cell and alternate force-sourcing board.
+- Typical products: request-for-forces decision ladder, mission-assignment tracker, sourcing-options board.
+
+### `ts-homeland-tribal-sovereignty-defense-support-coordination-v1`
+- Use for: sovereign liaison planning, consent tracking, protected-site access coordination, and lawful support to tribal communities and lands.
+- Primary tools: liaison tracker, jurisdiction map service, protected-site registry, community-warning coordination board.
+- Cross-check tools: independent tribal legal liaison cell and alternate civil-affairs review board.
+- Typical products: sovereignty coordination matrix, consent and liaison tracker, protected-site support ladder.
+
+### `ts-homeland-emergency-manager-cop-fusion-v1`
+- Use for: state, county, municipal, and military COP reconciliation, incident-priority fusion, and domestic reporting-confidence management.
+- Primary tools: emergency-operations dashboard, incident-status board, geospatial fusion layer, report-validation queue.
+- Cross-check tools: independent local-emergency-management cell and alternate public-warning verification board.
+- Typical products: incident-priority map, data-confidence board, emergency-manager COP synchronization tracker.
+
+### `ts-homeland-law-enforcement-military-movement-deconfliction-v1`
+- Use for: convoy route deconfliction, checkpoint alignment, law-enforcement handoff planning, and domestic movement legitimacy under public-safety controls.
+- Primary tools: road-closure map, convoy scheduler, law-enforcement liaison board, checkpoint-status tracker.
+- Cross-check tools: independent transportation-safety review cell and alternate force-protection board.
+- Typical products: movement deconfliction board, route-clearance ladder, checkpoint-authority matrix.
+
+### `ts-homeland-dsca-reimbursement-funding-authority-v1`
+- Use for: funding-line alignment, reimbursement eligibility review, cost-capture evidence generation, and fiscal-risk containment for domestic support missions.
+- Primary tools: mission-assignment dashboard, cost-capture ledger, reimbursement status tracker, fiscal-authority decision matrix.
+- Cross-check tools: independent comptroller review cell and alternate mission-finance board.
+- Typical products: funding-authority matrix, reimbursement timeline, cost-capture evidence ledger.
+
+### `ts-homeland-joint-information-center-civil-warning-unity-v1`
+- Use for: unified domestic warning release, joint-information-center synchronization, rumor control, and multilingual message governance.
+- Primary tools: warning-publisher dashboard, rumor-monitor board, multilingual message tracker, public-affairs approval queue.
+- Cross-check tools: independent civil-warning verification cell and alternate public-affairs review board.
+- Typical products: unified message board, warning-release ladder, rumor-control synchronization tracker.
+
+## Protocol Stack Addendum LXX (2026-04-06, External Integration Profiles for Expansion Wave LXX)
+
+### `ps-homeland-dual-status-command-authority-integration-stack-v1`
+- Protocols: `NIEM`, `NIMS/ICS`, signed authority memos, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: authority exchange, dual-status-command designation routing, and force-status acknowledgment integrity.
+
+### `ps-homeland-emac-interstate-force-flow-synchronization-stack-v1`
+- Protocols: `NIEM`, `NIMS/ICS`, `CAP`, signed movement orders, `API/JSON`, `USMTF`.
+- Use for: EMAC request flow, interstate movement updates, staging status exchange, and reception-node release coordination.
+
+### `ps-homeland-governor-request-for-forces-mission-assignment-stack-v1`
+- Protocols: `NIEM`, signed request packets, `NIMS/ICS`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: request-for-forces transmission, mission-assignment status exchange, and sourcing-decision acknowledgment.
+
+### `ps-homeland-tribal-sovereignty-defense-support-coordination-stack-v1`
+- Protocols: `NIEM`, `NIMS/ICS`, signed coordination notices, `API/JSON`, `CAP`, `USMTF`.
+- Use for: sovereign liaison exchange, consent-status routing, protected-site coordination, and community-warning synchronization.
+
+### `ps-homeland-emergency-manager-cop-fusion-stack-v1`
+- Protocols: `EDXL-DE/CAP`, `NIEM`, `OGC`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: incident-report fusion, geospatial update exchange, data-confidence routing, and domestic COP synchronization.
+
+### `ps-homeland-law-enforcement-military-movement-deconfliction-stack-v1`
+- Protocols: `NIEM`, `NIMS/ICS`, signed route orders, `API/JSON`, `CAP`, `USMTF`.
+- Use for: route-clearance updates, checkpoint synchronization, convoy handoff acknowledgment, and public-safety movement control.
+
+### `ps-homeland-dsca-reimbursement-funding-authority-stack-v1`
+- Protocols: `NIEM`, signed fiscal notices, `API/JSON`, `S/MIME`, `USMTF`, `NIMS/ICS`.
+- Use for: funding-authority exchange, cost-capture routing, reimbursement-status updates, and fiscal decision acknowledgment.
+
+### `ps-homeland-joint-information-center-civil-warning-unity-stack-v1`
+- Protocols: `CAP`, `NIEM`, signed release packages, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: warning-release synchronization, multilingual message exchange, rumor-rebuttal routing, and public-information approval chains.

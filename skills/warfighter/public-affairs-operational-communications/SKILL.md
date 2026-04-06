@@ -154,21 +154,9 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 - Add `tool_suite_id=ts-joint-captured-media-exploitation-viral-escalation-v1` + `protocol_stack_id=ps-joint-captured-media-exploitation-viral-escalation-stack-v1` when operational-communications decisions depend on exploiting seized media, controlling viral spread, or sequencing rebuttal releases.
 - Add `packet_id=DPL-CAPTURED-MEDIA-VIRAL-ESCALATION-001` for branches that materially alter release posture, narrative risk, or commander approval timing.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LXV Addendum)
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
 
-- Add `tool_suite_id=ts-joint-public-affairs-embargo-sensitive-loss-disclosure-v1` + `protocol_stack_id=ps-joint-public-affairs-embargo-sensitive-loss-disclosure-stack-v1` when messaging decisions depend on casualty or sensitive-loss disclosure timing, media embargo discipline, or adversary narrative exploitation risk.
-- Add `tool_suite_id=ts-joint-sensitive-imagery-next-of-kin-hold-release-v1` + `protocol_stack_id=ps-joint-sensitive-imagery-next-of-kin-hold-release-stack-v1` when imagery release depends on next-of-kin notification, redaction workflow, or evidentiary hold controls.
-- Add `packet_id=DPL-PA-EMBARGO-SENSITIVE-LOSS-001` and `packet_id=DPL-SENSITIVE-IMAGERY-NOK-HOLD-001` for branches that materially alter release timing, family-notification confidence, or narrative-risk posture.
-
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
-
-- Add `tool_suite_id=ts-joint-incident-command-post-public-communications-media-contingency-v1` + `protocol_stack_id=ps-joint-incident-command-post-public-communications-media-contingency-stack-v1` when public-communications posture depends on incident-command warning timing, holding statements, or surge media handling.
-- Add `tool_suite_id=ts-joint-military-financial-liability-compensation-continuity-v1` + `protocol_stack_id=ps-joint-military-financial-liability-compensation-continuity-stack-v1` when messaging decisions depend on compensation legitimacy, liability posture, or transparent claims routing after harm or damage.
-- Add `tool_suite_id=ts-joint-host-nation-legislative-liaison-mandate-alignment-v1` + `protocol_stack_id=ps-joint-host-nation-legislative-liaison-mandate-alignment-stack-v1` when release timing or content depends on host-nation emergency powers, mandate conflicts, or waiver approval.
-- Add `packet_id=DPL-ICP-PUBLIC-COMMS-CONTINGENCY-001`, `packet_id=DPL-FIN-LIABILITY-COMPENSATION-001`, and `packet_id=DPL-HOSTNATION-MANDATE-ALIGNMENT-001` for branches that materially alter public-warning posture, compensation messaging, or host-nation-facing release legitimacy.
-
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
-
-- Add `tool_suite_id=ts-joint-recovered-personnel-family-messaging-media-protection-v1` + `protocol_stack_id=ps-joint-recovered-personnel-family-messaging-media-protection-stack-v1` when release posture depends on recovered-personnel privacy, family-notification sequencing, or debrief protection.
-- Add `tool_suite_id=ts-homeland-dual-status-command-authority-reconciliation-v1` + `protocol_stack_id=ps-homeland-dual-status-command-authority-reconciliation-stack-v1` when public messaging must reflect state or federal command seams, mission-assignment legitimacy, or dual-status command designation.
-- Add `packet_id=DPL-RECOVERED-PERSONNEL-MEDIA-PROTECTION-001` and `packet_id=DPL-DUAL-STATUS-COMMAND-AUTHORITY-001` for branches that materially alter family messaging, public release timing, or civil-authority trust posture.
+- Add `toolchain_id=TC-JIC-265`, `tool_suite_id=ts-homeland-joint-information-center-civil-warning-unity-v1`, and `protocol_stack_id=ps-homeland-joint-information-center-civil-warning-unity-stack-v1` when operational communications depend on domestic warning authority, multilingual release discipline, rumor control, or synchronized JIC approvals.
+- Add `toolchain_id=TC-EOCFUSE-262`, `tool_suite_id=ts-homeland-emergency-manager-cop-fusion-v1`, and `protocol_stack_id=ps-homeland-emergency-manager-cop-fusion-stack-v1` when message timing depends on fragmented local incident reporting, confidence-scored COP updates, or conflicting civil inputs.
+- Add `toolchain_id=TC-TRIBAL-261`, `tool_suite_id=ts-homeland-tribal-sovereignty-defense-support-coordination-v1`, and `protocol_stack_id=ps-homeland-tribal-sovereignty-defense-support-coordination-stack-v1` when public messaging affects sovereign consent, protected-site sensitivity, or community trust with tribal nations.
+- Add `packet_id=DPL-JIC-CIVIL-WARNING-UNITY-001`, `packet_id=DPL-EMERGENCY-MANAGER-COP-FUSION-001`, and `packet_id=DPL-TRIBAL-DSCA-SOVEREIGNTY-001` for branches that materially alter message release posture, warning timing, or legitimacy risk.

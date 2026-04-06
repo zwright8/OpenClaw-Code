@@ -2939,3 +2939,25 @@ Every skill output should include:
 - Homeland National Guard dual-status command authority reconciliation + defense-support-of-civil-authorities-crisis-cell + civil-defense-mass-evacuation-shelter-cell + homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell.
 - Joint recovered personnel family messaging and media protection + joint-recovered-personnel-reintegration-and-sensitive-debrief-cell + public-affairs-operational-communications + joint-multi-theater-casualty-information-and-family-notification-integrity-cell.
 - Strategic VA-DOD trauma bed and rehabilitation bridge + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + austere-surgical-support-coordinator + operational-hospital-overflow-aeromedical-routing-cell.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXX)
+
+- homeland-dual-status-command-authority-integration-cell
+- homeland-emac-interstate-force-flow-synchronization-cell
+- homeland-governor-request-for-forces-and-mission-assignment-cell
+- homeland-tribal-sovereignty-and-defense-support-coordination-cell
+- homeland-emergency-manager-common-operating-picture-fusion-cell
+- homeland-law-enforcement-and-military-movement-deconfliction-cell
+- homeland-dsca-reimbursement-and-funding-authority-cell
+- homeland-joint-information-center-and-civil-warning-unity-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXX)
+
+- Homeland dual-status command authority integration + defense-support-of-civil-authorities-crisis-cell + reserve-guard-mobilization-planner + mission-risk-decision-support.
+- Homeland EMAC interstate force flow synchronization + strategic-mobility-deployment-planner + defense-support-of-civil-authorities-crisis-cell + reserve-guard-mobilization-planner.
+- Homeland governor request for forces and mission assignment + defense-support-of-civil-authorities-crisis-cell + joint-finance-and-pay-continuity-in-contested-theaters-cell + mission-risk-decision-support.
+- Homeland tribal sovereignty and defense support coordination + civil-affairs-stability-ops + defense-support-of-civil-authorities-crisis-cell + public-affairs-operational-communications.
+- Homeland emergency manager common operating picture fusion + defense-support-of-civil-authorities-crisis-cell + civilian-sensor-report-veracity-and-rumor-control-cell + mission-risk-decision-support.
+- Homeland law enforcement and military movement deconfliction + strategic-mobility-deployment-planner + force-protection-and-base-defense + homeland-rail-evacuation-signaling-restoration-cell.
+- Homeland DSCA reimbursement and funding authority + joint-finance-and-pay-continuity-in-contested-theaters-cell + defense-support-of-civil-authorities-crisis-cell + mission-risk-decision-support.
+- Homeland joint information center and civil warning unity + public-affairs-operational-communications + joint-theater-emergency-civil-alert-and-public-warning-cell + defense-support-of-civil-authorities-crisis-cell.

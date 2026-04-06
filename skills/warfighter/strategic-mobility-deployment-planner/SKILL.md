@@ -164,28 +164,9 @@ Primary products for this skill: deployment sequencing plan, bottleneck mitigati
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when armored deployment posture depends on track-pad, roadwheel, or final-drive readiness before onward movement.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter strategic lift timing, access confidence, or deployment posture.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
 
-- Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when strategic mobility depends on rapid port shutdown, alternate offload planning, or phased sealift regeneration after tsunami damage.
-- Add `tool_suite_id=ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1` + `protocol_stack_id=ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1` when onward movement depends on safe coalition rail dispatch after signaling failure or manual-block reversion.
-- Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-RAIL-SIGNALING-MANUAL-BLOCK-001` for recommendations that materially alter port selection, inland routing, or deployment timing.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
-
-- Add `tool_suite_id=ts-strategic-merchant-mariner-crewing-flag-sanctions-risk-v1` + `protocol_stack_id=ps-strategic-merchant-mariner-crewing-flag-sanctions-risk-stack-v1` when deployment timing depends on chartered lift, crew availability, or flag-state and sanctions friction.
-- Add `tool_suite_id=ts-joint-space-launch-hazard-area-civil-warning-integration-v1` + `protocol_stack_id=ps-joint-space-launch-hazard-area-civil-warning-integration-stack-v1` when strategic mobility options must account for launch hazard corridors, reentry warnings, or civil air and maritime closures.
-- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when force-flow confidence depends on payroll, disbursing, or local-currency continuity at staging and reception nodes.
-- Add `packet_id=DPL-MERCHANT-MARINER-FLAG-SANCTIONS-001`, `packet_id=DPL-SPACE-LAUNCH-HAZARD-CIVIL-WARNING-001`, and `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001` for recommendations that materially alter route selection, launch window deconfliction, or deployment timing.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Gap-Closure Addendum)
-
-- Add `tool_suite_id=ts-joint-air-mobility-diplomatic-clearance-staging-v1` + `protocol_stack_id=ps-joint-air-mobility-diplomatic-clearance-staging-stack-v1` when strategic mobility depends on diplomatic-clearance fidelity, staging-node throughput, or contested airlift continuity.
-- Add `tool_suite_id=ts-joint-operational-law-judge-advocate-advisory-v1` + `protocol_stack_id=ps-joint-operational-law-judge-advocate-advisory-stack-v1` when deployment posture depends on legal authorities, host-nation caveats, or protected advisory review of access and movement constraints.
-- Add `packet_id=DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001` and `packet_id=DPL-JUDGE-ADVOCATE-OPLAW-001` for recommendations that materially alter route selection, airlift access, or deployment timing.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
-
-- Add `tool_suite_id=ts-coalition-ballast-water-biosecurity-port-clearance-v1` + `protocol_stack_id=ps-coalition-ballast-water-biosecurity-port-clearance-stack-v1` when strategic mobility depends on rapid berth clearance without accepting ballast-driven biosecurity or quarantine delays.
-- Add `tool_suite_id=ts-joint-arctic-ice-pilotage-mariner-fatigue-v1` + `protocol_stack_id=ps-joint-arctic-ice-pilotage-mariner-fatigue-stack-v1` when sealift timing depends on high-latitude route release, pilotage scarcity, or crew-endurance limits.
-- Add `tool_suite_id=ts-homeland-port-war-risk-insurance-claims-v1` + `protocol_stack_id=ps-homeland-port-war-risk-insurance-claims-stack-v1` when deployment confidence depends on restored insurer support, claims handling, or commercial berth participation at strategic ports.
-- Add `packet_id=DPL-BALLAST-WATER-PORT-CLEARANCE-001`, `packet_id=DPL-ARCTIC-ICE-PILOTAGE-FATIGUE-001`, and `packet_id=DPL-PORT-WAR-RISK-CLAIMS-001` for recommendations that materially alter access confidence, sealift timing, or deployment posture.
+- Add `toolchain_id=TC-EMAC-259`, `tool_suite_id=ts-homeland-emac-interstate-force-flow-synchronization-v1`, and `protocol_stack_id=ps-homeland-emac-interstate-force-flow-synchronization-stack-v1` when strategic mobility depends on interstate staging, EMAC throughput, or reception-node capacity during homeland support.
+- Add `toolchain_id=TC-GOVRFF-260`, `tool_suite_id=ts-homeland-governor-request-for-forces-mission-assignment-v1`, and `protocol_stack_id=ps-homeland-governor-request-for-forces-mission-assignment-stack-v1` when deployment recommendations depend on governor requests, mission-assignment speed, or force-package sourcing clarity.
+- Add `toolchain_id=TC-LEMOVE-263`, `tool_suite_id=ts-homeland-law-enforcement-military-movement-deconfliction-v1`, and `protocol_stack_id=ps-homeland-law-enforcement-military-movement-deconfliction-stack-v1` when protected movement depends on domestic road controls, checkpoint legitimacy, or public-safety route release.
+- Add `packet_id=DPL-EMAC-FORCE-FLOW-001`, `packet_id=DPL-GOV-RFF-MISSION-ASSIGNMENT-001`, and `packet_id=DPL-LE-MIL-MOVEMENT-DECONFLICT-001` for branches that materially alter lift timing, corridor confidence, or domestic deployment posture.

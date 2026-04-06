@@ -149,26 +149,19 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 - Add `tool_suite_id=ts-homeland-911-cell-broadcast-auth-mass-notification-continuity-v1` + `protocol_stack_id=ps-homeland-911-cell-broadcast-auth-mass-notification-continuity-stack-v1` when DSCA recommendations depend on trusted warning release, PSAP continuity, or mass-notification authenticity under telecom stress.
 - Add `packet_id=DPL-HOMELAND-911-CELL-BROADCAST-AUTHENTICATION-MASS-NOTIFICATION-CONTINUITY-001` for branches that materially alter public-warning posture, alert release timing, or 911 mutual-aid requests.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
-
-- Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when DSCA support must coordinate port shutdown, harbor safety, or alternate sealift throughput after tsunami warning or surge damage.
-- Add `tool_suite_id=ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1` + `protocol_stack_id=ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1` when DSCA decisions depend on shelter survivability, radiological dose tracking, or life-support resupply timing.
-- Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001` for branches that materially alter public-protection posture, convoy release timing, or civil-support prioritization.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
-
-- Add `tool_suite_id=ts-joint-civilian-sensor-report-veracity-rumor-control-v1` + `protocol_stack_id=ps-joint-civilian-sensor-report-veracity-rumor-control-stack-v1` when DSCA support depends on validating crowdsourced damage reports, rumor spikes, or public-warning credibility.
-- Add `tool_suite_id=ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1` + `protocol_stack_id=ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1` when DSCA priorities depend on industrial-chemical release triage, decon throughput, or sheltering decisions.
-- Add `packet_id=DPL-CIVILIAN-SENSOR-RUMOR-CONTROL-001` and `packet_id=DPL-TIC-EXPOSURE-DECON-TRIAGE-001` for branches that materially alter warning release, civil movement control, or contaminated-population support posture.
-
 ## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
 
 - Add `tool_suite_id=ts-homeland-wildland-fire-airspace-retardant-priority-v1` + `protocol_stack_id=ps-homeland-wildland-fire-airspace-retardant-priority-stack-v1` when DSCA support depends on military airspace reprioritization, retardant scarcity, or smoke-driven sortie tradeoffs.
 - Add `packet_id=DPL-WILDLAND-FIRE-AIRSPACE-RETARDANT-001` for branches that materially alter aviation support posture, airspace release timing, or protected-site prioritization.
 
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
 
-- Add `tool_suite_id=ts-homeland-dual-status-command-authority-reconciliation-v1` + `protocol_stack_id=ps-homeland-dual-status-command-authority-reconciliation-stack-v1` when DSCA support depends on state or federal command seams, mission-assignment legitimacy, or governor and federal concurrence timing.
-- Add `tool_suite_id=ts-expeditionary-field-feeding-water-quality-ration-reconstitution-v1` + `protocol_stack_id=ps-expeditionary-field-feeding-water-quality-ration-reconstitution-stack-v1` when sheltering, mass-care, or sustained response posture depends on safe feeding throughput and potable-water assurance.
-- Add `tool_suite_id=ts-theater-barracks-mold-pest-indoor-air-remediation-v1` + `protocol_stack_id=ps-theater-barracks-mold-pest-indoor-air-remediation-stack-v1` when temporary billeting, responder housing, or protected-population sheltering depends on indoor-air confidence and habitability restoration.
-- Add `packet_id=DPL-DUAL-STATUS-COMMAND-AUTHORITY-001`, `packet_id=DPL-FIELD-FEEDING-RATION-RECONSTITUTION-001`, and `packet_id=DPL-BARRACKS-INDOOR-AIR-REMEDIATION-001` for branches that materially alter DSCA command posture, shelter sustainment, or public-support legitimacy.
+- Add `toolchain_id=TC-DSC-258`, `tool_suite_id=ts-homeland-dual-status-command-authority-integration-v1`, and `protocol_stack_id=ps-homeland-dual-status-command-authority-integration-stack-v1` when DSCA support depends on dual-status-command nomination, Title 10 versus Title 32 alignment, or split-C2 fallback.
+- Add `toolchain_id=TC-EMAC-259`, `tool_suite_id=ts-homeland-emac-interstate-force-flow-synchronization-v1`, and `protocol_stack_id=ps-homeland-emac-interstate-force-flow-synchronization-stack-v1` when domestic response throughput depends on EMAC requests, staging density, or reception-node synchronization.
+- Add `toolchain_id=TC-GOVRFF-260`, `tool_suite_id=ts-homeland-governor-request-for-forces-mission-assignment-v1`, and `protocol_stack_id=ps-homeland-governor-request-for-forces-mission-assignment-stack-v1` when DSCA recommendations depend on governor demand, mission-assignment approval, or sourcing viability.
+- Add `toolchain_id=TC-TRIBAL-261`, `tool_suite_id=ts-homeland-tribal-sovereignty-defense-support-coordination-v1`, and `protocol_stack_id=ps-homeland-tribal-sovereignty-defense-support-coordination-stack-v1` when support options affect tribal consent, sovereign coordination, or protected-site access.
+- Add `toolchain_id=TC-EOCFUSE-262`, `tool_suite_id=ts-homeland-emergency-manager-cop-fusion-v1`, and `protocol_stack_id=ps-homeland-emergency-manager-cop-fusion-stack-v1` when the recommendation depends on reconciling fragmented local reporting into a trusted domestic COP.
+- Add `toolchain_id=TC-LEMOVE-263`, `tool_suite_id=ts-homeland-law-enforcement-military-movement-deconfliction-v1`, and `protocol_stack_id=ps-homeland-law-enforcement-military-movement-deconfliction-stack-v1` when support plans hinge on convoy legitimacy, checkpoint control, or route release under public-safety restrictions.
+- Add `toolchain_id=TC-FISCAL-264`, `tool_suite_id=ts-homeland-dsca-reimbursement-funding-authority-v1`, and `protocol_stack_id=ps-homeland-dsca-reimbursement-funding-authority-stack-v1` when operational utility depends on valid funding lines, reimbursement timing, or cost-capture integrity.
+- Add `toolchain_id=TC-JIC-265`, `tool_suite_id=ts-homeland-joint-information-center-civil-warning-unity-v1`, and `protocol_stack_id=ps-homeland-joint-information-center-civil-warning-unity-stack-v1` when DSCA outcomes depend on unified warning release, rumor control, or multilingual message governance.
+- Add `packet_id=DPL-DUAL-STATUS-COMMAND-001`, `packet_id=DPL-EMAC-FORCE-FLOW-001`, `packet_id=DPL-GOV-RFF-MISSION-ASSIGNMENT-001`, `packet_id=DPL-TRIBAL-DSCA-SOVEREIGNTY-001`, `packet_id=DPL-EMERGENCY-MANAGER-COP-FUSION-001`, `packet_id=DPL-LE-MIL-MOVEMENT-DECONFLICT-001`, `packet_id=DPL-DSCA-FUNDING-AUTHORITY-001`, and `packet_id=DPL-JIC-CIVIL-WARNING-UNITY-001` for branches that materially alter DSCA posture, authorities, or public-safety timing.

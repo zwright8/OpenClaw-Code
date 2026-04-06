@@ -2186,3 +2186,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent patient-movement coordination cell and alternate surgical-network review board
 - Protocol binding: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
 - Fallback path: manual bed-status board with command-approved transfer sequencing and no unsourced rehabilitation commitments
+
+## Toolchain Wave LXX (2026-04-06)
+
+### `TC-DSC-258`
+
+- Domain: homeland dual-status command authority integration
+- Primary systems: mission-assignment tracker, force-status roster, authority-decision matrix, common-operating-picture board
+- Cross-check systems: independent legal review cell and alternate National Guard coordination desk
+- Protocol binding: NIEM + NIMS/ICS + signed authority memos + API/JSON + S/MIME + USMTF
+- Fallback path: manual authority matrix with no force-status change or command-handshake recommendation beyond confirmed written orders
+
+### `TC-EMAC-259`
+
+- Domain: homeland EMAC interstate force-flow synchronization
+- Primary systems: EMAC request tracker, staging-capacity board, convoy scheduler, reception-node status dashboard
+- Cross-check systems: independent emergency-management liaison cell and alternate mobility control board
+- Protocol binding: NIEM + NIMS/ICS + CAP + signed movement orders + API/JSON + USMTF
+- Fallback path: priority-force movement only with manual checkpoint coordination and command-approved staging holds
+
+### `TC-GOVRFF-260`
+
+- Domain: homeland governor request for forces and mission assignment
+- Primary systems: request tracker, capability-sourcing board, authority review matrix, mission-assignment status dashboard
+- Cross-check systems: independent fiscal-law review cell and alternate force-sourcing board
+- Protocol binding: NIEM + signed request packets + NIMS/ICS + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sourcing options until authority and mission-assignment status are confirmed
+
+### `TC-TRIBAL-261`
+
+- Domain: homeland tribal sovereignty and defense support coordination
+- Primary systems: liaison tracker, jurisdiction map service, protected-site registry, community-warning coordination board
+- Cross-check systems: independent tribal legal liaison cell and alternate civil-affairs review board
+- Protocol binding: NIEM + NIMS/ICS + signed coordination notices + API/JSON + CAP + USMTF
+- Fallback path: liaison-only support board with no site-entry or posture-change recommendation until consent and authority are confirmed
+
+### `TC-EOCFUSE-262`
+
+- Domain: homeland emergency manager common operating picture fusion
+- Primary systems: emergency-operations dashboard, incident-status board, geospatial fusion layer, report-validation queue
+- Cross-check systems: independent local-emergency-management cell and alternate public-warning verification board
+- Protocol binding: EDXL-DE/CAP + NIEM + OGC + API/JSON + S/MIME + USMTF
+- Fallback path: manual COP board with time-bounded local check-ins and no machine-fused risk score beyond confirmed reporting
+
+### `TC-LEMOVE-263`
+
+- Domain: homeland law enforcement and military movement deconfliction
+- Primary systems: road-closure map, convoy scheduler, law-enforcement liaison board, checkpoint-status tracker
+- Cross-check systems: independent transportation-safety review cell and alternate force-protection board
+- Protocol binding: NIEM + NIMS/ICS + signed route orders + API/JSON + CAP + USMTF
+- Fallback path: manual route-control board with no armed movement through uncontrolled chokepoints without command approval
+
+### `TC-FISCAL-264`
+
+- Domain: homeland DSCA reimbursement and funding authority
+- Primary systems: mission-assignment dashboard, cost-capture ledger, reimbursement status tracker, fiscal-authority decision matrix
+- Cross-check systems: independent comptroller review cell and alternate mission-finance board
+- Protocol binding: NIEM + signed fiscal notices + API/JSON + S/MIME + USMTF + NIMS/ICS
+- Fallback path: manual cost ledger with advisory-only funding assessment until fiscal review confirms authority
+
+### `TC-JIC-265`
+
+- Domain: homeland joint information center and civil warning unity
+- Primary systems: warning-publisher dashboard, rumor-monitor board, multilingual message tracker, public-affairs approval queue
+- Cross-check systems: independent civil-warning verification cell and alternate public-affairs review board
+- Protocol binding: CAP + NIEM + signed release packages + API/JSON + S/MIME + USMTF
+- Fallback path: single-source holding statement with manual approval log and no warning amplification until source authenticity is confirmed

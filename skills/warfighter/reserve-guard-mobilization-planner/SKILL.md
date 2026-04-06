@@ -144,3 +144,9 @@ Primary products for this skill: mobilization timeline, force sourcing decision 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
+
+- Add `toolchain_id=TC-DSC-258`, `tool_suite_id=ts-homeland-dual-status-command-authority-integration-v1`, and `protocol_stack_id=ps-homeland-dual-status-command-authority-integration-stack-v1` when mobilization planning depends on dual-status command, Title 10 versus Title 32 alignment, or lawful force-status transitions.
+- Add `toolchain_id=TC-EMAC-259`, `tool_suite_id=ts-homeland-emac-interstate-force-flow-synchronization-v1`, and `protocol_stack_id=ps-homeland-emac-interstate-force-flow-synchronization-stack-v1` when reserve or Guard mobilization depends on cross-state staging, EMAC demand, or reception-node throughput.
+- Add `toolchain_id=TC-GOVRFF-260`, `tool_suite_id=ts-homeland-governor-request-for-forces-mission-assignment-v1`, and `protocol_stack_id=ps-homeland-governor-request-for-forces-mission-assignment-stack-v1` when mobilization recommendations depend on governor requests, mission-assignment timing, or sourcing priority.
+- Add `packet_id=DPL-DUAL-STATUS-COMMAND-001`, `packet_id=DPL-EMAC-FORCE-FLOW-001`, and `packet_id=DPL-GOV-RFF-MISSION-ASSIGNMENT-001` for branches that materially alter mobilization posture, alert timelines, or force-employment authorities.

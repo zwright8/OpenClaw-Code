@@ -333,48 +333,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-strategic-rare-gas-cryogenic-supply-priority-v1` + `protocol_stack_id=ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1` when readiness or industrial continuity depends on scarce cryogenic-gas allocation, purity confidence, or boil-off risk.
 - Add `packet_id=DPL-NUCLEAR-WARN-DELEGATION-001`, `packet_id=DPL-MISSILE-WARNING-GT-CORR-001`, `packet_id=DPL-RAIL-EVAC-SIGNAL-001`, and `packet_id=DPL-RAREGAS-CRYO-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
 
-## Domain Toolchain Override (2026-03-15, Expansion Wave LXIII Addendum)
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
 
-- Add `tool_suite_id=ts-joint-tactical-optical-boresight-zero-retention-v1` + `protocol_stack_id=ps-joint-tactical-optical-boresight-zero-retention-stack-v1` when commander risk acceptance depends on optic-zero confidence, post-shock alignment, or reduced-confidence fires release.
-- Add `tool_suite_id=ts-joint-space-launch-range-upper-air-gap-v1` + `protocol_stack_id=ps-joint-space-launch-range-upper-air-gap-stack-v1` when launch timing, hazard separation, or upper-air sensing freshness materially alters commander GO or scrub posture.
-- Add `tool_suite_id=ts-strategic-solid-rocket-motor-aging-inspection-priority-v1` + `protocol_stack_id=ps-strategic-solid-rocket-motor-aging-inspection-priority-stack-v1` when readiness, inspection backlog, or propulsion-lot confidence materially changes strategic risk posture.
-- Add `tool_suite_id=ts-homeland-lock-dam-barge-priority-manual-override-v1` + `protocol_stack_id=ps-homeland-lock-dam-barge-priority-manual-override-stack-v1` when inland-waterway throughput, manual-control authority, or cargo-priority tradeoffs materially affect mission risk.
-- Add `packet_id=DPL-TACTICAL-BORESIGHT-ZERO-001`, `packet_id=DPL-LAUNCH-UPPER-AIR-GAP-001`, `packet_id=DPL-SRM-AGING-PRIORITY-001`, and `packet_id=DPL-LOCK-DAM-BARGE-OVERRIDE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
-
-- Add `tool_suite_id=ts-theater-drone-port-battery-thermal-runaway-ordnance-standoff-v1` + `protocol_stack_id=ps-theater-drone-port-battery-thermal-runaway-ordnance-standoff-stack-v1` when commander risk acceptance depends on drone-port fire exposure, pad evacuation timing, or armed-aircraft standoff confidence.
-- Add `tool_suite_id=ts-strategic-space-cleanroom-contamination-component-quarantine-v1` + `protocol_stack_id=ps-strategic-space-cleanroom-contamination-component-quarantine-stack-v1` when strategic launch or satellite readiness depends on contamination containment, hardware pedigree, or quarantine timing.
-- Add `tool_suite_id=ts-strategic-cash-vault-disconnected-pay-agent-anti-diversion-v1` + `protocol_stack_id=ps-strategic-cash-vault-disconnected-pay-agent-anti-diversion-stack-v1` when commander risk posture depends on emergency payroll continuity, cash custody integrity, or anti-diversion controls.
-- Add `packet_id=DPL-DRONEPORT-THERMAL-STANDOFF-001`, `packet_id=DPL-CLEANROOM-QUARANTINE-001`, and `packet_id=DPL-CASH-VAULT-ANTIDIVERSION-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
-
-## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
-
-- Add `tool_suite_id=ts-coalition-civil-port-labor-strike-sealift-continuity-v1` + `protocol_stack_id=ps-coalition-civil-port-labor-strike-sealift-continuity-stack-v1` when commander risk acceptance depends on commercial-port labor disruption, berth access, or sealift reroute legitimacy.
-- Add `tool_suite_id=ts-homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-v1` + `protocol_stack_id=ps-homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-stack-v1` when mission risk depends on coastal fuel continuity, contamination confidence, or blackstart fuel availability.
-- Add `tool_suite_id=ts-joint-launch-toxic-propellant-cloud-public-protection-v1` + `protocol_stack_id=ps-joint-launch-toxic-propellant-cloud-public-protection-stack-v1` when commander posture depends on toxic-plume exposure, shelter timing, or launch-protection tradeoffs.
-- Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when risk decisions depend on coalition AI trust, release authority, or guardrail completeness.
-- Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-FUEL-FARM-SALTWATER-INTRUSION-001`, `packet_id=DPL-LAUNCH-TOXIC-PROPELLANT-CLOUD-001`, and `packet_id=DPL-COALITION-AI-GUARDRAILS-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
-
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXVII Addendum)
-
-- Add `tool_suite_id=ts-joint-seabed-sensor-grid-cable-sabotage-hunt-v1` + `protocol_stack_id=ps-joint-seabed-sensor-grid-cable-sabotage-hunt-stack-v1` when mission risk depends on undersea warning continuity, cable-restoration confidence, or sabotage localization.
-- Add `tool_suite_id=ts-joint-iamd-reload-shuttle-assurance-v1` + `protocol_stack_id=ps-joint-iamd-reload-shuttle-assurance-stack-v1` when commander posture depends on launcher reload survivability, magazine depth recovery, or reload-site exposure.
-- Add `tool_suite_id=ts-homeland-gps-denied-rail-fuel-fallback-v1` + `protocol_stack_id=ps-homeland-gps-denied-rail-fuel-fallback-stack-v1` when mission endurance depends on denied-PNT fuel routing, dispatch legitimacy, or transfer accountability.
-- Add `tool_suite_id=ts-strategic-solid-rocket-motor-cure-line-continuity-v1` + `protocol_stack_id=ps-strategic-solid-rocket-motor-cure-line-continuity-stack-v1` when strategic readiness depends on cure-line integrity, lot-release confidence, or industrial recovery sequencing.
-- Add `packet_id=DPL-SEABED-SABOTAGE-HUNT-001`, `packet_id=DPL-IAMD-RELOAD-SHUTTLE-001`, `packet_id=DPL-RAIL-FUEL-FALLBACK-001`, and `packet_id=DPL-SOLID-ROCKET-CURELINE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
-
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
-
-- Add `tool_suite_id=ts-strategic-military-housing-utility-safety-restoration-v1` + `protocol_stack_id=ps-strategic-military-housing-utility-safety-restoration-stack-v1` when commander risk posture depends on installation habitability, utility isolation, or family relocation burden.
-- Add `tool_suite_id=ts-theater-evacuation-route-humanitarian-logistics-traffic-priority-v1` + `protocol_stack_id=ps-theater-evacuation-route-humanitarian-logistics-traffic-priority-stack-v1` when risk acceptance depends on evacuation throughput, humanitarian corridor legitimacy, or mixed military and civilian route congestion.
-- Add `tool_suite_id=ts-joint-military-financial-liability-compensation-continuity-v1` + `protocol_stack_id=ps-joint-military-financial-liability-compensation-continuity-stack-v1` when mission posture depends on compensation legitimacy, liability exposure, or emergency claims continuity after incidents.
-- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-family-stabilization-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-family-stabilization-stack-v1` when readiness risk depends on strategic-worker family support, transport friction, or production attendance stability.
-- Add `packet_id=DPL-HOUSING-UTILITY-SAFETY-001`, `packet_id=DPL-EVAC-HUMLOG-TRAFFIC-001`, `packet_id=DPL-FIN-LIABILITY-COMPENSATION-001`, and `packet_id=DPL-INDUSTRIAL-WORKFORCE-FAMILY-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
-
-## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
-
-- Add `tool_suite_id=ts-joint-forward-pharmacy-controlled-substance-formulary-substitution-v1` + `protocol_stack_id=ps-joint-forward-pharmacy-controlled-substance-formulary-substitution-stack-v1` when commander risk posture depends on controlled-substance custody, therapeutic substitution confidence, or cold-chain medication continuity.
-- Add `tool_suite_id=ts-homeland-dual-status-command-authority-reconciliation-v1` + `protocol_stack_id=ps-homeland-dual-status-command-authority-reconciliation-stack-v1` when risk acceptance depends on Title 10 and Title 32 authorities, dual-status command seams, or homeland-response legitimacy.
-- Add `tool_suite_id=ts-strategic-va-dod-trauma-bed-rehabilitation-bridge-v1` + `protocol_stack_id=ps-strategic-va-dod-trauma-bed-rehabilitation-bridge-stack-v1` when casualty recovery, rehabilitation capacity, or long-tail care continuity materially changes commander GO, NO-GO, or sustainment posture.
-- Add `packet_id=DPL-FORWARD-PHARMACY-CONTROLLED-SUBSTANCE-001`, `packet_id=DPL-DUAL-STATUS-COMMAND-AUTHORITY-001`, and `packet_id=DPL-VA-DOD-TRAUMA-REHAB-BRIDGE-001` for branches that materially change commander risk framing, medical continuity assumptions, or homeland command posture.
+- Add `toolchain_id=TC-DSC-258`, `tool_suite_id=ts-homeland-dual-status-command-authority-integration-v1`, and `protocol_stack_id=ps-homeland-dual-status-command-authority-integration-stack-v1` when commander risk posture depends on Title 10 versus Title 32 force-status alignment, dual-status command designation timing, or domestic unity-of-command confidence.
+- Add `toolchain_id=TC-GOVRFF-260`, `tool_suite_id=ts-homeland-governor-request-for-forces-mission-assignment-v1`, and `protocol_stack_id=ps-homeland-governor-request-for-forces-mission-assignment-stack-v1` when risk acceptance depends on governor demand legitimacy, mission-assignment speed, or sourcing sufficiency.
+- Add `toolchain_id=TC-EOCFUSE-262`, `tool_suite_id=ts-homeland-emergency-manager-cop-fusion-v1`, and `protocol_stack_id=ps-homeland-emergency-manager-cop-fusion-stack-v1` when commander risk framing depends on fragmented domestic reporting, local confirmation lag, or confidence-scored common operating pictures.
+- Add `toolchain_id=TC-FISCAL-264`, `tool_suite_id=ts-homeland-dsca-reimbursement-funding-authority-v1`, and `protocol_stack_id=ps-homeland-dsca-reimbursement-funding-authority-stack-v1` when recommendation viability depends on fiscal legitimacy, reimbursement timing, or auditability of DSCA actions.
+- Add `packet_id=DPL-DUAL-STATUS-COMMAND-001`, `packet_id=DPL-GOV-RFF-MISSION-ASSIGNMENT-001`, `packet_id=DPL-EMERGENCY-MANAGER-COP-FUSION-001`, and `packet_id=DPL-DSCA-FUNDING-AUTHORITY-001` for branches that materially alter commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture during homeland response.
