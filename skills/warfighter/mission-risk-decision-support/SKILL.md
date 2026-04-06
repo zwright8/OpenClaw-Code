@@ -355,3 +355,11 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-joint-launch-toxic-propellant-cloud-public-protection-v1` + `protocol_stack_id=ps-joint-launch-toxic-propellant-cloud-public-protection-stack-v1` when commander posture depends on toxic-plume exposure, shelter timing, or launch-protection tradeoffs.
 - Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when risk decisions depend on coalition AI trust, release authority, or guardrail completeness.
 - Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-FUEL-FARM-SALTWATER-INTRUSION-001`, `packet_id=DPL-LAUNCH-TOXIC-PROPELLANT-CLOUD-001`, and `packet_id=DPL-COALITION-AI-GUARDRAILS-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVII Addendum)
+
+- Add `tool_suite_id=ts-joint-seabed-sensor-grid-cable-sabotage-hunt-v1` + `protocol_stack_id=ps-joint-seabed-sensor-grid-cable-sabotage-hunt-stack-v1` when mission risk depends on undersea warning continuity, cable-restoration confidence, or sabotage localization.
+- Add `tool_suite_id=ts-joint-iamd-reload-shuttle-assurance-v1` + `protocol_stack_id=ps-joint-iamd-reload-shuttle-assurance-stack-v1` when commander posture depends on launcher reload survivability, magazine depth recovery, or reload-site exposure.
+- Add `tool_suite_id=ts-homeland-gps-denied-rail-fuel-fallback-v1` + `protocol_stack_id=ps-homeland-gps-denied-rail-fuel-fallback-stack-v1` when mission endurance depends on denied-PNT fuel routing, dispatch legitimacy, or transfer accountability.
+- Add `tool_suite_id=ts-strategic-solid-rocket-motor-cure-line-continuity-v1` + `protocol_stack_id=ps-strategic-solid-rocket-motor-cure-line-continuity-stack-v1` when strategic readiness depends on cure-line integrity, lot-release confidence, or industrial recovery sequencing.
+- Add `packet_id=DPL-SEABED-SABOTAGE-HUNT-001`, `packet_id=DPL-IAMD-RELOAD-SHUTTLE-001`, `packet_id=DPL-RAIL-FUEL-FALLBACK-001`, and `packet_id=DPL-SOLID-ROCKET-CURELINE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.

@@ -183,3 +183,10 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when CEMA branches depend on coalition AI access boundaries, model provenance, or guardrail enforcement across shared decision aids.
 - Add `tool_suite_id=ts-tactical-weather-denial-baro-altimetry-cross-check-v1` + `protocol_stack_id=ps-tactical-weather-denial-baro-altimetry-cross-check-stack-v1` when jamming or spoofing degrades weather confidence and sortie or fires release depends on alternate barometric cross-checks.
 - Add `packet_id=DPL-DENIED-FIRMWARE-ATTESTATION-001`, `packet_id=DPL-COALITION-AI-GUARDRAILS-001`, and `packet_id=DPL-WEATHER-DENIAL-BARO-CROSSCHECK-001` for branches that materially change cyber trust, partner-access posture, or release timing under sensor denial.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVII Addendum)
+
+- Add `tool_suite_id=ts-joint-seabed-sensor-grid-cable-sabotage-hunt-v1` + `protocol_stack_id=ps-joint-seabed-sensor-grid-cable-sabotage-hunt-stack-v1` when CEMA synchronization depends on seabed sensor continuity, undersea cable trust, or repair-security timing.
+- Add `tool_suite_id=ts-sof-clandestine-resupply-signature-budget-v1` + `protocol_stack_id=ps-sof-clandestine-resupply-signature-budget-stack-v1` when cyber-electromagnetic branches depend on low-signature SOF sustainment, cache exposure, or adversary sensor avoidance.
+- Add `tool_suite_id=ts-joint-arctic-under-ice-polynya-routing-v1` + `protocol_stack_id=ps-joint-arctic-under-ice-polynya-routing-stack-v1` when low-probability communications, navigation confidence, or Arctic recovery timing materially affect CEMA release decisions.
+- Add `packet_id=DPL-SEABED-SABOTAGE-HUNT-001`, `packet_id=DPL-SOF-RESUPPLY-SIGNATURE-001`, and `packet_id=DPL-UNDER-ICE-POLYNYA-ROUTING-001` for branches that materially change undersea sensing trust, clandestine exposure posture, or Arctic command-path timing.

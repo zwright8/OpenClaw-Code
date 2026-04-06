@@ -14088,3 +14088,107 @@ external_binding:
 ### `ps-tactical-weather-denial-baro-altimetry-cross-check-stack-v1`
 - Protocols: `WMO BUFR/GRIB`, `AIXM/FIXM`, `OGC`, `API/JSON`, `USMTF`.
 - Use for: degraded-weather data exchange, altimetry cross-check routing, and sortie or fires safety restrictions.
+
+## Tool Suite Addendum LXVII (2026-04-06, Seabed Hunt, Reload Shuttles, Frozen Water, Under-Ice Routing, Denied Rail Fuel, Mortuary DNA, Coalition Casualty Consent, SOF Resupply Signatures, Causeway Placement, and Solid-Rocket Cure Lines)
+
+### `ts-joint-seabed-sensor-grid-cable-sabotage-hunt-v1`
+- Use for: seabed sensor-grid sabotage hunting, cable-fault localization, and restoration-security prioritization.
+- Primary tools: undersea sensor health board, cable fault-localization console, ROV or AUV mission manager, acoustic anomaly fusion workspace.
+- Cross-check tools: independent hydrographic review cell and alternate cable-maintenance ledger.
+- Typical products: seabed fault localization board, sensor coverage degradation map, repair-security synchronization matrix.
+
+### `ts-joint-iamd-reload-shuttle-assurance-v1`
+- Use for: contested air-and-missile-defense reload routing, launcher rearm timing, and reload-site survivability.
+- Primary tools: IAMD battle manager, launcher ammunition ledger, convoy route-risk engine, explosive-safety planner.
+- Cross-check tools: independent fire-control witness and alternate missile-allocation board.
+- Typical products: launcher reload ladder, shuttle survivability matrix, missile-depth recovery timeline.
+
+### `ts-expeditionary-snow-ice-water-harvest-mitigation-v1`
+- Use for: expeditionary frozen-water harvest, contaminant mitigation, and cold-weather water-production planning.
+- Primary tools: ice and snow source tracker, contaminant assay queue, purification throughput dashboard, force-health watchlist.
+- Cross-check tools: independent preventive-medicine detachment and alternate engineer-water board.
+- Typical products: frozen-source viability board, contaminant mitigation matrix, daily safe-water production plan.
+
+### `ts-joint-arctic-under-ice-polynya-routing-v1`
+- Use for: under-ice route planning, emergency polynya selection, and rescue-trigger governance in Arctic operations.
+- Primary tools: under-ice navigation planner, ice-thickness forecast console, inertial or acoustic drift board, emergency surfacing ladder.
+- Cross-check tools: independent polar route-risk desk and alternate recovery coordination board.
+- Typical products: under-ice route confidence board, emergency polynya ladder, Arctic recovery trigger matrix.
+
+### `ts-homeland-gps-denied-rail-fuel-fallback-v1`
+- Use for: PNT-denied rail dispatch, military fuel-transfer continuity, and manual-control reversion across homeland rail nodes.
+- Primary tools: rail dispatch board, bulk-fuel telemetry dashboard, timing-holdover monitor, transfer-node accountability ledger.
+- Cross-check tools: independent railroad liaison desk and alternate fuel-distribution board.
+- Typical products: denied-PNT rail dispatch ladder, fuel-transfer accountability matrix, continuity throughput estimate.
+
+### `ts-theater-mortuary-cold-chain-dna-ledger-v1`
+- Use for: expeditionary mortuary cold-chain continuity, DNA custody, and remains accountability under theater disruption.
+- Primary tools: remains accountability board, refrigerated transfer monitor, DNA sample custody ledger, next-of-kin coordination queue.
+- Cross-check tools: independent mortuary-affairs review cell and alternate forensics desk.
+- Typical products: remains-flow board, cold-chain survivability matrix, DNA custody ledger.
+
+### `ts-coalition-casualty-language-consent-v1`
+- Use for: coalition casualty handoff, multilingual consent reconciliation, and cross-border treatment caveat management.
+- Primary tools: patient-regulation board, translation-memory service, consent-status ledger, coalition caveat tracker.
+- Cross-check tools: independent liaison-physician desk and alternate medical-legal review cell.
+- Typical products: multilingual casualty handoff matrix, consent-status ledger, coalition treatment caveat tracker.
+
+### `ts-sof-clandestine-resupply-signature-budget-v1`
+- Use for: clandestine SOF sustainment, resupply signature budgeting, and exposure-control branch planning.
+- Primary tools: low-signature route planner, pattern-of-life board, thermal and EM exposure scorecard, cache-accountability ledger.
+- Cross-check tools: independent ISR threat desk and alternate special-operations support cell.
+- Typical products: clandestine resupply signature ledger, exposure-by-phase budget, deception-support matrix.
+
+### `ts-expeditionary-seabed-landing-zone-causeway-placement-v1`
+- Use for: littoral hydrographic survey, seabed load classification, and expeditionary causeway emplacement sequencing.
+- Primary tools: hydrographic survey board, seabed load-class model, causeway inventory tracker, surf-zone hazard console.
+- Cross-check tools: independent engineer reconnaissance cell and alternate amphibious control board.
+- Typical products: littoral load-class board, landing lane viability matrix, causeway emplacement sequence.
+
+### `ts-strategic-solid-rocket-motor-cure-line-continuity-v1`
+- Use for: solid-rocket-motor cure-line continuity, lot quarantine, and strategic allocation under production disruption.
+- Primary tools: cure-line telemetry monitor, lot genealogy ledger, quality-release board, strategic allocation planner.
+- Cross-check tools: independent propulsion-quality authority and alternate industrial recovery board.
+- Typical products: cure-line continuity ladder, lot quarantine matrix, strategic magazine recovery timeline.
+
+## Protocol Stack Addendum LXVII (2026-04-06, External Integration Profiles for Expansion Wave LXVII)
+
+### `ps-joint-seabed-sensor-grid-cable-sabotage-hunt-stack-v1`
+- Protocols: `OTH-Gold`, `AIS/NMEA`, `OGC`, signed maintenance manifests, `API/JSON`, `USMTF`.
+- Use for: cable-fault exchange, undersea sensor-status routing, ROV tasking, and repair-security acknowledgments.
+
+### `ps-joint-iamd-reload-shuttle-assurance-stack-v1`
+- Protocols: `Link 16 J-series`, `VMF`, signed explosive manifests, `API/JSON`, `USMTF`.
+- Use for: launcher-state exchange, reload-route approval, explosive-safety routing, and missile-depth recovery updates.
+
+### `ps-expeditionary-snow-ice-water-harvest-mitigation-stack-v1`
+- Protocols: `HL7/FHIR`, `OGC`, water-lab result exchange, `API/JSON`, `USMTF`.
+- Use for: sample-chain updates, purification-status routing, force-health warning, and rationing approvals.
+
+### `ps-joint-arctic-under-ice-polynya-routing-stack-v1`
+- Protocols: signed navigation advisories, `AIS/NMEA`, `OGC`, `API/JSON`, `USMTF`.
+- Use for: under-ice route updates, emergency-polynya notifications, and recovery-asset synchronization.
+
+### `ps-homeland-gps-denied-rail-fuel-fallback-stack-v1`
+- Protocols: `EDI X12`, `NIEM`, signed fuel manifests, `API/JSON`, `USMTF`.
+- Use for: rail dispatch updates, manual-block acknowledgments, and fuel-transfer accountability routing.
+
+### `ps-theater-mortuary-cold-chain-dna-ledger-stack-v1`
+- Protocols: signed custody manifests, `NIEM`, `HL7/FHIR`, `API/JSON`, `USMTF`.
+- Use for: remains-transfer exchange, cold-chain alerts, DNA-custody routing, and notification synchronization.
+
+### `ps-coalition-casualty-language-consent-stack-v1`
+- Protocols: `HL7/FHIR`, `NATO APP-11/ADatP-3`, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: multilingual casualty handoffs, consent updates, coalition caveat routing, and transfer approvals.
+
+### `ps-sof-clandestine-resupply-signature-budget-stack-v1`
+- Protocols: `CoT`, signed mission manifests, `API/JSON`, low-probability-of-detect comm plans, `USMTF`.
+- Use for: exposure-window updates, cache accountability routing, and signature-budget acknowledgments.
+
+### `ps-expeditionary-seabed-landing-zone-causeway-placement-stack-v1`
+- Protocols: `OGC`, `AIS/NMEA`, signed engineer manifests, `API/JSON`, `USMTF`.
+- Use for: survey-product exchange, lane-release routing, causeway-emplacement approvals, and throughput updates.
+
+### `ps-strategic-solid-rocket-motor-cure-line-continuity-stack-v1`
+- Protocols: `OPC UA`, signed quality manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: cure-line telemetry exchange, lot-quarantine routing, quality-release approvals, and strategic allocation updates.

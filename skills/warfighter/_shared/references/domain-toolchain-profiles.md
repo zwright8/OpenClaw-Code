@@ -1956,3 +1956,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent weather detachment and alternate airfield-operations board
 - Protocol binding: WMO BUFR/GRIB + AIXM/FIXM + OGC + API/JSON + USMTF
 - Fallback path: conservative minima only with manual altimeter cross-check and command-approved release exceptions
+
+## Toolchain Wave LXVII (2026-04-06)
+
+### `TC-SEABED-HUNT-230`
+
+- Domain: seabed sensor-grid sabotage hunt and undersea cable restoration security
+- Primary systems: undersea sensor health board, cable fault-localization console, ROV or AUV mission manager, acoustic anomaly fusion workspace
+- Cross-check systems: independent hydrographic review cell and alternate cable-maintenance ledger
+- Protocol binding: OTH-Gold + AIS/NMEA + OGC + signed maintenance manifests + API/JSON + USMTF
+- Fallback path: bearing-only contact board and manual maintenance-diversion ledger
+
+### `TC-IAMD-RELOAD-231`
+
+- Domain: joint air-and-missile-defense reload shuttle assurance
+- Primary systems: IAMD battle manager, launcher ammunition ledger, convoy route-risk engine, explosive-safety planner
+- Cross-check systems: independent fire-control witness and alternate missile-allocation board
+- Protocol binding: Link 16 J-series + VMF + signed explosive manifests + API/JSON + USMTF
+- Fallback path: command-approved reload strip map with voice-acknowledged launcher sequence
+
+### `TC-COLD-WATER-232`
+
+- Domain: expeditionary snow and ice water harvest with contaminant mitigation
+- Primary systems: ice and snow source tracker, contaminant assay queue, purification throughput dashboard, force-health watchlist
+- Cross-check systems: independent preventive-medicine detachment and alternate engineer-water board
+- Protocol binding: HL7/FHIR + OGC + water-lab result exchange + API/JSON + USMTF
+- Fallback path: manual melt and chlorination worksheet with command-rationing controls
+
+### `TC-UNDERICE-NAV-233`
+
+- Domain: Arctic under-ice navigation and emergency polynya routing
+- Primary systems: under-ice navigation planner, ice-thickness forecast console, inertial or acoustic drift board, emergency surfacing ladder
+- Cross-check systems: independent polar route-risk desk and alternate recovery coordination board
+- Protocol binding: signed navigation advisories + AIS/NMEA + OGC + API/JSON + USMTF
+- Fallback path: conservative dead-reckoning route card with pre-briefed breakout windows only
+
+### `TC-HOMELAND-RAILFUEL-234`
+
+- Domain: homeland GPS-denied rail fuel distribution fallback
+- Primary systems: rail dispatch board, bulk-fuel telemetry dashboard, timing-holdover monitor, transfer-node accountability ledger
+- Cross-check systems: independent railroad liaison desk and alternate fuel-distribution board
+- Protocol binding: EDI X12 + NIEM + signed fuel manifests + API/JSON + USMTF
+- Fallback path: manual rail block sheets and signed fuel-transfer manifests with human acknowledgment
+
+### `TC-MORTUARY-DNA-235`
+
+- Domain: expeditionary mortuary cold-chain and DNA-ledger continuity
+- Primary systems: remains accountability board, refrigerated transfer monitor, DNA sample custody ledger, next-of-kin coordination queue
+- Cross-check systems: independent mortuary-affairs review cell and alternate forensics desk
+- Protocol binding: signed custody manifests + NIEM + HL7/FHIR + API/JSON + USMTF
+- Fallback path: manual remains ledger, cold-box triage board, and dual-witness DNA custody forms
+
+### `TC-COAL-MEDLANG-236`
+
+- Domain: coalition casualty regulation language reconciliation and consent
+- Primary systems: patient-regulation board, translation-memory service, consent-status ledger, coalition caveat tracker
+- Cross-check systems: independent liaison-physician desk and alternate medical-legal review cell
+- Protocol binding: HL7/FHIR + NATO APP-11/ADatP-3 + NIEM + API/JSON + USMTF
+- Fallback path: human interpreter with manual consent worksheet and physician attestation
+
+### `TC-SOF-RESUPPLY-237`
+
+- Domain: special operations clandestine resupply signature budgeting
+- Primary systems: low-signature route planner, pattern-of-life board, thermal and EM exposure scorecard, cache-accountability ledger
+- Cross-check systems: independent ISR threat desk and alternate special-operations support cell
+- Protocol binding: CoT + signed mission manifests + API/JSON + low-probability-of-detect comm plans + USMTF
+- Fallback path: human-only low-signature movement card with fixed exposure ceilings and no dynamic rerouting
+
+### `TC-AMPHIB-CAUSEWAY-238`
+
+- Domain: expeditionary seabed landing-zone survey and causeway placement
+- Primary systems: hydrographic survey board, seabed load-class model, causeway inventory tracker, surf-zone hazard console
+- Cross-check systems: independent engineer reconnaissance cell and alternate amphibious control board
+- Protocol binding: OGC + AIS/NMEA + signed engineer manifests + API/JSON + USMTF
+- Fallback path: manual beach sketch, sounding log, and conservative causeway-release card
+
+### `TC-SRM-CURELINE-239`
+
+- Domain: strategic solid-rocket-motor cure-line continuity
+- Primary systems: cure-line telemetry monitor, lot genealogy ledger, quality-release board, strategic allocation planner
+- Cross-check systems: independent propulsion-quality authority and alternate industrial recovery board
+- Protocol binding: OPC UA + signed quality manifests + NIEM + API/JSON + USMTF
+- Fallback path: manual lot-hold ledger and certifying-authority release board only

@@ -2865,3 +2865,29 @@ Every skill output should include:
 - Coalition AI foreign disclosure and guardrail + coalition interoperability coordinator + joint multi-domain AI model assurance and drift response cell + joint special access and compartmented integration cell.
 - Battlefield grave registration and interment site integrity + mortuary affairs and personnel accountability + joint battlefield forensics war-crimes evidence-chain cell + joint dignified transfer funeral honors and family escort cell.
 - Tactical weather denial and baro altimetry cross-check + expeditionary airfield operations + multi-domain degraded weather and fires recalibration cell + air-tasking-cycle-support.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXVII)
+
+- joint-seabed-sensor-grid-cable-sabotage-hunt-cell
+- joint-air-and-missile-defense-reload-shuttle-assurance-cell
+- expeditionary-snow-ice-water-harvest-and-contaminant-mitigation-cell
+- joint-arctic-under-ice-navigation-and-emergency-polynya-routing-cell
+- homeland-gps-denied-rail-fuel-distribution-fallback-cell
+- theater-expeditionary-mortuary-affairs-cold-chain-and-dna-ledger-cell
+- coalition-casualty-regulation-language-reconciliation-and-consent-cell
+- special-operations-clandestine-resupply-signature-budget-cell
+- expeditionary-seabed-landing-zone-survey-and-causeway-placement-cell
+- strategic-solid-rocket-motor-cure-line-continuity-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXVII)
+
+- Joint seabed sensor-grid cable sabotage hunt + naval undersea cable protection and restoration + anti-submarine-warfare-support + mission risk decision support.
+- Joint air-and-missile-defense reload shuttle assurance + integrated air and missile defense cell + contested logistics sustainment + force protection and base defense.
+- Expeditionary snow-ice water harvest and contaminant mitigation + expeditionary water purification contamination attribution + preventive medicine and force health protection + arctic and extreme environment ops.
+- Joint Arctic under-ice navigation and emergency polynya routing + coalition arctic under-ice logistics casualty corridor + joint submarine rescue and deep-submergence coordination cell + space-domain-awareness-and-satcom-defense.
+- Homeland GPS-denied rail fuel distribution fallback + contested logistics sustainment + strategic mobility deployment planner + defense support of civil authorities crisis cell.
+- Theater expeditionary mortuary affairs cold chain and DNA ledger + mortuary affairs and personnel accountability + joint dignified transfer funeral honors and family escort cell + coalition interoperability coordinator.
+- Coalition casualty regulation language reconciliation and consent + casualty evac and medical regulation + coalition cross-border medical credentialing privileging cell + coalition interoperability coordinator.
+- Special operations clandestine resupply signature budget + special operations signature management and exfiltration cell + electromagnetic signature lifecycle management cell + mission risk decision support.
+- Expeditionary seabed landing-zone survey and causeway placement + amphibious beachmaster surf zone and shore party control cell + contested bridge and gap crossing operations + expeditionary salvage and harbor clearance.
+- Strategic solid-rocket-motor cure-line continuity + strategic industrial mobilization readiness cell + missile warning and attack assessment cell + strategic nuclear triad readiness support.

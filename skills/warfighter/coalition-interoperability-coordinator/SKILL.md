@@ -360,3 +360,10 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when shared mission-AI access depends on releasability discipline, model provenance, or partner guardrail enforcement.
 - Add `tool_suite_id=ts-battlefield-grave-registration-interment-site-integrity-v1` + `protocol_stack_id=ps-battlefield-grave-registration-interment-site-integrity-stack-v1` when combined-force accountability depends on temporary interment-site documentation, protection, or later recovery confidence.
 - Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-COALITION-AI-GUARDRAILS-001`, and `packet_id=DPL-BATTLEFIELD-GRAVE-REGISTRATION-001` for branches that materially change coalition release posture, partner-access trust, or multinational remains-accountability legitimacy.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVII Addendum)
+
+- Add `tool_suite_id=ts-coalition-casualty-language-consent-v1` + `protocol_stack_id=ps-coalition-casualty-language-consent-stack-v1` when coalition interoperability depends on multilingual casualty handoffs, consent validity, or treatment-caveat reconciliation.
+- Add `tool_suite_id=ts-expeditionary-seabed-landing-zone-causeway-placement-v1` + `protocol_stack_id=ps-expeditionary-seabed-landing-zone-causeway-placement-stack-v1` when combined littoral entry depends on shared hydrographic confidence, causeway-release timing, or shore-party handoff legitimacy.
+- Add `tool_suite_id=ts-theater-mortuary-cold-chain-dna-ledger-v1` + `protocol_stack_id=ps-theater-mortuary-cold-chain-dna-ledger-stack-v1` when partner coordination depends on remains-accountability confidence, DNA custody, or transfer legitimacy.
+- Add `packet_id=DPL-COALITION-CASUALTY-CONSENT-001`, `packet_id=DPL-CAUSEWAY-LANDING-ZONE-001`, and `packet_id=DPL-MORTUARY-DNA-LEDGER-001` for branches that materially change coalition medical legitimacy, amphibious interoperability, or multinational accountability trust.

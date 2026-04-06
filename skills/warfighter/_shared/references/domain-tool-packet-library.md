@@ -13877,3 +13877,115 @@ validation_gates:
 - output_schema: weather-confidence ladder, altimetry cross-check matrix, sortie or fires restriction card
 - protocol_profile: WMO BUFR/GRIB + AIXM/FIXM + OGC + API/JSON + USMTF
 - validation_gates: cross-check consistency review, terrain-risk pass, release-authority approval
+
+## Packet Addendum LVI (2026-04-06)
+
+### packet_id: DPL-SEABED-SABOTAGE-HUNT-001
+- domain: seabed sensor-grid sabotage hunt and cable restoration security
+- objective: localize likely sabotage, preserve undersea warning continuity, and sequence repair or deception under contested maritime conditions
+- primary_tools: undersea sensor health board, cable fault-localization console, ROV or AUV mission manager, acoustic anomaly fusion workspace
+- alternate_tools: manual hydrographic anomaly worksheet and cable-maintenance ledger
+- degraded_mode: preserve only mission-essential sensor coverage with manual fault correlation and delayed repair routing
+- input_requirements: affected segments, node telemetry, recent maintenance activity, acoustic anomalies, sovereignty constraints, mission priorities
+- output_schema: fault localization board, sensor-coverage degradation map, repair-security synchronization matrix
+- protocol_profile: OTH-Gold + AIS/NMEA + OGC + signed maintenance manifests + API/JSON + USMTF
+- validation_gates: localization-confidence review, access-authority check, maritime safety confirmation
+
+### packet_id: DPL-IAMD-RELOAD-SHUTTLE-001
+- domain: air-and-missile-defense reload shuttle assurance
+- objective: preserve defensive magazine depth by sequencing contested reload movement and reload-site release under threat
+- primary_tools: IAMD battle manager, launcher ammunition ledger, convoy route-risk engine, explosive-safety planner
+- alternate_tools: manual launcher status board and reload strip map
+- degraded_mode: voice-acknowledged reload sequence only with fixed safety standoff and no dynamic reroute
+- input_requirements: launcher status, missile inventory, reload routes, threat windows, explosive limits, defended-asset priorities
+- output_schema: launcher reload ladder, shuttle survivability matrix, missile-depth recovery timeline
+- protocol_profile: Link 16 J-series + VMF + signed explosive manifests + API/JSON + USMTF
+- validation_gates: launcher-confidence review, route-threat pass, explosive-safety approval
+
+### packet_id: DPL-SNOW-ICE-WATER-HARVEST-001
+- domain: expeditionary snow and ice water harvest with contaminant mitigation
+- objective: convert frozen sources into safe water while balancing contamination risk, fuel cost, and force-health protection
+- primary_tools: ice and snow source tracker, contaminant assay queue, purification throughput dashboard, force-health watchlist
+- alternate_tools: manual sample log and melt or chlorination worksheet
+- degraded_mode: emergency rationing with human-approved manual treatment only
+- input_requirements: source locations, contaminant samples, purification assets, demand profile, weather, force-health thresholds
+- output_schema: frozen-source viability board, contaminant mitigation matrix, daily safe-water production plan
+- protocol_profile: HL7/FHIR + OGC + water-lab result exchange + API/JSON + USMTF
+- validation_gates: sample-chain integrity, purification-effectiveness check, medical-release approval
+
+### packet_id: DPL-UNDER-ICE-POLYNYA-ROUTING-001
+- domain: Arctic under-ice navigation and emergency polynya routing
+- objective: preserve under-ice navigation confidence and emergency breakout feasibility for manned or unmanned platforms
+- primary_tools: under-ice navigation planner, ice-thickness forecast console, inertial or acoustic drift board, emergency surfacing ladder
+- alternate_tools: manual route card and emergency surfacing worksheet
+- degraded_mode: conservative dead-reckoning route with breakout only at pre-briefed windows
+- input_requirements: platform class, route geometry, ice state, drift estimates, communication windows, rescue latency
+- output_schema: under-ice route confidence board, emergency polynya ladder, Arctic recovery trigger matrix
+- protocol_profile: signed navigation advisories + AIS/NMEA + OGC + API/JSON + USMTF
+- validation_gates: drift-confidence review, surfacing-feasibility check, rescue-support confirmation
+
+### packet_id: DPL-RAIL-FUEL-FALLBACK-001
+- domain: homeland GPS-denied rail fuel distribution fallback
+- objective: preserve bulk-fuel throughput and accountability when PNT and digital dispatch are degraded or denied
+- primary_tools: rail dispatch board, bulk-fuel telemetry dashboard, timing-holdover monitor, transfer-node accountability ledger
+- alternate_tools: manual dispatch sheet and signed fuel-transfer workbook
+- degraded_mode: manual rail block operations and fixed transfer windows only
+- input_requirements: train positions, fuel volumes, node status, dispatch authority, timing confidence, route risks
+- output_schema: denied-PNT rail dispatch ladder, fuel-transfer accountability matrix, continuity throughput estimate
+- protocol_profile: EDI X12 + NIEM + signed fuel manifests + API/JSON + USMTF
+- validation_gates: location-confidence review, fuel-custody check, dispatch-authority confirmation
+
+### packet_id: DPL-MORTUARY-DNA-LEDGER-001
+- domain: expeditionary mortuary cold-chain and DNA-ledger continuity
+- objective: preserve dignified handling, cold-chain survivability, and DNA accountability for remains in disrupted theaters
+- primary_tools: remains accountability board, refrigerated transfer monitor, DNA sample custody ledger, next-of-kin coordination queue
+- alternate_tools: manual remains ledger and dual-witness custody worksheet
+- degraded_mode: preserve in place with manual cold-box prioritization and no transfer absent authority review
+- input_requirements: remains status, identification evidence, cold-chain capacity, transfer nodes, DNA kit status, cultural constraints
+- output_schema: remains-flow board, cold-chain survivability matrix, DNA custody ledger
+- protocol_profile: signed custody manifests + NIEM + HL7/FHIR + API/JSON + USMTF
+- validation_gates: custody-integrity review, refrigeration-threshold pass, mortuary-authority approval
+
+### packet_id: DPL-COALITION-CASUALTY-CONSENT-001
+- domain: coalition casualty language reconciliation and consent governance
+- objective: preserve fast casualty care while ensuring translated understanding, valid consent, and coalition caveat compliance
+- primary_tools: patient-regulation board, translation-memory service, consent-status ledger, coalition caveat tracker
+- alternate_tools: human interpreter and manual consent worksheet
+- degraded_mode: treat life-saving emergencies only with physician attestation and delayed legal reconciliation
+- input_requirements: patient status, transfer destination, language set, consent evidence, coalition caveats, urgency
+- output_schema: multilingual casualty handoff matrix, consent-status ledger, coalition treatment caveat tracker
+- protocol_profile: HL7/FHIR + NATO APP-11/ADatP-3 + NIEM + API/JSON + USMTF
+- validation_gates: translation-confidence review, consent-validity check, coalition-release approval
+
+### packet_id: DPL-SOF-RESUPPLY-SIGNATURE-001
+- domain: special operations clandestine resupply signature budgeting
+- objective: sequence clandestine sustainment while keeping thermal, acoustic, electromagnetic, and civil-pattern exposure below mission thresholds
+- primary_tools: low-signature route planner, pattern-of-life board, thermal and EM exposure scorecard, cache-accountability ledger
+- alternate_tools: manual route card and signature-budget worksheet
+- degraded_mode: fixed low-signature movement windows only with no dynamic retasking
+- input_requirements: supported force, resupply need, route options, threat sensors, local pattern constraints, deception support
+- output_schema: clandestine resupply signature ledger, exposure-by-phase budget, deception-support matrix
+- protocol_profile: CoT + signed mission manifests + API/JSON + low-probability-of-detect comm plans + USMTF
+- validation_gates: exposure-threshold review, route-custody check, special-operations approval
+
+### packet_id: DPL-CAUSEWAY-LANDING-ZONE-001
+- domain: expeditionary seabed landing-zone survey and causeway placement
+- objective: identify viable landing lanes and sequence causeway emplacement with trusted hydrographic and engineer evidence
+- primary_tools: hydrographic survey board, seabed load-class model, causeway inventory tracker, surf-zone hazard console
+- alternate_tools: manual sounding log and beach-sketch worksheet
+- degraded_mode: conservative landing-lane release only with manual engineer sign-off
+- input_requirements: shoreline geometry, seabed survey, load targets, causeway inventory, surf state, obstacle status
+- output_schema: littoral load-class board, landing lane viability matrix, causeway emplacement sequence
+- protocol_profile: OGC + AIS/NMEA + signed engineer manifests + API/JSON + USMTF
+- validation_gates: survey-freshness review, load-class confidence pass, emplacement-authority confirmation
+
+### packet_id: DPL-SOLID-ROCKET-CURELINE-001
+- domain: strategic solid-rocket-motor cure-line continuity
+- objective: preserve strategic readiness by sequencing cure-line continuity, lot quarantine, and quality release under disruption
+- primary_tools: cure-line telemetry monitor, lot genealogy ledger, quality-release board, strategic allocation planner
+- alternate_tools: manual lot-hold ledger and certifying-authority release worksheet
+- degraded_mode: no accelerated release with quarantine by default until manual engineering review completes
+- input_requirements: affected cure lines, lot status, telemetry, environmental controls, strategic demand, quality evidence
+- output_schema: cure-line continuity ladder, lot quarantine matrix, strategic magazine recovery timeline
+- protocol_profile: OPC UA + signed quality manifests + NIEM + API/JSON + USMTF
+- validation_gates: process-integrity review, quality-release check, strategic-allocation approval
