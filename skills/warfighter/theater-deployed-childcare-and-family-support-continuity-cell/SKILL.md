@@ -79,3 +79,10 @@ For each critical external dependency include:
 - Prioritize `tool_suite_id=ts-theater-deployed-childcare-and-family-support-continuity-cell-v1` + `protocol_stack_id=ps-theater-deployed-childcare-and-family-support-continuity-cell-stack-v1` when this mission set is the critical path for commander decision timelines.
 - Add `packet_id=DPL-THEATER_DEPLOYED_CHILDCARE_AND_FAMILY_SUPPORT_CONTINUITY_CELL-001` for the primary course of action and `packet_id=DPL-THEATER_DEPLOYED_CHILDCARE_AND_FAMILY_SUPPORT_CONTINUITY_CELL-002` for degraded-mode fallback actions.
 - Include `validation_owner`, `revalidation_utc`, and `ack_chain_status` for both packet paths before release.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-SPOUSELIC-282`, `tool_suite_id=ts-joint-military-spouse-license-portability-employment-continuity-v1`, and `protocol_stack_id=ps-joint-military-spouse-license-portability-employment-continuity-stack-v1` when deployed-family stability depends on spouse work continuity, interstate licensing, or income shock mitigation.
+- Add `toolchain_id=TC-HHGKIT-283`, `tool_suite_id=ts-joint-household-goods-loss-claims-essential-kit-v1`, and `protocol_stack_id=ps-joint-household-goods-loss-claims-essential-kit-stack-v1` when childcare or family-support continuity depends on essential household-item bridging during displacement or shipment loss.
+- Add `toolchain_id=TC-SPNEEDS-287`, `tool_suite_id=ts-joint-dependent-special-needs-education-medical-continuity-v1`, and `protocol_stack_id=ps-joint-dependent-special-needs-education-medical-continuity-stack-v1` when family-support decisions depend on special-needs transport, therapy continuity, or medical support for dependents.
+- Add `packet_id=DPL-SPOUSE-LICENSE-EMPLOYMENT-001`, `packet_id=DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001`, and `packet_id=DPL-DEPENDENT-SPECIAL-NEEDS-CONTINUITY-001` for branches that materially alter deployed-family stability, recall confidence, or retention posture.

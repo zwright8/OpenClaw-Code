@@ -2384,3 +2384,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent energy-emergency liaison cell and alternate operational-energy coordination board
 - Protocol binding: NIEM + OPC UA + signed fuel-waiver notices + API/JSON + CAP + USMTF
 - Fallback path: life-safety fuel support only with manual waiver review and command-approved restoration priorities
+
+## Toolchain Wave LXXIII (2026-04-06)
+
+### `TC-SPOUSELIC-282`
+
+- Domain: joint military spouse license portability and employment continuity
+- Primary systems: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board
+- Cross-check systems: independent family-readiness office and alternate legal-assistance employment desk
+- Protocol binding: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only spouse-employment review with no unsupported reciprocity or employer-continuity claim
+
+### `TC-HHGKIT-283`
+
+- Domain: joint household goods loss claims and essential kit bridge
+- Primary systems: shipment status tracker, claims queue, emergency issue board, lodging support ledger
+- Cross-check systems: independent transportation office and alternate family-readiness support desk
+- Protocol binding: NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
+- Fallback path: essential-needs bridge only with manual shipment review and no unsupported reimbursement promise
+
+### `TC-COMEX-284`
+
+- Domain: joint commissary exchange subsistence and hygiene priority restoration
+- Primary systems: commissary stock board, exchange essential-item inventory, cold-storage monitor, protected-population distribution planner
+- Cross-check systems: independent logistics readiness center and alternate family-readiness support cell
+- Protocol binding: NIEM + GS1/EPCIS + signed supply notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual ration and hygiene board with command-approved priorities and no unsupported stock forecast
+
+### `TC-REENTRY-285`
+
+- Domain: joint installation access badge reissue curfew and family reentry
+- Primary systems: badge issuance tracker, gate status board, curfew exception ledger, family reentry queue
+- Cross-check systems: independent force-protection desk and alternate housing-recovery cell
+- Protocol binding: NIEM + signed credential notices + API/JSON + S/MIME + CAP + USMTF
+- Fallback path: controlled reentry only with manual identity verification and commander-approved windows
+
+### `TC-BPHARM-286`
+
+- Domain: joint base pharmacy refill TRICARE override and cold chain continuity
+- Primary systems: pharmacy queue board, override approval tracker, cold-chain monitor, patient-notification ledger
+- Cross-check systems: independent clinical pharmacy cell and alternate medical-logistics board
+- Protocol binding: HL7/FHIR + NCPDP + signed prescription notices + API/JSON + S/MIME + USMTF
+- Fallback path: life-sustaining medication prioritization only with manual clinical review and no unsupported override claim
+
+### `TC-SPNEEDS-287`
+
+- Domain: joint dependent special needs transport education and medical continuity
+- Primary systems: dependent-needs case board, accessible transport scheduler, therapy continuity tracker, medical support ledger
+- Cross-check systems: independent exceptional-family-member coordination cell and alternate family-readiness desk
+- Protocol binding: NIEM + HL7/FHIR + CAP + signed care notices + API/JSON + S/MIME
+- Fallback path: advisory-only dependent-support sequencing with manual needs review and no unsupported care guarantee
+
+### `TC-ANIMAL-288`
+
+- Domain: joint service animal and family pet evacuation shelter continuity
+- Primary systems: shelter capacity board, animal documentation tracker, reunification ledger, veterinary support queue
+- Cross-check systems: independent veterinary service cell and alternate shelter coordination board
+- Protocol binding: NIEM + CAP + signed veterinary notices + API/JSON + S/MIME + USMTF
+- Fallback path: limited animal support with manual veterinary checks and no unsupported co-located shelter promise
+
+### `TC-HOMEMOD-289`
+
+- Domain: joint wounded warrior home modification and caregiver ramp up
+- Primary systems: home assessment queue, caregiver training ledger, durable-medical-equipment tracker, benefit or funding board
+- Cross-check systems: independent rehabilitation transition office and alternate housing adaptation board
+- Protocol binding: NIEM + HL7/FHIR + signed home-modification notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only discharge-to-home review with no home-ready certification beyond confirmed human validation

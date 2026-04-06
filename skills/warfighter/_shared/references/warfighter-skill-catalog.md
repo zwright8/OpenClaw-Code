@@ -3005,3 +3005,25 @@ Every skill output should include:
 - Homeland hospital diversion ambulance destination and VA-DOD bed bridge + casualty-evac-and-medical-regulation + joint-role-3-medical-network-and-aeromedical-evac-cell + strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell.
 - Homeland boil-water food safety and commodities distribution + expeditionary-food-supply-safety-and-contamination-cell + civil-defense-mass-evacuation-shelter-cell + defense-support-of-civil-authorities-crisis-cell.
 - Homeland energy emergency fuel waiver and priority restoration + operational-energy-resilience-and-microgrid-cell + contested-logistics-sustainment + homeland-grid-blackstart-fuel-cyber-coordination-cell.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXXIII)
+
+- joint-military-spouse-license-portability-and-employment-continuity-cell
+- joint-household-goods-loss-claims-and-essential-kit-bridge-cell
+- joint-commissary-exchange-subsistence-and-hygiene-priority-restoration-cell
+- joint-installation-access-badge-reissue-curfew-and-family-reentry-cell
+- joint-base-pharmacy-refill-tricare-override-and-cold-chain-continuity-cell
+- joint-dependent-special-needs-transport-education-and-medical-continuity-cell
+- joint-service-animal-and-family-pet-evacuation-shelter-continuity-cell
+- joint-wounded-warrior-home-modification-and-caregiver-ramp-up-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXXIII)
+
+- Joint military spouse license portability and employment continuity + reserve-component-family-readiness-surge-cell + joint-military-family-readiness-crisis-sustainment-cell + mission-risk-decision-support.
+- Joint household-goods loss claims and essential kit bridge + strategic-military-housing-utility-safety-and-restoration-cell + reserve-component-family-readiness-surge-cell + theater-deployed-childcare-and-family-support-continuity-cell.
+- Joint commissary exchange subsistence and hygiene priority restoration + civil-defense-mass-evacuation-shelter-cell + strategic-military-housing-utility-safety-and-restoration-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint installation access badge reissue curfew and family reentry + public-affairs-operational-communications + force-protection-and-base-defense + strategic-military-housing-utility-safety-and-restoration-cell.
+- Joint base pharmacy refill TRICARE override and cold chain continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-forward-pharmacy-controlled-substance-custody-and-formulary-substitution-cell + mission-risk-decision-support.
+- Joint dependent special-needs transport education and medical continuity + theater-deployed-childcare-and-family-support-continuity-cell + civil-defense-mass-evacuation-shelter-cell + homeland-mass-care-access-and-functional-needs-support-cell.
+- Joint service animal and family pet evacuation shelter continuity + civil-defense-mass-evacuation-shelter-cell + public-affairs-operational-communications + joint-force-veterinary-and-working-dog-support-cell.
+- Joint wounded warrior home modification and caregiver ramp up + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell + joint-military-family-readiness-crisis-sustainment-cell.

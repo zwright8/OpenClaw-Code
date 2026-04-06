@@ -75,3 +75,9 @@ For each external tool recommendation, include objective, required inputs, query
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-SPOUSELIC-282`, `tool_suite_id=ts-joint-military-spouse-license-portability-employment-continuity-v1`, and `protocol_stack_id=ps-joint-military-spouse-license-portability-employment-continuity-stack-v1` when reserve activation risk depends on spouse job continuity, interstate licensing friction, or household income instability.
+- Add `toolchain_id=TC-HHGKIT-283`, `tool_suite_id=ts-joint-household-goods-loss-claims-essential-kit-v1`, and `protocol_stack_id=ps-joint-household-goods-loss-claims-essential-kit-stack-v1` when mobilization readiness depends on essential household-item availability, lodging stability, or claims backlog.
+- Add `toolchain_id=TC-SPNEEDS-287`, `tool_suite_id=ts-joint-dependent-special-needs-education-medical-continuity-v1`, and `protocol_stack_id=ps-joint-dependent-special-needs-education-medical-continuity-stack-v1` when recall viability depends on transport, therapy, or medical continuity for dependents with special needs.
+- Add `packet_id=DPL-SPOUSE-LICENSE-EMPLOYMENT-001`, `packet_id=DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001`, and `packet_id=DPL-DEPENDENT-SPECIAL-NEEDS-CONTINUITY-001` for branches that materially alter reserve readiness, recall confidence, or retention posture.

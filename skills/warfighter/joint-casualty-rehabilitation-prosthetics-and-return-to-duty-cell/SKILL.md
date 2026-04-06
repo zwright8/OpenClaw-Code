@@ -76,3 +76,9 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Add `tool_suite_id=ts-strategic-va-dod-trauma-bed-rehabilitation-bridge-v1` + `protocol_stack_id=ps-strategic-va-dod-trauma-bed-rehabilitation-bridge-stack-v1` when rehabilitation planning depends on VA or DOD bed availability, specialty rehab continuity, or long-tail transition timing after major casualty surges.
 - Add `packet_id=DPL-VA-DOD-TRAUMA-REHAB-BRIDGE-001` for recommendations that materially change rehabilitation transfer posture, return-to-duty expectations, or family-transition sequencing.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-BPHARM-286`, `tool_suite_id=ts-joint-base-pharmacy-refill-tricare-coldchain-v1`, and `protocol_stack_id=ps-joint-base-pharmacy-refill-tricare-coldchain-stack-v1` when rehabilitation continuity depends on refill transfer, specialty medication protection, or TRICARE override confidence for wounded-warrior families.
+- Add `toolchain_id=TC-HOMEMOD-289`, `tool_suite_id=ts-joint-wounded-warrior-home-modification-caregiver-ramp-v1`, and `protocol_stack_id=ps-joint-wounded-warrior-home-modification-caregiver-ramp-stack-v1` when return-to-duty or transition planning depends on home accessibility, caregiver readiness, or discharge-to-home sequencing.
+- Add `packet_id=DPL-BASE-PHARMACY-TRICARE-COLDCHAIN-001` and `packet_id=DPL-WOUNDED-WARRIOR-HOME-CAREGIVER-001` for branches that materially alter rehabilitation posture, family-transition timing, or safe discharge assumptions.

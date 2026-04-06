@@ -71,3 +71,10 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag structural-safety risk, vulnerable-population exposure, utility cross-contamination, and relocation shortfalls before recommending action.
 - Do not fabricate inspection status, restoration progress, or housing authority approvals.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-HHGKIT-283`, `tool_suite_id=ts-joint-household-goods-loss-claims-essential-kit-v1`, and `protocol_stack_id=ps-joint-household-goods-loss-claims-essential-kit-stack-v1` when housing restoration plans depend on essential-item bridging, shipment disruption, or temporary-lodging sustainment for displaced warfighter families.
+- Add `toolchain_id=TC-COMEX-284`, `tool_suite_id=ts-joint-commissary-exchange-subsistence-hygiene-restoration-v1`, and `protocol_stack_id=ps-joint-commissary-exchange-subsistence-hygiene-restoration-stack-v1` when safe reoccupation or prolonged displacement depends on local access to food, hygiene, and daily-use retail support.
+- Add `toolchain_id=TC-REENTRY-285`, `tool_suite_id=ts-joint-installation-access-badge-curfew-reentry-v1`, and `protocol_stack_id=ps-joint-installation-access-badge-curfew-reentry-stack-v1` when habitability decisions depend on phased family reentry, gate restoration, or curfew-control legitimacy.
+- Add `packet_id=DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001`, `packet_id=DPL-COMMISSARY-EXCHANGE-HYGIENE-001`, and `packet_id=DPL-ACCESS-BADGE-CURFEW-REENTRY-001` for branches that materially alter relocation timing, reoccupation confidence, or family-stability posture.

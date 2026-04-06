@@ -14461,3 +14461,93 @@ validation_gates:
 - output_schema: fuel-waiver matrix, priority-restoration ladder, emergency energy support packet
 - protocol_profile: NIEM + OPC UA + signed fuel-waiver notices + API/JSON + CAP + USMTF
 - validation_gates: waiver review, fuel-availability confirmation, restoration-priority approval
+
+## Packet Addendum LXII (2026-04-06, Expansion Wave LXXIII)
+
+### packet_id: DPL-SPOUSE-LICENSE-EMPLOYMENT-001
+- domain: joint military spouse license portability and employment continuity
+- objective: preserve readiness and retention by reducing spouse licensing delay, employer disruption, and household income shocks during PCS, mobilization, or crisis relocation.
+- primary_tools: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board
+- alternate_tools: manual license requirement worksheet and family-readiness employment roster
+- degraded_mode: advisory-only spouse-employment assessment with manual license review and no unsupported reciprocity claim
+- input_requirements: spouse profession, destination state, license status, employer posture, childcare constraints, relocation timeline
+- output_schema: spouse-license portability matrix, employer continuity board, household income risk tracker
+- protocol_profile: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
+- validation_gates: licensing authority check, employer confirmation, privacy review
+
+### packet_id: DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001
+- domain: joint household goods loss claims and essential kit bridge
+- objective: stabilize warfighter households by bridging essential-item gaps while shipment loss, delay, or claims processing is unresolved.
+- primary_tools: shipment status tracker, claims queue, emergency issue board, lodging support ledger
+- alternate_tools: manual claims worksheet and essential-item bridge roster
+- degraded_mode: bridge-support prioritization only with manual property review and no unsupported reimbursement promise
+- input_requirements: shipment status, family size, lodging status, essential-item shortages, claims deadlines, funding constraints
+- output_schema: household-goods recovery board, essential kit gap matrix, claims or bridge-support tracker
+- protocol_profile: NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
+- validation_gates: shipment verification, issue accountability, fiscal review
+
+### packet_id: DPL-COMMISSARY-EXCHANGE-HYGIENE-001
+- domain: joint commissary exchange subsistence and hygiene priority restoration
+- objective: restore essential food, hygiene, and daily-use retail support without losing equity, cold-chain assurance, or protected-population prioritization.
+- primary_tools: commissary stock board, exchange essential-item inventory, cold-storage monitor, protected-population distribution planner
+- alternate_tools: manual rationing worksheet and retail support roster
+- degraded_mode: essential-ration and hygiene distribution only with command-approved priority lists and manual stock checks
+- input_requirements: store status, inventory posture, refrigeration status, population demand, transport constraints, rationing rules
+- output_schema: essential-retail priority matrix, subsistence and hygiene allocation board, emergency retail support packet
+- protocol_profile: NIEM + GS1/EPCIS + signed supply notices + API/JSON + S/MIME + USMTF
+- validation_gates: stock verification, cold-chain review, allocation approval
+
+### packet_id: DPL-ACCESS-BADGE-CURFEW-REENTRY-001
+- domain: joint installation access badge reissue curfew and family reentry
+- objective: reopen installations safely by sequencing badge reissue, gate control, curfew exceptions, and phased family reentry.
+- primary_tools: badge issuance tracker, gate status board, curfew exception ledger, family reentry queue
+- alternate_tools: manual credential roster and reentry control worksheet
+- degraded_mode: controlled reentry only with manual identity verification and commander-approved windows
+- input_requirements: incident posture, access restrictions, credential losses, family reentry demand, curfew rules, gate capacity
+- output_schema: access reissue board, family reentry ladder, curfew exception matrix
+- protocol_profile: NIEM + signed credential notices + API/JSON + S/MIME + CAP + USMTF
+- validation_gates: identity verification, gate-control review, reentry approval
+
+### packet_id: DPL-BASE-PHARMACY-TRICARE-COLDCHAIN-001
+- domain: joint base pharmacy refill TRICARE override and cold chain continuity
+- objective: preserve medication access by reconciling refill urgency, insurance override pathways, and cold-chain integrity during pharmacy disruption.
+- primary_tools: pharmacy queue board, override approval tracker, cold-chain monitor, patient-notification ledger
+- alternate_tools: manual refill worksheet and medication-priority roster
+- degraded_mode: life-sustaining refill prioritization only with manual clinical review and no unsupported override claim
+- input_requirements: beneficiary roster, medication urgency, refill windows, override blockers, cold-chain status, pharmacy outage timeline
+- output_schema: refill continuity matrix, TRICARE override ladder, temperature-sensitive medication tracker
+- protocol_profile: HL7/FHIR + NCPDP + signed prescription notices + API/JSON + S/MIME + USMTF
+- validation_gates: clinical review, prescription validity, cold-chain assurance
+
+### packet_id: DPL-DEPENDENT-SPECIAL-NEEDS-CONTINUITY-001
+- domain: joint dependent special needs transport education and medical continuity
+- objective: protect warfighter family stability by preserving transport, education, therapy, and medical support for special-needs dependents during disruption.
+- primary_tools: dependent-needs case board, accessible transport scheduler, therapy continuity tracker, medical support ledger
+- alternate_tools: manual special-needs roster and transport continuity worksheet
+- degraded_mode: advisory-only continuity sequencing with manual dependent review and no unsupported care guarantee
+- input_requirements: dependent support needs, school status, therapy schedule, medical dependencies, transport assets, caregiver capacity
+- output_schema: special-needs continuity board, transport and therapy ladder, dependent-support risk tracker
+- protocol_profile: NIEM + HL7/FHIR + CAP + signed care notices + API/JSON + S/MIME
+- validation_gates: dependent-needs confirmation, transport feasibility review, medical-support check
+
+### packet_id: DPL-SERVICE-ANIMAL-PET-EVAC-001
+- domain: joint service animal and family pet evacuation shelter continuity
+- objective: reduce evacuation refusal and family instability by preserving lawful service-animal accommodation and practical pet-shelter continuity.
+- primary_tools: shelter capacity board, animal documentation tracker, reunification ledger, veterinary support queue
+- alternate_tools: manual animal roster and shelter accommodation worksheet
+- degraded_mode: limited animal support with manual veterinary checks and no unsupported shelter co-location promise
+- input_requirements: evacuation posture, family animal count, service-animal status, shelter rules, veterinary support, documentation availability
+- output_schema: animal-shelter continuity matrix, refusal-to-evacuate risk board, veterinary support tracker
+- protocol_profile: NIEM + CAP + signed veterinary notices + API/JSON + S/MIME + USMTF
+- validation_gates: shelter acceptance, documentation review, veterinary support confirmation
+
+### packet_id: DPL-WOUNDED-WARRIOR-HOME-CAREGIVER-001
+- domain: joint wounded warrior home modification and caregiver ramp up
+- objective: accelerate safe discharge-to-home by synchronizing accessibility modifications, caregiver preparation, and equipment or funding actions.
+- primary_tools: home assessment queue, caregiver training ledger, durable-medical-equipment tracker, benefit or funding board
+- alternate_tools: manual home readiness checklist and caregiver support worksheet
+- degraded_mode: advisory-only discharge planning with no home-ready certification beyond confirmed human review
+- input_requirements: discharge timeline, injury profile, home barriers, caregiver availability, equipment needs, funding status
+- output_schema: home modification priority board, caregiver ramp-up matrix, discharge-to-home readiness packet
+- protocol_profile: NIEM + HL7/FHIR + signed home-modification notices + API/JSON + S/MIME + USMTF
+- validation_gates: home-accessibility review, caregiver confirmation, discharge authority check
