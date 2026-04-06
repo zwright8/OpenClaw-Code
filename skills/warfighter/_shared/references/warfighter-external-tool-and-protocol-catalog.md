@@ -14464,3 +14464,87 @@ external_binding:
 ### `ps-homeland-joint-information-center-civil-warning-unity-stack-v1`
 - Protocols: `CAP`, `NIEM`, signed release packages, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: warning-release synchronization, multilingual message exchange, rumor-rebuttal routing, and public-information approval chains.
+
+## Tool Suite Addendum LXXI (2026-04-06, Civil Relief, Field Sanitation, Nonlethal Crowd Control, Personnel Records, Religious Diets, KLE Commitments, Confinement Standards, and Family Care)
+
+### `ts-joint-servicemember-civil-relief-estate-poa-v1`
+- Use for: SCRA triage, emergency legal-readiness tracking, estate document continuity, and power-of-attorney refresh under deployment or casualty risk.
+- Primary tools: legal-assistance case board, deadline monitor, POA or will status tracker, family-contact escalation ledger.
+- Cross-check tools: independent staff judge advocate review cell and alternate family-readiness legal desk.
+- Typical products: civil-relief shield matrix, estate readiness board, urgent legal-action ladder.
+
+### `ts-joint-field-sanitation-latrine-vector-discipline-v1`
+- Use for: field sanitation enforcement, latrine-service prioritization, handwashing throughput, and vector suppression in high-density or austere sites.
+- Primary tools: sanitation inspection ledger, latrine service tracker, chlorine or soap resupply board, vector surveillance queue.
+- Cross-check tools: independent preventive-medicine detachment and alternate engineer sanitation board.
+- Typical products: sanitation discipline board, latrine service ladder, vector suppression matrix.
+
+### `ts-joint-nonlethal-crowd-control-evidence-v1`
+- Use for: crowd-control posture, nonlethal munition accountability, escalation-of-force decisions, and evidence synchronization during disturbances.
+- Primary tools: crowd-density map, nonlethal inventory ledger, incident evidence sync board, casualty or detainee monitor.
+- Cross-check tools: independent legal review cell and alternate military-police command post.
+- Typical products: escalation-of-force ladder, nonlethal employment matrix, evidence custody board.
+
+### `ts-joint-personnel-records-dd214-benefits-continuity-v1`
+- Use for: personnel-record recovery, DD214 issuance prioritization, identity-proof continuity, and benefits handoff during outages or backlog surges.
+- Primary tools: personnel record synchronization board, discharge-document queue, identity-proofing review cell, benefits handoff ledger.
+- Cross-check tools: independent personnel service center and alternate transition-assistance board.
+- Typical products: records recovery board, DD214 issue ladder, benefits continuity tracker.
+
+### `ts-joint-religious-dietary-mass-feeding-v1`
+- Use for: protected meal planning, faith-based dietary accommodation, allergen-aware ration substitution, and fasting-window integration in mass feeding.
+- Primary tools: ration menu planner, dietary accommodation ledger, chaplain coordination board, allergen or food-safety review queue.
+- Cross-check tools: independent preventive-medicine detachment and alternate field-feeding operations board.
+- Typical products: dietary accommodation matrix, protected meal-production ladder, feeding exception tracker.
+
+### `ts-civil-affairs-kle-commitment-grievance-ledger-v1`
+- Use for: key-leader engagement tracking, promise ownership, grievance closure, and local-trust risk management in stability operations.
+- Primary tools: engagement calendar board, commitment ledger, grievance-triage queue, local-influence or rumor map.
+- Cross-check tools: independent civil-affairs assessment cell and alternate public-affairs legitimacy board.
+- Typical products: KLE commitment ledger, grievance closure board, trust-risk tracker.
+
+### `ts-joint-confinement-facility-disturbance-humane-treatment-v1`
+- Use for: confinement disturbance response, staffing stabilization, welfare monitoring, and humane-treatment compliance under stress.
+- Primary tools: facility population board, incident or grievance ledger, staffing and segregation tracker, medical or legal access scheduler.
+- Cross-check tools: independent inspector or legal observability cell and alternate military-police review board.
+- Typical products: disturbance branch plan, humane-treatment compliance board, transfer or medical-access tracker.
+
+### `ts-joint-family-care-guardianship-dependent-support-v1`
+- Use for: family-care-plan validation, guardianship continuity, dependent support escalation, and mobilization-readiness protection.
+- Primary tools: family-care-plan ledger, guardian contact board, school or medical consent tracker, support-gap escalation queue.
+- Cross-check tools: independent family-readiness office and alternate reserve mobilization desk.
+- Typical products: family-care risk board, guardianship decision matrix, dependent support continuity tracker.
+
+## Protocol Stack Addendum LXXI (2026-04-06, External Integration Profiles for Expansion Wave LXXI)
+
+### `ps-joint-servicemember-civil-relief-estate-poa-stack-v1`
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: legal-status exchange, relief-request routing, document-authenticity acknowledgment, and family-support escalation.
+
+### `ps-joint-field-sanitation-latrine-vector-discipline-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed sanitation manifests, `API/JSON`, `USMTF`.
+- Use for: inspection updates, sanitation exception routing, vector alerts, and preventive-medicine acknowledgments.
+
+### `ps-joint-nonlethal-crowd-control-evidence-stack-v1`
+- Protocols: `NIEM`, `CJIS`, signed evidence manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: incident reporting, nonlethal release acknowledgment, evidence transfer, and command approval routing.
+
+### `ps-joint-personnel-records-dd214-benefits-continuity-stack-v1`
+- Protocols: `NIEM`, signed personnel manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: record-sync exchange, discharge-document routing, identity-proof acknowledgments, and benefits handoff status.
+
+### `ps-joint-religious-dietary-mass-feeding-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed feeding manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: meal-accommodation updates, allergen alerts, chaplain coordination, and feeding exception approval chains.
+
+### `ps-civil-affairs-kle-commitment-grievance-ledger-stack-v1`
+- Protocols: `NIEM`, `OGC`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: engagement-note exchange, commitment closure routing, grievance triage, and local-trust update synchronization.
+
+### `ps-joint-confinement-facility-disturbance-humane-treatment-stack-v1`
+- Protocols: `NIEM`, `CJIS`, signed confinement manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: facility-status exchange, welfare-check routing, disturbance updates, and transfer approval chains.
+
+### `ps-joint-family-care-guardianship-dependent-support-stack-v1`
+- Protocols: `NIEM`, signed family-care notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: guardian-status exchange, consent verification, dependent-support routing, and mobilization-readiness acknowledgment.

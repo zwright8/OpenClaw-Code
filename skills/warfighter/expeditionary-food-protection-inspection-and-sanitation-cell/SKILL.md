@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag temperature abuse, unvetted local procurement, pest intrusion, sanitation gaps, and overconfident substitution plans early.
 - Do not fabricate inspection results, laboratory clearance, or food-release approvals.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-SANITATION-267`, `tool_suite_id=ts-joint-field-sanitation-latrine-vector-discipline-v1`, and `protocol_stack_id=ps-joint-field-sanitation-latrine-vector-discipline-stack-v1` when food protection depends on nearby latrine control, handwashing throughput, or vector suppression beyond kitchen boundaries.
+- Add `toolchain_id=TC-DIETARY-270`, `tool_suite_id=ts-joint-religious-dietary-mass-feeding-v1`, and `protocol_stack_id=ps-joint-religious-dietary-mass-feeding-stack-v1` when feeding continuity depends on protected meal accommodations, fasting windows, or allergen-aware substitution.
+- Add `packet_id=DPL-FIELD-SANITATION-LATRINE-001` and `packet_id=DPL-RELIGIOUS-DIETARY-MASS-FEEDING-001` for branches that materially alter feeding-site release, quarantine confidence, or protected meal plans.

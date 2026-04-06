@@ -2252,3 +2252,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent civil-warning verification cell and alternate public-affairs review board
 - Protocol binding: CAP + NIEM + signed release packages + API/JSON + S/MIME + USMTF
 - Fallback path: single-source holding statement with manual approval log and no warning amplification until source authenticity is confirmed
+
+## Toolchain Wave LXXI (2026-04-06)
+
+### `TC-LEGALRELIEF-266`
+
+- Domain: joint servicemember civil relief estate and power of attorney continuity
+- Primary systems: legal-assistance case board, deadline monitor, POA or will status tracker, family-contact escalation ledger
+- Cross-check systems: independent staff judge advocate review cell and alternate family-readiness legal desk
+- Protocol binding: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual legal triage roster with advisory-only output until human legal review confirms authority and document validity
+
+### `TC-SANITATION-267`
+
+- Domain: joint field sanitation latrine handwashing and vector discipline
+- Primary systems: sanitation inspection ledger, latrine service tracker, chlorine or soap resupply board, vector surveillance queue
+- Cross-check systems: independent preventive-medicine detachment and alternate engineer sanitation board
+- Protocol binding: HL7/FHIR + NIEM + signed sanitation manifests + API/JSON + USMTF
+- Fallback path: manual sanitation roster with daily command review and no confidence score beyond confirmed inspection data
+
+### `TC-NONLETHAL-268`
+
+- Domain: joint nonlethal crowd control escalation and evidence
+- Primary systems: crowd-density map, nonlethal inventory ledger, incident evidence sync board, casualty or detainee monitor
+- Cross-check systems: independent legal review cell and alternate military-police command post
+- Protocol binding: NIEM + CJIS + signed evidence manifests + API/JSON + S/MIME + USMTF
+- Fallback path: barrier and voice-command posture with manual incident log and no nonlethal release absent human approval
+
+### `TC-RECORDS-269`
+
+- Domain: joint personnel records DD214 and benefits continuity
+- Primary systems: personnel record synchronization board, discharge-document queue, identity-proofing review cell, benefits handoff ledger
+- Cross-check systems: independent personnel service center and alternate transition-assistance board
+- Protocol binding: NIEM + signed personnel manifests + API/JSON + S/MIME + USMTF
+- Fallback path: manual priority-case handling with no final record issuance absent source verification and human approval
+
+### `TC-DIETARY-270`
+
+- Domain: joint religious dietary accommodation and mass feeding
+- Primary systems: ration menu planner, dietary accommodation ledger, chaplain coordination board, allergen or food-safety review queue
+- Cross-check systems: independent preventive-medicine detachment and alternate field-feeding operations board
+- Protocol binding: HL7/FHIR + NIEM + signed feeding manifests + API/JSON + S/MIME + USMTF
+- Fallback path: essential feeding only with manual dietary roster, conservative allergen controls, and command acknowledgment of accommodation gaps
+
+### `TC-KLE-271`
+
+- Domain: civil affairs key leader engagement commitment and grievance ledger
+- Primary systems: engagement calendar board, commitment ledger, grievance-triage queue, local-influence or rumor map
+- Cross-check systems: independent civil-affairs assessment cell and alternate public-affairs legitimacy board
+- Protocol binding: NIEM + OGC + API/JSON + S/MIME + USMTF
+- Fallback path: manual engagement notebook with no new commitments released until human staff validates ownership and suspense
+
+### `TC-CONFINEMENT-272`
+
+- Domain: joint confinement facility disturbance and humane treatment
+- Primary systems: facility population board, incident or grievance ledger, staffing and segregation tracker, medical or legal access scheduler
+- Cross-check systems: independent inspector or legal observability cell and alternate military-police review board
+- Protocol binding: NIEM + CJIS + signed confinement manifests + API/JSON + S/MIME + USMTF
+- Fallback path: essential-control posture with manual welfare checks and no force escalation absent explicit human approval
+
+### `TC-FAMILYCARE-273`
+
+- Domain: joint military family care plan guardianship and dependent support
+- Primary systems: family-care-plan ledger, guardian contact board, school or medical consent tracker, support-gap escalation queue
+- Cross-check systems: independent family-readiness office and alternate reserve mobilization desk
+- Protocol binding: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual family-care-plan review with advisory-only readiness assessment until guardianship and consent validity are confirmed

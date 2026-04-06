@@ -81,3 +81,9 @@ Use these tool categories as the default stack for this skill: biometric enrollm
 
 - Default packet IDs: DPL-MP-DETAINEE-SITESEC-001, DPL-CUSTODY-EVIDENCE-TRANSFER-001.
 - If no packet fully matches, define a provisional packet and assign a validation owner before release.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-NONLETHAL-268`, `tool_suite_id=ts-joint-nonlethal-crowd-control-evidence-v1`, and `protocol_stack_id=ps-joint-nonlethal-crowd-control-evidence-stack-v1` when site security depends on disciplined crowd response, barrier breach control, or evidence-backed escalation decisions around detention locations.
+- Add `toolchain_id=TC-CONFINEMENT-272`, `tool_suite_id=ts-joint-confinement-facility-disturbance-humane-treatment-v1`, and `protocol_stack_id=ps-joint-confinement-facility-disturbance-humane-treatment-stack-v1` when detainee-site recommendations depend on humane-treatment compliance, welfare monitoring, or disturbance-driven transfer decisions.
+- Add `packet_id=DPL-NONLETHAL-CROWD-EOF-001` and `packet_id=DPL-CONFINEMENT-HUMANE-TREATMENT-001` for branches that materially alter site-security posture, use-of-force conditions, or confinement control measures.

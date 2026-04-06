@@ -149,3 +149,10 @@ Primary products for this skill: reserve mobilization heatmap, billet fill-risk 
 
 - Add `tool_suite_id=ts-joint-recruiting-training-pipeline-capacity-shock-v1` + `protocol_stack_id=ps-joint-recruiting-training-pipeline-capacity-shock-stack-v1` when reserve mobilization readiness depends on accession flow, schoolhouse throughput, or instructor bottlenecks that slow replacement generation.
 - Add `packet_id=DPL-TRAINING-PIPELINE-CAPACITY-001` for branches that materially alter reserve readiness recovery, mobilization pacing, or replacement availability assumptions.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-LEGALRELIEF-266`, `tool_suite_id=ts-joint-servicemember-civil-relief-estate-poa-v1`, and `protocol_stack_id=ps-joint-servicemember-civil-relief-estate-poa-stack-v1` when mobilization readiness depends on unresolved SCRA exposure, estate-document gaps, or emergency power-of-attorney requirements.
+- Add `toolchain_id=TC-RECORDS-269`, `tool_suite_id=ts-joint-personnel-records-dd214-benefits-continuity-v1`, and `protocol_stack_id=ps-joint-personnel-records-dd214-benefits-continuity-stack-v1` when reserve activation confidence depends on trusted personnel records, separation backlog control, or benefits continuity for transition cases.
+- Add `toolchain_id=TC-FAMILYCARE-273`, `tool_suite_id=ts-joint-family-care-guardianship-dependent-support-v1`, and `protocol_stack_id=ps-joint-family-care-guardianship-dependent-support-stack-v1` when readiness posture depends on validated guardianship, family-care-plan execution, or dependent support continuity.
+- Add `packet_id=DPL-SCRA-ESTATE-POA-001`, `packet_id=DPL-PERSONNEL-RECORDS-DD214-001`, and `packet_id=DPL-FAMILY-CARE-GUARDIANSHIP-001` for branches that materially alter mobilization pacing, alert rosters, or reserve readiness certification.

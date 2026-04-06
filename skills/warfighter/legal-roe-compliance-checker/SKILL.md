@@ -144,3 +144,8 @@ Primary products for this skill: legal risk findings, ROE compliance checklist, 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-NONLETHAL-268`, `tool_suite_id=ts-joint-nonlethal-crowd-control-evidence-v1`, and `protocol_stack_id=ps-joint-nonlethal-crowd-control-evidence-stack-v1` when legal review depends on escalation-of-force compliance, nonlethal release authority, or evidence sufficiency during disturbances.
+- Add `toolchain_id=TC-CONFINEMENT-272`, `tool_suite_id=ts-joint-confinement-facility-disturbance-humane-treatment-v1`, and `protocol_stack_id=ps-joint-confinement-facility-disturbance-humane-treatment-stack-v1` when recommendations depend on humane-treatment standards, welfare-check integrity, or legally defensible disturbance response inside confinement sites.
+- Add `packet_id=DPL-NONLETHAL-CROWD-EOF-001` and `packet_id=DPL-CONFINEMENT-HUMANE-TREATMENT-001` for branches that materially alter legal sufficiency, use-of-force posture, or detention-facility control options.

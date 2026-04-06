@@ -2961,3 +2961,25 @@ Every skill output should include:
 - Homeland law enforcement and military movement deconfliction + strategic-mobility-deployment-planner + force-protection-and-base-defense + homeland-rail-evacuation-signaling-restoration-cell.
 - Homeland DSCA reimbursement and funding authority + joint-finance-and-pay-continuity-in-contested-theaters-cell + defense-support-of-civil-authorities-crisis-cell + mission-risk-decision-support.
 - Homeland joint information center and civil warning unity + public-affairs-operational-communications + joint-theater-emergency-civil-alert-and-public-warning-cell + defense-support-of-civil-authorities-crisis-cell.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXXI)
+
+- joint-servicemember-civil-relief-estate-and-power-of-attorney-cell
+- joint-field-sanitation-latrine-handwashing-and-vector-discipline-cell
+- joint-nonlethal-crowd-control-escalation-and-evidence-cell
+- joint-personnel-records-dd214-and-benefits-continuity-cell
+- joint-religious-dietary-accommodation-and-mass-feeding-cell
+- civil-affairs-key-leader-engagement-commitment-and-grievance-ledger-cell
+- joint-confinement-facility-disturbance-and-humane-treatment-cell
+- joint-military-family-care-plan-guardianship-and-dependent-support-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXXI)
+
+- Joint servicemember civil relief estate and power of attorney + multi-domain-reserve-mobilization-readiness-cell + joint-deployed-postal-ballot-and-family-contact-continuity-cell + joint-casualty-assistance-center-and-family-support-synchronization-cell.
+- Joint field sanitation latrine handwashing and vector discipline + expeditionary-food-protection-inspection-and-sanitation-cell + forward-operating-base-waste-water-and-sanitation-resilience-cell + preventive-medicine-and-force-health-protection.
+- Joint nonlethal crowd control escalation and evidence + military-police-area-security-operations + legal-roe-compliance-checker + public-affairs-operational-communications.
+- Joint personnel records DD214 and benefits continuity + joint-finance-and-pay-continuity-in-contested-theaters-cell + multi-domain-reserve-mobilization-readiness-cell + joint-casualty-assistance-center-and-family-support-synchronization-cell.
+- Joint religious dietary accommodation and mass feeding + joint-religious-affairs-and-moral-injury-support-cell + expeditionary-field-feeding-water-quality-and-ration-reconstitution-cell + expeditionary-food-protection-inspection-and-sanitation-cell.
+- Civil affairs key leader engagement commitment and grievance ledger + civil-affairs-stability-ops + tactical-language-enabled-civil-engagement-cell + public-affairs-operational-communications.
+- Joint confinement facility disturbance and humane treatment + joint-military-police-detainee-and-site-security-cell + joint-detainee-operations-and-law-of-war-compliance-cell + coalition-legal-interoperability-and-status-of-forces-cell.
+- Joint military family care plan guardianship and dependent support + joint-deployed-postal-ballot-and-family-contact-continuity-cell + multi-domain-reserve-mobilization-readiness-cell + joint-military-family-readiness-crisis-sustainment-cell.

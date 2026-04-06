@@ -14281,3 +14281,93 @@ validation_gates:
 - output_schema: unified message board, warning-release ladder, rumor-control synchronization tracker
 - protocol_profile: CAP + NIEM + signed release packages + API/JSON + S/MIME + USMTF
 - validation_gates: warning-authority confirmation, message approval, authenticity verification
+
+## Packet Addendum LX (2026-04-06, Expansion Wave LXXI)
+
+### packet_id: DPL-SCRA-ESTATE-POA-001
+- domain: joint servicemember civil relief estate and power of attorney continuity
+- objective: preserve readiness and family stability by triaging urgent civil relief, estate-document, and attorney-in-fact actions before deployment or disruption causes legal harm.
+- primary_tools: legal-assistance case board, deadline monitor, POA or will status tracker, family-contact escalation ledger
+- alternate_tools: manual legal action worksheet and family-readiness contact roster
+- degraded_mode: advisory-only legal triage with manual deadline log and no document execution guidance beyond confirmed human review
+- input_requirements: duty status, legal deadlines, family risk, document status, creditor or court actions, legal office availability
+- output_schema: civil-relief shield matrix, estate readiness board, urgent legal-action ladder
+- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: legal-review confirmation, document authenticity, authority check
+
+### packet_id: DPL-FIELD-SANITATION-LATRINE-001
+- domain: joint field sanitation latrine handwashing and vector discipline
+- objective: prevent readiness loss by synchronizing latrine service, handwashing points, vector suppression, and sanitation exceptions across austere sites.
+- primary_tools: sanitation inspection ledger, latrine service tracker, chlorine or soap resupply board, vector surveillance queue
+- alternate_tools: manual sanitation roster and preventive-medicine inspection worksheet
+- degraded_mode: minimum hygiene posture with manual checks, restricted density, and daily command review
+- input_requirements: site population, latrine count, water status, inspection results, vector indicators, resupply windows
+- output_schema: sanitation discipline board, latrine service ladder, vector suppression matrix
+- protocol_profile: HL7/FHIR + NIEM + signed sanitation manifests + API/JSON + USMTF
+- validation_gates: inspection sufficiency, preventive-medicine review, sanitation acknowledgment
+
+### packet_id: DPL-NONLETHAL-CROWD-EOF-001
+- domain: joint nonlethal crowd control escalation and evidence
+- objective: protect forces and legitimacy by defining controlled escalation, nonlethal accountability, and evidence capture during disturbances.
+- primary_tools: crowd-density map, nonlethal inventory ledger, incident evidence sync board, casualty or detainee monitor
+- alternate_tools: manual incident log and barrier-control worksheet
+- degraded_mode: barrier and voice-command posture only with no nonlethal release absent explicit human approval
+- input_requirements: authority basis, crowd behavior, protected assets, nonlethal inventory, medical support, camera coverage
+- output_schema: escalation-of-force ladder, nonlethal employment matrix, evidence custody board
+- protocol_profile: NIEM + CJIS + signed evidence manifests + API/JSON + S/MIME + USMTF
+- validation_gates: legal basis, release authority, chain-of-custody integrity
+
+### packet_id: DPL-PERSONNEL-RECORDS-DD214-001
+- domain: joint personnel records DD214 and benefits continuity
+- objective: restore trusted personnel transitions by reconciling record loss, discharge-document production, and benefits handoff under disruption.
+- primary_tools: personnel record synchronization board, discharge-document queue, identity-proofing review cell, benefits handoff ledger
+- alternate_tools: manual personnel packet worksheet and transition-assistance roster
+- degraded_mode: priority-case handling only with manual identity verification and no final document issue absent confirmed human review
+- input_requirements: affected population, outage scope, discharge timelines, identity status, record-source availability, benefits dependencies
+- output_schema: records recovery board, DD214 issue ladder, benefits continuity tracker
+- protocol_profile: NIEM + signed personnel manifests + API/JSON + S/MIME + USMTF
+- validation_gates: source-record confirmation, identity proof, release approval
+
+### packet_id: DPL-RELIGIOUS-DIETARY-MASS-FEEDING-001
+- domain: joint religious dietary accommodation and mass feeding
+- objective: maintain nutritional continuity and religious accommodation by aligning ration substitutes, allergen controls, and feeding windows under operational stress.
+- primary_tools: ration menu planner, dietary accommodation ledger, chaplain coordination board, allergen or food-safety review queue
+- alternate_tools: manual meal roster and feeding exception worksheet
+- degraded_mode: essential feeding only with conservative allergen controls and command acknowledgment of unmet accommodations
+- input_requirements: unit composition, dietary restrictions, ration inventory, fasting windows, allergen data, feeding-site capacity
+- output_schema: dietary accommodation matrix, protected meal-production ladder, feeding exception tracker
+- protocol_profile: HL7/FHIR + NIEM + signed feeding manifests + API/JSON + S/MIME + USMTF
+- validation_gates: chaplain or medical review, allergen confidence, feeding approval
+
+### packet_id: DPL-KLE-COMMITMENT-GRIEVANCE-001
+- domain: civil affairs key leader engagement commitment and grievance ledger
+- objective: preserve local legitimacy by tracking promises, grievances, and closure actions across key-leader engagements without memory drift.
+- primary_tools: engagement calendar board, commitment ledger, grievance-triage queue, local-influence or rumor map
+- alternate_tools: manual engagement notebook and grievance worksheet
+- degraded_mode: no new commitments beyond immediate safety messaging until human staff validates ownership and suspense
+- input_requirements: engagement schedule, commitments, grievance backlog, local actors, rumor indicators, approval authorities
+- output_schema: KLE commitment ledger, grievance closure board, trust-risk tracker
+- protocol_profile: NIEM + OGC + API/JSON + S/MIME + USMTF
+- validation_gates: stakeholder identity, ownership assignment, closure confirmation
+
+### packet_id: DPL-CONFINEMENT-HUMANE-TREATMENT-001
+- domain: joint confinement facility disturbance and humane treatment
+- objective: stabilize confinement operations while preserving humane-treatment compliance, medical access, and legally defensible incident response.
+- primary_tools: facility population board, incident or grievance ledger, staffing and segregation tracker, medical or legal access scheduler
+- alternate_tools: manual welfare-check log and disturbance control worksheet
+- degraded_mode: essential-control posture with manual welfare checks and no force escalation absent explicit human approval
+- input_requirements: facility population, staffing, disturbance indicators, access obligations, medical status, transfer options
+- output_schema: disturbance branch plan, humane-treatment compliance board, transfer or medical-access tracker
+- protocol_profile: NIEM + CJIS + signed confinement manifests + API/JSON + S/MIME + USMTF
+- validation_gates: welfare-monitoring proof, legal review, use-of-force authority
+
+### packet_id: DPL-FAMILY-CARE-GUARDIANSHIP-001
+- domain: joint military family care plan guardianship and dependent support
+- objective: preserve deployment readiness by validating guardianship, consent continuity, and dependent support before activation or casualty-driven disruption.
+- primary_tools: family-care-plan ledger, guardian contact board, school or medical consent tracker, support-gap escalation queue
+- alternate_tools: manual family-care worksheet and guardian call roster
+- degraded_mode: advisory-only readiness assessment with manual family-care review and no deployment certification absent human confirmation
+- input_requirements: activation timeline, family-care-plan status, guardian availability, dependent needs, consent documents, support resources
+- output_schema: family-care risk board, guardianship decision matrix, dependent support continuity tracker
+- protocol_profile: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
+- validation_gates: guardian confirmation, consent validity, command review

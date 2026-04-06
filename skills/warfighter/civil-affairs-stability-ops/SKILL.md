@@ -167,3 +167,10 @@ Primary products for this skill: stability effects plan, stakeholder engagement 
 - Add `tool_suite_id=ts-joint-civilian-sensor-report-veracity-rumor-control-v1` + `protocol_stack_id=ps-joint-civilian-sensor-report-veracity-rumor-control-stack-v1` when stability recommendations depend on corroborating civilian reports, suppressing harmful rumors, or preserving warning credibility.
 - Add `tool_suite_id=ts-coalition-host-nation-force-protection-claims-liability-v1` + `protocol_stack_id=ps-coalition-host-nation-force-protection-claims-liability-stack-v1` when local trust, restitution, or access depends on transparent claims and liability framing after incidents.
 - Add `packet_id=DPL-CIVILIAN-SENSOR-RUMOR-CONTROL-001` and `packet_id=DPL-HOST-NATION-FP-CLAIMS-LIABILITY-001` for branches that materially alter population trust, force-protection legitimacy, or host-nation access.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-KLE-271`, `tool_suite_id=ts-civil-affairs-kle-commitment-grievance-ledger-v1`, and `protocol_stack_id=ps-civil-affairs-kle-commitment-grievance-ledger-stack-v1` when stability recommendations depend on tracking commitments, closing grievances, or preventing trust loss from broken promises.
+- Add `toolchain_id=TC-SANITATION-267`, `tool_suite_id=ts-joint-field-sanitation-latrine-vector-discipline-v1`, and `protocol_stack_id=ps-joint-field-sanitation-latrine-vector-discipline-stack-v1` when local legitimacy and camp stability depend on sanitation, vector suppression, or protected public-health messaging.
+- Add `toolchain_id=TC-NONLETHAL-268`, `tool_suite_id=ts-joint-nonlethal-crowd-control-evidence-v1`, and `protocol_stack_id=ps-joint-nonlethal-crowd-control-evidence-stack-v1` when stability recommendations depend on disciplined crowd control, evidence-backed accountability, or reduced escalation risk.
+- Add `packet_id=DPL-KLE-COMMITMENT-GRIEVANCE-001`, `packet_id=DPL-FIELD-SANITATION-LATRINE-001`, and `packet_id=DPL-NONLETHAL-CROWD-EOF-001` for branches that materially alter local legitimacy, grievance closure, or protected movement conditions.
