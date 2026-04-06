@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag prosthetic-device safety, long-term overuse risk, chronic-pain concerns, family-transition needs, and classification or privacy constraints before recommending action.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-va-dod-trauma-bed-rehabilitation-bridge-v1` + `protocol_stack_id=ps-strategic-va-dod-trauma-bed-rehabilitation-bridge-stack-v1` when rehabilitation planning depends on VA or DOD bed availability, specialty rehab continuity, or long-tail transition timing after major casualty surges.
+- Add `packet_id=DPL-VA-DOD-TRAUMA-REHAB-BRIDGE-001` for recommendations that materially change rehabilitation transfer posture, return-to-duty expectations, or family-transition sequencing.

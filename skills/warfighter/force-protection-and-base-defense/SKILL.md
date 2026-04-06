@@ -290,3 +290,10 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 
 - Add `tool_suite_id=ts-theater-electromagnetic-deception-confidence-countertargeting-v1` + `protocol_stack_id=ps-theater-electromagnetic-deception-confidence-countertargeting-stack-v1` when base survivability depends on trusted decoy effects, emission discipline, or adversary countertargeting confidence shifts.
 - Add `packet_id=DPL-EM-DECEPTION-CONFIDENCE-001` for branches that materially alter base defense posture, decoy release controls, or commander risk acceptance.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-theater-barracks-mold-pest-indoor-air-remediation-v1` + `protocol_stack_id=ps-theater-barracks-mold-pest-indoor-air-remediation-stack-v1` when force-protection posture depends on safe billeting, reoccupation sequencing, or restoring defender habitability after contamination.
+- Add `tool_suite_id=ts-joint-mwd-handler-loss-cross-attachment-continuity-v1` + `protocol_stack_id=ps-joint-mwd-handler-loss-cross-attachment-continuity-stack-v1` when perimeter security, patrol continuity, or explosive-detection coverage depends on rapid MWD cross-attachment.
+- Add `tool_suite_id=ts-joint-blast-audiology-hearing-device-comms-compatibility-v1` + `protocol_stack_id=ps-joint-blast-audiology-hearing-device-comms-compatibility-stack-v1` when guard-force survivability depends on hearing-device fit, earpro compatibility, or comms clarity after blasts.
+- Add `packet_id=DPL-BARRACKS-INDOOR-AIR-REMEDIATION-001`, `packet_id=DPL-MWD-HANDLER-CROSS-ATTACHMENT-001`, and `packet_id=DPL-BLAST-AUDIOLOGY-COMMS-001` for branches that materially alter defender readiness, patrol continuity, or base alert posture.

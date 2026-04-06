@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag captivity-sensitive equities, medical privacy, exploitation risk, and return-to-duty uncertainty before recommending action.
 - Do not fabricate captivity reporting, medical clearance, or debrief authority.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-joint-recovered-personnel-family-messaging-media-protection-v1` + `protocol_stack_id=ps-joint-recovered-personnel-family-messaging-media-protection-stack-v1` when reintegration posture depends on protected family notification, media containment, or shielding debrief timelines from public disclosure.
+- Add `packet_id=DPL-RECOVERED-PERSONNEL-MEDIA-PROTECTION-001` for recommendations that materially change reintegration privacy, debrief sequencing, or family-contact posture.

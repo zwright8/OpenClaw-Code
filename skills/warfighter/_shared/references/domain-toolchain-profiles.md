@@ -2120,3 +2120,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent industrial-base readiness cell and alternate human-capital continuity board
 - Protocol binding: signed workforce manifests + NIEM + API/JSON + S/MIME + OPC UA + USMTF
 - Fallback path: manual critical-worker roster with command-approved support priorities and no unsupported assumption about workforce availability
+
+## Toolchain Wave LXIX (2026-04-06)
+
+### `TC-PHARMACY-250`
+
+- Domain: joint forward pharmacy controlled-substance custody and formulary substitution
+- Primary systems: pharmacy inventory ledger, controlled-substance custody tracker, cold-chain monitor, formulary substitution board
+- Cross-check systems: independent pharmacy officer review cell and alternate medical-logistics shortage board
+- Protocol binding: HL7/FHIR + signed controlled-substance manifests + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: paper custody ledger with dual-signature issue logs and physician-approved substitutions only
+
+### `TC-FEEDING-251`
+
+- Domain: expeditionary field feeding water quality and ration reconstitution
+- Primary systems: feeding-site status board, ration inventory tracker, potable-water assay queue, food-safety inspection ledger
+- Cross-check systems: independent preventive-medicine detachment and alternate quartermaster feeding cell
+- Protocol binding: NIEM + HL7/FHIR + food-safety lab result exchange + API/JSON + S/MIME + USMTF
+- Fallback path: reduced menu with manual water validation and commander-approved feeding priorities only
+
+### `TC-BARRACKS-252`
+
+- Domain: theater barracks mold pest and indoor-air remediation
+- Primary systems: barracks habitability tracker, spore and IAQ assay board, pest-surveillance queue, remediation work-order manager
+- Cross-check systems: independent preventive-medicine review cell and alternate public-works engineering board
+- Protocol binding: NIEM + OPC UA + environmental assay exchange + API/JSON + S/MIME + USMTF
+- Fallback path: manual room-status ledger with no reoccupation until environmental review and relocation plan are approved
+
+### `TC-AUDIOLOGY-253`
+
+- Domain: joint blast audiology hearing device and comms compatibility
+- Primary systems: blast exposure ledger, audiology scheduling board, earpro and headset fit tracker, comms-device compatibility matrix
+- Cross-check systems: independent flight or dive surgeon review cell and alternate hearing-conservation board
+- Protocol binding: HL7/FHIR + audiogram exchange + API/JSON + S/MIME + USMTF
+- Fallback path: manual exposure ledger with human fit checks and command-approved duty limits only
+
+### `TC-MWDCROSS-254`
+
+- Domain: joint military working dog handler loss and cross-attachment continuity
+- Primary systems: MWD team readiness board, kennel and vaccination ledger, handler qualification matrix, mission reassignment tracker
+- Cross-check systems: independent veterinary review cell and alternate force-protection kennel board
+- Protocol binding: HL7/FHIR + signed animal custody manifests + NIEM + API/JSON + USMTF
+- Fallback path: manual team roster with dual-witness custody transfer and command-approved mission narrowing only
+
+### `TC-DUALSTATUS-255`
+
+- Domain: homeland national guard dual-status command authority reconciliation
+- Primary systems: authority matrix board, mission-assignment tracker, Title-status ledger, mutual-aid request queue
+- Cross-check systems: independent legal review cell and alternate emergency-management coordination board
+- Protocol binding: signed legal notices + NIEM + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: paper authority matrix with manual legal review and no mission reassignment until approval is complete
+
+### `TC-RECOVEREDMEDIA-256`
+
+- Domain: joint recovered personnel family messaging and media protection
+- Primary systems: recovered-personnel release board, family-notification tracker, media-hold matrix, narrative-monitoring board
+- Cross-check systems: independent personnel-recovery review cell and alternate public-affairs legal desk
+- Protocol binding: NIEM + signed release manifests + S/MIME + API/JSON + STIX/TAXII + USMTF
+- Fallback path: manual notification call tree with commander-approved media hold and no expanded public release
+
+### `TC-VADODREHAB-257`
+
+- Domain: strategic VA-DOD trauma bed and rehabilitation bridge
+- Primary systems: trauma bed status board, rehabilitation capacity ledger, transfer packet queue, benefits-status handoff tracker
+- Cross-check systems: independent patient-movement coordination cell and alternate surgical-network review board
+- Protocol binding: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: manual bed-status board with command-approved transfer sequencing and no unsourced rehabilitation commitments

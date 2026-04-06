@@ -14296,3 +14296,87 @@ external_binding:
 ### `ps-strategic-defense-industrial-workforce-family-stabilization-stack-v1`
 - Protocols: signed workforce manifests, `NIEM`, `API/JSON`, `S/MIME`, `OPC UA`, `USMTF`.
 - Use for: critical-worker support exchange, shift redesign routing, and production-support acknowledgments.
+
+## Tool Suite Addendum LXIX (2026-04-06, Forward Pharmacy, Field Feeding, Barracks Habitability, Blast Audiology, MWD Cross-Attachment, Dual-Status Command, Recovered-Personnel Media Protection, and VA-DOD Trauma Bridging)
+
+### `ts-joint-forward-pharmacy-controlled-substance-formulary-substitution-v1`
+- Use for: forward pharmacy custody, controlled-substance accountability, cold-chain medication continuity, and formulary substitution under disruption.
+- Primary tools: pharmacy inventory ledger, controlled-substance custody tracker, cold-chain monitor, formulary substitution board.
+- Cross-check tools: independent pharmacy officer review cell and alternate medical-logistics shortage board.
+- Typical products: pharmacy custody ledger, formulary substitution board, medication-risk branch tracker.
+
+### `ts-expeditionary-field-feeding-water-quality-ration-reconstitution-v1`
+- Use for: field-feeding continuity, potable-water quality assurance, ration substitution, and mass-feeding reconstitution under expeditionary stress.
+- Primary tools: feeding-site status board, ration inventory tracker, potable-water assay queue, food-safety inspection ledger.
+- Cross-check tools: independent preventive-medicine detachment and alternate quartermaster feeding cell.
+- Typical products: feeding-site continuity board, safe-meal production ladder, ration-water risk tracker.
+
+### `ts-theater-barracks-mold-pest-indoor-air-remediation-v1`
+- Use for: barracks habitability triage, mold and pest remediation, indoor-air restoration, and phased room reoccupation.
+- Primary tools: barracks habitability tracker, spore and IAQ assay board, pest-surveillance queue, remediation work-order manager.
+- Cross-check tools: independent preventive-medicine review cell and alternate public-works engineering board.
+- Typical products: barracks habitability board, remediation ladder, room-reoccupancy tracker.
+
+### `ts-joint-blast-audiology-hearing-device-comms-compatibility-v1`
+- Use for: blast-audiology triage, hearing-device sustainment, earpro-fit validation, and mission-comms compatibility after noise exposure.
+- Primary tools: blast exposure ledger, audiology scheduling board, earpro and headset fit tracker, comms-device compatibility matrix.
+- Cross-check tools: independent flight or dive surgeon review cell and alternate hearing-conservation board.
+- Typical products: blast-audiology triage board, earpro and comms compatibility matrix, duty-limitation branch card.
+
+### `ts-joint-mwd-handler-loss-cross-attachment-continuity-v1`
+- Use for: military-working-dog cross-attachment, handler-loss contingency routing, kennel custody, and mission continuity.
+- Primary tools: MWD team readiness board, kennel and vaccination ledger, handler qualification matrix, mission reassignment tracker.
+- Cross-check tools: independent veterinary review cell and alternate force-protection kennel board.
+- Typical products: MWD team continuity board, cross-attachment qualification matrix, kennel-custody handoff ledger.
+
+### `ts-homeland-dual-status-command-authority-reconciliation-v1`
+- Use for: Title 10 and Title 32 authority reconciliation, dual-status command designation, mission-assignment alignment, and homeland response legitimacy.
+- Primary tools: authority matrix board, mission-assignment tracker, Title-status ledger, mutual-aid request queue.
+- Cross-check tools: independent legal review cell and alternate emergency-management coordination board.
+- Typical products: authority reconciliation board, mission-assignment ladder, dual-status decision packet.
+
+### `ts-joint-recovered-personnel-family-messaging-media-protection-v1`
+- Use for: recovered-personnel information protection, family-notification sequencing, media-hold enforcement, and rumor suppression after high-visibility recoveries.
+- Primary tools: recovered-personnel release board, family-notification tracker, media-hold matrix, narrative-monitoring board.
+- Cross-check tools: independent personnel-recovery review cell and alternate public-affairs legal desk.
+- Typical products: family-contact sequence board, media-hold matrix, recovered-personnel information-protection packet.
+
+### `ts-strategic-va-dod-trauma-bed-rehabilitation-bridge-v1`
+- Use for: DOD-to-VA trauma bridging, rehabilitation capacity arbitration, long-tail casualty transfer, and return-to-duty continuity decisions.
+- Primary tools: trauma bed status board, rehabilitation capacity ledger, transfer packet queue, benefits-status handoff tracker.
+- Cross-check tools: independent patient-movement coordination cell and alternate surgical-network review board.
+- Typical products: trauma bed bridge board, rehabilitation transfer ladder, long-tail care capacity tracker.
+
+## Protocol Stack Addendum LXIX (2026-04-06, External Integration Profiles for Expansion Wave LXIX)
+
+### `ps-joint-forward-pharmacy-controlled-substance-formulary-substitution-stack-v1`
+- Protocols: `HL7/FHIR`, signed controlled-substance manifests, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: medication-status exchange, custody acknowledgments, substitution approvals, and cold-chain exception routing.
+
+### `ps-expeditionary-field-feeding-water-quality-ration-reconstitution-stack-v1`
+- Protocols: `NIEM`, `HL7/FHIR`, food-safety lab result exchange, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: feeding-site updates, ration substitution routing, water-test dissemination, and sanitation-risk acknowledgments.
+
+### `ps-theater-barracks-mold-pest-indoor-air-remediation-stack-v1`
+- Protocols: `NIEM`, `OPC UA`, environmental assay exchange, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: room-status exchange, remediation work-order routing, environmental-test acknowledgments, and reoccupation approvals.
+
+### `ps-joint-blast-audiology-hearing-device-comms-compatibility-stack-v1`
+- Protocols: `HL7/FHIR`, audiogram exchange, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: exposure-status updates, hearing-device issue routing, fit-check acknowledgments, and duty-limitation approvals.
+
+### `ps-joint-mwd-handler-loss-cross-attachment-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, signed animal custody manifests, `NIEM`, `API/JSON`, `USMTF`.
+- Use for: dog-status exchange, handler reassignment routing, kennel-custody acknowledgments, and veterinary hold notifications.
+
+### `ps-homeland-dual-status-command-authority-reconciliation-stack-v1`
+- Protocols: signed legal notices, `NIEM`, `CAP`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: authority-status exchange, mission-assignment routing, mutual-aid acknowledgment, and command-designation approval.
+
+### `ps-joint-recovered-personnel-family-messaging-media-protection-stack-v1`
+- Protocols: `NIEM`, signed release manifests, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: notification-status exchange, media-hold routing, narrative-monitor alerts, and recovered-personnel release approvals.
+
+### `ps-strategic-va-dod-trauma-bed-rehabilitation-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: bed-status exchange, rehabilitation referral routing, transfer-packet acknowledgment, and continuity-of-care handoffs.

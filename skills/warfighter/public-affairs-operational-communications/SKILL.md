@@ -166,3 +166,9 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 - Add `tool_suite_id=ts-joint-military-financial-liability-compensation-continuity-v1` + `protocol_stack_id=ps-joint-military-financial-liability-compensation-continuity-stack-v1` when messaging decisions depend on compensation legitimacy, liability posture, or transparent claims routing after harm or damage.
 - Add `tool_suite_id=ts-joint-host-nation-legislative-liaison-mandate-alignment-v1` + `protocol_stack_id=ps-joint-host-nation-legislative-liaison-mandate-alignment-stack-v1` when release timing or content depends on host-nation emergency powers, mandate conflicts, or waiver approval.
 - Add `packet_id=DPL-ICP-PUBLIC-COMMS-CONTINGENCY-001`, `packet_id=DPL-FIN-LIABILITY-COMPENSATION-001`, and `packet_id=DPL-HOSTNATION-MANDATE-ALIGNMENT-001` for branches that materially alter public-warning posture, compensation messaging, or host-nation-facing release legitimacy.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-joint-recovered-personnel-family-messaging-media-protection-v1` + `protocol_stack_id=ps-joint-recovered-personnel-family-messaging-media-protection-stack-v1` when release posture depends on recovered-personnel privacy, family-notification sequencing, or debrief protection.
+- Add `tool_suite_id=ts-homeland-dual-status-command-authority-reconciliation-v1` + `protocol_stack_id=ps-homeland-dual-status-command-authority-reconciliation-stack-v1` when public messaging must reflect state or federal command seams, mission-assignment legitimacy, or dual-status command designation.
+- Add `packet_id=DPL-RECOVERED-PERSONNEL-MEDIA-PROTECTION-001` and `packet_id=DPL-DUAL-STATUS-COMMAND-AUTHORITY-001` for branches that materially alter family messaging, public release timing, or civil-authority trust posture.

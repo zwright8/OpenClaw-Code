@@ -14101,3 +14101,93 @@ validation_gates:
 - output_schema: workforce-family stabilization board, production-risk ladder, support-allocation packet
 - protocol_profile: signed workforce manifests + NIEM + API/JSON + S/MIME + OPC UA + USMTF
 - validation_gates: critical-worker validation, support-availability review, production-priority approval
+
+## Packet Addendum LVIII (2026-04-06, Expansion Wave LXIX)
+
+### packet_id: DPL-FORWARD-PHARMACY-CONTROLLED-SUBSTANCE-001
+- domain: joint forward pharmacy controlled-substance custody and formulary substitution
+- objective: preserve medication continuity by sequencing substitution, custody, cold-chain exceptions, and diversion-control actions under disruption.
+- primary_tools: pharmacy inventory ledger, controlled-substance custody tracker, cold-chain monitor, formulary substitution board
+- alternate_tools: paper controlled-substance ledger and physician substitution worksheet
+- degraded_mode: dual-signature custody only with physician-approved substitutions and no automated stock reconciliation
+- input_requirements: medication demand, controlled-substance balances, patient-priority classes, cold-chain status, shortage list, prescribing authority
+- output_schema: pharmacy custody ledger, formulary substitution board, medication-risk branch tracker
+- protocol_profile: HL7/FHIR + signed controlled-substance manifests + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: prescribing-authority review, custody-integrity check, cold-chain exception approval
+
+### packet_id: DPL-FIELD-FEEDING-RATION-RECONSTITUTION-001
+- domain: expeditionary field feeding water quality and ration reconstitution
+- objective: preserve safe mass feeding by balancing ration availability, potable-water quality, menu substitution, and sanitation under expeditionary strain.
+- primary_tools: feeding-site status board, ration inventory tracker, potable-water assay queue, food-safety inspection ledger
+- alternate_tools: field-kitchen status sheet and manual boil-water or substitution worksheet
+- degraded_mode: reduced menu only with manual water validation and commander-approved feeding priorities
+- input_requirements: feeding demand, ration inventory, water-test results, sanitation posture, fuel status, supported population
+- output_schema: feeding-site continuity board, safe-meal production ladder, ration-water risk tracker
+- protocol_profile: NIEM + HL7/FHIR + food-safety lab result exchange + API/JSON + S/MIME + USMTF
+- validation_gates: water-safety confirmation, food-service inspection review, feeding-authority approval
+
+### packet_id: DPL-BARRACKS-INDOOR-AIR-REMEDIATION-001
+- domain: theater barracks mold pest and indoor-air remediation
+- objective: restore safe billeting by triaging environmental hazards, remediation sequencing, and room reoccupation under theater constraints.
+- primary_tools: barracks habitability tracker, spore and IAQ assay board, pest-surveillance queue, remediation work-order manager
+- alternate_tools: manual room-status ledger and environmental risk worksheet
+- degraded_mode: no reoccupation until manual environmental review and commander-approved relocation plan are complete
+- input_requirements: room occupancy, test results, pest indicators, maintenance backlog, health complaints, alternate billeting capacity
+- output_schema: barracks habitability board, remediation ladder, room-reoccupancy tracker
+- protocol_profile: NIEM + OPC UA + environmental assay exchange + API/JSON + S/MIME + USMTF
+- validation_gates: test-validity review, work-order confirmation, reoccupation approval
+
+### packet_id: DPL-BLAST-AUDIOLOGY-COMMS-001
+- domain: joint blast audiology hearing device and comms compatibility
+- objective: preserve safe return to duty and comms intelligibility after blast or sustained-noise exposure.
+- primary_tools: blast exposure ledger, audiology scheduling board, earpro and headset fit tracker, comms-device compatibility matrix
+- alternate_tools: manual exposure log and fit-check worksheet
+- degraded_mode: commander-approved duty limits only with manual fit checks and human symptom review
+- input_requirements: exposure history, symptom status, audiogram results, comms role, device inventory, duty timeline
+- output_schema: blast-audiology triage board, earpro and comms compatibility matrix, duty-limitation branch card
+- protocol_profile: HL7/FHIR + audiogram exchange + API/JSON + S/MIME + USMTF
+- validation_gates: exposure-review check, clinical-fit confirmation, duty-release approval
+
+### packet_id: DPL-MWD-HANDLER-CROSS-ATTACHMENT-001
+- domain: joint military working dog handler loss and cross-attachment continuity
+- objective: sustain working-dog mission output by routing cross-attachment, custody transfer, and mission narrowing after handler loss or displacement.
+- primary_tools: MWD team readiness board, kennel and vaccination ledger, handler qualification matrix, mission reassignment tracker
+- alternate_tools: manual kennel roster and custody handoff worksheet
+- degraded_mode: command-approved mission narrowing only with manual custody tracking and no unsupported cross-attachment
+- input_requirements: dog status, handler availability, mission demand, kennel constraints, qualification overlap, veterinary posture
+- output_schema: MWD team continuity board, cross-attachment qualification matrix, kennel-custody handoff ledger
+- protocol_profile: HL7/FHIR + signed animal custody manifests + NIEM + API/JSON + USMTF
+- validation_gates: welfare review, handler-qualification check, custody-transfer approval
+
+### packet_id: DPL-DUAL-STATUS-COMMAND-AUTHORITY-001
+- domain: homeland national guard dual-status command authority reconciliation
+- objective: keep military support legally durable by aligning command relationships, mission assignments, and statutory authorities during homeland crises.
+- primary_tools: authority matrix board, mission-assignment tracker, Title-status ledger, mutual-aid request queue
+- alternate_tools: paper authority matrix and legal review worksheet
+- degraded_mode: advisory-only authority analysis with no mission reassignment until legal approval is complete
+- input_requirements: incident facts, jurisdictions, mission requests, Title status, command relationships, legal constraints
+- output_schema: authority reconciliation board, mission-assignment ladder, dual-status decision packet
+- protocol_profile: signed legal notices + NIEM + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: statutory-authority review, supported-jurisdiction confirmation, command-designation approval
+
+### packet_id: DPL-RECOVERED-PERSONNEL-MEDIA-PROTECTION-001
+- domain: joint recovered personnel family messaging and media protection
+- objective: protect families, debriefs, and operational secrecy by sequencing notifications, release controls, and rumor suppression after recovery events.
+- primary_tools: recovered-personnel release board, family-notification tracker, media-hold matrix, narrative-monitoring board
+- alternate_tools: manual call tree and media hold worksheet
+- degraded_mode: family notification and commander-approved holding statement only with no expanded public release
+- input_requirements: recovery facts, family-contact status, debrief restrictions, media pressure, release authority, narrative indicators
+- output_schema: family-contact sequence board, media-hold matrix, recovered-personnel information-protection packet
+- protocol_profile: NIEM + signed release manifests + S/MIME + API/JSON + STIX/TAXII + USMTF
+- validation_gates: notification review, release-authority confirmation, debrief-protection check
+
+### packet_id: DPL-VA-DOD-TRAUMA-REHAB-BRIDGE-001
+- domain: strategic VA-DOD trauma bed and rehabilitation bridge
+- objective: preserve continuity of trauma and rehabilitation care by routing bed assignments, transfers, and long-tail specialty follow-on during surge conditions.
+- primary_tools: trauma bed status board, rehabilitation capacity ledger, transfer packet queue, benefits-status handoff tracker
+- alternate_tools: manual bed-status board and transfer-priority worksheet
+- degraded_mode: no unsourced transfer promises with manual bed confirmation and command-approved patient sequencing only
+- input_requirements: casualty mix, acuity, specialty demand, bed status, rehab capacity, transfer authorities, family constraints
+- output_schema: trauma bed bridge board, rehabilitation transfer ladder, long-tail care capacity tracker
+- protocol_profile: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: bed-status review, transfer-authority check, continuity-of-care approval

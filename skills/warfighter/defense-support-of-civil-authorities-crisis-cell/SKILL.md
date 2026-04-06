@@ -165,3 +165,10 @@ Primary products for this skill: DSCA support plan, interagency coordination mat
 
 - Add `tool_suite_id=ts-homeland-wildland-fire-airspace-retardant-priority-v1` + `protocol_stack_id=ps-homeland-wildland-fire-airspace-retardant-priority-stack-v1` when DSCA support depends on military airspace reprioritization, retardant scarcity, or smoke-driven sortie tradeoffs.
 - Add `packet_id=DPL-WILDLAND-FIRE-AIRSPACE-RETARDANT-001` for branches that materially alter aviation support posture, airspace release timing, or protected-site prioritization.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-homeland-dual-status-command-authority-reconciliation-v1` + `protocol_stack_id=ps-homeland-dual-status-command-authority-reconciliation-stack-v1` when DSCA support depends on state or federal command seams, mission-assignment legitimacy, or governor and federal concurrence timing.
+- Add `tool_suite_id=ts-expeditionary-field-feeding-water-quality-ration-reconstitution-v1` + `protocol_stack_id=ps-expeditionary-field-feeding-water-quality-ration-reconstitution-stack-v1` when sheltering, mass-care, or sustained response posture depends on safe feeding throughput and potable-water assurance.
+- Add `tool_suite_id=ts-theater-barracks-mold-pest-indoor-air-remediation-v1` + `protocol_stack_id=ps-theater-barracks-mold-pest-indoor-air-remediation-stack-v1` when temporary billeting, responder housing, or protected-population sheltering depends on indoor-air confidence and habitability restoration.
+- Add `packet_id=DPL-DUAL-STATUS-COMMAND-AUTHORITY-001`, `packet_id=DPL-FIELD-FEEDING-RATION-RECONSTITUTION-001`, and `packet_id=DPL-BARRACKS-INDOOR-AIR-REMEDIATION-001` for branches that materially alter DSCA command posture, shelter sustainment, or public-support legitimacy.

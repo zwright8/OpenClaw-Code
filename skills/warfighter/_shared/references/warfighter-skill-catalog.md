@@ -2917,3 +2917,25 @@ Every skill output should include:
 - Theater essential services contractor strike and continuity + contested-megacity-essential-services-stabilization-cell + tactical-civil-infrastructure-priority-services-restoration + acquisition-and-contracting-support.
 - Homeland base school transport and dependent evacuation + strategic-military-family-evacuation-and-safehaven-allocation-cell + homeland-school-shelter-mass-care-and-family-reunification-cell + homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell.
 - Strategic defense industrial workforce family stabilization + strategic-defense-industrial-workforce-clearance-and-assignment-cell + strategic-shipyard-nuclear-maintenance-workforce-surge-cell + multi-domain-reserve-mobilization-readiness-cell.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXIX)
+
+- joint-forward-pharmacy-controlled-substance-custody-and-formulary-substitution-cell
+- expeditionary-field-feeding-water-quality-and-ration-reconstitution-cell
+- theater-barracks-mold-pest-and-indoor-air-remediation-cell
+- joint-blast-audiology-hearing-device-and-comms-compatibility-cell
+- joint-military-working-dog-handler-loss-and-cross-attachment-continuity-cell
+- homeland-national-guard-dual-status-command-authority-reconciliation-cell
+- joint-recovered-personnel-family-messaging-and-media-protection-cell
+- strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXIX)
+
+- Joint forward pharmacy controlled-substance custody and formulary substitution + austere-surgical-support-coordinator + medical-logistics-and-blood-supply-coordination + mission-risk-decision-support.
+- Expeditionary field feeding water quality and ration reconstitution + expeditionary-food-supply-safety-and-contamination-cell + forward-operating-base-waste-water-and-sanitation-resilience-cell + defense-support-of-civil-authorities-crisis-cell.
+- Theater barracks mold pest and indoor-air remediation + force-protection-and-base-defense + strategic-military-housing-utility-safety-and-restoration-cell + preventive-medicine-and-force-health-protection.
+- Joint blast audiology hearing device and comms compatibility + expeditionary-battlefield-noise-and-hearing-conservation-cell + theater-mission-network-failover-cell + tactical-small-unit-power-and-spectrum-discipline-cell.
+- Joint military working dog handler loss and cross-attachment continuity + joint-force-veterinary-and-working-dog-support-cell + force-protection-and-base-defense + special-reconnaissance-and-sensitive-site-mapping.
+- Homeland National Guard dual-status command authority reconciliation + defense-support-of-civil-authorities-crisis-cell + civil-defense-mass-evacuation-shelter-cell + homeland-military-civil-autonomous-evacuation-convoy-arbitration-cell.
+- Joint recovered personnel family messaging and media protection + joint-recovered-personnel-reintegration-and-sensitive-debrief-cell + public-affairs-operational-communications + joint-multi-theater-casualty-information-and-family-notification-integrity-cell.
+- Strategic VA-DOD trauma bed and rehabilitation bridge + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + austere-surgical-support-coordinator + operational-hospital-overflow-aeromedical-routing-cell.
