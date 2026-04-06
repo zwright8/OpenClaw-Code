@@ -145,3 +145,8 @@ Primary products for this skill: mass-evacuation sequence plan, shelter load bal
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-homeland-rail-evacuation-signaling-restoration-v1` + `protocol_stack_id=ps-homeland-rail-evacuation-signaling-restoration-stack-v1` when evacuation throughput, shelter backpressure, or military-priority movement depends on damaged rail dispatch and signaling recovery.
+- Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when shelter viability depends on lifeline restoration, cyber containment, or displaced-person site stability.
+- Add `packet_id=DPL-RAIL-EVAC-SIGNAL-001` and `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001` for recommendations that materially alter evacuation timing, shelter release, or life-safety risk posture.

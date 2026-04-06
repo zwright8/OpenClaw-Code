@@ -1,0 +1,19 @@
+[Unit]
+Description=OpenClaw autonomous enterprise control-plane wave
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=openclaw
+Group=openclaw
+WorkingDirectory=/opt/openclaw/OpenClaw-Code/cognition-core
+Environment=HOME=/home/openclaw
+EnvironmentFile=-/etc/openclaw/openclaw.env
+ExecStart=/usr/bin/env npm run autonomous:run -- --repo-root /opt/openclaw/OpenClaw-Code --store /var/lib/openclaw/state/tasks.journal.jsonl --outbox-dir /var/lib/openclaw/state/outbox --archive-dir /var/lib/openclaw/state/outbox/processed --state /var/lib/openclaw/reports/autonomous-openclaw/state.json --waves 1 --skills-per-wave 25 --capabilities-per-wave 12 --dispatch-limit 100 --worker-cycles 12 --worker-idle-cycles 2 --bot-agent agent:openclaw-bot --skill-hardening enforce --deploy-index /opt/openclaw/OpenClaw-Code/skills/state/skills.deployability.index.json --hardening-profile /opt/openclaw/OpenClaw-Code/skills/state/skills.hardening.profile.json --json /var/lib/openclaw/reports/autonomous-openclaw/report.json --markdown /var/lib/openclaw/reports/autonomous-openclaw/report.md
+StandardOutput=journal
+StandardError=journal
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

@@ -307,3 +307,37 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-detainee-appeals-custody-transparency-v1` + `protocol_stack_id=ps-coalition-detainee-appeals-custody-transparency-stack-v1` when interoperability depends on common detainee appeals handling, translation quality, or custody-transparency trust.
 - Add `tool_suite_id=ts-joint-personnel-recovery-family-auth-deception-denial-v1` + `protocol_stack_id=ps-joint-personnel-recovery-family-auth-deception-denial-stack-v1` when coalition recovery coordination depends on trusted family messaging, survivor authentication, or spoof denial.
 - Add `packet_id=DPL-DETAINEE-APPEALS-CUSTODY-001` and `packet_id=DPL-PR-FAMILY-AUTH-DECEPTION-001` for branches that materially change coalition legitimacy, detainee compliance, or shared recovery confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-theater-spectrum-license-host-nation-regulatory-emissions-continuity-v1` + `protocol_stack_id=ps-theater-spectrum-license-host-nation-regulatory-emissions-continuity-stack-v1` when coalition interoperability depends on host-nation regulatory waivers, spectrum legality, or emergency emissions continuity.
+- Add `tool_suite_id=ts-joint-contested-ceasefire-hotline-escalation-control-v1` + `protocol_stack_id=ps-joint-contested-ceasefire-hotline-escalation-control-stack-v1` when combined-force confidence depends on authenticated ceasefire incident routing and escalation-control acknowledgment chains.
+- Add `tool_suite_id=ts-coalition-mission-digital-twin-baseline-reconciliation-v1` + `protocol_stack_id=ps-coalition-mission-digital-twin-baseline-reconciliation-stack-v1` when coalition technical interoperability depends on release-safe digital-twin baselines and configuration drift reconciliation.
+- Add `packet_id=DPL-SPECTRUM-LICENSE-REGULATORY-001`, `packet_id=DPL-CEASEFIRE-HOTLINE-ESCALATION-001`, and `packet_id=DPL-DIGITAL-TWIN-BASELINE-001` for branches that materially change coalition release confidence, cross-domain legality, or combined-force tempo.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Gap-Closure Addendum)
+
+- Add `tool_suite_id=ts-joint-operational-law-judge-advocate-advisory-v1` + `protocol_stack_id=ps-joint-operational-law-judge-advocate-advisory-stack-v1` when coalition interoperability recommendations depend on shared authority language, legal caveats, or protected advisory chains.
+- Add `tool_suite_id=ts-joint-air-mobility-diplomatic-clearance-staging-v1` + `protocol_stack_id=ps-joint-air-mobility-diplomatic-clearance-staging-stack-v1` when coalition lift access depends on host-nation diplomatic clearances, staging capacity, or mixed-force ramp sequencing.
+- Add `tool_suite_id=ts-joint-orbital-warfare-effects-deconfliction-v1` + `protocol_stack_id=ps-joint-orbital-warfare-effects-deconfliction-stack-v1` when partner interoperability depends on shared protected-service continuity, conjunction confidence, or escalation-safe orbital coordination.
+- Add `tool_suite_id=ts-joint-expeditionary-advanced-base-signature-management-v1` + `protocol_stack_id=ps-joint-expeditionary-advanced-base-signature-management-stack-v1` when coalition littoral posture depends on releasable signature budgets, displacement timing, or austere support choreography.
+- Add `packet_id=DPL-JUDGE-ADVOCATE-OPLAW-001`, `packet_id=DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001`, `packet_id=DPL-ORBITAL-WARFARE-DECONFLICTION-001`, and `packet_id=DPL-EABO-SIGNATURE-MANAGEMENT-001` for branches that materially change coalition access, releasability, or combined-force continuity decisions.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-coalition-partner-force-insider-threat-advisor-protection-v1` + `protocol_stack_id=ps-coalition-partner-force-insider-threat-advisor-protection-stack-v1` when coalition interoperability depends on trusted counterpart vetting, advisor movement protection, or shared insider-risk acknowledgment.
+- Add `tool_suite_id=ts-coalition-host-nation-force-protection-claims-liability-v1` + `protocol_stack_id=ps-coalition-host-nation-force-protection-claims-liability-stack-v1` when coalition access, burden-sharing, or host-nation legitimacy depends on claims and liability transparency after incidents.
+- Add `packet_id=DPL-PARTNER-FORCE-INSIDER-ADVISOR-001` and `packet_id=DPL-HOST-NATION-FP-CLAIMS-LIABILITY-001` for branches that materially alter coalition release confidence, host-nation trust, or advisor mission continuity.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-coalition-ballast-water-biosecurity-port-clearance-v1` + `protocol_stack_id=ps-coalition-ballast-water-biosecurity-port-clearance-stack-v1` when coalition port access depends on harmonized ballast-water screening, quarantine thresholds, or berth-release sequencing.
+- Add `tool_suite_id=ts-joint-offline-key-material-courier-compromise-v1` + `protocol_stack_id=ps-joint-offline-key-material-courier-compromise-stack-v1` when combined-force interoperability depends on trusted courier-based rekey, COMSEC custody, or compromise notification across disconnected partners.
+- Add `packet_id=DPL-BALLAST-WATER-PORT-CLEARANCE-001` and `packet_id=DPL-OFFLINE-KEY-MATERIAL-COURIER-001` for branches that materially change coalition access, shared command trust, or release timelines.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-coalition-portable-water-testing-biosecurity-corridor-v1` + `protocol_stack_id=ps-coalition-portable-water-testing-biosecurity-corridor-stack-v1` when coalition corridor legitimacy depends on shared water assurance, field sanitation confidence, or biosecurity gating.
+- Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when interoperability depends on common utility restoration, humanitarian data handling, or cyber-containment rules across displaced-person sites.
+- Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when coalition sustainment trust depends on common fuel blending, freeze-point validation, or cold-weather release criteria.
+- Add `packet_id=DPL-WATER-BIOSEC-CORRIDOR-001`, `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially change coalition release posture, humanitarian interoperability, or Arctic sustainment confidence.

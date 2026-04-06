@@ -279,3 +279,10 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 
 - Add `tool_suite_id=ts-theater-ammunition-yard-fire-compatibility-v1` + `protocol_stack_id=ps-theater-ammunition-yard-fire-compatibility-stack-v1` when sustainment feasibility depends on ammunition-yard survivability, emergency separation, or alternate issue-point activation.
 - Add `packet_id=DPL-AMMUNITION-YARD-FIRE-COMPATIBILITY-001` for branches that materially alter munitions availability, force-protection posture, or depot throughput.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-theater-disconnected-additive-repair-intent-validation-v1` + `protocol_stack_id=ps-theater-disconnected-additive-repair-intent-validation-stack-v1` when sustainment viability depends on trusted field manufacturing, disconnected work-order pedigree, or emergency part substitutions.
+- Add `tool_suite_id=ts-strategic-rare-gas-cryogenic-supply-priority-v1` + `protocol_stack_id=ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1` when industrial or missile-support sustainment depends on cryogenic gas purity, boil-off control, or allocation authority.
+- Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when cold-weather sustainment depends on verified blend integrity, additive compatibility, or freeze-point release confidence.
+- Add `packet_id=DPL-ADDITIVE-INTENT-VALIDATION-001`, `packet_id=DPL-RAREGAS-CRYO-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially alter repair release, industrial sustainment confidence, or Arctic distribution feasibility.

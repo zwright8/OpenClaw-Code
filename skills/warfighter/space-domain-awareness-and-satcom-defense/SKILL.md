@@ -144,3 +144,8 @@ Primary products for this skill: space support assurance plan, SATCOM contingenc
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-space-based-missile-warning-ground-truth-correlation-v1` + `protocol_stack_id=ps-space-based-missile-warning-ground-truth-correlation-stack-v1` when SDA or SATCOM recommendations depend on warning confidence, false-track adjudication, or alert-release timing.
+- Add `tool_suite_id=ts-joint-nuclear-command-warning-delegation-safeguards-v1` + `protocol_stack_id=ps-joint-nuclear-command-warning-delegation-safeguards-stack-v1` when space-enabled warning branches affect delegated continuity, acknowledgment integrity, or strategic command authentication.
+- Add `packet_id=DPL-MISSILE-WARNING-GT-CORR-001` and `packet_id=DPL-NUCLEAR-WARN-DELEGATION-001` for recommendations that materially alter alert posture, continuity assumptions, or commander risk acceptance.

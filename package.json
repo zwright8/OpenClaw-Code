@@ -27,6 +27,7 @@
     "skills:harden": "tsx scripts/harden-skills.ts",
     "skills:tools:build": "tsx scripts/build-tool-shard-skills.ts",
     "skills:tools:validate": "tsx scripts/validate-tool-shard-skills.ts",
+    "whatsapp:bridge": "tsx scripts/whatsapp-codex-bridge.ts",
     "skills:validate": "tsx scripts/validate-1000-skills.ts",
     "skills:test": "tsx scripts/exercise-1000-skills.ts",
     "skills:plan": "tsx scripts/plan-1000-skills-rollout.ts",

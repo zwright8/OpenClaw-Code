@@ -12,3 +12,5 @@ export * from './src/dispatch-policy.js';
 export * from './src/audit-log.js';
 export * from './src/operator-ops.js';
 export * from './src/capability-runtime.js';
+export * from './src/enterprise-autonomy.js';
+export * from './src/world-sim-contracts.js';

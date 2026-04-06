@@ -283,3 +283,52 @@ Preferred protocol families for this skill: USMTF, API/JSON, NATO APP-11/ADatP-3
 - Add `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when risk posture depends on urgent software remediation, rollback assurance, or artifact trust across mission systems.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when commander confidence depends on authentic order distribution and rapid containment of spoofed or stale digital tasking.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-vector-control-field-epidemiology-v1` + `protocol_stack_id=ps-expeditionary-vector-control-field-epidemiology-stack-v1` when commander risk posture depends on vector-borne disease pressure, outbreak branching, or pesticide-release timing.
+- Add `tool_suite_id=ts-joint-cold-injury-frostbite-rewarming-v1` + `protocol_stack_id=ps-joint-cold-injury-frostbite-rewarming-stack-v1` when exposure timelines, warming capacity, or cold-weather casualty routing materially alter GO or NO-GO posture.
+- Add `tool_suite_id=ts-joint-blast-overpressure-breacher-readiness-v1` + `protocol_stack_id=ps-joint-blast-overpressure-breacher-readiness-stack-v1` when cumulative concussive exposure, breacher qualification status, or medical follow-up change acceptable risk.
+- Add `packet_id=DPL-VECTOR-CONTROL-FIELD-EPI-001`, `packet_id=DPL-COLD-INJURY-REWARMING-001`, and `packet_id=DPL-BLAST-OVERPRESSURE-BREACHER-001` for branches that materially change commander risk acceptance, force-readiness confidence, or training tempo.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-industrial-hygiene-occupational-exposure-v1` + `protocol_stack_id=ps-expeditionary-industrial-hygiene-occupational-exposure-stack-v1` when commander GO or NO-GO posture depends on occupational sampling confidence, PPE posture, or safe work continuation at expeditionary nodes.
+- Add `tool_suite_id=ts-joint-aviation-physiology-hypoxia-life-support-v1` + `protocol_stack_id=ps-joint-aviation-physiology-hypoxia-life-support-stack-v1` when flight risk, hypoxia incidents, or life-support equipment restrictions materially change sortie or rescue viability.
+- Add `tool_suite_id=ts-joint-dive-medicine-hyperbaric-routing-v1` + `protocol_stack_id=ps-joint-dive-medicine-hyperbaric-routing-stack-v1` when chamber scarcity, pressure injury, or undersea casualty routing changes commander risk acceptance.
+- Add `tool_suite_id=ts-joint-substance-use-overdose-impaired-duty-v1` + `protocol_stack_id=ps-joint-substance-use-overdose-impaired-duty-stack-v1` when overdose stabilization, impaired-duty restrictions, or protected referral decisions materially affect command confidence and force availability.
+- Add `tool_suite_id=ts-theater-sleep-recovery-shift-work-fatigue-restoration-v1` + `protocol_stack_id=ps-theater-sleep-recovery-shift-work-fatigue-restoration-stack-v1` when chronic sleep loss, unstable shifts, or protected-rest windows materially change risk acceptance across critical nodes.
+- Add `packet_id=DPL-INDUSTRIAL-HYGIENE-OCCUPATIONAL-EXPOSURE-001`, `packet_id=DPL-AVIATION-PHYSIOLOGY-HYPOXIA-LIFE-SUPPORT-001`, `packet_id=DPL-DIVE-MEDICINE-HYPERBARIC-ROUTING-001`, `packet_id=DPL-SUBSTANCE-USE-OVERDOSE-IMPAIRED-DUTY-001`, and `packet_id=DPL-SLEEP-RECOVERY-SHIFT-WORK-FATIGUE-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-joint-contested-ceasefire-hotline-escalation-control-v1` + `protocol_stack_id=ps-joint-contested-ceasefire-hotline-escalation-control-stack-v1` when commander risk posture depends on incident acknowledgment integrity, deconfliction speed, or escalation restraint.
+- Add `tool_suite_id=ts-strategic-merchant-mariner-crewing-flag-sanctions-risk-v1` + `protocol_stack_id=ps-strategic-merchant-mariner-crewing-flag-sanctions-risk-stack-v1` when strategic mobility or sealift risk depends on crew availability, registry exposure, or sanctions friction.
+- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when commander confidence depends on pay continuity, cash custody, or disbursing resilience during disruption.
+- Add `tool_suite_id=ts-joint-robotic-casualty-extraction-human-override-safety-v1` + `protocol_stack_id=ps-joint-robotic-casualty-extraction-human-override-safety-stack-v1` when route denial, contamination, or fire makes casualty extraction risk hinge on autonomous override trust.
+- Add `packet_id=DPL-CEASEFIRE-HOTLINE-ESCALATION-001`, `packet_id=DPL-MERCHANT-MARINER-FLAG-SANCTIONS-001`, `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001`, and `packet_id=DPL-ROBOTIC-CASUALTY-EXTRACTION-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVI Gap-Closure Addendum)
+
+- Add `tool_suite_id=ts-joint-signals-intelligence-emitter-geolocation-fusion-v1` + `protocol_stack_id=ps-joint-signals-intelligence-emitter-geolocation-fusion-stack-v1` when commander risk posture depends on emitter confidence, cross-cue latency, or adversary deception in contested sensing.
+- Add `tool_suite_id=ts-joint-expeditionary-advanced-base-signature-management-v1` + `protocol_stack_id=ps-joint-expeditionary-advanced-base-signature-management-stack-v1` when risk acceptance depends on expeditionary base displacement timing, signature budget, or austere sustainment viability.
+- Add `tool_suite_id=ts-joint-operational-law-judge-advocate-advisory-v1` + `protocol_stack_id=ps-joint-operational-law-judge-advocate-advisory-stack-v1` when commander confidence depends on authority basis, legal risk framing, or coalition caveat clarity.
+- Add `tool_suite_id=ts-joint-orbital-warfare-effects-deconfliction-v1` + `protocol_stack_id=ps-joint-orbital-warfare-effects-deconfliction-stack-v1` when risk posture depends on protected-service continuity, conjunction confidence, or escalation control in orbit.
+- Add `tool_suite_id=ts-joint-air-mobility-diplomatic-clearance-staging-v1` + `protocol_stack_id=ps-joint-air-mobility-diplomatic-clearance-staging-stack-v1` when commander GO or NO-GO posture depends on diplomatic-clearance speed, staging-node capacity, or contested lift continuity.
+- Add `packet_id=DPL-SIGINT-EMITTER-GEOLOCATION-001`, `packet_id=DPL-EABO-SIGNATURE-MANAGEMENT-001`, `packet_id=DPL-JUDGE-ADVOCATE-OPLAW-001`, `packet_id=DPL-ORBITAL-WARFARE-DECONFLICTION-001`, and `packet_id=DPL-AIR-MOBILITY-DIPCLEAR-STAGING-001` for branches that materially change commander risk acceptance, authority gating, or mission continuity posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-theater-aviation-fuel-lab-contamination-clearance-v1` + `protocol_stack_id=ps-theater-aviation-fuel-lab-contamination-clearance-stack-v1` when commander risk acceptance depends on trusted aviation fuel, contamination isolation, or sortie-release confidence.
+- Add `tool_suite_id=ts-joint-offline-key-material-courier-compromise-v1` + `protocol_stack_id=ps-joint-offline-key-material-courier-compromise-stack-v1` when command confidence depends on disconnected key custody, courier delivery, or compromise containment.
+- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-clearance-assignment-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-clearance-assignment-stack-v1` when risk posture depends on cleared industrial labor availability across depots, shipyards, or missile plants.
+- Add `tool_suite_id=ts-theater-electromagnetic-deception-confidence-countertargeting-v1` + `protocol_stack_id=ps-theater-electromagnetic-deception-confidence-countertargeting-stack-v1` when force-protection confidence depends on decoy credibility, emission control, or adversary countertargeting indicators.
+- Add `packet_id=DPL-AVIATION-FUEL-LAB-CLEARANCE-001`, `packet_id=DPL-OFFLINE-KEY-MATERIAL-COURIER-001`, `packet_id=DPL-INDUSTRIAL-WORKFORCE-CLEARANCE-001`, and `packet_id=DPL-EM-DECEPTION-CONFIDENCE-001` for branches that materially alter commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
+
+- Add `tool_suite_id=ts-joint-nuclear-command-warning-delegation-safeguards-v1` + `protocol_stack_id=ps-joint-nuclear-command-warning-delegation-safeguards-stack-v1` when commander risk acceptance depends on warning authenticity, delegated-response safeguards, or acknowledgment integrity under degraded strategic communications.
+- Add `tool_suite_id=ts-space-based-missile-warning-ground-truth-correlation-v1` + `protocol_stack_id=ps-space-based-missile-warning-ground-truth-correlation-stack-v1` when risk posture depends on corroborating ambiguous missile warning before changing alert status or dispersal posture.
+- Add `tool_suite_id=ts-homeland-rail-evacuation-signaling-restoration-v1` + `protocol_stack_id=ps-homeland-rail-evacuation-signaling-restoration-stack-v1` when mission risk depends on protected homeland evacuation or force-flow continuity across damaged rail-control networks.
+- Add `tool_suite_id=ts-strategic-rare-gas-cryogenic-supply-priority-v1` + `protocol_stack_id=ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1` when readiness or industrial continuity depends on scarce cryogenic-gas allocation, purity confidence, or boil-off risk.
+- Add `packet_id=DPL-NUCLEAR-WARN-DELEGATION-001`, `packet_id=DPL-MISSILE-WARNING-GT-CORR-001`, `packet_id=DPL-RAIL-EVAC-SIGNAL-001`, and `packet_id=DPL-RAREGAS-CRYO-001` for branches that materially change commander GO, NO-GO, or GO-WITH-CONSTRAINTS posture.
