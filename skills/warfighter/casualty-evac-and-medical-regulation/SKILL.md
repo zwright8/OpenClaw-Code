@@ -149,3 +149,9 @@ Primary products for this skill: evacuation routing plan, treatment load-balanci
 - Add `tool_suite_id=ts-expeditionary-burn-intensive-care-oxygen-arbitration-v1` + `protocol_stack_id=ps-expeditionary-burn-intensive-care-oxygen-arbitration-stack-v1` when patient movement, ICU overflow, or transfer priority depends on oxygen availability, ventilator load, or burn-bed scarcity.
 - Add `tool_suite_id=ts-coalition-portable-water-testing-biosecurity-corridor-v1` + `protocol_stack_id=ps-coalition-portable-water-testing-biosecurity-corridor-stack-v1` when evacuation staging, treatment-node release, or cross-border casualty routing depends on water potability and biosecurity screening confidence.
 - Add `packet_id=DPL-BURN-ICU-OXYGEN-001` and `packet_id=DPL-WATER-BIOSEC-CORRIDOR-001` for recommendations that materially alter transfer release, patient distribution, or medical-risk acceptance.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXII Addendum)
+
+- Add `toolchain_id=TC-HOSPDIV-279`, `tool_suite_id=ts-homeland-hospital-diversion-ambulance-va-dod-bed-bridge-v1`, and `protocol_stack_id=ps-homeland-hospital-diversion-ambulance-va-dod-bed-bridge-stack-v1` when medical-regulation recommendations depend on domestic diversion status, ambulance destination balancing, or VA-DOD trauma-bed bridging.
+- Add `toolchain_id=TC-MASSCARE-276`, `tool_suite_id=ts-homeland-mass-care-access-functional-needs-support-v1`, and `protocol_stack_id=ps-homeland-mass-care-access-functional-needs-support-stack-v1` when patient movement depends on accessible shelter transfer, caregiver accompaniment, or DME and oxygen continuity during evacuation.
+- Add `packet_id=DPL-HOSPITAL-DIVERSION-VA-DOD-001` and `packet_id=DPL-MASS-CARE-AFN-001` for branches that materially alter ambulance destination, patient distribution, or sheltered medical-risk acceptance.

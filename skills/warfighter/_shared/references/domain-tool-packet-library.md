@@ -14371,3 +14371,93 @@ validation_gates:
 - output_schema: family-care risk board, guardianship decision matrix, dependent support continuity tracker
 - protocol_profile: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
 - validation_gates: guardian confirmation, consent validity, command review
+
+## Packet Addendum LXI (2026-04-06, Expansion Wave LXXII)
+
+### packet_id: DPL-DCO-FEMA-SYNC-001
+- domain: homeland defense coordinating officer and FEMA region synchronization
+- objective: align federal-support decisions with FEMA regional timing, DCO authorities, and mission-assignment sequencing before military support branches diverge.
+- primary_tools: FEMA task-assignment board, DCO support tracker, RRCC status dashboard, mission-assignment routing ledger
+- alternate_tools: manual task-assignment log and regional coordination worksheet
+- degraded_mode: advisory-only support matrix with manual call synchronization and no assumption of federal mission approval
+- input_requirements: incident status, requested support, RRCC posture, DCO authorities, mission-assignment state, decision deadlines
+- output_schema: DCO-FEMA synchronization matrix, federal-support escalation ladder, regional support packet
+- protocol_profile: NIEM + NIMS/ICS + signed task-assignment notices + API/JSON + S/MIME + USMTF
+- validation_gates: tasking legitimacy, authority review, regional acknowledgment
+
+### packet_id: DPL-PRIVATE-SECTOR-CI-COORD-001
+- domain: homeland private-sector critical infrastructure coordination
+- objective: keep restoration decisions credible by reconciling owner-operator commitments, military dependency needs, and lifeline interdependencies.
+- primary_tools: critical-infrastructure owner tracker, sector-status dashboard, lifeline dependency map, restoration-commitment board
+- alternate_tools: manual owner-contact log and dependency worksheet
+- degraded_mode: manual owner-operator coordination only with no military dependency claim beyond confirmed commitments
+- input_requirements: affected sectors, owner contacts, restoration estimates, military dependencies, legal constraints, decision deadlines
+- output_schema: owner-operator coordination board, lifeline dependency matrix, restoration-support decision packet
+- protocol_profile: NIEM + OPC UA + signed owner-operator notices + API/JSON + S/MIME + USMTF
+- validation_gates: owner-operator confirmation, dependency review, restoration-commitment check
+
+### packet_id: DPL-MASS-CARE-AFN-001
+- domain: homeland mass care access and functional needs support
+- objective: preserve equitable life safety by routing accessible transport, durable-medical-equipment support, and caregiver continuity into shelter decisions.
+- primary_tools: shelter-needs registry, accessible-transport board, DME or oxygen support tracker, caregiver continuity ledger
+- alternate_tools: manual AFN roster and accessible-transport worksheet
+- degraded_mode: essential sheltering only with manual AFN tracking and command-approved transport prioritization
+- input_requirements: shelter demand, AFN populations, transport assets, equipment status, caregiver availability, route hazards
+- output_schema: AFN support matrix, accessible-transport ladder, mass-care support packet
+- protocol_profile: NIEM + CAP + HL7/FHIR + API/JSON + S/MIME + USMTF
+- validation_gates: AFN population review, transport confirmation, shelter-support approval
+
+### packet_id: DPL-DEBRIS-ROW-ROUTE-001
+- domain: homeland debris clearance right-of-way and route priority
+- objective: reopen protected corridors by sequencing debris clearance, right-of-way approvals, and emergency route priorities without losing legitimacy or tempo.
+- primary_tools: debris-status map, route-priority board, right-of-way tracker, clearance-task scheduler
+- alternate_tools: manual route sketch and debris task worksheet
+- degraded_mode: life-safety corridor clearance only with manual access confirmation and engineer-approved holds
+- input_requirements: blocked routes, debris classes, right-of-way status, engineer capacity, movement priorities, access authorities
+- output_schema: debris-clearance priority matrix, right-of-way decision ladder, route-release packet
+- protocol_profile: NIEM + OGC + signed access notices + API/JSON + CAP + USMTF
+- validation_gates: access confirmation, route-priority review, clearance approval
+
+### packet_id: DPL-FATALITY-MORGUE-FAC-001
+- domain: homeland fatality management morgue surge and family assistance center
+- objective: preserve dignity and operational coherence by balancing decedent flow, morgue capacity, and family-assistance-center support under surge conditions.
+- primary_tools: morgue-capacity board, decedent-tracking ledger, FAC operations dashboard, notification-status tracker
+- alternate_tools: manual decedent ledger and FAC staffing worksheet
+- degraded_mode: paper accountability only with no unsupported release timelines and command-approved family-assistance prioritization
+- input_requirements: fatality counts, morgue capacity, identification status, family-support demand, notification posture, refrigeration constraints
+- output_schema: fatality-management board, morgue-surge ladder, family-assistance-center packet
+- protocol_profile: NIEM + HL7/FHIR + signed custody notices + API/JSON + S/MIME + USMTF
+- validation_gates: decedent-accountability review, capacity confirmation, family-assistance approval
+
+### packet_id: DPL-HOSPITAL-DIVERSION-VA-DOD-001
+- domain: homeland hospital diversion ambulance destination and VA-DOD bed bridge
+- objective: sustain survivable casualty flow by reconciling diversion status, ambulance routing, and federal bed availability before destination decisions degrade care.
+- primary_tools: hospital-diversion board, ambulance destination tracker, trauma-bed ledger, transfer-routing queue
+- alternate_tools: manual diversion log and ambulance destination worksheet
+- degraded_mode: lifesaving destination routing only with manual bed confirmation and commander-approved transfer priorities
+- input_requirements: hospital status, ambulance availability, casualty mix, bed capacity, transfer authorities, destination constraints
+- output_schema: hospital-diversion matrix, ambulance-destination ladder, VA-DOD bed-bridge packet
+- protocol_profile: HL7/FHIR + NIEM + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: diversion-status review, destination confirmation, transfer-approval check
+
+### packet_id: DPL-BOIL-WATER-COMMODITIES-001
+- domain: homeland boil water food safety and commodities distribution
+- objective: protect displaced populations by aligning water advisories, food-safety controls, and commodity-distribution priorities under domestic disruption.
+- primary_tools: water-quality dashboard, commodities distribution tracker, food-safety inspection board, POD site status ledger
+- alternate_tools: manual advisory log and POD prioritization worksheet
+- degraded_mode: essential distribution only with manual water-validation results and command-approved commodity rationing
+- input_requirements: advisory areas, water-test results, POD capacity, commodity inventory, route conditions, population demand
+- output_schema: boil-water and commodities board, POD prioritization ladder, food-safety control packet
+- protocol_profile: NIEM + CAP + food-safety lab result exchange + API/JSON + S/MIME + USMTF
+- validation_gates: water-safety confirmation, POD readiness review, distribution approval
+
+### packet_id: DPL-ENERGY-FUEL-WAIVER-001
+- domain: homeland energy emergency fuel waiver and priority restoration
+- objective: preserve critical lifelines by sequencing fuel-waiver decisions, generator support, and restoration priorities under energy emergency conditions.
+- primary_tools: fuel-waiver tracker, generator-priority board, restoration-status dashboard, emergency fuel-allocation ledger
+- alternate_tools: manual waiver log and generator-priority worksheet
+- degraded_mode: life-safety fuel support only with manual waiver review and no unsupported restoration promise
+- input_requirements: outage map, waiver requests, generator demand, fuel stocks, restoration estimates, priority facilities
+- output_schema: fuel-waiver matrix, priority-restoration ladder, emergency energy support packet
+- protocol_profile: NIEM + OPC UA + signed fuel-waiver notices + API/JSON + CAP + USMTF
+- validation_gates: waiver review, fuel-availability confirmation, restoration-priority approval

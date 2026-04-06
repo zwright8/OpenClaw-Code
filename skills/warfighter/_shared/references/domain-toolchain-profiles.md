@@ -2318,3 +2318,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent family-readiness office and alternate reserve mobilization desk
 - Protocol binding: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
 - Fallback path: manual family-care-plan review with advisory-only readiness assessment until guardianship and consent validity are confirmed
+
+## Toolchain Wave LXXII (2026-04-06)
+
+### `TC-DCO-274`
+
+- Domain: homeland defense coordinating officer and FEMA region synchronization
+- Primary systems: FEMA task-assignment board, DCO support tracker, RRCC status dashboard, mission-assignment routing ledger
+- Cross-check systems: independent state emergency-management liaison cell and alternate DSCA coordination board
+- Protocol binding: NIEM + NIMS/ICS + signed task-assignment notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual regional-support matrix with no federal-support commitment beyond acknowledged tasking
+
+### `TC-PRIVATECI-275`
+
+- Domain: homeland private-sector critical infrastructure coordination
+- Primary systems: critical-infrastructure owner tracker, sector-status dashboard, lifeline dependency map, restoration-commitment board
+- Cross-check systems: independent public-utility commission liaison cell and alternate civil-affairs infrastructure desk
+- Protocol binding: NIEM + OPC UA + signed owner-operator notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual owner-contact board with no military dependency claim beyond confirmed restoration commitments
+
+### `TC-MASSCARE-276`
+
+- Domain: homeland mass care access and functional needs support
+- Primary systems: shelter-needs registry, accessible-transport board, DME or oxygen support tracker, caregiver continuity ledger
+- Cross-check systems: independent public-health access coordinator and alternate shelter-operations board
+- Protocol binding: NIEM + CAP + HL7/FHIR + API/JSON + S/MIME + USMTF
+- Fallback path: manual AFN support board with command-approved transport priorities and no automated shelter assignment
+
+### `TC-DEBRIS-277`
+
+- Domain: homeland debris clearance right-of-way and route priority
+- Primary systems: debris-status map, route-priority board, right-of-way tracker, clearance-task scheduler
+- Cross-check systems: independent public-works coordination cell and alternate mobility-control board
+- Protocol binding: NIEM + OGC + signed access notices + API/JSON + CAP + USMTF
+- Fallback path: life-safety corridor clearance only with manual right-of-way review and engineer-approved route release
+
+### `TC-FATALITY-278`
+
+- Domain: homeland fatality management morgue surge and family assistance center
+- Primary systems: morgue-capacity board, decedent-tracking ledger, FAC operations dashboard, notification-status tracker
+- Cross-check systems: independent mortuary-affairs review cell and alternate medical-examiner liaison board
+- Protocol binding: NIEM + HL7/FHIR + signed custody notices + API/JSON + S/MIME + USMTF
+- Fallback path: paper decedent ledger with command-approved family-assistance priorities and no unsupported release estimates
+
+### `TC-HOSPDIV-279`
+
+- Domain: homeland hospital diversion ambulance destination and VA-DOD bed bridge
+- Primary systems: hospital-diversion board, ambulance destination tracker, trauma-bed ledger, transfer-routing queue
+- Cross-check systems: independent patient-movement coordination cell and alternate emergency-medical-services board
+- Protocol binding: HL7/FHIR + NIEM + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: manual destination board with bed confirmation by voice and command-approved transfer sequencing only
+
+### `TC-WATERCOM-280`
+
+- Domain: homeland boil water food safety and commodities distribution
+- Primary systems: water-quality dashboard, commodities distribution tracker, food-safety inspection board, POD site status ledger
+- Cross-check systems: independent public-health operations cell and alternate logistics support board
+- Protocol binding: NIEM + CAP + food-safety lab result exchange + API/JSON + S/MIME + USMTF
+- Fallback path: manual advisory and POD board with essential distribution only until water and food controls are verified
+
+### `TC-ENERGY-281`
+
+- Domain: homeland energy emergency fuel waiver and priority restoration
+- Primary systems: fuel-waiver tracker, generator-priority board, restoration-status dashboard, emergency fuel-allocation ledger
+- Cross-check systems: independent energy-emergency liaison cell and alternate operational-energy coordination board
+- Protocol binding: NIEM + OPC UA + signed fuel-waiver notices + API/JSON + CAP + USMTF
+- Fallback path: life-safety fuel support only with manual waiver review and command-approved restoration priorities

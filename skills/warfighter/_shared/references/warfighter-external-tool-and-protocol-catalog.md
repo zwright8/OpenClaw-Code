@@ -14548,3 +14548,87 @@ external_binding:
 ### `ps-joint-family-care-guardianship-dependent-support-stack-v1`
 - Protocols: `NIEM`, signed family-care notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: guardian-status exchange, consent verification, dependent-support routing, and mobilization-readiness acknowledgment.
+
+## Tool Suite Addendum LXXII (2026-04-06, Domestic Recovery Coordination, Mass Care, Debris Clearance, Fatality Management, Medical Diversion, Commodities Distribution, and Energy Priority Restoration)
+
+### `ts-homeland-dco-fema-region-synchronization-v1`
+- Use for: Defense Coordinating Officer alignment with FEMA regional structures, RRCC or NRCC escalation timing, and federal-support synchronization during domestic response.
+- Primary tools: FEMA task-assignment board, DCO support tracker, RRCC status dashboard, mission-assignment routing ledger.
+- Cross-check tools: independent state emergency-management liaison cell and alternate DSCA coordination board.
+- Typical products: DCO-FEMA synchronization matrix, federal-support escalation ladder, regional support packet.
+
+### `ts-homeland-private-sector-critical-infrastructure-coordination-v1`
+- Use for: owner-operator coordination, lifeline priority arbitration, private-sector reporting fusion, and restoration commitments that affect military support posture.
+- Primary tools: critical-infrastructure owner tracker, sector-status dashboard, lifeline dependency map, restoration-commitment board.
+- Cross-check tools: independent public-utility commission liaison cell and alternate civil-affairs infrastructure desk.
+- Typical products: owner-operator coordination board, lifeline dependency matrix, restoration-support decision packet.
+
+### `ts-homeland-mass-care-access-functional-needs-support-v1`
+- Use for: access-and-functional-needs shelter support, durable-medical-equipment routing, accessible transport sequencing, and caregiver continuity during mass care.
+- Primary tools: shelter-needs registry, accessible-transport board, DME or oxygen support tracker, caregiver continuity ledger.
+- Cross-check tools: independent public-health access coordinator and alternate shelter-operations board.
+- Typical products: AFN support matrix, accessible-transport ladder, mass-care support packet.
+
+### `ts-homeland-debris-clearance-right-of-way-route-priority-v1`
+- Use for: debris-clearance routing, right-of-way adjudication, emergency corridor release, and engineer or contractor sequencing for domestic movement recovery.
+- Primary tools: debris-status map, route-priority board, right-of-way tracker, clearance-task scheduler.
+- Cross-check tools: independent public-works coordination cell and alternate mobility-control board.
+- Typical products: debris-clearance priority matrix, right-of-way decision ladder, route-release packet.
+
+### `ts-homeland-fatality-management-morgue-family-assistance-v1`
+- Use for: morgue surge balancing, decedent tracking, family-assistance-center coordination, and dignified information release after domestic mass-casualty events.
+- Primary tools: morgue-capacity board, decedent-tracking ledger, FAC operations dashboard, notification-status tracker.
+- Cross-check tools: independent mortuary-affairs review cell and alternate medical-examiner liaison board.
+- Typical products: fatality-management board, morgue-surge ladder, family-assistance-center packet.
+
+### `ts-homeland-hospital-diversion-ambulance-va-dod-bed-bridge-v1`
+- Use for: hospital-diversion control, ambulance destination balancing, trauma-bed prioritization, and VA-DOD bed bridging during domestic medical surges.
+- Primary tools: hospital-diversion board, ambulance destination tracker, trauma-bed ledger, transfer-routing queue.
+- Cross-check tools: independent patient-movement coordination cell and alternate emergency-medical-services board.
+- Typical products: hospital-diversion matrix, ambulance-destination ladder, VA-DOD bed-bridge packet.
+
+### `ts-homeland-boil-water-food-safety-commodities-distribution-v1`
+- Use for: boil-water advisories, emergency food-safety controls, commodity-point distribution planning, and protected delivery of water, meals, and hygiene kits.
+- Primary tools: water-quality dashboard, commodities distribution tracker, food-safety inspection board, POD site status ledger.
+- Cross-check tools: independent public-health operations cell and alternate logistics support board.
+- Typical products: boil-water and commodities board, POD prioritization ladder, food-safety control packet.
+
+### `ts-homeland-energy-emergency-fuel-waiver-priority-restoration-v1`
+- Use for: fuel-waiver adjudication, generator-priority support, emergency energy restoration sequencing, and protected fuel allocation during domestic outages.
+- Primary tools: fuel-waiver tracker, generator-priority board, restoration-status dashboard, emergency fuel-allocation ledger.
+- Cross-check tools: independent energy-emergency liaison cell and alternate operational-energy coordination board.
+- Typical products: fuel-waiver matrix, priority-restoration ladder, emergency energy support packet.
+
+## Protocol Stack Addendum LXXII (2026-04-06, External Integration Profiles for Expansion Wave LXXII)
+
+### `ps-homeland-dco-fema-region-synchronization-stack-v1`
+- Protocols: `NIEM`, `NIMS/ICS`, signed task-assignment notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: DCO-to-FEMA support routing, RRCC or NRCC status exchange, and mission-assignment acknowledgment integrity.
+
+### `ps-homeland-private-sector-critical-infrastructure-coordination-stack-v1`
+- Protocols: `NIEM`, `OPC UA`, signed owner-operator notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: sector-status exchange, owner restoration commitments, and military-support dependency routing.
+
+### `ps-homeland-mass-care-access-functional-needs-support-stack-v1`
+- Protocols: `NIEM`, `CAP`, `HL7/FHIR`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: shelter-needs updates, accessible-transport routing, DME or oxygen support exchange, and caregiver coordination.
+
+### `ps-homeland-debris-clearance-right-of-way-route-priority-stack-v1`
+- Protocols: `NIEM`, `OGC`, signed access notices, `API/JSON`, `CAP`, `USMTF`.
+- Use for: route-status exchange, right-of-way adjudication, debris-clearance tasking, and corridor-release approvals.
+
+### `ps-homeland-fatality-management-morgue-family-assistance-stack-v1`
+- Protocols: `NIEM`, `HL7/FHIR`, signed custody notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: morgue-capacity exchange, decedent-status routing, family-assistance-center coordination, and notification acknowledgments.
+
+### `ps-homeland-hospital-diversion-ambulance-va-dod-bed-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `CAP`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: diversion-status exchange, ambulance destination updates, trauma-bed routing, and VA-DOD transfer acknowledgments.
+
+### `ps-homeland-boil-water-food-safety-commodities-distribution-stack-v1`
+- Protocols: `NIEM`, `CAP`, food-safety lab result exchange, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: water-advisory dissemination, POD status updates, food-safety findings, and commodities-release coordination.
+
+### `ps-homeland-energy-emergency-fuel-waiver-priority-restoration-stack-v1`
+- Protocols: `NIEM`, `OPC UA`, signed fuel-waiver notices, `API/JSON`, `CAP`, `USMTF`.
+- Use for: waiver-status exchange, restoration updates, generator-priority routing, and emergency fuel-allocation approvals.

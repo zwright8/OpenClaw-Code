@@ -2983,3 +2983,25 @@ Every skill output should include:
 - Civil affairs key leader engagement commitment and grievance ledger + civil-affairs-stability-ops + tactical-language-enabled-civil-engagement-cell + public-affairs-operational-communications.
 - Joint confinement facility disturbance and humane treatment + joint-military-police-detainee-and-site-security-cell + joint-detainee-operations-and-law-of-war-compliance-cell + coalition-legal-interoperability-and-status-of-forces-cell.
 - Joint military family care plan guardianship and dependent support + joint-deployed-postal-ballot-and-family-contact-continuity-cell + multi-domain-reserve-mobilization-readiness-cell + joint-military-family-readiness-crisis-sustainment-cell.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXXII)
+
+- homeland-defense-coordinating-officer-and-fema-region-synchronization-cell
+- homeland-private-sector-critical-infrastructure-coordination-cell
+- homeland-mass-care-access-and-functional-needs-support-cell
+- homeland-debris-clearance-right-of-way-and-route-priority-cell
+- homeland-fatality-management-morgue-surge-and-family-assistance-center-cell
+- homeland-hospital-diversion-ambulance-destination-and-va-dod-bed-bridge-cell
+- homeland-boil-water-food-safety-and-commodities-distribution-cell
+- homeland-energy-emergency-fuel-waiver-and-priority-restoration-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXXII)
+
+- Homeland defense coordinating officer and FEMA region synchronization + defense-support-of-civil-authorities-crisis-cell + reserve-guard-mobilization-planner + mission-risk-decision-support.
+- Homeland private-sector critical infrastructure coordination + civil-affairs-stability-ops + operational-energy-resilience-and-microgrid-cell + force-protection-and-base-defense.
+- Homeland mass-care access and functional-needs support + civil-defense-mass-evacuation-shelter-cell + joint-mass-evacuation-flow-control-cell + public-affairs-operational-communications.
+- Homeland debris clearance right-of-way and route priority + strategic-mobility-deployment-planner + expeditionary-fabrication-and-battle-damage-repair + force-protection-and-base-defense.
+- Homeland fatality management morgue surge and family assistance center + mortuary-affairs-and-personnel-accountability + joint-casualty-assistance-center-and-family-support-synchronization-cell + public-affairs-operational-communications.
+- Homeland hospital diversion ambulance destination and VA-DOD bed bridge + casualty-evac-and-medical-regulation + joint-role-3-medical-network-and-aeromedical-evac-cell + strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell.
+- Homeland boil-water food safety and commodities distribution + expeditionary-food-supply-safety-and-contamination-cell + civil-defense-mass-evacuation-shelter-cell + defense-support-of-civil-authorities-crisis-cell.
+- Homeland energy emergency fuel waiver and priority restoration + operational-energy-resilience-and-microgrid-cell + contested-logistics-sustainment + homeland-grid-blackstart-fuel-cyber-coordination-cell.
