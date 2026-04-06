@@ -2038,3 +2038,85 @@ For every critical recommendation, include:
 - Cross-check systems: independent propulsion-quality authority and alternate industrial recovery board
 - Protocol binding: OPC UA + signed quality manifests + NIEM + API/JSON + USMTF
 - Fallback path: manual lot-hold ledger and certifying-authority release board only
+
+## New Toolchain Wave (2026-04-06, Expansion Wave LXVIII)
+
+### `TC-HOUSING-240`
+
+- Domain: strategic military housing utility safety and restoration
+- Primary systems: facility-inspection queue, utility-status dashboard, lodging allocation board, family-notification tracker
+- Cross-check systems: independent engineer safety cell and alternate public-works restoration board
+- Protocol binding: NIEM + OPC UA + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: manual habitability ledger with command-approved relocation priorities and no reoccupation until safety review completes
+
+### `TC-CONTRACTOR-241`
+
+- Domain: theater allied civilian contractor readiness and force protection
+- Primary systems: contractor roster ledger, badging and vetting tracker, protected-route scheduler, service-dependency board
+- Cross-check systems: independent force-protection review cell and alternate contracting officer dashboard
+- Protocol binding: signed workforce manifests + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- Fallback path: mission-essential contractors only with dual-review access checks and command-approved movement windows
+
+### `TC-EVAC-242`
+
+- Domain: theater evacuation route humanitarian logistics and traffic priority
+- Primary systems: corridor-status dashboard, convoy scheduler, shelter-intake tracker, humanitarian movement ledger
+- Cross-check systems: independent civil-transport authority desk and alternate movement-control board
+- Protocol binding: OGC + NIEM + CAP + API/JSON + AIS/NMEA + USMTF
+- Fallback path: essential movements only with command-approved priority order and manual route updates
+
+### `TC-COMPENSATION-243`
+
+- Domain: joint military financial liability and compensation continuity
+- Primary systems: claims adjudication board, emergency-relief disbursement tracker, evidence ledger, fraud-anomaly monitor
+- Cross-check systems: independent fiscal-law review cell and alternate inspector-general case desk
+- Protocol binding: signed claims manifests + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- Fallback path: manual claims ledger with command-approved interim relief decisions and no automated disbursement until fiscal controls are revalidated
+
+### `TC-PUBCOMMS-244`
+
+- Domain: joint incident command post public communications and media contingency
+- Primary systems: message-approval board, public-warning gateway, media query tracker, adversary-narrative monitor
+- Cross-check systems: independent legal-release review cell and alternate emergency-operations communications desk
+- Protocol binding: CAP + NIEM + S/MIME + API/JSON + STIX/TAXII + USMTF
+- Fallback path: commander-approved holding statement, manual warning call tree, and no external release beyond essential life-safety messaging
+
+### `TC-HNMANDATE-245`
+
+- Domain: joint host nation legislative liaison and mandate alignment
+- Primary systems: authority-translation board, waiver-routing ledger, host-nation legal tracker, coalition caveat matrix
+- Cross-check systems: independent embassy or political-military legal desk and alternate theater legal board
+- Protocol binding: signed legal notices + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- Fallback path: advisory-only recommendations with no mandate-dependent action until legal review confirms authority
+
+### `TC-PERMIT-246`
+
+- Domain: joint civil works emergency permitting and right of entry
+- Primary systems: permit queue board, parcel or easement ledger, engineer work-order tracker, environmental-waiver matrix
+- Cross-check systems: independent civil-authority legal desk and alternate engineer command work-release board
+- Protocol binding: NIEM + OGC + signed access notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual right-of-entry worksheet with no engineer work beyond life-safety exceptions until command and legal review are complete
+
+### `TC-ESSENTIAL-247`
+
+- Domain: theater essential services contractor strike and continuity
+- Primary systems: service-status dashboard, labor-action monitor, contingency-contract queue, public-health risk tracker
+- Cross-check systems: independent contracting review cell and alternate emergency-services operations board
+- Protocol binding: OPC UA + NIEM + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: manual service-rationing board with command-approved minimum safe service levels and no unsupported system restart
+
+### `TC-SCHOOL-248`
+
+- Domain: homeland base school transport and dependent evacuation
+- Primary systems: school-transport board, dependent-accountability ledger, guardian reunification tracker, safehaven capacity map
+- Cross-check systems: independent family-readiness desk and alternate installation emergency-operations center
+- Protocol binding: NIEM + CAP + API/JSON + S/MIME + OGC + USMTF
+- Fallback path: manual dependent roster with command-approved movement windows, paper guardian logs, and no unsupervised transport release
+
+### `TC-WORKFORCEFAM-249`
+
+- Domain: strategic defense industrial workforce family stabilization
+- Primary systems: critical-worker ledger, family-support demand tracker, shuttle or lodging allocator, production-priority board
+- Cross-check systems: independent industrial-base readiness cell and alternate human-capital continuity board
+- Protocol binding: signed workforce manifests + NIEM + API/JSON + S/MIME + OPC UA + USMTF
+- Fallback path: manual critical-worker roster with command-approved support priorities and no unsupported assumption about workforce availability

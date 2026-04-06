@@ -156,3 +156,10 @@ Primary products for this skill: mass-evacuation sequence plan, shelter load bal
 - Add `tool_suite_id=ts-homeland-rail-evacuation-signaling-restoration-v1` + `protocol_stack_id=ps-homeland-rail-evacuation-signaling-restoration-stack-v1` when evacuation throughput, shelter backpressure, or military-priority movement depends on damaged rail dispatch and signaling recovery.
 - Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when shelter viability depends on lifeline restoration, cyber containment, or displaced-person site stability.
 - Add `packet_id=DPL-RAIL-EVAC-SIGNAL-001` and `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001` for recommendations that materially alter evacuation timing, shelter release, or life-safety risk posture.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-military-housing-utility-safety-restoration-v1` + `protocol_stack_id=ps-strategic-military-housing-utility-safety-restoration-stack-v1` when shelter posture depends on nearby housing condemnation, utility restoration, or relocation overflow into temporary shelter systems.
+- Add `tool_suite_id=ts-theater-evacuation-route-humanitarian-logistics-traffic-priority-v1` + `protocol_stack_id=ps-theater-evacuation-route-humanitarian-logistics-traffic-priority-stack-v1` when shelter viability depends on controlled arrival waves, outbound release timing, or protected life-safety routes.
+- Add `tool_suite_id=ts-homeland-base-school-transport-dependent-evacuation-v1` + `protocol_stack_id=ps-homeland-base-school-transport-dependent-evacuation-stack-v1` when shelter layout or release decisions depend on dependent transport, guardian accountability, or school-origin movement surges.
+- Add `packet_id=DPL-HOUSING-UTILITY-SAFETY-001`, `packet_id=DPL-EVAC-HUMLOG-TRAFFIC-001`, and `packet_id=DPL-BASE-SCHOOL-DEPENDENT-EVAC-001` for recommendations that materially alter shelter occupancy, evacuation priority, or dependent life-safety posture.

@@ -298,3 +298,10 @@ Primary products for this skill: network failover playbook, comms continuity dec
 
 - Add `tool_suite_id=ts-joint-offline-key-material-courier-compromise-v1` + `protocol_stack_id=ps-joint-offline-key-material-courier-compromise-stack-v1` when failover sequencing depends on disconnected key distribution, courier custody, or compromise containment outside automated KMI paths.
 - Add `packet_id=DPL-OFFLINE-KEY-MATERIAL-COURIER-001` for branches that materially alter trusted restoration order, encrypted mission-thread continuity, or release authority posture.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-incident-command-post-public-communications-media-contingency-v1` + `protocol_stack_id=ps-joint-incident-command-post-public-communications-media-contingency-stack-v1` when failover posture depends on preserving public warning, incident command messaging, or synchronized release language during outages.
+- Add `tool_suite_id=ts-joint-civil-works-emergency-permitting-right-of-entry-v1` + `protocol_stack_id=ps-joint-civil-works-emergency-permitting-right-of-entry-stack-v1` when restoration depends on emergency dig permits, roof or tower access, site-entry approval, or utility corridor clearance.
+- Add `tool_suite_id=ts-theater-essential-services-contractor-strike-continuity-v1` + `protocol_stack_id=ps-theater-essential-services-contractor-strike-continuity-stack-v1` when telecom or power failover viability depends on contracted maintenance labor, utility staffing, or base-service continuity under walkout conditions.
+- Add `packet_id=DPL-ICP-PUBLIC-COMMS-CONTINGENCY-001`, `packet_id=DPL-EMERGENCY-PERMIT-ENTRY-001`, and `packet_id=DPL-ESSENTIAL-SERVICES-STRIKE-001` for branches that materially alter trusted restoration order, site-access timing, or mission-service continuity.

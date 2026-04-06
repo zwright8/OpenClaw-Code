@@ -71,3 +71,10 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag insider-risk exposure, credential gaps, billet mismatch, and production-latency consequences before recommending action.
 - Do not fabricate clearance status, credential reciprocity, or assignment approvals.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-family-stabilization-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-family-stabilization-stack-v1` when clearance and assignment recommendations depend on emergency childcare, transport support, or housing relief that preserves critical-worker attendance.
+- Add `tool_suite_id=ts-strategic-military-housing-utility-safety-restoration-v1` + `protocol_stack_id=ps-strategic-military-housing-utility-safety-restoration-stack-v1` when billet fill rates or protected-worker availability depend on nearby housing safety, utility recovery, or relocation support.
+- Add `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-force-protection-v1` + `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-force-protection-stack-v1` when mixed civilian or allied contractor support affects industrial throughput, site protection, or surge assignment confidence.
+- Add `packet_id=DPL-INDUSTRIAL-WORKFORCE-FAMILY-001`, `packet_id=DPL-HOUSING-UTILITY-SAFETY-001`, and `packet_id=DPL-CONTRACTOR-READINESS-FP-001` for branches that materially alter workforce availability, site-protection posture, or production-readiness confidence.

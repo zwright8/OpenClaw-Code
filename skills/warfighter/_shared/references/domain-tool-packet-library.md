@@ -13989,3 +13989,115 @@ validation_gates:
 - output_schema: cure-line continuity ladder, lot quarantine matrix, strategic magazine recovery timeline
 - protocol_profile: OPC UA + signed quality manifests + NIEM + API/JSON + USMTF
 - validation_gates: process-integrity review, quality-release check, strategic-allocation approval
+
+## Packet Addendum LVII (2026-04-06, Expansion Wave LXVIII)
+
+### packet_id: DPL-HOUSING-UTILITY-SAFETY-001
+- domain: strategic military housing utility safety and restoration
+- objective: restore safe occupancy by sequencing inspections, utility isolation, relocation, and phased reentry for military housing and temporary lodging.
+- primary_tools: facility-inspection queue, utility-status dashboard, lodging allocation board, family-notification tracker
+- alternate_tools: manual habitability worksheet and relocation priority board
+- degraded_mode: no reoccupation until manual safety review and command-approved temporary lodging plan are complete
+- input_requirements: damage reports, utility status, occupancy roster, safety criteria, lodging availability, restoration timelines
+- output_schema: housing habitability board, utility-restoration ladder, temporary-relocation packet
+- protocol_profile: NIEM + OPC UA + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: safety-certification review, utility-isolation check, occupancy-approval authority
+
+### packet_id: DPL-CONTRACTOR-READINESS-FP-001
+- domain: theater allied civilian contractor readiness and force protection
+- objective: preserve mission-essential contractor output by tracking readiness, vetting, protection, and continuity under contested conditions.
+- primary_tools: contractor roster ledger, badging and vetting tracker, protected-route scheduler, service-dependency board
+- alternate_tools: manual contractor roster and access-control worksheet
+- degraded_mode: mission-essential contractors only with dual-review access checks and command-approved movement windows
+- input_requirements: contractor roster, service dependencies, vetting status, threat posture, route availability, insurance or labor caveats
+- output_schema: contractor readiness matrix, protected-movement ladder, service-continuity packet
+- protocol_profile: signed workforce manifests + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- validation_gates: vetting-status review, protected-route check, command release approval
+
+### packet_id: DPL-EVAC-HUMLOG-TRAFFIC-001
+- domain: theater evacuation route humanitarian logistics and traffic priority
+- objective: preserve life-safety and mission throughput by deconflicting evacuation, humanitarian, and military traffic on shared corridors.
+- primary_tools: corridor-status dashboard, convoy scheduler, shelter-intake tracker, humanitarian movement ledger
+- alternate_tools: manual route board and checkpoint priority worksheet
+- degraded_mode: essential movements only with command-approved priority order and manual route updates
+- input_requirements: route status, movement demand, shelter loads, casualty flow, hazard indicators, authority constraints
+- output_schema: evacuation traffic-priority matrix, corridor branch card, route-control packet
+- protocol_profile: OGC + NIEM + CAP + API/JSON + AIS/NMEA + USMTF
+- validation_gates: corridor-authority review, hazard cross-check, movement-priority approval
+
+### packet_id: DPL-FIN-LIABILITY-COMPENSATION-001
+- domain: joint military financial liability and compensation continuity
+- objective: preserve legitimacy and fiscal control by routing liability review, emergency compensation, and claims continuity after operational incidents.
+- primary_tools: claims adjudication board, emergency-relief disbursement tracker, evidence ledger, fraud-anomaly monitor
+- alternate_tools: manual claims ledger and interim relief worksheet
+- degraded_mode: no automated disbursement with manual case triage and legal or fiscal review only
+- input_requirements: incident facts, claimant classes, evidence status, fiscal thresholds, payment authority, fraud indicators
+- output_schema: liability review board, compensation decision ladder, claims-continuity packet
+- protocol_profile: signed claims manifests + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- validation_gates: liability basis review, claimant verification, fiscal-approval authority
+
+### packet_id: DPL-ICP-PUBLIC-COMMS-CONTINGENCY-001
+- domain: joint incident command post public communications and media contingency
+- objective: synchronize public warning, media engagement, and holding-statement transitions while protecting operational security during incident response.
+- primary_tools: message-approval board, public-warning gateway, media query tracker, adversary-narrative monitor
+- alternate_tools: manual warning call tree and approved holding-statement worksheet
+- degraded_mode: life-safety messaging only with commander-approved holding statements and no expanded public release
+- input_requirements: incident facts, notification posture, release authority, audience map, media pressure, adversary narrative indicators
+- output_schema: incident message matrix, warning release ladder, public-comms contingency packet
+- protocol_profile: CAP + NIEM + S/MIME + API/JSON + STIX/TAXII + USMTF
+- validation_gates: fact-verification review, notification-status check, release-authority approval
+
+### packet_id: DPL-HOSTNATION-MANDATE-ALIGNMENT-001
+- domain: joint host nation legislative liaison and mandate alignment
+- objective: keep operations legally durable by tracking mandate conflicts, waivers, and authority expiration across host-nation jurisdictions.
+- primary_tools: authority-translation board, waiver-routing ledger, host-nation legal tracker, coalition caveat matrix
+- alternate_tools: manual legal-friction ledger and waiver worksheet
+- degraded_mode: advisory-only recommendations with no mandate-dependent action until legal review confirms authority
+- input_requirements: mission tasks, host-nation mandates, agreement baseline, waiver options, expiry timelines, coalition caveats
+- output_schema: mandate-alignment matrix, legal-friction branch card, waiver or exception packet
+- protocol_profile: signed legal notices + NIEM + API/JSON + S/MIME + STIX/TAXII + USMTF
+- validation_gates: authority verification, waiver-status review, legal-approval authority
+
+### packet_id: DPL-EMERGENCY-PERMIT-ENTRY-001
+- domain: joint civil works emergency permitting and right of entry
+- objective: accelerate repair and clearance work by resolving permits, parcel access, and right-of-entry constraints before they stop engineer action.
+- primary_tools: permit queue board, parcel or easement ledger, engineer work-order tracker, environmental-waiver matrix
+- alternate_tools: manual entry worksheet and engineer release board
+- degraded_mode: no non-life-safety work with manual access review and command-approved emergency entry only
+- input_requirements: site list, ownership status, work tasks, environmental constraints, access deadlines, hazard posture
+- output_schema: permit and entry ladder, site-access tracker, engineer-work packet
+- protocol_profile: NIEM + OGC + signed access notices + API/JSON + S/MIME + USMTF
+- validation_gates: ownership review, waiver-status check, engineer-release authority
+
+### packet_id: DPL-ESSENTIAL-SERVICES-STRIKE-001
+- domain: theater essential services contractor strike and continuity
+- objective: preserve minimum safe services during labor disruption by sequencing service shedding, replacements, and emergency contracts.
+- primary_tools: service-status dashboard, labor-action monitor, contingency-contract queue, public-health risk tracker
+- alternate_tools: manual service board and minimum-safe-service worksheet
+- degraded_mode: command-approved service rationing only with manual restart controls and no unsupported staffing assumptions
+- input_requirements: affected services, labor status, staffing thresholds, replacement options, public-health indicators, mission dependencies
+- output_schema: service-continuity ladder, labor-action impact board, emergency replacement packet
+- protocol_profile: OPC UA + NIEM + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: minimum-safe-service review, labor-authority check, replacement-contract approval
+
+### packet_id: DPL-BASE-SCHOOL-DEPENDENT-EVAC-001
+- domain: homeland base school transport and dependent evacuation
+- objective: protect children and dependents by coordinating school transport, guardian accountability, and safehaven routing under crisis conditions.
+- primary_tools: school-transport board, dependent-accountability ledger, guardian reunification tracker, safehaven capacity map
+- alternate_tools: manual dependent roster and school release worksheet
+- degraded_mode: no unsupervised dependent movement with paper rosters, manual guardian checks, and command-approved transport windows only
+- input_requirements: school status, dependent rosters, guardian contacts, transport assets, safehaven availability, route hazards
+- output_schema: dependent-evacuation flow board, school-transport branch matrix, guardian-accountability packet
+- protocol_profile: NIEM + CAP + API/JSON + S/MIME + OGC + USMTF
+- validation_gates: guardian-verification check, school-release authority, transport-security review
+
+### packet_id: DPL-INDUSTRIAL-WORKFORCE-FAMILY-001
+- domain: strategic defense industrial workforce family stabilization
+- objective: preserve strategic output by routing family-support, housing, and transport interventions to critical workers before absenteeism degrades production.
+- primary_tools: critical-worker ledger, family-support demand tracker, shuttle or lodging allocator, production-priority board
+- alternate_tools: manual critical-worker roster and support-priority worksheet
+- degraded_mode: advisory-only support prioritization with manual worker accountability and no assumed production recovery
+- input_requirements: workforce rosters, support shortfalls, production priorities, housing or transport disruptions, childcare status, security constraints
+- output_schema: workforce-family stabilization board, production-risk ladder, support-allocation packet
+- protocol_profile: signed workforce manifests + NIEM + API/JSON + S/MIME + OPC UA + USMTF
+- validation_gates: critical-worker validation, support-availability review, production-priority approval

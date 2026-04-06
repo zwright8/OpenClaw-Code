@@ -2891,3 +2891,29 @@ Every skill output should include:
 - Special operations clandestine resupply signature budget + special operations signature management and exfiltration cell + electromagnetic signature lifecycle management cell + mission risk decision support.
 - Expeditionary seabed landing-zone survey and causeway placement + amphibious beachmaster surf zone and shore party control cell + contested bridge and gap crossing operations + expeditionary salvage and harbor clearance.
 - Strategic solid-rocket-motor cure-line continuity + strategic industrial mobilization readiness cell + missile warning and attack assessment cell + strategic nuclear triad readiness support.
+
+## New Expansion Wave (2026-04-06, Expansion Wave LXVIII)
+
+- strategic-military-housing-utility-safety-and-restoration-cell
+- theater-allied-civilian-contractor-readiness-and-force-protection-cell
+- theater-evacuation-route-humanitarian-logistics-and-traffic-priority-cell
+- joint-military-financial-liability-and-compensation-continuity-cell
+- joint-incident-command-post-public-communications-and-media-contingency-cell
+- joint-host-nation-legislative-liaison-and-mandate-alignment-cell
+- joint-civil-works-emergency-permitting-and-right-of-entry-cell
+- theater-essential-services-contractor-strike-and-continuity-cell
+- homeland-base-school-transport-and-dependent-evacuation-cell
+- strategic-defense-industrial-workforce-family-stabilization-cell
+
+## Updated Pairings (2026-04-06, Expansion Wave LXVIII)
+
+- Strategic military housing utility safety and restoration + civil-defense-mass-evacuation-shelter-cell + operational-energy-resilience-and-microgrid-cell + homeland-base-fuel-hydrant-and-fire-suppression-recovery-cell.
+- Theater allied civilian contractor readiness and force protection + acquisition-and-contracting-support + force-protection-and-base-defense + coalition-interoperability-coordinator.
+- Theater evacuation route humanitarian logistics and traffic priority + contested-logistics-sustainment + civil-defense-mass-evacuation-shelter-cell + joint-personnel-recovery-isochrones-and-corridor-safety-cell.
+- Joint military financial liability and compensation continuity + joint-finance-and-pay-continuity-in-contested-theaters-cell + joint-civilian-harm-condolence-payment-and-claims-cell + public-affairs-operational-communications.
+- Joint incident command post public communications and media contingency + public-affairs-operational-communications + joint-theater-emergency-civil-alert-and-public-warning-cell + information-integrity-and-attribution-cell.
+- Joint host nation legislative liaison and mandate alignment + host-nation-access-basing-overflight-support + coalition-legal-interoperability-and-status-of-forces-cell + joint-legal-sensitive-target-nomination-review-cell.
+- Joint civil works emergency permitting and right of entry + contested-logistics-sustainment + expeditionary-fabrication-and-battle-damage-repair + civil-affairs-stability-ops.
+- Theater essential services contractor strike and continuity + contested-megacity-essential-services-stabilization-cell + tactical-civil-infrastructure-priority-services-restoration + acquisition-and-contracting-support.
+- Homeland base school transport and dependent evacuation + strategic-military-family-evacuation-and-safehaven-allocation-cell + homeland-school-shelter-mass-care-and-family-reunification-cell + homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell.
+- Strategic defense industrial workforce family stabilization + strategic-defense-industrial-workforce-clearance-and-assignment-cell + strategic-shipyard-nuclear-maintenance-workforce-surge-cell + multi-domain-reserve-mobilization-readiness-cell.

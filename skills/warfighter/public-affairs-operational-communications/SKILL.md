@@ -159,3 +159,10 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 - Add `tool_suite_id=ts-joint-public-affairs-embargo-sensitive-loss-disclosure-v1` + `protocol_stack_id=ps-joint-public-affairs-embargo-sensitive-loss-disclosure-stack-v1` when messaging decisions depend on casualty or sensitive-loss disclosure timing, media embargo discipline, or adversary narrative exploitation risk.
 - Add `tool_suite_id=ts-joint-sensitive-imagery-next-of-kin-hold-release-v1` + `protocol_stack_id=ps-joint-sensitive-imagery-next-of-kin-hold-release-stack-v1` when imagery release depends on next-of-kin notification, redaction workflow, or evidentiary hold controls.
 - Add `packet_id=DPL-PA-EMBARGO-SENSITIVE-LOSS-001` and `packet_id=DPL-SENSITIVE-IMAGERY-NOK-HOLD-001` for branches that materially alter release timing, family-notification confidence, or narrative-risk posture.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-incident-command-post-public-communications-media-contingency-v1` + `protocol_stack_id=ps-joint-incident-command-post-public-communications-media-contingency-stack-v1` when public-communications posture depends on incident-command warning timing, holding statements, or surge media handling.
+- Add `tool_suite_id=ts-joint-military-financial-liability-compensation-continuity-v1` + `protocol_stack_id=ps-joint-military-financial-liability-compensation-continuity-stack-v1` when messaging decisions depend on compensation legitimacy, liability posture, or transparent claims routing after harm or damage.
+- Add `tool_suite_id=ts-joint-host-nation-legislative-liaison-mandate-alignment-v1` + `protocol_stack_id=ps-joint-host-nation-legislative-liaison-mandate-alignment-stack-v1` when release timing or content depends on host-nation emergency powers, mandate conflicts, or waiver approval.
+- Add `packet_id=DPL-ICP-PUBLIC-COMMS-CONTINGENCY-001`, `packet_id=DPL-FIN-LIABILITY-COMPENSATION-001`, and `packet_id=DPL-HOSTNATION-MANDATE-ALIGNMENT-001` for branches that materially alter public-warning posture, compensation messaging, or host-nation-facing release legitimacy.
