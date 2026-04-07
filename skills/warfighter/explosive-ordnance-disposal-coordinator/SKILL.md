@@ -144,3 +144,12 @@ Primary products for this skill: EOD support prioritization board, response time
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-joint-eod-render-safe-site-exploitation-v1` + `protocol_stack_id=ps-joint-eod-render-safe-site-exploitation-stack-v1` when EOD branches depend on preserving technical exploitation value, evidence custody, or blast-standoff governance during render-safe operations.
+- Add `packet_id=DPL-EOD-RENDER-SAFE-SSE-001` for branches that materially alter demolition posture, exploitation handoff, or cordon-and-clear authority.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-joint-captured-materiel-exploitation-safe-turn-in-v1` + `protocol_stack_id=ps-joint-captured-materiel-exploitation-safe-turn-in-stack-v1` when EOD branches depend on hazard triage, technical exploitation value, or custody-safe turn-in of captured enemy weapons, drones, or explosive components.
+- Add `packet_id=DPL-CAPTURED-MATERIEL-SAFE-TURN-IN-001` for branches that materially alter render-safe posture, exploitation handoff, or movement authorization.

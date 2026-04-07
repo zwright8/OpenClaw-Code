@@ -1,0 +1,3 @@
+interface:
+  display_name: "Autonomous Breach Microterrain Soil Bearing and Route Classification Cell"
+  short_description: "Classify breach routes by soil bearing"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Fuel Farm Foam Fire Cascade Containment Cell"
+  short_description: "Contain cascading fuel farm fires and foam-system failures while preserving operational fuel throughput."

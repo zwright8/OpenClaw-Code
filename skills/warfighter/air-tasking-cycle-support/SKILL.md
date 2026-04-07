@@ -210,3 +210,23 @@ Primary products for this skill: ATO support package, prioritized mission queue,
 - Prioritize `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when ATO fragos, tanker retasks, or divert instructions may be stale, spoofed, or version-divergent.
 - Prioritize `tool_suite_id=ts-theater-mission-sbom-emergency-patch-v1` + `protocol_stack_id=ps-theater-mission-sbom-emergency-patch-stack-v1` when air-tasking workflows depend on emergency remediation of mission software without breaking execution trust.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001`, and `packet_id=DPL-MISSION-SBOM-EMERGENCY-PATCH-001` for ATO branches that alter sortie cadence, tasking authenticity, or execution-system trust.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-directed-energy-airspace-reflection-safety-v1` + `protocol_stack_id=ps-joint-directed-energy-airspace-reflection-safety-stack-v1` when beam release, air corridor safety, or specular reflections can invalidate directed-energy tasking in the ATO.
+- Prioritize `tool_suite_id=ts-joint-aerial-refueling-fuel-contamination-reconstitution-v1` + `protocol_stack_id=ps-joint-aerial-refueling-fuel-contamination-reconstitution-stack-v1` when tanker frag updates depend on fuel-chain integrity, contaminated loads, or reconstituted receiver priority.
+- Add `packet_id=DPL-DIRECTED-ENERGY-AIRSPACE-REFLECTION-SAFETY-001` and `packet_id=DPL-AERIAL-REFUEL-FUEL-CONTAMINATION-001` for ATO branches that materially alter beam release timing, tanker availability, or sortie sequencing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Prioritize `tool_suite_id=ts-joint-flight-surgeon-aeromedical-waiver-v1` + `protocol_stack_id=ps-joint-flight-surgeon-aeromedical-waiver-stack-v1` when sortie generation depends on waiver posture, crew medical restrictions, or life-support discrepancy resolution.
+- Prioritize `tool_suite_id=ts-expeditionary-aircrew-flight-equipment-survival-gear-v1` + `protocol_stack_id=ps-expeditionary-aircrew-flight-equipment-survival-gear-stack-v1` when ATO execution depends on inspected survival gear, beacon integrity, or environment-specific crew protection.
+- Prioritize `tool_suite_id=ts-joint-flightline-weapons-loading-armament-safety-v1` + `protocol_stack_id=ps-joint-flightline-weapons-loading-armament-safety-stack-v1` when armed-sortie sequencing depends on trusted load data, crew certification, or explosive-safety arcs.
+- Add `packet_id=DPL-FLIGHT-SURGEON-AEROMED-WAIVER-001`, `packet_id=DPL-AIRCREW-FLIGHT-EQUIPMENT-SURVIVAL-GEAR-001`, and `packet_id=DPL-FLIGHTLINE-WEAPONS-ARMAMENT-SAFETY-001` for ATO branches that materially alter crew release, armed-aircraft posture, or sortie timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Prioritize `tool_suite_id=ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1` + `protocol_stack_id=ps-expeditionary-airfield-weather-observation-sensor-maintenance-stack-v1` when ATO execution depends on trusted runway weather observations, degraded sensor recovery, or manual observation fallback.
+- Prioritize `tool_suite_id=ts-expeditionary-flightline-ground-support-equipment-readiness-v1` + `protocol_stack_id=ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1` when sortie cadence depends on scarce AGE, cart dispatch, or cross-servicing across dispersed flightlines.
+- Prioritize `tool_suite_id=ts-joint-aircraft-hydraulic-contamination-servicing-v1` + `protocol_stack_id=ps-joint-aircraft-hydraulic-contamination-servicing-stack-v1` when launch or recovery decisions depend on hydraulic sample trust, servicing release, or component isolation.
+- Add `packet_id=DPL-AIRFIELD-WEATHER-OBS-SENSOR-001`, `packet_id=DPL-FLIGHTLINE-GSE-READINESS-001`, and `packet_id=DPL-AIRCRAFT-HYDRAULIC-CONTAMINATION-001` for ATO branches that materially alter launch timing, sortie generation, or airworthiness confidence.

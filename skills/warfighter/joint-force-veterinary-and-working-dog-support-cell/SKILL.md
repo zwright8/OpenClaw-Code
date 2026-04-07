@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag zoonotic-risk exposure, animal-welfare constraints, handler safety, quarantine requirements, and host-nation restrictions before recommending action.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-joint-mwd-handler-loss-cross-attachment-continuity-v1` + `protocol_stack_id=ps-joint-mwd-handler-loss-cross-attachment-continuity-stack-v1` when working-dog readiness depends on rapid handler reassignment, cross-attachment qualification, or kennel-custody integrity after losses or displacement.
+- Add `packet_id=DPL-MWD-HANDLER-CROSS-ATTACHMENT-001` for recommendations that materially change MWD mission availability, custody release, or handler-assignment posture.

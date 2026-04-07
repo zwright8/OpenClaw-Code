@@ -1,0 +1,3 @@
+interface:
+  display_name: "Homeland Satellite Ground Station Defense Cell"
+  short_description: "Defend and restore SATCOM ground stations"

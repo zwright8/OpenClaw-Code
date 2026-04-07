@@ -153,3 +153,41 @@ Primary products for this skill: public affairs plan, key message matrix, media 
 
 - Add `tool_suite_id=ts-joint-captured-media-exploitation-viral-escalation-v1` + `protocol_stack_id=ps-joint-captured-media-exploitation-viral-escalation-stack-v1` when operational-communications decisions depend on exploiting seized media, controlling viral spread, or sequencing rebuttal releases.
 - Add `packet_id=DPL-CAPTURED-MEDIA-VIRAL-ESCALATION-001` for branches that materially alter release posture, narrative risk, or commander approval timing.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
+
+- Add `toolchain_id=TC-JIC-265`, `tool_suite_id=ts-homeland-joint-information-center-civil-warning-unity-v1`, and `protocol_stack_id=ps-homeland-joint-information-center-civil-warning-unity-stack-v1` when operational communications depend on domestic warning authority, multilingual release discipline, rumor control, or synchronized JIC approvals.
+- Add `toolchain_id=TC-EOCFUSE-262`, `tool_suite_id=ts-homeland-emergency-manager-cop-fusion-v1`, and `protocol_stack_id=ps-homeland-emergency-manager-cop-fusion-stack-v1` when message timing depends on fragmented local incident reporting, confidence-scored COP updates, or conflicting civil inputs.
+- Add `toolchain_id=TC-TRIBAL-261`, `tool_suite_id=ts-homeland-tribal-sovereignty-defense-support-coordination-v1`, and `protocol_stack_id=ps-homeland-tribal-sovereignty-defense-support-coordination-stack-v1` when public messaging affects sovereign consent, protected-site sensitivity, or community trust with tribal nations.
+- Add `packet_id=DPL-JIC-CIVIL-WARNING-UNITY-001`, `packet_id=DPL-EMERGENCY-MANAGER-COP-FUSION-001`, and `packet_id=DPL-TRIBAL-DSCA-SOVEREIGNTY-001` for branches that materially alter message release posture, warning timing, or legitimacy risk.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-FATALITY-270`, `tool_suite_id=ts-homeland-fatality-management-morgue-family-assistance-v1`, and `protocol_stack_id=ps-homeland-fatality-management-morgue-family-assistance-stack-v1` when operational communications depend on family-assistance-center status, dignified fatality messaging, or morgue-capacity-linked release timing.
+- Add `toolchain_id=TC-MASSCARE-268`, `tool_suite_id=ts-homeland-mass-care-access-functional-needs-support-v1`, and `protocol_stack_id=ps-homeland-mass-care-access-functional-needs-support-stack-v1` when public information must describe accessible sheltering, caregiver continuity, or AFN support without creating life-safety gaps.
+- Add `toolchain_id=TC-WATERCOM-272`, `tool_suite_id=ts-homeland-boil-water-food-safety-commodities-distribution-v1`, and `protocol_stack_id=ps-homeland-boil-water-food-safety-commodities-distribution-stack-v1` when messaging depends on boil-water advisories, POD activation, or food-safety restrictions.
+- Add `packet_id=DPL-FATALITY-MORGUE-FAC-001`, `packet_id=DPL-MASS-CARE-AFN-001`, and `packet_id=DPL-BOIL-WATER-COMMODITIES-001` for branches that materially alter public-warning content, release timing, or community-trust posture.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXII Materialization Addendum)
+
+- Add `toolchain_id=TC-PUBCOMMS-244`, `tool_suite_id=ts-joint-incident-command-post-public-communications-and-media-contingency-v1`, and `protocol_stack_id=ps-joint-incident-command-post-public-communications-and-media-contingency-stack-v1` when operational communications depend on incident-command message approval, media contingency posture, or life-safety release discipline.
+- Add `toolchain_id=TC-HNMANDATE-245`, `tool_suite_id=ts-joint-host-nation-legislative-liaison-and-mandate-alignment-v1`, and `protocol_stack_id=ps-joint-host-nation-legislative-liaison-and-mandate-alignment-stack-v1` when messaging must remain aligned to host-nation mandate changes, coalition caveats, or politically sensitive release conditions.
+- Add `toolchain_id=TC-SCHOOL-248`, `tool_suite_id=ts-homeland-base-school-transport-and-dependent-evacuation-v1`, and `protocol_stack_id=ps-homeland-base-school-transport-and-dependent-evacuation-stack-v1` when public information depends on dependent accountability, school closure status, or guardian reunification timing.
+- Add `packet_id=DPL-ICP-PUBLIC-COMMS-001`, `packet_id=DPL-HOST-NATION-MANDATE-001`, and `packet_id=DPL-DEPENDENT-EVAC-001` for branches that materially alter release posture, legitimacy, or family-protection messaging.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXII Addendum)
+
+- Add `toolchain_id=TC-PHLAB-274`, `tool_suite_id=ts-homeland-public-health-laboratory-surge-specimen-chain-v1`, and `protocol_stack_id=ps-homeland-public-health-laboratory-surge-specimen-chain-stack-v1` when communications posture depends on laboratory confidence, specimen-report timing, or rumor control around diagnostic uncertainty.
+- Add `toolchain_id=TC-MCM-275`, `tool_suite_id=ts-homeland-medical-countermeasure-pod-security-cold-chain-v1`, and `protocol_stack_id=ps-homeland-medical-countermeasure-pod-security-cold-chain-stack-v1` when release timing depends on POD activation, queue security, or refrigerated countermeasure availability.
+- Add `toolchain_id=TC-COOL-277`, `tool_suite_id=ts-homeland-cooling-center-load-shedding-generator-priority-v1`, and `protocol_stack_id=ps-homeland-cooling-center-load-shedding-generator-priority-stack-v1` when public information must describe cooling-center status, generator-backed sites, or rolling-blackout survival instructions.
+- Add `toolchain_id=TC-WASTE-279`, `tool_suite_id=ts-homeland-wastewater-overflow-force-health-waterway-protection-v1`, and `protocol_stack_id=ps-homeland-wastewater-overflow-force-health-waterway-protection-stack-v1` when messaging depends on sewage-overflow boundaries, downstream warnings, or responder-exposure caveats.
+- Add `toolchain_id=TC-ANIMAL-280`, `tool_suite_id=ts-homeland-animal-disease-quarantine-food-system-defense-v1`, and `protocol_stack_id=ps-homeland-animal-disease-quarantine-food-system-defense-stack-v1` when public messaging must reconcile quarantine controls, food-system reassurance, or carcass-disposal sensitivities.
+- Add `packet_id=DPL-PUBLIC-HEALTH-LAB-CHAIN-001`, `packet_id=DPL-MCM-POD-COLDCHAIN-001`, `packet_id=DPL-COOLING-CENTER-GENERATOR-001`, `packet_id=DPL-WASTEWATER-OVERFLOW-WATERWAY-001`, and `packet_id=DPL-ANIMAL-DISEASE-FOOD-DEFENSE-001` for branches that materially alter warning content, release timing, or public-trust posture.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-LEGALAID-282`, `tool_suite_id=ts-homeland-military-legal-assistance-identity-document-reissuance-v1`, and `protocol_stack_id=ps-homeland-military-legal-assistance-identity-document-reissuance-stack-v1` when public messaging depends on document-reissue legitimacy, legal-aid availability, or identity-proof recovery guidance.
+- Add `toolchain_id=TC-PROTECT-283`, `tool_suite_id=ts-homeland-protective-order-domestic-violence-safe-housing-continuity-v1`, and `protocol_stack_id=ps-homeland-protective-order-domestic-violence-safe-housing-continuity-stack-v1` when communications posture must protect victims, preserve privacy, or explain safe-housing changes without increasing risk.
+- Add `toolchain_id=TC-FOODBRIDGE-286`, `tool_suite_id=ts-homeland-commissary-exchange-food-bank-school-meal-bridging-v1`, and `protocol_stack_id=ps-homeland-commissary-exchange-food-bank-school-meal-bridging-stack-v1` when warnings or public updates depend on family food-access continuity, school-meal bridging, or safe ration guidance.
+- Add `toolchain_id=TC-COURT-289`, `tool_suite_id=ts-homeland-installation-courthouse-custody-hearing-family-law-continuity-v1`, and `protocol_stack_id=ps-homeland-installation-courthouse-custody-hearing-family-law-continuity-stack-v1` when messaging must explain court access, filing continuity, custody-hearing disruption, or family-law risk without undermining legal safety.
+- Add `packet_id=DPL-LEGAL-AID-ID-REISSUE-001`, `packet_id=DPL-PROTECTIVE-ORDER-SAFE-HOUSING-001`, `packet_id=DPL-COMMISSARY-FOOD-BRIDGE-001`, and `packet_id=DPL-COURTHOUSE-CUSTODY-FAMILY-LAW-001` for branches that materially alter public-guidance content, release timing, or community-trust posture.

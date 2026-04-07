@@ -64,3 +64,10 @@ Primary products for this skill: pay continuity branch plan, disbursement risk m
 - Flag gaps where assumptions exceed evidence.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-military-financial-liability-compensation-continuity-v1` + `protocol_stack_id=ps-joint-military-financial-liability-compensation-continuity-stack-v1` when pay continuity decisions intersect compensation legitimacy, emergency claims, or liability routing after incidents affecting forces or dependents.
+- Add `tool_suite_id=ts-theater-essential-services-contractor-strike-continuity-v1` + `protocol_stack_id=ps-theater-essential-services-contractor-strike-continuity-stack-v1` when disbursing, cash handling, or finance operations depend on contracted transport, utilities, or support-service continuity.
+- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-family-stabilization-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-family-stabilization-stack-v1` when financial continuity recommendations must preserve critical-worker retention, emergency relief pacing, or strategic-production labor stability.
+- Add `packet_id=DPL-FIN-LIABILITY-COMPENSATION-001`, `packet_id=DPL-ESSENTIAL-SERVICES-STRIKE-001`, and `packet_id=DPL-INDUSTRIAL-WORKFORCE-FAMILY-001` for branches that materially alter payment continuity, emergency relief posture, or labor-stability confidence.

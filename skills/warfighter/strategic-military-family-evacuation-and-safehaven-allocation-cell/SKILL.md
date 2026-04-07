@@ -47,3 +47,8 @@ Primary products for this skill: family evacuation phasing plan, safehaven capac
 - Separate facts, assessments, and unknowns.
 - Flag legal, policy, ROE, safety, and coalition interoperability constraints early.
 - If authority or data provenance is uncertain, downgrade to advisory-only and require human command approval.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-CONSULAR-293`, `tool_suite_id=ts-theater-passport-visa-consular-safehaven-document-bridge-v1`, and `protocol_stack_id=ps-theater-passport-visa-consular-safehaven-document-bridge-stack-v1` when family evacuation or safehaven allocation depends on passport recovery, visa continuity, consular action, or host-nation document acceptance.
+- Add `packet_id=DPL-PASSPORT-VISA-SAFEHAVEN-001` for branches that materially alter dependent movement timing, safehaven legitimacy, or commander confidence in protected relocation.

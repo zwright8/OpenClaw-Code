@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Microgrid Islanded Base Cluster Load Shedding Cell"
+  short_description: "Optimize islanded military-base cluster power posture under contested generation, storage, and fuel constraints."

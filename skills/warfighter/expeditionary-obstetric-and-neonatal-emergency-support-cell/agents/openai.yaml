@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expeditionary Obstetric and Neonatal Emergency Support Cell"
+  short_description: "Coordinate obstetric and neonatal care in austere theaters"
+  default_prompt: "Use this skill to produce decision-ready outputs for expeditionary obstetric and neonatal emergency support with tool and protocol bindings, authority gates, and degraded-mode contingencies."

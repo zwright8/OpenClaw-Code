@@ -1,0 +1,4 @@
+interface:
+  display_name: "Strategic Electronics Salvage and Component Reclamation Cell"
+  short_description: "Reclaim critical electronics for defense sustainment"
+  default_prompt: "Use this skill to produce decision-ready outputs for electronics salvage and component reclamation with tool and protocol bindings, authority gates, and degraded-mode contingencies."

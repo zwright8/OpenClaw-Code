@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theater Emissions Decoy Robotic Control and Spectrum Safety Cell"
+  short_description: "Control robotic decoys without breaking friendly spectrum safety"
+  default_prompt: "Use this skill to produce decision-ready outputs for robotic decoy emission control and spectrum safety with tool and protocol bindings, authority gates, and degraded-mode contingencies."

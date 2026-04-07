@@ -164,3 +164,26 @@ Primary products for this skill: dispersal execution matrix, rapid reconstitutio
 - Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when base reconstitution includes potable-water restart for flightline support, casualty reception, or shelter occupancy.
 - Add `tool_suite_id=ts-joint-digital-order-watermark-recall-v1` + `protocol_stack_id=ps-joint-digital-order-watermark-recall-stack-v1` when dispersal, recovery, or divert instructions may be stale, spoofed, or misrouted across digital order paths.
 - Add `packet_id=DPL-AERIAL-REFUELING-BOOM-DROGUE-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-DIGITAL-ORDER-WATERMARK-001` for branches that materially alter sortie regeneration, base habitability, or command-path trust.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-aircrew-flight-equipment-survival-gear-v1` + `protocol_stack_id=ps-expeditionary-aircrew-flight-equipment-survival-gear-stack-v1` when airbase regeneration depends on inspected life-support equipment, survival radios, or environment-specific crew gear.
+- Add `tool_suite_id=ts-joint-flightline-weapons-loading-armament-safety-v1` + `protocol_stack_id=ps-joint-flightline-weapons-loading-armament-safety-stack-v1` when reconstitution tempo depends on trusted load plans, qualified armament crews, or explosive-safety separation on dispersed ramps.
+- Add `packet_id=DPL-AIRCREW-FLIGHT-EQUIPMENT-SURVIVAL-GEAR-001` and `packet_id=DPL-FLIGHTLINE-WEAPONS-ARMAMENT-SAFETY-001` for branches that materially alter sortie regeneration, ramp release, or dispersed-aircraft arming posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-airfield-weather-observation-sensor-maintenance-v1` + `protocol_stack_id=ps-expeditionary-airfield-weather-observation-sensor-maintenance-stack-v1` when regeneration sequencing depends on trusted runway weather observations, sensor repair cadence, or manual observer fallback.
+- Add `tool_suite_id=ts-expeditionary-flightline-ground-support-equipment-readiness-v1` + `protocol_stack_id=ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1` when reconstitution tempo depends on AGE dispatch, cart availability, or cross-servicing across dispersed ramps.
+- Add `tool_suite_id=ts-joint-aircraft-hydraulic-contamination-servicing-v1` + `protocol_stack_id=ps-joint-aircraft-hydraulic-contamination-servicing-stack-v1` when sortie recovery depends on hydraulic contamination isolation, servicing release, or component quarantine.
+- Add `packet_id=DPL-AIRFIELD-WEATHER-OBS-SENSOR-001`, `packet_id=DPL-FLIGHTLINE-GSE-READINESS-001`, and `packet_id=DPL-AIRCRAFT-HYDRAULIC-CONTAMINATION-001` for branches that materially alter launch or recovery weather confidence, ramp throughput, or aircraft return-to-service posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-v1` + `protocol_stack_id=ps-expeditionary-cold-weather-aircraft-deicing-sortie-recovery-stack-v1` when reconstitution tempo depends on freezing weather, deicing fluid allocation, or anti-icing holdover validity.
+- Add `packet_id=DPL-COLD-WEATHER-DEICING-SORTIE-001` for branches that materially alter sortie release, divert timing, or cold-weather recovery posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-theater-aviation-fuel-lab-contamination-clearance-v1` + `protocol_stack_id=ps-theater-aviation-fuel-lab-contamination-clearance-stack-v1` when dispersed-airbase recovery depends on trusted fuel purity, contamination isolation, or sortie-release certification after attack or sabotage.
+- Add `packet_id=DPL-AVIATION-FUEL-LAB-CLEARANCE-001` for branches that materially alter sortie regeneration timing, aircraft release confidence, or base reconstitution posture.

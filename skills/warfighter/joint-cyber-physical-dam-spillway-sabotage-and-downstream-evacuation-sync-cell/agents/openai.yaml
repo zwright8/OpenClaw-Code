@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Cyber-Physical Dam Spillway Sabotage and Downstream Evacuation Sync Cell"
+  short_description: "Coordinate spillway sabotage response and evacuation"

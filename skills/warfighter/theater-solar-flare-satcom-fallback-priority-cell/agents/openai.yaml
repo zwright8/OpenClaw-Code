@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Theater Solar Flare SATCOM Fallback Priority Cell"
+  short_description: "Help with SATCOM fallback prioritization during severe space weather"

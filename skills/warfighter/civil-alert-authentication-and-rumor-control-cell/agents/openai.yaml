@@ -1,0 +1,3 @@
+interface:
+  display_name: "Civil Alert Authentication and Rumor Control Cell"
+  short_description: "Authenticate emergency alerts and suppress rumors"

@@ -145,3 +145,7 @@ Primary products for this skill: battle rhythm synchronization matrix, command d
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-theater-sleep-recovery-shift-work-fatigue-restoration-v1` + `protocol_stack_id=ps-theater-sleep-recovery-shift-work-fatigue-restoration-stack-v1` when commander risk depends on protected-rest windows, shift redesign, or chronic sleep-debt recovery outside single watch sections.
+- Add `packet_id=DPL-SLEEP-RECOVERY-SHIFT-WORK-FATIGUE-001` for recommendations that materially change sleep discipline, staffing redistribution, or fatigue-risk acceptance.

@@ -170,3 +170,23 @@ Primary products for this skill: CEMA synchronization matrix, effects-to-objecti
 - Add `tool_suite_id=ts-joint-loitering-munition-fratricide-envelope-assurance-v1` + `protocol_stack_id=ps-joint-loitering-munition-fratricide-envelope-assurance-stack-v1` when CEMA release timing affects loitering-munition deconfliction, blue-force position confidence, or jamming-driven fratricide risk.
 - Add `tool_suite_id=ts-theater-disconnected-additive-repair-intent-validation-v1` + `protocol_stack_id=ps-theater-disconnected-additive-repair-intent-validation-stack-v1` when contested repair networks require digital-pedigree assurance before fielded cyber or EW equipment returns to service.
 - Add `packet_id=DPL-CABLE-LANDING-SANCTIONS-001`, `packet_id=DPL-MISSILE-WARNING-GT-CORR-001`, `packet_id=DPL-LM-FRATRICIDE-ENVELOPE-001`, and `packet_id=DPL-ADDITIVE-INTENT-VALIDATION-001` for branches that materially change mission timing, telecom resilience, force protection, or trusted reconstitution posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIII Addendum)
+
+- Add `tool_suite_id=ts-theater-offline-mission-planning-malware-quarantine-v1` + `protocol_stack_id=ps-theater-offline-mission-planning-malware-quarantine-stack-v1` when CEMA synchronization depends on trusted offline planning nodes, removable-media custody, or clean rebuild timing after malware suspicion.
+- Add `tool_suite_id=ts-theater-electronic-attack-iff-track-confidence-recovery-v1` + `protocol_stack_id=ps-theater-electronic-attack-iff-track-confidence-recovery-stack-v1` when cyber-electromagnetic branches depend on jamming-aware track trust, IFF restoration, or release-veto timing.
+- Add `packet_id=DPL-OFFLINE-MISSION-PLANNING-MALWARE-001` and `packet_id=DPL-EA-IFF-TRACK-CONFIDENCE-001` for branches that materially change command-path trust, air-defense deconfliction, or cross-domain timing integrity.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-theater-denied-firmware-attestation-loader-sanitization-v1` + `protocol_stack_id=ps-theater-denied-firmware-attestation-loader-sanitization-stack-v1` when cyber-electromagnetic synchronization depends on trusted firmware pedigree, sanitized field loaders, or safe return-to-service of EW or network nodes.
+- Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when CEMA branches depend on coalition AI access boundaries, model provenance, or guardrail enforcement across shared decision aids.
+- Add `tool_suite_id=ts-tactical-weather-denial-baro-altimetry-cross-check-v1` + `protocol_stack_id=ps-tactical-weather-denial-baro-altimetry-cross-check-stack-v1` when jamming or spoofing degrades weather confidence and sortie or fires release depends on alternate barometric cross-checks.
+- Add `packet_id=DPL-DENIED-FIRMWARE-ATTESTATION-001`, `packet_id=DPL-COALITION-AI-GUARDRAILS-001`, and `packet_id=DPL-WEATHER-DENIAL-BARO-CROSSCHECK-001` for branches that materially change cyber trust, partner-access posture, or release timing under sensor denial.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVII Addendum)
+
+- Add `tool_suite_id=ts-joint-seabed-sensor-grid-cable-sabotage-hunt-v1` + `protocol_stack_id=ps-joint-seabed-sensor-grid-cable-sabotage-hunt-stack-v1` when CEMA synchronization depends on seabed sensor continuity, undersea cable trust, or repair-security timing.
+- Add `tool_suite_id=ts-sof-clandestine-resupply-signature-budget-v1` + `protocol_stack_id=ps-sof-clandestine-resupply-signature-budget-stack-v1` when cyber-electromagnetic branches depend on low-signature SOF sustainment, cache exposure, or adversary sensor avoidance.
+- Add `tool_suite_id=ts-joint-arctic-under-ice-polynya-routing-v1` + `protocol_stack_id=ps-joint-arctic-under-ice-polynya-routing-stack-v1` when low-probability communications, navigation confidence, or Arctic recovery timing materially affect CEMA release decisions.
+- Add `packet_id=DPL-SEABED-SABOTAGE-HUNT-001`, `packet_id=DPL-SOF-RESUPPLY-SIGNATURE-001`, and `packet_id=DPL-UNDER-ICE-POLYNYA-ROUTING-001` for branches that materially change undersea sensing trust, clandestine exposure posture, or Arctic command-path timing.

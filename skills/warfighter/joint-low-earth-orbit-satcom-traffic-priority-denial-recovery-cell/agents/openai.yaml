@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Low Earth Orbit SATCOM Traffic Priority Denial Recovery Cell"
+  short_description: "Prioritize and recover mission traffic across LEO SATCOM constellations during denial, jamming, or congestion."

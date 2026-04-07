@@ -149,7 +149,38 @@ Use these tool categories as the default stack for this skill: patient regulatio
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-operational-vision-ocular-trauma-optical-readiness-v1` + `protocol_stack_id=ps-joint-operational-vision-ocular-trauma-optical-readiness-stack-v1` when globe-injury salvage, ophthalmic microsurgery, or optical-device release timing changes surgical sequencing.
+- Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when emergency obstetric surgery, hemorrhage control, or privacy-hardened women's health routing changes austere surgical posture.
+- Add `tool_suite_id=ts-joint-blast-overpressure-breacher-readiness-v1` + `protocol_stack_id=ps-joint-blast-overpressure-breacher-readiness-stack-v1` when concussive exposure, breacher injury load, or neurocognitive follow-up changes damage-control and return-to-duty sequencing.
+- Add `packet_id=DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001`, `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001`, and `packet_id=DPL-BLAST-OVERPRESSURE-BREACHER-001` for recommendations that materially change surgical triage, transport release, or protected-care prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-joint-austere-pediatric-behavioral-health-guardian-reunification-v1` + `protocol_stack_id=ps-joint-austere-pediatric-behavioral-health-guardian-reunification-stack-v1` when pediatric trauma, behavioral distress, or guardian verification materially changes surgical triage and transport release.
+- Add `tool_suite_id=ts-joint-robotic-casualty-extraction-human-override-safety-v1` + `protocol_stack_id=ps-joint-robotic-casualty-extraction-human-override-safety-stack-v1` when austere surgical timelines depend on autonomous casualty movement, override timing, or protected medic handoff.
+- Add `packet_id=DPL-PEDIATRIC-BEHAVIORAL-GUARDIAN-001` and `packet_id=DPL-ROBOTIC-CASUALTY-EXTRACTION-001` for recommendations that materially alter pediatric triage, extraction release, or protected-care prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-joint-toxic-industrial-chemical-exposure-decon-triage-v1` + `protocol_stack_id=ps-joint-toxic-industrial-chemical-exposure-decon-triage-stack-v1` when surgical triage depends on industrial contamination, decon throughput, or contaminated patient movement.
+- Add `packet_id=DPL-TIC-EXPOSURE-DECON-TRIAGE-001` for branches that materially alter contaminated casualty routing, protected-care sequencing, or no-go medical posture.
+
 ## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
 
 - Add `tool_suite_id=ts-expeditionary-renal-replacement-crush-surge-v1` + `protocol_stack_id=ps-expeditionary-renal-replacement-crush-surge-stack-v1` when austere surgical recommendations depend on crush-syndrome triage, dialysis-device continuity, or electrolyte-control timing.
 - Add `packet_id=DPL-RENAL-CRUSH-SURGE-001` for branches that materially alter surgical triage, transfer release, or prolonged-field-care posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-walking-blood-bank-donor-screening-transfusion-integrity-v1` + `protocol_stack_id=ps-joint-walking-blood-bank-donor-screening-transfusion-integrity-stack-v1` when damage-control resuscitation depends on donor eligibility, low-titer whole-blood release, or transfusion-chain integrity.
+- Add `tool_suite_id=ts-expeditionary-medical-waste-sterilization-biohazard-routing-v1` + `protocol_stack_id=ps-expeditionary-medical-waste-sterilization-biohazard-routing-stack-v1` when operative continuity depends on sterile waste handling, contaminated transport, or treatment-node infection control.
+- Add `tool_suite_id=ts-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-v1` + `protocol_stack_id=ps-expeditionary-sterile-processing-instrument-turnaround-autoclave-assurance-stack-v1` when OR cadence depends on autoclave confidence, biologic-indicator proof, or instrument-set turnaround.
+- Add `packet_id=DPL-WALKING-BLOOD-BANK-001`, `packet_id=DPL-MED-WASTE-STERILIZATION-001`, and `packet_id=DPL-AUTOCLAVE-STERILE-PROCESSING-001` for recommendations that materially change surgical triage, case sequencing, or protected-care release.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXIX Addendum)
+
+- Add `tool_suite_id=ts-joint-forward-pharmacy-controlled-substance-formulary-substitution-v1` + `protocol_stack_id=ps-joint-forward-pharmacy-controlled-substance-formulary-substitution-stack-v1` when operative continuity depends on anesthesia or analgesia custody, substitution safety, or cold-chain medication availability.
+- Add `tool_suite_id=ts-strategic-va-dod-trauma-bed-rehabilitation-bridge-v1` + `protocol_stack_id=ps-strategic-va-dod-trauma-bed-rehabilitation-bridge-stack-v1` when surgical disposition depends on downstream trauma, burn, amputee, or rehabilitation bed capacity outside the immediate theater.
+- Add `packet_id=DPL-FORWARD-PHARMACY-CONTROLLED-SUBSTANCE-001` and `packet_id=DPL-VA-DOD-TRAUMA-REHAB-BRIDGE-001` for recommendations that materially change surgical sequencing, medication release posture, or long-tail casualty routing.

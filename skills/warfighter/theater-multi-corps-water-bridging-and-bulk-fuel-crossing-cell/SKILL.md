@@ -58,3 +58,9 @@ Primary products: crossing fuel synchronization matrix, bridge survivability bra
 - Require `ack_chain_status=verified` for mission-critical exchanges.
 - Require `trust_score >= 0.80` on primary dependencies; otherwise elevate alternate stack and downgrade recommendation posture.
 - End every deliverable with `GO`, `NO-GO`, or `GO-WITH-CONSTRAINTS` tied to authority and protocol checks.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-ribbon-bridge-maintenance-raft-launch-v1` + `protocol_stack_id=ps-expeditionary-ribbon-bridge-maintenance-raft-launch-stack-v1` when crossing viability depends on bridge-bay serviceability, raft-launch cadence, or anchorage integrity under sustained load.
+- Add `tool_suite_id=ts-joint-bridge-erection-boat-gap-crossing-recovery-v1` + `protocol_stack_id=ps-joint-bridge-erection-boat-gap-crossing-recovery-stack-v1` when bridge emplacement depends on bridge-erection-boat propulsion recovery, tow posture, or gap-crossing rescue readiness.
+- Add `packet_id=DPL-RIBBON-BRIDGE-RAFT-LAUNCH-001` and `packet_id=DPL-BRIDGE-ERECTION-BOAT-RECOVERY-001` for branches that materially alter bridge uptime, raft throughput, or engineer recovery confidence.

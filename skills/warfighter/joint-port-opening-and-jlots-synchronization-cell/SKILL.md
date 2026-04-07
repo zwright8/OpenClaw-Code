@@ -64,3 +64,8 @@ Primary products for this skill: port opening plan, JLOTS sequence board, throug
 - Flag gaps where assumptions exceed evidence.
 - Separate facts, assessed judgments, and unknowns.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-amphibious-beachmaster-surf-zone-shore-party-control-v1` + `protocol_stack_id=ps-amphibious-beachmaster-surf-zone-shore-party-control-stack-v1` when port-opening or JLOTS feasibility depends on beach lane release, surf-limit control, or shore-party sequencing.
+- Add `packet_id=DPL-BEACHMASTER-SURF-ZONE-SHORE-PARTY-001` for branches that materially alter lighterage timing, causeway release, or sea-to-shore throughput confidence.

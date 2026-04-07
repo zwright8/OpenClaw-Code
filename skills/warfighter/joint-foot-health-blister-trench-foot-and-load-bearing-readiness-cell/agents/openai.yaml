@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Foot Health, Blister, Trench Foot, And Load-Bearing Readiness Cell"
+  short_description: "Help with Joint Foot Health, Blister, Trench Foot, And Load-Bearing Readiness Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Foot Health, Blister, Trench Foot, And Load-Bearing Readiness Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

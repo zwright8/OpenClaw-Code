@@ -1,0 +1,4 @@
+interface:
+  display_name: "Battlefield Grave Registration Integrity"
+  short_description: "Preserve grave registration and site integrity."
+  default_prompt: "Use $battlefield-grave-registration-and-interment-site-integrity-cell to assess temporary interment options, site protection, and future recovery confidence."

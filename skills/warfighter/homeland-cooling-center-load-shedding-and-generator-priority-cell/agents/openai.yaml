@@ -1,0 +1,3 @@
+interface:
+  display_name: "Homeland Cooling Center Load Shedding And Generator Priority Cell"
+  short_description: "Help with cooling-center, generator, and load-shedding decisions"

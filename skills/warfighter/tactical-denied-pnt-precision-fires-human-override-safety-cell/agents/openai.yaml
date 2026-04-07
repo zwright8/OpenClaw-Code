@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Tactical Denied-PNT Precision Fires Human Override Safety Cell"
+  short_description: "Safeguard precision fires under denied PNT"

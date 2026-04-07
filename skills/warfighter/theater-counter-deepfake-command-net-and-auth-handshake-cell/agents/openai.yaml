@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Counter-Deepfake Command Net and Auth Handshake Cell"
+  short_description: "Harden C2 against deepfake and spoofed order injection"

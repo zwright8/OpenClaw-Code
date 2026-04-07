@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tactical Electromagnetic Signature Discipline and EMCON Cell"
+  short_description: "Control tactical electromagnetic emissions and EMCON transitions to reduce detection while preserving mission command."

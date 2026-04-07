@@ -152,3 +152,8 @@ Use this default binding unless mission constraints require an alternate path:
 - Primary: `tool_suite_id=ts-diver-salvage-life-support-v1` with `protocol_stack_id=ps-undersea-rescue-stack-v1`.
 - Alternate: `tool_suite_id=ts-maritime-undersea-v1` with `protocol_stack_id=ps-geo-maritime-stack-v1`.
 - Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-joint-dive-medicine-hyperbaric-routing-v1` + `protocol_stack_id=ps-joint-dive-medicine-hyperbaric-routing-stack-v1` when decompression burden, chamber scarcity, or pressure-injury routing materially changes salvage sequencing or diver release.
+- Add `packet_id=DPL-DIVE-MEDICINE-HYPERBARIC-ROUTING-001` for branches that materially change chamber allocation, casualty routing, or no-dive and return-to-dive posture.

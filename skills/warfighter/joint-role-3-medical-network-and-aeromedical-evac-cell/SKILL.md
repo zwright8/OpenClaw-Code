@@ -118,3 +118,23 @@ Use these tool categories as the default stack for this skill: medical C2 platfo
 - Add `tool_suite_id=ts-homeland-base-water-restart-biofilm-control-v1` + `protocol_stack_id=ps-homeland-base-water-restart-biofilm-control-stack-v1` when staging hospitals, aeromedical hubs, or treatment wards depend on safe potable-water restart before patient intake expansion.
 - Add `tool_suite_id=ts-coalition-host-nation-civil-airlift-clearance-v1` + `protocol_stack_id=ps-coalition-host-nation-civil-airlift-clearance-stack-v1` when coalition patient movement depends on diplomatic clearances, mixed-crew civil aircraft, or host-nation ramp access.
 - Add `packet_id=DPL-CIVIL-RESERVE-AIR-FLEET-001`, `packet_id=DPL-WATER-RESTART-BIOFILM-001`, and `packet_id=DPL-COALITION-CIVIL-AIRLIFT-CLEARANCE-001` for recommendations that materially change patient movement, facility release, or coalition aeromedical access posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-joint-austere-hemodialysis-water-power-assurance-v1` + `protocol_stack_id=ps-joint-austere-hemodialysis-water-power-assurance-stack-v1` when patient movement, bed release, or casualty survival depends on austere dialysis continuity under water or generator stress.
+- Add `tool_suite_id=ts-homeland-civilian-shelter-radiation-dosimetry-resupply-v1` + `protocol_stack_id=ps-homeland-civilian-shelter-radiation-dosimetry-resupply-stack-v1` when aeromedical prioritization depends on shelter dose accumulation, vulnerable-population extraction timing, or radiological shelter collapse risk.
+- Add `packet_id=DPL-AUSTERE-HEMODIALYSIS-WATER-POWER-001` and `packet_id=DPL-CIVILIAN-SHELTER-RADIATION-DOSIMETRY-001` for recommendations that materially change renal-support posture, casualty extraction timing, or radiological patient-flow prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-operational-vision-ocular-trauma-optical-readiness-v1` + `protocol_stack_id=ps-joint-operational-vision-ocular-trauma-optical-readiness-stack-v1` when patient movement, microsurgical timing, or optical-device redistribution depends on preserving vision before evacuation.
+- Add `tool_suite_id=ts-joint-womens-health-contested-obstetric-support-v1` + `protocol_stack_id=ps-joint-womens-health-contested-obstetric-support-stack-v1` when maternal-fetal transfer, gynecologic emergency capacity, or privacy-safe routing changes bed release and aeromedical priorities.
+- Add `tool_suite_id=ts-joint-cold-injury-frostbite-rewarming-v1` + `protocol_stack_id=ps-joint-cold-injury-frostbite-rewarming-stack-v1` when frostbite severity, warming capacity, or hypothermia-driven routing materially affects Role 3 intake and onward movement.
+- Add `packet_id=DPL-OCULAR-TRAUMA-OPTICAL-READINESS-001`, `packet_id=DPL-WOMENS-HEALTH-OBSTETRIC-SUPPORT-001`, and `packet_id=DPL-COLD-INJURY-REWARMING-001` for recommendations that materially change bed allocation, evacuation timing, or specialty-care prioritization.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-joint-aviation-physiology-hypoxia-life-support-v1` + `protocol_stack_id=ps-joint-aviation-physiology-hypoxia-life-support-stack-v1` when hypoxia events, decompression stress, or life-support equipment restrictions materially change patient movement and aeromedical priorities.
+- Add `tool_suite_id=ts-joint-dive-medicine-hyperbaric-routing-v1` + `protocol_stack_id=ps-joint-dive-medicine-hyperbaric-routing-stack-v1` when chamber availability, pressure-injury routing, or diver casualty transfer changes Role 3 intake and onward movement.
+- Add `tool_suite_id=ts-joint-substance-use-overdose-impaired-duty-v1` + `protocol_stack_id=ps-joint-substance-use-overdose-impaired-duty-stack-v1` when overdose stabilization, impaired-duty restrictions, or protected referral routing change bed usage or evacuation sequencing.
+- Add `packet_id=DPL-AVIATION-PHYSIOLOGY-HYPOXIA-LIFE-SUPPORT-001`, `packet_id=DPL-DIVE-MEDICINE-HYPERBARIC-ROUTING-001`, and `packet_id=DPL-SUBSTANCE-USE-OVERDOSE-IMPAIRED-DUTY-001` for recommendations that materially change patient flow, specialty-care allocation, or aeromedical release timing.

@@ -144,3 +144,42 @@ Primary products for this skill: mobilization timeline, force sourcing decision 
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
+
+- Add `toolchain_id=TC-DSC-258`, `tool_suite_id=ts-homeland-dual-status-command-authority-integration-v1`, and `protocol_stack_id=ps-homeland-dual-status-command-authority-integration-stack-v1` when mobilization planning depends on dual-status command, Title 10 versus Title 32 alignment, or lawful force-status transitions.
+- Add `toolchain_id=TC-EMAC-259`, `tool_suite_id=ts-homeland-emac-interstate-force-flow-synchronization-v1`, and `protocol_stack_id=ps-homeland-emac-interstate-force-flow-synchronization-stack-v1` when reserve or Guard mobilization depends on cross-state staging, EMAC demand, or reception-node throughput.
+- Add `toolchain_id=TC-GOVRFF-260`, `tool_suite_id=ts-homeland-governor-request-for-forces-mission-assignment-v1`, and `protocol_stack_id=ps-homeland-governor-request-for-forces-mission-assignment-stack-v1` when mobilization recommendations depend on governor requests, mission-assignment timing, or sourcing priority.
+- Add `packet_id=DPL-DUAL-STATUS-COMMAND-001`, `packet_id=DPL-EMAC-FORCE-FLOW-001`, and `packet_id=DPL-GOV-RFF-MISSION-ASSIGNMENT-001` for branches that materially alter mobilization posture, alert timelines, or force-employment authorities.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXII Materialization Addendum)
+
+- Add `toolchain_id=TC-HOUSING-240`, `tool_suite_id=ts-strategic-military-housing-utility-safety-and-restoration-v1`, and `protocol_stack_id=ps-strategic-military-housing-utility-safety-and-restoration-stack-v1` when reserve or Guard mobilization depends on installation housing habitability, utility safety, or family relocation capacity.
+- Add `toolchain_id=TC-SCHOOL-248`, `tool_suite_id=ts-homeland-base-school-transport-and-dependent-evacuation-v1`, and `protocol_stack_id=ps-homeland-base-school-transport-and-dependent-evacuation-stack-v1` when mobilization confidence depends on dependent transport, school closure sequencing, or guardian reunification.
+- Add `toolchain_id=TC-WORKFORCEFAM-249`, `tool_suite_id=ts-strategic-defense-industrial-workforce-family-stabilization-v1`, and `protocol_stack_id=ps-strategic-defense-industrial-workforce-family-stabilization-stack-v1` when mobilization branches depend on industrial-family stability, critical-worker continuity, or surge-support availability.
+- Add `packet_id=DPL-MIL-HOUSING-UTILITY-001`, `packet_id=DPL-DEPENDENT-EVAC-001`, and `packet_id=DPL-WORKFORCE-FAMILY-STABILIZATION-001` for branches that materially alter mobilization posture, force availability, or family-support timing.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-LEGALAID-282`, `tool_suite_id=ts-homeland-military-legal-assistance-identity-document-reissuance-v1`, and `protocol_stack_id=ps-homeland-military-legal-assistance-identity-document-reissuance-stack-v1` when reserve or Guard mobilization confidence depends on legal-aid access, ID reissuance, or power-of-attorney continuity for affected households.
+- Add `toolchain_id=TC-SPOUSE-287`, `tool_suite_id=ts-strategic-military-spouse-licensure-employment-pcs-continuity-v1`, and `protocol_stack_id=ps-strategic-military-spouse-licensure-employment-pcs-continuity-stack-v1` when mobilization readiness depends on spouse licensure portability, employment continuity, or PCS stability.
+- Add `toolchain_id=TC-DEPENDENTCARE-288`, `tool_suite_id=ts-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-v1`, and `protocol_stack_id=ps-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-stack-v1` when activation timing depends on single-parent childcare, eldercare bridging, or dependent-care-plan recovery.
+- Add `packet_id=DPL-LEGAL-AID-ID-REISSUE-001`, `packet_id=DPL-SPOUSE-LICENSURE-PCS-001`, and `packet_id=DPL-SINGLE-PARENT-ELDERCARE-MOB-001` for branches that materially alter mobilization posture, activation timing, or family-support confidence.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-ESGR-291`, `tool_suite_id=ts-reserve-component-employer-esgr-income-shock-continuity-v1`, and `protocol_stack_id=ps-reserve-component-employer-esgr-income-shock-continuity-stack-v1` when mobilization readiness depends on employer coordination, ESGR or USERRA friction, or household income-shock mitigation.
+- Add `packet_id=DPL-EMPLOYER-ESGR-INCOME-SHOCK-001` for branches that materially alter activation timing, lawful employer engagement, or commander confidence in Reserve or Guard force flow.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXV Addendum)
+
+- Add `toolchain_id=TC-ARCMSG-295`, `tool_suite_id=ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`, and `protocol_stack_id=ps-joint-emergency-leave-american-red-cross-message-command-approval-stack-v1` when mobilization or backfill timing depends on verified family emergency leave, compassionate travel, or trusted message provenance.
+- Add `toolchain_id=TC-PCSMOVE-298`, `tool_suite_id=ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`, and `protocol_stack_id=ps-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-stack-v1` when activation confidence depends on unresolved PCS moves, travel-voucher backlog, or temporary lodging instability.
+- Add `toolchain_id=TC-RELIEF-300`, `tool_suite_id=ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`, and `protocol_stack_id=ps-joint-relief-society-hardship-grant-zero-interest-loan-bridge-stack-v1` when mobilization readiness depends on hardship stabilization, emergency travel funding, or relief-society assistance.
+- Add `packet_id=DPL-EMERGENCY-LEAVE-ARC-001`, `packet_id=DPL-PCS-CLAIMS-LODGING-001`, and `packet_id=DPL-RELIEF-SOCIETY-HARDSHIP-001` for branches that materially alter activation timing, lawful force flow, or commander confidence in Reserve or Guard availability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVI Addendum)
+
+- Add `toolchain_id=TC-SCRA-302`, `tool_suite_id=ts-joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-rate-cap-enforcement-v1`, and `protocol_stack_id=ps-joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-rate-cap-enforcement-stack-v1` when activation timing or lawful availability depends on SCRA foreclosure relief, lease termination, eviction protection, or rate-cap enforcement.
+- Add `toolchain_id=TC-TAXID-304`, `tool_suite_id=ts-joint-military-tax-relief-combat-zone-entitlement-irs-identity-protection-v1`, and `protocol_stack_id=ps-joint-military-tax-relief-combat-zone-entitlement-irs-identity-protection-stack-v1` when mobilization confidence depends on combat-zone tax relief, tax-document continuity, or IRS identity-fraud containment.
+- Add `toolchain_id=TC-FVAP-305`, `tool_suite_id=ts-joint-fvap-overseas-ballot-election-material-continuity-v1`, and `protocol_stack_id=ps-joint-fvap-overseas-ballot-election-material-continuity-stack-v1` when activation, overseas movement, or sustained deployment could jeopardize absentee-ballot continuity or lawful voting assistance.
+- Add `packet_id=DPL-SCRA-HOUSING-CREDIT-001`, `packet_id=DPL-MILITARY-TAX-IDENTITY-001`, and `packet_id=DPL-FVAP-BALLOT-CONTINUITY-001` for branches that materially alter mobilization timing, household legal stability, or commander confidence in Reserve or Guard force availability.

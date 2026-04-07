@@ -1,0 +1,3 @@
+interface:
+  display_name: "Homeland GPS Denied Rail Fuel Distribution Fallback Cell"
+  short_description: "Support PNT-denied rail fuel dispatch and continuity planning"

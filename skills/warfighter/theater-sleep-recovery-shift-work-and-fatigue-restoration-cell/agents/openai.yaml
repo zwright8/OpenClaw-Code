@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Theater Sleep Recovery, Shift Work, And Fatigue Restoration Cell"
+  short_description: "Help with Theater Sleep Recovery, Shift Work, And Fatigue Restoration Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Sleep Recovery, Shift Work, And Fatigue Restoration Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

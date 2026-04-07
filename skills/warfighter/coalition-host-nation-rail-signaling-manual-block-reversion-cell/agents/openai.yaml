@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Coalition Host Nation Rail Signaling Manual Block Reversion Cell"
+  short_description: "Run safe coalition rail dispatch under degraded signaling"
+
+---

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Homeland Rail-Grid Cyber-Physical Evacuation Priority Cell"
+  short_description: "Synchronize rail and power-grid restoration priorities to protect evacuation corridors during homeland crisis response."

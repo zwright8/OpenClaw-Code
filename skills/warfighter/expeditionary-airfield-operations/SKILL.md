@@ -156,3 +156,9 @@ Primary products for this skill: expeditionary airfield operations plan, sortie 
 - Add `tool_suite_id=ts-joint-ice-obscuration-runway-visual-cue-certification-v1` + `protocol_stack_id=ps-joint-ice-obscuration-runway-visual-cue-certification-stack-v1` when airfield release decisions depend on degraded runway markings, lighting confidence, or cold-weather visual references.
 - Add `tool_suite_id=ts-joint-loitering-munition-fratricide-envelope-assurance-v1` + `protocol_stack_id=ps-joint-loitering-munition-fratricide-envelope-assurance-stack-v1` when expeditionary airfields host persistent loitering munitions, UAS launch or recovery, or dense air-ground deconfliction requirements.
 - Add `packet_id=DPL-ICE-OBSCURATION-RWY-001` and `packet_id=DPL-LM-FRATRICIDE-ENVELOPE-001` for recommendations that materially alter sortie release, runway recovery, or airspace safety posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-tactical-weather-denial-baro-altimetry-cross-check-v1` + `protocol_stack_id=ps-tactical-weather-denial-baro-altimetry-cross-check-stack-v1` when sortie release depends on degraded weather sensing, barometric cross-check confidence, or terrain-limited recovery margins.
+- Add `tool_suite_id=ts-strategic-aviation-spares-airworthiness-trust-v1` + `protocol_stack_id=ps-strategic-aviation-spares-airworthiness-trust-stack-v1` when airfield sortie generation depends on trusted release of reclaimed or redistributed aviation spares.
+- Add `packet_id=DPL-WEATHER-DENIAL-BARO-CROSSCHECK-001` and `packet_id=DPL-AVIATION-SPARES-AIRWORTHINESS-001` for recommendations that materially alter sortie release, maintenance recovery, or airfield operating minima.

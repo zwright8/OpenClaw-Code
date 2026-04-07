@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aviation Spares Airworthiness Trust"
+  short_description: "Restore aviation spares with airworthiness trust."
+  default_prompt: "Use $strategic-aviation-spares-airworthiness-trust-cell to assess cannibalization recovery, parts pedigree, and safe airworthiness release."

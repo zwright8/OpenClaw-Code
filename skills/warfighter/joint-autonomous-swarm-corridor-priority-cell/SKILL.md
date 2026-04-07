@@ -1,0 +1,66 @@
+---
+name: joint-autonomous-swarm-corridor-priority-cell
+description: Prioritize and deconflict autonomous swarm corridors for joint operations. Use when commanders must allocate corridor access, timing, and protective effects for mixed autonomous air, ground, and maritime traffic in contested theaters.
+---
+
+# Joint Autonomous Swarm Corridor Priority Cell
+
+## Mission Scope
+
+- Treat this skill as a planning and decision-support aid for U.S. warfighter missions in its domain.
+- Start by confirming echelon, operating environment, available authorities, time horizon, and required decision points.
+- Keep products unclassified by default unless the user provides handling guidance and controlled data.
+
+## Workflow
+
+1. Frame the mission problem with the required operational inputs and timing constraints.
+2. Identify assumptions, disconfirming indicators, and branch triggers before building options.
+3. Build one recommended option plus at least two alternatives with explicit tradeoffs.
+4. Bind each critical recommendation to concrete external tools, protocol stack, and authority checks.
+5. Publish commander-facing output and a staff-action tracker with owners and suspense.
+
+## Required Output Format
+
+Deliver results in this order:
+
+1. Situation snapshot.
+2. Recommended option.
+3. Alternative options.
+4. Decision points and approval authorities.
+5. Staff tasking and suspense dates.
+
+## Domain Products
+
+Primary products for this skill: swarm corridor priority matrix, deconfliction branch plan, corridor risk and release board.
+
+## External Tools and Protocol Integration
+
+- Apply the Core Integration Protocol in `../_shared/references/external-tools-protocols.md` as an explicit sequence.
+- Use scenario packet guidance in `../_shared/references/domain-tool-packet-library.md` and include packet mappings.
+- Use profile guidance in `../_shared/references/joint-operations-external-toolchain-profiles.md` and include degraded-mode triggers.
+- Use catalog bindings in `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` with a concrete tool and protocol stack.
+
+## Tool Invocation Contract
+
+For each critical dependency include:
+
+- objective
+- required inputs
+- query/action template
+- expected output schema
+- transport protocol
+- fallback path and confidence impact
+
+## Domain Toolchain Override (2026-03-10, Warfighter Expansion)
+
+- Prioritize `tool_suite_id=ts-autonomous-swarm-corridor-priority-v1` + `protocol_stack_id=ps-autonomous-swarm-corridor-priority-stack-v1` for this mission set.
+- Include `packet_id=DPL-AUTONOMOUS-SWARM-CORRIDOR-PRIORITY-001` for high-consequence recommendations and branch decisions.
+- Bind recommendations to `toolchain_profile_id=autonomous-swarm-corridor-priority-v1` in joint operations profile selection.
+
+## Guardrails
+
+- Flag gaps where assumptions exceed evidence.
+- Separate facts, assessed judgments, and unknowns.
+- Identify legal, policy, ROE, and coalition constraints early.
+- Do not fabricate authorities, approvals, or source provenance.
+- Require explicit human command approval for high-consequence posture changes.

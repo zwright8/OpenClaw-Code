@@ -1,0 +1,4 @@
+interface:
+  display_name: "Joint Orbital Custody Loss and Commercial SSA Retask Cell"
+  short_description: "Restore orbital custody with military and commercial SSA"
+  default_prompt: "Use this skill to produce decision-ready outputs for orbital custody recovery and commercial SSA retasking with tool and protocol bindings, authority gates, and degraded-mode contingencies."

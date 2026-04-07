@@ -1,0 +1,4 @@
+interface:
+  display_name: "Denied Firmware Attestation"
+  short_description: "Validate firmware pedigree in denied ops."
+  default_prompt: "Use $theater-denied-firmware-attestation-and-loader-sanitization-cell to assess firmware trust, loader sanitization, quarantine, and safe return-to-service."

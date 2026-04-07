@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expeditionary Wastewater Vector Control"
+  short_description: "Control wastewater, graywater, and vectors."
+  default_prompt: "Use $expeditionary-wastewater-graywater-and-vector-control-cell to assess sanitation risk, wastewater overflow, vector hazards, and force-health controls."

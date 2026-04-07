@@ -1,0 +1,3 @@
+interface:
+  display_name: "Coalition Denied Environment Search and Rescue Beacon Authentication Cell"
+  short_description: "Authenticate coalition rescue beacons in denied environments"

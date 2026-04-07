@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coalition Host Nation Water Rights and Demand Cell"
+  short_description: "Balance coalition water demand against host-nation rights"
+  default_prompt: "Use this skill to produce decision-ready outputs for host-nation water-rights and military-demand deconfliction with tool and protocol bindings, authority gates, and degraded-mode contingencies."

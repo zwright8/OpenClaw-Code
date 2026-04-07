@@ -341,3 +341,37 @@ Primary products for this skill: interoperability gap matrix, combined SOP align
 - Add `tool_suite_id=ts-coalition-refugee-camp-energy-water-cyber-harmonization-v1` + `protocol_stack_id=ps-coalition-refugee-camp-energy-water-cyber-harmonization-stack-v1` when interoperability depends on common utility restoration, humanitarian data handling, or cyber-containment rules across displaced-person sites.
 - Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when coalition sustainment trust depends on common fuel blending, freeze-point validation, or cold-weather release criteria.
 - Add `packet_id=DPL-WATER-BIOSEC-CORRIDOR-001`, `packet_id=DPL-REFUGEE-CAMP-EW-CYBER-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially change coalition release posture, humanitarian interoperability, or Arctic sustainment confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIII Addendum)
+
+- Add `tool_suite_id=ts-coalition-harbor-salvage-diving-uxo-dock-clearance-v1` + `protocol_stack_id=ps-coalition-harbor-salvage-diving-uxo-dock-clearance-stack-v1` when coalition port reopening depends on diver-certification reciprocity, UXO confidence, or berth-authority alignment.
+- Add `tool_suite_id=ts-coalition-cross-border-casualty-credentialing-blood-compatibility-v1` + `protocol_stack_id=ps-coalition-cross-border-casualty-credentialing-blood-compatibility-stack-v1` when coalition casualty routing depends on clinician credential reciprocity, blood-standard interoperability, or emergency border clearance.
+- Add `packet_id=DPL-HARBOR-SALVAGE-UXO-001` and `packet_id=DPL-CROSS-BORDER-CASUALTY-CREDENTIALING-001` for branches that materially change coalition access, medical-routing legitimacy, or combined-force survivability confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
+
+- Add `tool_suite_id=ts-coalition-human-remains-dna-custody-cross-border-release-v1` + `protocol_stack_id=ps-coalition-human-remains-dna-custody-cross-border-release-stack-v1` when coalition interoperability depends on shared mortuary custody standards, DNA confidence, or cross-border release legitimacy.
+- Add `tool_suite_id=ts-coalition-ration-dietary-compliance-allergen-assurance-v1` + `protocol_stack_id=ps-coalition-ration-dietary-compliance-allergen-assurance-stack-v1` when combined sustainment depends on harmonized allergen controls, medical diets, or religious-feeding caveats.
+- Add `packet_id=DPL-HUMAN-REMAINS-DNA-001` and `packet_id=DPL-RATION-ALLERGEN-001` for branches that materially change coalition release confidence, legal sufficiency, or combined-force sustainment legitimacy.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-coalition-civil-port-labor-strike-sealift-continuity-v1` + `protocol_stack_id=ps-coalition-civil-port-labor-strike-sealift-continuity-stack-v1` when coalition interoperability depends on aligned berth priorities, host-nation labor coordination, or sealift reroute legitimacy.
+- Add `tool_suite_id=ts-coalition-ai-foreign-disclosure-guardrail-v1` + `protocol_stack_id=ps-coalition-ai-foreign-disclosure-guardrail-stack-v1` when shared mission-AI access depends on releasability discipline, model provenance, or partner guardrail enforcement.
+- Add `tool_suite_id=ts-battlefield-grave-registration-interment-site-integrity-v1` + `protocol_stack_id=ps-battlefield-grave-registration-interment-site-integrity-stack-v1` when combined-force accountability depends on temporary interment-site documentation, protection, or later recovery confidence.
+- Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-COALITION-AI-GUARDRAILS-001`, and `packet_id=DPL-BATTLEFIELD-GRAVE-REGISTRATION-001` for branches that materially change coalition release posture, partner-access trust, or multinational remains-accountability legitimacy.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVII Addendum)
+
+- Add `tool_suite_id=ts-coalition-casualty-language-consent-v1` + `protocol_stack_id=ps-coalition-casualty-language-consent-stack-v1` when coalition interoperability depends on multilingual casualty handoffs, consent validity, or treatment-caveat reconciliation.
+- Add `tool_suite_id=ts-expeditionary-seabed-landing-zone-causeway-placement-v1` + `protocol_stack_id=ps-expeditionary-seabed-landing-zone-causeway-placement-stack-v1` when combined littoral entry depends on shared hydrographic confidence, causeway-release timing, or shore-party handoff legitimacy.
+- Add `tool_suite_id=ts-theater-mortuary-cold-chain-dna-ledger-v1` + `protocol_stack_id=ps-theater-mortuary-cold-chain-dna-ledger-stack-v1` when partner coordination depends on remains-accountability confidence, DNA custody, or transfer legitimacy.
+- Add `packet_id=DPL-COALITION-CASUALTY-CONSENT-001`, `packet_id=DPL-CAUSEWAY-LANDING-ZONE-001`, and `packet_id=DPL-MORTUARY-DNA-LEDGER-001` for branches that materially change coalition medical legitimacy, amphibious interoperability, or multinational accountability trust.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-joint-host-nation-legislative-liaison-mandate-alignment-v1` + `protocol_stack_id=ps-joint-host-nation-legislative-liaison-mandate-alignment-stack-v1` when coalition interoperability depends on synchronized host-nation emergency powers, legislative waivers, or authority translation.
+- Add `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-force-protection-v1` + `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-force-protection-stack-v1` when combined-force execution depends on contractor vetting reciprocity, protected movement, or mission-essential service continuity.
+- Add `tool_suite_id=ts-theater-evacuation-route-humanitarian-logistics-traffic-priority-v1` + `protocol_stack_id=ps-theater-evacuation-route-humanitarian-logistics-traffic-priority-stack-v1` when coalition coordination depends on shared evacuation corridors, humanitarian traffic priorities, or border-crossing deconfliction.
+- Add `tool_suite_id=ts-joint-military-financial-liability-compensation-continuity-v1` + `protocol_stack_id=ps-joint-military-financial-liability-compensation-continuity-stack-v1` when coalition legitimacy depends on aligned compensation posture, liability transparency, or emergency claims routing after incidents.
+- Add `packet_id=DPL-HOSTNATION-MANDATE-ALIGNMENT-001`, `packet_id=DPL-CONTRACTOR-READINESS-FP-001`, `packet_id=DPL-EVAC-HUMLOG-TRAFFIC-001`, and `packet_id=DPL-FIN-LIABILITY-COMPENSATION-001` for branches that materially change coalition release posture, partner trust, or access legitimacy.

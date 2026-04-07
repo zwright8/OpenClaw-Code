@@ -285,3 +285,23 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Prioritize `tool_suite_id=ts-joint-cislunar-logistics-interdiction-reconstitution-v1` with `protocol_stack_id=ps-joint-cislunar-logistics-interdiction-reconstitution-stack-v1` when strategic space logistics, custody confidence, or cislunar maneuver assurance directly affect mission risk decisions.
 - Add `tool_suite_id=ts-theater-underwater-datacenter-cooling-grid-defense-v1` with `protocol_stack_id=ps-theater-underwater-datacenter-cooling-grid-defense-stack-v1` when mission outcomes depend on underwater compute resilience, cooling continuity, or cyber-physical load restoration.
 - Add `packet_id=DPL-CISLUNAR-LOGISTICS-INTERDICTION-001` and `packet_id=DPL-UNDERWATER-DATACENTER-COOLING-DEFENSE-001` for recommendations that alter mission posture, contingency branches, or strategic continuity authorities.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXX Addendum)
+
+- Add `toolchain_id=TC-LEMOVE-263`, `tool_suite_id=ts-homeland-law-enforcement-military-movement-deconfliction-v1`, and `protocol_stack_id=ps-homeland-law-enforcement-military-movement-deconfliction-stack-v1` when base defense depends on lawful convoy movement, checkpoint control, or domestic route release around defended installations.
+- Add `toolchain_id=TC-EOCFUSE-262`, `tool_suite_id=ts-homeland-emergency-manager-cop-fusion-v1`, and `protocol_stack_id=ps-homeland-emergency-manager-cop-fusion-stack-v1` when force-protection posture depends on reconciling fragmented local reporting into a trusted homeland common operating picture.
+- Add `toolchain_id=TC-JIC-265`, `tool_suite_id=ts-homeland-joint-information-center-civil-warning-unity-v1`, and `protocol_stack_id=ps-homeland-joint-information-center-civil-warning-unity-stack-v1` when sheltering, public-warning, or rumor-control actions must stay synchronized with civil authorities near military bases.
+- Add `packet_id=DPL-LE-MIL-MOVEMENT-DECONFLICT-001`, `packet_id=DPL-EMERGENCY-MANAGER-COP-FUSION-001`, and `packet_id=DPL-JIC-CIVIL-WARNING-UNITY-001` for branches that materially alter base readiness, domestic movement controls, or population-protection posture.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXII Materialization Addendum)
+
+- Add `toolchain_id=TC-HOUSING-240`, `tool_suite_id=ts-strategic-military-housing-utility-safety-and-restoration-v1`, and `protocol_stack_id=ps-strategic-military-housing-utility-safety-and-restoration-stack-v1` when force protection depends on housing habitability, utility isolation, or family relocation around defended installations.
+- Add `toolchain_id=TC-CONTRACTOR-241`, `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-and-force-protection-v1`, and `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-and-force-protection-stack-v1` when defended-site continuity depends on contractor access, protected movement, or mission-critical contracted services.
+- Add `toolchain_id=TC-ESSENTIAL-247`, `tool_suite_id=ts-theater-essential-services-contractor-strike-and-continuity-v1`, and `protocol_stack_id=ps-theater-essential-services-contractor-strike-and-continuity-stack-v1` when base survivability depends on service continuity despite labor disruption, unsafe restart risk, or contractor walkout.
+- Add `toolchain_id=TC-SCHOOL-248`, `tool_suite_id=ts-homeland-base-school-transport-and-dependent-evacuation-v1`, and `protocol_stack_id=ps-homeland-base-school-transport-and-dependent-evacuation-stack-v1` when base-defense decisions affect dependent transport, school closure sequencing, or guardian reunification.
+- Add `packet_id=DPL-MIL-HOUSING-UTILITY-001`, `packet_id=DPL-CONTRACTOR-PROTECTION-001`, `packet_id=DPL-ESSENTIAL-SERVICES-CONTINUITY-001`, and `packet_id=DPL-DEPENDENT-EVAC-001` for branches that materially alter base readiness, protected movement, or family-protection posture.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-BASEACCESS-290`, `tool_suite_id=ts-homeland-base-access-badge-vehicle-registration-vetting-restoration-v1`, and `protocol_stack_id=ps-homeland-base-access-badge-vehicle-registration-vetting-restoration-stack-v1` when force-protection posture depends on restoring trusted gate access, badge issuance, or vehicle vetting after domestic disruption.
+- Add `packet_id=DPL-BASE-ACCESS-VETTING-RESTORE-001` for branches that materially alter installation access, insider-risk controls, or commander confidence in restored entry posture.

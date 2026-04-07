@@ -1,0 +1,3 @@
+interface:
+  display_name: "Contested Data Center Water Cooling Failure Mission Load Shedding Cell"
+  short_description: "Preserve mission-critical compute when contested operations drive data center water-cooling failures and thermal risk spikes."

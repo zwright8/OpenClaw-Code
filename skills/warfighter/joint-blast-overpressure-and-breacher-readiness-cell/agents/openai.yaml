@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Blast Overpressure And Breacher Readiness Cell"
+  short_description: "Help with Joint Blast Overpressure And Breacher Readiness Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Blast Overpressure And Breacher Readiness Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

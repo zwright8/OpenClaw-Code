@@ -275,10 +275,61 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-theater-property-book-sensitive-item-recapture-v1` + `protocol_stack_id=ps-theater-property-book-sensitive-item-recapture-stack-v1` when sustainment feasibility depends on recovering or denying compromised vehicles, weapons, optics, crypto, or other accountable materiel.
 - Add `packet_id=DPL-PROPERTY-BOOK-SENSITIVE-ITEM-RECAPTURE-001` for branches that materially alter accountability confidence, reissue timing, or commander acceptance of compromise risk.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-homeland-tsunami-port-closure-sealift-regeneration-v1` + `protocol_stack_id=ps-homeland-tsunami-port-closure-sealift-regeneration-stack-v1` when sustainment feasibility depends on regenerating sealift throughput after tsunami-driven berth or channel loss.
+- Add `tool_suite_id=ts-coalition-host-nation-rail-signaling-manual-block-reversion-v1` + `protocol_stack_id=ps-coalition-host-nation-rail-signaling-manual-block-reversion-stack-v1` when rail dispatch degradation, host-nation signaling loss, or manual-block reversion drive force-flow risk.
+- Add `packet_id=DPL-TSUNAMI-PORT-SEALIFT-REGEN-001` and `packet_id=DPL-RAIL-SIGNALING-MANUAL-BLOCK-001` for branches that materially alter throughput confidence, inland transload posture, or coalition movement timing.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-theater-reproductive-health-contraception-sti-readiness-v1` + `protocol_stack_id=ps-theater-reproductive-health-contraception-sti-readiness-stack-v1` when sustainment feasibility depends on protected pharmacy continuity, diagnostic kit flow, or privacy-safe reproductive-health support.
+- Add `tool_suite_id=ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1` + `protocol_stack_id=ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1` when housing habitability, barracks relocation, or respiratory-risk controls materially affect force availability and throughput.
+- Add `tool_suite_id=ts-joint-foot-health-trench-foot-load-bearing-readiness-v1` + `protocol_stack_id=ps-joint-foot-health-trench-foot-load-bearing-readiness-stack-v1` when boot or sock resupply, march endurance, or immersion-foot risk directly changes force-flow confidence.
+- Add `packet_id=DPL-REPRODUCTIVE-HEALTH-STI-READINESS-001`, `packet_id=DPL-BARRACKS-HVAC-MOLD-IAQ-001`, and `packet_id=DPL-FOOT-HEALTH-TRENCH-FOOT-001` for branches that materially alter protected-medical sustainment, housing posture, or movement endurance.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-hydrogen-production-storage-blast-safety-v1` + `protocol_stack_id=ps-expeditionary-hydrogen-production-storage-blast-safety-stack-v1` when sustainment posture depends on hydrogen-enabled power continuity, standoff controls, or explosive-safety limits at forward nodes.
+- Add `tool_suite_id=ts-joint-deployed-finance-cash-payroll-disbursing-continuity-v1` + `protocol_stack_id=ps-joint-deployed-finance-cash-payroll-disbursing-continuity-stack-v1` when cash handling, payroll continuity, or disbursing resilience directly affects sustainment labor and contractor throughput.
+- Add `tool_suite_id=ts-theater-battle-damage-contracting-vendor-vetting-payment-v1` + `protocol_stack_id=ps-theater-battle-damage-contracting-vendor-vetting-payment-stack-v1` when sustainment recovery depends on rapid local contracting, fraud-resistant payment, or vendor trust under battle damage.
+- Add `packet_id=DPL-HYDROGEN-PRODUCTION-BLAST-SAFETY-001`, `packet_id=DPL-DEPLOYED-FINANCE-DISBURSING-001`, and `packet_id=DPL-BATTLE-DAMAGE-CONTRACTING-VENDOR-001` for branches that materially alter energy continuity, sustainment labor confidence, or recovery throughput.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-prime-power-generator-load-balance-v1` + `protocol_stack_id=ps-expeditionary-prime-power-generator-load-balance-stack-v1` when sustainment feasibility depends on generator repair tempo, load-balance discipline, or priority-circuit continuity.
+- Add `tool_suite_id=ts-joint-sling-load-external-lift-certification-v1` + `protocol_stack_id=ps-joint-sling-load-external-lift-certification-stack-v1` when throughput depends on external-lift release confidence for austere resupply or obstacle-bypassing movement.
+- Add `tool_suite_id=ts-joint-small-craft-riverine-maintenance-spares-v1` + `protocol_stack_id=ps-joint-small-craft-riverine-maintenance-spares-stack-v1` when inland-waterway or littoral sustainment depends on scarce watercraft spares and maintenance recovery.
+- Add `tool_suite_id=ts-joint-cold-weather-clothing-frostbite-discipline-v1` + `protocol_stack_id=ps-joint-cold-weather-clothing-frostbite-discipline-stack-v1` when force endurance, exposure control, or cold-weather issue posture materially constrains sustainment output.
+- Add `packet_id=DPL-PRIME-POWER-GENERATOR-LOAD-BALANCE-001`, `packet_id=DPL-SLING-LOAD-EXTERNAL-LIFT-001`, `packet_id=DPL-SMALL-CRAFT-RIVERINE-MAINT-SPARES-001`, and `packet_id=DPL-COLD-WEATHER-CLOTHING-FROSTBITE-001` for branches that materially alter throughput, power continuity, inland-waterway reach, or cold-weather sustainment confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-heavy-drop-platform-rigging-retrograde-recovery-v1` + `protocol_stack_id=ps-theater-heavy-drop-platform-rigging-retrograde-recovery-stack-v1` when sustainment viability depends on heavy-drop release confidence, extraction-system health, or contested recovery of outsized cargo.
+- Add `tool_suite_id=ts-joint-ammunition-surveillance-lot-serviceability-v1` + `protocol_stack_id=ps-joint-ammunition-surveillance-lot-serviceability-stack-v1` when throughput depends on trusted ammunition issue posture, defect adjudication, or lot quarantine discipline.
+- Add `tool_suite_id=ts-expeditionary-ribbon-bridge-maintenance-raft-launch-v1` + `protocol_stack_id=ps-expeditionary-ribbon-bridge-maintenance-raft-launch-stack-v1` when wet-gap sustainment depends on bridge-bay serviceability, raft-launch cadence, or current-sensitive maintenance recovery.
+- Add `tool_suite_id=ts-expeditionary-flightline-ground-support-equipment-readiness-v1` + `protocol_stack_id=ps-expeditionary-flightline-ground-support-equipment-readiness-stack-v1` when air sustainment nodes depend on scarce AGE, cart dispatch, or cross-servicing to maintain sortie throughput.
+- Add `packet_id=DPL-HEAVY-DROP-PLATFORM-RIGGING-001`, `packet_id=DPL-AMMUNITION-SURVEILLANCE-LOT-001`, `packet_id=DPL-RIBBON-BRIDGE-RAFT-LAUNCH-001`, and `packet_id=DPL-FLIGHTLINE-GSE-READINESS-001` for branches that materially alter airdrop capacity, ammunition availability, wet-gap throughput, or expeditionary air-node sustainment confidence.
+
 ## Domain Toolchain Override (2026-03-15, Expansion Wave LX Addendum)
 
 - Add `tool_suite_id=ts-theater-ammunition-yard-fire-compatibility-v1` + `protocol_stack_id=ps-theater-ammunition-yard-fire-compatibility-stack-v1` when sustainment feasibility depends on ammunition-yard survivability, emergency separation, or alternate issue-point activation.
 - Add `packet_id=DPL-AMMUNITION-YARD-FIRE-COMPATIBILITY-001` for branches that materially alter munitions availability, force-protection posture, or depot throughput.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-theater-aviation-fuel-lab-contamination-clearance-v1` + `protocol_stack_id=ps-theater-aviation-fuel-lab-contamination-clearance-stack-v1` when sustainment viability depends on trusted aviation fuel, contamination quarantine, or sortie-support release timing.
+- Add `tool_suite_id=ts-joint-arctic-ice-pilotage-mariner-fatigue-v1` + `protocol_stack_id=ps-joint-arctic-ice-pilotage-mariner-fatigue-stack-v1` when high-latitude sustainment routes depend on ice pilotage confidence, fatigue controls, or convoy release timing.
+- Add `tool_suite_id=ts-homeland-port-war-risk-insurance-claims-v1` + `protocol_stack_id=ps-homeland-port-war-risk-insurance-claims-stack-v1` when sustainment throughput depends on insurer trigger logic, cargo claims routing, or restored commercial confidence at strategic ports.
+- Add `packet_id=DPL-AVIATION-FUEL-LAB-CLEARANCE-001`, `packet_id=DPL-ARCTIC-ICE-PILOTAGE-FATIGUE-001`, and `packet_id=DPL-PORT-WAR-RISK-CLAIMS-001` for branches that materially alter throughput confidence, convoy timing, or air-logistics availability.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXIV Addendum)
+
+- Add `tool_suite_id=ts-joint-reefer-container-cold-chain-denied-port-restoration-v1` + `protocol_stack_id=ps-joint-reefer-container-cold-chain-denied-port-restoration-stack-v1` when sustainment continuity depends on reefer power, berth restoration, or temperature-sensitive cargo survival.
+- Add `tool_suite_id=ts-joint-littoral-hydrographic-survey-beach-lane-recertification-v1` + `protocol_stack_id=ps-joint-littoral-hydrographic-survey-beach-lane-recertification-stack-v1` when over-the-shore distribution depends on refreshed bathymetry, lane certification, or connector draft confidence.
+- Add `tool_suite_id=ts-strategic-cash-vault-disconnected-pay-agent-anti-diversion-v1` + `protocol_stack_id=ps-strategic-cash-vault-disconnected-pay-agent-anti-diversion-stack-v1` when sustainment labor or contractor availability depends on emergency payroll, cash custody, or anti-diversion controls.
+- Add `tool_suite_id=ts-coalition-ration-dietary-compliance-allergen-assurance-v1` + `protocol_stack_id=ps-coalition-ration-dietary-compliance-allergen-assurance-stack-v1` when sustainment legitimacy depends on compliant feeding plans, allergen traceability, or coalition ration substitutions.
+- Add `packet_id=DPL-REEFER-COLD-CHAIN-001`, `packet_id=DPL-HYDRO-BEACH-LANE-001`, `packet_id=DPL-CASH-VAULT-ANTIDIVERSION-001`, and `packet_id=DPL-RATION-ALLERGEN-001` for branches that materially alter throughput confidence, over-the-shore access, sustainment labor stability, or coalition feeding viability.
 
 ## Domain Toolchain Override (2026-03-15, Expansion Wave LXII Addendum)
 
@@ -286,3 +337,18 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-strategic-rare-gas-cryogenic-supply-priority-v1` + `protocol_stack_id=ps-strategic-rare-gas-cryogenic-supply-priority-stack-v1` when industrial or missile-support sustainment depends on cryogenic gas purity, boil-off control, or allocation authority.
 - Add `tool_suite_id=ts-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-v1` + `protocol_stack_id=ps-coalition-arctic-bulk-fuel-blending-freeze-point-assurance-stack-v1` when cold-weather sustainment depends on verified blend integrity, additive compatibility, or freeze-point release confidence.
 - Add `packet_id=DPL-ADDITIVE-INTENT-VALIDATION-001`, `packet_id=DPL-RAREGAS-CRYO-001`, and `packet_id=DPL-ARCTIC-FUEL-FREEZE-001` for branches that materially alter repair release, industrial sustainment confidence, or Arctic distribution feasibility.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-coalition-civil-port-labor-strike-sealift-continuity-v1` + `protocol_stack_id=ps-coalition-civil-port-labor-strike-sealift-continuity-stack-v1` when sustainment viability depends on commercial-port labor posture, berth throughput, or coalition reroute timing.
+- Add `tool_suite_id=ts-homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-v1` + `protocol_stack_id=ps-homeland-coastal-storm-surge-fuel-farm-saltwater-intrusion-stack-v1` when fuel continuity depends on storm-surge contamination control, verified clean stock, or coastal distribution recovery.
+- Add `tool_suite_id=ts-strategic-aviation-spares-airworthiness-trust-v1` + `protocol_stack_id=ps-strategic-aviation-spares-airworthiness-trust-stack-v1` when sustainment recovery depends on trusted aviation-spares pedigree, cannibalization discipline, or safe release of reclaimed parts.
+- Add `packet_id=DPL-PORT-LABOR-SEALIFT-CONTINUITY-001`, `packet_id=DPL-FUEL-FARM-SALTWATER-INTRUSION-001`, and `packet_id=DPL-AVIATION-SPARES-AIRWORTHINESS-001` for branches that materially alter sealift throughput, fuel confidence, or fleet-sustainment viability.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXVIII Addendum)
+
+- Add `tool_suite_id=ts-theater-evacuation-route-humanitarian-logistics-traffic-priority-v1` + `protocol_stack_id=ps-theater-evacuation-route-humanitarian-logistics-traffic-priority-stack-v1` when sustainment feasibility depends on mixed evacuation and resupply traffic, corridor control, or humanitarian throughput.
+- Add `tool_suite_id=ts-joint-civil-works-emergency-permitting-right-of-entry-v1` + `protocol_stack_id=ps-joint-civil-works-emergency-permitting-right-of-entry-stack-v1` when sustainment recovery depends on emergency site access, dig permits, or right-of-entry for repair and clearance crews.
+- Add `tool_suite_id=ts-theater-essential-services-contractor-strike-continuity-v1` + `protocol_stack_id=ps-theater-essential-services-contractor-strike-continuity-stack-v1` when logistics viability depends on contracted utilities, sanitation, transport, or warehousing labor continuity.
+- Add `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-force-protection-v1` + `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-force-protection-stack-v1` when throughput depends on vetted contractor access, protected convoy movement, or contested base-service support.
+- Add `packet_id=DPL-EVAC-HUMLOG-TRAFFIC-001`, `packet_id=DPL-EMERGENCY-PERMIT-ENTRY-001`, `packet_id=DPL-ESSENTIAL-SERVICES-STRIKE-001`, and `packet_id=DPL-CONTRACTOR-READINESS-FP-001` for branches that materially alter throughput confidence, repair timing, or sustainment labor viability.

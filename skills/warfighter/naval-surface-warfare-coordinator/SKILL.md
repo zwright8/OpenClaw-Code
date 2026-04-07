@@ -172,3 +172,13 @@ Use these tool categories as the default stack for this skill: maritime C2 syste
 - Prioritize `tool_suite_id=ts-maritime-desal-water-continuity-v1` with `protocol_stack_id=ps-maritime-desal-water-stack-v1` when sea-control options are constrained by afloat freshwater sustainment and contamination risk.
 - Elevate `tool_suite_id=ts-orbital-debris-hostile-screening-v1` with `protocol_stack_id=ps-orbital-debris-hostile-screening-stack-v1` when SATCOM and maritime COP continuity depend on credible conjunction attribution.
 - If convoy endurance or fuel integrity is uncertain, add `tool_suite_id=ts-convoy-fuel-fraud-detection-v1` with `protocol_stack_id=ps-convoy-fuel-fraud-stack-v1` as a required logistics and deception cross-check branch.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LVII Addendum)
+
+- Prioritize `tool_suite_id=ts-naval-damage-control-battle-stability-v1` + `protocol_stack_id=ps-naval-damage-control-battle-stability-stack-v1` when combat persistence depends on restoring watertight integrity, controlling fire or flooding, or preserving stability margins after damage.
+- Add `packet_id=DPL-NAVAL-DAMAGE-CONTROL-STABILITY-001` for branches that materially alter restore-fight posture, escort routing, or command risk acceptance for a damaged ship.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-coalition-harbor-mcm-merchant-reroute-v1` + `protocol_stack_id=ps-coalition-harbor-mcm-merchant-reroute-stack-v1` when surface-warfare recommendations depend on mined-harbor reopening, merchant rerouting, or coalition pilotage controls.
+- Add `packet_id=DPL-HARBOR-MCM-MERCHANT-REROUTE-001` for branches that materially alter harbor access, escort allocation, or sea-line throughput decisions.

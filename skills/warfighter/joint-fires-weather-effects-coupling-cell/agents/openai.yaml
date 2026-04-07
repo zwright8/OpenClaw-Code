@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Fires Weather Effects Coupling Cell"
+  short_description: "Fuse weather and atmospheric effects into joint fires timing, fuze settings, and collateral risk recommendations."

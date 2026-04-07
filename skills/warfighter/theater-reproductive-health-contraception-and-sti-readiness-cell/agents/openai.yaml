@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Theater Reproductive Health, Contraception, And STI Readiness Cell"
+  short_description: "Help with Theater Reproductive Health, Contraception, And STI Readiness Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Theater Reproductive Health, Contraception, And STI Readiness Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

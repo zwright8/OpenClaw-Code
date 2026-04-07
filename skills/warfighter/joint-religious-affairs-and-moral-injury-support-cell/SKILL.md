@@ -72,3 +72,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Protect privileged or confidential spiritual-care information and never require disclosure beyond mission necessity.
 - Flag religious accommodation limits, suicide or self-harm referral thresholds, coalition caveats, and command-climate concerns before recommending action.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-DIETARY-270`, `tool_suite_id=ts-joint-religious-dietary-mass-feeding-v1`, and `protocol_stack_id=ps-joint-religious-dietary-mass-feeding-stack-v1` when spiritual-support credibility depends on faith-based dietary accommodation, fasting-window planning, or protected meal alternatives.
+- Add `toolchain_id=TC-FAMILYCARE-273`, `tool_suite_id=ts-joint-family-care-guardianship-dependent-support-v1`, and `protocol_stack_id=ps-joint-family-care-guardianship-dependent-support-stack-v1` when recommendations depend on family-care-plan strain, guardian breakdown, or dependent support burdens that intensify moral injury risk.
+- Add `packet_id=DPL-RELIGIOUS-DIETARY-MASS-FEEDING-001` and `packet_id=DPL-FAMILY-CARE-GUARDIANSHIP-001` for branches that materially alter accommodation confidence, family-support routing, or command support measures.

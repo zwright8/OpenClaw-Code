@@ -152,3 +152,8 @@ Use this default binding unless mission constraints require an alternate path:
 - Primary: `tool_suite_id=ts-field-sanitation-decon-v1` with `protocol_stack_id=ps-cbrn-emergency-stack-v1`.
 - Alternate: `tool_suite_id=ts-cbrn-consequence-v1` with `protocol_stack_id=ps-civil-emergency-stack-v1`.
 - Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-joint-foot-health-trench-foot-load-bearing-readiness-v1` + `protocol_stack_id=ps-joint-foot-health-trench-foot-load-bearing-readiness-stack-v1` when sanitation priorities depend on sock rotation, boot drying, or immersion-foot prevention during prolonged wet operations.
+- Add `packet_id=DPL-FOOT-HEALTH-TRENCH-FOOT-001` for branches that materially alter textile throughput, drying posture, or movement endurance.

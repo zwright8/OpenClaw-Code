@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Expeditionary Barracks HVAC, Mold, And Indoor Air Quality Cell"
+  short_description: "Help with Expeditionary Barracks HVAC, Mold, And Indoor Air Quality Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Expeditionary Barracks HVAC, Mold, And Indoor Air Quality Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

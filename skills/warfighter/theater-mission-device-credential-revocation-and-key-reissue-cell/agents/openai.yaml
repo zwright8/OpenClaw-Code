@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Mission Device Credential Revocation And Key Reissue Cell"
+  short_description: "Help with mission-device credential burn and key reissue decisions"

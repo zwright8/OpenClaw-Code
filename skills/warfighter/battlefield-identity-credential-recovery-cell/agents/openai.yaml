@@ -1,0 +1,3 @@
+interface:
+  display_name: "Battlefield Identity Credential Recovery Cell"
+  short_description: "Recover trust after battlefield credential compromise"

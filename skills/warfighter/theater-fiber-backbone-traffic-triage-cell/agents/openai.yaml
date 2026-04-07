@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Fiber Backbone Traffic Triage Cell"
+  short_description: "Prioritize mission traffic during theater fiber outages"

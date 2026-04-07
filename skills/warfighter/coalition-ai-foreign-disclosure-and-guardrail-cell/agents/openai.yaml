@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coalition AI Guardrails"
+  short_description: "Control coalition AI releasability and guardrails."
+  default_prompt: "Use $coalition-ai-foreign-disclosure-and-guardrail-cell to assess coalition AI releasability, foreign disclosure limits, and guardrail enforcement."

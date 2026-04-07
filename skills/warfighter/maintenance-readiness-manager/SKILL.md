@@ -167,3 +167,16 @@ Primary products for this skill: readiness recovery plan, maintenance priority l
 - Prioritize `tool_suite_id=ts-electronics-reverse-logistics-v1` with `protocol_stack_id=ps-electronics-reverse-logistics-stack-v1` when readiness losses are driven by recoverable electronic component failures.
 - Elevate `tool_suite_id=ts-energetics-precursor-counterfeit-v1` with `protocol_stack_id=ps-energetics-precursor-counterfeit-stack-v1` when maintenance delays correlate with suspect energetics lots or supply-chain integrity warnings.
 - If route survivability or rail timing degrades recovery timelines, add `tool_suite_id=ts-rail-signaling-cyber-failover-v1` with `protocol_stack_id=ps-rail-signaling-cyber-failover-stack-v1` as a required cross-check branch.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXV Addendum)
+
+- Add `tool_suite_id=ts-theater-depot-maintenance-surge-backlog-arbitration-v1` + `protocol_stack_id=ps-theater-depot-maintenance-surge-backlog-arbitration-stack-v1` when readiness recovery depends on depot backlog arbitration, induction pacing, or cross-theater repair flow.
+- Add `tool_suite_id=ts-strategic-test-equipment-metrology-calibration-priority-v1` + `protocol_stack_id=ps-strategic-test-equipment-metrology-calibration-priority-stack-v1` when maintenance confidence depends on calibration validity, metrology capacity, or test-bench availability.
+- Add `tool_suite_id=ts-theater-technical-order-digital-delta-waiver-control-v1` + `protocol_stack_id=ps-theater-technical-order-digital-delta-waiver-control-stack-v1` and `tool_suite_id=ts-theater-depot-acceptance-test-quality-escape-containment-v1` + `protocol_stack_id=ps-theater-depot-acceptance-test-quality-escape-containment-stack-v1` when readiness branching depends on trusted maintenance baselines, waiver discipline, or containment of serial quality defects.
+- Add `packet_id=DPL-DEPOT-MAINT-SURGE-BACKLOG-001`, `packet_id=DPL-METROLOGY-CALIBRATION-PRIORITY-001`, `packet_id=DPL-TECHNICAL-ORDER-DELTA-WAIVER-001`, and `packet_id=DPL-DEPOT-QUALITY-ESCAPE-CONTAINMENT-001` for branches that materially alter readiness recovery timing, measurement trust, maintenance release posture, or fielded-risk acceptance.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-strategic-aviation-spares-airworthiness-trust-v1` + `protocol_stack_id=ps-strategic-aviation-spares-airworthiness-trust-stack-v1` when readiness recovery depends on trusted spares pedigree, cannibalization discipline, or airworthiness release of reclaimed parts.
+- Add `tool_suite_id=ts-theater-denied-firmware-attestation-loader-sanitization-v1` + `protocol_stack_id=ps-theater-denied-firmware-attestation-loader-sanitization-stack-v1` when maintenance branching depends on firmware trust, loader custody, or safe return-to-service of mission systems after suspected compromise.
+- Add `packet_id=DPL-AVIATION-SPARES-AIRWORTHINESS-001` and `packet_id=DPL-DENIED-FIRMWARE-ATTESTATION-001` for branches that materially alter maintenance release posture, fleet recovery timing, or digital-pedigree confidence.

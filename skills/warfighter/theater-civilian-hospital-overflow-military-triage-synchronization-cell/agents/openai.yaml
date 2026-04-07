@@ -1,0 +1,3 @@
+interface:
+  display_name: "Theater Civilian Hospital Overflow Military Triage Synchronization Cell"
+  short_description: "Synchronize military triage and patient movement support when civilian hospitals exceed surge capacity."

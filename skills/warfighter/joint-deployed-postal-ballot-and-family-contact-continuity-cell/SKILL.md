@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect PII, ballot secrecy, casualty-notification integrity, and OPSEC before recommending action.
 - Do not fabricate authorities, approvals, or source evidence.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXI Addendum)
+
+- Add `toolchain_id=TC-RECORDS-269`, `tool_suite_id=ts-joint-personnel-records-dd214-benefits-continuity-v1`, and `protocol_stack_id=ps-joint-personnel-records-dd214-benefits-continuity-stack-v1` when postal, ballot, or family-contact continuity depends on trusted personnel records, transition status, or identity-proof continuity.
+- Add `toolchain_id=TC-FAMILYCARE-273`, `tool_suite_id=ts-joint-family-care-guardianship-dependent-support-v1`, and `protocol_stack_id=ps-joint-family-care-guardianship-dependent-support-stack-v1` when communication priorities depend on guardian validation, dependent support urgency, or family-care-plan activation.
+- Add `packet_id=DPL-PERSONNEL-RECORDS-DD214-001` and `packet_id=DPL-FAMILY-CARE-GUARDIANSHIP-001` for branches that materially alter message-routing priority, identity confidence, or dependent-support sequencing.

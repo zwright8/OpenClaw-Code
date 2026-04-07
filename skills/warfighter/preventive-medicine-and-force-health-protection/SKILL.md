@@ -144,3 +144,23 @@ Primary products for this skill: force health risk brief, preventive control pla
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIII Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-vector-control-field-epidemiology-v1` + `protocol_stack_id=ps-expeditionary-vector-control-field-epidemiology-stack-v1` when force-health posture depends on vector suppression, habitat denial, or outbreak-investigation timing.
+- Add `tool_suite_id=ts-expeditionary-barracks-hvac-mold-indoor-air-quality-v1` + `protocol_stack_id=ps-expeditionary-barracks-hvac-mold-indoor-air-quality-stack-v1` when readiness depends on restoring habitability, respiratory safety, or mold containment inside expeditionary housing.
+- Add `tool_suite_id=ts-theater-reproductive-health-contraception-sti-readiness-v1` + `protocol_stack_id=ps-theater-reproductive-health-contraception-sti-readiness-stack-v1` when protected pharmacy continuity, STI diagnostic throughput, or privacy-safe reproductive care drives readiness risk.
+- Add `packet_id=DPL-VECTOR-CONTROL-FIELD-EPI-001`, `packet_id=DPL-BARRACKS-HVAC-MOLD-IAQ-001`, and `packet_id=DPL-REPRODUCTIVE-HEALTH-STI-READINESS-001` for branches that materially alter outbreak response, housing posture, or protected care access.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIV Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-industrial-hygiene-occupational-exposure-v1` + `protocol_stack_id=ps-expeditionary-industrial-hygiene-occupational-exposure-stack-v1` when commander risk depends on sampling confidence, PPE posture, confined-space controls, or safe work continuation.
+- Add `tool_suite_id=ts-theater-occupational-toxicology-solvent-fuel-heavy-metal-v1` + `protocol_stack_id=ps-theater-occupational-toxicology-solvent-fuel-heavy-metal-stack-v1` when solvent, fuel, propellant, or heavy-metal exposure drives surveillance expansion, isolation, or notification thresholds.
+- Add `tool_suite_id=ts-expeditionary-food-protection-inspection-sanitation-v1` + `protocol_stack_id=ps-expeditionary-food-protection-inspection-sanitation-stack-v1` when food-source pedigree, cold-chain integrity, or sanitation breakdown materially affects force-health posture.
+- Add `tool_suite_id=ts-theater-hazardous-waste-burn-pit-ash-exposure-v1` + `protocol_stack_id=ps-theater-hazardous-waste-burn-pit-ash-exposure-stack-v1` when waste backlog, emissions, or ash exposure changes habitability, compliance, or medical-surveillance decisions.
+- Add `packet_id=DPL-INDUSTRIAL-HYGIENE-OCCUPATIONAL-EXPOSURE-001`, `packet_id=DPL-OCCUPATIONAL-TOXICOLOGY-EXPOSURE-001`, `packet_id=DPL-FOOD-PROTECTION-INSPECTION-SANITATION-001`, and `packet_id=DPL-HAZARDOUS-WASTE-BURN-PIT-ASH-001` for branches that materially alter exposure controls, feeding posture, or environmental-health protection.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXVI Addendum)
+
+- Add `tool_suite_id=ts-expeditionary-wastewater-graywater-vector-control-v1` + `protocol_stack_id=ps-expeditionary-wastewater-graywater-vector-control-stack-v1` when force-health posture depends on wastewater containment, graywater routing, or vector suppression around dense expeditionary sites.
+- Add `tool_suite_id=ts-joint-launch-toxic-propellant-cloud-public-protection-v1` + `protocol_stack_id=ps-joint-launch-toxic-propellant-cloud-public-protection-stack-v1` when inhalation exposure, contaminated downwind corridors, or shelter-capacity limits materially affect medical-risk decisions.
+- Add `packet_id=DPL-WASTEWATER-VECTOR-CONTROL-001` and `packet_id=DPL-LAUNCH-TOXIC-PROPELLANT-CLOUD-001` for branches that materially alter sanitation posture, exposure protection, or evacuation-health support.

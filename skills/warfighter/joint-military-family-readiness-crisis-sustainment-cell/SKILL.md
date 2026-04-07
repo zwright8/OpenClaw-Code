@@ -148,3 +148,32 @@ Primary products for this skill: family-readiness risk dashboard, sustainment su
 
 - Add `tool_suite_id=ts-military-family-readiness-crisis-sustainment-v1` + `protocol_stack_id=ps-military-family-readiness-crisis-sustainment-stack-v1` when this domain is mission-critical in current planning.
 - Add `packet_id=DPL-MILITARY-FAMILY-READINESS-CRISIS-001` for branches that can materially alter mission posture or civil-protection outcomes.
+
+## Domain Toolchain Override (2026-04-06, Expansion Wave LXXIII Addendum)
+
+- Add `toolchain_id=TC-SPOUSELIC-282`, `tool_suite_id=ts-joint-military-spouse-license-portability-employment-continuity-v1`, and `protocol_stack_id=ps-joint-military-spouse-license-portability-employment-continuity-stack-v1` when family-readiness posture depends on spouse employment continuity, license reciprocity, or household income stabilization.
+- Add `toolchain_id=TC-COMEX-284`, `tool_suite_id=ts-joint-commissary-exchange-subsistence-hygiene-restoration-v1`, and `protocol_stack_id=ps-joint-commissary-exchange-subsistence-hygiene-restoration-stack-v1` when family stability depends on reliable access to essential food, hygiene, and daily-use items during prolonged disruption.
+- Add `toolchain_id=TC-BPHARM-286`, `tool_suite_id=ts-joint-base-pharmacy-refill-tricare-coldchain-v1`, and `protocol_stack_id=ps-joint-base-pharmacy-refill-tricare-coldchain-stack-v1` when family-readiness recommendations depend on medication continuity, refill access, or cold-chain-protected treatments.
+- Add `toolchain_id=TC-ANIMAL-288`, `tool_suite_id=ts-joint-service-animal-family-pet-evacuation-shelter-v1`, and `protocol_stack_id=ps-joint-service-animal-family-pet-evacuation-shelter-stack-v1` when crisis sustainment depends on evacuation compliance, animal accommodation, or family reunification stability.
+- Add `packet_id=DPL-SPOUSE-LICENSE-EMPLOYMENT-001`, `packet_id=DPL-COMMISSARY-EXCHANGE-HYGIENE-001`, `packet_id=DPL-BASE-PHARMACY-TRICARE-COLDCHAIN-001`, and `packet_id=DPL-SERVICE-ANIMAL-PET-EVAC-001` for branches that materially alter family-support posture, retention outlook, or protected-population stability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-YOUTHBH-292`, `tool_suite_id=ts-strategic-military-child-youth-behavioral-health-school-reintegration-v1`, and `protocol_stack_id=ps-strategic-military-child-youth-behavioral-health-school-reintegration-stack-v1` when family-readiness posture depends on child or youth behavioral-health stabilization, school reintegration, or caregiver support continuity.
+- Add `packet_id=DPL-CHILD-YOUTH-BEHAVIORAL-SCHOOL-001` for branches that materially alter retention risk, dependent stability, or senior-leader confidence in household recovery.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXV Addendum)
+
+- Add `toolchain_id=TC-ARCMSG-295`, `tool_suite_id=ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`, and `protocol_stack_id=ps-joint-emergency-leave-american-red-cross-message-command-approval-stack-v1` when family-readiness posture depends on verified emergency leave, compassionate travel, or trusted family-emergency message provenance.
+- Add `toolchain_id=TC-EFMP-296`, `tool_suite_id=ts-joint-efmp-respite-medical-device-power-continuity-v1`, and `protocol_stack_id=ps-joint-efmp-respite-medical-device-power-continuity-stack-v1` when household stability depends on EFMP support, power-dependent medical devices, or respite continuity.
+- Add `toolchain_id=TC-PCSMOVE-298`, `tool_suite_id=ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`, and `protocol_stack_id=ps-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-stack-v1` when family readiness depends on PCS reimbursement stability, travel-voucher recovery, or temporary lodging access.
+- Add `toolchain_id=TC-TRICARE-299`, `tool_suite_id=ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`, and `protocol_stack_id=ps-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-stack-v1` when family-support recommendations depend on specialty-care referrals, pharmacy authorization continuity, or protected medical access.
+- Add `toolchain_id=TC-RELIEF-300`, `tool_suite_id=ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`, and `protocol_stack_id=ps-joint-relief-society-hardship-grant-zero-interest-loan-bridge-stack-v1` when household stabilization depends on hardship grants, zero-interest loans, or command-endorsed emergency assistance.
+- Add `packet_id=DPL-EMERGENCY-LEAVE-ARC-001`, `packet_id=DPL-EFMP-RESPITE-POWER-001`, `packet_id=DPL-PCS-CLAIMS-LODGING-001`, `packet_id=DPL-TRICARE-REFERRAL-SPECIALTY-001`, and `packet_id=DPL-RELIEF-SOCIETY-HARDSHIP-001` for branches that materially alter family-support posture, retention outlook, or household survivability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVI Addendum)
+
+- Add `toolchain_id=TC-EDBEN-301`, `tool_suite_id=ts-joint-education-benefits-gi-bill-tuition-assistance-testing-continuity-v1`, and `protocol_stack_id=ps-joint-education-benefits-gi-bill-tuition-assistance-testing-continuity-stack-v1` when family-readiness posture depends on GI Bill, tuition-assistance, credentialing, or testing continuity that shapes retention and transition confidence.
+- Add `toolchain_id=TC-FVAP-305`, `tool_suite_id=ts-joint-fvap-overseas-ballot-election-material-continuity-v1`, and `protocol_stack_id=ps-joint-fvap-overseas-ballot-election-material-continuity-stack-v1` when household stability or trust depends on absentee-ballot continuity, election-mail recovery, or lawful voting access during disruption.
+- Add `toolchain_id=TC-CREDIT-306`, `tool_suite_id=ts-joint-credit-identity-theft-financial-readiness-recovery-v1`, and `protocol_stack_id=ps-joint-credit-identity-theft-financial-readiness-recovery-stack-v1` when household survivability depends on identity-theft response, credit recovery, or fraud-driven emergency-assistance access.
+- Add `packet_id=DPL-ED-BENEFITS-GIBILL-001`, `packet_id=DPL-FVAP-BALLOT-CONTINUITY-001`, and `packet_id=DPL-CREDIT-IDENTITY-RECOVERY-001` for branches that materially alter retention outlook, household stability, or commander confidence in family-support posture.

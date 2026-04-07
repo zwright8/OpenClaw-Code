@@ -1,0 +1,3 @@
+interface:
+  display_name: "Strategic Reserve Component Callup Transport Synchronization Cell"
+  short_description: "Synchronize reserve component callup, mobilization stations, and transport flow under contested strategic timelines."

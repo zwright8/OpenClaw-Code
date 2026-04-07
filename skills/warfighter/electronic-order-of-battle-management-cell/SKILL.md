@@ -144,3 +144,7 @@ Primary products for this skill: electronic order of battle update, emitter conf
 - Include `tool_suite_id`, `protocol_stack_id`, `interop_standard_set`, `endpoint_security_profile`, and `degraded_exchange_method` for each critical recommendation.
 - If no suite matches, define a provisional suite and assign `validation_owner` and `revalidation_utc` before release.
 
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-joint-friendly-emitter-impostor-rebroadcast-detection-v1` + `protocol_stack_id=ps-joint-friendly-emitter-impostor-rebroadcast-detection-stack-v1` when EOB confidence depends on distinguishing authentic blue-force emitters from spoofed, replayed, or impostor signatures.
+- Add `packet_id=DPL-EMITTER-IMPOSTOR-REBROADCAST-001` for branches that materially alter emitter classification, fratricide safeguards, or release-hold decisions.

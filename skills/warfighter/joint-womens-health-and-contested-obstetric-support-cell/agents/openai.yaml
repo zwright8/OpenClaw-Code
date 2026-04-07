@@ -1,0 +1,6 @@
+---
+interface:
+  display_name: "Joint Women's Health And Contested Obstetric Support Cell"
+  short_description: "Help with Joint Women's Health And Contested Obstetric Support Cell tasks"
+  default_prompt: "Use this skill to produce decision-ready outputs for Joint Women's Health And Contested Obstetric Support Cell with tool/protocol binding, authority gates, and degraded-mode contingencies."
+---

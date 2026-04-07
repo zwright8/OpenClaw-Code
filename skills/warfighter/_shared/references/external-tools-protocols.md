@@ -460,3 +460,71 @@ Include these fields in outputs when tool integration is used:
 - Radiation evacuation routing: include projected dose envelope, reroute invalidation trigger, and medic/regulation coordination checkpoints.
 - Under-ice uncrewed logistics: include vehicle trust posture, ice-route uncertainty bounds, and recovery/beacon contingency branch.
 - Sanctioned supply denial campaigns: include enforcement authority, substitution lead time, and adversary adaptation indicators.
+
+## Domain Toolchain Profiles (2026-03-15 Gap-Closure Expansion)
+
+- Signals intelligence and emitter geolocation fusion: SIGINT report queues + emitter geolocation boards + EW order-of-battle overlays + `Link 16 J-series` + `CoT` + `USMTF` + signed emitter manifests
+- Expeditionary advanced base operations and signature management: littoral COP tools + expeditionary engineering boards + emissions-control schedulers + `CoT` + `VMF` + `Link 16 J-series` + `OGC` + `USMTF`
+- Operational law and judge advocate battlefield advisory: operational-law issue trackers + claims and detainee status boards + fiscal authority ledgers + `NIEM` + `CJIS` + `USMTF` + `S/MIME`
+- Orbital warfare effects deconfliction and continuity: space-effects planners + SDA conjunction boards + SATCOM continuity monitors + `CCSDS` + `STIX/TAXII` + `USMTF` + `API/JSON`
+- Air mobility diplomatic clearance and staging continuity: air-mobility mission schedulers + diplomatic clearance trackers + staging and ramp-flow boards + `AIXM/FIXM` + `NIEM` + `USMTF` + `API/JSON`
+
+## Protocol Mapping Guidance (2026-03-15 Gap-Closure Expansion)
+
+- SIGINT cross-cue workflows: include emitter-confidence score, geolocation uncertainty ellipse, cross-cue source count, and human release gate before recommendations affect fires or maneuver.
+- Expeditionary advanced base recommendations: include displacement trigger, signature budget, sustainment burn-rate, and host-nation or maritime corridor acknowledgment state.
+- Judge advocate advisory products: include authority basis, legal review ID, fiscal or detention constraint tags, and explicit no-action branch when facts or approvals are incomplete.
+- Orbital warfare continuity packets: include conjunction-risk band, civil or commercial service impact note, escalation-control reviewer, and revalidation deadline for every posture-changing recommendation.
+- Air-mobility staging packets: include diplomatic-clearance status, staging-node capacity, patient or cargo priority, and airfield-slot confirmation before recommending reroutes or surge actions.
+
+## Domain Toolchain Profiles (2026-03-15 Operator Readiness, Ship Survivability, and Lift Continuity Expansion)
+
+- Flight surgeon and aeromedical waiver: aeromedical qualification ledgers + life-support discrepancy boards + `HL7/FHIR` + `AIXM/FIXM` + `USMTF`
+- Naval damage control and battle stability: damage-control plots + stability calculators + `AIS/NMEA` + `OGC` + `USMTF`
+- EOD render-safe and site exploitation: render-safe planners + evidence ledgers + `NIEM` + `STIX/TAXII` + `USMTF`
+- Prime-power generator maintenance and load balance: generator telemetry + load-balance boards + `OPC UA` + `OGC` + `USMTF`
+- Sling-load and external-lift certification: lift-certification boards + aircraft configuration validators + `AIXM/FIXM` + `VMF` + `USMTF`
+- Beachmaster surf-zone and shore-party control: tide or surf boards + lane-control workflows + `OGC` + `CoT` + `VMF` + `AIS/NMEA` + `USMTF`
+- Aircrew flight equipment and survival gear: life-support ledgers + inspection schedulers + `HL7/FHIR` + `AIXM/FIXM` + `USMTF`
+- Small-craft riverine maintenance and spares: watercraft diagnostics + spares ledgers + `AIS/NMEA` + `VMF` + `USMTF`
+- Flightline weapons loading and armament safety: armament validators + explosive-safety planners + `AIXM/FIXM` + `CoT` + `USMTF`
+- Cold-weather clothing and frostbite discipline: issue ledgers + exposure tracking + `HL7/FHIR` + `OGC` + `USMTF`
+
+## Protocol Mapping Guidance (2026-03-15 Operator Readiness, Ship Survivability, and Lift Continuity Expansion)
+
+- Aeromedical waiver workflows: include waiver authority, privacy handling tag, sortie restriction timer, and medical-revalidation deadline before launch.
+- Ship survivability packets: include compartment-boundary status, stability margin, casualty-power restoration threshold, and command release criterion for each branch.
+- EOD exploitation workflows: include blast-standoff confidence, evidence-custody ledger ID, render-safe authority, and exploitation contamination risk.
+- Prime-power packets: include priority circuit list, overload trigger, fuel-burn projection, and maintenance-release authority before recommending load shifts.
+- External-lift certification packets: include hook-up certification state, weight or center-of-gravity confidence, weather-go thresholds, and aircraft-release acknowledgment.
+- Beachmaster control packets: include surf-limit band, lane identity, shore-party capacity, and beach-release acknowledgment for each movement phase.
+- Aircrew-gear packets: include inspection expiration, beacon status, environment-specific gear requirement, and no-fly trigger before release.
+- Riverine-maintenance packets: include craft readiness class, parts pedigree note, patrol-coverage delta, and controlled-exchange approval when applicable.
+- Flightline armament packets: include load-crew certification state, explosive-safety radius, aircraft compatibility check, and hot-ramp hold trigger.
+- Cold-weather discipline packets: include wet-gear churn estimate, warming-window schedule, clothing availability, and medical no-go threshold before exposing forces.
+
+## Domain Toolchain Profiles (2026-03-15 Specialist Readiness and Sustainment Expansion)
+
+- Ballistic meteorology and fire-support calibration: upper-air observation boards + fire-solution recalculation services + `VMF` + `USMTF` + `iwxxm`
+- Airfield weather observation and sensor maintenance: airfield observing boards + sensor health trackers + `AIXM/FIXM/iwxxm` + `OGC` + `USMTF`
+- Aerial-delivery rigging and parachute inspection: rigging ledgers + parachute inspection trackers + `AIXM/FIXM` + `VMF` + `USMTF`
+- Heavy-drop platform rigging and retrograde recovery: platform planners + DZ recovery boards + `AIXM/FIXM` + `VMF` + `CoT` + `USMTF`
+- Ammunition surveillance and lot serviceability: surveillance ledgers + defect trackers + signed manifests + `NIEM` + `USMTF`
+- Net explosive weight and munitions compatibility: quantity-distance calculators + standoff planners + `OGC` + `NIEM` + `USMTF`
+- Ribbon bridge maintenance and raft launch: bridge-bay serviceability boards + current or load monitors + `VMF` + `CoT` + `OGC` + `USMTF`
+- Bridge-erection-boat gap-crossing recovery: boat diagnostics + tow planners + `AIS/NMEA` + `VMF` + `OGC` + `USMTF`
+- Flightline GSE readiness: AGE dispatch boards + cart availability ledgers + `AIXM/FIXM` + `OGC` + `USMTF`
+- Aircraft hydraulic contamination and servicing: sample ledgers + maintenance release boards + `AIXM/FIXM` + `OPC UA` + `USMTF`
+
+## Protocol Mapping Guidance (2026-03-15 Specialist Readiness and Sustainment Expansion)
+
+- Ballistic-met packets: include met-message age, correction confidence, survey alignment state, and fires-hold threshold before release.
+- Airfield weather packets: include observer certification, sensor drift status, launch or recovery minima, and divert trigger.
+- Rigging packets: include pack-date expiration, rigger certification state, load-geometry confidence, and release authority.
+- Heavy-drop packets: include extraction-system state, platform rigging status, DZ recovery capacity, and no-drop trigger.
+- Ammunition-surveillance packets: include lot pedigree, defect trend confidence, quarantine threshold, and issue-control authority.
+- Net-explosive-weight packets: include NEW total, exposed-site distance, compatibility exception, and evacuation trigger.
+- Ribbon-bridge packets: include bay serviceability state, anchor integrity, current band, and raft-launch window.
+- Bridge-erection-boat packets: include propulsion status, tow or rescue branch, spare-part availability, and crossing-hold trigger.
+- GSE packets: include cart availability by line, dispatch ETA, sortie priority, and manual servicing fallback.
+- Hydraulic packets: include sample-result confidence, affected-system list, component-isolation boundary, and no-fly or restricted-flight trigger.

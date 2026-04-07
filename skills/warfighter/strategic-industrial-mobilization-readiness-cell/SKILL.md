@@ -209,3 +209,26 @@ Primary products for this skill: surge production readiness dashboard, bottlenec
 - Add `tool_suite_id=ts-space-ground-station-twt-cryogenic-surge-v1` + `protocol_stack_id=ps-space-ground-station-twt-cryogenic-surge-stack-v1` when industrial prioritization must preserve strategic ground-station hardware that supports SATCOM, SDA, or missile-warning continuity.
 - Add `tool_suite_id=ts-joint-armored-vehicle-running-gear-priority-v1` + `protocol_stack_id=ps-joint-armored-vehicle-running-gear-priority-stack-v1` when mobilization output must shift toward track pads, roadwheels, or final drives to protect armored maneuver readiness.
 - Add `packet_id=DPL-TURBINE-SUPERALLOY-TBC-001`, `packet_id=DPL-SPACE-GROUND-STATION-TWT-001`, and `packet_id=DPL-ARMORED-RUNNING-GEAR-001` for recommendations that materially alter industrial surge posture, strategic hardware allocation, or land-force readiness.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LII Addendum)
+
+- Add `tool_suite_id=ts-strategic-eo-sensor-focal-plane-cryocooler-priority-v1` + `protocol_stack_id=ps-strategic-eo-sensor-focal-plane-cryocooler-priority-stack-v1` when mobilization readiness depends on detector-array pedigree, cryocooler throughput, or EO sensor release timing across ISR and targeting portfolios.
+- Add `packet_id=DPL-EO-SENSOR-FOCAL-PLANE-CRYOCOOLER-001` for recommendations that materially alter electro-optical production priorities, ISR regeneration timing, or industrial release confidence.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LIX Addendum)
+
+- Add `tool_suite_id=ts-strategic-small-craft-outboard-riverine-mobility-surge-v1` + `protocol_stack_id=ps-strategic-small-craft-outboard-riverine-mobility-surge-stack-v1` when mobilization readiness depends on riverine craft, outboard engines, or repair-part throughput for littoral and inland-waterway operations.
+- Add `packet_id=DPL-SMALL-CRAFT-RIVERINE-SURGE-001` for recommendations that materially alter riverine mobility generation, depot conversion timing, or strategic sustainment posture.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXI Addendum)
+
+- Add `tool_suite_id=ts-strategic-defense-industrial-workforce-clearance-assignment-v1` + `protocol_stack_id=ps-strategic-defense-industrial-workforce-clearance-assignment-stack-v1` when industrial readiness depends on clearance reciprocity, scarce artisan assignment, or protected workforce cross-leveling.
+- Add `tool_suite_id=ts-joint-recruiting-training-pipeline-capacity-shock-v1` + `protocol_stack_id=ps-joint-recruiting-training-pipeline-capacity-shock-stack-v1` when long-horizon readiness depends on force-generation throughput, schoolhouse capacity, or instructor bottleneck relief.
+- Add `packet_id=DPL-INDUSTRIAL-WORKFORCE-CLEARANCE-001` and `packet_id=DPL-TRAINING-PIPELINE-CAPACITY-001` for branches that materially alter industrial surge posture, workforce confidence, or replacement-flow assumptions.
+
+## Domain Toolchain Override (2026-03-15, Expansion Wave LXV Addendum)
+
+- Add `tool_suite_id=ts-theater-depot-maintenance-surge-backlog-arbitration-v1` + `protocol_stack_id=ps-theater-depot-maintenance-surge-backlog-arbitration-stack-v1` when industrial readiness depends on depot induction pacing, backlog burn-down, or cross-theater repair allocation.
+- Add `tool_suite_id=ts-strategic-test-equipment-metrology-calibration-priority-v1` + `protocol_stack_id=ps-strategic-test-equipment-metrology-calibration-priority-stack-v1` when production or repair trust depends on scarce metrology labs, calibration standards, or ATE bench recovery.
+- Add `tool_suite_id=ts-theater-technical-order-digital-delta-waiver-control-v1` + `protocol_stack_id=ps-theater-technical-order-digital-delta-waiver-control-stack-v1` and `tool_suite_id=ts-theater-depot-acceptance-test-quality-escape-containment-v1` + `protocol_stack_id=ps-theater-depot-acceptance-test-quality-escape-containment-stack-v1` when readiness depends on trusted maintenance baselines, waiver discipline, or rapid containment of depot quality escapes.
+- Add `packet_id=DPL-DEPOT-MAINT-SURGE-BACKLOG-001`, `packet_id=DPL-METROLOGY-CALIBRATION-PRIORITY-001`, `packet_id=DPL-TECHNICAL-ORDER-DELTA-WAIVER-001`, and `packet_id=DPL-DEPOT-QUALITY-ESCAPE-CONTAINMENT-001` for branches that materially alter industrial surge posture, measurement trust, maintenance governance, or fleet-release confidence.
