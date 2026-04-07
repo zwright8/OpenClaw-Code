@@ -15220,3 +15220,60 @@ validation_gates:
 - output_schema: compassionate-action case board, hardship-routing ladder, humanitarian-transfer continuity packet
 - protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
 - validation_gates: hardship-evidence review, personnel-authority check, command-impact confirmation, human personnel-management validation
+
+## Packet Addendum LXXI (2026-04-07, Expansion Wave LXXXIII)
+
+### packet_id: DPL-TRANSITIONAL-HEALTHCARE-TAMP-CHCBP-001
+- domain: joint transitional healthcare TAMP CHCBP and pharmacy bridge
+- objective: preserve treatment continuity by aligning TAMP or CHCBP eligibility, pharmacy bridge actions, and specialty-care access before separation or demobilization creates a coverage break.
+- primary_tools: eligibility and enrollment board, pharmacy prior-authorization queue, care-transition tracker, premium or demobilization status ledger
+- alternate_tools: manual coverage-priority roster and pharmacy-bridge worksheet
+- degraded_mode: advisory-only coverage sequencing with no unsupported enrollment, refill, or premium-protection promise
+- input_requirements: affected households, separation or demobilization timeline, current coverage posture, medication dependencies, premium status, privacy constraints
+- output_schema: coverage-bridge board, enrollment and authorization ladder, pharmacy continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed coverage notices + API/JSON + S/MIME + USMTF
+- validation_gates: eligibility confirmation, pharmacy-routing review, premium-status check, human benefits validation
+
+### packet_id: DPL-VA-CAREGIVER-STIPEND-RESPITE-001
+- domain: joint VA caregiver support program stipend training and respite continuity
+- objective: preserve caregiver stability by aligning stipend continuity, training completion, respite access, and backup coverage before burnout or administrative delay degrades recovery safety.
+- primary_tools: caregiver application tracker, stipend status ledger, training-completion queue, respite or backup-coverage board
+- alternate_tools: manual caregiver-priority roster and respite review worksheet
+- degraded_mode: advisory-only caregiver sequencing with no unsupported stipend, respite, or training-completion promise
+- input_requirements: affected warfighters or families, caregiver roster, stipend posture, training status, respite availability, household fatigue indicators
+- output_schema: caregiver-support board, stipend and training ladder, respite continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed caregiver determinations + API/JSON + S/MIME + USMTF
+- validation_gates: caregiver-eligibility review, stipend-status confirmation, respite-availability check, human clinical or benefits validation
+
+### packet_id: DPL-VRE-INDEPENDENT-LIVING-001
+- domain: joint VRE independent living and adaptive employment continuity
+- objective: preserve long-tail recovery and transition success by aligning VR&E case posture, adaptive-employment routing, and independent-living support before disability friction becomes economic instability.
+- primary_tools: VR&E case board, employment or training-plan tracker, adaptive-equipment request ledger, independent-living goal review board
+- alternate_tools: manual rehabilitation-priority roster and transition-support worksheet
+- degraded_mode: advisory-only rehabilitation sequencing with no unsupported entitlement, job-placement, or equipment-approval promise
+- input_requirements: affected warfighters, recovery stage, functional limits, program posture, employment or training goals, household income constraints
+- output_schema: VR&E case board, adaptive-employment ladder, independent-living continuity packet
+- protocol_profile: NIEM + PESC XML + signed rehabilitation plans + API/JSON + S/MIME + USMTF
+- validation_gates: entitlement review, counselor-routing confirmation, adaptive-support check, human rehabilitation validation
+
+### packet_id: DPL-SAH-AUTOMOBILE-HOME-ACCESS-001
+- domain: joint specially adapted housing automobile allowance and home accessibility benefit bridge
+- objective: preserve safe recovery and mobility by aligning adaptive-housing grants, automobile allowance routing, and home-accessibility work before discharge or transition stalls in an unsafe environment.
+- primary_tools: housing-adaptation case board, grant or allowance queue, vehicle-modification tracker, contractor or inspection ledger
+- alternate_tools: manual adaptive-benefit roster and accessibility review worksheet
+- degraded_mode: advisory-only benefit sequencing with no unsupported grant, inspection, or contractor-availability promise
+- input_requirements: affected warfighters, injury severity, home barriers, vehicle-mobility needs, grant posture, discharge timeline
+- output_schema: adaptive-benefit board, housing or mobility grant ladder, home-access continuity packet
+- protocol_profile: NIEM + signed benefit determinations + API/JSON + S/MIME + USMTF
+- validation_gates: eligibility confirmation, inspection review, contractor-capacity check, human rehabilitation or benefits validation
+
+### packet_id: DPL-CONVALESCENT-LEAVE-MEDHOLD-001
+- domain: joint convalescent leave limited duty and medical hold continuity
+- objective: preserve lawful recovery time and pay continuity by aligning convalescent leave, limited-duty profiles, and medical-hold orders before administrative drift forces unsafe return-to-duty decisions.
+- primary_tools: medical-hold case board, profile or orders tracker, line-of-duty and pay-impact ledger, recovery-care coordination queue
+- alternate_tools: manual recovery-order roster and profile review worksheet
+- degraded_mode: advisory-only recovery sequencing with no unsupported order, pay-protection, or medhold-approval promise
+- input_requirements: affected servicemembers, diagnosis or injury profile, leave or profile dates, line-of-duty posture, pay exposure, command deadlines
+- output_schema: recovery-orders board, limited-duty ladder, medical-hold continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed medical orders + API/JSON + S/MIME + USMTF
+- validation_gates: order-authority review, line-of-duty confirmation, pay-impact check, human medical or personnel validation

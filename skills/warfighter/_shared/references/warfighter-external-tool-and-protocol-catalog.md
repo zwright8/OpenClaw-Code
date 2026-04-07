@@ -15350,3 +15350,57 @@ external_binding:
 ### `ps-joint-compassionate-reassignment-hardship-discharge-humanitarian-transfer-stack-v1`
 - Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: hardship-status exchange, personnel-action routing, reassignment updates, and command-approval acknowledgment.
+
+## Tool Suite Addendum LXXXIII (2026-04-07, Transition Healthcare, Caregiver Sustainment, Adaptive Employment, Home Accessibility, and Medical Hold Continuity)
+
+### `ts-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-v1`
+- Use for: TAMP and CHCBP continuity, pharmacy bridge actions, and specialty-care coverage preservation when separation or demobilization threatens treatment access.
+- Primary tools: eligibility and enrollment board, pharmacy prior-authorization queue, care-transition tracker, premium or demobilization status ledger.
+- Cross-check tools: independent TRICARE benefits review cell and alternate DEERS or case-management desk.
+- Typical products: coverage-bridge board, enrollment and authorization ladder, pharmacy continuity packet.
+
+### `ts-joint-va-caregiver-support-program-stipend-training-respite-continuity-v1`
+- Use for: caregiver-program eligibility, stipend continuity, training completion, and respite sustainment when wounded-warrior recovery depends on durable household care capacity.
+- Primary tools: caregiver application tracker, stipend status ledger, training-completion queue, respite or backup-coverage board.
+- Cross-check tools: independent caregiver-support review cell and alternate EFMP or wounded-warrior desk.
+- Typical products: caregiver-support board, stipend and training ladder, respite continuity packet.
+
+### `ts-joint-vre-independent-living-adaptive-employment-continuity-v1`
+- Use for: VR&E case continuity, adaptive-employment routing, independent-living support, and transition-plan recovery when disability or separation friction threatens long-tail stability.
+- Primary tools: VR&E case board, employment or training-plan tracker, adaptive-equipment request ledger, independent-living goal review board.
+- Cross-check tools: independent rehabilitation review cell and alternate retirement-transition or SkillBridge desk.
+- Typical products: VR&E case board, adaptive-employment ladder, independent-living continuity packet.
+
+### `ts-joint-specially-adapted-housing-automobile-allowance-home-accessibility-benefit-bridge-v1`
+- Use for: specially adapted housing, automobile allowance, and home-accessibility benefit routing when catastrophic injury makes rapid adaptive-benefit execution mission-relevant to recovery and family stability.
+- Primary tools: housing-adaptation case board, grant or allowance queue, vehicle-modification tracker, contractor or inspection ledger.
+- Cross-check tools: independent home-accessibility review cell and alternate housing-stability or wounded-warrior desk.
+- Typical products: adaptive-benefit board, housing or mobility grant ladder, home-access continuity packet.
+
+### `ts-joint-convalescent-leave-limited-duty-medical-hold-continuity-v1`
+- Use for: convalescent leave, limited-duty profile continuity, medical-hold routing, and recovery-order legitimacy when administrative friction threatens lawful recovery time or pay continuity.
+- Primary tools: medical-hold case board, profile or orders tracker, line-of-duty and pay-impact ledger, recovery-care coordination queue.
+- Cross-check tools: independent medical-board review cell and alternate rehabilitation or personnel-management desk.
+- Typical products: recovery-orders board, limited-duty ladder, medical-hold continuity packet.
+
+## Protocol Stack Addendum LXXXIII (2026-04-07, External Integration Profiles for Expansion Wave LXXXIII)
+
+### `ps-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed coverage notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: eligibility-status exchange, pharmacy-bridge routing, enrollment updates, and command-aware coverage acknowledgment.
+
+### `ps-joint-va-caregiver-support-program-stipend-training-respite-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed caregiver determinations, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: caregiver-status exchange, stipend and respite updates, training routing, and recovery-support acknowledgment.
+
+### `ps-joint-vre-independent-living-adaptive-employment-continuity-stack-v1`
+- Protocols: `NIEM`, `PESC XML`, signed rehabilitation plans, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: rehabilitation-status exchange, training-plan updates, adaptive-employment routing, and independent-living acknowledgment.
+
+### `ps-joint-specially-adapted-housing-automobile-allowance-home-accessibility-benefit-bridge-stack-v1`
+- Protocols: `NIEM`, signed benefit determinations, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: housing-adaptation status exchange, automobile-allowance routing, inspection updates, and home-accessibility acknowledgment.
+
+### `ps-joint-convalescent-leave-limited-duty-medical-hold-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical orders, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: recovery-order exchange, limited-duty updates, medhold routing, and command-aware medical-hold acknowledgment.

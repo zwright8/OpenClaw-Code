@@ -71,3 +71,10 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect patient privacy, attendant eligibility, reimbursement legitimacy, and bedside-access rules before recommending action.
 - Do not fabricate approvals, lodging capacity, patient status, or travel entitlements.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXIII Addendum)
+
+- Add `toolchain_id=TC-TAMPHC-332`, `tool_suite_id=ts-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-v1`, and `protocol_stack_id=ps-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-stack-v1` when bedside-support continuity spans separation, demobilization, or medical transition and depends on preserving treatment coverage or pharmacy access for the recovering warfighter.
+- Add `toolchain_id=TC-VACARE-333`, `tool_suite_id=ts-joint-va-caregiver-support-program-stipend-training-respite-continuity-v1`, and `protocol_stack_id=ps-joint-va-caregiver-support-program-stipend-training-respite-continuity-stack-v1` when family-lodging or attendant planning evolves into long-term caregiver sustainment, stipend continuity, or respite support.
+- Add `toolchain_id=TC-MEDHOLD-336`, `tool_suite_id=ts-joint-convalescent-leave-limited-duty-medical-hold-continuity-v1`, and `protocol_stack_id=ps-joint-convalescent-leave-limited-duty-medical-hold-continuity-stack-v1` when attendant duration, travel legitimacy, or bedside sequencing depends on convalescent leave, limited-duty, or medhold order continuity.
+- Add `packet_id=DPL-TRANSITIONAL-HEALTHCARE-TAMP-CHCBP-001`, `packet_id=DPL-VA-CAREGIVER-STIPEND-RESPITE-001`, and `packet_id=DPL-CONVALESCENT-LEAVE-MEDHOLD-001` for branches that materially alter family-travel posture, bedside-support continuity, or wounded-warrior recovery legitimacy.

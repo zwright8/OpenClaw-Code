@@ -3083,3 +3083,40 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`.
 - Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only personnel routing with manual hardship review and no unsupported reassignment, transfer, or discharge claim.
+
+## Toolchain Wave LXXXIII (2026-04-07, Wounded Warrior Transition and Recovery Continuity)
+
+### `transitional-healthcare-tamp-chcbp-v1`
+- Use for: recovery and family-stability decisions when TAMP or CHCBP coverage windows, pharmacy bridge actions, or specialty-care access determine whether a separating or demobilizing warfighter keeps treatment continuity.
+- Primary tools: `ts-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-v1`.
+- Cross-check tools: `ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed coverage notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only healthcare triage with manual eligibility and refill review until coverage and pharmacy posture are human-confirmed.
+
+### `va-caregiver-stipend-respite-v1`
+- Use for: wounded-warrior recovery and household-stability decisions when caregiver stipend continuity, training completion, or respite availability determines whether home care remains safe and sustainable.
+- Primary tools: `ts-joint-va-caregiver-support-program-stipend-training-respite-continuity-v1`.
+- Cross-check tools: `ts-joint-wounded-warrior-home-modification-caregiver-ramp-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed caregiver determinations, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only caregiver triage with manual stipend, training, and respite review until support continuity is human-confirmed.
+
+### `vre-independent-living-adaptive-employment-v1`
+- Use for: recovery and transition decisions when VR&E entitlement, adaptive-employment routing, or independent-living supports determine whether a wounded warfighter can stabilize after separation or medical retirement.
+- Primary tools: `ts-joint-vre-independent-living-adaptive-employment-continuity-v1`.
+- Cross-check tools: `ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`.
+- Protocols: `NIEM`, `PESC XML`, signed rehabilitation plans, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only rehabilitation triage with manual counselor and entitlement review until transition viability is human-confirmed.
+
+### `adapted-housing-automobile-access-v1`
+- Use for: discharge and mobility decisions when adaptive-housing grants, automobile allowance actions, or home-accessibility evidence determine whether a catastrophically injured warfighter can safely leave institutional care.
+- Primary tools: `ts-joint-specially-adapted-housing-automobile-allowance-home-accessibility-benefit-bridge-v1`.
+- Cross-check tools: `ts-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-v1`.
+- Protocols: `NIEM`, signed benefit determinations, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only accessibility triage with manual eligibility and inspection review until adaptive-benefit posture is human-confirmed.
+
+### `convalescent-leave-medhold-v1`
+- Use for: lawful recovery and availability decisions when convalescent leave, limited-duty profiles, or medical-hold orders determine whether a warfighter can recover safely without pay or order disruption.
+- Primary tools: `ts-joint-convalescent-leave-limited-duty-medical-hold-continuity-v1`.
+- Cross-check tools: `ts-joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical orders, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only recovery-order triage with manual order and pay-impact review until medhold legitimacy is human-confirmed.

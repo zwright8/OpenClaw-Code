@@ -71,3 +71,11 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsafe home layouts, caregiver burnout risk, equipment delay, and unsupported return-home timelines before recommending action.
 - Do not fabricate home-inspection results, caregiver acceptance, or discharge clearance.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXIII Addendum)
+
+- Add `toolchain_id=TC-TAMPHC-332`, `tool_suite_id=ts-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-v1`, and `protocol_stack_id=ps-joint-transitional-healthcare-tamp-chcbp-pharmacy-bridge-stack-v1` when discharge-to-home safety depends on preserving medical coverage, specialty-care access, or pharmacy continuity through separation, demobilization, or medical transition.
+- Add `toolchain_id=TC-VACARE-333`, `tool_suite_id=ts-joint-va-caregiver-support-program-stipend-training-respite-continuity-v1`, and `protocol_stack_id=ps-joint-va-caregiver-support-program-stipend-training-respite-continuity-stack-v1` when home-readiness posture depends on caregiver stipend continuity, training completion, or respite viability.
+- Add `toolchain_id=TC-SAHAA-335`, `tool_suite_id=ts-joint-specially-adapted-housing-automobile-allowance-home-accessibility-benefit-bridge-v1`, and `protocol_stack_id=ps-joint-specially-adapted-housing-automobile-allowance-home-accessibility-benefit-bridge-stack-v1` when home-accessibility branches depend on specially adapted housing, automobile allowance, or benefit-backed contractor execution.
+- Add `toolchain_id=TC-MEDHOLD-336`, `tool_suite_id=ts-joint-convalescent-leave-limited-duty-medical-hold-continuity-v1`, and `protocol_stack_id=ps-joint-convalescent-leave-limited-duty-medical-hold-continuity-stack-v1` when discharge-to-home timing depends on lawful convalescent leave, medhold continuity, or limited-duty order legitimacy.
+- Add `packet_id=DPL-TRANSITIONAL-HEALTHCARE-TAMP-CHCBP-001`, `packet_id=DPL-VA-CAREGIVER-STIPEND-RESPITE-001`, `packet_id=DPL-SAH-AUTOMOBILE-HOME-ACCESS-001`, and `packet_id=DPL-CONVALESCENT-LEAVE-MEDHOLD-001` for branches that materially alter home-readiness posture, caregiver sustainment, or safe discharge assumptions.
