@@ -175,6 +175,12 @@ This roadmap defines an all-domain skill architecture for U.S. warfighter suppor
 - Extended shared references with Tool Suite Addendum LXXXI, Protocol Stack Addendum LXXXI, Packet Addendum LXIX, and Toolchain Wave LXXXI so these household-mobility and education-finance skills bind to concrete external tools, protocol families, packet IDs, and degraded-mode fallback paths.
 - Improved `mission-risk-decision-support`, `joint-military-family-readiness-crisis-sustainment-cell`, `reserve-guard-mobilization-planner`, `joint-personnel-records-dd214-and-benefits-continuity-cell`, and `joint-military-financial-liability-and-compensation-continuity-cell` with Wave LXXXI override bindings for overseas-movement legitimacy, transport continuity, childcare coverage confidence, and education-finance stability.
 
+## Run Update (2026-04-07T16:xx:xxZ)
+
+- Materialized the previously missing Expansion Wave LXXXV support skills for parental-leave or postpartum duty-modification continuity and IG or EO reprisal-protection safeguarding, closing gaps that existing family-readiness and mobilization anchors were already referencing.
+- Backfilled missing `agents/openai.yaml` metadata for transitional-healthcare, VA caregiver, VRE independent-living, specially adapted housing, and convalescent-leave support skills so they render consistently in skill discovery surfaces.
+- Preserved the existing shared tool suites, packet bindings, and toolchain references on `origin/main` while repairing the missing skill surface rather than creating duplicate parallel domains.
+
 ## Run Update (2026-04-07T09:xx:xxZ, Expansion Wave LXXXII)
 
 - Added Expansion Wave LXXXII with 5 American-warfighter support skills focused on telebehavioral-health and suicide-risk continuity, homelessness prevention with transitional housing bridge actions, bankruptcy or consumer-protection routing with security-clearance distress awareness, family online-harassment or doxxing protective escalation, and compassionate reassignment or hardship discharge or humanitarian transfer routing.
