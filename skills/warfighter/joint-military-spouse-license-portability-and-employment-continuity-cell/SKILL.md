@@ -34,8 +34,8 @@ Primary products: spouse-license portability matrix, employer continuity board, 
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-joint-military-spouse-license-portability-employment-continuity-v1` with `protocol_stack_id=ps-joint-military-spouse-license-portability-employment-continuity-stack-v1`.
-- Alternate: select a mission-adjacent family-readiness, reserve-mobilization, or legal-support suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Primary: `toolchain_id=TC-SPOUSE-LICENSE-318`, `tool_suite_id=ts-joint-military-spouse-license-portability-employment-continuity-v1`, and `protocol_stack_id=ps-joint-military-spouse-license-portability-employment-continuity-stack-v1`.
+- Alternate: select a mission-adjacent family-readiness, reserve-mobilization, or legal-support suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs. Prefer `ts-workforce-license-transition-v1` when reciprocity, CEU, or employer-continuity issues need a shared baseline profile.
 - Degraded: manual spouse-employment risk board with advisory-only guidance until licensing and employer constraints are human-validated.
 
 ## Domain Packet Defaults
@@ -48,6 +48,7 @@ Primary products: spouse-license portability matrix, employer continuity board, 
 - Preferred external toolsets for this domain: license reciprocity tracker, state-board requirement matrix, employer continuity queue, and household income risk board.
 - Preferred protocol profiles for coordination and machine exchange: `NIEM`, signed verification letters, `API/JSON`, `S/MIME`, and `USMTF`.
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Use the `Workforce License Portability and Employment Continuity` playbook when interstate reciprocity, CEU deadlines, or employer transitions must be synchronized with command timelines.
 - Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
 
 ## Tool Invocation Contract

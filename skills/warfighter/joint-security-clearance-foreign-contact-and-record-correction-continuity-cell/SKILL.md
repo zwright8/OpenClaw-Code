@@ -35,7 +35,7 @@ Primary products: clearance status board, foreign-contact update ladder, and adj
 ## Domain Toolchain Defaults
 
 - Primary: `toolchain_id=TC-CLEAR-311`, `tool_suite_id=ts-joint-security-clearance-foreign-contact-record-correction-continuity-v1`, and `protocol_stack_id=ps-joint-security-clearance-foreign-contact-record-correction-continuity-stack-v1`.
-- Alternate: select a mission-adjacent personnel-records, mobilization, or mission-risk suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Alternate: select a mission-adjacent personnel-records, mobilization, or mission-risk suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs. Prefer `ts-clearance-personnel-risk-v1` when foreign-contact updates intersect debt, identity compromise, tax issues, or pay anomalies.
 - Degraded: manual access-priority roster with advisory-only sequencing until incident evidence, adjudication posture, and authority are human-confirmed.
 
 ## Domain Packet Defaults
@@ -48,6 +48,7 @@ Primary products: clearance status board, foreign-contact update ladder, and adj
 - Preferred external toolsets for this domain: clearance-case tracker, foreign-contact update queue, adjudication evidence ledger, and personnel-security record-correction board.
 - Preferred protocol profiles for coordination and machine exchange: `NIEM`, signed security notices, `API/JSON`, `S/MIME`, and `USMTF`.
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Use the `Clearance Adjudication and Record Repair` playbook when foreign-contact reporting must be reconciled with financial-risk remediation, identity-theft recovery, or record-mismatch correction.
 - Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
 
 ## Tool Invocation Contract

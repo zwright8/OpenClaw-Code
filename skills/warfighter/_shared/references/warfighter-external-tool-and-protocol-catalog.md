@@ -114,6 +114,36 @@ Include these fields whenever a recommendation depends on external systems:
 - Cross-check tools: treasury disbursement mirror and disconnected transaction integrity tracker.
 - Typical products: pay continuity branches, reconciliation task board, disbursement risk map.
 
+### `ts-family-readiness-casework-v1`
+- Use for: family-readiness case management, safety planning, relief routing, and command visibility on household disruptions that affect warfighter duty status.
+- Primary tools: family-readiness case portal, command task board, emergency lodging or shelter queue, and household stability tracker.
+- Cross-check tools: legal-assistance calendar, chaplain or MFLC referral mirror, and community-support callback ledger.
+- Typical products: household continuity matrix, safety-plan branch map, and escalation task board.
+
+### `ts-benefits-eligibility-bridge-v1`
+- Use for: DEERS or beneficiary reconciliation, TRICARE continuity, and WIC, Medicaid, or CHIP bridge actions during PCS, activation, birth, foster placement, or evacuation.
+- Primary tools: DEERS or beneficiary eligibility systems, referral or pharmacy authorization boards, state-benefit status portals, and document-verification queues.
+- Cross-check tools: beneficiary-identity mirror, caseworker callback tracker, and dependent-status audit log.
+- Typical products: coverage-lapse ladder, recertification queue, and dependent-eligibility packet.
+
+### `ts-dependent-care-transition-v1`
+- Use for: new-parent continuity, adoption or foster placement onboarding, eldercare stabilization, and caregiver-transition support.
+- Primary tools: dependent-status tracker, family-care case board, leave or travel approval queue, and appointment continuity ledger.
+- Cross-check tools: court-order deadline board, community-resource mirror, and caregiver availability tracker.
+- Typical products: dependent-transition checklist, caregiver continuity matrix, and time-sensitive appointment or enrollment packet.
+
+### `ts-clearance-personnel-risk-v1`
+- Use for: security-clearance case tracking when financial distress, identity compromise, tax issues, or record defects threaten access, deployment, or assignment timing.
+- Primary tools: adjudication case manager, credit or debt remediation board, tax discrepancy tracker, and continuous-vetting incident queue.
+- Cross-check tools: personnel-record mirror, legal-assistance status board, and pay-entitlement reconciliation service.
+- Typical products: adjudication risk ledger, remediation ladder, and access-preservation branch plan.
+
+### `ts-workforce-license-transition-v1`
+- Use for: spouse-employment continuity, professional-license portability, CEU tracking, and household-income stabilization tied to PCS or mobilization.
+- Primary tools: state-board requirement matrix, employer continuity tracker, CEU or credential ledger, and household-income risk board.
+- Cross-check tools: interstate-compact or reciprocity mirror, relief-program tracker, and childcare-constraint board.
+- Typical products: portability decision tree, employer continuity plan, and credential deadline tracker.
+
 ### `ts-spectrum-governance-v1`
 - Use for: spectrum allocation governance, emissions control, and interference adjudication across joint force elements.
 - Primary tools: spectrum assignment and EMS COP tools, emitter management services, conflict adjudication boards.

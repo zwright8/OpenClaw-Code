@@ -259,6 +259,61 @@ validation_gates:
 - alternate_tools: lot-level spreadsheet control with manual QA sign-off
 - degraded_mode: priority-only production and distribution cycle
 
+### packet_id: DPL-NEWPARENT-001
+- domain: new-parent leave, lactation, and newborn care continuity
+- objective: preserve leave, postpartum care, lactation support, milk shipment, and newborn enrollment continuity for warfighter families
+- primary_tools: leave tracker, postpartum care board, lactation-room and refrigeration map, beneficiary enrollment queue
+- alternate_tools: manual leave roster plus phone-confirmed clinical callback log
+- degraded_mode: priority-only mother or infant risk board with no unsupported leave or coverage claims
+- input_requirements: delivery date, medical risk, leave status, newborn enrollment status, travel or PCS constraints, cold-chain needs
+- output_schema: leave branch plan, coverage gaps, lactation support matrix, shipment risk list
+- protocol_profile: HL7/FHIR + NIEM + API/JSON
+- validation_gates: beneficiary identity, clinical authority confirmation, leave authority check, cold-chain viability
+
+### packet_id: DPL-BENEFITS-BRIDGE-001
+- domain: DEERS, TRICARE, WIC, Medicaid, and CHIP continuity
+- objective: prevent benefit lapses and coverage confusion during activation, demobilization, birth, PCS, or foster placement
+- primary_tools: DEERS or beneficiary queue, state-benefit status portal, referral or pharmacy board, document-verification ledger
+- alternate_tools: manual eligibility checklist plus caseworker callback tracker
+- degraded_mode: advisory-only coverage risk ladder until human benefit authority confirms status
+- input_requirements: household composition, duty status, income or eligibility change, state of residence, dependent documents
+- output_schema: coverage timeline, recertification queue, document gaps, escalation triggers
+- protocol_profile: NIEM + HL7/FHIR + API/JSON
+- validation_gates: identity match, eligibility-source confirmation, document sufficiency, privacy review
+
+### packet_id: DPL-ADOPTION-FOSTER-001
+- domain: adoption, foster placement, and dependent enrollment continuity
+- objective: synchronize court or placement deadlines, dependent enrollment, school or medical onboarding, and command travel or leave support
+- primary_tools: dependent-status tracker, court-order board, DEERS enrollment queue, school and medical onboarding checklist
+- alternate_tools: manual milestone tracker plus sponsor task ledger
+- degraded_mode: advisory-only dependent transition packet until placement authority and identity are human-confirmed
+- input_requirements: placement status, jurisdiction, sponsor duty timeline, dependent identity documents, school or medical urgency
+- output_schema: milestone checklist, enrollment status, sponsor suspense list, risk triggers
+- protocol_profile: NIEM + API/JSON + signed custody or placement notices
+- validation_gates: placement authority verification, identity match, privacy protections, sponsor approval path
+
+### packet_id: DPL-ELDERCARE-001
+- domain: eldercare, assisted-living, and emergency respite continuity
+- objective: preserve warfighter duty availability while protecting elder safety, medications, transport, and caregiver continuity
+- primary_tools: caregiver availability ledger, assisted-living or respite board, medication and appointment tracker, travel or grant queue
+- alternate_tools: manual care-gap worksheet plus community-resource callback log
+- degraded_mode: advisory-only elder-risk triage pending human confirmation of medical, legal, and caregiving facts
+- input_requirements: elder support needs, caregiver status, medication schedule, legal-document posture, travel constraints, power or oxygen dependencies
+- output_schema: care-gap matrix, respite options, transport timeline, escalation conditions
+- protocol_profile: NIEM + HL7/FHIR + API/JSON
+- validation_gates: identity and consent review, medical urgency confirmation, caregiver availability check, privacy controls
+
+### packet_id: DPL-CLEARANCE-FIN-001
+- domain: clearance-impacting financial distress and record remediation
+- objective: reduce security-clearance risk from debt, tax liens, identity theft, and pay anomalies before they become access or mobilization losses
+- primary_tools: adjudication case manager, credit or debt remediation board, tax discrepancy queue, pay entitlement cross-check service
+- alternate_tools: manual issue ledger plus legal-assistance callback tracker
+- degraded_mode: advisory-only risk ladder pending human review of adjudication evidence and legal posture
+- input_requirements: clearance status, delinquency or lien details, identity-theft indicators, pay anomalies, assignment timeline
+- output_schema: risk ledger, remediation tasks, suspense list, access-impact branches
+- protocol_profile: NIEM + API/JSON + signed security notices
+- validation_gates: source-document verification, privacy review, adjudication authority check, anti-fraud confirmation
+
 ## Packet Addendum LXVI (2026-04-07, Eligibility, Medical Board, Mobilization Pay, Special Education, Clearance Integrity, Retirement, Credential Readiness, and Family Care Continuity)
 
 ### packet_id: DPL-DEERS-ID-ELIGIBILITY-001

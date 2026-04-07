@@ -70,6 +70,66 @@ Tool Invocation Packet
 - Confidence Impact if Degraded: medium-high
 ```
 
+## Playbook: Personnel and Family Readiness Casework
+
+```text
+Tool Invocation Packet
+- Tool/System: family-readiness case portal + command task board
+- Objective: stabilize a warfighter household problem before it degrades deployability, recovery, or retention
+- Inputs: case type, duty timeline, household members, suspense dates, current support providers
+- Query or Action Template: pull open cases, unresolved deadlines, and available support actions for the next 72 hours
+- Expected Output Schema: case_id, household_risk, suspense, owner, support_option, confidence
+- Protocol/Transport: NIEM + API/JSON + signed case note
+- Primary/Alternate/Degraded: integrated case portal / staff workbook / voice + manual ledger
+- Fallback Procedure: publish advisory-only task board with human confirmation required for any benefits or safety action
+- Confidence Impact if Degraded: medium-high
+```
+
+## Playbook: Benefits and Eligibility Bridge
+
+```text
+Tool Invocation Packet
+- Tool/System: DEERS or beneficiary system + TRICARE or state-benefit status board
+- Objective: prevent coverage lapses and documentation drift during life-event or duty-status changes
+- Inputs: sponsor status, dependent roster, state of residence, eligibility documents, recertification dates
+- Query or Action Template: reconcile beneficiary state across systems and surface document or recertification blockers
+- Expected Output Schema: dependent_id, benefit_program, current_status, blocker, next_action, confidence
+- Protocol/Transport: NIEM + HL7/FHIR + API/JSON
+- Primary/Alternate/Degraded: integrated eligibility sync / caseworker callback / manual checklist
+- Fallback Procedure: issue coverage-risk ladder and escalate any urgent care or pharmacy risk for human action
+- Confidence Impact if Degraded: high
+```
+
+## Playbook: Clearance Adjudication and Record Repair
+
+```text
+Tool Invocation Packet
+- Tool/System: adjudication case tracker + personnel record board + debt or tax remediation queue
+- Objective: preserve clearance eligibility by reconciling records and resolving financial or identity-driven risk
+- Inputs: clearance posture, issue category, source documents, assignment timeline, current access status
+- Query or Action Template: correlate adjudication blockers with record defects, debt or tax actions, and pending access decisions
+- Expected Output Schema: person_id, issue_type, access_risk, remediation_step, suspense, confidence
+- Protocol/Transport: NIEM + API/JSON + signed security notice
+- Primary/Alternate/Degraded: integrated case manager / legal-assistance bridge / manual risk ledger
+- Fallback Procedure: provide advisory-only remediation ladder and request human security review before any status claim
+- Confidence Impact if Degraded: high
+```
+
+## Playbook: Workforce License Portability and Employment Continuity
+
+```text
+Tool Invocation Packet
+- Tool/System: reciprocity matrix + employer continuity board + CEU tracker
+- Objective: preserve spouse or transition-linked employment continuity across PCS, activation, or disruption
+- Inputs: profession, destination jurisdiction, employer status, credential expiration, childcare or scheduling constraints
+- Query or Action Template: reconcile portability path, employer options, and deadline risk for the next 30/60/90 days
+- Expected Output Schema: person_id, license_path, employer_status, deadline, household_income_risk, confidence
+- Protocol/Transport: NIEM + API/JSON + signed verification letter
+- Primary/Alternate/Degraded: integrated portability board / manual reciprocity workbook / phone-confirmed deadline log
+- Fallback Procedure: issue advisory-only portability tree and route hardship issues to relief or benefits support
+- Confidence Impact if Degraded: medium-high
+```
+
 ## Playbook: Cyber and Information Defense
 
 ```text

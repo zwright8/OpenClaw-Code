@@ -35,7 +35,7 @@ Primary products: hardship triage board, grant or loan approval ladder, and emer
 ## Domain Toolchain Defaults
 
 - Primary: `toolchain_id=TC-RELIEF-300`, `tool_suite_id=ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`, and `protocol_stack_id=ps-joint-relief-society-hardship-grant-zero-interest-loan-bridge-stack-v1`.
-- Alternate: select a mission-adjacent pay-continuity, family-readiness, or PCS-support suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Alternate: select a mission-adjacent pay-continuity, family-readiness, or PCS-support suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs. Prefer `ts-family-readiness-casework-v1` plus `ts-benefits-eligibility-bridge-v1` when hardship overlaps dependent eligibility, nutrition support, housing, or medical-access disruption.
 - Degraded: manual hardship board with advisory-only prioritization until command endorsement, program availability, and supporting evidence are human-confirmed.
 
 ## Domain Packet Defaults
@@ -48,6 +48,7 @@ Primary products: hardship triage board, grant or loan approval ladder, and emer
 - Preferred external toolsets for this domain: hardship triage board, grant or loan case queue, command endorsement tracker, and arrears or emergency-expense ledger.
 - Preferred protocol profiles for coordination and machine exchange: `NIEM`, signed command endorsements, `API/JSON`, `S/MIME`, and `USMTF`.
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
+- Use the `Personnel and Family Readiness Casework` and `Benefits and Eligibility Bridge` playbooks when hardship triage must be synchronized with DEERS, TRICARE, WIC, Medicaid, CHIP, or temporary lodging actions.
 - Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
 
 ## Tool Invocation Contract
