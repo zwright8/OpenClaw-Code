@@ -2928,3 +2928,121 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`.
 - Protocols: `NIEM`, signed dispute notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: emergency-liquidity-only posture with manual fraud review and no unsupported recovery promise.
+
+## Toolchain Wave LXXVII (2026-04-07, Eligibility, Medical Board, Mobilization Pay, Special Education, Clearance Integrity, Retirement, Credential Readiness, and Family Care Continuity)
+
+### `deers-id-eligibility-reconciliation-v1`
+- Use for: family-readiness and benefits-continuity decisions when eligibility or ID-card drift blocks healthcare, access, pay, or casualty support.
+- Primary tools: `ts-joint-deers-id-card-eligibility-reconciliation-v1`.
+- Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
+- Protocols: `NIEM`, signed eligibility notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: essential-benefit priority board with human-verified sponsor and dependent status only.
+
+### `meb-peb-va-claim-continuity-v1`
+- Use for: recovery and transition decisions when medical-board delay, evidence gaps, or VA or DOD handoff friction could change duty disposition or lawful benefits.
+- Primary tools: `ts-joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-v1`.
+- Cross-check tools: `ts-joint-casualty-rehabilitation-prosthetics-return-to-duty-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed board notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: human-reviewed board-priority roster with conservative duty-status assumptions only.
+
+### `reserve-drill-pay-debt-resolution-v1`
+- Use for: mobilization and financial-readiness decisions when Reserve or Guard pay errors, debt notices, or unpaid travel claims undermine force availability.
+- Primary tools: `ts-reserve-component-drill-pay-travel-voucher-debt-resolution-v1`.
+- Cross-check tools: `ts-joint-military-financial-liability-and-compensation-continuity-v1`.
+- Protocols: `NIEM`, signed pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: hardship-driven manual pay board with certified attendance and no unsupported remission promises.
+
+### `special-education-iep-504-early-intervention-v1`
+- Use for: dependent-support and retention decisions when IEP, 504, or early-intervention disruption threatens household stability and warfighter focus.
+- Primary tools: `ts-joint-special-education-iep-504-early-intervention-continuity-v1`.
+- Cross-check tools: `ts-military-family-readiness-crisis-sustainment-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed school or therapy notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: high-needs child support roster only with guardian consent and manual school-service confirmation.
+
+### `security-clearance-record-correction-v1`
+- Use for: assignment and mobilization decisions when clearance status, foreign-contact updates, or record correction speed determine who can lawfully deploy or access systems.
+- Primary tools: `ts-joint-security-clearance-foreign-contact-record-correction-continuity-v1`.
+- Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
+- Protocols: `NIEM`, signed security notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: mission-essential access posture only with adjudicator review and conservative restrictions.
+
+### `retirement-sbp-tsp-transition-continuity-v1`
+- Use for: force-management and family-stability decisions when retirement packets, SBP elections, or TSP counseling failures could create legal or financial harm.
+- Primary tools: `ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`.
+- Cross-check tools: `ts-joint-military-financial-liability-and-compensation-continuity-v1`.
+- Protocols: `NIEM`, signed retirement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: separation-critical manual review only with human-confirmed eligibility and election status.
+
+### `credential-cyber-cert-ceu-readiness-v1`
+- Use for: deployability and safe-return decisions when expired licenses, certifications, or CEU backlogs would remove otherwise available technical personnel from mission roles.
+- Primary tools: `ts-joint-professional-license-cyber-certification-ceu-readiness-continuity-v1`.
+- Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
+- Protocols: `NIEM`, signed credential notices, `API/JSON`, `S/MIME`, `PESC XML`, `USMTF`.
+- Degraded fallback: duty-critical credential triage only with human-confirmed evidence and explicit command visibility.
+
+### `family-care-allotment-court-order-continuity-v1`
+- Use for: mobilization and family-stability decisions when care-plan gaps, child-support or allotment failure, or missed court orders threaten lawful availability.
+- Primary tools: `ts-joint-family-care-plan-child-support-allotment-court-order-continuity-v1`.
+- Cross-check tools: `ts-military-family-readiness-crisis-sustainment-v1`.
+- Protocols: `NIEM`, signed care-plan notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: mobilization-critical family cases only with human-confirmed guardianship, legal deadlines, and support status.
+
+## Toolchain Wave LXXXI (2026-04-07, Household Mobility, Childcare Stability, and Education-Finance Continuity)
+
+### `command-sponsorship-overseas-screening-passport-v1`
+- Use for: assignment, PCS, and dependent-movement decisions when command sponsorship, overseas screening, or no-fee passport continuity determines whether a family can lawfully move or remain supported.
+- Primary tools: `ts-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-v1`.
+- Cross-check tools: `ts-theater-passport-visa-consular-safehaven-document-bridge-v1`.
+- Protocols: `NIEM`, `ICAO Doc 9303`, signed sponsor notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only movement triage with no unsupported sponsorship, screening, or travel-document outcome until human reviewers validate the packet.
+
+### `pov-shipment-driver-license-registration-v1`
+- Use for: PCS, mobilization, and household-transport decisions when POV shipment delay, driver-license friction, or registration failure threatens availability and lawful movement.
+- Primary tools: `ts-joint-pov-shipment-driver-license-registration-continuity-v1`.
+- Cross-check tools: `ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`.
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed shipment notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only transport triage with manual shipment and registration review until lawful driving posture is human-confirmed.
+
+### `cdc-fee-assistance-duty-shift-v1`
+- Use for: force-availability and family-stability decisions when CDC placement, fee assistance, or duty-shift care coverage determines whether personnel can lawfully report and sustain operations.
+- Primary tools: `ts-joint-child-development-center-fee-assistance-duty-shift-continuity-v1`.
+- Cross-check tools: `ts-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-v1`.
+- Protocols: `NIEM`, signed childcare notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only childcare triage with manual guardian review until placement, subsidy, and coverage evidence are human-confirmed.
+
+### `student-loan-fafsa-college-reentry-v1`
+- Use for: retention, transition, and household-finance decisions when federal student-loan protections, FAFSA continuity, or academic reentry determines whether disruption will create durable readiness drag.
+- Primary tools: `ts-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-v1`.
+- Cross-check tools: `ts-joint-education-benefits-gi-bill-tuition-assistance-testing-continuity-v1`.
+- Protocols: `NIEM`, `PESC XML`, signed education-finance notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only education-finance triage with manual servicer and school review until deferment, enrollment, and deadline evidence are human-confirmed.
+
+## Toolchain Wave LXXVIII (2026-04-07, Beneficiary Readiness, SkillBridge Transition, VA Home-Loan Stability, and Promotion-Board Continuity)
+
+### `beneficiary-estate-readiness-v1`
+- Use for: casualty-readiness and family-protection decisions when DD93 alignment, SGLI or TSGLI evidence, beneficiary trust, or estate readiness determines whether disruption will create avoidable harm.
+- Primary tools: `ts-joint-dd93-sgli-tsgli-beneficiary-estate-readiness-continuity-v1`.
+- Cross-check tools: `ts-joint-survivor-benefits-casualty-assistance-records-expedite-v1`.
+- Protocols: `NIEM`, signed beneficiary notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: manual beneficiary review only with human-confirmed DD93 evidence and no unsupported insurance or estate outcome.
+
+### `skillbridge-transition-continuity-v1`
+- Use for: transition and recovery decisions when SkillBridge, apprenticeship, or employer-fellowship continuity affects retention, lawful separation, or return-to-duty branch planning.
+- Primary tools: `ts-joint-skillbridge-career-skills-apprenticeship-employer-fellowship-continuity-v1`.
+- Cross-check tools: `ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`.
+- Protocols: `NIEM`, signed transition notices, `API/JSON`, `S/MIME`, `HR-XML`, `PESC XML`, `USMTF`.
+- Degraded fallback: manual transition-priority board with human-confirmed eligibility and no unsupported placement commitment.
+
+### `va-home-loan-housing-stability-v1`
+- Use for: mobilization, PCS, and transition decisions when VA home-loan distress, failed closings, or housing instability threatens lawful availability or family readiness.
+- Primary tools: `ts-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-v1`.
+- Cross-check tools: `ts-joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-rate-cap-enforcement-v1`.
+- Protocols: `NIEM`, signed lender notices, `API/JSON`, `S/MIME`, `MISMO`, `USMTF`.
+- Degraded fallback: advisory-only housing triage with manual counselor review and no unsupported foreclosure or modification outcome.
+
+### `promotion-board-record-brief-continuity-v1`
+- Use for: assignment and talent-management decisions when board-file integrity, evaluation timing, or record-brief accuracy determines whether a warfighter remains promotable or properly assigned.
+- Primary tools: `ts-joint-promotion-board-evaluation-report-record-brief-continuity-v1`.
+- Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: manual board-risk review with no unsupported correction or promotion claim until human personnel managers validate the file.

@@ -134,6 +134,9 @@ Use profile selections that fit the mission domain:
 - `AIS/NMEA`: maritime vessel track reporting for port/harbor and maritime domain awareness
 - `NIMS/ICS`: domestic emergency management command structure and coordination framework
 - `HL7/FHIR`: medical interoperability standards used by patient and care data systems
+- `ICAO Doc 9303`: machine-readable travel-document standards for passport and no-fee passport continuity
+- `AAMVA DL/ID`: interoperable driver-license and vehicle-registration exchange for lawful mobility decisions
+- `PESC XML`: education-record and enrollment exchange for FAFSA, student-loan, and academic reentry continuity
 - `AIXM/FIXM/iwxxm`: aviation information exchange models for airspace/flight/weather interoperability
 - `MISP`: cyber threat sharing format commonly bridged with STIX/TAXII workflows
 - `DDS/MQTT` (authorized enclaves): lightweight pub/sub patterns for edge telemetry dissemination
@@ -528,3 +531,37 @@ Include these fields in outputs when tool integration is used:
 - Bridge-erection-boat packets: include propulsion status, tow or rescue branch, spare-part availability, and crossing-hold trigger.
 - GSE packets: include cart availability by line, dispatch ETA, sortie priority, and manual servicing fallback.
 - Hydraulic packets: include sample-result confidence, affected-system list, component-isolation boundary, and no-fly or restricted-flight trigger.
+
+## American Warfighter Support Systems Addendum (2026-04-07)
+
+- Personnel identity and eligibility continuity: DEERS or eligibility reconciliation boards, ID-card issuance queues, sponsor-dependent record sync ledgers, and entitlement exception trackers; protocols: `NIEM`, signed eligibility notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Medical-board and disability-transition continuity: MEB or PEB case trackers, duty-limitation evidence ledgers, IDES handoff boards, and VA or DOD transition-benefit queues; protocols: `HL7/FHIR`, `NIEM`, signed board notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Reserve pay and debt continuity: drill-attendance certification queues, pay discrepancy boards, debt-remission trackers, and travel-claim reconciliation ledgers; protocols: `NIEM`, signed pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Family and dependent support continuity: family-care-plan boards, special-education or school-liaison trackers, EFMP or guardian-support queues, and court-order or allotment ledgers; protocols: `NIEM`, signed care-plan notices, `API/JSON`, `S/MIME`, `HL7/FHIR`, `USMTF`.
+- Clearance and credential continuity: personnel-security case boards, foreign-contact update queues, professional-license or cyber-certification trackers, and CEU status ledgers; protocols: `NIEM`, signed security or credential notices, `API/JSON`, `S/MIME`, `PESC XML`, `USMTF`.
+- Retirement and long-tail transition continuity: retirement-packet boards, SBP election trackers, TSP counseling queues, DD214 validation boards, and transition-checklist ledgers; protocols: `NIEM`, signed retirement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Household mobility and movement legitimacy: command-sponsorship boards, overseas-screening trackers, no-fee passport queues, POV shipment boards, driver-license reciprocity ledgers, and registration status trackers; protocols: `NIEM`, `ICAO Doc 9303`, `AAMVA DL/ID`, signed movement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Education-finance and college reentry continuity: student-loan servicer boards, FAFSA or enrollment trackers, military deferment queues, and academic reentry ledgers; protocols: `NIEM`, `PESC XML`, signed education-finance notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-07)
+
+1. Cross-check at least one authoritative personnel, medical, or finance source with one family-support, legal-support, or case-management source before recommending action.
+2. Use `NIEM` for case and entitlement exchange by default, then add `HL7/FHIR`, `PESC XML`, or `OIDC/SAML` only when the receiving system actually needs health, education, or identity assertions.
+3. Treat signed notices and acknowledgment chains as mandatory for benefit, pay, legal, or custody-affecting actions; if signature or acknowledgment integrity is missing, downgrade to advisory-only.
+4. For family or dependent cases, include a privacy-minimizing branch that limits exposed household data to only what the receiving office requires.
+5. For mobilization or recovery decisions, map every support-system recommendation back to a readiness effect such as deployability, retention, availability, or lawful force flow.
+
+## American Warfighter Transition and Career Protection Addendum (2026-04-07)
+
+- DD93, SGLI, TSGLI, and estate-readiness continuity: beneficiary-trust boards, DD93 verification queues, casualty-support rehearsal ledgers, and estate-document trackers; protocols: `NIEM`, signed beneficiary notices, `API/JSON`, `S/MIME`, `USMTF`.
+- SkillBridge, apprenticeship, and employer-fellowship continuity: transition-program boards, employer-approval queues, internship or fellowship trackers, and credential handoff ledgers; protocols: `NIEM`, signed transition notices, `API/JSON`, `S/MIME`, `HR-XML`, `PESC XML`, `USMTF`.
+- VA home-loan and housing-stability continuity: loan-servicer case boards, foreclosure-avoidance queues, appraisal or closing trackers, and military housing-counselor ledgers; protocols: `NIEM`, signed lender notices, `API/JSON`, `S/MIME`, `MISMO`, `USMTF`.
+- Promotion-board, evaluation-report, and record-brief continuity: board-file audit queues, evaluation-correction trackers, record-brief sync ledgers, and assignment-risk review boards; protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-07, Transition and Career Protection)
+
+1. Cross-check at least one authoritative personnel or finance source with one transition, legal, housing, or talent-management source before recommending action that affects separation, promotion, or beneficiary trust.
+2. Use `MISMO` only when a lender, servicer, or housing counselor exchange actually requires mortgage-specific data; otherwise keep the case exchange in `NIEM` plus signed notices.
+3. Treat DD93, SGLI, TSGLI, evaluation-report, and board-file recommendations as advisory-only until source-record freshness, acknowledgment integrity, and human approval are verified.
+4. For transition-program recommendations, show the readiness effect on deployability, retention, recovery, or lawful separation alongside the household or career impact.
+5. For promotion, housing, or beneficiary cases, include a manual fallback path that preserves appeal or correction rights when tool trust, document signature, or data freshness fails.

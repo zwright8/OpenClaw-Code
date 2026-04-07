@@ -183,3 +183,29 @@ Primary products for this skill: mobilization timeline, force sourcing decision 
 - Add `toolchain_id=TC-TAXID-304`, `tool_suite_id=ts-joint-military-tax-relief-combat-zone-entitlement-irs-identity-protection-v1`, and `protocol_stack_id=ps-joint-military-tax-relief-combat-zone-entitlement-irs-identity-protection-stack-v1` when mobilization confidence depends on combat-zone tax relief, tax-document continuity, or IRS identity-fraud containment.
 - Add `toolchain_id=TC-FVAP-305`, `tool_suite_id=ts-joint-fvap-overseas-ballot-election-material-continuity-v1`, and `protocol_stack_id=ps-joint-fvap-overseas-ballot-election-material-continuity-stack-v1` when activation, overseas movement, or sustained deployment could jeopardize absentee-ballot continuity or lawful voting assistance.
 - Add `packet_id=DPL-SCRA-HOUSING-CREDIT-001`, `packet_id=DPL-MILITARY-TAX-IDENTITY-001`, and `packet_id=DPL-FVAP-BALLOT-CONTINUITY-001` for branches that materially alter mobilization timing, household legal stability, or commander confidence in Reserve or Guard force availability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVII Addendum)
+
+- Add `toolchain_id=TC-DRILLPAY-309`, `tool_suite_id=ts-reserve-component-drill-pay-travel-voucher-debt-resolution-v1`, and `protocol_stack_id=ps-reserve-component-drill-pay-travel-voucher-debt-resolution-stack-v1` when activation timing, lawful availability, or family stability depends on corrected drill pay, travel reimbursement, or debt resolution.
+- Add `toolchain_id=TC-CLEAR-311`, `tool_suite_id=ts-joint-security-clearance-foreign-contact-record-correction-continuity-v1`, and `protocol_stack_id=ps-joint-security-clearance-foreign-contact-record-correction-continuity-stack-v1` when mobilization confidence depends on clearance status, foreign-contact adjudication, or record-correction speed.
+- Add `toolchain_id=TC-FAMCARE-314`, `tool_suite_id=ts-joint-family-care-plan-child-support-allotment-court-order-continuity-v1`, and `protocol_stack_id=ps-joint-family-care-plan-child-support-allotment-court-order-continuity-stack-v1` when activation timing depends on valid family-care plans, support obligations, or court-order continuity.
+- Add `packet_id=DPL-DRILL-PAY-DEBT-001`, `packet_id=DPL-CLEARANCE-RECORD-CORRECTION-001`, and `packet_id=DPL-FAMILY-CARE-ALLOTMENT-001` for branches that materially alter mobilization posture, lawful force flow, or commander confidence in Reserve or Guard availability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVIII Addendum)
+
+- Add `toolchain_id=TC-DD93BEN-315`, `tool_suite_id=ts-joint-dd93-sgli-tsgli-beneficiary-estate-readiness-continuity-v1`, and `protocol_stack_id=ps-joint-dd93-sgli-tsgli-beneficiary-estate-readiness-continuity-stack-v1` when activation confidence depends on current DD93 status, beneficiary intent, or casualty-ready emergency-contact and estate documentation for mobilizing personnel.
+- Add `toolchain_id=TC-VAHOME-317`, `tool_suite_id=ts-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-v1`, and `protocol_stack_id=ps-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-stack-v1` when reserve or Guard mobilization timing depends on preventing mortgage delinquency, failed closings, or housing instability in military households.
+- Add `toolchain_id=TC-PROMO-318`, `tool_suite_id=ts-joint-promotion-board-evaluation-report-record-brief-continuity-v1`, and `protocol_stack_id=ps-joint-promotion-board-evaluation-report-record-brief-continuity-stack-v1` when force availability or assignment confidence depends on cleared board files, corrected evaluation reports, or trusted record-brief synchronization.
+- Add `packet_id=DPL-DD93-SGLI-TSGLI-ESTATE-001`, `packet_id=DPL-VA-HOME-LOAN-HOUSING-001`, and `packet_id=DPL-PROMOTION-BOARD-RECORD-BRIEF-001` for branches that materially alter mobilization timing, lawful force flow, or commander confidence in Reserve or Guard availability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIX Addendum)
+
+- Add `toolchain_id=TC-GTCC-320`, `tool_suite_id=ts-joint-government-travel-charge-card-mission-travel-continuity-v1`, and `protocol_stack_id=ps-joint-government-travel-charge-card-mission-travel-continuity-stack-v1` when activation timing depends on lawful mission travel after card delinquency, suspended accounts, or reimbursement delay.
+- Add `toolchain_id=TC-PAYINC-321`, `tool_suite_id=ts-joint-special-pay-bah-cola-incentive-continuity-v1`, and `protocol_stack_id=ps-joint-special-pay-bah-cola-incentive-continuity-stack-v1` when mobilization confidence depends on corrected BAH, COLA, special pay, or incentive obligations for critical personnel.
+- Add `packet_id=DPL-GTCC-MISSION-TRAVEL-001` and `packet_id=DPL-SPECIAL-PAY-BAH-COLA-INCENTIVE-001` for branches that materially alter activation timing, lawful force flow, or commander confidence in Reserve or Guard availability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXI Addendum)
+
+- Add `toolchain_id=TC-POV-324`, `tool_suite_id=ts-joint-pov-shipment-driver-license-registration-continuity-v1`, and `protocol_stack_id=ps-joint-pov-shipment-driver-license-registration-continuity-stack-v1` when activation timing or backfill reliability depends on lawful household transport, POV shipment recovery, or driver-license continuity.
+- Add `toolchain_id=TC-CDCFEE-325`, `tool_suite_id=ts-joint-child-development-center-fee-assistance-duty-shift-continuity-v1`, and `protocol_stack_id=ps-joint-child-development-center-fee-assistance-duty-shift-continuity-stack-v1` when mobilization confidence depends on childcare placement, fee assistance, or duty-shift caregiver coverage for reserve-component households.
+- Add `packet_id=DPL-POV-SHIPMENT-LICENSE-REG-001` and `packet_id=DPL-CDC-FEE-SHIFT-CONTINUITY-001` for branches that materially alter activation timing, lawful force flow, or commander confidence in Reserve or Guard availability.
