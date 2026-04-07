@@ -2840,3 +2840,77 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-disinformation-counter-v1`.
 - Protocols: signed media manifests, `STANAG 4609` aligned exchange, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
 - Degraded fallback: hold media by default with manual provenance review and commander-approved text-only summaries.
+
+## Toolchain Wave LXXV (2026-04-07, Emergency Leave, EFMP Continuity, Survivor Benefits, PCS Recovery, TRICARE Bridging, and Relief-Society Hardship Support)
+
+### `emergency-leave-arc-message-v1`
+- Use for: readiness and family-support decisions when emergency leave depends on trusted American Red Cross messages, verified family emergencies, and time-sensitive command approval.
+- Primary tools: `ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`.
+- Cross-check tools: `ts-military-family-readiness-crisis-sustainment-v1`.
+- Protocols: `NIEM`, signed leave notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: command-approved leave triage only after manual message validation and conservative backfill assumptions.
+
+### `efmp-respite-medical-device-power-v1`
+- Use for: family-readiness and mass-care decisions when EFMP households depend on respite continuity, special-needs transport, or power-dependent medical equipment.
+- Primary tools: `ts-joint-efmp-respite-medical-device-power-continuity-v1`.
+- Cross-check tools: `ts-homeland-mass-care-access-functional-needs-support-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed DME manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: life-safety-only household support with manual device checks and prioritized generator allocation.
+
+### `survivor-benefits-casualty-expedite-v1`
+- Use for: casualty-support and legitimacy decisions when survivor benefits, beneficiary evidence, and records integrity determine bereaved-family trust.
+- Primary tools: `ts-joint-survivor-benefits-casualty-assistance-records-expedite-v1`.
+- Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
+- Protocols: `NIEM`, signed casualty notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only survivor-support board with no entitlement execution until identity and authority are manually confirmed.
+
+### `pcs-claims-voucher-lodging-v1`
+- Use for: relocation and readiness decisions when PCS claims, voucher processing, HHG disruption, or temporary lodging shortages threaten reporting timelines and retention.
+- Primary tools: `ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`.
+- Cross-check tools: `ts-strategic-military-spouse-licensure-employment-pcs-continuity-v1`.
+- Protocols: `NIEM`, signed orders or voucher notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: manual move-priority board with essential lodging only and human-verified expense review.
+
+### `tricare-referral-specialty-pharmacy-v1`
+- Use for: medical and family-support decisions when referral outages, specialty-network loss, or pharmacy authorization delays threaten care continuity.
+- Primary tools: `ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`.
+- Cross-check tools: `ts-joint-base-pharmacy-refill-tricare-coldchain-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed referral notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: clinically prioritized routing only with manual authorization review and conservative patient-travel assumptions.
+
+### `relief-society-hardship-bridge-v1`
+- Use for: family-readiness and mobilization decisions when hardship grants or loans determine whether warfighters can absorb pay shocks, PCS friction, or emergency travel costs.
+- Primary tools: `ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`.
+- Cross-check tools: `ts-joint-military-financial-liability-and-compensation-continuity-v1`.
+- Protocols: `NIEM`, signed command endorsements, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only hardship sequencing with no unsupported financial commitment and elevated command review.
+
+## Toolchain Wave LXXVI (2026-04-07, Family-Care Governance, Joint Spouse Employment Continuity, Civil-Relief Estate Readiness, and Household-Goods Recovery)
+
+### `family-care-guardianship-support-v1`
+- Use for: readiness and dependent-safety decisions when family-care plans, guardian reliability, or consent gaps threaten deployment or mobilization.
+- Primary tools: `ts-joint-family-care-guardianship-dependent-support-v1`.
+- Cross-check tools: `ts-military-family-readiness-crisis-sustainment-v1`.
+- Protocols: `NIEM`, signed family-care notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: no deployment-readiness certification until manual guardian and consent confirmation.
+
+### `spouse-license-employment-portability-v1`
+- Use for: retention and household-stability decisions when spouse licensing or employment continuity drives readiness risk.
+- Primary tools: `ts-joint-military-spouse-license-portability-employment-continuity-v1`.
+- Cross-check tools: `ts-strategic-military-spouse-licensure-employment-pcs-continuity-v1`.
+- Protocols: `NIEM`, signed verification letters, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only spouse-employment planning with manual reciprocity checks and conservative income assumptions.
+
+### `civil-relief-estate-poa-v1`
+- Use for: legal-readiness and family-stability decisions when SCRA deadlines, estate documents, or POA validity could block deployment or casualty contingencies.
+- Primary tools: `ts-joint-servicemember-civil-relief-estate-poa-v1`.
+- Cross-check tools: `ts-homeland-military-legal-assistance-identity-document-reissuance-v1`.
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: human legal review only with no document-execution recommendation.
+
+### `household-goods-essential-kit-bridge-v1`
+- Use for: relocation and family-stability decisions when HHG disruption or missing essential items threaten reporting, retention, or recovery tempo.
+- Primary tools: `ts-joint-household-goods-loss-claims-essential-kit-v1`.
+- Cross-check tools: `ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`.
+- Protocols: `NIEM`, signed claims manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: essential-needs-only bridging with manual inventory and human-approved reimbursement review.

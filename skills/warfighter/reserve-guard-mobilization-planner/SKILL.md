@@ -169,3 +169,18 @@ Primary products for this skill: mobilization timeline, force sourcing decision 
 
 - Add `toolchain_id=TC-ESGR-291`, `tool_suite_id=ts-reserve-component-employer-esgr-income-shock-continuity-v1`, and `protocol_stack_id=ps-reserve-component-employer-esgr-income-shock-continuity-stack-v1` when mobilization readiness depends on employer coordination, ESGR or USERRA friction, or household income-shock mitigation.
 - Add `packet_id=DPL-EMPLOYER-ESGR-INCOME-SHOCK-001` for branches that materially alter activation timing, lawful employer engagement, or commander confidence in Reserve or Guard force flow.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXV Addendum)
+
+- Add `toolchain_id=TC-ARCMSG-295`, `tool_suite_id=ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`, and `protocol_stack_id=ps-joint-emergency-leave-american-red-cross-message-command-approval-stack-v1` when mobilization or backfill timing depends on verified family emergency leave, compassionate travel, or trusted message provenance.
+- Add `toolchain_id=TC-PCSMOVE-298`, `tool_suite_id=ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`, and `protocol_stack_id=ps-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-stack-v1` when activation confidence depends on unresolved PCS moves, travel-voucher backlog, or temporary lodging instability.
+- Add `toolchain_id=TC-RELIEF-300`, `tool_suite_id=ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`, and `protocol_stack_id=ps-joint-relief-society-hardship-grant-zero-interest-loan-bridge-stack-v1` when mobilization readiness depends on hardship stabilization, emergency travel funding, or relief-society assistance.
+- Add `packet_id=DPL-EMERGENCY-LEAVE-ARC-001`, `packet_id=DPL-PCS-CLAIMS-LODGING-001`, and `packet_id=DPL-RELIEF-SOCIETY-HARDSHIP-001` for branches that materially alter activation timing, lawful force flow, or commander confidence in Reserve or Guard availability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVI Addendum)
+
+- Add `toolchain_id=TC-FAMCARE-301`, `tool_suite_id=ts-joint-family-care-guardianship-dependent-support-v1`, and `protocol_stack_id=ps-joint-family-care-guardianship-dependent-support-stack-v1` when activation timing depends on verified family-care plans, guardian viability, or dependent-support confirmation beyond current care-bridge flows.
+- Add `toolchain_id=TC-SPOUSELIC-302`, `tool_suite_id=ts-joint-military-spouse-license-portability-employment-continuity-v1`, and `protocol_stack_id=ps-joint-military-spouse-license-portability-employment-continuity-stack-v1` when mobilization confidence depends on spouse employment continuity, license portability, or household-income resilience.
+- Add `toolchain_id=TC-SCRA-303`, `tool_suite_id=ts-joint-servicemember-civil-relief-estate-poa-v1`, and `protocol_stack_id=ps-joint-servicemember-civil-relief-estate-poa-stack-v1` when legal-readiness gaps, civil-relief timing, or emergency document validity affect activation credibility.
+- Add `toolchain_id=TC-HHGKIT-304`, `tool_suite_id=ts-joint-household-goods-loss-claims-essential-kit-v1`, and `protocol_stack_id=ps-joint-household-goods-loss-claims-essential-kit-stack-v1` when reporting confidence or activation tempo depends on household-goods recovery, essential-item bridging, or claims stability.
+- Add `packet_id=DPL-FAMILY-CARE-GUARDIANSHIP-001`, `packet_id=DPL-SPOUSE-LICENSE-EMPLOYMENT-001`, `packet_id=DPL-SCRA-ESTATE-POA-001`, and `packet_id=DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001` for branches that materially alter mobilization posture, lawful activation confidence, or household-stability support.

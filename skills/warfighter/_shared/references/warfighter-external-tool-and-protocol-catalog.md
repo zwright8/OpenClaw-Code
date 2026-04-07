@@ -14874,3 +14874,111 @@ external_binding:
 ### `ps-joint-wounded-warrior-family-lodging-nonmedical-attendant-coordination-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed travel orders, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: attendant-status exchange, lodging updates, bedside-travel routing, and family-support acknowledgment.
+
+## Tool Suite Addendum LXXV (2026-04-07, Emergency Leave, EFMP Continuity, Survivor Benefits, PCS Recovery, TRICARE Bridging, and Relief-Society Hardship Support)
+
+### `ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`
+- Use for: emergency leave validation, American Red Cross message provenance, compassionate reassignment screening, and command approval timing when family emergencies affect readiness.
+- Primary tools: emergency leave case board, American Red Cross message validation queue, command approval tracker, travel-booking or voucher ledger.
+- Cross-check tools: independent personnel-support review cell and alternate family-readiness desk.
+- Typical products: emergency-leave validation board, compassionate-travel approval ladder, message-provenance packet.
+
+### `ts-joint-efmp-respite-medical-device-power-continuity-v1`
+- Use for: EFMP continuity, respite-care recovery, power-dependent medical-device support, and special-needs transport coordination during outage, evacuation, or PCS disruption.
+- Primary tools: EFMP case tracker, medical-device power registry, respite-provider queue, special-needs transport board.
+- Cross-check tools: independent medical-support review cell and alternate family-readiness desk.
+- Typical products: EFMP continuity board, medical-device power ladder, respite-support escalation packet.
+
+### `ts-joint-survivor-benefits-casualty-assistance-records-expedite-v1`
+- Use for: survivor-benefits initiation, casualty-assistance synchronization, DD93 or SGLI verification, and records-expedite actions when bereaved families face entitlement delay.
+- Primary tools: casualty-assistance case board, beneficiary-verification queue, DD93 or SGLI review ledger, benefits-initiation tracker.
+- Cross-check tools: independent personnel-records review cell and alternate casualty-support desk.
+- Typical products: survivor-benefits action board, beneficiary-verification ladder, records-expedite packet.
+
+### `ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`
+- Use for: PCS move recovery, HHG loss claims, travel-voucher continuity, and temporary lodging stabilization when relocation friction degrades readiness or retention.
+- Primary tools: PCS orders and amendment tracker, HHG claims queue, travel-voucher ledger, temporary-lodging capacity board.
+- Cross-check tools: independent finance review cell and alternate family-support relocation desk.
+- Typical products: PCS continuity board, claims and voucher ladder, temporary-lodging stabilization packet.
+
+### `ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`
+- Use for: TRICARE referral bridging, specialty-care network recovery, pharmacy prior-authorization continuity, and patient travel coordination when healthcare administration breaks disrupt care.
+- Primary tools: referral-authorization queue, specialty-care network tracker, pharmacy prior-authorization board, patient travel coordination ledger.
+- Cross-check tools: independent medical-regulation review cell and alternate base-pharmacy support desk.
+- Typical products: referral-authorization board, specialty-care bridge ladder, pharmacy exception packet.
+
+### `ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`
+- Use for: military relief-society grants or loans, hardship triage, command-endorsed emergency assistance, and arrears prevention when pay, PCS, or casualty shocks destabilize households.
+- Primary tools: hardship triage board, grant or loan case queue, command endorsement tracker, arrears or emergency-expense ledger.
+- Cross-check tools: independent financial-readiness review cell and alternate family-support assistance desk.
+- Typical products: hardship triage board, grant or loan approval ladder, emergency-assistance bridge packet.
+
+## Protocol Stack Addendum LXXV (2026-04-07, External Integration Profiles for Expansion Wave LXXV)
+
+### `ps-joint-emergency-leave-american-red-cross-message-command-approval-stack-v1`
+- Protocols: `NIEM`, signed leave notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: emergency-verification exchange, leave-routing updates, command-approval acknowledgment, and compassionate-travel coordination.
+
+### `ps-joint-efmp-respite-medical-device-power-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed DME manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: special-needs support updates, medical-device power status exchange, respite coordination, and evacuation-support acknowledgment.
+
+### `ps-joint-survivor-benefits-casualty-assistance-records-expedite-stack-v1`
+- Protocols: `NIEM`, signed casualty notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: casualty-support updates, beneficiary verification, benefits-initiation routing, and records-expedite acknowledgment.
+
+### `ps-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-stack-v1`
+- Protocols: `NIEM`, signed orders or voucher notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: PCS move-status exchange, claims routing, voucher updates, and temporary-lodging acknowledgment.
+
+### `ps-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed referral notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: referral-status exchange, specialty-care routing, pharmacy authorization updates, and patient-travel coordination.
+
+### `ps-joint-relief-society-hardship-grant-zero-interest-loan-bridge-stack-v1`
+- Protocols: `NIEM`, signed command endorsements, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: hardship-case exchange, grant or loan routing, arrears-prevention updates, and emergency-assistance acknowledgment.
+
+## Tool Suite Addendum LXXVI (2026-04-07, Family-Care Governance, Joint Spouse Employment Continuity, Civil-Relief Estate Readiness, and Household-Goods Recovery)
+
+### `ts-joint-family-care-guardianship-dependent-support-v1`
+- Use for: family-care-plan validation, guardian viability, dependent medical or school consent continuity, and deployment-linked dependent-support protection.
+- Primary tools: family-care-plan ledger, guardian contact board, dependent medical or school consent tracker, support-gap escalation queue.
+- Cross-check tools: independent family-readiness case desk and alternate casualty or dependent-support liaison.
+- Typical products: family-care-plan risk board, guardianship decision matrix, and dependent support continuity tracker.
+
+### `ts-joint-military-spouse-license-portability-employment-continuity-v1`
+- Use for: spouse license reciprocity, employer continuity, household income stabilization, and retention-sensitive workforce continuity during PCS, mobilization, or evacuation.
+- Primary tools: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board.
+- Cross-check tools: independent spouse-employment liaison desk and alternate family-readiness office.
+- Typical products: spouse-license portability matrix, employer continuity board, and household income risk tracker.
+
+### `ts-joint-servicemember-civil-relief-estate-poa-v1`
+- Use for: SCRA civil-relief support, estate-document readiness, emergency power-of-attorney continuity, and legal deadline protection before deployment or casualty contingencies.
+- Primary tools: legal-assistance case board, SCRA deadline monitor, estate-document tracker, family-contact escalation ledger.
+- Cross-check tools: independent legal review desk and alternate records-validation cell.
+- Typical products: civil-relief shield matrix, estate or POA status board, and urgent legal-action tracker.
+
+### `ts-joint-household-goods-loss-claims-essential-kit-v1`
+- Use for: household-goods loss recovery, essential-item bridging, temporary household stabilization, and claims continuity during PCS, mobilization, evacuation, or displacement.
+- Primary tools: shipment status tracker, claims queue, emergency issue board, lodging or family support ledger.
+- Cross-check tools: independent finance or property review cell and alternate relocation-support desk.
+- Typical products: household-goods recovery board, essential kit gap matrix, and claims or bridge-support tracker.
+
+## Protocol Stack Addendum LXXVI (2026-04-07, External Integration Profiles for Expansion Wave LXXVI)
+
+### `ps-joint-family-care-guardianship-dependent-support-stack-v1`
+- Protocols: `NIEM`, signed family-care notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: caregiver-status exchange, consent validation, dependent-support routing, and readiness acknowledgment.
+
+### `ps-joint-military-spouse-license-portability-employment-continuity-stack-v1`
+- Protocols: `NIEM`, signed verification letters, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: licensure-verification exchange, employer-status routing, portability updates, and household-stability acknowledgment.
+
+### `ps-joint-servicemember-civil-relief-estate-poa-stack-v1`
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: legal-status exchange, SCRA routing, POA or estate-document updates, and command-visibility acknowledgment.
+
+### `ps-joint-household-goods-loss-claims-essential-kit-stack-v1`
+- Protocols: `NIEM`, signed claims manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: shipment-status exchange, claims routing, emergency-issue updates, and temporary-support acknowledgment.

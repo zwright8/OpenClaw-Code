@@ -3043,3 +3043,35 @@ Every skill output should include:
 - Strategic military child-youth behavioral health and school reintegration + joint-military-family-readiness-crisis-sustainment-cell + theater-deployed-childcare-and-family-support-continuity-cell + homeland-base-school-transport-and-dependent-evacuation-cell.
 - Theater passport visa consular and safehaven document bridge + strategic-military-family-evacuation-and-safehaven-allocation-cell + joint-deployed-identity-credential-loss-and-reissuance-cell + host-nation-access-basing-overflight-support.
 - Joint wounded-warrior family lodging and nonmedical attendant coordination + casualty-evac-and-medical-regulation + strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXV)
+
+- joint-emergency-leave-american-red-cross-message-and-command-approval-cell
+- joint-exceptional-family-member-program-respite-and-medical-device-power-continuity-cell
+- joint-survivor-benefits-casualty-assistance-and-records-expedite-cell
+- joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell
+- joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell
+- joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXV)
+
+- Joint emergency leave American Red Cross message and command approval + reserve-guard-mobilization-planner + joint-military-family-readiness-crisis-sustainment-cell + mission-risk-decision-support.
+- Joint exceptional family member program respite and medical-device power continuity + joint-military-family-readiness-crisis-sustainment-cell + homeland-mass-care-access-and-functional-needs-support-cell + joint-dependent-special-needs-transport-education-and-medical-continuity-cell.
+- Joint survivor benefits casualty assistance and records expedite + joint-casualty-assistance-center-and-family-support-synchronization-cell + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-multi-theater-casualty-information-and-family-notification-integrity-cell.
+- Joint PCS claims travel voucher and temporary lodging continuity + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + reserve-guard-mobilization-planner + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint Tricare referral specialty care and pharmacy authorization bridge + joint-base-pharmacy-refill-tricare-override-and-cold-chain-continuity-cell + casualty-evac-and-medical-regulation + joint-role-3-medical-network-and-aeromedical-evac-cell.
+- Joint relief society hardship grant and zero-interest loan bridge + military-pay-and-family-readiness-disruption-continuity-cell + reserve-guard-mobilization-planner + joint-military-family-readiness-crisis-sustainment-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXVI)
+
+- joint-military-family-care-plan-guardianship-and-dependent-support-cell
+- joint-military-spouse-license-portability-and-employment-continuity-cell
+- joint-servicemember-civil-relief-estate-and-power-of-attorney-cell
+- joint-household-goods-loss-claims-and-essential-kit-bridge-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXVI)
+
+- Joint military family care plan guardianship and dependent support + joint-military-family-readiness-crisis-sustainment-cell + reserve-component-single-parent-childcare-eldercare-mobilization-bridge-cell + joint-dependent-special-needs-transport-education-and-medical-continuity-cell.
+- Joint military spouse license portability and employment continuity + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + reserve-component-employer-esgr-and-income-shock-continuity-cell + joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell.
+- Joint servicemember civil relief estate and power of attorney + homeland-military-legal-assistance-and-identity-document-reissuance-cell + reserve-guard-mobilization-planner + joint-survivor-benefits-casualty-assistance-and-records-expedite-cell.
+- Joint household goods loss claims and essential kit bridge + joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.

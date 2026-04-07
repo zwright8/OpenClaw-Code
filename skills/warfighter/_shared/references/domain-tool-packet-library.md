@@ -14608,3 +14608,117 @@ validation_gates:
 - output_schema: family lodging board, nonmedical attendant approval ladder, bedside-support continuity packet
 - protocol_profile: HL7/FHIR + NIEM + signed travel orders + API/JSON + S/MIME + USMTF
 - validation_gates: clinical-review check, attendant-eligibility confirmation, travel-approval review
+
+## Packet Addendum LXIV (2026-04-07, Expansion Wave LXXV)
+
+### packet_id: DPL-EMERGENCY-LEAVE-ARC-001
+- domain: joint emergency leave American Red Cross message and command approval
+- objective: preserve readiness and family support by validating emergency-leave facts, message provenance, and command approval timing during crisis.
+- primary_tools: emergency leave case board, American Red Cross message validation queue, command approval tracker, travel-booking or voucher ledger
+- alternate_tools: manual leave roster and emergency-verification worksheet
+- degraded_mode: advisory-only leave sequencing with no unsupported emergency verification, travel promise, or approval claim
+- input_requirements: servicemember identity, emergency category, message source, leave authority, travel window, backfill posture
+- output_schema: emergency-leave validation board, compassionate-travel approval ladder, message-provenance packet
+- protocol_profile: NIEM + signed leave notices + API/JSON + S/MIME + USMTF
+- validation_gates: message-provenance check, command-approval review, travel-feasibility confirmation
+
+### packet_id: DPL-EFMP-RESPITE-POWER-001
+- domain: joint exceptional family member program respite and medical device power continuity
+- objective: protect household survivability and readiness by aligning EFMP support, device power continuity, respite coverage, and special-needs transport.
+- primary_tools: EFMP case tracker, medical-device power registry, respite-provider queue, special-needs transport board
+- alternate_tools: manual EFMP roster and backup-power worksheet
+- degraded_mode: life-safety support only with manual clinical review and no unsupported caregiver, generator, or transport claim
+- input_requirements: family profile, device dependencies, backup power, respite posture, shelter or housing status, transport constraints
+- output_schema: EFMP continuity board, medical-device power ladder, respite-support escalation packet
+- protocol_profile: HL7/FHIR + NIEM + signed DME manifests + API/JSON + S/MIME + USMTF
+- validation_gates: device-requirement confirmation, caregiver review, power-availability check
+
+### packet_id: DPL-SURVIVOR-BENEFITS-CASUALTY-001
+- domain: joint survivor benefits casualty assistance and records expedite
+- objective: stabilize bereaved families by accelerating survivor-benefits actions, beneficiary verification, and records-dependent casualty support.
+- primary_tools: casualty-assistance case board, beneficiary-verification queue, DD93 or SGLI review ledger, benefits-initiation tracker
+- alternate_tools: manual casualty-support roster and beneficiary-review worksheet
+- degraded_mode: advisory-only survivor-support sequencing with no unsupported entitlement or beneficiary decision
+- input_requirements: casualty identity, notification posture, beneficiary evidence, record availability, legal holds, family-support demand
+- output_schema: survivor-benefits action board, beneficiary-verification ladder, records-expedite packet
+- protocol_profile: NIEM + signed casualty notices + API/JSON + S/MIME + USMTF
+- validation_gates: casualty-identity confirmation, beneficiary review, release-authority check
+
+### packet_id: DPL-PCS-CLAIMS-LODGING-001
+- domain: joint PCS claims travel voucher and temporary lodging continuity
+- objective: preserve relocation stability by restoring PCS claims, travel-voucher processing, HHG-loss visibility, and temporary lodging support.
+- primary_tools: PCS orders and amendment tracker, HHG claims queue, travel-voucher ledger, temporary-lodging capacity board
+- alternate_tools: manual move-priority roster and claims worksheet
+- degraded_mode: advisory-only reimbursement and lodging sequencing with no unsupported orders, voucher, or lodging claim
+- input_requirements: orders status, travel timeline, HHG disruption, expense evidence, lodging posture, household risk
+- output_schema: PCS continuity board, claims and voucher ladder, temporary-lodging stabilization packet
+- protocol_profile: NIEM + signed orders or voucher notices + API/JSON + S/MIME + USMTF
+- validation_gates: orders-confirmation review, expense-evidence check, lodging-capacity confirmation
+
+### packet_id: DPL-TRICARE-REFERRAL-SPECIALTY-001
+- domain: joint Tricare referral specialty care and pharmacy authorization bridge
+- objective: preserve clinical continuity by restoring referrals, specialty-care routing, pharmacy authorizations, and patient travel coordination during administrative disruption.
+- primary_tools: referral-authorization queue, specialty-care network tracker, pharmacy prior-authorization board, patient travel coordination ledger
+- alternate_tools: manual clinical-priority roster and referral worksheet
+- degraded_mode: advisory-only care sequencing with no unsupported authorization, appointment, or medication-coverage claim
+- input_requirements: patient identity, referral status, specialty urgency, medication dependencies, network posture, travel constraints
+- output_schema: referral-authorization board, specialty-care bridge ladder, pharmacy exception packet
+- protocol_profile: HL7/FHIR + NIEM + signed referral notices + API/JSON + S/MIME + USMTF
+- validation_gates: patient-identity check, clinical-priority review, authorization confirmation
+
+### packet_id: DPL-RELIEF-SOCIETY-HARDSHIP-001
+- domain: joint relief society hardship grant and zero interest loan bridge
+- objective: preserve household stability and readiness by aligning emergency assistance, hardship grants or loans, and command-endorsed relief during pay or PCS shocks.
+- primary_tools: hardship triage board, grant or loan case queue, command endorsement tracker, arrears or emergency-expense ledger
+- alternate_tools: manual hardship roster and emergency-assistance worksheet
+- degraded_mode: advisory-only hardship prioritization with no unsupported grant, loan, or command endorsement
+- input_requirements: hardship category, pay or PCS disruption, bill or travel urgency, assistance-program availability, command posture, privacy limits
+- output_schema: hardship triage board, grant or loan approval ladder, emergency-assistance bridge packet
+- protocol_profile: NIEM + signed command endorsements + API/JSON + S/MIME + USMTF
+- validation_gates: hardship-evidence review, command-endorsement confirmation, program-availability check
+
+## Packet Addendum LXV (2026-04-07, Expansion Wave LXXVI)
+
+### packet_id: DPL-FAMILY-CARE-GUARDIANSHIP-001
+- domain: joint military family care plan guardianship and dependent support
+- objective: preserve lawful readiness by validating guardian viability, dependent support continuity, and consent integrity before deployment or mobilization.
+- primary_tools: family-care-plan ledger, guardian contact board, dependent medical or school consent tracker, support-gap escalation queue
+- alternate_tools: manual family-care roster and guardian-confirmation worksheet
+- degraded_mode: advisory-only family-care planning with no unsupported guardian acceptance, consent validity, or readiness certification
+- input_requirements: family-care-plan status, guardian availability, dependent needs, consent posture, activation timeline, privacy controls
+- output_schema: family-care-plan risk board, guardianship decision matrix, dependent support continuity tracker
+- protocol_profile: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
+- validation_gates: guardian confirmation, consent review, command-readiness check
+
+### packet_id: DPL-SPOUSE-LICENSE-EMPLOYMENT-001
+- domain: joint military spouse license portability and employment continuity
+- objective: preserve household stability and retention by reducing spouse licensure or employment breaks during PCS, activation, or evacuation.
+- primary_tools: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board
+- alternate_tools: manual spouse-support roster and licensure-requirement worksheet
+- degraded_mode: advisory-only spouse-employment planning with no unsupported reciprocity, employer commitment, or income-replacement claim
+- input_requirements: spouse profession, licensure status, employment posture, household cash-flow risk, relocation timeline, childcare constraints
+- output_schema: spouse-license portability matrix, employer continuity board, household income risk tracker
+- protocol_profile: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
+- validation_gates: licensure review, employer confirmation, privacy check
+
+### packet_id: DPL-SCRA-ESTATE-POA-001
+- domain: joint servicemember civil relief estate and power of attorney
+- objective: preserve legal readiness by aligning SCRA actions, estate-document validity, and POA continuity before crisis timelines close.
+- primary_tools: legal-assistance case board, SCRA deadline monitor, estate-document tracker, family-contact escalation ledger
+- alternate_tools: manual legal triage roster and document-validity worksheet
+- degraded_mode: advisory-only legal sequencing with no unsupported court relief, document execution, or attorney authority claim
+- input_requirements: duty status, legal deadlines, family vulnerabilities, document validity, creditor or court actions, legal-support posture
+- output_schema: civil-relief shield matrix, estate or POA status board, urgent legal-action tracker
+- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: legal-review confirmation, document-validity check, authority review
+
+### packet_id: DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001
+- domain: joint household goods loss claims and essential kit bridge
+- objective: preserve family stability and reporting confidence by restoring household-goods visibility, essential-item bridging, and claims continuity.
+- primary_tools: shipment status tracker, claims queue, emergency issue board, lodging or family support ledger
+- alternate_tools: manual household-needs ledger and claims-review worksheet
+- degraded_mode: essential-needs-only bridging with no unsupported reimbursement, shipment, or property-valuation claim
+- input_requirements: shipment status, essential-item gaps, claims deadlines, lodging posture, household demand, privacy limits
+- output_schema: household-goods recovery board, essential kit gap matrix, claims or bridge-support tracker
+- protocol_profile: NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
+- validation_gates: shipment-status review, claims-evidence check, command-support approval

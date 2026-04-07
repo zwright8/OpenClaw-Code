@@ -77,3 +77,9 @@ For each critical tool recommendation include objective, required inputs, query/
 - Add `tool_suite_id=ts-joint-public-affairs-embargo-sensitive-loss-disclosure-v1` + `protocol_stack_id=ps-joint-public-affairs-embargo-sensitive-loss-disclosure-stack-v1` when family-support actions depend on synchronized next-of-kin notification, casualty disclosure timing, or adversary narrative pressure.
 - Add `tool_suite_id=ts-joint-sensitive-imagery-next-of-kin-hold-release-v1` + `protocol_stack_id=ps-joint-sensitive-imagery-next-of-kin-hold-release-stack-v1` when imagery release, redaction, or evidentiary holds can affect family trust, privacy, or public-awareness timing.
 - Add `packet_id=DPL-PA-EMBARGO-SENSITIVE-LOSS-001` and `packet_id=DPL-SENSITIVE-IMAGERY-NOK-HOLD-001` for branches that materially alter next-of-kin timing, survivor-support confidence, or approved public-release posture.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXV Addendum)
+
+- Add `toolchain_id=TC-SURVIVOR-297`, `tool_suite_id=ts-joint-survivor-benefits-casualty-assistance-records-expedite-v1`, and `protocol_stack_id=ps-joint-survivor-benefits-casualty-assistance-records-expedite-stack-v1` when casualty-support posture depends on verified beneficiary data, survivor-benefits initiation speed, or records-expedite confidence.
+- Add `toolchain_id=TC-RELIEF-300`, `tool_suite_id=ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1`, and `protocol_stack_id=ps-joint-relief-society-hardship-grant-zero-interest-loan-bridge-stack-v1` when family-support viability depends on emergency hardship bridging for lodging, travel, or immediate bereavement-driven financial strain.
+- Add `packet_id=DPL-SURVIVOR-BENEFITS-CASUALTY-001` and `packet_id=DPL-RELIEF-SOCIETY-HARDSHIP-001` for branches that materially alter survivor-support legitimacy, family stabilization confidence, or senior-leader release timing.

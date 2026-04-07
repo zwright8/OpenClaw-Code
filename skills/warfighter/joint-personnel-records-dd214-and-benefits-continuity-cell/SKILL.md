@@ -71,3 +71,15 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag record loss, duplicate identity, delayed discharge documentation, unverified benefits assumptions, and privacy leakage before recommending action.
 - Do not fabricate personnel status, discharge documents, entitlement decisions, or veteran handoff completion.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXV Addendum)
+
+- Add `toolchain_id=TC-SURVIVOR-297`, `tool_suite_id=ts-joint-survivor-benefits-casualty-assistance-records-expedite-v1`, and `protocol_stack_id=ps-joint-survivor-benefits-casualty-assistance-records-expedite-stack-v1` when records continuity depends on beneficiary evidence integrity, DD93 or SGLI validation, or casualty-support timing for bereaved families.
+- Add `toolchain_id=TC-PCSMOVE-298`, `tool_suite_id=ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`, and `protocol_stack_id=ps-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-stack-v1` when transition or benefits handoff confidence depends on interrupted orders, move status, or voucher-backed separation support.
+- Add `packet_id=DPL-SURVIVOR-BENEFITS-CASUALTY-001` and `packet_id=DPL-PCS-CLAIMS-LODGING-001` for branches that materially alter entitlement legitimacy, transition confidence, or family-support timing.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVI Addendum)
+
+- Add `toolchain_id=TC-SCRA-303`, `tool_suite_id=ts-joint-servicemember-civil-relief-estate-poa-v1`, and `protocol_stack_id=ps-joint-servicemember-civil-relief-estate-poa-stack-v1` when records or benefits handoff confidence depends on civil-relief filings, estate-document validity, or emergency power-of-attorney continuity.
+- Add `toolchain_id=TC-HHGKIT-304`, `tool_suite_id=ts-joint-household-goods-loss-claims-essential-kit-v1`, and `protocol_stack_id=ps-joint-household-goods-loss-claims-essential-kit-stack-v1` when transition stability or reporting confidence depends on household-goods recovery, essential-item bridging, or claims continuity.
+- Add `packet_id=DPL-SCRA-ESTATE-POA-001` and `packet_id=DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001` for branches that materially alter record-trust confidence, family-support continuity, or legal-readiness legitimacy.
