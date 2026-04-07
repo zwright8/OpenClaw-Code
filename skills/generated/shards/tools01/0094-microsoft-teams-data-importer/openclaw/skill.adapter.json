@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 94,
+  "name": "microsoft-teams-data-importer",
+  "title": "Microsoft Teams Data Importer",
+  "description": "Validates and imports bulk updates into Microsoft Teams.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0094-microsoft-teams-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0094-microsoft-teams-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft teams data importer",
+    "microsoft teams data importer workflow",
+    "microsoft teams data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Microsoft Teams",
+    "operation": "data-importer",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0094-microsoft-teams-data-importer"
+  }
+}

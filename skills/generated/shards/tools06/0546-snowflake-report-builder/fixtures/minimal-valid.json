@@ -1,0 +1,51 @@
+{
+  "skillId": 546,
+  "skillName": "snowflake-report-builder",
+  "title": "Snowflake Report Builder",
+  "provider": "Snowflake",
+  "category": "Data platforms",
+  "operation": "report-builder",
+  "authContext": {
+    "mode": "service_account",
+    "envVars": [
+      "SNOWFLAKE_SERVICE_ACCOUNT_JSON",
+      "SNOWFLAKE_CREDENTIALS_FILE"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "report_scope": "sample_report_scope",
+      "metric_definitions": "sample_metric_definitions",
+      "presentation_template": "sample_presentation_template"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "publication-review"
+    ],
+    "rollbackStrategy": "hold-publication-and-rebuild-report"
+  },
+  "expected": {
+    "primaryArtifact": "snowflake-report-bundle",
+    "kpiFocus": [
+      "report freshness",
+      "metric correctness",
+      "delivery timeliness"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 53,
+      "reviewRisk": 63,
+      "criticalRisk": 82
+    }
+  },
+  "regressionHint": {
+    "scenario": "Report generation with stale source data and a template expecting a removed metric.",
+    "mutation": "Age the source timestamps beyond freshness tolerance and request a missing metric in the template."
+  }
+}

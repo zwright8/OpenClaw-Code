@@ -3134,3 +3134,17 @@ Every skill output should include:
 ## Updated Pairings (2026-04-07, Expansion Wave LXXX)
 
 - Strategic undersea chokepoint autonomous barrier orchestration + maritime-operations-planner + anti-submarine-warfare-support + naval-undersea-cable-protection-and-restoration + joint-autonomous-underwater-sensor-mesh-reconstitution-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXXI)
+
+- joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell
+- joint-privately-owned-vehicle-shipment-driver-license-and-registration-continuity-cell
+- joint-child-development-center-fee-assistance-and-duty-shift-continuity-cell
+- joint-federal-student-loan-deferment-fafsa-and-college-reentry-continuity-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXXI)
+
+- Joint command sponsorship overseas screening and no-fee passport continuity + theater-passport-visa-consular-and-safehaven-document-bridge-cell + joint-deers-id-card-and-eligibility-reconciliation-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint privately owned vehicle shipment driver license and registration continuity + joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell + joint-household-goods-loss-claims-and-essential-kit-bridge-cell + reserve-guard-mobilization-planner.
+- Joint child development center fee assistance and duty shift continuity + joint-military-family-readiness-crisis-sustainment-cell + reserve-component-single-parent-childcare-eldercare-mobilization-bridge-cell + homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell.
+- Joint federal student loan deferment FAFSA and college reentry continuity + joint-education-benefits-gi-bill-tuition-assistance-and-testing-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell.

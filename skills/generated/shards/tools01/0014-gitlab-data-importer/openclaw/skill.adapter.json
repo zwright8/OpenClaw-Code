@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 14,
+  "name": "gitlab-data-importer",
+  "title": "GitLab Data Importer",
+  "description": "Validates and imports bulk updates into GitLab.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0014-gitlab-data-importer/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0014-gitlab-data-importer/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "gitlab data importer",
+    "gitlab data importer workflow",
+    "gitlab data importer automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "GitLab",
+    "operation": "data-importer",
+    "authModes": [
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0014-gitlab-data-importer"
+  }
+}

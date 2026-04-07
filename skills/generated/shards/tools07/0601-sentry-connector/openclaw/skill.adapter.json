@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 601,
+  "name": "sentry-connector",
+  "title": "Sentry Connector",
+  "description": "Unified read/write connector for Sentry APIs and data.",
+  "agent": "agent07",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools07/0601-sentry-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools07/0601-sentry-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "sentry connector",
+    "sentry connector workflow",
+    "sentry connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Sentry",
+    "operation": "connector",
+    "authModes": [
+      "api_key",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools07/0601-sentry-connector"
+  }
+}

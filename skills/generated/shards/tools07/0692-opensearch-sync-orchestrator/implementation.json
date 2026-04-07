@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 692,
+  "skillName": "opensearch-sync-orchestrator",
+  "title": "OpenSearch Sync Orchestrator",
+  "domain": "External SaaS integrations",
+  "domainSlug": "external-saas-integrations",
+  "reason": "We need this skill because OpenSearch workflows degrade when auth, schema, and side-effect handling drift when integrations are run ad hoc. This specific skill turns OpenSearch Sync Orchestrator into a deterministic, auth-checked workflow for schedules and reconciles two-way sync for opensearch records..",
+  "implementationGuide": [
+    "Define the systems, entities, and conflict policy for OpenSearch Sync Orchestrator, then checkpoint the last known good cursor on both sides of OpenSearch.",
+    "Validate credential reuse and rate-limit posture for every participating endpoint before the sync window opens.",
+    "Specify delta-fetch, reconciliation, and idempotency contracts for schedules and reconciles two-way sync for opensearch records., including replay safety and backfill rules.",
+    "Process deltas in deterministic batches, checkpoint after every write phase, and quarantine records that exceed conflict thresholds.",
+    "Exercise simulation and regression suites that cover stale cursors, duplicate deliveries, and asymmetric provider failures.",
+    "Publish a reconciliation bundle with drift metrics, conflict counts, and the next checkpoint required for autonomous continuation."
+  ],
+  "runtimeProfile": {
+    "archetype": "sync-orchestration-engine",
+    "coreMethod": "cursor-based reconciliation",
+    "primaryArtifact": "opensearch-reconciliation-bundle",
+    "requiredSignals": [
+      "source cursor",
+      "destination state",
+      "conflict policy"
+    ],
+    "kpiFocus": [
+      "sync lag",
+      "reconciliation completion rate",
+      "conflict resolution accuracy"
+    ],
+    "scoringWeights": {
+      "truth": 0.22,
+      "execution": 0.34,
+      "safety": 0.28,
+      "impact": 0.16
+    },
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 60,
+      "criticalRisk": 79
+    },
+    "orchestration": {
+      "routingTag": "opensearch:sync-orchestrator",
+      "approvalGates": [
+        "provider-auth-check",
+        "conflict-policy-review"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 4,
+        "baseDelayMs": 800,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "freeze-sync-window-and-reconcile-from-last-stable-cursor",
+      "components": [
+        "cursor validation",
+        "delta fetch",
+        "conflict resolution",
+        "state checkpoint"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0692_opensearch",
+      "releaseCycles": 2,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:692:opensearch:sync-orchestrator"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "advanced",
+    "humanUseCases": [
+      "Run bidirectional or fan-out sync jobs without losing lineage or replay safety.",
+      "Control high-volume synchronization with explicit conflict policy and checkpointing."
+    ],
+    "runbook": {
+      "preflight": [
+        "Verify both source and destination auth contexts and confirm the active cursor/checkpoint.",
+        "Agree on the conflict policy before any mutation is emitted to the destination system."
+      ],
+      "execution": [
+        "Fetch deltas deterministically, checkpoint every batch, and preserve replay inputs.",
+        "Route unresolved conflicts into a human review queue instead of guessing."
+      ],
+      "recovery": [
+        "Freeze the sync window when reconciliation diverges from the checkpointed baseline.",
+        "Replay from the last stable cursor only after the conflict policy is corrected."
+      ],
+      "handoff": [
+        "Return checkpoint state, drift summary, and unresolved conflicts with next owners.",
+        "Document whether the destination is caught up, backfilled, or paused pending review."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "quality",
+        "rule": "Checkpoint every delta batch before applying destination writes.",
+        "automation": "cursor-checkpoint"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Reconcile from the last stable cursor after failures or drift.",
+        "automation": "cursor-replay"
+      },
+      {
+        "kind": "compliance",
+        "rule": "Escalate unresolved conflicts instead of auto-merging beyond policy.",
+        "automation": "conflict-review-queue"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.7% successful runs per 7-day window",
+      "errorBudget": "<=0.3% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": true,
+      "parallelism": 2,
+      "maxCycleMinutes": 20,
+      "approvals": [
+        "provider-auth-check",
+        "conflict-policy-review"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "sync lag",
+      "secondaryMetrics": [
+        "reconciliation completion rate",
+        "conflict resolution accuracy"
+      ],
+      "reviewCadence": "weekly"
+    }
+  },
+  "integrationProfile": {
+    "provider": "OpenSearch",
+    "providerSlug": "opensearch",
+    "category": "External SaaS integrations",
+    "operation": "Sync Orchestrator",
+    "operationSlug": "sync-orchestrator",
+    "protocols": [
+      "HTTPS/REST"
+    ],
+    "authModes": [
+      {
+        "kind": "oauth2",
+        "label": "OAuth client or delegated session",
+        "envVars": [
+          "OPENSEARCH_CLIENT_ID",
+          "OPENSEARCH_CLIENT_SECRET"
+        ],
+        "required": true,
+        "validation": "Reuse an active delegated session or validate the client credentials with a lightweight identity call."
+      },
+      {
+        "kind": "token",
+        "label": "Access token or personal access token",
+        "envVars": [
+          "OPENSEARCH_TOKEN",
+          "OPENSEARCH_ACCESS_TOKEN"
+        ],
+        "required": true,
+        "validation": "Validate the token with the smallest read-only endpoint that proves scope and tenancy."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": false,
+    "mutating": true,
+    "webhookCapable": false,
+    "notes": [
+      "Reuse existing sessions or provider tokens before requesting new credentials."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the systems, entities, and conflict policy for OpenSearch Sync Orchestrator, then checkpoint the last known good cursor on both sides of OpenSearch.",
+    "contractStep": "Validate credential reuse and rate-limit posture for every participating endpoint before the sync window opens.",
+    "coreStep": "Specify delta-fetch, reconciliation, and idempotency contracts for schedules and reconciles two-way sync for opensearch records., including replay safety and backfill rules.",
+    "orchestrationStep": "Process deltas in deterministic batches, checkpoint after every write phase, and quarantine records that exceed conflict thresholds.",
+    "validationStep": "Exercise simulation and regression suites that cover stale cursors, duplicate deliveries, and asymmetric provider failures.",
+    "rolloutStep": "Publish a reconciliation bundle with drift metrics, conflict counts, and the next checkpoint required for autonomous continuation."
+  }
+}

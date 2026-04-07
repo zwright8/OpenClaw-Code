@@ -2774,3 +2774,37 @@ For every critical recommendation, include:
 - Cross-check systems: independent ASW review desk and alternate maritime COP barrier-monitor cell
 - Protocol binding: AIS/NMEA + Link 16 J-series + API/JSON + signed autonomy releases + USMTF
 - Fallback path: manual patrol-and-sensor barrier posture with human-verified release authority and no unsupported autonomous interdiction claim
+
+## Toolchain Wave LXXXI (2026-04-07)
+
+### `TC-CMDSP-323`
+
+- Domain: joint command sponsorship overseas screening and no-fee passport continuity
+- Primary systems: command-sponsorship case board, overseas screening tracker, no-fee passport or visa queue, dependent movement ledger
+- Cross-check systems: independent passport or consular review cell and alternate family-readiness or DEERS support desk
+- Protocol binding: NIEM + ICAO Doc 9303 + signed sponsor notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only movement sequencing until sponsorship status, screening evidence, and travel-document posture are human-confirmed
+
+### `TC-POV-324`
+
+- Domain: joint privately owned vehicle shipment driver license and registration continuity
+- Primary systems: POV shipment tracker, driver-license reciprocity board, registration or title ledger, insurance-compliance queue
+- Cross-check systems: independent transportation office review cell and alternate legal-assistance or family-support desk
+- Protocol binding: NIEM + AAMVA DL/ID + signed shipment notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only transport sequencing until shipment status, license validity, and registration evidence are human-confirmed
+
+### `TC-CDCFEE-325`
+
+- Domain: joint child development center fee assistance and duty shift continuity
+- Primary systems: CDC waitlist board, fee-assistance queue, duty-shift coverage roster, guardian-verification ledger
+- Cross-check systems: independent family-readiness review cell and alternate base-childcare or mobilization support desk
+- Protocol binding: NIEM + signed childcare notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only childcare sequencing until placement status, fee eligibility, and guardian coverage are human-confirmed
+
+### `TC-STULOAN-326`
+
+- Domain: joint federal student loan deferment FAFSA and college reentry continuity
+- Primary systems: student-loan servicer case board, FAFSA or enrollment-status tracker, military deferment or forbearance queue, academic reentry ledger
+- Cross-check systems: independent education-benefits review cell and alternate financial-readiness or personnel-records desk
+- Protocol binding: NIEM + PESC XML + signed education-finance notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only education-finance sequencing until loan posture, school status, and military-order evidence are human-confirmed

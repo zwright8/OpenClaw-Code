@@ -15059,6 +15059,52 @@ validation_gates:
 - protocol_profile: NIEM + signed pay notices + API/JSON + S/MIME + USMTF
 - validation_gates: status verification, location evidence, incentive eligibility
 
+## Packet Addendum LXIX (2026-04-07, Expansion Wave LXXXI)
+
+### packet_id: DPL-CMD-SPONSOR-OVERSEAS-SCREEN-001
+- domain: joint command sponsorship overseas screening and no-fee passport continuity
+- objective: preserve lawful dependent movement and assignment stability by aligning command sponsorship, overseas screening, and no-fee passport continuity before families are stranded.
+- primary_tools: command-sponsorship case board, overseas screening tracker, no-fee passport or visa queue, dependent movement ledger
+- alternate_tools: manual sponsor-status roster and passport or screening escalation worksheet
+- degraded_mode: advisory-only movement sequencing with no unsupported sponsorship, screening, or travel-document promise
+- input_requirements: orders posture, family composition, sponsorship status, screening backlog, passport deadlines, host-nation constraints
+- output_schema: command-sponsorship recovery board, overseas-screening ladder, no-fee passport movement packet
+- protocol_profile: NIEM + ICAO Doc 9303 + signed sponsor notices + API/JSON + S/MIME + USMTF
+- validation_gates: orders confirmation, sponsorship evidence, screening review, document-authority check
+
+### packet_id: DPL-POV-SHIPMENT-LICENSE-REG-001
+- domain: joint privately owned vehicle shipment driver license and registration continuity
+- objective: preserve lawful household mobility by sequencing POV shipment recovery, license validity, registration continuity, and insurance legitimacy before readiness degrades.
+- primary_tools: POV shipment tracker, driver-license reciprocity board, registration or title ledger, insurance-compliance queue
+- alternate_tools: manual transport-priority roster and registration or shipment verification worksheet
+- degraded_mode: advisory-only mobility sequencing with no unsupported shipment release, registration, or driving-legality claim
+- input_requirements: household location, shipment posture, license jurisdiction, registration deadlines, insurance status, mission attendance impact
+- output_schema: POV continuity board, license or registration risk ladder, household transport restoration packet
+- protocol_profile: NIEM + AAMVA DL/ID + signed shipment notices + API/JSON + S/MIME + USMTF
+- validation_gates: shipment evidence, license review, registration status, insurance check
+
+### packet_id: DPL-CDC-FEE-SHIFT-CONTINUITY-001
+- domain: joint child development center fee assistance and duty shift continuity
+- objective: preserve warfighter availability by aligning CDC placement, fee assistance, shift-work coverage, and caregiver verification before childcare breakdown forces mission loss.
+- primary_tools: CDC waitlist board, fee-assistance queue, duty-shift coverage roster, guardian-verification ledger
+- alternate_tools: manual childcare-priority roster and caregiver coverage worksheet
+- degraded_mode: advisory-only childcare sequencing with no unsupported placement, subsidy, or caregiver commitment promise
+- input_requirements: affected households, childcare demand, fee-assistance posture, duty shifts, guardian availability, installation constraints
+- output_schema: CDC access board, fee-assistance ladder, duty-shift childcare continuity packet
+- protocol_profile: NIEM + signed childcare notices + API/JSON + S/MIME + USMTF
+- validation_gates: placement review, fee-eligibility confirmation, guardian check, command-impact review
+
+### packet_id: DPL-STUDENT-LOAN-FAFSA-REENTRY-001
+- domain: joint federal student loan deferment FAFSA and college reentry continuity
+- objective: preserve education-finance stability and academic reentry by aligning loan protections, FAFSA status, enrollment evidence, and school timelines before disruption cascades into readiness loss.
+- primary_tools: student-loan servicer case board, FAFSA or enrollment-status tracker, military deferment or forbearance queue, academic reentry ledger
+- alternate_tools: manual education-finance roster and school or servicer escalation worksheet
+- degraded_mode: advisory-only education-finance sequencing with no unsupported deferment, aid, or school-readmission promise
+- input_requirements: affected borrowers or students, military status, loan posture, school deadlines, FAFSA status, academic reentry barriers
+- output_schema: student-loan protection board, FAFSA or enrollment ladder, college-reentry continuity packet
+- protocol_profile: NIEM + PESC XML + signed education-finance notices + API/JSON + S/MIME + USMTF
+- validation_gates: military-order evidence, servicer review, enrollment confirmation, deadline check
+
 ## Packet Addendum LXVII (2026-04-07, Expansion Wave LXXVIII)
 
 ### packet_id: DPL-DD93-SGLI-TSGLI-ESTATE-001

@@ -1,0 +1,7 @@
+{
+  "minSuccessRate": 0.6,
+  "maxTimeoutRate": 0.3,
+  "maxFailureRate": 0.3,
+  "maxAvgLatencyMs": 400,
+  "maxP95LatencyMs": 700
+}

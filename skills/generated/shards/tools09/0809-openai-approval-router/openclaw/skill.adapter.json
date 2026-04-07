@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 809,
+  "name": "openai-approval-router",
+  "title": "OpenAI Approval Router",
+  "description": "Routes OpenAI-driven decisions to the right approvers.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools09/0809-openai-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools09/0809-openai-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "openai approval router",
+    "openai approval router workflow",
+    "openai approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "OpenAI",
+    "operation": "approval-router",
+    "authModes": [
+      "api_key"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools09/0809-openai-approval-router"
+  }
+}

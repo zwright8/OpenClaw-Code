@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 59,
+  "name": "notion-approval-router",
+  "title": "Notion Approval Router",
+  "description": "Routes Notion-driven decisions to the right approvers.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0059-notion-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0059-notion-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "notion approval router",
+    "notion approval router workflow",
+    "notion approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Notion",
+    "operation": "approval-router",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0059-notion-approval-router"
+  }
+}

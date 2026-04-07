@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 832,
+  "name": "azure-openai-sync-orchestrator",
+  "title": "Azure OpenAI Sync Orchestrator",
+  "description": "Schedules and reconciles two-way sync for Azure OpenAI records.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools09/0832-azure-openai-sync-orchestrator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools09/0832-azure-openai-sync-orchestrator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "azure openai sync orchestrator",
+    "azure openai sync orchestrator workflow",
+    "azure openai sync orchestrator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Azure OpenAI",
+    "operation": "sync-orchestrator",
+    "authModes": [
+      "api_key"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools09/0832-azure-openai-sync-orchestrator"
+  }
+}

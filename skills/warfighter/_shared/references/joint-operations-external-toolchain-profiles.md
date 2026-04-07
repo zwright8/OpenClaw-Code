@@ -2987,6 +2987,36 @@ For each critical recommendation, include:
 - Protocols: `NIEM`, signed care-plan notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: mobilization-critical family cases only with human-confirmed guardianship, legal deadlines, and support status.
 
+## Toolchain Wave LXXXI (2026-04-07, Household Mobility, Childcare Stability, and Education-Finance Continuity)
+
+### `command-sponsorship-overseas-screening-passport-v1`
+- Use for: assignment, PCS, and dependent-movement decisions when command sponsorship, overseas screening, or no-fee passport continuity determines whether a family can lawfully move or remain supported.
+- Primary tools: `ts-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-v1`.
+- Cross-check tools: `ts-theater-passport-visa-consular-safehaven-document-bridge-v1`.
+- Protocols: `NIEM`, `ICAO Doc 9303`, signed sponsor notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only movement triage with no unsupported sponsorship, screening, or travel-document outcome until human reviewers validate the packet.
+
+### `pov-shipment-driver-license-registration-v1`
+- Use for: PCS, mobilization, and household-transport decisions when POV shipment delay, driver-license friction, or registration failure threatens availability and lawful movement.
+- Primary tools: `ts-joint-pov-shipment-driver-license-registration-continuity-v1`.
+- Cross-check tools: `ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`.
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed shipment notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only transport triage with manual shipment and registration review until lawful driving posture is human-confirmed.
+
+### `cdc-fee-assistance-duty-shift-v1`
+- Use for: force-availability and family-stability decisions when CDC placement, fee assistance, or duty-shift care coverage determines whether personnel can lawfully report and sustain operations.
+- Primary tools: `ts-joint-child-development-center-fee-assistance-duty-shift-continuity-v1`.
+- Cross-check tools: `ts-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-v1`.
+- Protocols: `NIEM`, signed childcare notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only childcare triage with manual guardian review until placement, subsidy, and coverage evidence are human-confirmed.
+
+### `student-loan-fafsa-college-reentry-v1`
+- Use for: retention, transition, and household-finance decisions when federal student-loan protections, FAFSA continuity, or academic reentry determines whether disruption will create durable readiness drag.
+- Primary tools: `ts-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-v1`.
+- Cross-check tools: `ts-joint-education-benefits-gi-bill-tuition-assistance-testing-continuity-v1`.
+- Protocols: `NIEM`, `PESC XML`, signed education-finance notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only education-finance triage with manual servicer and school review until deferment, enrollment, and deadline evidence are human-confirmed.
+
 ## Toolchain Wave LXXVIII (2026-04-07, Beneficiary Readiness, SkillBridge Transition, VA Home-Loan Stability, and Promotion-Board Continuity)
 
 ### `beneficiary-estate-readiness-v1`

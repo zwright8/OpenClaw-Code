@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 789,
+  "name": "linkedin-approval-router",
+  "title": "LinkedIn Approval Router",
+  "description": "Routes LinkedIn-driven decisions to the right approvers.",
+  "agent": "agent08",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools08/0789-linkedin-approval-router/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools08/0789-linkedin-approval-router/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "linkedin approval router",
+    "linkedin approval router workflow",
+    "linkedin approval router automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "LinkedIn",
+    "operation": "approval-router",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools08/0789-linkedin-approval-router"
+  }
+}

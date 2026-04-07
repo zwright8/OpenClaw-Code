@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 91,
+  "name": "microsoft-teams-connector",
+  "title": "Microsoft Teams Connector",
+  "description": "Unified read/write connector for Microsoft Teams APIs and data.",
+  "agent": "agent01",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools01/0091-microsoft-teams-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools01/0091-microsoft-teams-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "microsoft teams connector",
+    "microsoft teams connector workflow",
+    "microsoft teams connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Microsoft Teams",
+    "operation": "connector",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": true,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools01/0091-microsoft-teams-connector"
+  }
+}

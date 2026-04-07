@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 508,
+  "name": "postgres-workflow-automator",
+  "title": "Postgres Workflow Automator",
+  "description": "Executes repeatable multi-step workflows using Postgres.",
+  "agent": "agent06",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools06/0508-postgres-workflow-automator/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools06/0508-postgres-workflow-automator/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "postgres workflow automator",
+    "postgres workflow automator workflow",
+    "postgres workflow automator automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Postgres",
+    "operation": "workflow-automator",
+    "authModes": [
+      "service_account",
+      "session"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools06/0508-postgres-workflow-automator"
+  }
+}

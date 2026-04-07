@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 865,
+  "name": "elevenlabs-webhook-listener",
+  "title": "ElevenLabs Webhook Listener",
+  "description": "Captures, verifies, and routes ElevenLabs webhook events.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools09/0865-elevenlabs-webhook-listener/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools09/0865-elevenlabs-webhook-listener/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "elevenlabs webhook listener",
+    "elevenlabs webhook listener workflow",
+    "elevenlabs webhook listener automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "ElevenLabs",
+    "operation": "webhook-listener",
+    "authModes": [
+      "oauth2",
+      "token",
+      "signing_secret"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools09/0865-elevenlabs-webhook-listener"
+  }
+}

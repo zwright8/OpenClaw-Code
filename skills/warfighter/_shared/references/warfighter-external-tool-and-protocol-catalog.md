@@ -15193,6 +15193,50 @@ external_binding:
 - Protocols: `NIEM`, signed pay notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: entitlements-status exchange, dependent-location routing, bonus or obligation updates, and compensation acknowledgment.
 
+## Tool Suite Addendum LXXXI (2026-04-07, Household Mobility, Childcare Stability, and Education-Finance Continuity)
+
+### `ts-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-v1`
+- Use for: command sponsorship, overseas screening, no-fee passport continuity, and dependent movement eligibility when assignment or PCS friction threatens family stability and warfighter availability.
+- Primary tools: command-sponsorship case board, overseas screening tracker, no-fee passport or visa queue, dependent movement ledger.
+- Cross-check tools: independent passport or consular review cell and alternate family-readiness or DEERS support desk.
+- Typical products: command-sponsorship recovery board, overseas-screening ladder, no-fee passport movement packet.
+
+### `ts-joint-pov-shipment-driver-license-registration-continuity-v1`
+- Use for: POV shipment, driver-license validity, registration continuity, and insurance legitimacy when household mobility friction threatens lawful movement and reporting reliability.
+- Primary tools: POV shipment tracker, driver-license reciprocity board, registration or title ledger, insurance-compliance queue.
+- Cross-check tools: independent transportation office review cell and alternate legal-assistance or family-support desk.
+- Typical products: POV continuity board, license or registration risk ladder, household transport restoration packet.
+
+### `ts-joint-child-development-center-fee-assistance-duty-shift-continuity-v1`
+- Use for: CDC placement, fee assistance, shift-work coverage, and guardian continuity when childcare instability threatens warfighter attendance, retention, or mobilization reliability.
+- Primary tools: CDC waitlist board, fee-assistance queue, duty-shift coverage roster, guardian-verification ledger.
+- Cross-check tools: independent family-readiness review cell and alternate base-childcare or mobilization support desk.
+- Typical products: CDC access board, fee-assistance ladder, duty-shift childcare continuity packet.
+
+### `ts-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-v1`
+- Use for: student-loan deferment, FAFSA continuity, enrollment protection, and college reentry when mobilization, PCS, injury, or transition disrupts education-finance stability for warfighters or dependents.
+- Primary tools: student-loan servicer case board, FAFSA or enrollment-status tracker, military deferment or forbearance queue, academic reentry ledger.
+- Cross-check tools: independent education-benefits review cell and alternate financial-readiness or personnel-records desk.
+- Typical products: student-loan protection board, FAFSA or enrollment ladder, college-reentry continuity packet.
+
+## Protocol Stack Addendum LXXXI (2026-04-07, External Integration Profiles for Expansion Wave LXXXI)
+
+### `ps-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-stack-v1`
+- Protocols: `NIEM`, `ICAO Doc 9303`, signed sponsor notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: command-sponsorship status exchange, overseas-screening routing, no-fee passport updates, and dependent-movement acknowledgment.
+
+### `ps-joint-pov-shipment-driver-license-registration-continuity-stack-v1`
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed shipment notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: POV-shipment status exchange, license-validity routing, registration updates, and lawful-mobility acknowledgment.
+
+### `ps-joint-child-development-center-fee-assistance-duty-shift-continuity-stack-v1`
+- Protocols: `NIEM`, signed childcare notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: CDC-placement exchange, fee-assistance routing, duty-shift coverage updates, and caregiver-support acknowledgment.
+
+### `ps-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-stack-v1`
+- Protocols: `NIEM`, `PESC XML`, signed education-finance notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: student-loan status exchange, FAFSA or enrollment routing, deferment updates, and academic-reentry acknowledgment.
+
 ## Tool Suite Addendum LXXVIII (2026-04-07, Beneficiary Readiness, SkillBridge Transition, VA Home-Loan Stability, and Promotion-Board Continuity)
 
 ### `ts-joint-dd93-sgli-tsgli-beneficiary-estate-readiness-continuity-v1`

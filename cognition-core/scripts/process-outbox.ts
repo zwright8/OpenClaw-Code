@@ -22,48 +22,6 @@ Options:
   --skill-min-score <n>        Minimum hardening score for deployability (default: 82)
   --deploy-index <path>        Optional skill deployability index JSON path
   --hardening-profile <path>   Optional skill hardening profile JSON path
-  --bot-max-attempts <n>       Max bot execution attempts for transient failures (default: 2)
-  --bot-retry-base-ms <n>      Base backoff delay in milliseconds for retries (default: 200)
-  --bot-retry-max-ms <n>       Max backoff delay in milliseconds for retries (default: 5000)
-  --bot-retry-jitter <0-1>     Retry delay jitter ratio (default: 0.2)
-  --bot-retry-jitter-strategy <mode> Retry jitter strategy: symmetric|full|decorrelated (default: symmetric)
-  --bot-retry-hint-max-ms <n>  Max delay to honor Retry-After hints from bot failures (default: 120000; 0 disables)
-  --bot-retry-hint-jitter <0-1> Jitter ratio applied to retry-hint delays (default: 0.1)
-  --bot-retry-hint-queue-cooldown Apply Retry-After cooldown across subsequent queued tasks per target (default: off)
-  --bot-attempt-timeout-ms <n> Max milliseconds per bot attempt before timeout failure/retry (default: 120000; 0 disables)
-  --bot-hedged-attempts <n>    Hedged attempts per bot try to reduce tail latency (1-5, default: 1 disabled)
-  --bot-hedged-delay-ms <n>    Delay before launching each hedged follower attempt (default: 0; disabled)
-  --bot-hedging-allow-non-idempotent Allow hedged duplicates for tasks without idempotent safety markers (default: off)
-  --bot-hedged-delay-auto      Auto-tune hedged follower launch delay from recent bot durations
-  --bot-hedged-delay-auto-percentile <0.5-0.999> Percentile used for adaptive hedge-delay target (default: 0.95)
-  --bot-hedged-delay-auto-min-samples <n> Min observed attempt durations before adaptive hedge-delay activates (default: 8)
-  --bot-hedged-delay-auto-window-size <n> Rolling window size for adaptive hedge-delay observations (default: 32)
-  --bot-hedged-delay-auto-blend <0-1> Blend static hedge delay with adaptive percentile target (default: 0.5)
-  --bot-attempt-timeout-auto   Auto-tune per-attempt timeout from recent bot durations
-  --bot-attempt-timeout-auto-percentile <0.5-0.999> Percentile used for adaptive timeout target (default: 0.95)
-  --bot-attempt-timeout-auto-min-samples <n> Min observed attempt durations before adaptive timeout activates (default: 8)
-  --bot-attempt-timeout-auto-window-size <n> Rolling window size for adaptive timeout observations (default: 32)
-  --bot-attempt-timeout-auto-blend <0-1> Blend static timeout with adaptive percentile target (default: 0.5)
-  --bot-retry-max-elapsed-ms <n> Max elapsed milliseconds across retry attempts for a task (default: 0; disabled)
-  --bot-retry-budget-ratio <0-1> Retry budget tokens earned per task to prevent retry storms (default: 0; disabled)
-  --bot-retry-budget-max-tokens <n> Max retry-budget token bucket size per target (default: 10; 0 disables cap)
-  --bot-hedge-budget-ratio <0-1> Hedge budget tokens earned per task to limit duplicate follower load (default: 0; disabled)
-  --bot-hedge-budget-max-tokens <n> Max hedge-budget token bucket size per target (default: 10; 0 disables cap)
-  --bot-circuit-breaker-failures <n> Open breaker after this many consecutive transient failures (default: 0; disabled)
-  --bot-circuit-breaker-failure-rate-threshold <0-1> Open breaker when rolling transient failure rate crosses threshold (default: 0; disabled)
-  --bot-circuit-breaker-failure-rate-window <n> Rolling sample window used for failure-rate thresholding (default: 20)
-  --bot-circuit-breaker-failure-rate-min-samples <n> Min rolling samples before failure-rate threshold can open breaker (default: 8)
-  --bot-circuit-breaker-slow-call-rate-threshold <0-1> Open breaker when rolling slow-call rate crosses threshold (default: 0; disabled)
-  --bot-circuit-breaker-slow-call-duration-ms <n> Duration threshold in ms for classifying slow calls (default: 120000)
-  --bot-circuit-breaker-slow-call-window <n> Rolling sample window used for slow-call thresholding (default: 20)
-  --bot-circuit-breaker-slow-call-min-samples <n> Min rolling samples before slow-call threshold can open breaker (default: 8)
-  --bot-circuit-breaker-cooldown-ms <n> Circuit-breaker cooldown before half-open probe (default: 30000)
-  --bot-circuit-breaker-cooldown-backoff-multiplier <n> Circuit-breaker cooldown growth multiplier per consecutive reopen (1-10, default: 1)
-  --bot-circuit-breaker-cooldown-jitter <0-1> Positive jitter added to breaker cooldown windows (default: 0; disabled)
-  --bot-circuit-breaker-max-cooldown-ms <n> Max cooldown cap after repeated reopens (default: 180000)
-  --bot-circuit-breaker-half-open-max-probes <n> Max probes allowed while half-open before reopening (default: 1)
-  --bot-circuit-breaker-half-open-successes <n> Successful half-open probes required to close breaker (default: 1)
-  --bot-circuit-breaker-half-open-max-wait-ms <n> Max milliseconds to remain half-open before forced reopen (default: 0; disabled)
   --no-enqueue-followups       Do not enqueue follow-up tasks generated by bot execution
   --dry-run                    Parse and plan without mutating store/outbox
   -h, --help                   Show help
@@ -102,30 +60,6 @@ function parseHardeningScore(raw) {
     return value;
 }
 
-function parseRatio(raw, flag) {
-    const value = Number(raw);
-    if (!Number.isFinite(value) || value < 0 || value > 1) {
-        throw new Error(`${flag} must be between 0 and 1`);
-    }
-    return value;
-}
-
-function parseFloatInRange(raw, flag, min, max) {
-    const value = Number(raw);
-    if (!Number.isFinite(value) || value < min || value > max) {
-        throw new Error(`${flag} must be between ${min} and ${max}`);
-    }
-    return value;
-}
-
-function parseRetryJitterStrategy(raw, flag) {
-    const value = String(raw || '').trim().toLowerCase();
-    if (value !== 'symmetric' && value !== 'full' && value !== 'decorrelated') {
-        throw new Error(`${flag} must be one of: symmetric, full, decorrelated`);
-    }
-    return value;
-}
-
 function parseArgs(argv) {
     const defaultOutbox = path.resolve(process.cwd(), '../swarm-protocol/state/outbox');
     const options = {
@@ -143,48 +77,6 @@ function parseArgs(argv) {
         skillHardeningMinScore: 82,
         skillDeployabilityIndexPath: null,
         skillHardeningProfilePath: null,
-        botMaxAttempts: 2,
-        botRetryBaseDelayMs: 200,
-        botRetryMaxDelayMs: 5_000,
-        botRetryJitter: 0.2,
-        botRetryJitterStrategy: 'symmetric',
-        botRetryHintMaxDelayMs: 120_000,
-        botRetryHintJitter: 0.1,
-        botRetryHintQueueCooldown: false,
-        botAttemptTimeoutMs: 120_000,
-        botHedgedAttemptCount: 1,
-        botHedgedDelayMs: 0,
-        botHedgingAllowNonIdempotent: false,
-        botHedgedDelayAutoTarget: false,
-        botHedgedDelayAutoPercentile: 0.95,
-        botHedgedDelayAutoMinSamples: 8,
-        botHedgedDelayAutoWindowSize: 32,
-        botHedgedDelayAutoBlend: 0.5,
-        botAttemptTimeoutAutoTarget: false,
-        botAttemptTimeoutAutoPercentile: 0.95,
-        botAttemptTimeoutAutoMinSamples: 8,
-        botAttemptTimeoutAutoWindowSize: 32,
-        botAttemptTimeoutAutoBlend: 0.5,
-        botRetryMaxElapsedMs: 0,
-        botRetryBudgetRatio: 0,
-        botRetryBudgetMaxTokens: 10,
-        botHedgeBudgetRatio: 0,
-        botHedgeBudgetMaxTokens: 10,
-        botCircuitBreakerFailureThreshold: 0,
-        botCircuitBreakerFailureRateThreshold: 0,
-        botCircuitBreakerFailureRateWindow: 20,
-        botCircuitBreakerFailureRateMinSamples: 8,
-        botCircuitBreakerSlowCallRateThreshold: 0,
-        botCircuitBreakerSlowCallDurationMs: 120_000,
-        botCircuitBreakerSlowCallWindow: 20,
-        botCircuitBreakerSlowCallMinSamples: 8,
-        botCircuitBreakerCooldownMs: 30_000,
-        botCircuitBreakerCooldownBackoffMultiplier: 1,
-        botCircuitBreakerCooldownJitter: 0,
-        botCircuitBreakerMaxCooldownMs: 180_000,
-        botCircuitBreakerHalfOpenMaxProbes: 1,
-        botCircuitBreakerHalfOpenSuccessThreshold: 1,
-        botCircuitBreakerHalfOpenMaxWaitMs: 0,
         enqueueFollowupTasks: true,
         dryRun: false,
         help: false
@@ -207,18 +99,6 @@ function parseArgs(argv) {
         }
         if (token === '--no-enqueue-followups') {
             options.enqueueFollowupTasks = false;
-            continue;
-        }
-        if (token === '--bot-attempt-timeout-auto') {
-            options.botAttemptTimeoutAutoTarget = true;
-            continue;
-        }
-        if (token === '--bot-hedged-delay-auto') {
-            options.botHedgedDelayAutoTarget = true;
-            continue;
-        }
-        if (token === '--bot-retry-hint-queue-cooldown') {
-            options.botRetryHintQueueCooldown = true;
             continue;
         }
 
@@ -292,208 +172,6 @@ function parseArgs(argv) {
             i++;
             continue;
         }
-        if (token === '--bot-max-attempts') {
-            options.botMaxAttempts = parsePositiveInt(value, '--bot-max-attempts');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-base-ms') {
-            options.botRetryBaseDelayMs = parsePositiveInt(value, '--bot-retry-base-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-max-ms') {
-            options.botRetryMaxDelayMs = parsePositiveInt(value, '--bot-retry-max-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-jitter') {
-            options.botRetryJitter = parseRatio(value, '--bot-retry-jitter');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-jitter-strategy') {
-            options.botRetryJitterStrategy = parseRetryJitterStrategy(value, '--bot-retry-jitter-strategy');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-hint-max-ms') {
-            options.botRetryHintMaxDelayMs = parsePositiveInt(value, '--bot-retry-hint-max-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-hint-jitter') {
-            options.botRetryHintJitter = parseRatio(value, '--bot-retry-hint-jitter');
-            i++;
-            continue;
-        }
-        if (token === '--bot-attempt-timeout-ms') {
-            options.botAttemptTimeoutMs = parsePositiveInt(value, '--bot-attempt-timeout-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedged-attempts') {
-            options.botHedgedAttemptCount = parsePositiveInt(value, '--bot-hedged-attempts');
-            if (options.botHedgedAttemptCount > 5) {
-                throw new Error('--bot-hedged-attempts must be an integer between 1 and 5');
-            }
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedged-delay-ms') {
-            options.botHedgedDelayMs = parsePositiveInt(value, '--bot-hedged-delay-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedging-allow-non-idempotent') {
-            options.botHedgingAllowNonIdempotent = true;
-            continue;
-        }
-        if (token === '--bot-hedged-delay-auto-percentile') {
-            options.botHedgedDelayAutoPercentile = parseFloatInRange(value, '--bot-hedged-delay-auto-percentile', 0.5, 0.999);
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedged-delay-auto-min-samples') {
-            options.botHedgedDelayAutoMinSamples = parsePositiveInt(value, '--bot-hedged-delay-auto-min-samples');
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedged-delay-auto-window-size') {
-            options.botHedgedDelayAutoWindowSize = parsePositiveInt(value, '--bot-hedged-delay-auto-window-size');
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedged-delay-auto-blend') {
-            options.botHedgedDelayAutoBlend = parseRatio(value, '--bot-hedged-delay-auto-blend');
-            i++;
-            continue;
-        }
-        if (token === '--bot-attempt-timeout-auto-percentile') {
-            options.botAttemptTimeoutAutoPercentile = parseFloatInRange(value, '--bot-attempt-timeout-auto-percentile', 0.5, 0.999);
-            i++;
-            continue;
-        }
-        if (token === '--bot-attempt-timeout-auto-min-samples') {
-            options.botAttemptTimeoutAutoMinSamples = parsePositiveInt(value, '--bot-attempt-timeout-auto-min-samples');
-            i++;
-            continue;
-        }
-        if (token === '--bot-attempt-timeout-auto-window-size') {
-            options.botAttemptTimeoutAutoWindowSize = parsePositiveInt(value, '--bot-attempt-timeout-auto-window-size');
-            i++;
-            continue;
-        }
-        if (token === '--bot-attempt-timeout-auto-blend') {
-            options.botAttemptTimeoutAutoBlend = parseRatio(value, '--bot-attempt-timeout-auto-blend');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-max-elapsed-ms') {
-            options.botRetryMaxElapsedMs = parsePositiveInt(value, '--bot-retry-max-elapsed-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-budget-ratio') {
-            options.botRetryBudgetRatio = parseRatio(value, '--bot-retry-budget-ratio');
-            i++;
-            continue;
-        }
-        if (token === '--bot-retry-budget-max-tokens') {
-            options.botRetryBudgetMaxTokens = parsePositiveInt(value, '--bot-retry-budget-max-tokens');
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedge-budget-ratio') {
-            options.botHedgeBudgetRatio = parseRatio(value, '--bot-hedge-budget-ratio');
-            i++;
-            continue;
-        }
-        if (token === '--bot-hedge-budget-max-tokens') {
-            options.botHedgeBudgetMaxTokens = parsePositiveInt(value, '--bot-hedge-budget-max-tokens');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-failures') {
-            options.botCircuitBreakerFailureThreshold = parsePositiveInt(value, '--bot-circuit-breaker-failures');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-failure-rate-threshold') {
-            options.botCircuitBreakerFailureRateThreshold = parseRatio(value, '--bot-circuit-breaker-failure-rate-threshold');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-failure-rate-window') {
-            options.botCircuitBreakerFailureRateWindow = parsePositiveInt(value, '--bot-circuit-breaker-failure-rate-window');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-failure-rate-min-samples') {
-            options.botCircuitBreakerFailureRateMinSamples = parsePositiveInt(value, '--bot-circuit-breaker-failure-rate-min-samples');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-slow-call-rate-threshold') {
-            options.botCircuitBreakerSlowCallRateThreshold = parseRatio(value, '--bot-circuit-breaker-slow-call-rate-threshold');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-slow-call-duration-ms') {
-            options.botCircuitBreakerSlowCallDurationMs = parsePositiveInt(value, '--bot-circuit-breaker-slow-call-duration-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-slow-call-window') {
-            options.botCircuitBreakerSlowCallWindow = parsePositiveInt(value, '--bot-circuit-breaker-slow-call-window');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-slow-call-min-samples') {
-            options.botCircuitBreakerSlowCallMinSamples = parsePositiveInt(value, '--bot-circuit-breaker-slow-call-min-samples');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-cooldown-ms') {
-            options.botCircuitBreakerCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-cooldown-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-cooldown-backoff-multiplier') {
-            options.botCircuitBreakerCooldownBackoffMultiplier = parseFloatInRange(
-                value,
-                '--bot-circuit-breaker-cooldown-backoff-multiplier',
-                1,
-                10
-            );
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-cooldown-jitter') {
-            options.botCircuitBreakerCooldownJitter = parseRatio(value, '--bot-circuit-breaker-cooldown-jitter');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-max-cooldown-ms') {
-            options.botCircuitBreakerMaxCooldownMs = parsePositiveInt(value, '--bot-circuit-breaker-max-cooldown-ms');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-half-open-max-probes') {
-            options.botCircuitBreakerHalfOpenMaxProbes = parsePositiveInt(value, '--bot-circuit-breaker-half-open-max-probes');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-half-open-successes') {
-            options.botCircuitBreakerHalfOpenSuccessThreshold = parsePositiveInt(value, '--bot-circuit-breaker-half-open-successes');
-            i++;
-            continue;
-        }
-        if (token === '--bot-circuit-breaker-half-open-max-wait-ms') {
-            options.botCircuitBreakerHalfOpenMaxWaitMs = parsePositiveInt(value, '--bot-circuit-breaker-half-open-max-wait-ms');
-            i++;
-            continue;
-        }
 
         throw new Error(`Unknown argument: ${token}`);
     }
@@ -525,23 +203,6 @@ function printSummary(stats) {
         console.log(`Bot capability tasks: ${stats.botCapabilityTasks}`);
         console.log(`Bot capability action tasks: ${stats.botCapabilityActionTasks}`);
         console.log(`Bot generic tasks: ${stats.botGenericTasks}`);
-        console.log(`Bot retries attempted: ${stats.botRetriesAttempted}`);
-        console.log(`Bot retries recovered: ${stats.botRetriesRecovered}`);
-        console.log(`Bot retries exhausted: ${stats.botRetriesExhausted}`);
-        console.log(`Bot retries budget exhausted: ${stats.botRetriesBudgetExhausted}`);
-        console.log(`Bot retries blocked by pushback: ${stats.botRetriesPushbackBlocked}`);
-        console.log(`Bot Retry-After queue cooldown activations: ${stats.botRetryHintQueueCooldownActivated}`);
-        console.log(`Bot Retry-After queue cooldown skips: ${stats.botRetryHintQueueCooldownSkips}`);
-        console.log(`Bot hedges budget limited: ${stats.botHedgesBudgetLimited}`);
-        console.log(`Bot retries deadline exceeded: ${stats.botRetriesDeadlineExceeded}`);
-        console.log(`Bot attempt timeouts: ${stats.botAttemptTimeouts}`);
-        console.log(`Bot hedged attempts launched: ${stats.botHedgedAttemptsLaunched}`);
-        console.log(`Bot hedged successful races: ${stats.botHedgedSuccesses}`);
-        console.log(`Bot hedged race wins: ${stats.botHedgedWins}`);
-        console.log(`Bot circuit-breaker opened: ${stats.botCircuitBreakerOpened}`);
-        console.log(`Bot circuit-breaker open skips: ${stats.botCircuitBreakerOpenSkips}`);
-        console.log(`Bot circuit-breaker half-open probes: ${stats.botCircuitBreakerHalfOpenProbes}`);
-        console.log(`Bot circuit-breaker closed: ${stats.botCircuitBreakerClosed}`);
         console.log(`Follow-up tasks generated: ${stats.followupTasksGenerated}`);
         console.log(`Follow-up tasks accepted: ${stats.followupTasksAccepted}`);
         console.log(`Follow-up tasks saved: ${stats.followupTasksSaved}`);
@@ -575,48 +236,6 @@ function printSummary(stats) {
             skillHardeningMinScore: options.skillHardeningMinScore,
             skillDeployabilityIndexPath: options.skillDeployabilityIndexPath,
             skillHardeningProfilePath: options.skillHardeningProfilePath,
-            botMaxAttempts: options.botMaxAttempts,
-            botRetryBaseDelayMs: options.botRetryBaseDelayMs,
-            botRetryMaxDelayMs: options.botRetryMaxDelayMs,
-            botRetryJitter: options.botRetryJitter,
-            botRetryJitterStrategy: options.botRetryJitterStrategy,
-            botRetryHintMaxDelayMs: options.botRetryHintMaxDelayMs,
-            botRetryHintJitter: options.botRetryHintJitter,
-            botRetryHintQueueCooldown: options.botRetryHintQueueCooldown,
-            botAttemptTimeoutMs: options.botAttemptTimeoutMs,
-            botHedgedAttemptCount: options.botHedgedAttemptCount,
-            botHedgedDelayMs: options.botHedgedDelayMs,
-            botHedgingAllowNonIdempotent: options.botHedgingAllowNonIdempotent,
-            botHedgedDelayAutoTarget: options.botHedgedDelayAutoTarget,
-            botHedgedDelayAutoPercentile: options.botHedgedDelayAutoPercentile,
-            botHedgedDelayAutoMinSamples: options.botHedgedDelayAutoMinSamples,
-            botHedgedDelayAutoWindowSize: options.botHedgedDelayAutoWindowSize,
-            botHedgedDelayAutoBlend: options.botHedgedDelayAutoBlend,
-            botAttemptTimeoutAutoTarget: options.botAttemptTimeoutAutoTarget,
-            botAttemptTimeoutAutoPercentile: options.botAttemptTimeoutAutoPercentile,
-            botAttemptTimeoutAutoMinSamples: options.botAttemptTimeoutAutoMinSamples,
-            botAttemptTimeoutAutoWindowSize: options.botAttemptTimeoutAutoWindowSize,
-            botAttemptTimeoutAutoBlend: options.botAttemptTimeoutAutoBlend,
-            botRetryMaxElapsedMs: options.botRetryMaxElapsedMs,
-            botRetryBudgetRatio: options.botRetryBudgetRatio,
-            botRetryBudgetMaxTokens: options.botRetryBudgetMaxTokens,
-            botHedgeBudgetRatio: options.botHedgeBudgetRatio,
-            botHedgeBudgetMaxTokens: options.botHedgeBudgetMaxTokens,
-            botCircuitBreakerFailureThreshold: options.botCircuitBreakerFailureThreshold,
-            botCircuitBreakerFailureRateThreshold: options.botCircuitBreakerFailureRateThreshold,
-            botCircuitBreakerFailureRateWindow: options.botCircuitBreakerFailureRateWindow,
-            botCircuitBreakerFailureRateMinSamples: options.botCircuitBreakerFailureRateMinSamples,
-            botCircuitBreakerSlowCallRateThreshold: options.botCircuitBreakerSlowCallRateThreshold,
-            botCircuitBreakerSlowCallDurationMs: options.botCircuitBreakerSlowCallDurationMs,
-            botCircuitBreakerSlowCallWindow: options.botCircuitBreakerSlowCallWindow,
-            botCircuitBreakerSlowCallMinSamples: options.botCircuitBreakerSlowCallMinSamples,
-            botCircuitBreakerCooldownMs: options.botCircuitBreakerCooldownMs,
-            botCircuitBreakerCooldownBackoffMultiplier: options.botCircuitBreakerCooldownBackoffMultiplier,
-            botCircuitBreakerCooldownJitter: options.botCircuitBreakerCooldownJitter,
-            botCircuitBreakerMaxCooldownMs: options.botCircuitBreakerMaxCooldownMs,
-            botCircuitBreakerHalfOpenMaxProbes: options.botCircuitBreakerHalfOpenMaxProbes,
-            botCircuitBreakerHalfOpenSuccessThreshold: options.botCircuitBreakerHalfOpenSuccessThreshold,
-            botCircuitBreakerHalfOpenMaxWaitMs: options.botCircuitBreakerHalfOpenMaxWaitMs,
             enqueueFollowupTasks: options.enqueueFollowupTasks,
             dryRun: options.dryRun
         });

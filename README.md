@@ -14,8 +14,7 @@ A library for agent introspection. It parses execution logs, session history, an
 ### 2. `swarm-protocol`
 Typed schemas and handshake primitives for agent-to-agent coordination.
 Latest upgrade includes protocol negotiation, timeout/retry behavior, capability validation, and structured handshake errors.
-Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, and result correlation.
-Task orchestration now includes per-target circuit breaking with cooldown probes plus duplicate task-id rejection for idempotent dispatch safety.
+Also includes a task orchestrator for dispatch tracking, receipts, retries, timeout recovery, result correlation, and overload-aware retry recovery with bounded exponential backoff + jitter.
 Includes capability-aware routing helpers to auto-select the best agent by status/load/capability fit.
 Now includes durable task persistence (`FileTaskStore`) and a heartbeat-driven `AgentRegistry`.
 Adds approval-gated task dispatch with policy-driven human review checkpoints.
@@ -26,11 +25,6 @@ Adds a deterministic simulation benchmark harness for orchestration stress tests
 Adds pre-dispatch safety policies with explicit deny decisions and sensitive payload redaction.
 Adds hash-chained signed audit logging utilities for post-incident verification.
 Adds adaptive cost/latency optimization with explainable agent selection decisions.
-Adds dispatch idempotency controls (`dispatchDeduplication`) to suppress duplicate in-flight submissions and optionally replay recent terminal matches.
-Adds queue-capacity admission controls (`queueCapacity`) to fail fast on overload with global and per-target open-task limits.
-Adds graceful drain-mode admission control so operators can reject new dispatches while existing in-flight tasks finish.
-Adds maintenance retry-budget controls (`maintenancePolicy`) to cap per-pass retry bursts and optionally spread retries across targets.
-Retry hint parsing now supports `retry-after-ms`/`x-ms-retry-after-ms`, `ratelimit-reset`, and `x-ratelimit-reset-{requests|tokens}` (including duration literals like `17ms` / `6m0s`), while preferring conservative max-delay hints when multiple are present.
 Adds a unified operator CLI for queue/status/tail/reroute/drain/override workflows.
 Adds a shared world-state graph with entity linking, temporal snapshots, and confidence scoring.
 Adds a learning-loop engine for counterfactual replay and measurable improvement plans.
@@ -223,156 +217,7 @@ Enforce hardening policy during bot/autonomy execution:
 cd cognition-core
 npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
 npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
-npm run autonomous:run -- --selection-policy linucb --linucb-alpha 0.6
-npm run autonomous:run -- --selection-policy sw_linucb --window-size 12 --linucb-alpha 0.6
-npm run autonomous:run -- --selection-policy d_linucb --discount-factor 0.97 --linucb-alpha 0.6
-npm run autonomous:run -- --selection-policy adwin_linucb --cd-min-samples 8 --adwin-delta 0.002 --linucb-alpha 0.6
-npm run autonomous:run -- --selection-policy ucb_v --ucb-v-exploration 1
-npm run autonomous:run -- --selection-policy sw_ucb_v --window-size 12 --ucb-v-exploration 1
-npm run autonomous:run -- --selection-policy mv_ucb --risk-variance-weight 0.6
-npm run autonomous:run -- --selection-policy sw_mv_ucb --window-size 12 --risk-variance-weight 0.6
-npm run autonomous:run -- --selection-policy d_mv_ucb --discount-factor 0.97 --risk-variance-weight 0.6
-npm run autonomous:run -- --selection-policy lints --lints-alpha 0.5
-npm run autonomous:run -- --selection-policy sw_lints --window-size 12 --lints-alpha 0.5
-npm run autonomous:run -- --selection-policy d_lints --discount-factor 0.97 --lints-alpha 0.5
-npm run autonomous:run -- --selection-policy adwin_lints --cd-min-samples 8 --adwin-delta 0.002 --lints-alpha 0.5
-npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.35 --thompson-prior-alpha 1 --thompson-prior-beta 1
-npm run autonomous:run -- --selection-policy epsilon_ts --thompson-exploration 0.25 --thompson-prior-alpha 1 --thompson-prior-beta 1 --thompson-meta-prior-strength 24
-npm run autonomous:run -- --selection-policy tt_epsilon_ts --thompson-exploration 0.25 --thompson-top-two-probability 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1
-npm run autonomous:run -- --selection-policy tt_bb_ts --thompson-exploration 0.25 --thompson-top-two-probability 0.8
-npm run autonomous:run -- --selection-policy bb_ts --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy auto_epsilon_ts --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8 --thompson-prior-alpha 1 --thompson-prior-beta 1
-npm run autonomous:run -- --selection-policy cp_epsilon_ts --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2
-npm run autonomous:run -- --selection-policy cd_epsilon_ts --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy sw_cd_epsilon_ts --window-size 12 --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy cusum_epsilon_ts --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy sw_cusum_epsilon_ts --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy sw_epsilon_ts --window-size 12 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy sw_bb_ts --window-size 12 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy sw_auto_epsilon_ts --window-size 12 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8
-npm run autonomous:run -- --selection-policy sw_cp_epsilon_ts --window-size 12 --thompson-hazard-rate 0.1 --thompson-surprise-sensitivity 2 --thompson-exploration 0.2
-npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy fdsw_ucb --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation mean
-npm run autonomous:run -- --selection-policy fdsw_epsilon_ts --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation adaptive --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy fdsw_ucb --window-size 12 --discount-factor 0.97 --hybrid-ts-aggregation adaptive
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --max-feedback-delay-ms 120000
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --feedback-delay-decay-ms 120000
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-penalty-weight 0.4 --latency-target-ms 120000
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-penalty-weight 0.4 --latency-target-ms 120000 --latency-auto-target --latency-auto-target-percentile 0.9 --latency-auto-target-min-samples 8 --latency-auto-target-window-size 32 --latency-auto-target-blend 0.5
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --reliability-floor 0.7 --reliability-floor-min-attempts 8
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-sla-ms 120000 --latency-sla-floor 0.85 --latency-sla-min-attempts 8
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-target-ms 120000 --latency-tail-penalty-weight 0.3 --latency-tail-percentile 0.95 --latency-tail-min-samples 8
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-target-ms 120000 --latency-cvar-penalty-weight 0.35 --latency-cvar-percentile 0.95 --latency-cvar-min-samples 8
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --failure-burst-penalty-weight 0.45 --failure-burst-short-window 8 --failure-burst-long-window 32 --failure-burst-min-attempts 8 --failure-burst-threshold 1.5
-npm run autonomous:run -- --selection-policy d_ucb --discount-factor 0.97 --latency-sla-ms 120000 --latency-burst-penalty-weight 0.45 --latency-burst-short-window 8 --latency-burst-long-window 32 --latency-burst-min-attempts 8 --latency-burst-threshold 1.5
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-jitter-strategy decorrelated
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-hint-max-ms 120000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-hint-max-ms 120000 --bot-retry-hint-jitter 0.1
-npm run autonomous:run -- --bot-max-attempts 2 --bot-retry-hint-max-ms 120000 --bot-retry-hint-jitter 0.1 --bot-retry-hint-queue-cooldown
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-hint-max-ms 120000 --bot-retry-hint-jitter 0.1 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-retry-budget-max-tokens 10 --bot-hedged-attempts 2 --bot-hedged-delay-ms 150 --bot-hedge-budget-ratio 0.25 --bot-hedge-budget-max-tokens 10
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-attempt-timeout-auto --bot-attempt-timeout-auto-percentile 0.95 --bot-attempt-timeout-auto-min-samples 8 --bot-attempt-timeout-auto-window-size 32 --bot-attempt-timeout-auto-blend 0.5
-npm run autonomous:run -- --bot-max-attempts 2 --bot-attempt-timeout-ms 120000 --bot-hedged-attempts 2 --bot-hedged-delay-ms 150
-npm run autonomous:run -- --bot-max-attempts 2 --bot-attempt-timeout-ms 120000 --bot-hedged-attempts 2 --bot-hedged-delay-ms 150 --bot-hedged-delay-auto --bot-hedged-delay-auto-percentile 0.95 --bot-hedged-delay-auto-min-samples 8 --bot-hedged-delay-auto-window-size 32 --bot-hedged-delay-auto-blend 0.5
-npm run autonomous:run -- --bot-max-attempts 2 --bot-attempt-timeout-ms 120000 --bot-hedged-attempts 2 --bot-hedged-delay-ms 150 --bot-hedge-budget-ratio 0.25
-npm run autonomous:run -- --bot-max-attempts 2 --bot-attempt-timeout-ms 120000 --bot-hedged-attempts 2 --bot-hedged-delay-ms 150 --bot-hedging-allow-non-idempotent
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-retry-max-elapsed-ms 90000 --bot-retry-budget-ratio 0.25
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000 --bot-circuit-breaker-half-open-max-probes 2 --bot-circuit-breaker-half-open-successes 2
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000 --bot-circuit-breaker-half-open-max-probes 2 --bot-circuit-breaker-half-open-successes 2 --bot-circuit-breaker-half-open-max-wait-ms 60000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-failure-rate-threshold 0.5 --bot-circuit-breaker-failure-rate-window 20 --bot-circuit-breaker-failure-rate-min-samples 8 --bot-circuit-breaker-cooldown-ms 30000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-slow-call-rate-threshold 0.6 --bot-circuit-breaker-slow-call-duration-ms 120000 --bot-circuit-breaker-slow-call-window 20 --bot-circuit-breaker-slow-call-min-samples 8 --bot-circuit-breaker-cooldown-ms 30000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000 --bot-circuit-breaker-cooldown-backoff-multiplier 1.5 --bot-circuit-breaker-max-cooldown-ms 180000
-npm run autonomous:run -- --bot-max-attempts 3 --bot-retry-base-ms 250 --bot-retry-max-ms 5000 --bot-retry-jitter 0.2 --bot-attempt-timeout-ms 120000 --bot-retry-budget-ratio 0.25 --bot-circuit-breaker-failures 4 --bot-circuit-breaker-cooldown-ms 30000 --bot-circuit-breaker-cooldown-jitter 0.2
-npm run autonomous:run -- --selection-policy d_ucb_v --discount-factor 0.97 --ucb-v-exploration 1
-npm run autonomous:run -- --selection-policy mw_ucb --multi-window-sizes 4,8,16,32
-npm run autonomous:run -- --selection-policy bob_sw_ucb --multi-window-sizes 4,8,16,32 --bob-gamma 0.12
-npm run autonomous:run -- --selection-policy ucb_tuned
-npm run autonomous:run -- --selection-policy sw_ucb_tuned --window-size 12
-npm run autonomous:run -- --selection-policy d_ucb_tuned --discount-factor 0.97
-npm run autonomous:run -- --selection-policy bayes_ucb --bayes-ucb-quantile 0.9
-npm run autonomous:run -- --selection-policy bayes_ucb --bayes-ucb-quantile 0.9 --thompson-meta-prior-strength 24
-npm run autonomous:run -- --selection-policy sw_bayes_ucb --window-size 12 --bayes-ucb-quantile 0.9
-npm run autonomous:run -- --selection-policy d_bayes_ucb --discount-factor 0.97 --bayes-ucb-quantile 0.9
-npm run autonomous:run -- --selection-policy d_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy d_bb_ts --discount-factor 0.97 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy d_auto_epsilon_ts --discount-factor 0.97 --thompson-exploration 0.15 --thompson-uncertainty-weight 0.8
-npm run autonomous:run -- --selection-policy kl_ucb --kl-ucb-confidence 3
-npm run autonomous:run -- --selection-policy d_kl_ucb --discount-factor 0.97 --kl-ucb-confidence 3
-npm run autonomous:run -- --selection-policy glr_kl_ucb --cd-min-samples 8 --cd-threshold 0.25 --cd-delta 0.02 --kl-ucb-confidence 3
-npm run autonomous:run -- --selection-policy sw_glr_kl_ucb --window-size 12 --cd-min-samples 8 --cd-threshold 0.25 --cd-delta 0.02 --kl-ucb-confidence 3
-npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
-npm run autonomous:run -- --selection-policy cd_ucb --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02 --cd-direction down
-npm run autonomous:run -- --selection-policy adwin_ucb --cd-min-samples 8 --adwin-delta 0.002
-npm run autonomous:run -- --selection-policy sw_cd_ucb --window-size 12 --cd-min-samples 8 --cd-threshold 1.5 --cd-delta 0.02
-npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
-npm run autonomous:run -- --selection-policy cusum_ucb --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15 --cd-direction up
-npm run autonomous:run -- --selection-policy sw_cusum_ucb --window-size 12 --cd-min-samples 8 --cusum-threshold 1.2 --cusum-baseline-weight 0.15
-npm run autonomous:run -- --selection-policy adwin_epsilon_ts --cd-min-samples 8 --adwin-delta 0.002 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy adwin_bb_ts --cd-min-samples 8 --adwin-delta 0.002 --thompson-exploration 0.25
-npm run autonomous:run -- --selection-policy adwin_bayes_ucb --cd-min-samples 8 --adwin-delta 0.002 --bayes-ucb-quantile 0.9
-npm run autonomous:run -- --selection-policy corral_exp3 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy sw_corral_exp3 --window-size 12 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy adwin_corral_exp3 --cd-min-samples 8 --adwin-delta 0.002 --corral-gamma 0.12 --corral-eta 0.8 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy sw_corral_exp3_plus --window-size 12 --corral-gamma 0.08 --corral-eta 1.2 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy d_corral_exp3_plus --discount-factor 0.97 --corral-gamma 0.08 --corral-eta 1.2 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy adwin_corral_exp3_plus --cd-min-samples 8 --adwin-delta 0.002 --corral-gamma 0.08 --corral-eta 1.2 --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy corral_exp3_plus --corral-gamma 0.08 --corral-eta 1.2 --corral-uncertainty-weight 0.35 --corral-min-attempts 2 --corral-forced-exploration 0.3
-npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-gamma 0.12 --corral-auto-eta --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy d_corral_exp3 --discount-factor 0.97 --corral-auto-gamma --corral-auto-eta --corral-uncertainty-weight 0.35
-npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1
-npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-auto-eta
-npm run autonomous:run -- --selection-policy exp3_ix --exp3-auto-gamma --exp3-auto-eta
-npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-implicit-gamma 0.03 --exp3-ix-eta 0.8
-npm run autonomous:run -- --selection-policy exp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-iw-cap 25
-npm run autonomous:run -- --selection-policy exp3_s --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
-npm run autonomous:run -- --selection-policy adwin_exp3_ix --cd-min-samples 8 --adwin-delta 0.002 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
-npm run autonomous:run -- --selection-policy adwin_exp3_s --cd-min-samples 8 --adwin-delta 0.002 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
-npm run autonomous:run -- --selection-policy rexp3_ix --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-restart-interval 12
-npm run autonomous:run -- --selection-policy sw_exp3_ix --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
-npm run autonomous:run -- --selection-policy sw_exp3_s --window-size 12 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
-npm run autonomous:run -- --selection-policy d_exp3_ix --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1
-npm run autonomous:run -- --selection-policy d_exp3_s --discount-factor 0.97 --exp3-ix-gamma 0.07 --exp3-ix-eta 1 --exp3-share-alpha 0.08
-npm run autonomous:run -- --selection-policy tsallis_inf --exp3-ix-gamma 0.07 --tsallis-eta-scale 1
-npm run autonomous:run -- --selection-policy tsallis_inf --exp3-ix-gamma 0.07 --tsallis-eta-scale 1 --tsallis-auto-eta
-npm run autonomous:run -- --selection-policy tsallis_inf --exp3-auto-gamma --tsallis-eta-scale 1 --tsallis-auto-eta
-npm run autonomous:run -- --selection-policy sw_tsallis_inf --window-size 12 --exp3-ix-gamma 0.07 --tsallis-eta-scale 1
-npm run autonomous:run -- --selection-policy adwin_tsallis_inf --cd-min-samples 8 --adwin-delta 0.002 --exp3-ix-gamma 0.07 --tsallis-eta-scale 1
-npm run autonomous:run -- --selection-policy d_tsallis_inf --discount-factor 0.97 --exp3-ix-gamma 0.07 --tsallis-eta-scale 1
-npm run autonomous:run -- --selection-policy bge --boltzmann-gumbel-c 0.5
-npm run autonomous:run -- --selection-policy sw_bge --window-size 12 --boltzmann-gumbel-c 0.5
-npm run autonomous:run -- --selection-policy d_bge --discount-factor 0.97 --boltzmann-gumbel-c 0.5
-npm run autonomous:run -- --selection-policy phe --phe-perturbation-scale 2
-npm run autonomous:run -- --selection-policy sw_phe --window-size 12 --phe-perturbation-scale 2
-npm run autonomous:run -- --selection-policy d_phe --discount-factor 0.97 --phe-perturbation-scale 2
-npm run autonomous:run -- --selection-policy moss_anytime --moss-alpha 1.2
-npm run autonomous:run -- --selection-policy sw_moss_anytime --window-size 12 --moss-alpha 1.2
-npm run autonomous:run -- --selection-policy d_moss_anytime --discount-factor 0.97 --moss-alpha 1.2
 ```
-Recency-aware policies now score bounded terminal rewards (`completed=1`, `partial=0.6`, failures/timeouts/rejections/errors=`0`) across sliding-window/discounted/hybrid UCB-family (`sw_ucb`/`d_ucb`/`fdsw_ucb`), change-detection (`cd_ucb`/`sw_cd_ucb`/`glr_kl_ucb`/`sw_glr_kl_ucb`/`cusum_ucb`/`sw_cusum_ucb`/`cp_epsilon_ts`/`sw_cp_epsilon_ts`/`cd_epsilon_ts`/`sw_cd_epsilon_ts`/`cusum_epsilon_ts`/`sw_cusum_epsilon_ts`), and EXP3 families (`exp3_ix`/`exp3_s` with `adwin_`/`sw_`/`d_` variants) so partial outcomes are learned as partial credit instead of full wins.
-Selection policy reward updates also support latency-aware shaping via `--latency-penalty-weight` and `--latency-target-ms`, so long-running tasks can be softly down-weighted (default is disabled for backward compatibility). Optional adaptive targeting (`--latency-auto-target`, `--latency-auto-target-percentile`, `--latency-auto-target-min-samples`) can track recent runtime drift by re-centering the latency target on a rolling percentile of observed completion times; `--latency-auto-target-window-size` focuses adaptation on recent outcomes, while `--latency-auto-target-blend` mixes adaptive and static targets to reduce target jitter.
-Selection policy ranking also supports conservative reliability guardrails via `--reliability-floor` and `--reliability-floor-min-attempts`, applying a Wilson lower-bound confidence penalty so low-sample lucky streaks do not displace consistently reliable skills.
-Selection policy ranking also supports tail-latency guardrails via `--latency-tail-penalty-weight`, `--latency-tail-percentile`, and `--latency-tail-min-samples`, applying a percentile-overrun penalty against the configured/adaptive latency target so high-tail candidates are deprioritized even when mean success remains high.
-Selection policy ranking also supports CVaR tail-latency guardrails via `--latency-cvar-penalty-weight`, `--latency-cvar-percentile`, and `--latency-cvar-min-samples`, applying a tail-mean overrun penalty against the configured/adaptive latency target so candidates with severe worst-case latency are deprioritized.
-Bot execution now supports transient-failure retries with exponential backoff + jitter via `--bot-max-attempts`, `--bot-retry-base-ms`, `--bot-retry-max-ms`, and `--bot-retry-jitter` to absorb temporary timeout/rate-limit/transport faults while still surfacing persistent failures. Retry jitter strategy controls (`--bot-retry-jitter-strategy symmetric|full|decorrelated`) allow reducing synchronized retry spikes under shared upstream degradation. Retry classification is now status-aware and signal-aware: explicit bot `retryable` / `nonRetryable` metrics take precedence, HTTP status hints (for example `408/425/429/5xx`) and retry-safe gRPC statuses (`DEADLINE_EXCEEDED`, `RESOURCE_EXHAUSTED`, `ABORTED`, `UNAVAILABLE`) are treated as transient, and non-retryable signals stop retry loops even if output text contains transient keywords. Retry hint controls (`--bot-retry-hint-max-ms`) bound honoring of upstream `Retry-After`/`RateLimit-Reset` and `grpc-retry-pushback-ms` guidance parsed from bot failure metrics/output so the worker can back off in line with rate limits while avoiding unbounded stalls; negative `grpc-retry-pushback-ms` signals explicitly block further retries for that task. Hint-jitter controls (`--bot-retry-hint-jitter`) decorrelate retry resumes after shared server-imposed windows while preserving the minimum server-requested wait time. The same bounded hint signal is now also used when opening/reopening the circuit breaker after transient failures, so half-open probes are less likely to fire before upstream rate-limit reset windows. Per-attempt timeout guardrails (`--bot-attempt-timeout-ms`) prevent stuck executions from stalling the queue, and optional adaptive timeout controls (`--bot-attempt-timeout-auto`, `--bot-attempt-timeout-auto-percentile`, `--bot-attempt-timeout-auto-min-samples`, `--bot-attempt-timeout-auto-window-size`, `--bot-attempt-timeout-auto-blend`) re-center timeout ceilings on recent observed bot attempt durations so timeout behavior tracks runtime drift instead of staying static. Optional hedged-attempt controls (`--bot-hedged-attempts`, `--bot-hedged-delay-ms`) launch delayed duplicate attempts within a try so slow-tail primaries can be bypassed by a faster follower while keeping hedging disabled by default, and adaptive hedged-delay controls (`--bot-hedged-delay-auto`, `--bot-hedged-delay-auto-percentile`, `--bot-hedged-delay-auto-min-samples`, `--bot-hedged-delay-auto-window-size`, `--bot-hedged-delay-auto-blend`) tune follower launch delay from recent observed bot durations to avoid over-eager duplicate launches when latency baselines drift. Hedging now defaults to idempotent-only safety gating (tasks can mark idempotency in request/context/constraints), with explicit override via `--bot-hedging-allow-non-idempotent` when duplicate side effects are acceptable. Elapsed retry-deadline controls (`--bot-retry-max-elapsed-ms`) cap total retry lifetime per task, retry-budget controls (`--bot-retry-budget-ratio`) plus bucket caps (`--bot-retry-budget-max-tokens`) cap retry amplification under broad upstream degradation, hedge-budget controls (`--bot-hedge-budget-ratio`) plus bucket caps (`--bot-hedge-budget-max-tokens`) cap duplicate hedged follower launch volume under shared load, and circuit-breaker controls (`--bot-circuit-breaker-failures`, `--bot-circuit-breaker-cooldown-ms`) fail fast during outage windows before probing recovery. Failure-rate controls (`--bot-circuit-breaker-failure-rate-threshold`, `--bot-circuit-breaker-failure-rate-window`, `--bot-circuit-breaker-failure-rate-min-samples`) open the breaker when rolling transient outage density stays elevated even without strict consecutiveness. Slow-call controls (`--bot-circuit-breaker-slow-call-rate-threshold`, `--bot-circuit-breaker-slow-call-duration-ms`, `--bot-circuit-breaker-slow-call-window`, `--bot-circuit-breaker-slow-call-min-samples`) open the breaker during sustained latency degradation even when requests still succeed. Half-open controls (`--bot-circuit-breaker-half-open-max-probes`, `--bot-circuit-breaker-half-open-successes`) require multiple successful probes before closing the breaker to reduce recovery flapping, while `--bot-circuit-breaker-half-open-max-wait-ms` forces a reopen when half-open recovery stalls too long without enough probes. Cooldown backoff controls (`--bot-circuit-breaker-cooldown-backoff-multiplier`, `--bot-circuit-breaker-max-cooldown-ms`) progressively lengthen cooldown windows across repeated reopen events to reduce outage flapping, and cooldown jitter (`--bot-circuit-breaker-cooldown-jitter`) adds minimum-preserving spread to breaker-open windows so peer workers probe recovery less synchronously. Retry-budget accounting, hedge-budget accounting, adaptive timeout/hedging history, and circuit-breaker state are tracked per target dependency, so one degraded endpoint no longer suppresses healthy targets.
-Selection policy ranking now also supports failure-burst guardrails via `--failure-burst-penalty-weight`, `--failure-burst-short-window`, `--failure-burst-long-window`, `--failure-burst-min-attempts`, and `--failure-burst-threshold`, applying a short-vs-long window failure-rate ratio penalty so abruptly regressing skills are temporarily deprioritized.
-Selection policy ranking now also supports latency-burst guardrails via `--latency-burst-penalty-weight`, `--latency-burst-short-window`, `--latency-burst-long-window`, `--latency-burst-min-attempts`, and `--latency-burst-threshold`, applying a short-vs-long window latency-SLA miss-rate ratio penalty so suddenly slowing skills are deprioritized before long-horizon averages fully drift.
-Failure cooldown now applies deterministic exponential backoff by consecutive-failure streak (with bounded jitter), which reduces immediate re-selection of repeatedly failing skills/capabilities while preserving eventual retries.
-Hybrid `fdsw_*` policies now also support `--hybrid-ts-aggregation adaptive`, which tilts toward sliding-window estimates when very recent performance is shifting and toward discounted estimates when recent behavior is stable.
-`bob_sw_ucb` adds a bandit-over-window controller that adaptively routes `sw_ucb` scoring to the strongest window length using outcome-weighted meta-window performance with an exploration floor (`--bob-gamma`).
-Boltzmann-Gumbel exploration (`bge`/`sw_bge`/`d_bge`) is available for robust stochastic exploration with perturbation scale decaying as evidence accumulates (`--boltzmann-gumbel-c`).
-Perturbed-History Exploration (`phe`/`sw_phe`/`d_phe`) is available as a lightweight pseudo-reward perturbation policy (`--phe-perturbation-scale`) to sustain exploration without full posterior sampling overhead.
-Mean-variance UCB (`mv_ucb`/`sw_mv_ucb`/`d_mv_ucb`) is available to penalize high outcome volatility while still exploring (`--risk-variance-weight`).
-Corral EXP3 families now rank experts with propensity-aware implicit-loss EXP3 weighting from policy outcome history (including `sw_`, `d_`, and `adwin_` recency variants), then optionally add a UCB-style uncertainty bonus (`--corral-uncertainty-weight`) so under-sampled experts are still explored while preserving adversarial-style robustness. The expanded `corral_exp3_plus` expert pool also includes ADWIN, hybrid discounted+windowed, and Boltzmann-Gumbel experts for stronger regime-shift routing. Use `--corral-min-attempts` + `--corral-forced-exploration` to guarantee under-sampled experts keep receiving exploration mass before full exploitation; `--corral-auto-eta` calibrates corral learning-rate pressure from the active expert horizon (`sqrt((2*log(K+1))/(N*K))`), and `--corral-auto-gamma` calibrates corral exploration pressure as `sqrt((K*log(K+1))/((e-1)*N))` instead of pinning fixed `--corral-eta` / `--corral-gamma` values.
-EXP3 modes now decouple exploration mixing (`--exp3-ix-gamma`) from implicit-exploration denominator control (`--exp3-implicit-gamma`) so you can tune exploration pressure and loss-estimate regularization independently. EXP3-IX scoring uses per-outcome implicit losses `((1 - reward) / (selectionProbability + gammaImplicit))` from autonomy outcome history (with safe uniform fallback for legacy records), supports capped implicit importance weights via `--exp3-iw-cap` to limit extreme low-propensity variance spikes, `--exp3-auto-eta` auto-calibrates eta as `sqrt((2*log(K+1))/(N*K))` using the active outcome horizon consumed by the selected EXP3 mode (including discounted effective sample size for `d_exp3_*`), and `--exp3-auto-gamma` calibrates explicit mixing as `sqrt((K*log(K+1))/((e-1)*N))` from the same effective horizon while defaulting implicit gamma to `eta/2` when no explicit implicit gamma is provided.
-`exp3_s` adds share-mixing (`--exp3-share-alpha`) to keep a controlled probability floor across all arms under adversarial drift while still using EXP3-IX implicit-exploration weighting.
-Tsallis-INF policies (`tsallis_inf`/`sw_tsallis_inf`/`adwin_tsallis_inf`/`d_tsallis_inf`) now use a propensity-aware reduced-variance loss estimator (with Tsallis baseline gating by `eta^2`) and implicit-gamma denominator smoothing (`--exp3-implicit-gamma`) to damp low-propensity variance while preserving adversarial robustness; `--tsallis-auto-eta` calibrates against the same active recency horizon consumed by each Tsallis mode (including discounted effective sample size for `d_tsallis_inf`), `--exp3-auto-gamma` calibrates the explicit exploration mix from that effective horizon, and you can still tune learning scale with `--tsallis-eta-scale`.
-Change-detection policies also support `--cd-direction up|down|both` so detectors can focus on degradations only, recoveries only, or both shift directions.
-ADWIN adaptive-window modes now include Bayesian-bootstrap Thompson (`adwin_bb_ts`) and Bayes-UCB quantile scoring (`adwin_bayes_ucb`) so both posterior-sampling and optimistic-posterior selectors can drop stale pre-drift outcomes without manual window tuning.
 
 ## Quick Start
 
@@ -473,78 +318,6 @@ import { TaskOrchestrator, routeTaskRequest } from 'swarm-protocol';
 const orchestrator = new TaskOrchestrator({
   localAgentId: 'agent:main',
   transport: { send: async (target, message) => {/* deliver message */} },
-  overallTimeoutMs: 120_000,
-  retryBackoffStrategy: 'exponential',
-  retryJitter: 'decorrelated',
-  maxRetryHintMs: 60_000, // optional cap for Retry-After / pushback hints
-  transportSendTimeoutMs: 10_000, // fail fast if transport send hangs
-  retryThrottling: {
-    scope: 'target',
-    maxTokens: 20,
-    tokenRatio: 0.2,
-    retryCost: 1,
-    timeoutRetryCost: 1.5,
-    throttlingRetryCost: 1,
-    transportRetryCost: 2,
-    threshold: 10
-  },
-  retryBudget: {
-    scope: 'target', // optional: 'target' (default) or 'global'
-    ratio: 0.2, // optional: retry slots = ceil(primaryOpen * ratio)
-    minRetries: 1, // optional floor so low-volume targets can still retry
-    maxRetries: 10 // optional cap for retry slots (set null to disable cap)
-  },
-  circuitBreaker: {
-    failureThreshold: 3,
-    cooldownMs: 30_000,
-    halfOpenMaxAttempts: 1,
-    successThreshold: 1,
-    cooldownBackoffMultiplier: 1.5, // optional: increase cooldown after half-open failures
-    maxCooldownMs: 180_000 // optional ceiling for cooldown backoff
-  },
-  adaptiveConcurrency: {
-    initialLimit: 4,
-    minLimit: 1,
-    maxLimit: 32,
-    increaseStep: 1,
-    decreaseMultiplier: 0.7,
-    latencyHighWatermarkMs: 10_000 // optional: treat slow completions as overload signals
-  },
-  dispatchDeduplication: {
-    windowMs: 5_000,
-    openOnly: true,
-    coalesceOpenUntilTerminal: true, // optional: singleflight open duplicates until task closes
-    terminalWindowMs: 60_000, // optional: replay recent terminal matches (idempotency guard)
-    inFlightWindowMs: 120_000 // optional lock age when coalesceOpenUntilTerminal is enabled
-  },
-  terminalTaskRetention: {
-    maxAgeMs: 900_000, // optional: prune terminal tasks older than 15 minutes
-    maxTasks: 2_000, // optional: cap retained terminal tasks in memory
-    sweepLimit: 200 // optional: max terminal tasks pruned per maintenance pass
-  },
-  queueCapacity: {
-    maxOpenTasks: 2_000, // optional: global fail-fast limit for non-terminal tasks
-    maxOpenTasksPerTarget: 500, // optional: per-target guardrail to isolate hotspots
-    reservedOpenSlotsByPriority: { // optional: keep headroom for high-priority work
-      high: 50,
-      critical: 100
-    }
-  },
-  staleTaskPolicy: {
-    maxAgeMs: 300_000, // optional: expire tasks older than this age
-    terminalStatus: 'timed_out', // optional: 'timed_out' (default) or 'cancelled'
-    propagateCancel: true // optional: only used when terminalStatus='cancelled'
-  },
-  drainMode: {
-    enabled: false, // optional: start in drain mode
-    rejectNewDispatches: true, // optional: reject only brand-new dispatches
-    forceCancelAfterMs: 120_000, // optional: force-cancel lingering open tasks after drain grace window
-    propagateCancel: true // optional: send task_cancel when force-cancelling
-  },
-  maintenancePolicy: {
-    maxRetryDispatchesPerRun: 100, // optional: cap due retries dispatched during one maintenance pass
-    fairRetryDispatchByTarget: true // optional: spread retry slots across targets before filling extras
-  },
   routeTask: async (taskRequest) => {
     const { selectedAgentId } = routeTaskRequest(taskRequest, liveAgents);
     return selectedAgentId;
@@ -553,11 +326,7 @@ const orchestrator = new TaskOrchestrator({
     required: taskRequest.priority === 'critical',
     reason: 'critical_priority',
     reviewerGroup: 'ops-review'
-  }),
-  retryDelayMs: 250,
-  retryBackoffMultiplier: 2,
-  maxRetryDelayMs: 10_000,
-  retryJitter: 'full' // 'full' | 'none'
+  })
 });
 
 const task = await orchestrator.dispatchTask({
@@ -571,29 +340,7 @@ orchestrator.ingestResult(resultMessage);
 
 // If a task is gated:
 await orchestrator.reviewTask(taskId, { approved: true, reviewer: 'human:ops' });
-
-// If work is stale/superseded:
-await orchestrator.cancelTask(taskId, {
-  reason: 'superseded_by_new_plan',
-  cancelledBy: 'agent:planner'
-});
-
-// For graceful shutdown/deploy drain:
-orchestrator.setDrainMode({
-  enabled: true,
-  reason: 'rolling_restart',
-  rejectNewDispatches: true,
-  forceCancelAfterMs: 120_000, // optional: avoid indefinite shutdown hangs
-  propagateCancel: true
-});
 ```
-
-Retry behavior notes:
-- Retries now use truncated exponential backoff with optional full jitter to reduce synchronized retry spikes.
-- Transient worker rejections (`overloaded`, `rate_limit`, `retry_after`, or `etaMs`) are scheduled for retry instead of being terminally rejected when retry budget remains.
-- If a worker includes `etaMs` on a rejected receipt, the orchestrator honors that as the retry delay hint.
-- Maintenance retries can now be explicitly bounded (`maintenancePolicy.maxRetryDispatchesPerRun`) to avoid retry storms after outages.
-- Drain mode can now enforce a shutdown grace period (`forceCancelAfterMs`) and auto-cancel lingering in-flight work once the deadline is exceeded.
 
 Safety policy integration:
 ```js

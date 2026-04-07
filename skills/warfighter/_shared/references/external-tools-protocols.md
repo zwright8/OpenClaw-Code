@@ -134,6 +134,9 @@ Use profile selections that fit the mission domain:
 - `AIS/NMEA`: maritime vessel track reporting for port/harbor and maritime domain awareness
 - `NIMS/ICS`: domestic emergency management command structure and coordination framework
 - `HL7/FHIR`: medical interoperability standards used by patient and care data systems
+- `ICAO Doc 9303`: machine-readable travel-document standards for passport and no-fee passport continuity
+- `AAMVA DL/ID`: interoperable driver-license and vehicle-registration exchange for lawful mobility decisions
+- `PESC XML`: education-record and enrollment exchange for FAFSA, student-loan, and academic reentry continuity
 - `AIXM/FIXM/iwxxm`: aviation information exchange models for airspace/flight/weather interoperability
 - `MISP`: cyber threat sharing format commonly bridged with STIX/TAXII workflows
 - `DDS/MQTT` (authorized enclaves): lightweight pub/sub patterns for edge telemetry dissemination
@@ -537,6 +540,8 @@ Include these fields in outputs when tool integration is used:
 - Family and dependent support continuity: family-care-plan boards, special-education or school-liaison trackers, EFMP or guardian-support queues, and court-order or allotment ledgers; protocols: `NIEM`, signed care-plan notices, `API/JSON`, `S/MIME`, `HL7/FHIR`, `USMTF`.
 - Clearance and credential continuity: personnel-security case boards, foreign-contact update queues, professional-license or cyber-certification trackers, and CEU status ledgers; protocols: `NIEM`, signed security or credential notices, `API/JSON`, `S/MIME`, `PESC XML`, `USMTF`.
 - Retirement and long-tail transition continuity: retirement-packet boards, SBP election trackers, TSP counseling queues, DD214 validation boards, and transition-checklist ledgers; protocols: `NIEM`, signed retirement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Household mobility and movement legitimacy: command-sponsorship boards, overseas-screening trackers, no-fee passport queues, POV shipment boards, driver-license reciprocity ledgers, and registration status trackers; protocols: `NIEM`, `ICAO Doc 9303`, `AAMVA DL/ID`, signed movement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Education-finance and college reentry continuity: student-loan servicer boards, FAFSA or enrollment trackers, military deferment queues, and academic reentry ledgers; protocols: `NIEM`, `PESC XML`, signed education-finance notices, `API/JSON`, `S/MIME`, `USMTF`.
 
 ## Support-Case Protocol Selection Rules (2026-04-07)
 

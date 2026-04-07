@@ -1,0 +1,52 @@
+{
+  "skillId": 524,
+  "skillName": "mongodb-data-importer",
+  "title": "MongoDB Data Importer",
+  "provider": "MongoDB",
+  "category": "Data platforms",
+  "operation": "data-importer",
+  "authContext": {
+    "mode": "service_account",
+    "envVars": [
+      "MONGODB_SERVICE_ACCOUNT_JSON",
+      "MONGODB_CREDENTIALS_FILE"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "input_dataset": "sample_input_dataset",
+      "mapping_rules": "sample_mapping_rules",
+      "dry_run_diff": "sample_dry_run_diff"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "import-impact-review"
+    ],
+    "rollbackStrategy": "abort-import-and-replay-from-dry-run-ledger"
+  },
+  "expected": {
+    "primaryArtifact": "mongodb-import-ledger",
+    "kpiFocus": [
+      "dry-run mismatch rate",
+      "import success rate",
+      "rollback readiness"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 78,
+      "reviewMin": 58,
+      "reviewRisk": 58,
+      "criticalRisk": 76
+    }
+  },
+  "regressionHint": {
+    "scenario": "Bulk import attempt without dry-run approval and with a mapping mismatch in the payload.",
+    "mutation": "Remove dry-run approval from the fixture and introduce a field that is not covered by the mapping rules."
+  }
+}

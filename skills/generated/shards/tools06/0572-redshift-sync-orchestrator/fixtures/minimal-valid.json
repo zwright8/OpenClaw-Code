@@ -1,0 +1,52 @@
+{
+  "skillId": 572,
+  "skillName": "redshift-sync-orchestrator",
+  "title": "Redshift Sync Orchestrator",
+  "provider": "Redshift",
+  "category": "Data platforms",
+  "operation": "sync-orchestrator",
+  "authContext": {
+    "mode": "service_account",
+    "envVars": [
+      "REDSHIFT_SERVICE_ACCOUNT_JSON",
+      "REDSHIFT_CREDENTIALS_FILE"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "source_cursor": "sample_source_cursor",
+      "destination_state": "sample_destination_state",
+      "conflict_policy": "sample_conflict_policy"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "conflict-policy-review"
+    ],
+    "rollbackStrategy": "freeze-sync-window-and-reconcile-from-last-stable-cursor"
+  },
+  "expected": {
+    "primaryArtifact": "redshift-reconciliation-bundle",
+    "kpiFocus": [
+      "sync lag",
+      "reconciliation completion rate",
+      "conflict resolution accuracy"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "simulation",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 76,
+      "reviewMin": 56,
+      "reviewRisk": 60,
+      "criticalRisk": 79
+    }
+  },
+  "regressionHint": {
+    "scenario": "Sync replay with a stale destination cursor and an unresolved conflict burst.",
+    "mutation": "Provide mismatched checkpoints and a conflict policy that permits no automatic merge."
+  }
+}

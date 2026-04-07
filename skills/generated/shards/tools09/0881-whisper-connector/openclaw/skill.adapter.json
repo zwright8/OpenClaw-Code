@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "openclaw-tool-skill-adapter/v1",
+  "target": "openclaw",
+  "mode": "extension",
+  "id": 881,
+  "name": "whisper-connector",
+  "title": "Whisper Connector",
+  "description": "Unified read/write connector for Whisper APIs and data.",
+  "agent": "agent09",
+  "codex": {
+    "skillPath": "skills/generated/shards/tools09/0881-whisper-connector/SKILL.md",
+    "entrypoint": "skills/generated/shards/tools09/0881-whisper-connector/SKILL.md"
+  },
+  "openclaw": {
+    "adapterType": "tool-skill",
+    "invocationModel": "plan-execute-verify",
+    "outputs": [
+      "summary",
+      "artifacts",
+      "follow_up"
+    ]
+  },
+  "triggers": [
+    "whisper connector",
+    "whisper connector workflow",
+    "whisper connector automation"
+  ],
+  "constraints": [
+    "Reuse existing credentials before prompting for new secrets.",
+    "Start with read-only or dry-run validation before mutating state.",
+    "Validate side effects and preserve artifact traces before completion."
+  ],
+  "integration": {
+    "provider": "Whisper",
+    "operation": "connector",
+    "authModes": [
+      "oauth2",
+      "token"
+    ],
+    "apiKeyLikelyRequired": false,
+    "mutating": true
+  },
+  "paths": {
+    "skillDir": "skills/generated/shards/tools09/0881-whisper-connector"
+  }
+}

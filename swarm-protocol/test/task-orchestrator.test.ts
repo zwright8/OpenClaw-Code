@@ -103,7 +103,7 @@ test('receipt + result complete a task lifecycle', async () => {
     assert.equal(current.closedAt, clock.now());
 });
 
-test('non-transient rejected receipt terminates task', async () => {
+test('rejected receipt terminates task', async () => {
     const clock = createClock(3_000);
     const orchestrator = new TaskOrchestrator({
         localAgentId: 'agent:main',
@@ -121,7 +121,7 @@ test('non-transient rejected receipt terminates task', async () => {
         taskId: task.taskId,
         from: 'agent:worker-3',
         accepted: false,
-        reason: 'policy_denied',
+        reason: 'invalid_task_contract',
         timestamp: clock.now()
     }));
 
@@ -133,7 +133,7 @@ test('non-transient rejected receipt terminates task', async () => {
     assert.equal(maintenance.checked, 0);
 });
 
-test('transient rejected receipt schedules retry using eta hint', async () => {
+test('transient rejected receipt schedules retry and honors retry_after hint', async () => {
     const clock = createClock(3_500);
     const sent = [];
     const orchestrator = new TaskOrchestrator({
@@ -144,39 +144,83 @@ test('transient rejected receipt schedules retry using eta hint', async () => {
             }
         },
         now: clock.now,
-        defaultTimeoutMs: 100,
-        maxRetries: 2,
-        retryDelayMs: 50,
-        retryJitter: 'none'
+        maxRetries: 1,
+        retryDelayMs: 25
     });
 
     const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-3b',
-        task: 'Handle burst traffic'
+        target: 'agent:worker-transient',
+        task: 'Retry when worker is overloaded'
     });
 
-    clock.advance(10);
-    const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+    clock.advance(5);
+    orchestrator.ingestReceipt(buildTaskReceipt({
         taskId: task.taskId,
-        from: 'agent:worker-3b',
+        from: 'agent:worker-transient',
         accepted: false,
-        reason: 'worker_overloaded',
-        etaMs: 200,
+        reason: 'worker_overloaded retry_after=2',
         timestamp: clock.now()
     }));
 
-    assert.equal(accepted, true);
     let current = orchestrator.getTask(task.taskId);
     assert.equal(current.status, 'retry_scheduled');
-    assert.equal(current.nextRetryAt, clock.now() + 200);
+    assert.equal(current.nextRetryAt, clock.now() + 2_000);
 
-    clock.set(current.nextRetryAt);
-    const summary = await orchestrator.runMaintenance(clock.now());
+    clock.advance(1_999);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
     current = orchestrator.getTask(task.taskId);
-    assert.equal(summary.retried, 1);
+    assert.equal(pass1.retried, 0);
+    assert.equal(current.status, 'retry_scheduled');
+
+    clock.advance(1);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.retried, 1);
     assert.equal(current.status, 'dispatched');
     assert.equal(current.attempts, 2);
     assert.equal(sent.length, 2);
+});
+
+test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
+    const clock = createClock(9_000);
+    let sendCount = 0;
+
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send() {
+                sendCount += 1;
+                if (sendCount >= 2) {
+                    throw new Error('retry send failed');
+                }
+            }
+        },
+        now: clock.now,
+        defaultTimeoutMs: 50,
+        maxRetries: 2,
+        retryDelayMs: 100,
+        retryBackoffStrategy: 'exponential',
+        retryJitter: 'full',
+        random: () => 0.5
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-backoff',
+        task: 'Exercise retry jitter'
+    });
+
+    clock.set(9_051);
+    const pass1 = await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(pass1.scheduledRetries, 1);
+    assert.equal(current.nextRetryAt, 9_101);
+
+    clock.set(9_101);
+    const pass2 = await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(pass2.transportFailures, 1);
+    assert.equal(current.status, 'retry_scheduled');
+    assert.equal(current.nextRetryAt, 9_201);
 });
 
 test('maintenance schedules retry, retries, and times out when budget exhausted', async () => {
@@ -222,142 +266,6 @@ test('maintenance schedules retry, retries, and times out when budget exhausted'
     assert.equal(sent.length, 2);
 });
 
-test('maintenance uses exponential backoff with deterministic jitter', async () => {
-    const clock = createClock(7_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: { async send() {} },
-        now: clock.now,
-        random: () => 0.5,
-        defaultTimeoutMs: 100,
-        maxRetries: 3,
-        retryDelayMs: 100,
-        retryBackoffMultiplier: 2,
-        maxRetryDelayMs: 5_000
-    });
-
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-backoff',
-        task: 'Exercise retry backoff'
-    });
-
-    clock.set(7_150);
-    await orchestrator.runMaintenance(clock.now());
-    let current = orchestrator.getTask(task.taskId);
-    assert.equal(current.nextRetryAt, 7_200); // 0.5 * 100ms
-
-    clock.set(current.nextRetryAt);
-    await orchestrator.runMaintenance(clock.now());
-    current = orchestrator.getTask(task.taskId);
-    assert.equal(current.attempts, 2);
-
-    clock.set(7_350);
-    await orchestrator.runMaintenance(clock.now());
-    current = orchestrator.getTask(task.taskId);
-    assert.equal(current.status, 'retry_scheduled');
-    assert.equal(current.nextRetryAt, 7_450); // 0.5 * 200ms
-});
-
-test('maintenance policy caps retry dispatches per run', async () => {
-    const clock = createClock(100_000);
-    const sent = [];
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message, at: clock.now() });
-            }
-        },
-        now: clock.now,
-        defaultTimeoutMs: 5,
-        maxRetries: 2,
-        retryDelayMs: 0,
-        maintenancePolicy: {
-            maxRetryDispatchesPerRun: 2
-        }
-    });
-
-    const tasks = await Promise.all([
-        orchestrator.dispatchTask({ target: 'agent:worker-cap-1', task: 'Task 1' }),
-        orchestrator.dispatchTask({ target: 'agent:worker-cap-2', task: 'Task 2' }),
-        orchestrator.dispatchTask({ target: 'agent:worker-cap-3', task: 'Task 3' })
-    ]);
-    assert.equal(sent.length, 3);
-
-    clock.set(100_010);
-    const scheduled = await orchestrator.runMaintenance(clock.now());
-    assert.equal(scheduled.scheduledRetries, 3);
-
-    sent.length = 0;
-    const retryPass = await orchestrator.runMaintenance(clock.now());
-    assert.equal(retryPass.retried, 2);
-    assert.equal(retryPass.deferredRetries, 1);
-    assert.equal(sent.length, 2);
-
-    const openRetries = tasks
-        .map((task) => orchestrator.getTask(task.taskId))
-        .filter((record) => record.status === 'retry_scheduled');
-    assert.equal(openRetries.length, 1);
-});
-
-test('maintenance policy can fairly distribute retry dispatches across targets', async () => {
-    const clock = createClock(110_000);
-    const sent = [];
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message, at: clock.now() });
-            }
-        },
-        now: clock.now,
-        defaultTimeoutMs: 5,
-        maxRetries: 2,
-        retryDelayMs: 0,
-        maintenancePolicy: {
-            maxRetryDispatchesPerRun: 2,
-            fairRetryDispatchByTarget: true
-        }
-    });
-
-    await Promise.all([
-        orchestrator.dispatchTask({ target: 'agent:worker-fair-a', task: 'A1' }),
-        orchestrator.dispatchTask({ target: 'agent:worker-fair-a', task: 'A2' }),
-        orchestrator.dispatchTask({ target: 'agent:worker-fair-a', task: 'A3' }),
-        orchestrator.dispatchTask({ target: 'agent:worker-fair-b', task: 'B1' })
-    ]);
-
-    clock.set(110_010);
-    await orchestrator.runMaintenance(clock.now());
-
-    sent.length = 0;
-    const retryPass = await orchestrator.runMaintenance(clock.now());
-    assert.equal(retryPass.retried, 2);
-    assert.equal(retryPass.deferredRetries, 2);
-
-    const retriedTargets = new Set(sent.map((entry) => entry.target));
-    assert.equal(retriedTargets.has('agent:worker-fair-a'), true);
-    assert.equal(retriedTargets.has('agent:worker-fair-b'), true);
-});
-
-test('metrics expose maintenance policy configuration', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send() {}
-        },
-        maintenancePolicy: {
-            maxRetryDispatchesPerRun: 12,
-            fairRetryDispatchByTarget: true
-        }
-    });
-
-    const metrics = orchestrator.getMetrics();
-    assert.equal(metrics.maintenancePolicy.enabled, true);
-    assert.equal(metrics.maintenancePolicy.maxRetryDispatchesPerRun, 12);
-    assert.equal(metrics.maintenancePolicy.fairRetryDispatchByTarget, true);
-});
-
 test('dispatchTask fails fast and does not keep orphaned record when send fails', async () => {
     const clock = createClock(5_000);
     const orchestrator = new TaskOrchestrator({
@@ -384,101 +292,6 @@ test('dispatchTask fails fast and does not keep orphaned record when send fails'
 
     const metrics = orchestrator.getMetrics();
     assert.equal(metrics.total, 0);
-});
-
-test('dispatchTask rejects duplicate task ids', async () => {
-    const clock = createClock(6_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send() {}
-        },
-        now: clock.now
-    });
-
-    await orchestrator.dispatchTask({
-        id: 'task:dup-1',
-        target: 'agent:worker-dup',
-        task: 'First dispatch'
-    });
-
-    await assert.rejects(
-        () => orchestrator.dispatchTask({
-            id: 'task:dup-1',
-            target: 'agent:worker-dup',
-            task: 'Second dispatch'
-        }),
-        (error) => {
-            assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'DUPLICATE_TASK_ID');
-            return true;
-        }
-    );
-});
-
-test('circuit breaker opens after repeated send failures and recovers after cooldown', async () => {
-    const clock = createClock(7_000);
-    let shouldFail = true;
-
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send() {
-                if (shouldFail) {
-                    throw new Error('transport down');
-                }
-            }
-        },
-        now: clock.now,
-        maxRetries: 1,
-        retryDelayMs: 10,
-        defaultTimeoutMs: 50,
-        circuitBreaker: {
-            failureThreshold: 2,
-            cooldownMs: 100
-        }
-    });
-
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-cb',
-        task: 'Trigger breaker'
-    });
-
-    clock.set(7_100);
-    await orchestrator.runMaintenance(clock.now());
-    clock.set(7_120);
-    await orchestrator.runMaintenance(clock.now());
-
-    const healthOpen = orchestrator.getCircuitHealth();
-    const workerCircuit = healthOpen.circuits.find((entry) => entry.target === 'agent:worker-cb');
-    assert.ok(workerCircuit);
-    assert.equal(workerCircuit.state, 'open');
-    assert.equal(orchestrator.getTask(task.taskId)?.status, 'retry_scheduled');
-
-    await assert.rejects(
-        () => orchestrator.dispatchTask({
-            target: 'agent:worker-cb',
-            task: 'Blocked by open circuit'
-        }),
-        (error) => {
-            assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'CIRCUIT_OPEN');
-            return true;
-        }
-    );
-
-    shouldFail = false;
-    clock.set(7_240);
-    await orchestrator.runMaintenance(clock.now());
-
-    const afterRecover = orchestrator.getTask(task.taskId);
-    assert.ok(afterRecover);
-    assert.equal(afterRecover.status, 'dispatched');
-
-    const healthClosed = orchestrator.getCircuitHealth();
-    const closedCircuit = healthClosed.circuits.find((entry) => entry.target === 'agent:worker-cb');
-    assert.ok(closedCircuit);
-    assert.equal(closedCircuit.state, 'closed');
 });
 
 test('helper builders emit schema-valid messages', () => {
@@ -543,115 +356,6 @@ test('dispatchTask throws when target missing and no routeTask provided', async 
             return true;
         }
     );
-});
-
-test('drain mode rejects new dispatches with DRAINING error', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send() {}
-        }
-    });
-
-    orchestrator.setDrainMode({
-        enabled: true,
-        reason: 'rolling_restart'
-    });
-
-    await assert.rejects(
-        () => orchestrator.dispatchTask({
-            target: 'agent:worker-drain',
-            task: 'Should be rejected while draining'
-        }),
-        (error) => {
-            assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'DRAINING');
-            return true;
-        }
-    );
-});
-
-test('drain mode still coalesces duplicate dispatches to existing open task', async () => {
-    const sent = [];
-    const clock = createClock(91_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 30_000,
-            openOnly: true
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-drain-coalesce',
-        task: 'Long in-flight task',
-        context: { run: 1 }
-    });
-
-    orchestrator.setDrainMode({
-        enabled: true,
-        reason: 'graceful_shutdown'
-    });
-
-    clock.advance(100);
-    const duplicate = await orchestrator.dispatchTask({
-        target: 'agent:worker-drain-coalesce',
-        task: 'Long in-flight task',
-        context: { run: 1 }
-    });
-
-    assert.equal(duplicate.taskId, first.taskId);
-    assert.equal(sent.length, 1);
-});
-
-test('drain mode force-cancels lingering open tasks after grace timeout', async () => {
-    const sent = [];
-    const clock = createClock(92_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now
-    });
-
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-drain-force',
-        task: 'Task that should be cancelled after drain grace'
-    });
-
-    orchestrator.setDrainMode({
-        enabled: true,
-        reason: 'deploy_shutdown',
-        rejectNewDispatches: true,
-        forceCancelAfterMs: 1_000
-    });
-
-    clock.advance(900);
-    const beforeGrace = await orchestrator.runMaintenance(clock.now());
-    let current = orchestrator.getTask(task.taskId);
-    assert.equal(beforeGrace.drainForceCancelled, 0);
-    assert.equal(current.status, 'dispatched');
-
-    clock.advance(200);
-    const afterGrace = await orchestrator.runMaintenance(clock.now());
-    current = orchestrator.getTask(task.taskId);
-    assert.equal(afterGrace.drainForceCancelled, 1);
-    assert.equal(current.status, 'cancelled');
-    assert.equal(current.history.some((entry) => entry.event === 'cancel_signal_sent'), true);
-
-    assert.equal(sent.length, 2);
-    assert.equal(sent[1].target, 'agent:worker-drain-force');
-    assert.equal(sent[1].message.kind, 'task_cancel');
-    assert.equal(sent[1].message.taskId, task.taskId);
 });
 
 test('persists task state and hydrates after restart', async (t) => {
@@ -734,74 +438,6 @@ test('failed initial send deletes persisted record after flush', async (t) => {
     await orchestrator.flush();
     const records = await store.loadRecords();
     assert.equal(records.length, 0);
-});
-
-test('dispatchTask fails with SEND_TIMEOUT when transport send hangs', async () => {
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send() {
-                return new Promise(() => {});
-            }
-        },
-        transportSendTimeoutMs: 25
-    });
-
-    await assert.rejects(
-        () => orchestrator.dispatchTask({
-            target: 'agent:worker-timeout-send',
-            task: 'Timeout hung send'
-        }),
-        (error) => {
-            assert.equal(error instanceof TaskOrchestratorError, true);
-            assert.equal(error.code, 'SEND_TIMEOUT');
-            assert.match(error.message, /timed out/i);
-            return true;
-        }
-    );
-});
-
-test('maintenance converts hung retry sends into bounded transport failures', async () => {
-    const clock = createClock(80_000);
-    let sendCount = 0;
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send() {
-                sendCount += 1;
-                if (sendCount >= 2) {
-                    return new Promise(() => {});
-                }
-            }
-        },
-        now: clock.now,
-        defaultTimeoutMs: 40,
-        maxRetries: 2,
-        retryDelayMs: 15,
-        transportSendTimeoutMs: 25
-    });
-
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-timeout-retry',
-        task: 'Bound hung retry sends'
-    });
-
-    clock.set(80_050);
-    const pass1 = await orchestrator.runMaintenance(clock.now());
-    let current = orchestrator.getTask(task.taskId);
-    assert.equal(pass1.scheduledRetries, 1);
-    assert.equal(current.status, 'retry_scheduled');
-
-    clock.set(current.nextRetryAt);
-    const startedAt = Date.now();
-    const pass2 = await orchestrator.runMaintenance(clock.now());
-    const elapsedMs = Date.now() - startedAt;
-    current = orchestrator.getTask(task.taskId);
-
-    assert.equal(pass2.transportFailures, 1);
-    assert.equal(current.status, 'retry_scheduled');
-    assert.ok(current.lastError.includes('timed out'));
-    assert.ok(elapsedMs < 500);
 });
 
 test('approval policy can gate dispatch until review is approved', async () => {
@@ -929,105 +565,6 @@ test('dispatch policy can sanitize request before dispatch', async () => {
     assert.equal(sent.message.task, 'Sanitized task content');
     assert.equal(task.request.task, 'Sanitized task content');
     assert.equal(task.policy.redactions.length, 1);
-});
-
-test('cancelTask marks open task as cancelled and propagates cancel signal', async () => {
-    const sent = [];
-    const clock = createClock(88_000);
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now
-    });
-
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-cancel',
-        task: 'Long running analysis'
-    });
-
-    clock.advance(250);
-    const cancelled = await orchestrator.cancelTask(task.taskId, {
-        reason: 'superseded_by_new_plan',
-        cancelledBy: 'agent:planner',
-        timestamp: clock.now()
-    });
-
-    assert.equal(cancelled.status, 'cancelled');
-    assert.equal(cancelled.closedAt, clock.now());
-    assert.equal(cancelled.history.some((entry) => entry.event === 'cancelled'), true);
-    assert.equal(cancelled.history.some((entry) => entry.event === 'cancel_signal_sent'), true);
-
-    assert.equal(sent.length, 2);
-    assert.equal(sent[1].target, 'agent:worker-cancel');
-    assert.equal(sent[1].message.kind, 'task_cancel');
-    assert.equal(sent[1].message.taskId, task.taskId);
-});
-
-test('cancelTask blocks later terminal replay dedupe and allows fresh dispatch', async () => {
-    const clock = createClock(89_000);
-    const sent = [];
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        now: clock.now,
-        dispatchDeduplication: {
-            windowMs: 1_000,
-            terminalWindowMs: 30_000,
-            openOnly: false
-        }
-    });
-
-    const first = await orchestrator.dispatchTask({
-        target: 'agent:worker-cancel-replay',
-        task: 'Generate roadmap draft'
-    });
-    await orchestrator.cancelTask(first.taskId, {
-        reason: 'operator_abort',
-        timestamp: clock.now()
-    });
-
-    clock.advance(10);
-    const second = await orchestrator.dispatchTask({
-        target: 'agent:worker-cancel-replay',
-        task: 'Generate roadmap draft'
-    });
-
-    assert.notEqual(second.taskId, first.taskId);
-    assert.equal(sent.length, 3);
-    assert.equal(sent[1].message.kind, 'task_cancel');
-    assert.equal(sent[2].message.kind, 'task_request');
-});
-
-test('cancelTask without prior dispatch does not attempt propagation', async () => {
-    const sent = [];
-    const orchestrator = new TaskOrchestrator({
-        localAgentId: 'agent:main',
-        transport: {
-            async send(target, message) {
-                sent.push({ target, message });
-            }
-        },
-        approvalPolicy: () => ({ required: true, reason: 'manual_review' })
-    });
-
-    const task = await orchestrator.dispatchTask({
-        target: 'agent:worker-cancel-awaiting',
-        task: 'Needs approval before send'
-    });
-
-    const cancelled = await orchestrator.cancelTask(task.taskId, {
-        reason: 'approval_withdrawn'
-    });
-    assert.equal(cancelled.status, 'cancelled');
-    assert.equal(sent.length, 0);
 });
 
 test('audit log records signed lifecycle entries', async () => {

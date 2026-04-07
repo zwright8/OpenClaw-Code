@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "sourceFile": "skills/generated/tool-ideas-agents/build.manifest.json",
+  "skillId": 560,
+  "skillName": "bigquery-migration-assistant",
+  "title": "BigQuery Migration Assistant",
+  "domain": "Data platforms",
+  "domainSlug": "data-platforms",
+  "reason": "We need this skill because BigQuery workflows degrade when state changes are hard to undo once they begin. This specific skill turns BigQuery Migration Assistant into a deterministic, auth-checked workflow for plans and executes safe migrations to or from bigquery..",
+  "implementationGuide": [
+    "Define the source inventory, target mapping, cutover window, and rollback checkpoint for BigQuery Migration Assistant before any BigQuery rehearsal is approved.",
+    "Validate credential reuse, export baselines, and the human approval chain for every irreversible migration step.",
+    "Implement plans and executes safe migrations to or from bigquery. as staged rehearsal, checkpoint, and cutover workflows that preserve a deterministic revert path.",
+    "Capture migration inventories, mapping diffs, checkpoint identifiers, and partial-failure evidence in the cutover plan.",
+    "Run simulation and regression suites that cover missing inventory, rollback weakness, and partial cutover outcomes.",
+    "Publish a migration cutover plan with rehearsal status, rollback readiness, and the exact approval still required for production execution."
+  ],
+  "runtimeProfile": {
+    "archetype": "migration-engine",
+    "coreMethod": "staged migration planning and cutover",
+    "primaryArtifact": "bigquery-migration-cutover-plan",
+    "requiredSignals": [
+      "source inventory",
+      "target mapping",
+      "rollback plan"
+    ],
+    "kpiFocus": [
+      "migration completeness",
+      "cutover risk",
+      "rollback success rate"
+    ],
+    "scoringWeights": {
+      "truth": 0.2,
+      "execution": 0.24,
+      "safety": 0.4,
+      "impact": 0.16
+    },
+    "postureThresholds": {
+      "readyMin": 80,
+      "reviewMin": 60,
+      "reviewRisk": 56,
+      "criticalRisk": 74
+    },
+    "orchestration": {
+      "routingTag": "bigquery:migration-assistant",
+      "approvalGates": [
+        "migration-plan-review",
+        "rollback-readiness-check"
+      ],
+      "retryPolicy": {
+        "maxAttempts": 1,
+        "baseDelayMs": 1000,
+        "backoff": "exponential"
+      },
+      "rollbackStrategy": "abort-cutover-and-revert-to-last-stable-platform-state",
+      "components": [
+        "inventory scan",
+        "mapping validation",
+        "cutover rehearsal",
+        "rollback checkpoint"
+      ]
+    },
+    "validation": {
+      "suites": [
+        "unit",
+        "integration",
+        "simulation",
+        "regression-baseline"
+      ],
+      "baselineRequired": true
+    },
+    "rollout": {
+      "featureFlag": "tool_skill_0560_bigquery",
+      "releaseCycles": 3,
+      "telemetryAlerts": true
+    },
+    "scoringSeed": "tool-skill:560:bigquery:migration-assistant"
+  },
+  "improvementProfile": {
+    "version": 1,
+    "tier": "mission_critical",
+    "humanUseCases": [
+      "Plan and execute provider migrations without guessing through cutover or rollback risk.",
+      "Treat migrations as staged rehearsals backed by checkpoints and rollback evidence."
+    ],
+    "runbook": {
+      "preflight": [
+        "Validate the full source inventory, target mapping, cutover window, and rollback checkpoint before rehearsal begins.",
+        "Require an explicit human approval path for every irreversible step in the migration."
+      ],
+      "execution": [
+        "Rehearse the migration with deterministic checkpoints before the production cutover is allowed.",
+        "Pause on any unapproved mapping gap or rollback weakness rather than proceeding optimistically."
+      ],
+      "recovery": [
+        "Abort cutover immediately when checkpoints or rollback evidence fail validation.",
+        "Revert to the last stable platform state and capture every partially migrated object for review."
+      ],
+      "handoff": [
+        "Return the migration cutover plan, rehearsal results, and rollback status.",
+        "State clearly whether the migration is ready, blocked, partially rolled back, or awaiting approval."
+      ]
+    },
+    "guardrails": [
+      {
+        "kind": "safety",
+        "rule": "Do not permit cutover without a rehearsed rollback checkpoint and explicit approval.",
+        "automation": "rollback-readiness-check"
+      },
+      {
+        "kind": "quality",
+        "rule": "Require inventory-to-mapping reconciliation before rehearsal and again before cutover.",
+        "automation": "inventory-reconcile"
+      },
+      {
+        "kind": "reliability",
+        "rule": "Abort immediately on partial cutover and revert to the last stable platform state.",
+        "automation": "cutover-abort-and-revert"
+      }
+    ],
+    "observability": {
+      "slo": ">=99.9% successful runs per 7-day window",
+      "errorBudget": "<=0.1% critical failures per 7-day window",
+      "alertTriggers": [
+        "credential validation failures exceed baseline",
+        "schema or contract regressions persist for two consecutive runs",
+        "critical posture or rollback events exceed tolerance"
+      ]
+    },
+    "automation": {
+      "autopilotReady": false,
+      "parallelism": 1,
+      "maxCycleMinutes": 15,
+      "approvals": [
+        "migration-plan-review",
+        "rollback-readiness-check"
+      ]
+    },
+    "outcomes": {
+      "primaryMetric": "migration completeness",
+      "secondaryMetrics": [
+        "cutover risk",
+        "rollback success rate"
+      ],
+      "reviewCadence": "daily"
+    }
+  },
+  "integrationProfile": {
+    "provider": "BigQuery",
+    "providerSlug": "bigquery",
+    "category": "Data platforms",
+    "operation": "Migration Assistant",
+    "operationSlug": "migration-assistant",
+    "protocols": [
+      "HTTPS/REST",
+      "SQL or driver/SDK"
+    ],
+    "authModes": [
+      {
+        "kind": "service_account",
+        "label": "Service account or machine credential",
+        "envVars": [
+          "BIGQUERY_SERVICE_ACCOUNT_JSON",
+          "BIGQUERY_CREDENTIALS_FILE"
+        ],
+        "required": true,
+        "validation": "Verify the machine credential or profile against the target environment before any mutating step."
+      },
+      {
+        "kind": "session",
+        "label": "Existing session or local profile",
+        "envVars": [
+          "BIGQUERY_SESSION",
+          "BIGQUERY_PROFILE"
+        ],
+        "required": true,
+        "validation": "Check the current session/profile and confirm it points at the intended tenant or workspace."
+      }
+    ],
+    "externalAuthRequired": true,
+    "apiKeyLikelyRequired": false,
+    "mutating": true,
+    "webhookCapable": false,
+    "notes": [
+      "Validate destination environment and query scope to avoid uncontrolled data exposure."
+    ]
+  },
+  "traceability": {
+    "scopeStep": "Define the source inventory, target mapping, cutover window, and rollback checkpoint for BigQuery Migration Assistant before any BigQuery rehearsal is approved.",
+    "contractStep": "Validate credential reuse, export baselines, and the human approval chain for every irreversible migration step.",
+    "coreStep": "Implement plans and executes safe migrations to or from bigquery. as staged rehearsal, checkpoint, and cutover workflows that preserve a deterministic revert path.",
+    "orchestrationStep": "Capture migration inventories, mapping diffs, checkpoint identifiers, and partial-failure evidence in the cutover plan.",
+    "validationStep": "Run simulation and regression suites that cover missing inventory, rollback weakness, and partial cutover outcomes.",
+    "rolloutStep": "Publish a migration cutover plan with rehearsal status, rollback readiness, and the exact approval still required for production execution."
+  }
+}

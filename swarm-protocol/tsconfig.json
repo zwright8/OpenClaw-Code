@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.base.json",
+  "include": [
+    "index.ts",
+    "run-tests.ts",
+    "test.ts",
+    "bootstrap-nexus.ts",
+    "src/**/*.ts",
+    "scripts/**/*.ts",
+    "scripts/**/*.mts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

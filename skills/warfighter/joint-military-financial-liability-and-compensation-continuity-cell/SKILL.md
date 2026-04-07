@@ -89,3 +89,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Add `toolchain_id=TC-GTCC-320`, `tool_suite_id=ts-joint-government-travel-charge-card-mission-travel-continuity-v1`, and `protocol_stack_id=ps-joint-government-travel-charge-card-mission-travel-continuity-stack-v1` when compensation legitimacy or household stability depends on clearing official-travel delinquency, card suspension, or reimbursement aging.
 - Add `toolchain_id=TC-PAYINC-321`, `tool_suite_id=ts-joint-special-pay-bah-cola-incentive-continuity-v1`, and `protocol_stack_id=ps-joint-special-pay-bah-cola-incentive-continuity-stack-v1` when claims, hardship relief, or retention confidence depends on corrected BAH, COLA, special pay, or incentive obligations.
 - Add `packet_id=DPL-GTCC-MISSION-TRAVEL-001` and `packet_id=DPL-SPECIAL-PAY-BAH-COLA-INCENTIVE-001` for branches that materially alter compensation legitimacy, interim-relief confidence, or household financial stability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXI Addendum)
+
+- Add `toolchain_id=TC-STULOAN-326`, `tool_suite_id=ts-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-v1`, and `protocol_stack_id=ps-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-stack-v1` when household financial stability, retention confidence, or hardship sequencing depends on student-loan protection, FAFSA continuity, or academic reentry for warfighters or dependents.
+- Add `packet_id=DPL-STUDENT-LOAN-FAFSA-REENTRY-001` for branches that materially alter compensation legitimacy, hardship-confidence, or household financial stability.

@@ -1,0 +1,50 @@
+{
+  "skillId": 806,
+  "skillName": "openai-report-builder",
+  "title": "OpenAI Report Builder",
+  "provider": "OpenAI",
+  "category": "AI and model platforms",
+  "operation": "report-builder",
+  "authContext": {
+    "mode": "api_key",
+    "envVars": [
+      "OPENAI_API_KEY"
+    ],
+    "status": "present-and-validated"
+  },
+  "input": {
+    "requiredSignals": {
+      "report_scope": "sample_report_scope",
+      "metric_definitions": "sample_metric_definitions",
+      "presentation_template": "sample_presentation_template"
+    },
+    "approvalGates": [
+      "provider-auth-check",
+      "publication-review"
+    ],
+    "rollbackStrategy": "hold-publication-and-rebuild-report"
+  },
+  "expected": {
+    "primaryArtifact": "openai-report-bundle",
+    "kpiFocus": [
+      "report freshness",
+      "metric correctness",
+      "delivery timeliness"
+    ],
+    "validationSuites": [
+      "unit",
+      "integration",
+      "regression-baseline"
+    ],
+    "postureThresholds": {
+      "readyMin": 73,
+      "reviewMin": 53,
+      "reviewRisk": 63,
+      "criticalRisk": 82
+    }
+  },
+  "regressionHint": {
+    "scenario": "Report generation with stale source data and a template expecting a removed metric.",
+    "mutation": "Age the source timestamps beyond freshness tolerance and request a missing metric in the template."
+  }
+}
