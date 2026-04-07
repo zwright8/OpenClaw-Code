@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported guardian assumptions, expired consent forms, special-needs support gaps, and privacy exposure before recommending action.
 - Do not fabricate custody authority, guardian acceptance, dependent status, or readiness certification.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXIV Addendum)
+
+- Add `toolchain_id=TC-REARDET-337`, `tool_suite_id=ts-joint-rear-detachment-family-readiness-group-ombudsman-continuity-v1`, and `protocol_stack_id=ps-joint-rear-detachment-family-readiness-group-ombudsman-continuity-stack-v1` when family-care-plan viability depends on rear-detachment visibility, sponsor-status synchronization, or command-linked household escalation.
+- Add `toolchain_id=TC-PLACEMENT-341`, `tool_suite_id=ts-joint-adoption-foster-care-kinship-placement-continuity-v1`, and `protocol_stack_id=ps-joint-adoption-foster-care-kinship-placement-continuity-stack-v1` when guardianship planning intersects with adoption, foster placement, kinship custody, or court-timed household decisions.
+- Add `packet_id=DPL-REAR-DETACHMENT-FRG-OMBUDSMAN-001` and `packet_id=DPL-ADOPTION-FOSTER-KINSHIP-001` for branches that materially alter dependent placement posture, guardian routing, or command confidence in household stability.

@@ -3120,3 +3120,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, signed medical orders, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only recovery-order triage with manual order and pay-impact review until medhold legitimacy is human-confirmed.
+
+## Toolchain Wave LXXXIV (2026-04-07, Household Command Support, Exposure Continuity, Readiness Recovery, Benefit Bridging, Placement Stability, and Reintegration)
+
+### `rear-detachment-frg-ombudsman-v1`
+- Use for: deployment, casualty-adjacent, and household-stability decisions when rear-detachment visibility, ombudsman routing, or FRG coordination determines whether a family problem becomes a readiness loss.
+- Primary tools: `ts-joint-rear-detachment-family-readiness-group-ombudsman-continuity-v1`.
+- Cross-check tools: `ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`.
+- Protocols: `NIEM`, signed family-support notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only household triage with manual sponsor review and no unsupported command-support outcome.
+
+### `toxic-exposure-registry-continuity-v1`
+- Use for: force-health and benefits-preservation decisions when burn-pit, airborne-hazard, or toxic-exposure evidence must survive long enough to drive follow-up care, registry enrollment, and lawful documentation.
+- Primary tools: `ts-joint-airborne-hazard-burn-pit-pact-act-toxic-exposure-registry-continuity-v1`.
+- Cross-check tools: `ts-theater-occupational-toxicology-solvent-fuel-heavy-metal-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed exposure notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only exposure triage with manual medical and industrial-hygiene review until source evidence is human-confirmed.
+
+### `post-deployment-health-imr-v1`
+- Use for: deployability and safe-recovery decisions when PDHA or PDHRA gaps, IMR drift, or stale duty limitations create hidden readiness debt after a deployment cycle.
+- Primary tools: `ts-joint-post-deployment-health-assessment-imr-duty-limitation-recovery-v1`.
+- Cross-check tools: `ts-joint-convalescent-leave-limited-duty-medical-hold-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed readiness notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only readiness triage with manual clinical review and no unsupported deployability or waiver claim.
+
+### `dental-vision-fedvip-bridge-v1`
+- Use for: family-stability and specialty-care decisions when dental, vision, or orthodontic benefit breaks threaten treatment continuity during PCS, mobilization, or recovery.
+- Primary tools: `ts-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-v1`.
+- Cross-check tools: `ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed benefit notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only benefit triage with manual eligibility review and no unsupported coverage or appointment outcome.
+
+### `adoption-foster-kinship-placement-v1`
+- Use for: deployment, PCS, and recovery decisions when adoption, foster-care, or kinship-placement timing determines whether dependents remain lawfully placed and supported.
+- Primary tools: `ts-joint-adoption-foster-care-kinship-placement-continuity-v1`.
+- Cross-check tools: `ts-joint-family-care-guardianship-dependent-support-v1`.
+- Protocols: `NIEM`, signed custody notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only placement triage with manual legal and guardian review until court and consent posture are human-confirmed.
+
+### `adaptive-sports-reintegration-peer-mentor-v1`
+- Use for: wounded-warrior recovery and identity-restoration decisions when adaptive sports, peer mentorship, and community reintegration determine whether rehabilitation momentum survives outside the clinic.
+- Primary tools: `ts-joint-adaptive-sports-community-reintegration-peer-mentor-continuity-v1`.
+- Cross-check tools: `ts-joint-vre-independent-living-adaptive-employment-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed rehabilitation plans, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only reintegration triage with manual rehab review and no unsupported program placement or peer-support outcome.

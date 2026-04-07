@@ -2892,3 +2892,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent medical-board review cell and alternate rehabilitation or personnel-management desk
 - Protocol binding: HL7/FHIR + NIEM + signed medical orders + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only recovery sequencing until medical evidence, order authority, and pay-impact posture are human-confirmed
+
+## Toolchain Wave LXXXIV (2026-04-07)
+
+### `TC-REARDET-337`
+
+- Domain: joint rear detachment family readiness group and ombudsman continuity
+- Primary systems: rear-detachment action board, family-readiness case queue, ombudsman issue tracker, sponsor-status and leave-impact ledger
+- Cross-check systems: independent family-readiness review cell and alternate American Red Cross or service-support desk
+- Protocol binding: NIEM + signed family-support notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only household sequencing until sponsor status, family consent, and support-node legitimacy are human-confirmed
+
+### `TC-BURNPIT-338`
+
+- Domain: joint airborne hazard burn pit PACT Act and toxic exposure registry continuity
+- Primary systems: exposure-event ledger, registry-enrollment queue, occupational-health note tracker, specialty-referral board
+- Cross-check systems: independent industrial-hygiene review cell and alternate deployment-health or toxicology witness
+- Protocol binding: HL7/FHIR + NIEM + signed exposure notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only exposure sequencing until source evidence, follow-up routing, and registry posture are human-confirmed
+
+### `TC-PDHAIMR-339`
+
+- Domain: joint post deployment health assessment IMR and duty limitation recovery
+- Primary systems: post-deployment assessment board, IMR discrepancy queue, profile and duty-limitation ledger, follow-up appointment tracker
+- Cross-check systems: independent readiness NCO review cell and alternate clinical quality or force-health desk
+- Protocol binding: HL7/FHIR + NIEM + signed readiness notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only readiness sequencing until assessment status, profile authority, and follow-up routing are human-confirmed
+
+### `TC-FEDVIP-340`
+
+- Domain: joint tricare dental FEDVIP vision and orthodontic benefit bridge
+- Primary systems: dental-benefit case board, vision or FEDVIP enrollment queue, orthodontic authorization tracker, network-access and claims ledger
+- Cross-check systems: independent TRICARE benefits review cell and alternate DEERS or family-support desk
+- Protocol binding: HL7/FHIR + NIEM + signed benefit notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only benefit sequencing until eligibility, network posture, and authorization evidence are human-confirmed
+
+### `TC-PLACEMENT-341`
+
+- Domain: joint adoption foster care and kinship placement continuity
+- Primary systems: placement hearing calendar, home-study and ICPC tracker, guardian-contact board, school or medical consent ledger
+- Cross-check systems: independent legal-assistance review cell and alternate family-support or child-welfare liaison desk
+- Protocol binding: NIEM + signed custody notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only placement sequencing until placement status, consent posture, and legal-routing evidence are human-confirmed
+
+### `TC-ADSPORT-342`
+
+- Domain: joint adaptive sports community reintegration and peer mentor continuity
+- Primary systems: adaptive-sports participation board, peer-mentor assignment queue, reintegration milestone tracker, transportation and equipment support ledger
+- Cross-check systems: independent rehabilitation review cell and alternate wounded-warrior or VA transition desk
+- Protocol binding: HL7/FHIR + NIEM + signed rehabilitation plans + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only reintegration sequencing until program legitimacy, mentor availability, and equipment support posture are human-confirmed

@@ -15404,3 +15404,67 @@ external_binding:
 ### `ps-joint-convalescent-leave-limited-duty-medical-hold-continuity-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed medical orders, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: recovery-order exchange, limited-duty updates, medhold routing, and command-aware medical-hold acknowledgment.
+
+## Tool Suite Addendum LXXXIV (2026-04-07, Rear Detachment Coordination, Toxic Exposure Continuity, Post-Deployment Health Recovery, Dental-Vision Benefit Bridging, Family Placement Stability, and Adaptive Reintegration)
+
+### `ts-joint-rear-detachment-family-readiness-group-ombudsman-continuity-v1`
+- Use for: rear-detachment triage, ombudsman and FRG escalation, casualty-adjacent family issue routing, and sponsor-status synchronization when deployed households lose their normal support loop.
+- Primary tools: rear-detachment action board, family-readiness case queue, ombudsman issue tracker, sponsor-status and leave-impact ledger.
+- Cross-check tools: independent family-readiness review cell and alternate American Red Cross or service-support desk.
+- Typical products: rear-detachment action board, household escalation ladder, command-family continuity packet.
+
+### `ts-joint-airborne-hazard-burn-pit-pact-act-toxic-exposure-registry-continuity-v1`
+- Use for: burn-pit and airborne-hazard evidence preservation, PACT Act or registry routing, toxic-exposure surveillance, and specialty-referral synchronization when exposure history begins to drive readiness or benefits risk.
+- Primary tools: exposure-event ledger, registry-enrollment queue, occupational-health note tracker, specialty-referral board.
+- Cross-check tools: independent industrial-hygiene review cell and alternate deployment-health or toxicology witness.
+- Typical products: exposure continuity board, registry-enrollment ladder, toxic-exposure evidence packet.
+
+### `ts-joint-post-deployment-health-assessment-imr-duty-limitation-recovery-v1`
+- Use for: PDHA or PDHRA completion recovery, IMR discrepancy closure, duty-limitation tracking, and post-deployment follow-up synchronization when medical drift starts to degrade deployability or safe recovery.
+- Primary tools: post-deployment assessment board, IMR discrepancy queue, profile and duty-limitation ledger, follow-up appointment tracker.
+- Cross-check tools: independent readiness NCO review cell and alternate clinical quality or force-health desk.
+- Typical products: post-deployment recovery board, IMR closure ladder, duty-limitation continuity packet.
+
+### `ts-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-v1`
+- Use for: dental coverage continuity, FEDVIP or vision enrollment recovery, orthodontic prior-authorization routing, and OCONUS network-bridge actions when benefit breaks threaten care or household stability.
+- Primary tools: dental-benefit case board, vision or FEDVIP enrollment queue, orthodontic authorization tracker, network-access and claims ledger.
+- Cross-check tools: independent TRICARE benefits review cell and alternate DEERS or family-support desk.
+- Typical products: dental-vision benefit board, coverage-bridge ladder, specialty-benefit continuity packet.
+
+### `ts-joint-adoption-foster-care-kinship-placement-continuity-v1`
+- Use for: adoption timing, foster-care placement continuity, kinship-custody routing, and interstate-placement synchronization when mobilization, PCS, or recovery stress threatens lawful dependent placement stability.
+- Primary tools: placement hearing calendar, home-study and ICPC tracker, guardian-contact board, school or medical consent ledger.
+- Cross-check tools: independent legal-assistance review cell and alternate family-support or child-welfare liaison desk.
+- Typical products: placement continuity board, custody and hearing ladder, family-placement stability packet.
+
+### `ts-joint-adaptive-sports-community-reintegration-peer-mentor-continuity-v1`
+- Use for: adaptive-sports access, peer-mentor routing, community reintegration milestone tracking, and transportation or equipment continuity when wounded-warrior recovery starts stalling outside clinical settings.
+- Primary tools: adaptive-sports participation board, peer-mentor assignment queue, reintegration milestone tracker, transportation and equipment support ledger.
+- Cross-check tools: independent rehabilitation review cell and alternate wounded-warrior or VA transition desk.
+- Typical products: reintegration board, peer-mentor support ladder, adaptive-sports continuity packet.
+
+## Protocol Stack Addendum LXXXIV (2026-04-07, External Integration Profiles for Expansion Wave LXXXIV)
+
+### `ps-joint-rear-detachment-family-readiness-group-ombudsman-continuity-stack-v1`
+- Protocols: `NIEM`, signed family-support notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: rear-detachment case exchange, ombudsman or FRG updates, sponsor-status routing, and household-escalation acknowledgment.
+
+### `ps-joint-airborne-hazard-burn-pit-pact-act-toxic-exposure-registry-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed exposure notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: exposure-event exchange, registry-routing updates, toxicology referral status, and benefits-evidence acknowledgment.
+
+### `ps-joint-post-deployment-health-assessment-imr-duty-limitation-recovery-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed readiness notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: assessment-status exchange, IMR discrepancy routing, duty-limitation updates, and command-aware recovery acknowledgment.
+
+### `ps-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed benefit notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: dental-vision eligibility exchange, authorization routing, network-transition updates, and specialty-benefit acknowledgment.
+
+### `ps-joint-adoption-foster-care-kinship-placement-continuity-stack-v1`
+- Protocols: `NIEM`, signed custody notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: placement-status exchange, hearing-routing updates, guardian-consent synchronization, and household-stability acknowledgment.
+
+### `ps-joint-adaptive-sports-community-reintegration-peer-mentor-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed rehabilitation plans, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: reintegration-status exchange, peer-mentor updates, adaptive-sports scheduling, and recovery-support acknowledgment.

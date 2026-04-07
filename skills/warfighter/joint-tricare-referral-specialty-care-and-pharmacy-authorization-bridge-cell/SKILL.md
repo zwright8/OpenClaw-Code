@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect medical privacy, equitable access, referral legitimacy, and pharmacy safety before recommending action.
 - Do not fabricate authorizations, appointment availability, medication coverage, or clinical approval.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXIV Addendum)
+
+- Add `toolchain_id=TC-FEDVIP-340`, `tool_suite_id=ts-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-v1`, and `protocol_stack_id=ps-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-stack-v1` when continuity risk extends beyond specialty medical care into dental, vision, orthodontic, or FEDVIP benefit gaps that can still degrade readiness or household stability.
+- Add `packet_id=DPL-DENTAL-VISION-FEDVIP-001` for branches that materially alter benefit-bridge timing, specialty network selection, or command confidence in nonmedical care continuity.

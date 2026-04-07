@@ -3181,3 +3181,21 @@ Every skill output should include:
 - Joint VRE independent living and adaptive employment continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell + joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell.
 - Joint specially adapted housing automobile allowance and home accessibility benefit bridge + joint-wounded-warrior-home-modification-and-caregiver-ramp-up-cell + joint-va-home-loan-guaranty-foreclosure-avoidance-and-housing-stability-cell + joint-military-homelessness-prevention-and-transitional-housing-bridge-cell.
 - Joint convalescent leave limited duty and medical hold continuity + joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-cell + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + reserve-guard-mobilization-planner.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXXIV)
+
+- joint-rear-detachment-family-readiness-group-and-ombudsman-continuity-cell
+- joint-airborne-hazard-burn-pit-pact-act-and-toxic-exposure-registry-continuity-cell
+- joint-post-deployment-health-assessment-imr-and-duty-limitation-recovery-cell
+- joint-tricare-dental-fedvip-vision-and-orthodontic-benefit-bridge-cell
+- joint-adoption-foster-care-and-kinship-placement-continuity-cell
+- joint-adaptive-sports-community-reintegration-and-peer-mentor-continuity-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXXIV)
+
+- Joint rear detachment family readiness group and ombudsman continuity + joint-emergency-leave-american-red-cross-message-and-command-approval-cell + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner.
+- Joint airborne hazard burn pit PACT Act and toxic exposure registry continuity + preventive-medicine-and-force-health-protection + theater-occupational-toxicology-solvent-fuel-and-heavy-metal-cell + joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-cell.
+- Joint post-deployment health assessment IMR and duty limitation recovery + joint-convalescent-leave-limited-duty-and-medical-hold-continuity-cell + preventive-medicine-and-force-health-protection + reserve-guard-mobilization-planner.
+- Joint Tricare dental FEDVIP vision and orthodontic benefit bridge + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell + expeditionary-dental-and-maxillofacial-readiness-cell + joint-operational-vision-ocular-trauma-and-optical-readiness-cell.
+- Joint adoption foster care and kinship placement continuity + joint-military-family-care-plan-guardianship-and-dependent-support-cell + homeland-installation-courthouse-custody-hearing-and-family-law-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint adaptive sports community reintegration and peer mentor continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-vre-independent-living-and-adaptive-employment-continuity-cell + joint-va-caregiver-support-program-stipend-training-and-respite-continuity-cell.

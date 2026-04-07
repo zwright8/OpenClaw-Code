@@ -15277,3 +15277,71 @@ validation_gates:
 - output_schema: recovery-orders board, limited-duty ladder, medical-hold continuity packet
 - protocol_profile: HL7/FHIR + NIEM + signed medical orders + API/JSON + S/MIME + USMTF
 - validation_gates: order-authority review, line-of-duty confirmation, pay-impact check, human medical or personnel validation
+
+## Packet Addendum LXXII (2026-04-07, Expansion Wave LXXXIV)
+
+### packet_id: DPL-REAR-DETACHMENT-FRG-OMBUDSMAN-001
+- domain: joint rear detachment family readiness group and ombudsman continuity
+- objective: preserve trusted household escalation and sponsor-status continuity by aligning rear-detachment actions, ombudsman routing, and family readiness support before deployed families fall out of command visibility.
+- primary_tools: rear-detachment action board, family-readiness case queue, ombudsman issue tracker, sponsor-status and leave-impact ledger
+- alternate_tools: manual household-priority roster and family-support routing worksheet
+- degraded_mode: advisory-only household triage with no unsupported command promise, leave approval, or support-service outcome
+- input_requirements: unit or sponsor status, family issue set, casualty or leave context, available support nodes, timeline pressure, privacy constraints
+- output_schema: rear-detachment action board, household escalation ladder, command-family continuity packet
+- protocol_profile: NIEM + signed family-support notices + API/JSON + S/MIME + USMTF
+- validation_gates: sponsor-status review, family-consent check, support-node confirmation, human family-readiness validation
+
+### packet_id: DPL-BURN-PIT-PACT-ACT-EXPOSURE-001
+- domain: joint airborne hazard burn pit PACT Act and toxic exposure registry continuity
+- objective: preserve exposure evidence, registry routing, and specialty follow-up before incomplete records or late enrollment turn operational exposure into long-tail readiness and benefits harm.
+- primary_tools: exposure-event ledger, registry-enrollment queue, occupational-health note tracker, specialty-referral board
+- alternate_tools: manual exposure-priority roster and deployment-health evidence worksheet
+- degraded_mode: advisory-only exposure sequencing with no unsupported diagnosis, rating, or registry-enrollment outcome
+- input_requirements: exposure location and window, unit roster, symptom or screening indicators, prior records, benefits dependencies, privacy constraints
+- output_schema: exposure continuity board, registry-enrollment ladder, toxic-exposure evidence packet
+- protocol_profile: HL7/FHIR + NIEM + signed exposure notices + API/JSON + S/MIME + USMTF
+- validation_gates: exposure-evidence review, medical-routing confirmation, registry-eligibility check, human occupational-health validation
+
+### packet_id: DPL-POST-DEPLOYMENT-HEALTH-IMR-001
+- domain: joint post deployment health assessment IMR and duty limitation recovery
+- objective: restore post-deployment health actions, IMR integrity, and duty-limitation follow-through before incomplete screening or stale profiles degrade readiness or safe recovery.
+- primary_tools: post-deployment assessment board, IMR discrepancy queue, profile and duty-limitation ledger, follow-up appointment tracker
+- alternate_tools: manual readiness-priority roster and post-deployment follow-up worksheet
+- degraded_mode: advisory-only readiness sequencing with no unsupported deployability claim, waiver, or clinical-completion promise
+- input_requirements: affected roster, PDHA or PDHRA status, IMR deltas, profile dates, follow-up demand, command deadlines
+- output_schema: post-deployment recovery board, IMR closure ladder, duty-limitation continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed readiness notices + API/JSON + S/MIME + USMTF
+- validation_gates: assessment-status review, follow-up routing confirmation, profile-authority check, human clinical or readiness validation
+
+### packet_id: DPL-DENTAL-VISION-FEDVIP-001
+- domain: joint tricare dental fedvip vision and orthodontic benefit bridge
+- objective: preserve dental and vision treatment continuity by aligning benefit eligibility, network access, and prior authorization routing before coverage breaks create pain, function loss, or household instability.
+- primary_tools: dental-benefit case board, vision or FEDVIP enrollment queue, orthodontic authorization tracker, network-access and claims ledger
+- alternate_tools: manual benefits-priority roster and specialty-care bridge worksheet
+- degraded_mode: advisory-only benefit sequencing with no unsupported enrollment, coverage, or appointment outcome
+- input_requirements: affected beneficiaries, coverage posture, treatment timeline, PCS or mobilization context, network availability, privacy constraints
+- output_schema: dental-vision benefit board, coverage-bridge ladder, specialty-benefit continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed benefit notices + API/JSON + S/MIME + USMTF
+- validation_gates: eligibility review, authorization check, network confirmation, human benefits validation
+
+### packet_id: DPL-ADOPTION-FOSTER-KINSHIP-001
+- domain: joint adoption foster care and kinship placement continuity
+- objective: preserve lawful dependent placement and family stability by aligning hearings, home-study evidence, and guardian-consent actions before mobilization or recovery disruption breaks placement continuity.
+- primary_tools: placement hearing calendar, home-study and ICPC tracker, guardian-contact board, school or medical consent ledger
+- alternate_tools: manual placement-priority roster and custody-routing worksheet
+- degraded_mode: advisory-only placement sequencing with no unsupported hearing result, custody order, or child-welfare outcome
+- input_requirements: household composition, placement status, court dates, home-study posture, guardian options, privacy constraints
+- output_schema: placement continuity board, custody and hearing ladder, family-placement stability packet
+- protocol_profile: NIEM + signed custody notices + API/JSON + S/MIME + USMTF
+- validation_gates: placement-status review, consent confirmation, legal-routing check, human legal or child-welfare validation
+
+### packet_id: DPL-ADAPTIVE-SPORTS-REINTEGRATION-001
+- domain: joint adaptive sports community reintegration and peer mentor continuity
+- objective: preserve nonclinical recovery momentum by aligning adaptive-sports access, peer-mentor support, and reintegration milestones before isolation or administrative drag stalls long-tail recovery.
+- primary_tools: adaptive-sports participation board, peer-mentor assignment queue, reintegration milestone tracker, transportation and equipment support ledger
+- alternate_tools: manual reintegration-priority roster and peer-support worksheet
+- degraded_mode: advisory-only reintegration sequencing with no unsupported program slot, transport, or peer-mentor outcome
+- input_requirements: injury and mobility profile, recovery stage, adaptive-sport demand, transport constraints, mentor availability, privacy limits
+- output_schema: reintegration board, peer-mentor support ladder, adaptive-sports continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed rehabilitation plans + API/JSON + S/MIME + USMTF
+- validation_gates: rehabilitation-review check, peer-support legitimacy confirmation, equipment-readiness review, human recovery-program validation
