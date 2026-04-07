@@ -86,3 +86,8 @@ For each critical external dependency include:
 - Add `toolchain_id=TC-HHGKIT-283`, `tool_suite_id=ts-joint-household-goods-loss-claims-essential-kit-v1`, and `protocol_stack_id=ps-joint-household-goods-loss-claims-essential-kit-stack-v1` when childcare or family-support continuity depends on essential household-item bridging during displacement or shipment loss.
 - Add `toolchain_id=TC-SPNEEDS-287`, `tool_suite_id=ts-joint-dependent-special-needs-education-medical-continuity-v1`, and `protocol_stack_id=ps-joint-dependent-special-needs-education-medical-continuity-stack-v1` when family-support decisions depend on special-needs transport, therapy continuity, or medical support for dependents.
 - Add `packet_id=DPL-SPOUSE-LICENSE-EMPLOYMENT-001`, `packet_id=DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001`, and `packet_id=DPL-DEPENDENT-SPECIAL-NEEDS-CONTINUITY-001` for branches that materially alter deployed-family stability, recall confidence, or retention posture.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-YOUTHBH-292`, `tool_suite_id=ts-strategic-military-child-youth-behavioral-health-school-reintegration-v1`, and `protocol_stack_id=ps-strategic-military-child-youth-behavioral-health-school-reintegration-stack-v1` when deployed-family support depends on youth behavioral-health stabilization, school reentry, or caregiver resilience after relocation or disruption.
+- Add `packet_id=DPL-CHILD-YOUTH-BEHAVIORAL-SCHOOL-001` for branches that materially alter deployed-family continuity, recall confidence, or retention-sensitive caregiver posture.

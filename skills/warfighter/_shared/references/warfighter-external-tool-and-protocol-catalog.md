@@ -14820,3 +14820,57 @@ external_binding:
 ### `ps-homeland-installation-courthouse-custody-hearing-family-law-continuity-stack-v1`
 - Protocols: `NIEM`, signed court notices, `API/JSON`, `S/MIME`, `NIMS/ICS`, `USMTF`.
 - Use for: courthouse-status exchange, filing-path routing, custody-hearing updates, and family-law continuity acknowledgment.
+
+## Tool Suite Addendum LXXIV (2026-04-07, Access Restoration, Employer Continuity, Child-Youth Reintegration, Safehaven Documentation, and Wounded-Warrior Family Support)
+
+### `ts-homeland-base-access-badge-vehicle-registration-vetting-restoration-v1`
+- Use for: installation access restoration, badge issuance continuity, vehicle-registration recovery, and trusted-entry vetting after domestic disruption.
+- Primary tools: access-control dashboard, badge-print and revocation ledger, vehicle-registration queue, vetting exception board.
+- Cross-check tools: independent force-protection review cell and alternate visitor-control liaison desk.
+- Typical products: access-restoration ladder, badge and vetting exception board, vehicle-registration recovery packet.
+
+### `ts-reserve-component-employer-esgr-income-shock-continuity-v1`
+- Use for: Reserve and Guard employer continuity, ESGR or USERRA escalation, hardship review, and household income-shock mitigation during mobilization.
+- Primary tools: employer-notification board, ESGR or USERRA case tracker, household income-gap ledger, emergency-assistance routing queue.
+- Cross-check tools: independent legal-support review cell and alternate family-readiness assistance desk.
+- Typical products: employer-continuity board, ESGR or USERRA escalation ladder, income-shock mitigation packet.
+
+### `ts-strategic-military-child-youth-behavioral-health-school-reintegration-v1`
+- Use for: military-child behavioral-health stabilization, school reintegration, caregiver support, and relocation recovery during crisis or PCS disruption.
+- Primary tools: youth behavioral-health tracker, school-placement board, caregiver-support ledger, telehealth or crisis-referral queue.
+- Cross-check tools: independent school-liaison review cell and alternate behavioral-health coordination desk.
+- Typical products: child and youth risk matrix, school-reintegration ladder, caregiver-support escalation packet.
+
+### `ts-theater-passport-visa-consular-safehaven-document-bridge-v1`
+- Use for: passport and visa recovery, consular coordination, dependent movement documentation, and safehaven routing when theater disruption blocks travel.
+- Primary tools: passport or visa status board, consular action tracker, dependent manifest ledger, safehaven clearance queue.
+- Cross-check tools: independent legal or consular liaison cell and alternate movement-control review board.
+- Typical products: travel-document recovery board, consular action ladder, safehaven clearance packet.
+
+### `ts-joint-wounded-warrior-family-lodging-nonmedical-attendant-coordination-v1`
+- Use for: wounded-warrior family lodging, nonmedical attendant approval, bedside travel support, and recovery-phase family coordination across the care chain.
+- Primary tools: patient-family support board, nonmedical attendant tracker, lodging-capacity queue, travel-order or reimbursement ledger.
+- Cross-check tools: independent patient-administration review cell and alternate family-support liaison desk.
+- Typical products: family lodging board, nonmedical attendant approval ladder, bedside-support continuity packet.
+
+## Protocol Stack Addendum LXXIV (2026-04-07, External Integration Profiles for Expansion Wave LXXIV)
+
+### `ps-homeland-base-access-badge-vehicle-registration-vetting-restoration-stack-v1`
+- Protocols: `NIEM`, `OIDC/SAML`, signed access notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: access-status exchange, badge issuance routing, vehicle-registration updates, and vetting-exception acknowledgment.
+
+### `ps-reserve-component-employer-esgr-income-shock-continuity-stack-v1`
+- Protocols: `NIEM`, signed employer notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: employer-status exchange, ESGR or USERRA routing, hardship updates, and mobilization-support acknowledgment.
+
+### `ps-strategic-military-child-youth-behavioral-health-school-reintegration-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed school-status notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: youth-support updates, school-placement routing, caregiver coordination, and reintegration acknowledgment.
+
+### `ps-theater-passport-visa-consular-safehaven-document-bridge-stack-v1`
+- Protocols: `NIEM`, `ICAO Doc 9303`, signed consular notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: document-status exchange, consular routing, manifest updates, and safehaven-clearance acknowledgment.
+
+### `ps-joint-wounded-warrior-family-lodging-nonmedical-attendant-coordination-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed travel orders, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: attendant-status exchange, lodging updates, bedside-travel routing, and family-support acknowledgment.

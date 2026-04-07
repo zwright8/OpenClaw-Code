@@ -162,3 +162,8 @@ Primary products for this skill: evacuation routing plan, treatment load-balanci
 - Add `toolchain_id=TC-MCM-275`, `tool_suite_id=ts-homeland-medical-countermeasure-pod-security-cold-chain-v1`, and `protocol_stack_id=ps-homeland-medical-countermeasure-pod-security-cold-chain-stack-v1` when casualty movement or triage posture depends on secure countermeasure release, cold-chain integrity, or POD throughput.
 - Add `toolchain_id=TC-COOL-277`, `tool_suite_id=ts-homeland-cooling-center-load-shedding-generator-priority-v1`, and `protocol_stack_id=ps-homeland-cooling-center-load-shedding-generator-priority-stack-v1` when patient distribution depends on heat-risk mitigation, generator-backed sheltering, or load-shed survival windows.
 - Add `packet_id=DPL-PUBLIC-HEALTH-LAB-CHAIN-001`, `packet_id=DPL-MCM-POD-COLDCHAIN-001`, and `packet_id=DPL-COOLING-CENTER-GENERATOR-001` for branches that materially alter destination selection, patient distribution, or public-health medical-risk acceptance.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-NMA-294`, `tool_suite_id=ts-joint-wounded-warrior-family-lodging-nonmedical-attendant-coordination-v1`, and `protocol_stack_id=ps-joint-wounded-warrior-family-lodging-nonmedical-attendant-coordination-stack-v1` when patient movement or recovery depends on nonmedical attendant approval, family lodging, or bedside travel continuity.
+- Add `packet_id=DPL-WOUNDED-WARRIOR-FAMILY-ATTENDANT-001` for branches that materially alter patient-distribution legitimacy, rehabilitation transition, or family-support posture across the care chain.

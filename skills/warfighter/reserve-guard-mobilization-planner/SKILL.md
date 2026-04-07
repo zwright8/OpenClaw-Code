@@ -164,3 +164,8 @@ Primary products for this skill: mobilization timeline, force sourcing decision 
 - Add `toolchain_id=TC-SPOUSE-287`, `tool_suite_id=ts-strategic-military-spouse-licensure-employment-pcs-continuity-v1`, and `protocol_stack_id=ps-strategic-military-spouse-licensure-employment-pcs-continuity-stack-v1` when mobilization readiness depends on spouse licensure portability, employment continuity, or PCS stability.
 - Add `toolchain_id=TC-DEPENDENTCARE-288`, `tool_suite_id=ts-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-v1`, and `protocol_stack_id=ps-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-stack-v1` when activation timing depends on single-parent childcare, eldercare bridging, or dependent-care-plan recovery.
 - Add `packet_id=DPL-LEGAL-AID-ID-REISSUE-001`, `packet_id=DPL-SPOUSE-LICENSURE-PCS-001`, and `packet_id=DPL-SINGLE-PARENT-ELDERCARE-MOB-001` for branches that materially alter mobilization posture, activation timing, or family-support confidence.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-ESGR-291`, `tool_suite_id=ts-reserve-component-employer-esgr-income-shock-continuity-v1`, and `protocol_stack_id=ps-reserve-component-employer-esgr-income-shock-continuity-stack-v1` when mobilization readiness depends on employer coordination, ESGR or USERRA friction, or household income-shock mitigation.
+- Add `packet_id=DPL-EMPLOYER-ESGR-INCOME-SHOCK-001` for branches that materially alter activation timing, lawful employer engagement, or commander confidence in Reserve or Guard force flow.

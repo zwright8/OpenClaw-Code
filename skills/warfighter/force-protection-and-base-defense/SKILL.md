@@ -300,3 +300,8 @@ Primary products for this skill: base defense improvement plan, vulnerability-pr
 - Add `toolchain_id=TC-ESSENTIAL-247`, `tool_suite_id=ts-theater-essential-services-contractor-strike-and-continuity-v1`, and `protocol_stack_id=ps-theater-essential-services-contractor-strike-and-continuity-stack-v1` when base survivability depends on service continuity despite labor disruption, unsafe restart risk, or contractor walkout.
 - Add `toolchain_id=TC-SCHOOL-248`, `tool_suite_id=ts-homeland-base-school-transport-and-dependent-evacuation-v1`, and `protocol_stack_id=ps-homeland-base-school-transport-and-dependent-evacuation-stack-v1` when base-defense decisions affect dependent transport, school closure sequencing, or guardian reunification.
 - Add `packet_id=DPL-MIL-HOUSING-UTILITY-001`, `packet_id=DPL-CONTRACTOR-PROTECTION-001`, `packet_id=DPL-ESSENTIAL-SERVICES-CONTINUITY-001`, and `packet_id=DPL-DEPENDENT-EVAC-001` for branches that materially alter base readiness, protected movement, or family-protection posture.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIV Addendum)
+
+- Add `toolchain_id=TC-BASEACCESS-290`, `tool_suite_id=ts-homeland-base-access-badge-vehicle-registration-vetting-restoration-v1`, and `protocol_stack_id=ps-homeland-base-access-badge-vehicle-registration-vetting-restoration-stack-v1` when force-protection posture depends on restoring trusted gate access, badge issuance, or vehicle vetting after domestic disruption.
+- Add `packet_id=DPL-BASE-ACCESS-VETTING-RESTORE-001` for branches that materially alter installation access, insider-risk controls, or commander confidence in restored entry posture.

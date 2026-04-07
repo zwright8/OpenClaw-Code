@@ -14551,3 +14551,60 @@ validation_gates:
 - output_schema: court-continuity board, custody-hearing ladder, family-law risk packet
 - protocol_profile: NIEM + signed court notices + API/JSON + S/MIME + NIMS/ICS + USMTF
 - validation_gates: court-status confirmation, filing-path review, legal-authority check
+
+## Packet Addendum LXIII (2026-04-07, Expansion Wave LXXIV)
+
+### packet_id: DPL-BASE-ACCESS-VETTING-RESTORE-001
+- domain: homeland base access badge vehicle registration and vetting restoration
+- objective: restore trusted installation access without losing force-protection discipline by sequencing badge recovery, vehicle-control, and vetting exceptions.
+- primary_tools: access-control dashboard, badge-print and revocation ledger, vehicle-registration queue, vetting exception board
+- alternate_tools: manual gate roster and vehicle-pass worksheet
+- degraded_mode: advisory-only gate exception handling with no unsupported badge issuance or vetting release
+- input_requirements: gate backlog, badge-system status, vehicle inventory, trusted-population priority, threat posture, vetting constraints
+- output_schema: access-restoration ladder, badge and vetting exception board, vehicle-registration recovery packet
+- protocol_profile: NIEM + OIDC/SAML + signed access notices + API/JSON + S/MIME + USMTF
+- validation_gates: identity review, vetting confirmation, force-protection approval
+
+### packet_id: DPL-EMPLOYER-ESGR-INCOME-SHOCK-001
+- domain: reserve component employer ESGR and income shock continuity
+- objective: preserve lawful mobilization by synchronizing employer coordination, ESGR or USERRA escalation, and household financial stabilization.
+- primary_tools: employer-notification board, ESGR or USERRA case tracker, household income-gap ledger, emergency-assistance routing queue
+- alternate_tools: manual employer-contact ledger and hardship-review worksheet
+- degraded_mode: advisory-only hardship sequencing with no unsupported employer or legal-resolution claim
+- input_requirements: mobilization demand, employer status, hardship evidence, pay timing, legal posture, family-risk indicators
+- output_schema: employer-continuity board, ESGR or USERRA escalation ladder, income-shock mitigation packet
+- protocol_profile: NIEM + signed employer notices + API/JSON + S/MIME + USMTF
+- validation_gates: employer-acknowledgment review, legal-posture check, hardship confirmation
+
+### packet_id: DPL-CHILD-YOUTH-BEHAVIORAL-SCHOOL-001
+- domain: strategic military child youth behavioral health and school reintegration
+- objective: stabilize family readiness by aligning youth behavioral-health support, school placement, and caregiver continuity after crisis disruption.
+- primary_tools: youth behavioral-health tracker, school-placement board, caregiver-support ledger, telehealth or crisis-referral queue
+- alternate_tools: manual family-support roster and school-reintegration worksheet
+- degraded_mode: advisory-only reintegration planning with no unsupported clinical or placement commitment
+- input_requirements: child or youth risk indicators, school status, caregiver constraints, clinical support posture, relocation timeline, privacy controls
+- output_schema: child and youth risk matrix, school-reintegration ladder, caregiver-support escalation packet
+- protocol_profile: HL7/FHIR + NIEM + signed school-status notices + API/JSON + S/MIME + USMTF
+- validation_gates: guardian-consent review, clinical-triage confirmation, school-placement check
+
+### packet_id: DPL-PASSPORT-VISA-SAFEHAVEN-001
+- domain: theater passport visa consular and safehaven document bridge
+- objective: preserve family movement and safehaven legitimacy by restoring travel documents, consular action, and manifest integrity under theater disruption.
+- primary_tools: passport or visa status board, consular action tracker, dependent manifest ledger, safehaven clearance queue
+- alternate_tools: manual document ledger and consular-action worksheet
+- degraded_mode: advisory-only movement sequencing with no unsupported border, visa, or embassy approval claim
+- input_requirements: document-loss categories, identity evidence, consular posture, manifest status, host-nation constraints, safehaven demand
+- output_schema: travel-document recovery board, consular action ladder, safehaven clearance packet
+- protocol_profile: NIEM + ICAO Doc 9303 + signed consular notices + API/JSON + S/MIME + USMTF
+- validation_gates: identity review, consular-authority confirmation, border-clearance check
+
+### packet_id: DPL-WOUNDED-WARRIOR-FAMILY-ATTENDANT-001
+- domain: joint wounded warrior family lodging and nonmedical attendant coordination
+- objective: improve recovery support by synchronizing family lodging, nonmedical attendant approval, and bedside travel without breaking medical-regulation controls.
+- primary_tools: patient-family support board, nonmedical attendant tracker, lodging-capacity queue, travel-order or reimbursement ledger
+- alternate_tools: manual attendant roster and lodging-priority worksheet
+- degraded_mode: advisory-only family-support routing with no unsupported travel or lodging commitment
+- input_requirements: patient status, attendant eligibility, lodging posture, travel constraints, privacy limits, care-transition timeline
+- output_schema: family lodging board, nonmedical attendant approval ladder, bedside-support continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed travel orders + API/JSON + S/MIME + USMTF
+- validation_gates: clinical-review check, attendant-eligibility confirmation, travel-approval review

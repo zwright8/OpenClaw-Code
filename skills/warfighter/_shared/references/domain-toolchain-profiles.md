@@ -2450,3 +2450,45 @@ For every critical recommendation, include:
 - Cross-check systems: independent legal-assistance office and alternate family-readiness legal desk
 - Protocol binding: NIEM + signed court notices + API/JSON + S/MIME + NIMS/ICS + USMTF
 - Fallback path: advisory-only legal continuity board with no unsupported filing acceptance or hearing guarantee
+
+## Toolchain Wave LXXIV (2026-04-07)
+
+### `TC-BASEACCESS-290`
+
+- Domain: homeland base access badge vehicle registration and vetting restoration
+- Primary systems: access-control dashboard, badge-print and revocation ledger, vehicle-registration queue, vetting exception board
+- Cross-check systems: independent force-protection review cell and alternate visitor-control liaison desk
+- Protocol binding: NIEM + OIDC/SAML + signed access notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual gate roster and vehicle pass board with advisory-only exception handling until vetting and badge provenance are confirmed
+
+### `TC-ESGR-291`
+
+- Domain: reserve component employer ESGR and income shock continuity
+- Primary systems: employer-notification board, ESGR or USERRA case tracker, household income-gap ledger, emergency-assistance routing queue
+- Cross-check systems: independent legal-support review cell and alternate family-readiness assistance desk
+- Protocol binding: NIEM + signed employer notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual employer-contact ledger with advisory-only hardship routing until legal posture, pay timing, and employer acknowledgment are confirmed
+
+### `TC-YOUTHBH-292`
+
+- Domain: strategic military child youth behavioral health and school reintegration
+- Primary systems: youth behavioral-health tracker, school-placement board, caregiver-support ledger, telehealth or crisis-referral queue
+- Cross-check systems: independent school-liaison review cell and alternate behavioral-health coordination desk
+- Protocol binding: HL7/FHIR + NIEM + signed school-status notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual family-support board with advisory-only reintegration planning until clinical posture, school placement, and guardian consent are confirmed
+
+### `TC-CONSULAR-293`
+
+- Domain: theater passport visa consular and safehaven document bridge
+- Primary systems: passport or visa status board, consular action tracker, dependent manifest ledger, safehaven clearance queue
+- Cross-check systems: independent legal or consular liaison cell and alternate movement-control review board
+- Protocol binding: NIEM + ICAO Doc 9303 + signed consular notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual manifest and document ledger with advisory-only movement sequencing until identity and border-acceptance are confirmed
+
+### `TC-NMA-294`
+
+- Domain: joint wounded warrior family lodging and nonmedical attendant coordination
+- Primary systems: patient-family support board, nonmedical attendant tracker, lodging-capacity queue, travel-order or reimbursement ledger
+- Cross-check systems: independent patient-administration review cell and alternate family-support liaison desk
+- Protocol binding: HL7/FHIR + NIEM + signed travel orders + API/JSON + S/MIME + USMTF
+- Fallback path: manual travel and lodging roster with advisory-only attendant sequencing until medical and travel authority are confirmed

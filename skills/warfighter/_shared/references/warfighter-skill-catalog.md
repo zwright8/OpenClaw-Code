@@ -2750,7 +2750,7 @@ Every skill output should include:
 - joint-loitering-munition-fratricide-envelope-assurance-cell
 - expeditionary-burn-intensive-care-oxygen-arbitration-cell
 - strategic-cable-landing-station-sanctions-bypass-hunt-cell
-- coalition-arctic-fuel-freeze-point-assurance-cell
+- coalition-arctic-bulk-fuel-blending-and-freeze-point-assurance-cell
 
 ## Updated Pairings (2026-03-15, Expansion Wave LXII)
 
@@ -3027,3 +3027,19 @@ Every skill output should include:
 - Strategic military spouse licensure employment and PCS continuity + reserve-component-family-readiness-surge-cell + strategic-defense-industrial-workforce-family-stabilization-cell + mission-risk-decision-support.
 - Reserve-component single-parent childcare eldercare mobilization bridge + reserve-guard-mobilization-planner + multi-domain-reserve-mobilization-readiness-cell + homeland-base-school-transport-and-dependent-evacuation-cell.
 - Homeland installation courthouse custody hearing and family-law continuity + homeland-protective-order-domestic-violence-and-safe-housing-continuity-cell + public-affairs-operational-communications + mission-risk-decision-support.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXIV)
+
+- homeland-base-access-badge-vehicle-registration-and-vetting-restoration-cell
+- reserve-component-employer-esgr-and-income-shock-continuity-cell
+- strategic-military-child-youth-behavioral-health-and-school-reintegration-cell
+- theater-passport-visa-consular-and-safehaven-document-bridge-cell
+- joint-wounded-warrior-family-lodging-and-nonmedical-attendant-coordination-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXIV)
+
+- Homeland base access badge vehicle registration and vetting restoration + force-protection-and-base-defense + homeland-military-legal-assistance-and-identity-document-reissuance-cell + homeland-law-enforcement-and-military-movement-deconfliction-cell.
+- Reserve-component employer ESGR and income-shock continuity + reserve-guard-mobilization-planner + strategic-reserve-mobilization-fraud-detection-and-pay-continuity-cell + joint-reservist-mobilization-family-readiness-synchronization-cell.
+- Strategic military child-youth behavioral health and school reintegration + joint-military-family-readiness-crisis-sustainment-cell + theater-deployed-childcare-and-family-support-continuity-cell + homeland-base-school-transport-and-dependent-evacuation-cell.
+- Theater passport visa consular and safehaven document bridge + strategic-military-family-evacuation-and-safehaven-allocation-cell + joint-deployed-identity-credential-loss-and-reissuance-cell + host-nation-access-basing-overflight-support.
+- Joint wounded-warrior family lodging and nonmedical attendant coordination + casualty-evac-and-medical-regulation + strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell.
