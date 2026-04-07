@@ -165,3 +165,10 @@ Use this default binding unless mission constraints require an alternate path:
 - Alternate: `tool_suite_id=ts-medical-force-health-v1` with `protocol_stack_id=ps-medical-readiness-stack-v1`.
 - Preferred `packet_id=DPL-PSYCH-POSTVENTION-001`, `toolchain_id=TC-PSYCH-095`, and `toolchain_profile_id=psychological-health-postvention-v1`.
 - Default endpoint security profile: `esp-cross-domain-guarded-transfer-v1` for coalition/cross-domain flows or `esp-mission-secret-api-gateway-v1` for U.S.-only operations.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXII Addendum)
+
+- Add `toolchain_id=TC-TBHEALTH-327`, `tool_suite_id=ts-joint-telebehavioral-health-burnout-suicide-risk-continuity-v1`, and `protocol_stack_id=ps-joint-telebehavioral-health-burnout-suicide-risk-continuity-stack-v1` when postvention follow-through depends on remote behavioral-health continuity, provider shortages, or distributed-family access to care.
+- Add `toolchain_id=TC-DOXX-330`, `tool_suite_id=ts-joint-family-online-harassment-doxxing-protective-escalation-v1`, and `protocol_stack_id=ps-joint-family-online-harassment-doxxing-protective-escalation-stack-v1` when online harassment, memorial amplification, or doxxing risk threatens survivors, unit members, or contagion-control posture after a suicide event.
+- Add `toolchain_id=TC-HOMELESS-328`, `tool_suite_id=ts-joint-military-homelessness-prevention-transitional-housing-bridge-v1`, and `protocol_stack_id=ps-joint-military-homelessness-prevention-transitional-housing-bridge-stack-v1` when safe-housing instability for affected families or survivors starts to undermine recovery follow-through or command trust.
+- Add `packet_id=DPL-TELEBEHAVIORAL-BURNOUT-SUICIDE-001`, `packet_id=DPL-FAMILY-ONLINE-HARASSMENT-DOXXING-001`, and `packet_id=DPL-HOMELESSNESS-TRANSITIONAL-HOUSING-001` for branches that materially alter postvention timing, care continuity, or survivor-protection posture.

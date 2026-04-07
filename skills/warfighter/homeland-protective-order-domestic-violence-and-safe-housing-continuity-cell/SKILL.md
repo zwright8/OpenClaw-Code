@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag privacy exposure, retaliation risk, unsupported housing commitments, and child-custody conflicts before recommending action.
 - Do not fabricate victim statements, protective orders, safe-housing availability, custody rulings, or approvals.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXII Addendum)
+
+- Add `toolchain_id=TC-DOXX-330`, `tool_suite_id=ts-joint-family-online-harassment-doxxing-protective-escalation-v1`, and `protocol_stack_id=ps-joint-family-online-harassment-doxxing-protective-escalation-stack-v1` when victim protection depends on countering doxxing, swatting, stalking, or online intimidation that can bypass normal safe-housing assumptions.
+- Add `toolchain_id=TC-HOMELESS-328`, `tool_suite_id=ts-joint-military-homelessness-prevention-transitional-housing-bridge-v1`, and `protocol_stack_id=ps-joint-military-homelessness-prevention-transitional-housing-bridge-stack-v1` when safe-housing options must bridge into longer-term transitional lodging or homelessness-prevention actions.
+- Add `packet_id=DPL-FAMILY-ONLINE-HARASSMENT-DOXXING-001` and `packet_id=DPL-HOMELESSNESS-TRANSITIONAL-HOUSING-001` for branches that materially alter victim-protection posture, safe-housing confidence, or follow-on family-stability planning.

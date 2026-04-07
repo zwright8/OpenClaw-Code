@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag forged-message risk, family distress, backfill gaps, and unequal leave treatment before recommending action.
 - Do not fabricate emergency verification, leave approval, travel availability, or compassionate reassignment authority.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXII Addendum)
+
+- Add `toolchain_id=TC-COMPASS-331`, `tool_suite_id=ts-joint-compassionate-reassignment-hardship-discharge-humanitarian-transfer-v1`, and `protocol_stack_id=ps-joint-compassionate-reassignment-hardship-discharge-humanitarian-transfer-stack-v1` when the correct branch shifts from short-duration emergency leave into compassionate reassignment, humanitarian transfer, or hardship discharge routing.
+- Add `packet_id=DPL-COMPASSIONATE-REASSIGNMENT-HARDSHIP-001` for branches that materially alter command approval timing, backfill assumptions, or lawful personnel-routing confidence beyond immediate leave approval.

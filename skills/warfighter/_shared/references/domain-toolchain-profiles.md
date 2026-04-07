@@ -2808,3 +2808,45 @@ For every critical recommendation, include:
 - Cross-check systems: independent education-benefits review cell and alternate financial-readiness or personnel-records desk
 - Protocol binding: NIEM + PESC XML + signed education-finance notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only education-finance sequencing until loan posture, school status, and military-order evidence are human-confirmed
+
+## Toolchain Wave LXXXII (2026-04-07)
+
+### `TC-TBHEALTH-327`
+
+- Domain: joint telebehavioral health burnout and suicide risk continuity
+- Primary systems: telebehavioral intake queue, secure virtual-visit scheduler, command-risk escalation ledger, crisis handoff tracker
+- Cross-check systems: independent behavioral-health review cell and alternate chaplain or postvention support desk
+- Protocol binding: HL7/FHIR + signed care notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only behavioral-health sequencing until provider legitimacy, connectivity posture, and acute-risk evidence are human-confirmed
+
+### `TC-HOMELESS-328`
+
+- Domain: joint military homelessness prevention and transitional housing bridge
+- Primary systems: housing-stability case board, transitional-housing inventory, emergency-voucher queue, household-risk escalation ledger
+- Cross-check systems: independent housing-counselor review cell and alternate family-readiness or relief-society desk
+- Protocol binding: NIEM + signed housing notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only housing sequencing until safe shelter, voucher posture, and eligibility evidence are human-confirmed
+
+### `TC-BANKR-329`
+
+- Domain: joint bankruptcy consumer protection and security-clearance financial distress
+- Primary systems: debt-distress case board, consumer-protection or legal-assistance queue, clearance-impact review ledger, filing or creditor-action tracker
+- Cross-check systems: independent financial-readiness review cell and alternate credit-recovery or SCRA support desk
+- Protocol binding: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only legal or financial sequencing until debt evidence, filing posture, and reporting obligations are human-confirmed
+
+### `TC-DOXX-330`
+
+- Domain: joint family online harassment doxxing and protective escalation
+- Primary systems: incident-evidence ledger, platform abuse-report queue, protective-intel threat tracker, family-safety escalation board
+- Cross-check systems: independent protective-order review cell and alternate information-integrity or law-enforcement liaison desk
+- Protocol binding: STIX/TAXII + NIEM + signed incident notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only protective sequencing until evidence integrity, consent posture, and human protective review are confirmed
+
+### `TC-COMPASS-331`
+
+- Domain: joint compassionate reassignment hardship discharge and humanitarian transfer
+- Primary systems: personnel-action case board, humanitarian reassignment queue, hardship-documentation tracker, command-impact backfill ledger
+- Cross-check systems: independent emergency-leave review cell and alternate personnel-management or family-readiness desk
+- Protocol binding: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only hardship routing until evidence posture, personnel authority, and command-impact review are human-confirmed

@@ -15296,3 +15296,57 @@ external_binding:
 ### `ps-contested-ai-model-governance-and-mission-assurance-stack-v1`
 - Protocols: signed model-artifact profiles, `API/JSON`, `STIX/TAXII`, `USMTF`.
 - Use for: model-governance status exchange, rollback routing, trust-score updates, and mission-assurance acknowledgment.
+
+## Tool Suite Addendum LXXXII (2026-04-07, Behavioral Health, Housing Stability, Financial Distress, Protective Escalation, and Compassionate Personnel Routing)
+
+### `ts-joint-telebehavioral-health-burnout-suicide-risk-continuity-v1`
+- Use for: telebehavioral triage, burnout intervention, remote provider continuity, and suicide-risk escalation when clinic disruption or operational tempo threatens human performance and readiness.
+- Primary tools: telebehavioral intake queue, secure virtual-visit scheduler, command-risk escalation ledger, crisis handoff tracker.
+- Cross-check tools: independent behavioral-health review cell and alternate chaplain or postvention support desk.
+- Typical products: telebehavioral triage board, burnout intervention ladder, suicide-risk continuity packet.
+
+### `ts-joint-military-homelessness-prevention-transitional-housing-bridge-v1`
+- Use for: homelessness prevention, transitional lodging, emergency voucher routing, and housing-stability recovery when displacement or unsafe shelter threatens warfighter availability.
+- Primary tools: housing-stability case board, transitional-housing inventory, emergency-voucher queue, household-risk escalation ledger.
+- Cross-check tools: independent housing-counselor review cell and alternate family-readiness or relief-society desk.
+- Typical products: housing-stability board, transitional-lodging ladder, homelessness-prevention continuity packet.
+
+### `ts-joint-bankruptcy-consumer-protection-clearance-financial-distress-v1`
+- Use for: debt-distress triage, bankruptcy coordination, creditor-action review, and security-clearance risk containment when financial shocks threaten lawful availability or mission focus.
+- Primary tools: debt-distress case board, consumer-protection or legal-assistance queue, clearance-impact review ledger, filing or creditor-action tracker.
+- Cross-check tools: independent financial-readiness review cell and alternate credit-recovery or SCRA support desk.
+- Typical products: debt-distress triage board, bankruptcy or consumer-protection ladder, clearance-impact continuity packet.
+
+### `ts-joint-family-online-harassment-doxxing-protective-escalation-v1`
+- Use for: doxxing response, swatting-risk escalation, household protective routing, and evidence retention when targeted online abuse threatens safety or readiness.
+- Primary tools: incident-evidence ledger, platform abuse-report queue, protective-intel threat tracker, family-safety escalation board.
+- Cross-check tools: independent protective-order review cell and alternate information-integrity or law-enforcement liaison desk.
+- Typical products: harassment incident board, protective-escalation ladder, doxxing response continuity packet.
+
+### `ts-joint-compassionate-reassignment-hardship-discharge-humanitarian-transfer-v1`
+- Use for: compassionate reassignment, hardship discharge, humanitarian transfer, and backfill-aware personnel routing when family crisis or caregiving breakdown threatens retention and lawful availability.
+- Primary tools: personnel-action case board, humanitarian reassignment queue, hardship-documentation tracker, command-impact backfill ledger.
+- Cross-check tools: independent emergency-leave review cell and alternate personnel-management or family-readiness desk.
+- Typical products: compassionate-action case board, hardship-routing ladder, humanitarian-transfer continuity packet.
+
+## Protocol Stack Addendum LXXXII (2026-04-07, External Integration Profiles for Expansion Wave LXXXII)
+
+### `ps-joint-telebehavioral-health-burnout-suicide-risk-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, signed care notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: telebehavioral status exchange, provider-routing updates, crisis-escalation handoff, and command-aware readiness acknowledgment.
+
+### `ps-joint-military-homelessness-prevention-transitional-housing-bridge-stack-v1`
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: housing-status exchange, shelter or voucher routing, transitional-lodging updates, and household-stability acknowledgment.
+
+### `ps-joint-bankruptcy-consumer-protection-clearance-financial-distress-stack-v1`
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: debt-status exchange, filing or counseling routing, creditor-action updates, and clearance-impact acknowledgment.
+
+### `ps-joint-family-online-harassment-doxxing-protective-escalation-stack-v1`
+- Protocols: `STIX/TAXII`, `NIEM`, signed incident notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: threat-indicator exchange, evidence-routing updates, platform-escalation status, and protective-action acknowledgment.
+
+### `ps-joint-compassionate-reassignment-hardship-discharge-humanitarian-transfer-stack-v1`
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: hardship-status exchange, personnel-action routing, reassignment updates, and command-approval acknowledgment.

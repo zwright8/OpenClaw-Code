@@ -15163,3 +15163,60 @@ validation_gates:
 - output_schema: records-recovery board, DD214 issuance ladder, benefits-handoff exception packet
 - protocol_profile: NIEM + signed personnel manifests + API/JSON + S/MIME + USMTF
 - validation_gates: source-record confirmation, identity review, release-authority check
+
+## Packet Addendum LXX (2026-04-07, Expansion Wave LXXXII)
+
+### packet_id: DPL-TELEBEHAVIORAL-BURNOUT-SUICIDE-001
+- domain: joint telebehavioral health burnout and suicide risk continuity
+- objective: preserve behavioral-health continuity by aligning remote-provider access, burnout intervention, and suicide-risk escalation before care disruption creates mission loss or preventable harm.
+- primary_tools: telebehavioral intake queue, secure virtual-visit scheduler, command-risk escalation ledger, crisis handoff tracker
+- alternate_tools: manual behavioral-health priority roster and crisis-contact worksheet
+- degraded_mode: advisory-only care sequencing with no unsupported appointment, diagnosis, or hospitalization promise
+- input_requirements: affected personnel or households, operational tempo, acute-risk indicators, provider availability, connectivity posture, privacy constraints
+- output_schema: telebehavioral triage board, burnout intervention ladder, suicide-risk continuity packet
+- protocol_profile: HL7/FHIR + signed care notices + API/JSON + S/MIME + USMTF
+- validation_gates: acute-risk review, provider-legitimacy confirmation, privacy check, human clinical escalation
+
+### packet_id: DPL-HOMELESSNESS-TRANSITIONAL-HOUSING-001
+- domain: joint military homelessness prevention and transitional housing bridge
+- objective: preserve household survivability and lawful availability by sequencing emergency shelter, transitional housing, and voucher routing before displacement cascades into readiness loss.
+- primary_tools: housing-stability case board, transitional-housing inventory, emergency-voucher queue, household-risk escalation ledger
+- alternate_tools: manual shelter-priority roster and housing-review worksheet
+- degraded_mode: advisory-only housing sequencing with no unsupported voucher, lodging, or permanent-housing promise
+- input_requirements: affected households, shelter posture, eviction or displacement timeline, dependents or special-needs burdens, installation constraints, privacy limits
+- output_schema: housing-stability board, transitional-lodging ladder, homelessness-prevention continuity packet
+- protocol_profile: NIEM + signed housing notices + API/JSON + S/MIME + USMTF
+- validation_gates: housing-status confirmation, eligibility review, consent check, human housing-authority validation
+
+### packet_id: DPL-BANKRUPTCY-CLEARANCE-DISTRESS-001
+- domain: joint bankruptcy consumer protection and security-clearance financial distress
+- objective: preserve lawful availability and clearance confidence by aligning debt-distress triage, bankruptcy or counseling routing, and self-report timing before financial instability degrades readiness.
+- primary_tools: debt-distress case board, consumer-protection or legal-assistance queue, clearance-impact review ledger, filing or creditor-action tracker
+- alternate_tools: manual debt-priority roster and creditor-review worksheet
+- degraded_mode: advisory-only legal or financial sequencing with no unsupported filing, settlement, or adjudicative claim
+- input_requirements: affected personnel, debt posture, creditor activity, filing timeline, clearance implications, privacy constraints
+- output_schema: debt-distress triage board, bankruptcy or consumer-protection ladder, clearance-impact continuity packet
+- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: debt-evidence review, legal-routing check, clearance-reporting review, human legal or security validation
+
+### packet_id: DPL-FAMILY-ONLINE-HARASSMENT-DOXXING-001
+- domain: joint family online harassment doxxing and protective escalation
+- objective: preserve family safety and mission focus by aligning evidence retention, protective escalation, and platform or law-enforcement routing before online abuse becomes physical-world harm.
+- primary_tools: incident-evidence ledger, platform abuse-report queue, protective-intel threat tracker, family-safety escalation board
+- alternate_tools: manual incident-priority roster and evidence-retention worksheet
+- degraded_mode: advisory-only protective sequencing with no unsupported platform takedown, threat attribution, or law-enforcement outcome
+- input_requirements: affected households, harassment indicators, doxxing evidence, address or identity exposure, current protective measures, consent posture
+- output_schema: harassment incident board, protective-escalation ladder, doxxing response continuity packet
+- protocol_profile: STIX/TAXII + NIEM + signed incident notices + API/JSON + S/MIME + USMTF
+- validation_gates: evidence-integrity review, threat-triage confirmation, consent check, human protective-services validation
+
+### packet_id: DPL-COMPASSIONATE-REASSIGNMENT-HARDSHIP-001
+- domain: joint compassionate reassignment hardship discharge and humanitarian transfer
+- objective: preserve lawful personnel routing by aligning hardship evidence, reassignment or discharge options, and backfill impact before family crisis forces unmanaged readiness loss.
+- primary_tools: personnel-action case board, humanitarian reassignment queue, hardship-documentation tracker, command-impact backfill ledger
+- alternate_tools: manual hardship-priority roster and personnel-routing worksheet
+- degraded_mode: advisory-only personnel sequencing with no unsupported reassignment, transfer, or discharge promise
+- input_requirements: affected servicemember, hardship facts, dependency burden, command timeline, backfill posture, authority constraints
+- output_schema: compassionate-action case board, hardship-routing ladder, humanitarian-transfer continuity packet
+- protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: hardship-evidence review, personnel-authority check, command-impact confirmation, human personnel-management validation

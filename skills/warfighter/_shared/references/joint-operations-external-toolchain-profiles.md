@@ -3046,3 +3046,40 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
 - Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: manual board-risk review with no unsupported correction or promotion claim until human personnel managers validate the file.
+
+## Toolchain Wave LXXXII (2026-04-07, Human Readiness Continuity and Protective Escalation)
+
+### `telebehavioral-burnout-suicide-risk-v1`
+- Use for: readiness and family-stability decisions when remote behavioral-health continuity, burnout intervention, or suicide-risk escalation determines whether key personnel can safely remain in the fight.
+- Primary tools: `ts-joint-telebehavioral-health-burnout-suicide-risk-continuity-v1`.
+- Cross-check tools: `ts-force-mental-health-postvention-v1`.
+- Protocols: `HL7/FHIR`, signed care notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only triage with manual provider confirmation and no unsupported care, hospitalization, or acute-risk disposition.
+
+### `homelessness-transitional-housing-bridge-v1`
+- Use for: mobilization, recovery, and family-survivability decisions when homelessness risk, unsafe shelter, or displacement threatens lawful availability and retention.
+- Primary tools: `ts-joint-military-homelessness-prevention-transitional-housing-bridge-v1`.
+- Cross-check tools: `ts-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-v1`.
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only housing triage with manual shelter and eligibility review until safe lodging is human-confirmed.
+
+### `bankruptcy-clearance-financial-distress-v1`
+- Use for: readiness and assignment decisions when debt distress, bankruptcy exposure, or creditor pressure creates clearance, travel, or command-availability risk.
+- Primary tools: `ts-joint-bankruptcy-consumer-protection-clearance-financial-distress-v1`.
+- Cross-check tools: `ts-joint-credit-identity-theft-financial-readiness-recovery-v1`.
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only financial-distress triage with manual legal and security review until debt evidence and reporting obligations are human-confirmed.
+
+### `family-online-harassment-doxxing-v1`
+- Use for: force-protection and family-safety decisions when doxxing, swatting, or persistent online harassment creates an immediate readiness drag or physical-world threat.
+- Primary tools: `ts-joint-family-online-harassment-doxxing-protective-escalation-v1`.
+- Cross-check tools: `ts-homeland-protective-order-domestic-violence-safe-housing-continuity-v1`.
+- Protocols: `STIX/TAXII`, `NIEM`, signed incident notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only protective triage with manual evidence review and no unsupported attribution, takedown, or protective-coverage claim.
+
+### `compassionate-reassignment-hardship-transfer-v1`
+- Use for: personnel-management and retention decisions when family emergency or caregiving burden may justify compassionate reassignment, humanitarian transfer, or hardship discharge.
+- Primary tools: `ts-joint-compassionate-reassignment-hardship-discharge-humanitarian-transfer-v1`.
+- Cross-check tools: `ts-joint-emergency-leave-american-red-cross-message-command-approval-v1`.
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only personnel routing with manual hardship review and no unsupported reassignment, transfer, or discharge claim.

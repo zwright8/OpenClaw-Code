@@ -6,7 +6,7 @@ This catalog maps warfighter skill coverage across major military action domains
 
 
 - Shared references and validation assets: external tools/protocol baseline, mission assurance checklist, and this catalog
-- Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, and force generation/reconstitution
+- Scope includes command and control, intelligence, operations in all major environments, fires/effects, protection, sustainment, cyber/space/EMSO, legal/policy, coalition, strategic competition, force generation/reconstitution, and American warfighter household or human-readiness continuity
 
 ## Domain Coverage Matrix
 
@@ -19,6 +19,7 @@ This catalog maps warfighter skill coverage across major military action domains
 - Fires/effects and protection: fires-and-effects-synchronizer, integrated-air-and-missile-defense-cell, missile-warning-and-attack-assessment-cell, counter-uas-defense-planner, counter-uas-kill-chain-integration, force-protection-and-base-defense, hypersonic-threat-defense-integration-cell, joint-live-fire-range-safety-and-autonomous-target-control-cell
 - Sustainment and mobility: contested-logistics-sustainment, strategic-mobility-deployment-planner, strategic-sealift-and-prepositioning-coordinator, movement-control-convoy-rail-planner, munitions-stockpile-and-expenditure-manager, autonomous-ground-resupply-convoy-control, expeditionary-fabrication-and-battle-damage-repair, mega-city-operations-sustainment-coordinator, theater-property-book-loss-accountability-and-sensitive-item-recapture-cell
 - Medical/personnel support: casualty-evac-and-medical-regulation, austere-surgical-support-coordinator, preventive-medicine-and-force-health-protection, medical-logistics-and-blood-supply-coordination, mortuary-affairs-and-personnel-accountability, joint-sexual-assault-response-restricted-reporting-and-unit-safety-cell, joint-dignified-transfer-funeral-honors-and-family-escort-cell
+- American warfighter support systems: joint-military-family-readiness-crisis-sustainment-cell, joint-personnel-records-dd214-and-benefits-continuity-cell, joint-emergency-leave-american-red-cross-message-and-command-approval-cell, joint-clinical-privileging-credentialing-and-deployment-readiness-continuity-cell, joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell, joint-telebehavioral-health-burnout-and-suicide-risk-continuity-cell, joint-military-homelessness-prevention-and-transitional-housing-bridge-cell
 - Civil-military/legal/coalition/competition: civil-affairs-stability-ops, legal-roe-compliance-checker, theater-security-cooperation-planner, host-nation-access-basing-overflight-support, strategic-competition-gray-zone-response-cell, arms-control-treaty-compliance-monitor, tactical-psychological-operations-and-miso-cell, security-assistance-and-partner-capability-integration, theater-cultural-property-protection-and-no-strike-governance-cell, joint-civilian-harm-condolence-payment-and-claims-cell, joint-combat-camera-public-affairs-release-authenticity-cell
 - Enterprise adaptation and fielding: digital-engineering-mission-thread-analyst, mission-assured-software-factory-support, rapid-prototyping-and-fielding-accelerator, acquisition-and-contracting-support, supply-chain-risk-and-industrial-base-monitor
 - Cross-domain resilience and governance: theater-mission-network-failover-cell, operational-energy-resilience-and-microgrid-cell, joint-targeting-standards-and-cde-governance-cell, information-integrity-and-attribution-cell, joint-allied-data-link-interoperability-cell, joint-special-access-and-compartmented-integration-cell
@@ -3148,3 +3149,19 @@ Every skill output should include:
 - Joint privately owned vehicle shipment driver license and registration continuity + joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell + joint-household-goods-loss-claims-and-essential-kit-bridge-cell + reserve-guard-mobilization-planner.
 - Joint child development center fee assistance and duty shift continuity + joint-military-family-readiness-crisis-sustainment-cell + reserve-component-single-parent-childcare-eldercare-mobilization-bridge-cell + homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell.
 - Joint federal student loan deferment FAFSA and college reentry continuity + joint-education-benefits-gi-bill-tuition-assistance-and-testing-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXXII)
+
+- joint-telebehavioral-health-burnout-and-suicide-risk-continuity-cell
+- joint-military-homelessness-prevention-and-transitional-housing-bridge-cell
+- joint-bankruptcy-consumer-protection-and-security-clearance-financial-distress-cell
+- joint-family-online-harassment-doxxing-and-protective-escalation-cell
+- joint-compassionate-reassignment-hardship-discharge-and-humanitarian-transfer-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXXII)
+
+- Joint telebehavioral health burnout and suicide risk continuity + joint-psychological-health-suicide-postvention-command-support-cell + joint-religious-affairs-and-moral-injury-support-cell + human-performance-and-combat-stress-risk-cell.
+- Joint military homelessness prevention and transitional housing bridge + joint-va-home-loan-guaranty-foreclosure-avoidance-and-housing-stability-cell + joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-and-rate-cap-enforcement-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint bankruptcy consumer protection and security-clearance financial distress + joint-credit-identity-theft-and-financial-readiness-recovery-cell + joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-and-rate-cap-enforcement-cell + reserve-guard-mobilization-planner.
+- Joint family online harassment doxxing and protective escalation + homeland-protective-order-domestic-violence-and-safe-housing-continuity-cell + information-integrity-and-attribution-cell + joint-combat-camera-public-affairs-release-authenticity-cell.
+- Joint compassionate reassignment hardship discharge and humanitarian transfer + joint-emergency-leave-american-red-cross-message-and-command-approval-cell + reserve-guard-mobilization-planner + joint-military-family-readiness-crisis-sustainment-cell.
