@@ -259,6 +259,96 @@ validation_gates:
 - alternate_tools: lot-level spreadsheet control with manual QA sign-off
 - degraded_mode: priority-only production and distribution cycle
 
+## Packet Addendum LXVI (2026-04-07, Eligibility, Medical Board, Mobilization Pay, Special Education, Clearance Integrity, Retirement, Credential Readiness, and Family Care Continuity)
+
+### packet_id: DPL-DEERS-ID-ELIGIBILITY-001
+- domain: joint DEERS ID card and eligibility reconciliation
+- objective: restore sponsor-dependent eligibility fast enough to unblock care, access, pay, and family support without creating unsupported entitlements.
+- primary_tools: eligibility reconciliation board, ID-card issuance queue, dependency-verification ledger, sponsor-record sync board
+- alternate_tools: personnel-records review cell plus manual ID office priority roster
+- degraded_mode: life-safety and pay-critical cases only with human-verified sponsor-dependent evidence
+- input_requirements: sponsor identity, dependent status, blocking symptom, recent status change, authority tier
+- output_schema: eligibility reconciliation board, ID-card issuance ladder, entitlement exception packet
+- protocol_profile: NIEM + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: identity proof, dependency evidence, entitlement authority, acknowledgment integrity
+
+### packet_id: DPL-MEB-PEB-VA-CLAIM-001
+- domain: joint medical evaluation board physical evaluation board VA claim continuity
+- objective: keep board evidence, duty disposition, and VA or DOD handoff aligned so recovery and transition decisions remain lawful and timely.
+- primary_tools: medical-board case tracker, duty-limitation evidence ledger, IDES handoff board, transition-benefits queue
+- alternate_tools: rehabilitation review cell plus manual board-priority roster
+- degraded_mode: board-critical cases only with manual evidence reconciliation and human board review
+- input_requirements: diagnosis summary, board stage, duty limitations, pending evidence, transition deadline
+- output_schema: medical-board case board, duty-disposition decision ladder, VA or DOD claim handoff packet
+- protocol_profile: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: clinical evidence completeness, board authority, claim-handoff acknowledgment, privacy handling
+
+### packet_id: DPL-DRILL-PAY-DEBT-001
+- domain: reserve component drill pay travel voucher and debt resolution
+- objective: restore lawful Reserve or Guard pay flow and debt clarity before financial friction reduces availability or mobilization confidence.
+- primary_tools: drill-pay discrepancy board, attendance certification queue, debt-remission or waiver tracker, travel-claim reconciliation ledger
+- alternate_tools: finance review cell plus manual pay-priority worksheet
+- degraded_mode: hardship-driven priority cases only with human-certified attendance and debt review
+- input_requirements: member status, duty dates, orders, pay discrepancy, debt notice, travel evidence
+- output_schema: drill-pay discrepancy board, debt-resolution ladder, travel-reimbursement exception packet
+- protocol_profile: NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: duty-status confirmation, attendance evidence, debt legitimacy, reimbursement authority
+
+### packet_id: DPL-IEP-504-EARLY-INTERVENTION-001
+- domain: joint special education IEP 504 and early intervention continuity
+- objective: preserve special-education and developmental-support continuity so household instability does not remove warfighters from duty focus.
+- primary_tools: school-liaison case board, IEP or 504 continuity tracker, early-intervention appointment queue, caregiver advocacy ledger
+- alternate_tools: family-readiness review cell plus manual school-support exception roster
+- degraded_mode: highest-needs children only with human-confirmed plans and guardian consent
+- input_requirements: child support needs, plan status, provider availability, relocation or disruption timeline, guardian constraints
+- output_schema: IEP or 504 continuity board, early-intervention service ladder, school-support exception packet
+- protocol_profile: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: plan validity, guardian consent, provider availability, privacy handling
+
+### packet_id: DPL-CLEARANCE-RECORD-CORRECTION-001
+- domain: joint security clearance foreign contact and record correction continuity
+- objective: recover clearance integrity and assignment viability without bypassing lawful adjudication or incident-report obligations.
+- primary_tools: clearance-case tracker, foreign-contact update queue, adjudication evidence ledger, personnel-security record-correction board
+- alternate_tools: personnel-security review cell plus manual access-priority ledger
+- degraded_mode: mission-essential access cases only with human adjudicator review and conservative restrictions
+- input_requirements: affected clearance population, incident status, foreign-contact data, assignment timeline, access impact
+- output_schema: clearance status board, foreign-contact update ladder, adjudication evidence packet
+- protocol_profile: NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: incident evidence, record provenance, adjudication authority, acknowledgment integrity
+
+### packet_id: DPL-RETIREMENT-SBP-TSP-001
+- domain: joint retirement SBP TSP and transition counseling continuity
+- objective: protect retirement and survivor-benefit decisions from administrative delay that could create financial or legal harm.
+- primary_tools: retirement packet board, SBP election tracker, TSP counseling queue, transition-checklist status ledger
+- alternate_tools: personnel-records review cell plus manual retirement-priority worksheet
+- degraded_mode: separation-critical cases only with human-confirmed eligibility and election review
+- input_requirements: retirement date, service record status, election deadlines, counseling status, family-impact factors
+- output_schema: retirement action board, SBP or TSP decision ladder, transition-counseling continuity packet
+- protocol_profile: NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: eligibility evidence, election authority, counseling completion, acknowledgment integrity
+
+### packet_id: DPL-PRO-LICENSE-CYBER-CEU-001
+- domain: joint professional license cyber certification and CEU readiness continuity
+- objective: restore credential legitimacy before expired licenses or certifications create unsafe or unlawful mission employment.
+- primary_tools: credential-expiration board, CEU status tracker, cyber-certification queue, reciprocity or waiver ledger
+- alternate_tools: personnel-readiness review cell plus manual credential priority roster
+- degraded_mode: duty-critical credential cases only with human-confirmed evidence and explicit command visibility
+- input_requirements: credential type, expiration date, renewal requirements, CEU status, duty impact
+- output_schema: credential continuity board, expiration-risk ladder, CEU recovery packet
+- protocol_profile: NIEM + API/JSON + S/MIME + PESC XML + USMTF
+- validation_gates: credential evidence, renewal authority, duty-safety threshold, waiver legitimacy
+
+### packet_id: DPL-FAMILY-CARE-ALLOTMENT-001
+- domain: joint family care plan child support allotment and court order continuity
+- objective: keep legal household obligations from causing avoidable mobilization delay, custody failure, or readiness loss.
+- primary_tools: family-care-plan compliance board, allotment change queue, child-support or court-order tracker, guardian-verification ledger
+- alternate_tools: legal-support review cell plus manual family-care priority worksheet
+- degraded_mode: mobilization-critical cases only with human-confirmed guardianship, support posture, and legal deadlines
+- input_requirements: care-plan status, dependent profile, support or allotment obligations, court deadlines, guardian availability
+- output_schema: family-care-plan compliance board, allotment or support action ladder, court-order continuity packet
+- protocol_profile: NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: care-plan authority, guardian verification, court-order provenance, financial-obligation evidence
+
 ### packet_id: DPL-MARITIME-MCM-001
 - domain: maritime drone-enabled mine countermeasure corridors
 - objective: synchronize mine detection, classification, and corridor-clearing windows for convoy and amphibious access
@@ -14679,46 +14769,351 @@ validation_gates:
 
 ## Packet Addendum LXV (2026-04-07, Expansion Wave LXXVI)
 
-### packet_id: DPL-FAMILY-CARE-GUARDIANSHIP-001
-- domain: joint military family care plan guardianship and dependent support
-- objective: preserve lawful readiness by validating guardian viability, dependent support continuity, and consent integrity before deployment or mobilization.
-- primary_tools: family-care-plan ledger, guardian contact board, dependent medical or school consent tracker, support-gap escalation queue
-- alternate_tools: manual family-care roster and guardian-confirmation worksheet
-- degraded_mode: advisory-only family-care planning with no unsupported guardian acceptance, consent validity, or readiness certification
-- input_requirements: family-care-plan status, guardian availability, dependent needs, consent posture, activation timeline, privacy controls
-- output_schema: family-care-plan risk board, guardianship decision matrix, dependent support continuity tracker
-- protocol_profile: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
-- validation_gates: guardian confirmation, consent review, command-readiness check
+### packet_id: DPL-ED-BENEFITS-GIBILL-001
+- domain: joint education benefits GI Bill tuition assistance and testing continuity
+- objective: preserve education-benefit legitimacy, school certification, and testing continuity so readiness and transition timelines do not collapse under disruption.
+- primary_tools: education-benefit case board, school-certifying-official tracker, exam or testing continuity queue, eligibility-evidence ledger
+- alternate_tools: manual education-priority roster and school-contact worksheet
+- degraded_mode: advisory-only benefit sequencing with no unsupported funding, enrollment, or testing promise
+- input_requirements: affected population, benefit category, school status, testing deadlines, eligibility evidence, privacy constraints
+- output_schema: education-benefit continuity board, certification or testing recovery ladder, transition-readiness packet
+- protocol_profile: NIEM + signed education notices + API/JSON + S/MIME + PESC XML + USMTF
+- validation_gates: eligibility review, school-certification confirmation, deadline check
+
+### packet_id: DPL-SCRA-HOUSING-CREDIT-001
+- domain: joint Servicemembers Civil Relief Act foreclosure lease eviction and rate cap enforcement
+- objective: protect warfighter availability and family stability by synchronizing SCRA evidence, legal review, and housing or credit enforcement actions.
+- primary_tools: SCRA action board, foreclosure or eviction notice tracker, lender-servicer compliance queue, legal-assistance escalation ledger
+- alternate_tools: manual legal triage roster and notice-review worksheet
+- degraded_mode: advisory-only legal prioritization with no unsupported enforcement or lender-relief claim
+- input_requirements: duty-status evidence, notice posture, court or lender deadlines, housing risk, creditor actions, legal support availability
+- output_schema: SCRA protection board, housing-and-credit enforcement ladder, legal-escalation packet
+- protocol_profile: NIEM + signed court or lender notices + API/JSON + S/MIME + USMTF
+- validation_gates: orders-evidence confirmation, legal-authority review, deadline integrity check
+
+### packet_id: DPL-NATURALIZATION-IMMIGRATION-001
+- domain: joint naturalization citizenship and immigration benefits continuity
+- objective: preserve lawful status, citizenship progress, and family-document continuity when military households face disruption or urgent movement.
+- primary_tools: immigration case tracker, citizenship-certification queue, document-expiration board, legal-assistance liaison ledger
+- alternate_tools: manual case-priority roster and filing-status worksheet
+- degraded_mode: advisory-only case sequencing with no unsupported filing, visa, or status assurance
+- input_requirements: affected persons, status category, filing posture, document expirations, service evidence, travel constraints
+- output_schema: immigration continuity board, citizenship-filing ladder, family-status protection packet
+- protocol_profile: NIEM + signed immigration notices + API/JSON + S/MIME + ICAO Doc 9303 + USMTF
+- validation_gates: identity review, filing-authority confirmation, document-validity check
+
+### packet_id: DPL-MILITARY-TAX-IDENTITY-001
+- domain: joint military tax relief combat zone entitlement and IRS identity protection
+- objective: preserve fiscal legitimacy and household stability by aligning tax-relief evidence, document continuity, and identity-fraud response.
+- primary_tools: military tax case board, combat-zone certification tracker, LES or W-2 discrepancy ledger, IRS identity-protection queue
+- alternate_tools: manual tax-risk roster and document-recovery worksheet
+- degraded_mode: advisory-only tax sequencing with no unsupported entitlement, refund, or fraud-resolution promise
+- input_requirements: tax years, duty-location evidence, document posture, fraud indicators, household urgency, privacy controls
+- output_schema: tax-relief continuity board, entitlement verification ladder, IRS identity-protection packet
+- protocol_profile: NIEM + signed tax notices + API/JSON + S/MIME + USMTF
+- validation_gates: entitlement review, document-confirmation pass, fraud-status check
+
+### packet_id: DPL-FVAP-BALLOT-CONTINUITY-001
+- domain: joint FVAP overseas ballot and election material continuity
+- objective: preserve lawful ballot access and voting assistance for deployed or displaced warfighters and eligible dependents.
+- primary_tools: ballot-request tracker, election-mail routing board, voting-assistance queue, deadline or state-contact ledger
+- alternate_tools: manual ballot-priority roster and state-deadline worksheet
+- degraded_mode: advisory-only ballot sequencing with no unsupported issuance, receipt, or acceptance claim
+- input_requirements: affected voters, state deadlines, ballot status, mail posture, location constraints, lawful submission options
+- output_schema: ballot continuity board, election-material recovery ladder, voting-assistance packet
+- protocol_profile: NIEM + signed election notices + API/JSON + S/MIME + USMTF
+- validation_gates: voter-identity review, deadline confirmation, lawful-path check
+
+### packet_id: DPL-CREDIT-IDENTITY-RECOVERY-001
+- domain: joint credit identity theft and financial readiness recovery
+- objective: restore household financial trust by sequencing fraud containment, credit disputes, and emergency-assistance stabilization.
+- primary_tools: credit-dispute case board, fraud-alert tracker, identity-proof ledger, emergency-assistance routing queue
+- alternate_tools: manual fraud-priority roster and financial-recovery worksheet
+- degraded_mode: advisory-only recovery sequencing with no unsupported bureau, lender, or bank outcome
+- input_requirements: fraud indicators, account impact, credit posture, emergency cash need, identity evidence, privacy limits
+- output_schema: identity-fraud response board, credit-recovery ladder, financial-readiness stabilization packet
+- protocol_profile: NIEM + signed dispute notices + API/JSON + S/MIME + USMTF
+- validation_gates: identity confirmation, fraud-evidence review, assistance-eligibility check
+
+### packet_id: DPL-SCRA-ESTATE-POA-001
+- domain: joint servicemember civil relief estate and power of attorney continuity
+- objective: preserve lawful availability and family stability by aligning SCRA evidence, estate-readiness actions, and emergency POA continuity before disruption worsens harm.
+- primary_tools: legal-assistance case board, SCRA deadline monitor, estate-document tracker, family-contact escalation ledger
+- alternate_tools: manual legal triage roster and estate-readiness worksheet
+- degraded_mode: advisory-only legal sequencing with no unsupported SCRA relief, notarization, or POA execution claim
+- input_requirements: duty status, legal deadlines, estate-document posture, family vulnerabilities, creditor actions, legal-support availability
+- output_schema: civil-relief shield matrix, estate or POA status board, urgent legal-action tracker
+- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: legal-authority review, document-validity confirmation, human attorney check
+
+## American Warfighter Support Packet Backfill (2026-04-07)
+
+### packet_id: DPL-BASE-PHARMACY-TRICARE-COLDCHAIN-001
+- domain: joint base pharmacy refill TRICARE cold-chain continuity
+- objective: preserve refill legitimacy and medication access for warfighters and dependents when pharmacy or authorization friction threatens readiness or recovery.
+- primary_tools: pharmacy refill tracker, TRICARE override queue, cold-chain monitor, specialty-medication exception ledger
+- alternate_tools: manual refill-priority roster and clinician review worksheet
+- degraded_mode: life-safety medication cases only with manual cold-chain verification and no unsupported refill promise
+- input_requirements: patient category, medication profile, refill posture, authorization status, cold-chain risk, privacy limits
+- output_schema: refill continuity board, care-access ladder, cold-chain protection packet
+- protocol_profile: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: clinical review, authorization confirmation, cold-chain integrity
+
+### packet_id: DPL-WOUNDED-WARRIOR-HOME-CAREGIVER-001
+- domain: joint wounded warrior home modification and caregiver ramp-up continuity
+- objective: keep discharge-to-home and return-to-duty planning grounded in verified accessibility work, caregiver readiness, and DME delivery status.
+- primary_tools: home-accessibility work tracker, caregiver readiness board, prosthetics and DME delivery queue, discharge-planning ledger
+- alternate_tools: manual discharge-support roster and rehabilitation review worksheet
+- degraded_mode: advisory-only discharge sequencing with no unsupported home-readiness or caregiver promise
+- input_requirements: patient status, home barriers, caregiver availability, equipment needs, discharge timeline, privacy limits
+- output_schema: home-accessibility board, caregiver readiness ladder, discharge-to-home packet
+- protocol_profile: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: clinical authority, accessibility evidence, caregiver confirmation
 
 ### packet_id: DPL-SPOUSE-LICENSE-EMPLOYMENT-001
 - domain: joint military spouse license portability and employment continuity
-- objective: preserve household stability and retention by reducing spouse licensure or employment breaks during PCS, activation, or evacuation.
-- primary_tools: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board
-- alternate_tools: manual spouse-support roster and licensure-requirement worksheet
-- degraded_mode: advisory-only spouse-employment planning with no unsupported reciprocity, employer commitment, or income-replacement claim
-- input_requirements: spouse profession, licensure status, employment posture, household cash-flow risk, relocation timeline, childcare constraints
-- output_schema: spouse-license portability matrix, employer continuity board, household income risk tracker
+- objective: stabilize spouse work and licensure continuity fast enough to reduce household income shocks that can sideline warfighters.
+- primary_tools: spouse-license reciprocity tracker, employment continuity board, PCS friction ledger, partner-employer liaison queue
+- alternate_tools: manual household-support roster and reciprocity-status worksheet
+- degraded_mode: advisory-only household support with no unsupported reciprocity or employer outcome
+- input_requirements: spouse role, license or certificate type, PCS or mobilization timeline, employment risk, household urgency
+- output_schema: spouse-employment continuity board, reciprocity decision ladder, household stability packet
 - protocol_profile: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
-- validation_gates: licensure review, employer confirmation, privacy check
+- validation_gates: credential evidence, employer posture, relocation timeline
 
-### packet_id: DPL-SCRA-ESTATE-POA-001
-- domain: joint servicemember civil relief estate and power of attorney
-- objective: preserve legal readiness by aligning SCRA actions, estate-document validity, and POA continuity before crisis timelines close.
-- primary_tools: legal-assistance case board, SCRA deadline monitor, estate-document tracker, family-contact escalation ledger
-- alternate_tools: manual legal triage roster and document-validity worksheet
-- degraded_mode: advisory-only legal sequencing with no unsupported court relief, document execution, or attorney authority claim
-- input_requirements: duty status, legal deadlines, family vulnerabilities, document validity, creditor or court actions, legal-support posture
-- output_schema: civil-relief shield matrix, estate or POA status board, urgent legal-action tracker
-- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
-- validation_gates: legal-review confirmation, document-validity check, authority review
+### packet_id: DPL-COMMISSARY-EXCHANGE-HYGIENE-001
+- domain: joint commissary exchange subsistence and hygiene restoration
+- objective: restore access to essential food, hygiene, and daily-use items before family-readiness degradation spills into force availability.
+- primary_tools: commissary essentials board, exchange hygiene stock tracker, partner-support ledger, household demand prioritization queue
+- alternate_tools: manual essentials roster and partner-support worksheet
+- degraded_mode: essentials prioritization only with manual stock validation and no unsupported resupply promise
+- input_requirements: affected population, stock posture, partner support, distribution constraints, life-safety priorities
+- output_schema: essentials restoration board, rationing ladder, household sustainment packet
+- protocol_profile: NIEM + food-safety exchange + API/JSON + S/MIME + CAP + USMTF
+- validation_gates: stock validation, food-safety review, partner confirmation
 
-### packet_id: DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001
-- domain: joint household goods loss claims and essential kit bridge
-- objective: preserve family stability and reporting confidence by restoring household-goods visibility, essential-item bridging, and claims continuity.
-- primary_tools: shipment status tracker, claims queue, emergency issue board, lodging or family support ledger
-- alternate_tools: manual household-needs ledger and claims-review worksheet
-- degraded_mode: essential-needs-only bridging with no unsupported reimbursement, shipment, or property-valuation claim
-- input_requirements: shipment status, essential-item gaps, claims deadlines, lodging posture, household demand, privacy limits
-- output_schema: household-goods recovery board, essential kit gap matrix, claims or bridge-support tracker
-- protocol_profile: NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
-- validation_gates: shipment-status review, claims-evidence check, command-support approval
+### packet_id: DPL-SERVICE-ANIMAL-PET-EVAC-001
+- domain: joint service animal and family pet evacuation shelter continuity
+- objective: preserve evacuation compliance and family reunification by planning around animal accommodation without overstating shelter capacity.
+- primary_tools: animal-accommodation board, service-animal verification tracker, co-shelter capacity dashboard, family-reunification queue
+- alternate_tools: manual animal roster and shelter-coordination worksheet
+- degraded_mode: advisory-only movement sequencing with no unsupported shelter acceptance or veterinary promise
+- input_requirements: animal type, service-animal status, shelter posture, transport constraints, family movement timeline
+- output_schema: animal accommodation board, co-shelter decision ladder, reunification support packet
+- protocol_profile: NIEM + signed custody manifests + API/JSON + CAP + USMTF
+- validation_gates: animal-status verification, shelter acceptance, transport safety
+
+### packet_id: DPL-MIL-HOUSING-UTILITY-001
+- domain: strategic military housing utility safety and restoration
+- objective: restore habitable military housing and utility safety without overstating occupancy or reentry confidence.
+- primary_tools: housing habitability board, utility restoration tracker, relocation queue, safety inspection ledger
+- alternate_tools: manual housing-status roster and public-works worksheet
+- degraded_mode: life-safety housing triage only with no unsupported reentry or occupancy promise
+- input_requirements: installation or housing area, utility posture, habitability findings, relocation demand, safety constraints
+- output_schema: housing restoration board, occupancy decision ladder, family-safety packet
+- protocol_profile: NIEM + CAP + API/JSON + S/MIME + OGC + USMTF
+- validation_gates: safety inspection, utility confirmation, occupancy authority
+
+### packet_id: DPL-DEPENDENT-EVAC-001
+- domain: homeland base school transport and dependent evacuation
+- objective: move dependents safely while preserving guardian accountability and lawful release control during installation disruption.
+- primary_tools: school-transport board, dependent-accountability ledger, guardian reunification tracker, safehaven capacity map
+- alternate_tools: manual dependent roster and movement-control worksheet
+- degraded_mode: life-safety transport only with paper guardian logs and no unsupervised release
+- input_requirements: dependent roster, guardian status, transport assets, route posture, safehaven capacity, time constraints
+- output_schema: dependent evacuation board, guardian release ladder, protected-movement packet
+- protocol_profile: NIEM + CAP + API/JSON + S/MIME + OGC + USMTF
+- validation_gates: identity confirmation, guardian authority, transport safety
+
+### packet_id: DPL-WORKFORCE-FAMILY-STABILIZATION-001
+- domain: strategic defense industrial workforce family stabilization
+- objective: preserve critical-worker availability by sequencing family-support actions that reduce absenteeism and relocation shock.
+- primary_tools: critical-worker ledger, family-support demand tracker, shuttle or lodging allocator, production-priority board
+- alternate_tools: manual worker-priority roster and support-allocation worksheet
+- degraded_mode: advisory-only support sequencing with no unsupported workforce-availability claim
+- input_requirements: critical-worker population, family-support demand, production priority, lodging or transport posture, time constraints
+- output_schema: workforce-family stabilization board, support allocation ladder, production-risk packet
+- protocol_profile: NIEM + signed workforce manifests + API/JSON + S/MIME + OPC UA + USMTF
+- validation_gates: worker-criticality confirmation, support-resource review, production-impact check
+
+### packet_id: DPL-COMPENSATION-CONTINUITY-001
+- domain: joint military financial liability and compensation continuity
+- objective: preserve compensation legitimacy by aligning claims evidence, emergency relief, and fiscal-control posture before disbursement decisions.
+- primary_tools: claims adjudication board, emergency-relief tracker, evidence ledger, fraud-anomaly monitor
+- alternate_tools: manual claims roster and fiscal-control worksheet
+- degraded_mode: advisory-only compensation sequencing with no unsupported payout or relief promise
+- input_requirements: claim type, evidence posture, relief urgency, fiscal authority, fraud indicators
+- output_schema: claims continuity board, compensation legitimacy ladder, fiscal-risk packet
+- protocol_profile: NIEM + signed claims notices + API/JSON + S/MIME + STIX/TAXII + USMTF
+- validation_gates: evidence review, fiscal-authority check, fraud-control confirmation
+
+### packet_id: DPL-INTERIM-RELIEF-001
+- domain: joint interim relief decision support
+- objective: prioritize interim relief fairly and lawfully when damage, hardship, or claims lag threatens warfighter or family stability.
+- primary_tools: relief triage board, command endorsement queue, supporting-evidence ledger, disbursement watchlist
+- alternate_tools: manual hardship roster and relief-approval worksheet
+- degraded_mode: advisory-only relief prioritization with no unsupported grant, loan, or payout commitment
+- input_requirements: hardship category, evidence status, command posture, fiscal constraints, urgency
+- output_schema: interim-relief board, approval ladder, command-decision packet
+- protocol_profile: NIEM + signed command endorsements + API/JSON + S/MIME + USMTF
+- validation_gates: hardship evidence, endorsement confirmation, fiscal-authority review
+
+### packet_id: DPL-DEEPFAKE-ORDERS-AUTH-COUNTERSIGN-001
+- domain: deepfake orders authentication and countersigning
+- objective: validate command-path integrity before synthetic orders or altered directives distort force posture.
+- primary_tools: order-authentication board, countersign workflow, voice or metadata validation queue, trust-anomaly ledger
+- alternate_tools: manual order-verification checklist and authenticated callback tree
+- degraded_mode: no posture change without human-confirmed countersign and manual provenance review
+- input_requirements: order source, transmission path, anomaly indicators, acknowledgment chain, approval authority
+- output_schema: order-auth status board, countersign ladder, trust-restoration packet
+- protocol_profile: NIEM + signed order notices + API/JSON + S/MIME + USMTF
+- validation_gates: provenance check, countersign confirmation, acknowledgment integrity
+
+### packet_id: DPL-QUANTUM-NAV-PNT-CROSS-CHECK-001
+- domain: quantum navigation and denied-PNT cross-check
+- objective: preserve timing and navigation trust when spoofing or jamming makes single-source PNT unsafe for commander decisions.
+- primary_tools: timing-integrity monitor, alternative navigation cross-check board, holdover status ledger, mission-impact dashboard
+- alternate_tools: manual timing sanity-check worksheet and terrain-reference review
+- degraded_mode: constrained-employment recommendation only with conservative timing assumptions
+- input_requirements: platform set, timing tolerance, spoof or jam indicators, alternate reference posture, mission deadlines
+- output_schema: PNT integrity board, cross-check ladder, mission-risk packet
+- protocol_profile: API/JSON + USMTF + signed timing notices
+- validation_gates: dual-source timing check, integrity threshold, mission-impact review
+
+### packet_id: DPL-ADVERSARIAL-AI-MODEL-POISONING-DETECTION-001
+- domain: adversarial AI model poisoning detection
+- objective: determine whether model outputs remain trustworthy before commanders rely on AI-assisted assessments or recommendations.
+- primary_tools: model-assurance board, training-data provenance tracker, inference-anomaly monitor, quarantine decision queue
+- alternate_tools: manual output-review matrix and independent analytic cross-check
+- degraded_mode: advisory-only AI support with mandatory human cross-check and no autonomous recommendation weighting
+- input_requirements: model identifier, anomaly indicators, provenance posture, mission use case, confidence thresholds
+- output_schema: model-trust board, quarantine ladder, AI-assurance packet
+- protocol_profile: STIX/TAXII + API/JSON + signed trust notices + USMTF
+- validation_gates: provenance review, anomaly threshold, human command check
+
+### packet_id: DPL-HOST-NATION-MANDATE-001
+- domain: host-nation mandate and legal alignment
+- objective: keep mission options inside host-nation legal bounds when mandates, caveats, or emergency restrictions change mid-operation.
+- primary_tools: authority-translation board, waiver-routing ledger, host-nation legal tracker, coalition caveat matrix
+- alternate_tools: manual mandate review worksheet and liaison call tree
+- degraded_mode: advisory-only options with no mandate-dependent action until legal review confirms authority
+- input_requirements: host-nation authority posture, affected mission tasks, coalition caveats, legal deadlines, liaison status
+- output_schema: mandate alignment board, waiver ladder, legal-approval packet
+- protocol_profile: signed legal notices + NIEM + API/JSON + S/MIME + USMTF
+- validation_gates: legal review, caveat check, authority confirmation
+
+### packet_id: DPL-ESSENTIAL-SERVICES-CONTINUITY-001
+- domain: essential services contractor strike and continuity
+- objective: preserve minimum safe services and mission support when contractor actions or outages threaten installations or deployed hubs.
+- primary_tools: service-status dashboard, labor-action monitor, contingency-contract queue, public-health risk tracker
+- alternate_tools: manual service-rationing board and continuity worksheet
+- degraded_mode: minimum safe services only with command-approved rationing and no unsupported restart promise
+- input_requirements: affected service lines, outage posture, contract options, health or mission impact, legal constraints
+- output_schema: essential-services board, contingency ladder, continuity-risk packet
+- protocol_profile: OPC UA + NIEM + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: service-priority review, safety threshold, contract or authority check
+
+### packet_id: DPL-ICP-PUBLIC-COMMS-001
+- domain: incident command public communications contingency
+- objective: sustain trusted public messaging when infrastructure, rumor pressure, or operational disruption make normal release paths unreliable.
+- primary_tools: public-communications board, release-approval queue, rumor-monitoring ledger, alternate dissemination tracker
+- alternate_tools: manual message log and authenticated call-tree worksheet
+- degraded_mode: essential life-safety messaging only with commander-approved holding statements
+- input_requirements: incident posture, release audience, infrastructure status, rumor indicators, approval authority
+- output_schema: public-comms board, release ladder, trust-restoration packet
+- protocol_profile: CAP + NIEM + S/MIME + API/JSON + USMTF
+- validation_gates: release approval, source verification, dissemination confirmation
+
+## Packet Addendum LXVIII (2026-04-07, Expansion Wave LXXIX)
+
+### packet_id: DPL-CLINICAL-PRIVILEGING-DEPLOYMENT-001
+- domain: joint clinical privileging credentialing and deployment readiness continuity
+- objective: preserve safe provider employment by reconciling privileging gaps before medical warfighters deploy or return to patient-facing duty.
+- primary_tools: privileging status board, credentials-file audit ledger, deployment-provider availability queue, scope-of-practice exception tracker
+- alternate_tools: manual provider-risk roster and medical-staff review worksheet
+- degraded_mode: advisory-only provider assignment planning with no unsupported privileging or deployment promise
+- input_requirements: provider category, privilege status, deployment timeline, credential gaps, waiver posture, patient-safety constraints
+- output_schema: privileging continuity board, provider availability ladder, deployment-readiness packet
+- protocol_profile: HL7/FHIR + NIEM + signed credential notices + API/JSON + S/MIME + USMTF
+- validation_gates: privileging evidence, credential review, deployment authority
+
+### packet_id: DPL-GTCC-MISSION-TRAVEL-001
+- domain: joint government travel charge card delinquency and mission travel continuity
+- objective: restore official travel legitimacy before delinquency or reimbursement failure blocks movement, training, or deployment support.
+- primary_tools: travel-card delinquency board, mission-travel authorization queue, reimbursement aging ledger, card-reinstatement tracker
+- alternate_tools: manual travel-priority roster and comptroller review worksheet
+- degraded_mode: advisory-only travel sequencing with no unsupported reinstatement, reimbursement, or card action promise
+- input_requirements: traveler category, orders posture, delinquency status, reimbursement age, mission deadline, fiscal constraints
+- output_schema: mission-travel continuity board, delinquency mitigation ladder, official-travel exception packet
+- protocol_profile: NIEM + signed travel notices + API/JSON + S/MIME + USMTF
+- validation_gates: orders confirmation, delinquency review, reimbursement evidence
+
+### packet_id: DPL-SPECIAL-PAY-BAH-COLA-INCENTIVE-001
+- domain: joint special pay BAH COLA and incentive continuity
+- objective: preserve lawful compensation and retention confidence by sequencing corrections across entitlements, location-based pay, and incentive obligations.
+- primary_tools: entitlements discrepancy board, dependent-location verification ledger, special-pay certification queue, bonus or service-obligation tracker
+- alternate_tools: manual pay-risk roster and finance review worksheet
+- degraded_mode: advisory-only entitlement sequencing with no unsupported payment or bonus commitment
+- input_requirements: pay category, member status, dependent location, certification posture, incentive agreement, fiscal timelines
+- output_schema: entitlements continuity board, incentive decision ladder, compensation legitimacy packet
+- protocol_profile: NIEM + signed pay notices + API/JSON + S/MIME + USMTF
+- validation_gates: status verification, location evidence, incentive eligibility
+
+## Packet Addendum LXVII (2026-04-07, Expansion Wave LXXVIII)
+
+### packet_id: DPL-DD93-SGLI-TSGLI-ESTATE-001
+- domain: joint DD93 SGLI TSGLI beneficiary and estate readiness continuity
+- objective: preserve casualty-ready family protection by verifying DD93, beneficiary intent, insurance elections, and estate-document continuity before disruption or injury exposes gaps.
+- primary_tools: DD93 verification board, SGLI or TSGLI case queue, beneficiary-intent ledger, estate-readiness document tracker
+- alternate_tools: manual beneficiary-priority roster and estate-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported beneficiary change, insurance outcome, or estate-document assertion
+- input_requirements: affected servicemembers, DD93 posture, beneficiary records, casualty risk or transition timeline, document-validity status, privacy constraints
+- output_schema: beneficiary integrity board, DD93 or SGLI action ladder, estate-readiness protection packet
+- protocol_profile: NIEM + signed beneficiary notices + API/JSON + S/MIME + USMTF
+- validation_gates: identity review, beneficiary-evidence confirmation, human legal or casualty-review check
+
+### packet_id: DPL-SKILLBRIDGE-CSP-001
+- domain: joint SkillBridge career skills apprenticeship and employer fellowship continuity
+- objective: preserve lawful transition placement and readiness by restoring SkillBridge, apprenticeship, fellowship, and credential handoff continuity during disruption.
+- primary_tools: transition-program case board, employer-fellowship approval queue, internship or apprenticeship tracker, credential handoff ledger
+- alternate_tools: manual transition-priority roster and employer-contact worksheet
+- degraded_mode: advisory-only placement sequencing with no unsupported internship, fellowship, or command-approval promise
+- input_requirements: affected personnel, separation or recovery timeline, program status, employer commitment, credential posture, command constraints
+- output_schema: SkillBridge continuity board, employer-fellowship ladder, transition-placement packet
+- protocol_profile: NIEM + signed transition notices + API/JSON + S/MIME + HR-XML + PESC XML + USMTF
+- validation_gates: eligibility review, command-approval confirmation, employer-acceptance check
+
+### packet_id: DPL-VA-HOME-LOAN-HOUSING-001
+- domain: joint VA home loan guaranty foreclosure avoidance and housing stability
+- objective: preserve household stability and lawful availability by aligning VA home-loan support, delinquency recovery, and foreclosure-avoidance actions before housing failure affects readiness.
+- primary_tools: VA home-loan case board, loan-servicer coordination queue, foreclosure or delinquency tracker, housing-counselor liaison ledger
+- alternate_tools: manual housing-risk roster and lender-contact worksheet
+- degraded_mode: advisory-only housing sequencing with no unsupported modification, closing, or foreclosure-relief promise
+- input_requirements: affected households, loan status, delinquency or closing posture, PCS or separation timeline, financial stressors, privacy constraints
+- output_schema: housing-stability board, VA loan intervention ladder, transition-housing packet
+- protocol_profile: NIEM + signed lender notices + API/JSON + S/MIME + MISMO + USMTF
+- validation_gates: loan-status review, counselor-or-servicer confirmation, legal-authority check
+
+### packet_id: DPL-PROMOTION-BOARD-RECORD-BRIEF-001
+- domain: joint promotion board evaluation report and record brief continuity
+- objective: preserve assignment trust and career progression by reconciling board files, evaluation reports, and record briefs before a selection or promotion board executes.
+- primary_tools: board-file audit queue, evaluation-report correction tracker, record-brief sync board, talent-management review ledger
+- alternate_tools: manual board-risk roster and evaluation-correction worksheet
+- degraded_mode: advisory-only correction sequencing with no unsupported board result, promotion outcome, or record-fix claim
+- input_requirements: affected population, board schedule, evaluation posture, record-brief discrepancies, assignment stakes, privacy constraints
+- output_schema: promotion-file integrity board, evaluation correction ladder, assignment-trust packet
+- protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: source-record review, board-cutoff confirmation, human personnel-management check
+
+## Packet Repair Addendum (2026-04-07, Records Continuity)
+
+### packet_id: DPL-PERSONNEL-RECORDS-DD214-001
+- domain: joint personnel records DD214 and benefits continuity
+- objective: restore trusted personnel records, DD214 production, and benefits handoff sequencing when outages or backlog threaten readiness or transition legitimacy.
+- primary_tools: personnel-record synchronization board, DD214 production queue, identity-proofing review cell, benefits handoff ledger
+- alternate_tools: manual priority-case roster and records-reconstruction worksheet
+- degraded_mode: advisory-only records triage with no unsupported discharge-document, entitlement, or identity-restoration claim
+- input_requirements: affected population, source-system status, document backlog, identity evidence, release authority, benefits dependencies
+- output_schema: records-recovery board, DD214 issuance ladder, benefits-handoff exception packet
+- protocol_profile: NIEM + signed personnel manifests + API/JSON + S/MIME + USMTF
+- validation_gates: source-record confirmation, identity review, release-authority check

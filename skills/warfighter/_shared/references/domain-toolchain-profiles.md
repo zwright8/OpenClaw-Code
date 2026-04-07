@@ -2492,3 +2492,285 @@ For every critical recommendation, include:
 - Cross-check systems: independent patient-administration review cell and alternate family-support liaison desk
 - Protocol binding: HL7/FHIR + NIEM + signed travel orders + API/JSON + S/MIME + USMTF
 - Fallback path: manual travel and lodging roster with advisory-only attendant sequencing until medical and travel authority are confirmed
+
+## Toolchain Wave LXXV-LXXVII Registry Backfill (2026-04-07)
+
+### `TC-SPOUSELIC-282`
+
+- Domain: joint military spouse license portability employment continuity
+- Primary systems: spouse-license reciprocity tracker, employment continuity board, PCS friction ledger, command hardship queue
+- Cross-check systems: independent family-readiness office and alternate legal-employment support desk
+- Protocol binding: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only household-support planning until reciprocity status, employer posture, and PCS timelines are human-confirmed
+
+### `TC-COMEX-284`
+
+- Domain: joint commissary exchange subsistence and hygiene restoration
+- Primary systems: commissary essentials board, exchange hygiene stock tracker, partner-support ledger, household demand prioritization queue
+- Cross-check systems: independent food-safety review cell and alternate family-support logistics desk
+- Protocol binding: NIEM + CAP + food-safety exchange + API/JSON + S/MIME + USMTF
+- Fallback path: essential-items prioritization only with manual stock validation and no unsupported resupply promise
+
+### `TC-BPHARM-286`
+
+- Domain: joint base pharmacy refill TRICARE cold-chain continuity
+- Primary systems: pharmacy refill tracker, TRICARE override queue, cold-chain monitor, specialty-medication exception ledger
+- Cross-check systems: independent pharmacy officer review cell and alternate family-health readiness desk
+- Protocol binding: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: life-safety medication prioritization only with manual cold-chain verification and clinician-confirmed substitutions
+
+### `TC-ANIMAL-288`
+
+- Domain: joint service animal and family pet evacuation shelter continuity
+- Primary systems: animal-accommodation board, service-animal verification tracker, co-shelter capacity dashboard, family-reunification queue
+- Cross-check systems: independent veterinary coordination cell and alternate mass-care shelter desk
+- Protocol binding: NIEM + signed custody manifests + API/JSON + CAP + USMTF
+- Fallback path: advisory-only co-shelter sequencing until animal status, shelter acceptance, and transport safety are human-confirmed
+
+### `TC-HOMEMOD-289`
+
+- Domain: joint wounded warrior home modification and caregiver ramp-up continuity
+- Primary systems: home-accessibility work tracker, caregiver readiness board, prosthetics and DME delivery queue, discharge-to-home planning ledger
+- Cross-check systems: independent rehabilitation review cell and alternate patient-administration support desk
+- Protocol binding: HL7/FHIR + NIEM + signed home-access or travel orders + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only discharge-support planning until accessibility evidence, caregiver availability, and medical authority are confirmed
+
+### `TC-ARCMSG-295`
+
+- Domain: joint emergency leave American Red Cross message and command approval
+- Primary systems: ARC message validation board, compassionate-travel queue, command approval tracker, family-emergency evidence ledger
+- Cross-check systems: independent casualty-assistance review cell and alternate unit admin desk
+- Protocol binding: NIEM + signed emergency notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only leave sequencing until message provenance, family linkage, and approval authority are human-confirmed
+
+### `TC-EFMP-296`
+
+- Domain: joint exceptional family member program respite and medical-device power continuity
+- Primary systems: EFMP case board, respite-support queue, medical-device power dependency ledger, utility backup tracker
+- Cross-check systems: independent family-readiness review cell and alternate medical-support desk
+- Protocol binding: HL7/FHIR + NIEM + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: life-safety EFMP triage only with manual caregiver confirmation and no unsupported respite guarantee
+
+### `TC-SURVIVOR-297`
+
+- Domain: joint survivor benefits casualty assistance and records expedite
+- Primary systems: survivor-benefits case board, casualty-assistance ledger, record reconstruction queue, beneficiary verification tracker
+- Cross-check systems: independent casualty-assistance office and alternate personnel-records review cell
+- Protocol binding: NIEM + signed casualty notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until casualty linkage, beneficiary evidence, and records authority are human-confirmed
+
+### `TC-PCSMOVE-298`
+
+- Domain: joint PCS claims travel voucher and temporary lodging continuity
+- Primary systems: PCS claims board, travel-voucher reconciliation queue, lodging authorization tracker, household-goods loss ledger
+- Cross-check systems: independent travel office review cell and alternate family-readiness support desk
+- Protocol binding: NIEM + signed travel orders + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only reimbursement sequencing until orders, receipts, and lodging authority are human-confirmed
+
+### `TC-TRICARE-299`
+
+- Domain: joint TRICARE referral specialty care and pharmacy authorization bridge
+- Primary systems: referral status board, specialty-care queue, pharmacy authorization tracker, care-access exception ledger
+- Cross-check systems: independent clinical review cell and alternate patient-administration desk
+- Protocol binding: HL7/FHIR + NIEM + API/JSON + S/MIME + USMTF
+- Fallback path: life-safety care prioritization only with manual referral validation and no unsupported appointment or authorization promise
+
+### `TC-RELIEF-300`
+
+- Domain: joint relief society hardship grant and zero interest loan bridge
+- Primary systems: hardship triage board, grant or loan routing queue, command endorsement tracker, emergency-expense ledger
+- Cross-check systems: independent financial-readiness review cell and alternate family-support desk
+- Protocol binding: NIEM + signed command endorsements + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only hardship prioritization until assistance eligibility, command endorsement, and urgency are human-confirmed
+
+### `TC-EDBEN-301`
+
+- Domain: joint education benefits GI Bill tuition assistance and testing continuity
+- Primary systems: education-benefit case board, school-certification tracker, testing continuity queue, eligibility-evidence ledger
+- Cross-check systems: independent education-services review cell and alternate personnel-records desk
+- Protocol binding: NIEM + signed education notices + API/JSON + S/MIME + PESC XML + USMTF
+- Fallback path: advisory-only sequencing until eligibility evidence, school posture, and testing deadlines are human-confirmed
+
+### `TC-SCRA-302`
+
+- Domain: joint Servicemembers Civil Relief Act housing and credit enforcement continuity
+- Primary systems: SCRA action board, notice tracker, lender or landlord compliance queue, legal-escalation ledger
+- Cross-check systems: independent legal-assistance review cell and alternate family-readiness desk
+- Protocol binding: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only legal prioritization until orders evidence, notice legitimacy, and legal authority are human-confirmed
+
+### `TC-NATURAL-303`
+
+- Domain: joint naturalization citizenship and immigration benefits continuity
+- Primary systems: immigration case tracker, citizenship certification queue, document-expiration board, legal-assistance liaison ledger
+- Cross-check systems: independent immigration-services review cell and alternate personnel-status desk
+- Protocol binding: NIEM + signed immigration notices + API/JSON + S/MIME + ICAO Doc 9303 + USMTF
+- Fallback path: advisory-only case sequencing until identity, filing posture, and document validity are human-confirmed
+
+### `TC-TAXID-304`
+
+- Domain: joint military tax relief combat-zone entitlement and IRS identity protection
+- Primary systems: military tax case board, combat-zone certification tracker, tax-document discrepancy ledger, IRS identity-protection queue
+- Cross-check systems: independent finance review cell and alternate personnel-records desk
+- Protocol binding: NIEM + signed tax notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only tax sequencing until entitlement evidence, document posture, and fraud indicators are human-confirmed
+
+### `TC-FVAP-305`
+
+- Domain: joint FVAP overseas ballot and election material continuity
+- Primary systems: ballot-request tracker, election-mail routing board, voting-assistance queue, deadline ledger
+- Cross-check systems: independent legal-compliance review cell and alternate family-readiness desk
+- Protocol binding: NIEM + signed election notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only ballot sequencing until voter status, lawful path, and deadlines are human-confirmed
+
+### `TC-CREDIT-306`
+
+- Domain: joint credit identity theft and financial readiness recovery
+- Primary systems: credit-dispute board, fraud-alert tracker, identity-proof ledger, emergency-assistance queue
+- Cross-check systems: independent financial-readiness review cell and alternate compensation-continuity desk
+- Protocol binding: NIEM + signed dispute notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only recovery sequencing until identity evidence, fraud posture, and assistance eligibility are human-confirmed
+
+### `TC-DEERS-307`
+
+- Domain: joint DEERS ID card and eligibility reconciliation
+- Primary systems: eligibility reconciliation board, ID-card issuance queue, dependency-verification ledger, sponsor-record sync board
+- Cross-check systems: independent personnel-records review cell and alternate family-readiness liaison desk
+- Protocol binding: NIEM + signed eligibility notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: life-safety and pay-critical cases only until identity proof, dependency status, and entitlement authority are human-confirmed
+
+### `TC-MEBPEB-308`
+
+- Domain: joint medical evaluation board physical evaluation board VA claim continuity
+- Primary systems: medical-board case tracker, duty-limitation evidence ledger, IDES handoff board, transition-benefits queue
+- Cross-check systems: independent rehabilitation review cell and alternate personnel-records liaison desk
+- Protocol binding: HL7/FHIR + NIEM + signed board notices + API/JSON + S/MIME + USMTF
+- Fallback path: board-critical sequencing only until evidence completeness, board authority, and claim-handoff posture are human-confirmed
+
+### `TC-DRILLPAY-309`
+
+- Domain: reserve component drill pay travel voucher and debt resolution
+- Primary systems: drill-pay discrepancy board, attendance certification queue, debt-remission tracker, travel-claim reconciliation ledger
+- Cross-check systems: independent finance review cell and alternate mobilization support desk
+- Protocol binding: NIEM + signed pay notices + API/JSON + S/MIME + USMTF
+- Fallback path: hardship-driven priority cases only until duty status, attendance evidence, and debt legitimacy are human-confirmed
+
+### `TC-IEP504-310`
+
+- Domain: joint special education IEP 504 and early intervention continuity
+- Primary systems: school-liaison case board, IEP or 504 continuity tracker, early-intervention queue, caregiver advocacy ledger
+- Cross-check systems: independent family-readiness review cell and alternate EFMP coordination desk
+- Protocol binding: HL7/FHIR + NIEM + signed school or therapy notices + API/JSON + S/MIME + USMTF
+- Fallback path: highest-needs children only until plan validity, guardian consent, and provider availability are human-confirmed
+
+### `TC-CLEAR-311`
+
+- Domain: joint security clearance foreign contact and record correction continuity
+- Primary systems: clearance-case tracker, foreign-contact update queue, adjudication evidence ledger, personnel-security record-correction board
+- Cross-check systems: independent personnel-security review cell and alternate records-correction desk
+- Protocol binding: NIEM + signed security notices + API/JSON + S/MIME + USMTF
+- Fallback path: mission-essential access cases only until incident evidence, record provenance, and adjudication authority are human-confirmed
+
+### `TC-RETIRE-312`
+
+- Domain: joint retirement SBP TSP and transition counseling continuity
+- Primary systems: retirement packet board, SBP election tracker, TSP counseling queue, transition-checklist status ledger
+- Cross-check systems: independent personnel-records review cell and alternate compensation continuity desk
+- Protocol binding: NIEM + signed retirement notices + API/JSON + S/MIME + USMTF
+- Fallback path: separation-critical cases only until eligibility evidence, election authority, and counseling posture are human-confirmed
+
+### `TC-CRED-313`
+
+- Domain: joint professional license cyber certification and CEU readiness continuity
+- Primary systems: credential-expiration board, CEU status tracker, cyber-certification queue, reciprocity or waiver ledger
+- Cross-check systems: independent personnel-readiness review cell and alternate rehabilitation or training desk
+- Protocol binding: NIEM + signed credential notices + API/JSON + S/MIME + PESC XML + USMTF
+- Fallback path: duty-critical credential cases only until credential evidence, renewal authority, and waiver legitimacy are human-confirmed
+
+### `TC-FAMCARE-314`
+
+- Domain: joint family care plan child support allotment and court order continuity
+- Primary systems: family-care-plan compliance board, allotment change queue, child-support or court-order tracker, guardian-verification ledger
+- Cross-check systems: independent legal-support review cell and alternate family-readiness desk
+- Protocol binding: NIEM + signed care-plan notices + API/JSON + S/MIME + USMTF
+- Fallback path: mobilization-critical cases only until care-plan authority, guardian verification, and court-order provenance are human-confirmed
+
+## Toolchain Wave LXXIX (2026-04-07)
+
+### `TC-PRIV-319`
+
+- Domain: joint clinical privileging credentialing and deployment readiness continuity
+- Primary systems: privileging status board, credentials-file audit ledger, deployment-provider availability queue, scope-of-practice exception tracker
+- Cross-check systems: independent medical-staff office review cell and alternate surgeon or nurse corps readiness desk
+- Protocol binding: HL7/FHIR + NIEM + signed credential notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only provider assignment planning until privileging evidence, malpractice or waiver posture, and deployment authority are human-confirmed
+
+### `TC-GTCC-320`
+
+- Domain: joint government travel charge card delinquency and mission-travel continuity
+- Primary systems: travel-card delinquency board, mission-travel authorization queue, reimbursement aging ledger, card-reinstatement tracker
+- Cross-check systems: independent travel office review cell and alternate comptroller support desk
+- Protocol binding: NIEM + signed travel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only travel sequencing until orders, delinquency posture, and reimbursement evidence are human-confirmed
+
+### `TC-PAYINC-321`
+
+- Domain: joint special pay BAH COLA and incentive continuity
+- Primary systems: entitlements discrepancy board, dependent-location verification ledger, special-pay certification queue, bonus or service-obligation tracker
+- Cross-check systems: independent finance review cell and alternate personnel-policy desk
+- Protocol binding: NIEM + signed pay notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only entitlement sequencing until service status, location evidence, and incentive eligibility are human-confirmed
+
+## Toolchain Wave LXXVIII Registry Repair (2026-04-07)
+
+### `TC-DD93BEN-315`
+
+- Domain: joint DD93 SGLI TSGLI beneficiary and estate readiness continuity
+- Primary systems: DD93 verification board, SGLI or TSGLI case queue, beneficiary-intent ledger, estate-readiness document tracker
+- Cross-check systems: independent casualty-assistance review cell and alternate legal-readiness witness
+- Protocol binding: NIEM + signed beneficiary notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only beneficiary sequencing until DD93 evidence, beneficiary status, and legal-document posture are human-confirmed
+
+### `TC-SKILLBRIDGE-316`
+
+- Domain: joint SkillBridge career skills apprenticeship and employer fellowship continuity
+- Primary systems: transition-program case board, employer-fellowship approval queue, apprenticeship tracker, credential handoff ledger
+- Cross-check systems: independent transition-services review cell and alternate personnel-records witness
+- Protocol binding: NIEM + signed transition notices + API/JSON + S/MIME + HR-XML + PESC XML + USMTF
+- Fallback path: advisory-only placement sequencing until eligibility, employer commitment, and command approval are human-confirmed
+
+### `TC-VAHOME-317`
+
+- Domain: joint VA home-loan guaranty foreclosure avoidance and housing stability
+- Primary systems: VA home-loan case board, loan-servicer coordination queue, foreclosure or delinquency tracker, housing-counselor liaison ledger
+- Cross-check systems: independent legal-assistance review cell and alternate family-readiness or finance witness
+- Protocol binding: NIEM + signed lender notices + API/JSON + S/MIME + MISMO + USMTF
+- Fallback path: advisory-only housing sequencing until loan posture, servicer response, and legal authority are human-confirmed
+
+### `TC-PROMO-318`
+
+- Domain: joint promotion board evaluation report and record brief continuity
+- Primary systems: board-file audit queue, evaluation-report correction tracker, record-brief sync board, talent-management review ledger
+- Cross-check systems: independent personnel-records review cell and alternate readiness-management witness
+- Protocol binding: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only board-risk sequencing until source-record evidence, correction authority, and board deadlines are human-confirmed
+
+## Toolchain Support Systems Addendum (2026-04-07, Records Continuity Registry Repair)
+
+### `TC-RECORDS-269`
+
+- Domain: joint personnel records DD214 and benefits continuity
+- Primary systems: personnel-record synchronization board, DD214 issuance queue, identity-proofing review cell, benefits handoff ledger
+- Cross-check systems: independent records-audit desk and alternate compensation-continuity liaison
+- Protocol binding: NIEM + signed personnel manifests + API/JSON + S/MIME + USMTF
+- Fallback path: human-certified priority case roster with no unsupported discharge-document, entitlement, or release-authorization claim
+
+## Toolchain Wave LXXX (2026-04-07)
+
+### `TC-UNDERSEA-322`
+
+- Domain: strategic undersea chokepoint autonomous barrier orchestration
+- Primary systems: undersea sensor-grid manager, autonomous barrier-control board, seabed obstacle-status ledger, maritime deconfliction queue
+- Cross-check systems: independent ASW review desk and alternate maritime COP barrier-monitor cell
+- Protocol binding: AIS/NMEA + Link 16 J-series + API/JSON + signed autonomy releases + USMTF
+- Fallback path: manual patrol-and-sensor barrier posture with human-verified release authority and no unsupported autonomous interdiction claim

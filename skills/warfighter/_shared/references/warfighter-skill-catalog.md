@@ -222,6 +222,20 @@ Every skill output should include:
 - Space-weather GNSS outage fusion + denied space PNT alternative navigation + precision navigation integrity monitoring
 - Multi-theater hostage crisis decision + POW/MIA and missing persons fusion + personnel recovery integration
 
+## New Expansion Wave (2026-04-07, Expansion Wave LXXVIII)
+
+- joint-dd93-sgli-tsgli-beneficiary-and-estate-readiness-continuity-cell
+- joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell
+- joint-va-home-loan-guaranty-foreclosure-avoidance-and-housing-stability-cell
+- joint-promotion-board-evaluation-report-and-record-brief-continuity-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXVIII)
+
+- DD93, SGLI, and estate-readiness continuity + survivor-benefits casualty-assistance records expedite + servicemember civil relief estate and power of attorney + mission-risk-decision-support.
+- SkillBridge and employer-fellowship continuity + retirement SBP TSP transition counseling continuity + education benefits GI Bill tuition assistance and testing continuity + professional license cyber certification and CEU readiness continuity.
+- VA home-loan housing stability + Servicemembers Civil Relief Act foreclosure lease eviction and rate-cap enforcement + military financial liability and compensation continuity + military family readiness crisis sustainment.
+- Promotion-board evaluation-report and record-brief continuity + personnel records DD214 and benefits continuity + security-clearance foreign-contact and record-correction continuity + reserve-guard mobilization planner.
+
 ## New Expansion Wave (2026-03-08, Advanced Warfighter Integration Set)
 
 - joint-lunar-communications-relay-contingency-cell
@@ -2473,6 +2487,23 @@ Every skill output should include:
 - joint-urban-rubble-route-clearance-and-structural-collapse-rescue-cell
 - strategic-semiconductor-test-burn-in-and-mission-priority-cell
 
+## New Expansion Wave (2026-04-07, Expansion Wave LXXVI)
+
+- joint-education-benefits-gi-bill-tuition-assistance-and-testing-continuity-cell
+- joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-and-rate-cap-enforcement-cell
+- joint-naturalization-citizenship-and-immigration-benefits-continuity-cell
+- joint-military-tax-relief-combat-zone-entitlement-and-irs-identity-protection-cell
+- joint-fvap-overseas-ballot-and-election-material-continuity-cell
+- joint-credit-identity-theft-and-financial-readiness-recovery-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXVI)
+
+- Military family readiness crisis sustainment + education benefits continuity + TRICARE referral continuity + relief-society hardship bridge.
+- Reserve and Guard mobilization planner + SCRA housing or credit protection + combat-zone tax relief continuity + overseas ballot continuity.
+- Personnel records DD214 and benefits continuity + naturalization and immigration continuity + education-benefit restoration + survivor-benefits expedite.
+- Servicemember civil relief estate and POA continuity + SCRA enforcement + credit identity recovery + legal-assistance identity-document reissuance.
+- Military financial liability and compensation continuity + combat-zone tax relief plus IRS identity protection + credit identity recovery + hardship grant routing.
+
 ## Updated Pairings (2026-03-14, Wave XLVIII)
 
 - Joint adversary kill-web disruption assessment + joint targeting standards and CDE governance + offensive counter-air mission planner + mission risk decision support.
@@ -3062,16 +3093,44 @@ Every skill output should include:
 - Joint Tricare referral specialty care and pharmacy authorization bridge + joint-base-pharmacy-refill-tricare-override-and-cold-chain-continuity-cell + casualty-evac-and-medical-regulation + joint-role-3-medical-network-and-aeromedical-evac-cell.
 - Joint relief society hardship grant and zero-interest loan bridge + military-pay-and-family-readiness-disruption-continuity-cell + reserve-guard-mobilization-planner + joint-military-family-readiness-crisis-sustainment-cell.
 
-## New Expansion Wave (2026-04-07, Expansion Wave LXXVI)
+## New Expansion Wave (2026-04-07, Expansion Wave LXXVII)
 
-- joint-military-family-care-plan-guardianship-and-dependent-support-cell
-- joint-military-spouse-license-portability-and-employment-continuity-cell
-- joint-servicemember-civil-relief-estate-and-power-of-attorney-cell
-- joint-household-goods-loss-claims-and-essential-kit-bridge-cell
+- joint-deers-id-card-and-eligibility-reconciliation-cell
+- joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-cell
+- reserve-component-drill-pay-travel-voucher-and-debt-resolution-cell
+- joint-special-education-iep-504-and-early-intervention-continuity-cell
+- joint-security-clearance-foreign-contact-and-record-correction-continuity-cell
+- joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell
+- joint-professional-license-cyber-certification-and-ceu-readiness-continuity-cell
+- joint-family-care-plan-child-support-allotment-and-court-order-continuity-cell
 
-## Updated Pairings (2026-04-07, Expansion Wave LXXVI)
+## Updated Pairings (2026-04-07, Expansion Wave LXXVII)
 
-- Joint military family care plan guardianship and dependent support + joint-military-family-readiness-crisis-sustainment-cell + reserve-component-single-parent-childcare-eldercare-mobilization-bridge-cell + joint-dependent-special-needs-transport-education-and-medical-continuity-cell.
-- Joint military spouse license portability and employment continuity + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + reserve-component-employer-esgr-and-income-shock-continuity-cell + joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell.
-- Joint servicemember civil relief estate and power of attorney + homeland-military-legal-assistance-and-identity-document-reissuance-cell + reserve-guard-mobilization-planner + joint-survivor-benefits-casualty-assistance-and-records-expedite-cell.
-- Joint household goods loss claims and essential kit bridge + joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint DEERS ID card and eligibility reconciliation + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint medical evaluation board physical evaluation board VA claim continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-personnel-records-dd214-and-benefits-continuity-cell + mission-risk-decision-support.
+- Reserve component drill pay travel voucher and debt resolution + reserve-guard-mobilization-planner + joint-military-financial-liability-and-compensation-continuity-cell + joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell.
+- Joint special education IEP 504 and early intervention continuity + joint-military-family-readiness-crisis-sustainment-cell + joint-exceptional-family-member-program-respite-and-medical-device-power-continuity-cell + homeland-base-school-transport-and-dependent-evacuation-cell.
+- Joint security clearance foreign contact and record correction continuity + reserve-guard-mobilization-planner + joint-personnel-records-dd214-and-benefits-continuity-cell + mission-risk-decision-support.
+- Joint retirement SBP TSP and transition counseling continuity + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell.
+- Joint professional license cyber certification and CEU readiness continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-personnel-records-dd214-and-benefits-continuity-cell + reserve-guard-mobilization-planner.
+- Joint family care plan child support allotment and court order continuity + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner + joint-servicemember-civil-relief-estate-and-power-of-attorney-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXIX)
+
+- joint-clinical-privileging-credentialing-and-deployment-readiness-continuity-cell
+- joint-government-travel-charge-card-delinquency-and-mission-travel-continuity-cell
+- joint-special-pay-bah-cola-and-incentive-continuity-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXIX)
+
+- Joint clinical privileging credentialing and deployment readiness continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-professional-license-cyber-certification-and-ceu-readiness-continuity-cell + joint-role-3-medical-network-and-aeromedical-evac-cell.
+- Joint government travel charge card delinquency and mission travel continuity + reserve-guard-mobilization-planner + joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell.
+- Joint special pay BAH COLA and incentive continuity + joint-military-financial-liability-and-compensation-continuity-cell + reserve-guard-mobilization-planner + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXX)
+
+- strategic-undersea-choke-point-autonomous-barrier-orchestration-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXX)
+
+- Strategic undersea chokepoint autonomous barrier orchestration + maritime-operations-planner + anti-submarine-warfare-support + naval-undersea-cable-protection-and-restoration + joint-autonomous-underwater-sensor-mesh-reconstitution-cell.

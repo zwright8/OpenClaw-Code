@@ -82,3 +82,15 @@ For each critical tool recommendation include objective, required inputs, query 
 - Add `toolchain_id=TC-BPHARM-286`, `tool_suite_id=ts-joint-base-pharmacy-refill-tricare-coldchain-v1`, and `protocol_stack_id=ps-joint-base-pharmacy-refill-tricare-coldchain-stack-v1` when rehabilitation continuity depends on refill transfer, specialty medication protection, or TRICARE override confidence for wounded-warrior families.
 - Add `toolchain_id=TC-HOMEMOD-289`, `tool_suite_id=ts-joint-wounded-warrior-home-modification-caregiver-ramp-v1`, and `protocol_stack_id=ps-joint-wounded-warrior-home-modification-caregiver-ramp-stack-v1` when return-to-duty or transition planning depends on home accessibility, caregiver readiness, or discharge-to-home sequencing.
 - Add `packet_id=DPL-BASE-PHARMACY-TRICARE-COLDCHAIN-001` and `packet_id=DPL-WOUNDED-WARRIOR-HOME-CAREGIVER-001` for branches that materially alter rehabilitation posture, family-transition timing, or safe discharge assumptions.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVII Addendum)
+
+- Add `toolchain_id=TC-MEBPEB-308`, `tool_suite_id=ts-joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-v1`, and `protocol_stack_id=ps-joint-medical-evaluation-board-physical-evaluation-board-va-claim-continuity-stack-v1` when rehabilitation or return-to-duty planning depends on board timing, disability disposition, or VA or DOD handoff continuity.
+- Add `toolchain_id=TC-RETIRE-312`, `tool_suite_id=ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`, and `protocol_stack_id=ps-joint-retirement-sbp-tsp-transition-counseling-continuity-stack-v1` when long-tail recovery branches depend on medical-retirement decisions, SBP elections, or transition counseling timing.
+- Add `toolchain_id=TC-CRED-313`, `tool_suite_id=ts-joint-professional-license-cyber-certification-ceu-readiness-continuity-v1`, and `protocol_stack_id=ps-joint-professional-license-cyber-certification-ceu-readiness-continuity-stack-v1` when safe return-to-duty depends on restored licensure, certification, or CEU readiness after injury or extended treatment.
+- Add `packet_id=DPL-MEB-PEB-VA-CLAIM-001`, `packet_id=DPL-RETIREMENT-SBP-TSP-001`, and `packet_id=DPL-PRO-LICENSE-CYBER-CEU-001` for branches that materially alter rehabilitation posture, medical-retirement timing, or safe return-to-duty confidence.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXIX Addendum)
+
+- Add `toolchain_id=TC-PRIV-319`, `tool_suite_id=ts-joint-clinical-privileging-credentialing-deployment-readiness-v1`, and `protocol_stack_id=ps-joint-clinical-privileging-credentialing-deployment-readiness-stack-v1` when rehabilitation or return-to-duty planning depends on restored privileging, deployment-safe scope-of-practice, or provider staffing legitimacy after injury or treatment interruption.
+- Add `packet_id=DPL-CLINICAL-PRIVILEGING-DEPLOYMENT-001` for branches that materially alter rehabilitation posture, safe-provider employment, or return-to-duty confidence.

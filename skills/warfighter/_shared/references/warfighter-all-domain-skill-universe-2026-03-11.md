@@ -25,7 +25,6 @@ This reference expands the warfighter skill roadmap across major military action
 - Joint adversary kill-web disruption assessment cell
 - Theater autonomous decoy economy and inventory governance cell
 - Coalition mission-data releasability waiver adjudication cell
-- Strategic undersea choke-point autonomous barrier orchestration cell
 - Joint distributed mission-brief multilingual assurance cell
 - Theater resilient battlefield cloud federation admission control cell
 - Homeland military-civil autonomous evacuation convoy arbitration cell
@@ -218,6 +217,12 @@ This reference expands the warfighter skill roadmap across major military action
 
 ## Run Update (2026-03-14T00:08:45Z)
 
+## Run Update (2026-04-07T08:04:40Z)
+
+- Added a focused American-warfighter support wave covering DD93 or SGLI or TSGLI and estate-readiness continuity, SkillBridge and employer-fellowship transition continuity, VA home-loan housing-stability preservation, and promotion-board plus evaluation-report record integrity.
+- Extended shared references with Tool Suite Addendum LXXVIII, Protocol Stack Addendum LXXVIII, Packet Addendum LXVII, and Toolchain Wave LXXVIII to provide concrete external tool, protocol, and packet defaults for these support domains.
+- Improved mission-risk, family-readiness, personnel-records, reserve-mobilization, and legal-readiness anchor skills so support-system friction now maps more directly to beneficiary trust, housing survivability, transition legitimacy, and career-continuity risk.
+
 - Added Expansion Wave XLI with 12 new all-domain warfighter skills focused on cislunar timing-trust collision mitigation, domestic transport chokepoint reroute, coalition medical credential reprivileging, expeditionary autonomous sustainment routing-drift governance, multi-theater maritime interdiction evidence and sanctions harmonization, digital-terrain spoof route approval, expeditionary arresting-gear restoration, volcanic-ash airbridge engine recovery, strategic shipyard drydock restoration, river-port dredge and barge sustainment, contested cellular timing holdover for first responders, and austere command-post flood-smoke control.
 - Extended shared references with Tool Suite Addendum XLI, Protocol Stack Addendum XLI, Packet Addendum XXX, and Profile Set Wave XLI for explicit external-tool, protocol, and packet bindings.
 - Improved `mission-risk-decision-support`, `coalition-interoperability-coordinator`, `cema-integration-cell`, `contested-logistics-sustainment`, `joint-role-3-medical-network-and-aeromedical-evac-cell`, `strategic-mobility-deployment-planner`, `theater-mission-network-failover-cell`, and `contested-space-domain-awareness-and-rendezvous-denial-cell` with Wave XLI override bindings for cislunar safety, coalition medical and legal interoperability, logistics reroute resilience, aeromedical continuity, mission-network survivability, and space-domain maneuver assurance.
@@ -257,6 +262,18 @@ This reference expands the warfighter skill roadmap across major military action
 - Added a 10-skill expansion wave focused on laser-designator and sensor fratricide prevention, cloud credential burn and access reconstitution, battle-damaged aircraft recovery and cannibalization, base fuel-hydrant and fire-suppression recovery, coalition shore-power frequency conversion and berthing, ground-robotics teleoperation spectrum safety, carbon-carbon nozzle and reentry-material prioritization, respiratory-protection fit and filter rotation, assault landing-zone dust and sensor-obscuration control, and guidance seeker or IMU prioritization.
 - Extended shared references with Tool Suite Addendum XLVII, Protocol Stack Addendum XLVII, Packet Addendum XXXVI, Profile Addendum R, and a new domain-toolchain wave to bind every new skill to concrete tool suites, protocol families, packet IDs, and toolchain profiles.
 - Improved `mission-risk-decision-support`, `coalition-interoperability-coordinator`, `theater-mission-network-failover-cell`, `joint-targeting-standards-and-cde-governance-cell`, `strategic-industrial-mobilization-readiness-cell`, `airbase-dispersal-and-rapid-reconstitution-cell`, `austere-surgical-support-coordinator`, and `strategic-sealift-and-prepositioning-coordinator` with Wave XLVII override bindings for fires-integrity assurance, access burn and reentry control, airframe salvage, base fuel continuity, coalition berth-power interoperability, respiratory protection readiness, and strategic component scarcity.
+
+## Run Update (2026-04-07Txx:xx:xxZ)
+
+- Added a 6-skill American-warfighter support wave focused on GI Bill or tuition-assistance continuity, SCRA foreclosure and lease protection, naturalization and immigration continuity, combat-zone tax relief with IRS identity defense, overseas absentee-ballot continuity, and post-breach credit recovery.
+- Extended shared references with Tool Suite Addendum LXXVI, Protocol Stack Addendum LXXVI, Packet Addendum LXV, and Toolchain Wave LXXVI to give each new support skill concrete external-tool, protocol, and packet bindings.
+- Improved family-readiness, mobilization, civil-relief, records, and compensation anchor skills with Wave LXXVI override bindings so commanders can surface household legal-financial risk before it becomes force-readiness loss.
+
+## Run Update (2026-04-07T07:xx:xxZ)
+
+- Added an 8-skill American-warfighter support wave focused on DEERS or ID-card eligibility drift, MEB or PEB and VA-claim continuity, Reserve drill-pay or debt resolution, military-child IEP or 504 and early-intervention continuity, clearance and foreign-contact record correction, retirement plus SBP or TSP counseling continuity, professional-license or cyber-certification lapse recovery, and family-care-plan with child-support or court-order stability.
+- Extended shared references with Tool Suite Addendum LXXVII, Protocol Stack Addendum LXXVII, Packet Addendum LXVI, Toolchain Wave LXXVII, and a warfighter-support systems addendum so both new and existing support skills have concrete external-tool, protocol, and fallback definitions.
+- Improved `mission-risk-decision-support`, `joint-military-family-readiness-crisis-sustainment-cell`, `joint-personnel-records-dd214-and-benefits-continuity-cell`, `reserve-guard-mobilization-planner`, `joint-military-financial-liability-and-compensation-continuity-cell`, and `joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell` with Wave LXXVII override bindings for eligibility recovery, board-transition legitimacy, mobilization pay friction, dependent-education stability, clearance readiness, retirement decisions, and court-order or care-plan risk.
 
 ## Run Update (2026-03-15T16:00:00Z)
 
@@ -444,8 +461,20 @@ This reference expands the warfighter skill roadmap across major military action
 - Extended shared references with Tool Suite Addendum LXXV, Protocol Stack Addendum LXXV, Packet Addendum LXIV, and Toolchain Wave LXXV so each support skill binds to concrete external tools, protocol families, packet IDs, and degraded-mode fallback paths.
 - Improved `mission-risk-decision-support`, `joint-military-family-readiness-crisis-sustainment-cell`, `reserve-guard-mobilization-planner`, `joint-casualty-assistance-center-and-family-support-synchronization-cell`, and `joint-personnel-records-dd214-and-benefits-continuity-cell` with Wave LXXV override bindings for verified emergency-leave routing, EFMP fragility tracking, survivor-benefits legitimacy, PCS reimbursement stability, TRICARE continuity, and hardship-relief confidence.
 
-## Run Update (2026-04-07T03:26:44Z)
+## Run Update (2026-04-07T08:06:58Z)
 
-- Materialized a 4-skill American-warfighter household-continuity wave by binding previously uncatalogued support skills for family-care plan and guardianship integrity, joint spouse license portability and employment continuity, servicemember civil-relief plus estate or power-of-attorney readiness, and household-goods loss with essential-kit bridging.
-- Extended shared references with Tool Suite Addendum LXXVI, Protocol Stack Addendum LXXVI, Packet Addendum LXV, and Toolchain Wave LXXVI so those support skills now have concrete external tools, protocol families, packet IDs, and degraded-mode fallback paths.
-- Improved `mission-risk-decision-support`, `joint-military-family-readiness-crisis-sustainment-cell`, `reserve-guard-mobilization-planner`, and `joint-personnel-records-dd214-and-benefits-continuity-cell` with Wave LXXVI override bindings for family-care integrity, spouse employment stability, civil-relief or POA confidence, and household-goods recovery resilience.
+- Materialized the remaining cross-domain backlog candidate `strategic-undersea-choke-point-autonomous-barrier-orchestration-cell` so the universe no longer carries an obvious undersea chokepoint barrier gap.
+- Extended the domain-toolchain registry with `TC-RECORDS-269` repair coverage and `TC-UNDERSEA-322` so records-continuity and undersea-barrier planning resolve to concrete system bindings instead of placeholder-only references.
+- Repaired the shared packet gap for personnel-records continuity by adding `DPL-PERSONNEL-RECORDS-DD214-001`, keeping `joint-personnel-records-dd214-and-benefits-continuity-cell` aligned with the shared packet library it already referenced.
+
+## Run Update (2026-04-07T09:xx:xxZ)
+
+- Added a focused American-warfighter support wave covering clinical privileging and deployment-provider legitimacy, government travel charge card delinquency with mission-travel restoration, and special-pay or BAH or COLA or incentive continuity for key personnel.
+- Extended shared references with Tool Suite Addendum LXXIX, Protocol Stack Addendum LXXIX, Packet Addendum LXVIII, and Toolchain Wave LXXIX while also backfilling missing support-system registry entries for spouse employment, commissary or hygiene sustainment, pharmacy or TRICARE cold-chain support, home-modification recovery, DD214 continuity, and animal-accommodation planning.
+- Improved existing support anchors (`mission-risk-decision-support`, `joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell`, `joint-military-financial-liability-and-compensation-continuity-cell`, and `reserve-guard-mobilization-planner`) with Wave LXXIX override bindings for provider-legitimacy, official-travel recovery, compensation-trust restoration, and mobilization-safe household stability.
+
+## Run Update (2026-04-07T09:xx:xxZ)
+
+- Added a focused American-warfighter support wave covering clinical privileging and deployment-provider legitimacy, government travel charge card delinquency with mission-travel restoration, and special-pay or BAH or COLA or incentive continuity for key personnel.
+- Extended shared references with Tool Suite Addendum LXXIX, Protocol Stack Addendum LXXIX, Packet Addendum LXVIII, and Toolchain Wave LXXIX while also backfilling missing support-system registry entries for spouse employment, commissary or hygiene sustainment, pharmacy or TRICARE cold-chain support, home-modification recovery, DD214 continuity, and animal-accommodation planning.
+- Improved existing support anchors (`mission-risk-decision-support`, `joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell`, `joint-military-financial-liability-and-compensation-continuity-cell`, and `reserve-guard-mobilization-planner`) with Wave LXXIX override bindings for provider-legitimacy, official-travel recovery, compensation-trust restoration, and mobilization-safe household stability.
