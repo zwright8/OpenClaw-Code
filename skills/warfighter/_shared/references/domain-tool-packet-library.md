@@ -14461,3 +14461,93 @@ validation_gates:
 - output_schema: bus-staging matrix, driver-continuity board, route-release evacuation packet
 - protocol_profile: NIEM + CAP + OGC + API/JSON + S/MIME + USMTF
 - validation_gates: fleet-status review, driver-rest confirmation, route-release approval
+
+## Packet Addendum LXII (2026-04-07, Expansion Wave LXXIII)
+
+### packet_id: DPL-LEGAL-AID-ID-REISSUE-001
+- domain: homeland military legal assistance and identity document reissuance
+- objective: preserve legal viability and entitlement continuity by restoring IDs, powers of attorney, and records evidence during domestic disruption.
+- primary_tools: legal-assistance case tracker, identity-document reissuance ledger, records-reconstruction queue, DEERS or personnel-status validation board
+- alternate_tools: manual intake ledger and records-reconstruction worksheet
+- degraded_mode: advisory-only legal triage with no unsupported identity restoration or entitlement claim
+- input_requirements: affected population, lost-document categories, legal deadlines, authority status, privacy constraints, service demand
+- output_schema: legal-aid triage matrix, ID reissue ladder, claims-document recovery packet
+- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: identity review, legal-authority confirmation, records-provenance check
+
+### packet_id: DPL-PROTECTIVE-ORDER-SAFE-HOUSING-001
+- domain: homeland protective order domestic violence and safe housing continuity
+- objective: protect victims lawfully by synchronizing protective-order validity, safe-housing capacity, and advocate coordination during domestic crises.
+- primary_tools: protective-order registry, family-advocacy case board, safe-housing capacity tracker, command-risk notification queue
+- alternate_tools: manual victim-safety roster and housing-priority worksheet
+- degraded_mode: advisory-only housing sequencing with no unsupported protective-order enforcement claim
+- input_requirements: protective-order status, victim-safety constraints, housing capacity, advocate availability, child-custody risk, jurisdiction
+- output_schema: protective-order continuity board, safe-housing allocation ladder, victim-protection escalation packet
+- protocol_profile: NIEM + signed court notices + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: order-validity check, advocate review, housing-authority confirmation
+
+### packet_id: DPL-POSTPARTUM-LACTATION-FORMULA-001
+- domain: homeland postpartum lactation infant formula and diaper continuity
+- objective: keep maternal-infant support intact by synchronizing lactation support, formula and diaper sustainment, and caregiver continuity during emergency disruption.
+- primary_tools: maternal-care status board, lactation DME support tracker, infant-formula inventory ledger, caregiver continuity queue
+- alternate_tools: manual maternal-infant roster and supply-priority worksheet
+- degraded_mode: life-safety maternal-infant support only with manual clinical review and no unsupported supply claim
+- input_requirements: maternal-health status, infant needs, supply inventory, caregiver coverage, shelter posture, transport constraints
+- output_schema: postpartum support matrix, lactation-and-formula continuity ladder, maternal-infant escalation packet
+- protocol_profile: HL7/FHIR + NIEM + CAP + API/JSON + S/MIME + USMTF
+- validation_gates: clinical review, supply-safety check, caregiver confirmation
+
+### packet_id: DPL-PET-SERVICE-ANIMAL-COSHELTER-001
+- domain: homeland base pet service animal and family co shelter
+- objective: protect family compliance and animal welfare by aligning co-shelter capacity, service-animal legitimacy, and veterinary support during evacuation.
+- primary_tools: shelter pet-capacity board, service-animal verification tracker, veterinary support ledger, family reunification queue
+- alternate_tools: manual animal roster and shelter-accommodation worksheet
+- degraded_mode: advisory-only co-shelter planning with no unsupported shelter acceptance or veterinary promise
+- input_requirements: animal population, service-animal status, shelter rules, veterinary support, transport availability, reunification demand
+- output_schema: co-shelter support matrix, animal-transport ladder, veterinary-support packet
+- protocol_profile: NIEM + signed custody manifests + API/JSON + CAP + USMTF
+- validation_gates: shelter acceptance review, service-animal verification, veterinary-support confirmation
+
+### packet_id: DPL-COMMISSARY-FOOD-BRIDGE-001
+- domain: homeland commissary exchange food bank and school meal bridging
+- objective: preserve household food access by bridging installation retail outages, school-meal disruption, and partner-food distribution gaps.
+- primary_tools: commissary inventory dashboard, exchange essentials board, food-bank partner tracker, school-meal continuity queue
+- alternate_tools: manual family-sustainment roster and partner-capacity worksheet
+- degraded_mode: essential-ration prioritization only with manual food-safety review and no unsupported partner commitment
+- input_requirements: household demand, inventory posture, partner capacity, meal-program status, route constraints, refrigeration status
+- output_schema: family-sustainment bridge board, meal-gap priority ladder, resupply decision packet
+- protocol_profile: NIEM + food-safety lab result exchange + API/JSON + S/MIME + CAP + USMTF
+- validation_gates: food-safety review, partner-capacity confirmation, allocation approval
+
+### packet_id: DPL-SPOUSE-LICENSURE-PCS-001
+- domain: strategic military spouse licensure employment and PCS continuity
+- objective: preserve readiness and retention by reducing spouse licensure and employment disruption during PCS or crisis relocation.
+- primary_tools: licensure reciprocity tracker, spouse employment case board, PCS timeline dashboard, hiring-partner or benefits queue
+- alternate_tools: manual spouse-support roster and licensure-requirement worksheet
+- degraded_mode: advisory-only household-support planning with no unsupported reciprocity or employer-continuity promise
+- input_requirements: spouse profession, licensure status, employment posture, PCS timeline, childcare constraints, household risk
+- output_schema: licensure reciprocity matrix, employment continuity ladder, PCS risk-mitigation packet
+- protocol_profile: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
+- validation_gates: licensure-review, employer confirmation, privacy check
+
+### packet_id: DPL-SINGLE-PARENT-ELDERCARE-MOB-001
+- domain: reserve component single parent childcare eldercare mobilization bridge
+- objective: preserve lawful activation by closing dependent-care gaps that otherwise block Guard or Reserve mobilization.
+- primary_tools: dependent-care-plan ledger, childcare capacity board, eldercare support tracker, mobilization exception queue
+- alternate_tools: manual dependent-care roster and caregiver-gap worksheet
+- degraded_mode: advisory-only activation impact with no unsupported caregiver commitment or mobilization order change
+- input_requirements: force package demand, care-plan status, caregiver availability, activation timeline, eldercare risk, legal constraints
+- output_schema: dependent-care readiness board, mobilization bridge ladder, caregiver-support packet
+- protocol_profile: NIEM + signed care-plan notices + API/JSON + S/MIME + USMTF
+- validation_gates: caregiver confirmation, care-plan review, activation-authority check
+
+### packet_id: DPL-COURTHOUSE-CUSTODY-FAMILY-LAW-001
+- domain: homeland installation courthouse custody hearing and family law continuity
+- objective: protect household legal stability by preserving access to courts, filings, custody hearings, and family-law continuity under disruption.
+- primary_tools: courthouse status board, custody-hearing docket tracker, protective-order filing queue, legal-aid liaison matrix
+- alternate_tools: manual docket tracker and filing-path worksheet
+- degraded_mode: advisory-only legal continuity board with no unsupported filing acceptance or hearing guarantee
+- input_requirements: jurisdiction status, filing deadlines, court posture, custody risk, legal-aid availability, protective-order overlap
+- output_schema: court-continuity board, custody-hearing ladder, family-law risk packet
+- protocol_profile: NIEM + signed court notices + API/JSON + S/MIME + NIMS/ICS + USMTF
+- validation_gates: court-status confirmation, filing-path review, legal-authority check

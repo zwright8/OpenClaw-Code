@@ -14736,3 +14736,87 @@ external_binding:
 ### `ps-homeland-transit-bus-evacuation-staging-driver-continuity-stack-v1`
 - Protocols: `NIEM`, `CAP`, `OGC`, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: fleet-status exchange, driver-availability routing, staging-site updates, and protected-route acknowledgment.
+
+## Tool Suite Addendum LXXIII (2026-04-07, Legal, Family Protection, Maternal-Infant Care, Co-Shelter, Food Bridging, Spouse Continuity, Dependent-Care Mobilization, and Courthouse Continuity)
+
+### `ts-homeland-military-legal-assistance-identity-document-reissuance-v1`
+- Use for: legal-assistance surge, identity-document recovery, records reconstruction, and entitlement-proof continuity during domestic disruption.
+- Primary tools: legal-assistance case tracker, identity-document reissuance ledger, records-reconstruction queue, DEERS or personnel-status validation board.
+- Cross-check tools: independent legal review desk and alternate family-readiness records cell.
+- Typical products: legal-aid triage matrix, ID reissue ladder, claims-document recovery packet.
+
+### `ts-homeland-protective-order-domestic-violence-safe-housing-continuity-v1`
+- Use for: protective-order continuity, family-advocacy risk management, safe-housing allocation, and victim-protection escalation during domestic crises.
+- Primary tools: protective-order registry, family-advocacy case board, safe-housing capacity tracker, command-risk notification queue.
+- Cross-check tools: independent victim-advocate coordination cell and alternate legal-support desk.
+- Typical products: protective-order continuity board, safe-housing allocation ladder, victim-protection escalation packet.
+
+### `ts-homeland-postpartum-lactation-infant-formula-diaper-continuity-v1`
+- Use for: maternal-infant continuity, lactation support, formula distribution, diaper sustainment, and caregiver coordination during domestic disruption.
+- Primary tools: maternal-care status board, lactation DME support tracker, infant-formula inventory ledger, caregiver continuity queue.
+- Cross-check tools: independent obstetric-review cell and alternate pediatric-support board.
+- Typical products: postpartum support matrix, lactation-and-formula continuity ladder, maternal-infant escalation packet.
+
+### `ts-homeland-base-pet-service-animal-family-co-shelter-v1`
+- Use for: family co-shelter support for pets and service animals, veterinary capacity tracking, evacuation-compliance protection, and reunification continuity.
+- Primary tools: shelter pet-capacity board, service-animal verification tracker, veterinary support ledger, family reunification queue.
+- Cross-check tools: independent veterinary coordination cell and alternate mass-care shelter desk.
+- Typical products: co-shelter support matrix, animal-transport ladder, veterinary-support packet.
+
+### `ts-homeland-commissary-exchange-food-bank-school-meal-bridging-v1`
+- Use for: family food-access bridging across commissaries, exchanges, food banks, and school-meal disruption affecting military communities.
+- Primary tools: commissary inventory dashboard, exchange essentials board, food-bank partner tracker, school-meal continuity queue.
+- Cross-check tools: independent food-safety review cell and alternate family-support logistics board.
+- Typical products: family-sustainment bridge board, meal-gap priority ladder, resupply decision packet.
+
+### `ts-strategic-military-spouse-licensure-employment-pcs-continuity-v1`
+- Use for: spouse licensure reciprocity, employment continuity, PCS disruption mitigation, and retention-sensitive household stability.
+- Primary tools: licensure reciprocity tracker, spouse employment case board, PCS timeline dashboard, hiring-partner or benefits queue.
+- Cross-check tools: independent family-readiness office and alternate legal-employment support desk.
+- Typical products: licensure reciprocity matrix, employment continuity ladder, PCS risk-mitigation packet.
+
+### `ts-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-v1`
+- Use for: dependent-care-plan recovery, childcare or eldercare bridging, and Guard or Reserve mobilization continuity when single-parent or caregiver gaps block activation.
+- Primary tools: dependent-care-plan ledger, childcare capacity board, eldercare support tracker, mobilization exception queue.
+- Cross-check tools: independent reserve family-support desk and alternate mobilization review cell.
+- Typical products: dependent-care readiness board, mobilization bridge ladder, caregiver-support packet.
+
+### `ts-homeland-installation-courthouse-custody-hearing-family-law-continuity-v1`
+- Use for: courthouse continuity, custody-hearing access, family-law filing resilience, and household legal-status protection during domestic emergencies.
+- Primary tools: courthouse status board, custody-hearing docket tracker, protective-order filing queue, legal-aid liaison matrix.
+- Cross-check tools: independent legal-assistance office and alternate family-readiness legal desk.
+- Typical products: court-continuity board, custody-hearing ladder, family-law risk packet.
+
+## Protocol Stack Addendum LXXIII (2026-04-07, External Integration Profiles for Expansion Wave LXXIII)
+
+### `ps-homeland-military-legal-assistance-identity-document-reissuance-stack-v1`
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: legal-status exchange, document-reissue routing, records-reconstruction acknowledgment, and entitlement-proof updates.
+
+### `ps-homeland-protective-order-domestic-violence-safe-housing-continuity-stack-v1`
+- Protocols: `NIEM`, signed court notices, `CAP`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: protective-order status exchange, safe-housing routing, advocate notifications, and victim-protection acknowledgment.
+
+### `ps-homeland-postpartum-lactation-infant-formula-diaper-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `CAP`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: maternal-support updates, formula-status routing, lactation-support acknowledgment, and infant-care escalation.
+
+### `ps-homeland-base-pet-service-animal-family-co-shelter-stack-v1`
+- Protocols: `NIEM`, signed custody manifests, `API/JSON`, `CAP`, `USMTF`.
+- Use for: shelter animal-status exchange, service-animal verification, veterinary alerts, and reunification routing.
+
+### `ps-homeland-commissary-exchange-food-bank-school-meal-bridging-stack-v1`
+- Protocols: `NIEM`, food-safety lab result exchange, `API/JSON`, `S/MIME`, `CAP`, `USMTF`.
+- Use for: food-access status exchange, school-meal routing, partner-sustainment updates, and protected-distribution acknowledgment.
+
+### `ps-strategic-military-spouse-licensure-employment-pcs-continuity-stack-v1`
+- Protocols: `NIEM`, signed verification letters, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: licensure-verification exchange, employment-status routing, PCS-support updates, and household-stability acknowledgment.
+
+### `ps-reserve-component-single-parent-childcare-eldercare-mobilization-bridge-stack-v1`
+- Protocols: `NIEM`, signed care-plan notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: caregiver-status exchange, mobilization-exception routing, childcare or eldercare updates, and readiness acknowledgment.
+
+### `ps-homeland-installation-courthouse-custody-hearing-family-law-continuity-stack-v1`
+- Protocols: `NIEM`, signed court notices, `API/JSON`, `S/MIME`, `NIMS/ICS`, `USMTF`.
+- Use for: courthouse-status exchange, filing-path routing, custody-hearing updates, and family-law continuity acknowledgment.

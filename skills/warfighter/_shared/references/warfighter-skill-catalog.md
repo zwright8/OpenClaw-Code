@@ -3005,3 +3005,25 @@ Every skill output should include:
 - Homeland wastewater overflow force health and waterway protection + homeland-water-treatment-cyber-physical-protection-and-force-health-cell + preventive-medicine-and-force-health-protection + homeland-private-sector-critical-infrastructure-coordination-cell.
 - Homeland animal-disease quarantine and food-system defense + homeland-boil-water-food-safety-and-commodities-distribution-cell + expeditionary-food-supply-safety-and-contamination-cell + civil-affairs-stability-ops.
 - Homeland transit-bus evacuation staging and driver continuity + joint-mass-evacuation-flow-control-cell + civil-defense-mass-evacuation-shelter-cell + strategic-mobility-deployment-planner.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXIII)
+
+- homeland-military-legal-assistance-and-identity-document-reissuance-cell
+- homeland-protective-order-domestic-violence-and-safe-housing-continuity-cell
+- homeland-postpartum-lactation-infant-formula-and-diaper-continuity-cell
+- homeland-base-pet-service-animal-and-family-co-shelter-cell
+- homeland-commissary-exchange-food-bank-and-school-meal-bridging-cell
+- strategic-military-spouse-licensure-employment-and-pcs-continuity-cell
+- reserve-component-single-parent-childcare-eldercare-mobilization-bridge-cell
+- homeland-installation-courthouse-custody-hearing-and-family-law-continuity-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXIII)
+
+- Homeland military legal assistance and identity document reissuance + defense-support-of-civil-authorities-crisis-cell + public-affairs-operational-communications + mission-risk-decision-support.
+- Homeland protective-order domestic violence and safe housing continuity + civil-defense-mass-evacuation-shelter-cell + public-affairs-operational-communications + homeland-installation-courthouse-custody-hearing-and-family-law-continuity-cell.
+- Homeland postpartum lactation infant formula and diaper continuity + casualty-evac-and-medical-regulation + civil-defense-mass-evacuation-shelter-cell + public-affairs-operational-communications.
+- Homeland base pet service-animal and family co-shelter + civil-defense-mass-evacuation-shelter-cell + joint-force-veterinary-and-working-dog-support-cell + public-affairs-operational-communications.
+- Homeland commissary exchange food bank and school meal bridging + homeland-boil-water-food-safety-and-commodities-distribution-cell + strategic-military-housing-utility-safety-and-restoration-cell + civil-defense-mass-evacuation-shelter-cell.
+- Strategic military spouse licensure employment and PCS continuity + reserve-component-family-readiness-surge-cell + strategic-defense-industrial-workforce-family-stabilization-cell + mission-risk-decision-support.
+- Reserve-component single-parent childcare eldercare mobilization bridge + reserve-guard-mobilization-planner + multi-domain-reserve-mobilization-readiness-cell + homeland-base-school-transport-and-dependent-evacuation-cell.
+- Homeland installation courthouse custody hearing and family-law continuity + homeland-protective-order-domestic-violence-and-safe-housing-continuity-cell + public-affairs-operational-communications + mission-risk-decision-support.

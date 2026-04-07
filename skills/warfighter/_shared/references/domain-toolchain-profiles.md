@@ -2384,3 +2384,69 @@ For every critical recommendation, include:
 - Cross-check systems: independent transportation-safety review cell and alternate shelter-flow control board
 - Protocol binding: NIEM + CAP + OGC + API/JSON + S/MIME + USMTF
 - Fallback path: life-safety movement only with manual manifests and command-approved route priorities
+
+## Toolchain Wave LXXIII (2026-04-07)
+
+### `TC-LEGALAID-282`
+
+- Domain: homeland military legal assistance and identity document reissuance
+- Primary systems: legal-assistance case tracker, identity-document reissuance ledger, records-reconstruction queue, DEERS or personnel-status validation board
+- Cross-check systems: independent legal review desk and alternate family-readiness records cell
+- Protocol binding: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: manual intake ledger with advisory-only document recovery options and no unsupported identity-restoration claim
+
+### `TC-PROTECT-283`
+
+- Domain: homeland protective order domestic violence and safe housing continuity
+- Primary systems: protective-order registry, family-advocacy case board, safe-housing capacity tracker, command-risk notification queue
+- Cross-check systems: independent victim-advocate coordination cell and alternate legal-support desk
+- Protocol binding: NIEM + signed court notices + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: manual victim-safety roster with advisory-only housing options and no unsupported enforcement or shelter guarantee
+
+### `TC-POSTPARTUM-284`
+
+- Domain: homeland postpartum lactation infant formula and diaper continuity
+- Primary systems: maternal-care status board, lactation DME support tracker, infant-formula inventory ledger, caregiver continuity queue
+- Cross-check systems: independent obstetric-review cell and alternate pediatric-support board
+- Protocol binding: HL7/FHIR + NIEM + CAP + API/JSON + S/MIME + USMTF
+- Fallback path: life-safety maternal-infant support only with manual clinical review and no unsupported supply claim
+
+### `TC-COSHELTER-285`
+
+- Domain: homeland base pet service animal and family co shelter
+- Primary systems: shelter pet-capacity board, service-animal verification tracker, veterinary support ledger, family reunification queue
+- Cross-check systems: independent veterinary coordination cell and alternate mass-care shelter desk
+- Protocol binding: NIEM + signed custody manifests + API/JSON + CAP + USMTF
+- Fallback path: advisory-only co-shelter planning with no unsupported shelter acceptance or veterinary promise
+
+### `TC-FOODBRIDGE-286`
+
+- Domain: homeland commissary exchange food bank and school meal bridging
+- Primary systems: commissary inventory dashboard, exchange essentials board, food-bank partner tracker, school-meal continuity queue
+- Cross-check systems: independent food-safety review cell and alternate family-support logistics board
+- Protocol binding: NIEM + food-safety lab result exchange + API/JSON + S/MIME + CAP + USMTF
+- Fallback path: essential-ration prioritization only with manual food-safety review and no unsupported partner commitment
+
+### `TC-SPOUSE-287`
+
+- Domain: strategic military spouse licensure employment and PCS continuity
+- Primary systems: licensure reciprocity tracker, spouse employment case board, PCS timeline dashboard, hiring-partner or benefits queue
+- Cross-check systems: independent family-readiness office and alternate legal-employment support desk
+- Protocol binding: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only household-support planning with no unsupported reciprocity or employer-continuity promise
+
+### `TC-DEPENDENTCARE-288`
+
+- Domain: reserve component single parent childcare eldercare mobilization bridge
+- Primary systems: dependent-care-plan ledger, childcare capacity board, eldercare support tracker, mobilization exception queue
+- Cross-check systems: independent reserve family-support desk and alternate mobilization review cell
+- Protocol binding: NIEM + signed care-plan notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only activation impact with no unsupported caregiver commitment or mobilization-order change
+
+### `TC-COURT-289`
+
+- Domain: homeland installation courthouse custody hearing and family law continuity
+- Primary systems: courthouse status board, custody-hearing docket tracker, protective-order filing queue, legal-aid liaison matrix
+- Cross-check systems: independent legal-assistance office and alternate family-readiness legal desk
+- Protocol binding: NIEM + signed court notices + API/JSON + S/MIME + NIMS/ICS + USMTF
+- Fallback path: advisory-only legal continuity board with no unsupported filing acceptance or hearing guarantee
