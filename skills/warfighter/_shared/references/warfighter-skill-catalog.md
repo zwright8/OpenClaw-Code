@@ -2964,28 +2964,6 @@ Every skill output should include:
 
 ## New Expansion Wave (2026-04-06, Expansion Wave LXXI)
 
-- joint-servicemember-civil-relief-estate-and-power-of-attorney-cell
-- joint-field-sanitation-latrine-handwashing-and-vector-discipline-cell
-- joint-nonlethal-crowd-control-escalation-and-evidence-cell
-- joint-personnel-records-dd214-and-benefits-continuity-cell
-- joint-religious-dietary-accommodation-and-mass-feeding-cell
-- civil-affairs-key-leader-engagement-commitment-and-grievance-ledger-cell
-- joint-confinement-facility-disturbance-and-humane-treatment-cell
-- joint-military-family-care-plan-guardianship-and-dependent-support-cell
-
-## Updated Pairings (2026-04-06, Expansion Wave LXXI)
-
-- Joint servicemember civil relief estate and power of attorney + multi-domain-reserve-mobilization-readiness-cell + joint-deployed-postal-ballot-and-family-contact-continuity-cell + joint-casualty-assistance-center-and-family-support-synchronization-cell.
-- Joint field sanitation latrine handwashing and vector discipline + expeditionary-food-protection-inspection-and-sanitation-cell + forward-operating-base-waste-water-and-sanitation-resilience-cell + preventive-medicine-and-force-health-protection.
-- Joint nonlethal crowd control escalation and evidence + military-police-area-security-operations + legal-roe-compliance-checker + public-affairs-operational-communications.
-- Joint personnel records DD214 and benefits continuity + joint-finance-and-pay-continuity-in-contested-theaters-cell + multi-domain-reserve-mobilization-readiness-cell + joint-casualty-assistance-center-and-family-support-synchronization-cell.
-- Joint religious dietary accommodation and mass feeding + joint-religious-affairs-and-moral-injury-support-cell + expeditionary-field-feeding-water-quality-and-ration-reconstitution-cell + expeditionary-food-protection-inspection-and-sanitation-cell.
-- Civil affairs key leader engagement commitment and grievance ledger + civil-affairs-stability-ops + tactical-language-enabled-civil-engagement-cell + public-affairs-operational-communications.
-- Joint confinement facility disturbance and humane treatment + joint-military-police-detainee-and-site-security-cell + joint-detainee-operations-and-law-of-war-compliance-cell + coalition-legal-interoperability-and-status-of-forces-cell.
-- Joint military family care plan guardianship and dependent support + joint-deployed-postal-ballot-and-family-contact-continuity-cell + multi-domain-reserve-mobilization-readiness-cell + joint-military-family-readiness-crisis-sustainment-cell.
-
-## New Expansion Wave (2026-04-06, Expansion Wave LXXII)
-
 - homeland-defense-coordinating-officer-and-fema-region-synchronization-cell
 - homeland-private-sector-critical-infrastructure-coordination-cell
 - homeland-mass-care-access-and-functional-needs-support-cell
@@ -2995,7 +2973,7 @@ Every skill output should include:
 - homeland-boil-water-food-safety-and-commodities-distribution-cell
 - homeland-energy-emergency-fuel-waiver-and-priority-restoration-cell
 
-## Updated Pairings (2026-04-06, Expansion Wave LXXII)
+## Updated Pairings (2026-04-06, Expansion Wave LXXI)
 
 - Homeland defense coordinating officer and FEMA region synchronization + defense-support-of-civil-authorities-crisis-cell + reserve-guard-mobilization-planner + mission-risk-decision-support.
 - Homeland private-sector critical infrastructure coordination + civil-affairs-stability-ops + operational-energy-resilience-and-microgrid-cell + force-protection-and-base-defense.
@@ -3006,24 +2984,24 @@ Every skill output should include:
 - Homeland boil-water food safety and commodities distribution + expeditionary-food-supply-safety-and-contamination-cell + civil-defense-mass-evacuation-shelter-cell + defense-support-of-civil-authorities-crisis-cell.
 - Homeland energy emergency fuel waiver and priority restoration + operational-energy-resilience-and-microgrid-cell + contested-logistics-sustainment + homeland-grid-blackstart-fuel-cyber-coordination-cell.
 
-## New Expansion Wave (2026-04-06, Expansion Wave LXXIII)
+## New Expansion Wave (2026-04-06, Expansion Wave LXXII)
 
-- joint-military-spouse-license-portability-and-employment-continuity-cell
-- joint-household-goods-loss-claims-and-essential-kit-bridge-cell
-- joint-commissary-exchange-subsistence-and-hygiene-priority-restoration-cell
-- joint-installation-access-badge-reissue-curfew-and-family-reentry-cell
-- joint-base-pharmacy-refill-tricare-override-and-cold-chain-continuity-cell
-- joint-dependent-special-needs-transport-education-and-medical-continuity-cell
-- joint-service-animal-and-family-pet-evacuation-shelter-continuity-cell
-- joint-wounded-warrior-home-modification-and-caregiver-ramp-up-cell
+- homeland-public-health-laboratory-surge-and-specimen-chain-cell
+- homeland-medical-countermeasure-pod-security-and-cold-chain-cell
+- homeland-corrections-facility-evacuation-and-guard-force-relief-cell
+- homeland-cooling-center-load-shedding-and-generator-priority-cell
+- homeland-ferry-evacuation-and-island-resupply-priority-cell
+- homeland-wastewater-overflow-force-health-and-waterway-protection-cell
+- homeland-animal-disease-quarantine-and-food-system-defense-cell
+- homeland-transit-bus-evacuation-staging-and-driver-continuity-cell
 
-## Updated Pairings (2026-04-06, Expansion Wave LXXIII)
+## Updated Pairings (2026-04-06, Expansion Wave LXXII)
 
-- Joint military spouse license portability and employment continuity + reserve-component-family-readiness-surge-cell + joint-military-family-readiness-crisis-sustainment-cell + mission-risk-decision-support.
-- Joint household-goods loss claims and essential kit bridge + strategic-military-housing-utility-safety-and-restoration-cell + reserve-component-family-readiness-surge-cell + theater-deployed-childcare-and-family-support-continuity-cell.
-- Joint commissary exchange subsistence and hygiene priority restoration + civil-defense-mass-evacuation-shelter-cell + strategic-military-housing-utility-safety-and-restoration-cell + joint-military-family-readiness-crisis-sustainment-cell.
-- Joint installation access badge reissue curfew and family reentry + public-affairs-operational-communications + force-protection-and-base-defense + strategic-military-housing-utility-safety-and-restoration-cell.
-- Joint base pharmacy refill TRICARE override and cold chain continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-forward-pharmacy-controlled-substance-custody-and-formulary-substitution-cell + mission-risk-decision-support.
-- Joint dependent special-needs transport education and medical continuity + theater-deployed-childcare-and-family-support-continuity-cell + civil-defense-mass-evacuation-shelter-cell + homeland-mass-care-access-and-functional-needs-support-cell.
-- Joint service animal and family pet evacuation shelter continuity + civil-defense-mass-evacuation-shelter-cell + public-affairs-operational-communications + joint-force-veterinary-and-working-dog-support-cell.
-- Joint wounded warrior home modification and caregiver ramp up + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + strategic-va-dod-trauma-bed-and-rehabilitation-bridge-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Homeland public-health laboratory surge and specimen chain + casualty-evac-and-medical-regulation + preventive-medicine-and-force-health-protection + joint-biothreat-wastewater-sentinel-fusion-cell.
+- Homeland medical-countermeasure POD security and cold chain + civil-defense-mass-evacuation-shelter-cell + casualty-evac-and-medical-regulation + public-affairs-operational-communications.
+- Homeland corrections-facility evacuation and guard-force relief + defense-support-of-civil-authorities-crisis-cell + homeland-law-enforcement-and-military-movement-deconfliction-cell + force-protection-and-base-defense.
+- Homeland cooling-center load shedding and generator priority + civil-defense-mass-evacuation-shelter-cell + homeland-energy-emergency-fuel-waiver-and-priority-restoration-cell + public-affairs-operational-communications.
+- Homeland ferry evacuation and island resupply priority + homeland-maritime-prepositioning-port-strike-cargo-recovery-cell + joint-civilian-maritime-evacuation-port-surge-arbitration-cell + strategic-mobility-deployment-planner.
+- Homeland wastewater overflow force health and waterway protection + homeland-water-treatment-cyber-physical-protection-and-force-health-cell + preventive-medicine-and-force-health-protection + homeland-private-sector-critical-infrastructure-coordination-cell.
+- Homeland animal-disease quarantine and food-system defense + homeland-boil-water-food-safety-and-commodities-distribution-cell + expeditionary-food-supply-safety-and-contamination-cell + civil-affairs-stability-ops.
+- Homeland transit-bus evacuation staging and driver continuity + joint-mass-evacuation-flow-control-cell + civil-defense-mass-evacuation-shelter-cell + strategic-mobility-deployment-planner.

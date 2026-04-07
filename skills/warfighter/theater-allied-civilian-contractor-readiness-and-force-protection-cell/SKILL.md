@@ -1,21 +1,21 @@
 ---
 name: theater-allied-civilian-contractor-readiness-and-force-protection-cell
-description: Coordinate readiness, vetting, protection, and continuity for allied or civilian contractors performing mission-essential services in contested theaters. Use when commanders need auditable contractor risk decisions with explicit tool and protocol bindings.
+description: Protect mission-essential allied civilian contractors, route them safely, and preserve contractor-dependent combat power in contested theaters.
 ---
 
 # Theater Allied Civilian Contractor Readiness And Force Protection Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter contractor-continuity, access-control, and force-protection decisions.
-- Confirm contractor roles, nationality mix, force-protection posture, badging or vetting status, and mission-essential service dependencies before recommending action.
+- Treat this skill as planning and decision support for U.S. warfighter contractor-readiness and contractor-protection decisions.
+- Confirm supported mission threads, contractor authorities, vetting posture, protected-route constraints, and commander decision deadlines before recommending action.
 - Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Frame the problem using contractor rosters, mission dependencies, threat posture, access constraints, and protection gaps.
-2. Build one recommended COA and at least two alternatives with explicit tradeoffs in throughput, security, legitimacy, and workforce retention.
-3. Identify branch triggers for convoy escort, shelter-in-place, badge suspension, replacement sourcing, and service degradation.
+1. Frame the problem using contractor dependencies, threat picture, access status, badging or vetting health, and route exposure.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in readiness, survivability, legal sufficiency, and sustainment burden.
+3. Identify branch triggers for contractor consolidation, access revocation, protected convoying, shelter-in-place, and mission substitution.
 4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
 5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
@@ -30,23 +30,23 @@ description: Coordinate readiness, vetting, protection, and continuity for allie
 
 ## Domain Products
 
-Primary products: contractor readiness matrix, protected-movement ladder, and service-continuity risk board.
+Primary products: contractor dependency board, force-protection routing matrix, access-control exception log, and mission-substitution decision ladder.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-force-protection-v1` with `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-force-protection-stack-v1`.
-- Alternate: select a mission-adjacent contractor, base-defense, or coalition-access suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
-- Degraded: mission-essential contractor roster with manual check-in, dual-review access control, and command-approved movement windows only.
+- Primary: `toolchain_id=TC-CONTRACTOR-241`, `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-and-force-protection-v1`, and `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-and-force-protection-stack-v1`.
+- Alternate: select a mission-adjacent force-protection, contracting, or civil-support suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: mission-essential contractors only with dual-review access checks and command-approved movement windows.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-CONTRACTOR-READINESS-FP-001`.
+- Default packet IDs: `DPL-CONTRACTOR-PROTECTION-001` and `DPL-CONTRACTOR-DEPENDENCY-001`.
 - If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
 ## External Tool Stack And Protocols
 
 - Preferred external toolsets for this domain: contractor roster ledger, badging and vetting tracker, protected-route scheduler, and service-dependency board.
-- Preferred protocol profiles for coordination and machine exchange: `NIEM`, signed workforce manifests, `API/JSON`, `S/MIME`, `STIX/TAXII`, and `USMTF`.
+- Preferred protocol profiles for coordination and machine exchange: signed workforce manifests, `NIEM`, `API/JSON`, `S/MIME`, `STIX/TAXII`, and `USMTF`.
 - Use `../_shared/references/warfighter-external-tool-and-protocol-catalog.md`, `../_shared/references/domain-tool-packet-library.md`, and `../_shared/references/tool-protocol-playbooks.md`.
 - Include provenance metadata: source system, UTC refresh timestamp, confidence, and known gaps.
 
@@ -58,7 +58,7 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
-- If vetting validity, route protection, or contractor-employment authority is uncertain, downgrade to advisory-only and request command decision.
+- If contractor legal status, access approval, or route-control legitimacy is uncertain, downgrade to advisory-only and request command decision.
 
 ## Interoperability Validation Checklist
 
@@ -69,5 +69,5 @@ For each critical tool recommendation include objective, required inputs, query 
 ## Guardrails
 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
-- Flag insider-risk exposure, nationality-based caveats, insurance gaps, and mission-service single points of failure before recommending action.
-- Do not fabricate vetting status, force-protection guarantees, or contractor consent.
+- Flag unsupported contractor availability, access-control shortcuts, force-protection gaps, and civil-liability risk before recommending action.
+- Do not fabricate contractor status, vetting outcomes, movement approvals, or mission dependencies.

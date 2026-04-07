@@ -1,21 +1,21 @@
 ---
 name: theater-evacuation-route-humanitarian-logistics-and-traffic-priority-cell
-description: Deconflict evacuation flows, humanitarian logistics, and military traffic priority across contested roads, rail, air, and water routes. Use when commanders need life-safety and mission-throughput decisions tied to explicit tool and protocol bindings.
+description: Prioritize evacuation corridors, humanitarian movement, and protected traffic flow when military and civilian movements compete in crisis conditions.
 ---
 
 # Theater Evacuation Route Humanitarian Logistics And Traffic Priority Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter evacuation, route-priority, and humanitarian-logistics decisions.
-- Confirm affected populations, force-flow requirements, corridor authorities, route hazards, and protected movement windows before recommending action.
+- Treat this skill as planning and decision support for U.S. warfighter evacuation-route and humanitarian traffic-priority decisions.
+- Confirm supported population, route authorities, convoy status, shelter intake, and commander decision timeline before recommending action.
 - Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Frame the problem using route status, convoy demand, shelter backpressure, casualty flow, and humanitarian movement requirements.
-2. Build one recommended COA and at least two alternatives with explicit tradeoffs in survivability, tempo, legitimacy, and life-safety outcomes.
-3. Identify branch triggers for route closure, one-way flow conversion, checkpoint redesign, and protected-priority movement.
+1. Frame the problem using corridor status, threat picture, humanitarian movement demand, shelter capacity, and route-control constraints.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in life safety, throughput, force protection, and legitimacy.
+3. Identify branch triggers for route closure, one-way control, convoy reprioritization, shelter diversion, and corridor reopening.
 4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
 5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
@@ -30,17 +30,17 @@ description: Deconflict evacuation flows, humanitarian logistics, and military t
 
 ## Domain Products
 
-Primary products: evacuation traffic-priority matrix, humanitarian corridor branch card, and route-control synchronization board.
+Primary products: corridor-priority matrix, humanitarian movement ledger, route-closure and reopening ladder, and shelter-diversion decision log.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-theater-evacuation-route-humanitarian-logistics-traffic-priority-v1` with `protocol_stack_id=ps-theater-evacuation-route-humanitarian-logistics-traffic-priority-stack-v1`.
-- Alternate: select a mission-adjacent evacuation, mobility, or civil-support suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
-- Degraded: manual corridor board with command-approved priority order, paper checkpoint control measures, and scheduled route-status confirmation.
+- Primary: `toolchain_id=TC-EVAC-242`, `tool_suite_id=ts-theater-evacuation-route-humanitarian-logistics-and-traffic-priority-v1`, and `protocol_stack_id=ps-theater-evacuation-route-humanitarian-logistics-and-traffic-priority-stack-v1`.
+- Alternate: select a mission-adjacent mobility, civil-defense, or humanitarian-corridor suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Degraded: essential movements only with command-approved priority order and manual route updates.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-EVAC-HUMLOG-TRAFFIC-001`.
+- Default packet IDs: `DPL-EVAC-TRAFFIC-PRIORITY-001` and `DPL-HUMANITARIAN-CORRIDOR-THROUGHPUT-001`.
 - If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
 ## External Tool Stack And Protocols
@@ -58,7 +58,7 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
-- If corridor authority, civil-priority rules, or route-hazard confidence is uncertain, downgrade to advisory-only and request command decision.
+- If route authority, traffic data freshness, or humanitarian accountability is uncertain, downgrade to advisory-only and request command decision.
 
 ## Interoperability Validation Checklist
 
@@ -69,5 +69,5 @@ For each critical tool recommendation include objective, required inputs, query 
 ## Guardrails
 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
-- Flag casualty interference, civilian bottlenecks, bridge or tunnel choke risks, and humanitarian-access legitimacy issues before recommending action.
-- Do not fabricate route clearance, shelter capacity, or protected-movement approvals.
+- Flag unsupported throughput claims, route-control conflicts, humanitarian legitimacy risk, and shelter overload before recommending action.
+- Do not fabricate corridor status, humanitarian demand, route approvals, or convoy integrity.

@@ -14465,91 +14465,7 @@ external_binding:
 - Protocols: `CAP`, `NIEM`, signed release packages, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: warning-release synchronization, multilingual message exchange, rumor-rebuttal routing, and public-information approval chains.
 
-## Tool Suite Addendum LXXI (2026-04-06, Civil Relief, Field Sanitation, Nonlethal Crowd Control, Personnel Records, Religious Diets, KLE Commitments, Confinement Standards, and Family Care)
-
-### `ts-joint-servicemember-civil-relief-estate-poa-v1`
-- Use for: SCRA triage, emergency legal-readiness tracking, estate document continuity, and power-of-attorney refresh under deployment or casualty risk.
-- Primary tools: legal-assistance case board, deadline monitor, POA or will status tracker, family-contact escalation ledger.
-- Cross-check tools: independent staff judge advocate review cell and alternate family-readiness legal desk.
-- Typical products: civil-relief shield matrix, estate readiness board, urgent legal-action ladder.
-
-### `ts-joint-field-sanitation-latrine-vector-discipline-v1`
-- Use for: field sanitation enforcement, latrine-service prioritization, handwashing throughput, and vector suppression in high-density or austere sites.
-- Primary tools: sanitation inspection ledger, latrine service tracker, chlorine or soap resupply board, vector surveillance queue.
-- Cross-check tools: independent preventive-medicine detachment and alternate engineer sanitation board.
-- Typical products: sanitation discipline board, latrine service ladder, vector suppression matrix.
-
-### `ts-joint-nonlethal-crowd-control-evidence-v1`
-- Use for: crowd-control posture, nonlethal munition accountability, escalation-of-force decisions, and evidence synchronization during disturbances.
-- Primary tools: crowd-density map, nonlethal inventory ledger, incident evidence sync board, casualty or detainee monitor.
-- Cross-check tools: independent legal review cell and alternate military-police command post.
-- Typical products: escalation-of-force ladder, nonlethal employment matrix, evidence custody board.
-
-### `ts-joint-personnel-records-dd214-benefits-continuity-v1`
-- Use for: personnel-record recovery, DD214 issuance prioritization, identity-proof continuity, and benefits handoff during outages or backlog surges.
-- Primary tools: personnel record synchronization board, discharge-document queue, identity-proofing review cell, benefits handoff ledger.
-- Cross-check tools: independent personnel service center and alternate transition-assistance board.
-- Typical products: records recovery board, DD214 issue ladder, benefits continuity tracker.
-
-### `ts-joint-religious-dietary-mass-feeding-v1`
-- Use for: protected meal planning, faith-based dietary accommodation, allergen-aware ration substitution, and fasting-window integration in mass feeding.
-- Primary tools: ration menu planner, dietary accommodation ledger, chaplain coordination board, allergen or food-safety review queue.
-- Cross-check tools: independent preventive-medicine detachment and alternate field-feeding operations board.
-- Typical products: dietary accommodation matrix, protected meal-production ladder, feeding exception tracker.
-
-### `ts-civil-affairs-kle-commitment-grievance-ledger-v1`
-- Use for: key-leader engagement tracking, promise ownership, grievance closure, and local-trust risk management in stability operations.
-- Primary tools: engagement calendar board, commitment ledger, grievance-triage queue, local-influence or rumor map.
-- Cross-check tools: independent civil-affairs assessment cell and alternate public-affairs legitimacy board.
-- Typical products: KLE commitment ledger, grievance closure board, trust-risk tracker.
-
-### `ts-joint-confinement-facility-disturbance-humane-treatment-v1`
-- Use for: confinement disturbance response, staffing stabilization, welfare monitoring, and humane-treatment compliance under stress.
-- Primary tools: facility population board, incident or grievance ledger, staffing and segregation tracker, medical or legal access scheduler.
-- Cross-check tools: independent inspector or legal observability cell and alternate military-police review board.
-- Typical products: disturbance branch plan, humane-treatment compliance board, transfer or medical-access tracker.
-
-### `ts-joint-family-care-guardianship-dependent-support-v1`
-- Use for: family-care-plan validation, guardianship continuity, dependent support escalation, and mobilization-readiness protection.
-- Primary tools: family-care-plan ledger, guardian contact board, school or medical consent tracker, support-gap escalation queue.
-- Cross-check tools: independent family-readiness office and alternate reserve mobilization desk.
-- Typical products: family-care risk board, guardianship decision matrix, dependent support continuity tracker.
-
-## Protocol Stack Addendum LXXI (2026-04-06, External Integration Profiles for Expansion Wave LXXI)
-
-### `ps-joint-servicemember-civil-relief-estate-poa-stack-v1`
-- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: legal-status exchange, relief-request routing, document-authenticity acknowledgment, and family-support escalation.
-
-### `ps-joint-field-sanitation-latrine-vector-discipline-stack-v1`
-- Protocols: `HL7/FHIR`, `NIEM`, signed sanitation manifests, `API/JSON`, `USMTF`.
-- Use for: inspection updates, sanitation exception routing, vector alerts, and preventive-medicine acknowledgments.
-
-### `ps-joint-nonlethal-crowd-control-evidence-stack-v1`
-- Protocols: `NIEM`, `CJIS`, signed evidence manifests, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: incident reporting, nonlethal release acknowledgment, evidence transfer, and command approval routing.
-
-### `ps-joint-personnel-records-dd214-benefits-continuity-stack-v1`
-- Protocols: `NIEM`, signed personnel manifests, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: record-sync exchange, discharge-document routing, identity-proof acknowledgments, and benefits handoff status.
-
-### `ps-joint-religious-dietary-mass-feeding-stack-v1`
-- Protocols: `HL7/FHIR`, `NIEM`, signed feeding manifests, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: meal-accommodation updates, allergen alerts, chaplain coordination, and feeding exception approval chains.
-
-### `ps-civil-affairs-kle-commitment-grievance-ledger-stack-v1`
-- Protocols: `NIEM`, `OGC`, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: engagement-note exchange, commitment closure routing, grievance triage, and local-trust update synchronization.
-
-### `ps-joint-confinement-facility-disturbance-humane-treatment-stack-v1`
-- Protocols: `NIEM`, `CJIS`, signed confinement manifests, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: facility-status exchange, welfare-check routing, disturbance updates, and transfer approval chains.
-
-### `ps-joint-family-care-guardianship-dependent-support-stack-v1`
-- Protocols: `NIEM`, signed family-care notices, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: guardian-status exchange, consent verification, dependent-support routing, and mobilization-readiness acknowledgment.
-
-## Tool Suite Addendum LXXII (2026-04-06, Domestic Recovery Coordination, Mass Care, Debris Clearance, Fatality Management, Medical Diversion, Commodities Distribution, and Energy Priority Restoration)
+## Tool Suite Addendum LXXI (2026-04-06, Domestic Recovery Coordination, Mass Care, Debris Clearance, Fatality Management, Medical Diversion, Commodities Distribution, and Energy Priority Restoration)
 
 ### `ts-homeland-dco-fema-region-synchronization-v1`
 - Use for: Defense Coordinating Officer alignment with FEMA regional structures, RRCC or NRCC escalation timing, and federal-support synchronization during domestic response.
@@ -14599,7 +14515,7 @@ external_binding:
 - Cross-check tools: independent energy-emergency liaison cell and alternate operational-energy coordination board.
 - Typical products: fuel-waiver matrix, priority-restoration ladder, emergency energy support packet.
 
-## Protocol Stack Addendum LXXII (2026-04-06, External Integration Profiles for Expansion Wave LXXII)
+## Protocol Stack Addendum LXXI (2026-04-06, External Integration Profiles for Expansion Wave LXXI)
 
 ### `ps-homeland-dco-fema-region-synchronization-stack-v1`
 - Protocols: `NIEM`, `NIMS/ICS`, signed task-assignment notices, `API/JSON`, `S/MIME`, `USMTF`.
@@ -14633,86 +14549,190 @@ external_binding:
 - Protocols: `NIEM`, `OPC UA`, signed fuel-waiver notices, `API/JSON`, `CAP`, `USMTF`.
 - Use for: waiver-status exchange, restoration updates, generator-priority routing, and emergency fuel-allocation approvals.
 
-## Tool Suite Addendum LXXIII (2026-04-06, Spouse License Portability, Household Goods Recovery, Retail Support, Reentry Control, Base Pharmacy, Special Needs, Animal Evacuation, and Home Modification)
+## Tool Suite Addendum LXXII (2026-04-06, LXVIII Materialization Repair)
 
-### `ts-joint-military-spouse-license-portability-employment-continuity-v1`
-- Use for: spouse license reciprocity, employer continuity, household income stabilization, and retention-risk mitigation during PCS or crisis disruption.
-- Primary tools: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board.
-- Cross-check tools: independent family-readiness office and alternate legal-assistance employment desk.
-- Typical products: spouse-license portability matrix, employer continuity board, household income risk tracker.
+### `ts-strategic-military-housing-utility-safety-and-restoration-v1`
+- Use for: military-housing habitability decisions, utility isolation, family relocation sequencing, and safe reoccupation control.
+- Primary tools: facility-inspection queue, utility-status dashboard, lodging allocation board, family-notification tracker.
+- Cross-check tools: independent engineer safety cell and alternate public-works restoration board.
+- Typical products: habitability ledger, relocation priority matrix, reoccupation decision packet.
 
-### `ts-joint-household-goods-loss-claims-essential-kit-v1`
-- Use for: shipment disruption triage, emergency essential-item bridging, claims evidence generation, and temporary household stabilization.
-- Primary tools: shipment status tracker, claims queue, emergency issue board, lodging support ledger.
-- Cross-check tools: independent transportation office and alternate family-readiness support desk.
-- Typical products: household-goods recovery board, essential kit gap matrix, claims or bridge-support tracker.
+### `ts-theater-allied-civilian-contractor-readiness-and-force-protection-v1`
+- Use for: allied civilian contractor protection, access control, route assurance, and mission-dependency continuity under theater threat.
+- Primary tools: contractor roster ledger, badging and vetting tracker, protected-route scheduler, service-dependency board.
+- Cross-check tools: independent force-protection review cell and alternate contracting officer dashboard.
+- Typical products: contractor dependency board, protected-route ladder, contractor continuity packet.
 
-### `ts-joint-commissary-exchange-subsistence-hygiene-restoration-v1`
-- Use for: commissary or exchange reopening, essential item prioritization, rationing logic, and hygiene support continuity after disruption.
-- Primary tools: commissary stock board, exchange essential-item inventory, cold-storage monitor, protected-population distribution planner.
-- Cross-check tools: independent logistics readiness center and alternate family-readiness support cell.
-- Typical products: essential-retail priority matrix, subsistence and hygiene allocation board, emergency retail support packet.
+### `ts-theater-evacuation-route-humanitarian-logistics-and-traffic-priority-v1`
+- Use for: evacuation corridor control, humanitarian movement prioritization, and traffic arbitration across military and civilian flows.
+- Primary tools: corridor-status dashboard, convoy scheduler, shelter-intake tracker, humanitarian movement ledger.
+- Cross-check tools: independent civil-transport authority desk and alternate movement-control board.
+- Typical products: corridor-priority matrix, humanitarian throughput ladder, route-release packet.
 
-### `ts-joint-installation-access-badge-curfew-reentry-v1`
-- Use for: badge reissue, gate-control restoration, curfew-exception adjudication, and phased family reentry after evacuation or lockdown.
-- Primary tools: badge issuance tracker, gate status board, curfew exception ledger, family reentry queue.
-- Cross-check tools: independent force-protection desk and alternate housing-recovery cell.
-- Typical products: access reissue board, family reentry ladder, curfew exception matrix.
+### `ts-joint-military-financial-liability-and-compensation-continuity-v1`
+- Use for: compensation continuity, claims legitimacy, fiscal-liability tracking, and emergency-relief decision support.
+- Primary tools: claims adjudication board, emergency-relief disbursement tracker, evidence ledger, fraud-anomaly monitor.
+- Cross-check tools: independent fiscal-law review cell and alternate inspector-general case desk.
+- Typical products: claims continuity board, interim-relief ladder, compensation legitimacy packet.
 
-### `ts-joint-base-pharmacy-refill-tricare-coldchain-v1`
-- Use for: refill continuity, insurance override routing, temperature-sensitive medication protection, and beneficiary notification during pharmacy outages.
-- Primary tools: pharmacy queue board, override approval tracker, cold-chain monitor, patient-notification ledger.
-- Cross-check tools: independent clinical pharmacy cell and alternate medical-logistics board.
-- Typical products: refill continuity matrix, TRICARE override ladder, temperature-sensitive medication tracker.
+### `ts-joint-incident-command-post-public-communications-and-media-contingency-v1`
+- Use for: incident-command public communications, life-safety release control, media contingency planning, and rumor suppression.
+- Primary tools: message-approval board, public-warning gateway, media query tracker, adversary-narrative monitor.
+- Cross-check tools: independent legal-release review cell and alternate emergency-operations communications desk.
+- Typical products: message-approval ladder, public-warning matrix, media contingency packet.
 
-### `ts-joint-dependent-special-needs-education-medical-continuity-v1`
-- Use for: special-needs dependent transport, school-support continuity, therapy scheduling, and medical-support preservation during displacement.
-- Primary tools: dependent-needs case board, accessible transport scheduler, therapy continuity tracker, medical support ledger.
-- Cross-check tools: independent exceptional-family-member coordination cell and alternate family-readiness desk.
-- Typical products: special-needs continuity board, transport and therapy ladder, dependent-support risk tracker.
+### `ts-joint-host-nation-legislative-liaison-and-mandate-alignment-v1`
+- Use for: host-nation mandate alignment, waiver routing, coalition caveat adjudication, and legal-timeline synchronization.
+- Primary tools: authority-translation board, waiver-routing ledger, host-nation legal tracker, coalition caveat matrix.
+- Cross-check tools: independent embassy or political-military legal desk and alternate theater legal board.
+- Typical products: mandate-alignment matrix, waiver ladder, authority translation packet.
 
-### `ts-joint-service-animal-family-pet-evacuation-shelter-v1`
-- Use for: service-animal accommodation, family-pet shelter continuity, veterinary documentation tracking, and refusal-to-evacuate risk reduction.
-- Primary tools: shelter capacity board, animal documentation tracker, reunification ledger, veterinary support queue.
-- Cross-check tools: independent veterinary service cell and alternate shelter coordination board.
-- Typical products: animal-shelter continuity matrix, refusal-to-evacuate risk board, veterinary support tracker.
+### `ts-joint-civil-works-emergency-permitting-and-right-of-entry-v1`
+- Use for: emergency permitting, right-of-entry acceleration, engineer work release, and legal access control under crisis timelines.
+- Primary tools: permit queue board, parcel or easement ledger, engineer work-order tracker, environmental-waiver matrix.
+- Cross-check tools: independent civil-authority legal desk and alternate engineer command work-release board.
+- Typical products: permit acceleration board, right-of-entry ladder, engineer release packet.
 
-### `ts-joint-wounded-warrior-home-modification-caregiver-ramp-v1`
-- Use for: home accessibility preparation, caregiver ramp-up, discharge-to-home readiness, and equipment or benefit coordination for wounded warfighters.
-- Primary tools: home assessment queue, caregiver training ledger, durable-medical-equipment tracker, benefit or funding board.
-- Cross-check tools: independent rehabilitation transition office and alternate housing adaptation board.
-- Typical products: home modification priority board, caregiver ramp-up matrix, discharge-to-home readiness packet.
+### `ts-theater-essential-services-contractor-strike-and-continuity-v1`
+- Use for: essential-services continuity during labor disruption, service rationing, contingency contracting, and public-health protection.
+- Primary tools: service-status dashboard, labor-action monitor, contingency-contract queue, public-health risk tracker.
+- Cross-check tools: independent contracting review cell and alternate emergency-services operations board.
+- Typical products: essential-services matrix, service-rationing ladder, contractor continuity packet.
 
-## Protocol Stack Addendum LXXIII (2026-04-06, External Integration Profiles for Expansion Wave LXXIII)
+### `ts-homeland-base-school-transport-and-dependent-evacuation-v1`
+- Use for: dependent accountability, school-transport evacuation, guardian reunification, and safehaven allocation on or near military installations.
+- Primary tools: school-transport board, dependent-accountability ledger, guardian reunification tracker, safehaven capacity map.
+- Cross-check tools: independent family-readiness desk and alternate installation emergency-operations center.
+- Typical products: dependent accountability board, guardian reunification ladder, school-transport packet.
 
-### `ps-joint-military-spouse-license-portability-employment-continuity-stack-v1`
-- Protocols: `NIEM`, signed verification letters, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: license-verification exchange, employer continuity routing, and household-support acknowledgment.
+### `ts-strategic-defense-industrial-workforce-family-stabilization-v1`
+- Use for: critical-worker family stabilization, shuttle or lodging support, and workforce retention during defense-industrial surge.
+- Primary tools: critical-worker ledger, family-support demand tracker, shuttle or lodging allocator, production-priority board.
+- Cross-check tools: independent industrial-base readiness cell and alternate human-capital continuity board.
+- Typical products: workforce family support matrix, production-risk ladder, critical-worker support packet.
 
-### `ps-joint-household-goods-loss-claims-essential-kit-stack-v1`
-- Protocols: `NIEM`, signed claims manifests, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: shipment-status exchange, claims routing, essential-item issue tracking, and bridge-support acknowledgment.
+## Protocol Stack Addendum LXXII (2026-04-06, LXVIII Materialization Repair)
 
-### `ps-joint-commissary-exchange-subsistence-hygiene-restoration-stack-v1`
-- Protocols: `NIEM`, `GS1/EPCIS`, signed supply notices, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: retail-stock exchange, rationing updates, cold-storage status routing, and protected-population allocation acknowledgment.
+### `ps-strategic-military-housing-utility-safety-and-restoration-stack-v1`
+- Protocols: `NIEM`, `OPC UA`, `CAP`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: housing-status exchange, utility isolation orders, family notifications, and reoccupation acknowledgments.
 
-### `ps-joint-installation-access-badge-curfew-reentry-stack-v1`
-- Protocols: `NIEM`, signed credential notices, `API/JSON`, `S/MIME`, `CAP`, `USMTF`.
-- Use for: badge-status exchange, gate-control routing, curfew exception acknowledgment, and phased reentry coordination.
+### `ps-theater-allied-civilian-contractor-readiness-and-force-protection-stack-v1`
+- Protocols: signed workforce manifests, `NIEM`, `API/JSON`, `S/MIME`, `STIX/TAXII`, `USMTF`.
+- Use for: contractor status exchange, access-control decisions, protected-route updates, and continuity acknowledgments.
 
-### `ps-joint-base-pharmacy-refill-tricare-coldchain-stack-v1`
-- Protocols: `HL7/FHIR`, `NCPDP`, signed prescription notices, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: refill-status exchange, override routing, cold-chain alerts, and patient-notification acknowledgment.
+### `ps-theater-evacuation-route-humanitarian-logistics-and-traffic-priority-stack-v1`
+- Protocols: `OGC`, `NIEM`, `CAP`, `API/JSON`, `AIS/NMEA`, `USMTF`.
+- Use for: route-status exchange, humanitarian corridor control, traffic-priority updates, and shelter-diversion acknowledgments.
 
-### `ps-joint-dependent-special-needs-education-medical-continuity-stack-v1`
-- Protocols: `NIEM`, `HL7/FHIR`, `CAP`, signed care notices, `API/JSON`, `S/MIME`.
-- Use for: transport-status exchange, therapy continuity routing, medical-support updates, and shelter-support acknowledgment.
+### `ps-joint-military-financial-liability-and-compensation-continuity-stack-v1`
+- Protocols: signed claims manifests, `NIEM`, `API/JSON`, `S/MIME`, `STIX/TAXII`, `USMTF`.
+- Use for: claims routing, compensation status exchange, fraud alerts, and fiscal-approval acknowledgments.
 
-### `ps-joint-service-animal-family-pet-evacuation-shelter-stack-v1`
-- Protocols: `NIEM`, `CAP`, signed veterinary notices, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: shelter-capacity exchange, animal-status routing, veterinary alerts, and reunification acknowledgment.
+### `ps-joint-incident-command-post-public-communications-and-media-contingency-stack-v1`
+- Protocols: `CAP`, `NIEM`, `S/MIME`, `API/JSON`, `STIX/TAXII`, `USMTF`.
+- Use for: public-warning release, message-approval exchange, media-ground-rule updates, and rumor-response coordination.
 
-### `ps-joint-wounded-warrior-home-modification-caregiver-ramp-stack-v1`
-- Protocols: `NIEM`, `HL7/FHIR`, signed home-modification notices, `API/JSON`, `S/MIME`, `USMTF`.
-- Use for: discharge-to-home coordination, caregiver training routing, equipment delivery acknowledgment, and housing adaptation status exchange.
+### `ps-joint-host-nation-legislative-liaison-and-mandate-alignment-stack-v1`
+- Protocols: signed legal notices, `NIEM`, `API/JSON`, `S/MIME`, `STIX/TAXII`, `USMTF`.
+- Use for: waiver exchange, mandate updates, coalition-caveat routing, and legal-acknowledgment integrity.
+
+### `ps-joint-civil-works-emergency-permitting-and-right-of-entry-stack-v1`
+- Protocols: `NIEM`, `OGC`, signed access notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: permit status exchange, access-authority routing, engineer release updates, and right-of-entry acknowledgments.
+
+### `ps-theater-essential-services-contractor-strike-and-continuity-stack-v1`
+- Protocols: `OPC UA`, `NIEM`, `CAP`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: service-status exchange, rationing updates, contractor-continuity routing, and restart approval control.
+
+### `ps-homeland-base-school-transport-and-dependent-evacuation-stack-v1`
+- Protocols: `NIEM`, `CAP`, `API/JSON`, `S/MIME`, `OGC`, `USMTF`.
+- Use for: dependent accountability exchange, school-transport routing, guardian reunification updates, and safehaven acknowledgments.
+
+### `ps-strategic-defense-industrial-workforce-family-stabilization-stack-v1`
+- Protocols: signed workforce manifests, `NIEM`, `API/JSON`, `S/MIME`, `OPC UA`, `USMTF`.
+- Use for: critical-worker support routing, family-stability updates, shuttle or lodging allocation, and production-priority acknowledgments.
+
+## Tool Suite Addendum LXXII (2026-04-06, Domestic Public-Health, Transit, Ferry, Corrections, Wastewater, Cooling, and Food-System Continuity)
+
+### `ts-homeland-public-health-laboratory-surge-specimen-chain-v1`
+- Use for: public-health laboratory surge management, specimen-chain integrity, diagnostic-priority arbitration, and force-health reporting continuity during domestic crises.
+- Primary tools: specimen-chain dashboard, lab-capacity queue, courier tracker, force-health reporting board.
+- Cross-check tools: independent public-health laboratory liaison cell and alternate biosurveillance review board.
+- Typical products: lab-surge prioritization board, specimen-chain integrity tracker, diagnostic-release packet.
+
+### `ts-homeland-medical-countermeasure-pod-security-cold-chain-v1`
+- Use for: medical-countermeasure POD security, refrigerated-inventory governance, public queue stabilization, and protected countermeasure release during domestic emergencies.
+- Primary tools: POD throughput dashboard, refrigerated-inventory tracker, perimeter-security board, patient-information release queue.
+- Cross-check tools: independent pharmacy or public-health review cell and alternate medical-logistics shortage board.
+- Typical products: POD protection plan, cold-chain assurance board, countermeasure distribution packet.
+
+### `ts-homeland-corrections-facility-evacuation-guard-force-relief-v1`
+- Use for: threatened corrections-facility evacuation, custody continuity, escort-force allocation, and guard-force relief under domestic emergency conditions.
+- Primary tools: facility-status tracker, custody movement board, escort roster manager, receiving-capacity ledger.
+- Cross-check tools: independent legal review cell and alternate law-enforcement coordination board.
+- Typical products: custody-evacuation ladder, guard-force relief matrix, receiving-facility transfer packet.
+
+### `ts-homeland-cooling-center-load-shedding-generator-priority-v1`
+- Use for: cooling-center activation, generator prioritization, rolling-load-shed mitigation, and extreme-heat life-safety support during domestic outages.
+- Primary tools: cooling-center occupancy board, generator-status dashboard, load-shed forecast tracker, fuel-support ledger.
+- Cross-check tools: independent public-health heat-emergency desk and alternate emergency-energy coordination board.
+- Typical products: cooling-center priority ladder, generator-allocation matrix, load-shedding mitigation packet.
+
+### `ts-homeland-ferry-evacuation-island-resupply-priority-v1`
+- Use for: ferry evacuation, isolated-community resupply, terminal-priority sequencing, and life-safety maritime support during domestic disruption.
+- Primary tools: vessel-availability tracker, terminal-status dashboard, passenger-priority board, island resupply ledger.
+- Cross-check tools: independent maritime-safety liaison cell and alternate emergency-management mobility board.
+- Typical products: ferry movement priority board, island resupply ladder, terminal release packet.
+
+### `ts-homeland-wastewater-overflow-force-health-waterway-protection-v1`
+- Use for: wastewater-overflow response, downstream warning, utility containment, and force-health protection when domestic sanitation failures threaten waterways and communities.
+- Primary tools: overflow telemetry dashboard, downstream warning board, environmental sampling tracker, force-health exposure ledger.
+- Cross-check tools: independent utility regulator liaison cell and alternate environmental-health review board.
+- Typical products: wastewater containment board, downstream warning ladder, force-health protection packet.
+
+### `ts-homeland-animal-disease-quarantine-food-system-defense-v1`
+- Use for: animal-disease quarantine, carcass-disposal support, food-system continuity, and zoonotic-risk containment during domestic agricultural emergencies.
+- Primary tools: veterinary incident tracker, quarantine-boundary map, carcass-disposal capacity board, food-supply continuity dashboard.
+- Cross-check tools: independent veterinary public-health liaison cell and alternate food-distribution review board.
+- Typical products: quarantine and movement-control ladder, carcass-disposal support matrix, food-system defense packet.
+
+### `ts-homeland-transit-bus-evacuation-staging-driver-continuity-v1`
+- Use for: transit-bus evacuation staging, driver-availability governance, route-priority release, and ground-transport continuity during domestic crises.
+- Primary tools: bus-fleet tracker, driver-availability board, staging-site dashboard, route-release map.
+- Cross-check tools: independent transportation-safety review cell and alternate shelter-flow control board.
+- Typical products: bus-staging matrix, driver-continuity board, route-release evacuation packet.
+
+## Protocol Stack Addendum LXXII (2026-04-06, External Integration Profiles for Expansion Wave LXXII)
+
+### `ps-homeland-public-health-laboratory-surge-specimen-chain-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed specimen manifests, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: specimen-custody exchange, lab-capacity updates, courier-status routing, and diagnostic-release acknowledgment.
+
+### `ps-homeland-medical-countermeasure-pod-security-cold-chain-stack-v1`
+- Protocols: `HL7/FHIR`, `CAP`, `NIEM`, signed custody manifests, `API/JSON`, `USMTF`.
+- Use for: POD-status exchange, cold-chain exception routing, security-posture updates, and countermeasure-release acknowledgment.
+
+### `ps-homeland-corrections-facility-evacuation-guard-force-relief-stack-v1`
+- Protocols: `NIEM`, signed custody manifests, `NIMS/ICS`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: custody-status exchange, receiving-site coordination, escort-task routing, and guard-force relief acknowledgment.
+
+### `ps-homeland-cooling-center-load-shedding-generator-priority-stack-v1`
+- Protocols: `CAP`, `NIEM`, `OPC UA`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: cooling-center status updates, generator-priority routing, load-shed alerts, and fuel-support acknowledgment.
+
+### `ps-homeland-ferry-evacuation-island-resupply-priority-stack-v1`
+- Protocols: `AIS/NMEA`, `NIEM`, `OGC`, `API/JSON`, `CAP`, `USMTF`.
+- Use for: vessel-status exchange, terminal-release routing, embarkation-control updates, and island resupply acknowledgment.
+
+### `ps-homeland-wastewater-overflow-force-health-waterway-protection-stack-v1`
+- Protocols: `OPC UA`, `OGC`, `NIEM`, `API/JSON`, `CAP`, `USMTF`.
+- Use for: overflow-status exchange, downstream warning dissemination, sampling updates, and containment-task acknowledgment.
+
+### `ps-homeland-animal-disease-quarantine-food-system-defense-stack-v1`
+- Protocols: `NIEM`, `HL7/FHIR`, `OGC`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: quarantine-status exchange, veterinary surveillance routing, carcass-disposal coordination, and food-system protection updates.
+
+### `ps-homeland-transit-bus-evacuation-staging-driver-continuity-stack-v1`
+- Protocols: `NIEM`, `CAP`, `OGC`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: fleet-status exchange, driver-availability routing, staging-site updates, and protected-route acknowledgment.

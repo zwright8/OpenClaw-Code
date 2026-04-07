@@ -1,21 +1,21 @@
 ---
 name: joint-incident-command-post-public-communications-and-media-contingency-cell
-description: Synchronize incident-command-post messaging, public warning, and media-contingency actions during major military or civil shocks. Use when commanders need auditable public-communications branches with explicit tool and protocol bindings.
+description: Manage life-safety messaging, media contingencies, and incident-command public communications when operational tempo and information attacks collide.
 ---
 
 # Joint Incident Command Post Public Communications And Media Contingency Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter public-communications, public-warning, and incident-disclosure decisions.
-- Confirm release authority, incident severity, affected audiences, operational-security constraints, and notification timelines before recommending action.
+- Treat this skill as planning and decision support for U.S. warfighter public-communications and media-contingency decisions around incident-command posts.
+- Confirm release authorities, warning obligations, media pressure, adversary-information threat, and commander decision deadlines before recommending action.
 - Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Frame the problem using incident facts, public-warning posture, media pressure, adversary narrative indicators, and commander intent.
-2. Build one recommended COA and at least two alternatives with explicit tradeoffs in speed, credibility, OPSEC, and escalation risk.
-3. Identify branch triggers for warning release, holding statement transition, rumor rebuttal, and coordinated partner messaging.
+1. Frame the problem using incident status, life-safety message demand, release authorities, media pressure, and narrative risk.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in speed, credibility, operational security, and public trust.
+3. Identify branch triggers for holding statements, alert release, multilingual updates, rumor rebuttal, and media-ground-rule changes.
 4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
 5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
@@ -30,17 +30,17 @@ description: Synchronize incident-command-post messaging, public warning, and me
 
 ## Domain Products
 
-Primary products: incident message matrix, public-warning release ladder, and media-contingency branch card.
+Primary products: message-approval ladder, public-warning release matrix, media contingency card, and rumor-response decision log.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-joint-incident-command-post-public-communications-media-contingency-v1` with `protocol_stack_id=ps-joint-incident-command-post-public-communications-media-contingency-stack-v1`.
-- Alternate: select a mission-adjacent public-affairs, warning, or information-integrity suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Primary: `toolchain_id=TC-PUBCOMMS-244`, `tool_suite_id=ts-joint-incident-command-post-public-communications-and-media-contingency-v1`, and `protocol_stack_id=ps-joint-incident-command-post-public-communications-and-media-contingency-stack-v1`.
+- Alternate: select a mission-adjacent public-affairs, civil-warning, or information-integrity suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
 - Degraded: commander-approved holding statement, manual warning call tree, and no external release beyond essential life-safety messaging.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-ICP-PUBLIC-COMMS-CONTINGENCY-001`.
+- Default packet IDs: `DPL-ICP-PUBLIC-COMMS-001` and `DPL-MEDIA-CONTINGENCY-001`.
 - If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
 ## External Tool Stack And Protocols
@@ -58,7 +58,7 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
-- If notification status, release authority, or narrative provenance is uncertain, downgrade to advisory-only and request command decision.
+- If release authority, message authenticity, or civil-warning coordination is uncertain, downgrade to advisory-only and request command decision.
 
 ## Interoperability Validation Checklist
 
@@ -69,5 +69,5 @@ For each critical tool recommendation include objective, required inputs, query 
 ## Guardrails
 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
-- Flag family-notification conflicts, public-panic risk, adversary amplification, and OPSEC compromise before recommending action.
-- Do not fabricate incident facts, media posture, or release approvals.
+- Flag unsupported public assurances, rumor-amplification risk, OPSEC conflicts, and release-authority gaps before recommending action.
+- Do not fabricate incident status, warning authority, media commitments, or narrative effects.

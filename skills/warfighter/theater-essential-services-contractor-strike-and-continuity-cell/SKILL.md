@@ -1,21 +1,21 @@
 ---
 name: theater-essential-services-contractor-strike-and-continuity-cell
-description: Preserve essential services when contractor labor actions or walkouts threaten base operations, utilities, transport, sanitation, or life support. Use when commanders need continuity decisions tied to explicit tool and protocol bindings.
+description: Preserve essential services when contractor labor actions threaten base operations, life safety, or military throughput in theater.
 ---
 
 # Theater Essential Services Contractor Strike And Continuity Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter essential-services continuity during contractor labor disruption.
-- Confirm affected services, labor posture, contract authorities, minimum safe staffing, and mission-critical dependencies before recommending action.
+- Treat this skill as planning and decision support for U.S. warfighter essential-services continuity decisions during contractor strikes or labor disruption.
+- Confirm affected services, labor-action status, contingency contracts, public-health thresholds, and commander decision deadlines before recommending action.
 - Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Frame the problem using service dependencies, labor-action status, replacement options, backlogs, and commander decision timelines.
-2. Build one recommended COA and at least two alternatives with explicit tradeoffs in legality, service loss, workforce trust, and operational risk.
-3. Identify branch triggers for service shedding, emergency replacement contracts, troop substitution, and public-health escalation.
+1. Frame the problem using service outages, labor action timing, mission dependency, contingency capacity, and public-health risk.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in continuity, legality, force protection, and cost.
+3. Identify branch triggers for service rationing, contingency activation, mission curtailment, and negotiated restoration.
 4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
 5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
@@ -30,17 +30,17 @@ description: Preserve essential services when contractor labor actions or walkou
 
 ## Domain Products
 
-Primary products: service-continuity ladder, labor-action impact board, and emergency replacement task tracker.
+Primary products: essential-services continuity matrix, service-rationing ladder, contingency-contract activation board, and minimum-safe-service decision log.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-theater-essential-services-contractor-strike-continuity-v1` with `protocol_stack_id=ps-theater-essential-services-contractor-strike-continuity-stack-v1`.
-- Alternate: select a mission-adjacent utility, logistics, or contracting suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Primary: `toolchain_id=TC-ESSENTIAL-247`, `tool_suite_id=ts-theater-essential-services-contractor-strike-and-continuity-v1`, and `protocol_stack_id=ps-theater-essential-services-contractor-strike-and-continuity-stack-v1`.
+- Alternate: select a mission-adjacent installation-support, contracting, or public-health suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
 - Degraded: manual service-rationing board with command-approved minimum safe service levels and no unsupported system restart.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-ESSENTIAL-SERVICES-STRIKE-001`.
+- Default packet IDs: `DPL-ESSENTIAL-SERVICES-CONTINUITY-001` and `DPL-CONTRACTOR-STRIKE-001`.
 - If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
 ## External Tool Stack And Protocols
@@ -58,7 +58,7 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
-- If labor authority, minimum-safe-service thresholds, or replacement-contract posture is uncertain, downgrade to advisory-only and request command decision.
+- If service status, labor-action legitimacy, or contingency-contract authority is uncertain, downgrade to advisory-only and request command decision.
 
 ## Interoperability Validation Checklist
 
@@ -69,5 +69,5 @@ For each critical tool recommendation include objective, required inputs, query 
 ## Guardrails
 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
-- Flag unsafe manning, water or power loss, sanitation collapse, and unlawful labor-response assumptions before recommending action.
-- Do not fabricate contract authority, service status, or workforce availability.
+- Flag unsupported service-restoration claims, unsafe rationing, labor-law risk, and public-health degradation before recommending action.
+- Do not fabricate service status, strike outcomes, contingency contracts, or restart approvals.

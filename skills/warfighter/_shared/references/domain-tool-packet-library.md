@@ -14284,96 +14284,6 @@ validation_gates:
 
 ## Packet Addendum LX (2026-04-06, Expansion Wave LXXI)
 
-### packet_id: DPL-SCRA-ESTATE-POA-001
-- domain: joint servicemember civil relief estate and power of attorney continuity
-- objective: preserve readiness and family stability by triaging urgent civil relief, estate-document, and attorney-in-fact actions before deployment or disruption causes legal harm.
-- primary_tools: legal-assistance case board, deadline monitor, POA or will status tracker, family-contact escalation ledger
-- alternate_tools: manual legal action worksheet and family-readiness contact roster
-- degraded_mode: advisory-only legal triage with manual deadline log and no document execution guidance beyond confirmed human review
-- input_requirements: duty status, legal deadlines, family risk, document status, creditor or court actions, legal office availability
-- output_schema: civil-relief shield matrix, estate readiness board, urgent legal-action ladder
-- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
-- validation_gates: legal-review confirmation, document authenticity, authority check
-
-### packet_id: DPL-FIELD-SANITATION-LATRINE-001
-- domain: joint field sanitation latrine handwashing and vector discipline
-- objective: prevent readiness loss by synchronizing latrine service, handwashing points, vector suppression, and sanitation exceptions across austere sites.
-- primary_tools: sanitation inspection ledger, latrine service tracker, chlorine or soap resupply board, vector surveillance queue
-- alternate_tools: manual sanitation roster and preventive-medicine inspection worksheet
-- degraded_mode: minimum hygiene posture with manual checks, restricted density, and daily command review
-- input_requirements: site population, latrine count, water status, inspection results, vector indicators, resupply windows
-- output_schema: sanitation discipline board, latrine service ladder, vector suppression matrix
-- protocol_profile: HL7/FHIR + NIEM + signed sanitation manifests + API/JSON + USMTF
-- validation_gates: inspection sufficiency, preventive-medicine review, sanitation acknowledgment
-
-### packet_id: DPL-NONLETHAL-CROWD-EOF-001
-- domain: joint nonlethal crowd control escalation and evidence
-- objective: protect forces and legitimacy by defining controlled escalation, nonlethal accountability, and evidence capture during disturbances.
-- primary_tools: crowd-density map, nonlethal inventory ledger, incident evidence sync board, casualty or detainee monitor
-- alternate_tools: manual incident log and barrier-control worksheet
-- degraded_mode: barrier and voice-command posture only with no nonlethal release absent explicit human approval
-- input_requirements: authority basis, crowd behavior, protected assets, nonlethal inventory, medical support, camera coverage
-- output_schema: escalation-of-force ladder, nonlethal employment matrix, evidence custody board
-- protocol_profile: NIEM + CJIS + signed evidence manifests + API/JSON + S/MIME + USMTF
-- validation_gates: legal basis, release authority, chain-of-custody integrity
-
-### packet_id: DPL-PERSONNEL-RECORDS-DD214-001
-- domain: joint personnel records DD214 and benefits continuity
-- objective: restore trusted personnel transitions by reconciling record loss, discharge-document production, and benefits handoff under disruption.
-- primary_tools: personnel record synchronization board, discharge-document queue, identity-proofing review cell, benefits handoff ledger
-- alternate_tools: manual personnel packet worksheet and transition-assistance roster
-- degraded_mode: priority-case handling only with manual identity verification and no final document issue absent confirmed human review
-- input_requirements: affected population, outage scope, discharge timelines, identity status, record-source availability, benefits dependencies
-- output_schema: records recovery board, DD214 issue ladder, benefits continuity tracker
-- protocol_profile: NIEM + signed personnel manifests + API/JSON + S/MIME + USMTF
-- validation_gates: source-record confirmation, identity proof, release approval
-
-### packet_id: DPL-RELIGIOUS-DIETARY-MASS-FEEDING-001
-- domain: joint religious dietary accommodation and mass feeding
-- objective: maintain nutritional continuity and religious accommodation by aligning ration substitutes, allergen controls, and feeding windows under operational stress.
-- primary_tools: ration menu planner, dietary accommodation ledger, chaplain coordination board, allergen or food-safety review queue
-- alternate_tools: manual meal roster and feeding exception worksheet
-- degraded_mode: essential feeding only with conservative allergen controls and command acknowledgment of unmet accommodations
-- input_requirements: unit composition, dietary restrictions, ration inventory, fasting windows, allergen data, feeding-site capacity
-- output_schema: dietary accommodation matrix, protected meal-production ladder, feeding exception tracker
-- protocol_profile: HL7/FHIR + NIEM + signed feeding manifests + API/JSON + S/MIME + USMTF
-- validation_gates: chaplain or medical review, allergen confidence, feeding approval
-
-### packet_id: DPL-KLE-COMMITMENT-GRIEVANCE-001
-- domain: civil affairs key leader engagement commitment and grievance ledger
-- objective: preserve local legitimacy by tracking promises, grievances, and closure actions across key-leader engagements without memory drift.
-- primary_tools: engagement calendar board, commitment ledger, grievance-triage queue, local-influence or rumor map
-- alternate_tools: manual engagement notebook and grievance worksheet
-- degraded_mode: no new commitments beyond immediate safety messaging until human staff validates ownership and suspense
-- input_requirements: engagement schedule, commitments, grievance backlog, local actors, rumor indicators, approval authorities
-- output_schema: KLE commitment ledger, grievance closure board, trust-risk tracker
-- protocol_profile: NIEM + OGC + API/JSON + S/MIME + USMTF
-- validation_gates: stakeholder identity, ownership assignment, closure confirmation
-
-### packet_id: DPL-CONFINEMENT-HUMANE-TREATMENT-001
-- domain: joint confinement facility disturbance and humane treatment
-- objective: stabilize confinement operations while preserving humane-treatment compliance, medical access, and legally defensible incident response.
-- primary_tools: facility population board, incident or grievance ledger, staffing and segregation tracker, medical or legal access scheduler
-- alternate_tools: manual welfare-check log and disturbance control worksheet
-- degraded_mode: essential-control posture with manual welfare checks and no force escalation absent explicit human approval
-- input_requirements: facility population, staffing, disturbance indicators, access obligations, medical status, transfer options
-- output_schema: disturbance branch plan, humane-treatment compliance board, transfer or medical-access tracker
-- protocol_profile: NIEM + CJIS + signed confinement manifests + API/JSON + S/MIME + USMTF
-- validation_gates: welfare-monitoring proof, legal review, use-of-force authority
-
-### packet_id: DPL-FAMILY-CARE-GUARDIANSHIP-001
-- domain: joint military family care plan guardianship and dependent support
-- objective: preserve deployment readiness by validating guardianship, consent continuity, and dependent support before activation or casualty-driven disruption.
-- primary_tools: family-care-plan ledger, guardian contact board, school or medical consent tracker, support-gap escalation queue
-- alternate_tools: manual family-care worksheet and guardian call roster
-- degraded_mode: advisory-only readiness assessment with manual family-care review and no deployment certification absent human confirmation
-- input_requirements: activation timeline, family-care-plan status, guardian availability, dependent needs, consent documents, support resources
-- output_schema: family-care risk board, guardianship decision matrix, dependent support continuity tracker
-- protocol_profile: NIEM + signed family-care notices + API/JSON + S/MIME + USMTF
-- validation_gates: guardian confirmation, consent validity, command review
-
-## Packet Addendum LXI (2026-04-06, Expansion Wave LXXII)
-
 ### packet_id: DPL-DCO-FEMA-SYNC-001
 - domain: homeland defense coordinating officer and FEMA region synchronization
 - objective: align federal-support decisions with FEMA regional timing, DCO authorities, and mission-assignment sequencing before military support branches diverge.
@@ -14462,92 +14372,92 @@ validation_gates:
 - protocol_profile: NIEM + OPC UA + signed fuel-waiver notices + API/JSON + CAP + USMTF
 - validation_gates: waiver review, fuel-availability confirmation, restoration-priority approval
 
-## Packet Addendum LXII (2026-04-06, Expansion Wave LXXIII)
+## Packet Addendum LXI (2026-04-06, Expansion Wave LXXII)
 
-### packet_id: DPL-SPOUSE-LICENSE-EMPLOYMENT-001
-- domain: joint military spouse license portability and employment continuity
-- objective: preserve readiness and retention by reducing spouse licensing delay, employer disruption, and household income shocks during PCS, mobilization, or crisis relocation.
-- primary_tools: license reciprocity tracker, state-board requirement matrix, employer continuity queue, household income risk board
-- alternate_tools: manual license requirement worksheet and family-readiness employment roster
-- degraded_mode: advisory-only spouse-employment assessment with manual license review and no unsupported reciprocity claim
-- input_requirements: spouse profession, destination state, license status, employer posture, childcare constraints, relocation timeline
-- output_schema: spouse-license portability matrix, employer continuity board, household income risk tracker
-- protocol_profile: NIEM + signed verification letters + API/JSON + S/MIME + USMTF
-- validation_gates: licensing authority check, employer confirmation, privacy review
+### packet_id: DPL-PUBLIC-HEALTH-LAB-CHAIN-001
+- domain: homeland public health laboratory surge and specimen chain
+- objective: sustain trusted diagnostic throughput by protecting specimen custody, laboratory capacity, and release integrity during domestic crisis response.
+- primary_tools: specimen-chain dashboard, lab-capacity queue, courier tracker, force-health reporting board
+- alternate_tools: manual specimen ledger and courier-priority worksheet
+- degraded_mode: advisory-only specimen prioritization with no unverified release claims until custody and reporting integrity are restored
+- input_requirements: specimen backlog, custody status, lab capacity, courier availability, force-health risk, reporting timelines
+- output_schema: lab-surge prioritization board, specimen-chain integrity tracker, diagnostic-release packet
+- protocol_profile: HL7/FHIR + NIEM + signed specimen manifests + API/JSON + S/MIME + USMTF
+- validation_gates: chain-of-custody check, lab-capacity confirmation, release-authority review
 
-### packet_id: DPL-HOUSEHOLD-GOODS-ESSENTIAL-KIT-001
-- domain: joint household goods loss claims and essential kit bridge
-- objective: stabilize warfighter households by bridging essential-item gaps while shipment loss, delay, or claims processing is unresolved.
-- primary_tools: shipment status tracker, claims queue, emergency issue board, lodging support ledger
-- alternate_tools: manual claims worksheet and essential-item bridge roster
-- degraded_mode: bridge-support prioritization only with manual property review and no unsupported reimbursement promise
-- input_requirements: shipment status, family size, lodging status, essential-item shortages, claims deadlines, funding constraints
-- output_schema: household-goods recovery board, essential kit gap matrix, claims or bridge-support tracker
-- protocol_profile: NIEM + signed claims manifests + API/JSON + S/MIME + USMTF
-- validation_gates: shipment verification, issue accountability, fiscal review
+### packet_id: DPL-MCM-POD-COLDCHAIN-001
+- domain: homeland medical countermeasure POD security and cold chain
+- objective: keep medical-countermeasure distribution safe and legitimate by synchronizing POD throughput, cold-chain integrity, and security posture.
+- primary_tools: POD throughput dashboard, refrigerated-inventory tracker, perimeter-security board, patient-information release queue
+- alternate_tools: manual POD roster and cold-chain incident worksheet
+- degraded_mode: life-safety dispensing only with manual inventory checks and command-approved queue control
+- input_requirements: countermeasure inventory, refrigeration status, POD layout, security posture, population demand, staffing
+- output_schema: POD protection plan, cold-chain assurance board, countermeasure distribution packet
+- protocol_profile: HL7/FHIR + CAP + NIEM + signed custody manifests + API/JSON + USMTF
+- validation_gates: inventory review, cold-chain verification, release-authority check
 
-### packet_id: DPL-COMMISSARY-EXCHANGE-HYGIENE-001
-- domain: joint commissary exchange subsistence and hygiene priority restoration
-- objective: restore essential food, hygiene, and daily-use retail support without losing equity, cold-chain assurance, or protected-population prioritization.
-- primary_tools: commissary stock board, exchange essential-item inventory, cold-storage monitor, protected-population distribution planner
-- alternate_tools: manual rationing worksheet and retail support roster
-- degraded_mode: essential-ration and hygiene distribution only with command-approved priority lists and manual stock checks
-- input_requirements: store status, inventory posture, refrigeration status, population demand, transport constraints, rationing rules
-- output_schema: essential-retail priority matrix, subsistence and hygiene allocation board, emergency retail support packet
-- protocol_profile: NIEM + GS1/EPCIS + signed supply notices + API/JSON + S/MIME + USMTF
-- validation_gates: stock verification, cold-chain review, allocation approval
+### packet_id: DPL-CORRECTIONS-EVAC-GUARDFORCE-001
+- domain: homeland corrections facility evacuation and guard force relief
+- objective: preserve custody integrity and public legitimacy by sequencing facility evacuation, receiving-site acceptance, and guard-force relief.
+- primary_tools: facility-status tracker, custody movement board, escort roster manager, receiving-capacity ledger
+- alternate_tools: manual custody worksheet and escort-allocation board
+- degraded_mode: hold-and-secure posture only with manual accountability and no unsupported receiving-site transfer
+- input_requirements: facility threat, custody categories, receiving capacity, escort availability, legal authorities, public-safety constraints
+- output_schema: custody-evacuation ladder, guard-force relief matrix, receiving-facility transfer packet
+- protocol_profile: NIEM + signed custody manifests + NIMS/ICS + API/JSON + S/MIME + USMTF
+- validation_gates: authority review, receiving-site confirmation, escort sufficiency check
 
-### packet_id: DPL-ACCESS-BADGE-CURFEW-REENTRY-001
-- domain: joint installation access badge reissue curfew and family reentry
-- objective: reopen installations safely by sequencing badge reissue, gate control, curfew exceptions, and phased family reentry.
-- primary_tools: badge issuance tracker, gate status board, curfew exception ledger, family reentry queue
-- alternate_tools: manual credential roster and reentry control worksheet
-- degraded_mode: controlled reentry only with manual identity verification and commander-approved windows
-- input_requirements: incident posture, access restrictions, credential losses, family reentry demand, curfew rules, gate capacity
-- output_schema: access reissue board, family reentry ladder, curfew exception matrix
-- protocol_profile: NIEM + signed credential notices + API/JSON + S/MIME + CAP + USMTF
-- validation_gates: identity verification, gate-control review, reentry approval
+### packet_id: DPL-COOLING-CENTER-GENERATOR-001
+- domain: homeland cooling center load shedding and generator priority
+- objective: protect vulnerable populations by aligning cooling-center operations, generator allocation, and outage-mitigation priorities during extreme heat.
+- primary_tools: cooling-center occupancy board, generator-status dashboard, load-shed forecast tracker, fuel-support ledger
+- alternate_tools: manual cooling-center log and generator-priority worksheet
+- degraded_mode: critical-cooling support only with manual occupancy tracking and command-approved generator allocation
+- input_requirements: heat severity, occupancy, generator status, fuel stocks, load-shed windows, vulnerable-population map
+- output_schema: cooling-center priority ladder, generator-allocation matrix, load-shedding mitigation packet
+- protocol_profile: CAP + NIEM + OPC UA + API/JSON + S/MIME + USMTF
+- validation_gates: occupancy review, generator-runtime check, life-safety prioritization approval
 
-### packet_id: DPL-BASE-PHARMACY-TRICARE-COLDCHAIN-001
-- domain: joint base pharmacy refill TRICARE override and cold chain continuity
-- objective: preserve medication access by reconciling refill urgency, insurance override pathways, and cold-chain integrity during pharmacy disruption.
-- primary_tools: pharmacy queue board, override approval tracker, cold-chain monitor, patient-notification ledger
-- alternate_tools: manual refill worksheet and medication-priority roster
-- degraded_mode: life-sustaining refill prioritization only with manual clinical review and no unsupported override claim
-- input_requirements: beneficiary roster, medication urgency, refill windows, override blockers, cold-chain status, pharmacy outage timeline
-- output_schema: refill continuity matrix, TRICARE override ladder, temperature-sensitive medication tracker
-- protocol_profile: HL7/FHIR + NCPDP + signed prescription notices + API/JSON + S/MIME + USMTF
-- validation_gates: clinical review, prescription validity, cold-chain assurance
+### packet_id: DPL-FERRY-ISLAND-RESUPPLY-001
+- domain: homeland ferry evacuation and island resupply priority
+- objective: preserve life safety and isolated-community sustainment by sequencing ferry lift, terminal access, and essential cargo under disrupted conditions.
+- primary_tools: vessel-availability tracker, terminal-status dashboard, passenger-priority board, island resupply ledger
+- alternate_tools: manual sailing board and embarkation-priority worksheet
+- degraded_mode: critical-passenger and life-sustainment cargo only with manual manifests and command-approved sail decisions
+- input_requirements: population isolation, vessel status, terminal readiness, weather risk, cargo priorities, embarkation controls
+- output_schema: ferry movement priority board, island resupply ladder, terminal release packet
+- protocol_profile: AIS/NMEA + NIEM + OGC + API/JSON + CAP + USMTF
+- validation_gates: vessel-availability review, terminal-access confirmation, maritime-safety approval
 
-### packet_id: DPL-DEPENDENT-SPECIAL-NEEDS-CONTINUITY-001
-- domain: joint dependent special needs transport education and medical continuity
-- objective: protect warfighter family stability by preserving transport, education, therapy, and medical support for special-needs dependents during disruption.
-- primary_tools: dependent-needs case board, accessible transport scheduler, therapy continuity tracker, medical support ledger
-- alternate_tools: manual special-needs roster and transport continuity worksheet
-- degraded_mode: advisory-only continuity sequencing with manual dependent review and no unsupported care guarantee
-- input_requirements: dependent support needs, school status, therapy schedule, medical dependencies, transport assets, caregiver capacity
-- output_schema: special-needs continuity board, transport and therapy ladder, dependent-support risk tracker
-- protocol_profile: NIEM + HL7/FHIR + CAP + signed care notices + API/JSON + S/MIME
-- validation_gates: dependent-needs confirmation, transport feasibility review, medical-support check
+### packet_id: DPL-WASTEWATER-OVERFLOW-WATERWAY-001
+- domain: homeland wastewater overflow force health and waterway protection
+- objective: limit contamination spread by synchronizing overflow containment, downstream warning, and worker-protection decisions.
+- primary_tools: overflow telemetry dashboard, downstream warning board, environmental sampling tracker, force-health exposure ledger
+- alternate_tools: manual overflow log and downstream warning worksheet
+- degraded_mode: manual containment and warning posture only with no unsupported contamination-boundary claims
+- input_requirements: overflow status, treatment-plant posture, downstream exposure risk, telemetry confidence, sampling status, warning timelines
+- output_schema: wastewater containment board, downstream warning ladder, force-health protection packet
+- protocol_profile: OPC UA + OGC + NIEM + API/JSON + CAP + USMTF
+- validation_gates: telemetry review, sampling confirmation, warning-authority approval
 
-### packet_id: DPL-SERVICE-ANIMAL-PET-EVAC-001
-- domain: joint service animal and family pet evacuation shelter continuity
-- objective: reduce evacuation refusal and family instability by preserving lawful service-animal accommodation and practical pet-shelter continuity.
-- primary_tools: shelter capacity board, animal documentation tracker, reunification ledger, veterinary support queue
-- alternate_tools: manual animal roster and shelter accommodation worksheet
-- degraded_mode: limited animal support with manual veterinary checks and no unsupported shelter co-location promise
-- input_requirements: evacuation posture, family animal count, service-animal status, shelter rules, veterinary support, documentation availability
-- output_schema: animal-shelter continuity matrix, refusal-to-evacuate risk board, veterinary support tracker
-- protocol_profile: NIEM + CAP + signed veterinary notices + API/JSON + S/MIME + USMTF
-- validation_gates: shelter acceptance, documentation review, veterinary support confirmation
+### packet_id: DPL-ANIMAL-DISEASE-FOOD-DEFENSE-001
+- domain: homeland animal disease quarantine and food system defense
+- objective: reduce outbreak and supply shock by aligning quarantine boundaries, disposal actions, and protected food-system continuity decisions.
+- primary_tools: veterinary incident tracker, quarantine-boundary map, carcass-disposal capacity board, food-supply continuity dashboard
+- alternate_tools: manual quarantine ledger and disposal-priority worksheet
+- degraded_mode: advisory-only quarantine-support posture with no movement-control release beyond civil-authority direction
+- input_requirements: disease status, quarantine zones, disposal capacity, food-system dependencies, zoonotic risk, interagency authorities
+- output_schema: quarantine and movement-control ladder, carcass-disposal support matrix, food-system defense packet
+- protocol_profile: NIEM + HL7/FHIR + OGC + API/JSON + S/MIME + USMTF
+- validation_gates: disease-confirmation review, quarantine-authority check, disposal approval
 
-### packet_id: DPL-WOUNDED-WARRIOR-HOME-CAREGIVER-001
-- domain: joint wounded warrior home modification and caregiver ramp up
-- objective: accelerate safe discharge-to-home by synchronizing accessibility modifications, caregiver preparation, and equipment or funding actions.
-- primary_tools: home assessment queue, caregiver training ledger, durable-medical-equipment tracker, benefit or funding board
-- alternate_tools: manual home readiness checklist and caregiver support worksheet
-- degraded_mode: advisory-only discharge planning with no home-ready certification beyond confirmed human review
-- input_requirements: discharge timeline, injury profile, home barriers, caregiver availability, equipment needs, funding status
-- output_schema: home modification priority board, caregiver ramp-up matrix, discharge-to-home readiness packet
-- protocol_profile: NIEM + HL7/FHIR + signed home-modification notices + API/JSON + S/MIME + USMTF
-- validation_gates: home-accessibility review, caregiver confirmation, discharge authority check
+### packet_id: DPL-TRANSIT-BUS-EVAC-DRIVER-001
+- domain: homeland transit bus evacuation staging and driver continuity
+- objective: sustain evacuation throughput by reconciling fleet availability, driver continuity, and protected-route release under domestic movement stress.
+- primary_tools: bus-fleet tracker, driver-availability board, staging-site dashboard, route-release map
+- alternate_tools: manual bus roster and staging worksheet
+- degraded_mode: life-safety movement only with manual manifests and command-approved route prioritization
+- input_requirements: evacuation demand, fleet status, driver posture, staging capacity, route constraints, shelter backpressure
+- output_schema: bus-staging matrix, driver-continuity board, route-release evacuation packet
+- protocol_profile: NIEM + CAP + OGC + API/JSON + S/MIME + USMTF
+- validation_gates: fleet-status review, driver-rest confirmation, route-release approval

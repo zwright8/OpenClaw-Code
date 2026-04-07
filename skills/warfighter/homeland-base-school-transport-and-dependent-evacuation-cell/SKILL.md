@@ -1,21 +1,21 @@
 ---
 name: homeland-base-school-transport-and-dependent-evacuation-cell
-description: Coordinate base-school transport, dependent accountability, and protected evacuation under homeland crises. Use when commanders must move children and dependents safely without breaking force-generation or life-safety priorities.
+description: Coordinate school transport, guardian reunification, and dependent evacuation for military families during homeland attack or mass-disruption events.
 ---
 
 # Homeland Base School Transport And Dependent Evacuation Cell
 
 ## Mission Scope
 
-- Treat this skill as planning and decision support for U.S. warfighter dependent-evacuation and school-transport continuity decisions on or near military installations.
-- Confirm school status, childcare posture, dependent rosters, safehaven options, and transport authorities before recommending action.
+- Treat this skill as planning and decision support for U.S. warfighter dependent-protection and school-transport evacuation decisions.
+- Confirm school status, guardian accountability, safehaven capacity, transport availability, and commander decision deadlines before recommending action.
 - Keep outputs unclassified by default unless explicit handling guidance is provided.
 
 ## Workflow
 
-1. Frame the problem using school operations, bus or convoy status, dependent locations, shelter options, and incident timelines.
-2. Build one recommended COA and at least two alternatives with explicit tradeoffs in safety, accountability, transport capacity, and force-readiness impact.
-3. Identify branch triggers for lockdown, transport reroute, shelter-in-place, guardian reunification, and safehaven activation.
+1. Frame the problem using dependent counts, school transport posture, route risk, guardian availability, and safehaven capacity.
+2. Build one recommended COA and at least two alternatives with explicit tradeoffs in life safety, accountability, speed, and family confidence.
+3. Identify branch triggers for school closure, convoy release, reunification delay, shelter diversion, and unsheltered dependent risk.
 4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
 5. Publish commander decision prompts and a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
@@ -30,17 +30,17 @@ description: Coordinate base-school transport, dependent accountability, and pro
 
 ## Domain Products
 
-Primary products: dependent-evacuation flow board, school-transport branch matrix, and guardian-accountability tracker.
+Primary products: dependent accountability board, school-transport movement matrix, guardian reunification ladder, and safehaven allocation log.
 
 ## Domain Toolchain Defaults
 
-- Primary: `tool_suite_id=ts-homeland-base-school-transport-dependent-evacuation-v1` with `protocol_stack_id=ps-homeland-base-school-transport-dependent-evacuation-stack-v1`.
-- Alternate: select a mission-adjacent family-readiness, school-shelter, or evacuation suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
+- Primary: `toolchain_id=TC-SCHOOL-248`, `tool_suite_id=ts-homeland-base-school-transport-and-dependent-evacuation-v1`, and `protocol_stack_id=ps-homeland-base-school-transport-and-dependent-evacuation-stack-v1`.
+- Alternate: select a mission-adjacent family-readiness, mass-care, or movement-control suite or stack from `../_shared/references/warfighter-external-tool-and-protocol-catalog.md` and explain tradeoffs.
 - Degraded: manual dependent roster with command-approved movement windows, paper guardian logs, and no unsupervised transport release.
 
 ## Domain Packet Defaults
 
-- Default packet ID: `DPL-BASE-SCHOOL-DEPENDENT-EVAC-001`.
+- Default packet IDs: `DPL-DEPENDENT-EVAC-001` and `DPL-SCHOOL-TRANSPORT-001`.
 - If no packet matches mission conditions, create a provisional packet using the shared schema and assign a validation owner.
 
 ## External Tool Stack And Protocols
@@ -58,7 +58,7 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Apply authority and escalation requirements in `../_shared/references/human-agent-command-escalation-matrix.md` and `../_shared/references/warfighter-tool-authority-gates.md`.
 - Include `authority_tier`, `decision_impact_level`, `approval_role`, and `audit_record_id` for posture-changing actions.
-- If guardian accountability, school-release authority, or transport security is uncertain, downgrade to advisory-only and request command decision.
+- If guardian accountability, transport release authority, or safehaven capacity is uncertain, downgrade to advisory-only and request command decision.
 
 ## Interoperability Validation Checklist
 
@@ -69,5 +69,5 @@ For each critical tool recommendation include objective, required inputs, query 
 ## Guardrails
 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
-- Flag child-safety risk, reunification friction, mixed-custody ambiguity, and transport-security exposure before recommending action.
-- Do not fabricate dependent locations, school status, or reunification approval.
+- Flag unsupported accountability claims, reunification shortfalls, transport safety gaps, and family-protection risk before recommending action.
+- Do not fabricate student rosters, guardian status, school closures, or evacuation approvals.
