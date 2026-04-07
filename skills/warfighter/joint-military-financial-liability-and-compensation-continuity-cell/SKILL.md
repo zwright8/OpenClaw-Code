@@ -94,3 +94,9 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Add `toolchain_id=TC-STULOAN-326`, `tool_suite_id=ts-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-v1`, and `protocol_stack_id=ps-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-stack-v1` when household financial stability, retention confidence, or hardship sequencing depends on student-loan protection, FAFSA continuity, or academic reentry for warfighters or dependents.
 - Add `packet_id=DPL-STUDENT-LOAN-FAFSA-REENTRY-001` for branches that materially alter compensation legitimacy, hardship-confidence, or household financial stability.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXV Addendum)
+
+- Add `toolchain_id=TC-LODPAY-346`, `tool_suite_id=ts-joint-line-of-duty-incapacitation-pay-duty-status-continuity-v1`, and `protocol_stack_id=ps-joint-line-of-duty-incapacitation-pay-duty-status-continuity-stack-v1` when compensation legitimacy depends on LOD evidence, incapacitation-pay routing, or injury-driven duty-status reconciliation.
+- Add `toolchain_id=TC-FINALOUT-348`, `tool_suite_id=ts-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-v1`, and `protocol_stack_id=ps-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-stack-v1` when final-pay timing, separation checklist completion, or property-accountability closure changes compensation confidence.
+- Add `packet_id=DPL-LOD-INCAP-PAY-DUTY-STATUS-001` and `packet_id=DPL-FINAL-OUT-CIF-SEPARATION-001` for branches that materially alter compensation legitimacy, final-pay confidence, or transition-finance stability.

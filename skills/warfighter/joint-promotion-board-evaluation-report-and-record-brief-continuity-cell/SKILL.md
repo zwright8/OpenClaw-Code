@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported promotion expectations, stale evaluations, record-brief corruption, and privacy leakage before recommending action.
 - Do not fabricate board outcomes, evaluation completion, assignment decisions, or correction authority.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXV Addendum)
+
+- Add `toolchain_id=TC-AWARDS-347`, `tool_suite_id=ts-joint-awards-decorations-valor-board-record-protection-v1`, and `protocol_stack_id=ps-joint-awards-decorations-valor-board-record-protection-stack-v1` when board-file trust, assignment confidence, or recognition legitimacy depends on resolved awards evidence, decoration routing, or valor-device validation.
+- Add `packet_id=DPL-AWARDS-DECORATIONS-BOARD-001` for branches that materially alter promotion-board integrity, assignment trust, or recognition legitimacy.

@@ -3199,3 +3199,21 @@ Every skill output should include:
 - Joint Tricare dental FEDVIP vision and orthodontic benefit bridge + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell + expeditionary-dental-and-maxillofacial-readiness-cell + joint-operational-vision-ocular-trauma-and-optical-readiness-cell.
 - Joint adoption foster care and kinship placement continuity + joint-military-family-care-plan-guardianship-and-dependent-support-cell + homeland-installation-courthouse-custody-hearing-and-family-law-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
 - Joint adaptive sports community reintegration and peer mentor continuity + joint-casualty-rehabilitation-prosthetics-and-return-to-duty-cell + joint-vre-independent-living-and-adaptive-employment-continuity-cell + joint-va-caregiver-support-program-stipend-training-and-respite-continuity-cell.
+
+## New Expansion Wave (2026-04-07, Expansion Wave LXXXV)
+
+- joint-parental-leave-pregnancy-postpartum-profile-and-duty-modification-continuity-cell
+- joint-newborn-birth-certificate-deers-tricare-and-travel-document-bridge-cell
+- joint-inspector-general-equal-opportunity-and-reprisal-complaint-safeguard-cell
+- joint-line-of-duty-incapacitation-pay-and-duty-status-continuity-cell
+- joint-awards-decorations-valor-device-and-board-record-protection-cell
+- joint-final-out-processing-cif-ocie-medical-dental-and-separation-clearance-cell
+
+## Updated Pairings (2026-04-07, Expansion Wave LXXXV)
+
+- Joint parental leave pregnancy postpartum profile and duty modification continuity + homeland-postpartum-lactation-infant-formula-and-diaper-continuity-cell + joint-convalescent-leave-limited-duty-and-medical-hold-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint newborn birth certificate DEERS TRICARE and travel document bridge + joint-deers-id-card-and-eligibility-reconciliation-cell + joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell.
+- Joint inspector general equal opportunity and reprisal complaint safeguard + joint-family-online-harassment-doxxing-and-protective-escalation-cell + homeland-protective-order-domestic-violence-and-safe-housing-continuity-cell + joint-sexual-assault-response-restricted-reporting-and-unit-safety-cell.
+- Joint line of duty incapacitation pay and duty status continuity + joint-convalescent-leave-limited-duty-and-medical-hold-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + reserve-guard-mobilization-planner.
+- Joint awards decorations valor device and board record protection + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell.
+- Joint final out processing CIF OCIE medical dental and separation clearance + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-household-goods-loss-claims-and-essential-kit-bridge-cell + joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell.

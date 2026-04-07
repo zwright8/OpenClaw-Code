@@ -15468,3 +15468,67 @@ external_binding:
 ### `ps-joint-adaptive-sports-community-reintegration-peer-mentor-continuity-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed rehabilitation plans, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: reintegration-status exchange, peer-mentor updates, adaptive-sports scheduling, and recovery-support acknowledgment.
+
+## Tool Suite Addendum LXXXV (2026-04-07, Parental Readiness, Newborn Documentation, Protected Complaints, Duty-Status Legitimacy, Recognition Integrity, and Final-Out Clearance)
+
+### `ts-joint-parental-leave-pregnancy-postpartum-profile-duty-modification-continuity-v1`
+- Use for: parental-leave reconciliation, pregnancy or postpartum profile continuity, duty-modification routing, and safe mission-coverage planning when medical or administrative drift threatens lawful availability.
+- Primary tools: parental-leave case board, maternity or postpartum appointment tracker, profile and duty-restriction ledger, assignment-impact queue.
+- Cross-check tools: independent medical-staff review cell and alternate family-readiness or patient-admin desk.
+- Typical products: parental-leave continuity board, profile ladder, duty-modification support packet.
+
+### `ts-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-v1`
+- Use for: newborn civil-registration recovery, DEERS or TRICARE enrollment, passport or consular routing, and dependent-movement legitimacy when birth during PCS, deployment, or OCONUS assignment creates care or travel risk.
+- Primary tools: birth-record request tracker, DEERS enrollment queue, newborn-coverage board, passport or travel-document ledger.
+- Cross-check tools: independent DEERS review cell and alternate command-sponsorship or consular support desk.
+- Typical products: newborn documentation board, enrollment ladder, family-travel legitimacy packet.
+
+### `ts-joint-inspector-general-equal-opportunity-reprisal-complaint-safeguard-v1`
+- Use for: EO or IG complaint protection, reprisal-risk routing, protected-communication continuity, and command-climate safeguarding when discrimination, retaliation, or whistleblower exposure begins degrading trust or availability.
+- Primary tools: complaint intake board, protected-communication ledger, EO or IG case tracker, command-climate protection queue.
+- Cross-check tools: independent legal-support review cell and alternate family-protection or safe-reporting desk.
+- Typical products: protected-complaint safeguarding board, reprisal-risk ladder, command-climate protection packet.
+
+### `ts-joint-line-of-duty-incapacitation-pay-duty-status-continuity-v1`
+- Use for: line-of-duty evidence preservation, incapacitation-pay routing, duty-status reconciliation, and lawful treatment or pay continuity when injury or illness begins degrading availability or compensation trust.
+- Primary tools: LOD investigation tracker, incapacitation-pay queue, duty-status ledger, medical or personnel orders board.
+- Cross-check tools: independent medical-board review cell and alternate finance or reserve-pay desk.
+- Typical products: LOD continuity board, incapacitation-pay ladder, duty-status legitimacy packet.
+
+### `ts-joint-awards-decorations-valor-board-record-protection-v1`
+- Use for: awards recommendation recovery, citation-evidence preservation, valor-device validation, and board-record integrity when recognition backlog or evidence loss threatens promotion trust or historical accountability.
+- Primary tools: awards recommendation board, citation evidence ledger, approval tracker, board-file sync queue.
+- Cross-check tools: independent personnel-records review cell and alternate promotion-board or public-affairs witness.
+- Typical products: awards integrity board, citation evidence ladder, board-record protection packet.
+
+### `ts-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-v1`
+- Use for: final-out checklist recovery, CIF or OCIE accountability, medical or dental separation clearance, and DD214 or final-pay dependency triage when transition friction threatens lawful separation.
+- Primary tools: separation clearance checklist board, CIF or OCIE turn-in ledger, medical or dental out-processing queue, final pay or DD214 dependency tracker.
+- Cross-check tools: independent personnel-records review cell and alternate finance or transportation-support desk.
+- Typical products: final-out clearance board, accountability ladder, separation-legitimacy packet.
+
+## Protocol Stack Addendum LXXXV (2026-04-07, External Integration Profiles for Expansion Wave LXXXV)
+
+### `ps-joint-parental-leave-pregnancy-postpartum-profile-duty-modification-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: parental-leave status exchange, profile updates, duty-modification routing, and command-aware maternal-health acknowledgment.
+
+### `ps-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `ICAO Doc 9303`, signed civil-status notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: birth-record exchange, newborn-enrollment routing, passport or consular updates, and family-travel acknowledgment.
+
+### `ps-joint-inspector-general-equal-opportunity-reprisal-complaint-safeguard-stack-v1`
+- Protocols: `NIEM`, signed complaint notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: protected-complaint exchange, reprisal-risk routing, EO or IG case-status updates, and command-climate protection acknowledgment.
+
+### `ps-joint-line-of-duty-incapacitation-pay-duty-status-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed LOD or pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: incident-evidence exchange, duty-status routing, incapacitation-pay updates, and treatment-or-pay acknowledgment.
+
+### `ps-joint-awards-decorations-valor-board-record-protection-stack-v1`
+- Protocols: `NIEM`, signed personnel citations, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: awards-status exchange, citation-evidence routing, approval-chain updates, and board-record protection acknowledgment.
+
+### `ps-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-stack-v1`
+- Protocols: `NIEM`, signed separation checklists, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: final-out status exchange, CIF or OCIE accountability routing, medical or dental clearance updates, and separation-legitimacy acknowledgment.

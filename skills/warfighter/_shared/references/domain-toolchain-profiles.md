@@ -2942,3 +2942,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent rehabilitation review cell and alternate wounded-warrior or VA transition desk
 - Protocol binding: HL7/FHIR + NIEM + signed rehabilitation plans + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only reintegration sequencing until program legitimacy, mentor availability, and equipment support posture are human-confirmed
+
+## Toolchain Wave LXXXV (2026-04-07)
+
+### `TC-PARENTAL-343`
+
+- Domain: joint parental leave pregnancy postpartum profile and duty modification continuity
+- Primary systems: parental-leave case board, maternity or postpartum appointment tracker, profile and duty-restriction ledger, assignment-impact queue
+- Cross-check systems: independent medical-staff review cell and alternate family-readiness or patient-admin desk
+- Protocol binding: HL7/FHIR + NIEM + signed medical or personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only parental sequencing until leave authority, medical restrictions, and family-support posture are human-confirmed
+
+### `TC-NEWBORN-344`
+
+- Domain: joint newborn birth certificate DEERS TRICARE and travel document bridge
+- Primary systems: birth-record request tracker, DEERS enrollment queue, newborn-coverage board, passport or travel-document ledger
+- Cross-check systems: independent DEERS review cell and alternate command-sponsorship or consular support desk
+- Protocol binding: HL7/FHIR + NIEM + ICAO Doc 9303 + signed civil-status notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only newborn sequencing until sponsor status, civil-registration evidence, and care-access posture are human-confirmed
+
+### `TC-IGEO-345`
+
+- Domain: joint inspector general equal opportunity and reprisal complaint safeguard
+- Primary systems: complaint intake board, protected-communication ledger, EO or IG case tracker, command-climate protection queue
+- Cross-check systems: independent legal-support review cell and alternate family-protection or safe-reporting desk
+- Protocol binding: NIEM + signed complaint notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only complaint sequencing until channel legitimacy, evidence posture, and protective authorities are human-confirmed
+
+### `TC-LODPAY-346`
+
+- Domain: joint line of duty incapacitation pay and duty status continuity
+- Primary systems: LOD investigation tracker, incapacitation-pay queue, duty-status ledger, medical or personnel orders board
+- Cross-check systems: independent medical-board review cell and alternate finance or reserve-pay desk
+- Protocol binding: HL7/FHIR + NIEM + signed LOD or pay notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only duty-status sequencing until evidence, duty authority, and fiscal posture are human-confirmed
+
+### `TC-AWARDS-347`
+
+- Domain: joint awards decorations valor device and board record protection
+- Primary systems: awards recommendation board, citation evidence ledger, approval tracker, board-file sync queue
+- Cross-check systems: independent personnel-records review cell and alternate promotion-board or public-affairs witness
+- Protocol binding: NIEM + signed personnel citations + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only recognition sequencing until source evidence, approval chain, and board timing are human-confirmed
+
+### `TC-FINALOUT-348`
+
+- Domain: joint final out processing CIF OCIE medical dental and separation clearance
+- Primary systems: separation clearance checklist board, CIF or OCIE turn-in ledger, medical or dental out-processing queue, final pay or DD214 dependency tracker
+- Cross-check systems: independent personnel-records review cell and alternate finance or transportation-support desk
+- Protocol binding: NIEM + signed separation checklists + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only separation sequencing until accountability evidence, medical clearance, and release authority are human-confirmed

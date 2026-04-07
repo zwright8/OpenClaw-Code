@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported family-movement promises, medical-screening shortcuts, no-fee passport assumptions, and host-nation acceptance risk before recommending action.
 - Do not fabricate command sponsorship, medical clearance, passport issuance, or travel acceptance.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXV Addendum)
+
+- Add `toolchain_id=TC-NEWBORN-344`, `tool_suite_id=ts-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-v1`, and `protocol_stack_id=ps-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-stack-v1` when family-movement legitimacy depends on newborn civil-registration evidence, DEERS or TRICARE activation, or new dependent travel-document readiness before overseas movement.
+- Add `packet_id=DPL-NEWBORN-DEERS-TRICARE-DOCS-001` for branches that materially alter command-sponsorship sequencing, dependent-movement legitimacy, or overseas family-travel confidence.

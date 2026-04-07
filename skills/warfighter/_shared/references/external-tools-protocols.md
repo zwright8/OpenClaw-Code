@@ -565,3 +565,20 @@ Include these fields in outputs when tool integration is used:
 3. Treat DD93, SGLI, TSGLI, evaluation-report, and board-file recommendations as advisory-only until source-record freshness, acknowledgment integrity, and human approval are verified.
 4. For transition-program recommendations, show the readiness effect on deployability, retention, recovery, or lawful separation alongside the household or career impact.
 5. For promotion, housing, or beneficiary cases, include a manual fallback path that preserves appeal or correction rights when tool trust, document signature, or data freshness fails.
+
+## American Warfighter Personnel Lifecycle And Protected-Service Addendum (2026-04-07)
+
+- Parental leave, pregnancy, and postpartum duty-modification continuity: parental-leave case boards, maternity or postpartum profile ledgers, appointment trackers, and assignment-impact queues; protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Newborn registration and travel-document continuity: birth-record trackers, DEERS enrollment queues, newborn-coverage boards, and passport or consular ledgers; protocols: `HL7/FHIR`, `NIEM`, `ICAO Doc 9303`, signed civil-status notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Protected complaint and reprisal safeguarding: complaint intake boards, EO or IG case trackers, protected-communication ledgers, and command-climate protection queues; protocols: `NIEM`, signed complaint notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Line-of-duty and incapacitation-pay continuity: LOD investigation trackers, incapacitation-pay queues, duty-status ledgers, and orders-validation boards; protocols: `HL7/FHIR`, `NIEM`, signed LOD or pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Awards and decorations record protection: awards recommendation boards, citation-evidence ledgers, approval-chain trackers, and board-file sync queues; protocols: `NIEM`, signed personnel citations, `API/JSON`, `S/MIME`, `USMTF`.
+- Final out-processing and separation-clearance continuity: separation-checklist boards, CIF or OCIE ledgers, medical or dental clearance queues, and DD214 or final-pay dependency trackers; protocols: `NIEM`, signed separation checklists, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-07, Personnel Lifecycle and Protected Service)
+
+1. Cross-check at least one authoritative personnel or medical source with one finance, legal, or family-support source before recommending action that changes duty status, recognition, or separation legitimacy.
+2. Treat pregnancy, postpartum, newborn, complaint, and LOD packets as privacy-minimizing by default and expose only the minimum fields the receiving office requires.
+3. Use `ICAO Doc 9303` only when newborn or dependent travel requires passport or travel-document routing; otherwise keep the exchange in `NIEM` plus signed notices.
+4. Treat complaint routing, LOD or incapacitation-pay posture, award recommendations, and separation clearances as advisory-only until signed notices, acknowledgment chains, and human approval are confirmed.
+5. For every personnel-lifecycle recommendation, state the readiness effect on deployability, retention, lawful availability, family stability, or transition legitimacy.

@@ -3164,3 +3164,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-vre-independent-living-adaptive-employment-continuity-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, signed rehabilitation plans, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only reintegration triage with manual rehab review and no unsupported program placement or peer-support outcome.
+
+## Toolchain Wave LXXXV (2026-04-07, Parental Readiness, Newborn Legitimacy, Protected Complaints, Duty-Status Legitimacy, Recognition Integrity, and Separation Clearance)
+
+### `parental-leave-postpartum-duty-mod-v1`
+- Use for: deployability and safe-availability decisions when parental leave, pregnancy or postpartum profiles, and duty-modification requirements create competing family-support and mission-coverage pressures.
+- Primary tools: `ts-joint-parental-leave-pregnancy-postpartum-profile-duty-modification-continuity-v1`.
+- Cross-check tools: `ts-homeland-postpartum-lactation-infant-formula-diaper-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only parental triage with manual medical and personnel review until leave authority and profile legitimacy are human-confirmed.
+
+### `newborn-deers-tricare-docs-v1`
+- Use for: family-movement and care-access decisions when newborn documentation, DEERS or TRICARE enrollment, and travel-document routing determine whether a military household remains lawfully recognized and medically supported.
+- Primary tools: `ts-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-v1`.
+- Cross-check tools: `ts-joint-deers-id-card-eligibility-reconciliation-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, `ICAO Doc 9303`, signed civil-status notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only newborn triage with manual birth-evidence and sponsor-status review until identity and care posture are human-confirmed.
+
+### `ig-eo-reprisal-safeguard-v1`
+- Use for: command-trust and personnel-protection decisions when EO or IG complaint integrity, reprisal exposure, or protected reporting posture can change acceptable risk for a unit or household.
+- Primary tools: `ts-joint-inspector-general-equal-opportunity-reprisal-complaint-safeguard-v1`.
+- Cross-check tools: `ts-joint-family-online-harassment-doxxing-protective-escalation-v1`.
+- Protocols: `NIEM`, signed complaint notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only complaint triage with manual legal or inspector review and no unsupported finding or corrective-action promise.
+
+### `lod-incap-pay-duty-status-v1`
+- Use for: lawful-availability and compensation decisions when line-of-duty evidence, incapacitation pay, or duty-status continuity determines whether an injured warfighter can recover without pay or treatment disruption.
+- Primary tools: `ts-joint-line-of-duty-incapacitation-pay-duty-status-continuity-v1`.
+- Cross-check tools: `ts-joint-convalescent-leave-limited-duty-medical-hold-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed LOD or pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only duty-status triage with manual incident and finance review until LOD legitimacy and pay posture are human-confirmed.
+
+### `awards-decorations-record-protection-v1`
+- Use for: promotion-trust and historical-accountability decisions when awards evidence, valor-device routing, or board-record integrity determines whether a warfighter receives lawful recognition.
+- Primary tools: `ts-joint-awards-decorations-valor-board-record-protection-v1`.
+- Cross-check tools: `ts-joint-promotion-board-evaluation-report-record-brief-continuity-v1`.
+- Protocols: `NIEM`, signed personnel citations, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only recognition triage with manual evidence and board review until citation legitimacy is human-confirmed.
+
+### `final-out-processing-clearance-v1`
+- Use for: separation-legitimacy and DD214-timing decisions when CIF or OCIE accountability, medical or dental clearance, and final-out checklist drift determines whether a warfighter can lawfully leave service or demobilize.
+- Primary tools: `ts-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-v1`.
+- Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
+- Protocols: `NIEM`, signed separation checklists, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only separation triage with manual accountability and personnel review until clearance authority and DD214 dependencies are human-confirmed.

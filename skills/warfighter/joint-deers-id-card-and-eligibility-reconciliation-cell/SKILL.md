@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag duplicate records, stale dependency evidence, blocked medical access, and uncompensated pay or benefit gaps before recommending action.
 - Do not fabricate sponsor status, dependent eligibility, ID-card validity, or entitlement restoration.
+
+## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXV Addendum)
+
+- Add `toolchain_id=TC-NEWBORN-344`, `tool_suite_id=ts-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-v1`, and `protocol_stack_id=ps-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-stack-v1` when eligibility reconciliation depends on newborn civil-registration evidence, TRICARE activation, or sponsor-linked newborn enrollment legitimacy.
+- Add `packet_id=DPL-NEWBORN-DEERS-TRICARE-DOCS-001` for branches that materially alter entitlement restoration, family healthcare continuity, or sponsor-dependent legitimacy.

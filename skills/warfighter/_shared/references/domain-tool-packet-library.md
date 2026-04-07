@@ -15345,3 +15345,71 @@ validation_gates:
 - output_schema: reintegration board, peer-mentor support ladder, adaptive-sports continuity packet
 - protocol_profile: HL7/FHIR + NIEM + signed rehabilitation plans + API/JSON + S/MIME + USMTF
 - validation_gates: rehabilitation-review check, peer-support legitimacy confirmation, equipment-readiness review, human recovery-program validation
+
+## Packet Addendum LXXIII (2026-04-07, Expansion Wave LXXXV)
+
+### packet_id: DPL-PARENTAL-LEAVE-PREG-POSTPARTUM-001
+- domain: joint parental leave pregnancy postpartum profile and duty modification continuity
+- objective: preserve lawful parental-leave sequencing and safe duty modification before pregnancy or postpartum administrative drift turns into readiness loss or unsafe work expectations.
+- primary_tools: parental-leave case board, maternity or postpartum appointment tracker, profile and duty-restriction ledger, assignment-impact queue
+- alternate_tools: manual parental-readiness roster and medical-profile review worksheet
+- degraded_mode: advisory-only parental sequencing with no unsupported leave approval, medical clearance, or duty-modification promise
+- input_requirements: affected servicemember roster, leave posture, profile dates, assignment timeline, childcare or household constraints, privacy limits
+- output_schema: parental-leave continuity board, profile ladder, duty-modification support packet
+- protocol_profile: HL7/FHIR + NIEM + signed medical or personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: leave-authority review, profile evidence check, command-impact confirmation, human medical or personnel validation
+
+### packet_id: DPL-NEWBORN-DEERS-TRICARE-DOCS-001
+- domain: joint newborn birth certificate DEERS TRICARE and travel document bridge
+- objective: preserve newborn healthcare access, identity legitimacy, and family movement continuity before delayed civil records or enrollment gaps create medical or travel harm.
+- primary_tools: birth-record request tracker, DEERS enrollment queue, newborn-coverage board, passport or travel-document ledger
+- alternate_tools: manual newborn-priority roster and birth-registration escalation worksheet
+- degraded_mode: advisory-only newborn sequencing with no unsupported birth-record, enrollment, or travel-document outcome
+- input_requirements: newborn identity details, sponsor status, birth location, care needs, travel deadlines, privacy constraints
+- output_schema: newborn documentation board, enrollment ladder, family-travel legitimacy packet
+- protocol_profile: HL7/FHIR + NIEM + ICAO Doc 9303 + signed civil-status notices + API/JSON + S/MIME + USMTF
+- validation_gates: birth-evidence review, sponsor-status confirmation, care-routing check, human DEERS or document validation
+
+### packet_id: DPL-IG-EO-REPRISAL-SAFEGUARD-001
+- domain: joint inspector general equal opportunity and reprisal complaint safeguard
+- objective: preserve protected reporting, reprisal-safe escalation, and command-climate safeguards before complaint friction or retaliation drives warfighters out of safe reporting channels.
+- primary_tools: complaint intake board, protected-communication ledger, EO or IG case tracker, command-climate protection queue
+- alternate_tools: manual protected-complaint roster and escalation-routing worksheet
+- degraded_mode: advisory-only complaint sequencing with no unsupported investigation, substantiation, or command finding
+- input_requirements: complaint category, affected personnel, confidentiality posture, reprisal indicators, immediate safety concerns, timeline pressure
+- output_schema: protected-complaint safeguarding board, reprisal-risk ladder, command-climate protection packet
+- protocol_profile: NIEM + signed complaint notices + API/JSON + S/MIME + USMTF
+- validation_gates: confidentiality review, complaint-authority confirmation, protective-routing check, human legal or inspector validation
+
+### packet_id: DPL-LOD-INCAP-PAY-DUTY-STATUS-001
+- domain: joint line of duty incapacitation pay and duty status continuity
+- objective: preserve lawful duty status, pay continuity, and injury-document integrity before LOD drift or fiscal delay harms recovery, treatment access, or availability.
+- primary_tools: LOD investigation tracker, incapacitation-pay queue, duty-status ledger, medical or personnel orders board
+- alternate_tools: manual LOD-priority roster and duty-status reconciliation worksheet
+- degraded_mode: advisory-only duty-status sequencing with no unsupported LOD finding, pay action, or appeal outcome
+- input_requirements: incident timeline, medical evidence, duty status, orders posture, pay impact, appeal deadlines
+- output_schema: LOD continuity board, incapacitation-pay ladder, duty-status legitimacy packet
+- protocol_profile: HL7/FHIR + NIEM + signed LOD or pay notices + API/JSON + S/MIME + USMTF
+- validation_gates: incident-evidence review, duty-authority confirmation, pay-routing check, human medical or finance validation
+
+### packet_id: DPL-AWARDS-DECORATIONS-BOARD-001
+- domain: joint awards decorations valor device and board record protection
+- objective: preserve recognition legitimacy and board-record trust before citation backlog, witness drift, or missing approval evidence turns into lasting career or accountability harm.
+- primary_tools: awards recommendation board, citation evidence ledger, approval tracker, board-file sync queue
+- alternate_tools: manual recognition-priority roster and citation-evidence worksheet
+- degraded_mode: advisory-only awards sequencing with no unsupported citation, signature, valor-device validation, or board outcome
+- input_requirements: award category, nominee roster, evidence posture, board timeline, approval chain, privacy limits
+- output_schema: awards integrity board, citation evidence ladder, board-record protection packet
+- protocol_profile: NIEM + signed personnel citations + API/JSON + S/MIME + USMTF
+- validation_gates: source-evidence review, approval-chain confirmation, board-timing check, human personnel validation
+
+### packet_id: DPL-FINAL-OUT-CIF-SEPARATION-001
+- domain: joint final out processing CIF OCIE medical dental and separation clearance
+- objective: preserve lawful separation by aligning accountability, medical clearance, and DD214 or final-pay dependencies before final-out friction traps warfighters in administrative limbo.
+- primary_tools: separation clearance checklist board, CIF or OCIE turn-in ledger, medical or dental out-processing queue, final pay or DD214 dependency tracker
+- alternate_tools: manual separation-priority roster and accountability-resolution worksheet
+- degraded_mode: advisory-only separation sequencing with no unsupported clearance signature, DD214 issue date, or final-pay outcome
+- input_requirements: separation timeline, clearance status, property accountability, medical or dental requirements, DD214 dependencies, fiscal deadlines
+- output_schema: final-out clearance board, accountability ladder, separation-legitimacy packet
+- protocol_profile: NIEM + signed separation checklists + API/JSON + S/MIME + USMTF
+- validation_gates: checklist review, accountability confirmation, medical-clearance check, human personnel validation
