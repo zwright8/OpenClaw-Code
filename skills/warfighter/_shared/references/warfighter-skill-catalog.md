@@ -3359,3 +3359,21 @@ Every skill output should include:
 - Joint ROTC service-academy OCS OTS and commissioning-file continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + joint-professional-military-education-school-seat-waiver-and-promotion-prerequisite-continuity-cell.
 - Joint initial-entry training holdover recycle and family-separation continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-mypay-les-allotment-and-payroll-access-continuity-cell + joint-family-readiness-group-ombudsman-and-key-spouse-communication-continuity-cell.
 - Joint high-attrition schoolhouse selection recycle medhold and follow-on orders continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-flight-surgeon-and-aeromedical-waiver-cell + joint-duty-limiting-profile-accommodation-and-nondeployable-code-continuity-cell.
+
+## New Expansion Wave (2026-04-11, Expansion Wave XCIV)
+
+- joint-dual-military-colocation-career-field-alignment-and-dependent-care-continuity-cell
+- joint-overseas-spouse-work-authorization-host-nation-banking-and-driver-license-continuity-cell
+- joint-cross-state-telehealth-licensure-compact-and-specialty-access-continuity-cell
+- joint-diver-submariner-pressure-qualification-and-special-duty-medical-continuity-cell
+- joint-remote-notary-digital-signature-and-emergency-legal-document-execution-cell
+- joint-military-driver-qualification-cdl-hazmat-and-convoy-license-continuity-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave XCIV)
+
+- Joint dual-military co-location career-field alignment and dependent-care continuity + homeland-base-childcare-evacuation-and-dual-military-family-continuity-cell + joint-family-care-plan-child-support-allotment-and-court-order-continuity-cell + mission-risk-decision-support.
+- Joint overseas spouse work authorization host-nation banking and driver-license continuity + joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell + joint-naturalization-citizenship-and-immigration-benefits-continuity-cell + joint-military-spouse-license-portability-and-employment-continuity-cell.
+- Joint cross-state telehealth licensure-compact and specialty-access continuity + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell + joint-transition-assistance-vre-dol-and-federal-hiring-bridge-cell + joint-exceptional-family-member-program-respite-and-medical-device-power-continuity-cell.
+- Joint diver and submariner pressure-qualification and special-duty medical continuity + joint-dive-medicine-hyperbaric-and-undersea-casualty-routing-cell + joint-flight-surgeon-and-aeromedical-waiver-cell + joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell.
+- Joint remote-notary digital-signature and emergency legal-document execution + joint-servicemember-civil-relief-estate-and-power-of-attorney-cell + joint-fvap-overseas-ballot-and-election-material-continuity-cell + homeland-military-legal-assistance-and-identity-document-reissuance-cell.
+- Joint military-driver CDL hazmat and convoy-license continuity + contested-logistics-sustainment + movement-control-convoy-rail-planner + joint-fuel-convoy-signature-suppression-cell.

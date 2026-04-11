@@ -631,3 +631,20 @@ Include these fields in outputs when tool integration is used:
 3. Treat fertility-treatment approvals, cryostorage transfers, parentage orders, MEPS waivers, commissioning appointments, graduation decisions, and schoolhouse recycles as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
 4. Keep reproductive-health and newborn data to the minimum required by the receiving office and explicitly separate clinical detail from readiness effect.
 5. Map every family-building or accession-pipeline recommendation back to a readiness effect such as accession throughput, commissioning continuity, lawful availability, family stability, or training-pipeline retention.
+
+## American Warfighter Global Mobility, Special-Duty Medical, Legal Execution, and Driver Qualification Addendum (2026-04-11)
+
+- Dual-military co-location and dependent-care continuity: assignment-alignment boards, co-location exception trackers, deployment-conflict matrices, and dependent-care coverage ledgers; protocols: `NIEM`, `HR-XML`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Overseas spouse work-authorization, host-nation banking, and driver-license continuity: work-authorization queues, banking-onboarding boards, SOFA or residency ledgers, and driver-license reciprocity trackers; protocols: `NIEM`, `ICAO Doc 9303`, `AAMVA DL/ID`, `ISO 20022`, signed consular notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Cross-state telehealth and licensure-compact specialty access: telehealth-eligibility boards, licensure-compact maps, specialty-referral queues, and remote-care escalation ledgers; protocols: `HL7/FHIR`, `NIEM`, signed referral notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Diver, submariner, and special-duty medical continuity: pressure-qualification ledgers, special-duty medical boards, physiology incident trackers, and sea-duty status boards; protocols: `HL7/FHIR`, `NIEM`, signed special-duty medical notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Remote notary, digital-signature, and emergency legal-document execution: legal-document execution boards, remote identity-proofing queues, witness or notary availability ledgers, and digital-signature validation trackers; protocols: `NIEM`, `PKCS#7/CMS`, signed legal notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Military driver qualification with CDL or hazmat endorsement continuity: driver-readiness boards, CDL or hazmat endorsement trackers, convoy-license ledgers, and mishap-restriction review queues; protocols: `NIEM`, `AAMVA CDLIS`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-11, Global Mobility, Special-Duty Medical, Legal Execution, and Driver Qualification)
+
+1. Cross-check at least one authoritative personnel, medical, legal, or licensing source with one household-support, consular, safety, or case-management source before recommending action that changes assignment stability, host-nation legality, care access, or convoy-force-flow posture.
+2. Use `ISO 20022`, `AAMVA DL/ID`, or `AAMVA CDLIS` only when banking, civilian driver-license, or CDL or hazmat artifacts are truly needed; keep the broader case exchange in `NIEM` plus signed notices.
+3. Treat co-location approvals, work-authorization outcomes, telehealth eligibility, pressure-qualification restoration, remote notarization, and driver-license endorsements as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
+4. For telehealth, special-duty medical, and remote-notary cases, minimize protected medical or identity data and separate readiness effect from the minimum legal or clinical detail required by the receiving office.
+5. Map every recommendation in these domains back to a readiness effect such as deployability, reporting reliability, household stability, lawful assignment execution, medical-access continuity, or sustainment throughput.

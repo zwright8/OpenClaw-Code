@@ -3441,3 +3441,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-v1`.
 - Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only schoolhouse sequencing with manual standards and medical review until selection and medhold evidence are human-confirmed.
+
+## Toolchain Wave XCIV (2026-04-11, Dual-Service Alignment, Overseas Household Legitimacy, Telehealth Access, Special-Duty Medical, Remote Notary, and Driver Qualification Continuity)
+
+### `dual-military-colocation-v1`
+- Use for: assignment and family-stability decisions when dual-service households face co-location breaks, career-field conflicts, or dependent-care gaps that could degrade lawful availability.
+- Primary tools: `ts-joint-dual-military-colocation-career-field-alignment-dependent-care-continuity-v1`.
+- Cross-check tools: `ts-joint-child-development-center-fee-assistance-duty-shift-continuity-v1` and `ts-joint-family-care-plan-child-support-allotment-court-order-continuity-v1`.
+- Protocols: `NIEM`, `HR-XML`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only co-location sequencing with manual personnel and dependent-care review until assignment evidence is human-confirmed.
+
+### `overseas-spouse-workauth-banking-driver-v1`
+- Use for: overseas household-legitimacy decisions when spouse employment authorization, banking access, or host-nation driving legality determines whether a family can actually execute orders.
+- Primary tools: `ts-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-v1`.
+- Cross-check tools: `ts-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-v1` and `ts-joint-naturalization-citizenship-immigration-benefits-continuity-v1`.
+- Protocols: `NIEM`, `ICAO Doc 9303`, `AAMVA DL/ID`, `ISO 20022`, signed consular notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only overseas-household sequencing with manual sponsorship and legal review until identity and authorization evidence are human-confirmed.
+
+### `telehealth-licensure-compact-v1`
+- Use for: health-access decisions when remote specialty care depends on cross-state telehealth law, licensure-compact validity, or referral routing that cannot wait for PCS stabilization.
+- Primary tools: `ts-joint-cross-state-telehealth-licensure-compact-specialty-access-continuity-v1`.
+- Cross-check tools: `ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed referral notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: advisory-only remote-care sequencing with manual referral and licensure review until eligibility evidence is human-confirmed.
+
+### `diver-submariner-special-duty-med-v1`
+- Use for: undersea force-readiness decisions when pressure exposure, special-duty medical qualification, or sea-duty restrictions determine whether crews remain lawfully employable.
+- Primary tools: `ts-joint-diver-submariner-pressure-qualification-special-duty-medical-continuity-v1`.
+- Cross-check tools: `ts-joint-dive-medicine-hyperbaric-routing-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed special-duty medical notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only special-duty medical sequencing with manual qualification and chamber review until exposure evidence is human-confirmed.
+
+### `remote-notary-docexec-v1`
+- Use for: legal-readiness and civic-protection decisions when deployed or disrupted warfighters need remote notarization, trusted digital signatures, or emergency document execution before a deadline expires.
+- Primary tools: `ts-joint-remote-notary-digital-signature-emergency-legal-document-execution-v1`.
+- Cross-check tools: `ts-joint-servicemember-civil-relief-estate-poa-v1` and `ts-joint-fvap-overseas-ballot-election-material-continuity-v1`.
+- Protocols: `NIEM`, `PKCS#7/CMS`, signed legal notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: advisory-only legal-document sequencing with manual identity proofing and legal review until signature trust is human-confirmed.
+
+### `military-driver-cdl-hazmat-v1`
+- Use for: sustainment-force-flow decisions when CDL or hazmat endorsement drift, convoy-license lapses, or driver restrictions begin to strand critical cargo and mission mobility.
+- Primary tools: `ts-joint-military-driver-qualification-cdl-hazmat-convoy-license-continuity-v1`.
+- Cross-check tools: `ts-logistics-distribution-v1`.
+- Protocols: `NIEM`, `AAMVA CDLIS`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only driver sequencing with manual safety and movement-control review until endorsement evidence is human-confirmed.

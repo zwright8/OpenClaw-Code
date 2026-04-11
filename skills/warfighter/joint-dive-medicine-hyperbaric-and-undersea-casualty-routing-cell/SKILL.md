@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag pressure injury, oxygen toxicity, chamber overcommitment, transport delay, and incomplete dive profiles early.
 - Provide coordination support only; do not invent treatment schedules, chamber settings, or independent return-to-dive clearance.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-SPECIALMED-393`, `tool_suite_id=ts-joint-diver-submariner-pressure-qualification-special-duty-medical-continuity-v1`, and `protocol_stack_id=ps-joint-diver-submariner-pressure-qualification-special-duty-medical-continuity-stack-v1` when casualty routing or chamber allocation depends on trusted diver or submariner qualification status, pressure-exposure history, or sea-duty medical legitimacy.
+- Add `packet_id=DPL-DIVER-SUBMARINER-MEDQUAL-001` for branches that materially alter undersea casualty routing, return-to-duty assumptions, or commander confidence in special-duty readiness.

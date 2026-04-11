@@ -16001,3 +16001,71 @@ validation_gates:
 - output_schema: selection-risk board, recycle or medhold ladder, follow-on-orders continuity packet
 - protocol_profile: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
 - validation_gates: status review, medical or waiver confirmation, orders check, human schoolhouse validation
+
+## Packet Addendum LXXXII (2026-04-11, Expansion Wave XCIV)
+
+### packet_id: DPL-DUAL-MIL-COLOCATION-001
+- domain: joint dual military colocation career field alignment and dependent care continuity
+- objective: preserve lawful availability and household stability by aligning co-location decisions, assignment timing, and dependent-care coverage before dual-service conflicts create avoidable readiness loss.
+- primary_tools: dual-military assignment board, career-field manning tracker, dependent-care coverage ledger, deployment-conflict matrix
+- alternate_tools: manual co-location roster and dependent-care review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported co-location approval, assignment commitment, or dependent-care guarantee
+- input_requirements: affected service members, assignment timelines, career-field constraints, dependent-care posture, deployment windows, retention risk
+- output_schema: co-location decision board, assignment-conflict ladder, dependent-care continuity packet
+- protocol_profile: NIEM + HR-XML + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: assignment review, care-plan confirmation, manpower-impact check, human personnel validation
+
+### packet_id: DPL-SPOUSE-WORKAUTH-BANK-DRIVER-001
+- domain: joint overseas spouse work authorization host-nation banking and driver license continuity
+- objective: preserve overseas household legitimacy by aligning work authorization, banking access, and driver-license evidence before a family arrives or remains stranded without lawful employment or mobility.
+- primary_tools: overseas spouse work-authorization queue, host-nation banking onboarding board, driver-license reciprocity tracker, SOFA or residency ledger
+- alternate_tools: manual overseas-household roster and consular review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported visa, banking approval, or driver-license claim
+- input_requirements: location, sponsor orders, spouse status, work-authorization posture, banking requirements, driver-license evidence, family-movement timeline
+- output_schema: overseas spouse employment board, banking or driver-license ladder, household-legitimacy continuity packet
+- protocol_profile: NIEM + ICAO Doc 9303 + AAMVA DL/ID + ISO 20022 + signed consular notices + API/JSON + S/MIME + USMTF
+- validation_gates: identity review, sponsorship confirmation, host-nation compliance check, human legal validation
+
+### packet_id: DPL-TELEHEALTH-LICENSURE-SPECIALTY-001
+- domain: joint cross-state telehealth licensure compact and specialty access continuity
+- objective: preserve care continuity by aligning telehealth eligibility, licensure-compact evidence, and specialty referral routing before geography or PCS friction turns into medical nonavailability.
+- primary_tools: telehealth eligibility board, licensure-compact map, specialty-care referral queue, remote-care escalation ledger
+- alternate_tools: manual telehealth roster and referral-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported telehealth authorization, specialty appointment, or licensure-compact claim
+- input_requirements: affected patients, care urgency, state locations, licensure posture, referral status, remote-capability limits
+- output_schema: telehealth access board, licensure-compact decision ladder, specialty-access continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed referral notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: patient-identity review, licensure confirmation, referral check, human clinical validation
+
+### packet_id: DPL-DIVER-SUBMARINER-MEDQUAL-001
+- domain: joint diver submariner pressure qualification and special-duty medical continuity
+- objective: preserve undersea readiness by aligning pressure-exposure evidence, qualification status, and special-duty medical reviews before avoidable medical drift sidelines crews.
+- primary_tools: special-duty medical board, pressure-qualification ledger, hyperbaric or physiology incident tracker, sea-duty status board
+- alternate_tools: manual undersea-medical roster and exposure-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported pressure qualification, sea-duty release, or special-duty medical clearance claim
+- input_requirements: affected personnel, duty type, exposure history, qualification posture, medical restrictions, mission timeline
+- output_schema: undersea medical-qualification board, pressure-exposure ladder, special-duty readiness packet
+- protocol_profile: HL7/FHIR + NIEM + signed special-duty medical notices + API/JSON + S/MIME + USMTF
+- validation_gates: exposure review, qualification confirmation, medical-authority check, human undersea-medicine validation
+
+### packet_id: DPL-REMOTE-NOTARY-DOCEXEC-001
+- domain: joint remote notary digital signature and emergency legal document execution
+- objective: preserve legal continuity by aligning identity proofing, witness or notary availability, and digital-signature trust before deployed or disrupted warfighters miss a critical legal deadline.
+- primary_tools: legal-document execution board, remote identity-proofing queue, notary or witness availability ledger, digital-signature validation tracker
+- alternate_tools: manual document-execution roster and legal-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported notarization, witness completion, or document-execution claim
+- input_requirements: document type, signer identity, jurisdiction, deadline, witness or notary availability, comms posture
+- output_schema: remote-notary execution board, signature-trust ladder, emergency-document continuity packet
+- protocol_profile: NIEM + PKCS#7/CMS + signed legal notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: identity-proofing review, jurisdiction check, signature-trust validation, human legal approval
+
+### packet_id: DPL-MIL-DRIVER-CDL-HAZMAT-001
+- domain: joint military driver qualification cdl hazmat and convoy license continuity
+- objective: preserve sustainment throughput by aligning driver qualification, endorsement status, and convoy-currency evidence before cargo movement stalls for lack of lawful operators.
+- primary_tools: driver-qualification board, CDL or hazmat endorsement tracker, convoy-license ledger, mishap or restriction review queue
+- alternate_tools: manual driver roster and master-driver review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported qualification restoration, endorsement approval, or convoy-license claim
+- input_requirements: affected operators, platform or cargo type, endorsement status, mishap history, convoy timeline, safety restrictions
+- output_schema: driver-readiness board, endorsement recovery ladder, convoy-license continuity packet
+- protocol_profile: NIEM + AAMVA CDLIS + signed qualification notices + API/JSON + S/MIME + USMTF
+- validation_gates: qualification review, endorsement confirmation, safety check, human command validation

@@ -16064,3 +16064,67 @@ external_binding:
 ### `ps-joint-high-attrition-schoolhouse-selection-recycle-medhold-follow-on-orders-continuity-stack-v1`
 - Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: selection-status exchange, recycle or medhold routing, waiver updates, and follow-on-orders acknowledgment.
+
+## Tool Suite Addendum XCIV (2026-04-11, Dual-Service Alignment, Overseas Household Legitimacy, Telehealth Access, Special-Duty Medical, Remote Notary, and Driver Qualification Continuity)
+
+### `ts-joint-dual-military-colocation-career-field-alignment-dependent-care-continuity-v1`
+- Use for: join-spouse assignment synchronization, co-location exception routing, deployment deconfliction, and dependent-care continuity when dual-service households are at risk of simultaneous disruption.
+- Primary tools: dual-military assignment board, career-field manning tracker, dependent-care coverage ledger, deployment-conflict matrix.
+- Cross-check tools: independent personnel-distribution review cell and alternate family-readiness or career-manager desk.
+- Typical products: co-location decision board, assignment-conflict ladder, dependent-care continuity packet.
+
+### `ts-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-v1`
+- Use for: spouse work-authorization routing, host-nation banking access, SOFA-linked identity or tax setup, and driver-license continuity when overseas family legitimacy affects retention or reporting stability.
+- Primary tools: overseas spouse work-authorization queue, host-nation banking onboarding board, driver-license reciprocity tracker, SOFA or residency ledger.
+- Cross-check tools: independent legal-assistance review cell and alternate consular, community-relations, or sponsorship desk.
+- Typical products: overseas spouse employment board, banking or driver-license ladder, household-legitimacy continuity packet.
+
+### `ts-joint-cross-state-telehealth-licensure-compact-specialty-access-continuity-v1`
+- Use for: cross-state telehealth eligibility, licensure-compact validation, specialty-care continuity, and remote pharmacy or diagnostic coordination when geography or network gaps block care.
+- Primary tools: telehealth eligibility board, licensure-compact map, specialty-care referral queue, remote-care escalation ledger.
+- Cross-check tools: independent clinical-operations review cell and alternate TRICARE, state-medical-board, or referral-management desk.
+- Typical products: telehealth access board, licensure-compact decision ladder, specialty-access continuity packet.
+
+### `ts-joint-diver-submariner-pressure-qualification-special-duty-medical-continuity-v1`
+- Use for: diver or submariner medical qualification, pressure-exposure surveillance, special-duty screening, and return-to-duty continuity when undersea readiness depends on trusted medical evidence.
+- Primary tools: special-duty medical board, pressure-qualification ledger, hyperbaric or physiology incident tracker, sea-duty status board.
+- Cross-check tools: independent undersea-medicine review cell and alternate flight-surgeon, preventive-medicine, or medical-readiness desk.
+- Typical products: undersea medical-qualification board, pressure-exposure ladder, special-duty readiness packet.
+
+### `ts-joint-remote-notary-digital-signature-emergency-legal-document-execution-v1`
+- Use for: emergency POA, guardianship, estate, ballot-cure, or consent-document execution when deployed or disrupted warfighters need lawful remote notarization and digital-signature assurance.
+- Primary tools: legal-document execution board, remote identity-proofing queue, notary or witness availability ledger, digital-signature validation tracker.
+- Cross-check tools: independent legal-assistance review cell and alternate casualty-assistance, family-support, or court-liaison desk.
+- Typical products: remote-notary execution board, signature-trust ladder, emergency-document continuity packet.
+
+### `ts-joint-military-driver-qualification-cdl-hazmat-convoy-license-continuity-v1`
+- Use for: CDL or hazmat endorsement continuity, military driver licensing, convoy currency recovery, and mishap restriction adjudication when force flow depends on legally qualified operators.
+- Primary tools: driver-qualification board, CDL or hazmat endorsement tracker, convoy-license ledger, mishap or restriction review queue.
+- Cross-check tools: independent safety or master-driver review cell and alternate movement-control or unit-training desk.
+- Typical products: driver-readiness board, endorsement recovery ladder, convoy-license continuity packet.
+
+## Protocol Stack Addendum XCIV (2026-04-11, External Integration Profiles for Expansion Wave XCIV)
+
+### `ps-joint-dual-military-colocation-career-field-alignment-dependent-care-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: assignment-status exchange, co-location exception routing, dependent-care updates, and command acknowledgment.
+
+### `ps-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-stack-v1`
+- Protocols: `NIEM`, `ICAO Doc 9303`, `AAMVA DL/ID`, `ISO 20022`, signed consular notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: overseas work-authorization status exchange, banking-access routing, driver-license evidence transfer, and household-legitimacy acknowledgment.
+
+### `ps-joint-cross-state-telehealth-licensure-compact-specialty-access-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed referral notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Use for: telehealth-eligibility exchange, licensure-compact validation, specialty-referral routing, and remote-care acknowledgment.
+
+### `ps-joint-diver-submariner-pressure-qualification-special-duty-medical-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed special-duty medical notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: pressure-exposure evidence exchange, qualification-status routing, special-duty medical review, and return-to-duty acknowledgment.
+
+### `ps-joint-remote-notary-digital-signature-emergency-legal-document-execution-stack-v1`
+- Protocols: `NIEM`, `PKCS#7/CMS`, signed legal notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Use for: remote identity-proofing exchange, digital-signature validation, witness or notary routing, and emergency-document acknowledgment.
+
+### `ps-joint-military-driver-qualification-cdl-hazmat-convoy-license-continuity-stack-v1`
+- Protocols: `NIEM`, `AAMVA CDLIS`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: driver-license status exchange, endorsement routing, convoy-currency updates, and safety-acknowledgment tracking.

@@ -84,3 +84,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Add `toolchain_id=TC-DD93BEN-315`, `tool_suite_id=ts-joint-dd93-sgli-tsgli-beneficiary-estate-readiness-continuity-v1`, and `protocol_stack_id=ps-joint-dd93-sgli-tsgli-beneficiary-estate-readiness-continuity-stack-v1` when legal-readiness posture depends on aligned DD93 contacts, beneficiary designations, or estate-document sufficiency before deployment, casualty exposure, or emergency POA execution.
 - Add `toolchain_id=TC-VAHOME-317`, `tool_suite_id=ts-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-v1`, and `protocol_stack_id=ps-joint-va-home-loan-guaranty-foreclosure-avoidance-housing-stability-stack-v1` when legal-support recommendations depend on VA loan servicing, foreclosure-avoidance timing, or housing-transition stability beyond baseline SCRA protections.
 - Add `packet_id=DPL-DD93-SGLI-TSGLI-ESTATE-001` and `packet_id=DPL-VA-HOME-LOAN-HOUSING-001` for branches that materially alter legal readiness, family stability, or command confidence in household continuity.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-ENOTARY-394`, `tool_suite_id=ts-joint-remote-notary-digital-signature-emergency-legal-document-execution-v1`, and `protocol_stack_id=ps-joint-remote-notary-digital-signature-emergency-legal-document-execution-stack-v1` when civil-relief posture depends on trusted remote notarization, digital-signature validity, or emergency document execution under deployment or infrastructure disruption.
+- Add `packet_id=DPL-REMOTE-NOTARY-DOCEXEC-001` for branches that materially alter POA timing, estate-document legitimacy, or command confidence in emergency legal readiness.

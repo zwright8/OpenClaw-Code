@@ -219,6 +219,12 @@ This reference expands the warfighter skill roadmap across major military action
 
 ## Run Update (2026-04-07T08:04:40Z)
 
+## Run Update (2026-04-11T18:08:41Z)
+
+- Added a 6-skill American-warfighter support wave covering dual-military co-location and dependent-care continuity, overseas spouse work authorization with host-nation banking and driver-license continuity, cross-state telehealth licensure-compact specialty access, diver and submariner pressure-qualification continuity, remote-notary digital-signature emergency document execution, and military-driver CDL or hazmat or convoy-license continuity.
+- Extended shared references with Tool Suite Addendum XCIV, Protocol Stack Addendum XCIV, Packet Addendum LXXXII, Toolchain Wave XCIV, and a global-mobility or special-duty support addendum so these assignment-legitimacy, medical-access, legal-execution, and sustainment-driver domains bind to concrete external tools, protocol families, packet IDs, and degraded-mode fallback paths.
+- Improved existing support anchors with Wave XCIV override bindings for dual-service assignment stability, overseas household legality, telehealth legitimacy, undersea special-duty medical readiness, trusted remote legal execution, and convoy-driver force flow.
+
 - Added a focused American-warfighter support wave covering DD93 or SGLI or TSGLI and estate-readiness continuity, SkillBridge and employer-fellowship transition continuity, VA home-loan housing-stability preservation, and promotion-board plus evaluation-report record integrity.
 - Extended shared references with Tool Suite Addendum LXXVIII, Protocol Stack Addendum LXXVIII, Packet Addendum LXVII, and Toolchain Wave LXXVIII to provide concrete external tool, protocol, and packet defaults for these support domains.
 - Improved mission-risk, family-readiness, personnel-records, reserve-mobilization, and legal-readiness anchor skills so support-system friction now maps more directly to beneficiary trust, housing survivability, transition legitimacy, and career-continuity risk.

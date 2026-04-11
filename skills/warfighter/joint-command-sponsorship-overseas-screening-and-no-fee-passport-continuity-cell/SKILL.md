@@ -81,3 +81,8 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Add `toolchain_id=TC-UATOUR-362`, `tool_suite_id=ts-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-v1`, and `protocol_stack_id=ps-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-stack-v1` when family-movement sequencing depends on unaccompanied-tour order integrity, family-separation-allowance legitimacy, or deferred-dependent-travel clarity for a separated household.
 - Add `packet_id=DPL-UNACCOMP-FSA-DEFER-001` for branches that materially alter command-sponsorship sequencing, deferred-family-travel legitimacy, or overseas movement confidence.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-SOFA-391`, `tool_suite_id=ts-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-v1`, and `protocol_stack_id=ps-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-stack-v1` when family-movement legitimacy depends on a spouse being able to lawfully work, open bank access, or drive after arrival instead of only clearing the initial sponsorship gate.
+- Add `packet_id=DPL-SPOUSE-WORKAUTH-BANK-DRIVER-001` for branches that materially alter sponsorship sequencing, overseas household legality, or commander confidence in dependent movement viability.

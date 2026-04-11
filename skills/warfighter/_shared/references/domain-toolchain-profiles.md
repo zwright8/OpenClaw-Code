@@ -3384,3 +3384,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent schoolhouse-standards review cell and alternate medical or administrative review desk
 - Protocol binding: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only sequencing until selection status, medhold evidence, and human schoolhouse review are confirmed
+
+## Toolchain Wave XCIV (2026-04-11)
+
+### `TC-DUALMIL-390`
+
+- Domain: joint dual military colocation career field alignment and dependent care continuity
+- Primary systems: dual-military assignment board, career-field manning tracker, dependent-care coverage ledger, deployment-conflict matrix
+- Cross-check systems: independent personnel-distribution review cell and alternate family-readiness or career-manager desk
+- Protocol binding: NIEM + HR-XML + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until assignment status, care coverage, and human personnel review are confirmed
+
+### `TC-SOFA-391`
+
+- Domain: joint overseas spouse work authorization host-nation banking and driver license continuity
+- Primary systems: overseas spouse work-authorization queue, host-nation banking onboarding board, driver-license reciprocity tracker, SOFA or residency ledger
+- Cross-check systems: independent legal-assistance review cell and alternate consular, community-relations, or sponsorship desk
+- Protocol binding: NIEM + ICAO Doc 9303 + AAMVA DL/ID + ISO 20022 + signed consular notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until identity evidence, work-authorization posture, and human legal review are confirmed
+
+### `TC-TELEHEALTH-392`
+
+- Domain: joint cross-state telehealth licensure compact and specialty access continuity
+- Primary systems: telehealth eligibility board, licensure-compact map, specialty-care referral queue, remote-care escalation ledger
+- Cross-check systems: independent clinical-operations review cell and alternate TRICARE, state-medical-board, or referral-management desk
+- Protocol binding: HL7/FHIR + NIEM + signed referral notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: advisory-only sequencing until licensure evidence, referral posture, and human clinical review are confirmed
+
+### `TC-SPECIALMED-393`
+
+- Domain: joint diver submariner pressure qualification and special-duty medical continuity
+- Primary systems: special-duty medical board, pressure-qualification ledger, hyperbaric or physiology incident tracker, sea-duty status board
+- Cross-check systems: independent undersea-medicine review cell and alternate flight-surgeon, preventive-medicine, or medical-readiness desk
+- Protocol binding: HL7/FHIR + NIEM + signed special-duty medical notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until qualification evidence, exposure status, and human medical review are confirmed
+
+### `TC-ENOTARY-394`
+
+- Domain: joint remote notary digital signature and emergency legal document execution
+- Primary systems: legal-document execution board, remote identity-proofing queue, notary or witness availability ledger, digital-signature validation tracker
+- Cross-check systems: independent legal-assistance review cell and alternate casualty-assistance, family-support, or court-liaison desk
+- Protocol binding: NIEM + PKCS#7/CMS + signed legal notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: advisory-only sequencing until identity proofing, signature trust, and human legal review are confirmed
+
+### `TC-CDLHAZ-395`
+
+- Domain: joint military driver qualification cdl hazmat and convoy license continuity
+- Primary systems: driver-qualification board, CDL or hazmat endorsement tracker, convoy-license ledger, mishap or restriction review queue
+- Cross-check systems: independent safety or master-driver review cell and alternate movement-control or unit-training desk
+- Protocol binding: NIEM + AAMVA CDLIS + signed qualification notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until endorsement evidence, safety posture, and human command review are confirmed

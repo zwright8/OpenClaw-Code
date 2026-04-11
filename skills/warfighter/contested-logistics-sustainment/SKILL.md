@@ -352,3 +352,8 @@ Preferred protocol families for this skill: USMTF, API/JSON, OGC.
 - Add `tool_suite_id=ts-theater-essential-services-contractor-strike-continuity-v1` + `protocol_stack_id=ps-theater-essential-services-contractor-strike-continuity-stack-v1` when logistics viability depends on contracted utilities, sanitation, transport, or warehousing labor continuity.
 - Add `tool_suite_id=ts-theater-allied-civilian-contractor-readiness-force-protection-v1` + `protocol_stack_id=ps-theater-allied-civilian-contractor-readiness-force-protection-stack-v1` when throughput depends on vetted contractor access, protected convoy movement, or contested base-service support.
 - Add `packet_id=DPL-EVAC-HUMLOG-TRAFFIC-001`, `packet_id=DPL-EMERGENCY-PERMIT-ENTRY-001`, `packet_id=DPL-ESSENTIAL-SERVICES-STRIKE-001`, and `packet_id=DPL-CONTRACTOR-READINESS-FP-001` for branches that materially alter throughput confidence, repair timing, or sustainment labor viability.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-CDLHAZ-395`, `tool_suite_id=ts-joint-military-driver-qualification-cdl-hazmat-convoy-license-continuity-v1`, and `protocol_stack_id=ps-joint-military-driver-qualification-cdl-hazmat-convoy-license-continuity-stack-v1` when sustainment feasibility depends on enough legally qualified drivers with current CDL, hazmat, or convoy credentials to move fuel, ammunition, or priority cargo.
+- Add `packet_id=DPL-MIL-DRIVER-CDL-HAZMAT-001` for branches that materially alter force-flow confidence, cargo-release timing, or commander trust in convoy execution.

@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported ballot-access promises, deadline misses, chain-of-custody ambiguity, and privacy exposure before recommending action.
 - Do not fabricate election authority, ballot issuance, or submission acceptance.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-ENOTARY-394`, `tool_suite_id=ts-joint-remote-notary-digital-signature-emergency-legal-document-execution-v1`, and `protocol_stack_id=ps-joint-remote-notary-digital-signature-emergency-legal-document-execution-stack-v1` when ballot continuity depends on trusted remote signature, witness, notarization, or cure-document execution before state deadlines expire.
+- Add `packet_id=DPL-REMOTE-NOTARY-DOCEXEC-001` for branches that materially alter ballot-cure timing, lawful submission confidence, or voter-assistance legitimacy.

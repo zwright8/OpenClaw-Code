@@ -76,3 +76,8 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Add `toolchain_id=TC-FEDVIP-340`, `tool_suite_id=ts-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-v1`, and `protocol_stack_id=ps-joint-tricare-dental-fedvip-vision-orthodontic-benefit-bridge-stack-v1` when continuity risk extends beyond specialty medical care into dental, vision, orthodontic, or FEDVIP benefit gaps that can still degrade readiness or household stability.
 - Add `packet_id=DPL-DENTAL-VISION-FEDVIP-001` for branches that materially alter benefit-bridge timing, specialty network selection, or command confidence in nonmedical care continuity.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-TELEHEALTH-392`, `tool_suite_id=ts-joint-cross-state-telehealth-licensure-compact-specialty-access-continuity-v1`, and `protocol_stack_id=ps-joint-cross-state-telehealth-licensure-compact-specialty-access-continuity-stack-v1` when specialty-care continuity depends on cross-state telehealth law, licensure-compact validity, or remote-care routing instead of local network recovery alone.
+- Add `packet_id=DPL-TELEHEALTH-LICENSURE-SPECIALTY-001` for branches that materially alter specialty-access timing, referral legitimacy, or command confidence in medical continuity.

@@ -72,3 +72,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag licensing dead ends, employer retaliation risk, childcare-linked work gaps, and unsupported retention assumptions before recommending action.
 - Do not fabricate reciprocity authority, employer agreements, or financial relief approvals.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIV Addendum)
+
+- Add `toolchain_id=TC-SOFA-391`, `tool_suite_id=ts-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-v1`, and `protocol_stack_id=ps-joint-overseas-spouse-work-authorization-host-nation-banking-driver-license-continuity-stack-v1` when spouse-employment continuity depends on overseas work authorization, host-nation banking access, or lawful driving instead of interstate license portability alone.
+- Add `packet_id=DPL-SPOUSE-WORKAUTH-BANK-DRIVER-001` for branches that materially alter spouse-employment resilience, household income stability, or retention confidence during overseas movement.
