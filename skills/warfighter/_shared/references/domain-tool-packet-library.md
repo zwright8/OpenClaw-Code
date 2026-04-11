@@ -15604,3 +15604,82 @@ validation_gates:
 - output_schema: credential-pathway board, voucher-and-hour recovery ladder, civilian-crosswalk continuity packet
 - protocol_profile: NIEM + HR-XML + signed credential notices + API/JSON + S/MIME + USMTF
 - validation_gates: voucher review, hour-capture confirmation, exam-legitimacy check, human credentialing validation
+
+## Packet Addendum LXXVI (2026-04-11, Expansion Wave LXXXVIII)
+
+### packet_id: DPL-RESERVE-RETIREMENT-SANCTUARY-001
+- domain: reserve component retirement points sanctuary and non-regular retirement continuity
+- objective: preserve lawful retirement-credit accumulation and sanctuary decisions by reconciling points, orders, and eligibility evidence before bad-year drift or delayed review harms long-term stability.
+- primary_tools: reserve retirement-points ledger, order-credit tracker, sanctuary-threshold board, non-regular retirement eligibility queue
+- alternate_tools: manual retirement-credit roster and sanctuary review worksheet
+- degraded_mode: advisory-only retirement sequencing with no unsupported point credit, sanctuary finding, or retired-pay outcome
+- input_requirements: affected personnel, retirement year ending dates, point posture, order history, sanctuary exposure, records dependencies
+- output_schema: retirement-credit reconciliation board, sanctuary-risk ladder, non-regular retirement continuity packet
+- protocol_profile: NIEM + signed retirement notices + API/JSON + S/MIME + USMTF
+- validation_gates: points-evidence review, order-credit confirmation, sanctuary calculation check, human retirement-services validation
+
+### packet_id: DPL-TRS-TRR-DENTAL-ELIGIBILITY-001
+- domain: reserve component TRICARE Reserve Select retired reserve and dental eligibility bridge
+- objective: preserve reserve family care continuity by aligning coverage status, premium posture, and dependent eligibility before duty-status changes create care gaps.
+- primary_tools: reserve health-plan enrollment tracker, premium-payment ledger, family-coverage crosswalk, dental or pharmacy eligibility queue
+- alternate_tools: manual coverage roster and premium-recovery worksheet
+- degraded_mode: advisory-only coverage sequencing with no unsupported enrollment, premium relief, or care-access outcome
+- input_requirements: affected personnel or dependents, coverage status, premium posture, duty-status timeline, family eligibility, care dependencies
+- output_schema: reserve health-coverage continuity board, premium-risk ladder, family-eligibility bridge packet
+- protocol_profile: HL7/FHIR + NIEM + signed coverage notices + API/JSON + S/MIME + USMTF
+- validation_gates: eligibility review, premium-status confirmation, dependent cross-check, human benefits validation
+
+### packet_id: DPL-EFMP-ASSIGNMENT-SCHOOL-001
+- domain: joint EFMP enrollment assignment coordination and school liaison continuity
+- objective: preserve special-needs family stability by aligning EFMP posture, assignment routing, and school-support continuity before PCS or command-sponsorship friction collapses readiness.
+- primary_tools: EFMP enrollment tracker, assignment-coordination board, school-liaison queue, special-needs support crosswalk
+- alternate_tools: manual EFMP-priority roster and school-support worksheet
+- degraded_mode: advisory-only assignment sequencing with no unsupported enrollment, sponsorship, or school-placement outcome
+- input_requirements: affected family members, EFMP posture, assignment timeline, school dependencies, support constraints, privacy considerations
+- output_schema: EFMP assignment board, school-support continuity ladder, family-movement decision packet
+- protocol_profile: HL7/FHIR + NIEM + signed family-support notices + API/JSON + S/MIME + USMTF
+- validation_gates: EFMP-status review, school-support check, command-sponsorship confirmation, human family-support validation
+
+### packet_id: DPL-GI-BILL-TEB-YELLOW-RIBBON-001
+- domain: joint Post-9/11 GI Bill transferability dependent education and Yellow Ribbon continuity
+- objective: preserve dependent education continuity by aligning transferability elections, service obligations, and school participation before administrative drift or missed timing destroys long-range education plans.
+- primary_tools: education-benefit transfer tracker, dependent-school or program ledger, Yellow Ribbon participation board, service-obligation evidence queue
+- alternate_tools: manual education-transfer roster and obligation-review worksheet
+- degraded_mode: advisory-only education-transfer sequencing with no unsupported election, obligation waiver, or school-funding outcome
+- input_requirements: affected personnel or dependents, transferability posture, service-obligation status, school timeline, Yellow Ribbon participation, record dependencies
+- output_schema: transferability decision board, dependent-education continuity ladder, Yellow Ribbon protection packet
+- protocol_profile: NIEM + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
+- validation_gates: election review, obligation confirmation, school-participation check, human education-benefits validation
+
+### packet_id: DPL-MYCAA-TRAINING-CAREER-001
+- domain: strategic military spouse MyCAA portable training and career reentry
+- objective: preserve spouse employment resilience by restoring MyCAA funding, training continuity, and credential restart before PCS or caregiving shocks become retention losses.
+- primary_tools: spouse training case board, MyCAA funding tracker, portable credential planner, career-reentry ledger
+- alternate_tools: manual spouse-training roster and funding-recovery worksheet
+- degraded_mode: advisory-only spouse-training sequencing with no unsupported funding, credential, or job outcome claim
+- input_requirements: affected households, training program, MyCAA posture, credential status, caregiving constraints, PCS timeline
+- output_schema: spouse-training continuity board, funding-and-restart ladder, career-reentry packet
+- protocol_profile: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
+- validation_gates: funding review, training-status confirmation, credential check, human spouse-support validation
+
+### packet_id: DPL-PRIVATIZED-HOUSING-BAH-CLAIMS-001
+- domain: joint privatized military housing tenant rights BAH recertification and claims
+- objective: preserve safe housing and financial legitimacy by aligning habitability evidence, BAH recertification, and claims routing before housing disputes degrade readiness.
+- primary_tools: privatized-housing case board, habitability claims tracker, BAH recertification ledger, displacement-support queue
+- alternate_tools: manual housing-priority roster and claims worksheet
+- degraded_mode: advisory-only housing sequencing with no unsupported remedy, BAH adjustment, or claims outcome
+- input_requirements: affected households, housing condition, BAH posture, claims status, lease or tenancy evidence, temporary-lodging constraints
+- output_schema: housing-dispute board, BAH-and-claims recovery ladder, tenant-rights escalation packet
+- protocol_profile: NIEM + signed housing notices + API/JSON + S/MIME + USMTF
+- validation_gates: habitability review, BAH-status confirmation, claims-evidence check, human housing validation
+
+### packet_id: DPL-HUMAN-READINESS-CASE-CONFERENCE-001
+- domain: joint command team human readiness case conference and escalation
+- objective: preserve warfighter availability by synchronizing medical, legal, chaplain, family, housing, and financial actions before fragmented case management becomes mission loss.
+- primary_tools: command case board, cross-functional referral tracker, action-and-suspense matrix, privacy-release ledger
+- alternate_tools: manual command-case roster and escalation worksheet
+- degraded_mode: advisory-only case sequencing with no unsupported consent, case closure, or command decision claim
+- input_requirements: affected personnel or households, active support lanes, readiness impact, consent posture, command deadlines, unresolved blockers
+- output_schema: human-readiness case board, cross-functional escalation ladder, command-case conference packet
+- protocol_profile: HL7/FHIR + NIEM + signed command-support notices + API/JSON + S/MIME + USMTF
+- validation_gates: consent review, authority check, support-lane confirmation, human command validation

@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect medical privacy, disability accommodation, caregiver consent, and life-safety device assumptions before recommending action.
 - Do not fabricate device needs, respite availability, generator capacity, or transport access.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVIII Addendum)
+
+- Add `toolchain_id=TC-EFMPSL-357`, `tool_suite_id=ts-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-v1`, and `protocol_stack_id=ps-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-stack-v1` when special-needs family stability depends on EFMP assignment screening, command sponsorship, school support, or PCS timing rather than only respite or device-power continuity.
+- Add `toolchain_id=TC-HUMREAD-361`, `tool_suite_id=ts-joint-command-team-human-readiness-case-conference-escalation-v1`, and `protocol_stack_id=ps-joint-command-team-human-readiness-case-conference-escalation-stack-v1` when complex special-needs cases require deliberate command integration across medical, family, housing, and legal lanes.
+- Add `packet_id=DPL-EFMP-ASSIGNMENT-SCHOOL-001` and `packet_id=DPL-HUMAN-READINESS-CASE-CONFERENCE-001` for branches that materially alter special-needs family movement, school continuity, or command confidence in household stability.

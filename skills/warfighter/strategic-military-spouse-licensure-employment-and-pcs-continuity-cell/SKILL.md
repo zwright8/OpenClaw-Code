@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported employer promises, privacy exposure, unverifiable licensure status, and retention-impact assumptions before recommending action.
 - Do not fabricate reciprocity rules, job offers, income support, or approvals.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVIII Addendum)
+
+- Add `toolchain_id=TC-MYCAA-359`, `tool_suite_id=ts-strategic-military-spouse-mycaa-portable-training-career-reentry-v1`, and `protocol_stack_id=ps-strategic-military-spouse-mycaa-portable-training-career-reentry-stack-v1` when spouse employment recovery depends on MyCAA funding, portable training restart, or credential reentry rather than direct relicensure alone.
+- Add `toolchain_id=TC-PMHOUS-360`, `tool_suite_id=ts-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-v1`, and `protocol_stack_id=ps-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-stack-v1` when spouse employment continuity is degraded by unsafe housing, temporary displacement, or unresolved BAH and claims friction.
+- Add `packet_id=DPL-MYCAA-TRAINING-CAREER-001` and `packet_id=DPL-PRIVATIZED-HOUSING-BAH-CLAIMS-001` for branches that materially alter spouse employment continuity, household income resilience, or retention confidence.

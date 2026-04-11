@@ -3226,3 +3226,12 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-family-readiness-group-ombudsman-key-spouse-communication-v1`, `ts-joint-military-onesource-nonmedical-counseling-peer-support-v1`, and `ts-joint-cool-usmap-credentialing-pathway-continuity-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, `HR-XML`, `CAP`, signed readiness or transition notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only support triage with human medical, personnel, family-readiness, or transition-services confirmation before any status claim.
+
+## Toolchain Wave LXXXVIII (2026-04-11, Reserve Lifecycle, Family Portability, and Human-Readiness Continuity)
+
+### `reserve-family-portability-human-readiness-v1`
+- Use for: readiness, retention, and household-stability decisions when reserve retirement credit, reserve healthcare, EFMP assignment continuity, dependent education portability, spouse training restart, housing disputes, or cross-functional case fragmentation determine whether a warfighter can remain available.
+- Primary tools: `ts-reserve-component-retirement-points-sanctuary-nonregular-retirement-continuity-v1`, `ts-reserve-component-tricare-reserve-select-retired-reserve-dental-eligibility-bridge-v1`, and `ts-joint-command-team-human-readiness-case-conference-escalation-v1`.
+- Cross-check tools: `ts-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-v1`, `ts-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-v1`, `ts-strategic-military-spouse-mycaa-portable-training-career-reentry-v1`, and `ts-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, `PESC XML`, `HR-XML`, signed family-support or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only reserve and family-portability triage with human medical, personnel, benefits, housing, and command review before any status or entitlement claim.

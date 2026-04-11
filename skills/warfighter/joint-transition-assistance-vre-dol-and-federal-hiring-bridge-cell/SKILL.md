@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported job-placement promises, missing TAP evidence, VR&E eligibility uncertainty, and federal-deadline risk before recommending action.
 - Do not fabricate workshop completion, counseling status, hiring outcomes, or benefit approvals.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVIII Addendum)
+
+- Add `toolchain_id=TC-GITEB-358`, `tool_suite_id=ts-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-v1`, and `protocol_stack_id=ps-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-stack-v1` when transition planning depends on preserving GI Bill transferability elections, dependent education continuity, or Yellow Ribbon participation before separation.
+- Add `packet_id=DPL-GI-BILL-TEB-YELLOW-RIBBON-001` for branches that materially alter transition timing, household education stability, or separation confidence.

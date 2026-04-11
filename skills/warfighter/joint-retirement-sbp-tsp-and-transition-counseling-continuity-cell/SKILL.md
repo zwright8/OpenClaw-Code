@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag missed election deadlines, unsupported retirement promises, counseling shortfalls, and family-transition fragility before recommending action.
 - Do not fabricate retirement eligibility, SBP election status, TSP outcomes, or counseling completion.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVIII Addendum)
+
+- Add `toolchain_id=TC-RESRET-355`, `tool_suite_id=ts-reserve-component-retirement-points-sanctuary-nonregular-retirement-continuity-v1`, and `protocol_stack_id=ps-reserve-component-retirement-points-sanctuary-nonregular-retirement-continuity-stack-v1` when reserve-component retirement counseling depends on accurate points, sanctuary status, or non-regular retirement evidence.
+- Add `toolchain_id=TC-TRSRES-356`, `tool_suite_id=ts-reserve-component-tricare-reserve-select-retired-reserve-dental-eligibility-bridge-v1`, and `protocol_stack_id=ps-reserve-component-tricare-reserve-select-retired-reserve-dental-eligibility-bridge-stack-v1` when retirement counseling confidence depends on preserving Reserve health-coverage continuity into retired-reserve status.
+- Add `packet_id=DPL-RESERVE-RETIREMENT-SANCTUARY-001` and `packet_id=DPL-TRS-TRR-DENTAL-ELIGIBILITY-001` for branches that materially alter retirement-legitimacy, benefits continuity, or household stability.

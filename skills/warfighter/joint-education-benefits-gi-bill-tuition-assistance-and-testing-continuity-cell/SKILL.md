@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag lost enrollment evidence, unsupported tuition promises, testing-window misses, and transition-readiness gaps before recommending action.
 - Do not fabricate eligibility, funding authority, school acceptance, or exam availability.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVIII Addendum)
+
+- Add `toolchain_id=TC-GITEB-358`, `tool_suite_id=ts-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-v1`, and `protocol_stack_id=ps-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-stack-v1` when education continuity depends on transferability elections, dependent use, or Yellow Ribbon participation rather than only direct warfighter enrollment.
+- Add `toolchain_id=TC-MYCAA-359`, `tool_suite_id=ts-strategic-military-spouse-mycaa-portable-training-career-reentry-v1`, and `protocol_stack_id=ps-strategic-military-spouse-mycaa-portable-training-career-reentry-stack-v1` when spouse training restart or portable credential continuity materially changes household education resilience and transition confidence.
+- Add `packet_id=DPL-GI-BILL-TEB-YELLOW-RIBBON-001` and `packet_id=DPL-MYCAA-TRAINING-CAREER-001` for branches that materially alter family education portability, training continuity, or transition confidence.

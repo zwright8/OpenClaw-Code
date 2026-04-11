@@ -3253,3 +3253,23 @@ Every skill output should include:
 - Joint family readiness group ombudsman and key spouse communication continuity + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner + joint-emergency-leave-american-red-cross-message-and-command-approval-cell.
 - Joint military OneSource nonmedical counseling and peer support continuity + joint-military-family-readiness-crisis-sustainment-cell + joint-psychological-health-suicide-postvention-command-support-cell + reserve-guard-mobilization-planner.
 - Joint COOL USMAP and credentialing pathway continuity + joint-professional-license-cyber-certification-and-ceu-readiness-continuity-cell + joint-transition-assistance-vre-dol-and-federal-hiring-bridge-cell + mission-risk-decision-support.
+
+## New Expansion Wave (2026-04-11, Expansion Wave LXXXVIII)
+
+- reserve-component-retirement-points-sanctuary-and-nonregular-retirement-continuity-cell
+- reserve-component-tricare-reserve-select-retired-reserve-and-dental-eligibility-bridge-cell
+- joint-efmp-enrollment-assignment-coordination-and-school-liaison-continuity-cell
+- joint-post-9-11-gi-bill-transferability-dependent-education-and-yellow-ribbon-continuity-cell
+- strategic-military-spouse-mycaa-portable-training-and-career-reentry-cell
+- joint-privatized-military-housing-tenant-rights-bah-recertification-and-claims-cell
+- joint-command-team-human-readiness-case-conference-and-escalation-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave LXXXVIII)
+
+- Reserve component retirement points sanctuary and non-regular retirement continuity + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell + reserve-guard-mobilization-planner + joint-personnel-records-dd214-and-benefits-continuity-cell.
+- Reserve component TRICARE Reserve Select retired reserve and dental eligibility bridge + joint-military-family-readiness-crisis-sustainment-cell + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell + reserve-guard-mobilization-planner.
+- Joint EFMP enrollment assignment coordination and school liaison continuity + joint-exceptional-family-member-program-respite-and-medical-device-power-continuity-cell + strategic-military-child-youth-behavioral-health-and-school-reintegration-cell + joint-family-readiness-group-ombudsman-and-key-spouse-communication-continuity-cell.
+- Joint Post-9/11 GI Bill transferability dependent education and Yellow Ribbon continuity + joint-education-benefits-gi-bill-tuition-assistance-and-testing-continuity-cell + joint-federal-student-loan-deferment-fafsa-and-college-reentry-continuity-cell + joint-transition-assistance-vre-dol-and-federal-hiring-bridge-cell.
+- Strategic military spouse MyCAA portable training and career reentry + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + joint-cool-usmap-and-credentialing-pathway-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint privatized military housing tenant rights BAH recertification and claims + strategic-military-housing-utility-safety-and-restoration-cell + joint-va-home-loan-guaranty-foreclosure-avoidance-and-housing-stability-cell + joint-military-financial-liability-and-compensation-continuity-cell.
+- Joint command team human readiness case conference and escalation + mission-risk-decision-support + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner.

@@ -15690,3 +15690,77 @@ external_binding:
 ### `ps-joint-cool-usmap-credentialing-pathway-continuity-stack-v1`
 - Protocols: `NIEM`, `HR-XML`, signed credential notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: voucher-status exchange, apprenticeship-hour updates, exam-routing changes, and credential-pathway acknowledgment.
+
+## Tool Suite Addendum LXXXVIII (2026-04-11, Reserve Lifecycle, Family Portability, and Human-Readiness Continuity)
+
+### `ts-reserve-component-retirement-points-sanctuary-nonregular-retirement-continuity-v1`
+- Use for: retirement-point reconciliation, sanctuary exposure review, 20-year-letter timing, and non-regular retirement continuity when Reserve or Guard record drift threatens lawful service and household stability.
+- Primary tools: reserve retirement-points ledger, order-credit tracker, sanctuary-threshold board, non-regular retirement eligibility queue.
+- Cross-check tools: independent retirement-services review cell and alternate personnel-records or mobilization desk.
+- Typical products: retirement-credit reconciliation board, sanctuary-risk ladder, non-regular retirement continuity packet.
+
+### `ts-reserve-component-tricare-reserve-select-retired-reserve-dental-eligibility-bridge-v1`
+- Use for: TRS or TRR continuity, Reserve dental eligibility, premium reconciliation, and family-coverage preservation when duty-status changes threaten care access.
+- Primary tools: reserve health-plan enrollment tracker, premium-payment ledger, family-coverage crosswalk, dental or pharmacy eligibility queue.
+- Cross-check tools: independent health-benefits review cell and alternate DEERS or medical-support desk.
+- Typical products: reserve health-coverage continuity board, premium-risk ladder, family-eligibility bridge packet.
+
+### `ts-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-v1`
+- Use for: EFMP enrollment, assignment coordination, command sponsorship, and school-liaison continuity when special-needs family requirements threaten PCS timing or dependent support.
+- Primary tools: EFMP enrollment tracker, assignment-coordination board, school-liaison queue, special-needs support crosswalk.
+- Cross-check tools: independent family-support review cell and alternate school or medical-support desk.
+- Typical products: EFMP assignment board, school-support continuity ladder, family-movement decision packet.
+
+### `ts-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-v1`
+- Use for: Post-9/11 GI Bill transferability, dependent education continuity, and Yellow Ribbon stability when service obligations or records drift threaten family education plans.
+- Primary tools: education-benefit transfer tracker, dependent-school or program ledger, Yellow Ribbon participation board, service-obligation evidence queue.
+- Cross-check tools: independent education-benefits review cell and alternate transition-services or personnel-records desk.
+- Typical products: transferability decision board, dependent-education continuity ladder, Yellow Ribbon protection packet.
+
+### `ts-strategic-military-spouse-mycaa-portable-training-career-reentry-v1`
+- Use for: spouse MyCAA funding continuity, portable training restart, credential reactivation, and career reentry when PCS, caregiving, or deployment shocks threaten household resilience.
+- Primary tools: spouse training case board, MyCAA funding tracker, portable credential planner, career-reentry ledger.
+- Cross-check tools: independent spouse-employment review cell and alternate transition-services or credentialing desk.
+- Typical products: spouse-training continuity board, funding-and-restart ladder, career-reentry packet.
+
+### `ts-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-v1`
+- Use for: privatized-housing habitability escalation, tenant-rights evidence, BAH recertification, and damage or displacement claims continuity when housing instability degrades readiness.
+- Primary tools: privatized-housing case board, habitability claims tracker, BAH recertification ledger, displacement-support queue.
+- Cross-check tools: independent housing-office review cell and alternate legal-assistance or finance desk.
+- Typical products: housing-dispute board, BAH-and-claims recovery ladder, tenant-rights escalation packet.
+
+### `ts-joint-command-team-human-readiness-case-conference-escalation-v1`
+- Use for: cross-functional human-readiness case conferences, support-lane deconfliction, and escalation tracking when medical, legal, family, housing, and finance issues interact.
+- Primary tools: command case board, cross-functional referral tracker, action-and-suspense matrix, privacy-release ledger.
+- Cross-check tools: independent family-readiness review cell and alternate chaplain, medical, or legal-support desk.
+- Typical products: human-readiness case board, cross-functional escalation ladder, command-case conference packet.
+
+## Protocol Stack Addendum LXXXVIII (2026-04-11, External Integration Profiles for Expansion Wave LXXXVIII)
+
+### `ps-reserve-component-retirement-points-sanctuary-nonregular-retirement-continuity-stack-v1`
+- Protocols: `NIEM`, signed retirement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: retirement-point status exchange, sanctuary-calculation updates, order-credit routing, and non-regular retirement acknowledgment.
+
+### `ps-reserve-component-tricare-reserve-select-retired-reserve-dental-eligibility-bridge-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed coverage notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: coverage-status exchange, premium updates, family-eligibility routing, and reserve healthcare acknowledgment.
+
+### `ps-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed family-support notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: EFMP-status exchange, assignment-coordination routing, school-support updates, and special-needs continuity acknowledgment.
+
+### `ps-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-stack-v1`
+- Protocols: `NIEM`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: transferability-status exchange, dependent-education routing, Yellow Ribbon updates, and service-obligation acknowledgment.
+
+### `ps-strategic-military-spouse-mycaa-portable-training-career-reentry-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: MyCAA-status exchange, training or credential updates, career-reentry routing, and spouse-support acknowledgment.
+
+### `ps-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-stack-v1`
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: housing-status exchange, BAH recertification routing, claims updates, and tenant-rights acknowledgment.
+
+### `ps-joint-command-team-human-readiness-case-conference-escalation-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed command-support notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: command-case status exchange, referral routing, privacy-release updates, and cross-functional escalation acknowledgment.

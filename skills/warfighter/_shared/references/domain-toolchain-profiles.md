@@ -3092,3 +3092,61 @@ For every critical recommendation, include:
 - Cross-check systems: independent credentialing review cell and alternate professional-license or transition-services desk
 - Protocol binding: NIEM + HR-XML + signed credential notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only credential sequencing until voucher legitimacy, hour capture, and exam availability are human-confirmed
+
+## Toolchain Wave LXXXVIII (2026-04-11)
+
+### `TC-RESRET-355`
+
+- Domain: reserve component retirement points sanctuary and non-regular retirement continuity
+- Primary systems: reserve retirement-points ledger, order-credit tracker, sanctuary-threshold board, non-regular retirement eligibility queue
+- Cross-check systems: independent retirement-services review cell and alternate personnel-records or mobilization desk
+- Protocol binding: NIEM + signed retirement notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only retirement sequencing until points, orders, and sanctuary calculations are human-confirmed
+
+### `TC-TRSRES-356`
+
+- Domain: reserve component TRICARE Reserve Select retired reserve and dental eligibility bridge
+- Primary systems: reserve health-plan enrollment tracker, premium-payment ledger, family-coverage crosswalk, dental or pharmacy eligibility queue
+- Cross-check systems: independent health-benefits review cell and alternate DEERS or medical-support desk
+- Protocol binding: HL7/FHIR + NIEM + signed coverage notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only coverage sequencing until eligibility, premium posture, and human benefits review are confirmed
+
+### `TC-EFMPSL-357`
+
+- Domain: joint EFMP enrollment assignment coordination and school liaison continuity
+- Primary systems: EFMP enrollment tracker, assignment-coordination board, school-liaison queue, special-needs support crosswalk
+- Cross-check systems: independent family-support review cell and alternate school or medical-support desk
+- Protocol binding: HL7/FHIR + NIEM + signed family-support notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only assignment sequencing until EFMP posture, school support, and human family-support review are confirmed
+
+### `TC-GITEB-358`
+
+- Domain: joint Post-9/11 GI Bill transferability dependent education and Yellow Ribbon continuity
+- Primary systems: education-benefit transfer tracker, dependent-school or program ledger, Yellow Ribbon participation board, service-obligation evidence queue
+- Cross-check systems: independent education-benefits review cell and alternate transition-services or personnel-records desk
+- Protocol binding: NIEM + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only education-transfer sequencing until election posture, obligations, and human school or benefits review are confirmed
+
+### `TC-MYCAA-359`
+
+- Domain: strategic military spouse MyCAA portable training and career reentry
+- Primary systems: spouse training case board, MyCAA funding tracker, portable credential planner, career-reentry ledger
+- Cross-check systems: independent spouse-employment review cell and alternate transition-services or credentialing desk
+- Protocol binding: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only spouse-training sequencing until funding status, credential posture, and human support review are confirmed
+
+### `TC-PMHOUS-360`
+
+- Domain: joint privatized military housing tenant rights BAH recertification and claims
+- Primary systems: privatized-housing case board, habitability claims tracker, BAH recertification ledger, displacement-support queue
+- Cross-check systems: independent housing-office review cell and alternate legal-assistance or finance desk
+- Protocol binding: NIEM + signed housing notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only housing sequencing until habitability evidence, BAH posture, and human housing review are confirmed
+
+### `TC-HUMREAD-361`
+
+- Domain: joint command team human readiness case conference and escalation
+- Primary systems: command case board, cross-functional referral tracker, action-and-suspense matrix, privacy-release ledger
+- Cross-check systems: independent family-readiness review cell and alternate chaplain, medical, or legal-support desk
+- Protocol binding: HL7/FHIR + NIEM + signed command-support notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only case sequencing until consent posture, authority, and human command review are confirmed
