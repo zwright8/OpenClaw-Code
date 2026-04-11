@@ -3334,3 +3334,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent talent-management review cell and alternate education-services or assignment desk
 - Protocol binding: NIEM + HR-XML + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only sequencing until selection evidence, funding posture, and human talent-management review are confirmed
+
+## Toolchain Wave XCIII (2026-04-11)
+
+### `TC-ARTCARE-384`
+
+- Domain: joint assisted reproductive care fertility preservation and cryostorage continuity
+- Primary systems: fertility-clinic referral board, cryostorage inventory ledger, specialty-care authorization queue, duty-accommodation tracker
+- Cross-check systems: independent reproductive-health navigator and alternate TRICARE or command-medical review desk
+- Protocol binding: HL7/FHIR + NIEM + signed medical notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until consent posture, authorization evidence, and human specialty-care review are confirmed
+
+### `TC-SURRO-385`
+
+- Domain: joint surrogacy parentage newborn documentation and dependent enrollment continuity
+- Primary systems: surrogacy case board, parentage-order tracker, newborn-documentation queue, DEERS or passport liaison ledger
+- Cross-check systems: independent legal-assistance review cell and alternate ID-card or benefits-enrollment desk
+- Protocol binding: HL7/FHIR + NIEM + ICAO Doc 9303 + signed legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until parentage authority, newborn identity evidence, and human legal review are confirmed
+
+### `TC-MEPS-386`
+
+- Domain: joint MEPS medical waiver moral screening and ship date continuity
+- Primary systems: MEPS case board, medical-waiver tracker, moral-screening review queue, ship-date ledger
+- Cross-check systems: independent recruiter-operations review cell and alternate accession mission desk
+- Protocol binding: NIEM + signed accession notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until waiver evidence, contract posture, and human accession review are confirmed
+
+### `TC-COMMISSION-387`
+
+- Domain: joint ROTC service academy OCS OTS and commissioning file continuity
+- Primary systems: commissioning-file roster, medical and security qualification tracker, appointment or oath queue, branch-assignment ledger
+- Cross-check systems: independent commissioning-program manager review cell and alternate accession or personnel-services desk
+- Protocol binding: NIEM + HR-XML + PESC XML + signed commissioning notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until qualification evidence, appointment authority, and human commissioning review are confirmed
+
+### `TC-IET-388`
+
+- Domain: joint initial entry training holdover recycle and family separation continuity
+- Primary systems: trainee-status board, holdover queue, pay or family-separation tracker, graduation or PCS orders ledger
+- Cross-check systems: independent training-company review cell and alternate pay or personnel-services desk
+- Protocol binding: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until trainee status, pay evidence, and human training review are confirmed
+
+### `TC-SCHOOLHOUSE-389`
+
+- Domain: joint high attrition schoolhouse selection recycle medhold and follow on orders continuity
+- Primary systems: schoolhouse pipeline board, selection or recycle tracker, medhold or waiver queue, follow-on orders ledger
+- Cross-check systems: independent schoolhouse-standards review cell and alternate medical or administrative review desk
+- Protocol binding: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until selection status, medhold evidence, and human schoolhouse review are confirmed

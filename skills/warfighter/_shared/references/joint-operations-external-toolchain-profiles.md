@@ -3397,3 +3397,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-professional-military-education-school-seat-waiver-promotion-prerequisite-continuity-v1`.
 - Protocols: `NIEM`, `HR-XML`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only talent-development sequencing with manual selection and funding review until nomination posture is human-confirmed.
+
+## Toolchain Wave XCIII (2026-04-11, Family-Building and Accession-Pipeline Continuity)
+
+### `art-cryostorage-continuity-v1`
+- Use for: family-building and readiness decisions when ART access, fertility-preservation timing, or cryostorage integrity determines whether a warfighter can continue treatment without unplanned readiness loss.
+- Primary tools: `ts-joint-assisted-reproductive-care-fertility-preservation-cryostorage-continuity-v1`.
+- Cross-check tools: `ts-joint-tricare-referral-specialty-care-pharmacy-authorization-bridge-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only ART sequencing with manual specialty-care and storage review until consent and authorization evidence are human-confirmed.
+
+### `surrogacy-parentage-enrollment-v1`
+- Use for: family-formation and readiness decisions when surrogacy legal routing, parentage status, or newborn-enrollment delay threatens lawful dependent support.
+- Primary tools: `ts-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-v1`.
+- Cross-check tools: `ts-dependent-care-transition-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, `ICAO Doc 9303`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only parentage sequencing with manual legal and enrollment review until newborn identity and order status are human-confirmed.
+
+### `meps-waiver-ship-date-v1`
+- Use for: accession and force-generation decisions when MEPS waivers, suitability review, or ship-date drift threaten contract execution against recruiting demand.
+- Primary tools: `ts-joint-meps-medical-waiver-moral-screening-ship-date-continuity-v1`.
+- Cross-check tools: `ts-joint-recruiting-training-pipeline-capacity-shock-v1`.
+- Protocols: `NIEM`, signed accession notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only accession sequencing with manual recruiter and MEPS review until waiver and contract evidence are human-confirmed.
+
+### `commissioning-file-continuity-v1`
+- Use for: officer-accession decisions when commissioning-file drift, qualification gaps, or delayed appointments threaten future billet fill and force quality.
+- Primary tools: `ts-joint-rotc-service-academy-ocs-ots-commissioning-file-continuity-v1`.
+- Cross-check tools: `ts-joint-recruiting-training-pipeline-capacity-shock-v1`.
+- Protocols: `NIEM`, `HR-XML`, `PESC XML`, signed commissioning notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only commissioning sequencing with manual qualification and appointment review until file integrity is human-confirmed.
+
+### `initial-entry-training-holdover-v1`
+- Use for: trainee throughput and family-stability decisions when holdovers, recycles, or pay/family-separation friction threaten basic-training pipeline output.
+- Primary tools: `ts-joint-initial-entry-training-holdover-recycle-family-separation-continuity-v1`.
+- Cross-check tools: `ts-joint-mypay-les-allotment-payroll-access-continuity-v1`.
+- Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only trainee sequencing with manual training-company and pay review until status evidence is human-confirmed.
+
+### `high-attrition-schoolhouse-pipeline-v1`
+- Use for: special-duty and schoolhouse decisions when selection status, medhold routing, or follow-on orders continuity threatens talent retention in high-attrition pipelines.
+- Primary tools: `ts-joint-high-attrition-schoolhouse-selection-recycle-medhold-follow-on-orders-continuity-v1`.
+- Cross-check tools: `ts-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-v1`.
+- Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only schoolhouse sequencing with manual standards and medical review until selection and medhold evidence are human-confirmed.

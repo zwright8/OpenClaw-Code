@@ -72,3 +72,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect maternal recovery, infant safety, privacy, and equitable access before recommending action.
 - Do not fabricate leave approvals, appointment availability, newborn eligibility, or cold-chain viability.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIII Addendum)
+
+- Add `toolchain_id=TC-ARTCARE-384`, `tool_suite_id=ts-joint-assisted-reproductive-care-fertility-preservation-cryostorage-continuity-v1`, and `protocol_stack_id=ps-joint-assisted-reproductive-care-fertility-preservation-cryostorage-continuity-stack-v1` when new-parent continuity depends on preserved fertility-treatment timelines, embryo or gamete custody, or specialty-care coordination before or after birth.
+- Add `toolchain_id=TC-SURRO-385`, `tool_suite_id=ts-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-v1`, and `protocol_stack_id=ps-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-stack-v1` when newborn-documentation or dependent-enrollment continuity depends on surrogacy-related parentage routing rather than ordinary birth-record workflows.
+- Add `packet_id=DPL-ART-CRYOSTORAGE-001` and `packet_id=DPL-SURROGACY-PARENTAGE-001` for branches that materially alter newborn enrollment, leave stability, or lawful family-support continuity.

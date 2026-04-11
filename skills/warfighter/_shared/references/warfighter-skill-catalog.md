@@ -3341,3 +3341,21 @@ Every skill output should include:
 - Joint security-clearance polygraph and continuous-vetting readiness + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + joint-security-clearance-suspension-revocation-and-statement-of-reasons-response-cell + mission-risk-decision-support.
 - Joint foreign-language proficiency bonus DLPT and linguist-readiness continuity + joint-special-pay-bah-cola-and-incentive-continuity-cell + joint-reenlistment-selective-retention-bonus-and-career-field-reclassification-continuity-cell + joint-distributed-mission-brief-multilingual-assurance-cell.
 - Joint advanced civil schooling fellowship and broadening-assignment continuity + joint-professional-military-education-school-seat-waiver-and-promotion-prerequisite-continuity-cell + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell.
+
+## New Expansion Wave (2026-04-11, Expansion Wave XCIII)
+
+- joint-assisted-reproductive-care-fertility-preservation-and-cryostorage-continuity-cell
+- joint-surrogacy-parentage-newborn-documentation-and-dependent-enrollment-continuity-cell
+- joint-meps-medical-waiver-moral-screening-and-ship-date-continuity-cell
+- joint-rotc-service-academy-ocs-ots-and-commissioning-file-continuity-cell
+- joint-initial-entry-training-holdover-recycle-and-family-separation-continuity-cell
+- joint-high-attrition-schoolhouse-selection-recycle-medhold-and-follow-on-orders-continuity-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave XCIII)
+
+- Joint assisted reproductive care fertility preservation and cryostorage continuity + joint-tricare-referral-specialty-care-and-pharmacy-authorization-bridge-cell + joint-new-parent-convalescent-leave-lactation-and-milk-shipment-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint surrogacy parentage newborn documentation and dependent enrollment continuity + joint-adoption-foster-placement-and-dependent-enrollment-continuity-cell + joint-new-parent-convalescent-leave-lactation-and-milk-shipment-continuity-cell + joint-dd93-sgli-tsgli-beneficiary-and-estate-readiness-continuity-cell.
+- Joint MEPS medical-waiver moral-screening and ship-date continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-rotc-service-academy-ocs-ots-and-commissioning-file-continuity-cell + mission-risk-decision-support.
+- Joint ROTC service-academy OCS OTS and commissioning-file continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + joint-professional-military-education-school-seat-waiver-and-promotion-prerequisite-continuity-cell.
+- Joint initial-entry training holdover recycle and family-separation continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-mypay-les-allotment-and-payroll-access-continuity-cell + joint-family-readiness-group-ombudsman-and-key-spouse-communication-continuity-cell.
+- Joint high-attrition schoolhouse selection recycle medhold and follow-on orders continuity + joint-recruiting-and-training-pipeline-capacity-shock-cell + joint-flight-surgeon-and-aeromedical-waiver-cell + joint-duty-limiting-profile-accommodation-and-nondeployable-code-continuity-cell.

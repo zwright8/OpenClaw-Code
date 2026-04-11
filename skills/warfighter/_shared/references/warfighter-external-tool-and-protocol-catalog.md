@@ -16000,3 +16000,67 @@ external_binding:
 ### `ps-joint-advanced-civil-schooling-fellowship-broadening-assignment-continuity-stack-v1`
 - Protocols: `NIEM`, `HR-XML`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: nomination-status exchange, funding updates, assignment routing, and talent-development acknowledgment.
+
+## Tool Suite Addendum XCIII (2026-04-11, Family-Building and Accession-Pipeline Continuity)
+
+### `ts-joint-assisted-reproductive-care-fertility-preservation-cryostorage-continuity-v1`
+- Use for: fertility-treatment coordination, preservation procedures, cryostorage integrity, and deployment-accommodation planning when ART timing or storage risk threatens family-building continuity for warfighters.
+- Primary tools: fertility-clinic referral board, cryostorage inventory ledger, specialty-care authorization queue, duty-accommodation tracker.
+- Cross-check tools: independent reproductive-health navigator and alternate TRICARE or command-medical review desk.
+- Typical products: fertility-preservation board, cryostorage risk ladder, ART continuity packet.
+
+### `ts-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-v1`
+- Use for: surrogacy legal routing, parentage-order continuity, newborn documentation, and dependent-enrollment recovery when jurisdiction or record drift threatens lawful family formation.
+- Primary tools: surrogacy case board, parentage-order tracker, newborn-documentation queue, DEERS or passport liaison ledger.
+- Cross-check tools: independent legal-assistance review cell and alternate ID-card or benefits-enrollment desk.
+- Typical products: parentage-action board, newborn documentation ladder, dependent-enrollment bridge packet.
+
+### `ts-joint-meps-medical-waiver-moral-screening-ship-date-continuity-v1`
+- Use for: MEPS case triage, medical-waiver routing, moral or suitability review, and ship-date protection when accession friction begins to degrade force generation.
+- Primary tools: MEPS case board, medical-waiver tracker, moral-screening review queue, ship-date ledger.
+- Cross-check tools: independent recruiter-operations review cell and alternate accession mission desk.
+- Typical products: accession case board, waiver-routing ladder, ship-date continuity packet.
+
+### `ts-joint-rotc-service-academy-ocs-ots-commissioning-file-continuity-v1`
+- Use for: commissioning-file integrity, qualification recovery, appointment timing, and branch-assignment continuity across ROTC, service-academy, OCS, and OTS sources.
+- Primary tools: commissioning-file roster, medical and security qualification tracker, appointment or oath queue, branch-assignment ledger.
+- Cross-check tools: independent commissioning-program manager review cell and alternate accession or personnel-services desk.
+- Typical products: commissioning-file integrity board, qualification correction ladder, appointment continuity packet.
+
+### `ts-joint-initial-entry-training-holdover-recycle-family-separation-continuity-v1`
+- Use for: trainee holdover, recycle decisions, pay or family-separation continuity, and graduation or PCS sequencing during basic training, boot camp, or AIT friction.
+- Primary tools: trainee-status board, holdover queue, pay or family-separation tracker, graduation or PCS orders ledger.
+- Cross-check tools: independent training-company review cell and alternate pay or personnel-services desk.
+- Typical products: trainee-status board, holdover or recycle ladder, family-support continuity packet.
+
+### `ts-joint-high-attrition-schoolhouse-selection-recycle-medhold-follow-on-orders-continuity-v1`
+- Use for: selection-pipeline status, recycle or medhold routing, attrition-driven reassignment, and follow-on-orders continuity in high-attrition schools or special-duty pipelines.
+- Primary tools: schoolhouse pipeline board, selection or recycle tracker, medhold or waiver queue, follow-on orders ledger.
+- Cross-check tools: independent schoolhouse-standards review cell and alternate medical or administrative review desk.
+- Typical products: selection-risk board, recycle or medhold ladder, follow-on-orders continuity packet.
+
+## Protocol Stack Addendum XCIII (2026-04-11, External Integration Profiles for Expansion Wave XCIII)
+
+### `ps-joint-assisted-reproductive-care-fertility-preservation-cryostorage-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: fertility-referral status exchange, cryostorage custody updates, authorization routing, and duty-accommodation acknowledgment.
+
+### `ps-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, `ICAO Doc 9303`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: parentage-status exchange, newborn-document routing, enrollment updates, and dependent-travel acknowledgment.
+
+### `ps-joint-meps-medical-waiver-moral-screening-ship-date-continuity-stack-v1`
+- Protocols: `NIEM`, signed accession notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: MEPS case-status exchange, waiver routing, suitability updates, and ship-date acknowledgment.
+
+### `ps-joint-rotc-service-academy-ocs-ots-commissioning-file-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, `PESC XML`, signed commissioning notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: commissioning-file exchange, qualification updates, appointment routing, and branch-assignment acknowledgment.
+
+### `ps-joint-initial-entry-training-holdover-recycle-family-separation-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: trainee-status exchange, holdover or recycle routing, pay updates, and graduation or PCS acknowledgment.
+
+### `ps-joint-high-attrition-schoolhouse-selection-recycle-medhold-follow-on-orders-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: selection-status exchange, recycle or medhold routing, waiver updates, and follow-on-orders acknowledgment.

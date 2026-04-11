@@ -72,3 +72,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect child safety, legal integrity, privacy, and stable schooling or medical handoff before recommending action.
 - Do not fabricate placement authority, DEERS enrollment, school acceptance, or sponsor travel approval.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIII Addendum)
+
+- Add `toolchain_id=TC-SURRO-385`, `tool_suite_id=ts-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-v1`, and `protocol_stack_id=ps-joint-surrogacy-parentage-newborn-documentation-dependent-enrollment-continuity-stack-v1` when parentage-order continuity, newborn-document legitimacy, or DEERS enrollment delay creates a family-formation problem that does not fit traditional adoption or foster-placement routing.
+- Add `packet_id=DPL-SURROGACY-PARENTAGE-001` for branches that materially alter dependent-enrollment timing, sponsor travel, or household legal certainty.

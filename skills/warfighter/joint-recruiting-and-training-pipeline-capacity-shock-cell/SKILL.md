@@ -71,3 +71,11 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag training-quality erosion, instructor overload, attrition spikes, and readiness shortfalls before recommending action.
 - Do not fabricate throughput data, accession demand, or training approvals.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCIII Addendum)
+
+- Add `toolchain_id=TC-MEPS-386`, `tool_suite_id=ts-joint-meps-medical-waiver-moral-screening-ship-date-continuity-v1`, and `protocol_stack_id=ps-joint-meps-medical-waiver-moral-screening-ship-date-continuity-stack-v1` when pipeline recovery depends on clearing MEPS waiver backlogs, contract discrepancies, or ship-date drift without lowering accession standards.
+- Add `toolchain_id=TC-COMMISSION-387`, `tool_suite_id=ts-joint-rotc-service-academy-ocs-ots-commissioning-file-continuity-v1`, and `protocol_stack_id=ps-joint-rotc-service-academy-ocs-ots-commissioning-file-continuity-stack-v1` when officer-accession throughput depends on commissioning-file integrity, qualification evidence, or appointment timing.
+- Add `toolchain_id=TC-IET-388`, `tool_suite_id=ts-joint-initial-entry-training-holdover-recycle-family-separation-continuity-v1`, and `protocol_stack_id=ps-joint-initial-entry-training-holdover-recycle-family-separation-continuity-stack-v1` when initial-entry throughput depends on resolving holdovers, recycles, pay gaps, or family-separation friction.
+- Add `toolchain_id=TC-SCHOOLHOUSE-389`, `tool_suite_id=ts-joint-high-attrition-schoolhouse-selection-recycle-medhold-follow-on-orders-continuity-v1`, and `protocol_stack_id=ps-joint-high-attrition-schoolhouse-selection-recycle-medhold-follow-on-orders-continuity-stack-v1` when high-attrition schoolhouse churn, medhold delay, or follow-on-orders drift degrades future force quality.
+- Add `packet_id=DPL-MEPS-WAIVER-SHIP-001`, `packet_id=DPL-COMMISSIONING-FILE-001`, `packet_id=DPL-IET-HOLDOVER-RECYCLE-001`, and `packet_id=DPL-SCHOOLHOUSE-RECYCLE-MEDHOLD-001` for branches that materially alter accession throughput, commissioning continuity, or schoolhouse retention assumptions.

@@ -614,3 +614,20 @@ Include these fields in outputs when tool integration is used:
 3. Treat payroll restoration, reenlistment approval, BAH exceptions, initial-issue completion, leave-balance correction, and deployability-code changes as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
 4. For medical-profile or accommodation cases, keep protected health detail to the minimum required by the receiving office and explicitly separate readiness effect from clinical detail.
 5. Map every pay-access, retention, housing, kitting, leave, or profile recommendation back to a readiness effect such as deployability, reporting reliability, lawful availability, household stability, or retention confidence.
+
+## American Warfighter Family-Building and Accession-Pipeline Continuity Addendum (2026-04-11)
+
+- Assisted reproductive care and fertility-preservation continuity: fertility-clinic referral boards, cryostorage inventory ledgers, specialty-care authorization queues, and duty-accommodation trackers; protocols: `HL7/FHIR`, `NIEM`, signed medical notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Surrogacy, parentage, and newborn-enrollment continuity: surrogacy case boards, parentage-order trackers, newborn-documentation queues, and DEERS or passport liaison ledgers; protocols: `HL7/FHIR`, `NIEM`, `ICAO Doc 9303`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- MEPS medical-waiver and ship-date continuity: MEPS case boards, medical-waiver trackers, moral-screening review queues, and ship-date ledgers; protocols: `NIEM`, signed accession notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Commissioning-file continuity: commissioning rosters, qualification trackers, appointment or oath queues, and branch-assignment ledgers; protocols: `NIEM`, `HR-XML`, `PESC XML`, signed commissioning notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Initial-entry training holdover or recycle continuity: trainee-status boards, holdover queues, pay or family-separation trackers, and graduation or orders ledgers; protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+- High-attrition schoolhouse continuity: selection-status boards, recycle or attrition trackers, medhold or waiver queues, and follow-on orders ledgers; protocols: `NIEM`, `HR-XML`, signed training notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-11, Family-Building and Accession-Pipeline Continuity)
+
+1. Cross-check at least one authoritative medical, legal, personnel, or training source with one family-support or accession-management source before recommending action that changes treatment timing, parentage posture, ship dates, appointments, or trainee status.
+2. Use `ICAO Doc 9303` only when newborn or dependent travel documents are part of the problem; keep the broader exchange in `NIEM` plus signed legal or medical notices.
+3. Treat fertility-treatment approvals, cryostorage transfers, parentage orders, MEPS waivers, commissioning appointments, graduation decisions, and schoolhouse recycles as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
+4. Keep reproductive-health and newborn data to the minimum required by the receiving office and explicitly separate clinical detail from readiness effect.
+5. Map every family-building or accession-pipeline recommendation back to a readiness effect such as accession throughput, commissioning continuity, lawful availability, family stability, or training-pipeline retention.

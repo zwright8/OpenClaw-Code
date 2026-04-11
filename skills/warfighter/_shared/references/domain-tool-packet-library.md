@@ -15933,3 +15933,71 @@ validation_gates:
 - output_schema: schooling-selection board, fellowship decision ladder, broadening-assignment continuity packet
 - protocol_profile: NIEM + HR-XML + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
 - validation_gates: nomination review, funding confirmation, obligation check, human talent-management validation
+
+## Packet Addendum LXXXI (2026-04-11, Expansion Wave XCIII)
+
+### packet_id: DPL-ART-CRYOSTORAGE-001
+- domain: joint assisted reproductive care fertility preservation and cryostorage continuity
+- objective: preserve family-building continuity by aligning specialty-care access, procedure timing, and cryostorage integrity before authorization drift or storage failure sidelines warfighters and families.
+- primary_tools: fertility-clinic referral board, cryostorage inventory ledger, specialty-care authorization queue, duty-accommodation tracker
+- alternate_tools: manual ART case roster and cryostorage review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported treatment approval, storage transfer, or duty-accommodation claim
+- input_requirements: affected warfighter or dependent, treatment timeline, storage location, authorization posture, deployment or PCS timeline, privacy constraints
+- output_schema: fertility-preservation board, cryostorage risk ladder, ART continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed medical notices + API/JSON + S/MIME + USMTF
+- validation_gates: consent review, authorization confirmation, storage-chain verification, human specialty-care validation
+
+### packet_id: DPL-SURROGACY-PARENTAGE-001
+- domain: joint surrogacy parentage newborn documentation and dependent enrollment continuity
+- objective: preserve lawful family formation by aligning parentage orders, newborn identity documents, and dependent enrollment before jurisdiction drift or record gaps create readiness loss.
+- primary_tools: surrogacy case board, parentage-order tracker, newborn-documentation queue, DEERS or passport liaison ledger
+- alternate_tools: manual parentage roster and newborn-document review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported parentage order, birth-record correction, enrollment approval, or travel-document claim
+- input_requirements: family profile, jurisdiction, delivery timeline, parentage-order status, newborn-document posture, enrollment urgency
+- output_schema: parentage-action board, newborn documentation ladder, dependent-enrollment bridge packet
+- protocol_profile: HL7/FHIR + NIEM + ICAO Doc 9303 + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: legal-order review, newborn-identity confirmation, enrollment-evidence check, human legal validation
+
+### packet_id: DPL-MEPS-WAIVER-SHIP-001
+- domain: joint MEPS medical waiver moral screening and ship date continuity
+- objective: preserve accession throughput by aligning MEPS evidence, waiver routing, and ship-date commitments before case drift or contract error delays a qualified applicant.
+- primary_tools: MEPS case board, medical-waiver tracker, moral-screening review queue, ship-date ledger
+- alternate_tools: manual accession roster and waiver-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported waiver approval, contract execution, or ship-date restoration claim
+- input_requirements: applicant profile, contract status, waiver category, evidence sufficiency, ship-date window, recruiting priority
+- output_schema: accession case board, waiver-routing ladder, ship-date continuity packet
+- protocol_profile: NIEM + signed accession notices + API/JSON + S/MIME + USMTF
+- validation_gates: contract review, waiver-evidence confirmation, ship-date check, human accession validation
+
+### packet_id: DPL-COMMISSIONING-FILE-001
+- domain: joint ROTC service academy OCS OTS and commissioning file continuity
+- objective: preserve officer-accession continuity by aligning qualification evidence, appointment timing, and branch-assignment records before commissioning-file drift causes avoidable attrition.
+- primary_tools: commissioning-file roster, medical and security qualification tracker, appointment or oath queue, branch-assignment ledger
+- alternate_tools: manual commissioning roster and appointment-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported qualification restoration, appointment approval, or branch-allocation claim
+- input_requirements: accession source, candidate profile, qualification status, appointment timeline, branch-impact factors, service requirement
+- output_schema: commissioning-file integrity board, qualification correction ladder, appointment continuity packet
+- protocol_profile: NIEM + HR-XML + PESC XML + signed commissioning notices + API/JSON + S/MIME + USMTF
+- validation_gates: file-integrity review, qualification confirmation, appointment-authority check, human commissioning validation
+
+### packet_id: DPL-IET-HOLDOVER-RECYCLE-001
+- domain: joint initial entry training holdover recycle and family separation continuity
+- objective: preserve initial-entry pipeline output by aligning trainee status, holdover or recycle routing, pay continuity, and family-support posture before avoidable backlog grows.
+- primary_tools: trainee-status board, holdover queue, pay or family-separation tracker, graduation or PCS orders ledger
+- alternate_tools: manual trainee roster and holdover-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported recycle decision, graduation date, pay correction, or PCS claim
+- input_requirements: trainee profile, pipeline phase, holdover or recycle cause, pay posture, family-impact factors, graduation timeline
+- output_schema: trainee-status board, holdover or recycle ladder, family-support continuity packet
+- protocol_profile: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
+- validation_gates: trainee-status review, pay confirmation, orders check, human training validation
+
+### packet_id: DPL-SCHOOLHOUSE-RECYCLE-MEDHOLD-001
+- domain: joint high attrition schoolhouse selection recycle medhold and follow on orders continuity
+- objective: preserve talent investment and lawful reassignment by aligning selection status, medhold evidence, recycle decisions, and follow-on orders before high-attrition pipeline drift becomes force loss.
+- primary_tools: schoolhouse pipeline board, selection or recycle tracker, medhold or waiver queue, follow-on orders ledger
+- alternate_tools: manual pipeline roster and standards-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported selection retention, medhold approval, recycle action, or follow-on-orders claim
+- input_requirements: pipeline name, candidate status, recycle or medhold trigger, waiver posture, follow-on orders timeline, retention risk
+- output_schema: selection-risk board, recycle or medhold ladder, follow-on-orders continuity packet
+- protocol_profile: NIEM + HR-XML + signed training notices + API/JSON + S/MIME + USMTF
+- validation_gates: status review, medical or waiver confirmation, orders check, human schoolhouse validation
