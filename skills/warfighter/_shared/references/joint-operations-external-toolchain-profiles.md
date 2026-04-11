@@ -3353,3 +3353,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-v1`.
 - Protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only uniform sequencing with manual serviceability and supply review until issue legitimacy is human-confirmed.
+
+## Toolchain Wave XCII (2026-04-11, Aviation, Special-Duty Qualification, PME, Clearance Vetting, Linguist Readiness, and Broadening Continuity)
+
+### `aviation-pay-aero-order-v1`
+- Use for: flight-status and compensation decisions when aeronautical-order validity, gate-month evidence, or aviation pay continuity determines whether aircrew remain lawfully available.
+- Primary tools: `ts-joint-aviation-incentive-pay-aeronautical-order-gate-month-continuity-v1`.
+- Cross-check tools: `ts-joint-special-pay-bah-cola-incentive-continuity-v1`.
+- Protocols: `NIEM`, signed aviation notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only aviation sequencing with manual flight-record and finance review until order and gate-month evidence are human-confirmed.
+
+### `hazardous-duty-jump-dive-cert-v1`
+- Use for: deployability and incentive-pay decisions when hazardous-duty certification, jump or dive currency, or special-duty orders determine whether a warfighter remains qualified and paid correctly.
+- Primary tools: `ts-joint-hazardous-duty-jump-dive-special-duty-pay-certification-continuity-v1`.
+- Cross-check tools: `ts-joint-special-pay-bah-cola-incentive-continuity-v1`.
+- Protocols: `NIEM`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only special-duty sequencing with manual qualification and safety review until currency evidence is human-confirmed.
+
+### `pme-school-seat-waiver-v1`
+- Use for: promotion and assignment decisions when PME seat loss, waiver delay, or missing prerequisite evidence threatens career timing for critical personnel.
+- Primary tools: `ts-joint-professional-military-education-school-seat-waiver-promotion-prerequisite-continuity-v1`.
+- Cross-check tools: `ts-joint-promotion-board-evaluation-report-record-brief-continuity-v1`.
+- Protocols: `NIEM`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only education sequencing with manual prerequisite and waiver review until milestone evidence is human-confirmed.
+
+### `polygraph-continuous-vetting-v1`
+- Use for: mission-access and mobilization decisions when polygraph status, continuous-vetting alerts, or adjudicative delay threatens lawful access to critical billets.
+- Primary tools: `ts-joint-security-clearance-polygraph-continuous-vetting-readiness-v1`.
+- Cross-check tools: `ts-joint-security-clearance-foreign-contact-record-correction-continuity-v1`.
+- Protocols: `NIEM`, signed security notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: advisory-only access sequencing with manual security review until alert disposition and access posture are human-confirmed.
+
+### `flpb-dlpt-linguist-readiness-v1`
+- Use for: mission-language coverage and compensation decisions when DLPT or OPI currency, FLPB legitimacy, or linguist assignment timing begins to degrade availability.
+- Primary tools: `ts-joint-foreign-language-proficiency-bonus-dlpt-linguist-readiness-continuity-v1`.
+- Cross-check tools: `ts-joint-special-pay-bah-cola-incentive-continuity-v1`.
+- Protocols: `NIEM`, `HR-XML`, signed testing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only linguist sequencing with manual score and assignment review until test evidence is human-confirmed.
+
+### `acs-fellowship-broadening-v1`
+- Use for: retention and talent-management decisions when advanced civil schooling, fellowships, or broadening-assignment continuity shapes mid-career development and service-obligation choices.
+- Primary tools: `ts-joint-advanced-civil-schooling-fellowship-broadening-assignment-continuity-v1`.
+- Cross-check tools: `ts-joint-professional-military-education-school-seat-waiver-promotion-prerequisite-continuity-v1`.
+- Protocols: `NIEM`, `HR-XML`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only talent-development sequencing with manual selection and funding review until nomination posture is human-confirmed.

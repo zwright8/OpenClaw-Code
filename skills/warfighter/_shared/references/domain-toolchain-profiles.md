@@ -3284,3 +3284,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent supply review cell and alternate mobilization or first-sergeant desk
 - Protocol binding: NIEM + signed issue notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only sequencing until serviceability evidence, allowance posture, and human supply review are confirmed
+
+## Toolchain Wave XCII (2026-04-11)
+
+### `TC-AVPAY-378`
+
+- Domain: joint aviation incentive pay aeronautical order and gate month continuity
+- Primary systems: aviation service record board, aeronautical-order tracker, gate-month or flight-record ledger, aviation waiver queue
+- Cross-check systems: independent flight-pay review cell and alternate squadron aviation-resource desk
+- Protocol binding: NIEM + signed aviation notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until aeronautical-order validity, gate-month evidence, and human aviation review are confirmed
+
+### `TC-HAZPAY-379`
+
+- Domain: joint hazardous duty jump dive and special-duty pay certification continuity
+- Primary systems: hazardous-duty certification board, jump or dive currency ledger, special-duty orders tracker, incentive-pay monitor
+- Cross-check systems: independent special-duty review cell and alternate unit training or finance desk
+- Protocol binding: NIEM + signed qualification notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until qualification evidence, orders status, and human safety review are confirmed
+
+### `TC-PME-380`
+
+- Domain: joint professional military education school seat waiver and promotion prerequisite continuity
+- Primary systems: PME seat-allocation board, prerequisite-completion ledger, waiver-routing queue, assignment-impact tracker
+- Cross-check systems: independent career-development review cell and alternate promotion-board or personnel-records desk
+- Protocol binding: NIEM + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until school-seat status, prerequisite evidence, and human career review are confirmed
+
+### `TC-POLY-381`
+
+- Domain: joint security clearance polygraph and continuous vetting readiness
+- Primary systems: continuous-vetting status board, polygraph scheduling queue, SCI or SAP access ledger, adjudicative issue tracker
+- Cross-check systems: independent security-manager review cell and alternate personnel-security adjudication desk
+- Protocol binding: NIEM + signed security notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: advisory-only sequencing until alert evidence, access status, and human security review are confirmed
+
+### `TC-LANG-382`
+
+- Domain: joint foreign-language proficiency bonus DLPT and linguist readiness continuity
+- Primary systems: language-test scheduling board, score-validity ledger, FLPB certification tracker, linguist assignment queue
+- Cross-check systems: independent language-program manager review cell and alternate training or finance desk
+- Protocol binding: NIEM + HR-XML + signed testing notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until score evidence, testing windows, and human language-program review are confirmed
+
+### `TC-BROADEN-383`
+
+- Domain: joint advanced civil schooling fellowship and broadening assignment continuity
+- Primary systems: education or fellowship selection board, nomination queue, funding-status ledger, utilization-tour or assignment tracker
+- Cross-check systems: independent talent-management review cell and alternate education-services or assignment desk
+- Protocol binding: NIEM + HR-XML + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until selection evidence, funding posture, and human talent-management review are confirmed

@@ -3323,3 +3323,21 @@ Every skill output should include:
 - Joint special-victim-counsel victim-legal-counsel and protective-order continuity + joint-sexual-assault-response-restricted-reporting-and-unit-safety-cell + joint-family-advocacy-safety-planning-restricted-reporting-and-duty-continuity-cell + joint-inspector-general-equal-opportunity-and-reprisal-complaint-safeguard-cell.
 - Joint Military Star exchange-credit and essential-purchase continuity + joint-commissary-exchange-subsistence-and-hygiene-priority-restoration-cell + joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell + joint-military-family-readiness-crisis-sustainment-cell.
 - Joint uniform-replacement clothing-allowance and serviceability bridge + joint-initial-issue-cif-ocie-clothing-record-and-mobilization-kitting-continuity-cell + joint-final-out-processing-cif-ocie-medical-dental-and-separation-clearance-cell + reserve-guard-mobilization-planner.
+
+## New Expansion Wave (2026-04-11, Expansion Wave XCII)
+
+- joint-aviation-incentive-pay-aeronautical-order-and-gate-month-continuity-cell
+- joint-hazardous-duty-jump-dive-and-special-duty-pay-certification-continuity-cell
+- joint-professional-military-education-school-seat-waiver-and-promotion-prerequisite-continuity-cell
+- joint-security-clearance-polygraph-and-continuous-vetting-readiness-cell
+- joint-foreign-language-proficiency-bonus-dlpt-and-linguist-readiness-continuity-cell
+- joint-advanced-civil-schooling-fellowship-and-broadening-assignment-continuity-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave XCII)
+
+- Joint aviation incentive-pay aeronautical-order and gate-month continuity + joint-special-pay-bah-cola-and-incentive-continuity-cell + joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell + air-tasking-cycle-support.
+- Joint hazardous-duty jump-dive and special-duty pay certification continuity + joint-special-pay-bah-cola-and-incentive-continuity-cell + reserve-guard-mobilization-planner + joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell.
+- Joint professional military education school-seat waiver and promotion-prerequisite continuity + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + joint-reenlistment-selective-retention-bonus-and-career-field-reclassification-continuity-cell + joint-advanced-civil-schooling-fellowship-and-broadening-assignment-continuity-cell.
+- Joint security-clearance polygraph and continuous-vetting readiness + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + joint-security-clearance-suspension-revocation-and-statement-of-reasons-response-cell + mission-risk-decision-support.
+- Joint foreign-language proficiency bonus DLPT and linguist-readiness continuity + joint-special-pay-bah-cola-and-incentive-continuity-cell + joint-reenlistment-selective-retention-bonus-and-career-field-reclassification-continuity-cell + joint-distributed-mission-brief-multilingual-assurance-cell.
+- Joint advanced civil schooling fellowship and broadening-assignment continuity + joint-professional-military-education-school-seat-waiver-and-promotion-prerequisite-continuity-cell + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell.

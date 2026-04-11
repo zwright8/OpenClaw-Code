@@ -15936,3 +15936,67 @@ external_binding:
 ### `ps-joint-uniform-replacement-clothing-allowance-serviceability-bridge-stack-v1`
 - Protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: item-status exchange, clothing-allowance routing, serviceability updates, and readiness-appearance acknowledgment.
+
+## Tool Suite Addendum XCII (2026-04-11, Aviation Pay, Hazardous-Duty Certification, PME Continuity, Clearance Vetting, Linguist Readiness, and Broadening Continuity)
+
+### `ts-joint-aviation-incentive-pay-aeronautical-order-gate-month-continuity-v1`
+- Use for: aviation incentive pay, aeronautical-order validity, and gate-month continuity when stale records or recertification delays threaten crew release or compensation legitimacy.
+- Primary tools: aviation service record board, aeronautical-order tracker, gate-month or flight-record ledger, aviation waiver queue.
+- Cross-check tools: independent flight-pay review cell and alternate squadron aviation-resource desk.
+- Typical products: aviation-pay continuity board, aeronautical-order correction ladder, gate-month readiness packet.
+
+### `ts-joint-hazardous-duty-jump-dive-special-duty-pay-certification-continuity-v1`
+- Use for: hazardous-duty qualification currency, jump or dive certification, special-duty orders, and incentive-pay legitimacy when qualification drift threatens deployability or pay.
+- Primary tools: hazardous-duty certification board, jump or dive currency ledger, special-duty orders tracker, incentive-pay monitor.
+- Cross-check tools: independent special-duty review cell and alternate unit training or finance desk.
+- Typical products: hazardous-duty certification board, qualification-recovery ladder, special-duty pay continuity packet.
+
+### `ts-joint-professional-military-education-school-seat-waiver-promotion-prerequisite-continuity-v1`
+- Use for: PME seat allocation, prerequisite completion, waiver routing, and promotion-prerequisite legitimacy when backlog or funding drift threatens career timing.
+- Primary tools: PME seat-allocation board, prerequisite-completion ledger, waiver-routing queue, assignment-impact tracker.
+- Cross-check tools: independent career-development review cell and alternate promotion-board or personnel-records desk.
+- Typical products: PME seat-allocation board, waiver decision ladder, promotion-prerequisite continuity packet.
+
+### `ts-joint-security-clearance-polygraph-continuous-vetting-readiness-v1`
+- Use for: polygraph scheduling, continuous-vetting alert resolution, SCI or SAP access continuity, and adjudicative readiness when mission access is at risk.
+- Primary tools: continuous-vetting status board, polygraph scheduling queue, SCI or SAP access ledger, adjudicative issue tracker.
+- Cross-check tools: independent security-manager review cell and alternate personnel-security adjudication desk.
+- Typical products: continuous-vetting status board, polygraph scheduling ladder, mission-access readiness packet.
+
+### `ts-joint-foreign-language-proficiency-bonus-dlpt-linguist-readiness-continuity-v1`
+- Use for: DLPT or OPI scheduling, score-validity tracking, FLPB legitimacy, and linguist assignment readiness when expired scores or test backlogs threaten mission coverage.
+- Primary tools: language-test scheduling board, score-validity ledger, FLPB certification tracker, linguist assignment queue.
+- Cross-check tools: independent language-program manager review cell and alternate training or finance desk.
+- Typical products: language-readiness board, FLPB decision ladder, DLPT continuity packet.
+
+### `ts-joint-advanced-civil-schooling-fellowship-broadening-assignment-continuity-v1`
+- Use for: advanced civil schooling, fellowship selection, utilization-tour planning, and broadening-assignment continuity when nomination, funding, or PCS drift threatens talent management or retention.
+- Primary tools: education or fellowship selection board, nomination queue, funding-status ledger, utilization-tour or assignment tracker.
+- Cross-check tools: independent talent-management review cell and alternate education-services or assignment desk.
+- Typical products: schooling-selection board, fellowship decision ladder, broadening-assignment continuity packet.
+
+## Protocol Stack Addendum XCII (2026-04-11, External Integration Profiles for Expansion Wave XCII)
+
+### `ps-joint-aviation-incentive-pay-aeronautical-order-gate-month-continuity-stack-v1`
+- Protocols: `NIEM`, signed aviation notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: aeronautical-order status exchange, gate-month evidence routing, pay updates, and aviation-readiness acknowledgment.
+
+### `ps-joint-hazardous-duty-jump-dive-special-duty-pay-certification-continuity-stack-v1`
+- Protocols: `NIEM`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: qualification-status exchange, orders routing, incentive-pay updates, and special-duty readiness acknowledgment.
+
+### `ps-joint-professional-military-education-school-seat-waiver-promotion-prerequisite-continuity-stack-v1`
+- Protocols: `NIEM`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: seat-status exchange, prerequisite evidence routing, waiver updates, and career-timeline acknowledgment.
+
+### `ps-joint-security-clearance-polygraph-continuous-vetting-readiness-stack-v1`
+- Protocols: `NIEM`, signed security notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Use for: polygraph-status exchange, continuous-vetting alert routing, access updates, and mission-readiness acknowledgment.
+
+### `ps-joint-foreign-language-proficiency-bonus-dlpt-linguist-readiness-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed testing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: test-status exchange, score routing, FLPB updates, and linguist-readiness acknowledgment.
+
+### `ps-joint-advanced-civil-schooling-fellowship-broadening-assignment-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, `PESC XML`, signed education notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: nomination-status exchange, funding updates, assignment routing, and talent-development acknowledgment.

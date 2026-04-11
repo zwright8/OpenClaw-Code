@@ -15865,3 +15865,71 @@ validation_gates:
 - output_schema: uniform serviceability board, clothing-allowance decision ladder, appearance-readiness continuity packet
 - protocol_profile: NIEM + signed issue notices + API/JSON + S/MIME + USMTF
 - validation_gates: serviceability review, allowance confirmation, item-availability check, human supply validation
+
+## Packet Addendum LXXX (2026-04-11, Expansion Wave XCII)
+
+### packet_id: DPL-AVIATION-PAY-AERO-ORDER-001
+- domain: joint aviation incentive pay aeronautical order and gate month continuity
+- objective: preserve aircrew availability and pay legitimacy by reconciling aeronautical orders, gate-month evidence, and waiver posture before stale records ground qualified warfighters or trigger recoupment.
+- primary_tools: aviation service record board, aeronautical-order tracker, gate-month or flight-record ledger, aviation waiver queue
+- alternate_tools: manual aviation-status roster and flight-pay review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported crew release, pay restoration, or aeronautical-order claim
+- input_requirements: affected aircrew, aeronautical-order status, gate-month evidence, waiver posture, assignment timeline, compensation risk
+- output_schema: aviation-pay continuity board, aeronautical-order correction ladder, gate-month readiness packet
+- protocol_profile: NIEM + signed aviation notices + API/JSON + S/MIME + USMTF
+- validation_gates: aeronautical-order review, gate-month evidence confirmation, human aviation-resource validation
+
+### packet_id: DPL-HAZDUTY-JUMP-DIVE-CERT-001
+- domain: joint hazardous duty jump dive and special-duty pay certification continuity
+- objective: preserve hazardous-duty readiness and pay legitimacy by aligning qualification currency, duty orders, and certification evidence before expired status sidelines warfighters or creates recoupment exposure.
+- primary_tools: hazardous-duty certification board, jump or dive currency ledger, special-duty orders tracker, incentive-pay monitor
+- alternate_tools: manual qualification roster and special-duty review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported qualification restoration, order approval, or pay-certification claim
+- input_requirements: affected personnel, duty category, qualification status, order posture, medical restrictions, compensation risk
+- output_schema: hazardous-duty certification board, qualification-recovery ladder, special-duty pay continuity packet
+- protocol_profile: NIEM + signed qualification notices + API/JSON + S/MIME + USMTF
+- validation_gates: qualification review, order confirmation, safety or pay-entitlement check, human command validation
+
+### packet_id: DPL-PME-SCHOOL-SEAT-PREREQ-001
+- domain: joint professional military education school seat waiver and promotion prerequisite continuity
+- objective: preserve career progression and assignment trust by aligning school-seat status, prerequisite evidence, and waiver routing before milestone drift harms promotion or command-screen timing.
+- primary_tools: PME seat-allocation board, prerequisite-completion ledger, waiver-routing queue, assignment-impact tracker
+- alternate_tools: manual education-milestone roster and waiver-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported school-seat, waiver approval, or promotion-prerequisite claim
+- input_requirements: affected personnel, PME requirement, seat status, prerequisite evidence, waiver posture, board or assignment timeline
+- output_schema: PME seat-allocation board, waiver decision ladder, promotion-prerequisite continuity packet
+- protocol_profile: NIEM + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
+- validation_gates: seat-status confirmation, prerequisite review, waiver-authority check, human talent-management validation
+
+### packet_id: DPL-POLYGRAPH-CONTINUOUS-VETTING-001
+- domain: joint security clearance polygraph and continuous vetting readiness
+- objective: preserve lawful mission access by aligning polygraph status, continuous-vetting alerts, and adjudicative routing before unresolved security friction sidelines the warfighter.
+- primary_tools: continuous-vetting status board, polygraph scheduling queue, SCI or SAP access ledger, adjudicative issue tracker
+- alternate_tools: manual access-priority roster and security-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported alert resolution, access restoration, or polygraph-completion claim
+- input_requirements: affected personnel, clearance posture, polygraph requirement, alert status, adjudication timeline, assignment impact
+- output_schema: continuous-vetting status board, polygraph scheduling ladder, mission-access readiness packet
+- protocol_profile: NIEM + signed security notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: alert review, polygraph requirement confirmation, access-status check, human security validation
+
+### packet_id: DPL-FLPB-DLPT-LINGUIST-001
+- domain: joint foreign-language proficiency bonus DLPT and linguist readiness continuity
+- objective: preserve linguist availability and bonus legitimacy by sequencing testing, score evidence, and assignment alignment before expired language qualification degrades mission coverage.
+- primary_tools: language-test scheduling board, score-validity ledger, FLPB certification tracker, linguist assignment queue
+- alternate_tools: manual score-validity roster and language-program review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported test result, bonus approval, or linguist-qualification claim
+- input_requirements: affected personnel, language requirement, score status, testing window, bonus posture, assignment timeline
+- output_schema: language-readiness board, FLPB decision ladder, DLPT continuity packet
+- protocol_profile: NIEM + HR-XML + signed testing notices + API/JSON + S/MIME + USMTF
+- validation_gates: score-evidence review, testing-window confirmation, assignment or pay-eligibility check, human language-program validation
+
+### packet_id: DPL-ACS-FELLOWSHIP-BROADENING-001
+- domain: joint advanced civil schooling fellowship and broadening assignment continuity
+- objective: preserve deliberate talent development and retention by aligning selection status, funding evidence, and utilization-tour planning before PCS or obligation drift collapses broadening opportunities.
+- primary_tools: education or fellowship selection board, nomination queue, funding-status ledger, utilization-tour or assignment tracker
+- alternate_tools: manual talent-development roster and selection-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported selection, funding approval, PCS timing, or broadening-assignment claim
+- input_requirements: affected personnel, nomination posture, funding status, assignment timeline, service-obligation evidence, talent-management priorities
+- output_schema: schooling-selection board, fellowship decision ladder, broadening-assignment continuity packet
+- protocol_profile: NIEM + HR-XML + PESC XML + signed education notices + API/JSON + S/MIME + USMTF
+- validation_gates: nomination review, funding confirmation, obligation check, human talent-management validation

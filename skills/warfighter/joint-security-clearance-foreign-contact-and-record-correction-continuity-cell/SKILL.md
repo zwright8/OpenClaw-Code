@@ -78,3 +78,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Add `toolchain_id=TC-SORCLR-352`, `tool_suite_id=ts-joint-security-clearance-suspension-revocation-statement-of-reasons-response-v1`, and `protocol_stack_id=ps-joint-security-clearance-suspension-revocation-statement-of-reasons-response-stack-v1` when foreign-contact or record-correction issues escalate into access suspension, revocation risk, or statement-of-reasons response deadlines.
 - Add `toolchain_id=TC-UIFGOMOR-351`, `tool_suite_id=ts-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-v1`, and `protocol_stack_id=ps-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-stack-v1` when derogatory paperwork or board-file drift contaminates adjudication trust or assignment decisions.
 - Add `packet_id=DPL-CLEARANCE-SOR-SUSP-REVOCATION-001` and `packet_id=DPL-UIF-GOMOR-BOARD-001` for branches that materially alter access-restoration timing, assignment legitimacy, or clearance-defense confidence.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCII Addendum)
+
+- Add `toolchain_id=TC-POLY-381`, `tool_suite_id=ts-joint-security-clearance-polygraph-continuous-vetting-readiness-v1`, and `protocol_stack_id=ps-joint-security-clearance-polygraph-continuous-vetting-readiness-stack-v1` when record-correction posture, foreign-contact reporting, or assignment viability depends on preserved polygraph windows, continuous-vetting alert resolution, or current mission-access evidence.
+- Add `packet_id=DPL-POLYGRAPH-CONTINUOUS-VETTING-001` for branches that materially alter access-restoration timing, assignment legitimacy, or clearance-readiness confidence.
