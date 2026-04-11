@@ -3235,3 +3235,33 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-v1`, `ts-joint-post-9-11-gi-bill-transferability-dependent-education-yellow-ribbon-continuity-v1`, `ts-strategic-military-spouse-mycaa-portable-training-career-reentry-v1`, and `ts-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, `PESC XML`, `HR-XML`, signed family-support or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only reserve and family-portability triage with human medical, personnel, benefits, housing, and command review before any status or entitlement claim.
+
+## Toolchain Wave LXXXIX (2026-04-11, Separated-Family Travel, State-Tax Legitimacy, School Transfer, and Auto-Finance Continuity)
+
+### `unaccompanied-tour-fsa-deferred-travel-v1`
+- Use for: readiness and retention decisions when separated-family stability depends on unaccompanied-tour orders, family-separation allowance legitimacy, or deferred-dependent-travel movement.
+- Primary tools: `ts-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-v1`.
+- Cross-check tools: `ts-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-v1`.
+- Protocols: `NIEM`, `ICAO Doc 9303`, signed orders notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only separated-family sequencing with manual orders and document review until allowance and travel posture are human-confirmed.
+
+### `state-tax-domicile-withholding-v1`
+- Use for: household-legitimacy and retention decisions when PCS, mobilization, or remote-work changes create conflicting domicile, withholding, or state-tax exposure.
+- Primary tools: `ts-joint-state-tax-domicile-residency-withholding-continuity-v1`.
+- Cross-check tools: `ts-joint-military-tax-relief-combat-zone-entitlement-irs-identity-protection-v1`.
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed tax notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only tax sequencing with manual domicile and LES review until withholding posture is human-confirmed.
+
+### `school-transfer-transcript-graduation-v1`
+- Use for: family-stability and reporting decisions when K-12 school transfer, transcript movement, or graduation-credit recovery determines whether PCS or separated-family stress becomes a readiness loss.
+- Primary tools: `ts-joint-military-child-school-transfer-transcript-graduation-continuity-v1`.
+- Cross-check tools: `ts-joint-efmp-enrollment-assignment-coordination-school-liaison-continuity-v1`.
+- Protocols: `PESC XML`, `NIEM`, signed school notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only school sequencing with manual counselor review until transcript status, school acceptance, and graduation evidence are human-confirmed.
+
+### `consumer-auto-repo-transport-v1`
+- Use for: mobility and household-risk decisions when auto-loan delinquency, repossession exposure, or insurance failure threatens lawful reporting, medical travel, or child transport.
+- Primary tools: `ts-joint-consumer-auto-loan-repossession-insurance-gap-transportation-continuity-v1`.
+- Cross-check tools: `ts-joint-pov-shipment-driver-license-registration-continuity-v1`.
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed lender notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only transportation sequencing with manual lender and insurance review until lawful mobility posture is human-confirmed.

@@ -3150,3 +3150,37 @@ For every critical recommendation, include:
 - Cross-check systems: independent family-readiness review cell and alternate chaplain, medical, or legal-support desk
 - Protocol binding: HL7/FHIR + NIEM + signed command-support notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only case sequencing until consent posture, authority, and human command review are confirmed
+
+## Toolchain Wave LXXXIX (2026-04-11)
+
+### `TC-UATOUR-362`
+
+- Domain: joint unaccompanied tour family separation allowance and deferred travel continuity
+- Primary systems: unaccompanied-tour orders board, family-separation-allowance tracker, deferred-dependent-travel queue, sponsor-contact ledger
+- Cross-check systems: independent family-readiness review cell and alternate command-sponsorship or passport-support desk
+- Protocol binding: NIEM + ICAO Doc 9303 + signed orders notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until orders status, allowance evidence, and travel-document posture are human-confirmed
+
+### `TC-TAXDOM-363`
+
+- Domain: joint state tax domicile residency and withholding continuity
+- Primary systems: domicile-election board, state-tax notice tracker, withholding-correction queue, residency-evidence ledger
+- Cross-check systems: independent tax-support review cell and alternate finance or legal-assistance desk
+- Protocol binding: NIEM + AAMVA DL/ID + signed tax notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until domicile evidence, tax-notice legitimacy, and withholding posture are human-confirmed
+
+### `TC-SCHTRN-364`
+
+- Domain: joint military child school transfer transcript and graduation continuity
+- Primary systems: school-transfer case board, transcript-request queue, graduation-credit tracker, counselor or youth-sponsor liaison ledger
+- Cross-check systems: independent school-liaison review cell and alternate EFMP or family-readiness desk
+- Protocol binding: PESC XML + NIEM + signed school notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until transcript status, school acceptance, and graduation evidence are human-confirmed
+
+### `TC-AUTOFIN-365`
+
+- Domain: joint consumer auto loan repossession insurance gap and transportation continuity
+- Primary systems: auto-loan case board, repossession or delinquency tracker, insurance-compliance queue, emergency-transport ledger
+- Cross-check systems: independent financial-readiness review cell and alternate POV or family-support desk
+- Protocol binding: NIEM + AAMVA DL/ID + signed lender notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until lender posture, insurance validity, and transport alternatives are human-confirmed

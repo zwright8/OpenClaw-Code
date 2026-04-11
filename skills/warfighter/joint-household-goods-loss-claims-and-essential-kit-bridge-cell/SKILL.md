@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported reimbursement assumptions, essential-item inequity, duplicate issue risk, and family hardship escalation before recommending action.
 - Do not fabricate shipment status, property valuation, or fiscal relief approvals.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXIX Addendum)
+
+- Add `toolchain_id=TC-SCHTRN-364`, `tool_suite_id=ts-joint-military-child-school-transfer-transcript-graduation-continuity-v1`, and `protocol_stack_id=ps-joint-military-child-school-transfer-transcript-graduation-continuity-stack-v1` when shipment delay or household displacement starts to threaten dependent school transfer, transcript continuity, or graduation timing.
+- Add `packet_id=DPL-SCHOOL-TRANSFER-GRAD-001` for branches that materially alter household-goods recovery priority, dependent school continuity, or move-legitimacy confidence.

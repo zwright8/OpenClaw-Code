@@ -76,3 +76,8 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Add `toolchain_id=TC-NEWBORN-344`, `tool_suite_id=ts-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-v1`, and `protocol_stack_id=ps-joint-newborn-birth-certificate-deers-tricare-travel-document-bridge-stack-v1` when family-movement legitimacy depends on newborn civil-registration evidence, DEERS or TRICARE activation, or new dependent travel-document readiness before overseas movement.
 - Add `packet_id=DPL-NEWBORN-DEERS-TRICARE-DOCS-001` for branches that materially alter command-sponsorship sequencing, dependent-movement legitimacy, or overseas family-travel confidence.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXIX Addendum)
+
+- Add `toolchain_id=TC-UATOUR-362`, `tool_suite_id=ts-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-v1`, and `protocol_stack_id=ps-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-stack-v1` when family-movement sequencing depends on unaccompanied-tour order integrity, family-separation-allowance legitimacy, or deferred-dependent-travel clarity for a separated household.
+- Add `packet_id=DPL-UNACCOMP-FSA-DEFER-001` for branches that materially alter command-sponsorship sequencing, deferred-family-travel legitimacy, or overseas movement confidence.

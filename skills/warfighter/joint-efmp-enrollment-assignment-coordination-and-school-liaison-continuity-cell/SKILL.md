@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect medical privacy, education rights, caregiver consent, and special-needs support assumptions before recommending action.
 - Do not fabricate EFMP enrollment, assignment approval, school placement, or command-sponsorship outcomes.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXIX Addendum)
+
+- Add `toolchain_id=TC-SCHTRN-364`, `tool_suite_id=ts-joint-military-child-school-transfer-transcript-graduation-continuity-v1`, and `protocol_stack_id=ps-joint-military-child-school-transfer-transcript-graduation-continuity-stack-v1` when EFMP assignment coordination also depends on transcript survivability, enrollment timing, or graduation-credit protection across school transfers.
+- Add `packet_id=DPL-SCHOOL-TRANSFER-GRAD-001` for branches that materially alter special-needs school continuity, movement timing, or dependent-education legitimacy.

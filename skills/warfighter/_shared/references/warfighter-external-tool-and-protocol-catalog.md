@@ -15764,3 +15764,47 @@ external_binding:
 ### `ps-joint-command-team-human-readiness-case-conference-escalation-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed command-support notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: command-case status exchange, referral routing, privacy-release updates, and cross-functional escalation acknowledgment.
+
+## Tool Suite Addendum LXXXIX (2026-04-11, Separated-Family Travel, State-Tax Legitimacy, School Transfer, and Auto-Finance Continuity)
+
+### `ts-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-v1`
+- Use for: unaccompanied-tour order integrity, family-separation-allowance continuity, deferred-dependent-travel sequencing, and sponsor-contact recovery when separated-family friction degrades readiness or retention.
+- Primary tools: unaccompanied-tour orders board, family-separation-allowance tracker, deferred-dependent-travel queue, sponsor-contact ledger.
+- Cross-check tools: independent family-readiness review cell and alternate command-sponsorship or passport-support desk.
+- Typical products: family-separation-allowance decision board, deferred-travel action ladder, sponsor-contact continuity packet.
+
+### `ts-joint-state-tax-domicile-residency-withholding-continuity-v1`
+- Use for: state-tax domicile proof, residency-legitimacy review, withholding correction, and notice-response continuity when PCS, mobilization, or remote-work shifts create double-tax or compliance risk.
+- Primary tools: domicile-election board, state-tax notice tracker, withholding-correction queue, residency-evidence ledger.
+- Cross-check tools: independent tax-support review cell and alternate finance or legal-assistance desk.
+- Typical products: state-tax residency board, withholding correction ladder, domicile-evidence packet.
+
+### `ts-joint-military-child-school-transfer-transcript-graduation-continuity-v1`
+- Use for: dependent school-transfer routing, transcript continuity, graduation-credit recovery, and counselor-liaison coordination when movement or family disruption threatens academic legitimacy.
+- Primary tools: school-transfer case board, transcript-request queue, graduation-credit tracker, counselor or youth-sponsor liaison ledger.
+- Cross-check tools: independent school-liaison review cell and alternate EFMP or family-readiness desk.
+- Typical products: school-transfer board, transcript-and-credit recovery ladder, graduation-risk continuity packet.
+
+### `ts-joint-consumer-auto-loan-repossession-insurance-gap-transportation-continuity-v1`
+- Use for: auto-loan delinquency response, repossession-risk mitigation, insurance-gap recovery, and household transportation continuity when mobility shocks start sidelining warfighters or families.
+- Primary tools: auto-loan case board, repossession or delinquency tracker, insurance-compliance queue, emergency-transport ledger.
+- Cross-check tools: independent financial-readiness review cell and alternate POV or family-support desk.
+- Typical products: transportation continuity board, repossession-risk ladder, auto-finance stabilization packet.
+
+## Protocol Stack Addendum LXXXIX (2026-04-11, External Integration Profiles for Expansion Wave LXXXIX)
+
+### `ps-joint-unaccompanied-tour-family-separation-allowance-deferred-travel-continuity-stack-v1`
+- Protocols: `NIEM`, `ICAO Doc 9303`, signed orders notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: tour-status exchange, FSA-routing updates, deferred-travel actions, and separated-family acknowledgment.
+
+### `ps-joint-state-tax-domicile-residency-withholding-continuity-stack-v1`
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed tax notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: domicile-status exchange, withholding-correction routing, tax-notice updates, and residency-legitimacy acknowledgment.
+
+### `ps-joint-military-child-school-transfer-transcript-graduation-continuity-stack-v1`
+- Protocols: `PESC XML`, `NIEM`, signed school notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: school-transfer exchange, transcript-routing updates, graduation-credit synchronization, and dependent-school continuity acknowledgment.
+
+### `ps-joint-consumer-auto-loan-repossession-insurance-gap-transportation-continuity-stack-v1`
+- Protocols: `NIEM`, `AAMVA DL/ID`, signed lender notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: lender-status exchange, repossession-risk routing, insurance-updates, and transportation-continuity acknowledgment.

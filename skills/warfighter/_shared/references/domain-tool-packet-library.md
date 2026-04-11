@@ -15683,3 +15683,49 @@ validation_gates:
 - output_schema: human-readiness case board, cross-functional escalation ladder, command-case conference packet
 - protocol_profile: HL7/FHIR + NIEM + signed command-support notices + API/JSON + S/MIME + USMTF
 - validation_gates: consent review, authority check, support-lane confirmation, human command validation
+
+## Packet Addendum LXXVII (2026-04-11, Expansion Wave LXXXIX)
+
+### packet_id: DPL-UNACCOMP-FSA-DEFER-001
+- domain: joint unaccompanied tour family separation allowance and deferred travel continuity
+- objective: preserve separated-family stability by aligning unaccompanied-tour orders, FSA legitimacy, and deferred-dependent-travel actions before household strain degrades readiness or retention.
+- primary_tools: unaccompanied-tour orders board, family-separation-allowance tracker, deferred-dependent-travel queue, sponsor-contact ledger
+- alternate_tools: manual separated-family roster and deferred-travel worksheet
+- degraded_mode: advisory-only sequencing with no unsupported allowance, travel approval, or sponsor-action promise
+- input_requirements: orders posture, tour type, family location, FSA status, deferred-travel blockers, passport or visa dependencies
+- output_schema: family-separation-allowance decision board, deferred-travel action ladder, sponsor-contact continuity packet
+- protocol_profile: NIEM + ICAO Doc 9303 + signed orders notices + API/JSON + S/MIME + USMTF
+- validation_gates: orders review, entitlement check, travel-document confirmation, human personnel validation
+
+### packet_id: DPL-STATE-TAX-DOMICILE-001
+- domain: joint state tax domicile residency and withholding continuity
+- objective: preserve household financial legitimacy by aligning domicile evidence, withholding posture, and state-tax notice response before PCS or mobilization triggers double-tax or compliance harm.
+- primary_tools: domicile-election board, state-tax notice tracker, withholding-correction queue, residency-evidence ledger
+- alternate_tools: manual tax-residency roster and withholding-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported domicile change, refund, or withholding outcome
+- input_requirements: duty status, legal-residence posture, current withholding, state notices, spouse or remote-work nexus, filing deadlines
+- output_schema: state-tax residency board, withholding correction ladder, domicile-evidence packet
+- protocol_profile: NIEM + AAMVA DL/ID + signed tax notices + API/JSON + S/MIME + USMTF
+- validation_gates: domicile-evidence review, notice-authenticity check, withholding confirmation, human fiscal validation
+
+### packet_id: DPL-SCHOOL-TRANSFER-GRAD-001
+- domain: joint military child school transfer transcript and graduation continuity
+- objective: preserve dependent academic legitimacy by aligning transcript movement, school acceptance, and graduation-credit recovery before movement friction creates long-tail household instability.
+- primary_tools: school-transfer case board, transcript-request queue, graduation-credit tracker, counselor or youth-sponsor liaison ledger
+- alternate_tools: manual school-transfer roster and graduation-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported enrollment, transcript receipt, or graduation outcome
+- input_requirements: school timeline, transfer status, transcript posture, graduation-credit needs, extracurricular or testing dependencies, privacy constraints
+- output_schema: school-transfer board, transcript-and-credit recovery ladder, graduation-risk continuity packet
+- protocol_profile: PESC XML + NIEM + signed school notices + API/JSON + S/MIME + USMTF
+- validation_gates: transcript-source review, school-acceptance check, graduation-credit confirmation, human school-liaison validation
+
+### packet_id: DPL-AUTO-REPO-TRANSPORT-001
+- domain: joint consumer auto loan repossession insurance gap and transportation continuity
+- objective: preserve lawful household mobility by aligning lender posture, insurance status, and backup transport options before repossession or coverage failure blocks reporting, care, or family movement.
+- primary_tools: auto-loan case board, repossession or delinquency tracker, insurance-compliance queue, emergency-transport ledger
+- alternate_tools: manual transport-risk roster and lender-review worksheet
+- degraded_mode: advisory-only sequencing with no unsupported lender concession, insurance reinstatement, or driving-legality claim
+- input_requirements: vehicle dependency, lender status, delinquency or repossession notice, insurance posture, registration dependencies, transport alternatives
+- output_schema: transportation continuity board, repossession-risk ladder, auto-finance stabilization packet
+- protocol_profile: NIEM + AAMVA DL/ID + signed lender notices + API/JSON + S/MIME + USMTF
+- validation_gates: lender-notice review, insurance confirmation, transport fallback check, human financial or command validation

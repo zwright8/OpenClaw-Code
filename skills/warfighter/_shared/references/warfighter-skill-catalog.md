@@ -3273,3 +3273,17 @@ Every skill output should include:
 - Strategic military spouse MyCAA portable training and career reentry + strategic-military-spouse-licensure-employment-and-pcs-continuity-cell + joint-cool-usmap-and-credentialing-pathway-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
 - Joint privatized military housing tenant rights BAH recertification and claims + strategic-military-housing-utility-safety-and-restoration-cell + joint-va-home-loan-guaranty-foreclosure-avoidance-and-housing-stability-cell + joint-military-financial-liability-and-compensation-continuity-cell.
 - Joint command team human readiness case conference and escalation + mission-risk-decision-support + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner.
+
+## New Expansion Wave (2026-04-11, Expansion Wave LXXXIX)
+
+- joint-unaccompanied-tour-family-separation-allowance-and-deferred-travel-continuity-cell
+- joint-state-tax-domicile-residency-and-withholding-continuity-cell
+- joint-military-child-school-transfer-transcript-and-graduation-continuity-cell
+- joint-consumer-auto-loan-repossession-insurance-gap-and-transportation-continuity-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave LXXXIX)
+
+- Joint unaccompanied-tour family-separation allowance and deferred-travel continuity + joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner.
+- Joint state-tax domicile residency and withholding continuity + joint-military-tax-relief-combat-zone-entitlement-and-irs-identity-protection-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-and-rate-cap-enforcement-cell.
+- Joint military-child school-transfer transcript and graduation continuity + joint-efmp-enrollment-assignment-coordination-and-school-liaison-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell + strategic-military-child-youth-behavioral-health-and-school-reintegration-cell.
+- Joint consumer auto-loan repossession insurance-gap and transportation continuity + joint-privately-owned-vehicle-shipment-driver-license-and-registration-continuity-cell + joint-credit-identity-theft-and-financial-readiness-recovery-cell + joint-household-goods-loss-claims-and-essential-kit-bridge-cell.

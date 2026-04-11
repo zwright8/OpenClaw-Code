@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported tax promises, refund timing assumptions, combat-zone evidence gaps, and identity-fraud exposure before recommending action.
 - Do not fabricate tax authority, refund status, or IRS protective actions.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXIX Addendum)
+
+- Add `toolchain_id=TC-TAXDOM-363`, `tool_suite_id=ts-joint-state-tax-domicile-residency-withholding-continuity-v1`, and `protocol_stack_id=ps-joint-state-tax-domicile-residency-withholding-continuity-stack-v1` when combat-zone tax relief or IRS identity-protection decisions still depend on resolving conflicting state-tax domicile, withholding, or legal-residence evidence.
+- Add `packet_id=DPL-STATE-TAX-DOMICILE-001` for branches that materially alter tax-legitimacy confidence, withholding correctness, or household financial resilience.

@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported shipment ETA, expired-license assumptions, registration shortcuts, and insurance-coverage gaps before recommending action.
 - Do not fabricate shipment release, license validity, registration acceptance, or driving authorization.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXIX Addendum)
+
+- Add `toolchain_id=TC-AUTOFIN-365`, `tool_suite_id=ts-joint-consumer-auto-loan-repossession-insurance-gap-transportation-continuity-v1`, and `protocol_stack_id=ps-joint-consumer-auto-loan-repossession-insurance-gap-transportation-continuity-stack-v1` when lawful household movement also depends on stabilizing repossession exposure, auto-loan delinquency, or insurance gaps that could nullify otherwise valid POV routing.
+- Add `packet_id=DPL-AUTO-REPO-TRANSPORT-001` for branches that materially alter POV movement confidence, transport legitimacy, or household mobility resilience.

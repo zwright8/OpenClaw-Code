@@ -582,3 +582,18 @@ Include these fields in outputs when tool integration is used:
 3. Use `ICAO Doc 9303` only when newborn or dependent travel requires passport or travel-document routing; otherwise keep the exchange in `NIEM` plus signed notices.
 4. Treat complaint routing, LOD or incapacitation-pay posture, award recommendations, and separation clearances as advisory-only until signed notices, acknowledgment chains, and human approval are confirmed.
 5. For every personnel-lifecycle recommendation, state the readiness effect on deployability, retention, lawful availability, family stability, or transition legitimacy.
+
+## American Warfighter Mobility, Tax, and School Continuity Addendum (2026-04-11)
+
+- Unaccompanied-tour and deferred-family-travel continuity: unaccompanied-tour order boards, family-separation-allowance trackers, deferred-dependent-travel queues, and sponsor-contact ledgers; protocols: `NIEM`, `ICAO Doc 9303`, signed orders notices, `API/JSON`, `S/MIME`, `USMTF`.
+- State-tax domicile and withholding continuity: domicile-election boards, state-tax notice trackers, withholding-correction queues, and residency-evidence ledgers; protocols: `NIEM`, `AAMVA DL/ID`, signed tax notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Military-child school-transfer and graduation continuity: school-transfer case boards, transcript-request queues, graduation-credit trackers, and counselor or youth-sponsor liaison ledgers; protocols: `PESC XML`, `NIEM`, signed school notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Consumer auto-finance and transportation continuity: auto-loan case boards, repossession or delinquency trackers, insurance-compliance queues, and emergency-transport ledgers; protocols: `NIEM`, `AAMVA DL/ID`, signed lender notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-11, Mobility, Tax, and School Continuity)
+
+1. Cross-check at least one authoritative order, personnel, pay, or school-record source with one family-support, lender, or tax-support source before recommending action that changes travel, withholding, or dependent-schooling posture.
+2. Use `ICAO Doc 9303` or `AAMVA DL/ID` only when a passport, visa, driver-license, or residency-proof artifact is actually needed; keep the broader case exchange in `NIEM` plus signed notices.
+3. Treat family-separation allowance, domicile, transcript, and repossession outcomes as advisory-only until source-record freshness, notice authenticity, and human review are confirmed.
+4. For school or youth cases, include a privacy-minimizing branch that limits release to transcript, graduation, or counselor data strictly required for continuity.
+5. Map every mobility, tax, school, or auto-finance recommendation back to a readiness effect such as deployability, reporting reliability, retention, or lawful force flow.
