@@ -3309,3 +3309,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-individual-medical-readiness-immunization-pha-dental-continuity-v1`.
 - Protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only profile sequencing with manual medical and command review until restriction evidence and accommodation posture are human-confirmed.
+
+## Toolchain Wave XCI (2026-04-11, Mid-Career Finance, Survivor Legal Protection, Reserve Training Credit, Exchange-Credit Liquidity, and Uniform Serviceability)
+
+### `blended-retirement-continuation-pay-v1`
+- Use for: retention and household-planning decisions when BRS opt-in timing, continuation-pay deadlines, or obligated-service evidence determine whether a mid-career warfighter keeps lawful retirement choices open.
+- Primary tools: `ts-joint-blended-retirement-continuation-pay-mid-career-opt-in-continuity-v1`.
+- Cross-check tools: `ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`.
+- Protocols: `NIEM`, signed retirement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only BRS sequencing with manual retirement-services review until election posture and obligation evidence are human-confirmed.
+
+### `tsp-hardship-loan-beneficiary-v1`
+- Use for: household-stability and survivor-intent decisions when TSP lockouts, hardship needs, or stale beneficiary elections threaten lawful access to emergency liquidity and savings control.
+- Primary tools: `ts-joint-thrift-savings-plan-loan-hardship-withdrawal-beneficiary-continuity-v1`.
+- Cross-check tools: `ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`.
+- Protocols: `NIEM`, signed financial notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: advisory-only TSP sequencing with manual financial review until ownership, hardship posture, and beneficiary status are human-confirmed.
+
+### `reserve-idt-rst-good-year-v1`
+- Use for: Reserve and Guard availability decisions when missed IDT, unresolved RST requests, AT-order friction, or good-year exposure could create lawful-force-flow and retirement-credit risk.
+- Primary tools: `ts-reserve-component-idt-rst-at-good-year-continuity-v1`.
+- Cross-check tools: `ts-reserve-component-drill-pay-travel-voucher-debt-resolution-v1` and `ts-reserve-component-retirement-points-sanctuary-nonregular-retirement-continuity-v1`.
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only training-credit sequencing with manual attendance and order review until commander validation is complete.
+
+### `svc-vlc-protective-order-v1`
+- Use for: survivor-protection and command-trust decisions when SVC or VLC access, protective-order continuity, or retaliation-risk evidence changes what support actions are safe and lawful.
+- Primary tools: `ts-joint-special-victim-counsel-victim-legal-counsel-protective-order-continuity-v1`.
+- Cross-check tools: `ts-joint-sexual-assault-restricted-reporting-unit-safety-v1` and `ts-joint-family-advocacy-safety-planning-restricted-reporting-duty-continuity-v1`.
+- Protocols: `NIEM`, signed legal notices, `HL7/FHIR`, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only survivor-legal sequencing with manual consent, counsel, and protective-order review before any posture claim.
+
+### `military-star-exchange-credit-v1`
+- Use for: household-resilience and readiness decisions when exchange-credit disruption, essential-purchase failures, or hardship repayment friction starts to create command-visible instability.
+- Primary tools: `ts-joint-military-star-exchange-credit-essential-purchase-continuity-v1`.
+- Cross-check tools: `ts-joint-relief-society-hardship-grant-zero-interest-loan-bridge-v1` and `ts-joint-commissary-exchange-subsistence-hygiene-restoration-v1`.
+- Protocols: `NIEM`, signed retail-credit notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: advisory-only exchange-credit sequencing with manual essential-needs review until account posture and hardship support are human-confirmed.
+
+### `uniform-replacement-serviceability-v1`
+- Use for: reporting, inspection, and mobilization decisions when damaged or missing uniforms, delayed clothing allowances, or serviceability gaps threaten lawful appearance readiness.
+- Primary tools: `ts-joint-uniform-replacement-clothing-allowance-serviceability-bridge-v1`.
+- Cross-check tools: `ts-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-v1`.
+- Protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only uniform sequencing with manual serviceability and supply review until issue legitimacy is human-confirmed.

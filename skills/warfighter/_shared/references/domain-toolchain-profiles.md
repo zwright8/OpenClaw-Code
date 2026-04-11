@@ -3234,3 +3234,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent medical-readiness review cell and alternate human-readiness or convalescent-leave desk
 - Protocol binding: HL7/FHIR + NIEM + signed medical or personnel notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only sequencing until medical evidence, accommodation posture, and human review are confirmed
+
+## Toolchain Wave XCI (2026-04-11)
+
+### `TC-BRSCP-372`
+
+- Domain: joint blended retirement system continuation pay and mid-career opt-in continuity
+- Primary systems: retirement-system eligibility board, continuation-pay election queue, obligated-service evidence ledger, retirement-counseling tracker
+- Cross-check systems: independent retirement-services review cell and alternate compensation or personnel-records desk
+- Protocol binding: NIEM + signed retirement notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until retirement-system status, obligation evidence, and human finance review are confirmed
+
+### `TC-TSPHL-373`
+
+- Domain: joint thrift savings plan loan hardship withdrawal and beneficiary continuity
+- Primary systems: TSP account-access tracker, loan or hardship case board, beneficiary-election ledger, payroll-contribution monitor
+- Cross-check systems: independent financial-readiness review cell and alternate retirement-services or survivor-benefits desk
+- Protocol binding: NIEM + signed financial notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: advisory-only sequencing until account ownership, hardship posture, and human financial review are confirmed
+
+### `TC-IDTRST-374`
+
+- Domain: reserve component IDT RST AT and good-year continuity
+- Primary systems: attendance certification board, RST request tracker, AT orders queue, retirement-credit or good-year ledger
+- Cross-check systems: independent readiness-NCO review cell and alternate retirement-services or drill-pay desk
+- Protocol binding: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until attendance evidence, order status, and human command review are confirmed
+
+### `TC-SVCVLC-375`
+
+- Domain: joint special victim counsel victim legal counsel and protective-order continuity
+- Primary systems: SVC or VLC assignment tracker, protective-order evidence ledger, retaliation-risk escalation queue, court or command-coordination board
+- Cross-check systems: independent survivor-legal-services review cell and alternate SAPR or family-advocacy desk
+- Protocol binding: NIEM + signed legal notices + HL7/FHIR + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until survivor-consent posture, counsel availability, and human legal review are confirmed
+
+### `TC-MSTAR-376`
+
+- Domain: joint Military Star exchange credit and essential purchase continuity
+- Primary systems: exchange-credit account board, essential-purchase tracker, hardship repayment queue, household-needs ledger
+- Cross-check systems: independent financial-readiness review cell and alternate relief-society or family-support desk
+- Protocol binding: NIEM + signed retail-credit notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: advisory-only sequencing until account posture, essential-need priority, and human financial review are confirmed
+
+### `TC-UNIFORM-377`
+
+- Domain: joint uniform replacement clothing allowance and serviceability bridge
+- Primary systems: replacement-uniform request board, annual clothing-allowance ledger, serviceability inspection tracker, insignia or tailoring queue
+- Cross-check systems: independent supply review cell and alternate mobilization or first-sergeant desk
+- Protocol binding: NIEM + signed issue notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until serviceability evidence, allowance posture, and human supply review are confirmed

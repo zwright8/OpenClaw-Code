@@ -15797,3 +15797,71 @@ validation_gates:
 - output_schema: profile-reconciliation board, accommodation decision ladder, deployability-code continuity packet
 - protocol_profile: HL7/FHIR + NIEM + signed medical or personnel notices + API/JSON + S/MIME + USMTF
 - validation_gates: medical-evidence review, accommodation confirmation, code-check, command-impact review
+
+## Packet Addendum LXXIX (2026-04-11, Expansion Wave XCI)
+
+### packet_id: DPL-BRS-CONTPAY-OPTIN-001
+- domain: joint blended retirement system continuation pay and mid-career opt-in continuity
+- objective: preserve mid-career retention legitimacy by aligning BRS status, continuation-pay timing, and obligated-service evidence before deadline drift or bad data breaks household planning.
+- primary_tools: retirement-system eligibility board, continuation-pay election queue, obligated-service evidence ledger, retirement-counseling tracker
+- alternate_tools: manual BRS-deadline roster and obligation-review worksheet
+- degraded_mode: advisory-only retirement sequencing with no unsupported election, continuation-pay outcome, or service-obligation claim
+- input_requirements: affected personnel, DIEMS or BRS posture, years-of-service window, continuation-pay deadline, obligation evidence, retention timeline
+- output_schema: BRS eligibility board, continuation-pay decision ladder, mid-career retirement continuity packet
+- protocol_profile: NIEM + signed retirement notices + API/JSON + S/MIME + USMTF
+- validation_gates: retirement-system review, obligation confirmation, deadline check, human finance validation
+
+### packet_id: DPL-TSP-LOAN-HARDSHIP-BENEFICIARY-001
+- domain: joint thrift savings plan loan hardship withdrawal and beneficiary continuity
+- objective: preserve retirement-savings legitimacy and emergency liquidity by aligning account access, hardship documentation, and beneficiary elections before financial shock or survivor-intent drift harms the household.
+- primary_tools: TSP account-access tracker, loan or hardship case board, beneficiary-election ledger, payroll-contribution monitor
+- alternate_tools: manual retirement-liquidity roster and beneficiary-review worksheet
+- degraded_mode: advisory-only TSP sequencing with no unsupported loan, hardship withdrawal, beneficiary change, or account-recovery claim
+- input_requirements: affected personnel, access posture, emergency-need driver, beneficiary status, contribution posture, privacy constraints
+- output_schema: TSP access-recovery board, hardship or loan decision ladder, beneficiary-continuity packet
+- protocol_profile: NIEM + signed financial notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: account-ownership review, hardship-evidence check, beneficiary confirmation, human financial validation
+
+### packet_id: DPL-RESERVE-IDT-RST-AT-GOODYEAR-001
+- domain: reserve component IDT RST AT and good-year continuity
+- objective: preserve lawful availability and retirement-credit continuity by aligning attendance evidence, RST routing, AT orders, and good-year posture before a bad-year or training-status dispute undermines commander trust.
+- primary_tools: attendance certification board, RST request tracker, AT orders queue, retirement-credit or good-year ledger
+- alternate_tools: manual training-credit roster and attendance-review worksheet
+- degraded_mode: advisory-only training sequencing with no unsupported attendance certification, RST approval, AT orders, or retirement-credit outcome
+- input_requirements: affected personnel, scheduled training events, attendance posture, RST or AT status, conflict drivers, retirement-credit exposure
+- output_schema: training-credit integrity board, RST or AT decision ladder, good-year preservation packet
+- protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: attendance review, order confirmation, training-credit check, human command validation
+
+### packet_id: DPL-SVC-VLC-PROTECTIVE-ORDER-001
+- domain: joint special victim counsel victim legal counsel and protective-order continuity
+- objective: preserve survivor safety and trust by aligning counsel access, protective-order posture, and retaliation-risk escalation before legal-support delay becomes operational harm.
+- primary_tools: SVC or VLC assignment tracker, protective-order evidence ledger, retaliation-risk escalation queue, court or command-coordination board
+- alternate_tools: manual survivor-protection roster and counsel-escalation worksheet
+- degraded_mode: advisory-only survivor-protection sequencing with no unsupported legal advice, order issuance, or jurisdiction outcome claim
+- input_requirements: reporting posture, survivor-consent limits, counsel availability, protective-order status, retaliation indicators, jurisdiction constraints
+- output_schema: survivor legal-protection board, counsel-routing ladder, protective-order continuity packet
+- protocol_profile: NIEM + signed legal notices + HL7/FHIR + API/JSON + S/MIME + USMTF
+- validation_gates: consent review, counsel-availability check, order-status confirmation, human legal validation
+
+### packet_id: DPL-MILITARY-STAR-EXCHANGE-CREDIT-001
+- domain: joint Military Star exchange credit and essential purchase continuity
+- objective: preserve lawful household purchasing power by aligning exchange-credit posture, essential-item demand, and hardship repayment options before retail-credit disruption degrades readiness or family resilience.
+- primary_tools: exchange-credit account board, essential-purchase tracker, hardship repayment queue, household-needs ledger
+- alternate_tools: manual essential-purchase roster and financial-review worksheet
+- degraded_mode: advisory-only retail-credit sequencing with no unsupported credit extension, payment deferral, or item-availability claim
+- input_requirements: affected households, account status, delinquency or freeze posture, essential-item needs, hardship indicators, alternate-support lanes
+- output_schema: exchange-credit stability board, essential-purchase recovery ladder, household-liquidity bridge packet
+- protocol_profile: NIEM + signed retail-credit notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: account review, essential-need check, hardship-status confirmation, human financial validation
+
+### packet_id: DPL-UNIFORM-REPLACEMENT-ALLOWANCE-SERVICEABILITY-001
+- domain: joint uniform replacement clothing allowance and serviceability bridge
+- objective: preserve appearance readiness and lawful serviceability by aligning replacement issue, clothing-allowance timing, and serviceability evidence before damaged or missing uniforms sideline the warfighter.
+- primary_tools: replacement-uniform request board, annual clothing-allowance ledger, serviceability inspection tracker, insignia or tailoring queue
+- alternate_tools: manual uniform-deficiency roster and serviceability-review worksheet
+- degraded_mode: advisory-only uniform sequencing with no unsupported issue, allowance approval, tailoring completion, or inspection-pass claim
+- input_requirements: affected personnel, uniform deficiencies, clothing-allowance posture, serviceability evidence, inspection or reporting timeline, supply constraints
+- output_schema: uniform serviceability board, clothing-allowance decision ladder, appearance-readiness continuity packet
+- protocol_profile: NIEM + signed issue notices + API/JSON + S/MIME + USMTF
+- validation_gates: serviceability review, allowance confirmation, item-availability check, human supply validation

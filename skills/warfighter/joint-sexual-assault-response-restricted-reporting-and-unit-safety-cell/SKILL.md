@@ -72,3 +72,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag retaliation risk, care delays, privacy breaches, and command-climate hazards before recommending action.
 - Do not fabricate survivor statements, medical findings, authorities, or approvals.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCI Addendum)
+
+- Add `toolchain_id=TC-SVCVLC-375`, `tool_suite_id=ts-joint-special-victim-counsel-victim-legal-counsel-protective-order-continuity-v1`, and `protocol_stack_id=ps-joint-special-victim-counsel-victim-legal-counsel-protective-order-continuity-stack-v1` when survivor safety, legal protection, or retaliation-response posture depends on SVC or VLC access, protective-order continuity, or jurisdiction-aware legal-document routing.
+- Add `packet_id=DPL-SVC-VLC-PROTECTIVE-ORDER-001` for branches that materially alter survivor protection, confidentiality confidence, or command-trust posture.

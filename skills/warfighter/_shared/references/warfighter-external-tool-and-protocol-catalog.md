@@ -15872,3 +15872,67 @@ external_binding:
 ### `ps-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-stack-v1`
 - Protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: profile-status exchange, accommodation routing, nondeployable-code updates, and deployability acknowledgment.
+
+## Tool Suite Addendum XCI (2026-04-11, Mid-Career Finance, Reserve Training Credit, Survivor Legal Protection, Exchange-Credit Liquidity, and Uniform Serviceability)
+
+### `ts-joint-blended-retirement-continuation-pay-mid-career-opt-in-continuity-v1`
+- Use for: BRS opt-in timing, continuation-pay elections, obligated-service evidence, and mid-career retirement legitimacy when deadline drift threatens retention and household planning.
+- Primary tools: retirement-system eligibility board, continuation-pay election queue, obligated-service evidence ledger, retirement-counseling tracker.
+- Cross-check tools: independent retirement-services review cell and alternate compensation or personnel-records desk.
+- Typical products: BRS eligibility board, continuation-pay decision ladder, mid-career retirement continuity packet.
+
+### `ts-joint-thrift-savings-plan-loan-hardship-withdrawal-beneficiary-continuity-v1`
+- Use for: TSP access recovery, loan or hardship-withdrawal routing, beneficiary accuracy, and contribution continuity when emergency cash shocks or record drift threaten household stability.
+- Primary tools: TSP account-access tracker, loan or hardship case board, beneficiary-election ledger, payroll-contribution monitor.
+- Cross-check tools: independent financial-readiness review cell and alternate retirement-services or survivor-benefits desk.
+- Typical products: TSP access-recovery board, hardship or loan decision ladder, beneficiary-continuity packet.
+
+### `ts-reserve-component-idt-rst-at-good-year-continuity-v1`
+- Use for: IDT attendance legitimacy, RST routing, annual-training continuity, and good-year preservation when Reserve or Guard training records drift toward bad-year or availability loss.
+- Primary tools: attendance certification board, RST request tracker, AT orders queue, retirement-credit or good-year ledger.
+- Cross-check tools: independent readiness-NCO review cell and alternate retirement-services or drill-pay desk.
+- Typical products: training-credit integrity board, RST or AT decision ladder, good-year preservation packet.
+
+### `ts-joint-special-victim-counsel-victim-legal-counsel-protective-order-continuity-v1`
+- Use for: SVC or VLC assignment continuity, protective-order coordination, retaliation-risk tracking, and survivor legal-document preservation when jurisdiction friction or command churn threatens safety and trust.
+- Primary tools: SVC or VLC assignment tracker, protective-order evidence ledger, retaliation-risk escalation queue, court or command-coordination board.
+- Cross-check tools: independent survivor-legal-services review cell and alternate SAPR or family-advocacy desk.
+- Typical products: survivor legal-protection board, counsel-routing ladder, protective-order continuity packet.
+
+### `ts-joint-military-star-exchange-credit-essential-purchase-continuity-v1`
+- Use for: Military Star or exchange-credit access, essential-purchase continuity, and hardship repayment sequencing when retail-credit disruption degrades household stability or duty readiness.
+- Primary tools: exchange-credit account board, essential-purchase tracker, hardship repayment queue, household-needs ledger.
+- Cross-check tools: independent financial-readiness review cell and alternate relief-society or family-support desk.
+- Typical products: exchange-credit stability board, essential-purchase recovery ladder, household-liquidity bridge packet.
+
+### `ts-joint-uniform-replacement-clothing-allowance-serviceability-bridge-v1`
+- Use for: uniform replacement, clothing-allowance legitimacy, insignia or tailoring correction, and serviceability evidence when damaged or missing uniforms threaten training, inspections, or mobilization.
+- Primary tools: replacement-uniform request board, annual clothing-allowance ledger, serviceability inspection tracker, insignia or tailoring queue.
+- Cross-check tools: independent supply review cell and alternate mobilization or first-sergeant desk.
+- Typical products: uniform serviceability board, clothing-allowance decision ladder, appearance-readiness continuity packet.
+
+## Protocol Stack Addendum XCI (2026-04-11, External Integration Profiles for Expansion Wave XCI)
+
+### `ps-joint-blended-retirement-continuation-pay-mid-career-opt-in-continuity-stack-v1`
+- Protocols: `NIEM`, signed retirement notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: retirement-system status exchange, continuation-pay routing, obligation-evidence updates, and mid-career retention acknowledgment.
+
+### `ps-joint-thrift-savings-plan-loan-hardship-withdrawal-beneficiary-continuity-stack-v1`
+- Protocols: `NIEM`, signed financial notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Use for: account-access status exchange, hardship or loan routing, beneficiary updates, and retirement-savings acknowledgment.
+
+### `ps-reserve-component-idt-rst-at-good-year-continuity-stack-v1`
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: attendance-status exchange, RST routing, AT-order updates, and good-year preservation acknowledgment.
+
+### `ps-joint-special-victim-counsel-victim-legal-counsel-protective-order-continuity-stack-v1`
+- Protocols: `NIEM`, signed legal notices, `HL7/FHIR`, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: counsel-assignment exchange, protective-order routing, care or safety updates, and survivor-protection acknowledgment.
+
+### `ps-joint-military-star-exchange-credit-essential-purchase-continuity-stack-v1`
+- Protocols: `NIEM`, signed retail-credit notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Use for: account-status exchange, hardship-payment routing, essential-purchase updates, and household-liquidity acknowledgment.
+
+### `ps-joint-uniform-replacement-clothing-allowance-serviceability-bridge-stack-v1`
+- Protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: item-status exchange, clothing-allowance routing, serviceability updates, and readiness-appearance acknowledgment.

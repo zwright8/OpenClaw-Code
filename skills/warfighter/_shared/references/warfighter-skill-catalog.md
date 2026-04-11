@@ -3305,3 +3305,21 @@ Every skill output should include:
 - Joint initial-issue CIF or OCIE clothing-record and mobilization-kitting continuity + reserve-guard-mobilization-planner + joint-final-out-processing-cif-ocie-medical-dental-and-separation-clearance-cell + mission-risk-decision-support.
 - Joint leave carryover special-leave-accrual and sell-back continuity + joint-military-financial-liability-and-compensation-continuity-cell + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell + joint-command-team-human-readiness-case-conference-and-escalation-cell.
 - Joint duty-limiting profile accommodation and nondeployable-code continuity + joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell + joint-convalescent-leave-limited-duty-and-medical-hold-continuity-cell + joint-command-team-human-readiness-case-conference-and-escalation-cell.
+
+## New Expansion Wave (2026-04-11, Expansion Wave XCI)
+
+- joint-blended-retirement-system-continuation-pay-and-mid-career-opt-in-continuity-cell
+- joint-thrift-savings-plan-loan-hardship-withdrawal-and-beneficiary-continuity-cell
+- reserve-component-idt-rst-at-and-good-year-continuity-cell
+- joint-special-victim-counsel-victim-legal-counsel-and-protective-order-continuity-cell
+- joint-military-star-exchange-credit-and-essential-purchase-continuity-cell
+- joint-uniform-replacement-clothing-allowance-and-serviceability-bridge-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave XCI)
+
+- Joint blended-retirement-system continuation-pay and mid-career opt-in continuity + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell + joint-reenlistment-selective-retention-bonus-and-career-field-reclassification-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell.
+- Joint thrift-savings-plan loan hardship-withdrawal and beneficiary continuity + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell + joint-mypay-les-allotment-and-payroll-access-continuity-cell + joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell.
+- Reserve-component IDT RST AT and good-year continuity + reserve-component-drill-pay-travel-voucher-and-debt-resolution-cell + reserve-component-retirement-points-sanctuary-and-nonregular-retirement-continuity-cell + reserve-guard-mobilization-planner.
+- Joint special-victim-counsel victim-legal-counsel and protective-order continuity + joint-sexual-assault-response-restricted-reporting-and-unit-safety-cell + joint-family-advocacy-safety-planning-restricted-reporting-and-duty-continuity-cell + joint-inspector-general-equal-opportunity-and-reprisal-complaint-safeguard-cell.
+- Joint Military Star exchange-credit and essential-purchase continuity + joint-commissary-exchange-subsistence-and-hygiene-priority-restoration-cell + joint-relief-society-hardship-grant-and-zero-interest-loan-bridge-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint uniform-replacement clothing-allowance and serviceability bridge + joint-initial-issue-cif-ocie-clothing-record-and-mobilization-kitting-continuity-cell + joint-final-out-processing-cif-ocie-medical-dental-and-separation-clearance-cell + reserve-guard-mobilization-planner.

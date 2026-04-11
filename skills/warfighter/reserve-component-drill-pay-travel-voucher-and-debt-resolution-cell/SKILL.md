@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported debt collection, uncompensated travel, inconsistent attendance evidence, and hardship spillover before recommending action.
 - Do not fabricate orders, duty status, pay authority, debt waiver, or reimbursement approval.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCI Addendum)
+
+- Add `toolchain_id=TC-IDTRST-374`, `tool_suite_id=ts-reserve-component-idt-rst-at-good-year-continuity-v1`, and `protocol_stack_id=ps-reserve-component-idt-rst-at-good-year-continuity-stack-v1` when drill-pay legitimacy, attendance certification, or travel-reimbursement trust depends on IDT evidence, RST approvals, AT orders, or good-year preservation.
+- Add `packet_id=DPL-RESERVE-IDT-RST-AT-GOODYEAR-001` for branches that materially alter pay legitimacy, attendance confidence, or commander trust in Reserve or Guard availability.

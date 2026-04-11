@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported issue promises, counterfeit or non-certified substitutes, wrong-size risk, and property-accountability gaps before recommending action.
 - Do not fabricate issue records, substitute approvals, or kitting completion.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCI Addendum)
+
+- Add `toolchain_id=TC-UNIFORM-377`, `tool_suite_id=ts-joint-uniform-replacement-clothing-allowance-serviceability-bridge-v1`, and `protocol_stack_id=ps-joint-uniform-replacement-clothing-allowance-serviceability-bridge-stack-v1` when kitting confidence depends on serviceable replacement uniforms, annual clothing-allowance legitimacy, or rapid correction of damaged duty items before inspection or mobilization.
+- Add `packet_id=DPL-UNIFORM-REPLACEMENT-ALLOWANCE-SERVICEABILITY-001` for branches that materially alter serviceability confidence, clothing-accountability posture, or mobilization timing.

@@ -178,6 +178,12 @@ Primary products for this skill: family-readiness risk dashboard, sustainment su
 - Add `toolchain_id=TC-CREDIT-306`, `tool_suite_id=ts-joint-credit-identity-theft-financial-readiness-recovery-v1`, and `protocol_stack_id=ps-joint-credit-identity-theft-financial-readiness-recovery-stack-v1` when household survivability depends on identity-theft response, credit recovery, or fraud-driven emergency-assistance access.
 - Add `packet_id=DPL-ED-BENEFITS-GIBILL-001`, `packet_id=DPL-FVAP-BALLOT-CONTINUITY-001`, and `packet_id=DPL-CREDIT-IDENTITY-RECOVERY-001` for branches that materially alter retention outlook, household stability, or commander confidence in family-support posture.
 
+## Domain Toolchain Override (2026-04-11, Expansion Wave XCI Addendum)
+
+- Add `toolchain_id=TC-TSPHL-373`, `tool_suite_id=ts-joint-thrift-savings-plan-loan-hardship-withdrawal-beneficiary-continuity-v1`, and `protocol_stack_id=ps-joint-thrift-savings-plan-loan-hardship-withdrawal-beneficiary-continuity-stack-v1` when family-readiness posture depends on emergency liquidity, beneficiary integrity, or retirement-savings access after household shock.
+- Add `toolchain_id=TC-MSTAR-376`, `tool_suite_id=ts-joint-military-star-exchange-credit-essential-purchase-continuity-v1`, and `protocol_stack_id=ps-joint-military-star-exchange-credit-essential-purchase-continuity-stack-v1` when household stability depends on exchange-credit access, essential-purchase continuity, or hardship repayment sequencing.
+- Add `packet_id=DPL-TSP-LOAN-HARDSHIP-BENEFICIARY-001` and `packet_id=DPL-MILITARY-STAR-EXCHANGE-CREDIT-001` for branches that materially alter household stability, emergency-purchase resilience, or commander confidence in family-support posture.
+
 ## Domain Toolchain Override (2026-04-07, Expansion Wave LXXVII Addendum)
 
 - Add `toolchain_id=TC-DEERS-307`, `tool_suite_id=ts-joint-deers-id-card-eligibility-reconciliation-v1`, and `protocol_stack_id=ps-joint-deers-id-card-eligibility-reconciliation-stack-v1` when family-readiness posture depends on restored sponsor-dependent eligibility, ID-card validity, or entitlement access.
