@@ -71,3 +71,11 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported pay promises, recoupment risk, wrong-location evidence, and retention-impact assumptions before recommending action.
 - Do not fabricate entitlements, bonus eligibility, special-pay certification, or correction approval.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XC Addendum)
+
+- Add `toolchain_id=TC-MYPAY-366`, `tool_suite_id=ts-joint-mypay-les-allotment-payroll-access-continuity-v1`, and `protocol_stack_id=ps-joint-mypay-les-allotment-payroll-access-continuity-stack-v1` when compensation continuity depends on trusted payroll access, LES correctness, or allotment integrity.
+- Add `toolchain_id=TC-REENLIST-367`, `tool_suite_id=ts-joint-reenlistment-selective-retention-bonus-career-field-reclassification-continuity-v1`, and `protocol_stack_id=ps-joint-reenlistment-selective-retention-bonus-career-field-reclassification-continuity-stack-v1` when bonus timing, retention incentives, or reclassification-driven obligation changes materially alter incentive legitimacy.
+- Add `toolchain_id=TC-BARRDORM-368`, `tool_suite_id=ts-joint-barracks-dorm-work-order-bah-exception-emergency-relocation-continuity-v1`, and `protocol_stack_id=ps-joint-barracks-dorm-work-order-bah-exception-emergency-relocation-continuity-stack-v1` when BAH-exception routing or emergency housing changes location-pay legitimacy or household stability.
+- Add `toolchain_id=TC-LEAVE-370`, `tool_suite_id=ts-joint-leave-carryover-special-leave-accrual-sell-back-continuity-v1`, and `protocol_stack_id=ps-joint-leave-carryover-special-leave-accrual-sell-back-continuity-stack-v1` when leave-balance drift, SLA exposure, or sell-back timing materially changes compensation posture or recovery confidence.
+- Add `packet_id=DPL-MYPAY-LES-ALLOTMENT-001`, `packet_id=DPL-REENLISTMENT-SRB-RECLASS-001`, `packet_id=DPL-BARRACKS-DORM-BAH-RELOCATE-001`, and `packet_id=DPL-LEAVE-SLA-SELLBACK-001` for branches that materially alter compensation legitimacy, household stability, or retention confidence.

@@ -3265,3 +3265,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-pov-shipment-driver-license-registration-continuity-v1`.
 - Protocols: `NIEM`, `AAMVA DL/ID`, signed lender notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only transportation sequencing with manual lender and insurance review until lawful mobility posture is human-confirmed.
+
+## Toolchain Wave XC (2026-04-11, Payroll Access, Retention, Barracks Exceptions, Kitting, Leave Legitimacy, and Profile Reconciliation)
+
+### `payroll-access-les-allotment-v1`
+- Use for: readiness and household-stability decisions when MyPay lockouts, LES errors, or allotment failures threaten the next pay cycle or trust in military compensation.
+- Primary tools: `ts-joint-mypay-les-allotment-payroll-access-continuity-v1`.
+- Cross-check tools: `ts-joint-special-pay-bah-cola-incentive-continuity-v1`.
+- Protocols: `NIEM`, signed pay notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Degraded fallback: advisory-only payroll sequencing with manual finance verification until access posture and pay evidence are human-confirmed.
+
+### `reenlistment-retention-reclassification-v1`
+- Use for: retention and billet-fill decisions when reenlistment deadlines, SRB legitimacy, or career-field reclassification friction threaten lawful availability.
+- Primary tools: `ts-joint-reenlistment-selective-retention-bonus-career-field-reclassification-continuity-v1`.
+- Cross-check tools: `ts-joint-special-pay-bah-cola-incentive-continuity-v1`.
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only retention sequencing with manual career-counselor review until eligibility and obligation evidence are human-confirmed.
+
+### `barracks-bah-relocation-v1`
+- Use for: readiness and safety decisions when barracks or dorm conditions, delayed work orders, or BAH-exception routing threaten lawful occupancy or emergency relocation.
+- Primary tools: `ts-joint-barracks-dorm-work-order-bah-exception-emergency-relocation-continuity-v1`.
+- Cross-check tools: `ts-joint-privatized-military-housing-tenant-rights-bah-recertification-claims-v1`.
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`, `NIMS/ICS`.
+- Degraded fallback: advisory-only housing sequencing with manual safety and housing review until room status and lodging capacity are human-confirmed.
+
+### `initial-issue-mobilization-kitting-v1`
+- Use for: reporting and deployment decisions when missing initial issue, clothing-record drift, or substitute-kit shortages threaten mobilization timelines.
+- Primary tools: `ts-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-v1`.
+- Cross-check tools: `ts-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-v1`.
+- Protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only issue sequencing with manual supply verification until accountability and shortage posture are human-confirmed.
+
+### `leave-sla-sellback-v1`
+- Use for: readiness, recovery, and transition decisions when leave-balance drift, SLA exposure, or sell-back timing threatens lawful compensation or force recovery.
+- Primary tools: `ts-joint-leave-carryover-special-leave-accrual-sell-back-continuity-v1`.
+- Cross-check tools: `ts-joint-retirement-sbp-tsp-transition-counseling-continuity-v1`.
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only leave sequencing with manual personnel review until balances, deadlines, and authority are human-confirmed.
+
+### `duty-limiting-profile-accommodation-v1`
+- Use for: deployability and assignment decisions when stale profiles, missing accommodations, or wrong nondeployable codes distort who is lawfully and safely available.
+- Primary tools: `ts-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-v1`.
+- Cross-check tools: `ts-joint-individual-medical-readiness-immunization-pha-dental-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only profile sequencing with manual medical and command review until restriction evidence and accommodation posture are human-confirmed.

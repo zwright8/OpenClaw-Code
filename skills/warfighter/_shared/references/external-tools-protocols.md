@@ -597,3 +597,20 @@ Include these fields in outputs when tool integration is used:
 3. Treat family-separation allowance, domicile, transcript, and repossession outcomes as advisory-only until source-record freshness, notice authenticity, and human review are confirmed.
 4. For school or youth cases, include a privacy-minimizing branch that limits release to transcript, graduation, or counselor data strictly required for continuity.
 5. Map every mobility, tax, school, or auto-finance recommendation back to a readiness effect such as deployability, reporting reliability, retention, or lawful force flow.
+
+## American Warfighter Pay Access, Retention, Housing Exceptions, and Kitting Addendum (2026-04-11)
+
+- Payroll self-service and LES legitimacy continuity: MyPay access boards, LES discrepancy trackers, direct-deposit and allotment ledgers, and pay-cycle exception queues; protocols: `NIEM`, signed pay notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Reenlistment and career-field continuity: reenlistment eligibility boards, bonus or SRB trackers, reclassification or retraining queues, and service-obligation ledgers; protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Barracks or dorm exception and emergency relocation continuity: room-status boards, work-order escalation queues, BAH-exception ledgers, and emergency-lodging trackers; protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`, `NIMS/ICS`.
+- Initial issue and mobilization-kitting continuity: initial-issue boards, CIF or OCIE clothing-record ledgers, size or fit crosswalks, and shortage-exception queues; protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Leave-balance, special-leave-accrual, and sell-back continuity: leave-balance trackers, SLA or carryover boards, sell-back eligibility queues, and deployment-tempo reconciliation ledgers; protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Duty-limiting profile and accommodation continuity: profile-status boards, accommodation queues, nondeployable-code ledgers, and assignment-impact trackers; protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-11, Pay Access, Retention, Housing Exceptions, and Kitting)
+
+1. Cross-check at least one authoritative personnel, pay, housing, or medical source with one family-support, finance, or command-support source before recommending action that changes payroll access, reenlistment posture, living quarters, issue status, or deployability codes.
+2. Use `OIDC/SAML` only when account ownership or payroll self-service authentication must be verified; keep the broader case exchange in `NIEM` plus signed notices.
+3. Treat payroll restoration, reenlistment approval, BAH exceptions, initial-issue completion, leave-balance correction, and deployability-code changes as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
+4. For medical-profile or accommodation cases, keep protected health detail to the minimum required by the receiving office and explicitly separate readiness effect from clinical detail.
+5. Map every pay-access, retention, housing, kitting, leave, or profile recommendation back to a readiness effect such as deployability, reporting reliability, lawful availability, household stability, or retention confidence.

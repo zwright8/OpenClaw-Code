@@ -3184,3 +3184,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent financial-readiness review cell and alternate POV or family-support desk
 - Protocol binding: NIEM + AAMVA DL/ID + signed lender notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only sequencing until lender posture, insurance validity, and transport alternatives are human-confirmed
+
+## Toolchain Wave XC (2026-04-11)
+
+### `TC-MYPAY-366`
+
+- Domain: joint MyPay LES allotment and payroll access continuity
+- Primary systems: payroll self-service access board, LES discrepancy tracker, direct-deposit or allotment ledger, pay-cycle deadline queue
+- Cross-check systems: independent finance review cell and alternate compensation or human-readiness desk
+- Protocol binding: NIEM + signed pay notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- Fallback path: advisory-only sequencing until account ownership, pay status, and human finance review are confirmed
+
+### `TC-REENLIST-367`
+
+- Domain: joint reenlistment selective retention bonus and career field reclassification continuity
+- Primary systems: reenlistment eligibility board, SRB or bonus tracker, career-field reclassification queue, service-obligation ledger
+- Cross-check systems: independent career-counselor review cell and alternate compensation or clearance desk
+- Protocol binding: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until eligibility, obligation, and human career review are confirmed
+
+### `TC-BARRDORM-368`
+
+- Domain: joint barracks dorm work order BAH exception and emergency relocation continuity
+- Primary systems: room habitability tracker, work-order escalation board, BAH-exception ledger, emergency-relocation queue
+- Cross-check systems: independent housing-office review cell and alternate family-readiness or environmental-remediation desk
+- Protocol binding: NIEM + signed housing notices + API/JSON + S/MIME + USMTF + NIMS/ICS
+- Fallback path: advisory-only sequencing until habitability evidence, lodging capacity, and human housing review are confirmed
+
+### `TC-KITISS-369`
+
+- Domain: joint initial issue CIF OCIE clothing record and mobilization kitting continuity
+- Primary systems: initial-issue board, CIF or OCIE clothing-record ledger, size or fit crosswalk, mobilization-kitting shortage queue
+- Cross-check systems: independent supply review cell and alternate mobilization or final-out desk
+- Protocol binding: NIEM + signed issue notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until accountability evidence, substitute-kit authority, and human supply review are confirmed
+
+### `TC-LEAVE-370`
+
+- Domain: joint leave carryover special leave accrual and sell-back continuity
+- Primary systems: leave-balance tracker, use-or-lose or SLA board, sell-back eligibility queue, deployment-tempo reconciliation ledger
+- Cross-check systems: independent personnel-services review cell and alternate compensation or retirement desk
+- Protocol binding: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until balance evidence, SLA basis, and human personnel review are confirmed
+
+### `TC-PROFILE-371`
+
+- Domain: joint duty limiting profile accommodation and nondeployable code continuity
+- Primary systems: profile-status board, accommodation request queue, nondeployable-code ledger, assignment-impact tracker
+- Cross-check systems: independent medical-readiness review cell and alternate human-readiness or convalescent-leave desk
+- Protocol binding: HL7/FHIR + NIEM + signed medical or personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until medical evidence, accommodation posture, and human review are confirmed

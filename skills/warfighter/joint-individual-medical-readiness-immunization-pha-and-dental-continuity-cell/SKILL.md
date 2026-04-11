@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag expired immunizations, missing PHA evidence, dental non-deployability, and unsupported readiness assumptions before recommending action.
 - Do not fabricate deployability status, vaccine completion, dental clearance, or medical waiver authority.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XC Addendum)
+
+- Add `toolchain_id=TC-PROFILE-371`, `tool_suite_id=ts-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-v1`, and `protocol_stack_id=ps-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-stack-v1` when IMR confidence depends on reconciling duty-limiting profiles, accommodations, or wrong nondeployable codes alongside vaccine, PHA, or dental evidence.
+- Add `packet_id=DPL-PROFILE-NONDEPLOY-CODE-001` for branches that materially alter deployability confidence, medical-readiness sequencing, or assignment legitimacy.

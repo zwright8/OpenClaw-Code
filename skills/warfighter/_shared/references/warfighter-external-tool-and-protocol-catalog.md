@@ -15808,3 +15808,67 @@ external_binding:
 ### `ps-joint-consumer-auto-loan-repossession-insurance-gap-transportation-continuity-stack-v1`
 - Protocols: `NIEM`, `AAMVA DL/ID`, signed lender notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: lender-status exchange, repossession-risk routing, insurance-updates, and transportation-continuity acknowledgment.
+
+## Tool Suite Addendum XC (2026-04-11, Payroll Access, Retention, Barracks Exceptions, Kitting, Leave Legitimacy, and Profile Reconciliation)
+
+### `ts-joint-mypay-les-allotment-payroll-access-continuity-v1`
+- Use for: payroll self-service recovery, LES discrepancy triage, direct-deposit and allotment continuity, and pay-cycle exception control when pay-access drift threatens readiness or household stability.
+- Primary tools: payroll self-service access board, LES discrepancy tracker, direct-deposit or allotment ledger, pay-cycle deadline queue.
+- Cross-check tools: independent finance review cell and alternate compensation or human-readiness desk.
+- Typical products: payroll-access recovery board, LES-correction ladder, allotment-continuity packet.
+
+### `ts-joint-reenlistment-selective-retention-bonus-career-field-reclassification-continuity-v1`
+- Use for: reenlistment-window protection, SRB legitimacy, retraining or reclassification routing, and service-obligation continuity when retention friction threatens billet fill or lawful availability.
+- Primary tools: reenlistment eligibility board, SRB or bonus tracker, career-field reclassification queue, service-obligation ledger.
+- Cross-check tools: independent career-counselor review cell and alternate compensation or clearance desk.
+- Typical products: reenlistment decision board, SRB-legitimacy ladder, career-field continuity packet.
+
+### `ts-joint-barracks-dorm-work-order-bah-exception-emergency-relocation-continuity-v1`
+- Use for: barracks or dorm habitability escalation, work-order control, BAH-exception legitimacy, and emergency-relocation continuity when unsafe quarters degrade readiness or stability.
+- Primary tools: room habitability tracker, work-order escalation board, BAH-exception ledger, emergency-relocation queue.
+- Cross-check tools: independent housing-office review cell and alternate family-readiness or environmental-remediation desk.
+- Typical products: room-status board, BAH-exception decision ladder, emergency-relocation continuity packet.
+
+### `ts-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-v1`
+- Use for: initial-issue routing, clothing-record reconciliation, size or fit correction, and mobilization-kitting continuity when missing or mismatched gear threatens reporting or deployment.
+- Primary tools: initial-issue board, CIF or OCIE clothing-record ledger, size or fit crosswalk, mobilization-kitting shortage queue.
+- Cross-check tools: independent supply review cell and alternate mobilization or final-out desk.
+- Typical products: mobilization-kitting board, clothing-record reconciliation ladder, initial-issue continuity packet.
+
+### `ts-joint-leave-carryover-special-leave-accrual-sell-back-continuity-v1`
+- Use for: leave-balance correction, special-leave-accrual continuity, carryover protection, and sell-back timing when operational tempo or system drift distorts lawful leave posture.
+- Primary tools: leave-balance tracker, use-or-lose or SLA board, sell-back eligibility queue, deployment-tempo reconciliation ledger.
+- Cross-check tools: independent personnel-services review cell and alternate compensation or retirement desk.
+- Typical products: leave-balance integrity board, SLA-or-carryover ladder, sell-back continuity packet.
+
+### `ts-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-v1`
+- Use for: duty-limiting-profile reconciliation, accommodation routing, nondeployable-code correction, and assignment-impact review when stale restrictions sideline warfighters without clear evidence.
+- Primary tools: profile-status board, accommodation request queue, nondeployable-code ledger, assignment-impact tracker.
+- Cross-check tools: independent medical-readiness review cell and alternate human-readiness or convalescent-leave desk.
+- Typical products: profile-reconciliation board, accommodation decision ladder, deployability-code continuity packet.
+
+## Protocol Stack Addendum XC (2026-04-11, External Integration Profiles for Expansion Wave XC)
+
+### `ps-joint-mypay-les-allotment-payroll-access-continuity-stack-v1`
+- Protocols: `NIEM`, signed pay notices, `API/JSON`, `S/MIME`, `OIDC/SAML`, `USMTF`.
+- Use for: payroll-access status exchange, LES-correction routing, allotment updates, and account-recovery acknowledgment.
+
+### `ps-joint-reenlistment-selective-retention-bonus-career-field-reclassification-continuity-stack-v1`
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: reenlistment-status exchange, SRB updates, reclassification routing, and service-obligation acknowledgment.
+
+### `ps-joint-barracks-dorm-work-order-bah-exception-emergency-relocation-continuity-stack-v1`
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`, `NIMS/ICS`.
+- Use for: room-status exchange, work-order routing, BAH-exception updates, and emergency-relocation acknowledgment.
+
+### `ps-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-stack-v1`
+- Protocols: `NIEM`, signed issue notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: issue-status exchange, clothing-record updates, substitute-kit routing, and mobilization-kitting acknowledgment.
+
+### `ps-joint-leave-carryover-special-leave-accrual-sell-back-continuity-stack-v1`
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: leave-balance exchange, SLA-or-carryover updates, sell-back routing, and leave-legitimacy acknowledgment.
+
+### `ps-joint-duty-limiting-profile-accommodation-nondeployable-code-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical or personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: profile-status exchange, accommodation routing, nondeployable-code updates, and deployability acknowledgment.

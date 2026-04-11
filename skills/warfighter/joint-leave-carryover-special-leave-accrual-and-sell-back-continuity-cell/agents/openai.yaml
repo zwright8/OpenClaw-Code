@@ -1,0 +1,3 @@
+interface:
+  display_name: "Joint Leave Carryover SLA and Sell-Back Continuity Cell"
+  short_description: "Help restore leave-balance, SLA, and sell-back continuity"

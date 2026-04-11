@@ -15729,3 +15729,71 @@ validation_gates:
 - output_schema: transportation continuity board, repossession-risk ladder, auto-finance stabilization packet
 - protocol_profile: NIEM + AAMVA DL/ID + signed lender notices + API/JSON + S/MIME + USMTF
 - validation_gates: lender-notice review, insurance confirmation, transport fallback check, human financial or command validation
+
+## Packet Addendum LXXVIII (2026-04-11, Expansion Wave XC)
+
+### packet_id: DPL-MYPAY-LES-ALLOTMENT-001
+- domain: joint MyPay LES allotment and payroll access continuity
+- objective: preserve payroll legitimacy and household stability by restoring self-service access, reconciling LES errors, and protecting allotments before the next pay cycle breaks readiness.
+- primary_tools: payroll self-service access board, LES discrepancy tracker, direct-deposit or allotment ledger, pay-cycle deadline queue
+- alternate_tools: manual finance escalation roster and LES reconciliation worksheet
+- degraded_mode: advisory-only payroll sequencing with no unsupported pay correction, account reset, or allotment outcome
+- input_requirements: affected personnel, pay-cycle date, access status, LES discrepancy details, allotment dependencies, hardship indicators
+- output_schema: payroll-access recovery board, LES-correction ladder, allotment-continuity packet
+- protocol_profile: NIEM + signed pay notices + API/JSON + S/MIME + OIDC/SAML + USMTF
+- validation_gates: identity review, pay-status confirmation, allotment-impact check, finance-authority review
+
+### packet_id: DPL-REENLISTMENT-SRB-RECLASS-001
+- domain: joint reenlistment selective retention bonus and career field reclassification continuity
+- objective: preserve retention and lawful service continuity by stabilizing reenlistment windows, SRB legitimacy, and reclassification routing before administrative drift sidelines otherwise ready warfighters.
+- primary_tools: reenlistment eligibility board, SRB or bonus tracker, career-field reclassification queue, service-obligation ledger
+- alternate_tools: manual career-counselor roster and retention-deadline worksheet
+- degraded_mode: advisory-only retention sequencing with no unsupported reenlistment, bonus, or retraining promise
+- input_requirements: affected personnel, reenlistment window, bonus posture, classification or retraining status, security or medical blockers, billet impact
+- output_schema: reenlistment decision board, SRB-legitimacy ladder, career-field continuity packet
+- protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: eligibility review, obligation confirmation, bonus check, career-field authority review
+
+### packet_id: DPL-BARRACKS-DORM-BAH-RELOCATE-001
+- domain: joint barracks dorm work order BAH exception and emergency relocation continuity
+- objective: preserve safe housing and lawful occupancy by escalating work orders, routing BAH exceptions, and sequencing emergency relocation before unsafe quarters degrade readiness.
+- primary_tools: room habitability tracker, work-order escalation board, BAH-exception ledger, emergency-relocation queue
+- alternate_tools: manual housing-risk roster and lodging-capacity worksheet
+- degraded_mode: advisory-only housing sequencing with no unsupported repair completion, BAH exception, or room assignment promise
+- input_requirements: affected rooms or personnel, habitability evidence, work-order posture, BAH-exception basis, relocation capacity, safety constraints
+- output_schema: room-status board, BAH-exception decision ladder, emergency-relocation continuity packet
+- protocol_profile: NIEM + signed housing notices + API/JSON + S/MIME + USMTF + NIMS/ICS
+- validation_gates: habitability review, housing-authority confirmation, lodging check, safety-impact review
+
+### packet_id: DPL-INITIAL-ISSUE-KITTING-001
+- domain: joint initial issue CIF OCIE clothing record and mobilization kitting continuity
+- objective: preserve reporting reliability and deployable equipment posture by reconciling initial issue, clothing records, and substitute-kit routing before missing gear derails mobilization.
+- primary_tools: initial-issue board, CIF or OCIE clothing-record ledger, size or fit crosswalk, mobilization-kitting shortage queue
+- alternate_tools: manual issue roster and substitute-kit worksheet
+- degraded_mode: advisory-only issue sequencing with no unsupported receipt, substitute approval, or kitting-complete claim
+- input_requirements: affected personnel, required issue set, clothing-record status, shortage posture, size constraints, reporting timeline
+- output_schema: mobilization-kitting board, clothing-record reconciliation ladder, initial-issue continuity packet
+- protocol_profile: NIEM + signed issue notices + API/JSON + S/MIME + USMTF
+- validation_gates: accountability review, size-fit confirmation, shortage check, supply-authority review
+
+### packet_id: DPL-LEAVE-SLA-SELLBACK-001
+- domain: joint leave carryover special leave accrual and sell-back continuity
+- objective: preserve lawful leave posture and recovery protection by reconciling balances, SLA eligibility, and sell-back timing before leave-loss or fiscal error degrades readiness.
+- primary_tools: leave-balance tracker, use-or-lose or SLA board, sell-back eligibility queue, deployment-tempo reconciliation ledger
+- alternate_tools: manual personnel-services roster and leave-balance worksheet
+- degraded_mode: advisory-only leave sequencing with no unsupported balance correction, SLA grant, or sell-back outcome
+- input_requirements: affected personnel, leave-balance evidence, SLA or carryover posture, sell-back window, operational tempo, command constraints
+- output_schema: leave-balance integrity board, SLA-or-carryover ladder, sell-back continuity packet
+- protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: balance review, SLA basis confirmation, sell-back eligibility check, personnel-authority review
+
+### packet_id: DPL-PROFILE-NONDEPLOY-CODE-001
+- domain: joint duty limiting profile accommodation and nondeployable code continuity
+- objective: preserve medical safety and lawful availability by reconciling duty-limiting profiles, accommodations, and nondeployable codes before stale restrictions or wrong codes sideline warfighters.
+- primary_tools: profile-status board, accommodation request queue, nondeployable-code ledger, assignment-impact tracker
+- alternate_tools: manual medical-readiness roster and duty-limitation worksheet
+- degraded_mode: advisory-only profile sequencing with no unsupported accommodation, waiver, or deployability-restoration promise
+- input_requirements: affected personnel, profile status, accommodation posture, nondeployable-code evidence, assignment timeline, privacy constraints
+- output_schema: profile-reconciliation board, accommodation decision ladder, deployability-code continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed medical or personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: medical-evidence review, accommodation confirmation, code-check, command-impact review

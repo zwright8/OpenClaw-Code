@@ -71,3 +71,8 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag unsupported separation promises, lost-property assumptions, unresolved medical holds, and fiscal-legitimacy risk before recommending action.
 - Do not fabricate turn-in receipts, clearance signatures, DD214 timing, or final-pay outcomes.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave XC Addendum)
+
+- Add `toolchain_id=TC-KITISS-369`, `tool_suite_id=ts-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-v1`, and `protocol_stack_id=ps-joint-initial-issue-cif-ocie-clothing-record-mobilization-kitting-continuity-stack-v1` when separation-accountability or demobilization legitimacy depends on reconciling earlier initial-issue errors, clothing-record drift, or substitute-kit exceptions before final turn-in.
+- Add `packet_id=DPL-INITIAL-ISSUE-KITTING-001` for branches that materially alter CIF or OCIE accountability confidence, final-out sequencing, or separation legitimacy.

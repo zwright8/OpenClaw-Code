@@ -3287,3 +3287,21 @@ Every skill output should include:
 - Joint state-tax domicile residency and withholding continuity + joint-military-tax-relief-combat-zone-entitlement-and-irs-identity-protection-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-servicemembers-civil-relief-act-foreclosure-lease-eviction-and-rate-cap-enforcement-cell.
 - Joint military-child school-transfer transcript and graduation continuity + joint-efmp-enrollment-assignment-coordination-and-school-liaison-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell + strategic-military-child-youth-behavioral-health-and-school-reintegration-cell.
 - Joint consumer auto-loan repossession insurance-gap and transportation continuity + joint-privately-owned-vehicle-shipment-driver-license-and-registration-continuity-cell + joint-credit-identity-theft-and-financial-readiness-recovery-cell + joint-household-goods-loss-claims-and-essential-kit-bridge-cell.
+
+## New Expansion Wave (2026-04-11, Expansion Wave XC)
+
+- joint-mypay-les-allotment-and-payroll-access-continuity-cell
+- joint-reenlistment-selective-retention-bonus-and-career-field-reclassification-continuity-cell
+- joint-barracks-dorm-work-order-bah-exception-and-emergency-relocation-continuity-cell
+- joint-initial-issue-cif-ocie-clothing-record-and-mobilization-kitting-continuity-cell
+- joint-leave-carryover-special-leave-accrual-and-sell-back-continuity-cell
+- joint-duty-limiting-profile-accommodation-and-nondeployable-code-continuity-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave XC)
+
+- Joint MyPay LES allotment and payroll-access continuity + joint-special-pay-bah-cola-and-incentive-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-command-team-human-readiness-case-conference-and-escalation-cell.
+- Joint reenlistment selective-retention-bonus and career-field reclassification continuity + reserve-guard-mobilization-planner + mission-risk-decision-support + joint-special-pay-bah-cola-and-incentive-continuity-cell.
+- Joint barracks or dorm work-order BAH-exception and emergency-relocation continuity + joint-military-family-readiness-crisis-sustainment-cell + joint-privatized-military-housing-tenant-rights-bah-recertification-and-claims-cell + theater-barracks-mold-pest-and-indoor-air-remediation-cell.
+- Joint initial-issue CIF or OCIE clothing-record and mobilization-kitting continuity + reserve-guard-mobilization-planner + joint-final-out-processing-cif-ocie-medical-dental-and-separation-clearance-cell + mission-risk-decision-support.
+- Joint leave carryover special-leave-accrual and sell-back continuity + joint-military-financial-liability-and-compensation-continuity-cell + joint-retirement-sbp-tsp-and-transition-counseling-continuity-cell + joint-command-team-human-readiness-case-conference-and-escalation-cell.
+- Joint duty-limiting profile accommodation and nondeployable-code continuity + joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell + joint-convalescent-leave-limited-duty-and-medical-hold-continuity-cell + joint-command-team-human-readiness-case-conference-and-escalation-cell.
