@@ -3217,3 +3217,39 @@ Every skill output should include:
 - Joint line of duty incapacitation pay and duty status continuity + joint-convalescent-leave-limited-duty-and-medical-hold-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + reserve-guard-mobilization-planner.
 - Joint awards decorations valor device and board record protection + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell.
 - Joint final out processing CIF OCIE medical dental and separation clearance + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-household-goods-loss-claims-and-essential-kit-bridge-cell + joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell.
+
+## New Expansion Wave (2026-04-11, Expansion Wave LXXXVI)
+
+- joint-nonjudicial-punishment-letter-of-reprimand-and-administrative-separation-continuity-cell
+- joint-court-martial-defense-counsel-discovery-expert-witness-and-travel-continuity-cell
+- joint-unfavorable-information-file-gomor-and-board-record-rebuttal-continuity-cell
+- joint-security-clearance-suspension-revocation-and-statement-of-reasons-response-cell
+- joint-discharge-review-board-bcmr-character-of-service-and-va-eligibility-bridge-cell
+- joint-article-138-congressional-casework-and-record-preservation-escalation-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave LXXXVI)
+
+- Joint nonjudicial punishment letter of reprimand and administrative separation continuity + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + reserve-guard-mobilization-planner.
+- Joint court-martial defense counsel discovery expert witness and travel continuity + mission-risk-decision-support + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint unfavorable information file GOMOR and board record rebuttal continuity + joint-promotion-board-evaluation-report-and-record-brief-continuity-cell + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + joint-personnel-records-dd214-and-benefits-continuity-cell.
+- Joint security clearance suspension revocation and statement of reasons response + joint-security-clearance-financial-distress-tax-lien-and-credit-remediation-cell + joint-security-clearance-foreign-contact-and-record-correction-continuity-cell + mission-risk-decision-support.
+- Joint discharge review board BCMR character of service and VA eligibility bridge + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-transition-assistance-vre-dol-and-federal-hiring-bridge-cell.
+- Joint article 138 congressional casework and record preservation escalation + joint-inspector-general-equal-opportunity-and-reprisal-complaint-safeguard-cell + mission-risk-decision-support + joint-military-family-readiness-crisis-sustainment-cell.
+
+## New Expansion Wave (2026-04-11, Expansion Wave LXXXVII)
+
+- joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell
+- reserve-component-line-of-duty-incapacitation-pay-and-medical-hold-continuity-cell
+- joint-transition-assistance-vre-dol-and-federal-hiring-bridge-cell
+- joint-family-readiness-group-ombudsman-and-key-spouse-communication-continuity-cell
+- joint-military-onesource-nonmedical-counseling-and-peer-support-continuity-cell
+- joint-cool-usmap-and-credentialing-pathway-continuity-cell
+
+## Updated Pairings (2026-04-11, Expansion Wave LXXXVII)
+
+- Joint individual medical readiness immunization PHA and dental continuity + reserve-guard-mobilization-planner + joint-personnel-records-dd214-and-benefits-continuity-cell + mission-risk-decision-support.
+- Reserve component line of duty incapacitation pay and medical hold continuity + joint-military-financial-liability-and-compensation-continuity-cell + reserve-guard-mobilization-planner + mission-risk-decision-support.
+- Joint transition assistance VRE DOL and federal hiring bridge + joint-personnel-records-dd214-and-benefits-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell + joint-skillbridge-career-skills-apprenticeship-and-employer-fellowship-continuity-cell.
+- Joint family readiness group ombudsman and key spouse communication continuity + joint-military-family-readiness-crisis-sustainment-cell + reserve-guard-mobilization-planner + joint-emergency-leave-american-red-cross-message-and-command-approval-cell.
+- Joint military OneSource nonmedical counseling and peer support continuity + joint-military-family-readiness-crisis-sustainment-cell + joint-psychological-health-suicide-postvention-command-support-cell + reserve-guard-mobilization-planner.
+- Joint COOL USMAP and credentialing pathway continuity + joint-professional-license-cyber-certification-and-ceu-readiness-continuity-cell + joint-transition-assistance-vre-dol-and-federal-hiring-bridge-cell + mission-risk-decision-support.

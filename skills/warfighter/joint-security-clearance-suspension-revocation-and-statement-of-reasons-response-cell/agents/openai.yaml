@@ -1,0 +1,4 @@
+---
+interface:
+  display_name: "Joint Clearance Suspension and SOR Response Cell"
+  short_description: "Help with suspension response timing, evidence repair, and access-restoration continuity"

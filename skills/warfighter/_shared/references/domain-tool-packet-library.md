@@ -15468,3 +15468,139 @@ validation_gates:
 - output_schema: final-out clearance board, accountability ladder, separation-legitimacy packet
 - protocol_profile: NIEM + signed separation checklists + API/JSON + S/MIME + USMTF
 - validation_gates: checklist review, accountability confirmation, medical-clearance check, human personnel validation
+
+## Packet Addendum LXXIV (2026-04-11, Expansion Wave LXXXVI)
+
+### packet_id: DPL-NJP-LOR-ADMINSEP-001
+- domain: joint nonjudicial punishment letter of reprimand and administrative separation continuity
+- objective: preserve due-process timing and lawful personnel availability by aligning rebuttal deadlines, counsel routing, and separation-board dependencies before adverse action cascades into readiness loss.
+- primary_tools: adverse-action case board, rebuttal deadline tracker, counsel coordination queue, separation-board impact ledger
+- alternate_tools: manual adverse-action roster and rebuttal timeline worksheet
+- degraded_mode: advisory-only adverse-action sequencing with no unsupported rebuttal success, punishment outcome, or separation result
+- input_requirements: action type, affected personnel, suspense dates, evidence posture, counsel status, command constraints
+- output_schema: adverse-action continuity board, rebuttal deadline ladder, administrative-separation support packet
+- protocol_profile: NIEM + signed personnel or legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: notice review, deadline confirmation, counsel-routing check, human legal validation
+
+### packet_id: DPL-COURT-MARTIAL-DEFENSE-001
+- domain: joint court martial defense counsel discovery expert witness and travel continuity
+- objective: preserve defense-support integrity by sequencing discovery, expert support, and witness travel before court-martial logistics failures undermine lawful representation or family stability.
+- primary_tools: defense case board, discovery-production ledger, expert-witness request queue, witness-travel or funding tracker
+- alternate_tools: manual defense-support roster and discovery suspense worksheet
+- degraded_mode: advisory-only trial-support sequencing with no unsupported discovery ruling, witness appearance, or case outcome
+- input_requirements: forum and charge posture, trial timeline, discovery backlog, witness roster, travel funding status, confinement or duty restrictions
+- output_schema: defense-support board, discovery suspense ladder, witness-support continuity packet
+- protocol_profile: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- validation_gates: counsel-review check, discovery-status confirmation, funding or travel review, human legal validation
+
+### packet_id: DPL-UIF-GOMOR-BOARD-001
+- domain: joint unfavorable information file GOMOR and board record rebuttal continuity
+- objective: preserve board-file trust and career legitimacy by aligning UIF or GOMOR rebuttal evidence, filing deadlines, and record corrections before adverse paperwork distorts promotion or assignment decisions.
+- primary_tools: adverse-info file tracker, GOMOR or UIF rebuttal ledger, board-file sync queue, evidence-retention worksheet
+- alternate_tools: manual adverse-record roster and board-file review worksheet
+- degraded_mode: advisory-only adverse-record sequencing with no unsupported filing removal, rebuttal acceptance, or board outcome
+- input_requirements: record type, affected personnel, board timeline, evidence posture, rebuttal suspense, privacy constraints
+- output_schema: adverse-record integrity board, rebuttal evidence ladder, board-file protection packet
+- protocol_profile: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- validation_gates: record-source review, suspense confirmation, board-impact check, human personnel validation
+
+### packet_id: DPL-CLEARANCE-SOR-SUSP-REVOCATION-001
+- domain: joint security clearance suspension revocation and statement of reasons response
+- objective: preserve mission access and adjudication fairness by sequencing statement-of-reasons responses, evidence repair, and legal review before clearance loss sidelines warfighters.
+- primary_tools: security suspension tracker, statement-of-reasons response queue, incident crosswalk ledger, adjudication timeline board
+- alternate_tools: manual clearance-response roster and adjudication worksheet
+- degraded_mode: advisory-only clearance-defense sequencing with no unsupported reinstatement, revocation reversal, or adjudication result
+- input_requirements: access status, allegation category, response deadline, evidence sources, assignment impact, legal-support posture
+- output_schema: clearance response board, adjudication deadline ladder, access-restoration support packet
+- protocol_profile: NIEM + signed security notices + API/JSON + S/MIME + USMTF
+- validation_gates: notice review, response-deadline confirmation, evidence-integrity check, human security or legal validation
+
+### packet_id: DPL-DRB-BCMR-CHARACTER-VA-001
+- domain: joint discharge review board BCMR character of service and VA eligibility bridge
+- objective: preserve long-tail recovery and benefit access by aligning discharge-redress evidence, record reconstruction, and VA-eligibility bridging before stale separation defects harden into lasting harm.
+- primary_tools: DRB or BCMR docket tracker, character-of-service evidence ledger, DD214 or medical-record reconstruction queue, VA eligibility crosswalk board
+- alternate_tools: manual discharge-redress roster and records-repair worksheet
+- degraded_mode: advisory-only redress sequencing with no unsupported characterization change, board result, or VA eligibility outcome
+- input_requirements: discharge type, characterization issues, docket status, evidence posture, medical or personnel records, benefit deadlines
+- output_schema: discharge-redress board, records-correction ladder, VA-eligibility bridge packet
+- protocol_profile: NIEM + HL7/FHIR + signed records notices + API/JSON + S/MIME + USMTF
+- validation_gates: docket review, record-source confirmation, characterization evidence check, human legal or benefits validation
+
+### packet_id: DPL-ARTICLE-138-CONGRESSIONAL-001
+- domain: joint article 138 congressional casework and record preservation escalation
+- objective: preserve lawful redress and protected escalation by sequencing Article 138 packets, congressional casework, privacy releases, and record holds before remedies fail from delay or evidence loss.
+- primary_tools: redress case board, congressional casework tracker, privacy-act release ledger, record-preservation hold queue
+- alternate_tools: manual redress roster and casework-routing worksheet
+- degraded_mode: advisory-only escalation sequencing with no unsupported command remedy, congressional intervention, or privacy-release outcome
+- input_requirements: grievance category, affected personnel, timeline pressure, evidence posture, privacy-release status, safety concerns
+- output_schema: redress escalation board, record-preservation ladder, protected casework packet
+- protocol_profile: NIEM + signed casework notices + API/JSON + S/MIME + USMTF
+- validation_gates: grievance-authority review, privacy-release confirmation, preservation-hold check, human legal or inspector validation
+
+## Packet Addendum LXXV (2026-04-11, Expansion Wave LXXXVII)
+
+### packet_id: DPL-IMR-PHA-DENTAL-001
+- domain: joint individual medical readiness immunization PHA and dental continuity
+- objective: preserve deployability confidence by restoring IMR evidence, immunization status, periodic health-assessment completion, and dental readiness before administrative drift blocks lawful employment.
+- primary_tools: IMR readiness dashboard, immunization registry, PHA appointment queue, dental-class tracker
+- alternate_tools: manual readiness-gap roster and appointment-recovery worksheet
+- degraded_mode: advisory-only readiness sequencing with no unsupported deployability, waiver, or appointment-completion claim
+- input_requirements: affected personnel, deployment timeline, IMR status, immunization gaps, PHA due dates, dental class, privacy constraints
+- output_schema: IMR recovery board, deployability-evidence ladder, appointment-closure packet
+- protocol_profile: HL7/FHIR + NIEM + signed readiness notices + API/JSON + S/MIME + USMTF
+- validation_gates: IMR evidence review, medical-authority check, privacy review, human readiness validation
+
+### packet_id: DPL-LOD-INCAP-MEDHOLD-001
+- domain: reserve component line of duty incapacitation pay and medical hold continuity
+- objective: preserve lawful availability and household stability by aligning LOD evidence, incapacitation pay, and medical-hold continuity before injury or illness causes unmanaged readiness loss.
+- primary_tools: LOD case board, incapacitation-pay ledger, medical-hold tracker, orders or pay coordination queue
+- alternate_tools: manual LOD-priority roster and pay-recovery worksheet
+- degraded_mode: advisory-only LOD and pay sequencing with no unsupported entitlement, order extension, or treatment-authority claim
+- input_requirements: duty status, injury or illness timeline, LOD posture, pay interruption, medical-hold status, household impact, privacy constraints
+- output_schema: line-of-duty evidence board, incapacitation-pay ladder, medical-hold continuity packet
+- protocol_profile: HL7/FHIR + NIEM + signed medical-hold notices + API/JSON + S/MIME + USMTF
+- validation_gates: evidence review, pay-legitimacy confirmation, order-authority check, human legal or medical validation
+
+### packet_id: DPL-TAP-VRE-FEDHIRE-001
+- domain: joint transition assistance VRE DOL and federal hiring bridge
+- objective: preserve lawful transition and household stability by restoring TAP milestones, VR&E continuity, and federal-hiring readiness before separation or medical recovery friction deepens risk.
+- primary_tools: transition-assistance checklist board, DOL workshop scheduler, VR&E case tracker, USAJOBS or federal-resume ledger
+- alternate_tools: manual transition-priority roster and milestone-recovery worksheet
+- degraded_mode: advisory-only transition sequencing with no unsupported workshop completion, benefit approval, or hiring outcome
+- input_requirements: affected personnel, separation timeline, TAP status, VR&E posture, workshop deadlines, federal-hiring exposure, record constraints
+- output_schema: transition-bridge board, federal-hiring readiness ladder, VR&E or TAP continuity packet
+- protocol_profile: NIEM + HR-XML + signed transition notices + API/JSON + S/MIME + USMTF
+- validation_gates: milestone review, eligibility confirmation, deadline check, human transition-services validation
+
+### packet_id: DPL-FRG-OMBUDSMAN-KEY-SPOUSE-001
+- domain: joint family readiness group ombudsman and key spouse communication continuity
+- objective: preserve household trust and resource uptake by restoring verified contact pathways, volunteer notifications, and rumor-control actions before communication failure degrades readiness.
+- primary_tools: family-network contact roster, volunteer notification board, rumor-control escalation ledger, resource-referral queue
+- alternate_tools: manual contact-priority roster and rumor-response worksheet
+- degraded_mode: advisory-only notification sequencing with no unsupported contact, volunteer, or casualty-sensitive message claim
+- input_requirements: affected communities, roster health, volunteer coverage, message backlog, rumor indicators, privacy or casualty constraints
+- output_schema: family-network contact board, rumor-control escalation ladder, volunteer-notification continuity packet
+- protocol_profile: NIEM + CAP + signed community notices + API/JSON + S/MIME + USMTF
+- validation_gates: roster-integrity review, notification-authority check, privacy check, human command validation
+
+### packet_id: DPL-ONESOURCE-PEER-SUPPORT-001
+- domain: joint military onesource nonmedical counseling and peer support continuity
+- objective: preserve resilience and family stability by restoring non-medical counseling access, peer-support routing, and privacy-safe escalation before burnout or stress becomes readiness loss.
+- primary_tools: counseling referral board, access or wait-time tracker, peer-support resource ledger, privacy-safe escalation queue
+- alternate_tools: manual referral-priority roster and resilience-routing worksheet
+- degraded_mode: advisory-only referral sequencing with no unsupported appointment, peer-match, or crisis disposition claim
+- input_requirements: affected personnel or households, stress indicators, referral posture, support availability, privacy limits, acute-risk boundaries
+- output_schema: counseling-access board, peer-support routing ladder, privacy-safe resilience packet
+- protocol_profile: NIEM + signed referral notices + API/JSON + S/MIME + USMTF
+- validation_gates: referral review, privacy check, acute-risk boundary review, human resilience validation
+
+### packet_id: DPL-COOL-USMAP-CREDPATH-001
+- domain: joint COOL USMAP and credentialing pathway continuity
+- objective: preserve credential progress and transition value by restoring voucher use, apprenticeship-hour capture, and exam scheduling before deployment or PCS disruption erases hard-earned progress.
+- primary_tools: COOL voucher tracker, USMAP apprenticeship-hour ledger, credential exam queue, civilian-license crosswalk board
+- alternate_tools: manual credential-priority roster and voucher-recovery worksheet
+- degraded_mode: advisory-only credential sequencing with no unsupported voucher, hour credit, or exam outcome claim
+- input_requirements: affected personnel, credential track, voucher deadlines, apprenticeship status, exam availability, record dependencies
+- output_schema: credential-pathway board, voucher-and-hour recovery ladder, civilian-crosswalk continuity packet
+- protocol_profile: NIEM + HR-XML + signed credential notices + API/JSON + S/MIME + USMTF
+- validation_gates: voucher review, hour-capture confirmation, exam-legitimacy check, human credentialing validation

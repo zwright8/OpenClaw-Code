@@ -264,3 +264,33 @@ Tool Invocation Packet
 - Fallback Procedure: force conservative timing windows and downgrade precision-dependent effects
 - Confidence Impact if Degraded: high
 ```
+
+## Playbook: Administrative Justice and Redress Continuity
+
+```text
+Tool Invocation Packet
+- Tool/System: legal-support case tracker + personnel-action board + evidence preservation ledger
+- Objective: preserve due process, evidence integrity, and career or benefit continuity when adverse action, redress, or review boards threaten readiness
+- Inputs: action type, deadline, evidence posture, duty status, record sources, protective authorities
+- Query or Action Template: correlate deadlines, filing requirements, evidence gaps, counsel or support routing, and board or command impact for the next 7/30/90 days
+- Expected Output Schema: case_id, action_type, suspense, evidence_gap, next_action, authority_gate, confidence
+- Protocol/Transport: NIEM + signed personnel or legal notice + API/JSON + S/MIME
+- Primary/Alternate/Degraded: integrated case tracker / legal workbook / manual timeline ledger
+- Fallback Procedure: publish advisory-only action ladder and require human legal review before any rights-impacting claim
+- Confidence Impact if Degraded: high
+```
+
+## Playbook: Support-Readiness Evidence and Transition Continuity
+
+```text
+Tool Invocation Packet
+- Tool/System: readiness dashboard + family-support board + transition-services tracker
+- Objective: preserve deployability, household stability, and transition value when IMR drift, medhold friction, family-network breakdown, or credential decay threaten warfighter availability
+- Inputs: servicemember roster, IMR gaps, duty status, household stressors, transition milestones, credential deadlines
+- Query or Action Template: reconcile readiness blockers, support actions, and milestone risk for the next 7/30/90 days
+- Expected Output Schema: person_id, readiness_gap, household_risk, milestone_risk, support_action, confidence
+- Protocol/Transport: HL7/FHIR + NIEM + HR-XML + CAP + API/JSON + S/MIME
+- Primary/Alternate/Degraded: integrated support stack / staff workbook / voice + manual ledger
+- Fallback Procedure: publish advisory-only task board with human confirmation required for any deployability, benefits, or employment claim
+- Confidence Impact if Degraded: high
+```

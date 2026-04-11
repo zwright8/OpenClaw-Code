@@ -3208,3 +3208,21 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-joint-personnel-records-dd214-benefits-continuity-v1`.
 - Protocols: `NIEM`, signed separation checklists, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only separation triage with manual accountability and personnel review until clearance authority and DD214 dependencies are human-confirmed.
+
+## Toolchain Wave LXXXVI (2026-04-11, Administrative Justice and Redress)
+
+### `administrative-justice-redress-v1`
+- Use for: readiness, access, and family-stability decisions when adverse action, court-martial support, clearance suspension, discharge redress, or Article 138 escalation can sideline a U.S. warfighter.
+- Primary tools: `ts-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-v1`, `ts-joint-court-martial-defense-counsel-discovery-expert-witness-travel-continuity-v1`, and `ts-joint-security-clearance-suspension-revocation-statement-of-reasons-response-v1`.
+- Cross-check tools: `ts-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-v1`, `ts-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-v1`, and `ts-joint-article-138-congressional-casework-record-preservation-escalation-v1`.
+- Protocols: `NIEM`, `HL7/FHIR`, signed legal or records notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only rights-impacting triage with human legal, security, or inspector review before any outcome claim.
+
+## Toolchain Wave LXXXVII (2026-04-11, Support-Readiness and Transition Continuity)
+
+### `support-readiness-transition-v1`
+- Use for: deployability, mobilization, household-stability, and transition-value decisions when IMR, LOD or medhold, TAP, family-network trust, OneSource support, or COOL or USMAP progress determine whether a warfighter can stay ready.
+- Primary tools: `ts-joint-individual-medical-readiness-immunization-pha-dental-continuity-v1`, `ts-reserve-component-line-of-duty-incapacitation-pay-medical-hold-continuity-v1`, and `ts-joint-transition-assistance-vre-dol-federal-hiring-bridge-v1`.
+- Cross-check tools: `ts-joint-family-readiness-group-ombudsman-key-spouse-communication-v1`, `ts-joint-military-onesource-nonmedical-counseling-peer-support-v1`, and `ts-joint-cool-usmap-credentialing-pathway-continuity-v1`.
+- Protocols: `HL7/FHIR`, `NIEM`, `HR-XML`, `CAP`, signed readiness or transition notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only support triage with human medical, personnel, family-readiness, or transition-services confirmation before any status claim.

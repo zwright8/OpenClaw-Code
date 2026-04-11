@@ -2992,3 +2992,103 @@ For every critical recommendation, include:
 - Cross-check systems: independent personnel-records review cell and alternate finance or transportation-support desk
 - Protocol binding: NIEM + signed separation checklists + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only separation sequencing until accountability evidence, medical clearance, and release authority are human-confirmed
+
+## Toolchain Wave LXXXVI (2026-04-11)
+
+### `TC-NJPSEP-349`
+
+- Domain: joint nonjudicial punishment letter of reprimand and administrative separation continuity
+- Primary systems: adverse-action case board, rebuttal deadline tracker, counsel coordination queue, separation-board impact ledger
+- Cross-check systems: independent legal-assistance review cell and alternate personnel-records witness
+- Protocol binding: NIEM + signed personnel or legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only adverse-action sequencing until notice legitimacy, suspense dates, and counsel routing are human-confirmed
+
+### `TC-CMART-350`
+
+- Domain: joint court martial defense counsel discovery expert witness and travel continuity
+- Primary systems: defense case board, discovery-production ledger, expert-witness request queue, witness-travel or funding tracker
+- Cross-check systems: independent defense-services review cell and alternate confinement or travel-support desk
+- Protocol binding: NIEM + signed legal notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only defense-support sequencing until discovery posture, witness routing, and legal review are human-confirmed
+
+### `TC-UIFGOMOR-351`
+
+- Domain: joint unfavorable information file GOMOR and board record rebuttal continuity
+- Primary systems: adverse-info file tracker, GOMOR or UIF rebuttal ledger, board-file sync queue, evidence-retention worksheet
+- Cross-check systems: independent promotion-board review cell and alternate IG or personnel-records desk
+- Protocol binding: NIEM + signed personnel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only adverse-record sequencing until rebuttal posture, evidence integrity, and board impact are human-confirmed
+
+### `TC-SORCLR-352`
+
+- Domain: joint security clearance suspension revocation and statement of reasons response
+- Primary systems: security suspension tracker, statement-of-reasons response queue, incident crosswalk ledger, adjudication timeline board
+- Cross-check systems: independent legal-support review cell and alternate security-record repair desk
+- Protocol binding: NIEM + signed security notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only clearance-defense sequencing until notice posture, response deadlines, and evidence sources are human-confirmed
+
+### `TC-DRBBCMR-353`
+
+- Domain: joint discharge review board BCMR character of service and VA eligibility bridge
+- Primary systems: DRB or BCMR docket tracker, character-of-service evidence ledger, DD214 or medical-record reconstruction queue, VA eligibility crosswalk board
+- Cross-check systems: independent veterans-benefits review cell and alternate personnel-records or medical-board desk
+- Protocol binding: NIEM + HL7/FHIR + signed records notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only discharge-redress sequencing until docket posture, record integrity, and benefits impact are human-confirmed
+
+### `TC-A138-354`
+
+- Domain: joint article 138 congressional casework and record preservation escalation
+- Primary systems: redress case board, congressional casework tracker, privacy-act release ledger, record-preservation hold queue
+- Cross-check systems: independent IG or EO review cell and alternate legal-assistance or command-climate desk
+- Protocol binding: NIEM + signed casework notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only escalation sequencing until grievance authority, privacy posture, and evidence-preservation actions are human-confirmed
+
+## Toolchain Wave LXXXVII (2026-04-11)
+
+### `TC-IMR-332`
+
+- Domain: joint individual medical readiness immunization PHA and dental continuity
+- Primary systems: IMR readiness dashboard, immunization registry, PHA appointment queue, dental-class tracker
+- Cross-check systems: independent medical-readiness review cell and alternate personnel-records or unit medical desk
+- Protocol binding: HL7/FHIR + NIEM + signed readiness notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only readiness sequencing until medical evidence, appointments, and human deployability review are confirmed
+
+### `TC-LODINCAP-333`
+
+- Domain: reserve component line of duty incapacitation pay and medical hold continuity
+- Primary systems: LOD case board, incapacitation-pay ledger, medical-hold tracker, orders or pay coordination queue
+- Cross-check systems: independent medical-board review cell and alternate compensation or personnel-support desk
+- Protocol binding: HL7/FHIR + NIEM + signed medical-hold notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only LOD and pay sequencing until evidence posture, orders, and human entitlement review are confirmed
+
+### `TC-TAPBRIDGE-334`
+
+- Domain: joint transition assistance VRE DOL and federal hiring bridge
+- Primary systems: transition-assistance checklist board, DOL workshop scheduler, VR&E case tracker, USAJOBS or federal-resume ledger
+- Cross-check systems: independent transition-services review cell and alternate SkillBridge or personnel-records desk
+- Protocol binding: NIEM + HR-XML + signed transition notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only transition sequencing until milestones, deadlines, and human eligibility review are confirmed
+
+### `TC-FAMNET-335`
+
+- Domain: joint family readiness group ombudsman and key spouse communication continuity
+- Primary systems: family-network contact roster, volunteer notification board, rumor-control escalation ledger, resource-referral queue
+- Cross-check systems: independent family-readiness review cell and alternate emergency-leave or public-affairs desk
+- Protocol binding: NIEM + CAP + signed community notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only notification sequencing until roster integrity, consent posture, and human release authority are confirmed
+
+### `TC-ONESOURCE-336`
+
+- Domain: joint military onesource nonmedical counseling and peer support continuity
+- Primary systems: counseling referral board, access or wait-time tracker, peer-support resource ledger, privacy-safe escalation queue
+- Cross-check systems: independent resilience-support review cell and alternate telebehavioral-health or chaplain support desk
+- Protocol binding: NIEM + signed referral notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only referral sequencing until privacy posture, support availability, and acute-risk boundaries are human-confirmed
+
+### `TC-COOLMAP-337`
+
+- Domain: joint COOL USMAP and credentialing pathway continuity
+- Primary systems: COOL voucher tracker, USMAP apprenticeship-hour ledger, credential exam queue, civilian-license crosswalk board
+- Cross-check systems: independent credentialing review cell and alternate professional-license or transition-services desk
+- Protocol binding: NIEM + HR-XML + signed credential notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only credential sequencing until voucher legitimacy, hour capture, and exam availability are human-confirmed

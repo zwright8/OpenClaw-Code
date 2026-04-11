@@ -72,3 +72,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect privacy, due process, and realistic access-impact communication before recommending action.
 - Do not fabricate adjudication outcomes, credit-file corrections, tax resolutions, or access restoration.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVI Addendum)
+
+- Add `toolchain_id=TC-SORCLR-352`, `tool_suite_id=ts-joint-security-clearance-suspension-revocation-statement-of-reasons-response-v1`, and `protocol_stack_id=ps-joint-security-clearance-suspension-revocation-statement-of-reasons-response-stack-v1` when debt distress, tax liens, or creditor actions escalate from remediation into formal suspension, revocation, or statement-of-reasons response posture.
+- Add `toolchain_id=TC-DRBBCMR-353`, `tool_suite_id=ts-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-v1`, and `protocol_stack_id=ps-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-stack-v1` when financial distress intersects discharge characterization, separation-document defects, or long-tail VA-eligibility risk.
+- Add `packet_id=DPL-CLEARANCE-SOR-SUSP-REVOCATION-001` and `packet_id=DPL-DRB-BCMR-CHARACTER-VA-001` for branches that materially alter adjudication-defense confidence, separation legitimacy, or benefit-continuity trust.

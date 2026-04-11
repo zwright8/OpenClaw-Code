@@ -15562,3 +15562,131 @@ external_binding:
 ### `ps-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-stack-v1`
 - Protocols: `NIEM`, signed separation checklists, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: final-out status exchange, CIF or OCIE accountability routing, medical or dental clearance updates, and separation-legitimacy acknowledgment.
+
+## Tool Suite Addendum LXXXVI (2026-04-11, Administrative Justice and Redress)
+
+### `ts-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-v1`
+- Use for: rebuttal deadlines, counsel routing, and admin-separation continuity when adverse paperwork threatens deployability, retention, or lawful availability.
+- Primary tools: adverse-action case board, rebuttal deadline tracker, counsel coordination queue, separation-board impact ledger.
+- Cross-check tools: independent legal-assistance review cell and alternate personnel-records witness.
+- Typical products: adverse-action continuity board, rebuttal deadline ladder, administrative-separation support packet.
+
+### `ts-joint-court-martial-defense-counsel-discovery-expert-witness-travel-continuity-v1`
+- Use for: discovery tracking, expert-witness support, and witness-travel continuity when court-martial logistics failures threaten due process, readiness, or family stability.
+- Primary tools: defense case board, discovery-production ledger, expert-witness request queue, witness-travel or funding tracker.
+- Cross-check tools: independent defense-services review cell and alternate confinement or travel-support desk.
+- Typical products: defense-support board, discovery suspense ladder, witness-support continuity packet.
+
+### `ts-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-v1`
+- Use for: UIF or GOMOR rebuttal timing, adverse-record cleanup, and board-file protection when derogatory paperwork threatens promotion trust or assignment legitimacy.
+- Primary tools: adverse-info file tracker, GOMOR or UIF rebuttal ledger, board-file sync queue, evidence-retention worksheet.
+- Cross-check tools: independent promotion-board review cell and alternate IG or personnel-records desk.
+- Typical products: adverse-record integrity board, rebuttal evidence ladder, board-file protection packet.
+
+### `ts-joint-security-clearance-suspension-revocation-statement-of-reasons-response-v1`
+- Use for: statement-of-reasons response, suspension or revocation defense, and adjudication continuity when access loss begins sidelining warfighters.
+- Primary tools: security suspension tracker, statement-of-reasons response queue, incident crosswalk ledger, adjudication timeline board.
+- Cross-check tools: independent legal-support review cell and alternate security-record repair desk.
+- Typical products: clearance response board, adjudication deadline ladder, access-restoration support packet.
+
+### `ts-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-v1`
+- Use for: DRB or BCMR docket support, character-of-service repair, and VA-eligibility bridging when separation defects threaten long-tail recovery.
+- Primary tools: DRB or BCMR docket tracker, character-of-service evidence ledger, DD214 or medical-record reconstruction queue, VA eligibility crosswalk board.
+- Cross-check tools: independent veterans-benefits review cell and alternate personnel-records or medical-board desk.
+- Typical products: discharge-redress board, records-correction ladder, VA-eligibility bridge packet.
+
+### `ts-joint-article-138-congressional-casework-record-preservation-escalation-v1`
+- Use for: Article 138 redress, congressional casework routing, privacy-release control, and record-preservation escalation when command-action disputes or delayed remedies threaten trust, safety, or careers.
+- Primary tools: redress case board, congressional casework tracker, privacy-act release ledger, record-preservation hold queue.
+- Cross-check tools: independent IG or EO review cell and alternate legal-assistance or command-climate desk.
+- Typical products: redress escalation board, record-preservation ladder, protected casework packet.
+
+## Protocol Stack Addendum LXXXVI (2026-04-11, External Integration Profiles for Expansion Wave LXXXVI)
+
+### `ps-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-stack-v1`
+- Protocols: `NIEM`, signed personnel or legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: adverse-action status exchange, rebuttal-routing updates, separation-board coordination, and command-aware due-process acknowledgment.
+
+### `ps-joint-court-martial-defense-counsel-discovery-expert-witness-travel-continuity-stack-v1`
+- Protocols: `NIEM`, signed legal notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: discovery-status exchange, defense-support routing, witness-travel updates, and trial-support acknowledgment.
+
+### `ps-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-stack-v1`
+- Protocols: `NIEM`, signed personnel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: adverse-record exchange, rebuttal-evidence routing, board-file correction updates, and career-impact acknowledgment.
+
+### `ps-joint-security-clearance-suspension-revocation-statement-of-reasons-response-stack-v1`
+- Protocols: `NIEM`, signed security notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: access-status exchange, statement-of-reasons routing, adjudication-response updates, and clearance-defense acknowledgment.
+
+### `ps-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-stack-v1`
+- Protocols: `NIEM`, `HL7/FHIR`, signed records notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: docket-status exchange, medical-or-record evidence routing, characterization updates, and VA-eligibility bridge acknowledgment.
+
+### `ps-joint-article-138-congressional-casework-record-preservation-escalation-stack-v1`
+- Protocols: `NIEM`, signed casework notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: redress-status exchange, congressional-routing updates, privacy-release control, and record-preservation acknowledgment.
+
+## Tool Suite Addendum LXXXVII (2026-04-11, Support-Readiness and Transition Continuity)
+
+### `ts-joint-individual-medical-readiness-immunization-pha-dental-continuity-v1`
+- Use for: IMR evidence recovery, immunization reconciliation, periodic health-assessment completion, and dental deployability continuity when administrative drift threatens readiness.
+- Primary tools: IMR readiness dashboard, immunization registry, PHA appointment queue, dental-class tracker.
+- Cross-check tools: independent medical-readiness review cell and alternate personnel-records or unit medical desk.
+- Typical products: IMR recovery board, deployability-evidence ladder, appointment-closure packet.
+
+### `ts-reserve-component-line-of-duty-incapacitation-pay-medical-hold-continuity-v1`
+- Use for: line-of-duty determinations, incapacitation-pay continuity, medical-hold order legitimacy, and Reserve or Guard family-support stabilization after injury or illness.
+- Primary tools: LOD case board, incapacitation-pay ledger, medical-hold tracker, orders or pay coordination queue.
+- Cross-check tools: independent medical-board review cell and alternate compensation or personnel-support desk.
+- Typical products: line-of-duty evidence board, incapacitation-pay ladder, medical-hold continuity packet.
+
+### `ts-joint-transition-assistance-vre-dol-federal-hiring-bridge-v1`
+- Use for: TAP milestones, VR&E continuity, DOL workshop completion, and federal-hiring readiness when separation or medical recovery friction threatens lawful transition.
+- Primary tools: transition-assistance checklist board, DOL workshop scheduler, VR&E case tracker, USAJOBS or federal-resume ledger.
+- Cross-check tools: independent transition-services review cell and alternate SkillBridge or personnel-records desk.
+- Typical products: transition-bridge board, federal-hiring readiness ladder, VR&E or TAP continuity packet.
+
+### `ts-joint-family-readiness-group-ombudsman-key-spouse-communication-v1`
+- Use for: trusted family-network communication, volunteer notification, rumor control, and resource-referral continuity across FRG, ombudsman, and key spouse channels.
+- Primary tools: family-network contact roster, volunteer notification board, rumor-control escalation ledger, resource-referral queue.
+- Cross-check tools: independent family-readiness review cell and alternate emergency-leave or public-affairs desk.
+- Typical products: family-network contact board, rumor-control escalation ladder, volunteer-notification continuity packet.
+
+### `ts-joint-military-onesource-nonmedical-counseling-peer-support-v1`
+- Use for: non-medical counseling access, peer-support routing, and privacy-safe resilience escalation when burnout, relocation, or family stress threatens warfighter stability.
+- Primary tools: counseling referral board, access or wait-time tracker, peer-support resource ledger, privacy-safe escalation queue.
+- Cross-check tools: independent resilience-support review cell and alternate telebehavioral-health or chaplain support desk.
+- Typical products: counseling-access board, peer-support routing ladder, privacy-safe resilience packet.
+
+### `ts-joint-cool-usmap-credentialing-pathway-continuity-v1`
+- Use for: COOL voucher use, USMAP apprenticeship-hour capture, credential exam scheduling, and civilian-license crosswalk continuity during deployment, PCS, or medical recovery.
+- Primary tools: COOL voucher tracker, USMAP apprenticeship-hour ledger, credential exam queue, civilian-license crosswalk board.
+- Cross-check tools: independent credentialing review cell and alternate professional-license or transition-services desk.
+- Typical products: credential-pathway board, voucher-and-hour recovery ladder, civilian-crosswalk continuity packet.
+
+## Protocol Stack Addendum LXXXVII (2026-04-11, External Integration Profiles for Expansion Wave LXXXVII)
+
+### `ps-joint-individual-medical-readiness-immunization-pha-dental-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed readiness notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: IMR-status exchange, immunization updates, PHA routing, dental-class status sync, and deployability-evidence acknowledgment.
+
+### `ps-reserve-component-line-of-duty-incapacitation-pay-medical-hold-continuity-stack-v1`
+- Protocols: `HL7/FHIR`, `NIEM`, signed medical-hold notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: LOD-status exchange, INCAP-pay routing, treatment-document updates, and medical-hold acknowledgment.
+
+### `ps-joint-transition-assistance-vre-dol-federal-hiring-bridge-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed transition notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: TAP-status exchange, VR&E routing, workshop updates, and federal-hiring acknowledgment.
+
+### `ps-joint-family-readiness-group-ombudsman-key-spouse-communication-stack-v1`
+- Protocols: `NIEM`, `CAP`, signed community notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: roster-status exchange, volunteer-notification routing, rumor-control updates, and community-support acknowledgment.
+
+### `ps-joint-military-onesource-nonmedical-counseling-peer-support-stack-v1`
+- Protocols: `NIEM`, signed referral notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: referral-status exchange, counseling-access updates, peer-support routing, and resilience-support acknowledgment.
+
+### `ps-joint-cool-usmap-credentialing-pathway-continuity-stack-v1`
+- Protocols: `NIEM`, `HR-XML`, signed credential notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: voucher-status exchange, apprenticeship-hour updates, exam-routing changes, and credential-pathway acknowledgment.

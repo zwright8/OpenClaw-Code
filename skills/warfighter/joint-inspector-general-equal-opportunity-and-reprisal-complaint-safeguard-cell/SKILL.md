@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Flag retaliation risk, confidentiality breach, biased routing, and unsupported investigative promises before recommending action.
 - Do not fabricate complaints, protected status, reprisal determinations, or command findings.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVI Addendum)
+
+- Add `toolchain_id=TC-A138-354`, `tool_suite_id=ts-joint-article-138-congressional-casework-record-preservation-escalation-v1`, and `protocol_stack_id=ps-joint-article-138-congressional-casework-record-preservation-escalation-stack-v1` when protected complaints must branch into Article 138 redress, congressional casework, privacy-release control, or record-preservation escalation.
+- Add `toolchain_id=TC-NJPSEP-349`, `tool_suite_id=ts-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-v1`, and `protocol_stack_id=ps-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-stack-v1` when reprisal risk, command pressure, or adverse paperwork threatens lawful reporting channels and career continuity.
+- Add `packet_id=DPL-ARTICLE-138-CONGRESSIONAL-001` and `packet_id=DPL-NJP-LOR-ADMINSEP-001` for branches that materially alter protected-reporting confidence, escalation legitimacy, or command-climate risk.

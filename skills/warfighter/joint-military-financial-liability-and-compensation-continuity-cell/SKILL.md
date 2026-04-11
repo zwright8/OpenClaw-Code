@@ -100,3 +100,14 @@ For each critical tool recommendation include objective, required inputs, query 
 - Add `toolchain_id=TC-LODPAY-346`, `tool_suite_id=ts-joint-line-of-duty-incapacitation-pay-duty-status-continuity-v1`, and `protocol_stack_id=ps-joint-line-of-duty-incapacitation-pay-duty-status-continuity-stack-v1` when compensation legitimacy depends on LOD evidence, incapacitation-pay routing, or injury-driven duty-status reconciliation.
 - Add `toolchain_id=TC-FINALOUT-348`, `tool_suite_id=ts-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-v1`, and `protocol_stack_id=ps-joint-final-out-processing-cif-ocie-medical-dental-separation-clearance-stack-v1` when final-pay timing, separation checklist completion, or property-accountability closure changes compensation confidence.
 - Add `packet_id=DPL-LOD-INCAP-PAY-DUTY-STATUS-001` and `packet_id=DPL-FINAL-OUT-CIF-SEPARATION-001` for branches that materially alter compensation legitimacy, final-pay confidence, or transition-finance stability.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVI Addendum)
+
+- Add `toolchain_id=TC-SORCLR-352`, `tool_suite_id=ts-joint-security-clearance-suspension-revocation-statement-of-reasons-response-v1`, and `protocol_stack_id=ps-joint-security-clearance-suspension-revocation-statement-of-reasons-response-stack-v1` when debt distress, tax liens, or creditor action escalate into formal suspension, revocation, or statement-of-reasons response posture.
+- Add `toolchain_id=TC-DRBBCMR-353`, `tool_suite_id=ts-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-v1`, and `protocol_stack_id=ps-joint-discharge-review-board-bcmr-character-of-service-va-eligibility-bridge-stack-v1` when compensation or debt recovery intersects discharge characterization, record defects, or downstream VA-eligibility risk.
+- Add `packet_id=DPL-CLEARANCE-SOR-SUSP-REVOCATION-001` and `packet_id=DPL-DRB-BCMR-CHARACTER-VA-001` for branches that materially alter compensation legitimacy, adjudication-defense confidence, or long-tail financial recovery.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVII Addendum)
+
+- Add `toolchain_id=TC-LODINCAP-333`, `tool_suite_id=ts-reserve-component-line-of-duty-incapacitation-pay-medical-hold-continuity-v1`, and `protocol_stack_id=ps-reserve-component-line-of-duty-incapacitation-pay-medical-hold-continuity-stack-v1` when compensation continuity, household stability, or lawful availability depends on verified LOD determinations, incapacitation-pay continuity, or medical-hold legitimacy.
+- Add `packet_id=DPL-LOD-INCAP-MEDHOLD-001` for branches that materially alter compensation legitimacy, recovery confidence, or household financial stability.

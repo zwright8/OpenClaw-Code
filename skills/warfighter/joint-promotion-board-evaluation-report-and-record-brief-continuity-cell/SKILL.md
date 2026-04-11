@@ -76,3 +76,9 @@ For each critical tool recommendation include objective, required inputs, query 
 
 - Add `toolchain_id=TC-AWARDS-347`, `tool_suite_id=ts-joint-awards-decorations-valor-board-record-protection-v1`, and `protocol_stack_id=ps-joint-awards-decorations-valor-board-record-protection-stack-v1` when board-file trust, assignment confidence, or recognition legitimacy depends on resolved awards evidence, decoration routing, or valor-device validation.
 - Add `packet_id=DPL-AWARDS-DECORATIONS-BOARD-001` for branches that materially alter promotion-board integrity, assignment trust, or recognition legitimacy.
+
+## Domain Toolchain Override (2026-04-11, Expansion Wave LXXXVI Addendum)
+
+- Add `toolchain_id=TC-UIFGOMOR-351`, `tool_suite_id=ts-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-v1`, and `protocol_stack_id=ps-joint-unfavorable-information-file-gomor-board-record-rebuttal-continuity-stack-v1` when promotion-board trust depends on timely rebuttal of UIF or GOMOR material, adverse-record cleanup, or source-evidence preservation.
+- Add `toolchain_id=TC-NJPSEP-349`, `tool_suite_id=ts-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-v1`, and `protocol_stack_id=ps-joint-nonjudicial-punishment-letter-of-reprimand-administrative-separation-continuity-stack-v1` when ongoing adverse action or administrative-separation proceedings threaten board eligibility, record accuracy, or assignment confidence.
+- Add `packet_id=DPL-UIF-GOMOR-BOARD-001` and `packet_id=DPL-NJP-LOR-ADMINSEP-001` for branches that materially alter promotion-board integrity, assignment trust, or career-legitimacy decisions.
