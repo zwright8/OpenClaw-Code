@@ -1,20 +1,20 @@
 # Warfighter Safety Audit
 
-- generatedAt: 2026-04-12T18:10:45.393Z
+- generatedAt: 2026-04-12T19:10:29.599Z
 - corpusRoot: skills/warfighter
 - scannedSkillCount: 2353
 - supportSkillCount: 1923
 - prohibitedSkillCount: 205
-- structuralGapSkillCount: 775
+- structuralGapSkillCount: 774
 - prohibitedFindingCount: 220
-- structuralFindingCount: 1456
+- structuralFindingCount: 1453
 
 ## Findings By Rule
 
-- missing-required-inputs: 759
-- missing-validation: 338
+- missing-required-inputs: 758
+- missing-validation: 337
 - missing-guardrails: 166
-- missing-failure-handling: 148
+- missing-failure-handling: 147
 - prohibited-missile-or-munitions: 88
 - prohibited-targeting: 59
 - prohibited-fires-or-strike: 37

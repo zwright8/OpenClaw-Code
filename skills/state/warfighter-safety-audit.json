@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-04-12T18:10:45.393Z",
+  "generatedAt": "2026-04-12T19:10:29.599Z",
   "corpusRoot": "skills/warfighter",
   "summary": {
-    "generatedAt": "2026-04-12T18:10:45.394Z",
+    "generatedAt": "2026-04-12T19:10:29.599Z",
     "scannedSkillCount": 2353,
     "supportSkillCount": 1923,
     "prohibitedSkillCount": 205,
-    "structuralGapSkillCount": 775,
+    "structuralGapSkillCount": 774,
     "prohibitedFindingCount": 220,
-    "structuralFindingCount": 1456,
+    "structuralFindingCount": 1453,
     "findingsByRule": [
       {
         "ruleId": "missing-required-inputs",
-        "count": 759
+        "count": 758
       },
       {
         "ruleId": "missing-validation",
-        "count": 338
+        "count": 337
       },
       {
         "ruleId": "missing-guardrails",
@@ -24,7 +24,7 @@
       },
       {
         "ruleId": "missing-failure-handling",
-        "count": 148
+        "count": 147
       },
       {
         "ruleId": "prohibited-missile-or-munitions",
@@ -27412,26 +27412,10 @@
       "skillPath": "skills/warfighter/theater-civilian-hospital-overflow-military-triage-synchronization-cell/SKILL.md",
       "skillName": "theater-civilian-hospital-overflow-military-triage-synchronization-cell",
       "title": "Theater Civilian Hospital Overflow Military Triage Synchronization Cell",
-      "description": "Synchronize military triage and patient movement support when civilian hospitals exceed surge capacity.",
+      "description": "Synchronize military medical-support, patient movement, and overflow coordination when civilian hospitals exceed surge capacity during disaster or domestic-support incidents.",
       "isSupportOriented": true,
       "prohibitedFindings": [],
-      "structuralFindings": [
-        {
-          "ruleId": "missing-required-inputs",
-          "severity": "medium",
-          "message": "Support-oriented skills should define required inputs, source expectations, or freshness constraints."
-        },
-        {
-          "ruleId": "missing-validation",
-          "severity": "medium",
-          "message": "Support-oriented skills should include an interoperability, validation, or assurance section."
-        },
-        {
-          "ruleId": "missing-failure-handling",
-          "severity": "medium",
-          "message": "Support-oriented skills should include explicit failure handling, degraded operations, or fallback recovery guidance."
-        }
-      ]
+      "structuralFindings": []
     },
     {
       "skillPath": "skills/warfighter/theater-civilian-shield-pattern-exploitation-counter-cell/SKILL.md",
