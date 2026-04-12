@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-04-12T15:16:08.951Z",
+  "generatedAt": "2026-04-12T17:20:07.092Z",
   "corpusRoot": "skills/warfighter",
   "summary": {
-    "generatedAt": "2026-04-12T15:16:08.952Z",
+    "generatedAt": "2026-04-12T17:20:07.093Z",
     "scannedSkillCount": 2353,
     "supportSkillCount": 1923,
     "prohibitedSkillCount": 205,
-    "structuralGapSkillCount": 776,
+    "structuralGapSkillCount": 775,
     "prohibitedFindingCount": 220,
-    "structuralFindingCount": 1458,
+    "structuralFindingCount": 1455,
     "findingsByRule": [
       {
         "ruleId": "missing-required-inputs",
-        "count": 760
+        "count": 759
       },
       {
         "ruleId": "missing-validation",
-        "count": 339
+        "count": 338
       },
       {
         "ruleId": "missing-guardrails",
@@ -24,7 +24,7 @@
       },
       {
         "ruleId": "missing-failure-handling",
-        "count": 148
+        "count": 147
       },
       {
         "ruleId": "prohibited-missile-or-munitions",
@@ -777,23 +777,7 @@
       "description": "Validate forward additive-manufactured repair parts for air, land, and maritime mission assurance under contested sustainment.",
       "isSupportOriented": true,
       "prohibitedFindings": [],
-      "structuralFindings": [
-        {
-          "ruleId": "missing-required-inputs",
-          "severity": "medium",
-          "message": "Support-oriented skills should define required inputs, source expectations, or freshness constraints."
-        },
-        {
-          "ruleId": "missing-validation",
-          "severity": "medium",
-          "message": "Support-oriented skills should include an interoperability, validation, or assurance section."
-        },
-        {
-          "ruleId": "missing-failure-handling",
-          "severity": "medium",
-          "message": "Support-oriented skills should include explicit failure handling, degraded operations, or fallback recovery guidance."
-        }
-      ]
+      "structuralFindings": []
     },
     {
       "skillPath": "skills/warfighter/battlefield-drone-forensics-and-attribution-cell/SKILL.md",
