@@ -152,13 +152,16 @@ const REQUIRED_SUPPORT_HEADINGS: HeadingRule[] = [
     {
         id: 'missing-output-format',
         message: 'Support-oriented skills should define expected outputs or a required output format.',
-        matches: [/required output format/i, /expected outputs?/i]
+        matches: [/required output format/i, /expected outputs?/i, /domain products/i]
     },
     {
         id: 'missing-required-inputs',
         message: 'Support-oriented skills should define required inputs, source expectations, or freshness constraints.',
         matches: [/required inputs?/i, /input requirements?/i, /core inputs?/i],
         evidenceMatches: [
+            /frame (?:the )?(?:mission )?problem (?:with|using)\b/i,
+            /build a mission (?:snapshot|frame) with\b/i,
+            /establish mission objective(?:s)?\b/i,
             /frame the mission problem using these core inputs:/i,
             /for each external (?:tool|dependency).*required inputs/i,
             /confirm [^\n.]+ before recommending action/i
@@ -180,12 +183,13 @@ const REQUIRED_SUPPORT_HEADINGS: HeadingRule[] = [
         matches: [/failure handling/i, /failure modes/i, /degraded operations/i, /fallback and recovery/i, /contingencies/i],
         evidenceMatches: [
             /degraded-mode|degraded mode/i,
+            /^\s*-\s*degraded:/mi,
             /manual workaround/i,
             /downgrade to advisory-only/i,
             /fallback path/i,
             /no-go status/i,
             /revalidation trigger/i,
-            /if [^\n.]{0,80}(?:fail|fails|failed|unavailable|uncertain)/i
+            /if [^\n.]{0,160}(?:fail|fails|failed|unavailable|uncertain|incomplete)/i
         ]
     },
     {
