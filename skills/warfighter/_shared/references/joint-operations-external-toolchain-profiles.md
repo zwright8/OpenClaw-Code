@@ -3485,3 +3485,47 @@ For each critical recommendation, include:
 - Cross-check tools: `ts-logistics-distribution-v1`.
 - Protocols: `NIEM`, `AAMVA CDLIS`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Degraded fallback: advisory-only driver sequencing with manual safety and movement-control review until endorsement evidence is human-confirmed.
+
+## Profile Addendum AE (2026-04-12, Housing Entitlements, Overseas Cost, Subsistence, Travel Priority, and Split-Household Continuity)
+
+### `dla-tle-tla-continuity-v1`
+- Use for: relocation and reporting decisions when DLA, TLE, or TLA friction threatens lawful move execution and temporary-housing solvency.
+- Primary tools: `ts-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-v1`.
+- Cross-check tools: `ts-joint-pcs-claims-travel-voucher-temporary-lodging-continuity-v1`.
+- Protocols: `NIEM`, signed lodging notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only lodging sequencing with manual orders and receipt review until eligibility evidence is human-confirmed.
+
+### `overseas-housing-allowance-lease-utility-v1`
+- Use for: overseas assignment and household-stability decisions when OHA, lease legitimacy, or utility burden determine whether a moved family can remain lawfully housed.
+- Primary tools: `ts-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-v1`.
+- Cross-check tools: `ts-joint-command-sponsorship-overseas-screening-no-fee-passport-continuity-v1`.
+- Protocols: `NIEM`, `ISO 20022`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only overseas-housing sequencing with manual lease and housing-office review until location evidence is human-confirmed.
+
+### `overseas-cola-post-allowance-v1`
+- Use for: overseas pay and retention decisions when post allowance, OCOLA, or exchange-rate shock begins to erode household purchasing power.
+- Primary tools: `ts-joint-overseas-cola-post-allowance-currency-shock-continuity-v1`.
+- Cross-check tools: `ts-joint-special-pay-bah-cola-incentive-continuity-v1`.
+- Protocols: `NIEM`, `ISO 20022`, signed pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only overseas-cost sequencing with manual locality and dependent-status review until compensation evidence is human-confirmed.
+
+### `bas-meal-card-messing-debt-v1`
+- Use for: food-access and compensation decisions when BAS, meal-card coding, or messing debt determines whether a warfighter remains stably fed and paid correctly.
+- Primary tools: `ts-joint-basic-allowance-for-subsistence-meal-card-messing-debt-continuity-v1`.
+- Cross-check tools: `ts-joint-commissary-exchange-subsistence-hygiene-priority-restoration-v1`.
+- Protocols: `NIEM`, signed pay or messing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only subsistence sequencing with manual DFAC and finance review until entitlement evidence is human-confirmed.
+
+### `space-a-emergency-leave-attendant-v1`
+- Use for: compassionate-travel decisions when Space-A routing, emergency leave, or nonmedical-attendant priority becomes the fastest lawful path to bedside or family support.
+- Primary tools: `ts-joint-space-available-travel-emergency-leave-nonmedical-attendant-priority-continuity-v1`.
+- Cross-check tools: `ts-joint-emergency-leave-american-red-cross-message-command-approval-v1` and `ts-joint-wounded-warrior-family-lodging-nonmedical-attendant-coordination-v1`.
+- Protocols: `NIEM`, `AIXM/FIXM`, `ICAO Doc 9303`, signed travel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only travel sequencing with manual passenger-terminal and approval review until urgency and authority are human-confirmed.
+
+### `geographic-bachelor-separate-rations-v1`
+- Use for: split-household and assignment-support decisions when housing exceptions, separate rations, or barracks scarcity determine whether a geographically separated family remains sustainable.
+- Primary tools: `ts-joint-geographic-bachelor-housing-exception-separate-rations-continuity-v1`.
+- Cross-check tools: `ts-joint-barracks-dorm-work-order-bah-exception-emergency-relocation-continuity-v1`.
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Degraded fallback: advisory-only split-household sequencing with manual housing and assignment review until support evidence is human-confirmed.

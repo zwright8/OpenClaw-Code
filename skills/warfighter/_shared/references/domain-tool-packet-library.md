@@ -16069,3 +16069,71 @@ validation_gates:
 - output_schema: driver-readiness board, endorsement recovery ladder, convoy-license continuity packet
 - protocol_profile: NIEM + AAMVA CDLIS + signed qualification notices + API/JSON + S/MIME + USMTF
 - validation_gates: qualification review, endorsement confirmation, safety check, human command validation
+
+## Packet Addendum LXXXIII (2026-04-12, Expansion Wave XCV)
+
+### packet_id: DPL-DLA-TLE-TLA-001
+- domain: joint dislocation allowance and temporary lodging continuity
+- objective: preserve lawful relocation support by synchronizing DLA, TLE, and TLA actions before lodging costs derail reporting or household stability.
+- primary_tools: DLA eligibility board, TLE or TLA tracker, lodging-cost and receipt validator, check-in or checkout deadline queue
+- alternate_tools: manual lodging-priority roster and reimbursement worksheet
+- degraded_mode: advisory-only lodging sequencing with no unsupported entitlement, reimbursement, or safehaven promise
+- input_requirements: orders posture, CONUS or OCONUS status, lodging dates, receipt evidence, family composition, reporting deadline
+- output_schema: DLA and TLE or TLA decision board, lodging cash-flow ladder, move-continuity packet
+- protocol_profile: NIEM + signed lodging notices + API/JSON + S/MIME + USMTF
+- validation_gates: orders confirmation, receipt review, eligibility-window check
+
+### packet_id: DPL-OHA-LEASE-UTILITY-001
+- domain: joint overseas housing allowance utility reconciliation and lease continuity
+- objective: preserve overseas household legitimacy by aligning OHA, lease evidence, utility burden, and move-in cost recovery before housing instability spreads into readiness loss.
+- primary_tools: overseas-housing lease board, rent and utility reconciliation ledger, move-in cost tracker, housing-office escalation queue
+- alternate_tools: manual housing-risk roster and lease-validation worksheet
+- degraded_mode: advisory-only overseas-housing sequencing with no unsupported lease, allowance, or landlord outcome
+- input_requirements: location, sponsorship posture, lease terms, utility status, housing costs, family composition
+- output_schema: overseas-housing allowance board, lease and utility reconciliation ladder, assignment-stability packet
+- protocol_profile: NIEM + ISO 20022 + signed housing notices + API/JSON + S/MIME + USMTF
+- validation_gates: lease evidence, location eligibility, utility-burden review
+
+### packet_id: DPL-OCOLA-POST-CURRENCY-001
+- domain: joint overseas COLA post allowance and currency shock continuity
+- objective: preserve household purchasing power and compensation legitimacy by reconciling locality-rate shifts, exchange-rate shock, and sponsor-status evidence before prolonged underpayment occurs.
+- primary_tools: locality-rate board, exchange-rate monitor, dependent-location verification ledger, pay-adjustment escalation queue
+- alternate_tools: manual overseas-cost roster and pay-impact worksheet
+- degraded_mode: advisory-only overseas-cost sequencing with no unsupported locality-rate, currency-adjustment, or back-pay promise
+- input_requirements: duty location, dependent status, current pay posture, locality-rate baseline, exchange-rate movement, hardship indicators
+- output_schema: overseas-cost index board, allowance correction ladder, currency-shock mitigation packet
+- protocol_profile: NIEM + ISO 20022 + signed pay notices + API/JSON + S/MIME + USMTF
+- validation_gates: locality-rate confirmation, dependent-location evidence, pay-impact review
+
+### packet_id: DPL-BAS-MEALCARD-MESS-001
+- domain: joint subsistence entitlement meal card and messing debt continuity
+- objective: restore lawful food support and pay accuracy before BAS errors, meal-card drift, or messing debt create avoidable hardship and readiness drag.
+- primary_tools: BAS entitlement board, meal-card status tracker, messing-charge ledger, dining-facility or emergency-food support queue
+- alternate_tools: manual subsistence-risk roster and meal-card review worksheet
+- degraded_mode: advisory-only food-and-pay sequencing with no unsupported debt reversal, BAS payment, or dining-access guarantee
+- input_requirements: duty status, meal-card posture, dining-facility access, debt status, food-support urgency, command impact
+- output_schema: subsistence-entitlement board, meal-card correction ladder, messing-debt mitigation packet
+- protocol_profile: NIEM + signed pay or messing notices + API/JSON + S/MIME + USMTF
+- validation_gates: duty-status confirmation, meal-card evidence, debt-legitimacy review
+
+### packet_id: DPL-SPACEA-EMERGENCY-ATTENDANT-001
+- domain: joint Space-A compassionate travel and nonmedical attendant continuity
+- objective: preserve bedside and emergency family movement by aligning Space-A priority, leave authority, and attendant approval before travel delay causes harm.
+- primary_tools: passenger-terminal availability board, Space-A priority ledger, emergency-leave or attendant approval queue, travel-document readiness tracker
+- alternate_tools: manual compassionate-travel roster and passenger-terminal call tree
+- degraded_mode: advisory-only travel sequencing with no unsupported boarding, leave approval, or international-travel promise
+- input_requirements: emergency category, authority posture, passenger eligibility, terminal availability, document status, timing urgency
+- output_schema: Space-A priority board, compassionate-travel ladder, attendant-travel packet
+- protocol_profile: NIEM + AIXM/FIXM + ICAO Doc 9303 + signed travel notices + API/JSON + S/MIME + USMTF
+- validation_gates: authority confirmation, manifest review, document-validity check
+
+### packet_id: DPL-GEOBACH-SEPRATS-001
+- domain: joint geographic bachelor housing exception and separate rations continuity
+- objective: preserve split-household legitimacy and lawful support by aligning housing exceptions, separate rations, and assignment evidence before family strain degrades readiness.
+- primary_tools: housing-exception board, split-household stability ledger, separate-rations tracker, barracks-occupancy queue
+- alternate_tools: manual split-household roster and separate-rations review worksheet
+- degraded_mode: advisory-only split-household sequencing with no unsupported housing-exception, rations, or assignment outcome
+- input_requirements: assignment posture, household locations, room availability, separate-rations status, family constraints, command deadlines
+- output_schema: split-household stability board, housing-exception decision ladder, separate-rations continuity packet
+- protocol_profile: NIEM + signed housing notices + API/JSON + S/MIME + USMTF
+- validation_gates: assignment confirmation, housing evidence, separate-rations review

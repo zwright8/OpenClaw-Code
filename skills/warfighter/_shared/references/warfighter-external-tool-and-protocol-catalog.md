@@ -16128,3 +16128,67 @@ external_binding:
 ### `ps-joint-military-driver-qualification-cdl-hazmat-convoy-license-continuity-stack-v1`
 - Protocols: `NIEM`, `AAMVA CDLIS`, signed qualification notices, `API/JSON`, `S/MIME`, `USMTF`.
 - Use for: driver-license status exchange, endorsement routing, convoy-currency updates, and safety-acknowledgment tracking.
+
+## Tool Suite Addendum XCV (2026-04-12, Housing Entitlements, Overseas Cost, Subsistence, Travel Priority, and Split-Household Continuity)
+
+### `ts-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-v1`
+- Use for: DLA, TLE, and TLA continuity when PCS, safehaven, or delayed housing threatens lawful relocation and household solvency.
+- Primary tools: DLA eligibility board, TLE or TLA tracker, lodging-cost and receipt validator, check-in or checkout deadline queue.
+- Cross-check tools: independent PCS finance review cell and alternate housing or family-support desk.
+- Typical products: DLA and TLE or TLA decision board, lodging cash-flow ladder, move-continuity packet.
+
+### `ts-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-v1`
+- Use for: overseas housing allowance continuity, lease legitimacy, move-in cost recovery, and utility reconciliation when host-nation housing friction threatens assignment stability.
+- Primary tools: overseas-housing lease board, rent and utility reconciliation ledger, move-in cost tracker, housing-office escalation queue.
+- Cross-check tools: independent overseas-housing review cell and alternate command-sponsorship or legal-assistance desk.
+- Typical products: overseas-housing allowance board, lease and utility reconciliation ladder, assignment-stability packet.
+
+### `ts-joint-overseas-cola-post-allowance-currency-shock-continuity-v1`
+- Use for: overseas COLA, post allowance, and exchange-rate shock continuity when locality shifts or admin lag degrade household purchasing power abroad.
+- Primary tools: locality-rate board, exchange-rate monitor, dependent-location verification ledger, pay-adjustment escalation queue.
+- Cross-check tools: independent finance review cell and alternate command-sponsorship or community-support desk.
+- Typical products: overseas-cost index board, allowance correction ladder, currency-shock mitigation packet.
+
+### `ts-joint-basic-allowance-for-subsistence-meal-card-messing-debt-continuity-v1`
+- Use for: BAS, meal-card, and messing-debt continuity when entitlement coding drift or dining-facility changes create food insecurity and pay errors.
+- Primary tools: BAS entitlement board, meal-card status tracker, messing-charge ledger, dining-facility or emergency-food support queue.
+- Cross-check tools: independent finance review cell and alternate DFAC manager or family-support desk.
+- Typical products: subsistence-entitlement board, meal-card correction ladder, messing-debt mitigation packet.
+
+### `ts-joint-space-available-travel-emergency-leave-nonmedical-attendant-priority-continuity-v1`
+- Use for: Space-A travel, emergency-leave routing, and nonmedical-attendant priority when commercial options collapse or cost barriers delay compassionate movement.
+- Primary tools: passenger-terminal availability board, Space-A priority ledger, emergency-leave or attendant approval queue, travel-document readiness tracker.
+- Cross-check tools: independent passenger-terminal review cell and alternate emergency-leave or wounded-warrior support desk.
+- Typical products: Space-A priority board, compassionate-travel ladder, attendant-travel packet.
+
+### `ts-joint-geographic-bachelor-housing-exception-separate-rations-continuity-v1`
+- Use for: geographic-bachelor housing exception, split-household legitimacy, and separate-rations continuity when assignment mismatch or housing scarcity destabilizes warfighter households.
+- Primary tools: housing-exception board, split-household stability ledger, separate-rations tracker, barracks-occupancy queue.
+- Cross-check tools: independent housing-office review cell and alternate personnel-services or finance desk.
+- Typical products: split-household stability board, housing-exception decision ladder, separate-rations continuity packet.
+
+## Protocol Stack Addendum XCV (2026-04-12, External Integration Profiles for Expansion Wave XCV)
+
+### `ps-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-stack-v1`
+- Protocols: `NIEM`, signed lodging notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: DLA-status exchange, TLE or TLA routing, lodging-receipt updates, and move-continuity acknowledgment.
+
+### `ps-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-stack-v1`
+- Protocols: `NIEM`, `ISO 20022`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: OHA-status exchange, lease-routing updates, utility-reconciliation notices, and overseas-housing acknowledgment.
+
+### `ps-joint-overseas-cola-post-allowance-currency-shock-continuity-stack-v1`
+- Protocols: `NIEM`, `ISO 20022`, signed pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: COLA or post-allowance exchange, locality-rate updates, exchange-rate routing, and overseas-cost acknowledgment.
+
+### `ps-joint-basic-allowance-for-subsistence-meal-card-messing-debt-continuity-stack-v1`
+- Protocols: `NIEM`, signed pay or messing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: BAS-status exchange, meal-card routing, messing-debt updates, and food-access acknowledgment.
+
+### `ps-joint-space-available-travel-emergency-leave-nonmedical-attendant-priority-continuity-stack-v1`
+- Protocols: `NIEM`, `AIXM/FIXM`, `ICAO Doc 9303`, signed travel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: passenger-priority exchange, emergency-leave routing, attendant-status updates, and compassionate-travel acknowledgment.
+
+### `ps-joint-geographic-bachelor-housing-exception-separate-rations-continuity-stack-v1`
+- Protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Use for: housing-exception exchange, separate-rations routing, split-household updates, and command-support acknowledgment.

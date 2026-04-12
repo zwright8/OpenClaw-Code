@@ -3377,3 +3377,21 @@ Every skill output should include:
 - Joint diver and submariner pressure-qualification and special-duty medical continuity + joint-dive-medicine-hyperbaric-and-undersea-casualty-routing-cell + joint-flight-surgeon-and-aeromedical-waiver-cell + joint-individual-medical-readiness-immunization-pha-and-dental-continuity-cell.
 - Joint remote-notary digital-signature and emergency legal-document execution + joint-servicemember-civil-relief-estate-and-power-of-attorney-cell + joint-fvap-overseas-ballot-and-election-material-continuity-cell + homeland-military-legal-assistance-and-identity-document-reissuance-cell.
 - Joint military-driver CDL hazmat and convoy-license continuity + contested-logistics-sustainment + movement-control-convoy-rail-planner + joint-fuel-convoy-signature-suppression-cell.
+
+## New Expansion Wave (2026-04-12, Expansion Wave XCV)
+
+- joint-dislocation-allowance-temporary-lodging-expense-and-temporary-lodging-allowance-continuity-cell
+- joint-overseas-housing-allowance-utility-reconciliation-and-lease-continuity-cell
+- joint-overseas-cola-post-allowance-and-currency-shock-continuity-cell
+- joint-basic-allowance-for-subsistence-meal-card-and-messing-debt-continuity-cell
+- joint-space-available-travel-emergency-leave-and-nonmedical-attendant-priority-continuity-cell
+- joint-geographic-bachelor-housing-exception-and-separate-rations-continuity-cell
+
+## Updated Pairings (2026-04-12, Expansion Wave XCV)
+
+- Joint dislocation allowance temporary lodging expense and temporary lodging allowance continuity + joint-pcs-claims-travel-voucher-and-temporary-lodging-continuity-cell + joint-military-financial-liability-and-compensation-continuity-cell + mission-risk-decision-support.
+- Joint overseas housing allowance utility reconciliation and lease continuity + joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell + joint-privatized-military-housing-tenant-rights-bah-recertification-and-claims-cell + joint-overseas-spouse-work-authorization-host-nation-banking-and-driver-license-continuity-cell.
+- Joint overseas COLA post allowance and currency shock continuity + joint-special-pay-bah-cola-and-incentive-continuity-cell + joint-mypay-les-allotment-and-payroll-access-continuity-cell + mission-risk-decision-support.
+- Joint Basic Allowance for Subsistence meal-card and messing-debt continuity + joint-commissary-exchange-subsistence-and-hygiene-priority-restoration-cell + joint-military-financial-liability-and-compensation-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.
+- Joint Space-Available travel emergency leave and nonmedical-attendant priority continuity + joint-emergency-leave-american-red-cross-message-and-command-approval-cell + joint-wounded-warrior-family-lodging-and-nonmedical-attendant-coordination-cell + joint-command-sponsorship-overseas-screening-and-no-fee-passport-continuity-cell.
+- Joint geographic-bachelor housing-exception and separate-rations continuity + joint-barracks-dorm-work-order-bah-exception-and-emergency-relocation-continuity-cell + joint-unaccompanied-tour-family-separation-allowance-and-deferred-travel-continuity-cell + joint-military-family-readiness-crisis-sustainment-cell.

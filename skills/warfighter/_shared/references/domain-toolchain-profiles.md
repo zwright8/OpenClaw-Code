@@ -3434,3 +3434,53 @@ For every critical recommendation, include:
 - Cross-check systems: independent safety or master-driver review cell and alternate movement-control or unit-training desk
 - Protocol binding: NIEM + AAMVA CDLIS + signed qualification notices + API/JSON + S/MIME + USMTF
 - Fallback path: advisory-only sequencing until endorsement evidence, safety posture, and human command review are confirmed
+
+## Toolchain Wave XCV (2026-04-12)
+
+### `TC-DLATLE-396`
+
+- Domain: joint dislocation allowance temporary lodging expense and temporary lodging allowance continuity
+- Primary systems: DLA eligibility board, TLE or TLA tracker, lodging-cost and receipt validator, check-in or checkout deadline queue
+- Cross-check systems: independent PCS finance review cell and alternate housing or family-support desk
+- Protocol binding: NIEM + signed lodging notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until orders posture, lodging evidence, and human finance review are confirmed
+
+### `TC-OHA-397`
+
+- Domain: joint overseas housing allowance utility reconciliation and lease continuity
+- Primary systems: overseas-housing lease board, rent and utility reconciliation ledger, move-in cost tracker, housing-office escalation queue
+- Cross-check systems: independent overseas-housing review cell and alternate command-sponsorship or legal-assistance desk
+- Protocol binding: NIEM + ISO 20022 + signed housing notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until lease evidence, location eligibility, and human housing review are confirmed
+
+### `TC-OCOLA-398`
+
+- Domain: joint overseas COLA post allowance and currency shock continuity
+- Primary systems: locality-rate board, exchange-rate monitor, dependent-location verification ledger, pay-adjustment escalation queue
+- Cross-check systems: independent finance review cell and alternate command-sponsorship or community-support desk
+- Protocol binding: NIEM + ISO 20022 + signed pay notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until locality-rate evidence, dependent posture, and human finance review are confirmed
+
+### `TC-BASMESS-399`
+
+- Domain: joint basic allowance for subsistence meal card and messing debt continuity
+- Primary systems: BAS entitlement board, meal-card status tracker, messing-charge ledger, dining-facility or emergency-food support queue
+- Cross-check systems: independent finance review cell and alternate DFAC manager or family-support desk
+- Protocol binding: NIEM + signed pay or messing notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until duty status, food-access evidence, and human command or finance review are confirmed
+
+### `TC-SPACEA-400`
+
+- Domain: joint Space Available travel emergency leave and nonmedical attendant priority continuity
+- Primary systems: passenger-terminal availability board, Space-A priority ledger, emergency-leave or attendant approval queue, travel-document readiness tracker
+- Cross-check systems: independent passenger-terminal review cell and alternate emergency-leave or wounded-warrior support desk
+- Protocol binding: NIEM + AIXM/FIXM + ICAO Doc 9303 + signed travel notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until authority evidence, manifest posture, and human travel review are confirmed
+
+### `TC-GEOBACH-401`
+
+- Domain: joint geographic bachelor housing exception and separate rations continuity
+- Primary systems: housing-exception board, split-household stability ledger, separate-rations tracker, barracks-occupancy queue
+- Cross-check systems: independent housing-office review cell and alternate personnel-services or finance desk
+- Protocol binding: NIEM + signed housing notices + API/JSON + S/MIME + USMTF
+- Fallback path: advisory-only sequencing until assignment evidence, housing status, and human housing or personnel review are confirmed

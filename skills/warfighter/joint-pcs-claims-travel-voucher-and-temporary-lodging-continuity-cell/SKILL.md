@@ -71,3 +71,9 @@ For each critical tool recommendation include objective, required inputs, query 
 - Separate verified facts, assessed judgments, assumptions, and unknowns.
 - Protect privacy, anti-fraud controls, equitable lodging access, and lawful reimbursement before recommending action.
 - Do not fabricate orders, lodging availability, HHG claims status, or travel-voucher approval.
+
+## Domain Toolchain Override (2026-04-12, Expansion Wave XCV Addendum)
+
+- Add `toolchain_id=TC-DLATLE-396`, `tool_suite_id=ts-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-v1`, and `protocol_stack_id=ps-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-stack-v1` when move continuity depends on reconciling DLA, TLE, or TLA rather than voucher processing alone.
+- Add `toolchain_id=TC-OHA-397`, `tool_suite_id=ts-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-v1`, and `protocol_stack_id=ps-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-stack-v1` when PCS stability depends on overseas lease legitimacy, utility reconciliation, or housing-office actions after arrival.
+- Add `packet_id=DPL-DLA-TLE-TLA-001` and `packet_id=DPL-OHA-LEASE-UTILITY-001` for branches that materially alter move-solvency, lodging continuity, or overseas housing execution confidence.

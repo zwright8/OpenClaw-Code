@@ -648,3 +648,20 @@ Include these fields in outputs when tool integration is used:
 3. Treat co-location approvals, work-authorization outcomes, telehealth eligibility, pressure-qualification restoration, remote notarization, and driver-license endorsements as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
 4. For telehealth, special-duty medical, and remote-notary cases, minimize protected medical or identity data and separate readiness effect from the minimum legal or clinical detail required by the receiving office.
 5. Map every recommendation in these domains back to a readiness effect such as deployability, reporting reliability, household stability, lawful assignment execution, medical-access continuity, or sustainment throughput.
+
+## American Warfighter Housing, Overseas Cost, Subsistence, and Compassionate Travel Addendum (2026-04-12)
+
+- Dislocation allowance and temporary-lodging continuity: DLA eligibility boards, TLE or TLA trackers, lodging-cost ledgers, and check-in or checkout deadline queues; protocols: `NIEM`, signed lodging notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Overseas housing allowance and lease continuity: OHA reconciliation boards, lease-status trackers, utility-burden ledgers, and housing-office escalation queues; protocols: `NIEM`, `ISO 20022`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Overseas COLA and post-allowance continuity: locality-rate boards, exchange-rate monitors, dependent-location ledgers, and pay-adjustment queues; protocols: `NIEM`, `ISO 20022`, signed pay notices, `API/JSON`, `S/MIME`, `USMTF`.
+- BAS, meal-card, and messing-debt continuity: subsistence entitlement boards, meal-card status trackers, messing-charge ledgers, and dining-facility availability queues; protocols: `NIEM`, signed pay or messing notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Space-Available compassionate-travel continuity: passenger-terminal boards, priority manifests, emergency-leave or nonmedical-attendant queues, and travel-document ledgers; protocols: `NIEM`, `AIXM/FIXM`, `ICAO Doc 9303`, signed travel notices, `API/JSON`, `S/MIME`, `USMTF`.
+- Geographic-bachelor and separate-rations continuity: housing-exception boards, split-household ledgers, separate-rations trackers, and barracks-occupancy queues; protocols: `NIEM`, signed housing notices, `API/JSON`, `S/MIME`, `USMTF`.
+
+## Support-Case Protocol Selection Rules (2026-04-12, Housing, Overseas Cost, Subsistence, and Compassionate Travel Continuity)
+
+1. Cross-check at least one authoritative orders, pay, or housing source with one family-support, travel, or finance source before recommending action that changes DLA, TLE, TLA, OHA, OCOLA, BAS, Space-A priority, or separate-rations posture.
+2. Use `ISO 20022` only when rent, utility, or exchange-rate reconciliation actually requires payment-rail detail; keep the broader case exchange in `NIEM` plus signed notices.
+3. Use `AIXM/FIXM` or `ICAO Doc 9303` only when passenger-terminal availability or travel-document validity is part of the problem; otherwise keep the case exchange in `NIEM` plus signed travel notices.
+4. Treat lodging reimbursements, overseas allowance corrections, meal-card reversals, Space-A boarding, and housing-exception approvals as advisory-only until source-record freshness, notice authenticity, and human approval are confirmed.
+5. Map every housing, overseas-cost, subsistence, or compassionate-travel recommendation back to a readiness effect such as lawful availability, household stability, reporting reliability, retention confidence, or bedside-support continuity.

@@ -90,6 +90,14 @@ For each critical tool recommendation include objective, required inputs, query 
 - Add `toolchain_id=TC-PAYINC-321`, `tool_suite_id=ts-joint-special-pay-bah-cola-incentive-continuity-v1`, and `protocol_stack_id=ps-joint-special-pay-bah-cola-incentive-continuity-stack-v1` when claims, hardship relief, or retention confidence depends on corrected BAH, COLA, special pay, or incentive obligations.
 - Add `packet_id=DPL-GTCC-MISSION-TRAVEL-001` and `packet_id=DPL-SPECIAL-PAY-BAH-COLA-INCENTIVE-001` for branches that materially alter compensation legitimacy, interim-relief confidence, or household financial stability.
 
+## Domain Toolchain Override (2026-04-12, Expansion Wave XCV Addendum)
+
+- Add `toolchain_id=TC-DLATLE-396`, `tool_suite_id=ts-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-v1`, and `protocol_stack_id=ps-joint-dislocation-allowance-temporary-lodging-expense-temporary-lodging-allowance-continuity-stack-v1` when compensation legitimacy or household solvency depends on timely DLA, TLE, or TLA reconciliation during movement or safehaven.
+- Add `toolchain_id=TC-OHA-397`, `tool_suite_id=ts-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-v1`, and `protocol_stack_id=ps-joint-overseas-housing-allowance-utility-reconciliation-lease-continuity-stack-v1` when fiscal legitimacy depends on trusted overseas lease evidence, utility reconciliation, or housing-allowance continuity.
+- Add `toolchain_id=TC-OCOLA-398`, `tool_suite_id=ts-joint-overseas-cola-post-allowance-currency-shock-continuity-v1`, and `protocol_stack_id=ps-joint-overseas-cola-post-allowance-currency-shock-continuity-stack-v1` when household financial stability depends on overseas COLA, post-allowance, or exchange-rate correction.
+- Add `toolchain_id=TC-BASMESS-399`, `tool_suite_id=ts-joint-basic-allowance-for-subsistence-meal-card-messing-debt-continuity-v1`, and `protocol_stack_id=ps-joint-basic-allowance-for-subsistence-meal-card-messing-debt-continuity-stack-v1` when compensation legitimacy depends on corrected BAS, meal-card coding, or messing-debt posture rather than generic pay resolution alone.
+- Add `packet_id=DPL-DLA-TLE-TLA-001`, `packet_id=DPL-OHA-LEASE-UTILITY-001`, `packet_id=DPL-OCOLA-POST-CURRENCY-001`, and `packet_id=DPL-BAS-MEALCARD-MESS-001` for branches that materially alter compensation legitimacy, household financial stability, or command confidence in lawful support.
+
 ## Domain Toolchain Override (2026-04-07, Expansion Wave LXXXI Addendum)
 
 - Add `toolchain_id=TC-STULOAN-326`, `tool_suite_id=ts-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-v1`, and `protocol_stack_id=ps-joint-federal-student-loan-deferment-fafsa-college-reentry-continuity-stack-v1` when household financial stability, retention confidence, or hardship sequencing depends on student-loan protection, FAFSA continuity, or academic reentry for warfighters or dependents.
