@@ -1,26 +1,25 @@
 # Warfighter Safety Audit
 
-- generatedAt: 2026-04-12T19:10:29.599Z
+- generatedAt: 2026-04-12T23:12:31.771Z
 - corpusRoot: skills/warfighter
 - scannedSkillCount: 2353
 - supportSkillCount: 1923
 - prohibitedSkillCount: 205
-- structuralGapSkillCount: 774
+- structuralGapSkillCount: 574
 - prohibitedFindingCount: 220
-- structuralFindingCount: 1453
+- structuralFindingCount: 761
 
 ## Findings By Rule
 
-- missing-required-inputs: 758
 - missing-validation: 337
+- missing-required-inputs: 235
 - missing-guardrails: 166
-- missing-failure-handling: 147
 - prohibited-missile-or-munitions: 88
 - prohibited-targeting: 59
 - prohibited-fires-or-strike: 37
-- missing-output-format: 30
 - prohibited-air-defense-or-counter-uas: 25
 - missing-tool-protocol: 15
+- missing-failure-handling: 8
 - prohibited-combat-force-employment: 7
 - prohibited-intel-led-harm-or-evasion: 4
 
@@ -54,28 +53,28 @@
 
 ## Support Skill Structural Gaps
 
-- skills/warfighter/arctic-denied-comms-polar-orbit-handover-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/arctic-long-range-uas-icing-and-link-resilience-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/arctic-multi-domain-sustainment-weather-routing-cell/SKILL.md: missing-output-format
-- skills/warfighter/arctic-over-ice-ground-line-of-communication-resilience-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/autonomous-maritime-mine-countermeasure-swarm-control-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/arctic-denied-comms-polar-orbit-handover-cell/SKILL.md: missing-guardrails
+- skills/warfighter/arctic-multi-domain-sustainment-weather-routing-cell/SKILL.md: missing-validation
+- skills/warfighter/arctic-over-ice-ground-line-of-communication-resilience-cell/SKILL.md: missing-guardrails
+- skills/warfighter/autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell/SKILL.md: missing-validation
 - skills/warfighter/autonomous-maritime-visit-board-search-and-seizure-support-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/battlefield-additive-manufacturing-forward-repair-validation-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/battlefield-neuromorphic-sensor-anomaly-triage-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/battlefield-weather-nowcast-and-effects-window-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/battlefield-additive-manufacturing-forward-repair-validation-cell/SKILL.md: missing-validation
+- skills/warfighter/battlefield-weather-nowcast-and-effects-window-cell/SKILL.md: missing-validation
 - skills/warfighter/coalition-allied-depot-sabotage-wargame-and-branch-planning-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-arctic-convoy-ice-drone-threat-deconfliction-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/coalition-arctic-icebreaker-convoy-and-port-denial-recovery-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-arctic-under-ice-logistics-casualty-corridor-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-austere-airfield-fod-and-drone-incursion-safety-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-austere-runway-fod-and-drone-debris-clearance-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-autonomous-ambulance-drone-corridor-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-autonomous-convoy-ethical-governance-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/coalition-austere-airfield-fod-and-drone-incursion-safety-cell/SKILL.md: missing-validation
+- skills/warfighter/coalition-austere-runway-fod-and-drone-debris-clearance-cell/SKILL.md: missing-guardrails
+- skills/warfighter/coalition-autonomous-convoy-ethical-governance-cell/SKILL.md: missing-guardrails
 - skills/warfighter/coalition-autonomous-humanitarian-airlift-airspace-liability-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-autonomous-maritime-rules-of-engagement-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-autonomous-port-inspection-and-hazmat-screening-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-aviation-cyber-airworthiness-assurance-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-battlefield-evidence-translation-and-tribunal-handoff-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-battlefield-forensics-evidence-preservation-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/coalition-battlefield-spectrum-legal-attribution-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/coalition-autonomous-port-inspection-and-hazmat-screening-cell/SKILL.md: missing-validation
+- skills/warfighter/coalition-aviation-cyber-airworthiness-assurance-cell/SKILL.md: missing-guardrails
+- skills/warfighter/coalition-battlefield-evidence-translation-and-tribunal-handoff-cell/SKILL.md: missing-validation
+- skills/warfighter/coalition-battlefield-spectrum-legal-attribution-cell/SKILL.md: missing-guardrails
+- skills/warfighter/coalition-border-biometric-watchlist-disruption-recovery-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/coalition-border-refugee-biometric-deconfliction-and-insider-risk-screening-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/coalition-cable-landing-data-sovereignty-cell/SKILL.md: missing-guardrails
+- skills/warfighter/coalition-casualty-regulation-language-reconciliation-and-consent-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/coalition-civil-grid-cyber-physical-islanding-and-military-priority-cell/SKILL.md: missing-validation
+- skills/warfighter/coalition-civil-telecom-priority-service-restoration-cell/SKILL.md: missing-guardrails
+- skills/warfighter/coalition-cognitive-ew-psyop-deconfliction-cell/SKILL.md: missing-guardrails
+- skills/warfighter/coalition-commercial-satcom-priority-preemption-and-restoration-cell/SKILL.md: missing-required-inputs

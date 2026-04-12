@@ -169,3 +169,52 @@ description: Run structured AAR analysis and improvement tracking for training, 
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-required-inputs'));
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-failure-handling'));
 });
+
+test('auditWarfighterSkillMarkdown credits workflow-embedded inputs, domain products, and degraded defaults', () => {
+    const markdown = `---
+name: coalition-civil-hospital-microgrid-blackstart-triage-cell
+description: Synchronize coalition civil-hospital microgrid blackstart triage under contested outages to preserve casualty care and mission support continuity.
+---
+
+# Coalition Civil Hospital Microgrid Blackstart Triage Cell
+
+## Mission Scope
+
+- Treat this skill as a noncombat support aid.
+
+## Workflow
+
+1. Frame the mission problem with threat picture, mission objectives, and operational constraints.
+2. Publish commander decision prompts and a staff task tracker with owner, suspense, and revalidation trigger.
+
+## Domain Products
+
+Primary products: mission-risk brief, decision matrix, branch trigger map, and protocol-bound task ledger.
+
+## Domain Toolchain Defaults
+
+- Degraded: authenticated voice/readback plus UTC acknowledgment ledger and manual sync board.
+
+## Tool Invocation Contract
+
+For each critical tool recommendation include objective, required inputs, query/action template, expected output schema, protocol/transport, and fallback path.
+
+## Interoperability Validation Checklist
+
+- Run the shared assurance drill before release.
+
+## Guardrails
+
+- Do not fabricate authorities, status, or approvals.
+`;
+
+    const report = auditWarfighterSkillMarkdown({
+        skillPath: 'skills/warfighter/coalition-civil-hospital-microgrid-blackstart-triage-cell/SKILL.md',
+        markdown
+    });
+
+    assert.equal(report.prohibitedFindings.length, 0);
+    assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-required-inputs'));
+    assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-output-format'));
+    assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-failure-handling'));
+});
