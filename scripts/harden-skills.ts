@@ -2,13 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import {
     assessSkillImplementationHardeningBatch,
+    auditWarfighterSkillCorpus,
     buildSkillDeployabilityIndex,
     createDefaultSkillHardeningProfile,
     hasExternalSkillRegistry,
     loadExternalSkillImplementationIndex,
     loadSkillImplementationFromEntry,
     loadSkillManifest,
-    normalizeSkillHardeningProfile
+    normalizeSkillHardeningProfile,
+    renderWarfighterSafetyAuditMarkdown
 } from '../skills/runtime/index.js';
 
 type HardeningCliOptions = {
@@ -188,6 +190,13 @@ function writeJsonFile(filePath: string | null, payload: unknown) {
     const resolved = path.resolve(filePath);
     fs.mkdirSync(path.dirname(resolved), { recursive: true });
     fs.writeFileSync(resolved, `${JSON.stringify(payload, null, 2)}\n`);
+}
+
+function writeMarkdownFile(filePath: string | null, markdown: string) {
+    if (!filePath || !filePath.trim()) return;
+    const resolved = path.resolve(filePath);
+    fs.mkdirSync(path.dirname(resolved), { recursive: true });
+    fs.writeFileSync(resolved, `${markdown}\n`);
 }
 
 function summarizeFindingsByCheck(reports: ReturnType<typeof assessSkillImplementationHardeningBatch>['reports']) {
@@ -398,18 +407,21 @@ function main() {
         findingsByCheck,
         topNonDeployable
     };
+    const warfighterAuditReport = auditWarfighterSkillCorpus(options.repoRoot);
+    const warfighterAuditJsonPath = path.join(options.repoRoot, 'skills', 'state', 'warfighter-safety-audit.json');
+    const warfighterAuditMarkdownPath = path.join(options.repoRoot, 'skills', 'state', 'warfighter-safety-audit.md');
 
     writeJsonFile(options.writeProfilePath, batchReport.profile);
     writeJsonFile(options.jsonPath, summaryPayload);
     writeJsonFile(options.deployIndexPath, deployabilityIndex);
+    writeJsonFile(warfighterAuditJsonPath, warfighterAuditReport);
     if (options.fullJsonPath) {
         writeJsonFile(options.fullJsonPath, batchReport);
     }
     if (options.markdownPath) {
-        const markdown = renderMarkdown(summaryPayload);
-        fs.mkdirSync(path.dirname(options.markdownPath), { recursive: true });
-        fs.writeFileSync(options.markdownPath, `${markdown}\n`);
+        writeMarkdownFile(options.markdownPath, renderMarkdown(summaryPayload));
     }
+    writeMarkdownFile(warfighterAuditMarkdownPath, renderWarfighterSafetyAuditMarkdown(warfighterAuditReport));
 
     printSummary({
         summary: batchReport.summary,
@@ -420,6 +432,13 @@ function main() {
         deployIndexPath: options.deployIndexPath,
         profilePath: options.writeProfilePath
     });
+    console.log(
+        'Warfighter safety audit: ' +
+        `scanned=${warfighterAuditReport.summary.scannedSkillCount}, ` +
+        `prohibited=${warfighterAuditReport.summary.prohibitedSkillCount}, ` +
+        `supportGaps=${warfighterAuditReport.summary.structuralGapSkillCount}`
+    );
+    console.log(`Warfighter safety audit report: ${warfighterAuditJsonPath}`);
 }
 
 main();
