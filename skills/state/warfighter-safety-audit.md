@@ -1,18 +1,18 @@
 # Warfighter Safety Audit
 
-- generatedAt: 2026-04-12T15:16:08.951Z
+- generatedAt: 2026-04-12T18:10:45.393Z
 - corpusRoot: skills/warfighter
 - scannedSkillCount: 2353
 - supportSkillCount: 1923
 - prohibitedSkillCount: 205
-- structuralGapSkillCount: 776
+- structuralGapSkillCount: 775
 - prohibitedFindingCount: 220
-- structuralFindingCount: 1458
+- structuralFindingCount: 1456
 
 ## Findings By Rule
 
-- missing-required-inputs: 760
-- missing-validation: 339
+- missing-required-inputs: 759
+- missing-validation: 338
 - missing-guardrails: 166
 - missing-failure-handling: 148
 - prohibited-missile-or-munitions: 88
@@ -62,7 +62,6 @@
 - skills/warfighter/autonomous-maritime-mine-countermeasure-swarm-control-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/autonomous-maritime-visit-board-search-and-seizure-support-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/battlefield-additive-manufacturing-forward-repair-validation-cell/SKILL.md: missing-required-inputs
-- skills/warfighter/battlefield-identity-credential-recovery-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/battlefield-neuromorphic-sensor-anomaly-triage-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/battlefield-weather-nowcast-and-effects-window-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/coalition-allied-depot-sabotage-wargame-and-branch-planning-cell/SKILL.md: missing-required-inputs
@@ -79,3 +78,4 @@
 - skills/warfighter/coalition-aviation-cyber-airworthiness-assurance-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/coalition-battlefield-evidence-translation-and-tribunal-handoff-cell/SKILL.md: missing-required-inputs
 - skills/warfighter/coalition-battlefield-forensics-evidence-preservation-cell/SKILL.md: missing-required-inputs
+- skills/warfighter/coalition-battlefield-spectrum-legal-attribution-cell/SKILL.md: missing-required-inputs

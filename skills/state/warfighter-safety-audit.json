@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-04-12T15:16:08.951Z",
+  "generatedAt": "2026-04-12T18:10:45.393Z",
   "corpusRoot": "skills/warfighter",
   "summary": {
-    "generatedAt": "2026-04-12T15:16:08.952Z",
+    "generatedAt": "2026-04-12T18:10:45.394Z",
     "scannedSkillCount": 2353,
     "supportSkillCount": 1923,
     "prohibitedSkillCount": 205,
-    "structuralGapSkillCount": 776,
+    "structuralGapSkillCount": 775,
     "prohibitedFindingCount": 220,
-    "structuralFindingCount": 1458,
+    "structuralFindingCount": 1456,
     "findingsByRule": [
       {
         "ruleId": "missing-required-inputs",
-        "count": 760
+        "count": 759
       },
       {
         "ruleId": "missing-validation",
-        "count": 339
+        "count": 338
       },
       {
         "ruleId": "missing-guardrails",
@@ -845,18 +845,7 @@
       "description": "Recover and reassert trusted digital identity after credential compromise in contested operations. Use when units face identity theft, credential replay, or degraded trust in access control systems.",
       "isSupportOriented": true,
       "prohibitedFindings": [],
-      "structuralFindings": [
-        {
-          "ruleId": "missing-required-inputs",
-          "severity": "medium",
-          "message": "Support-oriented skills should define required inputs, source expectations, or freshness constraints."
-        },
-        {
-          "ruleId": "missing-validation",
-          "severity": "medium",
-          "message": "Support-oriented skills should include an interoperability, validation, or assurance section."
-        }
-      ]
+      "structuralFindings": []
     },
     {
       "skillPath": "skills/warfighter/battlefield-neuromorphic-sensor-anomaly-triage-cell/SKILL.md",
