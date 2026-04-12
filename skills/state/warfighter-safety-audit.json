@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-18T22:53:14.587Z",
+  "generatedAt": "2026-06-18T22:53:42.149Z",
   "corpusRoot": "skills/warfighter",
   "summary": {
-    "generatedAt": "2026-06-18T22:53:14.588Z",
+    "generatedAt": "2026-06-18T22:53:42.150Z",
     "scannedSkillCount": 2353,
     "supportSkillCount": 1923,
     "prohibitedSkillCount": 205,
@@ -27367,7 +27367,7 @@
       "skillPath": "skills/warfighter/theater-civil-telecom-restoration-and-priority-routing-cell/SKILL.md",
       "skillName": "theater-civil-telecom-restoration-and-priority-routing-cell",
       "title": "Theater Civil Telecom Restoration and Priority Routing Cell",
-      "description": "Support U.S. warfighter planning and decision support for Theater Civil Telecom Restoration and Priority Routing Cell. Use when missions require theater civil telecom restoration and priority routing cell planning, integrated options, and protocol-aware staff outputs.",
+      "description": "Restore mission-critical civil telecom and priority services when outages or congestion threaten command, medical, logistics, or emergency-response traffic. Use when operators must restore or reroute voice/data circuits without assuming unavailable priority entitlements.",
       "isSupportOriented": true,
       "prohibitedFindings": [],
       "structuralFindings": []
