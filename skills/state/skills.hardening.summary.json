@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-02-26T21:47:30.942Z",
+  "generatedAt": "2026-04-12T22:13:39.417Z",
   "minDeployableScore": 82,
   "strict": true,
   "policy": "enforce",
   "profileRuleCount": 24,
   "summary": {
-    "generatedAt": "2026-02-26T21:47:30.941Z",
+    "generatedAt": "2026-04-12T22:13:39.415Z",
     "sourceCounts": {
-      "manifest": 1000,
+      "manifest": 10000,
       "external": 10000,
       "runtime": 0
     },
     "policyUsage": {
       "off": 0,
-      "report": 750,
-      "enforce": 10250
+      "report": 1425,
+      "enforce": 18575
     },
-    "strictCount": 10250,
-    "evaluated": 11000,
-    "deployable": 11000,
+    "strictCount": 18575,
+    "evaluated": 20000,
+    "deployable": 20000,
     "nonDeployable": 0,
     "averageScore": 100,
     "minScore": 100,

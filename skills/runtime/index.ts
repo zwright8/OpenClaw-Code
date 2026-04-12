@@ -10,3 +10,4 @@ export * from './promotion-policy-lab.js';
 export * from './promotion-policy-canary.js';
 export * from './external-registry.js';
 export * from './hardening.js';
+export * from './warfighter-safety.js';

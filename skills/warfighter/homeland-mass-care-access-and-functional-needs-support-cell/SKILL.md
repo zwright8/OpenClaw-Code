@@ -19,6 +19,14 @@ description: Integrate access and functional needs support into shelters, evacua
 4. Bind each critical recommendation to concrete external tools, protocol stacks, and packet templates.
 5. Publish commander and civil-authority decision prompts plus a staff tracker with owner, suspense, confidence, and revalidation trigger.
 
+## Required Inputs
+
+- Shelter status by site, including occupancy, accessibility features, backup power, and latest UTC refresh time.
+- Population demand estimates, including AFN counts, caregiver dependencies, language-access needs, and medically fragile cohorts.
+- Transport and route status, including wheelchair-capable lift assets, oxygen-support movement limits, fuel posture, and road accessibility constraints.
+- Medical-support availability, including DME, oxygen, refrigeration, pharmacy continuity, and clinical escalation contacts.
+- Authority and coordination context, including shelter lead, civil-support authorities, host-jurisdiction approvals, and releasability constraints.
+
 ## Required Output Format
 
 1. Situation snapshot and key changes.
@@ -65,6 +73,13 @@ For each critical tool recommendation include objective, required inputs, query 
 - Run `../_shared/references/mission-assurance-checklist.md` and `../_shared/references/us-joint-protocol-assurance-drill.md` before release.
 - Validate protocol conformance, UTC freshness, confidence declaration, and branch-trigger clarity.
 - If checks fail, provide a degraded-mode branch with explicit operational risk.
+
+## Failure Handling
+
+- If shelter, transport, or medical-support feeds are stale or conflicting, downgrade outputs to advisory-only, identify the validation owner, and publish a time-bounded revalidation trigger.
+- If protocol validation or tool-packet delivery fails, switch to the degraded manual AFN tracker and accessible-transport ladder while preserving UTC timestamps, assumptions, and confidence impacts.
+- If no medically credible placement or accessible route remains, return a no-go status with life-safety escalation prompts instead of forcing a routing recommendation.
+- If caregiver continuity, DME support, or oxygen sustainment cannot be verified, surface the gap as a blocking decision point and require human approval before any movement recommendation.
 
 ## Guardrails
 
