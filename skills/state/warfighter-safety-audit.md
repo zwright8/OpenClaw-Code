@@ -1,6 +1,6 @@
 # Warfighter Safety Audit
 
-- generatedAt: 2026-06-18T22:54:07.803Z
+- generatedAt: 2026-06-18T22:54:53.152Z
 - corpusRoot: skills/warfighter
 - scannedSkillCount: 2353
 - supportSkillCount: 1923

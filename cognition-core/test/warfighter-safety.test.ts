@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { auditWarfighterSkillMarkdown } from '../../skills/runtime/index.js';
 
 test('auditWarfighterSkillMarkdown flags prohibited targeting and CDE metadata', () => {
@@ -217,4 +218,33 @@ For each critical tool recommendation include objective, required inputs, query/
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-required-inputs'));
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-output-format'));
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-failure-handling'));
+});
+
+function auditSkillFile(relativePath: string) {
+    const markdown = fs.readFileSync(new URL(`../../${relativePath}`, import.meta.url), 'utf8');
+    return {
+        markdown,
+        report: auditWarfighterSkillMarkdown({
+            skillPath: relativePath,
+            markdown
+        })
+    };
+}
+
+test('after-action-review-analyst stays support-oriented and structurally complete', () => {
+    const { markdown, report } = auditSkillFile('skills/warfighter/after-action-review-analyst/SKILL.md');
+
+    assert.match(markdown, /HSEEP-style AAR\/IP/i);
+    assert.match(markdown, /support-readiness-exercise-and-aar-protocol\.md/i);
+    assert.equal(report.prohibitedFindings.length, 0);
+    assert.equal(report.structuralFindings.length, 0);
+});
+
+test('training-and-rehearsal-designer stays anchored to lawful readiness workflows', () => {
+    const { markdown, report } = auditSkillFile('skills/warfighter/training-and-rehearsal-designer/SKILL.md');
+
+    assert.match(markdown, /Master Scenario Events List \(MSEL\)/i);
+    assert.match(markdown, /READY WITH CONSTRAINTS/i);
+    assert.equal(report.prohibitedFindings.length, 0);
+    assert.equal(report.structuralFindings.length, 0);
 });
