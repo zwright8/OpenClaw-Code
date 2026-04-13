@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-12T19:10:29.599Z",
+  "generatedAt": "2026-04-13T02:18:16.171Z",
   "corpusRoot": "skills/warfighter",
   "summary": {
-    "generatedAt": "2026-04-12T19:10:29.599Z",
+    "generatedAt": "2026-04-13T02:18:16.172Z",
     "scannedSkillCount": 2353,
     "supportSkillCount": 1923,
     "prohibitedSkillCount": 205,
@@ -99,7 +99,7 @@
       "skillPath": "skills/warfighter/after-action-review-analyst/SKILL.md",
       "skillName": "after-action-review-analyst",
       "title": "After Action Review Analyst",
-      "description": "Run structured AAR analysis and improvement tracking. Use when synthesizing event data into lessons learned, corrective actions, and ownership timelines.",
+      "description": "Run structured readiness-focused AAR analysis and improvement tracking. Use when synthesizing drills, exercises, incidents, or rehearsals into lessons learned, corrective actions, and ownership timelines.",
       "isSupportOriented": true,
       "prohibitedFindings": [],
       "structuralFindings": []
@@ -30634,7 +30634,7 @@
       "skillPath": "skills/warfighter/training-and-rehearsal-designer/SKILL.md",
       "skillName": "training-and-rehearsal-designer",
       "title": "Training And Rehearsal Designer",
-      "description": "Design training pipelines and mission rehearsal events. Use when preparing crawl-walk-run progression, evaluation criteria, and rehearsal injects.",
+      "description": "Design lawful training, rehearsal, and evaluation packages for readiness and mission-support teams. Use when preparing crawl-walk-run progression, evaluation criteria, injects, and after-action capture plans.",
       "isSupportOriented": true,
       "prohibitedFindings": [],
       "structuralFindings": []
