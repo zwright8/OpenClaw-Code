@@ -213,19 +213,36 @@ function runPackageScriptChecks(packageJsonFiles) {
 function collectRelativeImports(filePath) {
     const source = fs.readFileSync(filePath, 'utf8');
     const imports = new Set<string>();
-    const patterns = [
-        /\bimport\s+(?:[^'"]*?\s+from\s+)?['"]([^'"]+)['"]/g,
-        /\bexport\s+[^'"]*?\s+from\s+['"]([^'"]+)['"]/g,
-        /\bimport\(\s*['"]([^'"]+)['"]\s*\)/g
-    ];
 
-    for (const pattern of patterns) {
-        let match;
-        while ((match = pattern.exec(source)) !== null) {
-            imports.add(match[1]);
+    const sourceFile = ts.createSourceFile(
+        filePath,
+        source,
+        ts.ScriptTarget.ES2022,
+        true,
+        ts.ScriptKind.TS
+    );
+
+    function addModuleSpecifier(specifier) {
+        if (specifier && ts.isStringLiteralLike(specifier)) {
+            imports.add(specifier.text);
         }
     }
 
+    function visit(node) {
+        if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
+            addModuleSpecifier(node.moduleSpecifier);
+        }
+
+        if (ts.isCallExpression(node)
+            && node.expression.kind === ts.SyntaxKind.ImportKeyword
+            && node.arguments.length === 1) {
+            addModuleSpecifier(node.arguments[0]);
+        }
+
+        ts.forEachChild(node, visit);
+    }
+
+    visit(sourceFile);
     return [...imports].filter((entry) => entry.startsWith('.'));
 }
 

@@ -228,6 +228,76 @@ test('supports explicit time windows and tracks future/old skips', async (t) => 
     assert.equal(summary.endIso, new Date(end).toISOString());
 });
 
+test('tracks risky tool-call trajectories with repeated errors and missing results', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const now = Date.now() - 5_000;
+    const sessionId = '88888888-8888-4888-8888-888888888888';
+    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
+    const sessionsFile = path.join(dir, 'sessions.json');
+
+    writeJsonl(sessionFile, [
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'assistant',
+                content: [
+                    { type: 'toolCall', name: 'exec' },
+                    { type: 'toolCall', name: 'read' },
+                    { type: 'toolCall', name: 'write' }
+                ],
+                timestamp: now
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'exec',
+                isError: true,
+                timestamp: now + 1
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'read',
+                isError: true,
+                timestamp: now + 2
+            }
+        })
+    ]);
+
+    writeJson(sessionsFile, {
+        risky: {
+            sessionId,
+            updatedAt: now
+        }
+    });
+
+    const analyzer = new LogAnalyzerV2(sessionsFile);
+    await analyzer.analyze(1);
+    const summary = analyzer.toJSON();
+
+    assert.equal(summary.toolCalls, 3);
+    assert.equal(summary.toolResults, 2);
+    assert.equal(summary.trajectoryRisk.sessionsWithUnresolvedToolCalls, 1);
+    assert.equal(summary.trajectoryRisk.unresolvedToolCalls, 1);
+    assert.equal(summary.trajectoryRisk.sessionsWithConsecutiveToolErrors, 1);
+    assert.equal(summary.trajectoryRisk.maxConsecutiveToolErrors, 2);
+    assert.equal(summary.topRiskyTrajectories.length, 1);
+    assert.deepEqual(summary.topRiskyTrajectories[0].flags, [
+        'consecutive_tool_errors',
+        'unresolved_tool_calls'
+    ]);
+
+    const remediation = buildRemediationPlan(summary);
+    assert.ok(remediation.some((item) => item.title === 'Grade failing tool-call trajectories'));
+    assert.ok(remediation.some((item) => item.title === 'Resolve dropped tool-call results'));
+});
+
 test('builds trend comparison and prioritized remediation plan', () => {
     const current = {
         startIso: '2026-02-20T00:00:00.000Z',
