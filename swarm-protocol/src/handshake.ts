@@ -153,7 +153,7 @@ function resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, startedAtMs) {
     const elapsedMs = Math.max(0, Date.now() - startedAtMs);
     const remainingBudgetMs = retryBudgetMs - elapsedMs;
     if (remainingBudgetMs <= 0) {
-        throw new HandshakeError('RETRY_BUDGET_EXCEEDED', 'Handshake retry budget exhausted', {
+        throw new HandshakeError('TIMEOUT', 'Handshake retry budget exhausted before the next attempt', {
             retryBudgetMs,
             elapsedMs
         });

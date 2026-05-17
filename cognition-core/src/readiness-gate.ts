@@ -40,7 +40,9 @@ export function evaluateCognitionCoreReadiness(
     {
         minReliabilityScore = 90,
         maxFrequentToolErrorRate = 5,
-        frequentToolMinCalls = 5
+        frequentToolMinCalls = 5,
+        maxUnresolvedToolCalls = 0,
+        maxConsecutiveToolErrors = 1
     } = {}
 ) {
     const gates = [];
@@ -86,6 +88,37 @@ export function evaluateCognitionCoreReadiness(
             frequentToolMinCalls,
             maxFrequentToolErrorRate,
             violations: frequentToolViolations
+        }
+    ));
+
+    const trajectoryRisk = analysisReport?.trajectoryRisk || {};
+    const unresolvedToolCalls = Number(trajectoryRisk.unresolvedToolCalls) || 0;
+    const maxObservedConsecutiveErrors = Number(trajectoryRisk.maxConsecutiveToolErrors) || 0;
+    const riskyTrajectories = Array.isArray(analysisReport?.topRiskyTrajectories)
+        ? analysisReport.topRiskyTrajectories
+        : [];
+    const trajectoryViolations = [];
+    if (unresolvedToolCalls > maxUnresolvedToolCalls) {
+        trajectoryViolations.push('unresolved tool calls');
+    }
+    if (maxObservedConsecutiveErrors > maxConsecutiveToolErrors) {
+        trajectoryViolations.push('consecutive tool errors');
+    }
+
+    gates.push(createGate(
+        'tool_trajectory_risk',
+        trajectoryViolations.length === 0 ? 'pass' : 'fail',
+        trajectoryViolations.length === 0
+            ? 'No risky tool-call trajectories detected.'
+            : `Risky tool-call trajectories detected: ${trajectoryViolations.join(', ')}.`,
+        {
+            maxUnresolvedToolCalls,
+            unresolvedToolCalls,
+            maxConsecutiveToolErrors,
+            maxObservedConsecutiveErrors,
+            sessionsWithUnresolvedToolCalls: Number(trajectoryRisk.sessionsWithUnresolvedToolCalls) || 0,
+            sessionsWithConsecutiveToolErrors: Number(trajectoryRisk.sessionsWithConsecutiveToolErrors) || 0,
+            topRiskyTrajectories: riskyTrajectories.slice(0, 5)
         }
     ));
 
@@ -137,7 +170,8 @@ export function evaluateCognitionCoreReadiness(
 
     const needsRemediation = (Number(analysisReport?.errors) || 0) > 0
         || analysisReport?.comparison?.status === 'regressing'
-        || ['watch', 'critical'].includes(memoryDriftLevel);
+        || ['watch', 'critical'].includes(memoryDriftLevel)
+        || trajectoryViolations.length > 0;
     const remediationCount = Array.isArray(remediationTasks) ? remediationTasks.length : 0;
     gates.push(createGate(
         'remediation_coverage',

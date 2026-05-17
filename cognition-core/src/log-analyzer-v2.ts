@@ -42,6 +42,43 @@ function metricDelta(current, baseline) {
     return { current, baseline, delta, pctDelta };
 }
 
+function createTrajectoryStats(filePath) {
+    return {
+        sessionFile: path.basename(filePath),
+        toolCalls: 0,
+        toolResults: 0,
+        errors: 0,
+        pendingToolCalls: 0,
+        unresolvedToolCalls: 0,
+        consecutiveErrors: 0,
+        maxConsecutiveErrors: 0,
+        firstTimestampIso: null,
+        lastTimestampIso: null
+    };
+}
+
+function summarizeTrajectoryRisk(trajectory) {
+    const riskScore = (trajectory.errors * 3)
+        + (trajectory.maxConsecutiveErrors * 4)
+        + (trajectory.unresolvedToolCalls * 2);
+    const flags = [];
+    if (trajectory.maxConsecutiveErrors >= 2) flags.push('consecutive_tool_errors');
+    if (trajectory.unresolvedToolCalls > 0) flags.push('unresolved_tool_calls');
+
+    return {
+        sessionFile: trajectory.sessionFile,
+        toolCalls: trajectory.toolCalls,
+        toolResults: trajectory.toolResults,
+        errors: trajectory.errors,
+        unresolvedToolCalls: trajectory.unresolvedToolCalls,
+        maxConsecutiveErrors: trajectory.maxConsecutiveErrors,
+        firstTimestampIso: trajectory.firstTimestampIso,
+        lastTimestampIso: trajectory.lastTimestampIso,
+        flags,
+        riskScore: roundNumber(riskScore, 2)
+    };
+}
+
 function ensureToolSummary(raw) {
     if (!raw || typeof raw !== 'object') {
         return {
@@ -277,6 +314,27 @@ export function buildRemediationPlan(currentSummary, comparison = null, options 
         }
     }
 
+    const trajectoryRisk = currentSummary.trajectoryRisk || {};
+    if ((Number(trajectoryRisk.maxConsecutiveToolErrors) || 0) >= 2) {
+        add(
+            'P1',
+            'Grade failing tool-call trajectories',
+            `${trajectoryRisk.sessionsWithConsecutiveToolErrors || 0} session(s) contain repeated tool errors without a successful recovery.`,
+            'Inspect top risky trajectories, classify the dominant failure mode, and add a targeted retry, fallback, or guardrail before the next release.',
+            Number(trajectoryRisk.maxConsecutiveToolErrors) || 0
+        );
+    }
+
+    if ((Number(trajectoryRisk.unresolvedToolCalls) || 0) > 0) {
+        add(
+            'P1',
+            'Resolve dropped tool-call results',
+            `${trajectoryRisk.unresolvedToolCalls} tool call(s) had no matching result in the analyzed sessions.`,
+            'Audit session finalization and tool-result writing so every emitted tool call reaches a terminal result or explicit cancellation event.',
+            Number(trajectoryRisk.unresolvedToolCalls) || 0
+        );
+    }
+
     if (comparison) {
         if (comparison.status === 'regressing') {
             add(
@@ -389,6 +447,13 @@ export class LogAnalyzerV2 {
             toolResults: 0,
             errors: 0,
             tools: {},
+            trajectoryRisk: {
+                sessionsWithUnresolvedToolCalls: 0,
+                sessionsWithConsecutiveToolErrors: 0,
+                unresolvedToolCalls: 0,
+                maxConsecutiveToolErrors: 0
+            },
+            riskyTrajectories: [],
             models: {},
             providers: {},
             stopReasons: {},
@@ -510,6 +575,7 @@ export class LogAnalyzerV2 {
     }
 
     async _processSessionFile(filePath) {
+        const trajectory = createTrajectoryStats(filePath);
         const fileStream = fs.createReadStream(filePath);
         const rl = readline.createInterface({
             input: fileStream,
@@ -522,14 +588,31 @@ export class LogAnalyzerV2 {
 
             try {
                 const event = JSON.parse(line);
-                this._processEvent(event);
+                this._processEvent(event, trajectory);
             } catch {
                 this.stats.malformedLines++;
             }
         }
+
+        trajectory.unresolvedToolCalls = trajectory.pendingToolCalls;
+        const summary = summarizeTrajectoryRisk(trajectory);
+        if (summary.riskScore > 0) {
+            this.stats.riskyTrajectories.push(summary);
+        }
+        if (summary.unresolvedToolCalls > 0) {
+            this.stats.trajectoryRisk.sessionsWithUnresolvedToolCalls++;
+            this.stats.trajectoryRisk.unresolvedToolCalls += summary.unresolvedToolCalls;
+        }
+        if (summary.maxConsecutiveErrors >= 2) {
+            this.stats.trajectoryRisk.sessionsWithConsecutiveToolErrors++;
+        }
+        this.stats.trajectoryRisk.maxConsecutiveToolErrors = Math.max(
+            this.stats.trajectoryRisk.maxConsecutiveToolErrors,
+            summary.maxConsecutiveErrors
+        );
     }
 
-    _processEvent(event) {
+    _processEvent(event, trajectory = null) {
         if (!event || typeof event !== 'object') return;
 
         if (event.type === 'model_change' && typeof event.modelId === 'string') {
@@ -554,6 +637,7 @@ export class LogAnalyzerV2 {
         }
 
         const timestampMs = this._normalizeTimestamp(msg.timestamp) ?? this._normalizeTimestamp(event.timestamp);
+        this._recordTrajectoryTimestamp(trajectory, timestampMs);
         this._countDay(timestampMs, 'messages');
 
         if (msg.role === 'assistant' && Array.isArray(msg.content)) {
@@ -562,12 +646,20 @@ export class LogAnalyzerV2 {
                 if ((item.type === 'toolCall' || item.type === 'tool_call' || item.type === 'function_call')
                     && typeof item.name === 'string' && item.name.trim()) {
                     this._countToolCall(item.name, timestampMs);
+                    if (trajectory) {
+                        trajectory.toolCalls++;
+                        trajectory.pendingToolCalls++;
+                    }
                 }
             }
         }
 
         if (msg.role === 'toolResult') {
             this.stats.toolResults++;
+            if (trajectory) {
+                trajectory.toolResults++;
+                trajectory.pendingToolCalls = Math.max(trajectory.pendingToolCalls - 1, 0);
+            }
             const toolName = typeof msg.toolName === 'string' && msg.toolName.trim()
                 ? msg.toolName
                 : 'unknown';
@@ -584,8 +676,25 @@ export class LogAnalyzerV2 {
 
             if (msg.isError) {
                 this._countError(toolName, timestampMs);
+                if (trajectory) {
+                    trajectory.errors++;
+                    trajectory.consecutiveErrors++;
+                    trajectory.maxConsecutiveErrors = Math.max(
+                        trajectory.maxConsecutiveErrors,
+                        trajectory.consecutiveErrors
+                    );
+                }
+            } else if (trajectory) {
+                trajectory.consecutiveErrors = 0;
             }
         }
+    }
+
+    _recordTrajectoryTimestamp(trajectory, timestampMs) {
+        if (!trajectory || !Number.isFinite(timestampMs)) return;
+        const iso = new Date(timestampMs).toISOString();
+        if (!trajectory.firstTimestampIso) trajectory.firstTimestampIso = iso;
+        trajectory.lastTimestampIso = iso;
     }
 
     _countToolCall(name, timestampMs) {
@@ -688,6 +797,14 @@ export class LogAnalyzerV2 {
             insights.push(`Malformed JSONL lines detected (${this.stats.malformedLines}).`);
         }
 
+        if (this.stats.trajectoryRisk.sessionsWithConsecutiveToolErrors > 0) {
+            insights.push(`Consecutive tool-error trajectories detected (${this.stats.trajectoryRisk.sessionsWithConsecutiveToolErrors} session(s)).`);
+        }
+
+        if (this.stats.trajectoryRisk.unresolvedToolCalls > 0) {
+            insights.push(`Unresolved tool calls detected (${this.stats.trajectoryRisk.unresolvedToolCalls}).`);
+        }
+
         if (insights.length === 0 && this.stats.errors === 0) {
             insights.push('No tool errors detected in the analysis window.');
         }
@@ -706,6 +823,10 @@ export class LogAnalyzerV2 {
             ...this.stats,
             tools,
             topTools,
+            topRiskyTrajectories: this.stats.riskyTrajectories
+                .slice()
+                .sort((a, b) => b.riskScore - a.riskScore)
+                .slice(0, 10),
             reliabilityScore: this._getReliabilityScore(),
             insights: this.getInsights()
         };
