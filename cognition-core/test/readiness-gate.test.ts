@@ -12,6 +12,13 @@ function healthyFixture() {
             errors: 0,
             comparison: { status: 'stable' },
             memoryDrift: { driftLevel: 'stable', driftScore: 0 },
+            trajectoryRisk: {
+                unresolvedToolCalls: 0,
+                maxConsecutiveToolErrors: 0,
+                sessionsWithUnresolvedToolCalls: 0,
+                sessionsWithConsecutiveToolErrors: 0
+            },
+            topRiskyTrajectories: [],
             topTools: [
                 { name: 'exec', calls: 20, errorRate: 1.2 },
                 { name: 'read', calls: 8, errorRate: 0 }
@@ -44,6 +51,19 @@ test('fails readiness when critical gates are violated', () => {
     const fixture = healthyFixture();
     fixture.analysisReport.reliabilityScore = 70;
     fixture.analysisReport.topTools[0].errorRate = 15;
+    fixture.analysisReport.trajectoryRisk = {
+        unresolvedToolCalls: 2,
+        maxConsecutiveToolErrors: 3,
+        sessionsWithUnresolvedToolCalls: 1,
+        sessionsWithConsecutiveToolErrors: 1
+    };
+    fixture.analysisReport.topRiskyTrajectories = [
+        {
+            sessionFile: 'risky.jsonl',
+            riskScore: 20,
+            flags: ['consecutive_tool_errors', 'unresolved_tool_calls']
+        }
+    ];
     fixture.learningReport.state.driftLevel = 'critical';
     fixture.learningReport.skillGrowthPlan.focusAreas = [
         { focus: 'timeout_resilience', priority: 'P1' }
@@ -62,6 +82,7 @@ test('fails readiness when critical gates are violated', () => {
     assert.equal(readiness.status, 'fail');
     assert.ok(readiness.gates.some((gate) => gate.id === 'reliability' && gate.status === 'fail'));
     assert.ok(readiness.gates.some((gate) => gate.id === 'tool_error_rate' && gate.status === 'fail'));
+    assert.ok(readiness.gates.some((gate) => gate.id === 'tool_trajectory_risk' && gate.status === 'fail'));
     assert.ok(readiness.gates.some((gate) => gate.id === 'learning_drift' && gate.status === 'fail'));
     assert.ok(readiness.gates.some((gate) => gate.id === 'skill_growth_coverage' && gate.status === 'fail'));
     assert.ok(readiness.gates.some((gate) => gate.id === 'memory_guardrails' && gate.status === 'fail'));

@@ -169,6 +169,24 @@ function formatMarkdown(summary) {
     }
     lines.push('');
 
+    lines.push('## Tool Trajectory Risk');
+    lines.push('');
+    const trajectoryRisk = summary.trajectoryRisk || {};
+    lines.push(`- Sessions with unresolved tool calls: ${Number(trajectoryRisk.sessionsWithUnresolvedToolCalls) || 0}`);
+    lines.push(`- Unresolved tool calls: ${Number(trajectoryRisk.unresolvedToolCalls) || 0}`);
+    lines.push(`- Sessions with consecutive tool errors: ${Number(trajectoryRisk.sessionsWithConsecutiveToolErrors) || 0}`);
+    lines.push(`- Max consecutive tool errors: ${Number(trajectoryRisk.maxConsecutiveToolErrors) || 0}`);
+    lines.push('');
+    lines.push('| Session | Risk | Calls | Results | Errors | Unresolved | Max Consecutive Errors | Flags |');
+    lines.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+    for (const trajectory of summary.topRiskyTrajectories || []) {
+        lines.push(`| ${trajectory.sessionFile} | ${trajectory.riskScore} | ${trajectory.toolCalls} | ${trajectory.toolResults} | ${trajectory.errors} | ${trajectory.unresolvedToolCalls} | ${trajectory.maxConsecutiveErrors} | ${(trajectory.flags || []).join(', ') || '-'} |`);
+    }
+    if ((summary.topRiskyTrajectories || []).length === 0) {
+        lines.push('| (none) | 0 | 0 | 0 | 0 | 0 | 0 | - |');
+    }
+    lines.push('');
+
     if (summary.comparison) {
         const comparison = summary.comparison;
         lines.push('## Trend Comparison');
