@@ -23,6 +23,25 @@ function createDayStats() {
     };
 }
 
+function createTraceIntegrityStats() {
+    return {
+        toolCallsWithoutResult: 0,
+        toolResultsWithoutCall: 0,
+        repeatedToolCallBursts: 0,
+        maxConsecutiveToolCalls: 0,
+        maxPendingToolCalls: 0
+    };
+}
+
+function createSessionTraceState() {
+    return {
+        pendingToolCalls: {},
+        pendingToolCallTotal: 0,
+        lastToolCallName: null,
+        consecutiveToolCalls: 0
+    };
+}
+
 function roundNumber(value, decimals = 2) {
     if (!Number.isFinite(value)) return value;
     const multiplier = 10 ** decimals;
@@ -278,6 +297,29 @@ export function buildRemediationPlan(currentSummary, comparison = null, options 
         );
     }
 
+    const traceIntegrity = currentSummary.traceIntegrity || {};
+    const unmatchedTraceEvents = (Number(traceIntegrity.toolCallsWithoutResult) || 0)
+        + (Number(traceIntegrity.toolResultsWithoutCall) || 0);
+    if (unmatchedTraceEvents > 0) {
+        add(
+            'P1',
+            'Repair tool trace correlation',
+            `${unmatchedTraceEvents} tool trace event(s) could not be paired into call/result spans.`,
+            'Propagate tool call identifiers through runtime logging and assert every tool result closes a prior call before session finalization.',
+            unmatchedTraceEvents
+        );
+    }
+
+    if ((Number(traceIntegrity.repeatedToolCallBursts) || 0) > 0) {
+        add(
+            'P2',
+            'Reduce repeated tool-call bursts',
+            `${traceIntegrity.repeatedToolCallBursts} repeated tool-call burst(s) suggest redundant tool arbitration or retry drift.`,
+            'Compare adjacent tool-call payloads and add loop guards or cache-aware routing for repeated identical tool requests.',
+            Number(traceIntegrity.repeatedToolCallBursts) || 0
+        );
+    }
+
     const tools = Object.entries(currentSummary.tools || {})
         .map(([name, data]) => ({ name, ...ensureToolSummary(data) }))
         .sort((a, b) => b.calls - a.calls);
@@ -457,6 +499,7 @@ export class LogAnalyzerV2 {
             models: {},
             providers: {},
             stopReasons: {},
+            traceIntegrity: createTraceIntegrityStats(),
             byDay: {},
             cutoffIso: null,
             startIso: null,
@@ -576,6 +619,7 @@ export class LogAnalyzerV2 {
 
     async _processSessionFile(filePath) {
         const trajectory = createTrajectoryStats(filePath);
+        const traceState = createSessionTraceState();
         const fileStream = fs.createReadStream(filePath);
         const rl = readline.createInterface({
             input: fileStream,
@@ -588,7 +632,7 @@ export class LogAnalyzerV2 {
 
             try {
                 const event = JSON.parse(line);
-                this._processEvent(event, trajectory);
+                this._processEvent(event, trajectory, traceState);
             } catch {
                 this.stats.malformedLines++;
             }
@@ -610,9 +654,10 @@ export class LogAnalyzerV2 {
             this.stats.trajectoryRisk.maxConsecutiveToolErrors,
             summary.maxConsecutiveErrors
         );
+        this.stats.traceIntegrity.toolCallsWithoutResult += traceState.pendingToolCallTotal;
     }
 
-    _processEvent(event, trajectory = null) {
+    _processEvent(event, trajectory = null, traceState = null) {
         if (!event || typeof event !== 'object') return;
 
         if (event.type === 'model_change' && typeof event.modelId === 'string') {
@@ -645,7 +690,7 @@ export class LogAnalyzerV2 {
                 if (!item || typeof item !== 'object') continue;
                 if ((item.type === 'toolCall' || item.type === 'tool_call' || item.type === 'function_call')
                     && typeof item.name === 'string' && item.name.trim()) {
-                    this._countToolCall(item.name, timestampMs);
+                    this._countToolCall(item.name, timestampMs, traceState);
                     if (trajectory) {
                         trajectory.toolCalls++;
                         trajectory.pendingToolCalls++;
@@ -655,6 +700,7 @@ export class LogAnalyzerV2 {
         }
 
         if (msg.role === 'toolResult') {
+            this._matchToolResult(msg.toolName, traceState);
             this.stats.toolResults++;
             if (trajectory) {
                 trajectory.toolResults++;
@@ -697,11 +743,54 @@ export class LogAnalyzerV2 {
         trajectory.lastTimestampIso = iso;
     }
 
-    _countToolCall(name, timestampMs) {
+    _countToolCall(name, timestampMs, traceState = null) {
         const bucket = this._getToolBucket(name);
         bucket.calls++;
         this.stats.toolCalls++;
         this._countDay(timestampMs, 'toolCalls');
+
+        if (!traceState) return;
+
+        traceState.pendingToolCalls[name] = (traceState.pendingToolCalls[name] || 0) + 1;
+        traceState.pendingToolCallTotal++;
+        this.stats.traceIntegrity.maxPendingToolCalls = Math.max(
+            this.stats.traceIntegrity.maxPendingToolCalls,
+            traceState.pendingToolCallTotal
+        );
+
+        if (traceState.lastToolCallName === name) {
+            traceState.consecutiveToolCalls++;
+        } else {
+            traceState.lastToolCallName = name;
+            traceState.consecutiveToolCalls = 1;
+        }
+
+        this.stats.traceIntegrity.maxConsecutiveToolCalls = Math.max(
+            this.stats.traceIntegrity.maxConsecutiveToolCalls,
+            traceState.consecutiveToolCalls
+        );
+        if (traceState.consecutiveToolCalls === 3) {
+            this.stats.traceIntegrity.repeatedToolCallBursts++;
+        }
+    }
+
+    _matchToolResult(toolName, traceState = null) {
+        if (!traceState) return;
+
+        const name = typeof toolName === 'string' && toolName.trim()
+            ? toolName
+            : 'unknown';
+        const pendingForTool = traceState.pendingToolCalls[name] || 0;
+
+        if (pendingForTool > 0) {
+            traceState.pendingToolCalls[name] = pendingForTool - 1;
+            traceState.pendingToolCallTotal = Math.max(0, traceState.pendingToolCallTotal - 1);
+        } else {
+            this.stats.traceIntegrity.toolResultsWithoutCall++;
+        }
+
+        traceState.lastToolCallName = null;
+        traceState.consecutiveToolCalls = 0;
     }
 
     _countError(name, timestampMs) {
@@ -770,8 +859,12 @@ export class LogAnalyzerV2 {
         const errorRate = this.stats.errors / Math.max(this.stats.toolResults || this.stats.toolCalls, 1);
         const malformedRate = this.stats.malformedLines / Math.max(this.stats.linesProcessed, 1);
         const missingSessionRate = this.stats.sessionsMissingFile / Math.max(this.stats.sessionsConsidered, 1);
+        const traceIssueCount = this.stats.traceIntegrity.toolCallsWithoutResult
+            + this.stats.traceIntegrity.toolResultsWithoutCall
+            + this.stats.traceIntegrity.repeatedToolCallBursts;
+        const traceIssueRate = traceIssueCount / Math.max(this.stats.toolCalls + this.stats.toolResults, 1);
 
-        const score = 100 - (errorRate * 70) - (malformedRate * 20) - (missingSessionRate * 10);
+        const score = 100 - (errorRate * 60) - (malformedRate * 15) - (missingSessionRate * 10) - (traceIssueRate * 15);
         return roundNumber(Math.max(0, Math.min(100, score)), 1);
     }
 
@@ -803,6 +896,18 @@ export class LogAnalyzerV2 {
 
         if (this.stats.trajectoryRisk.unresolvedToolCalls > 0) {
             insights.push(`Unresolved tool calls detected (${this.stats.trajectoryRisk.unresolvedToolCalls}).`);
+        }
+
+        if (this.stats.traceIntegrity.toolCallsWithoutResult > 0) {
+            insights.push(`Trace integrity gap: ${this.stats.traceIntegrity.toolCallsWithoutResult} tool call(s) had no matching result.`);
+        }
+
+        if (this.stats.traceIntegrity.toolResultsWithoutCall > 0) {
+            insights.push(`Trace integrity gap: ${this.stats.traceIntegrity.toolResultsWithoutCall} tool result(s) had no prior call.`);
+        }
+
+        if (this.stats.traceIntegrity.repeatedToolCallBursts > 0) {
+            insights.push(`Repeated tool-call burst detected (${this.stats.traceIntegrity.repeatedToolCallBursts}).`);
         }
 
         if (insights.length === 0 && this.stats.errors === 0) {
@@ -842,6 +947,7 @@ export class LogAnalyzerV2 {
         console.log(`Malformed Lines:  ${summary.malformedLines}`);
         console.log(`Total Errors:     ${summary.errors}`);
         console.log(`Reliability:      ${summary.reliabilityScore}/100`);
+        console.log(`Trace Gaps:       ${summary.traceIntegrity.toolCallsWithoutResult} calls without result, ${summary.traceIntegrity.toolResultsWithoutCall} results without call`);
         console.log('\nTool Performance:');
 
         const sortedTools = Object.entries(summary.tools)

@@ -882,8 +882,6 @@ export class TaskOrchestrator {
                 continue;
             }
 
-            if (nowMs < record.nextRetryAt) continue;
-
             try {
                 await this._sendTask(record, 'timeout_retry');
                 summary.retried++;

@@ -344,6 +344,12 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
                         random,
                         retryAfterMs
                     });
+                    if (
+                        retryBudgetMs !== null &&
+                        Date.now() - handshakeStartedAtMs + delayMs >= retryBudgetMs
+                    ) {
+                        throw wrappedError;
+                    }
                     await wait(delayMs);
                 }
                 continue;
