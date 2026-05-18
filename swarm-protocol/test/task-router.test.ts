@@ -155,7 +155,7 @@ test('supports power-of-two-choices selection strategy to reduce router herd bia
         }
     ];
 
-    const sequence = [0.0, 0.49, 0.9]; // pick agent:a and agent:b, tie-break value ignored
+    const sequence = [0.99, 0.49, 0.9]; // pick agent:a and agent:b, tie-break value ignored
     const random = () => sequence.shift() ?? 0;
 
     const selected = selectBestAgentForTask(task, agents, {

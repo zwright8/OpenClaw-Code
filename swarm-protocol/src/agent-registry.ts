@@ -47,14 +47,26 @@ function normalizeRoutingMetadata(value) {
     const minRttMs = Number(value.minRttMs);
     const sampleRttMs = Number(value.sampleRttMs);
     const recoveredAtMs = Number(value.recoveredAtMs);
-    return {
-        inFlight: Number.isFinite(inFlight) && inFlight >= 0 ? Math.floor(inFlight) : 0,
-        maxInFlight: Number.isFinite(maxInFlight) && maxInFlight >= 0 ? Math.floor(maxInFlight) : 0,
-        concurrencyLimit: Number.isFinite(concurrencyLimit) && concurrencyLimit >= 0 ? Math.floor(concurrencyLimit) : 0,
-        minRttMs: Number.isFinite(minRttMs) && minRttMs > 0 ? minRttMs : null,
-        sampleRttMs: Number.isFinite(sampleRttMs) && sampleRttMs > 0 ? sampleRttMs : null,
-        recoveredAtMs: Number.isFinite(recoveredAtMs) ? recoveredAtMs : null
-    };
+    const normalized = {};
+    if ('inFlight' in value) {
+        normalized.inFlight = Number.isFinite(inFlight) && inFlight >= 0 ? Math.floor(inFlight) : 0;
+    }
+    if ('maxInFlight' in value) {
+        normalized.maxInFlight = Number.isFinite(maxInFlight) && maxInFlight >= 0 ? Math.floor(maxInFlight) : 0;
+    }
+    if ('concurrencyLimit' in value) {
+        normalized.concurrencyLimit = Number.isFinite(concurrencyLimit) && concurrencyLimit >= 0 ? Math.floor(concurrencyLimit) : 0;
+    }
+    if ('minRttMs' in value) {
+        normalized.minRttMs = Number.isFinite(minRttMs) && minRttMs > 0 ? minRttMs : null;
+    }
+    if ('sampleRttMs' in value) {
+        normalized.sampleRttMs = Number.isFinite(sampleRttMs) && sampleRttMs > 0 ? sampleRttMs : null;
+    }
+    if ('recoveredAtMs' in value) {
+        normalized.recoveredAtMs = Number.isFinite(recoveredAtMs) ? recoveredAtMs : null;
+    }
+    return normalized;
 }
 
 function safeNow(nowFn) {
