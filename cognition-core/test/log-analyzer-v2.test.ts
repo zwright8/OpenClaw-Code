@@ -183,6 +183,72 @@ test('respects session limit after recency sort', async (t) => {
     assert.equal(summary.tools.read, undefined);
 });
 
+test('grades trace integrity for unmatched and repeated tool events', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const now = Date.now() - 5_000;
+    const sessionId = '88888888-8888-4888-8888-888888888888';
+    const sessionFile = path.join(dir, `${sessionId}.jsonl`);
+    const sessionsFile = path.join(dir, 'sessions.json');
+
+    writeJsonl(sessionFile, [
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'assistant',
+                content: [
+                    { type: 'toolCall', name: 'exec' },
+                    { type: 'toolCall', name: 'exec' },
+                    { type: 'toolCall', name: 'exec' },
+                    { type: 'toolCall', name: 'read' }
+                ],
+                timestamp: now
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'exec',
+                timestamp: now + 1
+            }
+        }),
+        JSON.stringify({
+            type: 'message',
+            message: {
+                role: 'toolResult',
+                toolName: 'write',
+                timestamp: now + 2
+            }
+        })
+    ]);
+
+    writeJson(sessionsFile, {
+        'agent:main:trace': {
+            sessionId,
+            updatedAt: now
+        }
+    });
+
+    const analyzer = new LogAnalyzerV2(sessionsFile);
+    await analyzer.analyze(1);
+    const summary = analyzer.toJSON();
+
+    assert.equal(summary.toolCalls, 4);
+    assert.equal(summary.toolResults, 2);
+    assert.equal(summary.traceIntegrity.toolCallsWithoutResult, 3);
+    assert.equal(summary.traceIntegrity.toolResultsWithoutCall, 1);
+    assert.equal(summary.traceIntegrity.repeatedToolCallBursts, 1);
+    assert.equal(summary.traceIntegrity.maxConsecutiveToolCalls, 3);
+    assert.equal(summary.traceIntegrity.maxPendingToolCalls, 4);
+    assert.ok(summary.insights.some((item) => item.includes('Trace integrity gap')));
+
+    const remediation = buildRemediationPlan(summary);
+    assert.ok(remediation.some((item) => item.title === 'Repair tool trace correlation'));
+    assert.ok(remediation.some((item) => item.title === 'Reduce repeated tool-call bursts'));
+});
+
 test('supports explicit time windows and tracks future/old skips', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

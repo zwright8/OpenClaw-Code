@@ -11,6 +11,7 @@ const CAPABILITY_ENTRYPOINT_CANDIDATES = [
 ];
 const TEST_DIR = path.join(REPO_ROOT, 'swarm-protocol', 'test');
 const OUTPUT_PATH = path.join(REPO_ROOT, 'CAPABILITY_DEPLOYABILITY_AUDIT.md');
+const CAPABILITY_START_MODULE = 'intervention-portfolio';
 
 function parseCapabilityList(text) {
     const pattern = /^- \[(?<done>.| )\] (?<number>\d+)\. (?<name>.+?) - (?<objective>.+)$/gm;
@@ -45,9 +46,9 @@ function parseCapabilityModuleMap(entryText, sourcePath) {
         exports.push(match.groups.module.trim());
     }
 
-    const start = exports.indexOf('intervention-portfolio');
+    const start = exports.indexOf(CAPABILITY_START_MODULE);
     if (start < 0) {
-        throw new Error(`Could not find capability 32 start module (intervention-portfolio) in ${path.relative(REPO_ROOT, sourcePath)}`);
+        throw new Error(`Could not find capability 32 start module (${CAPABILITY_START_MODULE}) in ${path.relative(REPO_ROOT, sourcePath)}`);
     }
 
     const modules = exports.slice(start, start + 100);
@@ -66,7 +67,7 @@ function loadCapabilityEntrypointText() {
     for (const candidate of CAPABILITY_ENTRYPOINT_CANDIDATES) {
         if (!fs.existsSync(candidate)) continue;
         const text = fs.readFileSync(candidate, 'utf8');
-        if (text.includes("export * from './src/intervention-portfolio.js';")) {
+        if (text.includes(`./src/${CAPABILITY_START_MODULE}.js`)) {
             return { sourcePath: candidate, text };
         }
     }
