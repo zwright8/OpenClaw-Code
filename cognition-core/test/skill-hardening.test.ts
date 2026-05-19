@@ -104,3 +104,38 @@ test('hardening profile can switch specific skills to report-only policy', () =>
     assert.equal(report.deployable, true);
     assert.ok(report.blockingFindings >= 1);
 });
+
+test('assessSkillImplementationHardening blocks unsafe external integration metadata', () => {
+    const implementation = loadSkillImplementationById(1, REPO_ROOT);
+    const broken = JSON.parse(JSON.stringify(implementation));
+    broken.integrationProfile = {
+        provider: 'Example MCP Server',
+        providerSlug: 'example-mcp',
+        category: 'External tool integrations',
+        operation: 'Mutation Runner',
+        operationSlug: 'mutation-runner',
+        protocols: [],
+        authModes: [],
+        externalAuthRequired: true,
+        apiKeyLikelyRequired: true,
+        mutating: true,
+        webhookCapable: true,
+        notes: []
+    };
+    broken.runtimeProfile.orchestration.approvalGates = ['provider-auth-check'];
+    broken.runtimeProfile.orchestration.components = ['task routing', 'retry strategy', 'rollback controls'];
+
+    const report = assessSkillImplementationHardening(broken, {
+        source: 'manifest',
+        minDeployableScore: 82,
+        strict: true
+    });
+
+    assert.equal(report.deployable, false);
+    assert.ok(report.checks.some((check) => check.id === 'integration_security' && check.status === 'fail'));
+    assert.ok(report.findings.some((finding) => (
+        finding.checkId === 'integration_security'
+        && finding.field === 'integrationProfile.protocols'
+        && finding.blocking
+    )));
+});

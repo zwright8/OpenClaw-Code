@@ -714,6 +714,117 @@ function checkRuntimeContract(implementation: SkillImplementation): SkillHardeni
     return createCheck(checkId, 'Runtime Contract Integrity', 25, findings, score);
 }
 
+function checkIntegrationSecurity(implementation: SkillImplementation): SkillHardeningCheck {
+    const checkId: SkillHardeningCheckId = 'integration_security';
+    const findings: SkillHardeningFinding[] = [];
+    let score = 10;
+    const integration = implementation.integrationProfile as Record<string, unknown> | undefined;
+
+    if (!integration || typeof integration !== 'object') {
+        return createCheck(checkId, 'External Integration Security', 10, findings, score);
+    }
+
+    const protocols = asStringList(integration.protocols);
+    const authModes = Array.isArray(integration.authModes)
+        ? integration.authModes.filter((entry) => entry && typeof entry === 'object') as Array<Record<string, unknown>>
+        : [];
+    const externalAuthRequired = integration.externalAuthRequired === true;
+    const mutating = integration.mutating === true;
+    const webhookCapable = integration.webhookCapable === true;
+    const approvalGates = asStringList(implementation.runtimeProfile?.orchestration?.approvalGates);
+    const components = asStringList(implementation.runtimeProfile?.orchestration?.components);
+
+    if (protocols.length === 0) {
+        pushFinding(findings, {
+            checkId,
+            severity: 'critical',
+            message: 'integrationProfile.protocols must declare the external transport boundary.',
+            field: 'integrationProfile.protocols',
+            blocking: true
+        });
+        score -= 3;
+    } else if (!hasUniqueEntries(protocols.map((protocol) => protocol.toLowerCase()))) {
+        pushFinding(findings, {
+            checkId,
+            severity: 'medium',
+            message: 'integrationProfile.protocols should not contain duplicate transports.',
+            field: 'integrationProfile.protocols'
+        });
+        score -= 1;
+    }
+
+    if (externalAuthRequired && authModes.length === 0) {
+        pushFinding(findings, {
+            checkId,
+            severity: 'critical',
+            message: 'External auth is required but no authModes are declared.',
+            field: 'integrationProfile.authModes',
+            blocking: true
+        });
+        score -= 3;
+    }
+
+    for (const [index, authMode] of authModes.entries()) {
+        const required = authMode.required === true;
+        const envVars = asStringList(authMode.envVars);
+        const validation = String(authMode.validation || '').trim();
+        if (required && envVars.length === 0) {
+            pushFinding(findings, {
+                checkId,
+                severity: 'high',
+                message: `Required auth mode ${index + 1} must declare credential environment variables.`,
+                field: `integrationProfile.authModes[${index}].envVars`,
+                blocking: true
+            });
+            score -= 1;
+        }
+        if (required && validation.length < 20) {
+            pushFinding(findings, {
+                checkId,
+                severity: 'high',
+                message: `Required auth mode ${index + 1} must include a concrete validation step.`,
+                field: `integrationProfile.authModes[${index}].validation`,
+                blocking: true
+            });
+            score -= 1;
+        }
+    }
+
+    if (mutating) {
+        const hasMutationGate = approvalGates.some((gate) => (
+            /approval|review|impact|safety|policy|mutation|import|migration|publication|threshold|conflict/i.test(gate)
+        ));
+        if (!hasMutationGate) {
+            pushFinding(findings, {
+                checkId,
+                severity: 'critical',
+                message: 'Mutating external integrations must declare an approval or review gate.',
+                field: 'runtimeProfile.orchestration.approvalGates',
+                blocking: true
+            });
+            score -= 3;
+        }
+    }
+
+    if (webhookCapable) {
+        const hasWebhookAudit = [...components, ...approvalGates].some((entry) => (
+            /sign|secret|webhook|audit|policy|review/i.test(entry)
+        ));
+        if (!hasWebhookAudit) {
+            pushFinding(findings, {
+                checkId,
+                severity: 'high',
+                message: 'Webhook-capable integrations should include signing, audit, or policy controls.',
+                field: 'runtimeProfile.orchestration.components',
+                blocking: true
+            });
+            score -= 2;
+        }
+    }
+
+    return createCheck(checkId, 'External Integration Security', 10, findings, score);
+}
+
 function checkOrchestrationSafety(implementation: SkillImplementation): SkillHardeningCheck {
     const checkId: SkillHardeningCheckId = 'orchestration_safety';
     const findings: SkillHardeningFinding[] = [];
@@ -1046,6 +1157,7 @@ export function assessSkillImplementationHardening(
     const checkIdentityResult = checkIdentity(implementation);
     const checkGuideResult = checkImplementationGuide(implementation);
     const checkRuntimeResult = checkRuntimeContract(implementation);
+    const checkIntegrationSecurityResult = checkIntegrationSecurity(implementation);
     const checkOrchestrationResult = checkOrchestrationSafety(implementation);
     const simulationResult = checkSimulation(implementation, scenarios);
 
@@ -1053,6 +1165,7 @@ export function assessSkillImplementationHardening(
         checkIdentityResult,
         checkGuideResult,
         checkRuntimeResult,
+        checkIntegrationSecurityResult,
         checkOrchestrationResult,
         simulationResult.check
     ];

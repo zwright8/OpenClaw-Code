@@ -328,9 +328,12 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
             const wrappedError = error instanceof HandshakeError
                 ? error
                 : new HandshakeError('TRANSPORT_ERROR', error?.message || 'Transport handshake failed', { cause: error });
+            const retryBudgetExhausted = retryBudgetMs !== null
+                && Date.now() - handshakeStartedAtMs >= retryBudgetMs;
 
             if (
                 attempt < maxAttempts &&
+                !retryBudgetExhausted &&
                 (isRetryableError(wrappedError) || isTransientRetrySignal(error))
             ) {
                 logger.warn?.(`[Swarm] Handshake attempt ${attempt} failed (${wrappedError.code}), retrying...`);

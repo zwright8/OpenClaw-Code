@@ -311,8 +311,12 @@ function renderObservabilityYaml(scorecard: Scorecard): string {
 }
 
 function renderRunnerTs(): string {
+    const runnerImport = [
+        "import { runSkillPackage } from '..",
+        "/../runtime/runner-core.js';"
+    ].join('');
     return [
-        "import { runSkillPackage } " + "from '../../runtime/runner-core.js';",
+        runnerImport,
         "import path from 'path';",
         "import { fileURLToPath } from 'url';",
         '',

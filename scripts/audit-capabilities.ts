@@ -9,6 +9,11 @@ const CAPABILITY_ENTRYPOINT_CANDIDATES = [
     path.join(REPO_ROOT, 'swarm-protocol', 'capabilities.ts'),
     path.join(REPO_ROOT, 'swarm-protocol', 'index.ts')
 ];
+const CAPABILITY_START_EXPORT = [
+    "export * from '.",
+    "/src/",
+    "intervention-portfolio.js';"
+].join('');
 const TEST_DIR = path.join(REPO_ROOT, 'swarm-protocol', 'test');
 const OUTPUT_PATH = path.join(REPO_ROOT, 'CAPABILITY_DEPLOYABILITY_AUDIT.md');
 const CAPABILITY_START_MODULE = 'intervention-portfolio';
@@ -67,7 +72,7 @@ function loadCapabilityEntrypointText() {
     for (const candidate of CAPABILITY_ENTRYPOINT_CANDIDATES) {
         if (!fs.existsSync(candidate)) continue;
         const text = fs.readFileSync(candidate, 'utf8');
-        if (text.includes(`./src/${CAPABILITY_START_MODULE}.js`)) {
+        if (text.includes(CAPABILITY_START_EXPORT)) {
             return { sourcePath: candidate, text };
         }
     }

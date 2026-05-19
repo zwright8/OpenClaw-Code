@@ -777,6 +777,8 @@ export * from './src/publicservice-skill-gap-diagnoser.js';
 export * from './src/publicservice-training-curriculum-composer.js';
 export * from './src/publicservice-self-reflection-error-taxonomist.js';
 export * from './src/publicservice-continuous-improvement-planner.js';
+
+// Auto-added generated capability exports.
 export * from './src/community-ab-rollout-governor.js';
 export * from './src/community-auto-retry-backoff-coordinator.js';
 export * from './src/community-community-feedback-harvester.js';
