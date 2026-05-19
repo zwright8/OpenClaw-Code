@@ -363,14 +363,15 @@ function pickWithPowerOfTwoChoices(eligible, options) {
     if (!Array.isArray(eligible) || eligible.length === 0) return null;
     if (eligible.length === 1) return eligible[0];
 
-    const firstIndex = Math.floor(safeRandom(options) * eligible.length);
-    let secondIndex = Math.floor(safeRandom(options) * eligible.length);
+    const samplingPool = [...eligible].sort((a, b) => a.originalIndex - b.originalIndex);
+    const firstIndex = Math.floor(safeRandom(options) * samplingPool.length);
+    let secondIndex = Math.floor(safeRandom(options) * samplingPool.length);
     if (secondIndex === firstIndex) {
-        secondIndex = (secondIndex + 1) % eligible.length;
+        secondIndex = (secondIndex + 1) % samplingPool.length;
     }
 
-    const first = eligible[firstIndex];
-    const second = eligible[secondIndex];
+    const first = samplingPool[firstIndex];
+    const second = samplingPool[secondIndex];
     if (second.score > first.score) return second;
     if (second.score < first.score) return first;
 
@@ -590,10 +591,11 @@ function rankAgents(taskRequest, agents, options = {}) {
 
     const localityOptions = normalizeLocalityOptions(taskRequest, options);
     return agents
-        .map((agent) => {
+        .map((agent, originalIndex) => {
             const evaluation = scoreAgent(taskRequest, agent, options, localityOptions);
             return {
                 agentId: agent?.id || agent?.agentId || null,
+                originalIndex,
                 status: agent?.status,
                 load: agent?.load,
                 capabilities: normalizeCapabilities(agent?.capabilities),

@@ -754,6 +754,7 @@ export type SkillHardeningCheckId =
     | 'identity'
     | 'implementation_guide'
     | 'runtime_contract'
+    | 'integration_security'
     | 'orchestration_safety'
     | 'simulation';
 
