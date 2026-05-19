@@ -1,4 +1,4 @@
-import { runSkillPackage } from '../runtime/runner-core.js';
+import { runSkillPackage } from '../../runtime/runner-core.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
