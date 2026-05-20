@@ -67,6 +67,28 @@ test('fails readiness when critical gates are violated', () => {
     assert.ok(readiness.gates.some((gate) => gate.id === 'memory_guardrails' && gate.status === 'fail'));
 });
 
+test('warns when tool-call growth exceeds execution efficiency threshold', () => {
+    const fixture = healthyFixture();
+    fixture.analysisReport.comparison = {
+        status: 'stable',
+        kpis: {
+            toolCalls: {
+                current: 180,
+                baseline: 100,
+                delta: 80,
+                pctDelta: 80
+            }
+        }
+    };
+
+    const readiness = evaluateCognitionCoreReadiness(fixture);
+    const gate = readiness.gates.find((item) => item.id === 'execution_efficiency');
+
+    assert.equal(readiness.status, 'warn');
+    assert.equal(gate?.status, 'warn');
+    assert.equal(gate?.details.toolCallGrowthPct, 80);
+});
+
 test('renders readiness markdown summary', () => {
     const readiness = evaluateCognitionCoreReadiness(healthyFixture());
     const markdown = renderCognitionCoreReadinessMarkdown(readiness);

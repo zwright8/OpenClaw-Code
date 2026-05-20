@@ -807,6 +807,46 @@ export class TaskOrchestrator {
             if (!OPEN_STATUSES.has(record.status)) continue;
             summary.checked++;
 
+            if (record.nextRetryAt !== null) {
+                if (nowMs < record.nextRetryAt) continue;
+
+                try {
+                    await this._sendTask(record, 'timeout_retry');
+                    summary.retried++;
+                } catch (error) {
+                    summary.transportFailures++;
+                    this.logger.warn?.(
+                        `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
+                    );
+
+                    if (!this._canRetry(record)) {
+                        record.status = 'transport_error';
+                        record.updatedAt = nowMs;
+                        record.closedAt = nowMs;
+                        record.history.push({
+                            at: nowMs,
+                            event: 'transport_error',
+                            error: record.lastError
+                        });
+                        this._persistRecord(record);
+                        this._emitAudit('task_transport_error', {
+                            taskId: record.taskId,
+                            target: record.target,
+                            error: record.lastError
+                        }, nowMs);
+                    } else {
+                        this._scheduleRetry(record, nowMs, {
+                            reason: 'transport_send_failed',
+                            event: 'retry_scheduled',
+                            metadata: {
+                                error: record.lastError
+                            }
+                        });
+                    }
+                }
+                continue;
+            }
+
             if (nowMs <= record.deadlineAt) continue;
 
             if (!this._canRetry(record)) {
@@ -824,51 +864,11 @@ export class TaskOrchestrator {
                 continue;
             }
 
-            if (record.nextRetryAt === null) {
-                this._scheduleRetry(record, nowMs, {
-                    reason: 'deadline_exceeded',
-                    event: 'retry_scheduled'
-                });
-                summary.scheduledRetries++;
-                continue;
-            }
-
-            if (nowMs < record.nextRetryAt) continue;
-
-            try {
-                await this._sendTask(record, 'timeout_retry');
-                summary.retried++;
-            } catch (error) {
-                summary.transportFailures++;
-                this.logger.warn?.(
-                    `[Swarm] Retry send failed for task ${record.taskId}: ${error.message}`
-                );
-
-                if (!this._canRetry(record)) {
-                    record.status = 'transport_error';
-                    record.updatedAt = nowMs;
-                    record.closedAt = nowMs;
-                    record.history.push({
-                        at: nowMs,
-                        event: 'transport_error',
-                        error: record.lastError
-                    });
-                    this._persistRecord(record);
-                    this._emitAudit('task_transport_error', {
-                        taskId: record.taskId,
-                        target: record.target,
-                        error: record.lastError
-                    }, nowMs);
-                } else {
-                    this._scheduleRetry(record, nowMs, {
-                        reason: 'transport_send_failed',
-                        event: 'retry_scheduled',
-                        metadata: {
-                            error: record.lastError
-                        }
-                    });
-                }
-            }
+            this._scheduleRetry(record, nowMs, {
+                reason: 'deadline_exceeded',
+                event: 'retry_scheduled'
+            });
+            summary.scheduledRetries++;
         }
 
         return summary;

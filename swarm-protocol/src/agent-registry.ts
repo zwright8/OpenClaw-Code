@@ -47,14 +47,23 @@ function normalizeRoutingMetadata(value) {
     const minRttMs = Number(value.minRttMs);
     const sampleRttMs = Number(value.sampleRttMs);
     const recoveredAtMs = Number(value.recoveredAtMs);
-    return {
+    const normalized = {
         inFlight: Number.isFinite(inFlight) && inFlight >= 0 ? Math.floor(inFlight) : 0,
-        maxInFlight: Number.isFinite(maxInFlight) && maxInFlight >= 0 ? Math.floor(maxInFlight) : 0,
-        concurrencyLimit: Number.isFinite(concurrencyLimit) && concurrencyLimit >= 0 ? Math.floor(concurrencyLimit) : 0,
-        minRttMs: Number.isFinite(minRttMs) && minRttMs > 0 ? minRttMs : null,
-        sampleRttMs: Number.isFinite(sampleRttMs) && sampleRttMs > 0 ? sampleRttMs : null,
-        recoveredAtMs: Number.isFinite(recoveredAtMs) ? recoveredAtMs : null
+        maxInFlight: Number.isFinite(maxInFlight) && maxInFlight >= 0 ? Math.floor(maxInFlight) : 0
     };
+    if (Number.isFinite(concurrencyLimit) && concurrencyLimit >= 0) {
+        normalized.concurrencyLimit = Math.floor(concurrencyLimit);
+    }
+    if (Number.isFinite(minRttMs) && minRttMs > 0) {
+        normalized.minRttMs = minRttMs;
+    }
+    if (Number.isFinite(sampleRttMs) && sampleRttMs > 0) {
+        normalized.sampleRttMs = sampleRttMs;
+    }
+    if (Number.isFinite(recoveredAtMs)) {
+        normalized.recoveredAtMs = recoveredAtMs;
+    }
+    return normalized;
 }
 
 function safeNow(nowFn) {
