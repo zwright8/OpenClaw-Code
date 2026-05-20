@@ -153,10 +153,7 @@ function resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, startedAtMs) {
     const elapsedMs = Math.max(0, Date.now() - startedAtMs);
     const remainingBudgetMs = retryBudgetMs - elapsedMs;
     if (remainingBudgetMs <= 0) {
-        throw new HandshakeError('RETRY_BUDGET_EXCEEDED', 'Handshake retry budget exhausted', {
-            retryBudgetMs,
-            elapsedMs
-        });
+        return 1;
     }
 
     return Math.max(1, Math.min(timeoutMs, remainingBudgetMs));
@@ -333,6 +330,13 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
                 attempt < maxAttempts &&
                 (isRetryableError(wrappedError) || isTransientRetrySignal(error))
             ) {
+                if (
+                    wrappedError.code === 'TIMEOUT'
+                    && Number.isFinite(retryBudgetMs)
+                    && Date.now() - handshakeStartedAtMs >= retryBudgetMs
+                ) {
+                    throw wrappedError;
+                }
                 logger.warn?.(`[Swarm] Handshake attempt ${attempt} failed (${wrappedError.code}), retrying...`);
                 if (retryDelayMs > 0) {
                     const retryAfterMs = parseRetryAfterMsFromError(error) ?? parseRetryAfterMsFromError(wrappedError);

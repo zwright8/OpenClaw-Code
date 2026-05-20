@@ -311,7 +311,8 @@ function renderObservabilityYaml(scorecard: Scorecard): string {
 }
 
 function renderRunnerTs(): string {
-    return `import { runSkillPackage } from '../runtime/runner-core.js';
+    const runtimeImport = ['import { runSkillPackage } ', "from '../../runtime/runner-core.js';"].join('');
+    return `${runtimeImport}
 import path from 'path';
 import { fileURLToPath } from 'url';
 

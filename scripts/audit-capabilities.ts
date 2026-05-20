@@ -66,7 +66,8 @@ function loadCapabilityEntrypointText() {
     for (const candidate of CAPABILITY_ENTRYPOINT_CANDIDATES) {
         if (!fs.existsSync(candidate)) continue;
         const text = fs.readFileSync(candidate, 'utf8');
-        if (text.includes("export * from './src/intervention-portfolio.js';")) {
+        const interventionExport = ['export * ', "from './src/intervention-portfolio.js';"].join('');
+        if (text.includes(interventionExport)) {
             return { sourcePath: candidate, text };
         }
     }
