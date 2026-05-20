@@ -23,6 +23,27 @@ function createGate(id, status, summary, details = {}) {
     return { id, status, summary, details };
 }
 
+function normalizeComparisonMetric(metric) {
+    if (!metric || typeof metric !== 'object') return null;
+    const current = Number(metric.current);
+    const baseline = Number(metric.baseline);
+    const delta = Number(metric.delta);
+    const pctDelta = metric.pctDelta === null || metric.pctDelta === undefined
+        ? null
+        : Number(metric.pctDelta);
+
+    if (!Number.isFinite(current) || !Number.isFinite(baseline) || !Number.isFinite(delta)) {
+        return null;
+    }
+
+    return {
+        current,
+        baseline,
+        delta,
+        pctDelta: Number.isFinite(pctDelta) ? pctDelta : null
+    };
+}
+
 function stateToStatus(level) {
     if (level === 'critical') return 'fail';
     if (level === 'watch') return 'warn';
@@ -42,7 +63,9 @@ export function evaluateCognitionCoreReadiness(
         maxFrequentToolErrorRate = 5,
         frequentToolMinCalls = 5,
         maxUnresolvedToolCalls = 0,
-        maxConsecutiveToolErrors = 1
+        maxConsecutiveToolErrors = 1,
+        maxToolCallGrowthPct = 35,
+        minToolCallGrowth = 25
     } = {}
 ) {
     const gates = [];
@@ -121,6 +144,31 @@ export function evaluateCognitionCoreReadiness(
             topRiskyTrajectories: riskyTrajectories.slice(0, 5)
         }
     ));
+
+    const toolCallMetric = normalizeComparisonMetric(analysisReport?.comparison?.kpis?.toolCalls);
+    if (toolCallMetric && toolCallMetric.baseline > 0) {
+        const growthPct = toolCallMetric.pctDelta === null
+            ? (toolCallMetric.delta / toolCallMetric.baseline) * 100
+            : toolCallMetric.pctDelta;
+        const inefficientGrowth = toolCallMetric.delta >= minToolCallGrowth
+            && growthPct > maxToolCallGrowthPct;
+
+        gates.push(createGate(
+            'execution_efficiency',
+            inefficientGrowth ? 'warn' : 'pass',
+            inefficientGrowth
+                ? `Tool calls grew by ${round(growthPct, 1)}% (${toolCallMetric.delta} more calls) versus baseline.`
+                : `Tool call growth is within threshold (${round(growthPct, 1)}%).`,
+            {
+                currentToolCalls: toolCallMetric.current,
+                baselineToolCalls: toolCallMetric.baseline,
+                toolCallDelta: toolCallMetric.delta,
+                toolCallGrowthPct: round(growthPct, 1),
+                maxToolCallGrowthPct,
+                minToolCallGrowth
+            }
+        ));
+    }
 
     const memoryDriftLevel = analysisReport?.memoryDrift?.driftLevel || 'stable';
     gates.push(createGate(
