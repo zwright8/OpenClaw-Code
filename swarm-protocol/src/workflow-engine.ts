@@ -22,7 +22,7 @@ const WorkflowNodeSchema = z.object({
     task: z.string().min(1),
     target: z.string().optional(),
     priority: TaskPriority.default('normal'),
-    context: z.record(z.any()).optional(),
+    context: z.record(z.string(), z.any()).optional(),
     dependencies: z.array(z.string()).default([]),
     requiredCapabilities: z.array(z.string()).optional(),
     timeoutMs: z.number().int().positive().optional(),

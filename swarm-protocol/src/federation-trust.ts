@@ -10,8 +10,8 @@ const SignedEnvelopeSchema = z.object({
     sentAt: z.number().int(),
     protocol: z.string().min(1),
     sourceStack: z.string().min(1).default('openclaw'),
-    payload: z.record(z.any()),
-    metadata: z.record(z.any()).default({}),
+    payload: z.record(z.string(), z.any()),
+    metadata: z.record(z.string(), z.any()).default({}),
     keyId: z.string().min(1),
     algorithm: z.literal('hmac-sha256').default('hmac-sha256'),
     signature: z.string().min(1)

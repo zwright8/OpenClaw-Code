@@ -36,7 +36,7 @@ const SkillMetadataContractSchema = z.object({
     contractVersion: z.number().int().positive().default(1),
     createdAt: z.number().int(),
     createdBy: z.string().min(1),
-    skill: z.record(z.any())
+    skill: z.record(z.string(), z.any())
 });
 
 function clone(value) {

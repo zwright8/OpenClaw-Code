@@ -6,7 +6,7 @@ import ts from 'typescript';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, '..');
-const IGNORED_DIRS = new Set(['.git', 'node_modules']);
+const IGNORED_DIRS = new Set(['.git', '.codex-worktrees', 'node_modules']);
 const CHECKED_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts']);
 const JS_EXTENSIONS = new Set(['.js', '.mjs', '.cjs']);
 const TS_EXTENSIONS = new Set(['.ts', '.mts', '.cts']);

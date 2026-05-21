@@ -17,7 +17,7 @@ export const TaskRequest = z.object({
     target: AgentId.optional(), // If broadcast or specific
     priority: TaskPriority.default('normal'),
     task: z.string().describe('Natural language description of the objective'),
-    context: z.record(z.any()).optional().describe('Structured context data needed for the task'),
+    context: z.record(z.string(), z.any()).optional().describe('Structured context data needed for the task'),
     constraints: z.array(z.string()).optional().describe('List of negative constraints (do nots)'),
     createdAt: Timestamp
 });
@@ -33,7 +33,7 @@ export const TaskResult = z.object({
         path: z.string(),
         type: z.string().optional()
     })).optional().describe('Files created or modified'),
-    metrics: z.record(z.number()).optional(),
+    metrics: z.record(z.string(), z.number()).optional(),
     completedAt: Timestamp
 });
 

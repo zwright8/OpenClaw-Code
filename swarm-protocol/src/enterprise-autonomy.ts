@@ -341,7 +341,7 @@ export const LeadToCashLaunchTaskContextSchema = z.object({
     requestedAt: Timestamp,
     workflowId: z.string().min(1),
     input: LeadToCashWorkflowInputSchema,
-    workflow: z.record(z.any())
+    workflow: z.record(z.string(), z.any())
 });
 
 export const LeadToCashLaunchTaskSpecSchema = z.object({
