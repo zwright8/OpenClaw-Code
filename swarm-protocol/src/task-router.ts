@@ -381,7 +381,10 @@ function pickBestEligible(ranked, options = {}) {
     const eligible = ranked.filter((item) => item.eligible && typeof item.agentId === 'string' && item.agentId.trim());
     if (eligible.length === 0) return null;
     if (options.selectionStrategy === 'p2c') {
-        return pickWithPowerOfTwoChoices(eligible, options);
+        return pickWithPowerOfTwoChoices(
+            [...eligible].sort((a, b) => a.agentId.localeCompare(b.agentId)),
+            options
+        );
     }
     return eligible[0];
 }

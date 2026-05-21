@@ -22,7 +22,7 @@ const SimulationTaskSchema = z.object({
     task: z.string().min(1),
     target: z.string().optional(),
     priority: TaskPriority.default('normal'),
-    context: z.record(z.any()).optional(),
+    context: z.record(z.string(), z.any()).optional(),
     constraints: z.array(z.string()).optional(),
     requiredCapabilities: z.array(z.string()).optional()
 });

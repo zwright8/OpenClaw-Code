@@ -6,7 +6,7 @@ import ts from 'typescript';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, '..');
-const IGNORED_DIRS = new Set(['.git', 'node_modules']);
+const IGNORED_DIRS = new Set(['.git', '.codex-worktrees', 'node_modules']);
 const CHECKED_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts']);
 const JS_EXTENSIONS = new Set(['.js', '.mjs', '.cjs']);
 const TS_EXTENSIONS = new Set(['.ts', '.mts', '.cts']);
@@ -213,18 +213,44 @@ function runPackageScriptChecks(packageJsonFiles) {
 function collectRelativeImports(filePath) {
     const source = fs.readFileSync(filePath, 'utf8');
     const imports = new Set<string>();
-    const patterns = [
-        /\bimport\s+(?:[^'"]*?\s+from\s+)?['"]([^'"]+)['"]/g,
-        /\bexport\s+[^'"]*?\s+from\s+['"]([^'"]+)['"]/g,
-        /\bimport\(\s*['"]([^'"]+)['"]\s*\)/g
-    ];
 
-    for (const pattern of patterns) {
-        let match;
-        while ((match = pattern.exec(source)) !== null) {
-            imports.add(match[1]);
+    const sourceFile = ts.createSourceFile(
+        filePath,
+        source,
+        ts.ScriptTarget.ES2022,
+        true,
+        ts.ScriptKind.TS
+    );
+
+    const visit = (node: ts.Node) => {
+        if (
+            ts.isImportDeclaration(node)
+            && ts.isStringLiteralLike(node.moduleSpecifier)
+        ) {
+            imports.add(node.moduleSpecifier.text);
         }
-    }
+
+        if (
+            ts.isExportDeclaration(node)
+            && node.moduleSpecifier
+            && ts.isStringLiteralLike(node.moduleSpecifier)
+        ) {
+            imports.add(node.moduleSpecifier.text);
+        }
+
+        if (
+            ts.isCallExpression(node)
+            && node.expression.kind === ts.SyntaxKind.ImportKeyword
+            && node.arguments.length === 1
+            && ts.isStringLiteralLike(node.arguments[0])
+        ) {
+            imports.add(node.arguments[0].text);
+        }
+
+        ts.forEachChild(node, visit);
+    };
+
+    visit(sourceFile);
 
     return [...imports].filter((entry) => entry.startsWith('.'));
 }

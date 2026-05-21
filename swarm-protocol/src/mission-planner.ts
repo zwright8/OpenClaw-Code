@@ -6,7 +6,7 @@ import { validateWorkflowDefinition } from './workflow-engine.js';
 const PlannerInputSchema = z.object({
     objective: z.string().min(3),
     missionId: z.string().optional(),
-    context: z.record(z.any()).optional(),
+    context: z.record(z.string(), z.any()).optional(),
     constraints: z.array(z.string()).optional(),
     preferredTarget: z.string().optional(),
     defaultPriority: z.enum(['low', 'normal', 'high', 'critical']).optional(),

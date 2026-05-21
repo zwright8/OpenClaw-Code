@@ -1,6 +1,6 @@
 # Capability Deployability Audit (32-131)
 
-Generated: 2026-02-26T17:31:59.379Z
+Generated: 2026-05-21T04:01:16.394Z
 
 ## Criteria
 - Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/capabilities.ts` mapping.
@@ -104,20 +104,20 @@ Generated: 2026-02-26T17:31:59.379Z
 | 113 | Learning Curriculum Generator | `cultural-resource-budget-allocator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 | 114 | Skill Gap Diagnostic Engine | `cultural-risk-aware-scheduler` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 | 115 | Human-AI Pair Programming Coach | `cultural-policy-constraint-compiler` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 116 | Scientific Literature Synthesizer | `accessibility-personalization-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 117 | Knowledge Gap Explorer | `mental-health-safety-companion` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 118 | Autonomous Research Program Manager | `emotional-harm-detection-guard` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 119 | Hypothesis Prioritization Exchange | `child-safety-protection-layer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 120 | Breakthrough Opportunity Radar | `fraud-scam-prevention-shield` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 121 | Strategic Scenario War-Gamer | `digital-rights-compliance-monitor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 122 | Policy Intervention Optimizer | `public-transparency-portal-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 123 | Global Risk Observatory | `trustworthy-reporting-publisher` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 124 | Humanitarian Logistics Coordinator | `learning-curriculum-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 125 | Emergency Resource Dispatcher | `skill-gap-diagnostic-engine` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 126 | Community Impact Measurement Studio | `human-ai-pair-programming-coach` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 127 | Social Benefit KPI Dashboard | `scientific-literature-synthesizer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 128 | Philanthropic Program Optimizer | `knowledge-gap-explorer` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 129 | Inclusive Governance Co-Designer | `autonomous-research-program-manager` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 130 | Collective Intelligence Commons | `hypothesis-prioritization-exchange` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
-| 131 | Humanity Mission Operating System | `breakthrough-opportunity-radar` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 116 | Scientific Literature Synthesizer | `cultural-human-approval-router` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 117 | Knowledge Gap Explorer | `cultural-task-handoff-contractor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 118 | Autonomous Research Program Manager | `cultural-tool-health-monitor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 119 | Hypothesis Prioritization Exchange | `cultural-auto-retry-backoff-coordinator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 120 | Breakthrough Opportunity Radar | `cultural-failure-root-cause-miner` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 121 | Strategic Scenario War-Gamer | `cultural-regression-sentinel` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 122 | Policy Intervention Optimizer | `cultural-memory-consolidation-pipeline` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 123 | Global Risk Observatory | `cultural-knowledge-graph-linker` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 124 | Humanitarian Logistics Coordinator | `cultural-semantic-retrieval-ranker` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 125 | Emergency Resource Dispatcher | `cultural-plan-quality-evaluator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 126 | Community Impact Measurement Studio | `cultural-multi-agent-negotiation-mediator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 127 | Social Benefit KPI Dashboard | `cultural-conflict-resolution-coach` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 128 | Philanthropic Program Optimizer | `cultural-explainability-narrative-builder` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 129 | Inclusive Governance Co-Designer | `cultural-uncertainty-communicator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 130 | Collective Intelligence Commons | `cultural-experiment-design-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+| 131 | Humanity Mission Operating System | `cultural-ab-rollout-governor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 

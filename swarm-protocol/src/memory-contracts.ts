@@ -16,8 +16,8 @@ const MemoryContractEnvelopeSchema = z.object({
     contractVersion: ContractVersion,
     createdAt: Timestamp,
     createdBy: AgentId,
-    payload: z.record(z.any()),
-    metadata: z.record(z.any()).default({})
+    payload: z.record(z.string(), z.any()),
+    metadata: z.record(z.string(), z.any()).default({})
 });
 
 const FindingSeverity = z.enum(['low', 'medium', 'high', 'critical']);
