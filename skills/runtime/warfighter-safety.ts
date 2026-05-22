@@ -110,6 +110,21 @@ const PROHIBITED_METADATA_RULES: Rule[] = [
     }
 ];
 
+const PROHIBITED_SUPPORT_BODY_RULES: Rule[] = [
+    {
+        id: 'prohibited-support-body-combat-functions',
+        severity: 'critical',
+        message: 'Support-oriented skill body includes combat-function coordination language outside the lawful noncombat companion scope.',
+        pattern: /\bintegrate dependencies across joint functions:[\s\S]{0,240}?(?:movement\/maneuver|fires\/effects)\b/i
+    },
+    {
+        id: 'prohibited-support-body-force-posture',
+        severity: 'critical',
+        message: 'Support-oriented skill body includes force-posture or escalation-management guidance outside the lawful noncombat companion scope.',
+        pattern: /\btradeoffs in tempo, survivability, sustainment burden, and escalation risk\b|\bmaterially change force posture\b|\bmission risk, or escalation potential\b/i
+    }
+];
+
 const SUPPORT_DOMAIN_HINTS = [
     'logistics',
     'supply',
@@ -233,6 +248,10 @@ function extractHeadings(markdown: string): string[] {
     return headings.map((heading) => heading.replace(/^##+\s+/, '').trim());
 }
 
+function stripFrontmatter(markdown: string): string {
+    return markdown.replace(/^---\n[\s\S]*?\n---\n?/, '');
+}
+
 function matchesAny(text: string, values: string[]): boolean {
     const normalized = normalizeText(text);
     if (!normalized) return false;
@@ -272,15 +291,26 @@ export function auditWarfighterSkillMarkdown({
         .filter(Boolean)
         .join(' ');
     const headings = extractHeadings(markdown);
+    const bodyText = stripFrontmatter(markdown);
+    const isSupportOriented = matchesAny(metadataText, SUPPORT_DOMAIN_HINTS);
 
-    const prohibitedFindings = PROHIBITED_METADATA_RULES
+    const metadataFindings = PROHIBITED_METADATA_RULES
         .map((rule) => {
             const match = metadataText.match(rule.pattern);
             return match ? createFinding(rule, match[0]) : null;
         })
         .filter((finding): finding is WarfighterSafetyFinding => Boolean(finding));
 
-    const isSupportOriented = matchesAny(metadataText, SUPPORT_DOMAIN_HINTS);
+    const supportBodyFindings = isSupportOriented && metadataFindings.length === 0
+        ? PROHIBITED_SUPPORT_BODY_RULES
+            .map((rule) => {
+                const match = bodyText.match(rule.pattern);
+                return match ? createFinding(rule, match[0]) : null;
+            })
+            .filter((finding): finding is WarfighterSafetyFinding => Boolean(finding))
+        : [];
+
+    const prohibitedFindings = [...metadataFindings, ...supportBodyFindings];
     const structuralFindings = isSupportOriented && prohibitedFindings.length === 0
         ? REQUIRED_SUPPORT_HEADINGS
             .filter((rule) => !hasHeadingOrEvidence(markdown, headings, rule))

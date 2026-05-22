@@ -190,6 +190,58 @@ description: Design ISR collection strategies, sensor tasking plans, and electro
     assert.ok(report.prohibitedFindings.some((finding) => finding.ruleId === 'prohibited-isr-or-ew'));
 });
 
+test('auditWarfighterSkillMarkdown flags combat-function drift inside support skill bodies', () => {
+    const markdown = `---
+name: after-action-review-analyst
+description: Run structured AAR analysis and improvement tracking for training, readiness, and corrective-action coordination.
+---
+
+# After Action Review Analyst
+
+## Mission Scope
+
+- Treat this skill as a noncombat support aid.
+
+## Workflow
+
+1. Build tradeoffs in tempo, survivability, sustainment burden, and escalation risk.
+2. Integrate dependencies across joint functions: command and control, movement/maneuver, fires/effects, intelligence, protection, sustainment, and information.
+
+## Required Inputs
+
+- Event timeline and participant feedback.
+
+## Required Output Format
+
+1. Situation snapshot
+
+## External Tools and Protocol Integration
+
+- Use approved source systems only.
+
+## Interoperability Validation Checklist
+
+- Validate the final packet.
+
+## Failure Handling
+
+- If evidence is incomplete, publish a degraded-mode packet.
+
+## Guardrails
+
+- Do not fabricate evidence.
+`;
+
+    const report = auditWarfighterSkillMarkdown({
+        skillPath: 'skills/warfighter/after-action-review-analyst/SKILL.md',
+        markdown
+    });
+
+    assert.ok(report.prohibitedFindings.some((finding) => finding.ruleId === 'prohibited-support-body-combat-functions'));
+    assert.ok(report.prohibitedFindings.some((finding) => finding.ruleId === 'prohibited-support-body-force-posture'));
+    assert.equal(report.structuralFindings.length, 0);
+});
+
 test('auditWarfighterSkillMarkdown credits inline core inputs and degraded fallback evidence', () => {
     const markdown = `---
 name: after-action-review-analyst
@@ -233,4 +285,61 @@ description: Run structured AAR analysis and improvement tracking for training, 
     assert.equal(report.prohibitedFindings.length, 0);
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-required-inputs'));
     assert.ok(!report.structuralFindings.some((finding) => finding.ruleId === 'missing-failure-handling'));
+});
+
+test('auditWarfighterSkillMarkdown accepts noncombat AAR/IP support content', () => {
+    const markdown = `---
+name: after-action-review-analyst
+description: Convert exercise, maintenance, cyber-defense, or disaster-response evidence into a structured AAR/IP with tracked corrective actions.
+---
+
+# After Action Review Analyst
+
+## Problem Statement
+
+- Turn observations into validated corrective actions with owners and closure evidence.
+
+## Mission Scope
+
+- Treat this skill as a noncombat support aid for training, readiness, maintenance, disaster response, medical administration, cyber defense, and communications recovery.
+
+## Workflow
+
+1. Compare expected outcomes, observed outcomes, and evidence quality.
+2. Build a sustain/improve register with owners, suspense, and validation steps.
+
+## Required Inputs
+
+- Event identifier, UTC window, objective list, source records, and action tracker state.
+
+## Required Output Format
+
+1. Event snapshot
+2. Observation table
+3. Improvement plan
+
+## External Tools and Protocol Integration
+
+- Pull source records from approved APIs, CSV exports, or STIX/TAXII collections and normalize them into a single evidence table.
+
+## Interoperability Validation Checklist
+
+- Verify every finding maps to an objective, source record, owner, and closure method.
+
+## Failure Handling
+
+- If a system-of-record is unavailable, mark the draft provisional and assign a revalidation deadline.
+
+## Guardrails
+
+- Do not use this skill for targeting, fires, force-employment planning, or battle tracking.
+`;
+
+    const report = auditWarfighterSkillMarkdown({
+        skillPath: 'skills/warfighter/after-action-review-analyst/SKILL.md',
+        markdown
+    });
+
+    assert.equal(report.prohibitedFindings.length, 0);
+    assert.equal(report.structuralFindings.length, 0);
 });
