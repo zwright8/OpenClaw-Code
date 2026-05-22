@@ -64,7 +64,7 @@ const PROHIBITED_METADATA_RULES: Rule[] = [
         id: 'prohibited-targeting',
         severity: 'critical',
         message: 'Metadata indicates targeting, CDE, or no-strike governance content that falls outside the noncombat companion scope.',
-        pattern: /\btargeting\b|\bcollateral damage estimate\b|\bcde\b|\bno-strike\b|\brestricted target\b/i
+        pattern: /\btargeting\b|\btarget validation\b|\btarget recognition\b|\btarget nomination\b|\bretarget(?:ing)?\b|\bcollateral damage estimate\b|\bcde\b|\bno-strike\b|\brestricted target\b/i
     },
     {
         id: 'prohibited-missile-or-munitions',
@@ -76,7 +76,7 @@ const PROHIBITED_METADATA_RULES: Rule[] = [
         id: 'prohibited-fires-or-strike',
         severity: 'critical',
         message: 'Metadata indicates fires, strike, aimpoint, or kill-chain support.',
-        pattern: /\bjoint fires\b|\bfire support\b|\bprecision strike\b|\bhypersonic strike\b|\bstrike package\b|\bstrike support\b|\battack geometry\b|\baimpoint\b|\bbattle damage assessment\b|\bkill[- ]?chain\b|\bkill[- ]?web\b/i
+        pattern: /\bjoint fires\b|\bfire support\b|\bfires and effects\b|\bfires clearance\b|\bfires deconfliction\b|\bprecision fires?\b|\blong-range fires?\b|\bprecision strike\b|\bhypersonic strike\b|\bstrike package\b|\bstrike support\b|\bstrike authorization\b|\battack geometry\b|\baimpoint\b|\bbattle damage assessment\b|\breattack\b|\bkill[- ]?chain\b|\bkill[- ]?web\b/i
     },
     {
         id: 'prohibited-air-defense-or-counter-uas',
@@ -85,16 +85,43 @@ const PROHIBITED_METADATA_RULES: Rule[] = [
         pattern: /\banti-ship\b|\bcounter[- ]?uas\b|\bair defense\b|\bweapon release\b/i
     },
     {
+        id: 'prohibited-roe-or-fire-control',
+        severity: 'critical',
+        message: 'Metadata indicates ROE, fire-control, or live-fire weapon control support outside the noncombat companion scope.',
+        pattern: /\brules? of engagement\b|\bdigital roe\b|\broe\b|\bfire control\b|\bweapon systems?\b|\bweapons? loading\b|\barmament\b|\blive fire\b|\bdirected energy engagement\b|\bautonomous weapons?\b/i
+    },
+    {
         id: 'prohibited-combat-force-employment',
         severity: 'critical',
         message: 'Metadata indicates direct combat force-employment or battle-management content outside the noncombat companion scope.',
         pattern: /\boffensive counter[- ]air\b|\bclose air support\b|\bsurface warfare\b|\banti-submarine warfare\b|\bamphibious assault\b|\bterminal attack control\b|\bforce employment\b|\bsea-control\b|\bair tasking\b|\bsuppress or destroy adversary\b/i
     },
     {
+        id: 'prohibited-isr-or-ew',
+        severity: 'critical',
+        message: 'Metadata indicates ISR, sensor-tasking, or electronic-warfare attack support outside the noncombat companion scope.',
+        pattern: /\bisr\b|\bsensor tasking\b|\bpriority intelligence requirements?\b|\belectronic warfare\b|\belectronic attack\b|\bcounter-space\b|\bmission data reprogramming\b/i
+    },
+    {
         id: 'prohibited-intel-led-harm-or-evasion',
         severity: 'critical',
         message: 'Metadata indicates intelligence-led harm, exfiltration, or counter-targeting support.',
         pattern: /\bpattern[- ]of[- ]life\b|\bcounter-targeting\b|\bbiometric exfiltration\b|\bspecial operations\b.*\bexfiltration\b/i
+    }
+];
+
+const PROHIBITED_SUPPORT_BODY_RULES: Rule[] = [
+    {
+        id: 'prohibited-support-body-combat-functions',
+        severity: 'critical',
+        message: 'Support-oriented skill body includes combat-function coordination language outside the lawful noncombat companion scope.',
+        pattern: /\bintegrate dependencies across joint functions:[\s\S]{0,240}?(?:movement\/maneuver|fires\/effects)\b/i
+    },
+    {
+        id: 'prohibited-support-body-force-posture',
+        severity: 'critical',
+        message: 'Support-oriented skill body includes force-posture or escalation-management guidance outside the lawful noncombat companion scope.',
+        pattern: /\btradeoffs in tempo, survivability, sustainment burden, and escalation risk\b|\bmaterially change force posture\b|\bmission risk, or escalation potential\b/i
     }
 ];
 
@@ -225,6 +252,10 @@ function extractHeadings(markdown: string): string[] {
     return headings.map((heading) => heading.replace(/^##+\s+/, '').trim());
 }
 
+function stripFrontmatter(markdown: string): string {
+    return markdown.replace(/^---\n[\s\S]*?\n---\n?/, '');
+}
+
 function matchesAny(text: string, values: string[]): boolean {
     const normalized = normalizeText(text);
     if (!normalized) return false;
@@ -264,15 +295,26 @@ export function auditWarfighterSkillMarkdown({
         .filter(Boolean)
         .join(' ');
     const headings = extractHeadings(markdown);
+    const bodyText = stripFrontmatter(markdown);
+    const isSupportOriented = matchesAny(metadataText, SUPPORT_DOMAIN_HINTS);
 
-    const prohibitedFindings = PROHIBITED_METADATA_RULES
+    const metadataFindings = PROHIBITED_METADATA_RULES
         .map((rule) => {
             const match = metadataText.match(rule.pattern);
             return match ? createFinding(rule, match[0]) : null;
         })
         .filter((finding): finding is WarfighterSafetyFinding => Boolean(finding));
 
-    const isSupportOriented = matchesAny(metadataText, SUPPORT_DOMAIN_HINTS);
+    const supportBodyFindings = isSupportOriented && metadataFindings.length === 0
+        ? PROHIBITED_SUPPORT_BODY_RULES
+            .map((rule) => {
+                const match = bodyText.match(rule.pattern);
+                return match ? createFinding(rule, match[0]) : null;
+            })
+            .filter((finding): finding is WarfighterSafetyFinding => Boolean(finding))
+        : [];
+
+    const prohibitedFindings = [...metadataFindings, ...supportBodyFindings];
     const structuralFindings = isSupportOriented && prohibitedFindings.length === 0
         ? REQUIRED_SUPPORT_HEADINGS
             .filter((rule) => !hasHeadingOrEvidence(markdown, headings, rule))
