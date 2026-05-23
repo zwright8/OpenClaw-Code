@@ -18,6 +18,13 @@ function healthyFixture() {
             ]
         },
         learningReport: {
+            summary: {
+                total: 3,
+                failure: 1,
+                traceCoverage: 1,
+                evidenceCoverage: 0.67,
+                failureErrorDetailCoverage: 1
+            },
             errorTaxonomy: { driftLevel: 'stable' },
             skillGrowthPlan: { focusAreas: [] },
             state: { driftLevel: 'stable', runCount: 3 }
@@ -65,6 +72,25 @@ test('fails readiness when critical gates are violated', () => {
     assert.ok(readiness.gates.some((gate) => gate.id === 'learning_drift' && gate.status === 'fail'));
     assert.ok(readiness.gates.some((gate) => gate.id === 'skill_growth_coverage' && gate.status === 'fail'));
     assert.ok(readiness.gates.some((gate) => gate.id === 'memory_guardrails' && gate.status === 'fail'));
+});
+
+test('fails readiness when learning outcomes lack traceability', () => {
+    const fixture = healthyFixture();
+    fixture.learningReport.summary = {
+        total: 4,
+        failure: 1,
+        traceCoverage: 0.25,
+        evidenceCoverage: 0.25,
+        failureErrorDetailCoverage: 0
+    };
+
+    const readiness = evaluateCognitionCoreReadiness(fixture);
+    const gate = readiness.gates.find((item) => item.id === 'outcome_observability');
+
+    assert.equal(readiness.status, 'fail');
+    assert.equal(gate.status, 'fail');
+    assert.equal(gate.details.traceCoverage, 0.25);
+    assert.equal(gate.details.failureErrorDetailCoverage, 0);
 });
 
 test('renders readiness markdown summary', () => {

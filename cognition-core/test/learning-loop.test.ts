@@ -32,6 +32,37 @@ test('summarizeOutcomes builds aggregate and per-agent metrics', () => {
     assert.ok(result.summary.byAgent['agent:b']);
 });
 
+test('summarizeOutcomes tracks trace and evidence coverage', () => {
+    const result = summarizeOutcomes([
+        {
+            taskId: '1',
+            target: 'agent:a',
+            status: 'completed',
+            traceId: 'trace-1',
+            evidence: [{ type: 'tool_call' }]
+        },
+        {
+            taskId: '2',
+            target: 'agent:b',
+            status: 'failed',
+            context: { traceId: 'trace-2' },
+            lastError: { code: 'tool_timeout', message: 'tool timed out' }
+        },
+        {
+            taskId: '3',
+            target: 'agent:c',
+            status: 'failed'
+        }
+    ]);
+
+    assert.equal(result.summary.observability.traced, 2);
+    assert.equal(result.summary.observability.evidenceBacked, 1);
+    assert.equal(result.summary.observability.failuresWithErrorDetail, 1);
+    assert.equal(result.summary.traceCoverage, 0.6667);
+    assert.equal(result.summary.evidenceCoverage, 0.3333);
+    assert.equal(result.summary.failureErrorDetailCoverage, 0.5);
+});
+
 test('runCounterfactualReplay ranks variants by projected gain', () => {
     const summary = summarizeOutcomes(sampleOutcomes());
     const replay = runCounterfactualReplay(summary, [
