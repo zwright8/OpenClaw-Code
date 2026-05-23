@@ -28,6 +28,30 @@ function compactList(values) {
     return values.filter((value) => value !== null && value !== undefined && value !== '');
 }
 
+function hasText(value) {
+    return typeof value === 'string' && value.trim().length > 0;
+}
+
+function countEvidenceItems(outcome) {
+    const evidenceSources = [
+        outcome.evidence,
+        outcome.traces,
+        outcome.traceEvents,
+        outcome.result?.evidence,
+        outcome.result?.traces,
+        outcome.result?.traceEvents,
+        outcome.result?.metrics?.evidence,
+        outcome.context?.evidence
+    ];
+
+    return evidenceSources.reduce((total, source) => {
+        if (Array.isArray(source)) return total + source.length;
+        if (source && typeof source === 'object') return total + Object.keys(source).length;
+        if (hasText(source)) return total + 1;
+        return total;
+    }, 0);
+}
+
 const FAILURE_STATUSES = new Set([
     'timed_out',
     'rejected',
@@ -234,6 +258,15 @@ function normalizeOutcome(outcome, index) {
     ]).map((item) => typeof item === 'string' ? item.trim() : null).filter(Boolean)[0] || null;
 
     const issueCategory = classifyIssue(status, errorCode, errorMessage);
+    const traceId = compactList([
+        outcome.traceId,
+        outcome.trace_id,
+        outcome.request?.traceId,
+        outcome.context?.traceId,
+        outcome.result?.traceId,
+        outcome.result?.metrics?.traceId
+    ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0] || null;
+    const evidenceCount = countEvidenceItems(outcome);
 
     const normalized = {
         taskId,
@@ -251,6 +284,11 @@ function normalizeOutcome(outcome, index) {
         errorMessage,
         issueCategory,
         skillHints: collectSkillHints(outcome),
+        traceId,
+        evidenceCount,
+        hasTrace: traceId !== null,
+        hasEvidence: evidenceCount > 0,
+        hasErrorDetail: status === 'completed' || status === 'partial' || Boolean(errorCode || errorMessage),
         isFailure: FAILURE_STATUSES.has(status),
         isTerminal: TERMINAL_STATUSES.has(status)
     };
@@ -286,6 +324,14 @@ export function summarizeOutcomes(outcomes) {
         successRate: 0,
         timeoutRate: 0,
         failureRate: 0,
+        traceCoverage: 0,
+        evidenceCoverage: 0,
+        failureErrorDetailCoverage: 0,
+        observability: {
+            traced: 0,
+            evidenceBacked: 0,
+            failuresWithErrorDetail: 0
+        },
         byStatus: {},
         byIssue: {},
         byAgent: {},
@@ -300,6 +346,9 @@ export function summarizeOutcomes(outcomes) {
         totals.byIssue[outcome.issueCategory] = (totals.byIssue[outcome.issueCategory] || 0) + 1;
         attemptsTotal += outcome.attempts;
         if (Number.isFinite(outcome.latencyMs)) latencies.push(outcome.latencyMs);
+        if (outcome.hasTrace) totals.observability.traced++;
+        if (outcome.hasEvidence) totals.observability.evidenceBacked++;
+        if (outcome.isFailure && outcome.hasErrorDetail) totals.observability.failuresWithErrorDetail++;
 
         if (!totals.byAgent[outcome.target]) {
             totals.byAgent[outcome.target] = {
@@ -394,6 +443,15 @@ export function summarizeOutcomes(outcomes) {
     totals.failureRate = totals.total > 0
         ? Number((totals.failure / totals.total).toFixed(4))
         : 0;
+    totals.traceCoverage = totals.total > 0
+        ? Number((totals.observability.traced / totals.total).toFixed(4))
+        : 0;
+    totals.evidenceCoverage = totals.total > 0
+        ? Number((totals.observability.evidenceBacked / totals.total).toFixed(4))
+        : 0;
+    totals.failureErrorDetailCoverage = totals.failure > 0
+        ? Number((totals.observability.failuresWithErrorDetail / totals.failure).toFixed(4))
+        : 1;
 
     return {
         outcomes: normalized,
