@@ -326,10 +326,14 @@ export function summarizeOutcomes(outcomes) {
         failureRate: 0,
         traceCoverage: 0,
         evidenceCoverage: 0,
+        replayableTraceCoverage: 0,
+        failureTraceCoverage: 0,
         failureErrorDetailCoverage: 0,
         observability: {
             traced: 0,
             evidenceBacked: 0,
+            replayableTraces: 0,
+            failuresWithTrace: 0,
             failuresWithErrorDetail: 0
         },
         byStatus: {},
@@ -348,6 +352,8 @@ export function summarizeOutcomes(outcomes) {
         if (Number.isFinite(outcome.latencyMs)) latencies.push(outcome.latencyMs);
         if (outcome.hasTrace) totals.observability.traced++;
         if (outcome.hasEvidence) totals.observability.evidenceBacked++;
+        if (outcome.hasTrace && outcome.hasEvidence) totals.observability.replayableTraces++;
+        if (outcome.isFailure && outcome.hasTrace) totals.observability.failuresWithTrace++;
         if (outcome.isFailure && outcome.hasErrorDetail) totals.observability.failuresWithErrorDetail++;
 
         if (!totals.byAgent[outcome.target]) {
@@ -449,6 +455,12 @@ export function summarizeOutcomes(outcomes) {
     totals.evidenceCoverage = totals.total > 0
         ? Number((totals.observability.evidenceBacked / totals.total).toFixed(4))
         : 0;
+    totals.replayableTraceCoverage = totals.total > 0
+        ? Number((totals.observability.replayableTraces / totals.total).toFixed(4))
+        : 0;
+    totals.failureTraceCoverage = totals.failure > 0
+        ? Number((totals.observability.failuresWithTrace / totals.failure).toFixed(4))
+        : 1;
     totals.failureErrorDetailCoverage = totals.failure > 0
         ? Number((totals.observability.failuresWithErrorDetail / totals.failure).toFixed(4))
         : 1;

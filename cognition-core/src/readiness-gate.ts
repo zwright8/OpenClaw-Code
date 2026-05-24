@@ -29,12 +29,26 @@ function stateToStatus(level) {
     return 'pass';
 }
 
-function observabilityStatus({ total, failureCount, traceCoverage, failureErrorDetailCoverage }, {
+function observabilityStatus({
+    total,
+    failureCount,
+    traceCoverage,
+    evidenceCoverage,
+    replayableTraceCoverage,
+    failureTraceCoverage,
+    failureErrorDetailCoverage
+}, {
     minTraceCoverage,
+    minEvidenceCoverage,
+    minReplayableTraceCoverage,
+    minFailureTraceCoverage,
     minFailureErrorDetailCoverage
 }) {
     if (total <= 0) return 'warn';
     if (traceCoverage < minTraceCoverage) return 'fail';
+    if (evidenceCoverage < minEvidenceCoverage) return 'fail';
+    if (replayableTraceCoverage < minReplayableTraceCoverage) return 'fail';
+    if (failureCount > 0 && failureTraceCoverage < minFailureTraceCoverage) return 'fail';
     if (failureCount > 0 && failureErrorDetailCoverage < minFailureErrorDetailCoverage) return 'fail';
     return 'pass';
 }
@@ -52,6 +66,9 @@ export function evaluateCognitionCoreReadiness(
         maxFrequentToolErrorRate = 5,
         frequentToolMinCalls = 5,
         minTraceCoverage = 0.8,
+        minEvidenceCoverage = 0.5,
+        minReplayableTraceCoverage = 0.5,
+        minFailureTraceCoverage = 0.8,
         minFailureErrorDetailCoverage = 0.8
     } = {}
 ) {
@@ -152,6 +169,12 @@ export function evaluateCognitionCoreReadiness(
         const failureCount = Number(learningReport.summary.failure) || 0;
         const traceCoverage = Number(learningReport.summary.traceCoverage) || 0;
         const evidenceCoverage = Number(learningReport.summary.evidenceCoverage) || 0;
+        const replayableTraceCoverage = Number.isFinite(Number(learningReport.summary.replayableTraceCoverage))
+            ? Number(learningReport.summary.replayableTraceCoverage)
+            : Math.min(traceCoverage, evidenceCoverage);
+        const failureTraceCoverage = Number.isFinite(Number(learningReport.summary.failureTraceCoverage))
+            ? Number(learningReport.summary.failureTraceCoverage)
+            : (failureCount > 0 ? traceCoverage : 1);
         const failureErrorDetailCoverage = Number.isFinite(Number(learningReport.summary.failureErrorDetailCoverage))
             ? Number(learningReport.summary.failureErrorDetailCoverage)
             : (failureCount > 0 ? 0 : 1);
@@ -159,9 +182,15 @@ export function evaluateCognitionCoreReadiness(
             total,
             failureCount,
             traceCoverage,
+            evidenceCoverage,
+            replayableTraceCoverage,
+            failureTraceCoverage,
             failureErrorDetailCoverage
         }, {
             minTraceCoverage,
+            minEvidenceCoverage,
+            minReplayableTraceCoverage,
+            minFailureTraceCoverage,
             minFailureErrorDetailCoverage
         });
 
@@ -170,14 +199,19 @@ export function evaluateCognitionCoreReadiness(
             status,
             total <= 0
                 ? 'No learning outcomes are available for observability checks.'
-                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
+                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
             {
                 total,
                 failureCount,
                 traceCoverage,
                 evidenceCoverage,
+                replayableTraceCoverage,
+                failureTraceCoverage,
                 failureErrorDetailCoverage,
                 minTraceCoverage,
+                minEvidenceCoverage,
+                minReplayableTraceCoverage,
+                minFailureTraceCoverage,
                 minFailureErrorDetailCoverage
             }
         ));
