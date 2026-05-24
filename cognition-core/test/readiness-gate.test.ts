@@ -30,6 +30,8 @@ function healthyFixture() {
                 failure: 1,
                 traceCoverage: 1,
                 evidenceCoverage: 0.67,
+                replayableTraceCoverage: 0.67,
+                failureTraceCoverage: 1,
                 failureErrorDetailCoverage: 1
             },
             errorTaxonomy: { driftLevel: 'stable' },
@@ -124,6 +126,8 @@ test('fails readiness when learning outcomes lack traceability', () => {
         failure: 1,
         traceCoverage: 0.25,
         evidenceCoverage: 0.25,
+        replayableTraceCoverage: 0.25,
+        failureTraceCoverage: 0,
         failureErrorDetailCoverage: 0
     };
 
@@ -133,7 +137,30 @@ test('fails readiness when learning outcomes lack traceability', () => {
     assert.equal(readiness.status, 'fail');
     assert.equal(gate.status, 'fail');
     assert.equal(gate.details.traceCoverage, 0.25);
+    assert.equal(gate.details.replayableTraceCoverage, 0.25);
+    assert.equal(gate.details.failureTraceCoverage, 0);
     assert.equal(gate.details.failureErrorDetailCoverage, 0);
+});
+
+test('fails readiness when traces are not replayable enough for debugging', () => {
+    const fixture = healthyFixture();
+    fixture.learningReport.summary = {
+        total: 4,
+        failure: 1,
+        traceCoverage: 1,
+        evidenceCoverage: 0.25,
+        replayableTraceCoverage: 0.25,
+        failureTraceCoverage: 1,
+        failureErrorDetailCoverage: 1
+    };
+
+    const readiness = evaluateCognitionCoreReadiness(fixture);
+    const gate = readiness.gates.find((item) => item.id === 'outcome_observability');
+
+    assert.equal(readiness.status, 'fail');
+    assert.equal(gate.status, 'fail');
+    assert.equal(gate.details.evidenceCoverage, 0.25);
+    assert.equal(gate.details.minReplayableTraceCoverage, 0.5);
 });
 
 test('renders readiness markdown summary', () => {

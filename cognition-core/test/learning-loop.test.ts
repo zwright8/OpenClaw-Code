@@ -57,9 +57,13 @@ test('summarizeOutcomes tracks trace and evidence coverage', () => {
 
     assert.equal(result.summary.observability.traced, 2);
     assert.equal(result.summary.observability.evidenceBacked, 1);
+    assert.equal(result.summary.observability.replayableTraces, 1);
+    assert.equal(result.summary.observability.failuresWithTrace, 1);
     assert.equal(result.summary.observability.failuresWithErrorDetail, 1);
     assert.equal(result.summary.traceCoverage, 0.6667);
     assert.equal(result.summary.evidenceCoverage, 0.3333);
+    assert.equal(result.summary.replayableTraceCoverage, 0.3333);
+    assert.equal(result.summary.failureTraceCoverage, 0.5);
     assert.equal(result.summary.failureErrorDetailCoverage, 0.5);
 });
 
