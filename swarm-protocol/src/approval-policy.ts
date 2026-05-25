@@ -14,6 +14,32 @@ function hasAny(a, b) {
     return a.some((item) => setB.has(item));
 }
 
+function normalizeText(value) {
+    if (typeof value !== 'string') return '';
+    return value.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function includesSideEffectIntent(taskRequest, sideEffectKeywords) {
+    const text = normalizeText(taskRequest.task);
+    if (!text) return false;
+
+    return normalizeArray(sideEffectKeywords)
+        .map((keyword) => normalizeText(keyword))
+        .filter(Boolean)
+        .some((keyword) => text.includes(keyword));
+}
+
+function hasDeclaredSideEffects(context = {}) {
+    if (!context || typeof context !== 'object') return false;
+    if (context.sideEffectRisk === true || context.requiresSideEffectApproval === true) {
+        return true;
+    }
+    if (Array.isArray(context.sideEffects)) {
+        return context.sideEffects.some((item) => typeof item === 'string' && item.trim());
+    }
+    return false;
+}
+
 export function evaluateApprovalPolicy(taskRequestPayload, config = {}) {
     const taskRequest = TaskRequest.parse(taskRequestPayload);
 
@@ -22,6 +48,20 @@ export function evaluateApprovalPolicy(taskRequestPayload, config = {}) {
         highPriorityRequiresApproval = false,
         highRiskTags = ['external_write', 'legal', 'finance', 'security'],
         sensitiveCapabilities = ['legal', 'finance', 'security', 'production-deploy'],
+        sideEffectRequiresApproval = true,
+        sideEffectKeywords = [
+            'deploy',
+            'delete',
+            'remove',
+            'send email',
+            'transfer',
+            'refund',
+            'purchase',
+            'rotate secret',
+            'revoke access',
+            'chmod',
+            'rm -rf'
+        ],
         reviewerGroup = 'human-review'
     } = config;
 
@@ -41,6 +81,12 @@ export function evaluateApprovalPolicy(taskRequestPayload, config = {}) {
     }
     if (hasAny(requiredCapabilities, sensitiveCapabilities)) {
         matches.push('sensitive_capability');
+    }
+    if (sideEffectRequiresApproval && (
+        hasDeclaredSideEffects(taskRequest.context)
+        || includesSideEffectIntent(taskRequest, sideEffectKeywords)
+    )) {
+        matches.push('side_effect_intent');
     }
     if (manualFlag) {
         matches.push('manual_override');
