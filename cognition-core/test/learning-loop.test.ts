@@ -39,14 +39,23 @@ test('summarizeOutcomes tracks trace and evidence coverage', () => {
             target: 'agent:a',
             status: 'completed',
             traceId: 'trace-1',
-            evidence: [{ type: 'tool_call' }]
+            evidence: [{ type: 'tool_call' }],
+            traceEvents: [
+                { type: 'tool_call', name: 'shell.exec' },
+                { type: 'guardrail_check', name: 'policy' }
+            ]
         },
         {
             taskId: '2',
             target: 'agent:b',
             status: 'failed',
             context: { traceId: 'trace-2' },
-            lastError: { code: 'tool_timeout', message: 'tool timed out' }
+            lastError: { code: 'tool_timeout', message: 'tool timed out' },
+            result: {
+                traceEvents: [
+                    { kind: 'handoff', name: 'debugger' }
+                ]
+            }
         },
         {
             taskId: '3',
@@ -56,15 +65,23 @@ test('summarizeOutcomes tracks trace and evidence coverage', () => {
     ]);
 
     assert.equal(result.summary.observability.traced, 2);
-    assert.equal(result.summary.observability.evidenceBacked, 1);
-    assert.equal(result.summary.observability.replayableTraces, 1);
+    assert.equal(result.summary.observability.evidenceBacked, 2);
+    assert.equal(result.summary.observability.replayableTraces, 2);
     assert.equal(result.summary.observability.failuresWithTrace, 1);
     assert.equal(result.summary.observability.failuresWithErrorDetail, 1);
+    assert.equal(result.summary.observability.traceEventBacked, 2);
+    assert.equal(result.summary.observability.toolTraceBacked, 1);
+    assert.equal(result.summary.observability.guardrailTraceBacked, 1);
+    assert.equal(result.summary.observability.handoffTraceBacked, 1);
     assert.equal(result.summary.traceCoverage, 0.6667);
-    assert.equal(result.summary.evidenceCoverage, 0.3333);
-    assert.equal(result.summary.replayableTraceCoverage, 0.3333);
+    assert.equal(result.summary.evidenceCoverage, 0.6667);
+    assert.equal(result.summary.replayableTraceCoverage, 0.6667);
     assert.equal(result.summary.failureTraceCoverage, 0.5);
     assert.equal(result.summary.failureErrorDetailCoverage, 0.5);
+    assert.equal(result.summary.traceEventCoverage, 0.6667);
+    assert.equal(result.summary.toolTraceCoverage, 0.3333);
+    assert.equal(result.summary.guardrailTraceCoverage, 0.3333);
+    assert.equal(result.summary.handoffTraceCoverage, 0.3333);
 });
 
 test('runCounterfactualReplay ranks variants by projected gain', () => {

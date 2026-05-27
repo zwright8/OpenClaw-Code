@@ -24,6 +24,7 @@ function healthyFixture() {
                 traceCoverage: 1,
                 evidenceCoverage: 0.67,
                 replayableTraceCoverage: 0.67,
+                traceEventCoverage: 0.67,
                 failureTraceCoverage: 1,
                 failureErrorDetailCoverage: 1
             },
@@ -118,6 +119,28 @@ test('fails readiness when traces are not replayable enough for debugging', () =
     assert.equal(gate.status, 'fail');
     assert.equal(gate.details.evidenceCoverage, 0.25);
     assert.equal(gate.details.minReplayableTraceCoverage, 0.5);
+});
+
+test('fails readiness when trace ids lack workflow events', () => {
+    const fixture = healthyFixture();
+    fixture.learningReport.summary = {
+        total: 4,
+        failure: 1,
+        traceCoverage: 1,
+        evidenceCoverage: 1,
+        replayableTraceCoverage: 1,
+        traceEventCoverage: 0.25,
+        failureTraceCoverage: 1,
+        failureErrorDetailCoverage: 1
+    };
+
+    const readiness = evaluateCognitionCoreReadiness(fixture);
+    const gate = readiness.gates.find((item) => item.id === 'outcome_observability');
+
+    assert.equal(readiness.status, 'fail');
+    assert.equal(gate.status, 'fail');
+    assert.equal(gate.details.traceEventCoverage, 0.25);
+    assert.equal(gate.details.minTraceEventCoverage, 0.5);
 });
 
 test('renders readiness markdown summary', () => {
