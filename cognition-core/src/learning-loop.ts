@@ -52,6 +52,56 @@ function countEvidenceItems(outcome) {
     }, 0);
 }
 
+function collectTraceEvents(outcome) {
+    const sources = [
+        outcome.traceEvents,
+        outcome.traces,
+        outcome.spans,
+        outcome.result?.traceEvents,
+        outcome.result?.traces,
+        outcome.result?.spans,
+        outcome.result?.metrics?.traceEvents,
+        outcome.context?.traceEvents
+    ];
+
+    return sources.flatMap((source) => (Array.isArray(source) ? source : []));
+}
+
+function classifyTraceEventKind(event) {
+    if (!event || typeof event !== 'object') return null;
+    const raw = compactList([
+        event.kind,
+        event.type,
+        event.category,
+        event.name,
+        event.spanType
+    ])[0];
+    const kind = normalizeText(raw);
+    if (!kind) return null;
+    if (kind.includes('tool')) return 'tool';
+    if (kind.includes('handoff') || kind.includes('delegate') || kind.includes('subagent')) return 'handoff';
+    if (kind.includes('guardrail') || kind.includes('safety') || kind.includes('policy')) return 'guardrail';
+    return 'other';
+}
+
+function summarizeTraceEvents(outcome) {
+    const events = collectTraceEvents(outcome);
+    const counts = {
+        total: events.length,
+        tool: 0,
+        handoff: 0,
+        guardrail: 0,
+        other: 0
+    };
+
+    for (const event of events) {
+        const kind = classifyTraceEventKind(event) || 'other';
+        counts[kind]++;
+    }
+
+    return counts;
+}
+
 const FAILURE_STATUSES = new Set([
     'timed_out',
     'rejected',
@@ -267,6 +317,7 @@ function normalizeOutcome(outcome, index) {
         outcome.result?.metrics?.traceId
     ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0] || null;
     const evidenceCount = countEvidenceItems(outcome);
+    const traceEvents = summarizeTraceEvents(outcome);
 
     const normalized = {
         taskId,
@@ -286,8 +337,13 @@ function normalizeOutcome(outcome, index) {
         skillHints: collectSkillHints(outcome),
         traceId,
         evidenceCount,
+        traceEvents,
         hasTrace: traceId !== null,
         hasEvidence: evidenceCount > 0,
+        hasTraceEvents: traceEvents.total > 0,
+        hasToolTrace: traceEvents.tool > 0,
+        hasGuardrailTrace: traceEvents.guardrail > 0,
+        hasHandoffTrace: traceEvents.handoff > 0,
         hasErrorDetail: status === 'completed' || status === 'partial' || Boolean(errorCode || errorMessage),
         isFailure: FAILURE_STATUSES.has(status),
         isTerminal: TERMINAL_STATUSES.has(status)
@@ -329,12 +385,20 @@ export function summarizeOutcomes(outcomes) {
         replayableTraceCoverage: 0,
         failureTraceCoverage: 0,
         failureErrorDetailCoverage: 0,
+        traceEventCoverage: 0,
+        toolTraceCoverage: 0,
+        guardrailTraceCoverage: 0,
+        handoffTraceCoverage: 0,
         observability: {
             traced: 0,
             evidenceBacked: 0,
             replayableTraces: 0,
             failuresWithTrace: 0,
-            failuresWithErrorDetail: 0
+            failuresWithErrorDetail: 0,
+            traceEventBacked: 0,
+            toolTraceBacked: 0,
+            guardrailTraceBacked: 0,
+            handoffTraceBacked: 0
         },
         byStatus: {},
         byIssue: {},
@@ -355,6 +419,10 @@ export function summarizeOutcomes(outcomes) {
         if (outcome.hasTrace && outcome.hasEvidence) totals.observability.replayableTraces++;
         if (outcome.isFailure && outcome.hasTrace) totals.observability.failuresWithTrace++;
         if (outcome.isFailure && outcome.hasErrorDetail) totals.observability.failuresWithErrorDetail++;
+        if (outcome.hasTraceEvents) totals.observability.traceEventBacked++;
+        if (outcome.hasToolTrace) totals.observability.toolTraceBacked++;
+        if (outcome.hasGuardrailTrace) totals.observability.guardrailTraceBacked++;
+        if (outcome.hasHandoffTrace) totals.observability.handoffTraceBacked++;
 
         if (!totals.byAgent[outcome.target]) {
             totals.byAgent[outcome.target] = {
@@ -464,6 +532,18 @@ export function summarizeOutcomes(outcomes) {
     totals.failureErrorDetailCoverage = totals.failure > 0
         ? Number((totals.observability.failuresWithErrorDetail / totals.failure).toFixed(4))
         : 1;
+    totals.traceEventCoverage = totals.total > 0
+        ? Number((totals.observability.traceEventBacked / totals.total).toFixed(4))
+        : 0;
+    totals.toolTraceCoverage = totals.total > 0
+        ? Number((totals.observability.toolTraceBacked / totals.total).toFixed(4))
+        : 0;
+    totals.guardrailTraceCoverage = totals.total > 0
+        ? Number((totals.observability.guardrailTraceBacked / totals.total).toFixed(4))
+        : 0;
+    totals.handoffTraceCoverage = totals.total > 0
+        ? Number((totals.observability.handoffTraceBacked / totals.total).toFixed(4))
+        : 0;
 
     return {
         outcomes: normalized,

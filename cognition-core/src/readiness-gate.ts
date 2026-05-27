@@ -57,18 +57,21 @@ function observabilityStatus({
     evidenceCoverage,
     replayableTraceCoverage,
     failureTraceCoverage,
-    failureErrorDetailCoverage
+    failureErrorDetailCoverage,
+    traceEventCoverage
 }, {
     minTraceCoverage,
     minEvidenceCoverage,
     minReplayableTraceCoverage,
     minFailureTraceCoverage,
-    minFailureErrorDetailCoverage
+    minFailureErrorDetailCoverage,
+    minTraceEventCoverage
 }) {
     if (total <= 0) return 'warn';
     if (traceCoverage < minTraceCoverage) return 'fail';
     if (evidenceCoverage < minEvidenceCoverage) return 'fail';
     if (replayableTraceCoverage < minReplayableTraceCoverage) return 'fail';
+    if (traceEventCoverage < minTraceEventCoverage) return 'fail';
     if (failureCount > 0 && failureTraceCoverage < minFailureTraceCoverage) return 'fail';
     if (failureCount > 0 && failureErrorDetailCoverage < minFailureErrorDetailCoverage) return 'fail';
     return 'pass';
@@ -93,6 +96,7 @@ export function evaluateCognitionCoreReadiness(
         minTraceCoverage = 0.8,
         minEvidenceCoverage = 0.5,
         minReplayableTraceCoverage = 0.5,
+        minTraceEventCoverage = 0.5,
         minFailureTraceCoverage = 0.8,
         minFailureErrorDetailCoverage = 0.8
     } = {}
@@ -259,6 +263,9 @@ export function evaluateCognitionCoreReadiness(
         const failureErrorDetailCoverage = Number.isFinite(Number(learningReport.summary.failureErrorDetailCoverage))
             ? Number(learningReport.summary.failureErrorDetailCoverage)
             : (failureCount > 0 ? 0 : 1);
+        const traceEventCoverage = Number.isFinite(Number(learningReport.summary.traceEventCoverage))
+            ? Number(learningReport.summary.traceEventCoverage)
+            : replayableTraceCoverage;
         const status = observabilityStatus({
             total,
             failureCount,
@@ -266,13 +273,15 @@ export function evaluateCognitionCoreReadiness(
             evidenceCoverage,
             replayableTraceCoverage,
             failureTraceCoverage,
-            failureErrorDetailCoverage
+            failureErrorDetailCoverage,
+            traceEventCoverage
         }, {
             minTraceCoverage,
             minEvidenceCoverage,
             minReplayableTraceCoverage,
             minFailureTraceCoverage,
-            minFailureErrorDetailCoverage
+            minFailureErrorDetailCoverage,
+            minTraceEventCoverage
         });
 
         gates.push(createGate(
@@ -280,18 +289,20 @@ export function evaluateCognitionCoreReadiness(
             status,
             total <= 0
                 ? 'No learning outcomes are available for observability checks.'
-                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
+                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; trace event coverage ${(traceEventCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
             {
                 total,
                 failureCount,
                 traceCoverage,
                 evidenceCoverage,
                 replayableTraceCoverage,
+                traceEventCoverage,
                 failureTraceCoverage,
                 failureErrorDetailCoverage,
                 minTraceCoverage,
                 minEvidenceCoverage,
                 minReplayableTraceCoverage,
+                minTraceEventCoverage,
                 minFailureTraceCoverage,
                 minFailureErrorDetailCoverage
             }
