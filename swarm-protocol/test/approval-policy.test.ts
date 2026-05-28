@@ -119,6 +119,48 @@ test('declared side effects in context require approval even without keywords', 
     assert.ok(decision.matchedRules.includes('side_effect_intent'));
 });
 
+test('structured tool-call side-effect intent requires approval', () => {
+    const task = buildTaskRequest({
+        id: '99999999-9999-4999-8999-999999999999',
+        from: 'agent:main',
+        target: 'agent:worker',
+        task: 'Run the requested customer follow-up workflow',
+        priority: 'normal',
+        context: {
+            toolCall: {
+                function: {
+                    name: 'send_email'
+                }
+            }
+        },
+        createdAt: 6_500
+    });
+
+    const decision = evaluateApprovalPolicy(task);
+
+    assert.equal(decision.required, true);
+    assert.ok(decision.matchedRules.includes('side_effect_intent'));
+});
+
+test('mutating structured action metadata requires approval', () => {
+    const task = buildTaskRequest({
+        id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        from: 'agent:main',
+        target: 'agent:worker',
+        task: 'Call the configured partner API',
+        priority: 'normal',
+        context: {
+            httpMethod: 'PATCH'
+        },
+        createdAt: 6_750
+    });
+
+    const decision = evaluateApprovalPolicy(task);
+
+    assert.equal(decision.required, true);
+    assert.ok(decision.matchedRules.includes('side_effect_intent'));
+});
+
 test('side-effect approval can be disabled for compatibility adapters', () => {
     const task = buildTaskRequest({
         id: '77777777-7777-4777-8777-777777777777',
@@ -132,6 +174,27 @@ test('side-effect approval can be disabled for compatibility adapters', () => {
     const decision = evaluateApprovalPolicy(task, {
         sideEffectRequiresApproval: false
     });
+
+    assert.equal(decision.required, false);
+});
+
+test('read-only structured action metadata does not require side-effect approval', () => {
+    const task = buildTaskRequest({
+        id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
+        from: 'agent:main',
+        target: 'agent:worker',
+        task: 'Fetch account status for summarization',
+        priority: 'normal',
+        context: {
+            toolCall: {
+                name: 'read_customer_profile'
+            },
+            httpMethod: 'GET'
+        },
+        createdAt: 7_500
+    });
+
+    const decision = evaluateApprovalPolicy(task);
 
     assert.equal(decision.required, false);
 });
