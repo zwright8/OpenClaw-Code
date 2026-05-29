@@ -1,6 +1,6 @@
 # Capability Deployability Audit (32-131)
 
-Generated: 2026-06-18T23:00:22.975Z
+Generated: 2026-06-18T23:15:57.108Z
 
 ## Criteria
 - Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/capabilities.ts` mapping.
@@ -120,3 +120,4 @@ Generated: 2026-06-18T23:00:22.975Z
 | 129 | Inclusive Governance Co-Designer | `cultural-uncertainty-communicator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 | 130 | Collective Intelligence Commons | `cultural-experiment-design-generator` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
 | 131 | Humanity Mission Operating System | `cultural-ab-rollout-governor` | YES | YES | PASS | PASS | PASS | PASS | YES | OK |
+
