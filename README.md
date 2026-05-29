@@ -101,12 +101,14 @@ Adds an uncertainty communication composer to improve confidence calibration and
 Long-term roadmap lives in:
 - [CAPABILITY_BLUEPRINT.md](/CAPABILITY_BLUEPRINT.md)
 - [CAPABILITY_DEPLOYABILITY_AUDIT.md](/CAPABILITY_DEPLOYABILITY_AUDIT.md)
+- [CAPABILITY_DEPLOYABILITY_AUDIT.json](/CAPABILITY_DEPLOYABILITY_AUDIT.json)
 
 Refresh blueprint coverage and run full deployability audit:
 ```bash
 npm run capabilities:blueprint
 npm run capabilities:audit
 ```
+The audit command writes both the human Markdown report and a machine-readable JSON contract with per-capability failure reasons plus remediation task seeds for external runtime gates.
 
 ## Skill Arsenal
 Build, validate, and runtime-execute the 1000 generated skills from [SKILL_UPDATES_1000.md](/SKILL_UPDATES_1000.md):

@@ -11,6 +11,7 @@ const CAPABILITY_ENTRYPOINT_CANDIDATES = [
 ];
 const TEST_DIR = path.join(REPO_ROOT, 'swarm-protocol', 'test');
 const OUTPUT_PATH = path.join(REPO_ROOT, 'CAPABILITY_DEPLOYABILITY_AUDIT.md');
+const OUTPUT_JSON_PATH = path.join(REPO_ROOT, 'CAPABILITY_DEPLOYABILITY_AUDIT.json');
 
 function parseCapabilityList(text) {
     const pattern = /^- \[(?<done>.| )\] (?<number>\d+)\. (?<name>.+?) - (?<objective>.+)$/gm;
@@ -133,6 +134,37 @@ function buildSummaryRows(results) {
     };
 }
 
+function failureReasons(entry) {
+    const reasons = [];
+    if (!entry.moduleExists) reasons.push('missing_module');
+    if (!entry.blueprint) reasons.push('missing_blueprint');
+    if (!entry.testEvidence) reasons.push('missing_test_evidence');
+    if (!entry.exportContract) reasons.push('invalid_export_contract');
+    if (!entry.smokePass) reasons.push('smoke_check_failed');
+    if (!entry.taskContract) reasons.push('invalid_task_contract');
+    if (!entry.managerContract) reasons.push('invalid_manager_contract');
+    return reasons;
+}
+
+function buildRemediationTasks(results) {
+    return results
+        .filter((entry) => !entry.deployable)
+        .map((entry) => ({
+            id: `capability-${entry.number}-deployability-remediation`,
+            kind: 'capability_deployability_remediation',
+            capabilityNumber: entry.number,
+            capabilityName: entry.name,
+            moduleName: entry.moduleName,
+            failureReasons: failureReasons(entry),
+            recommendedCommands: [
+                'npm run capabilities:blueprint',
+                'npm --prefix swarm-protocol run test',
+                'npm run capabilities:audit'
+            ],
+            notes: entry.notes
+        }));
+}
+
 function markdownEscape(value) {
     return String(value ?? '').replace(/\|/g, '\\|');
 }
@@ -238,9 +270,8 @@ async function auditCapability(entry, moduleName, blueprintCoverage, tests) {
     };
 }
 
-function renderMarkdown(summary, results, exportSourcePath) {
+function renderMarkdown(summary, results, exportSourcePath, generatedAt) {
     const lines = [];
-    const generatedAt = new Date().toISOString();
 
     lines.push('# Capability Deployability Audit (32-131)');
     lines.push('');
@@ -271,6 +302,34 @@ function renderMarkdown(summary, results, exportSourcePath) {
 
     lines.push('');
     return `${lines.join('\n')}\n`;
+}
+
+function buildJsonAudit(summary, results, exportSourcePath, generatedAt) {
+    return {
+        schemaVersion: 1,
+        generatedAt,
+        scope: {
+            capabilityRange: '32-131',
+            source: path.relative(REPO_ROOT, exportSourcePath),
+            blueprint: path.relative(REPO_ROOT, BLUEPRINT_PATH),
+            tests: path.relative(REPO_ROOT, TEST_DIR)
+        },
+        criteria: [
+            'module_exists',
+            'blueprint_section_exists',
+            'test_evidence_exists',
+            'exports_evaluator_to_tasks_and_manager',
+            'evaluator_smoke_passes',
+            'task_conversion_contract_valid',
+            'manager_contract_valid'
+        ],
+        summary,
+        capabilities: results.map((entry) => ({
+            ...entry,
+            failureReasons: failureReasons(entry)
+        })),
+        remediationTasks: buildRemediationTasks(results)
+    };
 }
 
 async function main() {
@@ -310,8 +369,11 @@ async function main() {
     }
 
     const summary = buildSummaryRows(results);
-    const markdown = renderMarkdown(summary, results, capabilityEntrypoint.sourcePath);
+    const generatedAt = new Date().toISOString();
+    const markdown = renderMarkdown(summary, results, capabilityEntrypoint.sourcePath, generatedAt);
+    const jsonAudit = buildJsonAudit(summary, results, capabilityEntrypoint.sourcePath, generatedAt);
     fs.writeFileSync(OUTPUT_PATH, markdown);
+    fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(jsonAudit, null, 2)}\n`);
 
     const failures = results.filter((entry) => !entry.deployable).length;
     console.log(`[audit-capabilities] Audited ${results.length} capabilities; deployable=${summary.deployable}; failures=${failures}`);
