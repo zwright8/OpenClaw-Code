@@ -52,11 +52,82 @@ function collectStructuredIntentValues(context = {}) {
     add(context.toolCall?.tool);
     add(context.toolCall?.toolName);
     add(context.toolCall?.function?.name);
+    add(context.toolCall?.type);
+    add(context.toolCall?.kind);
+    add(context.toolCall?.arguments?.command);
+    add(context.toolCall?.arguments?.operation);
+    add(context.toolCall?.arguments?.action);
+    add(context.toolCall?.input?.command);
+    add(context.toolCall?.input?.operation);
+    add(context.toolCall?.input?.action);
+    add(context.toolCall?.args?.command);
+    add(context.toolCall?.args?.operation);
+    add(context.toolCall?.args?.action);
+    add(context.hostedTool?.name);
+    add(context.hostedTool?.type);
+    add(context.hostedTool?.kind);
+    add(context.builtInTool?.name);
+    add(context.builtInTool?.type);
+    add(context.builtInTool?.kind);
+    add(context.executionTool?.name);
+    add(context.executionTool?.type);
+    add(context.executionTool?.kind);
     add(context.actionRequest?.action);
     add(context.actionRequest?.actionType);
     add(context.actionRequest?.operation);
 
     return values;
+}
+
+function usesGuardrailGapTool(context = {}, guardrailGapToolNames = []) {
+    if (!context || typeof context !== 'object') return false;
+    if (
+        context.hostedTool === true
+        || context.builtInTool === true
+        || context.executionTool === true
+        || context.toolGuardrailsApply === false
+    ) {
+        return true;
+    }
+
+    const normalizedToolNames = normalizeArray(guardrailGapToolNames)
+        .map((name) => normalizeText(name))
+        .filter(Boolean);
+    if (normalizedToolNames.length === 0) return false;
+
+    return collectStructuredIntentValues(context)
+        .map((value) => normalizeText(value))
+        .filter(Boolean)
+        .some((value) => normalizedToolNames.some((toolName) => value.includes(toolName)));
+}
+
+function hasHandoffBoundaryRisk(context = {}) {
+    if (!context || typeof context !== 'object') return false;
+    const handoff = context.handoff ?? context.taskHandoff ?? context.delegation;
+    if (!handoff || typeof handoff !== 'object') return false;
+
+    if (
+        handoff.requiresApproval === true
+        || handoff.external === true
+        || handoff.crossTrustBoundary === true
+        || handoff.sharesConversationHistory === true
+        || handoff.inputFilterApplied === false
+        || handoff.inputFiltered === false
+    ) {
+        return true;
+    }
+
+    const trustBoundary = normalizeText(
+        handoff.trustBoundary
+        ?? handoff.boundary
+        ?? handoff.targetTrust
+        ?? handoff.targetTrustLevel
+    );
+    if (['external', 'untrusted', 'third party', 'third-party', 'partner'].includes(trustBoundary)) {
+        return true;
+    }
+
+    return false;
 }
 
 function hasStructuredSideEffectIntent(context = {}, sideEffectKeywords) {
@@ -101,6 +172,8 @@ export function evaluateApprovalPolicy(taskRequestPayload, config = {}) {
         highRiskTags = ['external_write', 'legal', 'finance', 'security'],
         sensitiveCapabilities = ['legal', 'finance', 'security', 'production-deploy'],
         sideEffectRequiresApproval = true,
+        guardrailGapToolRequiresApproval = true,
+        handoffBoundaryRequiresApproval = true,
         sideEffectKeywords = [
             'deploy',
             'delete',
@@ -113,6 +186,20 @@ export function evaluateApprovalPolicy(taskRequestPayload, config = {}) {
             'revoke access',
             'chmod',
             'rm -rf'
+        ],
+        guardrailGapToolNames = [
+            'computerTool',
+            'computer tool',
+            'shellTool',
+            'shell tool',
+            'applyPatchTool',
+            'apply patch tool',
+            'hostedMCPTool',
+            'hosted mcp tool',
+            'hosted tool',
+            'codeInterpreterTool',
+            'code interpreter',
+            'codex tool'
         ],
         reviewerGroup = 'human-review'
     } = config;
@@ -140,6 +227,18 @@ export function evaluateApprovalPolicy(taskRequestPayload, config = {}) {
         || includesSideEffectIntent(taskRequest, sideEffectKeywords)
     )) {
         matches.push('side_effect_intent');
+    }
+    if (
+        guardrailGapToolRequiresApproval
+        && usesGuardrailGapTool(taskRequest.context, guardrailGapToolNames)
+    ) {
+        matches.push('guardrail_gap_tool');
+    }
+    if (
+        handoffBoundaryRequiresApproval
+        && hasHandoffBoundaryRisk(taskRequest.context)
+    ) {
+        matches.push('handoff_boundary');
     }
     if (manualFlag) {
         matches.push('manual_override');

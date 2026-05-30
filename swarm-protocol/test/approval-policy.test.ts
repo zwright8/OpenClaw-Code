@@ -142,6 +142,30 @@ test('structured tool-call side-effect intent requires approval', () => {
     assert.ok(decision.matchedRules.includes('side_effect_intent'));
 });
 
+test('nested structured tool-call command requires approval', () => {
+    const task = buildTaskRequest({
+        id: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+        from: 'agent:main',
+        target: 'agent:worker',
+        task: 'Run the maintenance action',
+        priority: 'normal',
+        context: {
+            toolCall: {
+                name: 'workspace_shell',
+                arguments: {
+                    command: 'rm -rf ./tmp/generated-cache'
+                }
+            }
+        },
+        createdAt: 6_600
+    });
+
+    const decision = evaluateApprovalPolicy(task);
+
+    assert.equal(decision.required, true);
+    assert.ok(decision.matchedRules.includes('side_effect_intent'));
+});
+
 test('mutating structured action metadata requires approval', () => {
     const task = buildTaskRequest({
         id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
@@ -161,6 +185,49 @@ test('mutating structured action metadata requires approval', () => {
     assert.ok(decision.matchedRules.includes('side_effect_intent'));
 });
 
+test('built-in execution tools require approval at the policy boundary', () => {
+    const task = buildTaskRequest({
+        id: 'dddddddd-dddd-4ddd-8ddd-dddddddddddd',
+        from: 'agent:main',
+        target: 'agent:worker',
+        task: 'Inspect and patch the local workspace',
+        priority: 'normal',
+        context: {
+            toolCall: {
+                type: 'applyPatchTool'
+            }
+        },
+        createdAt: 6_800
+    });
+
+    const decision = evaluateApprovalPolicy(task);
+
+    assert.equal(decision.required, true);
+    assert.ok(decision.matchedRules.includes('guardrail_gap_tool'));
+});
+
+test('handoffs across trust boundaries require approval', () => {
+    const task = buildTaskRequest({
+        id: 'eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee',
+        from: 'agent:main',
+        target: 'agent:partner',
+        task: 'Delegate customer remediation to partner agent',
+        priority: 'normal',
+        context: {
+            handoff: {
+                trustBoundary: 'external',
+                sharesConversationHistory: true
+            }
+        },
+        createdAt: 6_900
+    });
+
+    const decision = evaluateApprovalPolicy(task);
+
+    assert.equal(decision.required, true);
+    assert.ok(decision.matchedRules.includes('handoff_boundary'));
+});
+
 test('side-effect approval can be disabled for compatibility adapters', () => {
     const task = buildTaskRequest({
         id: '77777777-7777-4777-8777-777777777777',
@@ -173,6 +240,28 @@ test('side-effect approval can be disabled for compatibility adapters', () => {
 
     const decision = evaluateApprovalPolicy(task, {
         sideEffectRequiresApproval: false
+    });
+
+    assert.equal(decision.required, false);
+});
+
+test('guardrail-gap approval can be disabled for compatibility adapters', () => {
+    const task = buildTaskRequest({
+        id: 'ffffffff-ffff-4fff-8fff-ffffffffffff',
+        from: 'agent:main',
+        target: 'agent:worker',
+        task: 'Run read-only hosted trace inspection',
+        priority: 'normal',
+        context: {
+            hostedTool: {
+                name: 'hostedMCPTool'
+            }
+        },
+        createdAt: 7_250
+    });
+
+    const decision = evaluateApprovalPolicy(task, {
+        guardrailGapToolRequiresApproval: false
     });
 
     assert.equal(decision.required, false);
