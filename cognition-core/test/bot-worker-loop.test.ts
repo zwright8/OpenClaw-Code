@@ -8,7 +8,10 @@ import {
     FileTaskStore
 } from '../../swarm-protocol/runtime.js';
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
-import { runBotWorkerLoop } from '../src/bot-worker-loop.js';
+import {
+    renderBotWorkerLoopMarkdown,
+    runBotWorkerLoop
+} from '../src/bot-worker-loop.js';
 
 const cwd = path.resolve(process.cwd());
 const REPO_ROOT = path.basename(cwd) === 'cognition-core'
@@ -78,6 +81,9 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.ok(report.totals.resultsAccepted >= 1);
     assert.ok(report.totals.followupTasksSaved >= 1);
     assert.equal(report.finalQueue.open, 0);
+    assert.ok(Array.isArray(report.traceEvents));
+    assert.ok(report.traceEvents.some((event) => event.phase === 'dispatch' && event.dispatched >= 1));
+    assert.ok(report.traceEvents.some((event) => event.phase === 'outbox_process' && event.resultsAccepted >= 1));
 
     const records = await store.loadRecords();
     assert.ok(records.length >= 2);
@@ -106,4 +112,49 @@ test('runBotWorkerLoop stops on idle convergence for empty queue', async (t) => 
     assert.equal(report.totals.dispatched, 0);
     assert.equal(report.totals.resultsAccepted, 0);
     assert.equal(report.finalQueue.total, 0);
+    assert.ok(report.traceEvents.some((event) => event.phase === 'queue_before'));
+    assert.ok(report.traceEvents.some((event) => event.phase === 'queue_after' && event.queueOpen === 0));
+});
+
+test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () => {
+    const markdown = renderBotWorkerLoopMarkdown({
+        stopReason: 'idle_convergence',
+        cyclesRun: 1,
+        maxCycles: 2,
+        totals: {
+            dispatched: 1,
+            resultsAccepted: 1,
+            botTasksFailed: 1,
+            botSkillHardeningBlocked: 1,
+            followupTasksSaved: 0
+        },
+        finalQueue: {
+            open: 1,
+            awaitingApproval: 0
+        },
+        cycles: [
+            {
+                cycle: 1,
+                dispatched: 1,
+                resultsAccepted: 1,
+                followupTasksSaved: 0,
+                queueAfter: { open: 1 },
+                idleStreak: 0
+            }
+        ],
+        traceEvents: [
+            {
+                at: 100,
+                cycle: 1,
+                phase: 'bot_runtime_attention',
+                botTasksFailed: 1,
+                botSkillHardeningBlocked: 1
+            }
+        ]
+    });
+
+    assert.match(markdown, /totals\.botTasksFailed: 1/);
+    assert.match(markdown, /## Trace Events/);
+    assert.match(markdown, /phase=bot_runtime_attention/);
+    assert.match(markdown, /botSkillHardeningBlocked=1/);
 });
