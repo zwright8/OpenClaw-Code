@@ -102,6 +102,108 @@ function normalizeStopReason(reason) {
     return value;
 }
 
+function pushTraceEvent(events, event) {
+    if (!Array.isArray(events) || !event || typeof event !== 'object') return;
+    const at = Number(event.at);
+    events.push({
+        ...event,
+        at: Number.isFinite(at) ? at : Date.now()
+    });
+}
+
+function buildCycleTraceEvents({
+    cycle,
+    startedAt,
+    finishedAt,
+    dispatchResult,
+    processResult,
+    queueBefore,
+    queueAfter,
+    idleStreak
+}) {
+    const events = [];
+    const selected = dispatchResult?.stats?.selected || 0;
+    const dispatched = dispatchResult?.stats?.dispatched || 0;
+    const awaitingApproval = dispatchResult?.stats?.awaitingApproval || 0;
+    const failedDispatch = dispatchResult?.stats?.failed || 0;
+    const resultsAccepted = processResult?.resultsAccepted || 0;
+    const botTasksExecuted = processResult?.botTasksExecuted || 0;
+    const botTasksFailed = processResult?.botTasksFailed || 0;
+    const hardeningBlocked = processResult?.botSkillHardeningBlocked || 0;
+    const followupTasksSaved = processResult?.followupTasksSaved || 0;
+    const filesFound = processResult?.filesFound || 0;
+    const filesArchived = processResult?.filesArchived || 0;
+
+    pushTraceEvent(events, {
+        at: startedAt,
+        cycle,
+        phase: 'queue_before',
+        queueOpen: queueBefore?.open || 0,
+        queueCreated: queueBefore?.created || 0,
+        queueDispatched: queueBefore?.dispatched || 0,
+        queueAwaitingApproval: queueBefore?.awaitingApproval || 0
+    });
+
+    pushTraceEvent(events, {
+        at: startedAt,
+        cycle,
+        phase: 'dispatch',
+        selected,
+        dispatched,
+        awaitingApproval,
+        failedDispatch,
+        skippedNonCognition: dispatchResult?.stats?.skippedNonCognition || 0
+    });
+
+    pushTraceEvent(events, {
+        at: finishedAt,
+        cycle,
+        phase: 'outbox_process',
+        filesFound,
+        filesArchived,
+        resultsAccepted,
+        botTasksExecuted,
+        botTasksFailed,
+        botSkillHardeningBlocked: hardeningBlocked,
+        followupTasksSaved
+    });
+
+    if (failedDispatch > 0) {
+        pushTraceEvent(events, {
+            at: finishedAt,
+            cycle,
+            phase: 'dispatch_failure',
+            failedDispatch,
+            failures: Array.isArray(dispatchResult?.failed)
+                ? dispatchResult.failed.slice(0, 5)
+                : []
+        });
+    }
+
+    if (botTasksFailed > 0 || hardeningBlocked > 0) {
+        pushTraceEvent(events, {
+            at: finishedAt,
+            cycle,
+            phase: 'bot_runtime_attention',
+            botTasksFailed,
+            botSkillHardeningBlocked: hardeningBlocked
+        });
+    }
+
+    pushTraceEvent(events, {
+        at: finishedAt,
+        cycle,
+        phase: 'queue_after',
+        queueOpen: queueAfter?.open || 0,
+        queueCreated: queueAfter?.created || 0,
+        queueDispatched: queueAfter?.dispatched || 0,
+        queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
+        idleStreak
+    });
+
+    return events;
+}
+
 export function renderBotWorkerLoopMarkdown(report) {
     if (!report || typeof report !== 'object') {
         return '# Bot Worker Loop\n\nNo report available.';
@@ -115,6 +217,8 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- maxCycles: ${report.maxCycles}`,
         `- totals.dispatched: ${report.totals?.dispatched || 0}`,
         `- totals.resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
+        `- totals.botTasksFailed: ${report.totals?.botTasksFailed || 0}`,
+        `- totals.botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
         `- totals.followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
@@ -131,6 +235,25 @@ export function renderBotWorkerLoopMarkdown(report) {
             lines.push(
                 `- cycle ${cycle.cycle}: dispatched=${cycle.dispatched} results=${cycle.resultsAccepted} followupsSaved=${cycle.followupTasksSaved} queueOpen=${cycle.queueAfter?.open || 0} idleStreak=${cycle.idleStreak}`
             );
+        }
+    }
+
+    const events = Array.isArray(report.traceEvents) ? report.traceEvents : [];
+    lines.push('', '## Trace Events', '');
+    if (events.length === 0) {
+        lines.push('- none');
+    } else {
+        for (const event of events) {
+            const fields = [];
+            for (const [key, value] of Object.entries(event)) {
+                if (key === 'at' || key === 'cycle' || key === 'phase') continue;
+                if (value === undefined || value === null) continue;
+                if (Array.isArray(value) && value.length === 0) continue;
+                fields.push(`${key}=${Array.isArray(value) || typeof value === 'object'
+                    ? JSON.stringify(value)
+                    : value}`);
+            }
+            lines.push(`- ${event.at} cycle=${event.cycle} phase=${event.phase}${fields.length > 0 ? ` ${fields.join(' ')}` : ''}`);
         }
     }
 
@@ -193,6 +316,7 @@ export async function runBotWorkerLoop({
 
     let idleStreak = 0;
     let stopReason = 'max_cycles_reached';
+    const traceEvents = [];
 
     for (let cycleIndex = 1; cycleIndex <= normalizedMaxCycles; cycleIndex++) {
         const cycleStartedAt = safeNow(now);
@@ -277,6 +401,16 @@ export async function runBotWorkerLoop({
             idleStreak
         };
         cycles.push(cycleSnapshot);
+        traceEvents.push(...buildCycleTraceEvents({
+            cycle: cycleIndex,
+            startedAt: cycleStartedAt,
+            finishedAt: cycleFinishedAt,
+            dispatchResult,
+            processResult,
+            queueBefore,
+            queueAfter,
+            idleStreak
+        }));
 
         totals.dispatched += dispatchResult.stats.dispatched;
         totals.awaitingApproval += dispatchResult.stats.awaitingApproval;
@@ -324,7 +458,8 @@ export async function runBotWorkerLoop({
         botRuntime,
         totals,
         finalQueue,
-        cycles
+        cycles,
+        traceEvents
     };
 }
 
