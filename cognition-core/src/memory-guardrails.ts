@@ -14,7 +14,23 @@ const DEFAULT_MINIMAL_SECTIONS = [
     'Action Items'
 ];
 
+const DEFAULT_PROVENANCE_SECTIONS = [
+    'Evidence',
+    'Sources',
+    'References',
+    'Trace',
+    'Provenance'
+];
+
 const ERROR_SIGNAL_REGEX = /\b(error|failed|failure|incident|regression|timeout|bug)\b/i;
+const URL_REGEX = /\bhttps?:\/\/[^\s<>)\]]+/gi;
+const INSTRUCTION_INJECTION_REGEXES = [
+    /\b(ignore|disregard|override)\s+(all\s+)?(previous|prior|earlier)\s+(instructions|directives|messages)\b/i,
+    /\b(reveal|print|dump|exfiltrate)\s+(the\s+)?(system|developer)\s+(prompt|message|instructions?)\b/i,
+    /\bact\s+as\s+(system|developer|root|admin)\b/i,
+    /\bdo\s+not\s+(tell|mention|disclose)\s+(the\s+)?(user|operator)\b/i,
+    /\bexecute\s+this\s+(command|script)\s+without\s+(asking|approval|confirmation)\b/i
+];
 
 function round(value, decimals = 4) {
     if (!Number.isFinite(value)) return value;
@@ -48,6 +64,23 @@ function sectionPresent(headings, section) {
     return headings.some((heading) => heading === target || heading.includes(target));
 }
 
+function provenanceSectionPresent(headings, section) {
+    const target = normalizeHeadingLabel(section);
+    return headings.some((heading) => heading === target || heading.startsWith(`${target} `));
+}
+
+function extractExternalLinks(content) {
+    if (typeof content !== 'string' || !content.trim()) return [];
+    return Array.from(new Set(content.match(URL_REGEX) || []));
+}
+
+function findInstructionSignals(content) {
+    if (typeof content !== 'string' || !content.trim()) return [];
+    return INSTRUCTION_INJECTION_REGEXES
+        .filter((regex) => regex.test(content))
+        .map((regex) => regex.source);
+}
+
 function listMarkdownFiles(root, output = []) {
     if (!fs.existsSync(root)) return output;
     const items = fs.readdirSync(root);
@@ -71,11 +104,16 @@ function evaluateEntryCompliance(
     requiredSections = DEFAULT_REQUIRED_SECTIONS,
     {
         minimalSections = DEFAULT_MINIMAL_SECTIONS,
-        enforceAllSections = false
+        enforceAllSections = false,
+        provenanceSections = DEFAULT_PROVENANCE_SECTIONS
     } = {}
 ) {
     const headings = extractHeadings(content);
     const hasErrorSignal = ERROR_SIGNAL_REGEX.test(content || '');
+    const externalLinks = extractExternalLinks(content);
+    const hasProvenanceSection = provenanceSections.some((section) => provenanceSectionPresent(headings, section));
+    const instructionSignals = findInstructionSignals(content);
+    const unprovenancedExternalLinks = externalLinks.length > 0 && !hasProvenanceSection;
     const applicableSections = hasErrorSignal || enforceAllSections
         ? requiredSections
         : minimalSections;
@@ -97,7 +135,12 @@ function evaluateEntryCompliance(
         headings,
         applicableSections,
         missingSections,
-        hasErrorSignal
+        hasErrorSignal,
+        externalLinks,
+        hasProvenanceSection,
+        unprovenancedExternalLinks,
+        instructionSignals,
+        hasInstructionRisk: instructionSignals.length > 0
     };
 }
 
@@ -106,6 +149,7 @@ export function scanMemoryGuardrails(
     {
         requiredSections = DEFAULT_REQUIRED_SECTIONS,
         minimalSections = DEFAULT_MINIMAL_SECTIONS,
+        provenanceSections = DEFAULT_PROVENANCE_SECTIONS,
         enforceAllSections = false,
         rangeStartMs = null,
         rangeEndMs = null,
@@ -136,7 +180,8 @@ export function scanMemoryGuardrails(
         const content = fs.readFileSync(file.filePath, 'utf8');
         const compliance = evaluateEntryCompliance(content, requiredSections, {
             minimalSections,
-            enforceAllSections
+            enforceAllSections,
+            provenanceSections
         });
         if (compliance.status === 'pass') compliant++;
         if (compliance.hasErrorSignal) withErrorSignals++;
@@ -163,6 +208,9 @@ export function scanMemoryGuardrails(
     const incidentComplianceRate = incidentEntries.length > 0
         ? round(incidentCompliant / incidentEntries.length, 4)
         : 1;
+    const entriesWithInstructionRisk = entries.filter((entry) => entry.hasInstructionRisk).length;
+    const entriesWithUnprovenancedExternalLinks = entries.filter((entry) => entry.unprovenancedExternalLinks).length;
+    const externalLinks = entries.reduce((acc, entry) => acc + entry.externalLinks.length, 0);
 
     let status = 'pass';
     if (incidentEntries.length > 0) {
@@ -170,6 +218,9 @@ export function scanMemoryGuardrails(
         else if (incidentComplianceRate < 0.8 || complianceRate < 0.8) status = 'warn';
     } else {
         if (complianceRate < 0.3) status = 'warn';
+    }
+    if (status === 'pass' && (entriesWithInstructionRisk > 0 || entriesWithUnprovenancedExternalLinks > 0)) {
+        status = 'warn';
     }
 
     const insights = [];
@@ -186,11 +237,23 @@ export function scanMemoryGuardrails(
     if (mostMissing && mostMissing[1] > 0) {
         insights.push(`Most-missed section: "${mostMissing[0]}" (${mostMissing[1]} entries).`);
     }
+    if (entriesWithInstructionRisk > 0) {
+        insights.push(`${entriesWithInstructionRisk} memory entries contain instruction-like text that should not be trusted without review.`);
+    }
+    if (entriesWithUnprovenancedExternalLinks > 0) {
+        insights.push(`${entriesWithUnprovenancedExternalLinks} memory entries cite external links without a provenance/source heading.`);
+    }
 
     const recommendedActions = [];
     if (status !== 'pass') {
         recommendedActions.push('Enforce the memory reflection template for all new entries.');
         recommendedActions.push('Backfill missing required sections in the most recent non-compliant entries.');
+        if (entriesWithInstructionRisk > 0) {
+            recommendedActions.push('Quarantine or rewrite instruction-like memory text before it is rehydrated into agent context.');
+        }
+        if (entriesWithUnprovenancedExternalLinks > 0) {
+            recommendedActions.push('Add Evidence, Sources, References, Trace, or Provenance sections for externally sourced memory claims.');
+        }
     } else {
         recommendedActions.push('Continue enforcing section coverage and monitor weekly compliance.');
     }
@@ -200,12 +263,16 @@ export function scanMemoryGuardrails(
         memoryRoot,
         requiredSections,
         minimalSections,
+        provenanceSections,
         enforceAllSections,
         status,
         totals: {
             entries: total,
             compliant,
             withErrorSignals,
+            externalLinks,
+            entriesWithInstructionRisk,
+            entriesWithUnprovenancedExternalLinks,
             complianceRate,
             averageScore,
             incidentEntries: incidentEntries.length,
@@ -217,6 +284,14 @@ export function scanMemoryGuardrails(
         topNonCompliant: entries
             .filter((entry) => entry.status !== 'pass')
             .sort((a, b) => b.missingSections.length - a.missingSections.length)
+            .slice(0, 10),
+        topRisky: entries
+            .filter((entry) => entry.hasInstructionRisk || entry.unprovenancedExternalLinks)
+            .sort((a, b) => {
+                const left = (a.hasInstructionRisk ? 2 : 0) + (a.unprovenancedExternalLinks ? 1 : 0);
+                const right = (b.hasInstructionRisk ? 2 : 0) + (b.unprovenancedExternalLinks ? 1 : 0);
+                return right - left;
+            })
             .slice(0, 10),
         entries
     };

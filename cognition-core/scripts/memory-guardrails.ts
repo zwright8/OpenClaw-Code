@@ -127,6 +127,8 @@ function formatMarkdown(report) {
     lines.push(`Status: **${report.status}**`);
     lines.push(`Compliance rate: ${(report.totals.complianceRate * 100).toFixed(2)}%`);
     lines.push(`Average score: ${report.totals.averageScore}`);
+    lines.push(`Instruction-risk entries: ${report.totals.entriesWithInstructionRisk || 0}`);
+    lines.push(`Unprovenanced external-link entries: ${report.totals.entriesWithUnprovenancedExternalLinks || 0}`);
     lines.push('');
     lines.push('## Missing Sections');
     lines.push('');
@@ -145,6 +147,17 @@ function formatMarkdown(report) {
     }
     if ((report.topNonCompliant || []).length === 0) {
         lines.push('| (none) | pass | - |');
+    }
+    lines.push('');
+    lines.push('## Risky Entries');
+    lines.push('');
+    lines.push('| Entry | Instruction Risk | Unprovenanced Links | Link Count |');
+    lines.push('| --- | --- | --- | ---: |');
+    for (const entry of report.topRisky || []) {
+        lines.push(`| ${entry.relativePath} | ${entry.hasInstructionRisk ? 'yes' : 'no'} | ${entry.unprovenancedExternalLinks ? 'yes' : 'no'} | ${(entry.externalLinks || []).length} |`);
+    }
+    if ((report.topRisky || []).length === 0) {
+        lines.push('| (none) | no | no | 0 |');
     }
     lines.push('');
     lines.push('## Insights');
