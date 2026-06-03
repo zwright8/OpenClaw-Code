@@ -84,6 +84,10 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.ok(Array.isArray(report.traceEvents));
     assert.ok(report.traceEvents.some((event) => event.phase === 'dispatch' && event.dispatched >= 1));
     assert.ok(report.traceEvents.some((event) => event.phase === 'outbox_process' && event.resultsAccepted >= 1));
+    assert.equal(report.lifecycleCheckpoint.schemaVersion, 'bot-worker-loop.lifecycle.v1');
+    assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
+    assert.equal(report.lifecycleCheckpoint.resumeRecommended, false);
+    assert.ok(report.traceEvents.some((event) => event.phase === 'lifecycle_checkpoint' && event.nextAction === 'no_resume_needed'));
 
     const records = await store.loadRecords();
     assert.ok(records.length >= 2);
@@ -114,6 +118,58 @@ test('runBotWorkerLoop stops on idle convergence for empty queue', async (t) => 
     assert.equal(report.finalQueue.total, 0);
     assert.ok(report.traceEvents.some((event) => event.phase === 'queue_before'));
     assert.ok(report.traceEvents.some((event) => event.phase === 'queue_after' && event.queueOpen === 0));
+    assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
+});
+
+test('runBotWorkerLoop checkpoint recommends approval review when only approvals remain', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const request = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000972',
+        from: 'agent:main',
+        target: 'agent:openclaw-bot',
+        priority: 'high',
+        task: 'Review operator-sensitive deployment',
+        context: {
+            approvalsRequired: ['manual_operator_review']
+        },
+        createdAt: 60_000
+    });
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 60_500 });
+    await store.saveRecord({
+        ...buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/cognition-iteration-tasks.json',
+            nowFactory: () => 60_600
+        }),
+        status: 'awaiting_approval',
+        approval: {
+            required: true,
+            reason: 'manual_operator_review'
+        }
+    });
+
+    const report = await runBotWorkerLoop({
+        storePath: queuePath,
+        outboxDir,
+        maxCycles: 4,
+        idleCyclesToStop: 1,
+        dispatchLimit: 10,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT
+    });
+
+    assert.equal(report.stopReason, 'awaiting_approval_only');
+    assert.equal(report.lifecycleCheckpoint.nextAction, 'review_pending_approvals');
+    assert.equal(report.lifecycleCheckpoint.resumeRecommended, true);
+    assert.deepEqual(report.lifecycleCheckpoint.attentionReasons, ['pending_approval']);
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'lifecycle_checkpoint'
+        && event.nextAction === 'review_pending_approvals'
+        && event.resumeRecommended === true
+    )));
 });
 
 test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () => {
@@ -154,6 +210,9 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     });
 
     assert.match(markdown, /totals\.botTasksFailed: 1/);
+    assert.match(markdown, /## Lifecycle Checkpoint/);
+    assert.match(markdown, /nextAction: refresh_skill_hardening_inputs/);
+    assert.match(markdown, /attentionReasons: bot_task_failures, skill_hardening_blocks/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
     assert.match(markdown, /botSkillHardeningBlocked=1/);
