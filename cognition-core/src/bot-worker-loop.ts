@@ -204,6 +204,73 @@ function buildCycleTraceEvents({
     return events;
 }
 
+function buildLifecycleCheckpoint({
+    stopReason,
+    cycles,
+    totals,
+    finalQueue
+}) {
+    const normalizedStopReason = normalizeStopReason(stopReason);
+    const cycleList = Array.isArray(cycles) ? cycles : [];
+    const lastCycle = cycleList.length > 0 ? cycleList[cycleList.length - 1] : null;
+    const queue = finalQueue && typeof finalQueue === 'object' ? finalQueue : {};
+    const totalValues = totals && typeof totals === 'object' ? totals : {};
+    const attentionReasons = [];
+
+    if ((queue.awaitingApproval || 0) > 0) attentionReasons.push('pending_approval');
+    if ((queue.created || 0) > 0) attentionReasons.push('pending_created_tasks');
+    if ((queue.dispatched || 0) > 0) attentionReasons.push('pending_dispatched_tasks');
+    if ((totalValues.botTasksFailed || 0) > 0) attentionReasons.push('bot_task_failures');
+    if ((totalValues.botSkillHardeningBlocked || 0) > 0) attentionReasons.push('skill_hardening_blocks');
+    if (normalizedStopReason === 'max_cycles_reached') attentionReasons.push('cycle_budget_exhausted');
+
+    let nextAction = 'rerun_when_new_work_arrives';
+    if (normalizedStopReason === 'queue_drained' && (queue.open || 0) === 0) {
+        nextAction = 'no_resume_needed';
+    } else if ((queue.awaitingApproval || 0) > 0 && (queue.open || 0) === (queue.awaitingApproval || 0)) {
+        nextAction = 'review_pending_approvals';
+    } else if ((queue.created || 0) > 0) {
+        nextAction = 'rerun_dispatcher';
+    } else if ((queue.dispatched || 0) > 0) {
+        nextAction = 'process_outbox_results';
+    } else if ((totalValues.botSkillHardeningBlocked || 0) > 0) {
+        nextAction = 'refresh_skill_hardening_inputs';
+    } else if ((totalValues.botTasksFailed || 0) > 0) {
+        nextAction = 'review_bot_runtime_failures';
+    } else if (normalizedStopReason === 'max_cycles_reached') {
+        nextAction = 'increase_cycle_budget_or_rerun';
+    }
+
+    return {
+        schemaVersion: 'bot-worker-loop.lifecycle.v1',
+        stopReason: normalizedStopReason,
+        cyclesRun: cycleList.length,
+        lastCycle: lastCycle
+            ? {
+                cycle: lastCycle.cycle,
+                startedAt: lastCycle.startedAt,
+                finishedAt: lastCycle.finishedAt,
+                durationMs: lastCycle.durationMs,
+                idleStreak: lastCycle.idleStreak
+            }
+            : null,
+        queue: {
+            open: queue.open || 0,
+            created: queue.created || 0,
+            dispatched: queue.dispatched || 0,
+            awaitingApproval: queue.awaitingApproval || 0
+        },
+        runtimeAttention: {
+            botTasksFailed: totalValues.botTasksFailed || 0,
+            botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
+            dispatchFailures: cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0)
+        },
+        attentionReasons,
+        resumeRecommended: nextAction !== 'no_resume_needed' && nextAction !== 'rerun_when_new_work_arrives',
+        nextAction
+    };
+}
+
 export function renderBotWorkerLoopMarkdown(report) {
     if (!report || typeof report !== 'object') {
         return '# Bot Worker Loop\n\nNo report available.';
@@ -223,9 +290,30 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
         '',
-        '## Cycles',
+        '## Lifecycle Checkpoint',
         ''
     ];
+
+    const lifecycleCheckpoint = report.lifecycleCheckpoint && typeof report.lifecycleCheckpoint === 'object'
+        ? report.lifecycleCheckpoint
+        : buildLifecycleCheckpoint({
+            stopReason: report.stopReason,
+            cycles: report.cycles,
+            totals: report.totals,
+            finalQueue: report.finalQueue
+        });
+
+    lines.push(
+        `- schemaVersion: ${lifecycleCheckpoint.schemaVersion}`,
+        `- nextAction: ${lifecycleCheckpoint.nextAction}`,
+        `- resumeRecommended: ${lifecycleCheckpoint.resumeRecommended}`,
+        `- attentionReasons: ${lifecycleCheckpoint.attentionReasons.length > 0 ? lifecycleCheckpoint.attentionReasons.join(', ') : 'none'}`,
+        `- queue.open: ${lifecycleCheckpoint.queue.open}`,
+        `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
+        '',
+        '## Cycles',
+        ''
+    );
 
     const cycles = Array.isArray(report.cycles) ? report.cycles : [];
     if (cycles.length === 0) {
@@ -448,6 +536,23 @@ export async function runBotWorkerLoop({
         storePath: resolvedStorePath,
         nowFactory: now
     });
+    const lifecycleCheckpoint = buildLifecycleCheckpoint({
+        stopReason,
+        cycles,
+        totals,
+        finalQueue
+    });
+    pushTraceEvent(traceEvents, {
+        at: safeNow(now),
+        cycle: cycles.length,
+        phase: 'lifecycle_checkpoint',
+        stopReason: lifecycleCheckpoint.stopReason,
+        nextAction: lifecycleCheckpoint.nextAction,
+        resumeRecommended: lifecycleCheckpoint.resumeRecommended,
+        attentionReasons: lifecycleCheckpoint.attentionReasons,
+        queueOpen: lifecycleCheckpoint.queue.open,
+        queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
+    });
 
     return {
         stopReason: normalizeStopReason(stopReason),
@@ -459,6 +564,7 @@ export async function runBotWorkerLoop({
         totals,
         finalQueue,
         cycles,
+        lifecycleCheckpoint,
         traceEvents
     };
 }
