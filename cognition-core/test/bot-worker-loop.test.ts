@@ -84,10 +84,23 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.ok(Array.isArray(report.traceEvents));
     assert.ok(report.traceEvents.some((event) => event.phase === 'dispatch' && event.dispatched >= 1));
     assert.ok(report.traceEvents.some((event) => event.phase === 'outbox_process' && event.resultsAccepted >= 1));
+    assert.ok(report.traceId.startsWith('bot-worker-loop:'));
+    const dispatchTrace = report.traceEvents.find((event) => event.phase === 'dispatch');
+    assert.equal(dispatchTrace.schemaVersion, 'bot-worker-loop.trace.v2');
+    assert.equal(dispatchTrace.traceId, report.traceId);
+    assert.equal(dispatchTrace.parentSpanId, `${report.traceId.replace(/[^a-z0-9_./:-]+/g, '_')}.root`);
+    assert.equal(dispatchTrace.name, 'bot_worker_loop.dispatch');
+    assert.equal(dispatchTrace.kind, 'tool');
+    assert.equal(dispatchTrace.attributes['gen_ai.operation.name'], 'execute_tool');
+    assert.equal(dispatchTrace.attributes['openclaw.workflow.phase'], 'dispatch');
     assert.equal(report.lifecycleCheckpoint.schemaVersion, 'bot-worker-loop.lifecycle.v1');
     assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, false);
-    assert.ok(report.traceEvents.some((event) => event.phase === 'lifecycle_checkpoint' && event.nextAction === 'no_resume_needed'));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'lifecycle_checkpoint'
+        && event.nextAction === 'no_resume_needed'
+        && event.attributes['gen_ai.operation.name'] === 'invoke_workflow'
+    )));
 
     const records = await store.loadRecords();
     assert.ok(records.length >= 2);
@@ -203,6 +216,21 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 at: 100,
                 cycle: 1,
                 phase: 'bot_runtime_attention',
+                schemaVersion: 'bot-worker-loop.trace.v2',
+                traceId: 'bot-worker-loop:100',
+                spanId: 'bot-worker-loop:100.1.bot_runtime_attention',
+                parentSpanId: 'bot-worker-loop:100.root',
+                name: 'bot_worker_loop.bot_runtime_attention',
+                kind: 'guardrail',
+                spanKind: 'INTERNAL',
+                semconv: 'otel.gen_ai.experimental',
+                attributes: {
+                    'gen_ai.operation.name': 'invoke_workflow',
+                    'gen_ai.agent.name': 'openclaw-bot-worker-loop',
+                    'openclaw.workflow.name': 'bot_worker_loop',
+                    'openclaw.workflow.phase': 'bot_runtime_attention',
+                    'openclaw.workflow.cycle': 1
+                },
                 botTasksFailed: 1,
                 botSkillHardeningBlocked: 1
             }
@@ -215,5 +243,7 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /attentionReasons: bot_task_failures, skill_hardening_blocks/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
+    assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);
+    assert.match(markdown, /kind=guardrail/);
     assert.match(markdown, /botSkillHardeningBlocked=1/);
 });
