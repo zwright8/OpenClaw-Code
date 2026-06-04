@@ -13,6 +13,9 @@ const TERMINAL_STATUSES = new Set([
     'transport_error'
 ]);
 
+const TRACE_SCHEMA_VERSION = 'bot-worker-loop.trace.v2';
+const TRACE_SEMCONV = 'otel.gen_ai.experimental';
+
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
     return Number.isFinite(value) ? value : Date.now();
@@ -102,11 +105,60 @@ function normalizeStopReason(reason) {
     return value;
 }
 
-function pushTraceEvent(events, event) {
+function normalizeTraceToken(value) {
+    const normalized = typeof value === 'string' ? value.trim().toLowerCase() : '';
+    return normalized.replace(/[^a-z0-9_./:-]+/g, '_').replace(/^_+|_+$/g, '') || 'unknown';
+}
+
+function buildTraceSpanId(traceId, phase, cycle = 0) {
+    return `${normalizeTraceToken(traceId)}.${parseNonNegativeInt(cycle, 0)}.${normalizeTraceToken(phase)}`;
+}
+
+function getTraceOperationName(phase) {
+    if (phase === 'dispatch' || phase === 'outbox_process') return 'execute_tool';
+    return 'invoke_workflow';
+}
+
+function getTraceKind(phase) {
+    if (phase === 'dispatch' || phase === 'outbox_process') return 'tool';
+    if (phase === 'bot_runtime_attention' || phase === 'dispatch_failure') return 'guardrail';
+    return 'workflow';
+}
+
+function enrichTraceEvent(event, traceContext = {}) {
+    const phase = normalizeTraceToken(event?.phase);
+    const cycle = parseNonNegativeInt(event?.cycle, 0);
+    const traceId = normalizeTraceToken(traceContext.traceId || event?.traceId || 'bot-worker-loop');
+    const parentSpanId = traceContext.parentSpanId || event?.parentSpanId || `${traceId}.root`;
+    const operationName = getTraceOperationName(phase);
+    const eventName = `bot_worker_loop.${phase}`;
+    const spanName = `${operationName} ${eventName}`;
+
+    return {
+        schemaVersion: TRACE_SCHEMA_VERSION,
+        traceId,
+        spanId: event?.spanId || buildTraceSpanId(traceId, phase, cycle),
+        parentSpanId,
+        name: event?.name || eventName,
+        kind: event?.kind || getTraceKind(phase),
+        spanKind: event?.spanKind || 'INTERNAL',
+        semconv: TRACE_SEMCONV,
+        attributes: {
+            'gen_ai.operation.name': operationName,
+            'gen_ai.agent.name': 'openclaw-bot-worker-loop',
+            'openclaw.workflow.name': 'bot_worker_loop',
+            'openclaw.workflow.phase': phase,
+            ...(cycle > 0 ? { 'openclaw.workflow.cycle': cycle } : {})
+        },
+        ...event
+    };
+}
+
+function pushTraceEvent(events, event, traceContext = {}) {
     if (!Array.isArray(events) || !event || typeof event !== 'object') return;
     const at = Number(event.at);
     events.push({
-        ...event,
+        ...enrichTraceEvent(event, traceContext),
         at: Number.isFinite(at) ? at : Date.now()
     });
 }
@@ -119,7 +171,8 @@ function buildCycleTraceEvents({
     processResult,
     queueBefore,
     queueAfter,
-    idleStreak
+    idleStreak,
+    traceContext
 }) {
     const events = [];
     const selected = dispatchResult?.stats?.selected || 0;
@@ -142,7 +195,7 @@ function buildCycleTraceEvents({
         queueCreated: queueBefore?.created || 0,
         queueDispatched: queueBefore?.dispatched || 0,
         queueAwaitingApproval: queueBefore?.awaitingApproval || 0
-    });
+    }, traceContext);
 
     pushTraceEvent(events, {
         at: startedAt,
@@ -153,7 +206,7 @@ function buildCycleTraceEvents({
         awaitingApproval,
         failedDispatch,
         skippedNonCognition: dispatchResult?.stats?.skippedNonCognition || 0
-    });
+    }, traceContext);
 
     pushTraceEvent(events, {
         at: finishedAt,
@@ -166,7 +219,7 @@ function buildCycleTraceEvents({
         botTasksFailed,
         botSkillHardeningBlocked: hardeningBlocked,
         followupTasksSaved
-    });
+    }, traceContext);
 
     if (failedDispatch > 0) {
         pushTraceEvent(events, {
@@ -177,7 +230,7 @@ function buildCycleTraceEvents({
             failures: Array.isArray(dispatchResult?.failed)
                 ? dispatchResult.failed.slice(0, 5)
                 : []
-        });
+        }, traceContext);
     }
 
     if (botTasksFailed > 0 || hardeningBlocked > 0) {
@@ -187,7 +240,7 @@ function buildCycleTraceEvents({
             phase: 'bot_runtime_attention',
             botTasksFailed,
             botSkillHardeningBlocked: hardeningBlocked
-        });
+        }, traceContext);
     }
 
     pushTraceEvent(events, {
@@ -199,7 +252,7 @@ function buildCycleTraceEvents({
         queueDispatched: queueAfter?.dispatched || 0,
         queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
         idleStreak
-    });
+    }, traceContext);
 
     return events;
 }
@@ -405,6 +458,9 @@ export async function runBotWorkerLoop({
     let idleStreak = 0;
     let stopReason = 'max_cycles_reached';
     const traceEvents = [];
+    const runStartedAt = safeNow(now);
+    const traceId = `bot-worker-loop:${runStartedAt}`;
+    const rootSpanId = `${normalizeTraceToken(traceId)}.root`;
 
     for (let cycleIndex = 1; cycleIndex <= normalizedMaxCycles; cycleIndex++) {
         const cycleStartedAt = safeNow(now);
@@ -497,7 +553,11 @@ export async function runBotWorkerLoop({
             processResult,
             queueBefore,
             queueAfter,
-            idleStreak
+            idleStreak,
+            traceContext: {
+                traceId,
+                parentSpanId: rootSpanId
+            }
         }));
 
         totals.dispatched += dispatchResult.stats.dispatched;
@@ -552,9 +612,13 @@ export async function runBotWorkerLoop({
         attentionReasons: lifecycleCheckpoint.attentionReasons,
         queueOpen: lifecycleCheckpoint.queue.open,
         queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
+    }, {
+        traceId,
+        parentSpanId: rootSpanId
     });
 
     return {
+        traceId,
         stopReason: normalizeStopReason(stopReason),
         cyclesRun: cycles.length,
         maxCycles: normalizedMaxCycles,
