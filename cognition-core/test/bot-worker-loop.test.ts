@@ -96,9 +96,13 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.equal(report.lifecycleCheckpoint.schemaVersion, 'bot-worker-loop.lifecycle.v1');
     assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, false);
+    assert.match(report.lifecycleCheckpoint.resumeKey, /^no_resume_needed:[a-f0-9]{16}$/);
+    assert.match(report.lifecycleCheckpoint.stateFingerprint, /^[a-f0-9]{16}$/);
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'lifecycle_checkpoint'
         && event.nextAction === 'no_resume_needed'
+        && event.resumeKey === report.lifecycleCheckpoint.resumeKey
+        && event.stateFingerprint === report.lifecycleCheckpoint.stateFingerprint
         && event.attributes['gen_ai.operation.name'] === 'invoke_workflow'
     )));
 
@@ -177,11 +181,13 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
     assert.equal(report.stopReason, 'awaiting_approval_only');
     assert.equal(report.lifecycleCheckpoint.nextAction, 'review_pending_approvals');
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, true);
+    assert.match(report.lifecycleCheckpoint.resumeKey, /^review_pending_approvals:[a-f0-9]{16}$/);
     assert.deepEqual(report.lifecycleCheckpoint.attentionReasons, ['pending_approval']);
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'lifecycle_checkpoint'
         && event.nextAction === 'review_pending_approvals'
         && event.resumeRecommended === true
+        && event.resumeKey === report.lifecycleCheckpoint.resumeKey
     )));
 });
 
@@ -240,6 +246,8 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /totals\.botTasksFailed: 1/);
     assert.match(markdown, /## Lifecycle Checkpoint/);
     assert.match(markdown, /nextAction: refresh_skill_hardening_inputs/);
+    assert.match(markdown, /resumeKey: refresh_skill_hardening_inputs:[a-f0-9]{16}/);
+    assert.match(markdown, /stateFingerprint: [a-f0-9]{16}/);
     assert.match(markdown, /attentionReasons: bot_task_failures, skill_hardening_blocks/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);

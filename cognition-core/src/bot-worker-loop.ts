@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { createHash } from 'crypto';
 import { FileTaskStore } from '../../swarm-protocol/runtime.js';
 import { dispatchCreatedQueueTasks } from './queue-dispatcher.js';
 import { processOutboxEnvelopes } from './outbox-processor.js';
@@ -108,6 +109,25 @@ function normalizeStopReason(reason) {
 function normalizeTraceToken(value) {
     const normalized = typeof value === 'string' ? value.trim().toLowerCase() : '';
     return normalized.replace(/[^a-z0-9_./:-]+/g, '_').replace(/^_+|_+$/g, '') || 'unknown';
+}
+
+function stableStringify(value) {
+    if (Array.isArray(value)) {
+        return `[${value.map((item) => stableStringify(item)).join(',')}]`;
+    }
+    if (value && typeof value === 'object') {
+        return `{${Object.keys(value).sort().map((key) => (
+            `${JSON.stringify(key)}:${stableStringify(value[key])}`
+        )).join(',')}}`;
+    }
+    return JSON.stringify(value);
+}
+
+function buildStableHash(value) {
+    return createHash('sha256')
+        .update(stableStringify(value))
+        .digest('hex')
+        .slice(0, 16);
 }
 
 function buildTraceSpanId(traceId, phase, cycle = 0) {
@@ -294,19 +314,10 @@ function buildLifecycleCheckpoint({
         nextAction = 'increase_cycle_budget_or_rerun';
     }
 
-    return {
-        schemaVersion: 'bot-worker-loop.lifecycle.v1',
+    const resumeState = {
         stopReason: normalizedStopReason,
-        cyclesRun: cycleList.length,
-        lastCycle: lastCycle
-            ? {
-                cycle: lastCycle.cycle,
-                startedAt: lastCycle.startedAt,
-                finishedAt: lastCycle.finishedAt,
-                durationMs: lastCycle.durationMs,
-                idleStreak: lastCycle.idleStreak
-            }
-            : null,
+        nextAction,
+        attentionReasons,
         queue: {
             open: queue.open || 0,
             created: queue.created || 0,
@@ -317,6 +328,31 @@ function buildLifecycleCheckpoint({
             botTasksFailed: totalValues.botTasksFailed || 0,
             botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
             dispatchFailures: cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0)
+        }
+    };
+    const stateFingerprint = buildStableHash(resumeState);
+    const resumeKey = `${normalizeTraceToken(nextAction)}:${stateFingerprint}`;
+
+    return {
+        schemaVersion: 'bot-worker-loop.lifecycle.v1',
+        stopReason: normalizedStopReason,
+        cyclesRun: cycleList.length,
+        resumeKey,
+        stateFingerprint,
+        lastCycle: lastCycle
+            ? {
+                cycle: lastCycle.cycle,
+                startedAt: lastCycle.startedAt,
+                finishedAt: lastCycle.finishedAt,
+                durationMs: lastCycle.durationMs,
+                idleStreak: lastCycle.idleStreak
+            }
+            : null,
+        queue: {
+            ...resumeState.queue
+        },
+        runtimeAttention: {
+            ...resumeState.runtimeAttention
         },
         attentionReasons,
         resumeRecommended: nextAction !== 'no_resume_needed' && nextAction !== 'rerun_when_new_work_arrives',
@@ -360,6 +396,8 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- schemaVersion: ${lifecycleCheckpoint.schemaVersion}`,
         `- nextAction: ${lifecycleCheckpoint.nextAction}`,
         `- resumeRecommended: ${lifecycleCheckpoint.resumeRecommended}`,
+        `- resumeKey: ${lifecycleCheckpoint.resumeKey || 'unavailable'}`,
+        `- stateFingerprint: ${lifecycleCheckpoint.stateFingerprint || 'unavailable'}`,
         `- attentionReasons: ${lifecycleCheckpoint.attentionReasons.length > 0 ? lifecycleCheckpoint.attentionReasons.join(', ') : 'none'}`,
         `- queue.open: ${lifecycleCheckpoint.queue.open}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
@@ -609,6 +647,8 @@ export async function runBotWorkerLoop({
         stopReason: lifecycleCheckpoint.stopReason,
         nextAction: lifecycleCheckpoint.nextAction,
         resumeRecommended: lifecycleCheckpoint.resumeRecommended,
+        resumeKey: lifecycleCheckpoint.resumeKey,
+        stateFingerprint: lifecycleCheckpoint.stateFingerprint,
         attentionReasons: lifecycleCheckpoint.attentionReasons,
         queueOpen: lifecycleCheckpoint.queue.open,
         queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
