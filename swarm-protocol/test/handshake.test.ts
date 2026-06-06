@@ -182,11 +182,13 @@ test('throws HandshakeError on request/response id mismatch', async () => {
 
 test('caps per-attempt timeout to remaining retry budget', async () => {
     let calls = 0;
+    let nowMs = 1_000;
     const durationsMs = [60, 35];
     const transport = {
         async sendAndWait(target, request) {
             const delay = durationsMs[calls] ?? 35;
             calls++;
+            nowMs += delay;
             await new Promise((resolve) => setTimeout(resolve, delay));
             return {
                 kind: 'handshake_response',
@@ -206,6 +208,7 @@ test('caps per-attempt timeout to remaining retry budget', async () => {
             retryBudgetMs: 70,
             retryDelayMs: 1,
             random: () => 1,
+            nowFactory: () => nowMs,
             logger: createSilentLogger()
         }),
         (error) => {
