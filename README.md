@@ -220,6 +220,11 @@ cd cognition-core
 npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
 npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
 ```
+`npm run worker:loop` writes `reports/bot-worker-loop.json` and `reports/bot-worker-loop.md`.
+Inspect the latest gateway status plus the worker-loop lifecycle checkpoint with:
+```bash
+npx tsx scripts/health-monitor.ts
+```
 
 ## Quick Start
 

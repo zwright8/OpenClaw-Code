@@ -146,11 +146,11 @@ function isTransientRetrySignal(error) {
     return code === 'TOO_MANY_REQUESTS' || code === 'RATE_LIMITED' || code === 'SERVICE_UNAVAILABLE';
 }
 
-function resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, startedAtMs) {
+function resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, startedAtMs, nowFactory = Date.now) {
     if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) return timeoutMs;
     if (!Number.isFinite(retryBudgetMs) || retryBudgetMs <= 0) return timeoutMs;
 
-    const elapsedMs = Math.max(0, Date.now() - startedAtMs);
+    const elapsedMs = Math.max(0, Number(nowFactory()) - startedAtMs);
     const remainingBudgetMs = retryBudgetMs - elapsedMs;
     if (remainingBudgetMs <= 0) {
         throw new HandshakeError('TIMEOUT', 'Handshake retry budget exhausted before the next attempt', {
@@ -226,6 +226,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
         ? Number(options.retryBudgetMs)
         : null;
     const random = typeof options.random === 'function' ? options.random : Math.random;
+    const now = typeof options.nowFactory === 'function' ? options.nowFactory : Date.now;
     const logger = options.logger ?? console;
 
     const handshakeId = uuidv4();
@@ -235,15 +236,15 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
         from: fromAgentId,
         supportedProtocols,
         capabilities,
-        timestamp: Date.now()
+        timestamp: now()
     };
 
     HandshakeRequest.parse(request);
 
     const maxAttempts = retries + 1;
-    const handshakeStartedAtMs = Date.now();
+    const handshakeStartedAtMs = now();
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-        const attemptStartMs = Date.now();
+        const attemptStartMs = now();
 
         try {
             logger.info?.(
@@ -252,11 +253,11 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
 
             const rawResponse = await withTimeout(
                 () => transport.sendAndWait(targetAgentId, request),
-                resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, handshakeStartedAtMs)
+                resolveAttemptTimeoutMs(timeoutMs, retryBudgetMs, handshakeStartedAtMs, now)
             );
 
             const response = HandshakeResponse.parse(rawResponse);
-            const latencyMs = Date.now() - attemptStartMs;
+            const latencyMs = now() - attemptStartMs;
 
             if (response.requestId !== handshakeId) {
                 throw new HandshakeError(
@@ -329,7 +330,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
                 ? error
                 : new HandshakeError('TRANSPORT_ERROR', error?.message || 'Transport handshake failed', { cause: error });
             const retryBudgetExhausted = retryBudgetMs !== null
-                && Date.now() - handshakeStartedAtMs >= retryBudgetMs;
+                && now() - handshakeStartedAtMs >= retryBudgetMs;
 
             if (
                 attempt < maxAttempts &&
