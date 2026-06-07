@@ -23,6 +23,9 @@ test('readLatestWorkerLoopCheckpoint summarizes lifecycle resume metadata', (t) 
             resumeKey: 'review_pending_approvals:1234567890abcdef',
             stateFingerprint: '1234567890abcdef',
             attentionReasons: ['pending_approval'],
+            lastCycle: {
+                finishedAt: 100_000
+            },
             queue: {
                 open: 2,
                 awaitingApproval: 2
@@ -30,7 +33,9 @@ test('readLatestWorkerLoopCheckpoint summarizes lifecycle resume metadata', (t) 
         }
     }));
 
-    const result = readLatestWorkerLoopCheckpoint(reportPath);
+    const result = readLatestWorkerLoopCheckpoint(reportPath, {
+        now: 100_000
+    });
 
     assert.equal(result.ok, true);
     assert.equal(result.stopReason, 'awaiting_approval_only');
@@ -42,6 +47,85 @@ test('readLatestWorkerLoopCheckpoint summarizes lifecycle resume metadata', (t) 
     assert.deepEqual(result.queue, {
         open: 2,
         awaitingApproval: 2
+    });
+    assert.deepEqual(result.freshness, {
+        status: 'fresh',
+        observedAt: 100_000,
+        ageMs: 0,
+        approvalSloMs: 1_800_000
+    });
+});
+
+test('readLatestWorkerLoopCheckpoint marks old approval checkpoints stale', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'awaiting_approval_only',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'review_pending_approvals',
+            resumeRecommended: true,
+            resumeKey: 'review_pending_approvals:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: ['pending_approval'],
+            lastCycle: {
+                finishedAt: 100_000
+            },
+            queue: {
+                open: 1,
+                awaitingApproval: 1
+            }
+        }
+    }));
+
+    const result = readLatestWorkerLoopCheckpoint(reportPath, {
+        now: 131_000,
+        approvalSloMs: 30_000
+    });
+
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.freshness, {
+        status: 'stale',
+        observedAt: 100_000,
+        ageMs: 31_000,
+        approvalSloMs: 30_000
+    });
+});
+
+test('readLatestWorkerLoopCheckpoint reports unknown freshness without timestamps', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'awaiting_approval_only',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'review_pending_approvals',
+            resumeRecommended: true,
+            resumeKey: 'review_pending_approvals:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: ['pending_approval'],
+            queue: {
+                open: 1,
+                awaitingApproval: 1
+            }
+        }
+    }));
+
+    const result = readLatestWorkerLoopCheckpoint(reportPath, {
+        now: 131_000,
+        approvalSloMs: 30_000
+    });
+
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.freshness, {
+        status: 'unknown',
+        observedAt: null,
+        ageMs: null,
+        approvalSloMs: 30_000
     });
 });
 

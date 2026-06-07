@@ -5,6 +5,68 @@ const LOG_FILE = process.env.OPENCLAW_GATEWAY_LOG
     || path.join(process.env.HOME || '.', '.openclaw/logs/gateway.log');
 const WORKER_LOOP_REPORT = process.env.OPENCLAW_WORKER_LOOP_REPORT
     || path.resolve(process.cwd(), 'reports/bot-worker-loop.json');
+const WORKER_APPROVAL_SLO_MS = parsePositiveInt(
+    process.env.OPENCLAW_WORKER_APPROVAL_SLO_MS,
+    30 * 60 * 1000
+);
+
+function parsePositiveInt(value, fallback) {
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric <= 0) return fallback;
+    return numeric;
+}
+
+function safeNumber(value) {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : null;
+}
+
+function latestTimestamp(values) {
+    let latest = null;
+    for (const value of values) {
+        const numeric = safeNumber(value);
+        if (numeric === null) continue;
+        latest = latest === null ? numeric : Math.max(latest, numeric);
+    }
+    return latest;
+}
+
+function classifyCheckpointFreshness({
+    checkpoint,
+    report,
+    now = Date.now(),
+    approvalSloMs = WORKER_APPROVAL_SLO_MS
+}) {
+    const lastCycle = checkpoint?.lastCycle && typeof checkpoint.lastCycle === 'object'
+        ? checkpoint.lastCycle
+        : {};
+    const traceEvents = Array.isArray(report?.traceEvents) ? report.traceEvents : [];
+    const observedAt = latestTimestamp([
+        checkpoint?.observedAt,
+        checkpoint?.updatedAt,
+        checkpoint?.createdAt,
+        lastCycle.finishedAt,
+        lastCycle.startedAt,
+        ...traceEvents.map((event) => event?.at)
+    ]);
+
+    if (observedAt === null) {
+        return {
+            status: 'unknown',
+            observedAt: null,
+            ageMs: null,
+            approvalSloMs
+        };
+    }
+
+    const ageMs = Math.max(0, safeNumber(now) === null ? 0 : Number(now) - observedAt);
+    return {
+        status: ageMs > approvalSloMs ? 'stale' : 'fresh',
+        observedAt,
+        ageMs,
+        approvalSloMs
+    };
+}
 
 export function readLastGatewayStatus(logPath = LOG_FILE) {
     if (!fs.existsSync(logPath)) {
@@ -34,7 +96,7 @@ export function readLastGatewayStatus(logPath = LOG_FILE) {
     };
 }
 
-export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT) {
+export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT, options = {}) {
     if (!fs.existsSync(reportPath)) {
         return {
             ok: false,
@@ -64,6 +126,13 @@ export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT) 
         };
     }
 
+    const freshness = classifyCheckpointFreshness({
+        checkpoint,
+        report,
+        now: options.now,
+        approvalSloMs: options.approvalSloMs
+    });
+
     return {
         ok: true,
         reportPath,
@@ -77,7 +146,8 @@ export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT) 
             : [],
         queue: checkpoint.queue && typeof checkpoint.queue === 'object'
             ? checkpoint.queue
-            : {}
+            : {},
+        freshness
     };
 }
 
@@ -98,6 +168,14 @@ if (import.meta.url === `file://${process.argv[1]}`) {
             console.log(`[Health] Worker loop next action: ${worker.nextAction}`);
             console.log(`[Health] Worker loop resume recommended: ${worker.resumeRecommended}`);
             console.log(`[Health] Worker loop resume key: ${worker.resumeKey}`);
+            console.log(`[Health] Worker loop checkpoint freshness: ${worker.freshness.status} ageMs=${worker.freshness.ageMs ?? 'unknown'} sloMs=${worker.freshness.approvalSloMs}`);
+            if (
+                worker.resumeRecommended
+                && worker.freshness.status === 'stale'
+                && worker.attentionReasons.includes('pending_approval')
+            ) {
+                console.log('[Health] Worker loop approval pause is stale; review pending approvals or rerun the worker after clearing blockers');
+            }
             if (worker.attentionReasons.length > 0) {
                 console.log(`[Health] Worker loop attention: ${worker.attentionReasons.join(', ')}`);
             }
