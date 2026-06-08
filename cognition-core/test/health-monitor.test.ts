@@ -1,13 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { readLatestWorkerLoopCheckpoint } from '../scripts/health-monitor.ts';
+import { fileURLToPath } from 'node:url';
+import {
+    inspectOpenClawHealth,
+    readLatestWorkerLoopCheckpoint
+} from '../scripts/health-monitor.ts';
 
 function mkTmpDir() {
     return fs.mkdtempSync(path.join(os.tmpdir(), 'cognition-health-monitor-'));
 }
+
+const SCRIPT_PATH = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../scripts/health-monitor.ts'
+);
 
 test('readLatestWorkerLoopCheckpoint summarizes lifecycle resume metadata', (t) => {
     const dir = mkTmpDir();
@@ -167,4 +177,93 @@ test('readLatestWorkerLoopCheckpoint reports missing checkpoint', (t) => {
     assert.equal(result.ok, false);
     assert.equal(result.reason, 'checkpoint_missing');
     assert.equal(result.reportPath, reportPath);
+});
+
+test('inspectOpenClawHealth returns machine-readable gateway and worker status', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+
+    fs.writeFileSync(logPath, [
+        '2026-06-07T00:00:00Z WhatsApp gateway connected',
+        '2026-06-07T00:01:00Z WhatsApp gateway healthy'
+    ].join('\n'));
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'queue_drained',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'no_resume_needed',
+            resumeRecommended: false,
+            resumeKey: 'no_resume_needed:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: [],
+            lastCycle: {
+                finishedAt: 200_000
+            },
+            queue: {
+                open: 0,
+                awaitingApproval: 0
+            }
+        }
+    }));
+
+    const result = inspectOpenClawHealth({
+        logPath,
+        workerReportPath: reportPath,
+        now: 200_000
+    });
+
+    assert.equal(result.schemaVersion, 'openclaw.health.v1');
+    assert.equal(result.inspectedAt, 200_000);
+    assert.equal(result.gateway.ok, true);
+    assert.match(result.gateway.status, /WhatsApp gateway healthy/);
+    assert.equal(result.workerLoop.ok, true);
+    assert.equal(result.workerLoop.nextAction, 'no_resume_needed');
+    assert.equal(result.workerLoop.freshness.status, 'fresh');
+});
+
+test('health-monitor --json emits parseable machine-readable health status', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'queue_drained',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'no_resume_needed',
+            resumeRecommended: false,
+            resumeKey: 'no_resume_needed:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: [],
+            lastCycle: {
+                finishedAt: 200_000
+            },
+            queue: {
+                open: 0,
+                awaitingApproval: 0
+            }
+        }
+    }));
+
+    const result = spawnSync('npx', ['tsx', SCRIPT_PATH, '--json'], {
+        cwd: path.dirname(SCRIPT_PATH),
+        env: {
+            ...process.env,
+            OPENCLAW_GATEWAY_LOG: logPath,
+            OPENCLAW_WORKER_LOOP_REPORT: reportPath
+        },
+        encoding: 'utf8'
+    });
+
+    assert.equal(result.status, 0, result.stderr);
+    const parsed = JSON.parse(result.stdout);
+    assert.equal(parsed.schemaVersion, 'openclaw.health.v1');
+    assert.equal(parsed.gateway.ok, true);
+    assert.equal(parsed.workerLoop.nextAction, 'no_resume_needed');
 });

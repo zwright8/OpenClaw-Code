@@ -151,33 +151,58 @@ export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT, 
     };
 }
 
+export function inspectOpenClawHealth({
+    logPath = LOG_FILE,
+    workerReportPath = WORKER_LOOP_REPORT,
+    now = Date.now(),
+    approvalSloMs = WORKER_APPROVAL_SLO_MS
+} = {}) {
+    return {
+        schemaVersion: 'openclaw.health.v1',
+        inspectedAt: now,
+        gateway: readLastGatewayStatus(logPath),
+        workerLoop: readLatestWorkerLoopCheckpoint(workerReportPath, {
+            now,
+            approvalSloMs
+        })
+    };
+}
+
+function wantsJsonOutput(args) {
+    return args.includes('--json');
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
     try {
-        const result = readLastGatewayStatus();
-        if (!result.ok) {
-            console.log(`[Health] No gateway status available (${result.reason}) at ${result.logPath}`);
-            process.exit(0);
-        }
-
-        console.log(`[Health] Last WhatsApp status: ${result.status}`);
-
-        const worker = readLatestWorkerLoopCheckpoint();
-        if (!worker.ok) {
-            console.log(`[Health] No worker-loop checkpoint available (${worker.reason}) at ${worker.reportPath}`);
+        const health = inspectOpenClawHealth();
+        if (wantsJsonOutput(process.argv.slice(2))) {
+            console.log(JSON.stringify(health, null, 2));
         } else {
-            console.log(`[Health] Worker loop next action: ${worker.nextAction}`);
-            console.log(`[Health] Worker loop resume recommended: ${worker.resumeRecommended}`);
-            console.log(`[Health] Worker loop resume key: ${worker.resumeKey}`);
-            console.log(`[Health] Worker loop checkpoint freshness: ${worker.freshness.status} ageMs=${worker.freshness.ageMs ?? 'unknown'} sloMs=${worker.freshness.approvalSloMs}`);
-            if (
-                worker.resumeRecommended
-                && worker.freshness.status === 'stale'
-                && worker.attentionReasons.includes('pending_approval')
-            ) {
-                console.log('[Health] Worker loop approval pause is stale; review pending approvals or rerun the worker after clearing blockers');
-            }
-            if (worker.attentionReasons.length > 0) {
-                console.log(`[Health] Worker loop attention: ${worker.attentionReasons.join(', ')}`);
+            const result = health.gateway;
+            if (!result.ok) {
+                console.log(`[Health] No gateway status available (${result.reason}) at ${result.logPath}`);
+            } else {
+                console.log(`[Health] Last WhatsApp status: ${result.status}`);
+
+                const worker = health.workerLoop;
+                if (!worker.ok) {
+                    console.log(`[Health] No worker-loop checkpoint available (${worker.reason}) at ${worker.reportPath}`);
+                } else {
+                    console.log(`[Health] Worker loop next action: ${worker.nextAction}`);
+                    console.log(`[Health] Worker loop resume recommended: ${worker.resumeRecommended}`);
+                    console.log(`[Health] Worker loop resume key: ${worker.resumeKey}`);
+                    console.log(`[Health] Worker loop checkpoint freshness: ${worker.freshness.status} ageMs=${worker.freshness.ageMs ?? 'unknown'} sloMs=${worker.freshness.approvalSloMs}`);
+                    if (
+                        worker.resumeRecommended
+                        && worker.freshness.status === 'stale'
+                        && worker.attentionReasons.includes('pending_approval')
+                    ) {
+                        console.log('[Health] Worker loop approval pause is stale; review pending approvals or rerun the worker after clearing blockers');
+                    }
+                    if (worker.attentionReasons.length > 0) {
+                        console.log(`[Health] Worker loop attention: ${worker.attentionReasons.join(', ')}`);
+                    }
+                }
             }
         }
     } catch (error) {
