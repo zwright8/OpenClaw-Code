@@ -225,6 +225,10 @@ Inspect the latest gateway status plus the worker-loop lifecycle checkpoint with
 ```bash
 npx tsx scripts/health-monitor.ts
 ```
+Emit the same health state as JSON for external OpenClaw monitors with:
+```bash
+npx tsx scripts/health-monitor.ts --json
+```
 
 ## Quick Start
 
