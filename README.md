@@ -229,6 +229,7 @@ Emit the same health state as JSON for external OpenClaw monitors with:
 ```bash
 npx tsx scripts/health-monitor.ts --json
 ```
+The JSON includes an aggregate `status` plus `attention` reasons and reports gateway and worker-loop state independently so partial outages do not mask resume signals.
 
 ## Quick Start
 

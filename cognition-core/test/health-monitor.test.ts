@@ -185,6 +185,7 @@ test('inspectOpenClawHealth returns machine-readable gateway and worker status',
 
     const logPath = path.join(dir, 'gateway.log');
     const reportPath = path.join(dir, 'bot-worker-loop.json');
+    const now = Date.now();
 
     fs.writeFileSync(logPath, [
         '2026-06-07T00:00:00Z WhatsApp gateway connected',
@@ -200,7 +201,7 @@ test('inspectOpenClawHealth returns machine-readable gateway and worker status',
             stateFingerprint: '1234567890abcdef',
             attentionReasons: [],
             lastCycle: {
-                finishedAt: 200_000
+                finishedAt: now
             },
             queue: {
                 open: 0,
@@ -212,11 +213,13 @@ test('inspectOpenClawHealth returns machine-readable gateway and worker status',
     const result = inspectOpenClawHealth({
         logPath,
         workerReportPath: reportPath,
-        now: 200_000
+        now
     });
 
     assert.equal(result.schemaVersion, 'openclaw.health.v1');
-    assert.equal(result.inspectedAt, 200_000);
+    assert.equal(result.inspectedAt, now);
+    assert.equal(result.status, 'ok');
+    assert.deepEqual(result.attention, []);
     assert.equal(result.gateway.ok, true);
     assert.match(result.gateway.status, /WhatsApp gateway healthy/);
     assert.equal(result.workerLoop.ok, true);
@@ -242,7 +245,7 @@ test('health-monitor --json emits parseable machine-readable health status', (t)
             stateFingerprint: '1234567890abcdef',
             attentionReasons: [],
             lastCycle: {
-                finishedAt: 200_000
+                finishedAt: Date.now()
             },
             queue: {
                 open: 0,
@@ -264,6 +267,98 @@ test('health-monitor --json emits parseable machine-readable health status', (t)
     assert.equal(result.status, 0, result.stderr);
     const parsed = JSON.parse(result.stdout);
     assert.equal(parsed.schemaVersion, 'openclaw.health.v1');
+    assert.equal(parsed.status, 'ok');
+    assert.deepEqual(parsed.attention, []);
     assert.equal(parsed.gateway.ok, true);
     assert.equal(parsed.workerLoop.nextAction, 'no_resume_needed');
+});
+
+test('inspectOpenClawHealth reports worker attention even when gateway log is missing', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'missing-gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'awaiting_approval_only',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'review_pending_approvals',
+            resumeRecommended: true,
+            resumeKey: 'review_pending_approvals:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: ['pending_approval'],
+            lastCycle: {
+                finishedAt: 100_000
+            },
+            queue: {
+                open: 1,
+                awaitingApproval: 1
+            }
+        }
+    }));
+
+    const result = inspectOpenClawHealth({
+        logPath,
+        workerReportPath: reportPath,
+        now: 131_000,
+        approvalSloMs: 30_000
+    });
+
+    assert.equal(result.status, 'degraded');
+    assert.deepEqual(result.attention, [
+        'gateway_log_missing',
+        'worker_loop_resume_review_pending_approvals',
+        'worker_loop_checkpoint_stale',
+        'worker_loop_pending_approval'
+    ]);
+    assert.equal(result.gateway.ok, false);
+    assert.equal(result.gateway.reason, 'log_missing');
+    assert.equal(result.workerLoop.ok, true);
+    assert.equal(result.workerLoop.nextAction, 'review_pending_approvals');
+    assert.equal(result.workerLoop.freshness.status, 'stale');
+});
+
+test('health-monitor text output does not hide worker checkpoint when gateway log is missing', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'missing-gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'awaiting_approval_only',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'review_pending_approvals',
+            resumeRecommended: true,
+            resumeKey: 'review_pending_approvals:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: ['pending_approval'],
+            lastCycle: {
+                finishedAt: Date.now() - 31_000
+            },
+            queue: {
+                open: 1,
+                awaitingApproval: 1
+            }
+        }
+    }));
+
+    const result = spawnSync('npx', ['tsx', SCRIPT_PATH], {
+        cwd: path.dirname(SCRIPT_PATH),
+        env: {
+            ...process.env,
+            OPENCLAW_GATEWAY_LOG: logPath,
+            OPENCLAW_WORKER_LOOP_REPORT: reportPath,
+            OPENCLAW_WORKER_APPROVAL_SLO_MS: '30000'
+        },
+        encoding: 'utf8'
+    });
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /No gateway status available \(log_missing\)/);
+    assert.match(result.stdout, /Worker loop next action: review_pending_approvals/);
+    assert.match(result.stdout, /Worker loop approval pause is stale/);
 });
