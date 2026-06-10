@@ -32,6 +32,8 @@ function healthyFixture() {
                 evidenceCoverage: 0.67,
                 replayableTraceCoverage: 0.67,
                 traceEventCoverage: 0.67,
+                toolTraceCoverage: 0.34,
+                guardrailTraceCoverage: 0.34,
                 failureTraceCoverage: 1,
                 failureErrorDetailCoverage: 1
             },
@@ -184,6 +186,46 @@ test('fails readiness when trace ids lack workflow events', () => {
     assert.equal(gate.status, 'fail');
     assert.equal(gate.details.traceEventCoverage, 0.25);
     assert.equal(gate.details.minTraceEventCoverage, 0.5);
+});
+
+test('fails readiness when traces lack tool or guardrail span coverage', () => {
+    const fixture = healthyFixture();
+    fixture.learningReport.summary = {
+        total: 4,
+        failure: 1,
+        traceCoverage: 1,
+        evidenceCoverage: 1,
+        replayableTraceCoverage: 1,
+        traceEventCoverage: 1,
+        toolTraceCoverage: 0.2,
+        guardrailTraceCoverage: 0.25,
+        failureTraceCoverage: 1,
+        failureErrorDetailCoverage: 1
+    };
+
+    const readiness = evaluateCognitionCoreReadiness(fixture);
+    const gate = readiness.gates.find((item) => item.id === 'outcome_observability');
+
+    assert.equal(readiness.status, 'fail');
+    assert.equal(gate.status, 'fail');
+    assert.equal(gate.details.toolTraceCoverage, 0.2);
+    assert.equal(gate.details.guardrailTraceCoverage, 0.25);
+    assert.equal(gate.details.minToolTraceCoverage, 0.25);
+    assert.equal(gate.details.minGuardrailTraceCoverage, 0.25);
+});
+
+test('uses trace event coverage as typed span fallback for older learning reports', () => {
+    const fixture = healthyFixture();
+    delete fixture.learningReport.summary.toolTraceCoverage;
+    delete fixture.learningReport.summary.guardrailTraceCoverage;
+
+    const readiness = evaluateCognitionCoreReadiness(fixture);
+    const gate = readiness.gates.find((item) => item.id === 'outcome_observability');
+
+    assert.equal(readiness.status, 'pass');
+    assert.equal(gate.status, 'pass');
+    assert.equal(gate.details.toolTraceCoverage, 0.67);
+    assert.equal(gate.details.guardrailTraceCoverage, 0.67);
 });
 
 test('renders readiness markdown summary', () => {
