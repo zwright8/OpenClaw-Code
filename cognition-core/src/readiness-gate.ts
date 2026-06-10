@@ -37,23 +37,34 @@ function observabilityStatus({
     replayableTraceCoverage,
     failureTraceCoverage,
     failureErrorDetailCoverage,
-    traceEventCoverage
+    traceEventCoverage,
+    toolTraceCoverage,
+    guardrailTraceCoverage
 }, {
     minTraceCoverage,
     minEvidenceCoverage,
     minReplayableTraceCoverage,
     minFailureTraceCoverage,
     minFailureErrorDetailCoverage,
-    minTraceEventCoverage
+    minTraceEventCoverage,
+    minToolTraceCoverage,
+    minGuardrailTraceCoverage
 }) {
     if (total <= 0) return 'warn';
     if (traceCoverage < minTraceCoverage) return 'fail';
     if (evidenceCoverage < minEvidenceCoverage) return 'fail';
     if (replayableTraceCoverage < minReplayableTraceCoverage) return 'fail';
     if (traceEventCoverage < minTraceEventCoverage) return 'fail';
+    if (toolTraceCoverage < minToolTraceCoverage) return 'fail';
+    if (guardrailTraceCoverage < minGuardrailTraceCoverage) return 'fail';
     if (failureCount > 0 && failureTraceCoverage < minFailureTraceCoverage) return 'fail';
     if (failureCount > 0 && failureErrorDetailCoverage < minFailureErrorDetailCoverage) return 'fail';
     return 'pass';
+}
+
+function coverageMetric(summary, key, fallback) {
+    const value = Number(summary?.[key]);
+    return Number.isFinite(value) ? value : fallback;
 }
 
 export function evaluateCognitionCoreReadiness(
@@ -72,6 +83,8 @@ export function evaluateCognitionCoreReadiness(
         minEvidenceCoverage = 0.5,
         minReplayableTraceCoverage = 0.5,
         minTraceEventCoverage = 0.5,
+        minToolTraceCoverage = 0.25,
+        minGuardrailTraceCoverage = 0.25,
         minFailureTraceCoverage = 0.8,
         minFailureErrorDetailCoverage = 0.8
     } = {}
@@ -173,18 +186,36 @@ export function evaluateCognitionCoreReadiness(
         const failureCount = Number(learningReport.summary.failure) || 0;
         const traceCoverage = Number(learningReport.summary.traceCoverage) || 0;
         const evidenceCoverage = Number(learningReport.summary.evidenceCoverage) || 0;
-        const replayableTraceCoverage = Number.isFinite(Number(learningReport.summary.replayableTraceCoverage))
-            ? Number(learningReport.summary.replayableTraceCoverage)
-            : Math.min(traceCoverage, evidenceCoverage);
-        const failureTraceCoverage = Number.isFinite(Number(learningReport.summary.failureTraceCoverage))
-            ? Number(learningReport.summary.failureTraceCoverage)
-            : (failureCount > 0 ? traceCoverage : 1);
-        const failureErrorDetailCoverage = Number.isFinite(Number(learningReport.summary.failureErrorDetailCoverage))
-            ? Number(learningReport.summary.failureErrorDetailCoverage)
-            : (failureCount > 0 ? 0 : 1);
-        const traceEventCoverage = Number.isFinite(Number(learningReport.summary.traceEventCoverage))
-            ? Number(learningReport.summary.traceEventCoverage)
-            : replayableTraceCoverage;
+        const replayableTraceCoverage = coverageMetric(
+            learningReport.summary,
+            'replayableTraceCoverage',
+            Math.min(traceCoverage, evidenceCoverage)
+        );
+        const failureTraceCoverage = coverageMetric(
+            learningReport.summary,
+            'failureTraceCoverage',
+            failureCount > 0 ? traceCoverage : 1
+        );
+        const failureErrorDetailCoverage = coverageMetric(
+            learningReport.summary,
+            'failureErrorDetailCoverage',
+            failureCount > 0 ? 0 : 1
+        );
+        const traceEventCoverage = coverageMetric(
+            learningReport.summary,
+            'traceEventCoverage',
+            replayableTraceCoverage
+        );
+        const toolTraceCoverage = coverageMetric(
+            learningReport.summary,
+            'toolTraceCoverage',
+            traceEventCoverage
+        );
+        const guardrailTraceCoverage = coverageMetric(
+            learningReport.summary,
+            'guardrailTraceCoverage',
+            traceEventCoverage
+        );
         const status = observabilityStatus({
             total,
             failureCount,
@@ -193,14 +224,18 @@ export function evaluateCognitionCoreReadiness(
             replayableTraceCoverage,
             failureTraceCoverage,
             failureErrorDetailCoverage,
-            traceEventCoverage
+            traceEventCoverage,
+            toolTraceCoverage,
+            guardrailTraceCoverage
         }, {
             minTraceCoverage,
             minEvidenceCoverage,
             minReplayableTraceCoverage,
             minFailureTraceCoverage,
             minFailureErrorDetailCoverage,
-            minTraceEventCoverage
+            minTraceEventCoverage,
+            minToolTraceCoverage,
+            minGuardrailTraceCoverage
         });
 
         gates.push(createGate(
@@ -208,7 +243,7 @@ export function evaluateCognitionCoreReadiness(
             status,
             total <= 0
                 ? 'No learning outcomes are available for observability checks.'
-                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; trace event coverage ${(traceEventCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
+                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; trace event coverage ${(traceEventCoverage * 100).toFixed(1)}%; tool trace coverage ${(toolTraceCoverage * 100).toFixed(1)}%; guardrail trace coverage ${(guardrailTraceCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
             {
                 total,
                 failureCount,
@@ -216,12 +251,16 @@ export function evaluateCognitionCoreReadiness(
                 evidenceCoverage,
                 replayableTraceCoverage,
                 traceEventCoverage,
+                toolTraceCoverage,
+                guardrailTraceCoverage,
                 failureTraceCoverage,
                 failureErrorDetailCoverage,
                 minTraceCoverage,
                 minEvidenceCoverage,
                 minReplayableTraceCoverage,
                 minTraceEventCoverage,
+                minToolTraceCoverage,
+                minGuardrailTraceCoverage,
                 minFailureTraceCoverage,
                 minFailureErrorDetailCoverage
             }
