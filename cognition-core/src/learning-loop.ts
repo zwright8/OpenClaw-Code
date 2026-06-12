@@ -67,18 +67,32 @@ function collectTraceEvents(outcome) {
     return sources.flatMap((source) => (Array.isArray(source) ? source : []));
 }
 
+function eventValue(event, path) {
+    if (!event || typeof event !== 'object') return null;
+    return path.reduce((cursor, key) => (
+        cursor && typeof cursor === 'object' ? cursor[key] : null
+    ), event);
+}
+
 function classifyTraceEventKind(event) {
     if (!event || typeof event !== 'object') return null;
-    const raw = compactList([
+    const rawValues = compactList([
         event.kind,
         event.type,
         event.category,
         event.name,
-        event.spanType
-    ])[0];
-    const kind = normalizeText(raw);
+        event.spanType,
+        eventValue(event, ['attributes', 'gen_ai.operation.name']),
+        eventValue(event, ['attributes', 'gen_ai.tool.type']),
+        eventValue(event, ['span_data', 'type']),
+        eventValue(event, ['spanData', 'type']),
+        eventValue(event, ['data', 'sdk_span_type']),
+        eventValue(event, ['data', 'type'])
+    ]);
+    const kind = normalizeText(rawValues.join(' '));
     if (!kind) return null;
     if (kind.includes('tool')) return 'tool';
+    if (kind.includes('function') || kind.includes('execute_tool')) return 'tool';
     if (kind.includes('handoff') || kind.includes('delegate') || kind.includes('subagent')) return 'handoff';
     if (kind.includes('guardrail') || kind.includes('safety') || kind.includes('policy')) return 'guardrail';
     return 'other';
@@ -100,6 +114,38 @@ function summarizeTraceEvents(outcome) {
     }
 
     return counts;
+}
+
+function deriveTraceId(outcome) {
+    const explicit = compactList([
+        outcome.traceId,
+        outcome.trace_id,
+        outcome.traceID,
+        outcome.request?.traceId,
+        outcome.request?.trace_id,
+        outcome.context?.traceId,
+        outcome.context?.trace_id,
+        outcome.result?.traceId,
+        outcome.result?.trace_id,
+        outcome.result?.metrics?.traceId,
+        outcome.result?.metrics?.trace_id
+    ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0];
+
+    if (explicit) return explicit;
+
+    for (const event of collectTraceEvents(outcome)) {
+        const candidate = compactList([
+            event?.traceId,
+            event?.trace_id,
+            event?.traceID,
+            eventValue(event, ['context', 'trace_id']),
+            eventValue(event, ['spanContext', 'traceId']),
+            eventValue(event, ['span_context', 'trace_id'])
+        ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0];
+        if (candidate) return candidate;
+    }
+
+    return null;
 }
 
 const FAILURE_STATUSES = new Set([
@@ -308,14 +354,7 @@ function normalizeOutcome(outcome, index) {
     ]).map((item) => typeof item === 'string' ? item.trim() : null).filter(Boolean)[0] || null;
 
     const issueCategory = classifyIssue(status, errorCode, errorMessage);
-    const traceId = compactList([
-        outcome.traceId,
-        outcome.trace_id,
-        outcome.request?.traceId,
-        outcome.context?.traceId,
-        outcome.result?.traceId,
-        outcome.result?.metrics?.traceId
-    ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0] || null;
+    const traceId = deriveTraceId(outcome);
     const evidenceCount = countEvidenceItems(outcome);
     const traceEvents = summarizeTraceEvents(outcome);
 
