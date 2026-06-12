@@ -84,6 +84,56 @@ test('summarizeOutcomes tracks trace and evidence coverage', () => {
     assert.equal(result.summary.handoffTraceCoverage, 0.3333);
 });
 
+test('summarizeOutcomes recognizes OpenAI and OTel GenAI span shapes', () => {
+    const result = summarizeOutcomes([
+        {
+            taskId: '1',
+            target: 'agent:a',
+            status: 'completed',
+            spans: [
+                {
+                    trace_id: 'trace-openai-1',
+                    span_data: { type: 'function', name: 'shell.exec' }
+                },
+                {
+                    trace_id: 'trace-openai-1',
+                    span_data: { type: 'guardrail', name: 'policy_check' }
+                },
+                {
+                    trace_id: 'trace-openai-1',
+                    span_data: { type: 'handoff', name: 'debugger' }
+                }
+            ]
+        },
+        {
+            taskId: '2',
+            target: 'agent:b',
+            status: 'completed',
+            result: {
+                spans: [
+                    {
+                        traceID: 'trace-otel-1',
+                        attributes: {
+                            'gen_ai.operation.name': 'execute_tool',
+                            'gen_ai.tool.name': 'query_database'
+                        }
+                    }
+                ]
+            }
+        }
+    ]);
+
+    assert.equal(result.summary.observability.traced, 2);
+    assert.equal(result.summary.observability.traceEventBacked, 2);
+    assert.equal(result.summary.observability.toolTraceBacked, 2);
+    assert.equal(result.summary.observability.guardrailTraceBacked, 1);
+    assert.equal(result.summary.observability.handoffTraceBacked, 1);
+    assert.equal(result.summary.traceCoverage, 1);
+    assert.equal(result.summary.toolTraceCoverage, 1);
+    assert.equal(result.summary.guardrailTraceCoverage, 0.5);
+    assert.equal(result.summary.handoffTraceCoverage, 0.5);
+});
+
 test('runCounterfactualReplay ranks variants by projected gain', () => {
     const summary = summarizeOutcomes(sampleOutcomes());
     const replay = runCounterfactualReplay(summary, [
