@@ -82,6 +82,46 @@ test('shouldStopAutopilot continues when outcomes still grow despite readiness p
     assert.equal(decision.stagnationCause, 'readiness_only');
 });
 
+test('shouldStopAutopilot continues with recovery signal when readiness regresses', () => {
+    const cycles = [
+        { readinessStatus: 'warn', readinessScore: 0.82, outcomeTotal: 10 },
+        { readinessStatus: 'warn', readinessScore: 0.81, outcomeTotal: 10 },
+        { readinessStatus: 'fail', readinessScore: 0.79, outcomeTotal: 10 }
+    ];
+    const decision = shouldStopAutopilot(cycles, {
+        targetStatus: 'pass',
+        plateauPatience: 2,
+        minReadinessGain: 0.005,
+        minOutcomeGain: 1
+    });
+
+    assert.equal(decision.stop, false);
+    assert.equal(decision.reason, 'regression_detected:readiness_only');
+    assert.equal(decision.stagnationCause, 'readiness_only');
+    assert.equal(decision.regression.readinessRegressed, true);
+    assert.equal(decision.regression.outcomesRegressed, false);
+});
+
+test('shouldStopAutopilot continues with systemic signal when readiness and outcomes regress', () => {
+    const cycles = [
+        { readinessStatus: 'warn', readinessScore: 0.82, outcomeTotal: 14 },
+        { readinessStatus: 'warn', readinessScore: 0.81, outcomeTotal: 12 },
+        { readinessStatus: 'fail', readinessScore: 0.79, outcomeTotal: 10 }
+    ];
+    const decision = shouldStopAutopilot(cycles, {
+        targetStatus: 'pass',
+        plateauPatience: 2,
+        minReadinessGain: 0.005,
+        minOutcomeGain: 1
+    });
+
+    assert.equal(decision.stop, false);
+    assert.equal(decision.reason, 'regression_detected:both');
+    assert.equal(decision.stagnationCause, 'both');
+    assert.equal(decision.regression.readinessRegressed, true);
+    assert.equal(decision.regression.outcomesRegressed, true);
+});
+
 test('shouldStopAutopilot adapts thresholds from baseline and stops after mixed gains flatten', () => {
     const cycles = [
         { readinessStatus: 'fail', readinessScore: 0.60, outcomeTotal: 2 },
