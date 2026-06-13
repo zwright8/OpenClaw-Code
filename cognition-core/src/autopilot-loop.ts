@@ -215,6 +215,10 @@ export function shouldStopAutopilot(
 
     const readinessPlateau = readinessDeltas.every((delta) => delta < readinessThreshold.value);
     const outcomePlateau = outcomeDeltas.every((delta) => delta < outcomeThreshold.value);
+    const readinessRegressionThreshold = -Math.max(minReadiness, readinessThreshold.value);
+    const outcomeRegressionThreshold = -Math.max(minOutcomes, outcomeThreshold.value);
+    const readinessRegressed = readinessDeltas.some((delta) => delta <= readinessRegressionThreshold);
+    const outcomesRegressed = outcomeDeltas.some((delta) => delta <= outcomeRegressionThreshold);
     const stagnationCause = readinessPlateau && outcomePlateau
         ? 'both'
         : readinessPlateau
@@ -240,6 +244,28 @@ export function shouldStopAutopilot(
             outcomes: outcomeThreshold.baselineMedian
         }
     };
+
+    if (readinessRegressed || outcomesRegressed) {
+        const regressionCause = readinessRegressed && outcomesRegressed
+            ? 'both'
+            : readinessRegressed
+                ? 'readiness_only'
+                : 'outcomes_only';
+        return {
+            stop: false,
+            reason: `regression_detected:${regressionCause}`,
+            readinessDeltas,
+            outcomeDeltas,
+            stagnationCause: regressionCause,
+            regression: {
+                readinessRegressed,
+                outcomesRegressed,
+                readinessRegressionThreshold,
+                outcomeRegressionThreshold
+            },
+            thresholds
+        };
+    }
 
     return plateau
         ? {
