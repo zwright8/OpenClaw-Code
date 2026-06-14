@@ -74,6 +74,89 @@ function eventValue(event, path) {
     ), event);
 }
 
+function firstString(values) {
+    return compactList(values)
+        .map((item) => (typeof item === 'string' ? item.trim() : null))
+        .filter(Boolean)[0] || null;
+}
+
+function parseTraceparent(value) {
+    if (typeof value !== 'string') return null;
+    const match = value.trim().match(/^([0-9a-f]{2})-([0-9a-f]{32})-([0-9a-f]{16})-([0-9a-f]{2})(?:-.+)?$/i);
+    if (!match) return null;
+    const [, version, traceId, parentSpanId, traceFlags] = match;
+    if (/^0+$/.test(traceId) || /^0+$/.test(parentSpanId)) return null;
+    return {
+        version: version.toLowerCase(),
+        traceId: traceId.toLowerCase(),
+        parentSpanId: parentSpanId.toLowerCase(),
+        traceFlags: traceFlags.toLowerCase()
+    };
+}
+
+function traceparentFromCarrier(carrier) {
+    if (!carrier || typeof carrier !== 'object') return null;
+    return parseTraceparent(firstString([
+        carrier.traceparent,
+        carrier.traceParent,
+        carrier.Traceparent,
+        carrier.TraceParent,
+        carrier.headers?.traceparent,
+        carrier.headers?.traceParent,
+        carrier.headers?.Traceparent,
+        carrier.headers?.TraceParent,
+        carrier.attributes?.traceparent,
+        carrier.attributes?.traceParent,
+        carrier.context?.traceparent,
+        carrier.context?.traceParent,
+        carrier.metadata?.traceparent,
+        carrier.metadata?.traceParent
+    ]));
+}
+
+function traceIdentity(event, fallbackTraceparent = null) {
+    const traceparent = traceparentFromCarrier(event) || fallbackTraceparent;
+    const traceId = firstString([
+        event?.traceId,
+        event?.trace_id,
+        event?.traceID,
+        eventValue(event, ['context', 'trace_id']),
+        eventValue(event, ['context', 'traceId']),
+        eventValue(event, ['spanContext', 'traceId']),
+        eventValue(event, ['span_context', 'trace_id']),
+        eventValue(event, ['attributes', 'trace_id']),
+        eventValue(event, ['attributes', 'traceId'])
+    ]) || traceparent?.traceId || null;
+    const spanId = firstString([
+        event?.spanId,
+        event?.span_id,
+        event?.spanID,
+        event?.id,
+        eventValue(event, ['context', 'span_id']),
+        eventValue(event, ['context', 'spanId']),
+        eventValue(event, ['spanContext', 'spanId']),
+        eventValue(event, ['span_context', 'span_id']),
+        eventValue(event, ['attributes', 'span_id']),
+        eventValue(event, ['attributes', 'spanId'])
+    ]) || null;
+    const parentSpanId = firstString([
+        event?.parentSpanId,
+        event?.parent_span_id,
+        event?.parentSpanID,
+        eventValue(event, ['context', 'parent_span_id']),
+        eventValue(event, ['context', 'parentSpanId']),
+        eventValue(event, ['attributes', 'parent_span_id']),
+        eventValue(event, ['attributes', 'parentSpanId'])
+    ]) || traceparent?.parentSpanId || null;
+
+    return {
+        traceId,
+        spanId,
+        parentSpanId,
+        hasTraceparent: traceparent !== null
+    };
+}
+
 function classifyTraceEventKind(event) {
     if (!event || typeof event !== 'object') return null;
     const rawValues = compactList([
@@ -100,24 +183,43 @@ function classifyTraceEventKind(event) {
 
 function summarizeTraceEvents(outcome) {
     const events = collectTraceEvents(outcome);
+    const fallbackTraceparent = traceparentFromCarrier(outcome)
+        || traceparentFromCarrier(outcome?.request)
+        || traceparentFromCarrier(outcome?.context)
+        || traceparentFromCarrier(outcome?.result)
+        || traceparentFromCarrier(outcome?.result?.metrics);
     const counts = {
         total: events.length,
         tool: 0,
         handoff: 0,
         guardrail: 0,
-        other: 0
+        other: 0,
+        traceparent: 0,
+        linked: 0,
+        orphaned: 0,
+        missingTraceId: 0,
+        missingSpanId: 0
     };
 
     for (const event of events) {
         const kind = classifyTraceEventKind(event) || 'other';
         counts[kind]++;
+        const identity = traceIdentity(event, fallbackTraceparent);
+        if (identity.hasTraceparent) counts.traceparent++;
+        if (!identity.traceId) counts.missingTraceId++;
+        if (!identity.spanId) counts.missingSpanId++;
+        if (identity.traceId && identity.spanId && identity.parentSpanId) {
+            counts.linked++;
+        } else if (identity.traceId || identity.spanId || identity.parentSpanId) {
+            counts.orphaned++;
+        }
     }
 
     return counts;
 }
 
 function deriveTraceId(outcome) {
-    const explicit = compactList([
+    const explicit = firstString([
         outcome.traceId,
         outcome.trace_id,
         outcome.traceID,
@@ -128,20 +230,18 @@ function deriveTraceId(outcome) {
         outcome.result?.traceId,
         outcome.result?.trace_id,
         outcome.result?.metrics?.traceId,
-        outcome.result?.metrics?.trace_id
-    ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0];
+        outcome.result?.metrics?.trace_id,
+        traceparentFromCarrier(outcome)?.traceId,
+        traceparentFromCarrier(outcome.request)?.traceId,
+        traceparentFromCarrier(outcome.context)?.traceId,
+        traceparentFromCarrier(outcome.result)?.traceId,
+        traceparentFromCarrier(outcome.result?.metrics)?.traceId
+    ]);
 
     if (explicit) return explicit;
 
     for (const event of collectTraceEvents(outcome)) {
-        const candidate = compactList([
-            event?.traceId,
-            event?.trace_id,
-            event?.traceID,
-            eventValue(event, ['context', 'trace_id']),
-            eventValue(event, ['spanContext', 'traceId']),
-            eventValue(event, ['span_context', 'trace_id'])
-        ]).map((item) => (typeof item === 'string' ? item.trim() : null)).filter(Boolean)[0];
+        const candidate = traceIdentity(event).traceId;
         if (candidate) return candidate;
     }
 
@@ -428,6 +528,9 @@ export function summarizeOutcomes(outcomes) {
         toolTraceCoverage: 0,
         guardrailTraceCoverage: 0,
         handoffTraceCoverage: 0,
+        traceLinkCoverage: 0,
+        traceOrphanRate: 0,
+        traceparentCoverage: 0,
         observability: {
             traced: 0,
             evidenceBacked: 0,
@@ -437,7 +540,13 @@ export function summarizeOutcomes(outcomes) {
             traceEventBacked: 0,
             toolTraceBacked: 0,
             guardrailTraceBacked: 0,
-            handoffTraceBacked: 0
+            handoffTraceBacked: 0,
+            linkedTraceBacked: 0,
+            traceparentBacked: 0,
+            orphanedTraceBacked: 0,
+            orphanedTraceEvents: 0,
+            missingTraceIdEvents: 0,
+            missingSpanIdEvents: 0
         },
         byStatus: {},
         byIssue: {},
@@ -462,6 +571,12 @@ export function summarizeOutcomes(outcomes) {
         if (outcome.hasToolTrace) totals.observability.toolTraceBacked++;
         if (outcome.hasGuardrailTrace) totals.observability.guardrailTraceBacked++;
         if (outcome.hasHandoffTrace) totals.observability.handoffTraceBacked++;
+        if (outcome.traceEvents.linked > 0) totals.observability.linkedTraceBacked++;
+        if (outcome.traceEvents.traceparent > 0) totals.observability.traceparentBacked++;
+        if (outcome.traceEvents.orphaned > 0) totals.observability.orphanedTraceBacked++;
+        totals.observability.orphanedTraceEvents += outcome.traceEvents.orphaned;
+        totals.observability.missingTraceIdEvents += outcome.traceEvents.missingTraceId;
+        totals.observability.missingSpanIdEvents += outcome.traceEvents.missingSpanId;
 
         if (!totals.byAgent[outcome.target]) {
             totals.byAgent[outcome.target] = {
@@ -582,6 +697,15 @@ export function summarizeOutcomes(outcomes) {
         : 0;
     totals.handoffTraceCoverage = totals.total > 0
         ? Number((totals.observability.handoffTraceBacked / totals.total).toFixed(4))
+        : 0;
+    totals.traceLinkCoverage = totals.total > 0
+        ? Number((totals.observability.linkedTraceBacked / totals.total).toFixed(4))
+        : 0;
+    totals.traceparentCoverage = totals.total > 0
+        ? Number((totals.observability.traceparentBacked / totals.total).toFixed(4))
+        : 0;
+    totals.traceOrphanRate = totals.observability.traceEventBacked > 0
+        ? Number((totals.observability.orphanedTraceBacked / totals.observability.traceEventBacked).toFixed(4))
         : 0;
 
     return {

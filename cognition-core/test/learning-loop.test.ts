@@ -134,6 +134,52 @@ test('summarizeOutcomes recognizes OpenAI and OTel GenAI span shapes', () => {
     assert.equal(result.summary.handoffTraceCoverage, 0.5);
 });
 
+test('summarizeOutcomes extracts W3C traceparent and flags orphan spans', () => {
+    const result = summarizeOutcomes([
+        {
+            taskId: '1',
+            target: 'agent:a',
+            status: 'completed',
+            context: {
+                traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+            },
+            traceEvents: [
+                {
+                    name: 'tool_call',
+                    spanId: '1111111111111111',
+                    parentSpanId: '00f067aa0ba902b7',
+                    attributes: {
+                        'gen_ai.operation.name': 'execute_tool'
+                    }
+                }
+            ]
+        },
+        {
+            taskId: '2',
+            target: 'agent:b',
+            status: 'failed',
+            traceEvents: [
+                {
+                    traceId: 'trace-without-linkage',
+                    name: 'guardrail_check'
+                }
+            ]
+        }
+    ]);
+
+    assert.equal(result.outcomes[0].traceId, '4bf92f3577b34da6a3ce929d0e0e4736');
+    assert.equal(result.summary.observability.traced, 2);
+    assert.equal(result.summary.observability.traceparentBacked, 1);
+    assert.equal(result.summary.observability.linkedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceEvents, 1);
+    assert.equal(result.summary.observability.missingTraceIdEvents, 0);
+    assert.equal(result.summary.observability.missingSpanIdEvents, 1);
+    assert.equal(result.summary.traceparentCoverage, 0.5);
+    assert.equal(result.summary.traceLinkCoverage, 0.5);
+    assert.equal(result.summary.traceOrphanRate, 0.5);
+});
+
 test('runCounterfactualReplay ranks variants by projected gain', () => {
     const summary = summarizeOutcomes(sampleOutcomes());
     const replay = runCounterfactualReplay(summary, [
