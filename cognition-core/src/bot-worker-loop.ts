@@ -130,6 +130,43 @@ function buildStableHash(value) {
         .slice(0, 16);
 }
 
+function buildStableHex(value, length) {
+    const hex = createHash('sha256')
+        .update(stableStringify(value))
+        .digest('hex')
+        .slice(0, length);
+    return /^0+$/.test(hex) ? `1${hex.slice(1)}` : hex;
+}
+
+function buildTraceContext({
+    workflowTraceId,
+    phase = 'root',
+    cycle = 0,
+    parentSpanId = null
+}) {
+    const normalizedWorkflowTraceId = normalizeTraceToken(workflowTraceId || 'bot-worker-loop');
+    const traceId = buildStableHex({
+        workflowTraceId: normalizedWorkflowTraceId
+    }, 32);
+    const spanId = buildStableHex({
+        workflowTraceId: normalizedWorkflowTraceId,
+        phase: normalizeTraceToken(phase),
+        cycle: parseNonNegativeInt(cycle, 0)
+    }, 16);
+    const parentId = parentSpanId || buildStableHex({
+        workflowTraceId: normalizedWorkflowTraceId,
+        phase: 'root',
+        cycle: 0
+    }, 16);
+
+    return {
+        traceId,
+        spanId,
+        parentSpanId: parentId,
+        traceparent: `00-${traceId}-${spanId}-01`
+    };
+}
+
 function buildTraceSpanId(traceId, phase, cycle = 0) {
     return `${normalizeTraceToken(traceId)}.${parseNonNegativeInt(cycle, 0)}.${normalizeTraceToken(phase)}`;
 }
@@ -150,9 +187,32 @@ function enrichTraceEvent(event, traceContext = {}) {
     const cycle = parseNonNegativeInt(event?.cycle, 0);
     const traceId = normalizeTraceToken(traceContext.traceId || event?.traceId || 'bot-worker-loop');
     const parentSpanId = traceContext.parentSpanId || event?.parentSpanId || `${traceId}.root`;
+    const w3cTrace = buildTraceContext({
+        workflowTraceId: traceId,
+        phase,
+        cycle,
+        parentSpanId: traceContext.w3cParentSpanId || event?.spanContext?.parentSpanId || null
+    });
     const operationName = getTraceOperationName(phase);
     const eventName = `bot_worker_loop.${phase}`;
     const spanName = `${operationName} ${eventName}`;
+    const generatedAttributes = {
+        'gen_ai.operation.name': operationName,
+        'gen_ai.agent.name': 'openclaw-bot-worker-loop',
+        'openclaw.workflow.name': 'bot_worker_loop',
+        'openclaw.workflow.phase': phase,
+        trace_id: w3cTrace.traceId,
+        span_id: w3cTrace.spanId,
+        parent_span_id: w3cTrace.parentSpanId,
+        traceparent: event?.traceparent || w3cTrace.traceparent,
+        ...(cycle > 0 ? { 'openclaw.workflow.cycle': cycle } : {})
+    };
+    const generatedSpanContext = {
+        traceId: w3cTrace.traceId,
+        spanId: w3cTrace.spanId,
+        parentSpanId: w3cTrace.parentSpanId,
+        traceFlags: '01'
+    };
 
     return {
         schemaVersion: TRACE_SCHEMA_VERSION,
@@ -163,14 +223,16 @@ function enrichTraceEvent(event, traceContext = {}) {
         kind: event?.kind || getTraceKind(phase),
         spanKind: event?.spanKind || 'INTERNAL',
         semconv: TRACE_SEMCONV,
-        attributes: {
-            'gen_ai.operation.name': operationName,
-            'gen_ai.agent.name': 'openclaw-bot-worker-loop',
-            'openclaw.workflow.name': 'bot_worker_loop',
-            'openclaw.workflow.phase': phase,
-            ...(cycle > 0 ? { 'openclaw.workflow.cycle': cycle } : {})
+        ...event,
+        traceparent: event?.traceparent || w3cTrace.traceparent,
+        spanContext: {
+            ...generatedSpanContext,
+            ...(event?.spanContext || {})
         },
-        ...event
+        attributes: {
+            ...generatedAttributes,
+            ...(event?.attributes || {})
+        }
     };
 }
 
@@ -499,6 +561,11 @@ export async function runBotWorkerLoop({
     const runStartedAt = safeNow(now);
     const traceId = `bot-worker-loop:${runStartedAt}`;
     const rootSpanId = `${normalizeTraceToken(traceId)}.root`;
+    const rootTraceContext = buildTraceContext({
+        workflowTraceId: traceId,
+        phase: 'root',
+        cycle: 0
+    });
 
     for (let cycleIndex = 1; cycleIndex <= normalizedMaxCycles; cycleIndex++) {
         const cycleStartedAt = safeNow(now);
@@ -594,7 +661,8 @@ export async function runBotWorkerLoop({
             idleStreak,
             traceContext: {
                 traceId,
-                parentSpanId: rootSpanId
+                parentSpanId: rootSpanId,
+                w3cParentSpanId: rootTraceContext.spanId
             }
         }));
 
@@ -654,11 +722,18 @@ export async function runBotWorkerLoop({
         queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
     }, {
         traceId,
-        parentSpanId: rootSpanId
+        parentSpanId: rootSpanId,
+        w3cParentSpanId: rootTraceContext.spanId
     });
 
     return {
         traceId,
+        traceparent: rootTraceContext.traceparent,
+        traceContext: {
+            traceId: rootTraceContext.traceId,
+            spanId: rootTraceContext.spanId,
+            traceFlags: '01'
+        },
         stopReason: normalizeStopReason(stopReason),
         cyclesRun: cycles.length,
         maxCycles: normalizedMaxCycles,
