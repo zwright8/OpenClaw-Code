@@ -60,7 +60,9 @@ function observabilityStatus({
     failureErrorDetailCoverage,
     traceEventCoverage,
     toolTraceCoverage,
-    guardrailTraceCoverage
+    guardrailTraceCoverage,
+    traceLinkCoverage,
+    traceOrphanRate
 }, {
     minTraceCoverage,
     minEvidenceCoverage,
@@ -69,7 +71,9 @@ function observabilityStatus({
     minFailureErrorDetailCoverage,
     minTraceEventCoverage,
     minToolTraceCoverage,
-    minGuardrailTraceCoverage
+    minGuardrailTraceCoverage,
+    minTraceLinkCoverage,
+    maxTraceOrphanRate
 }) {
     if (total <= 0) return 'warn';
     if (traceCoverage < minTraceCoverage) return 'fail';
@@ -78,6 +82,8 @@ function observabilityStatus({
     if (traceEventCoverage < minTraceEventCoverage) return 'fail';
     if (toolTraceCoverage < minToolTraceCoverage) return 'fail';
     if (guardrailTraceCoverage < minGuardrailTraceCoverage) return 'fail';
+    if (traceLinkCoverage < minTraceLinkCoverage) return 'fail';
+    if (traceOrphanRate > maxTraceOrphanRate) return 'fail';
     if (failureCount > 0 && failureTraceCoverage < minFailureTraceCoverage) return 'fail';
     if (failureCount > 0 && failureErrorDetailCoverage < minFailureErrorDetailCoverage) return 'fail';
     return 'pass';
@@ -110,6 +116,8 @@ export function evaluateCognitionCoreReadiness(
         minTraceEventCoverage = 0.5,
         minToolTraceCoverage = 0.25,
         minGuardrailTraceCoverage = 0.25,
+        minTraceLinkCoverage = 0.25,
+        maxTraceOrphanRate = 0.25,
         minFailureTraceCoverage = 0.8,
         minFailureErrorDetailCoverage = 0.8
     } = {}
@@ -297,6 +305,16 @@ export function evaluateCognitionCoreReadiness(
             'guardrailTraceCoverage',
             traceEventCoverage
         );
+        const traceLinkCoverage = coverageMetric(
+            learningReport.summary,
+            'traceLinkCoverage',
+            traceEventCoverage
+        );
+        const traceOrphanRate = coverageMetric(
+            learningReport.summary,
+            'traceOrphanRate',
+            0
+        );
         const status = observabilityStatus({
             total,
             failureCount,
@@ -307,7 +325,9 @@ export function evaluateCognitionCoreReadiness(
             failureErrorDetailCoverage,
             traceEventCoverage,
             toolTraceCoverage,
-            guardrailTraceCoverage
+            guardrailTraceCoverage,
+            traceLinkCoverage,
+            traceOrphanRate
         }, {
             minTraceCoverage,
             minEvidenceCoverage,
@@ -316,7 +336,9 @@ export function evaluateCognitionCoreReadiness(
             minFailureErrorDetailCoverage,
             minTraceEventCoverage,
             minToolTraceCoverage,
-            minGuardrailTraceCoverage
+            minGuardrailTraceCoverage,
+            minTraceLinkCoverage,
+            maxTraceOrphanRate
         });
 
         gates.push(createGate(
@@ -324,7 +346,7 @@ export function evaluateCognitionCoreReadiness(
             status,
             total <= 0
                 ? 'No learning outcomes are available for observability checks.'
-                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; trace event coverage ${(traceEventCoverage * 100).toFixed(1)}%; tool trace coverage ${(toolTraceCoverage * 100).toFixed(1)}%; guardrail trace coverage ${(guardrailTraceCoverage * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
+                : `Outcome trace coverage ${(traceCoverage * 100).toFixed(1)}%; replayable trace coverage ${(replayableTraceCoverage * 100).toFixed(1)}%; trace event coverage ${(traceEventCoverage * 100).toFixed(1)}%; tool trace coverage ${(toolTraceCoverage * 100).toFixed(1)}%; guardrail trace coverage ${(guardrailTraceCoverage * 100).toFixed(1)}%; linked trace coverage ${(traceLinkCoverage * 100).toFixed(1)}%; trace orphan rate ${(traceOrphanRate * 100).toFixed(1)}%; failure detail coverage ${(failureErrorDetailCoverage * 100).toFixed(1)}%.`,
             {
                 total,
                 failureCount,
@@ -334,6 +356,8 @@ export function evaluateCognitionCoreReadiness(
                 traceEventCoverage,
                 toolTraceCoverage,
                 guardrailTraceCoverage,
+                traceLinkCoverage,
+                traceOrphanRate,
                 failureTraceCoverage,
                 failureErrorDetailCoverage,
                 minTraceCoverage,
@@ -342,6 +366,8 @@ export function evaluateCognitionCoreReadiness(
                 minTraceEventCoverage,
                 minToolTraceCoverage,
                 minGuardrailTraceCoverage,
+                minTraceLinkCoverage,
+                maxTraceOrphanRate,
                 minFailureTraceCoverage,
                 minFailureErrorDetailCoverage
             }
