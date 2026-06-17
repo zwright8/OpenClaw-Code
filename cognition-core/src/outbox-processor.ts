@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { createHash } from 'crypto';
 import {
     buildTaskReceipt,
     buildTaskResult,
@@ -29,6 +30,99 @@ function clamp(value, min, max) {
 
 function normalizeFailureRate(value) {
     return clamp(Number(value) || 0, 0, 1);
+}
+
+function isTraceparent(value) {
+    return typeof value === 'string'
+        && /^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$/i.test(value.trim());
+}
+
+function traceparentFromRequest(request, envelope) {
+    const candidates = [
+        request?.traceparent,
+        request?.context?.traceparent,
+        envelope?.traceparent,
+        envelope?.message?.traceparent,
+        envelope?.message?.context?.traceparent
+    ];
+    const found = candidates.find((value) => isTraceparent(value));
+    return found ? found.trim().toLowerCase() : undefined;
+}
+
+function parseTraceparent(traceparent) {
+    if (!isTraceparent(traceparent)) return null;
+    const [, traceId, parentSpanId, traceFlags] = traceparent.trim().toLowerCase().split('-');
+    return {
+        traceId,
+        parentSpanId,
+        traceFlags
+    };
+}
+
+function stableSpanId(value) {
+    const hex = createHash('sha256')
+        .update(String(value))
+        .digest('hex')
+        .slice(0, 16);
+    return /^0+$/.test(hex) ? `1${hex.slice(1)}` : hex;
+}
+
+function buildOutboxTraceEvents({ taskId, target, traceparent, sentAt, completedAt, resultStatus }) {
+    const parsed = parseTraceparent(traceparent);
+    if (!parsed) return undefined;
+    const receivedSpanId = stableSpanId(`outbox-received:${taskId}:${sentAt}`);
+    const resultSpanId = stableSpanId(`outbox-result:${taskId}:${completedAt}:${resultStatus}`);
+
+    const baseAttributes = {
+        'gen_ai.agent.name': target,
+        'openclaw.workflow.name': 'outbox_processor',
+        trace_id: parsed.traceId,
+        parent_span_id: parsed.parentSpanId,
+        traceparent
+    };
+
+    return [
+        {
+            at: sentAt,
+            taskId,
+            name: 'outbox_processor.task_received',
+            kind: 'handoff',
+            traceparent,
+            spanContext: {
+                traceId: parsed.traceId,
+                spanId: receivedSpanId,
+                parentSpanId: parsed.parentSpanId,
+                traceFlags: parsed.traceFlags
+            },
+            attributes: {
+                ...baseAttributes,
+                span_id: receivedSpanId,
+                'gen_ai.operation.name': 'handoff',
+                'openclaw.workflow.phase': 'task_received'
+            }
+        },
+        {
+            at: completedAt,
+            taskId,
+            name: 'outbox_processor.task_result',
+            kind: resultStatus === 'failure' ? 'guardrail' : 'tool',
+            traceparent,
+            spanContext: {
+                traceId: parsed.traceId,
+                spanId: resultSpanId,
+                parentSpanId: receivedSpanId,
+                traceFlags: parsed.traceFlags
+            },
+            attributes: {
+                ...baseAttributes,
+                span_id: resultSpanId,
+                parent_span_id: receivedSpanId,
+                'gen_ai.operation.name': resultStatus === 'failure' ? 'invoke_workflow' : 'execute_tool',
+                'openclaw.workflow.phase': 'task_result',
+                'openclaw.task.status': resultStatus
+            }
+        }
+    ];
 }
 
 function chooseResultStatus(failureRate, rng = Math.random) {
@@ -261,6 +355,7 @@ export async function processOutboxEnvelopes({
             let resultOutput = `Processed by outbox worker: ${request.task}`;
             let resultArtifacts;
             let resultMetrics;
+            const traceparent = traceparentFromRequest(request, envelope);
 
             if (bot) {
                 // eslint-disable-next-line no-await-in-loop
@@ -314,6 +409,7 @@ export async function processOutboxEnvelopes({
                     : `Failed by outbox worker: ${request.task}`;
             }
 
+            const completedAt = safeNow(now) + Math.max(0, Number(resultDelayMs) || 0);
             const resultAccepted = orchestrator.ingestResult(buildTaskResult({
                 taskId,
                 from: target,
@@ -321,7 +417,16 @@ export async function processOutboxEnvelopes({
                 output: resultOutput,
                 artifacts: resultArtifacts,
                 metrics: resultMetrics,
-                completedAt: safeNow(now) + Math.max(0, Number(resultDelayMs) || 0)
+                traceparent,
+                traceEvents: buildOutboxTraceEvents({
+                    taskId,
+                    target,
+                    traceparent,
+                    sentAt: safeNow(now),
+                    completedAt,
+                    resultStatus
+                }),
+                completedAt
             }));
             if (resultAccepted) {
                 stats.resultsAccepted++;

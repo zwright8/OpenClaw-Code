@@ -58,6 +58,7 @@ export function buildTaskRequest({
     priority = 'normal',
     context,
     constraints,
+    traceparent,
     id = randomUUID(),
     createdAt = Date.now()
 }) {
@@ -70,6 +71,7 @@ export function buildTaskRequest({
         task,
         context,
         constraints,
+        traceparent,
         createdAt
     });
 }
@@ -100,6 +102,8 @@ export function buildTaskResult({
     output,
     artifacts,
     metrics,
+    traceparent,
+    traceEvents,
     completedAt = Date.now()
 }) {
     return TaskResult.parse({
@@ -110,6 +114,8 @@ export function buildTaskResult({
         output,
         artifacts,
         metrics,
+        traceparent,
+        traceEvents,
         completedAt
     });
 }
@@ -380,6 +386,7 @@ export class TaskOrchestrator {
         priority = 'normal',
         context,
         constraints,
+        traceparent,
         id = randomUUID(),
         createdAt = safeNow(this.now)
     }) {
@@ -390,6 +397,7 @@ export class TaskOrchestrator {
             priority,
             context,
             constraints,
+            traceparent,
             id,
             createdAt
         });
@@ -424,6 +432,7 @@ export class TaskOrchestrator {
             priority,
             context,
             constraints,
+            traceparent,
             id,
             createdAt
         });

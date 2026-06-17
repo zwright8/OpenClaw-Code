@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { createHash } from 'crypto';
 import {
     createApprovalPolicy,
     FileTaskStore,
@@ -21,6 +22,30 @@ function sanitizeTargetForFile(target) {
     return target.replace(/[^a-z0-9._-]+/gi, '_');
 }
 
+function stableHex(value, length) {
+    const hex = createHash('sha256')
+        .update(String(value))
+        .digest('hex')
+        .slice(0, length);
+    return /^0+$/.test(hex) ? `1${hex.slice(1)}` : hex;
+}
+
+function isTraceparent(value) {
+    return typeof value === 'string'
+        && /^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$/i.test(value.trim());
+}
+
+function traceparentForRecord(record) {
+    const existing = record?.request?.traceparent || record?.request?.context?.traceparent;
+    if (isTraceparent(existing)) return existing.trim().toLowerCase();
+
+    const taskId = typeof record?.taskId === 'string' ? record.taskId : record?.request?.id;
+    const createdAt = Number(record?.createdAt || record?.request?.createdAt || 0);
+    const traceId = stableHex(`openclaw-task:${taskId}`, 32);
+    const spanId = stableHex(`openclaw-task-dispatch:${taskId}:${createdAt}`, 16);
+    return `00-${traceId}-${spanId}-01`;
+}
+
 function sortByCreatedAtAsc(records) {
     return [...records].sort((a, b) => {
         const left = Number(a?.createdAt || 0);
@@ -39,14 +64,19 @@ export function buildDispatchPayload(record) {
         throw new Error('buildDispatchPayload expects a record object');
     }
     const request = TaskRequest.parse(record.request);
+    const traceparent = traceparentForRecord(record);
     return {
         id: request.id,
         createdAt: request.createdAt,
         target: request.target,
         task: request.task,
         priority: request.priority,
-        context: request.context,
-        constraints: request.constraints
+        context: {
+            ...(request.context || {}),
+            traceparent
+        },
+        constraints: request.constraints,
+        traceparent
     };
 }
 
