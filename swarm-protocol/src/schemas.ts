@@ -19,6 +19,7 @@ export const TaskRequest = z.object({
     task: z.string().describe('Natural language description of the objective'),
     context: z.record(z.string(), z.any()).optional().describe('Structured context data needed for the task'),
     constraints: z.array(z.string()).optional().describe('List of negative constraints (do nots)'),
+    traceparent: z.string().optional().describe('Optional W3C trace context carrier for cross-runtime task lineage'),
     createdAt: Timestamp
 });
 
@@ -34,6 +35,8 @@ export const TaskResult = z.object({
         type: z.string().optional()
     })).optional().describe('Files created or modified'),
     metrics: z.record(z.string(), z.number()).optional(),
+    traceparent: z.string().optional().describe('Optional W3C trace context carrier continued from the task request'),
+    traceEvents: z.array(z.record(z.string(), z.any())).optional().describe('Optional structured spans/events emitted while executing the task'),
     completedAt: Timestamp
 });
 

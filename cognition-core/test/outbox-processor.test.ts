@@ -45,6 +45,7 @@ function makeRequest(
         priority,
         task: `Task ${id}`,
         context,
+        traceparent: context.traceparent,
         createdAt: 50_000
     });
 }
@@ -57,7 +58,10 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const outboxDir = path.join(dir, 'outbox');
     const archiveDir = path.join(outboxDir, 'processed');
     const target = 'agent:ops';
-    const request = makeRequest('00000000-0000-4000-8000-000000000301', target, 'high');
+    const request = makeRequest('00000000-0000-4000-8000-000000000301', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+    });
 
     const store = new FileTaskStore({ filePath: queuePath, now: () => 60_000 });
     const record = buildQueueRecordFromTaskRequest(request, {
@@ -91,6 +95,13 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const records = await store.loadRecords();
     assert.equal(records.length, 1);
     assert.equal(records[0].status, 'completed');
+    assert.equal(records[0].result.traceparent, request.traceparent);
+    assert.ok(Array.isArray(records[0].result.traceEvents));
+    assert.ok(records[0].result.traceEvents.some((event) => (
+        event.kind === 'tool'
+        && event.traceparent === request.traceparent
+        && event.spanContext.parentSpanId
+    )));
 
     const archived = fs.readdirSync(archiveDir).filter((item) => item.endsWith('.jsonl'));
     assert.equal(archived.length, 1);
