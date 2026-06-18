@@ -46,6 +46,8 @@
 - `npm run skills:tools:validate` - validate tool-shard skill artifacts.
 - `npm run skills:build:10000` - generate the 10k skill corpus.
 - `npm run skills:materialize:10000` - materialize generated 10k skill outputs.
+- `npm run agent:hermes:build` - build the Hermes warfighter agent loadout manifest.
+- `npm run agent:hermes:validate` - validate the Hermes warfighter agent loadout without writing artifacts.
 
 ## Verified Package Workflows
 - `npm --prefix cognition-core run test` - run cognition-core test suite.
