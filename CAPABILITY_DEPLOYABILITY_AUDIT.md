@@ -1,6 +1,6 @@
 # Capability Deployability Audit (32-131)
 
-Generated: 2026-06-18T23:15:57.108Z
+Generated: 2026-06-18T23:22:52.073Z
 
 ## Criteria
 - Module implementation exists in `swarm-protocol/src` and is exported via `swarm-protocol/capabilities.ts` mapping.

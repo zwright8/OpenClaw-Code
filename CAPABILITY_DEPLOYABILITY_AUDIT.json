@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-18T23:15:57.108Z",
+  "generatedAt": "2026-06-18T23:22:52.073Z",
   "scope": {
     "capabilityRange": "32-131",
     "source": "swarm-protocol/capabilities.ts",

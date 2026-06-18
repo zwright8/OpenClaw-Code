@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-06-18T23:01:03.854Z",
+  "generatedAt": "2026-06-18T23:22:57.756Z",
   "minDeployableScore": 82,
   "strict": true,
   "policy": "enforce",
   "profileRuleCount": 24,
   "summary": {
-    "generatedAt": "2026-06-18T23:01:03.850Z",
+    "generatedAt": "2026-06-18T23:22:57.753Z",
     "sourceCounts": {
       "manifest": 10000,
       "external": 10000,
