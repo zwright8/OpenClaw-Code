@@ -167,7 +167,10 @@ function buildHealthAttention({ gateway, workerLoop }) {
         attention.push(`worker_loop_resume_${workerLoop.nextAction || 'recommended'}`);
     }
 
-    if (workerLoop.freshness?.status === 'stale') {
+    const hasWorkerLoopAction = workerLoop.resumeRecommended
+        || Number(workerLoop.queue?.open || 0) > 0
+        || (workerLoop.attentionReasons || []).length > 0;
+    if (hasWorkerLoopAction && workerLoop.freshness?.status === 'stale') {
         attention.push('worker_loop_checkpoint_stale');
     }
 

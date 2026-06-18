@@ -227,6 +227,45 @@ test('inspectOpenClawHealth returns machine-readable gateway and worker status',
     assert.equal(result.workerLoop.freshness.status, 'fresh');
 });
 
+test('inspectOpenClawHealth does not alert on stale drained worker checkpoint', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'queue_drained',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'no_resume_needed',
+            resumeRecommended: false,
+            resumeKey: 'no_resume_needed:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: [],
+            lastCycle: {
+                finishedAt: 100_000
+            },
+            queue: {
+                open: 0,
+                awaitingApproval: 0
+            }
+        }
+    }));
+
+    const result = inspectOpenClawHealth({
+        logPath,
+        workerReportPath: reportPath,
+        now: 2_000_000,
+        approvalSloMs: 30_000
+    });
+
+    assert.equal(result.workerLoop.freshness.status, 'stale');
+    assert.equal(result.status, 'ok');
+    assert.deepEqual(result.attention, []);
+});
+
 test('health-monitor --json emits parseable machine-readable health status', (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
