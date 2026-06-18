@@ -8,6 +8,9 @@ description: Build and operate the "Human Approval Routing for manufacturing qua
 ## Why This Skill Exists
 Use human approval routing in manufacturing quality assurance with emphasis on throughput, reliability, leverage, and execution speed.
 
+## When To Use
+Use this skill when the request explicitly needs "Human Approval Routing for manufacturing quality assurance" outcomes in the manufacturing quality assurance domain.
+
 ## Step-by-Step Implementation Guide
 1. Define measurable outcomes for Human Approval Routing for manufacturing quality assurance, including baseline and target metrics for manufacturing quality assurance.
 2. Specify structured inputs/outputs for human approval routing and validate schema contract edge cases.
@@ -16,20 +19,26 @@ Use human approval routing in manufacturing quality assurance with emphasis on t
 5. Run unit, integration, simulation, and regression suites for Human Approval Routing for manufacturing quality assurance under hyper-productive autonomy conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
+## Required Deliverables
+- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
+- Runtime profile: generalist-engine using human approval routing to produce human-approval-routing-artifact-manufacturing-quality-assurance.
+- Orchestration integration: manufacturing-quality-assurance:generalist-engine routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
 ## Operational Runbook
-Preflight:
+### Preflight
 - Validate mission scope, contracts, and required inputs.
 - Verify feature flag posture, dependencies, and approval prerequisites.
 
-Execution:
+### Execution
 - Execute human approval routing workflow with deterministic scoring and trace capture.
 - Track posture transitions and preserve reproducible evidence artifacts.
 
-Recovery:
+### Recovery
 - Apply rollback strategy if posture is critical or guardrails fail.
 - Escalate blocked execution to oversight with incident packet and trace references.
 
-Handoff:
+### Handoff
 - Publish outcome report, scorecard, and telemetry links.
 - Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 

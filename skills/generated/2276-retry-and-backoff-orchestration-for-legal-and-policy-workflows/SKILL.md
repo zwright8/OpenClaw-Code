@@ -8,6 +8,9 @@ description: Build and operate the "Retry And Backoff Orchestration for legal an
 ## Why This Skill Exists
 Use retry and backoff orchestration in legal and policy workflows with emphasis on evidence quality, falsifiability, and calibration.
 
+## When To Use
+Use this skill when the request explicitly needs "Retry And Backoff Orchestration for legal and policy workflows" outcomes in the legal and policy workflows domain.
+
 ## Step-by-Step Implementation Guide
 1. Define measurable outcomes for Retry And Backoff Orchestration for legal and policy workflows, including baseline and target metrics for legal and policy workflows.
 2. Specify structured inputs/outputs for retry and backoff orchestration and validate schema contract edge cases.
@@ -16,20 +19,26 @@ Use retry and backoff orchestration in legal and policy workflows with emphasis 
 5. Run unit, integration, simulation, and regression suites for Retry And Backoff Orchestration for legal and policy workflows under maximally truth-seeking conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
+## Required Deliverables
+- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
+- Runtime profile: generalist-engine using retry and backoff orchestration to produce retry-and-backoff-orchestration-artifact-legal-and-policy-workfl.
+- Orchestration integration: legal-and-policy-workflows:generalist-engine routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
 ## Operational Runbook
-Preflight:
+### Preflight
 - Validate mission scope, contracts, and required inputs.
 - Verify feature flag posture, dependencies, and approval prerequisites.
 
-Execution:
+### Execution
 - Execute retry and backoff orchestration workflow with deterministic scoring and trace capture.
 - Track posture transitions and preserve reproducible evidence artifacts.
 
-Recovery:
+### Recovery
 - Apply rollback strategy if posture is critical or guardrails fail.
 - Escalate blocked execution to oversight with incident packet and trace references.
 
-Handoff:
+### Handoff
 - Publish outcome report, scorecard, and telemetry links.
 - Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 

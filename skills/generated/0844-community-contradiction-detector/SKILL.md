@@ -21,5 +21,28 @@ Use this skill when the request explicitly needs "Community Contradiction Detect
 
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+- Runtime profile: detection-guard using cross-claim consistency checks to produce contradiction alerts.
+- Orchestration integration: community-engagement-and-feedback:detection-guard routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
+## Operational Runbook
+### Preflight
+- Confirm the Community Contradiction Detector request scope, source evidence, and measurable success criteria before execution.
+- Verify feature flag skill_0844_community-contradiction-detector, approval gates, and rollback owner before autonomous use.
+
+### Execution
+- Execute cross-claim consistency checks with deterministic scoring and reproducible trace capture.
+- Produce contradiction alerts plus scorecard, assumptions, and unresolved-risk notes.
+
+### Recovery
+- Fail closed when required signals, evidence, or approval gates are missing.
+- Rollback to the last stable baseline when posture is critical or validation fails.
+
+### Handoff
+- Publish contradiction alerts, validation evidence, and telemetry links to downstream owners.
+- Queue follow-up tasks for unresolved risks, threshold tuning, or approval review.
+
+## Guardrails
+- [quality] Require deterministic scoring and validation evidence before promotion.
+- [reliability] Preserve retries, rollback controls, and failure-mode evidence for every run.
+- [safety] Route critical posture or missing approval gates to human review before autonomous action.

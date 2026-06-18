@@ -8,6 +8,9 @@ description: Build and operate the "Regression Sentinel Design for mental well-b
 ## Why This Skill Exists
 Use regression sentinel design in mental well-being practices with emphasis on clarity, harmony, craft, and emotionally resonant outcomes.
 
+## When To Use
+Use this skill when the request explicitly needs "Regression Sentinel Design for mental well-being practices" outcomes in the mental well-being practices domain.
+
 ## Step-by-Step Implementation Guide
 1. Define measurable outcomes for Regression Sentinel Design for mental well-being practices, including baseline and target metrics for mental well-being practices.
 2. Specify structured inputs/outputs for regression sentinel design and validate schema contract edge cases.
@@ -16,20 +19,26 @@ Use regression sentinel design in mental well-being practices with emphasis on c
 5. Run unit, integration, simulation, and regression suites for Regression Sentinel Design for mental well-being practices under beauty and aesthetic appreciation conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
+## Required Deliverables
+- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
+- Runtime profile: generalist-engine using regression sentinel design to produce regression-sentinel-design-artifact-mental-well-being-practices.
+- Orchestration integration: mental-well-being-practices:generalist-engine routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
 ## Operational Runbook
-Preflight:
+### Preflight
 - Validate mission scope, contracts, and required inputs.
 - Verify feature flag posture, dependencies, and approval prerequisites.
 
-Execution:
+### Execution
 - Execute regression sentinel design workflow with deterministic scoring and trace capture.
 - Track posture transitions and preserve reproducible evidence artifacts.
 
-Recovery:
+### Recovery
 - Apply rollback strategy if posture is critical or guardrails fail.
 - Escalate blocked execution to oversight with incident packet and trace references.
 
-Handoff:
+### Handoff
 - Publish outcome report, scorecard, and telemetry links.
 - Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 

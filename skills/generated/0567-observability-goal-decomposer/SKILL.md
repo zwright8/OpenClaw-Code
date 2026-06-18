@@ -21,5 +21,28 @@ Use this skill when the request explicitly needs "Observability Goal Decomposer"
 
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+- Runtime profile: planning-router using hierarchical decomposition to produce atomic task trees.
+- Orchestration integration: data-quality-and-observability:planning-router routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
+## Operational Runbook
+### Preflight
+- Confirm the Observability Goal Decomposer request scope, source evidence, and measurable success criteria before execution.
+- Verify feature flag skill_0567_observability-goal-decomposer, approval gates, and rollback owner before autonomous use.
+
+### Execution
+- Execute hierarchical decomposition with deterministic scoring and reproducible trace capture.
+- Produce atomic task trees plus scorecard, assumptions, and unresolved-risk notes.
+
+### Recovery
+- Fail closed when required signals, evidence, or approval gates are missing.
+- Rollback to the last stable baseline when posture is critical or validation fails.
+
+### Handoff
+- Publish atomic task trees, validation evidence, and telemetry links to downstream owners.
+- Queue follow-up tasks for unresolved risks, threshold tuning, or approval review.
+
+## Guardrails
+- [quality] Require deterministic scoring and validation evidence before promotion.
+- [reliability] Preserve retries, rollback controls, and failure-mode evidence for every run.
+- [safety] Route critical posture or missing approval gates to human review before autonomous action.

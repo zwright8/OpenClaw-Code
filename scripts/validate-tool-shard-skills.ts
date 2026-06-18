@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import {
+    assertSkillMarkdownContract,
+    ToolShardSkillRequiredSections
+} from './skill-markdown-contract.js';
 
 type ToolIdeasManifestEntry = {
     id: number;
@@ -30,30 +34,19 @@ function assert(condition: unknown, message: string): asserts condition {
     if (!condition) throw new Error(message);
 }
 
-function parseFrontmatter(markdown: string): Record<string, string> {
-    const match = markdown.match(/^---\n([\s\S]*?)\n---\n?/);
-    if (!match) return {};
-    const result: Record<string, string> = {};
-    for (const line of match[1].split('\n')) {
-        const index = line.indexOf(':');
-        if (index < 0) continue;
-        result[line.slice(0, index).trim()] = line.slice(index + 1).trim();
-    }
-    return result;
-}
-
 function loadJson<T>(filePath: string): T {
     return JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
 }
 
-function validateSkillMarkdown(filePath: string, expectedName: string) {
+function validateSkillMarkdown(filePath: string, entry: ToolIdeasManifestEntry) {
     const markdown = fs.readFileSync(filePath, 'utf8');
-    const frontmatter = parseFrontmatter(markdown);
-    assert(frontmatter.name === expectedName, `Frontmatter name mismatch in ${filePath}`);
-    assert(typeof frontmatter.description === 'string' && frontmatter.description.length > 0, `Missing description in ${filePath}`);
-    assert(markdown.includes('## Auth & Access Profile'), `Missing auth section in ${filePath}`);
-    assert(markdown.includes('## Credential Reuse Policy'), `Missing credential reuse section in ${filePath}`);
-    assert(markdown.includes('## Step-by-Step Implementation Guide'), `Missing implementation guide in ${filePath}`);
+    assertSkillMarkdownContract(filePath, markdown, {
+        expectedName: entry.name,
+        expectedTitle: entry.title,
+        requiredSections: ToolShardSkillRequiredSections,
+        expectedStepCount: 6,
+        minStepCount: 6
+    });
 }
 
 function validateImplementation(filePath: string, entry: ToolIdeasManifestEntry) {
@@ -116,7 +109,7 @@ function main() {
         assert(fs.existsSync(regressionPath), `Missing regression case for ${entry.id}: ${regressionPath}`);
         assert(fs.existsSync(hardeningPath), `Missing hardening summary for ${entry.id}: ${hardeningPath}`);
 
-        validateSkillMarkdown(skillPath, entry.name);
+        validateSkillMarkdown(skillPath, entry);
         validateImplementation(implementationPath, entry);
 
         const hardening = loadJson<Record<string, unknown>>(hardeningPath);

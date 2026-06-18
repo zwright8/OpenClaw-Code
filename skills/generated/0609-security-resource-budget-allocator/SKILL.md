@@ -21,5 +21,28 @@ Use this skill when the request explicitly needs "Security Resource Budget Alloc
 
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+- Runtime profile: planning-router using capacity-aware allocation to produce budgeted execution plans.
+- Orchestration integration: security-and-privacy:planning-router routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
+## Operational Runbook
+### Preflight
+- Confirm the Security Resource Budget Allocator request scope, source evidence, and measurable success criteria before execution.
+- Verify feature flag skill_0609_security-resource-budget-allocat, approval gates, and rollback owner before autonomous use.
+
+### Execution
+- Execute capacity-aware allocation with deterministic scoring and reproducible trace capture.
+- Produce budgeted execution plans plus scorecard, assumptions, and unresolved-risk notes.
+
+### Recovery
+- Fail closed when required signals, evidence, or approval gates are missing.
+- Rollback to the last stable baseline when posture is critical or validation fails.
+
+### Handoff
+- Publish budgeted execution plans, validation evidence, and telemetry links to downstream owners.
+- Queue follow-up tasks for unresolved risks, threshold tuning, or approval review.
+
+## Guardrails
+- [quality] Require deterministic scoring and validation evidence before promotion.
+- [reliability] Preserve retries, rollback controls, and failure-mode evidence for every run.
+- [safety] Route critical posture or missing approval gates to human review before autonomous action.

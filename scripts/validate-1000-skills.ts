@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import {
+    assertSkillMarkdownContract,
+    BaseGeneratedSkillRequiredSections
+} from './skill-markdown-contract.js';
 
 type ManifestEntry = {
     id: number;
@@ -37,36 +41,22 @@ const REPO_ROOT = process.cwd();
 const SKILL_ROOT = path.join(REPO_ROOT, 'skills', 'generated');
 const MANIFEST_PATH = path.join(SKILL_ROOT, 'skills.manifest.json');
 const RUNTIME_CATALOG_PATH = path.join(SKILL_ROOT, 'runtime.catalog.json');
-
-function parseFrontmatter(markdown: string): Record<string, string> {
-    const match = markdown.match(/^---\n([\s\S]*?)\n---\n?/);
-    if (!match) return {};
-    const frontmatter: Record<string, string> = {};
-    for (const line of match[1].split('\n')) {
-        const idx = line.indexOf(':');
-        if (idx < 0) continue;
-        const key = line.slice(0, idx).trim();
-        const value = line.slice(idx + 1).trim();
-        frontmatter[key] = value;
-    }
-    return frontmatter;
-}
+const MATERIALIZED_MANIFEST_PATH = path.join(SKILL_ROOT, 'skills.manifest.10000.json');
+const MATERIALIZED_RUNTIME_CATALOG_PATH = path.join(SKILL_ROOT, 'runtime.catalog.10000.json');
 
 function assert(condition: unknown, message: string): asserts condition {
     if (!condition) throw new Error(message);
 }
 
-function validateSkillMarkdown(filePath: string, expectedName: string) {
+function validateSkillMarkdown(filePath: string, expectedEntry: ManifestEntry) {
     const markdown = fs.readFileSync(filePath, 'utf8');
-    const frontmatter = parseFrontmatter(markdown);
-    assert(frontmatter.name, `Missing frontmatter name in ${filePath}`);
-    assert(frontmatter.description, `Missing frontmatter description in ${filePath}`);
-    assert(frontmatter.name === expectedName, `Frontmatter name mismatch in ${filePath}`);
-
-    const steps = markdown.split('\n').filter((line) => /^\d+\.\s+/.test(line));
-    assert(steps.length >= 6, `Expected at least 6 implementation steps in ${filePath}`);
-    assert(markdown.includes('## Why This Skill Exists'), `Missing reason section in ${filePath}`);
-    assert(markdown.includes('## Step-by-Step Implementation Guide'), `Missing implementation guide in ${filePath}`);
+    assertSkillMarkdownContract(filePath, markdown, {
+        expectedName: expectedEntry.name,
+        expectedTitle: expectedEntry.title,
+        requiredSections: BaseGeneratedSkillRequiredSections,
+        expectedStepCount: expectedEntry.stepCount,
+        minStepCount: 6
+    });
 }
 
 function validateNumber(value: unknown, label: string, min = 0, max = 1) {
@@ -145,17 +135,29 @@ function validateImplementation(filePath: string, expectedEntry: ManifestEntry) 
     assert(Number(rollout.releaseCycles) >= 1, `Invalid releaseCycles in ${filePath}`);
 }
 
-function main() {
-    assert(fs.existsSync(MANIFEST_PATH), `Missing manifest: ${MANIFEST_PATH}`);
-    const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8')) as ManifestEntry[];
+function validateManifest(
+    {
+        manifestPath,
+        runtimeCatalogPath,
+        expectedCount,
+        maxNameLength
+    }: {
+        manifestPath: string;
+        runtimeCatalogPath: string;
+        expectedCount: number;
+        maxNameLength: number;
+    }
+) {
+    assert(fs.existsSync(manifestPath), `Missing manifest: ${manifestPath}`);
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as ManifestEntry[];
     assert(Array.isArray(manifest), 'Manifest is not an array');
-    assert(manifest.length === 1000, `Expected 1000 skills, found ${manifest.length}`);
-    assert(fs.existsSync(RUNTIME_CATALOG_PATH), `Missing runtime catalog: ${RUNTIME_CATALOG_PATH}`);
+    assert(manifest.length === expectedCount, `Expected ${expectedCount} skills, found ${manifest.length}`);
+    assert(fs.existsSync(runtimeCatalogPath), `Missing runtime catalog: ${runtimeCatalogPath}`);
 
-    const runtimeCatalog = JSON.parse(fs.readFileSync(RUNTIME_CATALOG_PATH, 'utf8')) as RuntimeCatalog;
+    const runtimeCatalog = JSON.parse(fs.readFileSync(runtimeCatalogPath, 'utf8')) as RuntimeCatalog;
     assert(runtimeCatalog.version === 1, 'Invalid runtime catalog version');
     assert(Array.isArray(runtimeCatalog.entries), 'Runtime catalog entries must be an array');
-    assert(runtimeCatalog.entries.length === 1000, `Expected 1000 runtime entries, found ${runtimeCatalog.entries.length}`);
+    assert(runtimeCatalog.entries.length === expectedCount, `Expected ${expectedCount} runtime entries, found ${runtimeCatalog.entries.length}`);
     assert(runtimeCatalog.count === runtimeCatalog.entries.length, 'Runtime catalog count mismatch');
 
     const runtimeById = new Map<number, RuntimeCatalogEntry>();
@@ -169,7 +171,7 @@ function main() {
     for (const entry of manifest) {
         assert(typeof entry.id === 'number' && entry.id >= 1, `Invalid id in manifest entry ${JSON.stringify(entry)}`);
         assert(typeof entry.name === 'string' && entry.name.length > 0, `Invalid name in manifest entry ${entry.id}`);
-        assert(entry.name.length <= 64, `Skill name too long for entry ${entry.id}: ${entry.name}`);
+        assert(entry.name.length <= maxNameLength, `Skill name too long for entry ${entry.id}: ${entry.name}`);
         assert(/^[a-z0-9-]+$/.test(entry.name), `Skill name has invalid characters for entry ${entry.id}: ${entry.name}`);
         assert(!seenIds.has(entry.id), `Duplicate id in manifest: ${entry.id}`);
         assert(!seenNames.has(entry.name), `Duplicate name in manifest: ${entry.name}`);
@@ -184,7 +186,7 @@ function main() {
 
         const absolutePath = path.join(REPO_ROOT, entry.path);
         assert(fs.existsSync(absolutePath), `Missing skill file for entry ${entry.id}: ${entry.path}`);
-        validateSkillMarkdown(absolutePath, entry.name);
+        validateSkillMarkdown(absolutePath, entry);
 
         const implementationAbsolutePath = path.join(REPO_ROOT, entry.implementationPath);
         assert(fs.existsSync(implementationAbsolutePath), `Missing implementation file for entry ${entry.id}: ${entry.implementationPath}`);
@@ -202,7 +204,31 @@ function main() {
         checked += 1;
     }
 
-    console.log(`[validate-1000-skills] Validated ${checked} skills successfully.`);
+    return checked;
+}
+
+function main() {
+    const baseChecked = validateManifest({
+        manifestPath: MANIFEST_PATH,
+        runtimeCatalogPath: RUNTIME_CATALOG_PATH,
+        expectedCount: 1000,
+        maxNameLength: 64
+    });
+
+    let materializedChecked = 0;
+    if (fs.existsSync(MATERIALIZED_MANIFEST_PATH)) {
+        materializedChecked = validateManifest({
+            manifestPath: MATERIALIZED_MANIFEST_PATH,
+            runtimeCatalogPath: MATERIALIZED_RUNTIME_CATALOG_PATH,
+            expectedCount: 10000,
+            maxNameLength: 96
+        });
+    }
+
+    const materializedSummary = materializedChecked > 0
+        ? ` and ${materializedChecked} materialized skills`
+        : '';
+    console.log(`[validate-1000-skills] Validated ${baseChecked} base skills${materializedSummary} successfully.`);
 }
 
 main();
