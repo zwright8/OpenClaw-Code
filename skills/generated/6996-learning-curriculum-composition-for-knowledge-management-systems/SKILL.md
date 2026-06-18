@@ -8,6 +8,9 @@ description: Build and operate the "Learning Curriculum Composition for knowledg
 ## Why This Skill Exists
 Use learning curriculum composition in knowledge management systems with emphasis on evidence quality, falsifiability, and calibration.
 
+## When To Use
+Use this skill when the request explicitly needs "Learning Curriculum Composition for knowledge management systems" outcomes in the knowledge management systems domain.
+
 ## Step-by-Step Implementation Guide
 1. Define measurable outcomes for Learning Curriculum Composition for knowledge management systems, including baseline and target metrics for knowledge management systems.
 2. Specify structured inputs/outputs for learning curriculum composition and validate schema contract edge cases.
@@ -16,20 +19,26 @@ Use learning curriculum composition in knowledge management systems with emphasi
 5. Run unit, integration, simulation, and regression suites for Learning Curriculum Composition for knowledge management systems under maximally truth-seeking conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
+## Required Deliverables
+- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
+- Runtime profile: curriculum-engine using learning curriculum composition to produce learning-curriculum-composition-artifact-knowledge-management-sy.
+- Orchestration integration: knowledge-management-systems:curriculum-engine routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
 ## Operational Runbook
-Preflight:
+### Preflight
 - Validate mission scope, contracts, and required inputs.
 - Verify feature flag posture, dependencies, and approval prerequisites.
 
-Execution:
+### Execution
 - Execute learning curriculum composition workflow with deterministic scoring and trace capture.
 - Track posture transitions and preserve reproducible evidence artifacts.
 
-Recovery:
+### Recovery
 - Apply rollback strategy if posture is critical or guardrails fail.
 - Escalate blocked execution to oversight with incident packet and trace references.
 
-Handoff:
+### Handoff
 - Publish outcome report, scorecard, and telemetry links.
 - Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 

@@ -6,6 +6,7 @@ import type {
     SkillManifestEntry,
     SkillRuntimeCatalog
 } from '../skills/runtime/types.js';
+import { renderGeneratedSkillMarkdown } from './skill-markdown-contract.js';
 
 const REPO_ROOT = process.cwd();
 const GENERATED_ROOT = path.join(REPO_ROOT, 'skills', 'generated');
@@ -71,54 +72,52 @@ function buildSkillMarkdown(implementation: SkillImplementation): string {
         `Build and operate the "${implementation.title}" capability for ${implementation.domain}. ` +
         'Use when this exact capability is required by autonomous or human-guided missions.'
     );
-    const guide = Array.isArray(implementation.implementationGuide)
-        ? implementation.implementationGuide
-        : [];
-    const steps = guide
-        .map((step, index) => `${index + 1}. ${clean(step)}`)
-        .join('\n');
-
     const runbook = implementation.improvementProfile?.runbook;
-    const preflight = runbook?.preflight || [];
-    const execution = runbook?.execution || [];
-    const recovery = runbook?.recovery || [];
-    const handoff = runbook?.handoff || [];
+    const runtime = implementation.runtimeProfile;
+    const guardrails = (implementation.improvementProfile?.guardrails || [])
+        .map((item) => `[${item.kind}] ${clean(item.rule)} -> \`${clean(item.automation)}\``);
 
-    const renderList = (items: string[]) => items.map((item) => `- ${clean(item)}`).join('\n');
-    const guardrails = implementation.improvementProfile?.guardrails || [];
-    const guardrailLines = guardrails
-        .map((item) => `- [${item.kind}] ${clean(item.rule)} -> \`${clean(item.automation)}\``)
-        .join('\n');
-
-    return `---
-name: ${implementation.skillName}
-description: ${description}
----
-
-# ${implementation.title}
-
-## Why This Skill Exists
-${clean(implementation.reason)}
-
-## Step-by-Step Implementation Guide
-${steps}
-
-## Operational Runbook
-Preflight:
-${renderList(preflight)}
-
-Execution:
-${renderList(execution)}
-
-Recovery:
-${renderList(recovery)}
-
-Handoff:
-${renderList(handoff)}
-
-## Guardrails
-${guardrailLines || '- None specified.'}
-`;
+    return renderGeneratedSkillMarkdown({
+        skillName: implementation.skillName,
+        description,
+        title: implementation.title,
+        reason: implementation.reason,
+        whenToUse: `Use this skill when the request explicitly needs "${implementation.title}" outcomes in the ${implementation.domain} domain.`,
+        implementationGuide: Array.isArray(implementation.implementationGuide)
+            ? implementation.implementationGuide
+            : [],
+        requiredDeliverables: [
+            'Capability contract: input schema, deterministic scoring, output schema, and failure modes.',
+            `Runtime profile: ${runtime.archetype} using ${runtime.coreMethod} to produce ${runtime.primaryArtifact}.`,
+            `Orchestration integration: ${runtime.orchestration.routingTag} routing, approval gates, retries, and rollback controls.`,
+            `Validation evidence: ${runtime.validation.suites.join(', ')} suites and rollout telemetry.`
+        ],
+        runbook: {
+            preflight: runbook?.preflight || [
+                `Confirm the ${implementation.title} request scope, source evidence, and measurable success criteria before execution.`,
+                `Verify feature flag ${runtime.rollout.featureFlag}, approval gates, and rollback owner before autonomous use.`
+            ],
+            execution: runbook?.execution || [
+                `Execute ${runtime.coreMethod} with deterministic scoring and reproducible trace capture.`,
+                `Produce ${runtime.primaryArtifact} plus scorecard, assumptions, and unresolved-risk notes.`
+            ],
+            recovery: runbook?.recovery || [
+                'Fail closed when required signals, evidence, or approval gates are missing.',
+                'Rollback to the last stable baseline when posture is critical or validation fails.'
+            ],
+            handoff: runbook?.handoff || [
+                `Publish ${runtime.primaryArtifact}, validation evidence, and telemetry links to downstream owners.`,
+                'Queue follow-up tasks for unresolved risks, threshold tuning, or approval review.'
+            ]
+        },
+        guardrails: guardrails.length > 0
+            ? guardrails
+            : [
+                '[quality] Require deterministic scoring and validation evidence before promotion.',
+                '[reliability] Preserve retries, rollback controls, and failure-mode evidence for every run.',
+                '[safety] Route critical posture or missing approval gates to human review before autonomous action.'
+            ]
+    });
 }
 
 function buildDirName(implementation: SkillImplementation): string {

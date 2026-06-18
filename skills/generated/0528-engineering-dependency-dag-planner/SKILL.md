@@ -21,5 +21,28 @@ Use this skill when the request explicitly needs "Engineering Dependency DAG Pla
 
 ## Required Deliverables
 - Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
+- Runtime profile: planning-router using dependency graph compilation to produce validated workflow DAGs.
+- Orchestration integration: software-engineering-automation:planning-router routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
+## Operational Runbook
+### Preflight
+- Confirm the Engineering Dependency DAG Planner request scope, source evidence, and measurable success criteria before execution.
+- Verify feature flag skill_0528_engineering-dependency-dag-plann, approval gates, and rollback owner before autonomous use.
+
+### Execution
+- Execute dependency graph compilation with deterministic scoring and reproducible trace capture.
+- Produce validated workflow DAGs plus scorecard, assumptions, and unresolved-risk notes.
+
+### Recovery
+- Fail closed when required signals, evidence, or approval gates are missing.
+- Rollback to the last stable baseline when posture is critical or validation fails.
+
+### Handoff
+- Publish validated workflow DAGs, validation evidence, and telemetry links to downstream owners.
+- Queue follow-up tasks for unresolved risks, threshold tuning, or approval review.
+
+## Guardrails
+- [quality] Require deterministic scoring and validation evidence before promotion.
+- [reliability] Preserve retries, rollback controls, and failure-mode evidence for every run.
+- [safety] Route critical posture or missing approval gates to human review before autonomous action.

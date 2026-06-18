@@ -8,6 +8,9 @@ description: Build and operate the "Creative Ideation Facilitation for eldercare
 ## Why This Skill Exists
 Use creative ideation facilitation in eldercare coordination with emphasis on clarity, harmony, craft, and emotionally resonant outcomes.
 
+## When To Use
+Use this skill when the request explicitly needs "Creative Ideation Facilitation for eldercare coordination" outcomes in the eldercare coordination domain.
+
 ## Step-by-Step Implementation Guide
 1. Define measurable outcomes for Creative Ideation Facilitation for eldercare coordination, including baseline and target metrics for eldercare coordination.
 2. Specify structured inputs/outputs for creative ideation facilitation and validate schema contract edge cases.
@@ -16,20 +19,26 @@ Use creative ideation facilitation in eldercare coordination with emphasis on cl
 5. Run unit, integration, simulation, and regression suites for Creative Ideation Facilitation for eldercare coordination under beauty and aesthetic appreciation conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
+## Required Deliverables
+- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
+- Runtime profile: ideation-engine using creative ideation facilitation to produce creative-ideation-facilitation-artifact-eldercare-coordination.
+- Orchestration integration: eldercare-coordination:ideation-engine routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
 ## Operational Runbook
-Preflight:
+### Preflight
 - Validate mission scope, contracts, and required inputs.
 - Verify feature flag posture, dependencies, and approval prerequisites.
 
-Execution:
+### Execution
 - Execute creative ideation facilitation workflow with deterministic scoring and trace capture.
 - Track posture transitions and preserve reproducible evidence artifacts.
 
-Recovery:
+### Recovery
 - Apply rollback strategy if posture is critical or guardrails fail.
 - Escalate blocked execution to oversight with incident packet and trace references.
 
-Handoff:
+### Handoff
 - Publish outcome report, scorecard, and telemetry links.
 - Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 

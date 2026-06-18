@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { renderGeneratedSkillMarkdown } from './skill-markdown-contract.js';
 
 type SkillUpdate = {
     id: number;
@@ -429,42 +430,64 @@ function buildImplementation(update: SkillUpdate, skillName: string, sourceFile:
     };
 }
 
-function buildSkillMarkdown(update: SkillUpdate, skillName: string): string {
-    const description = cleanSentence(
-        `Build and operate the "${update.title}" capability for ${update.domain}. ` +
-        `Trigger when this exact capability is needed in mission execution.`
-    );
-
-    const stepList = update.steps
-        .map((step, index) => `${index + 1}. ${step}`)
-        .join('\n');
-
-    return `---
-name: ${skillName}
-description: ${description}
----
-
-# ${update.title}
-
-## Why This Skill Exists
-${update.reason}
-
-## When To Use
-Use this skill when the request explicitly needs "${update.title}" outcomes in the ${update.domain} domain.
-
-## Step-by-Step Implementation Guide
-${stepList}
-
-## Required Deliverables
-- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
-- Orchestration integration: task routing, approval gates, retries, and rollback controls.
-- Validation evidence: unit tests, integration tests, simulation checks, and rollout telemetry.
-`;
+function buildSkillMarkdown(implementation: SkillImplementation): string {
+    const runtime = implementation.runtimeProfile;
+    const title = implementation.title;
+    return renderGeneratedSkillMarkdown({
+        skillName: implementation.skillName,
+        description: cleanSentence(
+            `Build and operate the "${title}" capability for ${implementation.domain}. ` +
+            'Trigger when this exact capability is needed in mission execution.'
+        ),
+        title,
+        reason: implementation.reason,
+        whenToUse: `Use this skill when the request explicitly needs "${title}" outcomes in the ${implementation.domain} domain.`,
+        implementationGuide: implementation.implementationGuide,
+        requiredDeliverables: [
+            'Capability contract: input schema, deterministic scoring, output schema, and failure modes.',
+            `Runtime profile: ${runtime.archetype} using ${runtime.coreMethod} to produce ${runtime.primaryArtifact}.`,
+            `Orchestration integration: ${runtime.orchestration.routingTag} routing, approval gates, retries, and rollback controls.`,
+            `Validation evidence: ${runtime.validation.suites.join(', ')} suites and rollout telemetry.`
+        ],
+        runbook: {
+            preflight: [
+                `Confirm the ${title} request scope, source evidence, and measurable success criteria before execution.`,
+                `Verify feature flag ${runtime.rollout.featureFlag}, approval gates, and rollback owner before autonomous use.`
+            ],
+            execution: [
+                `Execute ${runtime.coreMethod} with deterministic scoring and reproducible trace capture.`,
+                `Produce ${runtime.primaryArtifact} plus scorecard, assumptions, and unresolved-risk notes.`
+            ],
+            recovery: [
+                'Fail closed when required signals, evidence, or approval gates are missing.',
+                'Rollback to the last stable baseline when posture is critical or validation fails.'
+            ],
+            handoff: [
+                `Publish ${runtime.primaryArtifact}, validation evidence, and telemetry links to downstream owners.`,
+                'Queue follow-up tasks for unresolved risks, threshold tuning, or approval review.'
+            ]
+        },
+        guardrails: [
+            '[quality] Require deterministic scoring and validation evidence before promotion.',
+            '[reliability] Preserve retries, rollback controls, and failure-mode evidence for every run.',
+            '[safety] Route critical posture or missing approval gates to human review before autonomous action.'
+        ]
+    });
 }
 
-function ensureCleanOutputDir(outputDir: string) {
-    fs.rmSync(outputDir, { recursive: true, force: true });
+function ensureCleanBaseSkillOutputDir(outputDir: string) {
     fs.mkdirSync(outputDir, { recursive: true });
+    for (const entry of fs.readdirSync(outputDir, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        const idMatch = entry.name.match(/^(\d+)-/);
+        if (!idMatch) continue;
+        const id = Number(idMatch[1]);
+        if (!Number.isInteger(id) || id < 1 || id > 1000) continue;
+        fs.rmSync(path.join(outputDir, entry.name), { recursive: true, force: true });
+    }
+    for (const filePath of [MANIFEST_PATH, INDEX_PATH, RUNTIME_CATALOG_PATH]) {
+        fs.rmSync(filePath, { force: true });
+    }
 }
 
 function escapeMarkdownCell(value: string): string {
@@ -480,7 +503,7 @@ function main() {
         throw new Error(`Expected 1000 updates in ${sourcePath}, found ${updates.length}`);
     }
 
-    ensureCleanOutputDir(SKILL_ROOT);
+    ensureCleanBaseSkillOutputDir(SKILL_ROOT);
     const usedNames = new Set<string>();
     const manifest: ManifestEntry[] = [];
 
@@ -496,8 +519,8 @@ function main() {
         const skillPath = path.join(skillDir, 'SKILL.md');
         const implementationPath = path.join(skillDir, 'implementation.json');
 
-        fs.writeFileSync(skillPath, buildSkillMarkdown(update, skillName));
         const implementation = buildImplementation(update, skillName, sourceFile);
+        fs.writeFileSync(skillPath, buildSkillMarkdown(implementation));
         fs.writeFileSync(implementationPath, `${JSON.stringify(implementation, null, 2)}\n`);
 
         manifest.push({

@@ -8,6 +8,9 @@ description: Build and operate the "Skill Gap Diagnosis for childcare support sy
 ## Why This Skill Exists
 Use skill gap diagnosis in childcare support systems with emphasis on throughput, reliability, leverage, and execution speed.
 
+## When To Use
+Use this skill when the request explicitly needs "Skill Gap Diagnosis for childcare support systems" outcomes in the childcare support systems domain.
+
 ## Step-by-Step Implementation Guide
 1. Define measurable outcomes for Skill Gap Diagnosis for childcare support systems, including baseline and target metrics for childcare support systems.
 2. Specify structured inputs/outputs for skill gap diagnosis and validate schema contract edge cases.
@@ -16,20 +19,26 @@ Use skill gap diagnosis in childcare support systems with emphasis on throughput
 5. Run unit, integration, simulation, and regression suites for Skill Gap Diagnosis for childcare support systems under hyper-productive autonomy conditions.
 6. Roll out behind a feature flag, monitor telemetry, and refine thresholds using observed operational outcomes.
 
+## Required Deliverables
+- Capability contract: input schema, deterministic scoring, output schema, and failure modes.
+- Runtime profile: diagnostic-engine using skill gap diagnosis to produce skill-gap-diagnosis-artifact-childcare-support-systems.
+- Orchestration integration: childcare-support-systems:diagnostic-engine routing, approval gates, retries, and rollback controls.
+- Validation evidence: unit, integration, simulation, regression-baseline suites and rollout telemetry.
+
 ## Operational Runbook
-Preflight:
+### Preflight
 - Validate mission scope, contracts, and required inputs.
 - Verify feature flag posture, dependencies, and approval prerequisites.
 
-Execution:
+### Execution
 - Execute skill gap diagnosis workflow with deterministic scoring and trace capture.
 - Track posture transitions and preserve reproducible evidence artifacts.
 
-Recovery:
+### Recovery
 - Apply rollback strategy if posture is critical or guardrails fail.
 - Escalate blocked execution to oversight with incident packet and trace references.
 
-Handoff:
+### Handoff
 - Publish outcome report, scorecard, and telemetry links.
 - Queue follow-up tasks for unresolved risks, approvals, or optimization work.
 
