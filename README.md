@@ -233,16 +233,6 @@ The JSON includes an aggregate `status` plus `attention` reasons and reports gat
 
 ## Quick Start
 
-### Hermes Warfighter Agent
-Hermes loads the file-based warfighter skill corpus from
-`skills/warfighter/*/SKILL.md` and writes a resolved loadout manifest:
-```bash
-npm run agent:hermes:build
-npm run agent:hermes:validate
-```
-The agent profile lives in `agents/hermes/agent.json`; the generated loadout
-manifest is written to `agents/hermes/warfighter-skills.manifest.json`.
-
 ### Cognition Core
 ```bash
 cd cognition-core
