@@ -350,7 +350,7 @@ export async function performHandshake(fromAgentId, targetAgentId, transport, op
                     });
                     if (
                         retryBudgetMs !== null &&
-                        Date.now() - handshakeStartedAtMs + delayMs >= retryBudgetMs
+                        now() - handshakeStartedAtMs + delayMs >= retryBudgetMs
                     ) {
                         throw wrappedError;
                     }
