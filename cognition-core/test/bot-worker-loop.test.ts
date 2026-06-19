@@ -202,6 +202,73 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
     )));
 });
 
+test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const request = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000973',
+        from: 'agent:main',
+        target: 'agent:openclaw-bot',
+        priority: 'normal',
+        task: 'Run stale dispatched recovery check',
+        context: {
+            planner: 'cognition-core/cognition-iteration-task-planner'
+        },
+        createdAt: 10_000
+    });
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 120_000 });
+    await store.saveRecord({
+        ...buildQueueRecordFromTaskRequest(request, {
+            source: 'reports/cognition-iteration-tasks.json',
+            nowFactory: () => 10_500
+        }),
+        status: 'dispatched',
+        updatedAt: 10_500
+    });
+
+    const report = await runBotWorkerLoop({
+        storePath: queuePath,
+        outboxDir,
+        maxCycles: 4,
+        idleCyclesToStop: 1,
+        dispatchLimit: 10,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        staleDispatchMs: 60_000,
+        nowFactory: () => 120_000
+    });
+
+    assert.equal(report.stopReason, 'stale_dispatch_detected');
+    assert.equal(report.cyclesRun, 1);
+    assert.equal(report.staleDispatchMs, 60_000);
+    assert.equal(report.finalQueue.dispatched, 1);
+    assert.equal(report.finalQueue.dispatchedStale, 1);
+    assert.equal(report.finalQueue.oldestDispatchedAgeMs, 109_500);
+    assert.deepEqual(report.finalQueue.staleDispatchedTaskIds, [request.id]);
+    assert.equal(report.lifecycleCheckpoint.nextAction, 'recover_stale_dispatches');
+    assert.equal(report.lifecycleCheckpoint.resumeRecommended, true);
+    assert.match(report.lifecycleCheckpoint.resumeKey, /^recover_stale_dispatches:[a-f0-9]{16}$/);
+    assert.ok(report.lifecycleCheckpoint.attentionReasons.includes('stale_dispatched_tasks'));
+    assert.equal(report.lifecycleCheckpoint.queue.dispatchedStale, 1);
+    assert.deepEqual(report.lifecycleCheckpoint.queue.staleDispatchedTaskIds, [request.id]);
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'bot_runtime_attention'
+        && event.kind === 'guardrail'
+        && event.staleDispatches === 1
+        && event.oldestDispatchedAgeMs === 109_500
+        && event.staleDispatchMs === 60_000
+    )));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'lifecycle_checkpoint'
+        && event.nextAction === 'recover_stale_dispatches'
+        && event.queueDispatchedStale === 1
+        && event.oldestDispatchedAgeMs === 109_500
+    )));
+});
+
 test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () => {
     const markdown = renderBotWorkerLoopMarkdown({
         stopReason: 'idle_convergence',
@@ -216,7 +283,22 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
         },
         finalQueue: {
             open: 1,
+            dispatchedStale: 1,
             awaitingApproval: 0
+        },
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'recover_stale_dispatches',
+            resumeRecommended: true,
+            resumeKey: 'recover_stale_dispatches:0000000000000001',
+            stateFingerprint: '0000000000000001',
+            attentionReasons: ['pending_dispatched_tasks', 'stale_dispatched_tasks'],
+            queue: {
+                open: 1,
+                dispatchedStale: 1,
+                oldestDispatchedAgeMs: 120000,
+                awaitingApproval: 0
+            }
         },
         cycles: [
             {
@@ -255,11 +337,14 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     });
 
     assert.match(markdown, /totals\.botTasksFailed: 1/);
+    assert.match(markdown, /finalQueue\.dispatchedStale: 1/);
     assert.match(markdown, /## Lifecycle Checkpoint/);
-    assert.match(markdown, /nextAction: refresh_skill_hardening_inputs/);
-    assert.match(markdown, /resumeKey: refresh_skill_hardening_inputs:[a-f0-9]{16}/);
+    assert.match(markdown, /nextAction: recover_stale_dispatches/);
+    assert.match(markdown, /resumeKey: recover_stale_dispatches:0000000000000001/);
     assert.match(markdown, /stateFingerprint: [a-f0-9]{16}/);
-    assert.match(markdown, /attentionReasons: bot_task_failures, skill_hardening_blocks/);
+    assert.match(markdown, /attentionReasons: pending_dispatched_tasks, stale_dispatched_tasks/);
+    assert.match(markdown, /queue\.dispatchedStale: 1/);
+    assert.match(markdown, /queue\.oldestDispatchedAgeMs: 120000/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
     assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);

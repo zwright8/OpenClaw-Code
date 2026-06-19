@@ -16,6 +16,8 @@ const TERMINAL_STATUSES = new Set([
 
 const TRACE_SCHEMA_VERSION = 'bot-worker-loop.trace.v2';
 const TRACE_SEMCONV = 'otel.gen_ai.experimental';
+const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
+const MAX_STALE_TASK_IDS = 10;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -48,15 +50,28 @@ async function sleep(ms) {
     });
 }
 
-function summarizeQueueRecords(records) {
+function getRecordUpdatedAt(record) {
+    const value = Number(record?.updatedAt ?? record?.createdAt ?? record?.request?.createdAt);
+    return Number.isFinite(value) ? value : null;
+}
+
+function summarizeQueueRecords(records, {
+    nowMs = Date.now(),
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS
+} = {}) {
     const byStatus = {};
     let open = 0;
     let terminal = 0;
     let created = 0;
     let dispatched = 0;
+    let dispatchedStale = 0;
+    let oldestDispatchedAgeMs = 0;
     let acknowledged = 0;
     let retryScheduled = 0;
     let awaitingApproval = 0;
+    const staleDispatchedTaskIds = [];
+    const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
+    const staleThresholdMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
 
     const list = Array.isArray(records) ? records : [];
     for (const record of list) {
@@ -72,7 +87,18 @@ function summarizeQueueRecords(records) {
         }
 
         if (status === 'created') created++;
-        if (status === 'dispatched') dispatched++;
+        if (status === 'dispatched') {
+            dispatched++;
+            const updatedAt = getRecordUpdatedAt(record);
+            const ageMs = updatedAt === null ? 0 : Math.max(0, observedNowMs - updatedAt);
+            oldestDispatchedAgeMs = Math.max(oldestDispatchedAgeMs, ageMs);
+            if (staleThresholdMs > 0 && ageMs >= staleThresholdMs) {
+                dispatchedStale++;
+                if (staleDispatchedTaskIds.length < MAX_STALE_TASK_IDS && typeof record.taskId === 'string') {
+                    staleDispatchedTaskIds.push(record.taskId);
+                }
+            }
+        }
         if (status === 'acknowledged') acknowledged++;
         if (status === 'retry_scheduled') retryScheduled++;
         if (status === 'awaiting_approval') awaitingApproval++;
@@ -84,6 +110,9 @@ function summarizeQueueRecords(records) {
         terminal,
         created,
         dispatched,
+        dispatchedStale,
+        oldestDispatchedAgeMs,
+        staleDispatchedTaskIds,
         acknowledged,
         retryScheduled,
         awaitingApproval,
@@ -91,13 +120,17 @@ function summarizeQueueRecords(records) {
     };
 }
 
-async function loadQueueSummary({ storePath, nowFactory }) {
+async function loadQueueSummary({ storePath, nowFactory, staleDispatchMs }) {
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
     const store = new FileTaskStore({
         filePath: storePath,
-        now: nowFactory
+        now
     });
     const records = await store.loadRecords();
-    return summarizeQueueRecords(records);
+    return summarizeQueueRecords(records, {
+        nowMs: safeNow(now),
+        staleDispatchMs
+    });
 }
 
 function normalizeStopReason(reason) {
@@ -254,6 +287,7 @@ function buildCycleTraceEvents({
     queueBefore,
     queueAfter,
     idleStreak,
+    staleDispatchMs,
     traceContext
 }) {
     const events = [];
@@ -276,6 +310,7 @@ function buildCycleTraceEvents({
         queueOpen: queueBefore?.open || 0,
         queueCreated: queueBefore?.created || 0,
         queueDispatched: queueBefore?.dispatched || 0,
+        queueDispatchedStale: queueBefore?.dispatchedStale || 0,
         queueAwaitingApproval: queueBefore?.awaitingApproval || 0
     }, traceContext);
 
@@ -315,13 +350,19 @@ function buildCycleTraceEvents({
         }, traceContext);
     }
 
-    if (botTasksFailed > 0 || hardeningBlocked > 0) {
+    if (botTasksFailed > 0 || hardeningBlocked > 0 || (queueAfter?.dispatchedStale || 0) > 0) {
         pushTraceEvent(events, {
             at: finishedAt,
             cycle,
             phase: 'bot_runtime_attention',
             botTasksFailed,
-            botSkillHardeningBlocked: hardeningBlocked
+            botSkillHardeningBlocked: hardeningBlocked,
+            staleDispatches: queueAfter?.dispatchedStale || 0,
+            oldestDispatchedAgeMs: queueAfter?.oldestDispatchedAgeMs || 0,
+            staleDispatchMs,
+            staleDispatchedTaskIds: Array.isArray(queueAfter?.staleDispatchedTaskIds)
+                ? queueAfter.staleDispatchedTaskIds
+                : []
         }, traceContext);
     }
 
@@ -332,6 +373,7 @@ function buildCycleTraceEvents({
         queueOpen: queueAfter?.open || 0,
         queueCreated: queueAfter?.created || 0,
         queueDispatched: queueAfter?.dispatched || 0,
+        queueDispatchedStale: queueAfter?.dispatchedStale || 0,
         queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
         idleStreak
     }, traceContext);
@@ -355,6 +397,7 @@ function buildLifecycleCheckpoint({
     if ((queue.awaitingApproval || 0) > 0) attentionReasons.push('pending_approval');
     if ((queue.created || 0) > 0) attentionReasons.push('pending_created_tasks');
     if ((queue.dispatched || 0) > 0) attentionReasons.push('pending_dispatched_tasks');
+    if ((queue.dispatchedStale || 0) > 0) attentionReasons.push('stale_dispatched_tasks');
     if ((totalValues.botTasksFailed || 0) > 0) attentionReasons.push('bot_task_failures');
     if ((totalValues.botSkillHardeningBlocked || 0) > 0) attentionReasons.push('skill_hardening_blocks');
     if (normalizedStopReason === 'max_cycles_reached') attentionReasons.push('cycle_budget_exhausted');
@@ -362,6 +405,8 @@ function buildLifecycleCheckpoint({
     let nextAction = 'rerun_when_new_work_arrives';
     if (normalizedStopReason === 'queue_drained' && (queue.open || 0) === 0) {
         nextAction = 'no_resume_needed';
+    } else if ((queue.dispatchedStale || 0) > 0) {
+        nextAction = 'recover_stale_dispatches';
     } else if ((queue.awaitingApproval || 0) > 0 && (queue.open || 0) === (queue.awaitingApproval || 0)) {
         nextAction = 'review_pending_approvals';
     } else if ((queue.created || 0) > 0) {
@@ -384,6 +429,11 @@ function buildLifecycleCheckpoint({
             open: queue.open || 0,
             created: queue.created || 0,
             dispatched: queue.dispatched || 0,
+            dispatchedStale: queue.dispatchedStale || 0,
+            oldestDispatchedAgeMs: queue.oldestDispatchedAgeMs || 0,
+            staleDispatchedTaskIds: Array.isArray(queue.staleDispatchedTaskIds)
+                ? queue.staleDispatchedTaskIds
+                : [],
             awaitingApproval: queue.awaitingApproval || 0
         },
         runtimeAttention: {
@@ -439,6 +489,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
         `- totals.followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
+        `- finalQueue.dispatchedStale: ${report.finalQueue?.dispatchedStale || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
         '',
         '## Lifecycle Checkpoint',
@@ -462,6 +513,8 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- stateFingerprint: ${lifecycleCheckpoint.stateFingerprint || 'unavailable'}`,
         `- attentionReasons: ${lifecycleCheckpoint.attentionReasons.length > 0 ? lifecycleCheckpoint.attentionReasons.join(', ') : 'none'}`,
         `- queue.open: ${lifecycleCheckpoint.queue.open}`,
+        `- queue.dispatchedStale: ${lifecycleCheckpoint.queue.dispatchedStale || 0}`,
+        `- queue.oldestDispatchedAgeMs: ${lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
         '',
         '## Cycles',
@@ -511,6 +564,8 @@ export async function runBotWorkerLoop({
     maxCycles = 20,
     idleCyclesToStop = 2,
     stopWhenOnlyApprovals = true,
+    stopWhenStaleDispatch = true,
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
     sleepMs = 0,
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -540,6 +595,7 @@ export async function runBotWorkerLoop({
     const normalizedMaxCycles = parsePositiveInt(maxCycles, 20);
     const normalizedIdleCycles = parsePositiveInt(idleCyclesToStop, 2);
     const normalizedDispatchLimit = parsePositiveInt(dispatchLimit, 100);
+    const normalizedStaleDispatchMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
 
     const cycles = [];
     const totals = {
@@ -572,7 +628,8 @@ export async function runBotWorkerLoop({
         // eslint-disable-next-line no-await-in-loop
         const queueBefore = await loadQueueSummary({
             storePath: resolvedStorePath,
-            nowFactory: now
+            nowFactory: now,
+            staleDispatchMs: normalizedStaleDispatchMs
         });
 
         // eslint-disable-next-line no-await-in-loop
@@ -608,7 +665,8 @@ export async function runBotWorkerLoop({
         // eslint-disable-next-line no-await-in-loop
         const queueAfter = await loadQueueSummary({
             storePath: resolvedStorePath,
-            nowFactory: now
+            nowFactory: now,
+            staleDispatchMs: normalizedStaleDispatchMs
         });
 
         const progressUnits =
@@ -619,6 +677,7 @@ export async function runBotWorkerLoop({
         const noPendingDispatch = queueAfter.created === 0 && queueAfter.dispatched === 0;
         const noOutboxFiles = processResult.filesFound === 0;
         const onlyAwaitingApprovals = queueAfter.open > 0 && queueAfter.open === queueAfter.awaitingApproval;
+        const staleDispatchDetected = (queueAfter.dispatchedStale || 0) > 0 && noOutboxFiles;
 
         if (noProgress && noPendingDispatch && noOutboxFiles) {
             idleStreak++;
@@ -663,7 +722,8 @@ export async function runBotWorkerLoop({
                 traceId,
                 parentSpanId: rootSpanId,
                 w3cParentSpanId: rootTraceContext.spanId
-            }
+            },
+            staleDispatchMs: normalizedStaleDispatchMs
         }));
 
         totals.dispatched += dispatchResult.stats.dispatched;
@@ -687,6 +747,11 @@ export async function runBotWorkerLoop({
             break;
         }
 
+        if (stopWhenStaleDispatch && staleDispatchDetected) {
+            stopReason = 'stale_dispatch_detected';
+            break;
+        }
+
         if (idleStreak >= normalizedIdleCycles) {
             stopReason = 'idle_convergence';
             break;
@@ -700,7 +765,8 @@ export async function runBotWorkerLoop({
 
     const finalQueue = await loadQueueSummary({
         storePath: resolvedStorePath,
-        nowFactory: now
+        nowFactory: now,
+        staleDispatchMs: normalizedStaleDispatchMs
     });
     const lifecycleCheckpoint = buildLifecycleCheckpoint({
         stopReason,
@@ -719,6 +785,8 @@ export async function runBotWorkerLoop({
         stateFingerprint: lifecycleCheckpoint.stateFingerprint,
         attentionReasons: lifecycleCheckpoint.attentionReasons,
         queueOpen: lifecycleCheckpoint.queue.open,
+        queueDispatchedStale: lifecycleCheckpoint.queue.dispatchedStale || 0,
+        oldestDispatchedAgeMs: lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0,
         queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
     }, {
         traceId,
@@ -738,6 +806,7 @@ export async function runBotWorkerLoop({
         cyclesRun: cycles.length,
         maxCycles: normalizedMaxCycles,
         idleCyclesToStop: normalizedIdleCycles,
+        staleDispatchMs: normalizedStaleDispatchMs,
         includeAllCreated,
         botRuntime,
         totals,
