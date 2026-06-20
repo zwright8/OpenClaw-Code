@@ -472,6 +472,86 @@ function buildLifecycleCheckpoint({
     };
 }
 
+function clampScore(value) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return 0;
+    return Math.max(0, Math.min(100, Math.round(numeric)));
+}
+
+function buildRunEvaluation({
+    stopReason,
+    cycles,
+    totals,
+    finalQueue,
+    lifecycleCheckpoint
+}) {
+    const normalizedStopReason = normalizeStopReason(stopReason);
+    const cycleList = Array.isArray(cycles) ? cycles : [];
+    const queue = finalQueue && typeof finalQueue === 'object' ? finalQueue : {};
+    const totalValues = totals && typeof totals === 'object' ? totals : {};
+    const checkpoint = lifecycleCheckpoint && typeof lifecycleCheckpoint === 'object'
+        ? lifecycleCheckpoint
+        : buildLifecycleCheckpoint({
+            stopReason: normalizedStopReason,
+            cycles: cycleList,
+            totals: totalValues,
+            finalQueue: queue
+        });
+    const dispatchFailures = cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0);
+    const signals = {
+        stopReason: normalizedStopReason,
+        queueOpen: queue.open || 0,
+        queueCreated: queue.created || 0,
+        queueDispatched: queue.dispatched || 0,
+        queueDispatchedStale: queue.dispatchedStale || 0,
+        queueAwaitingApproval: queue.awaitingApproval || 0,
+        botTasksFailed: totalValues.botTasksFailed || 0,
+        botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
+        dispatchFailures,
+        resumeRecommended: checkpoint.resumeRecommended === true,
+        nextAction: checkpoint.nextAction || 'unknown'
+    };
+    const penalties = [];
+    const addPenalty = (reason, points, count = null) => {
+        if (points <= 0) return;
+        penalties.push({
+            reason,
+            points: clampScore(points),
+            ...(count === null ? {} : { count })
+        });
+    };
+
+    addPenalty('stale_dispatched_tasks', Math.min(40, signals.queueDispatchedStale * 25), signals.queueDispatchedStale);
+    addPenalty('bot_task_failures', Math.min(30, signals.botTasksFailed * 15), signals.botTasksFailed);
+    addPenalty('skill_hardening_blocks', Math.min(25, signals.botSkillHardeningBlocked * 12), signals.botSkillHardeningBlocked);
+    addPenalty('dispatch_failures', Math.min(20, signals.dispatchFailures * 10), signals.dispatchFailures);
+    addPenalty('pending_created_tasks', Math.min(15, signals.queueCreated * 5), signals.queueCreated);
+    addPenalty('cycle_budget_exhausted', normalizedStopReason === 'max_cycles_reached' ? 15 : 0);
+
+    const score = clampScore(100 - penalties.reduce((sum, penalty) => sum + penalty.points, 0));
+    let status = 'pass';
+    if (score < 70 || signals.queueDispatchedStale > 0 || signals.botTasksFailed > 0) {
+        status = 'fail';
+    } else if (
+        score < 90
+        || signals.resumeRecommended
+        || signals.queueAwaitingApproval > 0
+        || signals.botSkillHardeningBlocked > 0
+        || signals.dispatchFailures > 0
+    ) {
+        status = 'warn';
+    }
+
+    return {
+        schemaVersion: 'bot-worker-loop.evaluation.v1',
+        score,
+        status,
+        signals,
+        penalties,
+        passed: status === 'pass'
+    };
+}
+
 export function renderBotWorkerLoopMarkdown(report) {
     if (!report || typeof report !== 'object') {
         return '# Bot Worker Loop\n\nNo report available.';
@@ -516,6 +596,30 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- queue.dispatchedStale: ${lifecycleCheckpoint.queue.dispatchedStale || 0}`,
         `- queue.oldestDispatchedAgeMs: ${lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
+        '',
+        '## Run Evaluation',
+        ''
+    );
+
+    const runEvaluation = report.runEvaluation && typeof report.runEvaluation === 'object'
+        ? report.runEvaluation
+        : buildRunEvaluation({
+            stopReason: report.stopReason,
+            cycles: report.cycles,
+            totals: report.totals,
+            finalQueue: report.finalQueue,
+            lifecycleCheckpoint
+        });
+
+    lines.push(
+        `- schemaVersion: ${runEvaluation.schemaVersion}`,
+        `- status: ${runEvaluation.status}`,
+        `- score: ${runEvaluation.score}`,
+        `- passed: ${runEvaluation.passed}`,
+        `- nextAction: ${runEvaluation.signals?.nextAction || 'unknown'}`,
+        `- penalties: ${Array.isArray(runEvaluation.penalties) && runEvaluation.penalties.length > 0
+            ? runEvaluation.penalties.map((penalty) => `${penalty.reason}:${penalty.points}`).join(', ')
+            : 'none'}`,
         '',
         '## Cycles',
         ''
@@ -774,6 +878,13 @@ export async function runBotWorkerLoop({
         totals,
         finalQueue
     });
+    const runEvaluation = buildRunEvaluation({
+        stopReason,
+        cycles,
+        totals,
+        finalQueue,
+        lifecycleCheckpoint
+    });
     pushTraceEvent(traceEvents, {
         at: safeNow(now),
         cycle: cycles.length,
@@ -788,6 +899,20 @@ export async function runBotWorkerLoop({
         queueDispatchedStale: lifecycleCheckpoint.queue.dispatchedStale || 0,
         oldestDispatchedAgeMs: lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0,
         queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
+    }, {
+        traceId,
+        parentSpanId: rootSpanId,
+        w3cParentSpanId: rootTraceContext.spanId
+    });
+    pushTraceEvent(traceEvents, {
+        at: safeNow(now),
+        cycle: cycles.length,
+        phase: 'run_evaluation',
+        score: runEvaluation.score,
+        status: runEvaluation.status,
+        passed: runEvaluation.passed,
+        nextAction: runEvaluation.signals.nextAction,
+        penalties: runEvaluation.penalties
     }, {
         traceId,
         parentSpanId: rootSpanId,
@@ -813,6 +938,7 @@ export async function runBotWorkerLoop({
         finalQueue,
         cycles,
         lifecycleCheckpoint,
+        runEvaluation,
         traceEvents
     };
 }

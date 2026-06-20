@@ -109,12 +109,23 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, false);
     assert.match(report.lifecycleCheckpoint.resumeKey, /^no_resume_needed:[a-f0-9]{16}$/);
     assert.match(report.lifecycleCheckpoint.stateFingerprint, /^[a-f0-9]{16}$/);
+    assert.equal(report.runEvaluation.schemaVersion, 'bot-worker-loop.evaluation.v1');
+    assert.equal(report.runEvaluation.status, 'pass');
+    assert.equal(report.runEvaluation.score, 100);
+    assert.equal(report.runEvaluation.passed, true);
+    assert.deepEqual(report.runEvaluation.penalties, []);
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'lifecycle_checkpoint'
         && event.nextAction === 'no_resume_needed'
         && event.resumeKey === report.lifecycleCheckpoint.resumeKey
         && event.stateFingerprint === report.lifecycleCheckpoint.stateFingerprint
         && event.attributes['gen_ai.operation.name'] === 'invoke_workflow'
+    )));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'run_evaluation'
+        && event.status === 'pass'
+        && event.score === 100
+        && event.passed === true
     )));
 
     const records = await store.loadRecords();
@@ -254,6 +265,15 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
     assert.ok(report.lifecycleCheckpoint.attentionReasons.includes('stale_dispatched_tasks'));
     assert.equal(report.lifecycleCheckpoint.queue.dispatchedStale, 1);
     assert.deepEqual(report.lifecycleCheckpoint.queue.staleDispatchedTaskIds, [request.id]);
+    assert.equal(report.runEvaluation.status, 'fail');
+    assert.equal(report.runEvaluation.passed, false);
+    assert.ok(report.runEvaluation.score < 100);
+    assert.ok(report.runEvaluation.penalties.some((penalty) => (
+        penalty.reason === 'stale_dispatched_tasks'
+        && penalty.points === 25
+        && penalty.count === 1
+    )));
+    assert.equal(report.runEvaluation.signals.nextAction, 'recover_stale_dispatches');
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'bot_runtime_attention'
         && event.kind === 'guardrail'
@@ -266,6 +286,12 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         && event.nextAction === 'recover_stale_dispatches'
         && event.queueDispatchedStale === 1
         && event.oldestDispatchedAgeMs === 109_500
+    )));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'run_evaluation'
+        && event.status === 'fail'
+        && event.nextAction === 'recover_stale_dispatches'
+        && event.penalties.some((penalty) => penalty.reason === 'stale_dispatched_tasks')
     )));
 });
 
@@ -299,6 +325,27 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 oldestDispatchedAgeMs: 120000,
                 awaitingApproval: 0
             }
+        },
+        runEvaluation: {
+            schemaVersion: 'bot-worker-loop.evaluation.v1',
+            status: 'fail',
+            score: 63,
+            passed: false,
+            signals: {
+                nextAction: 'recover_stale_dispatches'
+            },
+            penalties: [
+                {
+                    reason: 'stale_dispatched_tasks',
+                    points: 25,
+                    count: 1
+                },
+                {
+                    reason: 'bot_task_failures',
+                    points: 15,
+                    count: 1
+                }
+            ]
         },
         cycles: [
             {
@@ -345,6 +392,10 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /attentionReasons: pending_dispatched_tasks, stale_dispatched_tasks/);
     assert.match(markdown, /queue\.dispatchedStale: 1/);
     assert.match(markdown, /queue\.oldestDispatchedAgeMs: 120000/);
+    assert.match(markdown, /## Run Evaluation/);
+    assert.match(markdown, /status: fail/);
+    assert.match(markdown, /score: 63/);
+    assert.match(markdown, /penalties: stale_dispatched_tasks:25, bot_task_failures:15/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
     assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);
