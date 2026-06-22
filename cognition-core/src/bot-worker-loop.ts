@@ -18,6 +18,7 @@ const TRACE_SCHEMA_VERSION = 'bot-worker-loop.trace.v2';
 const TRACE_SEMCONV = 'otel.gen_ai.experimental';
 const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
 const MAX_STALE_TASK_IDS = 10;
+const MAX_RECOVERY_PLAN_TASKS = 20;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -53,6 +54,19 @@ async function sleep(ms) {
 function getRecordUpdatedAt(record) {
     const value = Number(record?.updatedAt ?? record?.createdAt ?? record?.request?.createdAt);
     return Number.isFinite(value) ? value : null;
+}
+
+function getLatestHistoryEvent(record) {
+    const history = Array.isArray(record?.history) ? record.history : [];
+    if (history.length === 0) return null;
+    const latest = history
+        .filter((item) => item && typeof item === 'object')
+        .sort((a, b) => (Number(b.at) || 0) - (Number(a.at) || 0))[0];
+    if (!latest) return null;
+    return {
+        at: Number(latest.at) || null,
+        event: typeof latest.event === 'string' ? latest.event : 'unknown'
+    };
 }
 
 function summarizeQueueRecords(records, {
@@ -128,6 +142,78 @@ async function loadQueueSummary({ storePath, nowFactory, staleDispatchMs }) {
     });
     const records = await store.loadRecords();
     return summarizeQueueRecords(records, {
+        nowMs: safeNow(now),
+        staleDispatchMs
+    });
+}
+
+export function buildStaleDispatchRecoveryPlan(records, {
+    nowMs = Date.now(),
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
+    limit = MAX_RECOVERY_PLAN_TASKS
+} = {}) {
+    const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
+    const staleThresholdMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
+    const maxCandidates = parsePositiveInt(limit, MAX_RECOVERY_PLAN_TASKS);
+    const candidates = [];
+
+    for (const record of Array.isArray(records) ? records : []) {
+        if (!record || typeof record !== 'object' || record.status !== 'dispatched') continue;
+        const updatedAt = getRecordUpdatedAt(record);
+        const ageMs = updatedAt === null ? 0 : Math.max(0, observedNowMs - updatedAt);
+        if (staleThresholdMs > 0 && ageMs < staleThresholdMs) continue;
+
+        candidates.push({
+            taskId: record.taskId,
+            target: record.target || record.request?.target || 'unknown',
+            ageMs,
+            updatedAt,
+            attempts: record.attempts || 0,
+            latestHistoryEvent: getLatestHistoryEvent(record),
+            recommendedAction: 'inspect_external_runtime_before_requeue',
+            operatorCommands: [
+                `npm --prefix swarm-protocol run ops -- replay ${record.taskId}`,
+                `npm --prefix swarm-protocol run ops -- queue --limit ${maxCandidates}`
+            ]
+        });
+    }
+
+    candidates.sort((a, b) => b.ageMs - a.ageMs || String(a.taskId).localeCompare(String(b.taskId)));
+
+    return {
+        schemaVersion: 'bot-worker-loop.stale-dispatch-recovery.v1',
+        generatedAt: observedNowMs,
+        staleDispatchMs: staleThresholdMs,
+        totalCandidates: candidates.length,
+        dryRun: true,
+        mutatesQueue: false,
+        defaultAction: 'inspect_external_runtime_before_requeue',
+        rationale: 'Dispatched records may already have side effects in the external OpenClaw runtime, so recovery is planned but not applied automatically.',
+        candidates: candidates.slice(0, maxCandidates),
+        nextSteps: candidates.length > 0
+            ? [
+                'Inspect each replay timeline and external runtime result store for a late completion.',
+                'Only requeue a task after confirming the previous dispatch produced no durable side effect.',
+                'Record the operator decision in task history before rerunning the worker loop.'
+            ]
+            : [
+                'No stale dispatched tasks met the configured threshold.'
+            ]
+    };
+}
+
+async function loadStaleDispatchRecoveryPlan({
+    storePath,
+    nowFactory,
+    staleDispatchMs
+}) {
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({
+        filePath: storePath,
+        now
+    });
+    const records = await store.loadRecords();
+    return buildStaleDispatchRecoveryPlan(records, {
         nowMs: safeNow(now),
         staleDispatchMs
     });
@@ -621,6 +707,37 @@ export function renderBotWorkerLoopMarkdown(report) {
             ? runEvaluation.penalties.map((penalty) => `${penalty.reason}:${penalty.points}`).join(', ')
             : 'none'}`,
         '',
+        '## Recovery Plan',
+        ''
+    );
+
+    const recoveryPlan = report.staleDispatchRecoveryPlan && typeof report.staleDispatchRecoveryPlan === 'object'
+        ? report.staleDispatchRecoveryPlan
+        : null;
+    if (!recoveryPlan) {
+        lines.push('- none', '');
+    } else {
+        lines.push(
+            `- schemaVersion: ${recoveryPlan.schemaVersion}`,
+            `- dryRun: ${recoveryPlan.dryRun}`,
+            `- mutatesQueue: ${recoveryPlan.mutatesQueue}`,
+            `- totalCandidates: ${recoveryPlan.totalCandidates}`,
+            `- defaultAction: ${recoveryPlan.defaultAction}`
+        );
+        const candidates = Array.isArray(recoveryPlan.candidates) ? recoveryPlan.candidates : [];
+        if (candidates.length === 0) {
+            lines.push('- candidates: none');
+        } else {
+            for (const candidate of candidates) {
+                lines.push(
+                    `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} attempts=${candidate.attempts} action=${candidate.recommendedAction}`
+                );
+            }
+        }
+        lines.push('');
+    }
+
+    lines.push(
         '## Cycles',
         ''
     );
@@ -885,6 +1002,13 @@ export async function runBotWorkerLoop({
         finalQueue,
         lifecycleCheckpoint
     });
+    const staleDispatchRecoveryPlan = finalQueue.dispatchedStale > 0
+        ? await loadStaleDispatchRecoveryPlan({
+            storePath: resolvedStorePath,
+            nowFactory: now,
+            staleDispatchMs: normalizedStaleDispatchMs
+        })
+        : null;
     pushTraceEvent(traceEvents, {
         at: safeNow(now),
         cycle: cycles.length,
@@ -918,6 +1042,22 @@ export async function runBotWorkerLoop({
         parentSpanId: rootSpanId,
         w3cParentSpanId: rootTraceContext.spanId
     });
+    if (staleDispatchRecoveryPlan) {
+        pushTraceEvent(traceEvents, {
+            at: staleDispatchRecoveryPlan.generatedAt,
+            cycle: cycles.length,
+            phase: 'stale_dispatch_recovery_plan',
+            totalCandidates: staleDispatchRecoveryPlan.totalCandidates,
+            dryRun: staleDispatchRecoveryPlan.dryRun,
+            mutatesQueue: staleDispatchRecoveryPlan.mutatesQueue,
+            defaultAction: staleDispatchRecoveryPlan.defaultAction,
+            candidateTaskIds: staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId)
+        }, {
+            traceId,
+            parentSpanId: rootSpanId,
+            w3cParentSpanId: rootTraceContext.spanId
+        });
+    }
 
     return {
         traceId,
@@ -939,6 +1079,7 @@ export async function runBotWorkerLoop({
         cycles,
         lifecycleCheckpoint,
         runEvaluation,
+        staleDispatchRecoveryPlan,
         traceEvents
     };
 }

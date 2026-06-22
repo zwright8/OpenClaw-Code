@@ -20,6 +20,7 @@ Options:
   --cycles <n>                 Max worker cycles (default: 20)
   --idle-cycles <n>            Consecutive idle cycles before stopping (default: 2)
   --no-stop-approvals          Do not stop when only awaiting approvals remain
+  --stale-dispatch-ms <n>      Dispatched-task age before recovery planning (default: 1800000)
   --sleep-ms <n>               Delay between cycles in milliseconds (default: 0)
   --eta-ms <n>                 Receipt ETA milliseconds (default: 1000)
   --result-delay-ms <n>        Result completedAt delay milliseconds (default: 500)
@@ -83,6 +84,7 @@ function parseArgs(argv) {
         maxCycles: 20,
         idleCyclesToStop: 2,
         stopWhenOnlyApprovals: true,
+        staleDispatchMs: 30 * 60 * 1000,
         sleepMs: 0,
         etaMs: 1_000,
         resultDelayMs: 500,
@@ -169,6 +171,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--stale-dispatch-ms') {
+            options.staleDispatchMs = parsePositiveInt(value, '--stale-dispatch-ms', true);
+            i++;
+            continue;
+        }
         if (token === '--eta-ms') {
             options.etaMs = parsePositiveInt(value, '--eta-ms', true);
             i++;
@@ -246,6 +253,13 @@ function printSummary(report) {
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Final queue open: ${report.finalQueue.open}`);
     console.log(`Final queue awaiting approval: ${report.finalQueue.awaitingApproval}`);
+    console.log(`Final stale dispatched: ${report.finalQueue.dispatchedStale || 0}`);
+    if (report.staleDispatchRecoveryPlan?.totalCandidates > 0) {
+        console.log(`Recovery plan: ${report.staleDispatchRecoveryPlan.totalCandidates} stale dispatched task(s), dry-run only`);
+        for (const candidate of report.staleDispatchRecoveryPlan.candidates.slice(0, 5)) {
+            console.log(`- ${candidate.taskId} target=${candidate.target} ageMs=${candidate.ageMs} action=${candidate.recommendedAction}`);
+        }
+    }
 }
 
 (async () => {
@@ -266,6 +280,7 @@ function printSummary(report) {
             maxCycles: options.maxCycles,
             idleCyclesToStop: options.idleCyclesToStop,
             stopWhenOnlyApprovals: options.stopWhenOnlyApprovals,
+            staleDispatchMs: options.staleDispatchMs,
             sleepMs: options.sleepMs,
             etaMs: options.etaMs,
             resultDelayMs: options.resultDelayMs,

@@ -9,6 +9,7 @@ import {
 } from '../../swarm-protocol/runtime.js';
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
+    buildStaleDispatchRecoveryPlan,
     renderBotWorkerLoopMarkdown,
     runBotWorkerLoop
 } from '../src/bot-worker-loop.js';
@@ -274,6 +275,21 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         && penalty.count === 1
     )));
     assert.equal(report.runEvaluation.signals.nextAction, 'recover_stale_dispatches');
+    assert.equal(report.staleDispatchRecoveryPlan.schemaVersion, 'bot-worker-loop.stale-dispatch-recovery.v1');
+    assert.equal(report.staleDispatchRecoveryPlan.dryRun, true);
+    assert.equal(report.staleDispatchRecoveryPlan.mutatesQueue, false);
+    assert.equal(report.staleDispatchRecoveryPlan.totalCandidates, 1);
+    assert.equal(report.staleDispatchRecoveryPlan.defaultAction, 'inspect_external_runtime_before_requeue');
+    assert.deepEqual(report.staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId), [request.id]);
+    assert.equal(report.staleDispatchRecoveryPlan.candidates[0].ageMs, 109_500);
+    assert.equal(report.staleDispatchRecoveryPlan.candidates[0].target, 'agent:openclaw-bot');
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].recommendedAction,
+        'inspect_external_runtime_before_requeue'
+    );
+    assert.ok(report.staleDispatchRecoveryPlan.candidates[0].operatorCommands.some((command) => (
+        command.includes(`replay ${request.id}`)
+    )));
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'bot_runtime_attention'
         && event.kind === 'guardrail'
@@ -293,6 +309,59 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         && event.nextAction === 'recover_stale_dispatches'
         && event.penalties.some((penalty) => penalty.reason === 'stale_dispatched_tasks')
     )));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'stale_dispatch_recovery_plan'
+        && event.totalCandidates === 1
+        && event.dryRun === true
+        && event.mutatesQueue === false
+        && event.candidateTaskIds.includes(request.id)
+    )));
+});
+
+test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
+    const records = [
+        {
+            taskId: 'fresh-dispatch',
+            target: 'agent:fresh',
+            status: 'dispatched',
+            attempts: 1,
+            updatedAt: 115_000,
+            history: [{ at: 115_000, event: 'send_success' }]
+        },
+        {
+            taskId: 'old-dispatch',
+            target: 'agent:old',
+            status: 'dispatched',
+            attempts: 2,
+            updatedAt: 10_000,
+            history: [{ at: 10_000, event: 'send_success' }, { at: 12_000, event: 'receipt_timeout' }]
+        },
+        {
+            taskId: 'done',
+            target: 'agent:old',
+            status: 'completed',
+            attempts: 1,
+            updatedAt: 1_000
+        }
+    ];
+
+    const plan = buildStaleDispatchRecoveryPlan(records, {
+        nowMs: 120_000,
+        staleDispatchMs: 60_000
+    });
+
+    assert.equal(plan.schemaVersion, 'bot-worker-loop.stale-dispatch-recovery.v1');
+    assert.equal(plan.dryRun, true);
+    assert.equal(plan.mutatesQueue, false);
+    assert.equal(plan.totalCandidates, 1);
+    assert.equal(plan.candidates.length, 1);
+    assert.equal(plan.candidates[0].taskId, 'old-dispatch');
+    assert.equal(plan.candidates[0].ageMs, 110_000);
+    assert.deepEqual(plan.candidates[0].latestHistoryEvent, {
+        at: 12_000,
+        event: 'receipt_timeout'
+    });
+    assert.equal(records[1].status, 'dispatched');
 });
 
 test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () => {
@@ -347,6 +416,22 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 }
             ]
         },
+        staleDispatchRecoveryPlan: {
+            schemaVersion: 'bot-worker-loop.stale-dispatch-recovery.v1',
+            dryRun: true,
+            mutatesQueue: false,
+            totalCandidates: 1,
+            defaultAction: 'inspect_external_runtime_before_requeue',
+            candidates: [
+                {
+                    taskId: 'task-stale',
+                    target: 'agent:openclaw-bot',
+                    ageMs: 120000,
+                    attempts: 1,
+                    recommendedAction: 'inspect_external_runtime_before_requeue'
+                }
+            ]
+        },
         cycles: [
             {
                 cycle: 1,
@@ -396,6 +481,10 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /status: fail/);
     assert.match(markdown, /score: 63/);
     assert.match(markdown, /penalties: stale_dispatched_tasks:25, bot_task_failures:15/);
+    assert.match(markdown, /## Recovery Plan/);
+    assert.match(markdown, /dryRun: true/);
+    assert.match(markdown, /mutatesQueue: false/);
+    assert.match(markdown, /candidate task-stale: target=agent:openclaw-bot ageMs=120000 attempts=1 action=inspect_external_runtime_before_requeue/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
     assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);
