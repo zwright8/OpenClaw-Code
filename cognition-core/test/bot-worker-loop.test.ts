@@ -227,8 +227,10 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         priority: 'normal',
         task: 'Run stale dispatched recovery check',
         context: {
-            planner: 'cognition-core/cognition-iteration-task-planner'
+            planner: 'cognition-core/cognition-iteration-task-planner',
+            traceparent: '00-11111111111111111111111111111111-2222222222222222-01'
         },
+        traceparent: '00-11111111111111111111111111111111-2222222222222222-01',
         createdAt: 10_000
     });
     const store = new FileTaskStore({ filePath: queuePath, now: () => 120_000 });
@@ -284,6 +286,27 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
     assert.equal(report.staleDispatchRecoveryPlan.candidates[0].ageMs, 109_500);
     assert.equal(report.staleDispatchRecoveryPlan.candidates[0].target, 'agent:openclaw-bot');
     assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].traceparent,
+        '00-11111111111111111111111111111111-2222222222222222-01'
+    );
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].idempotencyKey,
+        `task:${request.id}:attempt:0`
+    );
+    assert.deepEqual(
+        report.staleDispatchRecoveryPlan.candidates[0].evidenceRequired.map((item) => item.id),
+        [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked',
+            'operator_decision_recorded'
+        ]
+    );
+    assert.match(
+        report.staleDispatchRecoveryPlan.candidates[0].evidenceRequired[1].description,
+        /11111111111111111111111111111111/
+    );
+    assert.equal(
         report.staleDispatchRecoveryPlan.candidates[0].recommendedAction,
         'inspect_external_runtime_before_requeue'
     );
@@ -315,6 +338,7 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         && event.dryRun === true
         && event.mutatesQueue === false
         && event.candidateTaskIds.includes(request.id)
+        && event.candidateTraceparents.includes('00-11111111111111111111111111111111-2222222222222222-01')
     )));
 });
 
@@ -334,6 +358,11 @@ test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
             status: 'dispatched',
             attempts: 2,
             updatedAt: 10_000,
+            request: {
+                context: {
+                    traceparent: '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01'
+                }
+            },
             history: [{ at: 10_000, event: 'send_success' }, { at: 12_000, event: 'receipt_timeout' }]
         },
         {
@@ -357,6 +386,14 @@ test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
     assert.equal(plan.candidates.length, 1);
     assert.equal(plan.candidates[0].taskId, 'old-dispatch');
     assert.equal(plan.candidates[0].ageMs, 110_000);
+    assert.equal(plan.candidates[0].traceparent, '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01');
+    assert.equal(plan.candidates[0].idempotencyKey, 'task:old-dispatch:attempt:2');
+    assert.deepEqual(plan.candidates[0].evidenceRequired.map((item) => item.id), [
+        'replay_timeline_reviewed',
+        'external_runtime_result_checked',
+        'side_effect_ledger_checked',
+        'operator_decision_recorded'
+    ]);
     assert.deepEqual(plan.candidates[0].latestHistoryEvent, {
         at: 12_000,
         event: 'receipt_timeout'
@@ -428,6 +465,14 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                     target: 'agent:openclaw-bot',
                     ageMs: 120000,
                     attempts: 1,
+                    traceparent: '00-33333333333333333333333333333333-4444444444444444-01',
+                    idempotencyKey: 'task:task-stale:attempt:1',
+                    evidenceRequired: [
+                        { id: 'replay_timeline_reviewed' },
+                        { id: 'external_runtime_result_checked' },
+                        { id: 'side_effect_ledger_checked' },
+                        { id: 'operator_decision_recorded' }
+                    ],
                     recommendedAction: 'inspect_external_runtime_before_requeue'
                 }
             ]
@@ -485,6 +530,9 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /dryRun: true/);
     assert.match(markdown, /mutatesQueue: false/);
     assert.match(markdown, /candidate task-stale: target=agent:openclaw-bot ageMs=120000 attempts=1 action=inspect_external_runtime_before_requeue/);
+    assert.match(markdown, /traceparent: 00-33333333333333333333333333333333-4444444444444444-01/);
+    assert.match(markdown, /idempotencyKey: task:task-stale:attempt:1/);
+    assert.match(markdown, /evidenceRequired: replay_timeline_reviewed, external_runtime_result_checked, side_effect_ledger_checked, operator_decision_recorded/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
     assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);

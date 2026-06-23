@@ -43,6 +43,11 @@ function normalizeFailureRate(value) {
     return Math.max(0, Math.min(1, numeric));
 }
 
+function isTraceparent(value) {
+    return typeof value === 'string'
+        && /^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$/i.test(value.trim());
+}
+
 async function sleep(ms) {
     const duration = parseNonNegativeInt(ms, 0);
     if (duration <= 0) return;
@@ -67,6 +72,39 @@ function getLatestHistoryEvent(record) {
         at: Number(latest.at) || null,
         event: typeof latest.event === 'string' ? latest.event : 'unknown'
     };
+}
+
+function getRecordTraceparent(record) {
+    const candidates = [
+        record?.request?.traceparent,
+        record?.request?.context?.traceparent,
+        record?.traceparent
+    ];
+    const found = candidates.find((value) => isTraceparent(value));
+    return found ? found.trim().toLowerCase() : null;
+}
+
+function buildRecoveryEvidenceChecklist({ taskId, traceparent }) {
+    const correlation = traceparent || taskId;
+    return [
+        {
+            id: 'replay_timeline_reviewed',
+            description: `Review operator replay for task ${taskId}.`,
+            command: `npm --prefix swarm-protocol run ops -- replay ${taskId}`
+        },
+        {
+            id: 'external_runtime_result_checked',
+            description: `Search the external OpenClaw runtime for result or receipt records correlated by ${correlation}.`
+        },
+        {
+            id: 'side_effect_ledger_checked',
+            description: `Confirm no durable external side effect was committed for task ${taskId}.`
+        },
+        {
+            id: 'operator_decision_recorded',
+            description: 'Record the recovery decision in task history before requeueing or closing the task.'
+        }
+    ];
 }
 
 function summarizeQueueRecords(records, {
@@ -163,14 +201,21 @@ export function buildStaleDispatchRecoveryPlan(records, {
         const ageMs = updatedAt === null ? 0 : Math.max(0, observedNowMs - updatedAt);
         if (staleThresholdMs > 0 && ageMs < staleThresholdMs) continue;
 
+        const traceparent = getRecordTraceparent(record);
         candidates.push({
             taskId: record.taskId,
             target: record.target || record.request?.target || 'unknown',
             ageMs,
             updatedAt,
             attempts: record.attempts || 0,
+            traceparent,
+            idempotencyKey: `task:${record.taskId}:attempt:${record.attempts || 0}`,
             latestHistoryEvent: getLatestHistoryEvent(record),
             recommendedAction: 'inspect_external_runtime_before_requeue',
+            evidenceRequired: buildRecoveryEvidenceChecklist({
+                taskId: record.taskId,
+                traceparent
+            }),
             operatorCommands: [
                 `npm --prefix swarm-protocol run ops -- replay ${record.taskId}`,
                 `npm --prefix swarm-protocol run ops -- queue --limit ${maxCandidates}`
@@ -732,6 +777,18 @@ export function renderBotWorkerLoopMarkdown(report) {
                 lines.push(
                     `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} attempts=${candidate.attempts} action=${candidate.recommendedAction}`
                 );
+                if (candidate.traceparent) {
+                    lines.push(`  - traceparent: ${candidate.traceparent}`);
+                }
+                if (candidate.idempotencyKey) {
+                    lines.push(`  - idempotencyKey: ${candidate.idempotencyKey}`);
+                }
+                const evidence = Array.isArray(candidate.evidenceRequired)
+                    ? candidate.evidenceRequired
+                    : [];
+                if (evidence.length > 0) {
+                    lines.push(`  - evidenceRequired: ${evidence.map((item) => item.id).join(', ')}`);
+                }
             }
         }
         lines.push('');
@@ -1051,7 +1108,10 @@ export async function runBotWorkerLoop({
             dryRun: staleDispatchRecoveryPlan.dryRun,
             mutatesQueue: staleDispatchRecoveryPlan.mutatesQueue,
             defaultAction: staleDispatchRecoveryPlan.defaultAction,
-            candidateTaskIds: staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId)
+            candidateTaskIds: staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId),
+            candidateTraceparents: staleDispatchRecoveryPlan.candidates
+                .map((candidate) => candidate.traceparent)
+                .filter(Boolean)
         }, {
             traceId,
             parentSpanId: rootSpanId,

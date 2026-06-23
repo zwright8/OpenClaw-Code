@@ -258,6 +258,15 @@ function printSummary(report) {
         console.log(`Recovery plan: ${report.staleDispatchRecoveryPlan.totalCandidates} stale dispatched task(s), dry-run only`);
         for (const candidate of report.staleDispatchRecoveryPlan.candidates.slice(0, 5)) {
             console.log(`- ${candidate.taskId} target=${candidate.target} ageMs=${candidate.ageMs} action=${candidate.recommendedAction}`);
+            if (candidate.traceparent) {
+                console.log(`  traceparent=${candidate.traceparent}`);
+            }
+            if (candidate.idempotencyKey) {
+                console.log(`  idempotencyKey=${candidate.idempotencyKey}`);
+            }
+            if (Array.isArray(candidate.evidenceRequired) && candidate.evidenceRequired.length > 0) {
+                console.log(`  evidenceRequired=${candidate.evidenceRequired.map((item) => item.id).join(',')}`);
+            }
         }
     }
 }
