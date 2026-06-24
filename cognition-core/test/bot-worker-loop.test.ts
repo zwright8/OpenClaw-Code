@@ -9,9 +9,11 @@ import {
 } from '../../swarm-protocol/runtime.js';
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
+    buildBotWorkerLoopOtelSpans,
     buildStaleDispatchRecoveryPlan,
     renderBotWorkerLoopMarkdown,
-    runBotWorkerLoop
+    runBotWorkerLoop,
+    writeBotWorkerLoopReport
 } from '../src/bot-worker-loop.js';
 
 const cwd = path.resolve(process.cwd());
@@ -105,6 +107,19 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.equal(dispatchTrace.kind, 'tool');
     assert.equal(dispatchTrace.attributes['gen_ai.operation.name'], 'execute_tool');
     assert.equal(dispatchTrace.attributes['openclaw.workflow.phase'], 'dispatch');
+    const otelSpans = buildBotWorkerLoopOtelSpans(report);
+    const dispatchSpan = otelSpans.find((span) => span.name === 'bot_worker_loop.dispatch');
+    assert.ok(dispatchSpan);
+    assert.equal(dispatchSpan.schemaVersion, 'bot-worker-loop.otel-jsonl.v1');
+    assert.equal(dispatchSpan.traceId, dispatchTrace.spanContext.traceId);
+    assert.equal(dispatchSpan.spanId, dispatchTrace.spanContext.spanId);
+    assert.equal(dispatchSpan.parentSpanId, report.traceContext.spanId);
+    assert.equal(dispatchSpan.kind, 1);
+    assert.match(dispatchSpan.startTimeUnixNano, /^[0-9]+000000$/);
+    assert.equal(dispatchSpan.attributes['gen_ai.operation.name'], 'execute_tool');
+    assert.equal(dispatchSpan.attributes['openclaw.workflow.phase'], 'dispatch');
+    assert.equal(dispatchSpan.attributes['openclaw.trace.schema_version'], 'bot-worker-loop.trace.v2');
+    assert.equal(dispatchSpan.status.code, 1);
     assert.equal(report.lifecycleCheckpoint.schemaVersion, 'bot-worker-loop.lifecycle.v1');
     assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, false);
@@ -132,6 +147,52 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     const records = await store.loadRecords();
     assert.ok(records.length >= 2);
     assert.ok(records.every((entry) => entry.status === 'completed' || entry.status === 'failed' || entry.status === 'partial' || entry.status === 'rejected' || entry.status === 'timed_out' || entry.status === 'transport_error'));
+});
+
+test('writeBotWorkerLoopReport writes OTel-compatible span JSONL', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const otelPath = path.join(dir, 'bot-worker-loop.otel.jsonl');
+    await writeBotWorkerLoopReport({
+        report: {
+            traceEvents: [
+                {
+                    at: 100,
+                    cycle: 1,
+                    phase: 'dispatch_failure',
+                    schemaVersion: 'bot-worker-loop.trace.v2',
+                    traceparent: '00-11111111111111111111111111111111-2222222222222222-01',
+                    spanKind: 'INTERNAL',
+                    name: 'bot_worker_loop.dispatch_failure',
+                    kind: 'guardrail',
+                    failedDispatch: 1,
+                    spanContext: {
+                        traceId: '11111111111111111111111111111111',
+                        spanId: '3333333333333333',
+                        parentSpanId: '2222222222222222',
+                        traceFlags: '01'
+                    },
+                    attributes: {
+                        'gen_ai.operation.name': 'invoke_workflow',
+                        'openclaw.workflow.phase': 'dispatch_failure'
+                    }
+                }
+            ]
+        },
+        otelJsonlPath: otelPath
+    });
+
+    const lines = fs.readFileSync(otelPath, 'utf8').trim().split('\n');
+    assert.equal(lines.length, 1);
+    const span = JSON.parse(lines[0]);
+    assert.equal(span.schemaVersion, 'bot-worker-loop.otel-jsonl.v1');
+    assert.equal(span.traceId, '11111111111111111111111111111111');
+    assert.equal(span.spanId, '3333333333333333');
+    assert.equal(span.parentSpanId, '2222222222222222');
+    assert.equal(span.status.code, 2);
+    assert.equal(span.attributes['openclaw.workflow.phase'], 'dispatch_failure');
+    assert.equal(span.attributes['openclaw.trace.traceparent'], '00-11111111111111111111111111111111-2222222222222222-01');
 });
 
 test('runBotWorkerLoop stops on idle convergence for empty queue', async (t) => {

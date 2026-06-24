@@ -15,10 +15,18 @@ const TERMINAL_STATUSES = new Set([
 ]);
 
 const TRACE_SCHEMA_VERSION = 'bot-worker-loop.trace.v2';
+const OTEL_JSONL_SCHEMA_VERSION = 'bot-worker-loop.otel-jsonl.v1';
 const TRACE_SEMCONV = 'otel.gen_ai.experimental';
 const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
 const MAX_STALE_TASK_IDS = 10;
 const MAX_RECOVERY_PLAN_TASKS = 20;
+const OTEL_SPAN_KIND = {
+    INTERNAL: 1,
+    SERVER: 2,
+    CLIENT: 3,
+    PRODUCER: 4,
+    CONSUMER: 5
+};
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -510,6 +518,87 @@ function buildCycleTraceEvents({
     }, traceContext);
 
     return events;
+}
+
+function toUnixNano(value) {
+    const numeric = Number(value);
+    const millis = Number.isFinite(numeric) ? numeric : Date.now();
+    return String(Math.max(0, Math.round(millis)) * 1_000_000);
+}
+
+function normalizeOtelValue(value) {
+    if (value === null || value === undefined) return null;
+    if (typeof value === 'string' || typeof value === 'boolean') return value;
+    if (typeof value === 'number') {
+        return Number.isFinite(value) ? value : String(value);
+    }
+    if (Array.isArray(value)) {
+        return value
+            .map((item) => normalizeOtelValue(item))
+            .filter((item) => item !== null);
+    }
+    if (typeof value === 'object') {
+        return JSON.stringify(value);
+    }
+    return String(value);
+}
+
+function buildOtelAttributes(source) {
+    const entries = Object.entries(source || {})
+        .map(([key, value]) => [key, normalizeOtelValue(value)])
+        .filter(([, value]) => value !== null);
+    return Object.fromEntries(entries);
+}
+
+function otelSpanKind(value) {
+    const normalized = typeof value === 'string' ? value.trim().toUpperCase() : '';
+    return OTEL_SPAN_KIND[normalized] || OTEL_SPAN_KIND.INTERNAL;
+}
+
+function otelStatusForEvent(event) {
+    const status = String(event?.status || event?.resultStatus || '').toLowerCase();
+    const failed = event?.failedDispatch > 0
+        || event?.botTasksFailed > 0
+        || event?.botSkillHardeningBlocked > 0
+        || status === 'fail'
+        || status === 'failed'
+        || status === 'error';
+    return {
+        code: failed ? 2 : 1,
+        message: failed ? 'error' : 'ok'
+    };
+}
+
+export function buildBotWorkerLoopOtelSpans(report) {
+    const events = Array.isArray(report?.traceEvents) ? report.traceEvents : [];
+    return events
+        .filter((event) => event?.spanContext?.traceId && event?.spanContext?.spanId)
+        .map((event) => {
+            const attributes = buildOtelAttributes({
+                schemaVersion: event.schemaVersion || TRACE_SCHEMA_VERSION,
+                semconv: event.semconv || TRACE_SEMCONV,
+                'openclaw.trace.schema_version': event.schemaVersion || TRACE_SCHEMA_VERSION,
+                'openclaw.trace.event_name': event.name,
+                'openclaw.trace.event_kind': event.kind,
+                'openclaw.trace.traceparent': event.traceparent,
+                ...event.attributes,
+                ...(event.cycle === undefined ? {} : { 'openclaw.workflow.cycle': event.cycle }),
+                ...(event.phase === undefined ? {} : { 'openclaw.workflow.phase': event.phase })
+            });
+            return {
+                schemaVersion: OTEL_JSONL_SCHEMA_VERSION,
+                traceId: event.spanContext.traceId,
+                spanId: event.spanContext.spanId,
+                parentSpanId: event.spanContext.parentSpanId || '',
+                traceState: '',
+                name: event.name || 'bot_worker_loop.event',
+                kind: otelSpanKind(event.spanKind),
+                startTimeUnixNano: toUnixNano(event.at),
+                endTimeUnixNano: toUnixNano(event.finishedAt || event.at),
+                attributes,
+                status: otelStatusForEvent(event)
+            };
+        });
 }
 
 function buildLifecycleCheckpoint({
@@ -1147,7 +1236,8 @@ export async function runBotWorkerLoop({
 export async function writeBotWorkerLoopReport({
     report,
     jsonPath = null,
-    markdownPath = null
+    markdownPath = null,
+    otelJsonlPath = null
 }) {
     const output = report && typeof report === 'object' ? report : {};
 
@@ -1161,5 +1251,17 @@ export async function writeBotWorkerLoopReport({
         const resolvedMarkdownPath = path.resolve(markdownPath);
         fs.mkdirSync(path.dirname(resolvedMarkdownPath), { recursive: true });
         fs.writeFileSync(resolvedMarkdownPath, `${renderBotWorkerLoopMarkdown(output)}\n`);
+    }
+
+    if (typeof otelJsonlPath === 'string' && otelJsonlPath.trim()) {
+        const resolvedOtelPath = path.resolve(otelJsonlPath);
+        fs.mkdirSync(path.dirname(resolvedOtelPath), { recursive: true });
+        const spans = buildBotWorkerLoopOtelSpans(output);
+        fs.writeFileSync(
+            resolvedOtelPath,
+            spans.length > 0
+                ? `${spans.map((span) => JSON.stringify(span)).join('\n')}\n`
+                : ''
+        );
     }
 }

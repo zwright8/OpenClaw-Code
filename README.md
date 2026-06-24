@@ -221,6 +221,7 @@ npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index
 npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
 ```
 `npm run worker:loop` writes `reports/bot-worker-loop.json` and `reports/bot-worker-loop.md`.
+Add `--otel-jsonl reports/bot-worker-loop.otel.jsonl` to emit dependency-free OTel-compatible span JSONL for external OpenClaw trace ingestion.
 Inspect the latest gateway status plus the worker-loop lifecycle checkpoint with:
 ```bash
 npx tsx scripts/health-monitor.ts

@@ -35,6 +35,7 @@ Options:
   --no-enqueue-followups       Disable enqueueing bot-generated follow-up tasks
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
+  --otel-jsonl <path>          Optional OTel-compatible span JSONL output path
   -h, --help                   Show help
 `);
 }
@@ -99,6 +100,7 @@ function parseArgs(argv) {
         enqueueFollowupTasks: true,
         jsonPath: null,
         markdownPath: null,
+        otelJsonlPath: null,
         help: false
     };
 
@@ -231,6 +233,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--otel-jsonl') {
+            options.otelJsonlPath = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
 
         throw new Error(`Unknown argument: ${token}`);
     }
@@ -307,7 +314,8 @@ function printSummary(report) {
         await writeBotWorkerLoopReport({
             report,
             jsonPath: options.jsonPath,
-            markdownPath: options.markdownPath
+            markdownPath: options.markdownPath,
+            otelJsonlPath: options.otelJsonlPath
         });
 
         printSummary(report);
