@@ -10,6 +10,7 @@ import {
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
     buildBotWorkerLoopOtelSpans,
+    buildBotWorkerLoopTraceExportDiagnostics,
     buildStaleDispatchRecoveryPlan,
     renderBotWorkerLoopMarkdown,
     runBotWorkerLoop,
@@ -120,6 +121,12 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.equal(dispatchSpan.attributes['openclaw.workflow.phase'], 'dispatch');
     assert.equal(dispatchSpan.attributes['openclaw.trace.schema_version'], 'bot-worker-loop.trace.v2');
     assert.equal(dispatchSpan.status.code, 1);
+    assert.equal(report.traceExportDiagnostics.schemaVersion, 'bot-worker-loop.trace-export-diagnostics.v1');
+    assert.equal(report.traceExportDiagnostics.traceEventCount, report.traceEvents.length);
+    assert.equal(report.traceExportDiagnostics.exportedSpanCount, report.traceEvents.length);
+    assert.equal(report.traceExportDiagnostics.droppedEventCount, 0);
+    assert.equal(report.traceExportDiagnostics.exportCoverage, 1);
+    assert.equal(report.traceExportDiagnostics.status, 'pass');
     assert.equal(report.lifecycleCheckpoint.schemaVersion, 'bot-worker-loop.lifecycle.v1');
     assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, false);
@@ -193,6 +200,51 @@ test('writeBotWorkerLoopReport writes OTel-compatible span JSONL', async (t) => 
     assert.equal(span.status.code, 2);
     assert.equal(span.attributes['openclaw.workflow.phase'], 'dispatch_failure');
     assert.equal(span.attributes['openclaw.trace.traceparent'], '00-11111111111111111111111111111111-2222222222222222-01');
+});
+
+test('buildBotWorkerLoopTraceExportDiagnostics reports dropped malformed trace events', () => {
+    const diagnostics = buildBotWorkerLoopTraceExportDiagnostics({
+        traceEvents: [
+            {
+                phase: 'dispatch',
+                spanContext: {
+                    traceId: '11111111111111111111111111111111',
+                    spanId: '2222222222222222'
+                }
+            },
+            {
+                phase: 'queue_after',
+                spanContext: {
+                    traceId: '33333333333333333333333333333333'
+                }
+            },
+            {
+                phase: 'run_evaluation'
+            }
+        ]
+    });
+
+    assert.equal(diagnostics.schemaVersion, 'bot-worker-loop.trace-export-diagnostics.v1');
+    assert.equal(diagnostics.traceEventCount, 3);
+    assert.equal(diagnostics.exportedSpanCount, 1);
+    assert.equal(diagnostics.droppedEventCount, 2);
+    assert.equal(diagnostics.missingSpanContext, 1);
+    assert.equal(diagnostics.missingTraceId, 1);
+    assert.equal(diagnostics.missingSpanId, 2);
+    assert.equal(diagnostics.exportCoverage, 0.3333);
+    assert.equal(diagnostics.status, 'warn');
+    assert.deepEqual(diagnostics.droppedEvents, [
+        {
+            index: 1,
+            phase: 'queue_after',
+            reasons: ['missing_span_id']
+        },
+        {
+            index: 2,
+            phase: 'run_evaluation',
+            reasons: ['missing_span_context', 'missing_trace_id', 'missing_span_id']
+        }
+    ]);
 });
 
 test('runBotWorkerLoop stops on idle convergence for empty queue', async (t) => {
@@ -587,6 +639,11 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /status: fail/);
     assert.match(markdown, /score: 63/);
     assert.match(markdown, /penalties: stale_dispatched_tasks:25, bot_task_failures:15/);
+    assert.match(markdown, /## Trace Export/);
+    assert.match(markdown, /traceEventCount: 1/);
+    assert.match(markdown, /exportedSpanCount: 0/);
+    assert.match(markdown, /droppedEventCount: 1/);
+    assert.match(markdown, /droppedEvents: bot_runtime_attention:missing_span_context\+missing_trace_id\+missing_span_id/);
     assert.match(markdown, /## Recovery Plan/);
     assert.match(markdown, /dryRun: true/);
     assert.match(markdown, /mutatesQueue: false/);

@@ -601,6 +601,56 @@ export function buildBotWorkerLoopOtelSpans(report) {
         });
 }
 
+export function buildBotWorkerLoopTraceExportDiagnostics(report) {
+    const events = Array.isArray(report?.traceEvents) ? report.traceEvents : [];
+    const droppedEvents = [];
+    let missingSpanContext = 0;
+    let missingTraceId = 0;
+    let missingSpanId = 0;
+
+    for (const [index, event] of events.entries()) {
+        const spanContext = event?.spanContext && typeof event.spanContext === 'object'
+            ? event.spanContext
+            : null;
+        const reasons = [];
+        if (!spanContext) {
+            missingSpanContext++;
+            reasons.push('missing_span_context');
+        }
+        if (!spanContext?.traceId) {
+            missingTraceId++;
+            reasons.push('missing_trace_id');
+        }
+        if (!spanContext?.spanId) {
+            missingSpanId++;
+            reasons.push('missing_span_id');
+        }
+        if (reasons.length > 0) {
+            droppedEvents.push({
+                index,
+                phase: typeof event?.phase === 'string' ? event.phase : 'unknown',
+                reasons
+            });
+        }
+    }
+
+    const exportedSpanCount = events.length - droppedEvents.length;
+    return {
+        schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+        traceEventCount: events.length,
+        exportedSpanCount,
+        droppedEventCount: droppedEvents.length,
+        missingSpanContext,
+        missingTraceId,
+        missingSpanId,
+        exportCoverage: events.length === 0
+            ? 1
+            : Number((exportedSpanCount / events.length).toFixed(4)),
+        status: droppedEvents.length === 0 ? 'pass' : 'warn',
+        droppedEvents: droppedEvents.slice(0, 10)
+    };
+}
+
 function buildLifecycleCheckpoint({
     stopReason,
     cycles,
@@ -830,6 +880,9 @@ export function renderBotWorkerLoopMarkdown(report) {
             finalQueue: report.finalQueue,
             lifecycleCheckpoint
         });
+    const traceExportDiagnostics = report.traceExportDiagnostics && typeof report.traceExportDiagnostics === 'object'
+        ? report.traceExportDiagnostics
+        : buildBotWorkerLoopTraceExportDiagnostics(report);
 
     lines.push(
         `- schemaVersion: ${runEvaluation.schemaVersion}`,
@@ -839,6 +892,18 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- nextAction: ${runEvaluation.signals?.nextAction || 'unknown'}`,
         `- penalties: ${Array.isArray(runEvaluation.penalties) && runEvaluation.penalties.length > 0
             ? runEvaluation.penalties.map((penalty) => `${penalty.reason}:${penalty.points}`).join(', ')
+            : 'none'}`,
+        '',
+        '## Trace Export',
+        '',
+        `- schemaVersion: ${traceExportDiagnostics.schemaVersion}`,
+        `- status: ${traceExportDiagnostics.status}`,
+        `- traceEventCount: ${traceExportDiagnostics.traceEventCount}`,
+        `- exportedSpanCount: ${traceExportDiagnostics.exportedSpanCount}`,
+        `- droppedEventCount: ${traceExportDiagnostics.droppedEventCount}`,
+        `- exportCoverage: ${traceExportDiagnostics.exportCoverage}`,
+        `- droppedEvents: ${Array.isArray(traceExportDiagnostics.droppedEvents) && traceExportDiagnostics.droppedEvents.length > 0
+            ? traceExportDiagnostics.droppedEvents.map((event) => `${event.phase}:${event.reasons.join('+')}`).join(', ')
             : 'none'}`,
         '',
         '## Recovery Plan',
@@ -1207,6 +1272,9 @@ export async function runBotWorkerLoop({
             w3cParentSpanId: rootTraceContext.spanId
         });
     }
+    const traceExportDiagnostics = buildBotWorkerLoopTraceExportDiagnostics({
+        traceEvents
+    });
 
     return {
         traceId,
@@ -1229,6 +1297,7 @@ export async function runBotWorkerLoop({
         lifecycleCheckpoint,
         runEvaluation,
         staleDispatchRecoveryPlan,
+        traceExportDiagnostics,
         traceEvents
     };
 }
