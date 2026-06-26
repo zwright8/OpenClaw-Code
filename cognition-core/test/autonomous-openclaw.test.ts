@@ -4,12 +4,17 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import {
+    buildTaskRequest,
+    FileTaskStore
+} from '../../swarm-protocol/runtime.js';
+import {
     buildAutonomousBatchPlan,
     loadCapabilityCatalog,
     loadExternalSkillCatalog,
     loadAutonomousState,
     runAutonomousOpenClaw
 } from '../src/autonomous-openclaw.js';
+import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import { loadSkillManifest } from '../../skills/runtime/index.js';
 
 const cwd = path.resolve(process.cwd());
@@ -176,4 +181,65 @@ test('runAutonomousOpenClaw can execute waves from external 10,000-skill catalog
     assert.equal(report.totals.plannedCapabilityTasks, 0);
     assert.deepEqual(report.waves[0].selection.skillIds, [1001, 1002]);
     assert.ok(report.coverage.skills.successful >= 2);
+});
+
+test('runAutonomousOpenClaw surfaces stale dispatch recovery settings and wave status', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const storePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const statePath = path.join(dir, 'autonomy-state.json');
+    const request = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000991',
+        from: 'agent:main',
+        target: 'agent:openclaw-bot',
+        priority: 'normal',
+        task: 'Recover stale autonomous dispatch',
+        context: {
+            planner: 'cognition-core/autonomous-openclaw',
+            traceparent: '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01'
+        },
+        traceparent: '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01',
+        createdAt: 10_000
+    });
+    const store = new FileTaskStore({ filePath: storePath, now: () => 120_000 });
+    await store.saveRecord({
+        ...buildQueueRecordFromTaskRequest(request, {
+            source: 'autonomous-openclaw:test',
+            nowFactory: () => 10_500
+        }),
+        status: 'dispatched',
+        updatedAt: 10_500
+    });
+
+    const report = await runAutonomousOpenClaw({
+        repoRoot: REPO_ROOT,
+        storePath,
+        outboxDir,
+        archiveDir,
+        statePath,
+        waves: 1,
+        skillsPerWave: 0,
+        capabilitiesPerWave: 0,
+        dispatchLimit: 10,
+        workerCycles: 4,
+        workerIdleCycles: 1,
+        staleDispatchMs: 60_000,
+        stopWhenStaleDispatch: true,
+        stopOnFullCoverage: false,
+        botRuntime: true,
+        enqueueFollowupTasks: false,
+        nowFactory: () => 120_000
+    });
+
+    assert.equal(report.wavesRun, 1);
+    assert.equal(report.config.staleDispatchMs, 60_000);
+    assert.equal(report.config.stopWhenStaleDispatch, true);
+    assert.equal(report.totals.staleDispatches, 1);
+    assert.equal(report.waves[0].worker.stopReason, 'stale_dispatch_detected');
+    assert.equal(report.waves[0].worker.finalQueueDispatchedStale, 1);
+    assert.equal(report.waves[0].worker.staleDispatchRecoveryCandidates, 1);
+    assert.equal(report.waves[0].worker.nextAction, 'recover_stale_dispatches');
 });
