@@ -56,6 +56,18 @@ function isTraceparent(value) {
         && /^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$/i.test(value.trim());
 }
 
+function isW3cTraceId(value) {
+    return typeof value === 'string'
+        && /^[0-9a-f]{32}$/i.test(value.trim())
+        && !/^0{32}$/i.test(value.trim());
+}
+
+function isW3cSpanId(value) {
+    return typeof value === 'string'
+        && /^[0-9a-f]{16}$/i.test(value.trim())
+        && !/^0{16}$/i.test(value.trim());
+}
+
 async function sleep(ms) {
     const duration = parseNonNegativeInt(ms, 0);
     if (duration <= 0) return;
@@ -572,7 +584,11 @@ function otelStatusForEvent(event) {
 export function buildBotWorkerLoopOtelSpans(report) {
     const events = Array.isArray(report?.traceEvents) ? report.traceEvents : [];
     return events
-        .filter((event) => event?.spanContext?.traceId && event?.spanContext?.spanId)
+        .filter((event) => (
+            isW3cTraceId(event?.spanContext?.traceId)
+            && isW3cSpanId(event?.spanContext?.spanId)
+            && (event?.traceparent === undefined || isTraceparent(event.traceparent))
+        ))
         .map((event) => {
             const attributes = buildOtelAttributes({
                 schemaVersion: event.schemaVersion || TRACE_SCHEMA_VERSION,
@@ -607,6 +623,9 @@ export function buildBotWorkerLoopTraceExportDiagnostics(report) {
     let missingSpanContext = 0;
     let missingTraceId = 0;
     let missingSpanId = 0;
+    let invalidTraceId = 0;
+    let invalidSpanId = 0;
+    let invalidTraceparent = 0;
 
     for (const [index, event] of events.entries()) {
         const spanContext = event?.spanContext && typeof event.spanContext === 'object'
@@ -624,6 +643,18 @@ export function buildBotWorkerLoopTraceExportDiagnostics(report) {
         if (!spanContext?.spanId) {
             missingSpanId++;
             reasons.push('missing_span_id');
+        }
+        if (spanContext?.traceId && !isW3cTraceId(spanContext.traceId)) {
+            invalidTraceId++;
+            reasons.push('invalid_trace_id');
+        }
+        if (spanContext?.spanId && !isW3cSpanId(spanContext.spanId)) {
+            invalidSpanId++;
+            reasons.push('invalid_span_id');
+        }
+        if (event?.traceparent !== undefined && !isTraceparent(event.traceparent)) {
+            invalidTraceparent++;
+            reasons.push('invalid_traceparent');
         }
         if (reasons.length > 0) {
             droppedEvents.push({
@@ -643,6 +674,9 @@ export function buildBotWorkerLoopTraceExportDiagnostics(report) {
         missingSpanContext,
         missingTraceId,
         missingSpanId,
+        invalidTraceId,
+        invalidSpanId,
+        invalidTraceparent,
         exportCoverage: events.length === 0
             ? 1
             : Number((exportedSpanCount / events.length).toFixed(4)),

@@ -202,11 +202,61 @@ test('writeBotWorkerLoopReport writes OTel-compatible span JSONL', async (t) => 
     assert.equal(span.attributes['openclaw.trace.traceparent'], '00-11111111111111111111111111111111-2222222222222222-01');
 });
 
+test('writeBotWorkerLoopReport skips malformed OTel span JSONL rows', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const otelPath = path.join(dir, 'bot-worker-loop.otel.jsonl');
+    await writeBotWorkerLoopReport({
+        report: {
+            traceEvents: [
+                {
+                    at: 100,
+                    cycle: 1,
+                    phase: 'dispatch',
+                    traceparent: '00-11111111111111111111111111111111-2222222222222222-01',
+                    spanContext: {
+                        traceId: '11111111111111111111111111111111',
+                        spanId: '3333333333333333',
+                        parentSpanId: '2222222222222222'
+                    }
+                },
+                {
+                    at: 120,
+                    cycle: 1,
+                    phase: 'queue_after',
+                    traceparent: '00-00000000000000000000000000000000-4444444444444444-01',
+                    spanContext: {
+                        traceId: '00000000000000000000000000000000',
+                        spanId: '4444444444444444'
+                    }
+                },
+                {
+                    at: 130,
+                    cycle: 1,
+                    phase: 'run_evaluation',
+                    traceparent: 'not-a-traceparent',
+                    spanContext: {
+                        traceId: '55555555555555555555555555555555',
+                        spanId: '6666666666666666'
+                    }
+                }
+            ]
+        },
+        otelJsonlPath: otelPath
+    });
+
+    const lines = fs.readFileSync(otelPath, 'utf8').trim().split('\n');
+    assert.equal(lines.length, 1);
+    assert.equal(JSON.parse(lines[0]).name, 'bot_worker_loop.event');
+});
+
 test('buildBotWorkerLoopTraceExportDiagnostics reports dropped malformed trace events', () => {
     const diagnostics = buildBotWorkerLoopTraceExportDiagnostics({
         traceEvents: [
             {
                 phase: 'dispatch',
+                traceparent: '00-11111111111111111111111111111111-2222222222222222-01',
                 spanContext: {
                     traceId: '11111111111111111111111111111111',
                     spanId: '2222222222222222'
@@ -219,19 +269,37 @@ test('buildBotWorkerLoopTraceExportDiagnostics reports dropped malformed trace e
                 }
             },
             {
+                phase: 'lifecycle_checkpoint',
+                traceparent: 'not-a-traceparent',
+                spanContext: {
+                    traceId: '00000000000000000000000000000000',
+                    spanId: '4444444444444444'
+                }
+            },
+            {
+                phase: 'stale_dispatch_recovery_plan',
+                spanContext: {
+                    traceId: '55555555555555555555555555555555',
+                    spanId: '0000000000000000'
+                }
+            },
+            {
                 phase: 'run_evaluation'
             }
         ]
     });
 
     assert.equal(diagnostics.schemaVersion, 'bot-worker-loop.trace-export-diagnostics.v1');
-    assert.equal(diagnostics.traceEventCount, 3);
+    assert.equal(diagnostics.traceEventCount, 5);
     assert.equal(diagnostics.exportedSpanCount, 1);
-    assert.equal(diagnostics.droppedEventCount, 2);
+    assert.equal(diagnostics.droppedEventCount, 4);
     assert.equal(diagnostics.missingSpanContext, 1);
     assert.equal(diagnostics.missingTraceId, 1);
     assert.equal(diagnostics.missingSpanId, 2);
-    assert.equal(diagnostics.exportCoverage, 0.3333);
+    assert.equal(diagnostics.invalidTraceId, 1);
+    assert.equal(diagnostics.invalidSpanId, 1);
+    assert.equal(diagnostics.invalidTraceparent, 1);
+    assert.equal(diagnostics.exportCoverage, 0.2);
     assert.equal(diagnostics.status, 'warn');
     assert.deepEqual(diagnostics.droppedEvents, [
         {
@@ -241,6 +309,16 @@ test('buildBotWorkerLoopTraceExportDiagnostics reports dropped malformed trace e
         },
         {
             index: 2,
+            phase: 'lifecycle_checkpoint',
+            reasons: ['invalid_trace_id', 'invalid_traceparent']
+        },
+        {
+            index: 3,
+            phase: 'stale_dispatch_recovery_plan',
+            reasons: ['invalid_span_id']
+        },
+        {
+            index: 4,
             phase: 'run_evaluation',
             reasons: ['missing_span_context', 'missing_trace_id', 'missing_span_id']
         }
