@@ -10,6 +10,7 @@ import {
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
     dispatchCreatedQueueTasks,
+    runQueueMaintenance,
     selectCreatedDispatchCandidates
 } from '../src/queue-dispatcher.js';
 
@@ -164,4 +165,95 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
     assert.equal(envelope.message.id, '00000000-0000-4000-8000-000000000201');
     assert.match(envelope.message.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
     assert.equal(envelope.message.context.traceparent, envelope.message.traceparent);
+});
+
+test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file outbox', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 300_000 });
+    const request = makeRequest('00000000-0000-4000-8000-000000000301', {
+        priority: 'high',
+        planner: 'cognition-core/cognition-iteration-task-planner',
+        target: 'agent:retry-worker'
+    });
+
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/cognition-iteration-tasks.json',
+        nowFactory: () => 250_000,
+        maxRetries: 2
+    });
+    record.status = 'retry_scheduled';
+    record.attempts = 1;
+    record.nextRetryAt = 260_000;
+    record.updatedAt = 250_100;
+    await store.saveRecord(record);
+
+    const result = await runQueueMaintenance({
+        storePath: queuePath,
+        outboxDir,
+        nowFactory: () => 300_000
+    });
+
+    assert.equal(result.checked, 1);
+    assert.equal(result.retried, 1);
+    assert.equal(result.scheduledRetries, 0);
+    assert.equal(result.timedOut, 0);
+
+    const records = await store.loadRecords();
+    assert.equal(records[0].status, 'dispatched');
+    assert.equal(records[0].attempts, 2);
+    assert.equal(records[0].nextRetryAt, null);
+
+    const outboxFile = path.join(outboxDir, targetToFile('agent:retry-worker'));
+    assert.equal(fs.existsSync(outboxFile), true);
+    const lines = fs.readFileSync(outboxFile, 'utf8').trim().split('\n');
+    assert.equal(lines.length, 1);
+    const envelope = JSON.parse(lines[0]);
+    assert.equal(envelope.message.id, request.id);
+    assert.equal(envelope.message.kind, 'task_request');
+});
+
+test('runQueueMaintenance times out overdue dispatched tasks after retry budget is exhausted', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 400_000 });
+    const request = makeRequest('00000000-0000-4000-8000-000000000401', {
+        priority: 'high',
+        planner: 'cognition-core/cognition-iteration-task-planner',
+        target: 'agent:timeout-worker'
+    });
+
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/cognition-iteration-tasks.json',
+        nowFactory: () => 350_000,
+        maxRetries: 1
+    });
+    record.status = 'dispatched';
+    record.attempts = 2;
+    record.deadlineAt = 360_000;
+    record.updatedAt = 350_100;
+    await store.saveRecord(record);
+
+    const result = await runQueueMaintenance({
+        storePath: queuePath,
+        outboxDir,
+        nowFactory: () => 400_000
+    });
+
+    assert.equal(result.checked, 1);
+    assert.equal(result.timedOut, 1);
+    assert.equal(result.retried, 0);
+
+    const records = await store.loadRecords();
+    assert.equal(records[0].status, 'timed_out');
+    assert.equal(records[0].closedAt, 400_000);
+
+    const outboxFile = path.join(outboxDir, targetToFile('agent:timeout-worker'));
+    assert.equal(fs.existsSync(outboxFile), false);
 });

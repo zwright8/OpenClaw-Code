@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { createHash } from 'crypto';
 import { FileTaskStore } from '../../swarm-protocol/runtime.js';
-import { dispatchCreatedQueueTasks } from './queue-dispatcher.js';
+import { dispatchCreatedQueueTasks, runQueueMaintenance } from './queue-dispatcher.js';
 import { processOutboxEnvelopes } from './outbox-processor.js';
 
 const TERMINAL_STATUSES = new Set([
@@ -433,6 +433,7 @@ function buildCycleTraceEvents({
     cycle,
     startedAt,
     finishedAt,
+    maintenanceResult,
     dispatchResult,
     processResult,
     queueBefore,
@@ -446,6 +447,10 @@ function buildCycleTraceEvents({
     const dispatched = dispatchResult?.stats?.dispatched || 0;
     const awaitingApproval = dispatchResult?.stats?.awaitingApproval || 0;
     const failedDispatch = dispatchResult?.stats?.failed || 0;
+    const scheduledRetries = maintenanceResult?.scheduledRetries || 0;
+    const maintenanceRetried = maintenanceResult?.retried || 0;
+    const maintenanceTimedOut = maintenanceResult?.timedOut || 0;
+    const maintenanceTransportFailures = maintenanceResult?.transportFailures || 0;
     const resultsAccepted = processResult?.resultsAccepted || 0;
     const botTasksExecuted = processResult?.botTasksExecuted || 0;
     const botTasksFailed = processResult?.botTasksFailed || 0;
@@ -461,8 +466,20 @@ function buildCycleTraceEvents({
         queueOpen: queueBefore?.open || 0,
         queueCreated: queueBefore?.created || 0,
         queueDispatched: queueBefore?.dispatched || 0,
+        queueRetryScheduled: queueBefore?.retryScheduled || 0,
         queueDispatchedStale: queueBefore?.dispatchedStale || 0,
         queueAwaitingApproval: queueBefore?.awaitingApproval || 0
+    }, traceContext);
+
+    pushTraceEvent(events, {
+        at: startedAt,
+        cycle,
+        phase: 'maintenance',
+        checked: maintenanceResult?.checked || 0,
+        scheduledRetries,
+        retried: maintenanceRetried,
+        timedOut: maintenanceTimedOut,
+        transportFailures: maintenanceTransportFailures
     }, traceContext);
 
     pushTraceEvent(events, {
@@ -524,6 +541,7 @@ function buildCycleTraceEvents({
         queueOpen: queueAfter?.open || 0,
         queueCreated: queueAfter?.created || 0,
         queueDispatched: queueAfter?.dispatched || 0,
+        queueRetryScheduled: queueAfter?.retryScheduled || 0,
         queueDispatchedStale: queueAfter?.dispatchedStale || 0,
         queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
         idleStreak
@@ -701,6 +719,7 @@ function buildLifecycleCheckpoint({
     if ((queue.awaitingApproval || 0) > 0) attentionReasons.push('pending_approval');
     if ((queue.created || 0) > 0) attentionReasons.push('pending_created_tasks');
     if ((queue.dispatched || 0) > 0) attentionReasons.push('pending_dispatched_tasks');
+    if ((queue.retryScheduled || 0) > 0) attentionReasons.push('pending_retry_scheduled');
     if ((queue.dispatchedStale || 0) > 0) attentionReasons.push('stale_dispatched_tasks');
     if ((totalValues.botTasksFailed || 0) > 0) attentionReasons.push('bot_task_failures');
     if ((totalValues.botSkillHardeningBlocked || 0) > 0) attentionReasons.push('skill_hardening_blocks');
@@ -715,6 +734,8 @@ function buildLifecycleCheckpoint({
         nextAction = 'review_pending_approvals';
     } else if ((queue.created || 0) > 0) {
         nextAction = 'rerun_dispatcher';
+    } else if ((queue.retryScheduled || 0) > 0) {
+        nextAction = 'rerun_after_retry_backoff';
     } else if ((queue.dispatched || 0) > 0) {
         nextAction = 'process_outbox_results';
     } else if ((totalValues.botSkillHardeningBlocked || 0) > 0) {
@@ -733,6 +754,7 @@ function buildLifecycleCheckpoint({
             open: queue.open || 0,
             created: queue.created || 0,
             dispatched: queue.dispatched || 0,
+            retryScheduled: queue.retryScheduled || 0,
             dispatchedStale: queue.dispatchedStale || 0,
             oldestDispatchedAgeMs: queue.oldestDispatchedAgeMs || 0,
             staleDispatchedTaskIds: Array.isArray(queue.staleDispatchedTaskIds)
@@ -807,6 +829,7 @@ function buildRunEvaluation({
         queueOpen: queue.open || 0,
         queueCreated: queue.created || 0,
         queueDispatched: queue.dispatched || 0,
+        queueRetryScheduled: queue.retryScheduled || 0,
         queueDispatchedStale: queue.dispatchedStale || 0,
         queueAwaitingApproval: queue.awaitingApproval || 0,
         botTasksFailed: totalValues.botTasksFailed || 0,
@@ -898,6 +921,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- attentionReasons: ${lifecycleCheckpoint.attentionReasons.length > 0 ? lifecycleCheckpoint.attentionReasons.join(', ') : 'none'}`,
         `- queue.open: ${lifecycleCheckpoint.queue.open}`,
         `- queue.dispatchedStale: ${lifecycleCheckpoint.queue.dispatchedStale || 0}`,
+        `- queue.retryScheduled: ${lifecycleCheckpoint.queue.retryScheduled || 0}`,
         `- queue.oldestDispatchedAgeMs: ${lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
         '',
@@ -1067,6 +1091,10 @@ export async function runBotWorkerLoop({
     const totals = {
         dispatched: 0,
         awaitingApproval: 0,
+        maintenanceScheduledRetries: 0,
+        maintenanceRetried: 0,
+        maintenanceTimedOut: 0,
+        maintenanceTransportFailures: 0,
         resultsAccepted: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
@@ -1097,6 +1125,25 @@ export async function runBotWorkerLoop({
             nowFactory: now,
             staleDispatchMs: normalizedStaleDispatchMs
         });
+
+        const maintenanceResult = queueBefore.created > 0 || queueBefore.dispatchedStale > 0
+            ? {
+                loaded: queueBefore.total,
+                checked: 0,
+                scheduledRetries: 0,
+                retried: 0,
+                timedOut: 0,
+                transportFailures: 0
+            }
+            // Exercise protocol-native retry/timeout handling before dispatching new work,
+            // but never mutate stale dispatched tasks that require operator inspection.
+            // eslint-disable-next-line no-await-in-loop
+            : await runQueueMaintenance({
+                storePath: resolvedStorePath,
+                outboxDir: resolvedOutboxDir,
+                localAgentId,
+                nowFactory: now
+            });
 
         // eslint-disable-next-line no-await-in-loop
         const dispatchResult = await dispatchCreatedQueueTasks({
@@ -1136,6 +1183,9 @@ export async function runBotWorkerLoop({
         });
 
         const progressUnits =
+            maintenanceResult.scheduledRetries
+            + maintenanceResult.retried
+            + maintenanceResult.timedOut
             dispatchResult.stats.dispatched
             + processResult.resultsAccepted
             + processResult.followupTasksSaved;
@@ -1159,6 +1209,7 @@ export async function runBotWorkerLoop({
             durationMs: Math.max(0, cycleFinishedAt - cycleStartedAt),
             queueBefore,
             queueAfter,
+            maintenanceResult,
             selected: dispatchResult.stats.selected,
             dispatched: dispatchResult.stats.dispatched,
             awaitingApproval: dispatchResult.stats.awaitingApproval,
@@ -1179,6 +1230,7 @@ export async function runBotWorkerLoop({
             cycle: cycleIndex,
             startedAt: cycleStartedAt,
             finishedAt: cycleFinishedAt,
+            maintenanceResult,
             dispatchResult,
             processResult,
             queueBefore,
@@ -1194,6 +1246,10 @@ export async function runBotWorkerLoop({
 
         totals.dispatched += dispatchResult.stats.dispatched;
         totals.awaitingApproval += dispatchResult.stats.awaitingApproval;
+        totals.maintenanceScheduledRetries += maintenanceResult.scheduledRetries;
+        totals.maintenanceRetried += maintenanceResult.retried;
+        totals.maintenanceTimedOut += maintenanceResult.timedOut;
+        totals.maintenanceTransportFailures += maintenanceResult.transportFailures;
         totals.resultsAccepted += processResult.resultsAccepted;
         totals.botTasksExecuted += processResult.botTasksExecuted;
         totals.botTasksFailed += processResult.botTasksFailed;

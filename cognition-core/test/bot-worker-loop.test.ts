@@ -348,8 +348,69 @@ test('runBotWorkerLoop stops on idle convergence for empty queue', async (t) => 
     assert.equal(report.totals.resultsAccepted, 0);
     assert.equal(report.finalQueue.total, 0);
     assert.ok(report.traceEvents.some((event) => event.phase === 'queue_before'));
+    assert.ok(report.traceEvents.some((event) => event.phase === 'maintenance'));
     assert.ok(report.traceEvents.some((event) => event.phase === 'queue_after' && event.queueOpen === 0));
     assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
+});
+
+test('runBotWorkerLoop executes maintenance retries before processing outbox results', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const request = buildTaskRequest({
+        id: '00000000-0000-4000-8000-000000000974',
+        from: 'agent:main',
+        target: 'agent:openclaw-bot',
+        priority: 'normal',
+        task: 'Retry queued maintenance task',
+        context: {
+            planner: 'cognition-core/cognition-iteration-task-planner'
+        },
+        createdAt: 10_000
+    });
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 120_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/cognition-iteration-tasks.json',
+        nowFactory: () => 10_500,
+        maxRetries: 2
+    });
+    record.status = 'retry_scheduled';
+    record.attempts = 1;
+    record.nextRetryAt = 11_000;
+    record.updatedAt = 10_600;
+    await store.saveRecord(record);
+
+    const report = await runBotWorkerLoop({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        maxCycles: 4,
+        idleCyclesToStop: 1,
+        dispatchLimit: 10,
+        botRuntime: false,
+        nowFactory: () => 120_000
+    });
+
+    assert.equal(report.stopReason, 'queue_drained');
+    assert.equal(report.totals.maintenanceRetried, 1);
+    assert.equal(report.totals.maintenanceTimedOut, 0);
+    assert.equal(report.totals.resultsAccepted, 1);
+    assert.equal(report.finalQueue.open, 0);
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'maintenance'
+        && event.retried === 1
+        && event.transportFailures === 0
+    )));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'queue_after'
+        && event.queueRetryScheduled === 0
+    )));
+
+    const records = await store.loadRecords();
+    assert.equal(records[0].status, 'completed');
 });
 
 test('runBotWorkerLoop checkpoint recommends approval review when only approvals remain', async (t) => {

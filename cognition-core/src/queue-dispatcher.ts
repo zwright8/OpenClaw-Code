@@ -155,6 +155,40 @@ export function createFileOutboxTransport({
     };
 }
 
+export async function runQueueMaintenance({
+    storePath,
+    outboxDir,
+    localAgentId = 'agent:main',
+    nowFactory = Date.now
+}) {
+    if (!storePath || typeof storePath !== 'string') {
+        throw new Error('storePath is required');
+    }
+    if (!outboxDir || typeof outboxDir !== 'string') {
+        throw new Error('outboxDir is required');
+    }
+
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({ filePath: storePath, now });
+    const transport = createFileOutboxTransport({ outboxDir, nowFactory: now });
+    const orchestrator = new TaskOrchestrator({
+        localAgentId,
+        transport,
+        store,
+        approvalPolicy: createApprovalPolicy(),
+        now
+    });
+
+    const hydration = await orchestrator.hydrate();
+    const maintenance = await orchestrator.runMaintenance(safeNow(now));
+    await orchestrator.flush();
+
+    return {
+        loaded: hydration.loaded,
+        ...maintenance
+    };
+}
+
 export async function dispatchCreatedQueueTasks({
     storePath,
     outboxDir,
