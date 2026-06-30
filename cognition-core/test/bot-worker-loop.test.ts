@@ -545,6 +545,38 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         report.staleDispatchRecoveryPlan.candidates[0].idempotencyKey,
         `task:${request.id}:attempt:0`
     );
+    assert.equal(report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRequired, true);
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.schemaVersion,
+        'bot-worker-loop.stale-dispatch-decision.v1'
+    );
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.taskId,
+        request.id
+    );
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.correlation,
+        '00-11111111111111111111111111111111-2222222222222222-01'
+    );
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.idempotencyKey,
+        `task:${request.id}:attempt:0`
+    );
+    assert.equal(report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.decision, 'pending');
+    assert.deepEqual(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.requiredBeforeDecision,
+        [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ]
+    );
+    assert.ok(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.allowedDecisions.includes('requeue_no_side_effect')
+    );
+    assert.ok(
+        report.staleDispatchRecoveryPlan.candidates[0].recoveryDecisionRecord.requiredFields.includes('sideEffectStatus')
+    );
     assert.deepEqual(
         report.staleDispatchRecoveryPlan.candidates[0].evidenceRequired.map((item) => item.id),
         [
@@ -640,6 +672,15 @@ test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
     assert.equal(plan.candidates[0].ageMs, 110_000);
     assert.equal(plan.candidates[0].traceparent, '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01');
     assert.equal(plan.candidates[0].idempotencyKey, 'task:old-dispatch:attempt:2');
+    assert.equal(plan.candidates[0].recoveryDecisionRequired, true);
+    assert.deepEqual(plan.candidates[0].recoveryDecisionRecord.defaults, {
+        operator: null,
+        decidedAt: null,
+        evidenceReviewed: [],
+        externalRuntimeCorrelation: '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01',
+        sideEffectStatus: 'unknown',
+        notes: null
+    });
     assert.deepEqual(plan.candidates[0].evidenceRequired.map((item) => item.id), [
         'replay_timeline_reviewed',
         'external_runtime_result_checked',
@@ -719,6 +760,25 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                     attempts: 1,
                     traceparent: '00-33333333333333333333333333333333-4444444444444444-01',
                     idempotencyKey: 'task:task-stale:attempt:1',
+                    recoveryDecisionRequired: true,
+                    recoveryDecisionRecord: {
+                        schemaVersion: 'bot-worker-loop.stale-dispatch-decision.v1',
+                        allowedDecisions: [
+                            'close_completed',
+                            'requeue_no_side_effect',
+                            'fail_side_effect_unknown',
+                            'escalate_manual_review'
+                        ],
+                        requiredFields: [
+                            'decision',
+                            'operator',
+                            'decidedAt',
+                            'evidenceReviewed',
+                            'externalRuntimeCorrelation',
+                            'sideEffectStatus',
+                            'notes'
+                        ]
+                    },
                     evidenceRequired: [
                         { id: 'replay_timeline_reviewed' },
                         { id: 'external_runtime_result_checked' },
@@ -789,6 +849,10 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /candidate task-stale: target=agent:openclaw-bot ageMs=120000 attempts=1 action=inspect_external_runtime_before_requeue/);
     assert.match(markdown, /traceparent: 00-33333333333333333333333333333333-4444444444444444-01/);
     assert.match(markdown, /idempotencyKey: task:task-stale:attempt:1/);
+    assert.match(markdown, /recoveryDecisionRequired: true/);
+    assert.match(markdown, /decisionRecordSchema: bot-worker-loop.stale-dispatch-decision.v1/);
+    assert.match(markdown, /allowedDecisions: close_completed, requeue_no_side_effect, fail_side_effect_unknown, escalate_manual_review/);
+    assert.match(markdown, /requiredFields: decision, operator, decidedAt, evidenceReviewed, externalRuntimeCorrelation, sideEffectStatus, notes/);
     assert.match(markdown, /evidenceRequired: replay_timeline_reviewed, external_runtime_result_checked, side_effect_ledger_checked, operator_decision_recorded/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);

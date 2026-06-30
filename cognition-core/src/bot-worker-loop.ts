@@ -127,6 +127,45 @@ function buildRecoveryEvidenceChecklist({ taskId, traceparent }) {
     ];
 }
 
+function buildRecoveryDecisionRecordTemplate({ taskId, traceparent, idempotencyKey }) {
+    const correlation = traceparent || taskId;
+    return {
+        schemaVersion: 'bot-worker-loop.stale-dispatch-decision.v1',
+        taskId,
+        correlation,
+        idempotencyKey,
+        decision: 'pending',
+        allowedDecisions: [
+            'close_completed',
+            'requeue_no_side_effect',
+            'fail_side_effect_unknown',
+            'escalate_manual_review'
+        ],
+        requiredBeforeDecision: [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ],
+        requiredFields: [
+            'decision',
+            'operator',
+            'decidedAt',
+            'evidenceReviewed',
+            'externalRuntimeCorrelation',
+            'sideEffectStatus',
+            'notes'
+        ],
+        defaults: {
+            operator: null,
+            decidedAt: null,
+            evidenceReviewed: [],
+            externalRuntimeCorrelation: correlation,
+            sideEffectStatus: 'unknown',
+            notes: null
+        }
+    };
+}
+
 function summarizeQueueRecords(records, {
     nowMs = Date.now(),
     staleDispatchMs = DEFAULT_STALE_DISPATCH_MS
@@ -222,6 +261,7 @@ export function buildStaleDispatchRecoveryPlan(records, {
         if (staleThresholdMs > 0 && ageMs < staleThresholdMs) continue;
 
         const traceparent = getRecordTraceparent(record);
+        const idempotencyKey = `task:${record.taskId}:attempt:${record.attempts || 0}`;
         candidates.push({
             taskId: record.taskId,
             target: record.target || record.request?.target || 'unknown',
@@ -229,7 +269,13 @@ export function buildStaleDispatchRecoveryPlan(records, {
             updatedAt,
             attempts: record.attempts || 0,
             traceparent,
-            idempotencyKey: `task:${record.taskId}:attempt:${record.attempts || 0}`,
+            idempotencyKey,
+            recoveryDecisionRequired: true,
+            recoveryDecisionRecord: buildRecoveryDecisionRecordTemplate({
+                taskId: record.taskId,
+                traceparent,
+                idempotencyKey
+            }),
             latestHistoryEvent: getLatestHistoryEvent(record),
             recommendedAction: 'inspect_external_runtime_before_requeue',
             evidenceRequired: buildRecoveryEvidenceChecklist({
@@ -994,6 +1040,17 @@ export function renderBotWorkerLoopMarkdown(report) {
                 }
                 if (candidate.idempotencyKey) {
                     lines.push(`  - idempotencyKey: ${candidate.idempotencyKey}`);
+                }
+                const decisionRecord = candidate.recoveryDecisionRecord && typeof candidate.recoveryDecisionRecord === 'object'
+                    ? candidate.recoveryDecisionRecord
+                    : null;
+                if (decisionRecord) {
+                    lines.push(
+                        `  - recoveryDecisionRequired: ${candidate.recoveryDecisionRequired === true}`,
+                        `  - decisionRecordSchema: ${decisionRecord.schemaVersion}`,
+                        `  - allowedDecisions: ${Array.isArray(decisionRecord.allowedDecisions) ? decisionRecord.allowedDecisions.join(', ') : 'none'}`,
+                        `  - requiredFields: ${Array.isArray(decisionRecord.requiredFields) ? decisionRecord.requiredFields.join(', ') : 'none'}`
+                    );
                 }
                 const evidence = Array.isArray(candidate.evidenceRequired)
                     ? candidate.evidenceRequired
