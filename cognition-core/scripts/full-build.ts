@@ -46,6 +46,7 @@ Options:
   --skills-catalog <path> Override skill catalog path
   --reports-dir <path>    Output directory (default: ./reports)
   --no-enqueue            Skip enqueueing generated tasks into queue store
+  --no-queue-maintenance  Skip retry/timeout maintenance before created-task dispatch
   --no-dispatch           Skip dispatching created cognition tasks
   --dispatch-limit <n>    Max created tasks dispatched per run (default: 50)
   --strict                Exit non-zero on readiness warn (default only fail is non-zero)
@@ -93,6 +94,7 @@ function parseArgs(argv) {
         skillsCatalogPath: null,
         reportsDir: path.resolve(process.cwd(), 'reports'),
         enqueue: true,
+        queueMaintenance: true,
         dispatchCreated: true,
         dispatchLimit: 50,
         strict: false,
@@ -116,6 +118,10 @@ function parseArgs(argv) {
         }
         if (token === '--no-enqueue') {
             options.enqueue = false;
+            continue;
+        }
+        if (token === '--no-queue-maintenance') {
+            options.queueMaintenance = false;
             continue;
         }
         if (token === '--no-dispatch') {
@@ -453,6 +459,13 @@ function extractTasks(payload) {
             if (!options.quiet) {
                 console.log(`Enqueue summary: accepted=${enqueueResult.stats.accepted} saved=${enqueueResult.stats.saved} skipped=${enqueueResult.skipped.length}`);
             }
+        }
+
+        if (options.dispatchCreated && options.queueMaintenance) {
+            runTsxScript('scripts/maintain-queue.ts', [
+                '--store', options.queueStorePath,
+                '--outbox-dir', options.dispatchOutboxDir
+            ], { cwd, quiet: options.quiet });
         }
 
         if (options.dispatchCreated) {

@@ -57,6 +57,7 @@
 - `npm --prefix cognition-core run memory:backfill` - backfill memory guardrail reports.
 - `npm --prefix cognition-core run iterate:plan` - generate cognition iteration plan + task bundle artifacts.
 - `npm --prefix cognition-core run enqueue:tasks` - enqueue planned task bundles.
+- `npm --prefix cognition-core run queue:maintain` - recover retry-scheduled and overdue dispatched queue tasks.
 - `npm --prefix cognition-core run dispatch:created` - dispatch newly created queued tasks.
 - `npm --prefix cognition-core run review:approvals` - process pending approval reviews.
 - `npm --prefix cognition-core run process:outbox` - process outbox tasks/events.

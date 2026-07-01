@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
 import {
     buildTaskRequest,
     FileTaskStore
@@ -21,6 +23,11 @@ function mkTmpDir() {
 function targetToFile(target) {
     return `${target.replace(/[^a-z0-9._-]+/gi, '_')}.jsonl`;
 }
+
+const MAINTAIN_QUEUE_SCRIPT = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../scripts/maintain-queue.ts'
+);
 
 function makeRequest(id, { priority = 'high', planner = 'cognition-core/remediation-task-planner', target = 'agent:ops' } = {}) {
     return buildTaskRequest({
@@ -214,6 +221,56 @@ test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file o
     const envelope = JSON.parse(lines[0]);
     assert.equal(envelope.message.id, request.id);
     assert.equal(envelope.message.kind, 'task_request');
+});
+
+test('maintain-queue CLI exposes retry maintenance for operators', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 500_000 });
+    const request = makeRequest('00000000-0000-4000-8000-000000000501', {
+        priority: 'high',
+        planner: 'cognition-core/cognition-iteration-task-planner',
+        target: 'agent:cli-retry-worker'
+    });
+
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/cognition-iteration-tasks.json',
+        nowFactory: () => 450_000,
+        maxRetries: 2
+    });
+    record.status = 'retry_scheduled';
+    record.attempts = 1;
+    record.nextRetryAt = 450_100;
+    record.updatedAt = 450_000;
+    await store.saveRecord(record);
+
+    const result = spawnSync('npx', [
+        'tsx',
+        MAINTAIN_QUEUE_SCRIPT,
+        '--store',
+        queuePath,
+        '--outbox-dir',
+        outboxDir
+    ], {
+        cwd: path.dirname(MAINTAIN_QUEUE_SCRIPT),
+        encoding: 'utf8'
+    });
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /Loaded: 1/);
+    assert.match(result.stdout, /Retried: 1/);
+
+    const records = await store.loadRecords();
+    assert.equal(records[0].status, 'dispatched');
+    assert.equal(records[0].attempts, 2);
+
+    const outboxFile = path.join(outboxDir, targetToFile('agent:cli-retry-worker'));
+    assert.equal(fs.existsSync(outboxFile), true);
+    const [line] = fs.readFileSync(outboxFile, 'utf8').trim().split('\n');
+    assert.equal(JSON.parse(line).message.id, request.id);
 });
 
 test('runQueueMaintenance times out overdue dispatched tasks after retry budget is exhausted', async (t) => {
