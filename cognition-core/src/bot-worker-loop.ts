@@ -1243,7 +1243,7 @@ export async function runBotWorkerLoop({
             maintenanceResult.scheduledRetries
             + maintenanceResult.retried
             + maintenanceResult.timedOut
-            dispatchResult.stats.dispatched
+            + dispatchResult.stats.dispatched
             + processResult.resultsAccepted
             + processResult.followupTasksSaved;
         const noProgress = progressUnits === 0;
