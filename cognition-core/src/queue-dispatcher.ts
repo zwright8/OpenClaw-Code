@@ -46,6 +46,35 @@ function traceparentForRecord(record) {
     return `00-${traceId}-${spanId}-01`;
 }
 
+function traceparentForMessage(message) {
+    const existing = message?.traceparent || message?.context?.traceparent;
+    return isTraceparent(existing) ? existing.trim().toLowerCase() : null;
+}
+
+function buildDispatchEnvelopeTrace({
+    target,
+    message,
+    sentAt
+}) {
+    const taskId = typeof message?.id === 'string' ? message.id : null;
+    const traceparent = traceparentForMessage(message);
+    const context = message?.context && typeof message.context === 'object'
+        ? message.context
+        : {};
+
+    return {
+        schemaVersion: 'openclaw.task_dispatch.trace.v1',
+        traceparent,
+        taskId,
+        target,
+        priority: typeof message?.priority === 'string' ? message.priority : null,
+        planner: typeof context.planner === 'string' ? context.planner : null,
+        createdAt: Number.isFinite(Number(message?.createdAt)) ? Number(message.createdAt) : null,
+        sentAt,
+        idempotencyKey: taskId ? `task:${taskId}` : null
+    };
+}
+
 function sortByCreatedAtAsc(records) {
     return [...records].sort((a, b) => {
         const left = Number(a?.createdAt || 0);
@@ -142,10 +171,16 @@ export function createFileOutboxTransport({
             }
             const fileName = `${sanitizeTargetForFile(target)}.jsonl`;
             const filePath = path.join(resolvedOutboxDir, fileName);
+            const sentAt = safeNow(nowFactory);
             const envelope = {
                 kind: 'task_dispatch_envelope',
                 target,
-                sentAt: safeNow(nowFactory),
+                sentAt,
+                trace: buildDispatchEnvelopeTrace({
+                    target,
+                    message,
+                    sentAt
+                }),
                 message
             };
 

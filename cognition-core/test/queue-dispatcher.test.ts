@@ -168,6 +168,17 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
     assert.equal(lines.length, 1);
     const envelope = JSON.parse(lines[0]);
     assert.equal(envelope.kind, 'task_dispatch_envelope');
+    assert.deepEqual(envelope.trace, {
+        schemaVersion: 'openclaw.task_dispatch.trace.v1',
+        traceparent: envelope.message.traceparent,
+        taskId: '00000000-0000-4000-8000-000000000201',
+        target: 'agent:cognition:ops',
+        priority: 'high',
+        planner: 'cognition-core/cognition-iteration-task-planner',
+        createdAt: 100_000,
+        sentAt: envelope.sentAt,
+        idempotencyKey: 'task:00000000-0000-4000-8000-000000000201'
+    });
     assert.equal(envelope.message.kind, 'task_request');
     assert.equal(envelope.message.id, '00000000-0000-4000-8000-000000000201');
     assert.match(envelope.message.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
@@ -221,6 +232,11 @@ test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file o
     const envelope = JSON.parse(lines[0]);
     assert.equal(envelope.message.id, request.id);
     assert.equal(envelope.message.kind, 'task_request');
+    assert.equal(envelope.trace.schemaVersion, 'openclaw.task_dispatch.trace.v1');
+    assert.equal(envelope.trace.taskId, request.id);
+    assert.equal(envelope.trace.target, 'agent:retry-worker');
+    assert.equal(envelope.trace.idempotencyKey, `task:${request.id}`);
+    assert.equal(envelope.trace.traceparent, null);
 });
 
 test('maintain-queue CLI exposes retry maintenance for operators', async (t) => {
