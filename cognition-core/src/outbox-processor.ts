@@ -41,6 +41,7 @@ function traceparentFromRequest(request, envelope) {
     const candidates = [
         request?.traceparent,
         request?.context?.traceparent,
+        envelope?.trace?.traceparent,
         envelope?.traceparent,
         envelope?.message?.traceparent,
         envelope?.message?.context?.traceparent

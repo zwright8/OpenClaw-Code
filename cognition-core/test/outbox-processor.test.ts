@@ -108,6 +108,59 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     assert.equal(fs.existsSync(path.join(outboxDir, targetToFile(target))), false);
 });
 
+test('processOutboxEnvelopes continues trace from envelope metadata when message lacks carrier', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const envelopeTraceparent = '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01';
+    const request = makeRequest('00000000-0000-4000-8000-000000000302', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner'
+    });
+    delete request.traceparent;
+    delete request.context.traceparent;
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 61_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 61_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    record.updatedAt = 61_002;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify({
+            ...createEnvelope({ target, request }),
+            trace: {
+                schemaVersion: 'openclaw.task_dispatch.trace.v1',
+                traceparent: envelopeTraceparent,
+                taskId: request.id,
+                target
+            }
+        })}\n`,
+        'utf8'
+    );
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: false
+    });
+
+    assert.equal(stats.resultsAccepted, 1);
+    const records = await store.loadRecords();
+    assert.equal(records[0].result.traceparent, envelopeTraceparent);
+    assert.ok(records[0].result.traceEvents.every((event) => event.traceparent === envelopeTraceparent));
+});
+
 test('processOutboxEnvelopes skips unknown tasks but still archives file', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

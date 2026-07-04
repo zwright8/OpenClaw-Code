@@ -236,7 +236,7 @@ test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file o
     assert.equal(envelope.trace.taskId, request.id);
     assert.equal(envelope.trace.target, 'agent:retry-worker');
     assert.equal(envelope.trace.idempotencyKey, `task:${request.id}`);
-    assert.equal(envelope.trace.traceparent, null);
+    assert.match(envelope.trace.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
 });
 
 test('maintain-queue CLI exposes retry maintenance for operators', async (t) => {

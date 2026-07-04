@@ -48,7 +48,14 @@ function traceparentForRecord(record) {
 
 function traceparentForMessage(message) {
     const existing = message?.traceparent || message?.context?.traceparent;
-    return isTraceparent(existing) ? existing.trim().toLowerCase() : null;
+    if (isTraceparent(existing)) return existing.trim().toLowerCase();
+
+    const taskId = typeof message?.id === 'string' ? message.id : null;
+    if (!taskId) return null;
+    const createdAt = Number(message?.createdAt || 0);
+    const traceId = stableHex(`openclaw-task:${taskId}`, 32);
+    const spanId = stableHex(`openclaw-task-dispatch:${taskId}:${createdAt}`, 16);
+    return `00-${traceId}-${spanId}-01`;
 }
 
 function buildDispatchEnvelopeTrace({
