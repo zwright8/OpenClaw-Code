@@ -1453,7 +1453,8 @@ export async function writeBotWorkerLoopReport({
     report,
     jsonPath = null,
     markdownPath = null,
-    otelJsonlPath = null
+    otelJsonlPath = null,
+    recoveryPlanPath = null
 }) {
     const output = report && typeof report === 'object' ? report : {};
 
@@ -1478,6 +1479,20 @@ export async function writeBotWorkerLoopReport({
             spans.length > 0
                 ? `${spans.map((span) => JSON.stringify(span)).join('\n')}\n`
                 : ''
+        );
+    }
+
+    if (
+        typeof recoveryPlanPath === 'string'
+        && recoveryPlanPath.trim()
+        && output.staleDispatchRecoveryPlan
+        && typeof output.staleDispatchRecoveryPlan === 'object'
+    ) {
+        const resolvedRecoveryPlanPath = path.resolve(recoveryPlanPath);
+        fs.mkdirSync(path.dirname(resolvedRecoveryPlanPath), { recursive: true });
+        fs.writeFileSync(
+            resolvedRecoveryPlanPath,
+            `${JSON.stringify(output.staleDispatchRecoveryPlan, null, 2)}\n`
         );
     }
 }

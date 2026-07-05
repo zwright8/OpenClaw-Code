@@ -202,6 +202,67 @@ test('writeBotWorkerLoopReport writes OTel-compatible span JSONL', async (t) => 
     assert.equal(span.attributes['openclaw.trace.traceparent'], '00-11111111111111111111111111111111-2222222222222222-01');
 });
 
+test('writeBotWorkerLoopReport writes standalone stale dispatch recovery plan', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const recoveryPlanPath = path.join(dir, 'bot-worker-loop.recovery-plan.json');
+    const recoveryPlan = {
+        schemaVersion: 'bot-worker-loop.stale-dispatch-recovery.v1',
+        generatedAt: 120_000,
+        staleDispatchMs: 60_000,
+        totalCandidates: 1,
+        dryRun: true,
+        mutatesQueue: false,
+        defaultAction: 'inspect_external_runtime_before_requeue',
+        rationale: 'Inspect external side effects before mutation.',
+        candidates: [
+            {
+                taskId: 'stale-task-1',
+                target: 'agent:openclaw-bot',
+                ageMs: 90_000,
+                updatedAt: 30_000,
+                attempts: 1,
+                traceparent: '00-11111111111111111111111111111111-2222222222222222-01',
+                idempotencyKey: 'task:stale-task-1:attempt:1',
+                recoveryDecisionRequired: true,
+                recoveryDecisionRecord: {
+                    schemaVersion: 'bot-worker-loop.stale-dispatch-decision.v1',
+                    taskId: 'stale-task-1',
+                    decision: 'pending'
+                },
+                recommendedAction: 'inspect_external_runtime_before_requeue',
+                evidenceRequired: [
+                    {
+                        id: 'external_runtime_result_checked',
+                        description: 'Check external runtime.'
+                    }
+                ],
+                operatorCommands: [
+                    'npm --prefix swarm-protocol run ops -- replay stale-task-1'
+                ]
+            }
+        ],
+        nextSteps: [
+            'Inspect each replay timeline and external runtime result store for a late completion.'
+        ]
+    };
+
+    await writeBotWorkerLoopReport({
+        report: {
+            stopReason: 'stale_dispatch_detected',
+            staleDispatchRecoveryPlan: recoveryPlan
+        },
+        recoveryPlanPath
+    });
+
+    assert.equal(fs.existsSync(recoveryPlanPath), true);
+    const written = JSON.parse(fs.readFileSync(recoveryPlanPath, 'utf8'));
+    assert.deepEqual(written, recoveryPlan);
+    assert.equal(written.candidates[0].recoveryDecisionRecord.decision, 'pending');
+    assert.equal(written.candidates[0].mutatesQueue, undefined);
+});
+
 test('writeBotWorkerLoopReport skips malformed OTel span JSONL rows', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

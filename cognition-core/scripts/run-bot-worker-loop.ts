@@ -36,6 +36,7 @@ Options:
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
   --otel-jsonl <path>          Optional OTel-compatible span JSONL output path
+  --recovery-plan <path>       Optional stale dispatch recovery plan JSON output path
   -h, --help                   Show help
 `);
 }
@@ -101,6 +102,7 @@ function parseArgs(argv) {
         jsonPath: null,
         markdownPath: null,
         otelJsonlPath: null,
+        recoveryPlanPath: null,
         help: false
     };
 
@@ -238,6 +240,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--recovery-plan') {
+            options.recoveryPlanPath = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
 
         throw new Error(`Unknown argument: ${token}`);
     }
@@ -315,7 +322,8 @@ function printSummary(report) {
             report,
             jsonPath: options.jsonPath,
             markdownPath: options.markdownPath,
-            otelJsonlPath: options.otelJsonlPath
+            otelJsonlPath: options.otelJsonlPath,
+            recoveryPlanPath: options.recoveryPlanPath
         });
 
         printSummary(report);

@@ -15,7 +15,7 @@
     "dispatch:created": "tsx scripts/dispatch-created-tasks.ts",
     "review:approvals": "tsx scripts/auto-review-approvals.ts",
     "process:outbox": "tsx scripts/process-outbox.ts",
-    "worker:loop": "tsx scripts/run-bot-worker-loop.ts --json reports/bot-worker-loop.json --markdown reports/bot-worker-loop.md",
+    "worker:loop": "tsx scripts/run-bot-worker-loop.ts --json reports/bot-worker-loop.json --markdown reports/bot-worker-loop.md --recovery-plan reports/bot-worker-loop.recovery-plan.json",
     "autonomous:run": "tsx scripts/run-autonomous-openclaw.ts",
     "autopilot:loop": "tsx scripts/autopilot-loop.ts",
     "build:full": "tsx scripts/full-build.ts",
