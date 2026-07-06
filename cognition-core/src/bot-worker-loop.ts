@@ -20,6 +20,8 @@ const TRACE_SEMCONV = 'otel.gen_ai.experimental';
 const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
 const MAX_STALE_TASK_IDS = 10;
 const MAX_RECOVERY_PLAN_TASKS = 20;
+const MAX_PENDING_APPROVAL_TASK_IDS = 10;
+const MAX_APPROVAL_PLAN_TASKS = 20;
 const OTEL_SPAN_KIND = {
     INTERNAL: 1,
     SERVER: 2,
@@ -79,6 +81,21 @@ async function sleep(ms) {
 function getRecordUpdatedAt(record) {
     const value = Number(record?.updatedAt ?? record?.createdAt ?? record?.request?.createdAt);
     return Number.isFinite(value) ? value : null;
+}
+
+function getApprovalRequestedAt(record) {
+    const direct = Number(record?.approval?.requestedAt);
+    if (Number.isFinite(direct)) return direct;
+
+    const history = Array.isArray(record?.history) ? record.history : [];
+    const requested = history
+        .filter((item) => item && typeof item === 'object' && item.event === 'approval_requested')
+        .map((item) => Number(item.at))
+        .filter(Number.isFinite)
+        .sort((a, b) => a - b)[0];
+    if (Number.isFinite(requested)) return requested;
+
+    return getRecordUpdatedAt(record);
 }
 
 function getLatestHistoryEvent(record) {
@@ -166,6 +183,29 @@ function buildRecoveryDecisionRecordTemplate({ taskId, traceparent, idempotencyK
     };
 }
 
+function buildApprovalReviewChecklist({ taskId }) {
+    return [
+        {
+            id: 'approval_queue_reviewed',
+            description: `Review the pending approval queue entry for task ${taskId}.`,
+            command: 'npm --prefix swarm-protocol run ops -- queue --approvals'
+        },
+        {
+            id: 'task_timeline_reviewed',
+            description: `Inspect task ${taskId} lifecycle history before deciding.`,
+            command: `npm --prefix swarm-protocol run ops -- replay ${taskId}`
+        },
+        {
+            id: 'risk_and_scope_reviewed',
+            description: 'Confirm the requested action, target, constraints, and approval reason still match current operator intent.'
+        },
+        {
+            id: 'operator_decision_recorded',
+            description: 'Approve or deny the task with an explicit operator reason.'
+        }
+    ];
+}
+
 function summarizeQueueRecords(records, {
     nowMs = Date.now(),
     staleDispatchMs = DEFAULT_STALE_DISPATCH_MS
@@ -180,7 +220,9 @@ function summarizeQueueRecords(records, {
     let acknowledged = 0;
     let retryScheduled = 0;
     let awaitingApproval = 0;
+    let oldestApprovalAgeMs = 0;
     const staleDispatchedTaskIds = [];
+    const pendingApprovalTaskIds = [];
     const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
     const staleThresholdMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
 
@@ -212,7 +254,15 @@ function summarizeQueueRecords(records, {
         }
         if (status === 'acknowledged') acknowledged++;
         if (status === 'retry_scheduled') retryScheduled++;
-        if (status === 'awaiting_approval') awaitingApproval++;
+        if (status === 'awaiting_approval') {
+            awaitingApproval++;
+            const requestedAt = getApprovalRequestedAt(record);
+            const ageMs = requestedAt === null ? 0 : Math.max(0, observedNowMs - requestedAt);
+            oldestApprovalAgeMs = Math.max(oldestApprovalAgeMs, ageMs);
+            if (pendingApprovalTaskIds.length < MAX_PENDING_APPROVAL_TASK_IDS && typeof record.taskId === 'string') {
+                pendingApprovalTaskIds.push(record.taskId);
+            }
+        }
     }
 
     return {
@@ -227,6 +277,8 @@ function summarizeQueueRecords(records, {
         acknowledged,
         retryScheduled,
         awaitingApproval,
+        oldestApprovalAgeMs,
+        pendingApprovalTaskIds,
         byStatus
     };
 }
@@ -313,6 +365,67 @@ export function buildStaleDispatchRecoveryPlan(records, {
     };
 }
 
+export function buildPendingApprovalReviewPlan(records, {
+    nowMs = Date.now(),
+    limit = MAX_APPROVAL_PLAN_TASKS
+} = {}) {
+    const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
+    const maxCandidates = parsePositiveInt(limit, MAX_APPROVAL_PLAN_TASKS);
+    const candidates = [];
+
+    for (const record of Array.isArray(records) ? records : []) {
+        if (!record || typeof record !== 'object' || record.status !== 'awaiting_approval') continue;
+        const requestedAt = getApprovalRequestedAt(record);
+        const ageMs = requestedAt === null ? 0 : Math.max(0, observedNowMs - requestedAt);
+        const approval = record.approval && typeof record.approval === 'object'
+            ? record.approval
+            : {};
+        candidates.push({
+            taskId: record.taskId,
+            target: record.target || record.request?.target || 'unknown',
+            priority: record.request?.priority || 'normal',
+            requestedAt,
+            ageMs,
+            reviewerGroup: typeof approval.reviewerGroup === 'string' ? approval.reviewerGroup : null,
+            reason: typeof approval.reason === 'string' ? approval.reason : null,
+            matchedRules: Array.isArray(approval.matchedRules) ? approval.matchedRules : [],
+            latestHistoryEvent: getLatestHistoryEvent(record),
+            recommendedAction: 'review_pending_approval',
+            evidenceRequired: buildApprovalReviewChecklist({
+                taskId: record.taskId
+            }),
+            operatorCommands: [
+                'npm --prefix swarm-protocol run ops -- queue --approvals',
+                `npm --prefix swarm-protocol run ops -- replay ${record.taskId}`,
+                `npm --prefix swarm-protocol run ops -- override approve ${record.taskId} --reason <reason>`,
+                `npm --prefix swarm-protocol run ops -- override deny ${record.taskId} --reason <reason>`
+            ]
+        });
+    }
+
+    candidates.sort((a, b) => b.ageMs - a.ageMs || String(a.taskId).localeCompare(String(b.taskId)));
+
+    return {
+        schemaVersion: 'bot-worker-loop.pending-approval-review.v1',
+        generatedAt: observedNowMs,
+        totalCandidates: candidates.length,
+        dryRun: true,
+        mutatesQueue: false,
+        defaultAction: 'review_pending_approval',
+        rationale: 'Approval-gated tasks intentionally pause autonomous execution, so the worker reports the exact operator review queue without mutating it.',
+        candidates: candidates.slice(0, maxCandidates),
+        nextSteps: candidates.length > 0
+            ? [
+                'Review the pending approval queue and each task timeline.',
+                'Approve only when the requested action, target, and constraints still match operator intent.',
+                'Deny stale or unsafe requests with an explicit reason so the queue can converge.'
+            ]
+            : [
+                'No pending approvals require operator review.'
+            ]
+    };
+}
+
 async function loadStaleDispatchRecoveryPlan({
     storePath,
     nowFactory,
@@ -327,6 +440,21 @@ async function loadStaleDispatchRecoveryPlan({
     return buildStaleDispatchRecoveryPlan(records, {
         nowMs: safeNow(now),
         staleDispatchMs
+    });
+}
+
+async function loadPendingApprovalReviewPlan({
+    storePath,
+    nowFactory
+}) {
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({
+        filePath: storePath,
+        now
+    });
+    const records = await store.loadRecords();
+    return buildPendingApprovalReviewPlan(records, {
+        nowMs: safeNow(now)
     });
 }
 
@@ -514,7 +642,8 @@ function buildCycleTraceEvents({
         queueDispatched: queueBefore?.dispatched || 0,
         queueRetryScheduled: queueBefore?.retryScheduled || 0,
         queueDispatchedStale: queueBefore?.dispatchedStale || 0,
-        queueAwaitingApproval: queueBefore?.awaitingApproval || 0
+        queueAwaitingApproval: queueBefore?.awaitingApproval || 0,
+        oldestApprovalAgeMs: queueBefore?.oldestApprovalAgeMs || 0
     }, traceContext);
 
     pushTraceEvent(events, {
@@ -564,7 +693,12 @@ function buildCycleTraceEvents({
         }, traceContext);
     }
 
-    if (botTasksFailed > 0 || hardeningBlocked > 0 || (queueAfter?.dispatchedStale || 0) > 0) {
+    if (
+        botTasksFailed > 0
+        || hardeningBlocked > 0
+        || (queueAfter?.dispatchedStale || 0) > 0
+        || (queueAfter?.awaitingApproval || 0) > 0
+    ) {
         pushTraceEvent(events, {
             at: finishedAt,
             cycle,
@@ -576,6 +710,11 @@ function buildCycleTraceEvents({
             staleDispatchMs,
             staleDispatchedTaskIds: Array.isArray(queueAfter?.staleDispatchedTaskIds)
                 ? queueAfter.staleDispatchedTaskIds
+                : [],
+            pendingApprovals: queueAfter?.awaitingApproval || 0,
+            oldestApprovalAgeMs: queueAfter?.oldestApprovalAgeMs || 0,
+            pendingApprovalTaskIds: Array.isArray(queueAfter?.pendingApprovalTaskIds)
+                ? queueAfter.pendingApprovalTaskIds
                 : []
         }, traceContext);
     }
@@ -590,6 +729,7 @@ function buildCycleTraceEvents({
         queueRetryScheduled: queueAfter?.retryScheduled || 0,
         queueDispatchedStale: queueAfter?.dispatchedStale || 0,
         queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
+        oldestApprovalAgeMs: queueAfter?.oldestApprovalAgeMs || 0,
         idleStreak
     }, traceContext);
 
@@ -806,7 +946,11 @@ function buildLifecycleCheckpoint({
             staleDispatchedTaskIds: Array.isArray(queue.staleDispatchedTaskIds)
                 ? queue.staleDispatchedTaskIds
                 : [],
-            awaitingApproval: queue.awaitingApproval || 0
+            awaitingApproval: queue.awaitingApproval || 0,
+            oldestApprovalAgeMs: queue.oldestApprovalAgeMs || 0,
+            pendingApprovalTaskIds: Array.isArray(queue.pendingApprovalTaskIds)
+                ? queue.pendingApprovalTaskIds
+                : []
         },
         runtimeAttention: {
             botTasksFailed: totalValues.botTasksFailed || 0,
@@ -878,6 +1022,7 @@ function buildRunEvaluation({
         queueRetryScheduled: queue.retryScheduled || 0,
         queueDispatchedStale: queue.dispatchedStale || 0,
         queueAwaitingApproval: queue.awaitingApproval || 0,
+        oldestApprovalAgeMs: queue.oldestApprovalAgeMs || 0,
         botTasksFailed: totalValues.botTasksFailed || 0,
         botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
         dispatchFailures,
@@ -970,6 +1115,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- queue.retryScheduled: ${lifecycleCheckpoint.queue.retryScheduled || 0}`,
         `- queue.oldestDispatchedAgeMs: ${lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
+        `- queue.oldestApprovalAgeMs: ${lifecycleCheckpoint.queue.oldestApprovalAgeMs || 0}`,
         '',
         '## Run Evaluation',
         ''
@@ -1051,6 +1197,45 @@ export function renderBotWorkerLoopMarkdown(report) {
                         `  - allowedDecisions: ${Array.isArray(decisionRecord.allowedDecisions) ? decisionRecord.allowedDecisions.join(', ') : 'none'}`,
                         `  - requiredFields: ${Array.isArray(decisionRecord.requiredFields) ? decisionRecord.requiredFields.join(', ') : 'none'}`
                     );
+                }
+                const evidence = Array.isArray(candidate.evidenceRequired)
+                    ? candidate.evidenceRequired
+                    : [];
+                if (evidence.length > 0) {
+                    lines.push(`  - evidenceRequired: ${evidence.map((item) => item.id).join(', ')}`);
+                }
+            }
+        }
+        lines.push('');
+    }
+
+    lines.push('## Approval Review Plan', '');
+    const approvalPlan = report.pendingApprovalReviewPlan && typeof report.pendingApprovalReviewPlan === 'object'
+        ? report.pendingApprovalReviewPlan
+        : null;
+    if (!approvalPlan) {
+        lines.push('- none', '');
+    } else {
+        lines.push(
+            `- schemaVersion: ${approvalPlan.schemaVersion}`,
+            `- dryRun: ${approvalPlan.dryRun}`,
+            `- mutatesQueue: ${approvalPlan.mutatesQueue}`,
+            `- totalCandidates: ${approvalPlan.totalCandidates}`,
+            `- defaultAction: ${approvalPlan.defaultAction}`
+        );
+        const approvalCandidates = Array.isArray(approvalPlan.candidates) ? approvalPlan.candidates : [];
+        if (approvalCandidates.length === 0) {
+            lines.push('- candidates: none');
+        } else {
+            for (const candidate of approvalCandidates) {
+                lines.push(
+                    `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} priority=${candidate.priority} action=${candidate.recommendedAction}`
+                );
+                if (candidate.reviewerGroup) {
+                    lines.push(`  - reviewerGroup: ${candidate.reviewerGroup}`);
+                }
+                if (candidate.reason) {
+                    lines.push(`  - reason: ${candidate.reason}`);
                 }
                 const evidence = Array.isArray(candidate.evidenceRequired)
                     ? candidate.evidenceRequired
@@ -1367,6 +1552,12 @@ export async function runBotWorkerLoop({
             staleDispatchMs: normalizedStaleDispatchMs
         })
         : null;
+    const pendingApprovalReviewPlan = finalQueue.awaitingApproval > 0
+        ? await loadPendingApprovalReviewPlan({
+            storePath: resolvedStorePath,
+            nowFactory: now
+        })
+        : null;
     pushTraceEvent(traceEvents, {
         at: safeNow(now),
         cycle: cycles.length,
@@ -1380,7 +1571,9 @@ export async function runBotWorkerLoop({
         queueOpen: lifecycleCheckpoint.queue.open,
         queueDispatchedStale: lifecycleCheckpoint.queue.dispatchedStale || 0,
         oldestDispatchedAgeMs: lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0,
-        queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
+        queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval,
+        oldestApprovalAgeMs: lifecycleCheckpoint.queue.oldestApprovalAgeMs || 0,
+        pendingApprovalTaskIds: lifecycleCheckpoint.queue.pendingApprovalTaskIds || []
     }, {
         traceId,
         parentSpanId: rootSpanId,
@@ -1419,6 +1612,25 @@ export async function runBotWorkerLoop({
             w3cParentSpanId: rootTraceContext.spanId
         });
     }
+    if (pendingApprovalReviewPlan) {
+        pushTraceEvent(traceEvents, {
+            at: pendingApprovalReviewPlan.generatedAt,
+            cycle: cycles.length,
+            phase: 'pending_approval_review_plan',
+            totalCandidates: pendingApprovalReviewPlan.totalCandidates,
+            dryRun: pendingApprovalReviewPlan.dryRun,
+            mutatesQueue: pendingApprovalReviewPlan.mutatesQueue,
+            defaultAction: pendingApprovalReviewPlan.defaultAction,
+            candidateTaskIds: pendingApprovalReviewPlan.candidates.map((candidate) => candidate.taskId),
+            candidateReasons: pendingApprovalReviewPlan.candidates
+                .map((candidate) => candidate.reason)
+                .filter(Boolean)
+        }, {
+            traceId,
+            parentSpanId: rootSpanId,
+            w3cParentSpanId: rootTraceContext.spanId
+        });
+    }
     const traceExportDiagnostics = buildBotWorkerLoopTraceExportDiagnostics({
         traceEvents
     });
@@ -1444,6 +1656,7 @@ export async function runBotWorkerLoop({
         lifecycleCheckpoint,
         runEvaluation,
         staleDispatchRecoveryPlan,
+        pendingApprovalReviewPlan,
         traceExportDiagnostics,
         traceEvents
     };

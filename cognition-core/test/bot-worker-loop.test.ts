@@ -9,6 +9,7 @@ import {
 } from '../../swarm-protocol/runtime.js';
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
+    buildPendingApprovalReviewPlan,
     buildBotWorkerLoopOtelSpans,
     buildBotWorkerLoopTraceExportDiagnostics,
     buildStaleDispatchRecoveryPlan,
@@ -451,8 +452,7 @@ test('runBotWorkerLoop executes maintenance retries before processing outbox res
         maxCycles: 4,
         idleCyclesToStop: 1,
         dispatchLimit: 10,
-        botRuntime: false,
-        nowFactory: () => 120_000
+        botRuntime: false
     });
 
     assert.equal(report.stopReason, 'queue_drained');
@@ -500,7 +500,10 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
         status: 'awaiting_approval',
         approval: {
             required: true,
-            reason: 'manual_operator_review'
+            reason: 'manual_operator_review',
+            reviewerGroup: 'ops-review',
+            matchedRules: ['manual_operator_review'],
+            requestedAt: 60_600
         }
     });
 
@@ -511,7 +514,8 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
         idleCyclesToStop: 1,
         dispatchLimit: 10,
         botRuntime: true,
-        botRepoRoot: REPO_ROOT
+        botRepoRoot: REPO_ROOT,
+        nowFactory: () => 120_000
     });
 
     assert.equal(report.stopReason, 'awaiting_approval_only');
@@ -519,12 +523,110 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
     assert.equal(report.lifecycleCheckpoint.resumeRecommended, true);
     assert.match(report.lifecycleCheckpoint.resumeKey, /^review_pending_approvals:[a-f0-9]{16}$/);
     assert.deepEqual(report.lifecycleCheckpoint.attentionReasons, ['pending_approval']);
+    assert.equal(report.lifecycleCheckpoint.queue.oldestApprovalAgeMs, report.finalQueue.oldestApprovalAgeMs);
+    assert.equal(report.finalQueue.oldestApprovalAgeMs, 59_400);
+    assert.deepEqual(report.finalQueue.pendingApprovalTaskIds, [request.id]);
+    assert.deepEqual(report.lifecycleCheckpoint.queue.pendingApprovalTaskIds, [request.id]);
+    assert.equal(report.pendingApprovalReviewPlan.schemaVersion, 'bot-worker-loop.pending-approval-review.v1');
+    assert.equal(report.pendingApprovalReviewPlan.dryRun, true);
+    assert.equal(report.pendingApprovalReviewPlan.mutatesQueue, false);
+    assert.equal(report.pendingApprovalReviewPlan.totalCandidates, 1);
+    assert.equal(report.pendingApprovalReviewPlan.defaultAction, 'review_pending_approval');
+    assert.equal(report.pendingApprovalReviewPlan.candidates[0].taskId, request.id);
+    assert.equal(report.pendingApprovalReviewPlan.candidates[0].target, 'agent:openclaw-bot');
+    assert.equal(report.pendingApprovalReviewPlan.candidates[0].reviewerGroup, 'ops-review');
+    assert.equal(report.pendingApprovalReviewPlan.candidates[0].reason, 'manual_operator_review');
+    assert.deepEqual(report.pendingApprovalReviewPlan.candidates[0].matchedRules, ['manual_operator_review']);
+    assert.deepEqual(report.pendingApprovalReviewPlan.candidates[0].evidenceRequired.map((item) => item.id), [
+        'approval_queue_reviewed',
+        'task_timeline_reviewed',
+        'risk_and_scope_reviewed',
+        'operator_decision_recorded'
+    ]);
+    assert.ok(report.pendingApprovalReviewPlan.candidates[0].operatorCommands.some((command) => (
+        command.includes(`override approve ${request.id}`)
+    )));
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'lifecycle_checkpoint'
         && event.nextAction === 'review_pending_approvals'
         && event.resumeRecommended === true
         && event.resumeKey === report.lifecycleCheckpoint.resumeKey
+        && event.pendingApprovalTaskIds.includes(request.id)
     )));
+    assert.ok(report.traceEvents.some((event) => (
+        event.phase === 'pending_approval_review_plan'
+        && event.totalCandidates === 1
+        && event.dryRun === true
+        && event.mutatesQueue === false
+        && event.candidateTaskIds.includes(request.id)
+        && event.candidateReasons.includes('manual_operator_review')
+    )));
+});
+
+test('buildPendingApprovalReviewPlan is deterministic and non-mutating', () => {
+    const records = [
+        {
+            taskId: 'old-approval',
+            target: 'agent:openclaw-bot',
+            status: 'awaiting_approval',
+            request: {
+                priority: 'critical'
+            },
+            approval: {
+                reviewerGroup: 'ops',
+                reason: 'manual_operator_review',
+                matchedRules: ['manual_operator_review'],
+                requestedAt: 10_000
+            },
+            history: [{ at: 10_000, event: 'approval_requested' }]
+        },
+        {
+            taskId: 'new-approval',
+            target: 'agent:openclaw-bot',
+            status: 'awaiting_approval',
+            request: {
+                priority: 'high'
+            },
+            approval: {
+                reason: 'policy_gate'
+            },
+            updatedAt: 90_000
+        },
+        {
+            taskId: 'done',
+            target: 'agent:openclaw-bot',
+            status: 'completed'
+        }
+    ];
+
+    const plan = buildPendingApprovalReviewPlan(records, {
+        nowMs: 120_000
+    });
+
+    assert.equal(plan.schemaVersion, 'bot-worker-loop.pending-approval-review.v1');
+    assert.equal(plan.dryRun, true);
+    assert.equal(plan.mutatesQueue, false);
+    assert.equal(plan.totalCandidates, 2);
+    assert.deepEqual(plan.candidates.map((candidate) => candidate.taskId), ['old-approval', 'new-approval']);
+    assert.equal(plan.candidates[0].ageMs, 110_000);
+    assert.equal(plan.candidates[0].priority, 'critical');
+    assert.equal(plan.candidates[0].reviewerGroup, 'ops');
+    assert.equal(plan.candidates[0].reason, 'manual_operator_review');
+    assert.deepEqual(plan.candidates[0].matchedRules, ['manual_operator_review']);
+    assert.deepEqual(plan.candidates[0].latestHistoryEvent, {
+        at: 10_000,
+        event: 'approval_requested'
+    });
+    assert.deepEqual(plan.candidates[0].evidenceRequired.map((item) => item.id), [
+        'approval_queue_reviewed',
+        'task_timeline_reviewed',
+        'risk_and_scope_reviewed',
+        'operator_decision_recorded'
+    ]);
+    assert.ok(plan.candidates[0].operatorCommands.some((command) => (
+        command === 'npm --prefix swarm-protocol run ops -- queue --approvals'
+    )));
+    assert.equal(records[0].status, 'awaiting_approval');
 });
 
 test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks', async (t) => {
@@ -783,7 +885,9 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 open: 1,
                 dispatchedStale: 1,
                 oldestDispatchedAgeMs: 120000,
-                awaitingApproval: 0
+                awaitingApproval: 1,
+                oldestApprovalAgeMs: 60000,
+                pendingApprovalTaskIds: ['task-approval']
             }
         },
         runEvaluation: {
@@ -850,6 +954,30 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 }
             ]
         },
+        pendingApprovalReviewPlan: {
+            schemaVersion: 'bot-worker-loop.pending-approval-review.v1',
+            dryRun: true,
+            mutatesQueue: false,
+            totalCandidates: 1,
+            defaultAction: 'review_pending_approval',
+            candidates: [
+                {
+                    taskId: 'task-approval',
+                    target: 'agent:openclaw-bot',
+                    ageMs: 60000,
+                    priority: 'critical',
+                    reviewerGroup: 'ops-review',
+                    reason: 'manual_operator_review',
+                    recommendedAction: 'review_pending_approval',
+                    evidenceRequired: [
+                        { id: 'approval_queue_reviewed' },
+                        { id: 'task_timeline_reviewed' },
+                        { id: 'risk_and_scope_reviewed' },
+                        { id: 'operator_decision_recorded' }
+                    ]
+                }
+            ]
+        },
         cycles: [
             {
                 cycle: 1,
@@ -895,6 +1023,7 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /attentionReasons: pending_dispatched_tasks, stale_dispatched_tasks/);
     assert.match(markdown, /queue\.dispatchedStale: 1/);
     assert.match(markdown, /queue\.oldestDispatchedAgeMs: 120000/);
+    assert.match(markdown, /queue\.oldestApprovalAgeMs: 60000/);
     assert.match(markdown, /## Run Evaluation/);
     assert.match(markdown, /status: fail/);
     assert.match(markdown, /score: 63/);
@@ -915,6 +1044,12 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /allowedDecisions: close_completed, requeue_no_side_effect, fail_side_effect_unknown, escalate_manual_review/);
     assert.match(markdown, /requiredFields: decision, operator, decidedAt, evidenceReviewed, externalRuntimeCorrelation, sideEffectStatus, notes/);
     assert.match(markdown, /evidenceRequired: replay_timeline_reviewed, external_runtime_result_checked, side_effect_ledger_checked, operator_decision_recorded/);
+    assert.match(markdown, /## Approval Review Plan/);
+    assert.match(markdown, /schemaVersion: bot-worker-loop\.pending-approval-review\.v1/);
+    assert.match(markdown, /candidate task-approval: target=agent:openclaw-bot ageMs=60000 priority=critical action=review_pending_approval/);
+    assert.match(markdown, /reviewerGroup: ops-review/);
+    assert.match(markdown, /reason: manual_operator_review/);
+    assert.match(markdown, /evidenceRequired: approval_queue_reviewed, task_timeline_reviewed, risk_and_scope_reviewed, operator_decision_recorded/);
     assert.match(markdown, /## Trace Events/);
     assert.match(markdown, /phase=bot_runtime_attention/);
     assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);
