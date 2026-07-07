@@ -66,6 +66,81 @@ test('readLatestWorkerLoopCheckpoint summarizes lifecycle resume metadata', (t) 
     });
 });
 
+test('readLatestWorkerLoopCheckpoint exposes evaluation and trace export diagnostics', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'max_cycles_reached',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'increase_cycle_budget_or_rerun',
+            resumeRecommended: true,
+            resumeKey: 'increase_cycle_budget_or_rerun:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: ['cycle_budget_exhausted'],
+            lastCycle: {
+                finishedAt: 100_000
+            },
+            queue: {
+                open: 1,
+                created: 1
+            }
+        },
+        runEvaluation: {
+            schemaVersion: 'bot-worker-loop.evaluation.v1',
+            status: 'warn',
+            score: 85,
+            passed: false,
+            signals: {
+                nextAction: 'increase_cycle_budget_or_rerun'
+            },
+            penalties: [
+                { reason: 'cycle_budget_exhausted', points: 15 }
+            ]
+        },
+        traceExportDiagnostics: {
+            schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+            status: 'warn',
+            traceEventCount: 4,
+            exportedSpanCount: 3,
+            droppedEventCount: 1,
+            exportCoverage: 0.75,
+            droppedEvents: [
+                { index: 1, phase: 'dispatch', reasons: ['invalid_traceparent'] }
+            ]
+        }
+    }));
+
+    const result = readLatestWorkerLoopCheckpoint(reportPath, {
+        now: 100_000
+    });
+
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.runEvaluation, {
+        schemaVersion: 'bot-worker-loop.evaluation.v1',
+        status: 'warn',
+        score: 85,
+        passed: false,
+        nextAction: 'increase_cycle_budget_or_rerun',
+        penalties: [
+            { reason: 'cycle_budget_exhausted', points: 15 }
+        ]
+    });
+    assert.deepEqual(result.traceExportDiagnostics, {
+        schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+        status: 'warn',
+        traceEventCount: 4,
+        exportedSpanCount: 3,
+        droppedEventCount: 1,
+        exportCoverage: 0.75,
+        droppedEvents: [
+            { index: 1, phase: 'dispatch', reasons: ['invalid_traceparent'] }
+        ]
+    });
+});
+
 test('readLatestWorkerLoopCheckpoint marks old approval checkpoints stale', (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -225,6 +300,76 @@ test('inspectOpenClawHealth returns machine-readable gateway and worker status',
     assert.equal(result.workerLoop.ok, true);
     assert.equal(result.workerLoop.nextAction, 'no_resume_needed');
     assert.equal(result.workerLoop.freshness.status, 'fresh');
+});
+
+test('inspectOpenClawHealth surfaces worker evaluation and trace export warnings', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    const now = Date.now();
+
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'max_cycles_reached',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'increase_cycle_budget_or_rerun',
+            resumeRecommended: true,
+            resumeKey: 'increase_cycle_budget_or_rerun:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: ['cycle_budget_exhausted'],
+            lastCycle: {
+                finishedAt: now
+            },
+            queue: {
+                open: 1,
+                created: 1
+            }
+        },
+        runEvaluation: {
+            schemaVersion: 'bot-worker-loop.evaluation.v1',
+            status: 'fail',
+            score: 55,
+            passed: false,
+            signals: {
+                nextAction: 'increase_cycle_budget_or_rerun'
+            },
+            penalties: [
+                { reason: 'pending_created_tasks', points: 15 },
+                { reason: 'cycle_budget_exhausted', points: 15 }
+            ]
+        },
+        traceExportDiagnostics: {
+            schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+            status: 'warn',
+            traceEventCount: 2,
+            exportedSpanCount: 1,
+            droppedEventCount: 1,
+            exportCoverage: 0.5,
+            droppedEvents: [
+                { index: 0, phase: 'queue_before', reasons: ['missing_span_context'] }
+            ]
+        }
+    }));
+
+    const result = inspectOpenClawHealth({
+        logPath,
+        workerReportPath: reportPath,
+        now
+    });
+
+    assert.equal(result.status, 'attention');
+    assert.deepEqual(result.attention, [
+        'worker_loop_resume_increase_cycle_budget_or_rerun',
+        'worker_loop_cycle_budget_exhausted',
+        'worker_loop_evaluation_failed',
+        'worker_loop_trace_export_warn'
+    ]);
+    assert.equal(result.workerLoop.runEvaluation.status, 'fail');
+    assert.equal(result.workerLoop.runEvaluation.score, 55);
+    assert.equal(result.workerLoop.traceExportDiagnostics.exportCoverage, 0.5);
 });
 
 test('inspectOpenClawHealth does not alert on stale drained worker checkpoint', (t) => {
@@ -400,4 +545,58 @@ test('health-monitor text output does not hide worker checkpoint when gateway lo
     assert.match(result.stdout, /No gateway status available \(log_missing\)/);
     assert.match(result.stdout, /Worker loop next action: review_pending_approvals/);
     assert.match(result.stdout, /Worker loop approval pause is stale/);
+});
+
+test('health-monitor text output includes worker evaluation and trace export state', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'queue_drained',
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'no_resume_needed',
+            resumeRecommended: false,
+            resumeKey: 'no_resume_needed:1234567890abcdef',
+            stateFingerprint: '1234567890abcdef',
+            attentionReasons: [],
+            lastCycle: {
+                finishedAt: Date.now()
+            },
+            queue: {
+                open: 0,
+                awaitingApproval: 0
+            }
+        },
+        runEvaluation: {
+            schemaVersion: 'bot-worker-loop.evaluation.v1',
+            status: 'warn',
+            score: 88,
+            passed: false
+        },
+        traceExportDiagnostics: {
+            schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+            status: 'warn',
+            droppedEventCount: 1,
+            exportCoverage: 0.9
+        }
+    }));
+
+    const result = spawnSync('npx', ['tsx', SCRIPT_PATH], {
+        cwd: path.dirname(SCRIPT_PATH),
+        env: {
+            ...process.env,
+            OPENCLAW_GATEWAY_LOG: logPath,
+            OPENCLAW_WORKER_LOOP_REPORT: reportPath
+        },
+        encoding: 'utf8'
+    });
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /Worker loop evaluation: warn score=88 passed=false/);
+    assert.match(result.stdout, /Worker loop trace export: warn coverage=0\.9 dropped=1/);
 });

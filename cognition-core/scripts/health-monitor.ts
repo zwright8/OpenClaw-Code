@@ -31,6 +31,45 @@ function latestTimestamp(values) {
     return latest;
 }
 
+function normalizeRunEvaluation(report) {
+    const evaluation = report?.runEvaluation && typeof report.runEvaluation === 'object'
+        ? report.runEvaluation
+        : null;
+    if (!evaluation) return null;
+
+    return {
+        schemaVersion: evaluation.schemaVersion || 'unknown',
+        status: typeof evaluation.status === 'string' ? evaluation.status : 'unknown',
+        score: safeNumber(evaluation.score),
+        passed: evaluation.passed === true,
+        nextAction: typeof evaluation.signals?.nextAction === 'string'
+            ? evaluation.signals.nextAction
+            : null,
+        penalties: Array.isArray(evaluation.penalties)
+            ? evaluation.penalties
+            : []
+    };
+}
+
+function normalizeTraceExportDiagnostics(report) {
+    const diagnostics = report?.traceExportDiagnostics && typeof report.traceExportDiagnostics === 'object'
+        ? report.traceExportDiagnostics
+        : null;
+    if (!diagnostics) return null;
+
+    return {
+        schemaVersion: diagnostics.schemaVersion || 'unknown',
+        status: typeof diagnostics.status === 'string' ? diagnostics.status : 'unknown',
+        traceEventCount: safeNumber(diagnostics.traceEventCount) ?? 0,
+        exportedSpanCount: safeNumber(diagnostics.exportedSpanCount) ?? 0,
+        droppedEventCount: safeNumber(diagnostics.droppedEventCount) ?? 0,
+        exportCoverage: safeNumber(diagnostics.exportCoverage),
+        droppedEvents: Array.isArray(diagnostics.droppedEvents)
+            ? diagnostics.droppedEvents
+            : []
+    };
+}
+
 function classifyCheckpointFreshness({
     checkpoint,
     report,
@@ -147,6 +186,8 @@ export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT, 
         queue: checkpoint.queue && typeof checkpoint.queue === 'object'
             ? checkpoint.queue
             : {},
+        runEvaluation: normalizeRunEvaluation(report),
+        traceExportDiagnostics: normalizeTraceExportDiagnostics(report),
         freshness
     };
 }
@@ -176,6 +217,18 @@ function buildHealthAttention({ gateway, workerLoop }) {
 
     for (const reason of workerLoop.attentionReasons || []) {
         attention.push(`worker_loop_${reason}`);
+    }
+
+    const runEvaluation = workerLoop.runEvaluation;
+    if (runEvaluation?.status === 'fail') {
+        attention.push('worker_loop_evaluation_failed');
+    } else if (runEvaluation?.status === 'warn') {
+        attention.push('worker_loop_evaluation_warn');
+    }
+
+    const traceExport = workerLoop.traceExportDiagnostics;
+    if (traceExport?.status === 'warn' || Number(traceExport?.droppedEventCount || 0) > 0) {
+        attention.push('worker_loop_trace_export_warn');
     }
 
     return [...new Set(attention)];
@@ -241,6 +294,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
                 console.log(`[Health] Worker loop resume recommended: ${worker.resumeRecommended}`);
                 console.log(`[Health] Worker loop resume key: ${worker.resumeKey}`);
                 console.log(`[Health] Worker loop checkpoint freshness: ${worker.freshness.status} ageMs=${worker.freshness.ageMs ?? 'unknown'} sloMs=${worker.freshness.approvalSloMs}`);
+                if (worker.runEvaluation) {
+                    console.log(`[Health] Worker loop evaluation: ${worker.runEvaluation.status} score=${worker.runEvaluation.score ?? 'unknown'} passed=${worker.runEvaluation.passed}`);
+                }
+                if (worker.traceExportDiagnostics) {
+                    console.log(`[Health] Worker loop trace export: ${worker.traceExportDiagnostics.status} coverage=${worker.traceExportDiagnostics.exportCoverage ?? 'unknown'} dropped=${worker.traceExportDiagnostics.droppedEventCount}`);
+                }
                 if (
                     worker.resumeRecommended
                     && worker.freshness.status === 'stale'
