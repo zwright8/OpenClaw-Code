@@ -766,6 +766,30 @@ function buildOtelAttributes(source) {
     return Object.fromEntries(entries);
 }
 
+const OTEL_EVENT_PAYLOAD_EXCLUDE_KEYS = new Set([
+    'at',
+    'schemaVersion',
+    'semconv',
+    'traceId',
+    'spanId',
+    'parentSpanId',
+    'name',
+    'kind',
+    'spanKind',
+    'traceparent',
+    'spanContext',
+    'attributes'
+]);
+
+function buildOtelEventPayloadAttributes(event) {
+    const payload = {};
+    for (const [key, value] of Object.entries(event || {})) {
+        if (OTEL_EVENT_PAYLOAD_EXCLUDE_KEYS.has(key)) continue;
+        payload[`openclaw.event.${key}`] = value;
+    }
+    return payload;
+}
+
 function otelSpanKind(value) {
     const normalized = typeof value === 'string' ? value.trim().toUpperCase() : '';
     return OTEL_SPAN_KIND[normalized] || OTEL_SPAN_KIND.INTERNAL;
@@ -801,6 +825,7 @@ export function buildBotWorkerLoopOtelSpans(report) {
                 'openclaw.trace.event_name': event.name,
                 'openclaw.trace.event_kind': event.kind,
                 'openclaw.trace.traceparent': event.traceparent,
+                ...buildOtelEventPayloadAttributes(event),
                 ...event.attributes,
                 ...(event.cycle === undefined ? {} : { 'openclaw.workflow.cycle': event.cycle }),
                 ...(event.phase === undefined ? {} : { 'openclaw.workflow.phase': event.phase })

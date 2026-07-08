@@ -120,6 +120,8 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.match(dispatchSpan.startTimeUnixNano, /^[0-9]+000000$/);
     assert.equal(dispatchSpan.attributes['gen_ai.operation.name'], 'execute_tool');
     assert.equal(dispatchSpan.attributes['openclaw.workflow.phase'], 'dispatch');
+    assert.equal(dispatchSpan.attributes['openclaw.event.dispatched'], dispatchTrace.dispatched);
+    assert.equal(dispatchSpan.attributes['openclaw.event.selected'], dispatchTrace.selected);
     assert.equal(dispatchSpan.attributes['openclaw.trace.schema_version'], 'bot-worker-loop.trace.v2');
     assert.equal(dispatchSpan.status.code, 1);
     assert.equal(report.traceExportDiagnostics.schemaVersion, 'bot-worker-loop.trace-export-diagnostics.v1');
@@ -201,6 +203,7 @@ test('writeBotWorkerLoopReport writes OTel-compatible span JSONL', async (t) => 
     assert.equal(span.status.code, 2);
     assert.equal(span.attributes['openclaw.workflow.phase'], 'dispatch_failure');
     assert.equal(span.attributes['openclaw.trace.traceparent'], '00-11111111111111111111111111111111-2222222222222222-01');
+    assert.equal(span.attributes['openclaw.event.failedDispatch'], 1);
 });
 
 test('writeBotWorkerLoopReport writes standalone stale dispatch recovery plan', async (t) => {
@@ -787,6 +790,17 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         && event.candidateTaskIds.includes(request.id)
         && event.candidateTraceparents.includes('00-11111111111111111111111111111111-2222222222222222-01')
     )));
+    const recoverySpan = buildBotWorkerLoopOtelSpans(report).find((span) => (
+        span.attributes['openclaw.workflow.phase'] === 'stale_dispatch_recovery_plan'
+    ));
+    assert.ok(recoverySpan);
+    assert.equal(recoverySpan.attributes['openclaw.event.totalCandidates'], 1);
+    assert.equal(recoverySpan.attributes['openclaw.event.dryRun'], true);
+    assert.deepEqual(recoverySpan.attributes['openclaw.event.candidateTaskIds'], [request.id]);
+    assert.deepEqual(
+        recoverySpan.attributes['openclaw.event.candidateTraceparents'],
+        ['00-11111111111111111111111111111111-2222222222222222-01']
+    );
 });
 
 test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
