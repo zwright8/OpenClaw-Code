@@ -177,8 +177,22 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
         planner: 'cognition-core/cognition-iteration-task-planner',
         createdAt: 100_000,
         sentAt: envelope.sentAt,
-        idempotencyKey: 'task:00000000-0000-4000-8000-000000000201'
+        idempotencyKey: 'task:00000000-0000-4000-8000-000000000201',
+        trajectoryEventCount: 2
     });
+    assert.deepEqual(envelope.trajectoryEvents.map((event) => event.event), [
+        'task_dispatch_selected',
+        'task_dispatch_outbox_enqueued'
+    ]);
+    assert.deepEqual(envelope.trajectoryEvents.map((event) => event.sequence), [1, 2]);
+    assert.ok(envelope.trajectoryEvents.every((event) => (
+        event.schemaVersion === 'openclaw.task_dispatch.trajectory_event.v1'
+            && event.traceparent === envelope.trace.traceparent
+            && event.taskId === envelope.trace.taskId
+            && event.actor === 'cognition-core/queue-dispatcher'
+            && event.phase === 'dispatch'
+            && event.idempotencyKey === envelope.trace.idempotencyKey
+    )));
     assert.equal(envelope.message.kind, 'task_request');
     assert.equal(envelope.message.id, '00000000-0000-4000-8000-000000000201');
     assert.match(envelope.message.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
@@ -236,6 +250,11 @@ test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file o
     assert.equal(envelope.trace.taskId, request.id);
     assert.equal(envelope.trace.target, 'agent:retry-worker');
     assert.equal(envelope.trace.idempotencyKey, `task:${request.id}`);
+    assert.equal(envelope.trace.trajectoryEventCount, 2);
+    assert.deepEqual(envelope.trajectoryEvents.map((event) => event.event), [
+        'task_dispatch_selected',
+        'task_dispatch_outbox_enqueued'
+    ]);
     assert.match(envelope.trace.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
 });
 

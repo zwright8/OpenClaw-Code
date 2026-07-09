@@ -78,8 +78,42 @@ function buildDispatchEnvelopeTrace({
         planner: typeof context.planner === 'string' ? context.planner : null,
         createdAt: Number.isFinite(Number(message?.createdAt)) ? Number(message.createdAt) : null,
         sentAt,
-        idempotencyKey: taskId ? `task:${taskId}` : null
+        idempotencyKey: taskId ? `task:${taskId}` : null,
+        trajectoryEventCount: taskId ? 2 : 0
     };
+}
+
+function buildDispatchTrajectoryEvents({ trace }) {
+    if (!trace?.taskId || !trace.traceparent) return [];
+
+    const baseEvent = {
+        schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+        traceparent: trace.traceparent,
+        taskId: trace.taskId,
+        target: trace.target,
+        actor: 'cognition-core/queue-dispatcher',
+        phase: 'dispatch',
+        priority: trace.priority,
+        planner: trace.planner,
+        idempotencyKey: trace.idempotencyKey
+    };
+
+    return [
+        {
+            ...baseEvent,
+            sequence: 1,
+            event: 'task_dispatch_selected',
+            at: trace.sentAt,
+            description: 'Created queue task selected for external agent dispatch.'
+        },
+        {
+            ...baseEvent,
+            sequence: 2,
+            event: 'task_dispatch_outbox_enqueued',
+            at: trace.sentAt,
+            description: 'Task request written to the external runtime outbox.'
+        }
+    ];
 }
 
 function sortByCreatedAtAsc(records) {
@@ -179,15 +213,17 @@ export function createFileOutboxTransport({
             const fileName = `${sanitizeTargetForFile(target)}.jsonl`;
             const filePath = path.join(resolvedOutboxDir, fileName);
             const sentAt = safeNow(nowFactory);
+            const trace = buildDispatchEnvelopeTrace({
+                target,
+                message,
+                sentAt
+            });
             const envelope = {
                 kind: 'task_dispatch_envelope',
                 target,
                 sentAt,
-                trace: buildDispatchEnvelopeTrace({
-                    target,
-                    message,
-                    sentAt
-                }),
+                trace,
+                trajectoryEvents: buildDispatchTrajectoryEvents({ trace }),
                 message
             };
 
