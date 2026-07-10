@@ -1019,12 +1019,13 @@ function clampScore(value) {
     return Math.max(0, Math.min(100, Math.round(numeric)));
 }
 
-function buildRunEvaluation({
+export function buildBotWorkerLoopRunEvaluation({
     stopReason,
     cycles,
     totals,
     finalQueue,
-    lifecycleCheckpoint
+    lifecycleCheckpoint,
+    traceExportDiagnostics = null
 }) {
     const normalizedStopReason = normalizeStopReason(stopReason);
     const cycleList = Array.isArray(cycles) ? cycles : [];
@@ -1039,6 +1040,11 @@ function buildRunEvaluation({
             finalQueue: queue
         });
     const dispatchFailures = cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0);
+    const traceExport = traceExportDiagnostics && typeof traceExportDiagnostics === 'object'
+        ? traceExportDiagnostics
+        : null;
+    const traceExportDroppedEvents = Number(traceExport?.droppedEventCount || 0);
+    const traceExportCoverage = Number(traceExport?.exportCoverage);
     const signals = {
         stopReason: normalizedStopReason,
         queueOpen: queue.open || 0,
@@ -1052,7 +1058,10 @@ function buildRunEvaluation({
         botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
         dispatchFailures,
         resumeRecommended: checkpoint.resumeRecommended === true,
-        nextAction: checkpoint.nextAction || 'unknown'
+        nextAction: checkpoint.nextAction || 'unknown',
+        traceExportStatus: typeof traceExport?.status === 'string' ? traceExport.status : null,
+        traceExportCoverage: Number.isFinite(traceExportCoverage) ? traceExportCoverage : null,
+        traceExportDroppedEvents: Number.isFinite(traceExportDroppedEvents) ? traceExportDroppedEvents : 0
     };
     const penalties = [];
     const addPenalty = (reason, points, count = null) => {
@@ -1069,6 +1078,7 @@ function buildRunEvaluation({
     addPenalty('skill_hardening_blocks', Math.min(25, signals.botSkillHardeningBlocked * 12), signals.botSkillHardeningBlocked);
     addPenalty('dispatch_failures', Math.min(20, signals.dispatchFailures * 10), signals.dispatchFailures);
     addPenalty('pending_created_tasks', Math.min(15, signals.queueCreated * 5), signals.queueCreated);
+    addPenalty('trace_export_dropped_events', Math.min(20, signals.traceExportDroppedEvents * 5), signals.traceExportDroppedEvents);
     addPenalty('cycle_budget_exhausted', normalizedStopReason === 'max_cycles_reached' ? 15 : 0);
 
     const score = clampScore(100 - penalties.reduce((sum, penalty) => sum + penalty.points, 0));
@@ -1081,6 +1091,7 @@ function buildRunEvaluation({
         || signals.queueAwaitingApproval > 0
         || signals.botSkillHardeningBlocked > 0
         || signals.dispatchFailures > 0
+        || signals.traceExportDroppedEvents > 0
     ) {
         status = 'warn';
     }
@@ -1146,18 +1157,19 @@ export function renderBotWorkerLoopMarkdown(report) {
         ''
     );
 
+    const traceExportDiagnostics = report.traceExportDiagnostics && typeof report.traceExportDiagnostics === 'object'
+        ? report.traceExportDiagnostics
+        : buildBotWorkerLoopTraceExportDiagnostics(report);
     const runEvaluation = report.runEvaluation && typeof report.runEvaluation === 'object'
         ? report.runEvaluation
-        : buildRunEvaluation({
+        : buildBotWorkerLoopRunEvaluation({
             stopReason: report.stopReason,
             cycles: report.cycles,
             totals: report.totals,
             finalQueue: report.finalQueue,
-            lifecycleCheckpoint
+            lifecycleCheckpoint,
+            traceExportDiagnostics
         });
-    const traceExportDiagnostics = report.traceExportDiagnostics && typeof report.traceExportDiagnostics === 'object'
-        ? report.traceExportDiagnostics
-        : buildBotWorkerLoopTraceExportDiagnostics(report);
 
     lines.push(
         `- schemaVersion: ${runEvaluation.schemaVersion}`,
@@ -1563,13 +1575,6 @@ export async function runBotWorkerLoop({
         totals,
         finalQueue
     });
-    const runEvaluation = buildRunEvaluation({
-        stopReason,
-        cycles,
-        totals,
-        finalQueue,
-        lifecycleCheckpoint
-    });
     const staleDispatchRecoveryPlan = finalQueue.dispatchedStale > 0
         ? await loadStaleDispatchRecoveryPlan({
             storePath: resolvedStorePath,
@@ -1599,20 +1604,6 @@ export async function runBotWorkerLoop({
         queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval,
         oldestApprovalAgeMs: lifecycleCheckpoint.queue.oldestApprovalAgeMs || 0,
         pendingApprovalTaskIds: lifecycleCheckpoint.queue.pendingApprovalTaskIds || []
-    }, {
-        traceId,
-        parentSpanId: rootSpanId,
-        w3cParentSpanId: rootTraceContext.spanId
-    });
-    pushTraceEvent(traceEvents, {
-        at: safeNow(now),
-        cycle: cycles.length,
-        phase: 'run_evaluation',
-        score: runEvaluation.score,
-        status: runEvaluation.status,
-        passed: runEvaluation.passed,
-        nextAction: runEvaluation.signals.nextAction,
-        penalties: runEvaluation.penalties
     }, {
         traceId,
         parentSpanId: rootSpanId,
@@ -1656,6 +1647,33 @@ export async function runBotWorkerLoop({
             w3cParentSpanId: rootTraceContext.spanId
         });
     }
+    const traceExportDiagnosticsBeforeEvaluation = buildBotWorkerLoopTraceExportDiagnostics({
+        traceEvents
+    });
+    const runEvaluation = buildBotWorkerLoopRunEvaluation({
+        stopReason,
+        cycles,
+        totals,
+        finalQueue,
+        lifecycleCheckpoint,
+        traceExportDiagnostics: traceExportDiagnosticsBeforeEvaluation
+    });
+    pushTraceEvent(traceEvents, {
+        at: safeNow(now),
+        cycle: cycles.length,
+        phase: 'run_evaluation',
+        score: runEvaluation.score,
+        status: runEvaluation.status,
+        passed: runEvaluation.passed,
+        nextAction: runEvaluation.signals.nextAction,
+        traceExportDroppedEvents: runEvaluation.signals.traceExportDroppedEvents,
+        traceExportCoverage: runEvaluation.signals.traceExportCoverage,
+        penalties: runEvaluation.penalties
+    }, {
+        traceId,
+        parentSpanId: rootSpanId,
+        w3cParentSpanId: rootTraceContext.spanId
+    });
     const traceExportDiagnostics = buildBotWorkerLoopTraceExportDiagnostics({
         traceEvents
     });

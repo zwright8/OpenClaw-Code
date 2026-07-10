@@ -10,6 +10,7 @@ import {
 import { buildQueueRecordFromTaskRequest } from '../src/task-bundle-enqueuer.js';
 import {
     buildPendingApprovalReviewPlan,
+    buildBotWorkerLoopRunEvaluation,
     buildBotWorkerLoopOtelSpans,
     buildBotWorkerLoopTraceExportDiagnostics,
     buildStaleDispatchRecoveryPlan,
@@ -386,6 +387,60 @@ test('buildBotWorkerLoopTraceExportDiagnostics reports dropped malformed trace e
             index: 4,
             phase: 'run_evaluation',
             reasons: ['missing_span_context', 'missing_trace_id', 'missing_span_id']
+        }
+    ]);
+});
+
+test('buildBotWorkerLoopRunEvaluation penalizes trace export drops', () => {
+    const evaluation = buildBotWorkerLoopRunEvaluation({
+        stopReason: 'queue_drained',
+        cycles: [
+            {
+                cycle: 1,
+                failedDispatch: 0,
+                startedAt: 10_000,
+                finishedAt: 10_500,
+                idleStreak: 0
+            }
+        ],
+        totals: {
+            botTasksFailed: 0,
+            botSkillHardeningBlocked: 0
+        },
+        finalQueue: {
+            open: 0,
+            created: 0,
+            dispatched: 0,
+            retryScheduled: 0,
+            dispatchedStale: 0,
+            awaitingApproval: 0
+        },
+        traceExportDiagnostics: {
+            schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+            status: 'warn',
+            traceEventCount: 5,
+            exportedSpanCount: 3,
+            droppedEventCount: 2,
+            exportCoverage: 0.6,
+            droppedEvents: [
+                { index: 1, phase: 'queue_after', reasons: ['missing_span_id'] },
+                { index: 4, phase: 'run_evaluation', reasons: ['invalid_traceparent'] }
+            ]
+        }
+    });
+
+    assert.equal(evaluation.schemaVersion, 'bot-worker-loop.evaluation.v1');
+    assert.equal(evaluation.status, 'warn');
+    assert.equal(evaluation.passed, false);
+    assert.equal(evaluation.score, 90);
+    assert.equal(evaluation.signals.traceExportStatus, 'warn');
+    assert.equal(evaluation.signals.traceExportCoverage, 0.6);
+    assert.equal(evaluation.signals.traceExportDroppedEvents, 2);
+    assert.deepEqual(evaluation.penalties, [
+        {
+            reason: 'trace_export_dropped_events',
+            points: 10,
+            count: 2
         }
     ]);
 });
@@ -1069,4 +1124,63 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /name=bot_worker_loop\.bot_runtime_attention/);
     assert.match(markdown, /kind=guardrail/);
     assert.match(markdown, /botSkillHardeningBlocked=1/);
+});
+
+test('renderBotWorkerLoopMarkdown derives run evaluation from trace export diagnostics', () => {
+    const markdown = renderBotWorkerLoopMarkdown({
+        stopReason: 'queue_drained',
+        cyclesRun: 1,
+        maxCycles: 1,
+        totals: {
+            dispatched: 0,
+            resultsAccepted: 0,
+            botTasksFailed: 0,
+            botSkillHardeningBlocked: 0,
+            followupTasksSaved: 0
+        },
+        finalQueue: {
+            open: 0,
+            created: 0,
+            dispatched: 0,
+            retryScheduled: 0,
+            dispatchedStale: 0,
+            awaitingApproval: 0
+        },
+        lifecycleCheckpoint: {
+            schemaVersion: 'bot-worker-loop.lifecycle.v1',
+            nextAction: 'no_resume_needed',
+            resumeRecommended: false,
+            resumeKey: 'no_resume_needed:0000000000000001',
+            stateFingerprint: '0000000000000001',
+            attentionReasons: [],
+            queue: {
+                open: 0,
+                dispatchedStale: 0,
+                retryScheduled: 0,
+                oldestDispatchedAgeMs: 0,
+                awaitingApproval: 0,
+                oldestApprovalAgeMs: 0
+            }
+        },
+        traceExportDiagnostics: {
+            schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+            status: 'warn',
+            traceEventCount: 2,
+            exportedSpanCount: 1,
+            droppedEventCount: 1,
+            exportCoverage: 0.5,
+            droppedEvents: [
+                { index: 0, phase: 'queue_before', reasons: ['missing_span_id'] }
+            ]
+        },
+        cycles: [],
+        traceEvents: []
+    });
+
+    assert.match(markdown, /## Run Evaluation/);
+    assert.match(markdown, /status: warn/);
+    assert.match(markdown, /score: 95/);
+    assert.match(markdown, /penalties: trace_export_dropped_events:5/);
+    assert.match(markdown, /## Trace Export/);
+    assert.match(markdown, /exportCoverage: 0\.5/);
 });
