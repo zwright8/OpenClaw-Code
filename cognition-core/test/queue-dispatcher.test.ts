@@ -154,7 +154,8 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
 
     const result = await dispatchCreatedQueueTasks({
         storePath: queuePath,
-        outboxDir
+        outboxDir,
+        nowFactory: () => 200_001
     });
 
     assert.equal(result.stats.selected, 1);
@@ -173,11 +174,15 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
         traceparent: envelope.message.traceparent,
         taskId: '00000000-0000-4000-8000-000000000201',
         target: 'agent:cognition:ops',
+        dispatchAttempt: 1,
+        dispatchReason: 'initial_dispatch',
         priority: 'high',
         planner: 'cognition-core/cognition-iteration-task-planner',
         createdAt: 100_000,
         sentAt: envelope.sentAt,
         idempotencyKey: 'task:00000000-0000-4000-8000-000000000201',
+        taskIdempotencyKey: 'task:00000000-0000-4000-8000-000000000201',
+        dispatchIdempotencyKey: 'task:00000000-0000-4000-8000-000000000201:attempt:1',
         trajectoryEventCount: 2
     });
     assert.deepEqual(envelope.trajectoryEvents.map((event) => event.event), [
@@ -192,11 +197,24 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
             && event.actor === 'cognition-core/queue-dispatcher'
             && event.phase === 'dispatch'
             && event.idempotencyKey === envelope.trace.idempotencyKey
+            && event.taskIdempotencyKey === envelope.trace.taskIdempotencyKey
+            && event.dispatchIdempotencyKey === envelope.trace.dispatchIdempotencyKey
+            && event.dispatchAttempt === 1
+            && event.dispatchReason === 'initial_dispatch'
     )));
     assert.equal(envelope.message.kind, 'task_request');
     assert.equal(envelope.message.id, '00000000-0000-4000-8000-000000000201');
     assert.match(envelope.message.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
     assert.equal(envelope.message.context.traceparent, envelope.message.traceparent);
+    assert.deepEqual(envelope.message.context.openclawDispatch, {
+        schemaVersion: 'openclaw.task_dispatch.context.v1',
+        taskId: '00000000-0000-4000-8000-000000000201',
+        attempt: 1,
+        reason: 'initial_dispatch',
+        idempotencyKey: 'task:00000000-0000-4000-8000-000000000201:attempt:1',
+        taskIdempotencyKey: 'task:00000000-0000-4000-8000-000000000201',
+        sentAt: 200_001
+    });
 });
 
 test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file outbox', async (t) => {
@@ -249,8 +267,15 @@ test('runQueueMaintenance re-dispatches retry-scheduled tasks through the file o
     assert.equal(envelope.trace.schemaVersion, 'openclaw.task_dispatch.trace.v1');
     assert.equal(envelope.trace.taskId, request.id);
     assert.equal(envelope.trace.target, 'agent:retry-worker');
+    assert.equal(envelope.trace.dispatchAttempt, 2);
+    assert.equal(envelope.trace.dispatchReason, 'scheduled_retry');
     assert.equal(envelope.trace.idempotencyKey, `task:${request.id}`);
+    assert.equal(envelope.trace.taskIdempotencyKey, `task:${request.id}`);
+    assert.equal(envelope.trace.dispatchIdempotencyKey, `task:${request.id}:attempt:2`);
     assert.equal(envelope.trace.trajectoryEventCount, 2);
+    assert.equal(envelope.message.context.openclawDispatch.attempt, 2);
+    assert.equal(envelope.message.context.openclawDispatch.reason, 'scheduled_retry');
+    assert.equal(envelope.message.context.openclawDispatch.idempotencyKey, `task:${request.id}:attempt:2`);
     assert.deepEqual(envelope.trajectoryEvents.map((event) => event.event), [
         'task_dispatch_selected',
         'task_dispatch_outbox_enqueued'

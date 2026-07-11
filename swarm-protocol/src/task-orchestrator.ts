@@ -650,6 +650,21 @@ export class TaskOrchestrator {
         const sendAt = safeNow(this.now);
         record.attempts += 1;
         record.updatedAt = sendAt;
+        record.request = buildTaskRequest({
+            ...record.request,
+            context: {
+                ...(record.request.context || {}),
+                openclawDispatch: {
+                    schemaVersion: 'openclaw.task_dispatch.context.v1',
+                    taskId: record.taskId,
+                    attempt: record.attempts,
+                    reason,
+                    idempotencyKey: `task:${record.taskId}:attempt:${record.attempts}`,
+                    taskIdempotencyKey: `task:${record.taskId}`,
+                    sentAt: sendAt
+                }
+            }
+        });
         record.history.push({
             at: sendAt,
             event: 'send_attempt',

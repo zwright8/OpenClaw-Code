@@ -68,17 +68,29 @@ function buildDispatchEnvelopeTrace({
     const context = message?.context && typeof message.context === 'object'
         ? message.context
         : {};
+    const dispatchContext = context.openclawDispatch && typeof context.openclawDispatch === 'object'
+        ? context.openclawDispatch
+        : {};
+    const dispatchAttempt = Number(dispatchContext.attempt);
+    const taskIdempotencyKey = taskId ? `task:${taskId}` : null;
+    const dispatchIdempotencyKey = typeof dispatchContext.idempotencyKey === 'string' && dispatchContext.idempotencyKey.trim()
+        ? dispatchContext.idempotencyKey.trim()
+        : null;
 
     return {
         schemaVersion: 'openclaw.task_dispatch.trace.v1',
         traceparent,
         taskId,
         target,
+        dispatchAttempt: Number.isInteger(dispatchAttempt) && dispatchAttempt > 0 ? dispatchAttempt : null,
+        dispatchReason: typeof dispatchContext.reason === 'string' ? dispatchContext.reason : null,
         priority: typeof message?.priority === 'string' ? message.priority : null,
         planner: typeof context.planner === 'string' ? context.planner : null,
         createdAt: Number.isFinite(Number(message?.createdAt)) ? Number(message.createdAt) : null,
         sentAt,
-        idempotencyKey: taskId ? `task:${taskId}` : null,
+        idempotencyKey: taskIdempotencyKey,
+        taskIdempotencyKey,
+        dispatchIdempotencyKey,
         trajectoryEventCount: taskId ? 2 : 0
     };
 }
@@ -95,7 +107,11 @@ function buildDispatchTrajectoryEvents({ trace }) {
         phase: 'dispatch',
         priority: trace.priority,
         planner: trace.planner,
-        idempotencyKey: trace.idempotencyKey
+        dispatchAttempt: trace.dispatchAttempt,
+        dispatchReason: trace.dispatchReason,
+        idempotencyKey: trace.idempotencyKey,
+        taskIdempotencyKey: trace.taskIdempotencyKey,
+        dispatchIdempotencyKey: trace.dispatchIdempotencyKey
     };
 
     return [
@@ -291,7 +307,8 @@ export async function dispatchCreatedQueueTasks({
         localAgentId,
         transport,
         store,
-        approvalPolicy: createApprovalPolicy()
+        approvalPolicy: createApprovalPolicy(),
+        now
     });
 
     const hydration = await orchestrator.hydrate();
