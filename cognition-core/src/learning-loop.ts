@@ -143,10 +143,20 @@ function traceIdentity(event, fallbackTraceparent = null) {
         event?.parentSpanId,
         event?.parent_span_id,
         event?.parentSpanID,
+        event?.parent?.spanId,
+        event?.parent?.span_id,
+        event?.parentSpanContext?.spanId,
+        event?.parentSpanContext?.span_id,
+        event?.parent_span_context?.spanId,
+        event?.parent_span_context?.span_id,
         eventValue(event, ['context', 'parent_span_id']),
         eventValue(event, ['context', 'parentSpanId']),
+        eventValue(event, ['context', 'parent', 'span_id']),
+        eventValue(event, ['context', 'parent', 'spanId']),
         eventValue(event, ['attributes', 'parent_span_id']),
-        eventValue(event, ['attributes', 'parentSpanId'])
+        eventValue(event, ['attributes', 'parentSpanId']),
+        eventValue(event, ['attributes', 'parent.span_id']),
+        eventValue(event, ['attributes', 'parent.spanId'])
     ]) || traceparent?.parentSpanId || null;
 
     return {
