@@ -1710,7 +1710,8 @@ export async function writeBotWorkerLoopReport({
     jsonPath = null,
     markdownPath = null,
     otelJsonlPath = null,
-    recoveryPlanPath = null
+    recoveryPlanPath = null,
+    approvalPlanPath = null
 }) {
     const output = report && typeof report === 'object' ? report : {};
 
@@ -1749,6 +1750,20 @@ export async function writeBotWorkerLoopReport({
         fs.writeFileSync(
             resolvedRecoveryPlanPath,
             `${JSON.stringify(output.staleDispatchRecoveryPlan, null, 2)}\n`
+        );
+    }
+
+    if (
+        typeof approvalPlanPath === 'string'
+        && approvalPlanPath.trim()
+        && output.pendingApprovalReviewPlan
+        && typeof output.pendingApprovalReviewPlan === 'object'
+    ) {
+        const resolvedApprovalPlanPath = path.resolve(approvalPlanPath);
+        fs.mkdirSync(path.dirname(resolvedApprovalPlanPath), { recursive: true });
+        fs.writeFileSync(
+            resolvedApprovalPlanPath,
+            `${JSON.stringify(output.pendingApprovalReviewPlan, null, 2)}\n`
         );
     }
 }

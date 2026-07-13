@@ -268,6 +268,61 @@ test('writeBotWorkerLoopReport writes standalone stale dispatch recovery plan', 
     assert.equal(written.candidates[0].mutatesQueue, undefined);
 });
 
+test('writeBotWorkerLoopReport writes standalone pending approval review plan', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const approvalPlanPath = path.join(dir, 'bot-worker-loop.approval-plan.json');
+    const approvalPlan = {
+        schemaVersion: 'bot-worker-loop.pending-approval-review.v1',
+        generatedAt: 130_000,
+        totalCandidates: 1,
+        dryRun: true,
+        mutatesQueue: false,
+        defaultAction: 'review_pending_approval',
+        rationale: 'Approval-gated tasks pause autonomous execution.',
+        candidates: [
+            {
+                taskId: 'approval-task-1',
+                target: 'agent:openclaw-bot',
+                priority: 'critical',
+                requestedAt: 70_000,
+                ageMs: 60_000,
+                reviewerGroup: 'ops-review',
+                reason: 'manual_operator_review',
+                matchedRules: ['manual_operator_review'],
+                recommendedAction: 'review_pending_approval',
+                evidenceRequired: [
+                    {
+                        id: 'approval_queue_reviewed',
+                        description: 'Review pending approvals.'
+                    }
+                ],
+                operatorCommands: [
+                    'npm --prefix swarm-protocol run ops -- queue --approvals'
+                ]
+            }
+        ],
+        nextSteps: [
+            'Review the pending approval queue and each task timeline.'
+        ]
+    };
+
+    await writeBotWorkerLoopReport({
+        report: {
+            stopReason: 'awaiting_approval_only',
+            pendingApprovalReviewPlan: approvalPlan
+        },
+        approvalPlanPath
+    });
+
+    assert.equal(fs.existsSync(approvalPlanPath), true);
+    const written = JSON.parse(fs.readFileSync(approvalPlanPath, 'utf8'));
+    assert.deepEqual(written, approvalPlan);
+    assert.equal(written.candidates[0].recommendedAction, 'review_pending_approval');
+    assert.equal(written.candidates[0].mutatesQueue, undefined);
+});
+
 test('writeBotWorkerLoopReport skips malformed OTel span JSONL rows', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

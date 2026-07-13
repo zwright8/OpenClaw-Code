@@ -37,6 +37,7 @@ Options:
   --markdown <path>            Optional markdown report output path
   --otel-jsonl <path>          Optional OTel-compatible span JSONL output path
   --recovery-plan <path>       Optional stale dispatch recovery plan JSON output path
+  --approval-plan <path>       Optional pending approval review plan JSON output path
   -h, --help                   Show help
 `);
 }
@@ -103,6 +104,7 @@ function parseArgs(argv) {
         markdownPath: null,
         otelJsonlPath: null,
         recoveryPlanPath: null,
+        approvalPlanPath: null,
         help: false
     };
 
@@ -245,6 +247,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--approval-plan') {
+            options.approvalPlanPath = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
 
         throw new Error(`Unknown argument: ${token}`);
     }
@@ -277,6 +284,18 @@ function printSummary(report) {
             }
             if (candidate.idempotencyKey) {
                 console.log(`  idempotencyKey=${candidate.idempotencyKey}`);
+            }
+            if (Array.isArray(candidate.evidenceRequired) && candidate.evidenceRequired.length > 0) {
+                console.log(`  evidenceRequired=${candidate.evidenceRequired.map((item) => item.id).join(',')}`);
+            }
+        }
+    }
+    if (report.pendingApprovalReviewPlan?.totalCandidates > 0) {
+        console.log(`Approval review plan: ${report.pendingApprovalReviewPlan.totalCandidates} pending approval task(s), dry-run only`);
+        for (const candidate of report.pendingApprovalReviewPlan.candidates.slice(0, 5)) {
+            console.log(`- ${candidate.taskId} target=${candidate.target} ageMs=${candidate.ageMs} action=${candidate.recommendedAction}`);
+            if (candidate.reason) {
+                console.log(`  reason=${candidate.reason}`);
             }
             if (Array.isArray(candidate.evidenceRequired) && candidate.evidenceRequired.length > 0) {
                 console.log(`  evidenceRequired=${candidate.evidenceRequired.map((item) => item.id).join(',')}`);
@@ -323,7 +342,8 @@ function printSummary(report) {
             jsonPath: options.jsonPath,
             markdownPath: options.markdownPath,
             otelJsonlPath: options.otelJsonlPath,
-            recoveryPlanPath: options.recoveryPlanPath
+            recoveryPlanPath: options.recoveryPlanPath,
+            approvalPlanPath: options.approvalPlanPath
         });
 
         printSummary(report);
