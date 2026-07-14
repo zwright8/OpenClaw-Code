@@ -5,6 +5,7 @@ import {
     drainTarget,
     listQueue,
     overrideApproval,
+    recoverStaleDispatchRecord,
     replayTask,
     rerouteTaskRecord,
     summarizeTaskRecords
@@ -127,6 +128,75 @@ test('overrideApproval updates review status with explicit decision', () => {
     });
     assert.equal(denied.updated.status, 'rejected');
     assert.equal(denied.updated.approval.status, 'denied');
+});
+
+test('recoverStaleDispatchRecord records decision and safely requeues only no-side-effect tasks', () => {
+    const result = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'requeue_no_side_effect', {
+        actor: 'human:ops',
+        reason: 'external_runtime_empty',
+        sideEffectStatus: 'none',
+        externalRuntimeCorrelation: '00-11111111111111111111111111111111-2222222222222222-01',
+        evidenceReviewed: [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ],
+        now: () => 3_000
+    });
+
+    assert.equal(result.previousStatus, 'dispatched');
+    assert.equal(result.updated.status, 'created');
+    assert.equal(result.updated.updatedAt, 3_000);
+    assert.equal(result.updated.deadlineAt, 3_000);
+    assert.equal(result.updated.nextRetryAt, null);
+    assert.equal(result.updated.recoveryDecision.schemaVersion, 'swarm-protocol.stale-dispatch-recovery-decision.v1');
+    assert.equal(result.updated.recoveryDecision.decision, 'requeue_no_side_effect');
+    assert.equal(result.updated.recoveryDecision.sideEffectStatus, 'none');
+    assert.equal(
+        result.updated.recoveryDecision.externalRuntimeCorrelation,
+        '00-11111111111111111111111111111111-2222222222222222-01'
+    );
+    assert.equal(
+        result.updated.history[result.updated.history.length - 1].event,
+        'operator_stale_dispatch_recovery_decision'
+    );
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'requeue_no_side_effect', {
+            sideEffectStatus: 'unknown'
+        }),
+        /requires sideEffectStatus=none/
+    );
+});
+
+test('recoverStaleDispatchRecord closes, fails, or pauses stale dispatches with audit context', () => {
+    const completed = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'close_completed', {
+        sideEffectStatus: 'completed',
+        now: () => 4_000
+    });
+    assert.equal(completed.updated.status, 'completed');
+    assert.equal(completed.updated.closedAt, 4_000);
+
+    const failed = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'fail_side_effect_unknown', {
+        reason: 'side_effect_ambiguous',
+        sideEffectStatus: 'unknown',
+        now: () => 4_100
+    });
+    assert.equal(failed.updated.status, 'failed');
+    assert.equal(failed.updated.closedAt, 4_100);
+    assert.equal(failed.updated.lastError, 'side_effect_ambiguous');
+
+    const escalated = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'escalate_manual_review', {
+        sideEffectStatus: 'unknown',
+        now: () => 4_200
+    });
+    assert.equal(escalated.updated.status, 'paused_recovery');
+    assert.equal(escalated.updated.closedAt, undefined);
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(sampleRecords(), 'task-b', 'escalate_manual_review'),
+        /not dispatched/
+    );
 });
 
 test('collectLifecycleEvents merges and sorts task history', () => {

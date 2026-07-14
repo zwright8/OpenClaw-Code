@@ -285,6 +285,108 @@ export function overrideApproval(
     };
 }
 
+export function recoverStaleDispatchRecord(
+    records,
+    taskId,
+    decision,
+    {
+        actor = 'human:ops',
+        reason = 'operator_stale_dispatch_recovery',
+        sideEffectStatus = 'unknown',
+        externalRuntimeCorrelation = null,
+        evidenceReviewed = [],
+        notes = null,
+        now = Date.now
+    } = {}
+) {
+    const normalizedDecision = typeof decision === 'string' ? decision.trim() : '';
+    const allowedDecisions = new Set([
+        'close_completed',
+        'requeue_no_side_effect',
+        'fail_side_effect_unknown',
+        'escalate_manual_review'
+    ]);
+    if (!allowedDecisions.has(normalizedDecision)) {
+        throw new Error(`Unsupported stale dispatch recovery decision: ${decision}`);
+    }
+
+    const index = buildIndex(records);
+    const record = index.get(taskId);
+    if (!record) {
+        throw new Error(`Unknown taskId: ${taskId}`);
+    }
+
+    if (record.status !== 'dispatched') {
+        throw new Error(`Task ${taskId} is not dispatched`);
+    }
+
+    const normalizedSideEffectStatus = typeof sideEffectStatus === 'string' && sideEffectStatus.trim()
+        ? sideEffectStatus.trim()
+        : 'unknown';
+    if (normalizedDecision === 'requeue_no_side_effect' && normalizedSideEffectStatus !== 'none') {
+        throw new Error('requeue_no_side_effect requires sideEffectStatus=none');
+    }
+
+    const at = nowMs(now);
+    const evidence = Array.isArray(evidenceReviewed)
+        ? evidenceReviewed.filter((item) => typeof item === 'string' && item.trim()).map((item) => item.trim())
+        : [];
+    const correlation = typeof externalRuntimeCorrelation === 'string' && externalRuntimeCorrelation.trim()
+        ? externalRuntimeCorrelation.trim()
+        : record.request?.traceparent || record.request?.context?.traceparent || record.taskId;
+    const previousStatus = record.status;
+
+    record.history = Array.isArray(record.history) ? record.history : [];
+    record.recoveryDecision = {
+        schemaVersion: 'swarm-protocol.stale-dispatch-recovery-decision.v1',
+        decidedAt: at,
+        actor,
+        decision: normalizedDecision,
+        reason,
+        sideEffectStatus: normalizedSideEffectStatus,
+        externalRuntimeCorrelation: correlation,
+        evidenceReviewed: evidence,
+        notes
+    };
+    record.history.push({
+        at,
+        event: 'operator_stale_dispatch_recovery_decision',
+        actor,
+        decision: normalizedDecision,
+        reason,
+        sideEffectStatus: normalizedSideEffectStatus,
+        externalRuntimeCorrelation: correlation,
+        evidenceReviewed: evidence,
+        notes
+    });
+
+    record.updatedAt = at;
+    record.nextRetryAt = null;
+
+    if (normalizedDecision === 'close_completed') {
+        record.status = 'completed';
+        record.closedAt = at;
+    } else if (normalizedDecision === 'requeue_no_side_effect') {
+        record.status = 'created';
+        record.deadlineAt = at;
+        record.lastError = null;
+    } else if (normalizedDecision === 'fail_side_effect_unknown') {
+        record.status = 'failed';
+        record.closedAt = at;
+        record.lastError = reason;
+    } else {
+        record.status = 'paused_recovery';
+    }
+
+    index.set(taskId, record);
+    return {
+        records: toArray(index),
+        updated: clone(record),
+        decision: normalizedDecision,
+        previousStatus
+    };
+}
+
 export function collectLifecycleEvents(
     records,
     {

@@ -336,6 +336,8 @@ export function buildStaleDispatchRecoveryPlan(records, {
             }),
             operatorCommands: [
                 `npm --prefix swarm-protocol run ops -- replay ${record.taskId}`,
+                `npm --prefix swarm-protocol run ops -- recover-dispatch requeue_no_side_effect ${record.taskId} --side-effect none --evidence replay_timeline_reviewed,external_runtime_result_checked,side_effect_ledger_checked --reason <reason>`,
+                `npm --prefix swarm-protocol run ops -- recover-dispatch escalate_manual_review ${record.taskId} --side-effect unknown --reason <reason>`,
                 `npm --prefix swarm-protocol run ops -- queue --limit ${maxCandidates}`
             ]
         });

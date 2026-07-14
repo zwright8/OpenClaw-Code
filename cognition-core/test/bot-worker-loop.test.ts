@@ -873,6 +873,10 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
     assert.ok(report.staleDispatchRecoveryPlan.candidates[0].operatorCommands.some((command) => (
         command.includes(`replay ${request.id}`)
     )));
+    assert.ok(report.staleDispatchRecoveryPlan.candidates[0].operatorCommands.some((command) => (
+        command.includes(`recover-dispatch requeue_no_side_effect ${request.id}`)
+            && command.includes('--side-effect none')
+    )));
     assert.ok(report.traceEvents.some((event) => (
         event.phase === 'bot_runtime_attention'
         && event.kind === 'guardrail'
@@ -978,6 +982,10 @@ test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
         at: 12_000,
         event: 'receipt_timeout'
     });
+    assert.ok(plan.candidates[0].operatorCommands.some((command) => (
+        command.includes('recover-dispatch requeue_no_side_effect old-dispatch')
+            && command.includes('side_effect_ledger_checked')
+    )));
     assert.equal(records[1].status, 'dispatched');
 });
 

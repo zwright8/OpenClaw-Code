@@ -6,6 +6,7 @@ import {
     drainTarget,
     listQueue,
     overrideApproval,
+    recoverStaleDispatchRecord,
     replayTask,
     rerouteTaskRecord,
     signAuditEntry,
@@ -27,6 +28,7 @@ Commands:
   reroute <taskId> <newTarget> [--actor <id>] [--reason <text>]
   drain <target> [--redirect <newTarget>] [--actor <id>] [--reason <text>]
   override <approve|deny> <taskId> [--actor <id>] [--reason <text>]
+  recover-dispatch <decision> <taskId> [--side-effect <status>] [--correlation <id>] [--evidence <csv>] [--notes <text>] [--actor <id>] [--reason <text>]
   audit-verify
 
 Global options:
@@ -53,6 +55,10 @@ function parseArgs(argv) {
         target: null,
         task: null,
         redirect: null,
+        sideEffect: 'unknown',
+        correlation: null,
+        evidence: null,
+        notes: null,
         limit: 25
     };
 
@@ -116,6 +122,26 @@ function parseArgs(argv) {
         }
         if (token === '--redirect') {
             options.redirect = value;
+            i++;
+            continue;
+        }
+        if (token === '--side-effect') {
+            options.sideEffect = value;
+            i++;
+            continue;
+        }
+        if (token === '--correlation') {
+            options.correlation = value;
+            i++;
+            continue;
+        }
+        if (token === '--evidence') {
+            options.evidence = value;
+            i++;
+            continue;
+        }
+        if (token === '--notes') {
+            options.notes = value;
             i++;
             continue;
         }
@@ -348,6 +374,41 @@ function printEvents(events) {
                 reason: options.reason || (approved ? 'manual_override_approve' : 'manual_override_deny')
             });
             console.log(`Override ${action} applied for ${taskId}`);
+            return;
+        }
+
+        if (command === 'recover-dispatch') {
+            const secret = requireSecret(options.secret);
+            const decision = positional[0];
+            const taskId = positional[1];
+            if (!decision || !taskId) {
+                throw new Error('Usage: recover-dispatch <decision> <taskId>');
+            }
+
+            const evidenceReviewed = typeof options.evidence === 'string'
+                ? options.evidence.split(',').map((item) => item.trim()).filter(Boolean)
+                : [];
+            const result = recoverStaleDispatchRecord(records, taskId, decision, {
+                actor: options.actor,
+                reason: options.reason || 'manual_stale_dispatch_recovery',
+                sideEffectStatus: options.sideEffect,
+                externalRuntimeCorrelation: options.correlation,
+                evidenceReviewed,
+                notes: options.notes
+            });
+
+            await store.compact(result.records);
+            appendAuditEntry(auditStore, secret, 'operator_stale_dispatch_recovery', options.actor, {
+                taskId,
+                decision: result.decision,
+                previousStatus: result.previousStatus,
+                status: result.updated.status,
+                reason: options.reason || 'manual_stale_dispatch_recovery',
+                sideEffectStatus: options.sideEffect,
+                externalRuntimeCorrelation: result.updated.recoveryDecision?.externalRuntimeCorrelation || null,
+                evidenceReviewed
+            });
+            console.log(`Recovery ${result.decision} applied for ${taskId}; status=${result.updated.status}`);
             return;
         }
 
