@@ -32,6 +32,53 @@ function createEnvelope({ target, request, sentAt = 1_000 }) {
     };
 }
 
+function createTracedEnvelope({ target, request, sentAt = 1_000 }) {
+    return {
+        ...createEnvelope({ target, request, sentAt }),
+        trace: {
+            schemaVersion: 'openclaw.task_dispatch.trace.v1',
+            traceparent: request.traceparent,
+            taskId: request.id,
+            target
+        },
+        trajectoryEvents: [
+            {
+                schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+                traceparent: request.traceparent,
+                taskId: request.id,
+                target,
+                actor: 'cognition-core/queue-dispatcher',
+                phase: 'dispatch',
+                sequence: 1,
+                event: 'task_dispatch_selected',
+                at: sentAt
+            },
+            {
+                schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+                traceparent: request.traceparent,
+                taskId: request.id,
+                target,
+                actor: 'cognition-core/queue-dispatcher',
+                phase: 'dispatch',
+                sequence: 2,
+                event: 'task_dispatch_outbox_enqueued',
+                at: sentAt
+            },
+            {
+                schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+                traceparent: '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01',
+                taskId: request.id,
+                target,
+                actor: 'external/noise',
+                phase: 'dispatch',
+                sequence: 99,
+                event: 'unrelated_trace_noise',
+                at: sentAt
+            }
+        ]
+    };
+}
+
 function makeRequest(
     id,
     target = 'agent:ops',
@@ -106,6 +153,55 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const archived = fs.readdirSync(archiveDir).filter((item) => item.endsWith('.jsonl'));
     assert.equal(archived.length, 1);
     assert.equal(fs.existsSync(path.join(outboxDir, targetToFile(target))), false);
+});
+
+test('processOutboxEnvelopes preserves dispatcher trajectory events in task result trace', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000303', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+    });
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 62_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 62_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createTracedEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: false
+    });
+
+    assert.equal(stats.resultsAccepted, 1);
+
+    const records = await store.loadRecords();
+    const traceEvents = records[0].result.traceEvents;
+    assert.deepEqual(traceEvents.map((event) => event.event).filter(Boolean), [
+        'task_dispatch_selected',
+        'task_dispatch_outbox_enqueued'
+    ]);
+    assert.ok(traceEvents.some((event) => event.name === 'outbox_processor.task_received'));
+    assert.ok(traceEvents.some((event) => event.name === 'outbox_processor.task_result'));
+    assert.ok(traceEvents.every((event) => event.traceparent === request.traceparent));
 });
 
 test('processOutboxEnvelopes continues trace from envelope metadata when message lacks carrier', async (t) => {

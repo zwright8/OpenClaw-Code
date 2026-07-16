@@ -126,6 +126,37 @@ function buildOutboxTraceEvents({ taskId, target, traceparent, sentAt, completed
     ];
 }
 
+function sanitizeEnvelopeTrajectoryEvents(envelope, { taskId, traceparent }) {
+    const events = Array.isArray(envelope?.trajectoryEvents) ? envelope.trajectoryEvents : [];
+    return events
+        .filter((event) => event && typeof event === 'object')
+        .filter((event) => (
+            event.taskId === taskId
+            && event.traceparent === traceparent
+        ))
+        .map((event) => ({ ...event }));
+}
+
+function buildResultTraceEvents({ envelope, taskId, target, traceparent, sentAt, completedAt, resultStatus }) {
+    const outboxEvents = buildOutboxTraceEvents({
+        taskId,
+        target,
+        traceparent,
+        sentAt,
+        completedAt,
+        resultStatus
+    }) || [];
+    const trajectoryEvents = sanitizeEnvelopeTrajectoryEvents(envelope, {
+        taskId,
+        traceparent
+    });
+    const merged = [
+        ...trajectoryEvents,
+        ...outboxEvents
+    ];
+    return merged.length > 0 ? merged : undefined;
+}
+
 function chooseResultStatus(failureRate, rng = Math.random) {
     if (normalizeFailureRate(failureRate) <= 0) return 'success';
     return rng() < normalizeFailureRate(failureRate) ? 'failure' : 'success';
@@ -419,7 +450,8 @@ export async function processOutboxEnvelopes({
                 artifacts: resultArtifacts,
                 metrics: resultMetrics,
                 traceparent,
-                traceEvents: buildOutboxTraceEvents({
+                traceEvents: buildResultTraceEvents({
+                    envelope,
                     taskId,
                     target,
                     traceparent,
