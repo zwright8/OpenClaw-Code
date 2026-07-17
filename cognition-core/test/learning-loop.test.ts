@@ -189,6 +189,11 @@ test('summarizeOutcomes links nested parent span contexts', () => {
             traceEvents: [
                 {
                     traceId: 'trace-a',
+                    spanId: '1111111111111111',
+                    name: 'workflow_root'
+                },
+                {
+                    traceId: 'trace-a',
                     spanId: '2222222222222222',
                     parentSpanContext: { spanId: '1111111111111111' },
                     attributes: { 'gen_ai.operation.name': 'execute_tool' }
@@ -220,6 +225,37 @@ test('summarizeOutcomes links nested parent span contexts', () => {
     assert.equal(result.summary.toolTraceCoverage, 1);
     assert.equal(result.summary.guardrailTraceCoverage, 1);
     assert.equal(result.summary.handoffTraceCoverage, 1);
+});
+
+test('summarizeOutcomes rejects dangling parent span links', () => {
+    const result = summarizeOutcomes([
+        {
+            taskId: '1',
+            target: 'agent:a',
+            status: 'completed',
+            traceEvents: [
+                {
+                    traceId: 'trace-a',
+                    spanId: '2222222222222222',
+                    parentSpanId: 'missing-parent-span',
+                    attributes: { 'gen_ai.operation.name': 'execute_tool' }
+                },
+                {
+                    traceId: 'trace-a',
+                    spanId: '3333333333333333',
+                    parentSpanId: '2222222222222222',
+                    name: 'guardrail_check'
+                }
+            ]
+        }
+    ]);
+
+    assert.equal(result.summary.observability.linkedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceEvents, 1);
+    assert.equal(result.summary.observability.danglingParentTraceEvents, 1);
+    assert.equal(result.summary.traceLinkCoverage, 1);
+    assert.equal(result.summary.traceOrphanRate, 1);
 });
 
 test('runCounterfactualReplay ranks variants by projected gain', () => {
