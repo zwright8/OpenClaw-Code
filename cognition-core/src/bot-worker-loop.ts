@@ -183,6 +183,25 @@ function buildRecoveryDecisionRecordTemplate({ taskId, traceparent, idempotencyK
     };
 }
 
+function buildRecoveryCandidateFingerprint({
+    taskId,
+    target,
+    attempts,
+    traceparent,
+    idempotencyKey,
+    latestHistoryEvent
+}) {
+    return buildStableHash({
+        kind: 'stale_dispatch_recovery_candidate',
+        taskId,
+        target,
+        attempts,
+        traceparent,
+        idempotencyKey,
+        latestHistoryEvent
+    });
+}
+
 function buildApprovalReviewChecklist({ taskId }) {
     return [
         {
@@ -204,6 +223,27 @@ function buildApprovalReviewChecklist({ taskId }) {
             description: 'Approve or deny the task with an explicit operator reason.'
         }
     ];
+}
+
+function buildApprovalCandidateFingerprint({
+    taskId,
+    target,
+    priority,
+    reviewerGroup,
+    reason,
+    matchedRules,
+    latestHistoryEvent
+}) {
+    return buildStableHash({
+        kind: 'pending_approval_review_candidate',
+        taskId,
+        target,
+        priority,
+        reviewerGroup,
+        reason,
+        matchedRules,
+        latestHistoryEvent
+    });
 }
 
 function summarizeQueueRecords(records, {
@@ -314,9 +354,21 @@ export function buildStaleDispatchRecoveryPlan(records, {
 
         const traceparent = getRecordTraceparent(record);
         const idempotencyKey = `task:${record.taskId}:attempt:${record.attempts || 0}`;
+        const target = record.target || record.request?.target || 'unknown';
+        const latestHistoryEvent = getLatestHistoryEvent(record);
+        const candidateFingerprint = buildRecoveryCandidateFingerprint({
+            taskId: record.taskId,
+            target,
+            attempts: record.attempts || 0,
+            traceparent,
+            idempotencyKey,
+            latestHistoryEvent
+        });
         candidates.push({
             taskId: record.taskId,
-            target: record.target || record.request?.target || 'unknown',
+            target,
+            candidateFingerprint,
+            dedupeKey: `stale-dispatch:${candidateFingerprint}`,
             ageMs,
             updatedAt,
             attempts: record.attempts || 0,
@@ -328,7 +380,7 @@ export function buildStaleDispatchRecoveryPlan(records, {
                 traceparent,
                 idempotencyKey
             }),
-            latestHistoryEvent: getLatestHistoryEvent(record),
+            latestHistoryEvent,
             recommendedAction: 'inspect_external_runtime_before_requeue',
             evidenceRequired: buildRecoveryEvidenceChecklist({
                 taskId: record.taskId,
@@ -344,17 +396,23 @@ export function buildStaleDispatchRecoveryPlan(records, {
     }
 
     candidates.sort((a, b) => b.ageMs - a.ageMs || String(a.taskId).localeCompare(String(b.taskId)));
+    const limitedCandidates = candidates.slice(0, maxCandidates);
 
     return {
         schemaVersion: 'bot-worker-loop.stale-dispatch-recovery.v1',
         generatedAt: observedNowMs,
         staleDispatchMs: staleThresholdMs,
         totalCandidates: candidates.length,
+        planFingerprint: buildStableHash({
+            kind: 'stale_dispatch_recovery_plan',
+            staleDispatchMs: staleThresholdMs,
+            candidateFingerprints: limitedCandidates.map((candidate) => candidate.candidateFingerprint)
+        }),
         dryRun: true,
         mutatesQueue: false,
         defaultAction: 'inspect_external_runtime_before_requeue',
         rationale: 'Dispatched records may already have side effects in the external OpenClaw runtime, so recovery is planned but not applied automatically.',
-        candidates: candidates.slice(0, maxCandidates),
+        candidates: limitedCandidates,
         nextSteps: candidates.length > 0
             ? [
                 'Inspect each replay timeline and external runtime result store for a late completion.',
@@ -382,16 +440,33 @@ export function buildPendingApprovalReviewPlan(records, {
         const approval = record.approval && typeof record.approval === 'object'
             ? record.approval
             : {};
+        const target = record.target || record.request?.target || 'unknown';
+        const priority = record.request?.priority || 'normal';
+        const reviewerGroup = typeof approval.reviewerGroup === 'string' ? approval.reviewerGroup : null;
+        const reason = typeof approval.reason === 'string' ? approval.reason : null;
+        const matchedRules = Array.isArray(approval.matchedRules) ? approval.matchedRules : [];
+        const latestHistoryEvent = getLatestHistoryEvent(record);
+        const candidateFingerprint = buildApprovalCandidateFingerprint({
+            taskId: record.taskId,
+            target,
+            priority,
+            reviewerGroup,
+            reason,
+            matchedRules,
+            latestHistoryEvent
+        });
         candidates.push({
             taskId: record.taskId,
-            target: record.target || record.request?.target || 'unknown',
-            priority: record.request?.priority || 'normal',
+            target,
+            candidateFingerprint,
+            dedupeKey: `pending-approval:${candidateFingerprint}`,
+            priority,
             requestedAt,
             ageMs,
-            reviewerGroup: typeof approval.reviewerGroup === 'string' ? approval.reviewerGroup : null,
-            reason: typeof approval.reason === 'string' ? approval.reason : null,
-            matchedRules: Array.isArray(approval.matchedRules) ? approval.matchedRules : [],
-            latestHistoryEvent: getLatestHistoryEvent(record),
+            reviewerGroup,
+            reason,
+            matchedRules,
+            latestHistoryEvent,
             recommendedAction: 'review_pending_approval',
             evidenceRequired: buildApprovalReviewChecklist({
                 taskId: record.taskId
@@ -406,16 +481,21 @@ export function buildPendingApprovalReviewPlan(records, {
     }
 
     candidates.sort((a, b) => b.ageMs - a.ageMs || String(a.taskId).localeCompare(String(b.taskId)));
+    const limitedCandidates = candidates.slice(0, maxCandidates);
 
     return {
         schemaVersion: 'bot-worker-loop.pending-approval-review.v1',
         generatedAt: observedNowMs,
         totalCandidates: candidates.length,
+        planFingerprint: buildStableHash({
+            kind: 'pending_approval_review_plan',
+            candidateFingerprints: limitedCandidates.map((candidate) => candidate.candidateFingerprint)
+        }),
         dryRun: true,
         mutatesQueue: false,
         defaultAction: 'review_pending_approval',
         rationale: 'Approval-gated tasks intentionally pause autonomous execution, so the worker reports the exact operator review queue without mutating it.',
-        candidates: candidates.slice(0, maxCandidates),
+        candidates: limitedCandidates,
         nextSteps: candidates.length > 0
             ? [
                 'Review the pending approval queue and each task timeline.',
@@ -1207,6 +1287,7 @@ export function renderBotWorkerLoopMarkdown(report) {
     } else {
         lines.push(
             `- schemaVersion: ${recoveryPlan.schemaVersion}`,
+            `- planFingerprint: ${recoveryPlan.planFingerprint || 'unavailable'}`,
             `- dryRun: ${recoveryPlan.dryRun}`,
             `- mutatesQueue: ${recoveryPlan.mutatesQueue}`,
             `- totalCandidates: ${recoveryPlan.totalCandidates}`,
@@ -1220,6 +1301,12 @@ export function renderBotWorkerLoopMarkdown(report) {
                 lines.push(
                     `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} attempts=${candidate.attempts} action=${candidate.recommendedAction}`
                 );
+                if (candidate.candidateFingerprint) {
+                    lines.push(`  - candidateFingerprint: ${candidate.candidateFingerprint}`);
+                }
+                if (candidate.dedupeKey) {
+                    lines.push(`  - dedupeKey: ${candidate.dedupeKey}`);
+                }
                 if (candidate.traceparent) {
                     lines.push(`  - traceparent: ${candidate.traceparent}`);
                 }
@@ -1257,6 +1344,7 @@ export function renderBotWorkerLoopMarkdown(report) {
     } else {
         lines.push(
             `- schemaVersion: ${approvalPlan.schemaVersion}`,
+            `- planFingerprint: ${approvalPlan.planFingerprint || 'unavailable'}`,
             `- dryRun: ${approvalPlan.dryRun}`,
             `- mutatesQueue: ${approvalPlan.mutatesQueue}`,
             `- totalCandidates: ${approvalPlan.totalCandidates}`,
@@ -1270,6 +1358,12 @@ export function renderBotWorkerLoopMarkdown(report) {
                 lines.push(
                     `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} priority=${candidate.priority} action=${candidate.recommendedAction}`
                 );
+                if (candidate.candidateFingerprint) {
+                    lines.push(`  - candidateFingerprint: ${candidate.candidateFingerprint}`);
+                }
+                if (candidate.dedupeKey) {
+                    lines.push(`  - dedupeKey: ${candidate.dedupeKey}`);
+                }
                 if (candidate.reviewerGroup) {
                     lines.push(`  - reviewerGroup: ${candidate.reviewerGroup}`);
                 }
@@ -1620,6 +1714,10 @@ export async function runBotWorkerLoop({
             dryRun: staleDispatchRecoveryPlan.dryRun,
             mutatesQueue: staleDispatchRecoveryPlan.mutatesQueue,
             defaultAction: staleDispatchRecoveryPlan.defaultAction,
+            planFingerprint: staleDispatchRecoveryPlan.planFingerprint,
+            candidateFingerprints: staleDispatchRecoveryPlan.candidates
+                .map((candidate) => candidate.candidateFingerprint)
+                .filter(Boolean),
             candidateTaskIds: staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId),
             candidateTraceparents: staleDispatchRecoveryPlan.candidates
                 .map((candidate) => candidate.traceparent)
@@ -1639,6 +1737,10 @@ export async function runBotWorkerLoop({
             dryRun: pendingApprovalReviewPlan.dryRun,
             mutatesQueue: pendingApprovalReviewPlan.mutatesQueue,
             defaultAction: pendingApprovalReviewPlan.defaultAction,
+            planFingerprint: pendingApprovalReviewPlan.planFingerprint,
+            candidateFingerprints: pendingApprovalReviewPlan.candidates
+                .map((candidate) => candidate.candidateFingerprint)
+                .filter(Boolean),
             candidateTaskIds: pendingApprovalReviewPlan.candidates.map((candidate) => candidate.taskId),
             candidateReasons: pendingApprovalReviewPlan.candidates
                 .map((candidate) => candidate.reason)

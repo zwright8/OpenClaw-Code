@@ -644,8 +644,14 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
     assert.equal(report.pendingApprovalReviewPlan.dryRun, true);
     assert.equal(report.pendingApprovalReviewPlan.mutatesQueue, false);
     assert.equal(report.pendingApprovalReviewPlan.totalCandidates, 1);
+    assert.match(report.pendingApprovalReviewPlan.planFingerprint, /^[a-f0-9]{16}$/);
     assert.equal(report.pendingApprovalReviewPlan.defaultAction, 'review_pending_approval');
     assert.equal(report.pendingApprovalReviewPlan.candidates[0].taskId, request.id);
+    assert.match(report.pendingApprovalReviewPlan.candidates[0].candidateFingerprint, /^[a-f0-9]{16}$/);
+    assert.equal(
+        report.pendingApprovalReviewPlan.candidates[0].dedupeKey,
+        `pending-approval:${report.pendingApprovalReviewPlan.candidates[0].candidateFingerprint}`
+    );
     assert.equal(report.pendingApprovalReviewPlan.candidates[0].target, 'agent:openclaw-bot');
     assert.equal(report.pendingApprovalReviewPlan.candidates[0].reviewerGroup, 'ops-review');
     assert.equal(report.pendingApprovalReviewPlan.candidates[0].reason, 'manual_operator_review');
@@ -671,6 +677,8 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
         && event.totalCandidates === 1
         && event.dryRun === true
         && event.mutatesQueue === false
+        && event.planFingerprint === report.pendingApprovalReviewPlan.planFingerprint
+        && event.candidateFingerprints.includes(report.pendingApprovalReviewPlan.candidates[0].candidateFingerprint)
         && event.candidateTaskIds.includes(request.id)
         && event.candidateReasons.includes('manual_operator_review')
     )));
@@ -720,7 +728,10 @@ test('buildPendingApprovalReviewPlan is deterministic and non-mutating', () => {
     assert.equal(plan.dryRun, true);
     assert.equal(plan.mutatesQueue, false);
     assert.equal(plan.totalCandidates, 2);
+    assert.match(plan.planFingerprint, /^[a-f0-9]{16}$/);
     assert.deepEqual(plan.candidates.map((candidate) => candidate.taskId), ['old-approval', 'new-approval']);
+    assert.match(plan.candidates[0].candidateFingerprint, /^[a-f0-9]{16}$/);
+    assert.equal(plan.candidates[0].dedupeKey, `pending-approval:${plan.candidates[0].candidateFingerprint}`);
     assert.equal(plan.candidates[0].ageMs, 110_000);
     assert.equal(plan.candidates[0].priority, 'critical');
     assert.equal(plan.candidates[0].reviewerGroup, 'ops');
@@ -809,8 +820,14 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
     assert.equal(report.staleDispatchRecoveryPlan.dryRun, true);
     assert.equal(report.staleDispatchRecoveryPlan.mutatesQueue, false);
     assert.equal(report.staleDispatchRecoveryPlan.totalCandidates, 1);
+    assert.match(report.staleDispatchRecoveryPlan.planFingerprint, /^[a-f0-9]{16}$/);
     assert.equal(report.staleDispatchRecoveryPlan.defaultAction, 'inspect_external_runtime_before_requeue');
     assert.deepEqual(report.staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId), [request.id]);
+    assert.match(report.staleDispatchRecoveryPlan.candidates[0].candidateFingerprint, /^[a-f0-9]{16}$/);
+    assert.equal(
+        report.staleDispatchRecoveryPlan.candidates[0].dedupeKey,
+        `stale-dispatch:${report.staleDispatchRecoveryPlan.candidates[0].candidateFingerprint}`
+    );
     assert.equal(report.staleDispatchRecoveryPlan.candidates[0].ageMs, 109_500);
     assert.equal(report.staleDispatchRecoveryPlan.candidates[0].target, 'agent:openclaw-bot');
     assert.equal(
@@ -901,6 +918,8 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
         && event.totalCandidates === 1
         && event.dryRun === true
         && event.mutatesQueue === false
+        && event.planFingerprint === report.staleDispatchRecoveryPlan.planFingerprint
+        && event.candidateFingerprints.includes(report.staleDispatchRecoveryPlan.candidates[0].candidateFingerprint)
         && event.candidateTaskIds.includes(request.id)
         && event.candidateTraceparents.includes('00-11111111111111111111111111111111-2222222222222222-01')
     )));
@@ -910,6 +929,14 @@ test('runBotWorkerLoop stops with recovery checkpoint for stale dispatched tasks
     assert.ok(recoverySpan);
     assert.equal(recoverySpan.attributes['openclaw.event.totalCandidates'], 1);
     assert.equal(recoverySpan.attributes['openclaw.event.dryRun'], true);
+    assert.equal(
+        recoverySpan.attributes['openclaw.event.planFingerprint'],
+        report.staleDispatchRecoveryPlan.planFingerprint
+    );
+    assert.deepEqual(
+        recoverySpan.attributes['openclaw.event.candidateFingerprints'],
+        [report.staleDispatchRecoveryPlan.candidates[0].candidateFingerprint]
+    );
     assert.deepEqual(recoverySpan.attributes['openclaw.event.candidateTaskIds'], [request.id]);
     assert.deepEqual(
         recoverySpan.attributes['openclaw.event.candidateTraceparents'],
@@ -958,8 +985,11 @@ test('buildStaleDispatchRecoveryPlan is deterministic and non-mutating', () => {
     assert.equal(plan.dryRun, true);
     assert.equal(plan.mutatesQueue, false);
     assert.equal(plan.totalCandidates, 1);
+    assert.match(plan.planFingerprint, /^[a-f0-9]{16}$/);
     assert.equal(plan.candidates.length, 1);
     assert.equal(plan.candidates[0].taskId, 'old-dispatch');
+    assert.match(plan.candidates[0].candidateFingerprint, /^[a-f0-9]{16}$/);
+    assert.equal(plan.candidates[0].dedupeKey, `stale-dispatch:${plan.candidates[0].candidateFingerprint}`);
     assert.equal(plan.candidates[0].ageMs, 110_000);
     assert.equal(plan.candidates[0].traceparent, '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01');
     assert.equal(plan.candidates[0].idempotencyKey, 'task:old-dispatch:attempt:2');
@@ -1045,6 +1075,7 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
         },
         staleDispatchRecoveryPlan: {
             schemaVersion: 'bot-worker-loop.stale-dispatch-recovery.v1',
+            planFingerprint: 'aaaabbbbccccdddd',
             dryRun: true,
             mutatesQueue: false,
             totalCandidates: 1,
@@ -1053,6 +1084,8 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 {
                     taskId: 'task-stale',
                     target: 'agent:openclaw-bot',
+                    candidateFingerprint: '1111222233334444',
+                    dedupeKey: 'stale-dispatch:1111222233334444',
                     ageMs: 120000,
                     attempts: 1,
                     traceparent: '00-33333333333333333333333333333333-4444444444444444-01',
@@ -1088,6 +1121,7 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
         },
         pendingApprovalReviewPlan: {
             schemaVersion: 'bot-worker-loop.pending-approval-review.v1',
+            planFingerprint: 'bbbbccccddddeeee',
             dryRun: true,
             mutatesQueue: false,
             totalCandidates: 1,
@@ -1096,6 +1130,8 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
                 {
                     taskId: 'task-approval',
                     target: 'agent:openclaw-bot',
+                    candidateFingerprint: '2222333344445555',
+                    dedupeKey: 'pending-approval:2222333344445555',
                     ageMs: 60000,
                     priority: 'critical',
                     reviewerGroup: 'ops-review',
@@ -1166,9 +1202,12 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /droppedEventCount: 1/);
     assert.match(markdown, /droppedEvents: bot_runtime_attention:missing_span_context\+missing_trace_id\+missing_span_id/);
     assert.match(markdown, /## Recovery Plan/);
+    assert.match(markdown, /planFingerprint: aaaabbbbccccdddd/);
     assert.match(markdown, /dryRun: true/);
     assert.match(markdown, /mutatesQueue: false/);
     assert.match(markdown, /candidate task-stale: target=agent:openclaw-bot ageMs=120000 attempts=1 action=inspect_external_runtime_before_requeue/);
+    assert.match(markdown, /candidateFingerprint: 1111222233334444/);
+    assert.match(markdown, /dedupeKey: stale-dispatch:1111222233334444/);
     assert.match(markdown, /traceparent: 00-33333333333333333333333333333333-4444444444444444-01/);
     assert.match(markdown, /idempotencyKey: task:task-stale:attempt:1/);
     assert.match(markdown, /recoveryDecisionRequired: true/);
@@ -1178,7 +1217,10 @@ test('renderBotWorkerLoopMarkdown includes runtime attention trace events', () =
     assert.match(markdown, /evidenceRequired: replay_timeline_reviewed, external_runtime_result_checked, side_effect_ledger_checked, operator_decision_recorded/);
     assert.match(markdown, /## Approval Review Plan/);
     assert.match(markdown, /schemaVersion: bot-worker-loop\.pending-approval-review\.v1/);
+    assert.match(markdown, /planFingerprint: bbbbccccddddeeee/);
     assert.match(markdown, /candidate task-approval: target=agent:openclaw-bot ageMs=60000 priority=critical action=review_pending_approval/);
+    assert.match(markdown, /candidateFingerprint: 2222333344445555/);
+    assert.match(markdown, /dedupeKey: pending-approval:2222333344445555/);
     assert.match(markdown, /reviewerGroup: ops-review/);
     assert.match(markdown, /reason: manual_operator_review/);
     assert.match(markdown, /evidenceRequired: approval_queue_reviewed, task_timeline_reviewed, risk_and_scope_reviewed, operator_decision_recorded/);
