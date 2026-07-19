@@ -388,6 +388,7 @@ export async function processOutboxEnvelopes({
             let resultArtifacts;
             let resultMetrics;
             const traceparent = traceparentFromRequest(request, envelope);
+            const dispatchAttempt = Number(request.context?.openclawDispatch?.attempt);
 
             if (bot) {
                 // eslint-disable-next-line no-await-in-loop
@@ -445,6 +446,9 @@ export async function processOutboxEnvelopes({
             const resultAccepted = orchestrator.ingestResult(buildTaskResult({
                 taskId,
                 from: target,
+                attempt: Number.isInteger(dispatchAttempt) && dispatchAttempt > 0
+                    ? dispatchAttempt
+                    : undefined,
                 status: resultStatus,
                 output: resultOutput,
                 artifacts: resultArtifacts,

@@ -107,6 +107,7 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const target = 'agent:ops';
     const request = makeRequest('00000000-0000-4000-8000-000000000301', target, 'high', {
         planner: 'cognition-core/remediation-task-planner',
+        openclawDispatch: { attempt: 1 },
         traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
     });
 
@@ -142,6 +143,7 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const records = await store.loadRecords();
     assert.equal(records.length, 1);
     assert.equal(records[0].status, 'completed');
+    assert.equal(records[0].result.attempt, 1);
     assert.equal(records[0].result.traceparent, request.traceparent);
     assert.ok(Array.isArray(records[0].result.traceEvents));
     assert.ok(records[0].result.traceEvents.some((event) => (

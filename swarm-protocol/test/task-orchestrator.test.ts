@@ -181,6 +181,60 @@ test('transient rejected receipt schedules retry and honors retry_after hint', a
     assert.equal(sent.length, 2);
 });
 
+test('ignores a late result from an earlier dispatch attempt', async () => {
+    const clock = createClock(4_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        defaultTimeoutMs: 500
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-late-result',
+        task: 'Keep the newest retry result authoritative'
+    });
+
+    clock.advance(501);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+
+    clock.advance(10);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 2);
+
+    const staleAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-late-result',
+        attempt: 1,
+        status: 'success',
+        output: 'Late result from the first attempt',
+        completedAt: clock.now()
+    }));
+
+    assert.equal(staleAccepted, false);
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.history.at(-1).event, 'stale_result_ignored');
+
+    const currentAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-late-result',
+        attempt: 2,
+        status: 'success',
+        output: 'Result from the active attempt',
+        completedAt: clock.now() + 1
+    }));
+
+    assert.equal(currentAccepted, true);
+    assert.equal(orchestrator.getTask(task.taskId).status, 'completed');
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;

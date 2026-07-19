@@ -98,6 +98,7 @@ export function buildTaskReceipt({
 export function buildTaskResult({
     taskId,
     from,
+    attempt,
     status,
     output,
     artifacts,
@@ -110,6 +111,7 @@ export function buildTaskResult({
         kind: 'task_result',
         taskId,
         from,
+        attempt,
         status,
         output,
         artifacts,
@@ -790,6 +792,23 @@ export class TaskOrchestrator {
         const record = this.tasks.get(result.taskId);
         if (!record) return false;
         if (TERMINAL_STATUSES.has(record.status)) return false;
+
+        if (Number.isInteger(result.attempt) && result.attempt < record.attempts) {
+            record.history.push({
+                at: result.completedAt,
+                event: 'stale_result_ignored',
+                resultAttempt: result.attempt,
+                currentAttempt: record.attempts
+            });
+            record.updatedAt = result.completedAt;
+            this._persistRecord(record);
+            this._emitAudit('task_stale_result_ignored', {
+                taskId: record.taskId,
+                resultAttempt: result.attempt,
+                currentAttempt: record.attempts
+            }, result.completedAt);
+            return false;
+        }
 
         record.result = result;
         record.updatedAt = result.completedAt;
