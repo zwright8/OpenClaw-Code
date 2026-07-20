@@ -167,6 +167,14 @@ test('recoverStaleDispatchRecord records decision and safely requeues only no-si
         }),
         /requires sideEffectStatus=none/
     );
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'requeue_no_side_effect', {
+            sideEffectStatus: 'none',
+            evidenceReviewed: ['replay_timeline_reviewed']
+        }),
+        /requires evidence: external_runtime_result_checked, side_effect_ledger_checked/
+    );
 });
 
 test('recoverStaleDispatchRecord closes, fails, or pauses stale dispatches with audit context', () => {

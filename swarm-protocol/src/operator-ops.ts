@@ -331,6 +331,17 @@ export function recoverStaleDispatchRecord(
     const evidence = Array.isArray(evidenceReviewed)
         ? evidenceReviewed.filter((item) => typeof item === 'string' && item.trim()).map((item) => item.trim())
         : [];
+    if (normalizedDecision === 'requeue_no_side_effect') {
+        const requiredEvidence = [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ];
+        const missingEvidence = requiredEvidence.filter((item) => !evidence.includes(item));
+        if (missingEvidence.length > 0) {
+            throw new Error(`requeue_no_side_effect requires evidence: ${missingEvidence.join(', ')}`);
+        }
+    }
     const correlation = typeof externalRuntimeCorrelation === 'string' && externalRuntimeCorrelation.trim()
         ? externalRuntimeCorrelation.trim()
         : record.request?.traceparent || record.request?.context?.traceparent || record.taskId;
