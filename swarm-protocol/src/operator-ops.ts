@@ -331,16 +331,27 @@ export function recoverStaleDispatchRecord(
     const evidence = Array.isArray(evidenceReviewed)
         ? evidenceReviewed.filter((item) => typeof item === 'string' && item.trim()).map((item) => item.trim())
         : [];
-    if (normalizedDecision === 'requeue_no_side_effect') {
-        const requiredEvidence = [
+    const requiredEvidenceByDecision = {
+        close_completed: [
             'replay_timeline_reviewed',
             'external_runtime_result_checked',
             'side_effect_ledger_checked'
-        ];
+        ],
+        requeue_no_side_effect: [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ]
+    };
+    const requiredEvidence = requiredEvidenceByDecision[normalizedDecision] || [];
+    if (requiredEvidence.length > 0) {
         const missingEvidence = requiredEvidence.filter((item) => !evidence.includes(item));
         if (missingEvidence.length > 0) {
-            throw new Error(`requeue_no_side_effect requires evidence: ${missingEvidence.join(', ')}`);
+            throw new Error(`${normalizedDecision} requires evidence: ${missingEvidence.join(', ')}`);
         }
+    }
+    if (normalizedDecision === 'close_completed' && normalizedSideEffectStatus !== 'completed') {
+        throw new Error('close_completed requires sideEffectStatus=completed');
     }
     const correlation = typeof externalRuntimeCorrelation === 'string' && externalRuntimeCorrelation.trim()
         ? externalRuntimeCorrelation.trim()

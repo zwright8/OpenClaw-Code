@@ -173,17 +173,39 @@ test('recoverStaleDispatchRecord records decision and safely requeues only no-si
             sideEffectStatus: 'none',
             evidenceReviewed: ['replay_timeline_reviewed']
         }),
-        /requires evidence: external_runtime_result_checked, side_effect_ledger_checked/
+        /requeue_no_side_effect requires evidence: external_runtime_result_checked, side_effect_ledger_checked/
     );
 });
 
 test('recoverStaleDispatchRecord closes, fails, or pauses stale dispatches with audit context', () => {
     const completed = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'close_completed', {
         sideEffectStatus: 'completed',
+        evidenceReviewed: [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ],
         now: () => 4_000
     });
     assert.equal(completed.updated.status, 'completed');
     assert.equal(completed.updated.closedAt, 4_000);
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'close_completed'),
+        /close_completed requires evidence: replay_timeline_reviewed, external_runtime_result_checked, side_effect_ledger_checked/
+    );
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'close_completed', {
+            sideEffectStatus: 'unknown',
+            evidenceReviewed: [
+                'replay_timeline_reviewed',
+                'external_runtime_result_checked',
+                'side_effect_ledger_checked'
+            ]
+        }),
+        /close_completed requires sideEffectStatus=completed/
+    );
 
     const failed = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'fail_side_effect_unknown', {
         reason: 'side_effect_ambiguous',
