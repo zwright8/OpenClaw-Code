@@ -195,6 +195,7 @@ export class TaskOrchestrator {
         this.logger = logger;
         this.tasks = new Map();
         this._persistenceQueue = Promise.resolve();
+        this._persistenceFailure = null;
     }
 
     async hydrate({ replace = true } = {}) {
@@ -235,6 +236,11 @@ export class TaskOrchestrator {
                 await operation();
             })
             .catch((error) => {
+                if (!this._persistenceFailure) {
+                    this._persistenceFailure = error instanceof Error
+                        ? error
+                        : new Error(String(error));
+                }
                 this.logger.warn?.(
                     `[Swarm] Persistence operation failed (${label}): ${error.message}`
                 );
@@ -277,6 +283,15 @@ export class TaskOrchestrator {
 
     async flush() {
         await this._persistenceQueue;
+        if (this._persistenceFailure) {
+            const error = this._persistenceFailure;
+            this._persistenceFailure = null;
+            throw new TaskOrchestratorError(
+                'PERSISTENCE_FAILED',
+                `Task persistence failed: ${error.message}`,
+                { cause: error }
+            );
+        }
     }
 
     _canRetry(record) {

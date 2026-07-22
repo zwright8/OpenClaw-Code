@@ -494,6 +494,40 @@ test('failed initial send deletes persisted record after flush', async (t) => {
     assert.equal(records.length, 0);
 });
 
+test('flush surfaces persistence failures instead of claiming durable state', async () => {
+    const warnings = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        store: {
+            async saveRecord() {
+                throw new Error('journal unavailable');
+            }
+        },
+        logger: {
+            warn(message) {
+                warnings.push(message);
+            }
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-persist-failure',
+        task: 'Expose a journal failure'
+    });
+
+    assert.equal(task.status, 'dispatched');
+    await assert.rejects(
+        () => orchestrator.flush(),
+        (error) => {
+            assert.equal(error.code, 'PERSISTENCE_FAILED');
+            assert.match(error.message, /journal unavailable/);
+            return true;
+        }
+    );
+    assert.equal(warnings.length, 2);
+});
+
 test('approval policy can gate dispatch until review is approved', async () => {
     const sent = [];
     const clock = createClock(60_000);
