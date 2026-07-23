@@ -240,6 +240,7 @@ export async function processOutboxEnvelopes({
     storePath,
     outboxDir,
     archiveDir = path.join(outboxDir, 'processed'),
+    invalidDir = path.join(outboxDir, 'invalid'),
     localAgentId = 'agent:main',
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -293,6 +294,7 @@ export async function processOutboxEnvelopes({
         loaded: hydration.loaded,
         filesFound: files.length,
         filesArchived: 0,
+        invalidFilesQuarantined: 0,
         envelopesSeen: 0,
         envelopesInvalid: 0,
         receiptsAccepted: 0,
@@ -322,6 +324,19 @@ export async function processOutboxEnvelopes({
         const parsed = parseEnvelopeLines(raw, filePath);
         stats.envelopesSeen += parsed.envelopes.length;
         stats.envelopesInvalid += parsed.invalid;
+
+        if (parsed.invalid > 0) {
+            if (!dryRun) {
+                const quarantinedPath = path.join(
+                    invalidDir,
+                    `${path.basename(filePath, '.jsonl')}.${safeNow(now)}.invalid.jsonl`
+                );
+                await fs.mkdir(path.dirname(quarantinedPath), { recursive: true });
+                await fs.rename(filePath, quarantinedPath);
+                stats.invalidFilesQuarantined++;
+            }
+            continue;
+        }
 
         for (const envelope of parsed.envelopes) {
             const request = envelope.message;
