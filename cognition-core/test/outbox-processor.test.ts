@@ -137,6 +137,39 @@ test('processOutboxEnvelopes skips unknown tasks but still archives file', async
     assert.equal(stats.resultsAccepted, 0);
 });
 
+test('processOutboxEnvelopes quarantines malformed files instead of archiving them', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const invalidDir = path.join(outboxDir, 'invalid');
+    const target = 'agent:ops';
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(outboxFile, '{not-json}\n', 'utf8');
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        invalidDir,
+        botRuntime: false,
+        nowFactory: () => 90_000
+    });
+
+    assert.equal(stats.envelopesInvalid, 1);
+    assert.equal(stats.invalidFilesQuarantined, 1);
+    assert.equal(stats.filesArchived, 0);
+    assert.equal(fs.existsSync(outboxFile), false);
+    const quarantined = fs.readdirSync(invalidDir);
+    assert.deepEqual(quarantined, [`${targetToFile(target).replace('.jsonl', '')}.90000.invalid.jsonl`]);
+    assert.equal(fs.readFileSync(path.join(invalidDir, quarantined[0]), 'utf8'), '{not-json}\n');
+    assert.equal(fs.existsSync(archiveDir), false);
+});
+
 test('processOutboxEnvelopes dry-run does not mutate store or outbox', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
