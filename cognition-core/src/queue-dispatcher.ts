@@ -183,6 +183,9 @@ export async function dispatchCreatedQueueTasks({
     });
 
     const hydration = await orchestrator.hydrate();
+    const maintenance = await orchestrator.runMaintenance(safeNow(now), {
+        retryScheduledOnly: true
+    });
     const allTasks = orchestrator.listTasks();
     const candidates = selectCreatedDispatchCandidates(allTasks, {
         target,
@@ -195,6 +198,7 @@ export async function dispatchCreatedQueueTasks({
             loaded: hydration.loaded,
             selected: candidates.selected.length,
             dispatched: 0,
+            maintenance,
             awaitingApproval: 0,
             failed: 0,
             skippedInvalid: candidates.skipped.invalid,
