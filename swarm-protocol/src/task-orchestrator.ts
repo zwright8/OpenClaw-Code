@@ -803,7 +803,7 @@ export class TaskOrchestrator {
         return true;
     }
 
-    async runMaintenance(nowMs = safeNow(this.now)) {
+    async runMaintenance(nowMs = safeNow(this.now), { retryScheduledOnly = false } = {}) {
         const summary = {
             checked: 0,
             scheduledRetries: 0,
@@ -814,6 +814,7 @@ export class TaskOrchestrator {
 
         for (const record of this.tasks.values()) {
             if (!OPEN_STATUSES.has(record.status)) continue;
+            if (retryScheduledOnly && record.status !== 'retry_scheduled') continue;
             summary.checked++;
 
             if (record.status === 'retry_scheduled') {

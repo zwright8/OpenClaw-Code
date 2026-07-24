@@ -165,3 +165,44 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
     assert.match(envelope.message.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
     assert.equal(envelope.message.context.traceparent, envelope.message.traceparent);
 });
+
+test('dispatchCreatedQueueTasks retries due scheduled tasks before selecting new work', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 300_001 });
+    const request = makeRequest('00000000-0000-4000-8000-000000000301', {
+        target: 'agent:retry'
+    });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 300_002,
+        maxRetries: 2
+    });
+    record.status = 'retry_scheduled';
+    record.attempts = 1;
+    record.nextRetryAt = 300_000;
+    record.updatedAt = 300_002;
+    await store.saveRecord(record);
+
+    const result = await dispatchCreatedQueueTasks({
+        storePath: queuePath,
+        outboxDir,
+        nowFactory: () => 300_003
+    });
+
+    assert.equal(result.stats.selected, 0);
+    assert.equal(result.stats.dispatched, 0);
+    assert.equal(result.stats.maintenance.retried, 1);
+    assert.equal(result.stats.maintenance.scheduledRetries, 0);
+
+    const records = await store.loadRecords();
+    assert.equal(records[0].status, 'dispatched');
+    assert.equal(records[0].attempts, 2);
+
+    const outboxFile = path.join(outboxDir, targetToFile('agent:retry'));
+    assert.equal(fs.existsSync(outboxFile), true);
+    assert.equal(fs.readFileSync(outboxFile, 'utf8').trim().split('\n').length, 1);
+});
