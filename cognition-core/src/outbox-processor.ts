@@ -216,6 +216,41 @@ function archiveFilePath(filePath, archiveDir, nowFactory) {
     return path.join(archiveDir, `${base}.${stamp}.processed.jsonl`);
 }
 
+function executionLedgerPath(executionLedgerDir, taskId, attempt) {
+    const key = createHash('sha256')
+        .update(`task:${taskId}:attempt:${attempt}`)
+        .digest('hex');
+    return path.join(executionLedgerDir, `${key}.json`);
+}
+
+async function readExecutionMarker(executionLedgerDir, taskId, attempt) {
+    try {
+        const raw = await fs.readFile(executionLedgerPath(executionLedgerDir, taskId, attempt), 'utf8');
+        const marker = JSON.parse(raw);
+        if (
+            !marker
+            || marker.schemaVersion !== 'openclaw.bot_execution_marker.v1'
+            || marker.taskId !== taskId
+            || marker.attempt !== attempt
+            || typeof marker.resultStatus !== 'string'
+        ) {
+            return null;
+        }
+        return marker;
+    } catch (error) {
+        if (error?.code === 'ENOENT') return null;
+        return null;
+    }
+}
+
+async function writeExecutionMarker(executionLedgerDir, marker) {
+    const markerPath = executionLedgerPath(executionLedgerDir, marker.taskId, marker.attempt);
+    const tempPath = `${markerPath}.${process.pid}.tmp`;
+    await fs.mkdir(executionLedgerDir, { recursive: true });
+    await fs.writeFile(tempPath, `${JSON.stringify(marker)}\n`, 'utf8');
+    await fs.rename(tempPath, markerPath);
+}
+
 function sanitizeMetrics(rawMetrics) {
     if (!rawMetrics || typeof rawMetrics !== 'object') return undefined;
     const metrics = {};
@@ -272,6 +307,7 @@ export async function processOutboxEnvelopes({
     storePath,
     outboxDir,
     archiveDir = path.join(outboxDir, 'processed'),
+    executionLedgerDir = path.join(outboxDir, 'executions'),
     localAgentId = 'agent:main',
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -333,6 +369,7 @@ export async function processOutboxEnvelopes({
         skippedTerminal: 0,
         dryRun,
         botRuntime,
+        botTasksReplayed: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
         botSkillTasks: 0,
@@ -389,11 +426,51 @@ export async function processOutboxEnvelopes({
             let resultMetrics;
             const traceparent = traceparentFromRequest(request, envelope);
             const dispatchAttempt = Number(request.context?.openclawDispatch?.attempt);
+            const attempt = Number.isInteger(dispatchAttempt) && dispatchAttempt > 0
+                ? dispatchAttempt
+                : 0;
+            let markerCompletedAt;
 
             if (bot) {
+                // A marker is written before the task result is persisted so a crash
+                // after bot side effects can replay the outcome without re-running them.
                 // eslint-disable-next-line no-await-in-loop
-                const execution = await bot.executeTask(request);
-                stats.botTasksExecuted++;
+                const marker = await readExecutionMarker(executionLedgerDir, taskId, attempt);
+                let execution;
+                if (marker) {
+                    markerCompletedAt = Number.isFinite(Number(marker.completedAt))
+                        ? Number(marker.completedAt)
+                        : undefined;
+                    execution = {
+                        mode: marker.mode,
+                        status: marker.status,
+                        output: marker.output,
+                        artifacts: marker.artifacts,
+                        metrics: marker.metrics,
+                        followupTasks: marker.followupTasks
+                    };
+                    stats.botTasksReplayed++;
+                } else {
+                    // eslint-disable-next-line no-await-in-loop
+                    execution = await bot.executeTask(request);
+                    // The marker must include all generated work so replay cannot
+                    // create a different set of follow-up task ids.
+                    // eslint-disable-next-line no-await-in-loop
+                    await writeExecutionMarker(executionLedgerDir, {
+                        schemaVersion: 'openclaw.bot_execution_marker.v1',
+                        taskId,
+                        attempt,
+                        mode: execution.mode,
+                        status: execution.status,
+                        output: execution.output,
+                        artifacts: execution.artifacts,
+                        metrics: execution.metrics,
+                        followupTasks: execution.followupTasks,
+                        resultStatus: normalizeBotResultStatus(execution.status),
+                        completedAt: safeNow(now) + Math.max(0, Number(resultDelayMs) || 0)
+                    });
+                    stats.botTasksExecuted++;
+                }
                 stats[botModeToStatField(execution.mode)]++;
                 if (
                     execution.mode === 'skill'
@@ -442,13 +519,11 @@ export async function processOutboxEnvelopes({
                     : `Failed by outbox worker: ${request.task}`;
             }
 
-            const completedAt = safeNow(now) + Math.max(0, Number(resultDelayMs) || 0);
+            const completedAt = markerCompletedAt || (safeNow(now) + Math.max(0, Number(resultDelayMs) || 0));
             const resultAccepted = orchestrator.ingestResult(buildTaskResult({
                 taskId,
                 from: target,
-                attempt: Number.isInteger(dispatchAttempt) && dispatchAttempt > 0
-                    ? dispatchAttempt
-                    : undefined,
+                attempt: attempt > 0 ? attempt : undefined,
                 status: resultStatus,
                 output: resultOutput,
                 artifacts: resultArtifacts,
