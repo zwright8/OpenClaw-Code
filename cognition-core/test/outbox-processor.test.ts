@@ -402,6 +402,67 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
     assert.ok(followups.every((entry) => entry.status === 'created'));
 });
 
+test('processOutboxEnvelopes cleans retained execution markers after durable follow-ups age out', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const executionLedgerDir = path.join(outboxDir, 'executions');
+    const target = 'agent:skills-runtime';
+    const request = makeRequest(
+        '00000000-0000-4000-8000-000000000603',
+        target,
+        'high',
+        {
+            planner: 'cognition-core/skill-growth-task-planner',
+            skillId: 1,
+            skillInput: {
+                signalQuality: 85,
+                evidenceCoverage: 83,
+                confidenceHealth: 81,
+                operationalReadiness: 80,
+                harmPotential: 25,
+                resourcePressure: 28,
+                urgency: 61,
+                impactPotential: 82,
+                humanApprovalLatency: 22
+            }
+        }
+    );
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/skill-growth-tasks.json',
+        nowFactory: () => 91_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        executionLedgerDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        executionMarkerRetentionMs: 0,
+        resultDelayMs: 0,
+        nowFactory: () => 92_000
+    });
+
+    assert.equal(stats.executionMarkersRemoved, 1);
+    assert.equal(stats.executionMarkersRetained, 0);
+    assert.deepEqual(fs.readdirSync(executionLedgerDir), []);
+});
+
 test('processOutboxEnvelopes replays a durable bot execution marker after a crash window', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -453,6 +514,8 @@ test('processOutboxEnvelopes replays a durable bot execution marker after a cras
     });
     assert.equal(firstStats.botTasksExecuted, 1);
     assert.equal(firstStats.botTasksReplayed, 0);
+    assert.equal(firstStats.executionMarkersRemoved, 0);
+    assert.equal(firstStats.executionMarkersRetained, 1);
 
     const dispatchedRecord = (await store.loadRecords()).find((entry) => entry.taskId === request.id);
     dispatchedRecord.status = 'dispatched';

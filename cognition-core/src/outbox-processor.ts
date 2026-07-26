@@ -251,6 +251,71 @@ async function writeExecutionMarker(executionLedgerDir, marker) {
     await fs.rename(tempPath, markerPath);
 }
 
+async function cleanupExecutionMarkers({
+    executionLedgerDir,
+    records,
+    nowFactory,
+    retentionMs
+}) {
+    if (!executionLedgerDir || !Number.isFinite(retentionMs) || retentionMs < 0) {
+        return { removed: 0, retained: 0 };
+    }
+
+    let entries;
+    try {
+        entries = await fs.readdir(executionLedgerDir, { withFileTypes: true });
+    } catch (error) {
+        if (error?.code === 'ENOENT') return { removed: 0, retained: 0 };
+        throw error;
+    }
+
+    const recordsById = new Map(
+        (Array.isArray(records) ? records : [])
+            .filter((record) => record && typeof record.taskId === 'string')
+            .map((record) => [record.taskId, record])
+    );
+    const now = safeNow(nowFactory);
+    let removed = 0;
+    let retained = 0;
+
+    for (const entry of entries) {
+        if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+        const markerPath = path.join(executionLedgerDir, entry.name);
+        let marker;
+        try {
+            marker = JSON.parse(await fs.readFile(markerPath, 'utf8'));
+        } catch {
+            retained++;
+            continue;
+        }
+
+        const record = recordsById.get(marker?.taskId);
+        const completedAt = Number(marker?.completedAt);
+        const followupTasks = Array.isArray(marker?.followupTasks) ? marker.followupTasks : [];
+        const followupsPersisted = followupTasks.every((request) => (
+            request
+            && typeof request.id === 'string'
+            && recordsById.has(request.id)
+        ));
+        const eligible = marker?.schemaVersion === 'openclaw.bot_execution_marker.v1'
+            && record
+            && TERMINAL_STATUSES.has(record.status)
+            && followupsPersisted
+            && Number.isFinite(completedAt)
+            && now - completedAt >= retentionMs;
+
+        if (!eligible) {
+            retained++;
+            continue;
+        }
+
+        await fs.unlink(markerPath);
+        removed++;
+    }
+
+    return { removed, retained };
+}
+
 function sanitizeMetrics(rawMetrics) {
     if (!rawMetrics || typeof rawMetrics !== 'object') return undefined;
     const metrics = {};
@@ -308,6 +373,7 @@ export async function processOutboxEnvelopes({
     outboxDir,
     archiveDir = path.join(outboxDir, 'processed'),
     executionLedgerDir = path.join(outboxDir, 'executions'),
+    executionMarkerRetentionMs = 24 * 60 * 60 * 1_000,
     localAgentId = 'agent:main',
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -382,7 +448,9 @@ export async function processOutboxEnvelopes({
         followupTasksGenerated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
-        followupTasksSkipped: 0
+        followupTasksSkipped: 0,
+        executionMarkersRemoved: 0,
+        executionMarkersRetained: 0
     };
 
     for (const filePath of files) {
@@ -571,6 +639,15 @@ export async function processOutboxEnvelopes({
             stats.followupTasksSaved = enqueueResult.stats.saved;
             stats.followupTasksSkipped = enqueueResult.skipped.length;
         }
+
+        const markerCleanup = await cleanupExecutionMarkers({
+            executionLedgerDir,
+            records: await store.loadRecords(),
+            nowFactory: now,
+            retentionMs: Number(executionMarkerRetentionMs)
+        });
+        stats.executionMarkersRemoved = markerCleanup.removed;
+        stats.executionMarkersRetained = markerCleanup.retained;
     }
 
     return stats;
