@@ -542,3 +542,83 @@ test('processOutboxEnvelopes replays a durable bot execution marker after a cras
     const records = await store.loadRecords();
     assert.equal(records.find((entry) => entry.taskId === request.id)?.status, 'completed');
 });
+
+test('processOutboxEnvelopes fails closed when a durable marker targets mutated task content', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:skills-runtime';
+    const request = makeRequest(
+        '00000000-0000-4000-8000-000000000604',
+        target,
+        'high',
+        {
+            planner: 'cognition-core/skill-growth-task-planner',
+            skillId: 1,
+            skillInput: {
+                signalQuality: 85,
+                evidenceCoverage: 83,
+                confidenceHealth: 81,
+                operationalReadiness: 80,
+                harmPotential: 25,
+                resourcePressure: 28,
+                urgency: 61,
+                impactPotential: 82,
+                humanApprovalLatency: 22
+            }
+        }
+    );
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 93_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/skill-growth-tasks.json',
+        nowFactory: () => 93_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+    fs.writeFileSync(outboxFile, `${JSON.stringify(createEnvelope({ target, request }))}\n`, 'utf8');
+    const firstStats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        resultDelayMs: 0,
+        nowFactory: () => 94_000
+    });
+    assert.equal(firstStats.botTasksExecuted, 1);
+
+    const dispatchedRecord = (await store.loadRecords()).find((entry) => entry.taskId === request.id);
+    dispatchedRecord.status = 'dispatched';
+    dispatchedRecord.closedAt = null;
+    dispatchedRecord.result = null;
+    await store.saveRecord(dispatchedRecord);
+
+    const archivedEnvelope = JSON.parse(fs.readFileSync(
+        path.join(archiveDir, fs.readdirSync(archiveDir)[0]),
+        'utf8'
+    ));
+    archivedEnvelope.message.task = 'Mutated task content';
+    fs.writeFileSync(outboxFile, `${JSON.stringify(archivedEnvelope)}\n`, 'utf8');
+
+    const replayStats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        resultDelayMs: 0,
+        nowFactory: () => 95_000
+    });
+
+    assert.equal(replayStats.botTasksExecuted, 0);
+    assert.equal(replayStats.botTasksReplayed, 0);
+    assert.equal(replayStats.botExecutionMarkerMismatches, 1);
+    assert.equal((await store.loadRecords()).find((entry) => entry.taskId === request.id)?.status, 'failed');
+});

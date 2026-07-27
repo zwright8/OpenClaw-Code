@@ -223,7 +223,13 @@ function executionLedgerPath(executionLedgerDir, taskId, attempt) {
     return path.join(executionLedgerDir, `${key}.json`);
 }
 
-async function readExecutionMarker(executionLedgerDir, taskId, attempt) {
+function executionRequestFingerprint(request) {
+    return createHash('sha256')
+        .update(JSON.stringify(request))
+        .digest('hex');
+}
+
+async function readExecutionMarker(executionLedgerDir, taskId, attempt, request) {
     try {
         const raw = await fs.readFile(executionLedgerPath(executionLedgerDir, taskId, attempt), 'utf8');
         const marker = JSON.parse(raw);
@@ -235,6 +241,12 @@ async function readExecutionMarker(executionLedgerDir, taskId, attempt) {
             || typeof marker.resultStatus !== 'string'
         ) {
             return null;
+        }
+        if (
+            typeof marker.requestFingerprint === 'string'
+            && marker.requestFingerprint !== executionRequestFingerprint(request)
+        ) {
+            return { mismatch: true, marker };
         }
         return marker;
     } catch (error) {
@@ -445,6 +457,7 @@ export async function processOutboxEnvelopes({
         botCapabilityTasks: 0,
         botCapabilityActionTasks: 0,
         botGenericTasks: 0,
+        botExecutionMarkerMismatches: 0,
         followupTasksGenerated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
@@ -503,9 +516,21 @@ export async function processOutboxEnvelopes({
                 // A marker is written before the task result is persisted so a crash
                 // after bot side effects can replay the outcome without re-running them.
                 // eslint-disable-next-line no-await-in-loop
-                const marker = await readExecutionMarker(executionLedgerDir, taskId, attempt);
+                const marker = await readExecutionMarker(executionLedgerDir, taskId, attempt, request);
                 let execution;
-                if (marker) {
+                if (marker?.mismatch) {
+                    stats.botExecutionMarkerMismatches++;
+                    execution = {
+                        mode: 'generic',
+                        status: 'failure',
+                        output: 'Refused to replay execution marker for mutated task request',
+                        metrics: { executionMarkerMismatch: 1 },
+                        followupTasks: []
+                    };
+                    resultStatus = 'failure';
+                    resultOutput = 'Refused to replay execution marker for mutated task request';
+                    resultMetrics = { executionMarkerMismatch: 1 };
+                } else if (marker) {
                     markerCompletedAt = Number.isFinite(Number(marker.completedAt))
                         ? Number(marker.completedAt)
                         : undefined;
@@ -528,6 +553,7 @@ export async function processOutboxEnvelopes({
                         schemaVersion: 'openclaw.bot_execution_marker.v1',
                         taskId,
                         attempt,
+                        requestFingerprint: executionRequestFingerprint(request),
                         mode: execution.mode,
                         status: execution.status,
                         output: execution.output,
