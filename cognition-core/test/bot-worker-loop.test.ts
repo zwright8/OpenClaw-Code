@@ -528,6 +528,23 @@ test('runBotWorkerLoop stops on idle convergence for empty queue', async (t) => 
     assert.equal(report.lifecycleCheckpoint.nextAction, 'no_resume_needed');
 });
 
+test('buildBotWorkerLoopRunEvaluation fails and routes mutated marker replays', () => {
+    const evaluation = buildBotWorkerLoopRunEvaluation({
+        stopReason: 'queue_drained',
+        cycles: [],
+        totals: { botExecutionMarkerMismatches: 1 },
+        finalQueue: { open: 0 }
+    });
+
+    assert.equal(evaluation.status, 'fail');
+    assert.equal(evaluation.score, 60);
+    assert.equal(evaluation.signals.botExecutionMarkerMismatches, 1);
+    assert.equal(evaluation.signals.nextAction, 'review_execution_marker_integrity');
+    assert.deepEqual(evaluation.penalties, [
+        { reason: 'execution_marker_mismatches', points: 40, count: 1 }
+    ]);
+});
+
 test('runBotWorkerLoop executes maintenance retries before processing outbox results', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

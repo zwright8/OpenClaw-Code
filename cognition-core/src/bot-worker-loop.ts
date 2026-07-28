@@ -710,6 +710,7 @@ function buildCycleTraceEvents({
     const resultsAccepted = processResult?.resultsAccepted || 0;
     const botTasksExecuted = processResult?.botTasksExecuted || 0;
     const botTasksFailed = processResult?.botTasksFailed || 0;
+    const botExecutionMarkerMismatches = processResult?.botExecutionMarkerMismatches || 0;
     const hardeningBlocked = processResult?.botSkillHardeningBlocked || 0;
     const followupTasksSaved = processResult?.followupTasksSaved || 0;
     const filesFound = processResult?.filesFound || 0;
@@ -759,6 +760,7 @@ function buildCycleTraceEvents({
         resultsAccepted,
         botTasksExecuted,
         botTasksFailed,
+        botExecutionMarkerMismatches,
         botSkillHardeningBlocked: hardeningBlocked,
         followupTasksSaved
     }, traceContext);
@@ -777,6 +779,7 @@ function buildCycleTraceEvents({
 
     if (
         botTasksFailed > 0
+        || botExecutionMarkerMismatches > 0
         || hardeningBlocked > 0
         || (queueAfter?.dispatchedStale || 0) > 0
         || (queueAfter?.awaitingApproval || 0) > 0
@@ -786,6 +789,7 @@ function buildCycleTraceEvents({
             cycle,
             phase: 'bot_runtime_attention',
             botTasksFailed,
+            botExecutionMarkerMismatches,
             botSkillHardeningBlocked: hardeningBlocked,
             staleDispatches: queueAfter?.dispatchedStale || 0,
             oldestDispatchedAgeMs: queueAfter?.oldestDispatchedAgeMs || 0,
@@ -1015,14 +1019,17 @@ function buildLifecycleCheckpoint({
     if ((queue.retryScheduled || 0) > 0) attentionReasons.push('pending_retry_scheduled');
     if ((queue.dispatchedStale || 0) > 0) attentionReasons.push('stale_dispatched_tasks');
     if ((totalValues.botTasksFailed || 0) > 0) attentionReasons.push('bot_task_failures');
+    if ((totalValues.botExecutionMarkerMismatches || 0) > 0) attentionReasons.push('execution_marker_mismatches');
     if ((totalValues.botSkillHardeningBlocked || 0) > 0) attentionReasons.push('skill_hardening_blocks');
     if (normalizedStopReason === 'max_cycles_reached') attentionReasons.push('cycle_budget_exhausted');
 
     let nextAction = 'rerun_when_new_work_arrives';
-    if (normalizedStopReason === 'queue_drained' && (queue.open || 0) === 0) {
-        nextAction = 'no_resume_needed';
-    } else if ((queue.dispatchedStale || 0) > 0) {
+    if ((queue.dispatchedStale || 0) > 0) {
         nextAction = 'recover_stale_dispatches';
+    } else if ((totalValues.botExecutionMarkerMismatches || 0) > 0) {
+        nextAction = 'review_execution_marker_integrity';
+    } else if (normalizedStopReason === 'queue_drained' && (queue.open || 0) === 0) {
+        nextAction = 'no_resume_needed';
     } else if ((queue.awaitingApproval || 0) > 0 && (queue.open || 0) === (queue.awaitingApproval || 0)) {
         nextAction = 'review_pending_approvals';
     } else if ((queue.created || 0) > 0) {
@@ -1061,6 +1068,7 @@ function buildLifecycleCheckpoint({
         },
         runtimeAttention: {
             botTasksFailed: totalValues.botTasksFailed || 0,
+            botExecutionMarkerMismatches: totalValues.botExecutionMarkerMismatches || 0,
             botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
             dispatchFailures: cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0)
         }
@@ -1137,6 +1145,7 @@ export function buildBotWorkerLoopRunEvaluation({
         queueAwaitingApproval: queue.awaitingApproval || 0,
         oldestApprovalAgeMs: queue.oldestApprovalAgeMs || 0,
         botTasksFailed: totalValues.botTasksFailed || 0,
+        botExecutionMarkerMismatches: totalValues.botExecutionMarkerMismatches || 0,
         botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
         dispatchFailures,
         resumeRecommended: checkpoint.resumeRecommended === true,
@@ -1157,6 +1166,7 @@ export function buildBotWorkerLoopRunEvaluation({
 
     addPenalty('stale_dispatched_tasks', Math.min(40, signals.queueDispatchedStale * 25), signals.queueDispatchedStale);
     addPenalty('bot_task_failures', Math.min(30, signals.botTasksFailed * 15), signals.botTasksFailed);
+    addPenalty('execution_marker_mismatches', Math.min(40, signals.botExecutionMarkerMismatches * 40), signals.botExecutionMarkerMismatches);
     addPenalty('skill_hardening_blocks', Math.min(25, signals.botSkillHardeningBlocked * 12), signals.botSkillHardeningBlocked);
     addPenalty('dispatch_failures', Math.min(20, signals.dispatchFailures * 10), signals.dispatchFailures);
     addPenalty('pending_created_tasks', Math.min(15, signals.queueCreated * 5), signals.queueCreated);
@@ -1165,7 +1175,7 @@ export function buildBotWorkerLoopRunEvaluation({
 
     const score = clampScore(100 - penalties.reduce((sum, penalty) => sum + penalty.points, 0));
     let status = 'pass';
-    if (score < 70 || signals.queueDispatchedStale > 0 || signals.botTasksFailed > 0) {
+    if (score < 70 || signals.queueDispatchedStale > 0 || signals.botTasksFailed > 0 || signals.botExecutionMarkerMismatches > 0) {
         status = 'fail';
     } else if (
         score < 90
@@ -1202,6 +1212,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.dispatched: ${report.totals?.dispatched || 0}`,
         `- totals.resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
         `- totals.botTasksFailed: ${report.totals?.botTasksFailed || 0}`,
+        `- totals.botExecutionMarkerMismatches: ${report.totals?.botExecutionMarkerMismatches || 0}`,
         `- totals.botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
         `- totals.followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
@@ -1473,6 +1484,7 @@ export async function runBotWorkerLoop({
         resultsAccepted: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
+        botExecutionMarkerMismatches: 0,
         botSkillHardeningBlocked: 0,
         followupTasksGenerated: 0,
         followupTasksSaved: 0,
@@ -1594,6 +1606,7 @@ export async function runBotWorkerLoop({
             resultsAccepted: processResult.resultsAccepted,
             botTasksExecuted: processResult.botTasksExecuted,
             botTasksFailed: processResult.botTasksFailed,
+            botExecutionMarkerMismatches: processResult.botExecutionMarkerMismatches,
             botSkillHardeningBlocked: processResult.botSkillHardeningBlocked,
             followupTasksGenerated: processResult.followupTasksGenerated,
             followupTasksSaved: processResult.followupTasksSaved,
@@ -1628,6 +1641,7 @@ export async function runBotWorkerLoop({
         totals.resultsAccepted += processResult.resultsAccepted;
         totals.botTasksExecuted += processResult.botTasksExecuted;
         totals.botTasksFailed += processResult.botTasksFailed;
+        totals.botExecutionMarkerMismatches += processResult.botExecutionMarkerMismatches;
         totals.botSkillHardeningBlocked += processResult.botSkillHardeningBlocked;
         totals.followupTasksGenerated += processResult.followupTasksGenerated;
         totals.followupTasksSaved += processResult.followupTasksSaved;
