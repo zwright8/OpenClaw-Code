@@ -718,6 +718,7 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: startedAt,
+        finishedAt,
         cycle,
         phase: 'queue_before',
         queueOpen: queueBefore?.open || 0,
@@ -731,6 +732,7 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: startedAt,
+        finishedAt,
         cycle,
         phase: 'maintenance',
         checked: maintenanceResult?.checked || 0,
@@ -742,6 +744,7 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: startedAt,
+        finishedAt,
         cycle,
         phase: 'dispatch',
         selected,
@@ -753,6 +756,7 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: finishedAt,
+        finishedAt,
         cycle,
         phase: 'outbox_process',
         filesFound,
@@ -768,6 +772,7 @@ function buildCycleTraceEvents({
     if (failedDispatch > 0) {
         pushTraceEvent(events, {
             at: finishedAt,
+            finishedAt,
             cycle,
             phase: 'dispatch_failure',
             failedDispatch,
@@ -786,6 +791,7 @@ function buildCycleTraceEvents({
     ) {
         pushTraceEvent(events, {
             at: finishedAt,
+            finishedAt,
             cycle,
             phase: 'bot_runtime_attention',
             botTasksFailed,
@@ -807,6 +813,7 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: finishedAt,
+        finishedAt,
         cycle,
         phase: 'queue_after',
         queueOpen: queueAfter?.open || 0,
@@ -854,6 +861,7 @@ function buildOtelAttributes(source) {
 
 const OTEL_EVENT_PAYLOAD_EXCLUDE_KEYS = new Set([
     'at',
+    'finishedAt',
     'schemaVersion',
     'semconv',
     'traceId',

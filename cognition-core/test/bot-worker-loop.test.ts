@@ -120,6 +120,7 @@ test('runBotWorkerLoop drains queue across dispatch/process cycles with capabili
     assert.equal(dispatchSpan.kind, 1);
     assert.match(dispatchSpan.startTimeUnixNano, /^[0-9]+000000$/);
     assert.equal(dispatchSpan.attributes['gen_ai.operation.name'], 'execute_tool');
+    assert.ok(BigInt(dispatchSpan.endTimeUnixNano) > BigInt(dispatchSpan.startTimeUnixNano));
     assert.equal(dispatchSpan.attributes['openclaw.workflow.phase'], 'dispatch');
     assert.equal(dispatchSpan.attributes['openclaw.event.dispatched'], dispatchTrace.dispatched);
     assert.equal(dispatchSpan.attributes['openclaw.event.selected'], dispatchTrace.selected);
