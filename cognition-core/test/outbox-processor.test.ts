@@ -346,6 +346,7 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
         'high',
         {
             planner: 'cognition-core/skill-growth-task-planner',
+            traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01',
             skillId: 1,
             skillInput: {
                 signalQuality: 85,
@@ -390,6 +391,7 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
     assert.equal(stats.botTasksExecuted, 1);
     assert.equal(stats.botSkillTasks, 1);
     assert.ok(stats.followupTasksGenerated >= 3);
+    assert.equal(stats.followupTraceparentsPropagated, stats.followupTasksGenerated);
     assert.ok(stats.followupTasksSaved >= 3);
 
     const records = await store.loadRecords();
@@ -400,6 +402,10 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
     const followups = records.filter((entry) => entry.taskId !== request.id);
     assert.ok(followups.length >= 3);
     assert.ok(followups.every((entry) => entry.status === 'created'));
+    assert.ok(followups.every((entry) => (
+        entry.request.traceparent === entry.request.context.traceparent
+        && entry.request.traceparent.startsWith('00-4bf92f3577b34da6a3ce929d0e0e4736-')
+    )));
 });
 
 test('processOutboxEnvelopes cleans retained execution markers after durable follow-ups age out', async (t) => {

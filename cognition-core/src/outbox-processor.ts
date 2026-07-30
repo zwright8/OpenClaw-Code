@@ -50,6 +50,29 @@ function traceparentFromRequest(request, envelope) {
     return found ? found.trim().toLowerCase() : undefined;
 }
 
+function traceparentForFollowup({ request, sourceTraceparent, sourceTaskId, completedAt, resultStatus }) {
+    const existing = traceparentFromRequest(request, {});
+    if (existing) return existing;
+
+    const parsed = parseTraceparent(sourceTraceparent);
+    if (!parsed || typeof request?.id !== 'string') return undefined;
+
+    const parentSpanId = stableSpanId(`outbox-result:${sourceTaskId}:${completedAt}:${resultStatus}`);
+    return `00-${parsed.traceId}-${parentSpanId}-${parsed.traceFlags}`;
+}
+
+function attachTraceparent(request, traceparent) {
+    if (!traceparent || !request || typeof request !== 'object') return request;
+    return {
+        ...request,
+        context: {
+            ...(request.context && typeof request.context === 'object' ? request.context : {}),
+            traceparent
+        },
+        traceparent
+    };
+}
+
 function parseTraceparent(traceparent) {
     if (!isTraceparent(traceparent)) return null;
     const [, traceId, parentSpanId, traceFlags] = traceparent.trim().toLowerCase().split('-');
@@ -459,6 +482,7 @@ export async function processOutboxEnvelopes({
         botGenericTasks: 0,
         botExecutionMarkerMismatches: 0,
         followupTasksGenerated: 0,
+        followupTraceparentsPropagated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
         followupTasksSkipped: 0,
@@ -506,6 +530,7 @@ export async function processOutboxEnvelopes({
             let resultArtifacts;
             let resultMetrics;
             const traceparent = traceparentFromRequest(request, envelope);
+            let followupTasks = [];
             const dispatchAttempt = Number(request.context?.openclawDispatch?.attempt);
             const attempt = Number.isInteger(dispatchAttempt) && dispatchAttempt > 0
                 ? dispatchAttempt
@@ -587,16 +612,7 @@ export async function processOutboxEnvelopes({
                         ? execution.followupTasks.length
                         : 0
                 });
-
-                if (enqueueFollowupTasks && Array.isArray(execution.followupTasks) && execution.followupTasks.length > 0) {
-                    for (let i = 0; i < execution.followupTasks.length; i++) {
-                        followupEntries.push({
-                            source: `openclaw-bot:${taskId}`,
-                            request: execution.followupTasks[i]
-                        });
-                    }
-                    stats.followupTasksGenerated += execution.followupTasks.length;
-                }
+                followupTasks = Array.isArray(execution.followupTasks) ? execution.followupTasks : [];
 
                 if (resultStatus !== 'failure' && chooseResultStatus(failureRate, rng) === 'failure') {
                     resultStatus = 'failure';
@@ -614,6 +630,24 @@ export async function processOutboxEnvelopes({
             }
 
             const completedAt = markerCompletedAt || (safeNow(now) + Math.max(0, Number(resultDelayMs) || 0));
+            if (enqueueFollowupTasks && followupTasks.length > 0) {
+                for (let i = 0; i < followupTasks.length; i++) {
+                    const followupRequest = followupTasks[i];
+                    const followupTraceparent = traceparentForFollowup({
+                        request: followupRequest,
+                        sourceTraceparent: traceparent,
+                        sourceTaskId: taskId,
+                        completedAt,
+                        resultStatus
+                    });
+                    if (followupTraceparent) stats.followupTraceparentsPropagated++;
+                    followupEntries.push({
+                        source: `openclaw-bot:${taskId}`,
+                        request: attachTraceparent(followupRequest, followupTraceparent)
+                    });
+                }
+                stats.followupTasksGenerated += followupTasks.length;
+            }
             const resultAccepted = orchestrator.ingestResult(buildTaskResult({
                 taskId,
                 from: target,
