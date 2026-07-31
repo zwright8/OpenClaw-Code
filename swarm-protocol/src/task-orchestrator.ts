@@ -51,6 +51,26 @@ function clampNonNegativeNumber(value, fallback) {
         : fallback;
 }
 
+function requestIdentity(request) {
+    const context = request?.context && typeof request.context === 'object'
+        ? { ...request.context }
+        : undefined;
+    if (context) delete context.openclawDispatch;
+
+    return JSON.stringify({
+        kind: request?.kind,
+        id: request?.id,
+        from: request?.from,
+        target: request?.target,
+        priority: request?.priority,
+        task: request?.task,
+        context,
+        constraints: request?.constraints,
+        traceparent: request?.traceparent,
+        createdAt: request?.createdAt
+    });
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -453,6 +473,32 @@ export class TaskOrchestrator {
             id,
             createdAt
         });
+
+        const existing = this.tasks.get(request.id);
+        // A zero-attempt created record may have been hydrated from a queue
+        // producer and still needs its first policy/approval evaluation. Once
+        // dispatch has started, the attempt counter is the in-memory claim
+        // that makes duplicate callers idempotent.
+        if (existing && !(existing.status === 'created' && existing.attempts === 0)) {
+            if (requestIdentity(existing.request) !== requestIdentity(request)) {
+                throw new TaskOrchestratorError(
+                    'DUPLICATE_TASK_ID',
+                    `Task ${request.id} already exists with different work`,
+                    {
+                        taskId: request.id,
+                        existingStatus: existing.status
+                    }
+                );
+            }
+
+            this._emitAudit('task_duplicate_ignored', {
+                taskId: request.id,
+                target: existing.target,
+                status: existing.status,
+                attempts: existing.attempts
+            }, safeNow(this.now));
+            return this.getTask(request.id);
+        }
 
         let policyDecision = null;
         if (this.dispatchPolicy) {

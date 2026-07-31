@@ -59,6 +59,60 @@ test('dispatchTask sends validated request and tracks state', async () => {
     assert.equal(task.deadlineAt, 10_500);
 });
 
+test('dispatchTask suppresses an identical duplicate id without re-sending', async () => {
+    const sent = [];
+    const clock = createClock(11_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now
+    });
+    const input = {
+        id: '00000000-0000-4000-8000-000000000111',
+        target: 'agent:worker-idempotent',
+        task: 'Run this exactly once',
+        context: { source: 'retry' }
+    };
+
+    const first = await orchestrator.dispatchTask(input);
+    const duplicate = await orchestrator.dispatchTask(input);
+
+    assert.equal(sent.length, 1);
+    assert.deepEqual(duplicate, first);
+    assert.equal(orchestrator.getTask(input.id).attempts, 1);
+});
+
+test('dispatchTask rejects reuse of an id for different work', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} }
+    });
+    const id = '00000000-0000-4000-8000-000000000112';
+
+    await orchestrator.dispatchTask({
+        id,
+        target: 'agent:worker-idempotent',
+        task: 'Original work'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            id,
+            target: 'agent:worker-idempotent',
+            task: 'Different work'
+        }),
+        (error) => {
+            assert.equal(error.code, 'DUPLICATE_TASK_ID');
+            assert.equal(error.details.taskId, id);
+            return true;
+        }
+    );
+});
+
 test('receipt + result complete a task lifecycle', async () => {
     const clock = createClock(2_000);
     const orchestrator = new TaskOrchestrator({
