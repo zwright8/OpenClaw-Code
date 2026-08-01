@@ -233,6 +233,33 @@ async function listOutboxFiles(outboxDir) {
     }
 }
 
+async function listProcessingFiles(processingDir) {
+    try {
+        const entries = await fs.readdir(processingDir, { withFileTypes: true });
+        return entries
+            .filter((entry) => entry.isFile() && entry.name.endsWith('.jsonl'))
+            .map((entry) => path.join(processingDir, entry.name))
+            .sort();
+    } catch (error) {
+        if (error?.code === 'ENOENT') return [];
+        throw error;
+    }
+}
+
+async function claimOutboxFile(filePath, processingDir) {
+    const base = path.basename(filePath, '.jsonl');
+    const claimToken = `${process.pid}.${Date.now()}.${Math.random().toString(16).slice(2)}`;
+    const claimedPath = path.join(processingDir, `${base}.${claimToken}.jsonl`);
+    try {
+        await fs.mkdir(processingDir, { recursive: true });
+        await fs.rename(filePath, claimedPath);
+        return claimedPath;
+    } catch (error) {
+        if (error?.code === 'ENOENT') return null;
+        throw error;
+    }
+}
+
 function archiveFilePath(filePath, archiveDir, nowFactory) {
     const base = path.basename(filePath, '.jsonl');
     const stamp = safeNow(nowFactory);
@@ -407,6 +434,7 @@ export async function processOutboxEnvelopes({
     storePath,
     outboxDir,
     archiveDir = path.join(outboxDir, 'processed'),
+    processingDir = path.join(outboxDir, 'processing'),
     executionLedgerDir = path.join(outboxDir, 'executions'),
     executionMarkerRetentionMs = 24 * 60 * 60 * 1_000,
     localAgentId = 'agent:main',
@@ -456,11 +484,27 @@ export async function processOutboxEnvelopes({
 
     const hydration = await orchestrator.hydrate();
     const files = await listOutboxFiles(outboxDir);
+    const strandedFiles = await listProcessingFiles(processingDir);
+    const claimedFiles = [];
+    if (dryRun) {
+        claimedFiles.push(...strandedFiles, ...files);
+    } else {
+        for (const filePath of [...strandedFiles, ...files]) {
+            // A rename is the claim boundary: dispatchers keep appending to the
+            // original outbox path while this worker processes a stable snapshot.
+            // Existing processing files are retried after a worker crash.
+            // eslint-disable-next-line no-await-in-loop
+            const claimedPath = strandedFiles.includes(filePath)
+                ? filePath
+                : await claimOutboxFile(filePath, processingDir);
+            if (claimedPath) claimedFiles.push(claimedPath);
+        }
+    }
     const followupEntries = [];
 
     const stats = {
         loaded: hydration.loaded,
-        filesFound: files.length,
+        filesFound: files.length + strandedFiles.length,
         filesArchived: 0,
         envelopesSeen: 0,
         envelopesInvalid: 0,
@@ -490,7 +534,7 @@ export async function processOutboxEnvelopes({
         executionMarkersRetained: 0
     };
 
-    for (const filePath of files) {
+    for (const filePath of claimedFiles) {
         // eslint-disable-next-line no-await-in-loop
         const raw = await fs.readFile(filePath, 'utf8');
         const parsed = parseEnvelopeLines(raw, filePath);
@@ -675,7 +719,7 @@ export async function processOutboxEnvelopes({
 
         if (dryRun) continue;
 
-        // Only archive after successful processing of file contents.
+        // Only archive after successful processing of the claimed snapshot.
         const archivedPath = archiveFilePath(filePath, archiveDir, now);
         // eslint-disable-next-line no-await-in-loop
         await fs.mkdir(path.dirname(archivedPath), { recursive: true });

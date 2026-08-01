@@ -157,6 +157,44 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     assert.equal(fs.existsSync(path.join(outboxDir, targetToFile(target))), false);
 });
 
+test('processOutboxEnvelopes atomically claims live files before processing', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000304', target, 'high');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 61_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 61_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+    fs.writeFileSync(
+        outboxFile,
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const [first, second] = await Promise.all([
+        processOutboxEnvelopes({ storePath: queuePath, outboxDir, archiveDir, botRuntime: false }),
+        processOutboxEnvelopes({ storePath: queuePath, outboxDir, archiveDir, botRuntime: false })
+    ]);
+
+    assert.equal(first.filesArchived + second.filesArchived, 1);
+    assert.equal(first.resultsAccepted + second.resultsAccepted, 1);
+    assert.equal(fs.existsSync(outboxFile), false);
+    assert.equal(fs.readdirSync(archiveDir).filter((item) => item.endsWith('.jsonl')).length, 1);
+    assert.equal((await store.loadRecords())[0].status, 'completed');
+});
+
 test('processOutboxEnvelopes preserves dispatcher trajectory events in task result trace', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
