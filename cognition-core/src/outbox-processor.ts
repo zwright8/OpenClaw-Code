@@ -345,6 +345,7 @@ export async function processOutboxEnvelopes({
                 from: target,
                 accepted: true,
                 etaMs,
+                executionLeaseId: request.executionLeaseId,
                 timestamp: safeNow(now)
             }));
             if (accepted) {
@@ -418,6 +419,7 @@ export async function processOutboxEnvelopes({
                 artifacts: resultArtifacts,
                 metrics: resultMetrics,
                 traceparent,
+                executionLeaseId: request.executionLeaseId,
                 traceEvents: buildOutboxTraceEvents({
                     taskId,
                     target,
