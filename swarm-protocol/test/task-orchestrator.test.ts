@@ -103,6 +103,70 @@ test('receipt + result complete a task lifecycle', async () => {
     assert.equal(current.closedAt, clock.now());
 });
 
+test('execution leases fence late signals from a retried attempt', async () => {
+    const clock = createClock(2_500);
+    const sent = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-lease',
+        task: 'Fence duplicate external executions'
+    });
+    const firstLease = task.executionLeaseId;
+    assert.ok(firstLease);
+    assert.equal(sent[0].message.executionLeaseId, firstLease);
+
+    orchestrator.ingestReceipt(buildTaskReceipt({
+        taskId: task.taskId,
+        from: 'agent:worker-lease',
+        accepted: false,
+        reason: 'worker_overloaded',
+        executionLeaseId: firstLease,
+        timestamp: clock.now()
+    }));
+
+    clock.advance(10);
+    await orchestrator.runMaintenance(clock.now());
+    const retried = orchestrator.getTask(task.taskId);
+    const secondLease = retried.executionLeaseId;
+    assert.notEqual(secondLease, firstLease);
+    assert.equal(sent.length, 2);
+
+    const staleResultAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-lease',
+        status: 'success',
+        output: 'stale attempt completed',
+        executionLeaseId: firstLease,
+        completedAt: clock.now()
+    }));
+
+    assert.equal(staleResultAccepted, false);
+    assert.equal(orchestrator.getTask(task.taskId).status, 'dispatched');
+
+    const currentResultAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-lease',
+        status: 'success',
+        output: 'current attempt completed',
+        executionLeaseId: secondLease,
+        completedAt: clock.now() + 1
+    }));
+
+    assert.equal(currentResultAccepted, true);
+    assert.equal(orchestrator.getTask(task.taskId).status, 'completed');
+});
+
 test('rejected receipt terminates task', async () => {
     const clock = createClock(3_000);
     const orchestrator = new TaskOrchestrator({

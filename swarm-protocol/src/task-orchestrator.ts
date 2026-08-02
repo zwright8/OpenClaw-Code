@@ -59,6 +59,7 @@ export function buildTaskRequest({
     context,
     constraints,
     traceparent,
+    executionLeaseId,
     id = randomUUID(),
     createdAt = Date.now()
 }) {
@@ -72,6 +73,7 @@ export function buildTaskRequest({
         context,
         constraints,
         traceparent,
+        executionLeaseId,
         createdAt
     });
 }
@@ -82,6 +84,7 @@ export function buildTaskReceipt({
     accepted,
     reason,
     etaMs,
+    executionLeaseId,
     timestamp = Date.now()
 }) {
     return TaskReceipt.parse({
@@ -91,6 +94,7 @@ export function buildTaskReceipt({
         accepted,
         reason,
         etaMs,
+        executionLeaseId,
         timestamp
     });
 }
@@ -103,6 +107,7 @@ export function buildTaskResult({
     artifacts,
     metrics,
     traceparent,
+    executionLeaseId,
     traceEvents,
     completedAt = Date.now()
 }) {
@@ -115,6 +120,7 @@ export function buildTaskResult({
         artifacts,
         metrics,
         traceparent,
+        executionLeaseId,
         traceEvents,
         completedAt
     });
@@ -246,6 +252,28 @@ export class TaskOrchestrator {
             () => this.store.saveRecord(payload),
             'saveRecord'
         );
+    }
+
+    _acceptsExecutionLease(record, payload, signalType) {
+        const expected = record?.executionLeaseId;
+        const received = payload?.executionLeaseId;
+        if (!expected || !received || expected === received) return true;
+
+        const at = safeNow(this.now);
+        record.history.push({
+            at,
+            event: 'stale_execution_signal_ignored',
+            signalType,
+            receivedExecutionLeaseId: received,
+            expectedExecutionLeaseId: expected
+        });
+        this._persistRecord(record);
+        this._emitAudit('task_stale_execution_signal_ignored', {
+            taskId: record.taskId,
+            target: record.target,
+            signalType
+        }, at);
+        return false;
     }
 
     _deleteRecord(taskId) {
@@ -664,6 +692,12 @@ export class TaskOrchestrator {
         }, sendAt);
 
         try {
+            const executionLeaseId = randomUUID();
+            record.executionLeaseId = executionLeaseId;
+            record.request = buildTaskRequest({
+                ...record.request,
+                executionLeaseId
+            });
             await this.transport.send(record.target, record.request);
             record.status = 'dispatched';
             record.deadlineAt = sendAt + this.defaultTimeoutMs;
@@ -711,6 +745,7 @@ export class TaskOrchestrator {
         const record = this.tasks.get(receipt.taskId);
         if (!record) return false;
         if (TERMINAL_STATUSES.has(record.status)) return false;
+        if (!this._acceptsExecutionLease(record, receipt, 'receipt')) return false;
 
         record.receipts.push(receipt);
         record.updatedAt = receipt.timestamp;
@@ -775,6 +810,7 @@ export class TaskOrchestrator {
         const record = this.tasks.get(result.taskId);
         if (!record) return false;
         if (TERMINAL_STATUSES.has(record.status)) return false;
+        if (!this._acceptsExecutionLease(record, result, 'result')) return false;
 
         record.result = result;
         record.updatedAt = result.completedAt;
