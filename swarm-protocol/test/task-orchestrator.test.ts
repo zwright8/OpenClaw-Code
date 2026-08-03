@@ -402,6 +402,66 @@ test('dispatchTask fails fast and does not keep orphaned record when send fails'
     assert.equal(metrics.total, 0);
 });
 
+test('getMetrics reports low-cardinality age signals for open tasks', async () => {
+    const clock = createClock(10_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now
+    });
+
+    await orchestrator.dispatchTask({
+        id: '00000000-0000-4000-8000-000000000121',
+        target: 'agent:worker-age',
+        task: 'Older task',
+        createdAt: 8_000
+    });
+    await orchestrator.dispatchTask({
+        id: '00000000-0000-4000-8000-000000000122',
+        target: 'agent:worker-age',
+        task: 'Newer task',
+        createdAt: 9_500
+    });
+
+    const metrics = orchestrator.getMetrics();
+
+    assert.deepEqual(metrics.openAgeMs, {
+        oldest: 2_000,
+        average: 1_250,
+        p95: 2_000
+    });
+    assert.equal(metrics.open, 2);
+});
+
+test('getMetrics excludes terminal task ages and supports an explicit snapshot time', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: () => 20_000
+    });
+    const task = await orchestrator.dispatchTask({
+        id: '00000000-0000-4000-8000-000000000123',
+        target: 'agent:worker-age',
+        task: 'Complete me',
+        createdAt: 19_000
+    });
+    orchestrator.ingestResult({
+        kind: 'task_result',
+        taskId: task.taskId,
+        from: 'agent:worker-age',
+        attempt: 1,
+        status: 'success',
+        output: 'Done',
+        completedAt: 19_500
+    });
+
+    assert.deepEqual(orchestrator.getMetrics({ now: () => 30_000 }).openAgeMs, {
+        oldest: 0,
+        average: 0,
+        p95: 0
+    });
+});
+
 test('helper builders emit schema-valid messages', () => {
     const request = buildTaskRequest({
         from: 'agent:main',

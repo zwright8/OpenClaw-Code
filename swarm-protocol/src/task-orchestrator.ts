@@ -51,6 +51,16 @@ function clampNonNegativeNumber(value, fallback) {
         : fallback;
 }
 
+function percentile(values, percentileRank) {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const index = Math.min(
+        sorted.length - 1,
+        Math.max(0, Math.ceil(sorted.length * percentileRank) - 1)
+    );
+    return sorted[index];
+}
+
 function requestIdentity(request) {
     const context = request?.context && typeof request.context === 'object'
         ? { ...request.context }
@@ -1046,13 +1056,19 @@ export class TaskOrchestrator {
         return this.listTasks({ status: APPROVAL_PENDING_STATUS });
     }
 
-    getMetrics() {
+    getMetrics({ now = this.now } = {}) {
+        const nowMs = safeNow(now);
         const metrics = {
             total: this.tasks.size,
             open: 0,
             terminal: 0,
             byStatus: {},
             avgAttempts: 0,
+            openAgeMs: {
+                oldest: 0,
+                average: 0,
+                p95: 0
+            },
             retry: {
                 delayMs: this.retryDelayMs,
                 strategy: this.retryBackoffStrategy,
@@ -1063,6 +1079,7 @@ export class TaskOrchestrator {
         };
 
         let attemptsTotal = 0;
+        const openAges = [];
         for (const record of this.tasks.values()) {
             attemptsTotal += record.attempts;
             metrics.byStatus[record.status] = (metrics.byStatus[record.status] || 0) + 1;
@@ -1071,12 +1088,24 @@ export class TaskOrchestrator {
                 metrics.terminal++;
             } else {
                 metrics.open++;
+                const createdAt = Number(record.createdAt);
+                if (Number.isFinite(createdAt)) {
+                    openAges.push(Math.max(0, nowMs - createdAt));
+                }
             }
         }
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))
             : 0;
+
+        if (openAges.length > 0) {
+            metrics.openAgeMs.oldest = Math.max(...openAges);
+            metrics.openAgeMs.average = Number(
+                (openAges.reduce((total, ageMs) => total + ageMs, 0) / openAges.length).toFixed(2)
+            );
+            metrics.openAgeMs.p95 = percentile(openAges, 0.95);
+        }
 
         return metrics;
     }
