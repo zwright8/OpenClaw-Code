@@ -48,7 +48,17 @@ async function sleep(ms) {
     });
 }
 
-function summarizeQueueRecords(records) {
+function percentile(values, percentileRank) {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const index = Math.min(
+        sorted.length - 1,
+        Math.max(0, Math.ceil(sorted.length * percentileRank) - 1)
+    );
+    return sorted[index];
+}
+
+function summarizeQueueRecords(records, now = Date.now()) {
     const byStatus = {};
     let open = 0;
     let terminal = 0;
@@ -57,6 +67,7 @@ function summarizeQueueRecords(records) {
     let acknowledged = 0;
     let retryScheduled = 0;
     let awaitingApproval = 0;
+    const openAges = [];
 
     const list = Array.isArray(records) ? records : [];
     for (const record of list) {
@@ -69,6 +80,10 @@ function summarizeQueueRecords(records) {
             terminal++;
         } else {
             open++;
+            const createdAt = Number(record?.createdAt);
+            if (Number.isFinite(createdAt)) {
+                openAges.push(Math.max(0, Number(now) - createdAt));
+            }
         }
 
         if (status === 'created') created++;
@@ -87,6 +102,13 @@ function summarizeQueueRecords(records) {
         acknowledged,
         retryScheduled,
         awaitingApproval,
+        openAgeMs: {
+            oldest: openAges.length > 0 ? Math.max(...openAges) : 0,
+            average: openAges.length > 0
+                ? Number((openAges.reduce((total, ageMs) => total + ageMs, 0) / openAges.length).toFixed(2))
+                : 0,
+            p95: percentile(openAges, 0.95)
+        },
         byStatus
     };
 }
@@ -97,7 +119,7 @@ async function loadQueueSummary({ storePath, nowFactory }) {
         now: nowFactory
     });
     const records = await store.loadRecords();
-    return summarizeQueueRecords(records);
+    return summarizeQueueRecords(records, safeNow(nowFactory));
 }
 
 function normalizeStopReason(reason) {
