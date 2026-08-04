@@ -266,6 +266,49 @@ test('inspectOpenClawHealth does not alert on stale drained worker checkpoint', 
     assert.deepEqual(result.attention, []);
 });
 
+test('inspectOpenClawHealth surfaces an over-age open task', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        stopReason: 'max_cycles_reached',
+        lifecycleCheckpoint: {
+            nextAction: 'rerun_dispatcher',
+            resumeRecommended: true,
+            attentionReasons: ['pending_created_tasks'],
+            lastCycle: { finishedAt: 100_000 },
+            queue: {
+                open: 1,
+                created: 1,
+                openAgeMs: { oldest: 5_000, average: 5_000, p95: 5_000 }
+            }
+        }
+    }));
+
+    const result = inspectOpenClawHealth({
+        logPath,
+        workerReportPath: reportPath,
+        now: 100_000,
+        queueAgeSloMs: 4_000
+    });
+
+    assert.equal(result.status, 'attention');
+    assert.equal(result.queueAgeSloMs, 4_000);
+    assert.deepEqual(result.attention, [
+        'worker_loop_resume_rerun_dispatcher',
+        'worker_loop_open_task_age_slo_exceeded',
+        'worker_loop_pending_created_tasks'
+    ]);
+    assert.deepEqual(result.workerLoop.queue.openAgeMs, {
+        oldest: 5_000,
+        average: 5_000,
+        p95: 5_000
+    });
+});
+
 test('health-monitor --json emits parseable machine-readable health status', (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

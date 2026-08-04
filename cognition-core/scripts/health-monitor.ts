@@ -9,6 +9,10 @@ const WORKER_APPROVAL_SLO_MS = parsePositiveInt(
     process.env.OPENCLAW_WORKER_APPROVAL_SLO_MS,
     30 * 60 * 1000
 );
+const WORKER_QUEUE_AGE_SLO_MS = parsePositiveInt(
+    process.env.OPENCLAW_WORKER_QUEUE_AGE_SLO_MS,
+    60 * 60 * 1000
+);
 
 function parsePositiveInt(value, fallback) {
     const numeric = Number(value);
@@ -151,7 +155,7 @@ export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT, 
     };
 }
 
-function buildHealthAttention({ gateway, workerLoop }) {
+function buildHealthAttention({ gateway, workerLoop, queueAgeSloMs = WORKER_QUEUE_AGE_SLO_MS }) {
     const attention = [];
 
     if (!gateway.ok) {
@@ -165,6 +169,10 @@ function buildHealthAttention({ gateway, workerLoop }) {
 
     if (workerLoop.resumeRecommended) {
         attention.push(`worker_loop_resume_${workerLoop.nextAction || 'recommended'}`);
+    }
+
+    if (Number(workerLoop.queue?.openAgeMs?.oldest || 0) > queueAgeSloMs) {
+        attention.push('worker_loop_open_task_age_slo_exceeded');
     }
 
     const hasWorkerLoopAction = workerLoop.resumeRecommended
@@ -192,18 +200,20 @@ export function inspectOpenClawHealth({
     logPath = LOG_FILE,
     workerReportPath = WORKER_LOOP_REPORT,
     now = Date.now(),
-    approvalSloMs = WORKER_APPROVAL_SLO_MS
+    approvalSloMs = WORKER_APPROVAL_SLO_MS,
+    queueAgeSloMs = WORKER_QUEUE_AGE_SLO_MS
 } = {}) {
     const gateway = readLastGatewayStatus(logPath);
     const workerLoop = readLatestWorkerLoopCheckpoint(workerReportPath, {
         now,
         approvalSloMs
     });
-    const attention = buildHealthAttention({ gateway, workerLoop });
+    const attention = buildHealthAttention({ gateway, workerLoop, queueAgeSloMs });
 
     return {
         schemaVersion: 'openclaw.health.v1',
         inspectedAt: now,
+        queueAgeSloMs,
         status: classifyHealthStatus(attention),
         attention,
         gateway,
@@ -241,6 +251,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
                 console.log(`[Health] Worker loop resume recommended: ${worker.resumeRecommended}`);
                 console.log(`[Health] Worker loop resume key: ${worker.resumeKey}`);
                 console.log(`[Health] Worker loop checkpoint freshness: ${worker.freshness.status} ageMs=${worker.freshness.ageMs ?? 'unknown'} sloMs=${worker.freshness.approvalSloMs}`);
+                if (worker.queue?.openAgeMs) {
+                    console.log(`[Health] Worker loop oldest open task: ${worker.queue.openAgeMs.oldest}ms sloMs=${health.queueAgeSloMs}`);
+                }
                 if (
                     worker.resumeRecommended
                     && worker.freshness.status === 'stale'
