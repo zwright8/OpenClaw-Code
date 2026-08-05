@@ -656,6 +656,12 @@ test('runBotWorkerLoop checkpoint recommends approval review when only approvals
     assert.deepEqual(report.lifecycleCheckpoint.attentionReasons, ['pending_approval']);
     assert.equal(report.lifecycleCheckpoint.queue.oldestApprovalAgeMs, report.finalQueue.oldestApprovalAgeMs);
     assert.equal(report.finalQueue.oldestApprovalAgeMs, 59_400);
+    assert.deepEqual(report.finalQueue.openAgeMs, {
+        oldest: 60_000,
+        average: 60_000,
+        p95: 60_000
+    });
+    assert.deepEqual(report.lifecycleCheckpoint.queue.openAgeMs, report.finalQueue.openAgeMs);
     assert.deepEqual(report.finalQueue.pendingApprovalTaskIds, [request.id]);
     assert.deepEqual(report.lifecycleCheckpoint.queue.pendingApprovalTaskIds, [request.id]);
     assert.equal(report.pendingApprovalReviewPlan.schemaVersion, 'bot-worker-loop.pending-approval-review.v1');

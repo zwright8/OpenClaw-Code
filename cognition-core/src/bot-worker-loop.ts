@@ -83,6 +83,21 @@ function getRecordUpdatedAt(record) {
     return Number.isFinite(value) ? value : null;
 }
 
+function getRecordCreatedAt(record) {
+    const value = Number(record?.createdAt ?? record?.request?.createdAt);
+    return Number.isFinite(value) ? value : null;
+}
+
+function percentile(values, percentileRank) {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const index = Math.min(
+        sorted.length - 1,
+        Math.max(0, Math.ceil(sorted.length * percentileRank) - 1)
+    );
+    return sorted[index];
+}
+
 function getApprovalRequestedAt(record) {
     const direct = Number(record?.approval?.requestedAt);
     if (Number.isFinite(direct)) return direct;
@@ -261,6 +276,7 @@ function summarizeQueueRecords(records, {
     let retryScheduled = 0;
     let awaitingApproval = 0;
     let oldestApprovalAgeMs = 0;
+    const openAges = [];
     const staleDispatchedTaskIds = [];
     const pendingApprovalTaskIds = [];
     const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
@@ -277,6 +293,10 @@ function summarizeQueueRecords(records, {
             terminal++;
         } else {
             open++;
+            const createdAt = getRecordCreatedAt(record);
+            if (createdAt !== null) {
+                openAges.push(Math.max(0, observedNowMs - createdAt));
+            }
         }
 
         if (status === 'created') created++;
@@ -305,6 +325,14 @@ function summarizeQueueRecords(records, {
         }
     }
 
+    const openAgeMs = {
+        oldest: openAges.length > 0 ? Math.max(...openAges) : 0,
+        average: openAges.length > 0
+            ? Number((openAges.reduce((total, ageMs) => total + ageMs, 0) / openAges.length).toFixed(2))
+            : 0,
+        p95: percentile(openAges, 0.95)
+    };
+
     return {
         total: list.length,
         open,
@@ -316,6 +344,7 @@ function summarizeQueueRecords(records, {
         staleDispatchedTaskIds,
         acknowledged,
         retryScheduled,
+        openAgeMs,
         awaitingApproval,
         oldestApprovalAgeMs,
         pendingApprovalTaskIds,
@@ -725,6 +754,7 @@ function buildCycleTraceEvents({
         queueCreated: queueBefore?.created || 0,
         queueDispatched: queueBefore?.dispatched || 0,
         queueRetryScheduled: queueBefore?.retryScheduled || 0,
+        queueOpenAgeMs: queueBefore?.openAgeMs || { oldest: 0, average: 0, p95: 0 },
         queueDispatchedStale: queueBefore?.dispatchedStale || 0,
         queueAwaitingApproval: queueBefore?.awaitingApproval || 0,
         oldestApprovalAgeMs: queueBefore?.oldestApprovalAgeMs || 0
@@ -820,6 +850,7 @@ function buildCycleTraceEvents({
         queueCreated: queueAfter?.created || 0,
         queueDispatched: queueAfter?.dispatched || 0,
         queueRetryScheduled: queueAfter?.retryScheduled || 0,
+        queueOpenAgeMs: queueAfter?.openAgeMs || { oldest: 0, average: 0, p95: 0 },
         queueDispatchedStale: queueAfter?.dispatchedStale || 0,
         queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
         oldestApprovalAgeMs: queueAfter?.oldestApprovalAgeMs || 0,
@@ -1063,6 +1094,7 @@ function buildLifecycleCheckpoint({
             created: queue.created || 0,
             dispatched: queue.dispatched || 0,
             retryScheduled: queue.retryScheduled || 0,
+            openAgeMs: queue.openAgeMs || { oldest: 0, average: 0, p95: 0 },
             dispatchedStale: queue.dispatchedStale || 0,
             oldestDispatchedAgeMs: queue.oldestDispatchedAgeMs || 0,
             staleDispatchedTaskIds: Array.isArray(queue.staleDispatchedTaskIds)
@@ -1250,6 +1282,7 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- queue.open: ${lifecycleCheckpoint.queue.open}`,
         `- queue.dispatchedStale: ${lifecycleCheckpoint.queue.dispatchedStale || 0}`,
         `- queue.retryScheduled: ${lifecycleCheckpoint.queue.retryScheduled || 0}`,
+        `- queue.openAgeMs: ${JSON.stringify(lifecycleCheckpoint.queue.openAgeMs || { oldest: 0, average: 0, p95: 0 })}`,
         `- queue.oldestDispatchedAgeMs: ${lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
         `- queue.oldestApprovalAgeMs: ${lifecycleCheckpoint.queue.oldestApprovalAgeMs || 0}`,
