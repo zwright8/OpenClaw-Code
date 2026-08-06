@@ -141,13 +141,13 @@ test('recoverStaleDispatchRecord records decision and safely requeues only no-si
             'external_runtime_result_checked',
             'side_effect_ledger_checked'
         ],
-        now: () => 3_000
+        now: () => 1_800_120
     });
 
     assert.equal(result.previousStatus, 'dispatched');
     assert.equal(result.updated.status, 'created');
-    assert.equal(result.updated.updatedAt, 3_000);
-    assert.equal(result.updated.deadlineAt, 3_000);
+    assert.equal(result.updated.updatedAt, 1_800_120);
+    assert.equal(result.updated.deadlineAt, 1_800_120);
     assert.equal(result.updated.nextRetryAt, null);
     assert.equal(result.updated.recoveryDecision.schemaVersion, 'swarm-protocol.stale-dispatch-recovery-decision.v1');
     assert.equal(result.updated.recoveryDecision.decision, 'requeue_no_side_effect');
@@ -185,10 +185,10 @@ test('recoverStaleDispatchRecord closes, fails, or pauses stale dispatches with 
             'external_runtime_result_checked',
             'side_effect_ledger_checked'
         ],
-        now: () => 4_000
+        now: () => 1_800_120
     });
     assert.equal(completed.updated.status, 'completed');
-    assert.equal(completed.updated.closedAt, 4_000);
+    assert.equal(completed.updated.closedAt, 1_800_120);
 
     assert.throws(
         () => recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'close_completed'),
@@ -210,18 +210,25 @@ test('recoverStaleDispatchRecord closes, fails, or pauses stale dispatches with 
     const failed = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'fail_side_effect_unknown', {
         reason: 'side_effect_ambiguous',
         sideEffectStatus: 'unknown',
-        now: () => 4_100
+        now: () => 1_800_220
     });
     assert.equal(failed.updated.status, 'failed');
-    assert.equal(failed.updated.closedAt, 4_100);
+    assert.equal(failed.updated.closedAt, 1_800_220);
     assert.equal(failed.updated.lastError, 'side_effect_ambiguous');
 
     const escalated = recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'escalate_manual_review', {
         sideEffectStatus: 'unknown',
-        now: () => 4_200
+        now: () => 1_800_320
     });
     assert.equal(escalated.updated.status, 'paused_recovery');
     assert.equal(escalated.updated.closedAt, undefined);
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(sampleRecords(), 'task-a', 'escalate_manual_review', {
+            now: () => 500
+        }),
+        /Task task-a is not stale \(age=380ms threshold=1800000ms\)/
+    );
 
     assert.throws(
         () => recoverStaleDispatchRecord(sampleRecords(), 'task-b', 'escalate_manual_review'),

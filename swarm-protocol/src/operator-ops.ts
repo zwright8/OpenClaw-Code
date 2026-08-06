@@ -6,6 +6,7 @@ const TERMINAL_STATUSES = new Set([
     'timed_out',
     'transport_error'
 ]);
+const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
 
 function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -296,6 +297,7 @@ export function recoverStaleDispatchRecord(
         externalRuntimeCorrelation = null,
         evidenceReviewed = [],
         notes = null,
+        staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
         now = Date.now
     } = {}
 ) {
@@ -320,6 +322,20 @@ export function recoverStaleDispatchRecord(
         throw new Error(`Task ${taskId} is not dispatched`);
     }
 
+    const thresholdMs = Number(staleDispatchMs);
+    if (!Number.isFinite(thresholdMs) || thresholdMs <= 0) {
+        throw new Error('staleDispatchMs must be a positive number');
+    }
+    const updatedAt = Number(record.updatedAt ?? record.createdAt);
+    const at = nowMs(now);
+    if (!Number.isFinite(updatedAt)) {
+        throw new Error(`Task ${taskId} cannot be recovered without a dispatch timestamp`);
+    }
+    const ageMs = Math.max(0, at - updatedAt);
+    if (ageMs < thresholdMs) {
+        throw new Error(`Task ${taskId} is not stale (age=${ageMs}ms threshold=${thresholdMs}ms)`);
+    }
+
     const normalizedSideEffectStatus = typeof sideEffectStatus === 'string' && sideEffectStatus.trim()
         ? sideEffectStatus.trim()
         : 'unknown';
@@ -327,7 +343,6 @@ export function recoverStaleDispatchRecord(
         throw new Error('requeue_no_side_effect requires sideEffectStatus=none');
     }
 
-    const at = nowMs(now);
     const evidence = Array.isArray(evidenceReviewed)
         ? evidenceReviewed.filter((item) => typeof item === 'string' && item.trim()).map((item) => item.trim())
         : [];

@@ -28,7 +28,7 @@ Commands:
   reroute <taskId> <newTarget> [--actor <id>] [--reason <text>]
   drain <target> [--redirect <newTarget>] [--actor <id>] [--reason <text>]
   override <approve|deny> <taskId> [--actor <id>] [--reason <text>]
-  recover-dispatch <decision> <taskId> [--side-effect <status>] [--correlation <id>] [--evidence <csv>] [--notes <text>] [--actor <id>] [--reason <text>]
+  recover-dispatch <decision> <taskId> [--stale-ms <n>] [--side-effect <status>] [--correlation <id>] [--evidence <csv>] [--notes <text>] [--actor <id>] [--reason <text>]
   audit-verify
 
 Global options:
@@ -59,6 +59,7 @@ function parseArgs(argv) {
         correlation: null,
         evidence: null,
         notes: null,
+        staleDispatchMs: 30 * 60 * 1000,
         limit: 25
     };
 
@@ -142,6 +143,15 @@ function parseArgs(argv) {
         }
         if (token === '--notes') {
             options.notes = value;
+            i++;
+            continue;
+        }
+
+        if (token === '--stale-ms') {
+            options.staleDispatchMs = Number(value);
+            if (!Number.isFinite(options.staleDispatchMs) || options.staleDispatchMs <= 0) {
+                throw new Error('--stale-ms must be a positive number');
+            }
             i++;
             continue;
         }
@@ -394,7 +404,8 @@ function printEvents(events) {
                 sideEffectStatus: options.sideEffect,
                 externalRuntimeCorrelation: options.correlation,
                 evidenceReviewed,
-                notes: options.notes
+                notes: options.notes,
+                staleDispatchMs: options.staleDispatchMs
             });
 
             await store.compact(result.records);
