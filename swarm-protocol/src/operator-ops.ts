@@ -1,3 +1,5 @@
+import { buildTaskDispatchFingerprint } from './task-orchestrator.js';
+
 const TERMINAL_STATUSES = new Set([
     'completed',
     'partial',
@@ -108,6 +110,7 @@ export function replayTask(records, taskId) {
         status: record.status,
         target: record.target,
         attempts: record.attempts,
+        dispatchFingerprint: record.dispatchFingerprint || buildTaskDispatchFingerprint(record.request),
         createdAt: record.createdAt,
         updatedAt: record.updatedAt,
         closedAt: record.closedAt,
@@ -146,6 +149,7 @@ export function rerouteTaskRecord(
     if (record.request && typeof record.request === 'object') {
         record.request.target = newTarget;
     }
+    record.dispatchFingerprint = buildTaskDispatchFingerprint(record.request);
 
     record.updatedAt = at;
     record.status = 'created';
@@ -198,6 +202,7 @@ export function drainTarget(
             if (record.request && typeof record.request === 'object') {
                 record.request.target = redirectTarget;
             }
+            record.dispatchFingerprint = buildTaskDispatchFingerprint(record.request);
             record.status = 'created';
             record.nextRetryAt = null;
             record.deadlineAt = at;
@@ -297,6 +302,7 @@ export function recoverStaleDispatchRecord(
         externalRuntimeCorrelation = null,
         evidenceReviewed = [],
         notes = null,
+        expectedDispatchFingerprint = null,
         staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
         now = Date.now
     } = {}
@@ -334,6 +340,16 @@ export function recoverStaleDispatchRecord(
     const ageMs = Math.max(0, at - updatedAt);
     if (ageMs < thresholdMs) {
         throw new Error(`Task ${taskId} is not stale (age=${ageMs}ms threshold=${thresholdMs}ms)`);
+    }
+
+    const currentDispatchFingerprint = typeof record.dispatchFingerprint === 'string' && record.dispatchFingerprint
+        ? record.dispatchFingerprint
+        : buildTaskDispatchFingerprint(record.request);
+    if (record.dispatchFingerprint && !expectedDispatchFingerprint) {
+        throw new Error(`Task ${taskId} recovery requires expectedDispatchFingerprint`);
+    }
+    if (expectedDispatchFingerprint && expectedDispatchFingerprint !== currentDispatchFingerprint) {
+        throw new Error(`Task ${taskId} dispatch fingerprint mismatch`);
     }
 
     const normalizedSideEffectStatus = typeof sideEffectStatus === 'string' && sideEffectStatus.trim()
@@ -383,7 +399,8 @@ export function recoverStaleDispatchRecord(
         sideEffectStatus: normalizedSideEffectStatus,
         externalRuntimeCorrelation: correlation,
         evidenceReviewed: evidence,
-        notes
+        notes,
+        dispatchFingerprint: currentDispatchFingerprint
     };
     record.history.push({
         at,
@@ -394,7 +411,8 @@ export function recoverStaleDispatchRecord(
         sideEffectStatus: normalizedSideEffectStatus,
         externalRuntimeCorrelation: correlation,
         evidenceReviewed: evidence,
-        notes
+        notes,
+        dispatchFingerprint: currentDispatchFingerprint
     });
 
     record.updatedAt = at;

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
     collectLifecycleEvents,
+    buildTaskDispatchFingerprint,
     drainTarget,
     listQueue,
     overrideApproval,
@@ -83,6 +84,27 @@ test('replayTask returns task history timeline', () => {
     assert.ok(replay);
     assert.equal(replay.taskId, 'task-a');
     assert.equal(replay.history.length, 2);
+    assert.equal(replay.dispatchFingerprint, buildTaskDispatchFingerprint(sampleRecords()[0]));
+});
+
+test('recoverStaleDispatchRecord rejects a decision for a changed dispatch candidate', () => {
+    const records = sampleRecords();
+    records[0].dispatchFingerprint = 'current-fingerprint';
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(records, 'task-a', 'escalate_manual_review', {
+            expectedDispatchFingerprint: 'old-fingerprint',
+            now: () => 1_800_120
+        }),
+        /dispatch fingerprint mismatch/
+    );
+
+    assert.throws(
+        () => recoverStaleDispatchRecord(records, 'task-a', 'escalate_manual_review', {
+            now: () => 1_800_120
+        }),
+        /recovery requires expectedDispatchFingerprint/
+    );
 });
 
 test('rerouteTaskRecord updates target and appends operator history', () => {

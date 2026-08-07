@@ -28,7 +28,7 @@ Commands:
   reroute <taskId> <newTarget> [--actor <id>] [--reason <text>]
   drain <target> [--redirect <newTarget>] [--actor <id>] [--reason <text>]
   override <approve|deny> <taskId> [--actor <id>] [--reason <text>]
-  recover-dispatch <decision> <taskId> [--stale-ms <n>] [--side-effect <status>] [--correlation <id>] [--evidence <csv>] [--notes <text>] [--actor <id>] [--reason <text>]
+  recover-dispatch <decision> <taskId> [--fingerprint <sha256>] [--stale-ms <n>] [--side-effect <status>] [--correlation <id>] [--evidence <csv>] [--notes <text>] [--actor <id>] [--reason <text>]
   audit-verify
 
 Global options:
@@ -59,6 +59,7 @@ function parseArgs(argv) {
         correlation: null,
         evidence: null,
         notes: null,
+        fingerprint: null,
         staleDispatchMs: 30 * 60 * 1000,
         limit: 25
     };
@@ -152,6 +153,11 @@ function parseArgs(argv) {
             if (!Number.isFinite(options.staleDispatchMs) || options.staleDispatchMs <= 0) {
                 throw new Error('--stale-ms must be a positive number');
             }
+            i++;
+            continue;
+        }
+        if (token === '--fingerprint') {
+            options.fingerprint = value;
             i++;
             continue;
         }
@@ -405,6 +411,7 @@ function printEvents(events) {
                 externalRuntimeCorrelation: options.correlation,
                 evidenceReviewed,
                 notes: options.notes,
+                expectedDispatchFingerprint: options.fingerprint,
                 staleDispatchMs: options.staleDispatchMs
             });
 
@@ -417,7 +424,8 @@ function printEvents(events) {
                 reason: options.reason || 'manual_stale_dispatch_recovery',
                 sideEffectStatus: options.sideEffect,
                 externalRuntimeCorrelation: result.updated.recoveryDecision?.externalRuntimeCorrelation || null,
-                evidenceReviewed
+                evidenceReviewed,
+                dispatchFingerprint: result.updated.recoveryDecision?.dispatchFingerprint || null
             });
             console.log(`Recovery ${result.decision} applied for ${taskId}; status=${result.updated.status}`);
             return;

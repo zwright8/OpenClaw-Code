@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { TaskReceipt, TaskRequest, TaskResult } from './schemas.js';
 
 const TERMINAL_STATUSES = new Set([
@@ -79,6 +79,11 @@ function requestIdentity(request) {
         traceparent: request?.traceparent,
         createdAt: request?.createdAt
     });
+}
+
+export function buildTaskDispatchFingerprint(requestOrRecord) {
+    const request = requestOrRecord?.request || requestOrRecord;
+    return createHash('sha256').update(requestIdentity(request)).digest('hex');
 }
 
 export function buildTaskRequest({
@@ -573,6 +578,7 @@ export class TaskOrchestrator {
             taskId: request.id,
             target: request.target,
             request,
+            dispatchFingerprint: buildTaskDispatchFingerprint(request),
             status: 'created',
             approval: null,
             policy: policyDecision,
@@ -738,6 +744,7 @@ export class TaskOrchestrator {
                 }
             }
         });
+        record.dispatchFingerprint = record.dispatchFingerprint || buildTaskDispatchFingerprint(record.request);
         record.history.push({
             at: sendAt,
             event: 'send_attempt',
