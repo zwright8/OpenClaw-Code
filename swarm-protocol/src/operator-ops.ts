@@ -71,17 +71,23 @@ export function listQueue(
     {
         approvalsOnly = false,
         target = null,
-        limit = 50
+        limit = 50,
+        now = Date.now
     } = {}
 ) {
     const list = Array.isArray(records) ? records : [];
     const filtered = [];
+    const at = nowMs(now);
 
     for (const record of list) {
         if (!record || typeof record !== 'object') continue;
         if (approvalsOnly && record.status !== 'awaiting_approval') continue;
         if (!approvalsOnly && TERMINAL_STATUSES.has(record.status)) continue;
         if (target && record.target !== target) continue;
+
+        const updatedAt = Number(record.updatedAt ?? record.createdAt);
+        const deadlineAt = Number(record.deadlineAt);
+        const nextRetryAt = Number(record.nextRetryAt);
 
         filtered.push({
             taskId: record.taskId,
@@ -91,6 +97,12 @@ export function listQueue(
             task: record.request?.task || '',
             attempts: record.attempts || 0,
             updatedAt: record.updatedAt,
+            ageMs: Number.isFinite(updatedAt) ? Math.max(0, at - updatedAt) : null,
+            deadlineAt: Number.isFinite(deadlineAt) ? deadlineAt : null,
+            deadlineInMs: Number.isFinite(deadlineAt) ? deadlineAt - at : null,
+            overdue: Number.isFinite(deadlineAt) && deadlineAt < at,
+            nextRetryAt: Number.isFinite(nextRetryAt) ? nextRetryAt : null,
+            retryInMs: Number.isFinite(nextRetryAt) ? nextRetryAt - at : null,
             approval: record.approval || null
         });
     }

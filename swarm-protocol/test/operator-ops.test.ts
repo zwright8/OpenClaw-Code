@@ -70,9 +70,17 @@ test('summarizeTaskRecords and listQueue produce operator views', () => {
     assert.equal(summary.terminal, 1);
     assert.equal(summary.pendingApprovals, 1);
 
-    const queue = listQueue(records);
+    const queue = listQueue(records, { now: () => 1_000 });
     assert.equal(queue.length, 2);
     assert.equal(queue[0].taskId, 'task-b');
+    assert.equal(queue[0].ageMs, 780);
+    assert.equal(queue[0].deadlineAt, null);
+    assert.equal(queue[0].overdue, false);
+    assert.equal(queue[0].retryInMs, null);
+
+    const dispatch = queue.find((row) => row.taskId === 'task-a');
+    assert.equal(dispatch?.ageMs, 880);
+    assert.equal(dispatch?.overdue, false);
 
     const approvals = listQueue(records, { approvalsOnly: true });
     assert.equal(approvals.length, 1);

@@ -233,7 +233,17 @@ function printQueue(rows) {
     }
 
     for (const row of rows) {
-        console.log(`${row.taskId} status=${row.status} target=${row.target} priority=${row.priority} attempts=${row.attempts}`);
+        const age = row.ageMs === null || row.ageMs === undefined
+            ? 'unknown'
+            : `${Math.floor(row.ageMs / 1000)}s`;
+        const deadline = row.deadlineInMs === null || row.deadlineInMs === undefined
+            ? 'none'
+            : row.overdue ? `overdue=${Math.floor(Math.abs(row.deadlineInMs) / 1000)}s`
+                : `due_in=${Math.floor(row.deadlineInMs / 1000)}s`;
+        const retry = row.retryInMs === null || row.retryInMs === undefined
+            ? 'none'
+            : row.retryInMs <= 0 ? 'ready' : `in=${Math.floor(row.retryInMs / 1000)}s`;
+        console.log(`${row.taskId} status=${row.status} target=${row.target} priority=${row.priority} attempts=${row.attempts} age=${age} deadline=${deadline} retry=${retry}`);
         console.log(`  task=${row.task}`);
     }
 }
