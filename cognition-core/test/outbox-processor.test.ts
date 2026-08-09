@@ -181,6 +181,40 @@ test('processOutboxEnvelopes dry-run does not mutate store or outbox', async (t)
     assert.equal(fs.existsSync(archiveDir), false);
 });
 
+test('processOutboxEnvelopes claims a file so concurrent workers execute it once', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000551', target);
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 75_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 75_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const [first, second] = await Promise.all([
+        processOutboxEnvelopes({ storePath: queuePath, outboxDir, botRuntime: false, resultDelayMs: 25 }),
+        processOutboxEnvelopes({ storePath: queuePath, outboxDir, botRuntime: false, resultDelayMs: 25 })
+    ]);
+
+    assert.equal(first.resultsAccepted + second.resultsAccepted, 1);
+    assert.equal(first.filesArchived + second.filesArchived, 1);
+    assert.equal(first.filesSkippedLocked + second.filesSkippedLocked, 1);
+});
+
 test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-up tasks', async (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

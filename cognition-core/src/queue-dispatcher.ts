@@ -73,6 +73,7 @@ export function buildDispatchPayload(record) {
         priority: request.priority,
         context: {
             ...(request.context || {}),
+            idempotencyKey: request.id,
             traceparent
         },
         constraints: request.constraints,
