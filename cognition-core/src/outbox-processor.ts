@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { createHash } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import {
     buildTaskReceipt,
     buildTaskResult,
@@ -184,6 +184,35 @@ function archiveFilePath(filePath, archiveDir, nowFactory) {
     return path.join(archiveDir, `${base}.${stamp}.processed.jsonl`);
 }
 
+async function claimOutboxFile(filePath, lockDir, nowFactory, staleLockMs) {
+    const lockPath = path.join(lockDir, `${path.basename(filePath)}.lock`);
+    const now = safeNow(nowFactory);
+
+    await fs.mkdir(lockDir, { recursive: true });
+    for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+            const handle = await fs.open(lockPath, 'wx');
+            await handle.writeFile(JSON.stringify({ pid: process.pid, claimedAt: now, token: randomUUID() }));
+            return {
+                async release() {
+                    await handle.close();
+                    await fs.rm(lockPath, { force: true });
+                }
+            };
+        } catch (error) {
+            if (error?.code !== 'EEXIST' || attempt > 0) return null;
+            try {
+                const stats = await fs.stat(lockPath);
+                if (now - stats.mtimeMs <= staleLockMs) return null;
+                await fs.rm(lockPath, { force: true });
+            } catch (statError) {
+                if (statError?.code !== 'ENOENT') return null;
+            }
+        }
+    }
+    return null;
+}
+
 function sanitizeMetrics(rawMetrics) {
     if (!rawMetrics || typeof rawMetrics !== 'object') return undefined;
     const metrics = {};
@@ -240,6 +269,8 @@ export async function processOutboxEnvelopes({
     storePath,
     outboxDir,
     archiveDir = path.join(outboxDir, 'processed'),
+    lockDir = path.join(outboxDir, '.locks'),
+    staleLockMs = 5 * 60 * 1_000,
     localAgentId = 'agent:main',
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -293,6 +324,7 @@ export async function processOutboxEnvelopes({
         loaded: hydration.loaded,
         filesFound: files.length,
         filesArchived: 0,
+        filesSkippedLocked: 0,
         envelopesSeen: 0,
         envelopesInvalid: 0,
         receiptsAccepted: 0,
@@ -317,47 +349,57 @@ export async function processOutboxEnvelopes({
     };
 
     for (const filePath of files) {
+        // Claim before reading so concurrent worker loops cannot execute the same file twice.
+        // A stale lock is recoverable after a crashed worker leaves it behind.
         // eslint-disable-next-line no-await-in-loop
-        const raw = await fs.readFile(filePath, 'utf8');
-        const parsed = parseEnvelopeLines(raw, filePath);
-        stats.envelopesSeen += parsed.envelopes.length;
-        stats.envelopesInvalid += parsed.invalid;
+        const lock = await claimOutboxFile(filePath, lockDir, now, Math.max(1_000, Number(staleLockMs) || 5 * 60 * 1_000));
+        if (!lock) {
+            stats.filesSkippedLocked++;
+            continue;
+        }
 
-        for (const envelope of parsed.envelopes) {
-            const request = envelope.message;
-            const taskId = request.id;
-            const target = request.target || envelope.target || 'agent:worker';
-            const record = orchestrator.getTask(taskId);
-            if (!record) {
-                stats.skippedUnknownTask++;
-                continue;
-            }
-            if (TERMINAL_STATUSES.has(record.status)) {
-                stats.skippedTerminal++;
-                continue;
-            }
-            if (dryRun) {
-                continue;
-            }
+        try {
+            // eslint-disable-next-line no-await-in-loop
+            const raw = await fs.readFile(filePath, 'utf8');
+            const parsed = parseEnvelopeLines(raw, filePath);
+            stats.envelopesSeen += parsed.envelopes.length;
+            stats.envelopesInvalid += parsed.invalid;
 
-            const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
-                taskId,
-                from: target,
-                accepted: true,
-                etaMs,
-                timestamp: safeNow(now)
-            }));
-            if (accepted) {
-                stats.receiptsAccepted++;
-            }
+            for (const envelope of parsed.envelopes) {
+                const request = envelope.message;
+                const taskId = request.id;
+                const target = request.target || envelope.target || 'agent:worker';
+                const record = orchestrator.getTask(taskId);
+                if (!record) {
+                    stats.skippedUnknownTask++;
+                    continue;
+                }
+                if (TERMINAL_STATUSES.has(record.status)) {
+                    stats.skippedTerminal++;
+                    continue;
+                }
+                if (dryRun) {
+                    continue;
+                }
 
-            let resultStatus = 'success';
-            let resultOutput = `Processed by outbox worker: ${request.task}`;
-            let resultArtifacts;
-            let resultMetrics;
-            const traceparent = traceparentFromRequest(request, envelope);
+                const accepted = orchestrator.ingestReceipt(buildTaskReceipt({
+                    taskId,
+                    from: target,
+                    accepted: true,
+                    etaMs,
+                    timestamp: safeNow(now)
+                }));
+                if (accepted) {
+                    stats.receiptsAccepted++;
+                }
 
-            if (bot) {
+                let resultStatus = 'success';
+                let resultOutput = `Processed by outbox worker: ${request.task}`;
+                let resultArtifacts;
+                let resultMetrics;
+                const traceparent = traceparentFromRequest(request, envelope);
+
+                if (bot) {
                 // eslint-disable-next-line no-await-in-loop
                 const execution = await bot.executeTask(request);
                 stats.botTasksExecuted++;
@@ -402,46 +444,50 @@ export async function processOutboxEnvelopes({
                         chaosInjected: 1
                     });
                 }
-            } else {
-                resultStatus = chooseResultStatus(failureRate, rng);
-                resultOutput = resultStatus === 'success'
-                    ? `Processed by outbox worker: ${request.task}`
-                    : `Failed by outbox worker: ${request.task}`;
-            }
+                } else {
+                    resultStatus = chooseResultStatus(failureRate, rng);
+                    resultOutput = resultStatus === 'success'
+                        ? `Processed by outbox worker: ${request.task}`
+                        : `Failed by outbox worker: ${request.task}`;
+                }
 
-            const completedAt = safeNow(now) + Math.max(0, Number(resultDelayMs) || 0);
-            const resultAccepted = orchestrator.ingestResult(buildTaskResult({
-                taskId,
-                from: target,
-                status: resultStatus,
-                output: resultOutput,
-                artifacts: resultArtifacts,
-                metrics: resultMetrics,
-                traceparent,
-                traceEvents: buildOutboxTraceEvents({
+                const completedAt = safeNow(now) + Math.max(0, Number(resultDelayMs) || 0);
+                const resultAccepted = orchestrator.ingestResult(buildTaskResult({
                     taskId,
-                    target,
+                    from: target,
+                    status: resultStatus,
+                    output: resultOutput,
+                    artifacts: resultArtifacts,
+                    metrics: resultMetrics,
                     traceparent,
-                    sentAt: safeNow(now),
-                    completedAt,
-                    resultStatus
-                }),
-                completedAt
-            }));
-            if (resultAccepted) {
-                stats.resultsAccepted++;
+                    traceEvents: buildOutboxTraceEvents({
+                        taskId,
+                        target,
+                        traceparent,
+                        sentAt: safeNow(now),
+                        completedAt,
+                        resultStatus
+                    }),
+                    completedAt
+                }));
+                if (resultAccepted) {
+                    stats.resultsAccepted++;
+                }
             }
+
+            if (dryRun) continue;
+
+            // Only archive after successful processing of file contents.
+            const archivedPath = archiveFilePath(filePath, archiveDir, now);
+            // eslint-disable-next-line no-await-in-loop
+            await fs.mkdir(path.dirname(archivedPath), { recursive: true });
+            // eslint-disable-next-line no-await-in-loop
+            await fs.rename(filePath, archivedPath);
+            stats.filesArchived++;
+        } finally {
+            // eslint-disable-next-line no-await-in-loop
+            await lock.release();
         }
-
-        if (dryRun) continue;
-
-        // Only archive after successful processing of file contents.
-        const archivedPath = archiveFilePath(filePath, archiveDir, now);
-        // eslint-disable-next-line no-await-in-loop
-        await fs.mkdir(path.dirname(archivedPath), { recursive: true });
-        // eslint-disable-next-line no-await-in-loop
-        await fs.rename(filePath, archivedPath);
-        stats.filesArchived++;
     }
 
     if (!dryRun) {

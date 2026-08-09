@@ -162,6 +162,7 @@ test('dispatchCreatedQueueTasks dispatches high-priority cognition tasks to outb
     assert.equal(envelope.kind, 'task_dispatch_envelope');
     assert.equal(envelope.message.kind, 'task_request');
     assert.equal(envelope.message.id, '00000000-0000-4000-8000-000000000201');
+    assert.equal(envelope.message.context.idempotencyKey, envelope.message.id);
     assert.match(envelope.message.traceparent, /^00-[0-9a-f]{32}-[0-9a-f]{16}-01$/);
     assert.equal(envelope.message.context.traceparent, envelope.message.traceparent);
 });
