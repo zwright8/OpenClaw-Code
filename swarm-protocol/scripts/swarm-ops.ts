@@ -276,6 +276,7 @@ function printEvents(events) {
         if (command === 'status') {
             const summary = summarizeTaskRecords(records);
             console.log(`total=${summary.total} open=${summary.open} terminal=${summary.terminal} pendingApprovals=${summary.pendingApprovals}`);
+            console.log(`openAgeMs.oldest=${summary.openAgeMs.oldest} openAgeMs.average=${summary.openAgeMs.average} openAgeMs.p95=${summary.openAgeMs.p95} oldestOpenTaskId=${summary.oldestOpenTaskId || 'none'}`);
             console.log('By status:');
             for (const [status, count] of Object.entries(summary.byStatus)) {
                 console.log(`- ${status}: ${count}`);

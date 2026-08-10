@@ -40,17 +40,36 @@ function toArray(index) {
     return [...index.values()];
 }
 
-export function summarizeTaskRecords(records) {
+function percentile(values, percentileRank) {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const index = Math.min(
+        sorted.length - 1,
+        Math.max(0, Math.ceil(sorted.length * percentileRank) - 1)
+    );
+    return sorted[index];
+}
+
+export function summarizeTaskRecords(records, { now = Date.now } = {}) {
     const list = Array.isArray(records) ? records : [];
+    const at = nowMs(now);
     const summary = {
         total: list.length,
         open: 0,
         terminal: 0,
         pendingApprovals: 0,
+        openAgeMs: {
+            oldest: 0,
+            average: 0,
+            p95: 0
+        },
+        oldestOpenTaskId: null,
         byStatus: {},
         byTarget: {}
     };
 
+    const openAges = [];
+    let oldestOpenAgeMs = -1;
     for (const record of list) {
         const status = record?.status || 'unknown';
         summary.byStatus[status] = (summary.byStatus[status] || 0) + 1;
@@ -60,7 +79,26 @@ export function summarizeTaskRecords(records) {
 
         if (status === 'awaiting_approval') summary.pendingApprovals++;
         if (TERMINAL_STATUSES.has(status)) summary.terminal++;
-        else summary.open++;
+        else {
+            summary.open++;
+            const createdAt = Number(record?.createdAt);
+            if (Number.isFinite(createdAt)) {
+                const ageMs = Math.max(0, at - createdAt);
+                openAges.push(ageMs);
+                if (ageMs > oldestOpenAgeMs) {
+                    oldestOpenAgeMs = ageMs;
+                    summary.oldestOpenTaskId = record?.taskId || null;
+                }
+            }
+        }
+    }
+
+    if (openAges.length > 0) {
+        summary.openAgeMs.oldest = Math.max(...openAges);
+        summary.openAgeMs.average = Number(
+            (openAges.reduce((total, ageMs) => total + ageMs, 0) / openAges.length).toFixed(2)
+        );
+        summary.openAgeMs.p95 = percentile(openAges, 0.95);
     }
 
     return summary;

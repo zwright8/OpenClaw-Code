@@ -65,10 +65,16 @@ function sampleRecords() {
 
 test('summarizeTaskRecords and listQueue produce operator views', () => {
     const records = sampleRecords();
-    const summary = summarizeTaskRecords(records);
+    const summary = summarizeTaskRecords(records, { now: () => 1_000 });
     assert.equal(summary.total, 3);
     assert.equal(summary.terminal, 1);
     assert.equal(summary.pendingApprovals, 1);
+    assert.deepEqual(summary.openAgeMs, {
+        oldest: 900,
+        average: 850,
+        p95: 900
+    });
+    assert.equal(summary.oldestOpenTaskId, 'task-a');
 
     const queue = listQueue(records, { now: () => 1_000 });
     assert.equal(queue.length, 2);
