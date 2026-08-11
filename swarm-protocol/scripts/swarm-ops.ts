@@ -4,6 +4,7 @@ import {
     FileTaskStore,
     collectLifecycleEvents,
     drainTarget,
+    evaluateOpenAgeSlo,
     listQueue,
     overrideApproval,
     recoverStaleDispatchRecord,
@@ -21,7 +22,7 @@ Usage:
   tsx scripts/swarm-ops.ts <command> [args] [options]
 
 Commands:
-  status
+  status [--max-open-age-ms <n>]
   queue [--approvals] [--target <agent>] [--limit <n>]
   replay <taskId>
   tail [--task <taskId>] [--target <agent>] [--limit <n>]
@@ -61,6 +62,7 @@ function parseArgs(argv) {
         notes: null,
         fingerprint: null,
         staleDispatchMs: 30 * 60 * 1000,
+        maxOpenAgeMs: null,
         limit: 25
     };
 
@@ -152,6 +154,14 @@ function parseArgs(argv) {
             options.staleDispatchMs = Number(value);
             if (!Number.isFinite(options.staleDispatchMs) || options.staleDispatchMs <= 0) {
                 throw new Error('--stale-ms must be a positive number');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--max-open-age-ms') {
+            options.maxOpenAgeMs = Number(value);
+            if (!Number.isFinite(options.maxOpenAgeMs) || options.maxOpenAgeMs < 0) {
+                throw new Error('--max-open-age-ms must be a non-negative number');
             }
             i++;
             continue;
@@ -277,6 +287,11 @@ function printEvents(events) {
             const summary = summarizeTaskRecords(records);
             console.log(`total=${summary.total} open=${summary.open} terminal=${summary.terminal} pendingApprovals=${summary.pendingApprovals}`);
             console.log(`openAgeMs.oldest=${summary.openAgeMs.oldest} openAgeMs.average=${summary.openAgeMs.average} openAgeMs.p95=${summary.openAgeMs.p95} oldestOpenTaskId=${summary.oldestOpenTaskId || 'none'}`);
+            if (options.maxOpenAgeMs !== null) {
+                const slo = evaluateOpenAgeSlo(summary, options.maxOpenAgeMs);
+                console.log(`openAgeSlo=${slo.breached ? 'breach' : 'pass'} thresholdMs=${slo.thresholdMs}`);
+                if (slo.breached) process.exitCode = 2;
+            }
             console.log('By status:');
             for (const [status, count] of Object.entries(summary.byStatus)) {
                 console.log(`- ${status}: ${count}`);

@@ -104,6 +104,20 @@ export function summarizeTaskRecords(records, { now = Date.now } = {}) {
     return summary;
 }
 
+export function evaluateOpenAgeSlo(summary, maxOpenAgeMs) {
+    const threshold = Number(maxOpenAgeMs);
+    if (!Number.isFinite(threshold) || threshold < 0) {
+        throw new Error('maxOpenAgeMs must be a non-negative number');
+    }
+
+    const oldestOpenAgeMs = Number(summary?.openAgeMs?.oldest) || 0;
+    return {
+        thresholdMs: threshold,
+        oldestOpenAgeMs,
+        breached: oldestOpenAgeMs > threshold
+    };
+}
+
 export function listQueue(
     records,
     {

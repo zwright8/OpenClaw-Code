@@ -4,6 +4,7 @@ import {
     collectLifecycleEvents,
     buildTaskDispatchFingerprint,
     drainTarget,
+    evaluateOpenAgeSlo,
     listQueue,
     overrideApproval,
     recoverStaleDispatchRecord,
@@ -91,6 +92,17 @@ test('summarizeTaskRecords and listQueue produce operator views', () => {
     const approvals = listQueue(records, { approvalsOnly: true });
     assert.equal(approvals.length, 1);
     assert.equal(approvals[0].taskId, 'task-b');
+});
+
+test('evaluateOpenAgeSlo supports automation-friendly backlog checks', () => {
+    const summary = summarizeTaskRecords(sampleRecords(), { now: () => 1_000 });
+    assert.deepEqual(evaluateOpenAgeSlo(summary, 900), {
+        thresholdMs: 900,
+        oldestOpenAgeMs: 900,
+        breached: false
+    });
+    assert.equal(evaluateOpenAgeSlo(summary, 899).breached, true);
+    assert.throws(() => evaluateOpenAgeSlo(summary, -1), /non-negative number/);
 });
 
 test('replayTask returns task history timeline', () => {
