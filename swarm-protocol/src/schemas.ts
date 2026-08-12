@@ -27,6 +27,7 @@ export const TaskResult = z.object({
     kind: z.literal('task_result'),
     taskId: z.string().uuid().describe('Matches the request ID'),
     from: AgentId,
+    attempt: z.number().int().positive().optional().describe('Dispatch attempt that produced this result'),
     status: z.enum(['success', 'failure', 'partial']),
     output: z.string().describe('Summary of work done'),
     artifacts: z.array(z.object({

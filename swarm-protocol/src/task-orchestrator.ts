@@ -51,6 +51,26 @@ function clampNonNegativeNumber(value, fallback) {
         : fallback;
 }
 
+function requestIdentity(request) {
+    const context = request?.context && typeof request.context === 'object'
+        ? { ...request.context }
+        : undefined;
+    if (context) delete context.openclawDispatch;
+
+    return JSON.stringify({
+        kind: request?.kind,
+        id: request?.id,
+        from: request?.from,
+        target: request?.target,
+        priority: request?.priority,
+        task: request?.task,
+        context,
+        constraints: request?.constraints,
+        traceparent: request?.traceparent,
+        createdAt: request?.createdAt
+    });
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -98,6 +118,7 @@ export function buildTaskReceipt({
 export function buildTaskResult({
     taskId,
     from,
+    attempt,
     status,
     output,
     artifacts,
@@ -110,6 +131,7 @@ export function buildTaskResult({
         kind: 'task_result',
         taskId,
         from,
+        attempt,
         status,
         output,
         artifacts,
@@ -193,6 +215,7 @@ export class TaskOrchestrator {
         this.logger = logger;
         this.tasks = new Map();
         this._persistenceQueue = Promise.resolve();
+        this._persistenceFailure = null;
     }
 
     async hydrate({ replace = true } = {}) {
@@ -233,6 +256,11 @@ export class TaskOrchestrator {
                 await operation();
             })
             .catch((error) => {
+                if (!this._persistenceFailure) {
+                    this._persistenceFailure = error instanceof Error
+                        ? error
+                        : new Error(String(error));
+                }
                 this.logger.warn?.(
                     `[Swarm] Persistence operation failed (${label}): ${error.message}`
                 );
@@ -275,6 +303,15 @@ export class TaskOrchestrator {
 
     async flush() {
         await this._persistenceQueue;
+        if (this._persistenceFailure) {
+            const error = this._persistenceFailure;
+            this._persistenceFailure = null;
+            throw new TaskOrchestratorError(
+                'PERSISTENCE_FAILED',
+                `Task persistence failed: ${error.message}`,
+                { cause: error }
+            );
+        }
     }
 
     _canRetry(record) {
@@ -436,6 +473,32 @@ export class TaskOrchestrator {
             id,
             createdAt
         });
+
+        const existing = this.tasks.get(request.id);
+        // A zero-attempt created record may have been hydrated from a queue
+        // producer and still needs its first policy/approval evaluation. Once
+        // dispatch has started, the attempt counter is the in-memory claim
+        // that makes duplicate callers idempotent.
+        if (existing && !(existing.status === 'created' && existing.attempts === 0)) {
+            if (requestIdentity(existing.request) !== requestIdentity(request)) {
+                throw new TaskOrchestratorError(
+                    'DUPLICATE_TASK_ID',
+                    `Task ${request.id} already exists with different work`,
+                    {
+                        taskId: request.id,
+                        existingStatus: existing.status
+                    }
+                );
+            }
+
+            this._emitAudit('task_duplicate_ignored', {
+                taskId: request.id,
+                target: existing.target,
+                status: existing.status,
+                attempts: existing.attempts
+            }, safeNow(this.now));
+            return this.getTask(request.id);
+        }
 
         let policyDecision = null;
         if (this.dispatchPolicy) {
@@ -650,6 +713,21 @@ export class TaskOrchestrator {
         const sendAt = safeNow(this.now);
         record.attempts += 1;
         record.updatedAt = sendAt;
+        record.request = buildTaskRequest({
+            ...record.request,
+            context: {
+                ...(record.request.context || {}),
+                openclawDispatch: {
+                    schemaVersion: 'openclaw.task_dispatch.context.v1',
+                    taskId: record.taskId,
+                    attempt: record.attempts,
+                    reason,
+                    idempotencyKey: `task:${record.taskId}:attempt:${record.attempts}`,
+                    taskIdempotencyKey: `task:${record.taskId}`,
+                    sentAt: sendAt
+                }
+            }
+        });
         record.history.push({
             at: sendAt,
             event: 'send_attempt',
@@ -775,6 +853,23 @@ export class TaskOrchestrator {
         const record = this.tasks.get(result.taskId);
         if (!record) return false;
         if (TERMINAL_STATUSES.has(record.status)) return false;
+
+        if (Number.isInteger(result.attempt) && result.attempt < record.attempts) {
+            record.history.push({
+                at: result.completedAt,
+                event: 'stale_result_ignored',
+                resultAttempt: result.attempt,
+                currentAttempt: record.attempts
+            });
+            record.updatedAt = result.completedAt;
+            this._persistRecord(record);
+            this._emitAudit('task_stale_result_ignored', {
+                taskId: record.taskId,
+                resultAttempt: result.attempt,
+                currentAttempt: record.attempts
+            }, result.completedAt);
+            return false;
+        }
 
         record.result = result;
         record.updatedAt = result.completedAt;

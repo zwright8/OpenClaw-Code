@@ -41,12 +41,36 @@ function traceparentFromRequest(request, envelope) {
     const candidates = [
         request?.traceparent,
         request?.context?.traceparent,
+        envelope?.trace?.traceparent,
         envelope?.traceparent,
         envelope?.message?.traceparent,
         envelope?.message?.context?.traceparent
     ];
     const found = candidates.find((value) => isTraceparent(value));
     return found ? found.trim().toLowerCase() : undefined;
+}
+
+function traceparentForFollowup({ request, sourceTraceparent, sourceTaskId, completedAt, resultStatus }) {
+    const existing = traceparentFromRequest(request, {});
+    if (existing) return existing;
+
+    const parsed = parseTraceparent(sourceTraceparent);
+    if (!parsed || typeof request?.id !== 'string') return undefined;
+
+    const parentSpanId = stableSpanId(`outbox-result:${sourceTaskId}:${completedAt}:${resultStatus}`);
+    return `00-${parsed.traceId}-${parentSpanId}-${parsed.traceFlags}`;
+}
+
+function attachTraceparent(request, traceparent) {
+    if (!traceparent || !request || typeof request !== 'object') return request;
+    return {
+        ...request,
+        context: {
+            ...(request.context && typeof request.context === 'object' ? request.context : {}),
+            traceparent
+        },
+        traceparent
+    };
 }
 
 function parseTraceparent(traceparent) {
@@ -125,6 +149,37 @@ function buildOutboxTraceEvents({ taskId, target, traceparent, sentAt, completed
     ];
 }
 
+function sanitizeEnvelopeTrajectoryEvents(envelope, { taskId, traceparent }) {
+    const events = Array.isArray(envelope?.trajectoryEvents) ? envelope.trajectoryEvents : [];
+    return events
+        .filter((event) => event && typeof event === 'object')
+        .filter((event) => (
+            event.taskId === taskId
+            && event.traceparent === traceparent
+        ))
+        .map((event) => ({ ...event }));
+}
+
+function buildResultTraceEvents({ envelope, taskId, target, traceparent, sentAt, completedAt, resultStatus }) {
+    const outboxEvents = buildOutboxTraceEvents({
+        taskId,
+        target,
+        traceparent,
+        sentAt,
+        completedAt,
+        resultStatus
+    }) || [];
+    const trajectoryEvents = sanitizeEnvelopeTrajectoryEvents(envelope, {
+        taskId,
+        traceparent
+    });
+    const merged = [
+        ...trajectoryEvents,
+        ...outboxEvents
+    ];
+    return merged.length > 0 ? merged : undefined;
+}
+
 function chooseResultStatus(failureRate, rng = Math.random) {
     if (normalizeFailureRate(failureRate) <= 0) return 'success';
     return rng() < normalizeFailureRate(failureRate) ? 'failure' : 'success';
@@ -178,10 +233,149 @@ async function listOutboxFiles(outboxDir) {
     }
 }
 
+async function listProcessingFiles(processingDir) {
+    try {
+        const entries = await fs.readdir(processingDir, { withFileTypes: true });
+        return entries
+            .filter((entry) => entry.isFile() && entry.name.endsWith('.jsonl'))
+            .map((entry) => path.join(processingDir, entry.name))
+            .sort();
+    } catch (error) {
+        if (error?.code === 'ENOENT') return [];
+        throw error;
+    }
+}
+
+async function claimOutboxFile(filePath, processingDir) {
+    const base = path.basename(filePath, '.jsonl');
+    const claimToken = `${process.pid}.${Date.now()}.${Math.random().toString(16).slice(2)}`;
+    const claimedPath = path.join(processingDir, `${base}.${claimToken}.jsonl`);
+    try {
+        await fs.mkdir(processingDir, { recursive: true });
+        await fs.rename(filePath, claimedPath);
+        return claimedPath;
+    } catch (error) {
+        if (error?.code === 'ENOENT') return null;
+        throw error;
+    }
+}
+
 function archiveFilePath(filePath, archiveDir, nowFactory) {
     const base = path.basename(filePath, '.jsonl');
     const stamp = safeNow(nowFactory);
     return path.join(archiveDir, `${base}.${stamp}.processed.jsonl`);
+}
+
+function executionLedgerPath(executionLedgerDir, taskId, attempt) {
+    const key = createHash('sha256')
+        .update(`task:${taskId}:attempt:${attempt}`)
+        .digest('hex');
+    return path.join(executionLedgerDir, `${key}.json`);
+}
+
+function executionRequestFingerprint(request) {
+    return createHash('sha256')
+        .update(JSON.stringify(request))
+        .digest('hex');
+}
+
+async function readExecutionMarker(executionLedgerDir, taskId, attempt, request) {
+    try {
+        const raw = await fs.readFile(executionLedgerPath(executionLedgerDir, taskId, attempt), 'utf8');
+        const marker = JSON.parse(raw);
+        if (
+            !marker
+            || marker.schemaVersion !== 'openclaw.bot_execution_marker.v1'
+            || marker.taskId !== taskId
+            || marker.attempt !== attempt
+            || typeof marker.resultStatus !== 'string'
+        ) {
+            return null;
+        }
+        if (
+            typeof marker.requestFingerprint === 'string'
+            && marker.requestFingerprint !== executionRequestFingerprint(request)
+        ) {
+            return { mismatch: true, marker };
+        }
+        return marker;
+    } catch (error) {
+        if (error?.code === 'ENOENT') return null;
+        return null;
+    }
+}
+
+async function writeExecutionMarker(executionLedgerDir, marker) {
+    const markerPath = executionLedgerPath(executionLedgerDir, marker.taskId, marker.attempt);
+    const tempPath = `${markerPath}.${process.pid}.tmp`;
+    await fs.mkdir(executionLedgerDir, { recursive: true });
+    await fs.writeFile(tempPath, `${JSON.stringify(marker)}\n`, 'utf8');
+    await fs.rename(tempPath, markerPath);
+}
+
+async function cleanupExecutionMarkers({
+    executionLedgerDir,
+    records,
+    nowFactory,
+    retentionMs
+}) {
+    if (!executionLedgerDir || !Number.isFinite(retentionMs) || retentionMs < 0) {
+        return { removed: 0, retained: 0 };
+    }
+
+    let entries;
+    try {
+        entries = await fs.readdir(executionLedgerDir, { withFileTypes: true });
+    } catch (error) {
+        if (error?.code === 'ENOENT') return { removed: 0, retained: 0 };
+        throw error;
+    }
+
+    const recordsById = new Map(
+        (Array.isArray(records) ? records : [])
+            .filter((record) => record && typeof record.taskId === 'string')
+            .map((record) => [record.taskId, record])
+    );
+    const now = safeNow(nowFactory);
+    let removed = 0;
+    let retained = 0;
+
+    for (const entry of entries) {
+        if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+        const markerPath = path.join(executionLedgerDir, entry.name);
+        let marker;
+        try {
+            marker = JSON.parse(await fs.readFile(markerPath, 'utf8'));
+        } catch {
+            retained++;
+            continue;
+        }
+
+        const record = recordsById.get(marker?.taskId);
+        const completedAt = Number(marker?.completedAt);
+        const followupTasks = Array.isArray(marker?.followupTasks) ? marker.followupTasks : [];
+        const followupsPersisted = followupTasks.every((request) => (
+            request
+            && typeof request.id === 'string'
+            && recordsById.has(request.id)
+        ));
+        const eligible = marker?.schemaVersion === 'openclaw.bot_execution_marker.v1'
+            && record
+            && TERMINAL_STATUSES.has(record.status)
+            && followupsPersisted
+            && Number.isFinite(completedAt)
+            && now - completedAt >= retentionMs;
+
+        if (!eligible) {
+            retained++;
+            continue;
+        }
+
+        await fs.unlink(markerPath);
+        removed++;
+    }
+
+    return { removed, retained };
 }
 
 function sanitizeMetrics(rawMetrics) {
@@ -240,6 +434,9 @@ export async function processOutboxEnvelopes({
     storePath,
     outboxDir,
     archiveDir = path.join(outboxDir, 'processed'),
+    processingDir = path.join(outboxDir, 'processing'),
+    executionLedgerDir = path.join(outboxDir, 'executions'),
+    executionMarkerRetentionMs = 24 * 60 * 60 * 1_000,
     localAgentId = 'agent:main',
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -287,11 +484,27 @@ export async function processOutboxEnvelopes({
 
     const hydration = await orchestrator.hydrate();
     const files = await listOutboxFiles(outboxDir);
+    const strandedFiles = await listProcessingFiles(processingDir);
+    const claimedFiles = [];
+    if (dryRun) {
+        claimedFiles.push(...strandedFiles, ...files);
+    } else {
+        for (const filePath of [...strandedFiles, ...files]) {
+            // A rename is the claim boundary: dispatchers keep appending to the
+            // original outbox path while this worker processes a stable snapshot.
+            // Existing processing files are retried after a worker crash.
+            // eslint-disable-next-line no-await-in-loop
+            const claimedPath = strandedFiles.includes(filePath)
+                ? filePath
+                : await claimOutboxFile(filePath, processingDir);
+            if (claimedPath) claimedFiles.push(claimedPath);
+        }
+    }
     const followupEntries = [];
 
     const stats = {
         loaded: hydration.loaded,
-        filesFound: files.length,
+        filesFound: files.length + strandedFiles.length,
         filesArchived: 0,
         envelopesSeen: 0,
         envelopesInvalid: 0,
@@ -301,6 +514,7 @@ export async function processOutboxEnvelopes({
         skippedTerminal: 0,
         dryRun,
         botRuntime,
+        botTasksReplayed: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
         botSkillTasks: 0,
@@ -310,13 +524,17 @@ export async function processOutboxEnvelopes({
         botCapabilityTasks: 0,
         botCapabilityActionTasks: 0,
         botGenericTasks: 0,
+        botExecutionMarkerMismatches: 0,
         followupTasksGenerated: 0,
+        followupTraceparentsPropagated: 0,
         followupTasksAccepted: 0,
         followupTasksSaved: 0,
-        followupTasksSkipped: 0
+        followupTasksSkipped: 0,
+        executionMarkersRemoved: 0,
+        executionMarkersRetained: 0
     };
 
-    for (const filePath of files) {
+    for (const filePath of claimedFiles) {
         // eslint-disable-next-line no-await-in-loop
         const raw = await fs.readFile(filePath, 'utf8');
         const parsed = parseEnvelopeLines(raw, filePath);
@@ -356,11 +574,66 @@ export async function processOutboxEnvelopes({
             let resultArtifacts;
             let resultMetrics;
             const traceparent = traceparentFromRequest(request, envelope);
+            let followupTasks = [];
+            const dispatchAttempt = Number(request.context?.openclawDispatch?.attempt);
+            const attempt = Number.isInteger(dispatchAttempt) && dispatchAttempt > 0
+                ? dispatchAttempt
+                : 0;
+            let markerCompletedAt;
 
             if (bot) {
+                // A marker is written before the task result is persisted so a crash
+                // after bot side effects can replay the outcome without re-running them.
                 // eslint-disable-next-line no-await-in-loop
-                const execution = await bot.executeTask(request);
-                stats.botTasksExecuted++;
+                const marker = await readExecutionMarker(executionLedgerDir, taskId, attempt, request);
+                let execution;
+                if (marker?.mismatch) {
+                    stats.botExecutionMarkerMismatches++;
+                    execution = {
+                        mode: 'generic',
+                        status: 'failure',
+                        output: 'Refused to replay execution marker for mutated task request',
+                        metrics: { executionMarkerMismatch: 1 },
+                        followupTasks: []
+                    };
+                    resultStatus = 'failure';
+                    resultOutput = 'Refused to replay execution marker for mutated task request';
+                    resultMetrics = { executionMarkerMismatch: 1 };
+                } else if (marker) {
+                    markerCompletedAt = Number.isFinite(Number(marker.completedAt))
+                        ? Number(marker.completedAt)
+                        : undefined;
+                    execution = {
+                        mode: marker.mode,
+                        status: marker.status,
+                        output: marker.output,
+                        artifacts: marker.artifacts,
+                        metrics: marker.metrics,
+                        followupTasks: marker.followupTasks
+                    };
+                    stats.botTasksReplayed++;
+                } else {
+                    // eslint-disable-next-line no-await-in-loop
+                    execution = await bot.executeTask(request);
+                    // The marker must include all generated work so replay cannot
+                    // create a different set of follow-up task ids.
+                    // eslint-disable-next-line no-await-in-loop
+                    await writeExecutionMarker(executionLedgerDir, {
+                        schemaVersion: 'openclaw.bot_execution_marker.v1',
+                        taskId,
+                        attempt,
+                        requestFingerprint: executionRequestFingerprint(request),
+                        mode: execution.mode,
+                        status: execution.status,
+                        output: execution.output,
+                        artifacts: execution.artifacts,
+                        metrics: execution.metrics,
+                        followupTasks: execution.followupTasks,
+                        resultStatus: normalizeBotResultStatus(execution.status),
+                        completedAt: safeNow(now) + Math.max(0, Number(resultDelayMs) || 0)
+                    });
+                    stats.botTasksExecuted++;
+                }
                 stats[botModeToStatField(execution.mode)]++;
                 if (
                     execution.mode === 'skill'
@@ -383,16 +656,7 @@ export async function processOutboxEnvelopes({
                         ? execution.followupTasks.length
                         : 0
                 });
-
-                if (enqueueFollowupTasks && Array.isArray(execution.followupTasks) && execution.followupTasks.length > 0) {
-                    for (let i = 0; i < execution.followupTasks.length; i++) {
-                        followupEntries.push({
-                            source: `openclaw-bot:${taskId}`,
-                            request: execution.followupTasks[i]
-                        });
-                    }
-                    stats.followupTasksGenerated += execution.followupTasks.length;
-                }
+                followupTasks = Array.isArray(execution.followupTasks) ? execution.followupTasks : [];
 
                 if (resultStatus !== 'failure' && chooseResultStatus(failureRate, rng) === 'failure') {
                     resultStatus = 'failure';
@@ -409,16 +673,36 @@ export async function processOutboxEnvelopes({
                     : `Failed by outbox worker: ${request.task}`;
             }
 
-            const completedAt = safeNow(now) + Math.max(0, Number(resultDelayMs) || 0);
+            const completedAt = markerCompletedAt || (safeNow(now) + Math.max(0, Number(resultDelayMs) || 0));
+            if (enqueueFollowupTasks && followupTasks.length > 0) {
+                for (let i = 0; i < followupTasks.length; i++) {
+                    const followupRequest = followupTasks[i];
+                    const followupTraceparent = traceparentForFollowup({
+                        request: followupRequest,
+                        sourceTraceparent: traceparent,
+                        sourceTaskId: taskId,
+                        completedAt,
+                        resultStatus
+                    });
+                    if (followupTraceparent) stats.followupTraceparentsPropagated++;
+                    followupEntries.push({
+                        source: `openclaw-bot:${taskId}`,
+                        request: attachTraceparent(followupRequest, followupTraceparent)
+                    });
+                }
+                stats.followupTasksGenerated += followupTasks.length;
+            }
             const resultAccepted = orchestrator.ingestResult(buildTaskResult({
                 taskId,
                 from: target,
+                attempt: attempt > 0 ? attempt : undefined,
                 status: resultStatus,
                 output: resultOutput,
                 artifacts: resultArtifacts,
                 metrics: resultMetrics,
                 traceparent,
-                traceEvents: buildOutboxTraceEvents({
+                traceEvents: buildResultTraceEvents({
+                    envelope,
                     taskId,
                     target,
                     traceparent,
@@ -435,7 +719,7 @@ export async function processOutboxEnvelopes({
 
         if (dryRun) continue;
 
-        // Only archive after successful processing of file contents.
+        // Only archive after successful processing of the claimed snapshot.
         const archivedPath = archiveFilePath(filePath, archiveDir, now);
         // eslint-disable-next-line no-await-in-loop
         await fs.mkdir(path.dirname(archivedPath), { recursive: true });
@@ -459,6 +743,15 @@ export async function processOutboxEnvelopes({
             stats.followupTasksSaved = enqueueResult.stats.saved;
             stats.followupTasksSkipped = enqueueResult.skipped.length;
         }
+
+        const markerCleanup = await cleanupExecutionMarkers({
+            executionLedgerDir,
+            records: await store.loadRecords(),
+            nowFactory: now,
+            retentionMs: Number(executionMarkerRetentionMs)
+        });
+        stats.executionMarkersRemoved = markerCleanup.removed;
+        stats.executionMarkersRetained = markerCleanup.retained;
     }
 
     return stats;

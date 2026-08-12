@@ -23,6 +23,8 @@ Options:
   --dispatch-limit <n>         Dispatch limit per worker cycle (default: 100)
   --worker-cycles <n>          Max worker cycles per wave (default: 12)
   --worker-idle-cycles <n>     Idle cycles before worker stop (default: 2)
+  --stale-dispatch-ms <n>      Dispatched-task age before recovery planning (default: 1800000)
+  --no-stop-stale-dispatch     Continue worker cycles after stale dispatch detection
   --sleep-ms <n>               Delay between waves in milliseconds (default: 0)
   --failure-rate <0-1>         Failure injection probability after execution (default: 0)
   --no-stop-full-coverage      Continue waves even after full skill/capability coverage
@@ -87,6 +89,8 @@ function parseArgs(argv) {
         dispatchLimit: 100,
         workerCycles: 12,
         workerIdleCycles: 2,
+        staleDispatchMs: 30 * 60 * 1000,
+        stopWhenStaleDispatch: true,
         sleepMs: 0,
         failureRate: 0,
         stopOnFullCoverage: true,
@@ -119,6 +123,10 @@ function parseArgs(argv) {
         }
         if (token === '--no-enqueue-followups') {
             options.enqueueFollowupTasks = false;
+            continue;
+        }
+        if (token === '--no-stop-stale-dispatch') {
+            options.stopWhenStaleDispatch = false;
             continue;
         }
 
@@ -184,6 +192,11 @@ function parseArgs(argv) {
         }
         if (token === '--worker-idle-cycles') {
             options.workerIdleCycles = parsePositiveInt(value, '--worker-idle-cycles');
+            i++;
+            continue;
+        }
+        if (token === '--stale-dispatch-ms') {
+            options.staleDispatchMs = parsePositiveInt(value, '--stale-dispatch-ms', true);
             i++;
             continue;
         }
@@ -257,6 +270,7 @@ function printSummary(report) {
     console.log(`Results accepted: ${report.totals.resultsAccepted}`);
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Bot skill hardening blocked: ${report.totals.botSkillHardeningBlocked}`);
+    console.log(`Stale dispatches: ${report.totals.staleDispatches || 0}`);
 }
 
 (async () => {
@@ -280,6 +294,8 @@ function printSummary(report) {
             dispatchLimit: options.dispatchLimit,
             workerCycles: options.workerCycles,
             workerIdleCycles: options.workerIdleCycles,
+            staleDispatchMs: options.staleDispatchMs,
+            stopWhenStaleDispatch: options.stopWhenStaleDispatch,
             sleepMs: options.sleepMs,
             stopOnFullCoverage: options.stopOnFullCoverage,
             failureRate: options.failureRate,

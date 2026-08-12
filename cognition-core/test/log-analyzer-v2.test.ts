@@ -242,9 +242,23 @@ test('grades trace integrity for unmatched and repeated tool events', async (t) 
     assert.equal(summary.traceIntegrity.repeatedToolCallBursts, 1);
     assert.equal(summary.traceIntegrity.maxConsecutiveToolCalls, 3);
     assert.equal(summary.traceIntegrity.maxPendingToolCalls, 4);
+    assert.equal(summary.toolFailureModes.missing_tool_result.count, 3);
+    assert.equal(summary.toolFailureModes.missing_tool_result.tools.exec, 2);
+    assert.equal(summary.toolFailureModes.missing_tool_result.tools.read, 1);
+    assert.equal(summary.toolFailureModes.orphan_tool_result.count, 1);
+    assert.equal(summary.toolFailureModes.orphan_tool_result.tools.write, 1);
+    assert.equal(summary.toolFailureModes.repeated_tool_call_burst.count, 1);
+    assert.equal(summary.toolFailureModes.repeated_tool_call_burst.tools.exec, 1);
+    assert.equal(summary.topToolFailureModes[0].mode, 'missing_tool_result');
+    assert.deepEqual(summary.topToolFailureModes[0].topTools[0], {
+        name: 'exec',
+        count: 2
+    });
     assert.ok(summary.insights.some((item) => item.includes('Trace integrity gap')));
+    assert.ok(summary.insights.some((item) => item.includes('Dominant tool failure mode: missing_tool_result')));
 
     const remediation = buildRemediationPlan(summary);
+    assert.ok(remediation.some((item) => item.title === 'Investigate missing_tool_result'));
     assert.ok(remediation.some((item) => item.title === 'Repair tool trace correlation'));
     assert.ok(remediation.some((item) => item.title === 'Reduce repeated tool-call bursts'));
 });
@@ -353,6 +367,11 @@ test('tracks risky tool-call trajectories with repeated errors and missing resul
     assert.equal(summary.trajectoryRisk.unresolvedToolCalls, 1);
     assert.equal(summary.trajectoryRisk.sessionsWithConsecutiveToolErrors, 1);
     assert.equal(summary.trajectoryRisk.maxConsecutiveToolErrors, 2);
+    assert.equal(summary.toolFailureModes.tool_result_error.count, 2);
+    assert.equal(summary.toolFailureModes.tool_result_error.tools.exec, 1);
+    assert.equal(summary.toolFailureModes.tool_result_error.tools.read, 1);
+    assert.equal(summary.toolFailureModes.missing_tool_result.count, 1);
+    assert.equal(summary.toolFailureModes.missing_tool_result.tools.write, 1);
     assert.equal(summary.topRiskyTrajectories.length, 1);
     assert.deepEqual(summary.topRiskyTrajectories[0].flags, [
         'consecutive_tool_errors',
