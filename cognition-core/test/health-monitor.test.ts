@@ -372,6 +372,61 @@ test('inspectOpenClawHealth surfaces worker evaluation and trace export warnings
     assert.equal(result.workerLoop.traceExportDiagnostics.exportCoverage, 0.5);
 });
 
+test('inspectOpenClawHealth evaluates optional worker open-age SLO', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        lifecycleCheckpoint: {
+            lastCycle: { finishedAt: 100_000 },
+            queue: { open: 2, openAgeMs: { oldest: 45_000, average: 20_000, p95: 40_000 } }
+        }
+    }));
+
+    const result = inspectOpenClawHealth({
+        logPath,
+        workerReportPath: reportPath,
+        now: 100_000,
+        openAgeSloMs: 30_000
+    });
+
+    assert.equal(result.status, 'attention');
+    assert.deepEqual(result.attention, ['worker_loop_open_age_slo_breached']);
+    assert.deepEqual(result.workerLoop.openAgeSlo, {
+        thresholdMs: 30_000,
+        oldestOpenAgeMs: 45_000,
+        breached: true
+    });
+});
+
+test('health-monitor --max-open-age-ms exits nonzero on backlog breach', (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const logPath = path.join(dir, 'gateway.log');
+    const reportPath = path.join(dir, 'bot-worker-loop.json');
+    fs.writeFileSync(logPath, '2026-06-07T00:01:00Z WhatsApp gateway healthy\n');
+    fs.writeFileSync(reportPath, JSON.stringify({
+        lifecycleCheckpoint: {
+            lastCycle: { finishedAt: Date.now() },
+            queue: { open: 1, openAgeMs: { oldest: 31_000 } }
+        }
+    }));
+
+    const result = spawnSync('npx', ['tsx', SCRIPT_PATH, '--json', '--max-open-age-ms', '30000'], {
+        cwd: path.dirname(SCRIPT_PATH),
+        env: { ...process.env, OPENCLAW_GATEWAY_LOG: logPath, OPENCLAW_WORKER_LOOP_REPORT: reportPath },
+        encoding: 'utf8'
+    });
+
+    assert.equal(result.status, 2, result.stderr);
+    const parsed = JSON.parse(result.stdout);
+    assert.deepEqual(parsed.attention, ['worker_loop_open_age_slo_breached']);
+});
+
 test('inspectOpenClawHealth does not alert on stale drained worker checkpoint', (t) => {
     const dir = mkTmpDir();
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));

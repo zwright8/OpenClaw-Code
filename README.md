@@ -231,6 +231,7 @@ Emit the same health state as JSON for external OpenClaw monitors with:
 npx tsx scripts/health-monitor.ts --json
 ```
 The JSON includes an aggregate `status` plus `attention` reasons and reports gateway and worker-loop state independently so partial outages do not mask resume signals. When present in `reports/bot-worker-loop.json`, worker-loop `runEvaluation` and `traceExportDiagnostics` are also surfaced as health attention signals so external monitors can catch execution-quality or trace-export regressions without parsing the full worker report.
+Configure `OPENCLAW_WORKER_OPEN_AGE_SLO_MS` (or pass `--max-open-age-ms <n>`) to alert when the oldest open task exceeds an operator-defined backlog-age SLO. A breach adds `worker_loop_open_age_slo_breached` to `attention` and exits with status `2`, allowing cron or health checks to act without parsing the full report; the check is disabled when no threshold is configured.
 
 ## Quick Start
 
