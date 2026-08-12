@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { TaskReceipt, TaskRequest, TaskResult } from './schemas.js';
 
 const TERMINAL_STATUSES = new Set([
@@ -51,6 +51,41 @@ function clampNonNegativeNumber(value, fallback) {
         : fallback;
 }
 
+function percentile(values, percentileRank) {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const index = Math.min(
+        sorted.length - 1,
+        Math.max(0, Math.ceil(sorted.length * percentileRank) - 1)
+    );
+    return sorted[index];
+}
+
+function requestIdentity(request) {
+    const context = request?.context && typeof request.context === 'object'
+        ? { ...request.context }
+        : undefined;
+    if (context) delete context.openclawDispatch;
+
+    return JSON.stringify({
+        kind: request?.kind,
+        id: request?.id,
+        from: request?.from,
+        target: request?.target,
+        priority: request?.priority,
+        task: request?.task,
+        context,
+        constraints: request?.constraints,
+        traceparent: request?.traceparent,
+        createdAt: request?.createdAt
+    });
+}
+
+export function buildTaskDispatchFingerprint(requestOrRecord) {
+    const request = requestOrRecord?.request || requestOrRecord;
+    return createHash('sha256').update(requestIdentity(request)).digest('hex');
+}
+
 export function buildTaskRequest({
     from,
     target,
@@ -98,6 +133,7 @@ export function buildTaskReceipt({
 export function buildTaskResult({
     taskId,
     from,
+    attempt,
     status,
     output,
     artifacts,
@@ -110,6 +146,7 @@ export function buildTaskResult({
         kind: 'task_result',
         taskId,
         from,
+        attempt,
         status,
         output,
         artifacts,
@@ -193,6 +230,7 @@ export class TaskOrchestrator {
         this.logger = logger;
         this.tasks = new Map();
         this._persistenceQueue = Promise.resolve();
+        this._persistenceFailure = null;
     }
 
     async hydrate({ replace = true } = {}) {
@@ -233,6 +271,11 @@ export class TaskOrchestrator {
                 await operation();
             })
             .catch((error) => {
+                if (!this._persistenceFailure) {
+                    this._persistenceFailure = error instanceof Error
+                        ? error
+                        : new Error(String(error));
+                }
                 this.logger.warn?.(
                     `[Swarm] Persistence operation failed (${label}): ${error.message}`
                 );
@@ -275,6 +318,15 @@ export class TaskOrchestrator {
 
     async flush() {
         await this._persistenceQueue;
+        if (this._persistenceFailure) {
+            const error = this._persistenceFailure;
+            this._persistenceFailure = null;
+            throw new TaskOrchestratorError(
+                'PERSISTENCE_FAILED',
+                `Task persistence failed: ${error.message}`,
+                { cause: error }
+            );
+        }
     }
 
     _canRetry(record) {
@@ -437,6 +489,32 @@ export class TaskOrchestrator {
             createdAt
         });
 
+        const existing = this.tasks.get(request.id);
+        // A zero-attempt created record may have been hydrated from a queue
+        // producer and still needs its first policy/approval evaluation. Once
+        // dispatch has started, the attempt counter is the in-memory claim
+        // that makes duplicate callers idempotent.
+        if (existing && !(existing.status === 'created' && existing.attempts === 0)) {
+            if (requestIdentity(existing.request) !== requestIdentity(request)) {
+                throw new TaskOrchestratorError(
+                    'DUPLICATE_TASK_ID',
+                    `Task ${request.id} already exists with different work`,
+                    {
+                        taskId: request.id,
+                        existingStatus: existing.status
+                    }
+                );
+            }
+
+            this._emitAudit('task_duplicate_ignored', {
+                taskId: request.id,
+                target: existing.target,
+                status: existing.status,
+                attempts: existing.attempts
+            }, safeNow(this.now));
+            return this.getTask(request.id);
+        }
+
         let policyDecision = null;
         if (this.dispatchPolicy) {
             const decision = await this.dispatchPolicy(request);
@@ -500,6 +578,7 @@ export class TaskOrchestrator {
             taskId: request.id,
             target: request.target,
             request,
+            dispatchFingerprint: buildTaskDispatchFingerprint(request),
             status: 'created',
             approval: null,
             policy: policyDecision,
@@ -650,6 +729,22 @@ export class TaskOrchestrator {
         const sendAt = safeNow(this.now);
         record.attempts += 1;
         record.updatedAt = sendAt;
+        record.request = buildTaskRequest({
+            ...record.request,
+            context: {
+                ...(record.request.context || {}),
+                openclawDispatch: {
+                    schemaVersion: 'openclaw.task_dispatch.context.v1',
+                    taskId: record.taskId,
+                    attempt: record.attempts,
+                    reason,
+                    idempotencyKey: `task:${record.taskId}:attempt:${record.attempts}`,
+                    taskIdempotencyKey: `task:${record.taskId}`,
+                    sentAt: sendAt
+                }
+            }
+        });
+        record.dispatchFingerprint = record.dispatchFingerprint || buildTaskDispatchFingerprint(record.request);
         record.history.push({
             at: sendAt,
             event: 'send_attempt',
@@ -775,6 +870,23 @@ export class TaskOrchestrator {
         const record = this.tasks.get(result.taskId);
         if (!record) return false;
         if (TERMINAL_STATUSES.has(record.status)) return false;
+
+        if (Number.isInteger(result.attempt) && result.attempt < record.attempts) {
+            record.history.push({
+                at: result.completedAt,
+                event: 'stale_result_ignored',
+                resultAttempt: result.attempt,
+                currentAttempt: record.attempts
+            });
+            record.updatedAt = result.completedAt;
+            this._persistRecord(record);
+            this._emitAudit('task_stale_result_ignored', {
+                taskId: record.taskId,
+                resultAttempt: result.attempt,
+                currentAttempt: record.attempts
+            }, result.completedAt);
+            return false;
+        }
 
         record.result = result;
         record.updatedAt = result.completedAt;
@@ -951,13 +1063,19 @@ export class TaskOrchestrator {
         return this.listTasks({ status: APPROVAL_PENDING_STATUS });
     }
 
-    getMetrics() {
+    getMetrics({ now = this.now } = {}) {
+        const nowMs = safeNow(now);
         const metrics = {
             total: this.tasks.size,
             open: 0,
             terminal: 0,
             byStatus: {},
             avgAttempts: 0,
+            openAgeMs: {
+                oldest: 0,
+                average: 0,
+                p95: 0
+            },
             retry: {
                 delayMs: this.retryDelayMs,
                 strategy: this.retryBackoffStrategy,
@@ -968,6 +1086,7 @@ export class TaskOrchestrator {
         };
 
         let attemptsTotal = 0;
+        const openAges = [];
         for (const record of this.tasks.values()) {
             attemptsTotal += record.attempts;
             metrics.byStatus[record.status] = (metrics.byStatus[record.status] || 0) + 1;
@@ -976,12 +1095,24 @@ export class TaskOrchestrator {
                 metrics.terminal++;
             } else {
                 metrics.open++;
+                const createdAt = Number(record.createdAt);
+                if (Number.isFinite(createdAt)) {
+                    openAges.push(Math.max(0, nowMs - createdAt));
+                }
             }
         }
 
         metrics.avgAttempts = this.tasks.size > 0
             ? Number((attemptsTotal / this.tasks.size).toFixed(2))
             : 0;
+
+        if (openAges.length > 0) {
+            metrics.openAgeMs.oldest = Math.max(...openAges);
+            metrics.openAgeMs.average = Number(
+                (openAges.reduce((total, ageMs) => total + ageMs, 0) / openAges.length).toFixed(2)
+            );
+            metrics.openAgeMs.p95 = percentile(openAges, 0.95);
+        }
 
         return metrics;
     }

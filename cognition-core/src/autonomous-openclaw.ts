@@ -22,6 +22,7 @@ const SUCCESS_STATUSES = new Set([
     'completed',
     'partial'
 ]);
+const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -592,6 +593,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         `- resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
         `- followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
+        `- staleDispatches: ${report.totals?.staleDispatches || 0}`,
         '',
         '## Coverage',
         '',
@@ -607,7 +609,7 @@ export function renderAutonomousRunMarkdown(reportPayload) {
         lines.push('- none');
     } else {
         for (const wave of waves) {
-            lines.push(`- wave ${wave.wave}: skillTasks=${wave.planned.skillTasks} capabilityTasks=${wave.planned.capabilityTasks} accepted=${wave.enqueue.accepted} skipped=${wave.enqueue.skipped} stopReason=${wave.worker.stopReason}`);
+            lines.push(`- wave ${wave.wave}: skillTasks=${wave.planned.skillTasks} capabilityTasks=${wave.planned.capabilityTasks} accepted=${wave.enqueue.accepted} skipped=${wave.enqueue.skipped} stopReason=${wave.worker.stopReason} staleDispatches=${wave.worker.finalQueueDispatchedStale || 0}`);
         }
     }
 
@@ -645,6 +647,8 @@ export async function runAutonomousOpenClaw({
     dispatchLimit = 100,
     workerCycles = 12,
     workerIdleCycles = 2,
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
+    stopWhenStaleDispatch = true,
     sleepMs = 0,
     stopOnFullCoverage = true,
     failureRate = 0,
@@ -677,6 +681,7 @@ export async function runAutonomousOpenClaw({
     const normalizedWaves = parsePositiveInt(waves, 1);
     const normalizedSkillsPerWave = parseNonNegativeInt(skillsPerWave, 0);
     const normalizedCapabilitiesPerWave = parseNonNegativeInt(capabilitiesPerWave, 0);
+    const normalizedStaleDispatchMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
 
     const skillCatalogSource = loadSkillCatalogSource({
         repoRoot: resolvedRepoRoot,
@@ -698,7 +703,8 @@ export async function runAutonomousOpenClaw({
         followupTasksSaved: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
-        botSkillHardeningBlocked: 0
+        botSkillHardeningBlocked: 0,
+        staleDispatches: 0
     };
 
     const waveReports = [];
@@ -740,6 +746,8 @@ export async function runAutonomousOpenClaw({
             maxCycles: parsePositiveInt(workerCycles, 12),
             idleCyclesToStop: parsePositiveInt(workerIdleCycles, 2),
             stopWhenOnlyApprovals: true,
+            stopWhenStaleDispatch,
+            staleDispatchMs: normalizedStaleDispatchMs,
             sleepMs: 0,
             etaMs: 1_000,
             resultDelayMs: 500,
@@ -798,7 +806,10 @@ export async function runAutonomousOpenClaw({
                 botTasksExecuted: workerReport.totals.botTasksExecuted,
                 botTasksFailed: workerReport.totals.botTasksFailed,
                 botSkillHardeningBlocked: workerReport.totals.botSkillHardeningBlocked,
-                finalQueueOpen: workerReport.finalQueue.open
+                finalQueueOpen: workerReport.finalQueue.open,
+                finalQueueDispatchedStale: workerReport.finalQueue.dispatchedStale || 0,
+                staleDispatchRecoveryCandidates: workerReport.staleDispatchRecoveryPlan?.totalCandidates || 0,
+                nextAction: workerReport.lifecycleCheckpoint?.nextAction || 'unknown'
             }
         };
         waveReports.push(waveReport);
@@ -814,6 +825,7 @@ export async function runAutonomousOpenClaw({
         totals.botTasksExecuted += waveReport.worker.botTasksExecuted;
         totals.botTasksFailed += waveReport.worker.botTasksFailed;
         totals.botSkillHardeningBlocked += waveReport.worker.botSkillHardeningBlocked;
+        totals.staleDispatches = Math.max(totals.staleDispatches, waveReport.worker.finalQueueDispatchedStale);
 
         const coverageReport = createCoverageReport({
             skillCatalog,
@@ -852,6 +864,8 @@ export async function runAutonomousOpenClaw({
             dispatchLimit: parsePositiveInt(dispatchLimit, 100),
             workerCycles: parsePositiveInt(workerCycles, 12),
             workerIdleCycles: parsePositiveInt(workerIdleCycles, 2),
+            staleDispatchMs: normalizedStaleDispatchMs,
+            stopWhenStaleDispatch,
             stopOnFullCoverage,
             failureRate: normalizeFailureRate(failureRate),
             botRuntime,

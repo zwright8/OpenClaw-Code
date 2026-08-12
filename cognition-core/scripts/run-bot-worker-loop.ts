@@ -20,6 +20,7 @@ Options:
   --cycles <n>                 Max worker cycles (default: 20)
   --idle-cycles <n>            Consecutive idle cycles before stopping (default: 2)
   --no-stop-approvals          Do not stop when only awaiting approvals remain
+  --stale-dispatch-ms <n>      Dispatched-task age before recovery planning (default: 1800000)
   --sleep-ms <n>               Delay between cycles in milliseconds (default: 0)
   --eta-ms <n>                 Receipt ETA milliseconds (default: 1000)
   --result-delay-ms <n>        Result completedAt delay milliseconds (default: 500)
@@ -34,6 +35,9 @@ Options:
   --no-enqueue-followups       Disable enqueueing bot-generated follow-up tasks
   --json <path>                Optional JSON report output path
   --markdown <path>            Optional markdown report output path
+  --otel-jsonl <path>          Optional OTel-compatible span JSONL output path
+  --recovery-plan <path>       Optional stale dispatch recovery plan JSON output path
+  --approval-plan <path>       Optional pending approval review plan JSON output path
   -h, --help                   Show help
 `);
 }
@@ -83,6 +87,7 @@ function parseArgs(argv) {
         maxCycles: 20,
         idleCyclesToStop: 2,
         stopWhenOnlyApprovals: true,
+        staleDispatchMs: 30 * 60 * 1000,
         sleepMs: 0,
         etaMs: 1_000,
         resultDelayMs: 500,
@@ -97,6 +102,9 @@ function parseArgs(argv) {
         enqueueFollowupTasks: true,
         jsonPath: null,
         markdownPath: null,
+        otelJsonlPath: null,
+        recoveryPlanPath: null,
+        approvalPlanPath: null,
         help: false
     };
 
@@ -169,6 +177,11 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--stale-dispatch-ms') {
+            options.staleDispatchMs = parsePositiveInt(value, '--stale-dispatch-ms', true);
+            i++;
+            continue;
+        }
         if (token === '--eta-ms') {
             options.etaMs = parsePositiveInt(value, '--eta-ms', true);
             i++;
@@ -224,6 +237,21 @@ function parseArgs(argv) {
             i++;
             continue;
         }
+        if (token === '--otel-jsonl') {
+            options.otelJsonlPath = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
+        if (token === '--recovery-plan') {
+            options.recoveryPlanPath = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
+        if (token === '--approval-plan') {
+            options.approvalPlanPath = path.resolve(process.cwd(), value);
+            i++;
+            continue;
+        }
 
         throw new Error(`Unknown argument: ${token}`);
     }
@@ -246,6 +274,34 @@ function printSummary(report) {
     console.log(`Follow-up tasks saved: ${report.totals.followupTasksSaved}`);
     console.log(`Final queue open: ${report.finalQueue.open}`);
     console.log(`Final queue awaiting approval: ${report.finalQueue.awaitingApproval}`);
+    console.log(`Final stale dispatched: ${report.finalQueue.dispatchedStale || 0}`);
+    if (report.staleDispatchRecoveryPlan?.totalCandidates > 0) {
+        console.log(`Recovery plan: ${report.staleDispatchRecoveryPlan.totalCandidates} stale dispatched task(s), dry-run only`);
+        for (const candidate of report.staleDispatchRecoveryPlan.candidates.slice(0, 5)) {
+            console.log(`- ${candidate.taskId} target=${candidate.target} ageMs=${candidate.ageMs} action=${candidate.recommendedAction}`);
+            if (candidate.traceparent) {
+                console.log(`  traceparent=${candidate.traceparent}`);
+            }
+            if (candidate.idempotencyKey) {
+                console.log(`  idempotencyKey=${candidate.idempotencyKey}`);
+            }
+            if (Array.isArray(candidate.evidenceRequired) && candidate.evidenceRequired.length > 0) {
+                console.log(`  evidenceRequired=${candidate.evidenceRequired.map((item) => item.id).join(',')}`);
+            }
+        }
+    }
+    if (report.pendingApprovalReviewPlan?.totalCandidates > 0) {
+        console.log(`Approval review plan: ${report.pendingApprovalReviewPlan.totalCandidates} pending approval task(s), dry-run only`);
+        for (const candidate of report.pendingApprovalReviewPlan.candidates.slice(0, 5)) {
+            console.log(`- ${candidate.taskId} target=${candidate.target} ageMs=${candidate.ageMs} action=${candidate.recommendedAction}`);
+            if (candidate.reason) {
+                console.log(`  reason=${candidate.reason}`);
+            }
+            if (Array.isArray(candidate.evidenceRequired) && candidate.evidenceRequired.length > 0) {
+                console.log(`  evidenceRequired=${candidate.evidenceRequired.map((item) => item.id).join(',')}`);
+            }
+        }
+    }
 }
 
 (async () => {
@@ -266,6 +322,7 @@ function printSummary(report) {
             maxCycles: options.maxCycles,
             idleCyclesToStop: options.idleCyclesToStop,
             stopWhenOnlyApprovals: options.stopWhenOnlyApprovals,
+            staleDispatchMs: options.staleDispatchMs,
             sleepMs: options.sleepMs,
             etaMs: options.etaMs,
             resultDelayMs: options.resultDelayMs,
@@ -283,7 +340,10 @@ function printSummary(report) {
         await writeBotWorkerLoopReport({
             report,
             jsonPath: options.jsonPath,
-            markdownPath: options.markdownPath
+            markdownPath: options.markdownPath,
+            otelJsonlPath: options.otelJsonlPath,
+            recoveryPlanPath: options.recoveryPlanPath,
+            approvalPlanPath: options.approvalPlanPath
         });
 
         printSummary(report);

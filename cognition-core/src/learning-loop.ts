@@ -143,10 +143,20 @@ function traceIdentity(event, fallbackTraceparent = null) {
         event?.parentSpanId,
         event?.parent_span_id,
         event?.parentSpanID,
+        event?.parent?.spanId,
+        event?.parent?.span_id,
+        event?.parentSpanContext?.spanId,
+        event?.parentSpanContext?.span_id,
+        event?.parent_span_context?.spanId,
+        event?.parent_span_context?.span_id,
         eventValue(event, ['context', 'parent_span_id']),
         eventValue(event, ['context', 'parentSpanId']),
+        eventValue(event, ['context', 'parent', 'span_id']),
+        eventValue(event, ['context', 'parent', 'spanId']),
         eventValue(event, ['attributes', 'parent_span_id']),
-        eventValue(event, ['attributes', 'parentSpanId'])
+        eventValue(event, ['attributes', 'parentSpanId']),
+        eventValue(event, ['attributes', 'parent.span_id']),
+        eventValue(event, ['attributes', 'parent.spanId'])
     ]) || traceparent?.parentSpanId || null;
 
     return {
@@ -188,6 +198,8 @@ function summarizeTraceEvents(outcome) {
         || traceparentFromCarrier(outcome?.context)
         || traceparentFromCarrier(outcome?.result)
         || traceparentFromCarrier(outcome?.result?.metrics);
+    const identities = [];
+    const spanIdsByTrace = new Map();
     const counts = {
         total: events.length,
         tool: 0,
@@ -197,6 +209,7 @@ function summarizeTraceEvents(outcome) {
         traceparent: 0,
         linked: 0,
         orphaned: 0,
+        danglingParent: 0,
         missingTraceId: 0,
         missingSpanId: 0
     };
@@ -205,12 +218,30 @@ function summarizeTraceEvents(outcome) {
         const kind = classifyTraceEventKind(event) || 'other';
         counts[kind]++;
         const identity = traceIdentity(event, fallbackTraceparent);
+        identities.push(identity);
+        if (identity.traceId && identity.spanId) {
+            if (!spanIdsByTrace.has(identity.traceId)) {
+                spanIdsByTrace.set(identity.traceId, new Set());
+            }
+            spanIdsByTrace.get(identity.traceId).add(identity.spanId);
+        }
         if (identity.hasTraceparent) counts.traceparent++;
         if (!identity.traceId) counts.missingTraceId++;
         if (!identity.spanId) counts.missingSpanId++;
+    }
+
+    for (const identity of identities) {
         if (identity.traceId && identity.spanId && identity.parentSpanId) {
+            const parentIsTraceRoot = fallbackTraceparent?.traceId === identity.traceId
+                && fallbackTraceparent?.parentSpanId === identity.parentSpanId;
+            const parentObserved = spanIdsByTrace.get(identity.traceId)?.has(identity.parentSpanId) === true;
+            if (!parentIsTraceRoot && !parentObserved) {
+                counts.danglingParent++;
+                counts.orphaned++;
+                continue;
+            }
             counts.linked++;
-        } else if (identity.traceId || identity.spanId || identity.parentSpanId) {
+        } else if (!identity.traceId || !identity.spanId || identity.parentSpanId) {
             counts.orphaned++;
         }
     }
@@ -545,6 +576,7 @@ export function summarizeOutcomes(outcomes) {
             traceparentBacked: 0,
             orphanedTraceBacked: 0,
             orphanedTraceEvents: 0,
+            danglingParentTraceEvents: 0,
             missingTraceIdEvents: 0,
             missingSpanIdEvents: 0
         },
@@ -575,6 +607,7 @@ export function summarizeOutcomes(outcomes) {
         if (outcome.traceEvents.traceparent > 0) totals.observability.traceparentBacked++;
         if (outcome.traceEvents.orphaned > 0) totals.observability.orphanedTraceBacked++;
         totals.observability.orphanedTraceEvents += outcome.traceEvents.orphaned;
+        totals.observability.danglingParentTraceEvents += outcome.traceEvents.danglingParent;
         totals.observability.missingTraceIdEvents += outcome.traceEvents.missingTraceId;
         totals.observability.missingSpanIdEvents += outcome.traceEvents.missingSpanId;
 

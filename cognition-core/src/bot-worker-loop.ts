@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { createHash } from 'crypto';
 import { FileTaskStore } from '../../swarm-protocol/runtime.js';
-import { dispatchCreatedQueueTasks } from './queue-dispatcher.js';
+import { dispatchCreatedQueueTasks, runQueueMaintenance } from './queue-dispatcher.js';
 import { processOutboxEnvelopes } from './outbox-processor.js';
 
 const TERMINAL_STATUSES = new Set([
@@ -15,7 +15,20 @@ const TERMINAL_STATUSES = new Set([
 ]);
 
 const TRACE_SCHEMA_VERSION = 'bot-worker-loop.trace.v2';
+const OTEL_JSONL_SCHEMA_VERSION = 'bot-worker-loop.otel-jsonl.v1';
 const TRACE_SEMCONV = 'otel.gen_ai.experimental';
+const DEFAULT_STALE_DISPATCH_MS = 30 * 60 * 1000;
+const MAX_STALE_TASK_IDS = 10;
+const MAX_RECOVERY_PLAN_TASKS = 20;
+const MAX_PENDING_APPROVAL_TASK_IDS = 10;
+const MAX_APPROVAL_PLAN_TASKS = 20;
+const OTEL_SPAN_KIND = {
+    INTERNAL: 1,
+    SERVER: 2,
+    CLIENT: 3,
+    PRODUCER: 4,
+    CONSUMER: 5
+};
 
 function safeNow(nowFactory = Date.now) {
     const value = Number(nowFactory());
@@ -40,6 +53,23 @@ function normalizeFailureRate(value) {
     return Math.max(0, Math.min(1, numeric));
 }
 
+function isTraceparent(value) {
+    return typeof value === 'string'
+        && /^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$/i.test(value.trim());
+}
+
+function isW3cTraceId(value) {
+    return typeof value === 'string'
+        && /^[0-9a-f]{32}$/i.test(value.trim())
+        && !/^0{32}$/i.test(value.trim());
+}
+
+function isW3cSpanId(value) {
+    return typeof value === 'string'
+        && /^[0-9a-f]{16}$/i.test(value.trim())
+        && !/^0{16}$/i.test(value.trim());
+}
+
 async function sleep(ms) {
     const duration = parseNonNegativeInt(ms, 0);
     if (duration <= 0) return;
@@ -48,15 +78,209 @@ async function sleep(ms) {
     });
 }
 
-function summarizeQueueRecords(records) {
+function getRecordUpdatedAt(record) {
+    const value = Number(record?.updatedAt ?? record?.createdAt ?? record?.request?.createdAt);
+    return Number.isFinite(value) ? value : null;
+}
+
+function getRecordCreatedAt(record) {
+    const value = Number(record?.createdAt ?? record?.request?.createdAt);
+    return Number.isFinite(value) ? value : null;
+}
+
+function percentile(values, percentileRank) {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const index = Math.min(
+        sorted.length - 1,
+        Math.max(0, Math.ceil(sorted.length * percentileRank) - 1)
+    );
+    return sorted[index];
+}
+
+function getApprovalRequestedAt(record) {
+    const direct = Number(record?.approval?.requestedAt);
+    if (Number.isFinite(direct)) return direct;
+
+    const history = Array.isArray(record?.history) ? record.history : [];
+    const requested = history
+        .filter((item) => item && typeof item === 'object' && item.event === 'approval_requested')
+        .map((item) => Number(item.at))
+        .filter(Number.isFinite)
+        .sort((a, b) => a - b)[0];
+    if (Number.isFinite(requested)) return requested;
+
+    return getRecordUpdatedAt(record);
+}
+
+function getLatestHistoryEvent(record) {
+    const history = Array.isArray(record?.history) ? record.history : [];
+    if (history.length === 0) return null;
+    const latest = history
+        .filter((item) => item && typeof item === 'object')
+        .sort((a, b) => (Number(b.at) || 0) - (Number(a.at) || 0))[0];
+    if (!latest) return null;
+    return {
+        at: Number(latest.at) || null,
+        event: typeof latest.event === 'string' ? latest.event : 'unknown'
+    };
+}
+
+function getRecordTraceparent(record) {
+    const candidates = [
+        record?.request?.traceparent,
+        record?.request?.context?.traceparent,
+        record?.traceparent
+    ];
+    const found = candidates.find((value) => isTraceparent(value));
+    return found ? found.trim().toLowerCase() : null;
+}
+
+function buildRecoveryEvidenceChecklist({ taskId, traceparent }) {
+    const correlation = traceparent || taskId;
+    return [
+        {
+            id: 'replay_timeline_reviewed',
+            description: `Review operator replay for task ${taskId}.`,
+            command: `npm --prefix swarm-protocol run ops -- replay ${taskId}`
+        },
+        {
+            id: 'external_runtime_result_checked',
+            description: `Search the external OpenClaw runtime for result or receipt records correlated by ${correlation}.`
+        },
+        {
+            id: 'side_effect_ledger_checked',
+            description: `Confirm no durable external side effect was committed for task ${taskId}.`
+        },
+        {
+            id: 'operator_decision_recorded',
+            description: 'Record the recovery decision in task history before requeueing or closing the task.'
+        }
+    ];
+}
+
+function buildRecoveryDecisionRecordTemplate({ taskId, traceparent, idempotencyKey }) {
+    const correlation = traceparent || taskId;
+    return {
+        schemaVersion: 'bot-worker-loop.stale-dispatch-decision.v1',
+        taskId,
+        correlation,
+        idempotencyKey,
+        decision: 'pending',
+        allowedDecisions: [
+            'close_completed',
+            'requeue_no_side_effect',
+            'fail_side_effect_unknown',
+            'escalate_manual_review'
+        ],
+        requiredBeforeDecision: [
+            'replay_timeline_reviewed',
+            'external_runtime_result_checked',
+            'side_effect_ledger_checked'
+        ],
+        requiredFields: [
+            'decision',
+            'operator',
+            'decidedAt',
+            'evidenceReviewed',
+            'externalRuntimeCorrelation',
+            'sideEffectStatus',
+            'notes'
+        ],
+        defaults: {
+            operator: null,
+            decidedAt: null,
+            evidenceReviewed: [],
+            externalRuntimeCorrelation: correlation,
+            sideEffectStatus: 'unknown',
+            notes: null
+        }
+    };
+}
+
+function buildRecoveryCandidateFingerprint({
+    taskId,
+    target,
+    attempts,
+    traceparent,
+    idempotencyKey,
+    latestHistoryEvent
+}) {
+    return buildStableHash({
+        kind: 'stale_dispatch_recovery_candidate',
+        taskId,
+        target,
+        attempts,
+        traceparent,
+        idempotencyKey,
+        latestHistoryEvent
+    });
+}
+
+function buildApprovalReviewChecklist({ taskId }) {
+    return [
+        {
+            id: 'approval_queue_reviewed',
+            description: `Review the pending approval queue entry for task ${taskId}.`,
+            command: 'npm --prefix swarm-protocol run ops -- queue --approvals'
+        },
+        {
+            id: 'task_timeline_reviewed',
+            description: `Inspect task ${taskId} lifecycle history before deciding.`,
+            command: `npm --prefix swarm-protocol run ops -- replay ${taskId}`
+        },
+        {
+            id: 'risk_and_scope_reviewed',
+            description: 'Confirm the requested action, target, constraints, and approval reason still match current operator intent.'
+        },
+        {
+            id: 'operator_decision_recorded',
+            description: 'Approve or deny the task with an explicit operator reason.'
+        }
+    ];
+}
+
+function buildApprovalCandidateFingerprint({
+    taskId,
+    target,
+    priority,
+    reviewerGroup,
+    reason,
+    matchedRules,
+    latestHistoryEvent
+}) {
+    return buildStableHash({
+        kind: 'pending_approval_review_candidate',
+        taskId,
+        target,
+        priority,
+        reviewerGroup,
+        reason,
+        matchedRules,
+        latestHistoryEvent
+    });
+}
+
+function summarizeQueueRecords(records, {
+    nowMs = Date.now(),
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS
+} = {}) {
     const byStatus = {};
     let open = 0;
     let terminal = 0;
     let created = 0;
     let dispatched = 0;
+    let dispatchedStale = 0;
+    let oldestDispatchedAgeMs = 0;
     let acknowledged = 0;
     let retryScheduled = 0;
     let awaitingApproval = 0;
+    let oldestApprovalAgeMs = 0;
+    const openAges = [];
+    const staleDispatchedTaskIds = [];
+    const pendingApprovalTaskIds = [];
+    const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
+    const staleThresholdMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
 
     const list = Array.isArray(records) ? records : [];
     for (const record of list) {
@@ -69,14 +293,45 @@ function summarizeQueueRecords(records) {
             terminal++;
         } else {
             open++;
+            const createdAt = getRecordCreatedAt(record);
+            if (createdAt !== null) {
+                openAges.push(Math.max(0, observedNowMs - createdAt));
+            }
         }
 
         if (status === 'created') created++;
-        if (status === 'dispatched') dispatched++;
+        if (status === 'dispatched') {
+            dispatched++;
+            const updatedAt = getRecordUpdatedAt(record);
+            const ageMs = updatedAt === null ? 0 : Math.max(0, observedNowMs - updatedAt);
+            oldestDispatchedAgeMs = Math.max(oldestDispatchedAgeMs, ageMs);
+            if (staleThresholdMs > 0 && ageMs >= staleThresholdMs) {
+                dispatchedStale++;
+                if (staleDispatchedTaskIds.length < MAX_STALE_TASK_IDS && typeof record.taskId === 'string') {
+                    staleDispatchedTaskIds.push(record.taskId);
+                }
+            }
+        }
         if (status === 'acknowledged') acknowledged++;
         if (status === 'retry_scheduled') retryScheduled++;
-        if (status === 'awaiting_approval') awaitingApproval++;
+        if (status === 'awaiting_approval') {
+            awaitingApproval++;
+            const requestedAt = getApprovalRequestedAt(record);
+            const ageMs = requestedAt === null ? 0 : Math.max(0, observedNowMs - requestedAt);
+            oldestApprovalAgeMs = Math.max(oldestApprovalAgeMs, ageMs);
+            if (pendingApprovalTaskIds.length < MAX_PENDING_APPROVAL_TASK_IDS && typeof record.taskId === 'string') {
+                pendingApprovalTaskIds.push(record.taskId);
+            }
+        }
     }
+
+    const openAgeMs = {
+        oldest: openAges.length > 0 ? Math.max(...openAges) : 0,
+        average: openAges.length > 0
+            ? Number((openAges.reduce((total, ageMs) => total + ageMs, 0) / openAges.length).toFixed(2))
+            : 0,
+        p95: percentile(openAges, 0.95)
+    };
 
     return {
         total: list.length,
@@ -84,20 +339,234 @@ function summarizeQueueRecords(records) {
         terminal,
         created,
         dispatched,
+        dispatchedStale,
+        oldestDispatchedAgeMs,
+        staleDispatchedTaskIds,
         acknowledged,
         retryScheduled,
+        openAgeMs,
         awaitingApproval,
+        oldestApprovalAgeMs,
+        pendingApprovalTaskIds,
         byStatus
     };
 }
 
-async function loadQueueSummary({ storePath, nowFactory }) {
+async function loadQueueSummary({ storePath, nowFactory, staleDispatchMs }) {
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
     const store = new FileTaskStore({
         filePath: storePath,
-        now: nowFactory
+        now
     });
     const records = await store.loadRecords();
-    return summarizeQueueRecords(records);
+    return summarizeQueueRecords(records, {
+        nowMs: safeNow(now),
+        staleDispatchMs
+    });
+}
+
+export function buildStaleDispatchRecoveryPlan(records, {
+    nowMs = Date.now(),
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
+    limit = MAX_RECOVERY_PLAN_TASKS
+} = {}) {
+    const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
+    const staleThresholdMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
+    const maxCandidates = parsePositiveInt(limit, MAX_RECOVERY_PLAN_TASKS);
+    const candidates = [];
+
+    for (const record of Array.isArray(records) ? records : []) {
+        if (!record || typeof record !== 'object' || record.status !== 'dispatched') continue;
+        const updatedAt = getRecordUpdatedAt(record);
+        const ageMs = updatedAt === null ? 0 : Math.max(0, observedNowMs - updatedAt);
+        if (staleThresholdMs > 0 && ageMs < staleThresholdMs) continue;
+
+        const traceparent = getRecordTraceparent(record);
+        const idempotencyKey = `task:${record.taskId}:attempt:${record.attempts || 0}`;
+        const target = record.target || record.request?.target || 'unknown';
+        const latestHistoryEvent = getLatestHistoryEvent(record);
+        const candidateFingerprint = buildRecoveryCandidateFingerprint({
+            taskId: record.taskId,
+            target,
+            attempts: record.attempts || 0,
+            traceparent,
+            idempotencyKey,
+            latestHistoryEvent
+        });
+        candidates.push({
+            taskId: record.taskId,
+            target,
+            candidateFingerprint,
+            dedupeKey: `stale-dispatch:${candidateFingerprint}`,
+            ageMs,
+            updatedAt,
+            attempts: record.attempts || 0,
+            traceparent,
+            idempotencyKey,
+            recoveryDecisionRequired: true,
+            recoveryDecisionRecord: buildRecoveryDecisionRecordTemplate({
+                taskId: record.taskId,
+                traceparent,
+                idempotencyKey
+            }),
+            latestHistoryEvent,
+            recommendedAction: 'inspect_external_runtime_before_requeue',
+            evidenceRequired: buildRecoveryEvidenceChecklist({
+                taskId: record.taskId,
+                traceparent
+            }),
+            operatorCommands: [
+                `npm --prefix swarm-protocol run ops -- replay ${record.taskId}`,
+                `npm --prefix swarm-protocol run ops -- recover-dispatch requeue_no_side_effect ${record.taskId} --side-effect none --evidence replay_timeline_reviewed,external_runtime_result_checked,side_effect_ledger_checked --reason <reason>`,
+                `npm --prefix swarm-protocol run ops -- recover-dispatch escalate_manual_review ${record.taskId} --side-effect unknown --reason <reason>`,
+                `npm --prefix swarm-protocol run ops -- queue --limit ${maxCandidates}`
+            ]
+        });
+    }
+
+    candidates.sort((a, b) => b.ageMs - a.ageMs || String(a.taskId).localeCompare(String(b.taskId)));
+    const limitedCandidates = candidates.slice(0, maxCandidates);
+
+    return {
+        schemaVersion: 'bot-worker-loop.stale-dispatch-recovery.v1',
+        generatedAt: observedNowMs,
+        staleDispatchMs: staleThresholdMs,
+        totalCandidates: candidates.length,
+        planFingerprint: buildStableHash({
+            kind: 'stale_dispatch_recovery_plan',
+            staleDispatchMs: staleThresholdMs,
+            candidateFingerprints: limitedCandidates.map((candidate) => candidate.candidateFingerprint)
+        }),
+        dryRun: true,
+        mutatesQueue: false,
+        defaultAction: 'inspect_external_runtime_before_requeue',
+        rationale: 'Dispatched records may already have side effects in the external OpenClaw runtime, so recovery is planned but not applied automatically.',
+        candidates: limitedCandidates,
+        nextSteps: candidates.length > 0
+            ? [
+                'Inspect each replay timeline and external runtime result store for a late completion.',
+                'Only requeue a task after confirming the previous dispatch produced no durable side effect.',
+                'Record the operator decision in task history before rerunning the worker loop.'
+            ]
+            : [
+                'No stale dispatched tasks met the configured threshold.'
+            ]
+    };
+}
+
+export function buildPendingApprovalReviewPlan(records, {
+    nowMs = Date.now(),
+    limit = MAX_APPROVAL_PLAN_TASKS
+} = {}) {
+    const observedNowMs = Number.isFinite(Number(nowMs)) ? Number(nowMs) : Date.now();
+    const maxCandidates = parsePositiveInt(limit, MAX_APPROVAL_PLAN_TASKS);
+    const candidates = [];
+
+    for (const record of Array.isArray(records) ? records : []) {
+        if (!record || typeof record !== 'object' || record.status !== 'awaiting_approval') continue;
+        const requestedAt = getApprovalRequestedAt(record);
+        const ageMs = requestedAt === null ? 0 : Math.max(0, observedNowMs - requestedAt);
+        const approval = record.approval && typeof record.approval === 'object'
+            ? record.approval
+            : {};
+        const target = record.target || record.request?.target || 'unknown';
+        const priority = record.request?.priority || 'normal';
+        const reviewerGroup = typeof approval.reviewerGroup === 'string' ? approval.reviewerGroup : null;
+        const reason = typeof approval.reason === 'string' ? approval.reason : null;
+        const matchedRules = Array.isArray(approval.matchedRules) ? approval.matchedRules : [];
+        const latestHistoryEvent = getLatestHistoryEvent(record);
+        const candidateFingerprint = buildApprovalCandidateFingerprint({
+            taskId: record.taskId,
+            target,
+            priority,
+            reviewerGroup,
+            reason,
+            matchedRules,
+            latestHistoryEvent
+        });
+        candidates.push({
+            taskId: record.taskId,
+            target,
+            candidateFingerprint,
+            dedupeKey: `pending-approval:${candidateFingerprint}`,
+            priority,
+            requestedAt,
+            ageMs,
+            reviewerGroup,
+            reason,
+            matchedRules,
+            latestHistoryEvent,
+            recommendedAction: 'review_pending_approval',
+            evidenceRequired: buildApprovalReviewChecklist({
+                taskId: record.taskId
+            }),
+            operatorCommands: [
+                'npm --prefix swarm-protocol run ops -- queue --approvals',
+                `npm --prefix swarm-protocol run ops -- replay ${record.taskId}`,
+                `npm --prefix swarm-protocol run ops -- override approve ${record.taskId} --reason <reason>`,
+                `npm --prefix swarm-protocol run ops -- override deny ${record.taskId} --reason <reason>`
+            ]
+        });
+    }
+
+    candidates.sort((a, b) => b.ageMs - a.ageMs || String(a.taskId).localeCompare(String(b.taskId)));
+    const limitedCandidates = candidates.slice(0, maxCandidates);
+
+    return {
+        schemaVersion: 'bot-worker-loop.pending-approval-review.v1',
+        generatedAt: observedNowMs,
+        totalCandidates: candidates.length,
+        planFingerprint: buildStableHash({
+            kind: 'pending_approval_review_plan',
+            candidateFingerprints: limitedCandidates.map((candidate) => candidate.candidateFingerprint)
+        }),
+        dryRun: true,
+        mutatesQueue: false,
+        defaultAction: 'review_pending_approval',
+        rationale: 'Approval-gated tasks intentionally pause autonomous execution, so the worker reports the exact operator review queue without mutating it.',
+        candidates: limitedCandidates,
+        nextSteps: candidates.length > 0
+            ? [
+                'Review the pending approval queue and each task timeline.',
+                'Approve only when the requested action, target, and constraints still match operator intent.',
+                'Deny stale or unsafe requests with an explicit reason so the queue can converge.'
+            ]
+            : [
+                'No pending approvals require operator review.'
+            ]
+    };
+}
+
+async function loadStaleDispatchRecoveryPlan({
+    storePath,
+    nowFactory,
+    staleDispatchMs
+}) {
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({
+        filePath: storePath,
+        now
+    });
+    const records = await store.loadRecords();
+    return buildStaleDispatchRecoveryPlan(records, {
+        nowMs: safeNow(now),
+        staleDispatchMs
+    });
+}
+
+async function loadPendingApprovalReviewPlan({
+    storePath,
+    nowFactory
+}) {
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({
+        filePath: storePath,
+        now
+    });
+    const records = await store.loadRecords();
+    return buildPendingApprovalReviewPlan(records, {
+        nowMs: safeNow(now)
+    });
 }
 
 function normalizeStopReason(reason) {
@@ -249,11 +718,13 @@ function buildCycleTraceEvents({
     cycle,
     startedAt,
     finishedAt,
+    maintenanceResult,
     dispatchResult,
     processResult,
     queueBefore,
     queueAfter,
     idleStreak,
+    staleDispatchMs,
     traceContext
 }) {
     const events = [];
@@ -261,9 +732,14 @@ function buildCycleTraceEvents({
     const dispatched = dispatchResult?.stats?.dispatched || 0;
     const awaitingApproval = dispatchResult?.stats?.awaitingApproval || 0;
     const failedDispatch = dispatchResult?.stats?.failed || 0;
+    const scheduledRetries = maintenanceResult?.scheduledRetries || 0;
+    const maintenanceRetried = maintenanceResult?.retried || 0;
+    const maintenanceTimedOut = maintenanceResult?.timedOut || 0;
+    const maintenanceTransportFailures = maintenanceResult?.transportFailures || 0;
     const resultsAccepted = processResult?.resultsAccepted || 0;
     const botTasksExecuted = processResult?.botTasksExecuted || 0;
     const botTasksFailed = processResult?.botTasksFailed || 0;
+    const botExecutionMarkerMismatches = processResult?.botExecutionMarkerMismatches || 0;
     const hardeningBlocked = processResult?.botSkillHardeningBlocked || 0;
     const followupTasksSaved = processResult?.followupTasksSaved || 0;
     const filesFound = processResult?.filesFound || 0;
@@ -271,16 +747,34 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: startedAt,
+        finishedAt,
         cycle,
         phase: 'queue_before',
         queueOpen: queueBefore?.open || 0,
         queueCreated: queueBefore?.created || 0,
         queueDispatched: queueBefore?.dispatched || 0,
-        queueAwaitingApproval: queueBefore?.awaitingApproval || 0
+        queueRetryScheduled: queueBefore?.retryScheduled || 0,
+        queueOpenAgeMs: queueBefore?.openAgeMs || { oldest: 0, average: 0, p95: 0 },
+        queueDispatchedStale: queueBefore?.dispatchedStale || 0,
+        queueAwaitingApproval: queueBefore?.awaitingApproval || 0,
+        oldestApprovalAgeMs: queueBefore?.oldestApprovalAgeMs || 0
     }, traceContext);
 
     pushTraceEvent(events, {
         at: startedAt,
+        finishedAt,
+        cycle,
+        phase: 'maintenance',
+        checked: maintenanceResult?.checked || 0,
+        scheduledRetries,
+        retried: maintenanceRetried,
+        timedOut: maintenanceTimedOut,
+        transportFailures: maintenanceTransportFailures
+    }, traceContext);
+
+    pushTraceEvent(events, {
+        at: startedAt,
+        finishedAt,
         cycle,
         phase: 'dispatch',
         selected,
@@ -292,6 +786,7 @@ function buildCycleTraceEvents({
 
     pushTraceEvent(events, {
         at: finishedAt,
+        finishedAt,
         cycle,
         phase: 'outbox_process',
         filesFound,
@@ -299,6 +794,7 @@ function buildCycleTraceEvents({
         resultsAccepted,
         botTasksExecuted,
         botTasksFailed,
+        botExecutionMarkerMismatches,
         botSkillHardeningBlocked: hardeningBlocked,
         followupTasksSaved
     }, traceContext);
@@ -306,6 +802,7 @@ function buildCycleTraceEvents({
     if (failedDispatch > 0) {
         pushTraceEvent(events, {
             at: finishedAt,
+            finishedAt,
             cycle,
             phase: 'dispatch_failure',
             failedDispatch,
@@ -315,28 +812,231 @@ function buildCycleTraceEvents({
         }, traceContext);
     }
 
-    if (botTasksFailed > 0 || hardeningBlocked > 0) {
+    if (
+        botTasksFailed > 0
+        || botExecutionMarkerMismatches > 0
+        || hardeningBlocked > 0
+        || (queueAfter?.dispatchedStale || 0) > 0
+        || (queueAfter?.awaitingApproval || 0) > 0
+    ) {
         pushTraceEvent(events, {
             at: finishedAt,
+            finishedAt,
             cycle,
             phase: 'bot_runtime_attention',
             botTasksFailed,
-            botSkillHardeningBlocked: hardeningBlocked
+            botExecutionMarkerMismatches,
+            botSkillHardeningBlocked: hardeningBlocked,
+            staleDispatches: queueAfter?.dispatchedStale || 0,
+            oldestDispatchedAgeMs: queueAfter?.oldestDispatchedAgeMs || 0,
+            staleDispatchMs,
+            staleDispatchedTaskIds: Array.isArray(queueAfter?.staleDispatchedTaskIds)
+                ? queueAfter.staleDispatchedTaskIds
+                : [],
+            pendingApprovals: queueAfter?.awaitingApproval || 0,
+            oldestApprovalAgeMs: queueAfter?.oldestApprovalAgeMs || 0,
+            pendingApprovalTaskIds: Array.isArray(queueAfter?.pendingApprovalTaskIds)
+                ? queueAfter.pendingApprovalTaskIds
+                : []
         }, traceContext);
     }
 
     pushTraceEvent(events, {
         at: finishedAt,
+        finishedAt,
         cycle,
         phase: 'queue_after',
         queueOpen: queueAfter?.open || 0,
         queueCreated: queueAfter?.created || 0,
         queueDispatched: queueAfter?.dispatched || 0,
+        queueRetryScheduled: queueAfter?.retryScheduled || 0,
+        queueOpenAgeMs: queueAfter?.openAgeMs || { oldest: 0, average: 0, p95: 0 },
+        queueDispatchedStale: queueAfter?.dispatchedStale || 0,
         queueAwaitingApproval: queueAfter?.awaitingApproval || 0,
+        oldestApprovalAgeMs: queueAfter?.oldestApprovalAgeMs || 0,
         idleStreak
     }, traceContext);
 
     return events;
+}
+
+function toUnixNano(value) {
+    const numeric = Number(value);
+    const millis = Number.isFinite(numeric) ? numeric : Date.now();
+    return String(Math.max(0, Math.round(millis)) * 1_000_000);
+}
+
+function normalizeOtelValue(value) {
+    if (value === null || value === undefined) return null;
+    if (typeof value === 'string' || typeof value === 'boolean') return value;
+    if (typeof value === 'number') {
+        return Number.isFinite(value) ? value : String(value);
+    }
+    if (Array.isArray(value)) {
+        return value
+            .map((item) => normalizeOtelValue(item))
+            .filter((item) => item !== null);
+    }
+    if (typeof value === 'object') {
+        return JSON.stringify(value);
+    }
+    return String(value);
+}
+
+function buildOtelAttributes(source) {
+    const entries = Object.entries(source || {})
+        .map(([key, value]) => [key, normalizeOtelValue(value)])
+        .filter(([, value]) => value !== null);
+    return Object.fromEntries(entries);
+}
+
+const OTEL_EVENT_PAYLOAD_EXCLUDE_KEYS = new Set([
+    'at',
+    'finishedAt',
+    'schemaVersion',
+    'semconv',
+    'traceId',
+    'spanId',
+    'parentSpanId',
+    'name',
+    'kind',
+    'spanKind',
+    'traceparent',
+    'spanContext',
+    'attributes'
+]);
+
+function buildOtelEventPayloadAttributes(event) {
+    const payload = {};
+    for (const [key, value] of Object.entries(event || {})) {
+        if (OTEL_EVENT_PAYLOAD_EXCLUDE_KEYS.has(key)) continue;
+        payload[`openclaw.event.${key}`] = value;
+    }
+    return payload;
+}
+
+function otelSpanKind(value) {
+    const normalized = typeof value === 'string' ? value.trim().toUpperCase() : '';
+    return OTEL_SPAN_KIND[normalized] || OTEL_SPAN_KIND.INTERNAL;
+}
+
+function otelStatusForEvent(event) {
+    const status = String(event?.status || event?.resultStatus || '').toLowerCase();
+    const failed = event?.failedDispatch > 0
+        || event?.botTasksFailed > 0
+        || event?.botSkillHardeningBlocked > 0
+        || status === 'fail'
+        || status === 'failed'
+        || status === 'error';
+    return {
+        code: failed ? 2 : 1,
+        message: failed ? 'error' : 'ok'
+    };
+}
+
+export function buildBotWorkerLoopOtelSpans(report) {
+    const events = Array.isArray(report?.traceEvents) ? report.traceEvents : [];
+    return events
+        .filter((event) => (
+            isW3cTraceId(event?.spanContext?.traceId)
+            && isW3cSpanId(event?.spanContext?.spanId)
+            && (event?.traceparent === undefined || isTraceparent(event.traceparent))
+        ))
+        .map((event) => {
+            const attributes = buildOtelAttributes({
+                schemaVersion: event.schemaVersion || TRACE_SCHEMA_VERSION,
+                semconv: event.semconv || TRACE_SEMCONV,
+                'openclaw.trace.schema_version': event.schemaVersion || TRACE_SCHEMA_VERSION,
+                'openclaw.trace.event_name': event.name,
+                'openclaw.trace.event_kind': event.kind,
+                'openclaw.trace.traceparent': event.traceparent,
+                ...buildOtelEventPayloadAttributes(event),
+                ...event.attributes,
+                ...(event.cycle === undefined ? {} : { 'openclaw.workflow.cycle': event.cycle }),
+                ...(event.phase === undefined ? {} : { 'openclaw.workflow.phase': event.phase })
+            });
+            return {
+                schemaVersion: OTEL_JSONL_SCHEMA_VERSION,
+                traceId: event.spanContext.traceId,
+                spanId: event.spanContext.spanId,
+                parentSpanId: event.spanContext.parentSpanId || '',
+                traceState: '',
+                name: event.name || 'bot_worker_loop.event',
+                kind: otelSpanKind(event.spanKind),
+                startTimeUnixNano: toUnixNano(event.at),
+                endTimeUnixNano: toUnixNano(event.finishedAt || event.at),
+                attributes,
+                status: otelStatusForEvent(event)
+            };
+        });
+}
+
+export function buildBotWorkerLoopTraceExportDiagnostics(report) {
+    const events = Array.isArray(report?.traceEvents) ? report.traceEvents : [];
+    const droppedEvents = [];
+    let missingSpanContext = 0;
+    let missingTraceId = 0;
+    let missingSpanId = 0;
+    let invalidTraceId = 0;
+    let invalidSpanId = 0;
+    let invalidTraceparent = 0;
+
+    for (const [index, event] of events.entries()) {
+        const spanContext = event?.spanContext && typeof event.spanContext === 'object'
+            ? event.spanContext
+            : null;
+        const reasons = [];
+        if (!spanContext) {
+            missingSpanContext++;
+            reasons.push('missing_span_context');
+        }
+        if (!spanContext?.traceId) {
+            missingTraceId++;
+            reasons.push('missing_trace_id');
+        }
+        if (!spanContext?.spanId) {
+            missingSpanId++;
+            reasons.push('missing_span_id');
+        }
+        if (spanContext?.traceId && !isW3cTraceId(spanContext.traceId)) {
+            invalidTraceId++;
+            reasons.push('invalid_trace_id');
+        }
+        if (spanContext?.spanId && !isW3cSpanId(spanContext.spanId)) {
+            invalidSpanId++;
+            reasons.push('invalid_span_id');
+        }
+        if (event?.traceparent !== undefined && !isTraceparent(event.traceparent)) {
+            invalidTraceparent++;
+            reasons.push('invalid_traceparent');
+        }
+        if (reasons.length > 0) {
+            droppedEvents.push({
+                index,
+                phase: typeof event?.phase === 'string' ? event.phase : 'unknown',
+                reasons
+            });
+        }
+    }
+
+    const exportedSpanCount = events.length - droppedEvents.length;
+    return {
+        schemaVersion: 'bot-worker-loop.trace-export-diagnostics.v1',
+        traceEventCount: events.length,
+        exportedSpanCount,
+        droppedEventCount: droppedEvents.length,
+        missingSpanContext,
+        missingTraceId,
+        missingSpanId,
+        invalidTraceId,
+        invalidSpanId,
+        invalidTraceparent,
+        exportCoverage: events.length === 0
+            ? 1
+            : Number((exportedSpanCount / events.length).toFixed(4)),
+        status: droppedEvents.length === 0 ? 'pass' : 'warn',
+        droppedEvents: droppedEvents.slice(0, 10)
+    };
 }
 
 function buildLifecycleCheckpoint({
@@ -355,17 +1055,26 @@ function buildLifecycleCheckpoint({
     if ((queue.awaitingApproval || 0) > 0) attentionReasons.push('pending_approval');
     if ((queue.created || 0) > 0) attentionReasons.push('pending_created_tasks');
     if ((queue.dispatched || 0) > 0) attentionReasons.push('pending_dispatched_tasks');
+    if ((queue.retryScheduled || 0) > 0) attentionReasons.push('pending_retry_scheduled');
+    if ((queue.dispatchedStale || 0) > 0) attentionReasons.push('stale_dispatched_tasks');
     if ((totalValues.botTasksFailed || 0) > 0) attentionReasons.push('bot_task_failures');
+    if ((totalValues.botExecutionMarkerMismatches || 0) > 0) attentionReasons.push('execution_marker_mismatches');
     if ((totalValues.botSkillHardeningBlocked || 0) > 0) attentionReasons.push('skill_hardening_blocks');
     if (normalizedStopReason === 'max_cycles_reached') attentionReasons.push('cycle_budget_exhausted');
 
     let nextAction = 'rerun_when_new_work_arrives';
-    if (normalizedStopReason === 'queue_drained' && (queue.open || 0) === 0) {
+    if ((queue.dispatchedStale || 0) > 0) {
+        nextAction = 'recover_stale_dispatches';
+    } else if ((totalValues.botExecutionMarkerMismatches || 0) > 0) {
+        nextAction = 'review_execution_marker_integrity';
+    } else if (normalizedStopReason === 'queue_drained' && (queue.open || 0) === 0) {
         nextAction = 'no_resume_needed';
     } else if ((queue.awaitingApproval || 0) > 0 && (queue.open || 0) === (queue.awaitingApproval || 0)) {
         nextAction = 'review_pending_approvals';
     } else if ((queue.created || 0) > 0) {
         nextAction = 'rerun_dispatcher';
+    } else if ((queue.retryScheduled || 0) > 0) {
+        nextAction = 'rerun_after_retry_backoff';
     } else if ((queue.dispatched || 0) > 0) {
         nextAction = 'process_outbox_results';
     } else if ((totalValues.botSkillHardeningBlocked || 0) > 0) {
@@ -384,10 +1093,22 @@ function buildLifecycleCheckpoint({
             open: queue.open || 0,
             created: queue.created || 0,
             dispatched: queue.dispatched || 0,
-            awaitingApproval: queue.awaitingApproval || 0
+            retryScheduled: queue.retryScheduled || 0,
+            openAgeMs: queue.openAgeMs || { oldest: 0, average: 0, p95: 0 },
+            dispatchedStale: queue.dispatchedStale || 0,
+            oldestDispatchedAgeMs: queue.oldestDispatchedAgeMs || 0,
+            staleDispatchedTaskIds: Array.isArray(queue.staleDispatchedTaskIds)
+                ? queue.staleDispatchedTaskIds
+                : [],
+            awaitingApproval: queue.awaitingApproval || 0,
+            oldestApprovalAgeMs: queue.oldestApprovalAgeMs || 0,
+            pendingApprovalTaskIds: Array.isArray(queue.pendingApprovalTaskIds)
+                ? queue.pendingApprovalTaskIds
+                : []
         },
         runtimeAttention: {
             botTasksFailed: totalValues.botTasksFailed || 0,
+            botExecutionMarkerMismatches: totalValues.botExecutionMarkerMismatches || 0,
             botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
             dispatchFailures: cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0)
         }
@@ -422,6 +1143,101 @@ function buildLifecycleCheckpoint({
     };
 }
 
+function clampScore(value) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return 0;
+    return Math.max(0, Math.min(100, Math.round(numeric)));
+}
+
+export function buildBotWorkerLoopRunEvaluation({
+    stopReason,
+    cycles,
+    totals,
+    finalQueue,
+    lifecycleCheckpoint,
+    traceExportDiagnostics = null
+}) {
+    const normalizedStopReason = normalizeStopReason(stopReason);
+    const cycleList = Array.isArray(cycles) ? cycles : [];
+    const queue = finalQueue && typeof finalQueue === 'object' ? finalQueue : {};
+    const totalValues = totals && typeof totals === 'object' ? totals : {};
+    const checkpoint = lifecycleCheckpoint && typeof lifecycleCheckpoint === 'object'
+        ? lifecycleCheckpoint
+        : buildLifecycleCheckpoint({
+            stopReason: normalizedStopReason,
+            cycles: cycleList,
+            totals: totalValues,
+            finalQueue: queue
+        });
+    const dispatchFailures = cycleList.reduce((sum, cycle) => sum + (cycle.failedDispatch || 0), 0);
+    const traceExport = traceExportDiagnostics && typeof traceExportDiagnostics === 'object'
+        ? traceExportDiagnostics
+        : null;
+    const traceExportDroppedEvents = Number(traceExport?.droppedEventCount || 0);
+    const traceExportCoverage = Number(traceExport?.exportCoverage);
+    const signals = {
+        stopReason: normalizedStopReason,
+        queueOpen: queue.open || 0,
+        queueCreated: queue.created || 0,
+        queueDispatched: queue.dispatched || 0,
+        queueRetryScheduled: queue.retryScheduled || 0,
+        queueDispatchedStale: queue.dispatchedStale || 0,
+        queueAwaitingApproval: queue.awaitingApproval || 0,
+        oldestApprovalAgeMs: queue.oldestApprovalAgeMs || 0,
+        botTasksFailed: totalValues.botTasksFailed || 0,
+        botExecutionMarkerMismatches: totalValues.botExecutionMarkerMismatches || 0,
+        botSkillHardeningBlocked: totalValues.botSkillHardeningBlocked || 0,
+        dispatchFailures,
+        resumeRecommended: checkpoint.resumeRecommended === true,
+        nextAction: checkpoint.nextAction || 'unknown',
+        traceExportStatus: typeof traceExport?.status === 'string' ? traceExport.status : null,
+        traceExportCoverage: Number.isFinite(traceExportCoverage) ? traceExportCoverage : null,
+        traceExportDroppedEvents: Number.isFinite(traceExportDroppedEvents) ? traceExportDroppedEvents : 0
+    };
+    const penalties = [];
+    const addPenalty = (reason, points, count = null) => {
+        if (points <= 0) return;
+        penalties.push({
+            reason,
+            points: clampScore(points),
+            ...(count === null ? {} : { count })
+        });
+    };
+
+    addPenalty('stale_dispatched_tasks', Math.min(40, signals.queueDispatchedStale * 25), signals.queueDispatchedStale);
+    addPenalty('bot_task_failures', Math.min(30, signals.botTasksFailed * 15), signals.botTasksFailed);
+    addPenalty('execution_marker_mismatches', Math.min(40, signals.botExecutionMarkerMismatches * 40), signals.botExecutionMarkerMismatches);
+    addPenalty('skill_hardening_blocks', Math.min(25, signals.botSkillHardeningBlocked * 12), signals.botSkillHardeningBlocked);
+    addPenalty('dispatch_failures', Math.min(20, signals.dispatchFailures * 10), signals.dispatchFailures);
+    addPenalty('pending_created_tasks', Math.min(15, signals.queueCreated * 5), signals.queueCreated);
+    addPenalty('trace_export_dropped_events', Math.min(20, signals.traceExportDroppedEvents * 5), signals.traceExportDroppedEvents);
+    addPenalty('cycle_budget_exhausted', normalizedStopReason === 'max_cycles_reached' ? 15 : 0);
+
+    const score = clampScore(100 - penalties.reduce((sum, penalty) => sum + penalty.points, 0));
+    let status = 'pass';
+    if (score < 70 || signals.queueDispatchedStale > 0 || signals.botTasksFailed > 0 || signals.botExecutionMarkerMismatches > 0) {
+        status = 'fail';
+    } else if (
+        score < 90
+        || signals.resumeRecommended
+        || signals.queueAwaitingApproval > 0
+        || signals.botSkillHardeningBlocked > 0
+        || signals.dispatchFailures > 0
+        || signals.traceExportDroppedEvents > 0
+    ) {
+        status = 'warn';
+    }
+
+    return {
+        schemaVersion: 'bot-worker-loop.evaluation.v1',
+        score,
+        status,
+        signals,
+        penalties,
+        passed: status === 'pass'
+    };
+}
+
 export function renderBotWorkerLoopMarkdown(report) {
     if (!report || typeof report !== 'object') {
         return '# Bot Worker Loop\n\nNo report available.';
@@ -436,9 +1252,11 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- totals.dispatched: ${report.totals?.dispatched || 0}`,
         `- totals.resultsAccepted: ${report.totals?.resultsAccepted || 0}`,
         `- totals.botTasksFailed: ${report.totals?.botTasksFailed || 0}`,
+        `- totals.botExecutionMarkerMismatches: ${report.totals?.botExecutionMarkerMismatches || 0}`,
         `- totals.botSkillHardeningBlocked: ${report.totals?.botSkillHardeningBlocked || 0}`,
         `- totals.followupTasksSaved: ${report.totals?.followupTasksSaved || 0}`,
         `- finalQueue.open: ${report.finalQueue?.open || 0}`,
+        `- finalQueue.dispatchedStale: ${report.finalQueue?.dispatchedStale || 0}`,
         `- finalQueue.awaitingApproval: ${report.finalQueue?.awaitingApproval || 0}`,
         '',
         '## Lifecycle Checkpoint',
@@ -462,8 +1280,160 @@ export function renderBotWorkerLoopMarkdown(report) {
         `- stateFingerprint: ${lifecycleCheckpoint.stateFingerprint || 'unavailable'}`,
         `- attentionReasons: ${lifecycleCheckpoint.attentionReasons.length > 0 ? lifecycleCheckpoint.attentionReasons.join(', ') : 'none'}`,
         `- queue.open: ${lifecycleCheckpoint.queue.open}`,
+        `- queue.dispatchedStale: ${lifecycleCheckpoint.queue.dispatchedStale || 0}`,
+        `- queue.retryScheduled: ${lifecycleCheckpoint.queue.retryScheduled || 0}`,
+        `- queue.openAgeMs: ${JSON.stringify(lifecycleCheckpoint.queue.openAgeMs || { oldest: 0, average: 0, p95: 0 })}`,
+        `- queue.oldestDispatchedAgeMs: ${lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0}`,
         `- queue.awaitingApproval: ${lifecycleCheckpoint.queue.awaitingApproval}`,
+        `- queue.oldestApprovalAgeMs: ${lifecycleCheckpoint.queue.oldestApprovalAgeMs || 0}`,
         '',
+        '## Run Evaluation',
+        ''
+    );
+
+    const traceExportDiagnostics = report.traceExportDiagnostics && typeof report.traceExportDiagnostics === 'object'
+        ? report.traceExportDiagnostics
+        : buildBotWorkerLoopTraceExportDiagnostics(report);
+    const runEvaluation = report.runEvaluation && typeof report.runEvaluation === 'object'
+        ? report.runEvaluation
+        : buildBotWorkerLoopRunEvaluation({
+            stopReason: report.stopReason,
+            cycles: report.cycles,
+            totals: report.totals,
+            finalQueue: report.finalQueue,
+            lifecycleCheckpoint,
+            traceExportDiagnostics
+        });
+
+    lines.push(
+        `- schemaVersion: ${runEvaluation.schemaVersion}`,
+        `- status: ${runEvaluation.status}`,
+        `- score: ${runEvaluation.score}`,
+        `- passed: ${runEvaluation.passed}`,
+        `- nextAction: ${runEvaluation.signals?.nextAction || 'unknown'}`,
+        `- penalties: ${Array.isArray(runEvaluation.penalties) && runEvaluation.penalties.length > 0
+            ? runEvaluation.penalties.map((penalty) => `${penalty.reason}:${penalty.points}`).join(', ')
+            : 'none'}`,
+        '',
+        '## Trace Export',
+        '',
+        `- schemaVersion: ${traceExportDiagnostics.schemaVersion}`,
+        `- status: ${traceExportDiagnostics.status}`,
+        `- traceEventCount: ${traceExportDiagnostics.traceEventCount}`,
+        `- exportedSpanCount: ${traceExportDiagnostics.exportedSpanCount}`,
+        `- droppedEventCount: ${traceExportDiagnostics.droppedEventCount}`,
+        `- exportCoverage: ${traceExportDiagnostics.exportCoverage}`,
+        `- droppedEvents: ${Array.isArray(traceExportDiagnostics.droppedEvents) && traceExportDiagnostics.droppedEvents.length > 0
+            ? traceExportDiagnostics.droppedEvents.map((event) => `${event.phase}:${event.reasons.join('+')}`).join(', ')
+            : 'none'}`,
+        '',
+        '## Recovery Plan',
+        ''
+    );
+
+    const recoveryPlan = report.staleDispatchRecoveryPlan && typeof report.staleDispatchRecoveryPlan === 'object'
+        ? report.staleDispatchRecoveryPlan
+        : null;
+    if (!recoveryPlan) {
+        lines.push('- none', '');
+    } else {
+        lines.push(
+            `- schemaVersion: ${recoveryPlan.schemaVersion}`,
+            `- planFingerprint: ${recoveryPlan.planFingerprint || 'unavailable'}`,
+            `- dryRun: ${recoveryPlan.dryRun}`,
+            `- mutatesQueue: ${recoveryPlan.mutatesQueue}`,
+            `- totalCandidates: ${recoveryPlan.totalCandidates}`,
+            `- defaultAction: ${recoveryPlan.defaultAction}`
+        );
+        const candidates = Array.isArray(recoveryPlan.candidates) ? recoveryPlan.candidates : [];
+        if (candidates.length === 0) {
+            lines.push('- candidates: none');
+        } else {
+            for (const candidate of candidates) {
+                lines.push(
+                    `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} attempts=${candidate.attempts} action=${candidate.recommendedAction}`
+                );
+                if (candidate.candidateFingerprint) {
+                    lines.push(`  - candidateFingerprint: ${candidate.candidateFingerprint}`);
+                }
+                if (candidate.dedupeKey) {
+                    lines.push(`  - dedupeKey: ${candidate.dedupeKey}`);
+                }
+                if (candidate.traceparent) {
+                    lines.push(`  - traceparent: ${candidate.traceparent}`);
+                }
+                if (candidate.idempotencyKey) {
+                    lines.push(`  - idempotencyKey: ${candidate.idempotencyKey}`);
+                }
+                const decisionRecord = candidate.recoveryDecisionRecord && typeof candidate.recoveryDecisionRecord === 'object'
+                    ? candidate.recoveryDecisionRecord
+                    : null;
+                if (decisionRecord) {
+                    lines.push(
+                        `  - recoveryDecisionRequired: ${candidate.recoveryDecisionRequired === true}`,
+                        `  - decisionRecordSchema: ${decisionRecord.schemaVersion}`,
+                        `  - allowedDecisions: ${Array.isArray(decisionRecord.allowedDecisions) ? decisionRecord.allowedDecisions.join(', ') : 'none'}`,
+                        `  - requiredFields: ${Array.isArray(decisionRecord.requiredFields) ? decisionRecord.requiredFields.join(', ') : 'none'}`
+                    );
+                }
+                const evidence = Array.isArray(candidate.evidenceRequired)
+                    ? candidate.evidenceRequired
+                    : [];
+                if (evidence.length > 0) {
+                    lines.push(`  - evidenceRequired: ${evidence.map((item) => item.id).join(', ')}`);
+                }
+            }
+        }
+        lines.push('');
+    }
+
+    lines.push('## Approval Review Plan', '');
+    const approvalPlan = report.pendingApprovalReviewPlan && typeof report.pendingApprovalReviewPlan === 'object'
+        ? report.pendingApprovalReviewPlan
+        : null;
+    if (!approvalPlan) {
+        lines.push('- none', '');
+    } else {
+        lines.push(
+            `- schemaVersion: ${approvalPlan.schemaVersion}`,
+            `- planFingerprint: ${approvalPlan.planFingerprint || 'unavailable'}`,
+            `- dryRun: ${approvalPlan.dryRun}`,
+            `- mutatesQueue: ${approvalPlan.mutatesQueue}`,
+            `- totalCandidates: ${approvalPlan.totalCandidates}`,
+            `- defaultAction: ${approvalPlan.defaultAction}`
+        );
+        const approvalCandidates = Array.isArray(approvalPlan.candidates) ? approvalPlan.candidates : [];
+        if (approvalCandidates.length === 0) {
+            lines.push('- candidates: none');
+        } else {
+            for (const candidate of approvalCandidates) {
+                lines.push(
+                    `- candidate ${candidate.taskId}: target=${candidate.target} ageMs=${candidate.ageMs} priority=${candidate.priority} action=${candidate.recommendedAction}`
+                );
+                if (candidate.candidateFingerprint) {
+                    lines.push(`  - candidateFingerprint: ${candidate.candidateFingerprint}`);
+                }
+                if (candidate.dedupeKey) {
+                    lines.push(`  - dedupeKey: ${candidate.dedupeKey}`);
+                }
+                if (candidate.reviewerGroup) {
+                    lines.push(`  - reviewerGroup: ${candidate.reviewerGroup}`);
+                }
+                if (candidate.reason) {
+                    lines.push(`  - reason: ${candidate.reason}`);
+                }
+                const evidence = Array.isArray(candidate.evidenceRequired)
+                    ? candidate.evidenceRequired
+                    : [];
+                if (evidence.length > 0) {
+                    lines.push(`  - evidenceRequired: ${evidence.map((item) => item.id).join(', ')}`);
+                }
+            }
+        }
+        lines.push('');
+    }
+
+    lines.push(
         '## Cycles',
         ''
     );
@@ -511,6 +1481,8 @@ export async function runBotWorkerLoop({
     maxCycles = 20,
     idleCyclesToStop = 2,
     stopWhenOnlyApprovals = true,
+    stopWhenStaleDispatch = true,
+    staleDispatchMs = DEFAULT_STALE_DISPATCH_MS,
     sleepMs = 0,
     etaMs = 1_000,
     resultDelayMs = 500,
@@ -540,14 +1512,20 @@ export async function runBotWorkerLoop({
     const normalizedMaxCycles = parsePositiveInt(maxCycles, 20);
     const normalizedIdleCycles = parsePositiveInt(idleCyclesToStop, 2);
     const normalizedDispatchLimit = parsePositiveInt(dispatchLimit, 100);
+    const normalizedStaleDispatchMs = parseNonNegativeInt(staleDispatchMs, DEFAULT_STALE_DISPATCH_MS);
 
     const cycles = [];
     const totals = {
         dispatched: 0,
         awaitingApproval: 0,
+        maintenanceScheduledRetries: 0,
+        maintenanceRetried: 0,
+        maintenanceTimedOut: 0,
+        maintenanceTransportFailures: 0,
         resultsAccepted: 0,
         botTasksExecuted: 0,
         botTasksFailed: 0,
+        botExecutionMarkerMismatches: 0,
         botSkillHardeningBlocked: 0,
         followupTasksGenerated: 0,
         followupTasksSaved: 0,
@@ -572,8 +1550,28 @@ export async function runBotWorkerLoop({
         // eslint-disable-next-line no-await-in-loop
         const queueBefore = await loadQueueSummary({
             storePath: resolvedStorePath,
-            nowFactory: now
+            nowFactory: now,
+            staleDispatchMs: normalizedStaleDispatchMs
         });
+
+        const maintenanceResult = queueBefore.created > 0 || queueBefore.dispatchedStale > 0
+            ? {
+                loaded: queueBefore.total,
+                checked: 0,
+                scheduledRetries: 0,
+                retried: 0,
+                timedOut: 0,
+                transportFailures: 0
+            }
+            // Exercise protocol-native retry/timeout handling before dispatching new work,
+            // but never mutate stale dispatched tasks that require operator inspection.
+            // eslint-disable-next-line no-await-in-loop
+            : await runQueueMaintenance({
+                storePath: resolvedStorePath,
+                outboxDir: resolvedOutboxDir,
+                localAgentId,
+                nowFactory: now
+            });
 
         // eslint-disable-next-line no-await-in-loop
         const dispatchResult = await dispatchCreatedQueueTasks({
@@ -608,17 +1606,22 @@ export async function runBotWorkerLoop({
         // eslint-disable-next-line no-await-in-loop
         const queueAfter = await loadQueueSummary({
             storePath: resolvedStorePath,
-            nowFactory: now
+            nowFactory: now,
+            staleDispatchMs: normalizedStaleDispatchMs
         });
 
         const progressUnits =
-            dispatchResult.stats.dispatched
+            maintenanceResult.scheduledRetries
+            + maintenanceResult.retried
+            + maintenanceResult.timedOut
+            + dispatchResult.stats.dispatched
             + processResult.resultsAccepted
             + processResult.followupTasksSaved;
         const noProgress = progressUnits === 0;
         const noPendingDispatch = queueAfter.created === 0 && queueAfter.dispatched === 0;
         const noOutboxFiles = processResult.filesFound === 0;
         const onlyAwaitingApprovals = queueAfter.open > 0 && queueAfter.open === queueAfter.awaitingApproval;
+        const staleDispatchDetected = (queueAfter.dispatchedStale || 0) > 0 && noOutboxFiles;
 
         if (noProgress && noPendingDispatch && noOutboxFiles) {
             idleStreak++;
@@ -634,6 +1637,7 @@ export async function runBotWorkerLoop({
             durationMs: Math.max(0, cycleFinishedAt - cycleStartedAt),
             queueBefore,
             queueAfter,
+            maintenanceResult,
             selected: dispatchResult.stats.selected,
             dispatched: dispatchResult.stats.dispatched,
             awaitingApproval: dispatchResult.stats.awaitingApproval,
@@ -643,6 +1647,7 @@ export async function runBotWorkerLoop({
             resultsAccepted: processResult.resultsAccepted,
             botTasksExecuted: processResult.botTasksExecuted,
             botTasksFailed: processResult.botTasksFailed,
+            botExecutionMarkerMismatches: processResult.botExecutionMarkerMismatches,
             botSkillHardeningBlocked: processResult.botSkillHardeningBlocked,
             followupTasksGenerated: processResult.followupTasksGenerated,
             followupTasksSaved: processResult.followupTasksSaved,
@@ -654,6 +1659,7 @@ export async function runBotWorkerLoop({
             cycle: cycleIndex,
             startedAt: cycleStartedAt,
             finishedAt: cycleFinishedAt,
+            maintenanceResult,
             dispatchResult,
             processResult,
             queueBefore,
@@ -663,14 +1669,20 @@ export async function runBotWorkerLoop({
                 traceId,
                 parentSpanId: rootSpanId,
                 w3cParentSpanId: rootTraceContext.spanId
-            }
+            },
+            staleDispatchMs: normalizedStaleDispatchMs
         }));
 
         totals.dispatched += dispatchResult.stats.dispatched;
         totals.awaitingApproval += dispatchResult.stats.awaitingApproval;
+        totals.maintenanceScheduledRetries += maintenanceResult.scheduledRetries;
+        totals.maintenanceRetried += maintenanceResult.retried;
+        totals.maintenanceTimedOut += maintenanceResult.timedOut;
+        totals.maintenanceTransportFailures += maintenanceResult.transportFailures;
         totals.resultsAccepted += processResult.resultsAccepted;
         totals.botTasksExecuted += processResult.botTasksExecuted;
         totals.botTasksFailed += processResult.botTasksFailed;
+        totals.botExecutionMarkerMismatches += processResult.botExecutionMarkerMismatches;
         totals.botSkillHardeningBlocked += processResult.botSkillHardeningBlocked;
         totals.followupTasksGenerated += processResult.followupTasksGenerated;
         totals.followupTasksSaved += processResult.followupTasksSaved;
@@ -687,6 +1699,11 @@ export async function runBotWorkerLoop({
             break;
         }
 
+        if (stopWhenStaleDispatch && staleDispatchDetected) {
+            stopReason = 'stale_dispatch_detected';
+            break;
+        }
+
         if (idleStreak >= normalizedIdleCycles) {
             stopReason = 'idle_convergence';
             break;
@@ -700,7 +1717,8 @@ export async function runBotWorkerLoop({
 
     const finalQueue = await loadQueueSummary({
         storePath: resolvedStorePath,
-        nowFactory: now
+        nowFactory: now,
+        staleDispatchMs: normalizedStaleDispatchMs
     });
     const lifecycleCheckpoint = buildLifecycleCheckpoint({
         stopReason,
@@ -708,6 +1726,19 @@ export async function runBotWorkerLoop({
         totals,
         finalQueue
     });
+    const staleDispatchRecoveryPlan = finalQueue.dispatchedStale > 0
+        ? await loadStaleDispatchRecoveryPlan({
+            storePath: resolvedStorePath,
+            nowFactory: now,
+            staleDispatchMs: normalizedStaleDispatchMs
+        })
+        : null;
+    const pendingApprovalReviewPlan = finalQueue.awaitingApproval > 0
+        ? await loadPendingApprovalReviewPlan({
+            storePath: resolvedStorePath,
+            nowFactory: now
+        })
+        : null;
     pushTraceEvent(traceEvents, {
         at: safeNow(now),
         cycle: cycles.length,
@@ -719,11 +1750,91 @@ export async function runBotWorkerLoop({
         stateFingerprint: lifecycleCheckpoint.stateFingerprint,
         attentionReasons: lifecycleCheckpoint.attentionReasons,
         queueOpen: lifecycleCheckpoint.queue.open,
-        queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval
+        queueDispatchedStale: lifecycleCheckpoint.queue.dispatchedStale || 0,
+        oldestDispatchedAgeMs: lifecycleCheckpoint.queue.oldestDispatchedAgeMs || 0,
+        queueAwaitingApproval: lifecycleCheckpoint.queue.awaitingApproval,
+        oldestApprovalAgeMs: lifecycleCheckpoint.queue.oldestApprovalAgeMs || 0,
+        pendingApprovalTaskIds: lifecycleCheckpoint.queue.pendingApprovalTaskIds || []
     }, {
         traceId,
         parentSpanId: rootSpanId,
         w3cParentSpanId: rootTraceContext.spanId
+    });
+    if (staleDispatchRecoveryPlan) {
+        pushTraceEvent(traceEvents, {
+            at: staleDispatchRecoveryPlan.generatedAt,
+            cycle: cycles.length,
+            phase: 'stale_dispatch_recovery_plan',
+            totalCandidates: staleDispatchRecoveryPlan.totalCandidates,
+            dryRun: staleDispatchRecoveryPlan.dryRun,
+            mutatesQueue: staleDispatchRecoveryPlan.mutatesQueue,
+            defaultAction: staleDispatchRecoveryPlan.defaultAction,
+            planFingerprint: staleDispatchRecoveryPlan.planFingerprint,
+            candidateFingerprints: staleDispatchRecoveryPlan.candidates
+                .map((candidate) => candidate.candidateFingerprint)
+                .filter(Boolean),
+            candidateTaskIds: staleDispatchRecoveryPlan.candidates.map((candidate) => candidate.taskId),
+            candidateTraceparents: staleDispatchRecoveryPlan.candidates
+                .map((candidate) => candidate.traceparent)
+                .filter(Boolean)
+        }, {
+            traceId,
+            parentSpanId: rootSpanId,
+            w3cParentSpanId: rootTraceContext.spanId
+        });
+    }
+    if (pendingApprovalReviewPlan) {
+        pushTraceEvent(traceEvents, {
+            at: pendingApprovalReviewPlan.generatedAt,
+            cycle: cycles.length,
+            phase: 'pending_approval_review_plan',
+            totalCandidates: pendingApprovalReviewPlan.totalCandidates,
+            dryRun: pendingApprovalReviewPlan.dryRun,
+            mutatesQueue: pendingApprovalReviewPlan.mutatesQueue,
+            defaultAction: pendingApprovalReviewPlan.defaultAction,
+            planFingerprint: pendingApprovalReviewPlan.planFingerprint,
+            candidateFingerprints: pendingApprovalReviewPlan.candidates
+                .map((candidate) => candidate.candidateFingerprint)
+                .filter(Boolean),
+            candidateTaskIds: pendingApprovalReviewPlan.candidates.map((candidate) => candidate.taskId),
+            candidateReasons: pendingApprovalReviewPlan.candidates
+                .map((candidate) => candidate.reason)
+                .filter(Boolean)
+        }, {
+            traceId,
+            parentSpanId: rootSpanId,
+            w3cParentSpanId: rootTraceContext.spanId
+        });
+    }
+    const traceExportDiagnosticsBeforeEvaluation = buildBotWorkerLoopTraceExportDiagnostics({
+        traceEvents
+    });
+    const runEvaluation = buildBotWorkerLoopRunEvaluation({
+        stopReason,
+        cycles,
+        totals,
+        finalQueue,
+        lifecycleCheckpoint,
+        traceExportDiagnostics: traceExportDiagnosticsBeforeEvaluation
+    });
+    pushTraceEvent(traceEvents, {
+        at: safeNow(now),
+        cycle: cycles.length,
+        phase: 'run_evaluation',
+        score: runEvaluation.score,
+        status: runEvaluation.status,
+        passed: runEvaluation.passed,
+        nextAction: runEvaluation.signals.nextAction,
+        traceExportDroppedEvents: runEvaluation.signals.traceExportDroppedEvents,
+        traceExportCoverage: runEvaluation.signals.traceExportCoverage,
+        penalties: runEvaluation.penalties
+    }, {
+        traceId,
+        parentSpanId: rootSpanId,
+        w3cParentSpanId: rootTraceContext.spanId
+    });
+    const traceExportDiagnostics = buildBotWorkerLoopTraceExportDiagnostics({
+        traceEvents
     });
 
     return {
@@ -738,12 +1849,17 @@ export async function runBotWorkerLoop({
         cyclesRun: cycles.length,
         maxCycles: normalizedMaxCycles,
         idleCyclesToStop: normalizedIdleCycles,
+        staleDispatchMs: normalizedStaleDispatchMs,
         includeAllCreated,
         botRuntime,
         totals,
         finalQueue,
         cycles,
         lifecycleCheckpoint,
+        runEvaluation,
+        staleDispatchRecoveryPlan,
+        pendingApprovalReviewPlan,
+        traceExportDiagnostics,
         traceEvents
     };
 }
@@ -751,7 +1867,10 @@ export async function runBotWorkerLoop({
 export async function writeBotWorkerLoopReport({
     report,
     jsonPath = null,
-    markdownPath = null
+    markdownPath = null,
+    otelJsonlPath = null,
+    recoveryPlanPath = null,
+    approvalPlanPath = null
 }) {
     const output = report && typeof report === 'object' ? report : {};
 
@@ -765,5 +1884,45 @@ export async function writeBotWorkerLoopReport({
         const resolvedMarkdownPath = path.resolve(markdownPath);
         fs.mkdirSync(path.dirname(resolvedMarkdownPath), { recursive: true });
         fs.writeFileSync(resolvedMarkdownPath, `${renderBotWorkerLoopMarkdown(output)}\n`);
+    }
+
+    if (typeof otelJsonlPath === 'string' && otelJsonlPath.trim()) {
+        const resolvedOtelPath = path.resolve(otelJsonlPath);
+        fs.mkdirSync(path.dirname(resolvedOtelPath), { recursive: true });
+        const spans = buildBotWorkerLoopOtelSpans(output);
+        fs.writeFileSync(
+            resolvedOtelPath,
+            spans.length > 0
+                ? `${spans.map((span) => JSON.stringify(span)).join('\n')}\n`
+                : ''
+        );
+    }
+
+    if (
+        typeof recoveryPlanPath === 'string'
+        && recoveryPlanPath.trim()
+        && output.staleDispatchRecoveryPlan
+        && typeof output.staleDispatchRecoveryPlan === 'object'
+    ) {
+        const resolvedRecoveryPlanPath = path.resolve(recoveryPlanPath);
+        fs.mkdirSync(path.dirname(resolvedRecoveryPlanPath), { recursive: true });
+        fs.writeFileSync(
+            resolvedRecoveryPlanPath,
+            `${JSON.stringify(output.staleDispatchRecoveryPlan, null, 2)}\n`
+        );
+    }
+
+    if (
+        typeof approvalPlanPath === 'string'
+        && approvalPlanPath.trim()
+        && output.pendingApprovalReviewPlan
+        && typeof output.pendingApprovalReviewPlan === 'object'
+    ) {
+        const resolvedApprovalPlanPath = path.resolve(approvalPlanPath);
+        fs.mkdirSync(path.dirname(resolvedApprovalPlanPath), { recursive: true });
+        fs.writeFileSync(
+            resolvedApprovalPlanPath,
+            `${JSON.stringify(output.pendingApprovalReviewPlan, null, 2)}\n`
+        );
     }
 }

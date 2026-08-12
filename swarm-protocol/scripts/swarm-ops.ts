@@ -4,8 +4,10 @@ import {
     FileTaskStore,
     collectLifecycleEvents,
     drainTarget,
+    evaluateOpenAgeSlo,
     listQueue,
     overrideApproval,
+    recoverStaleDispatchRecord,
     replayTask,
     rerouteTaskRecord,
     signAuditEntry,
@@ -20,13 +22,14 @@ Usage:
   tsx scripts/swarm-ops.ts <command> [args] [options]
 
 Commands:
-  status
+  status [--max-open-age-ms <n>]
   queue [--approvals] [--target <agent>] [--limit <n>]
   replay <taskId>
   tail [--task <taskId>] [--target <agent>] [--limit <n>]
   reroute <taskId> <newTarget> [--actor <id>] [--reason <text>]
   drain <target> [--redirect <newTarget>] [--actor <id>] [--reason <text>]
   override <approve|deny> <taskId> [--actor <id>] [--reason <text>]
+  recover-dispatch <decision> <taskId> [--fingerprint <sha256>] [--stale-ms <n>] [--side-effect <status>] [--correlation <id>] [--evidence <csv>] [--notes <text>] [--actor <id>] [--reason <text>]
   audit-verify
 
 Global options:
@@ -53,6 +56,13 @@ function parseArgs(argv) {
         target: null,
         task: null,
         redirect: null,
+        sideEffect: 'unknown',
+        correlation: null,
+        evidence: null,
+        notes: null,
+        fingerprint: null,
+        staleDispatchMs: 30 * 60 * 1000,
+        maxOpenAgeMs: null,
         limit: 25
     };
 
@@ -116,6 +126,48 @@ function parseArgs(argv) {
         }
         if (token === '--redirect') {
             options.redirect = value;
+            i++;
+            continue;
+        }
+        if (token === '--side-effect') {
+            options.sideEffect = value;
+            i++;
+            continue;
+        }
+        if (token === '--correlation') {
+            options.correlation = value;
+            i++;
+            continue;
+        }
+        if (token === '--evidence') {
+            options.evidence = value;
+            i++;
+            continue;
+        }
+        if (token === '--notes') {
+            options.notes = value;
+            i++;
+            continue;
+        }
+
+        if (token === '--stale-ms') {
+            options.staleDispatchMs = Number(value);
+            if (!Number.isFinite(options.staleDispatchMs) || options.staleDispatchMs <= 0) {
+                throw new Error('--stale-ms must be a positive number');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--max-open-age-ms') {
+            options.maxOpenAgeMs = Number(value);
+            if (!Number.isFinite(options.maxOpenAgeMs) || options.maxOpenAgeMs < 0) {
+                throw new Error('--max-open-age-ms must be a non-negative number');
+            }
+            i++;
+            continue;
+        }
+        if (token === '--fingerprint') {
+            options.fingerprint = value;
             i++;
             continue;
         }
@@ -191,7 +243,17 @@ function printQueue(rows) {
     }
 
     for (const row of rows) {
-        console.log(`${row.taskId} status=${row.status} target=${row.target} priority=${row.priority} attempts=${row.attempts}`);
+        const age = row.ageMs === null || row.ageMs === undefined
+            ? 'unknown'
+            : `${Math.floor(row.ageMs / 1000)}s`;
+        const deadline = row.deadlineInMs === null || row.deadlineInMs === undefined
+            ? 'none'
+            : row.overdue ? `overdue=${Math.floor(Math.abs(row.deadlineInMs) / 1000)}s`
+                : `due_in=${Math.floor(row.deadlineInMs / 1000)}s`;
+        const retry = row.retryInMs === null || row.retryInMs === undefined
+            ? 'none'
+            : row.retryInMs <= 0 ? 'ready' : `in=${Math.floor(row.retryInMs / 1000)}s`;
+        console.log(`${row.taskId} status=${row.status} target=${row.target} priority=${row.priority} attempts=${row.attempts} age=${age} deadline=${deadline} retry=${retry}`);
         console.log(`  task=${row.task}`);
     }
 }
@@ -224,6 +286,12 @@ function printEvents(events) {
         if (command === 'status') {
             const summary = summarizeTaskRecords(records);
             console.log(`total=${summary.total} open=${summary.open} terminal=${summary.terminal} pendingApprovals=${summary.pendingApprovals}`);
+            console.log(`openAgeMs.oldest=${summary.openAgeMs.oldest} openAgeMs.average=${summary.openAgeMs.average} openAgeMs.p95=${summary.openAgeMs.p95} oldestOpenTaskId=${summary.oldestOpenTaskId || 'none'}`);
+            if (options.maxOpenAgeMs !== null) {
+                const slo = evaluateOpenAgeSlo(summary, options.maxOpenAgeMs);
+                console.log(`openAgeSlo=${slo.breached ? 'breach' : 'pass'} thresholdMs=${slo.thresholdMs}`);
+                if (slo.breached) process.exitCode = 2;
+            }
             console.log('By status:');
             for (const [status, count] of Object.entries(summary.byStatus)) {
                 console.log(`- ${status}: ${count}`);
@@ -348,6 +416,44 @@ function printEvents(events) {
                 reason: options.reason || (approved ? 'manual_override_approve' : 'manual_override_deny')
             });
             console.log(`Override ${action} applied for ${taskId}`);
+            return;
+        }
+
+        if (command === 'recover-dispatch') {
+            const secret = requireSecret(options.secret);
+            const decision = positional[0];
+            const taskId = positional[1];
+            if (!decision || !taskId) {
+                throw new Error('Usage: recover-dispatch <decision> <taskId>');
+            }
+
+            const evidenceReviewed = typeof options.evidence === 'string'
+                ? options.evidence.split(',').map((item) => item.trim()).filter(Boolean)
+                : [];
+            const result = recoverStaleDispatchRecord(records, taskId, decision, {
+                actor: options.actor,
+                reason: options.reason || 'manual_stale_dispatch_recovery',
+                sideEffectStatus: options.sideEffect,
+                externalRuntimeCorrelation: options.correlation,
+                evidenceReviewed,
+                notes: options.notes,
+                expectedDispatchFingerprint: options.fingerprint,
+                staleDispatchMs: options.staleDispatchMs
+            });
+
+            await store.compact(result.records);
+            appendAuditEntry(auditStore, secret, 'operator_stale_dispatch_recovery', options.actor, {
+                taskId,
+                decision: result.decision,
+                previousStatus: result.previousStatus,
+                status: result.updated.status,
+                reason: options.reason || 'manual_stale_dispatch_recovery',
+                sideEffectStatus: options.sideEffect,
+                externalRuntimeCorrelation: result.updated.recoveryDecision?.externalRuntimeCorrelation || null,
+                evidenceReviewed,
+                dispatchFingerprint: result.updated.recoveryDecision?.dispatchFingerprint || null
+            });
+            console.log(`Recovery ${result.decision} applied for ${taskId}; status=${result.updated.status}`);
             return;
         }
 

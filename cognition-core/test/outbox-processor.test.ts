@@ -32,6 +32,53 @@ function createEnvelope({ target, request, sentAt = 1_000 }) {
     };
 }
 
+function createTracedEnvelope({ target, request, sentAt = 1_000 }) {
+    return {
+        ...createEnvelope({ target, request, sentAt }),
+        trace: {
+            schemaVersion: 'openclaw.task_dispatch.trace.v1',
+            traceparent: request.traceparent,
+            taskId: request.id,
+            target
+        },
+        trajectoryEvents: [
+            {
+                schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+                traceparent: request.traceparent,
+                taskId: request.id,
+                target,
+                actor: 'cognition-core/queue-dispatcher',
+                phase: 'dispatch',
+                sequence: 1,
+                event: 'task_dispatch_selected',
+                at: sentAt
+            },
+            {
+                schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+                traceparent: request.traceparent,
+                taskId: request.id,
+                target,
+                actor: 'cognition-core/queue-dispatcher',
+                phase: 'dispatch',
+                sequence: 2,
+                event: 'task_dispatch_outbox_enqueued',
+                at: sentAt
+            },
+            {
+                schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+                traceparent: '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01',
+                taskId: request.id,
+                target,
+                actor: 'external/noise',
+                phase: 'dispatch',
+                sequence: 99,
+                event: 'unrelated_trace_noise',
+                at: sentAt
+            }
+        ]
+    };
+}
+
 function makeRequest(
     id,
     target = 'agent:ops',
@@ -60,6 +107,7 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const target = 'agent:ops';
     const request = makeRequest('00000000-0000-4000-8000-000000000301', target, 'high', {
         planner: 'cognition-core/remediation-task-planner',
+        openclawDispatch: { attempt: 1 },
         traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
     });
 
@@ -95,6 +143,7 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const records = await store.loadRecords();
     assert.equal(records.length, 1);
     assert.equal(records[0].status, 'completed');
+    assert.equal(records[0].result.attempt, 1);
     assert.equal(records[0].result.traceparent, request.traceparent);
     assert.ok(Array.isArray(records[0].result.traceEvents));
     assert.ok(records[0].result.traceEvents.some((event) => (
@@ -106,6 +155,146 @@ test('processOutboxEnvelopes ingests receipt/result and archives processed files
     const archived = fs.readdirSync(archiveDir).filter((item) => item.endsWith('.jsonl'));
     assert.equal(archived.length, 1);
     assert.equal(fs.existsSync(path.join(outboxDir, targetToFile(target))), false);
+});
+
+test('processOutboxEnvelopes atomically claims live files before processing', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000304', target, 'high');
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 61_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 61_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+    fs.writeFileSync(
+        outboxFile,
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const [first, second] = await Promise.all([
+        processOutboxEnvelopes({ storePath: queuePath, outboxDir, archiveDir, botRuntime: false }),
+        processOutboxEnvelopes({ storePath: queuePath, outboxDir, archiveDir, botRuntime: false })
+    ]);
+
+    assert.equal(first.filesArchived + second.filesArchived, 1);
+    assert.equal(first.resultsAccepted + second.resultsAccepted, 1);
+    assert.equal(fs.existsSync(outboxFile), false);
+    assert.equal(fs.readdirSync(archiveDir).filter((item) => item.endsWith('.jsonl')).length, 1);
+    assert.equal((await store.loadRecords())[0].status, 'completed');
+});
+
+test('processOutboxEnvelopes preserves dispatcher trajectory events in task result trace', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const request = makeRequest('00000000-0000-4000-8000-000000000303', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner',
+        traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+    });
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 62_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 62_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createTracedEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: false
+    });
+
+    assert.equal(stats.resultsAccepted, 1);
+
+    const records = await store.loadRecords();
+    const traceEvents = records[0].result.traceEvents;
+    assert.deepEqual(traceEvents.map((event) => event.event).filter(Boolean), [
+        'task_dispatch_selected',
+        'task_dispatch_outbox_enqueued'
+    ]);
+    assert.ok(traceEvents.some((event) => event.name === 'outbox_processor.task_received'));
+    assert.ok(traceEvents.some((event) => event.name === 'outbox_processor.task_result'));
+    assert.ok(traceEvents.every((event) => event.traceparent === request.traceparent));
+});
+
+test('processOutboxEnvelopes continues trace from envelope metadata when message lacks carrier', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:ops';
+    const envelopeTraceparent = '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-01';
+    const request = makeRequest('00000000-0000-4000-8000-000000000302', target, 'high', {
+        planner: 'cognition-core/remediation-task-planner'
+    });
+    delete request.traceparent;
+    delete request.context.traceparent;
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 61_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/remediation-tasks.json',
+        nowFactory: () => 61_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    record.updatedAt = 61_002;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify({
+            ...createEnvelope({ target, request }),
+            trace: {
+                schemaVersion: 'openclaw.task_dispatch.trace.v1',
+                traceparent: envelopeTraceparent,
+                taskId: request.id,
+                target
+            }
+        })}\n`,
+        'utf8'
+    );
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: false
+    });
+
+    assert.equal(stats.resultsAccepted, 1);
+    const records = await store.loadRecords();
+    assert.equal(records[0].result.traceparent, envelopeTraceparent);
+    assert.ok(records[0].result.traceEvents.every((event) => event.traceparent === envelopeTraceparent));
 });
 
 test('processOutboxEnvelopes skips unknown tasks but still archives file', async (t) => {
@@ -195,6 +384,7 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
         'high',
         {
             planner: 'cognition-core/skill-growth-task-planner',
+            traceparent: '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01',
             skillId: 1,
             skillInput: {
                 signalQuality: 85,
@@ -239,6 +429,7 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
     assert.equal(stats.botTasksExecuted, 1);
     assert.equal(stats.botSkillTasks, 1);
     assert.ok(stats.followupTasksGenerated >= 3);
+    assert.equal(stats.followupTraceparentsPropagated, stats.followupTasksGenerated);
     assert.ok(stats.followupTasksSaved >= 3);
 
     const records = await store.loadRecords();
@@ -249,4 +440,229 @@ test('processOutboxEnvelopes executes bot runtime and enqueues generated follow-
     const followups = records.filter((entry) => entry.taskId !== request.id);
     assert.ok(followups.length >= 3);
     assert.ok(followups.every((entry) => entry.status === 'created'));
+    assert.ok(followups.every((entry) => (
+        entry.request.traceparent === entry.request.context.traceparent
+        && entry.request.traceparent.startsWith('00-4bf92f3577b34da6a3ce929d0e0e4736-')
+    )));
+});
+
+test('processOutboxEnvelopes cleans retained execution markers after durable follow-ups age out', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const executionLedgerDir = path.join(outboxDir, 'executions');
+    const target = 'agent:skills-runtime';
+    const request = makeRequest(
+        '00000000-0000-4000-8000-000000000603',
+        target,
+        'high',
+        {
+            planner: 'cognition-core/skill-growth-task-planner',
+            skillId: 1,
+            skillInput: {
+                signalQuality: 85,
+                evidenceCoverage: 83,
+                confidenceHealth: 81,
+                operationalReadiness: 80,
+                harmPotential: 25,
+                resourcePressure: 28,
+                urgency: 61,
+                impactPotential: 82,
+                humanApprovalLatency: 22
+            }
+        }
+    );
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 91_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/skill-growth-tasks.json',
+        nowFactory: () => 91_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+    fs.mkdirSync(outboxDir, { recursive: true });
+    fs.writeFileSync(
+        path.join(outboxDir, targetToFile(target)),
+        `${JSON.stringify(createEnvelope({ target, request }))}\n`,
+        'utf8'
+    );
+
+    const stats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        executionLedgerDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        executionMarkerRetentionMs: 0,
+        resultDelayMs: 0,
+        nowFactory: () => 92_000
+    });
+
+    assert.equal(stats.executionMarkersRemoved, 1);
+    assert.equal(stats.executionMarkersRetained, 0);
+    assert.deepEqual(fs.readdirSync(executionLedgerDir), []);
+});
+
+test('processOutboxEnvelopes replays a durable bot execution marker after a crash window', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:skills-runtime';
+    const request = makeRequest(
+        '00000000-0000-4000-8000-000000000602',
+        target,
+        'high',
+        {
+            planner: 'cognition-core/skill-growth-task-planner',
+            skillId: 1,
+            skillInput: {
+                signalQuality: 85,
+                evidenceCoverage: 83,
+                confidenceHealth: 81,
+                operationalReadiness: 80,
+                harmPotential: 25,
+                resourcePressure: 28,
+                urgency: 61,
+                impactPotential: 82,
+                humanApprovalLatency: 22
+            }
+        }
+    );
+
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 81_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/skill-growth-tasks.json',
+        nowFactory: () => 81_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+    fs.writeFileSync(outboxFile, `${JSON.stringify(createEnvelope({ target, request }))}\n`, 'utf8');
+
+    const firstStats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT
+    });
+    assert.equal(firstStats.botTasksExecuted, 1);
+    assert.equal(firstStats.botTasksReplayed, 0);
+    assert.equal(firstStats.executionMarkersRemoved, 0);
+    assert.equal(firstStats.executionMarkersRetained, 1);
+
+    const dispatchedRecord = (await store.loadRecords()).find((entry) => entry.taskId === request.id);
+    dispatchedRecord.status = 'dispatched';
+    dispatchedRecord.closedAt = null;
+    dispatchedRecord.result = null;
+    dispatchedRecord.updatedAt = 81_100;
+    await store.saveRecord(dispatchedRecord);
+    fs.copyFileSync(
+        path.join(archiveDir, fs.readdirSync(archiveDir)[0]),
+        outboxFile
+    );
+
+    const replayStats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT
+    });
+
+    assert.equal(replayStats.botTasksExecuted, 0);
+    assert.equal(replayStats.botTasksReplayed, 1);
+    assert.ok(replayStats.followupTasksGenerated >= 3);
+    const records = await store.loadRecords();
+    assert.equal(records.find((entry) => entry.taskId === request.id)?.status, 'completed');
+});
+
+test('processOutboxEnvelopes fails closed when a durable marker targets mutated task content', async (t) => {
+    const dir = mkTmpDir();
+    t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+    const queuePath = path.join(dir, 'tasks.journal.jsonl');
+    const outboxDir = path.join(dir, 'outbox');
+    const archiveDir = path.join(outboxDir, 'processed');
+    const target = 'agent:skills-runtime';
+    const request = makeRequest(
+        '00000000-0000-4000-8000-000000000604',
+        target,
+        'high',
+        {
+            planner: 'cognition-core/skill-growth-task-planner',
+            skillId: 1,
+            skillInput: {
+                signalQuality: 85,
+                evidenceCoverage: 83,
+                confidenceHealth: 81,
+                operationalReadiness: 80,
+                harmPotential: 25,
+                resourcePressure: 28,
+                urgency: 61,
+                impactPotential: 82,
+                humanApprovalLatency: 22
+            }
+        }
+    );
+    const store = new FileTaskStore({ filePath: queuePath, now: () => 93_000 });
+    const record = buildQueueRecordFromTaskRequest(request, {
+        source: 'reports/skill-growth-tasks.json',
+        nowFactory: () => 93_001
+    });
+    record.status = 'dispatched';
+    record.attempts = 1;
+    await store.saveRecord(record);
+
+    fs.mkdirSync(outboxDir, { recursive: true });
+    const outboxFile = path.join(outboxDir, targetToFile(target));
+    fs.writeFileSync(outboxFile, `${JSON.stringify(createEnvelope({ target, request }))}\n`, 'utf8');
+    const firstStats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        resultDelayMs: 0,
+        nowFactory: () => 94_000
+    });
+    assert.equal(firstStats.botTasksExecuted, 1);
+
+    const dispatchedRecord = (await store.loadRecords()).find((entry) => entry.taskId === request.id);
+    dispatchedRecord.status = 'dispatched';
+    dispatchedRecord.closedAt = null;
+    dispatchedRecord.result = null;
+    await store.saveRecord(dispatchedRecord);
+
+    const archivedEnvelope = JSON.parse(fs.readFileSync(
+        path.join(archiveDir, fs.readdirSync(archiveDir)[0]),
+        'utf8'
+    ));
+    archivedEnvelope.message.task = 'Mutated task content';
+    fs.writeFileSync(outboxFile, `${JSON.stringify(archivedEnvelope)}\n`, 'utf8');
+
+    const replayStats = await processOutboxEnvelopes({
+        storePath: queuePath,
+        outboxDir,
+        archiveDir,
+        botRuntime: true,
+        botRepoRoot: REPO_ROOT,
+        resultDelayMs: 0,
+        nowFactory: () => 95_000
+    });
+
+    assert.equal(replayStats.botTasksExecuted, 0);
+    assert.equal(replayStats.botTasksReplayed, 0);
+    assert.equal(replayStats.botExecutionMarkerMismatches, 1);
+    assert.equal((await store.loadRecords()).find((entry) => entry.taskId === request.id)?.status, 'failed');
 });

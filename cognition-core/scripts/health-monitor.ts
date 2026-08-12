@@ -9,6 +9,17 @@ const WORKER_APPROVAL_SLO_MS = parsePositiveInt(
     process.env.OPENCLAW_WORKER_APPROVAL_SLO_MS,
     30 * 60 * 1000
 );
+const WORKER_OPEN_AGE_SLO_MS = parseNonNegativeInt(
+    process.env.OPENCLAW_WORKER_OPEN_AGE_SLO_MS,
+    null
+);
+
+function parseNonNegativeInt(value, fallback) {
+    if (value === undefined || value === null || value === '') return fallback;
+    const numeric = Number(value);
+    if (!Number.isInteger(numeric) || numeric < 0) return fallback;
+    return numeric;
+}
 
 function parsePositiveInt(value, fallback) {
     const numeric = Number(value);
@@ -29,6 +40,45 @@ function latestTimestamp(values) {
         latest = latest === null ? numeric : Math.max(latest, numeric);
     }
     return latest;
+}
+
+function normalizeRunEvaluation(report) {
+    const evaluation = report?.runEvaluation && typeof report.runEvaluation === 'object'
+        ? report.runEvaluation
+        : null;
+    if (!evaluation) return null;
+
+    return {
+        schemaVersion: evaluation.schemaVersion || 'unknown',
+        status: typeof evaluation.status === 'string' ? evaluation.status : 'unknown',
+        score: safeNumber(evaluation.score),
+        passed: evaluation.passed === true,
+        nextAction: typeof evaluation.signals?.nextAction === 'string'
+            ? evaluation.signals.nextAction
+            : null,
+        penalties: Array.isArray(evaluation.penalties)
+            ? evaluation.penalties
+            : []
+    };
+}
+
+function normalizeTraceExportDiagnostics(report) {
+    const diagnostics = report?.traceExportDiagnostics && typeof report.traceExportDiagnostics === 'object'
+        ? report.traceExportDiagnostics
+        : null;
+    if (!diagnostics) return null;
+
+    return {
+        schemaVersion: diagnostics.schemaVersion || 'unknown',
+        status: typeof diagnostics.status === 'string' ? diagnostics.status : 'unknown',
+        traceEventCount: safeNumber(diagnostics.traceEventCount) ?? 0,
+        exportedSpanCount: safeNumber(diagnostics.exportedSpanCount) ?? 0,
+        droppedEventCount: safeNumber(diagnostics.droppedEventCount) ?? 0,
+        exportCoverage: safeNumber(diagnostics.exportCoverage),
+        droppedEvents: Array.isArray(diagnostics.droppedEvents)
+            ? diagnostics.droppedEvents
+            : []
+    };
 }
 
 function classifyCheckpointFreshness({
@@ -65,6 +115,17 @@ function classifyCheckpointFreshness({
         observedAt,
         ageMs,
         approvalSloMs
+    };
+}
+
+function evaluateOpenAgeSlo(queue, maxOpenAgeMs) {
+    if (maxOpenAgeMs === null) return null;
+
+    const oldestOpenAgeMs = Math.max(0, safeNumber(queue?.openAgeMs?.oldest) ?? 0);
+    return {
+        thresholdMs: maxOpenAgeMs,
+        oldestOpenAgeMs,
+        breached: oldestOpenAgeMs > maxOpenAgeMs
     };
 }
 
@@ -147,6 +208,12 @@ export function readLatestWorkerLoopCheckpoint(reportPath = WORKER_LOOP_REPORT, 
         queue: checkpoint.queue && typeof checkpoint.queue === 'object'
             ? checkpoint.queue
             : {},
+        openAgeSlo: evaluateOpenAgeSlo(
+            checkpoint.queue,
+            options.openAgeSloMs ?? WORKER_OPEN_AGE_SLO_MS
+        ),
+        runEvaluation: normalizeRunEvaluation(report),
+        traceExportDiagnostics: normalizeTraceExportDiagnostics(report),
         freshness
     };
 }
@@ -178,6 +245,22 @@ function buildHealthAttention({ gateway, workerLoop }) {
         attention.push(`worker_loop_${reason}`);
     }
 
+    const runEvaluation = workerLoop.runEvaluation;
+    if (runEvaluation?.status === 'fail') {
+        attention.push('worker_loop_evaluation_failed');
+    } else if (runEvaluation?.status === 'warn') {
+        attention.push('worker_loop_evaluation_warn');
+    }
+
+    const traceExport = workerLoop.traceExportDiagnostics;
+    if (traceExport?.status === 'warn' || Number(traceExport?.droppedEventCount || 0) > 0) {
+        attention.push('worker_loop_trace_export_warn');
+    }
+
+    if (workerLoop.openAgeSlo?.breached) {
+        attention.push('worker_loop_open_age_slo_breached');
+    }
+
     return [...new Set(attention)];
 }
 
@@ -192,12 +275,14 @@ export function inspectOpenClawHealth({
     logPath = LOG_FILE,
     workerReportPath = WORKER_LOOP_REPORT,
     now = Date.now(),
-    approvalSloMs = WORKER_APPROVAL_SLO_MS
+    approvalSloMs = WORKER_APPROVAL_SLO_MS,
+    openAgeSloMs = WORKER_OPEN_AGE_SLO_MS
 } = {}) {
     const gateway = readLastGatewayStatus(logPath);
     const workerLoop = readLatestWorkerLoopCheckpoint(workerReportPath, {
         now,
-        approvalSloMs
+        approvalSloMs,
+        openAgeSloMs
     });
     const attention = buildHealthAttention({ gateway, workerLoop });
 
@@ -215,10 +300,22 @@ function wantsJsonOutput(args) {
     return args.includes('--json');
 }
 
+function readMaxOpenAgeArg(args) {
+    const index = args.indexOf('--max-open-age-ms');
+    if (index === -1) return WORKER_OPEN_AGE_SLO_MS;
+    const value = args[index + 1];
+    const parsed = parseNonNegativeInt(value, null);
+    if (parsed === null) {
+        throw new Error('--max-open-age-ms must be a non-negative integer');
+    }
+    return parsed;
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
     try {
-        const health = inspectOpenClawHealth();
-        if (wantsJsonOutput(process.argv.slice(2))) {
+        const args = process.argv.slice(2);
+        const health = inspectOpenClawHealth({ openAgeSloMs: readMaxOpenAgeArg(args) });
+        if (wantsJsonOutput(args)) {
             console.log(JSON.stringify(health, null, 2));
         } else {
             console.log(`[Health] Overall status: ${health.status}`);
@@ -241,6 +338,15 @@ if (import.meta.url === `file://${process.argv[1]}`) {
                 console.log(`[Health] Worker loop resume recommended: ${worker.resumeRecommended}`);
                 console.log(`[Health] Worker loop resume key: ${worker.resumeKey}`);
                 console.log(`[Health] Worker loop checkpoint freshness: ${worker.freshness.status} ageMs=${worker.freshness.ageMs ?? 'unknown'} sloMs=${worker.freshness.approvalSloMs}`);
+                if (worker.runEvaluation) {
+                    console.log(`[Health] Worker loop evaluation: ${worker.runEvaluation.status} score=${worker.runEvaluation.score ?? 'unknown'} passed=${worker.runEvaluation.passed}`);
+                }
+                if (worker.traceExportDiagnostics) {
+                    console.log(`[Health] Worker loop trace export: ${worker.traceExportDiagnostics.status} coverage=${worker.traceExportDiagnostics.exportCoverage ?? 'unknown'} dropped=${worker.traceExportDiagnostics.droppedEventCount}`);
+                }
+                if (worker.openAgeSlo) {
+                    console.log(`[Health] Worker loop open age SLO: ${worker.openAgeSlo.breached ? 'breach' : 'pass'} oldestMs=${worker.openAgeSlo.oldestOpenAgeMs} thresholdMs=${worker.openAgeSlo.thresholdMs}`);
+                }
                 if (
                     worker.resumeRecommended
                     && worker.freshness.status === 'stale'
@@ -253,6 +359,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
                 }
             }
         }
+        if (health.workerLoop.openAgeSlo?.breached) process.exitCode = 2;
     } catch (error) {
         console.error(`[Health] Failed to inspect gateway logs: ${error.message}`);
         process.exit(1);

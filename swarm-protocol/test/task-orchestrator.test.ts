@@ -59,6 +59,60 @@ test('dispatchTask sends validated request and tracks state', async () => {
     assert.equal(task.deadlineAt, 10_500);
 });
 
+test('dispatchTask suppresses an identical duplicate id without re-sending', async () => {
+    const sent = [];
+    const clock = createClock(11_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: {
+            async send(target, message) {
+                sent.push({ target, message });
+            }
+        },
+        now: clock.now
+    });
+    const input = {
+        id: '00000000-0000-4000-8000-000000000111',
+        target: 'agent:worker-idempotent',
+        task: 'Run this exactly once',
+        context: { source: 'retry' }
+    };
+
+    const first = await orchestrator.dispatchTask(input);
+    const duplicate = await orchestrator.dispatchTask(input);
+
+    assert.equal(sent.length, 1);
+    assert.deepEqual(duplicate, first);
+    assert.equal(orchestrator.getTask(input.id).attempts, 1);
+});
+
+test('dispatchTask rejects reuse of an id for different work', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} }
+    });
+    const id = '00000000-0000-4000-8000-000000000112';
+
+    await orchestrator.dispatchTask({
+        id,
+        target: 'agent:worker-idempotent',
+        task: 'Original work'
+    });
+
+    await assert.rejects(
+        () => orchestrator.dispatchTask({
+            id,
+            target: 'agent:worker-idempotent',
+            task: 'Different work'
+        }),
+        (error) => {
+            assert.equal(error.code, 'DUPLICATE_TASK_ID');
+            assert.equal(error.details.taskId, id);
+            return true;
+        }
+    );
+});
+
 test('receipt + result complete a task lifecycle', async () => {
     const clock = createClock(2_000);
     const orchestrator = new TaskOrchestrator({
@@ -181,6 +235,60 @@ test('transient rejected receipt schedules retry and honors retry_after hint', a
     assert.equal(sent.length, 2);
 });
 
+test('ignores a late result from an earlier dispatch attempt', async () => {
+    const clock = createClock(4_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now,
+        maxRetries: 1,
+        retryDelayMs: 10,
+        defaultTimeoutMs: 500
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-late-result',
+        task: 'Keep the newest retry result authoritative'
+    });
+
+    clock.advance(501);
+    await orchestrator.runMaintenance(clock.now());
+    let current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'retry_scheduled');
+
+    clock.advance(10);
+    await orchestrator.runMaintenance(clock.now());
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.attempts, 2);
+
+    const staleAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-late-result',
+        attempt: 1,
+        status: 'success',
+        output: 'Late result from the first attempt',
+        completedAt: clock.now()
+    }));
+
+    assert.equal(staleAccepted, false);
+    current = orchestrator.getTask(task.taskId);
+    assert.equal(current.status, 'dispatched');
+    assert.equal(current.history.at(-1).event, 'stale_result_ignored');
+
+    const currentAccepted = orchestrator.ingestResult(buildTaskResult({
+        taskId: task.taskId,
+        from: 'agent:worker-late-result',
+        attempt: 2,
+        status: 'success',
+        output: 'Result from the active attempt',
+        completedAt: clock.now() + 1
+    }));
+
+    assert.equal(currentAccepted, true);
+    assert.equal(orchestrator.getTask(task.taskId).status, 'completed');
+});
+
 test('maintenance retry scheduling uses exponential backoff with jitter', async () => {
     const clock = createClock(9_000);
     let sendCount = 0;
@@ -292,6 +400,66 @@ test('dispatchTask fails fast and does not keep orphaned record when send fails'
 
     const metrics = orchestrator.getMetrics();
     assert.equal(metrics.total, 0);
+});
+
+test('getMetrics reports low-cardinality age signals for open tasks', async () => {
+    const clock = createClock(10_000);
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: clock.now
+    });
+
+    await orchestrator.dispatchTask({
+        id: '00000000-0000-4000-8000-000000000121',
+        target: 'agent:worker-age',
+        task: 'Older task',
+        createdAt: 8_000
+    });
+    await orchestrator.dispatchTask({
+        id: '00000000-0000-4000-8000-000000000122',
+        target: 'agent:worker-age',
+        task: 'Newer task',
+        createdAt: 9_500
+    });
+
+    const metrics = orchestrator.getMetrics();
+
+    assert.deepEqual(metrics.openAgeMs, {
+        oldest: 2_000,
+        average: 1_250,
+        p95: 2_000
+    });
+    assert.equal(metrics.open, 2);
+});
+
+test('getMetrics excludes terminal task ages and supports an explicit snapshot time', async () => {
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        now: () => 20_000
+    });
+    const task = await orchestrator.dispatchTask({
+        id: '00000000-0000-4000-8000-000000000123',
+        target: 'agent:worker-age',
+        task: 'Complete me',
+        createdAt: 19_000
+    });
+    orchestrator.ingestResult({
+        kind: 'task_result',
+        taskId: task.taskId,
+        from: 'agent:worker-age',
+        attempt: 1,
+        status: 'success',
+        output: 'Done',
+        completedAt: 19_500
+    });
+
+    assert.deepEqual(orchestrator.getMetrics({ now: () => 30_000 }).openAgeMs, {
+        oldest: 0,
+        average: 0,
+        p95: 0
+    });
 });
 
 test('helper builders emit schema-valid messages', () => {
@@ -438,6 +606,40 @@ test('failed initial send deletes persisted record after flush', async (t) => {
     await orchestrator.flush();
     const records = await store.loadRecords();
     assert.equal(records.length, 0);
+});
+
+test('flush surfaces persistence failures instead of claiming durable state', async () => {
+    const warnings = [];
+    const orchestrator = new TaskOrchestrator({
+        localAgentId: 'agent:main',
+        transport: { async send() {} },
+        store: {
+            async saveRecord() {
+                throw new Error('journal unavailable');
+            }
+        },
+        logger: {
+            warn(message) {
+                warnings.push(message);
+            }
+        }
+    });
+
+    const task = await orchestrator.dispatchTask({
+        target: 'agent:worker-persist-failure',
+        task: 'Expose a journal failure'
+    });
+
+    assert.equal(task.status, 'dispatched');
+    await assert.rejects(
+        () => orchestrator.flush(),
+        (error) => {
+            assert.equal(error.code, 'PERSISTENCE_FAILED');
+            assert.match(error.message, /journal unavailable/);
+            return true;
+        }
+    );
+    assert.equal(warnings.length, 2);
 });
 
 test('approval policy can gate dispatch until review is approved', async () => {

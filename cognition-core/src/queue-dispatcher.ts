@@ -46,6 +46,92 @@ function traceparentForRecord(record) {
     return `00-${traceId}-${spanId}-01`;
 }
 
+function traceparentForMessage(message) {
+    const existing = message?.traceparent || message?.context?.traceparent;
+    if (isTraceparent(existing)) return existing.trim().toLowerCase();
+
+    const taskId = typeof message?.id === 'string' ? message.id : null;
+    if (!taskId) return null;
+    const createdAt = Number(message?.createdAt || 0);
+    const traceId = stableHex(`openclaw-task:${taskId}`, 32);
+    const spanId = stableHex(`openclaw-task-dispatch:${taskId}:${createdAt}`, 16);
+    return `00-${traceId}-${spanId}-01`;
+}
+
+function buildDispatchEnvelopeTrace({
+    target,
+    message,
+    sentAt
+}) {
+    const taskId = typeof message?.id === 'string' ? message.id : null;
+    const traceparent = traceparentForMessage(message);
+    const context = message?.context && typeof message.context === 'object'
+        ? message.context
+        : {};
+    const dispatchContext = context.openclawDispatch && typeof context.openclawDispatch === 'object'
+        ? context.openclawDispatch
+        : {};
+    const dispatchAttempt = Number(dispatchContext.attempt);
+    const taskIdempotencyKey = taskId ? `task:${taskId}` : null;
+    const dispatchIdempotencyKey = typeof dispatchContext.idempotencyKey === 'string' && dispatchContext.idempotencyKey.trim()
+        ? dispatchContext.idempotencyKey.trim()
+        : null;
+
+    return {
+        schemaVersion: 'openclaw.task_dispatch.trace.v1',
+        traceparent,
+        taskId,
+        target,
+        dispatchAttempt: Number.isInteger(dispatchAttempt) && dispatchAttempt > 0 ? dispatchAttempt : null,
+        dispatchReason: typeof dispatchContext.reason === 'string' ? dispatchContext.reason : null,
+        priority: typeof message?.priority === 'string' ? message.priority : null,
+        planner: typeof context.planner === 'string' ? context.planner : null,
+        createdAt: Number.isFinite(Number(message?.createdAt)) ? Number(message.createdAt) : null,
+        sentAt,
+        idempotencyKey: taskIdempotencyKey,
+        taskIdempotencyKey,
+        dispatchIdempotencyKey,
+        trajectoryEventCount: taskId ? 2 : 0
+    };
+}
+
+function buildDispatchTrajectoryEvents({ trace }) {
+    if (!trace?.taskId || !trace.traceparent) return [];
+
+    const baseEvent = {
+        schemaVersion: 'openclaw.task_dispatch.trajectory_event.v1',
+        traceparent: trace.traceparent,
+        taskId: trace.taskId,
+        target: trace.target,
+        actor: 'cognition-core/queue-dispatcher',
+        phase: 'dispatch',
+        priority: trace.priority,
+        planner: trace.planner,
+        dispatchAttempt: trace.dispatchAttempt,
+        dispatchReason: trace.dispatchReason,
+        idempotencyKey: trace.idempotencyKey,
+        taskIdempotencyKey: trace.taskIdempotencyKey,
+        dispatchIdempotencyKey: trace.dispatchIdempotencyKey
+    };
+
+    return [
+        {
+            ...baseEvent,
+            sequence: 1,
+            event: 'task_dispatch_selected',
+            at: trace.sentAt,
+            description: 'Created queue task selected for external agent dispatch.'
+        },
+        {
+            ...baseEvent,
+            sequence: 2,
+            event: 'task_dispatch_outbox_enqueued',
+            at: trace.sentAt,
+            description: 'Task request written to the external runtime outbox.'
+        }
+    ];
+}
+
 function sortByCreatedAtAsc(records) {
     return [...records].sort((a, b) => {
         const left = Number(a?.createdAt || 0);
@@ -142,16 +228,58 @@ export function createFileOutboxTransport({
             }
             const fileName = `${sanitizeTargetForFile(target)}.jsonl`;
             const filePath = path.join(resolvedOutboxDir, fileName);
+            const sentAt = safeNow(nowFactory);
+            const trace = buildDispatchEnvelopeTrace({
+                target,
+                message,
+                sentAt
+            });
             const envelope = {
                 kind: 'task_dispatch_envelope',
                 target,
-                sentAt: safeNow(nowFactory),
+                sentAt,
+                trace,
+                trajectoryEvents: buildDispatchTrajectoryEvents({ trace }),
                 message
             };
 
             await fs.mkdir(resolvedOutboxDir, { recursive: true });
             await fs.appendFile(filePath, `${JSON.stringify(envelope)}\n`, 'utf8');
         }
+    };
+}
+
+export async function runQueueMaintenance({
+    storePath,
+    outboxDir,
+    localAgentId = 'agent:main',
+    nowFactory = Date.now
+}) {
+    if (!storePath || typeof storePath !== 'string') {
+        throw new Error('storePath is required');
+    }
+    if (!outboxDir || typeof outboxDir !== 'string') {
+        throw new Error('outboxDir is required');
+    }
+
+    const now = typeof nowFactory === 'function' ? nowFactory : Date.now;
+    const store = new FileTaskStore({ filePath: storePath, now });
+    const transport = createFileOutboxTransport({ outboxDir, nowFactory: now });
+    const orchestrator = new TaskOrchestrator({
+        localAgentId,
+        transport,
+        store,
+        approvalPolicy: createApprovalPolicy(),
+        now
+    });
+
+    const hydration = await orchestrator.hydrate();
+    const maintenance = await orchestrator.runMaintenance(safeNow(now));
+    await orchestrator.flush();
+
+    return {
+        loaded: hydration.loaded,
+        ...maintenance
     };
 }
 
@@ -179,7 +307,8 @@ export async function dispatchCreatedQueueTasks({
         localAgentId,
         transport,
         store,
-        approvalPolicy: createApprovalPolicy()
+        approvalPolicy: createApprovalPolicy(),
+        now
     });
 
     const hydration = await orchestrator.hydrate();

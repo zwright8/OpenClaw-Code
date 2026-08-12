@@ -33,6 +33,19 @@ function createTraceIntegrityStats() {
     };
 }
 
+function createToolFailureModeStats() {
+    const createBucket = () => ({
+        count: 0,
+        tools: {}
+    });
+    return {
+        tool_result_error: createBucket(),
+        missing_tool_result: createBucket(),
+        orphan_tool_result: createBucket(),
+        repeated_tool_call_burst: createBucket()
+    };
+}
+
 function createSessionTraceState() {
     return {
         pendingToolCalls: {},
@@ -96,6 +109,41 @@ function summarizeTrajectoryRisk(trajectory) {
         flags,
         riskScore: roundNumber(riskScore, 2)
     };
+}
+
+function incrementFailureMode(stats, mode, toolName, count = 1) {
+    const amount = Number.isFinite(Number(count)) && Number(count) > 0
+        ? Number(count)
+        : 1;
+    if (!stats.toolFailureModes[mode]) {
+        stats.toolFailureModes[mode] = {
+            count: 0,
+            tools: {}
+        };
+    }
+    const bucket = stats.toolFailureModes[mode];
+    bucket.count += amount;
+    const tool = typeof toolName === 'string' && toolName.trim()
+        ? toolName
+        : 'unknown';
+    bucket.tools[tool] = (bucket.tools[tool] || 0) + amount;
+}
+
+function buildTopToolFailureModes(toolFailureModes) {
+    return Object.entries(toolFailureModes || {})
+        .map(([mode, data]) => {
+            const count = Number(data?.count) || 0;
+            const topTools = Object.entries(data?.tools || {})
+                .map(([name, toolCount]) => ({
+                    name,
+                    count: Number(toolCount) || 0
+                }))
+                .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+                .slice(0, 5);
+            return { mode, count, topTools };
+        })
+        .filter((item) => item.count > 0)
+        .sort((a, b) => b.count - a.count || a.mode.localeCompare(b.mode));
 }
 
 function ensureToolSummary(raw) {
@@ -357,6 +405,20 @@ export function buildRemediationPlan(currentSummary, comparison = null, options 
     }
 
     const trajectoryRisk = currentSummary.trajectoryRisk || {};
+    const dominantFailureMode = Array.isArray(currentSummary.topToolFailureModes)
+        ? currentSummary.topToolFailureModes[0]
+        : null;
+    if (dominantFailureMode && (Number(dominantFailureMode.count) || 0) > 0) {
+        const topTool = dominantFailureMode.topTools?.[0]?.name || 'unknown';
+        add(
+            'P1',
+            `Investigate ${dominantFailureMode.mode}`,
+            `${dominantFailureMode.count} tool failure-mode event(s) were classified; top tool is ${topTool}.`,
+            'Use the tool failure-mode taxonomy to patch the dominant reliability failure before broad retry or routing changes.',
+            Number(dominantFailureMode.count) || 0
+        );
+    }
+
     if ((Number(trajectoryRisk.maxConsecutiveToolErrors) || 0) >= 2) {
         add(
             'P1',
@@ -500,6 +562,7 @@ export class LogAnalyzerV2 {
             providers: {},
             stopReasons: {},
             traceIntegrity: createTraceIntegrityStats(),
+            toolFailureModes: createToolFailureModeStats(),
             byDay: {},
             cutoffIso: null,
             startIso: null,
@@ -655,6 +718,11 @@ export class LogAnalyzerV2 {
             summary.maxConsecutiveErrors
         );
         this.stats.traceIntegrity.toolCallsWithoutResult += traceState.pendingToolCallTotal;
+        for (const [toolName, count] of Object.entries(traceState.pendingToolCalls)) {
+            if (count > 0) {
+                incrementFailureMode(this.stats, 'missing_tool_result', toolName, count);
+            }
+        }
     }
 
     _processEvent(event, trajectory = null, traceState = null) {
@@ -722,6 +790,7 @@ export class LogAnalyzerV2 {
 
             if (msg.isError) {
                 this._countError(toolName, timestampMs);
+                incrementFailureMode(this.stats, 'tool_result_error', toolName);
                 if (trajectory) {
                     trajectory.errors++;
                     trajectory.consecutiveErrors++;
@@ -771,6 +840,7 @@ export class LogAnalyzerV2 {
         );
         if (traceState.consecutiveToolCalls === 3) {
             this.stats.traceIntegrity.repeatedToolCallBursts++;
+            incrementFailureMode(this.stats, 'repeated_tool_call_burst', name);
         }
     }
 
@@ -787,6 +857,7 @@ export class LogAnalyzerV2 {
             traceState.pendingToolCallTotal = Math.max(0, traceState.pendingToolCallTotal - 1);
         } else {
             this.stats.traceIntegrity.toolResultsWithoutCall++;
+            incrementFailureMode(this.stats, 'orphan_tool_result', name);
         }
 
         traceState.lastToolCallName = null;
@@ -910,6 +981,12 @@ export class LogAnalyzerV2 {
             insights.push(`Repeated tool-call burst detected (${this.stats.traceIntegrity.repeatedToolCallBursts}).`);
         }
 
+        const dominantFailureMode = buildTopToolFailureModes(this.stats.toolFailureModes)[0];
+        if (dominantFailureMode) {
+            const topTool = dominantFailureMode.topTools[0]?.name || 'unknown';
+            insights.push(`Dominant tool failure mode: ${dominantFailureMode.mode} (${dominantFailureMode.count}, top tool: ${topTool}).`);
+        }
+
         if (insights.length === 0 && this.stats.errors === 0) {
             insights.push('No tool errors detected in the analysis window.');
         }
@@ -932,6 +1009,7 @@ export class LogAnalyzerV2 {
                 .slice()
                 .sort((a, b) => b.riskScore - a.riskScore)
                 .slice(0, 10),
+            topToolFailureModes: buildTopToolFailureModes(this.stats.toolFailureModes).slice(0, 10),
             reliabilityScore: this._getReliabilityScore(),
             insights: this.getInsights()
         };

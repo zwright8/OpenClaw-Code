@@ -180,6 +180,84 @@ test('summarizeOutcomes extracts W3C traceparent and flags orphan spans', () => 
     assert.equal(result.summary.traceOrphanRate, 0.5);
 });
 
+test('summarizeOutcomes links nested parent span contexts', () => {
+    const result = summarizeOutcomes([
+        {
+            taskId: '1',
+            target: 'agent:a',
+            status: 'completed',
+            traceEvents: [
+                {
+                    traceId: 'trace-a',
+                    spanId: '1111111111111111',
+                    name: 'workflow_root'
+                },
+                {
+                    traceId: 'trace-a',
+                    spanId: '2222222222222222',
+                    parentSpanContext: { spanId: '1111111111111111' },
+                    attributes: { 'gen_ai.operation.name': 'execute_tool' }
+                },
+                {
+                    context: {
+                        traceId: 'trace-a',
+                        spanId: '3333333333333333',
+                        parent: { span_id: '2222222222222222' }
+                    },
+                    name: 'guardrail_check'
+                },
+                {
+                    traceId: 'trace-a',
+                    spanId: '4444444444444444',
+                    attributes: {
+                        'gen_ai.operation.name': 'handoff',
+                        'parent.span_id': '3333333333333333'
+                    }
+                }
+            ]
+        }
+    ]);
+
+    assert.equal(result.summary.observability.linkedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceBacked, 0);
+    assert.equal(result.summary.traceLinkCoverage, 1);
+    assert.equal(result.summary.traceOrphanRate, 0);
+    assert.equal(result.summary.toolTraceCoverage, 1);
+    assert.equal(result.summary.guardrailTraceCoverage, 1);
+    assert.equal(result.summary.handoffTraceCoverage, 1);
+});
+
+test('summarizeOutcomes rejects dangling parent span links', () => {
+    const result = summarizeOutcomes([
+        {
+            taskId: '1',
+            target: 'agent:a',
+            status: 'completed',
+            traceEvents: [
+                {
+                    traceId: 'trace-a',
+                    spanId: '2222222222222222',
+                    parentSpanId: 'missing-parent-span',
+                    attributes: { 'gen_ai.operation.name': 'execute_tool' }
+                },
+                {
+                    traceId: 'trace-a',
+                    spanId: '3333333333333333',
+                    parentSpanId: '2222222222222222',
+                    name: 'guardrail_check'
+                }
+            ]
+        }
+    ]);
+
+    assert.equal(result.summary.observability.linkedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceBacked, 1);
+    assert.equal(result.summary.observability.orphanedTraceEvents, 1);
+    assert.equal(result.summary.observability.danglingParentTraceEvents, 1);
+    assert.equal(result.summary.traceLinkCoverage, 1);
+    assert.equal(result.summary.traceOrphanRate, 1);
+});
+
 test('runCounterfactualReplay ranks variants by projected gain', () => {
     const summary = summarizeOutcomes(sampleOutcomes());
     const replay = runCounterfactualReplay(summary, [

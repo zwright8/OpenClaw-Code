@@ -221,6 +221,7 @@ npm run worker:loop -- --deploy-index ../skills/state/skills.deployability.index
 npm run autonomous:run -- --deploy-index ../skills/state/skills.deployability.index.json --hardening-profile ../skills/state/skills.hardening.profile.json
 ```
 `npm run worker:loop` writes `reports/bot-worker-loop.json` and `reports/bot-worker-loop.md`.
+Add `--otel-jsonl reports/bot-worker-loop.otel.jsonl` to emit dependency-free OTel-compatible span JSONL for external OpenClaw trace ingestion. Span attributes include `openclaw.event.*` payload fields such as dispatch counts, stale-recovery candidate IDs, approval reasons, and run-evaluation scores so monitors can alert without parsing the full worker report. Dropped or malformed trace events now reduce the worker-loop run evaluation score, so telemetry regressions are visible through both `runEvaluation` and `traceExportDiagnostics`.
 Inspect the latest gateway status plus the worker-loop lifecycle checkpoint with:
 ```bash
 npx tsx scripts/health-monitor.ts
@@ -229,7 +230,8 @@ Emit the same health state as JSON for external OpenClaw monitors with:
 ```bash
 npx tsx scripts/health-monitor.ts --json
 ```
-The JSON includes an aggregate `status` plus `attention` reasons and reports gateway and worker-loop state independently so partial outages do not mask resume signals.
+The JSON includes an aggregate `status` plus `attention` reasons and reports gateway and worker-loop state independently so partial outages do not mask resume signals. When present in `reports/bot-worker-loop.json`, worker-loop `runEvaluation` and `traceExportDiagnostics` are also surfaced as health attention signals so external monitors can catch execution-quality or trace-export regressions without parsing the full worker report.
+Configure `OPENCLAW_WORKER_OPEN_AGE_SLO_MS` (or pass `--max-open-age-ms <n>`) to alert when the oldest open task exceeds an operator-defined backlog-age SLO. A breach adds `worker_loop_open_age_slo_breached` to `attention` and exits with status `2`, allowing cron or health checks to act without parsing the full report; the check is disabled when no threshold is configured.
 
 ## Quick Start
 
